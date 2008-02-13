@@ -1,0 +1,6 @@
+ac_add_options --enable-application=browser
+ac_add_options --enable-optimize="-Os -gstabs+"
+ac_add_options --disable-debug
+
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
