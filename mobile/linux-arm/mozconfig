@@ -1,0 +1,5 @@
+mk_add_options MOZ_CO_PROJECT=browser
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/fx-linux-arm
+ac_add_options --enable-application=browser
+ac_add_options --disable-jemalloc
+ac_add_options --disable-tests
