@@ -1,5 +1,9 @@
-mk_add_options MOZ_CO_PROJECT=browser
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/fx-linux-arm
-ac_add_options --enable-application=browser
+mk_add_options MOZ_CO_PROJECT=xulrunner
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/xr-linux-arm
+ac_add_options --enable-application=xulrunner
 ac_add_options --disable-jemalloc
 ac_add_options --disable-tests
+ac_add_options --enable-extensions=softkb
+ac_add_options --disable-javaxpcom
+
+HILDON=1
