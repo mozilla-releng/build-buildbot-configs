@@ -2,4 +2,4 @@
 ac_add_app_options ppc --enable-prebinding
 
 ac_add_options --enable-application=browser
-
+ac_add_options --disable-tests
