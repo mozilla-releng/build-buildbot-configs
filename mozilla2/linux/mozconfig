@@ -5,3 +5,6 @@ ac_add_options --disable-debug
 
 CC=/tools/gcc/bin/gcc
 CXX=/tools/gcc/bin/g++
+
+export CFLAGS="-gstabs+"
+export CXXFLAGS="-gstabs+"
