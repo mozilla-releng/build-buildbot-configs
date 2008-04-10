@@ -7,3 +7,6 @@ ac_add_options --disable-tests
 
 export CFLAGS="-gstabs -gfull -save-temps"
 export CXXFLAGS="-gstabs -gfull -save-temps"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
