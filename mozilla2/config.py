@@ -59,8 +59,8 @@ BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave03'
 ]
 BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
-    'moz2-mac-slave1',
     'bm-xserve16',
+    'bm-xserve17',
     'bm-xserve18'
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
@@ -74,8 +74,8 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave03'
 ]
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
-    'moz2-mac-slave1',
     'bm-xserve16',
+    'bm-xserve17',
     'bm-xserve18'
 ]
 # This is used in a bunch of places where something needs to be run from
@@ -143,8 +143,8 @@ BRANCHES['actionmonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave03'
 ]
 BRANCHES['actionmonkey']['platforms']['macosx']['slaves'] = [
-    'moz2-mac-slave1',
     'bm-xserve16',
+    'bm-xserve17',
     'bm-xserve18'
 ]
 BRANCHES['actionmonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
