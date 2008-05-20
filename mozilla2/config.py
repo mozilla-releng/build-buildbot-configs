@@ -34,7 +34,7 @@ BRANCHES['mozilla-central']['platforms']['linux']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['profiled_build'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = False
-BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = True
+BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
