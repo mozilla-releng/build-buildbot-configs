@@ -4,8 +4,6 @@ ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --disable-debug
 ac_add_options --disable-tests
-# for 1.9 vs mozilla-central perf comparison - we don't run codesighs so this
-# shouldn't do anything
 ac_add_options --enable-codesighs
 
 CC=/tools/gcc/bin/gcc
