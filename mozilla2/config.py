@@ -30,6 +30,12 @@ BRANCHES['mozilla-central']['platforms'] = {
     'macosx-debug': {},
     'win32-debug': {}
 }
+BRANCHES['mozilla-central']['platforms']['linux']['base_name'] = 'Linux mozilla-central'
+BRANCHES['mozilla-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-central'
+BRANCHES['mozilla-central']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 mozilla-central'
+BRANCHES['mozilla-central']['platforms']['linux-debug']['base_name'] = 'Linux mozilla-central leak test'
+BRANCHES['mozilla-central']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 mozilla-central leak test'
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-central leak test'
 BRANCHES['mozilla-central']['platforms']['linux']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['profiled_build'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
@@ -129,6 +135,9 @@ BRANCHES['actionmonkey']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
+BRANCHES['actionmonkey']['platforms']['linux']['base_name'] = 'Linux actionmonkey'
+BRANCHES['actionmonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 actionmonkey'
+BRANCHES['actionmonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 actionmonkey'
 BRANCHES['actionmonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['actionmonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['actionmonkey']['platforms']['macosx']['profiled_build'] = False
