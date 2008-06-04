@@ -57,32 +57,42 @@ BRANCHES['mozilla-central']['tinderbox_tree'] = 'Mozilla2'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
-    'moz2-linux-slave03'
+    'moz2-linux-slave03',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06'
 ]
 BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
-    'moz2-win32-slave03'
+    'moz2-win32-slave03',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06'
 ]
 BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
-    'bm-xserve18'
+    'bm-xserve18',
+    'bm-xserve19'
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
-    'moz2-linux-slave03'
+    'moz2-linux-slave03',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06'
 ]
 BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
-    'moz2-win32-slave03'
+    'moz2-win32-slave03',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06'
 ]
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
-    'bm-xserve18'
+    'bm-xserve18',
+    'bm-xserve19'
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -147,17 +157,22 @@ BRANCHES['actionmonkey']['tinderbox_tree'] = 'Actionmonkey'
 BRANCHES['actionmonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
-    'moz2-linux-slave03'
+    'moz2-linux-slave03',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06'
 ]
 BRANCHES['actionmonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
-    'moz2-win32-slave03'
+    'moz2-win32-slave03',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06'
 ]
 BRANCHES['actionmonkey']['platforms']['macosx']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
-    'bm-xserve18'
+    'bm-xserve18',
+    'bm-xserve19'
 ]
 BRANCHES['actionmonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['actionmonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
