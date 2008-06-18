@@ -51,7 +51,8 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = Fal
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86-64-gcc4'
+# We're actually using gcc4, but Firefox hardcodes gcc3
+BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['mozilla-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
