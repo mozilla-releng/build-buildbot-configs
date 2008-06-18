@@ -24,6 +24,7 @@ BRANCHES = {
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
     'linux': {},
+    'linux64': {},
     'win32': {},
     'macosx': {},
     'linux-debug': {},
@@ -31,12 +32,14 @@ BRANCHES['mozilla-central']['platforms'] = {
     'win32-debug': {}
 }
 BRANCHES['mozilla-central']['platforms']['linux']['base_name'] = 'Linux mozilla-central'
+BRANCHES['mozilla-central']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux-debug']['base_name'] = 'Linux mozilla-central leak test'
 BRANCHES['mozilla-central']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 mozilla-central leak test'
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-central leak test'
 BRANCHES['mozilla-central']['platforms']['linux']['profiled_build'] = False
+BRANCHES['mozilla-central']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['profiled_build'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = False
@@ -48,11 +51,15 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = Fal
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86-64-gcc4'
 BRANCHES['mozilla-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['mozilla-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['mozilla-central']['upload_symbols'] = True
+BRANCHES['mozilla-central']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['mozilla-central']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Mozilla2'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
@@ -60,6 +67,9 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave03',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
+]
+BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = [
+    'moz2-linux64-slave01'
 ]
 BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
@@ -98,6 +108,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['mozilla-central']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-central']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['mozilla-central']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
@@ -110,6 +121,14 @@ BRANCHES['mozilla-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1'
+}
+BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64'
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -151,8 +170,10 @@ BRANCHES['actionmonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 acti
 BRANCHES['actionmonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['actionmonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['actionmonkey']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['actionmonkey']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['actionmonkey']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['actionmonkey']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['actionmonkey']['create_snippet'] = False
-BRANCHES['actionmonkey']['upload_symbols'] = False
 BRANCHES['actionmonkey']['tinderbox_tree'] = 'Actionmonkey'
 BRANCHES['actionmonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
