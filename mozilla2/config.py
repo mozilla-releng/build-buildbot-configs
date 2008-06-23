@@ -151,12 +151,15 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'DISPLAY': ':0',
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
 }
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
 }
 BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
 }
 
 ######## actionmonkey
