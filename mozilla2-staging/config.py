@@ -17,7 +17,8 @@ DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},
-    'actionmonkey': {}
+    'actionmonkey': {},
+    'tracemonkey': {}
 }
 
 ######## mozilla-central
@@ -211,6 +212,59 @@ BRANCHES['actionmonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1'
 }
 BRANCHES['actionmonkey']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
+
+######## tracemonkey
+BRANCHES['tracemonkey']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {}
+}
+BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
+BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
+BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tracemonkey']['create_snippet'] = False
+BRANCHES['tracemonkey']['tinderbox_tree'] = 'Tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
+    'moz2-linux-slave1',
+    'moz2-linux-slave02',
+    'moz2-linux-slave03',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06'
+]
+BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
+    'moz2-win32-slave1',
+    'moz2-win32-slave02',
+    'moz2-win32-slave03',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06'
+]
+BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
+    'bm-xserve16',
+    'bm-xserve17',
+    'bm-xserve18',
+    'bm-xserve19'
+]
+BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
+BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
+BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1'
 }
