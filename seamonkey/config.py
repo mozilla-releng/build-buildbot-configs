@@ -36,15 +36,15 @@ BRANCHES['calemaisu-test']['platforms']['macosx']['profiled_build'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['calemaisu-test']['create_snippet'] = False
-BRANCHES['calemaisu-test']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/hg-default'
+BRANCHES['calemaisu-test']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/hg-test'
 BRANCHES['calemaisu-test']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['calemaisu-test']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['calemaisu-test']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['calemaisu-test']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['calemaisu-test']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['calemaisu-test']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['calemaisu-test']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['calemaisu-test']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['calemaisu-test']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['calemaisu-test']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['calemaisu-test']['platforms']['linux']['slaves'] = [
     'cb-sea-linux-tbox'
