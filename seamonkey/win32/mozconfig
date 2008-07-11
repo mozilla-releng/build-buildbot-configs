@@ -11,4 +11,6 @@ export MOZ_DEBUG_SYMBOLS=1
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
-#mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+# Enable Building of the Palm Sync extension.
+export BUILD_PALMSYNC=1;
+export PALM_CDK_DIR='C:\PALMCDK403';
