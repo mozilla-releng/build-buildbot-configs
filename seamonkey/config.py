@@ -35,7 +35,7 @@ BRANCHES['calemaisu-test']['platforms']['macosx']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['calemaisu-test']['create_snippet'] = False
+BRANCHES['calemaisu-test']['create_snippet'] = True
 BRANCHES['calemaisu-test']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/hg-test'
 BRANCHES['calemaisu-test']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['calemaisu-test']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
