@@ -27,8 +27,8 @@ BRANCHES['calemaisu-test']['platforms'] = {
     'macosx': {}
 }
 BRANCHES['calemaisu-test']['platforms']['linux']['base_name'] = 'Linux sm-hg-test'
-BRANCHES['calemaisu-test']['platforms']['win32']['base_name'] = 'WINNT 5.2 sm-hg-test'
-BRANCHES['calemaisu-test']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 sm-hg-test'
+BRANCHES['calemaisu-test']['platforms']['win32']['base_name'] = 'Win2k3 sm-hg-test'
+BRANCHES['calemaisu-test']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 sm-hg-test'
 BRANCHES['calemaisu-test']['platforms']['linux']['profiled_build'] = False
 BRANCHES['calemaisu-test']['platforms']['win32']['profiled_build'] = False
 BRANCHES['calemaisu-test']['platforms']['macosx']['profiled_build'] = False
@@ -45,7 +45,7 @@ BRANCHES['calemaisu-test']['platforms']['macosx']['update_platform'] = 'Darwin_U
 BRANCHES['calemaisu-test']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['calemaisu-test']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['calemaisu-test']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['calemaisu-test']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['calemaisu-test']['tinderbox_tree'] = 'SeaMonkey-Ports'
 BRANCHES['calemaisu-test']['platforms']['linux']['slaves'] = [
     'cb-sea-linux-tbox'
 ]
