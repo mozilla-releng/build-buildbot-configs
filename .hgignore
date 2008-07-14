@@ -1,3 +1,13 @@
 ^thunderbird/Makefile$
 ^thunderbird/.*\.pck$
+^thunderbird/.*\.pyc$
+^thunderbird/.*\.log(\.[0-9]+)?$
 ^thunderbird/public_html/index.html$
+
+#XXX: Specific to slaves, needs another top-level container so we can
+#XXX: mass ignore it all
+
+thunderbird/trunk-osx
+thunderbird/trunk-unix
+thunderbird/trunk-win32
+
