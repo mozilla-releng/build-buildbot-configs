@@ -2,13 +2,6 @@
 . $topsrcdir/.mozconfig-common
 
 mk_add_options MOZ_DEBUG_SYMBOLS=1
-#ac_add_options --enable-debug
-#ac_add_options --disable-optimize
-## Add explicit optimize flags in configure.in, not here - see bug 407794
-#ac_add_options --enable-optimize
-#ac_add_options --enable-shared
-#ac_add_options --disable-static
-#ac_add_options --enable-tests
 ac_add_options --disable-vista-sdk-requirements
 
 ac_add_options --disable-debug
