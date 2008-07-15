@@ -1,1 +1,15 @@
 . $topsrcdir/mail/config/mozconfig
+
+mk_add_options MOZ_CO_PROJECT=mail
+mk_add_options MOZ_MAKE_FLAGS=-j3
+mk_add_options MOZ_CO_MODULE="mozilla/tools/update-packaging mozilla/tools/codesighs"
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+
+ac_add_options --enable-application=mail
+ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-packaging
+
+ac_add_options --enable-tests
+ac_add_options --enable-shared
+ac_add_options --disable-static
+ac_add_options --enable-codesighs
