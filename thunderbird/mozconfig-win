@@ -1,9 +1,4 @@
 # Include the shared mozconfig
 . $topsrcdir/.mozconfig-common
 
-mk_add_options MOZ_DEBUG_SYMBOLS=1
 ac_add_options --disable-vista-sdk-requirements
-
-ac_add_options --disable-debug
-# Add explicit optimize flags in configure.in, not here - see bug 407794
-ac_add_options --enable-optimize
