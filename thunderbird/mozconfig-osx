@@ -1,10 +1,6 @@
 # Include the shared mozconfig
 . $topsrcdir/.mozconfig-common
 
-# symbols for breakpad
-export CFLAGS="-gstabs+"
-export CXXFLAGS="-gstabs+"
-
 ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 
 CC="ccache gcc"
