@@ -1,5 +1,5 @@
 HGURL = 'http://hg.mozilla.org/'
-# for nss/nspr
+# for nss/nspr 
 CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'mozilla2'
