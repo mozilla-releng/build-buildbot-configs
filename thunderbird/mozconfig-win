@@ -1,3 +1,6 @@
+# Include the shared mozconfig
+. $topsrcdir/.mozconfig-common
+
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 
 mk_add_options MOZ_CO_PROJECT=mail

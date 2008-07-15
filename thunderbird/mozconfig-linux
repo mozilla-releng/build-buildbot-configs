@@ -1,3 +1,6 @@
+# Include the shared mozconfig
+. $topsrcdir/.mozconfig-common
+
 # symbols for breakpad
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
