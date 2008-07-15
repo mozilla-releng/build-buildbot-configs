@@ -1,7 +1,9 @@
 ^thunderbird/Makefile$
 ^thunderbird/.*\.pck$
 ^thunderbird/.*\.pyc$
+^thunderbird/.*\.pid$
 ^thunderbird/.*\.log(\.[0-9]+)?$
+^thunderbird/buildbot.htmlc.word$
 ^thunderbird/public_html/index.html$
 
 #XXX: Specific to slaves, needs another top-level container so we can
