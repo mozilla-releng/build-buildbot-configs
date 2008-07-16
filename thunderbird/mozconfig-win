@@ -1,4 +1,2 @@
 # Include the shared mozconfig
 . $topsrcdir/.mozconfig-common
-
-ac_add_options --disable-vista-sdk-requirements
