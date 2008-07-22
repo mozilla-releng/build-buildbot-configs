@@ -1,5 +1,11 @@
 # Include the shared mozconfig
-. $topsrcdir/.mozconfig-common
+if test -e $topsrcdir/../.mozconfig-common ; then
+  . $topsrcdir/../.mozconfig-common
+else
+  . $topsrcdir/.mozconfig-common
+fi
+
+mk_add_options AUTOCONF=autoconf213
 
 ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 

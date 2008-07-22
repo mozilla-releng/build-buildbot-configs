@@ -1,5 +1,9 @@
 # Include the shared mozconfig
-. $topsrcdir/.mozconfig-common
+if test -e $topsrcdir/../.mozconfig-common ; then
+  . $topsrcdir/../.mozconfig-common
+else
+  . $topsrcdir/.mozconfig-common
+fi
 
 CC="ccache /tools/gcc-4.1.1/bin/gcc"
 CXX="ccache /tools/gcc-4.1.1/bin/g++"

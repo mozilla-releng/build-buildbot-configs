@@ -1,2 +1,6 @@
 # Include the shared mozconfig
-. $topsrcdir/.mozconfig-common
+if test -e $topsrcdir/../.mozconfig-common ; then
+  . $topsrcdir/../.mozconfig-common
+else
+  . $topsrcdir/.mozconfig-common
+fi
