@@ -38,3 +38,15 @@ BRANCHES['comm-central']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['comm-central']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
+BRANCHES['comm-central']['platforms']['win32']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
+BRANCHES['comm-central']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1'
+}
