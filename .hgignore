@@ -1,15 +1,15 @@
-^thunderbird/Makefile$
-^thunderbird/.*\.pck$
-^thunderbird/.*\.pyc$
-^thunderbird/.*\.pid$
-^thunderbird/.*\.log(\.[0-9]+)?$
-^thunderbird/buildbot.htmlc.word$
-^thunderbird/public_html/index.html$
+^thunderbird-unittest/Makefile$
+^thunderbird-unittest/.*\.pck$
+^thunderbird-unittest/.*\.pyc$
+^thunderbird-unittest/.*\.pid$
+^thunderbird-unittest/.*\.log(\.[0-9]+)?$
+^thunderbird-unittest/buildbot.htmlc.word$
+^thunderbird-unittest/public_html/index.html$
 
 #XXX: Specific to slaves, needs another top-level container so we can
 #XXX: mass ignore it all
 
-thunderbird/trunk-osx
-thunderbird/trunk-unix
-thunderbird/trunk-win32
+thunderbird-unittest/trunk-osx
+thunderbird-unittest/trunk-unix
+thunderbird-unittest/trunk-win32
 
