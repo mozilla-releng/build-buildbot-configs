@@ -1,7 +1,7 @@
 from twisted.application import service
 from buildbot.master import BuildMaster
 
-basedir = r'/buildbot/default'
+basedir = r'/buildbot/buildbot-configs/thunderbird-unittest'
 configfile = r'master.cfg'
 
 application = service.Application('buildmaster')
