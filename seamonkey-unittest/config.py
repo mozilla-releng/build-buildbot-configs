@@ -1,6 +1,3 @@
-from buildbot.steps.shell import ShellCommand
-from buildbot.status.builder import FAILURE, SUCCESS
-
 HGURL = 'http://hg.mozilla.org/'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
@@ -53,18 +50,3 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1'
 }
-
-class GetHgRevision(ShellCommand):
-    name = "get hg revision"
-    command = ["hg", "identify", "-i"]
-
-    def commandComplete(self, cmd):
-        rev = ""
-        try:
-            rev = cmd.logs['stdio'].getText().strip().rstrip()
-            self.setProperty('hg_revision', rev)
-        except:
-            log.msg("Could not find hg revision")
-            log.msg("Output: %s" % rev)
-            return FAILURE
-        return SUCCESS
