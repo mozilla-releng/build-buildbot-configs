@@ -1,3 +1,6 @@
+from buildbot.steps.shell import ShellCommand
+from buildbot.status.builder import FAILURE, SUCCESS
+
 HGURL = 'http://hg.mozilla.org/'
 ADD_POLL_BRANCH = 'mozilla-central'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
@@ -85,3 +88,18 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1'
 }
+
+class GetHgRevision(ShellCommand):
+    name = "get hg revision"
+    command = ["hg", "identify", "-i"]
+
+    def commandComplete(self, cmd):
+        rev = ""
+        try:
+            rev = cmd.logs['stdio'].getText().strip().rstrip()
+            self.setProperty('hg_revision', rev)
+        except:
+            log.msg("Could not find hg revision")
+            log.msg("Output: %s" % rev)
+            return FAILURE
+        return SUCCESS
