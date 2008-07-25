@@ -5,12 +5,12 @@ CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'mozilla2'
 OBJDIR = 'obj-firefox'
 STAGE_USERNAME = 'ffxbld'
-STAGE_SERVER = 'notstage.mozilla.org'
+STAGE_SERVER = 'staging-stage.build.mozilla.org'
 STAGE_BASE_PATH = '/home/ftp/pub/firefox'
 STAGE_GROUP = None
 STAGE_SSH_KEY = 'ffxbld_dsa'
 AUS2_USER = 'cltbld'
-AUS2_HOST = 'notaus2-staging.mozilla.org'
+AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
 
 
@@ -122,33 +122,33 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['platform_objdir'] = OB
 BRANCHES['mozilla-central']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'notdm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1'
 }
 BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'notdm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64'
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'notdm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1'
 }
 BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'notdm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1'
 }
