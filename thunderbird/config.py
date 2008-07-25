@@ -13,7 +13,7 @@ STAGE_BASE_PATH = '/home/ftp/pub/thunderbird'
 STAGE_GROUP = 'thunderbird'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
-AUS2_HOST = 'aus2-community.mozilla.org'
+AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 
 
@@ -39,7 +39,7 @@ BRANCHES['comm-central']['platforms']['macosx']['profiled_build'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central']['create_snippet'] = True
-BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/ThunderBird/trunk'
+BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
