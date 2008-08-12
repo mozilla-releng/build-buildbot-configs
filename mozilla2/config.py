@@ -122,7 +122,8 @@ BRANCHES['mozilla-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -130,7 +131,8 @@ BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-    'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64'
+    'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -138,7 +140,8 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -146,21 +149,25 @@ BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'DISPLAY': ':0',
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
 ######## actionmonkey
@@ -205,15 +212,18 @@ BRANCHES['actionmonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['actionmonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['actionmonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['actionmonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['actionmonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
 ######## tracemonkey
@@ -258,13 +268,16 @@ BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
