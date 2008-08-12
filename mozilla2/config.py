@@ -186,6 +186,11 @@ BRANCHES['actionmonkey']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['actionmonkey']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['actionmonkey']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['actionmonkey']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['actionmonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['actionmonkey']['tinderbox_tree'] = 'Actionmonkey'
 BRANCHES['actionmonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
@@ -242,6 +247,11 @@ BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['tracemonkey']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
