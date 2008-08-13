@@ -71,6 +71,7 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
     'SYMBOL_SERVER_SSH_KEY': "/home/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -79,6 +80,7 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -87,4 +89,5 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
