@@ -131,7 +131,7 @@ BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-    'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64',
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
@@ -243,9 +243,9 @@ BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 trace
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
@@ -278,16 +278,31 @@ BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
