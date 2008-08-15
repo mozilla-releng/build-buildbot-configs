@@ -68,7 +68,8 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_USER': 'seabld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sea/',
     'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -76,7 +77,8 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': 'seabld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sea/',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -84,5 +86,6 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_USER': 'seabld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sea/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
