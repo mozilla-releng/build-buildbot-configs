@@ -12,6 +12,9 @@ STAGE_SSH_KEY = 'ffxbld_dsa'
 AUS2_USER = 'cltbld'
 AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
+GRAPH_SERVER = 'graphs.mozilla.org'
+GRAPH_SELECTOR = 'server'
+GRAPH_BRANCH = '1.9.1'
 
 
 # All branches that are to be built MUST be listed here.
