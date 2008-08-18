@@ -1,7 +1,7 @@
-HGURL = 'http://hg.mozilla.org/'
+HGURL = 'https://hg.mozilla.org/'
 # for nss/nspr
 CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_URL = 'https://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'mozilla2'
 OBJDIR = 'obj-firefox'
 STAGE_USERNAME = 'ffxbld'
