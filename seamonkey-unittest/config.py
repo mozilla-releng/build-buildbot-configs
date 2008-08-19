@@ -23,15 +23,15 @@ BRANCHES['comm-central']['platforms']['linux']['name'] = 'Linux comm-central dep
 BRANCHES['comm-central']['platforms']['win32']['name'] = 'Win2k3 comm-central dep unit test'
 BRANCHES['comm-central']['platforms']['macosx']['name'] = 'MacOSX 10.4 comm-central dep unit test'
 BRANCHES['comm-central']['tinderbox_tree'] = 'SeaMonkey'
-BRANCHES['comm-central']['platforms']['linux']['mochitest_leakthreshold'] = 143792
-BRANCHES['comm-central']['platforms']['win32']['mochitest_leakthreshold'] = 21313
-BRANCHES['comm-central']['platforms']['macosx']['mochitest_leakthreshold'] = 21320
-BRANCHES['comm-central']['platforms']['linux']['mochichrome_leakthreshold'] = 8380
-BRANCHES['comm-central']['platforms']['win32']['mochichrome_leakthreshold'] = 8345
-BRANCHES['comm-central']['platforms']['macosx']['mochichrome_leakthreshold'] = 8472
-BRANCHES['comm-central']['platforms']['linux']['mochibrowser_leakthreshold'] = 0
-BRANCHES['comm-central']['platforms']['win32']['mochibrowser_leakthreshold'] = 0
-BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leakthreshold'] = 0
+BRANCHES['comm-central']['platforms']['linux']['mochitest_leakthreshold'] = '143792'
+BRANCHES['comm-central']['platforms']['win32']['mochitest_leakthreshold'] = '21313'
+BRANCHES['comm-central']['platforms']['macosx']['mochitest_leakthreshold'] = '21320'
+BRANCHES['comm-central']['platforms']['linux']['mochichrome_leakthreshold'] = '8380'
+BRANCHES['comm-central']['platforms']['win32']['mochichrome_leakthreshold'] = '8345'
+BRANCHES['comm-central']['platforms']['macosx']['mochichrome_leakthreshold'] = '8472'
+BRANCHES['comm-central']['platforms']['linux']['mochibrowser_leakthreshold'] = '0'
+BRANCHES['comm-central']['platforms']['win32']['mochibrowser_leakthreshold'] = '0'
+BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leakthreshold'] = '0'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
     'cn-sea-qm-centos5-01'
 ]
