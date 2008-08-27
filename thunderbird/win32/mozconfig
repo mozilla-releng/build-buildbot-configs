@@ -8,3 +8,6 @@ ac_add_options --disable-shared
 ac_add_options --enable-static
 
 export MOZ_DEBUG_SYMBOLS=1
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1

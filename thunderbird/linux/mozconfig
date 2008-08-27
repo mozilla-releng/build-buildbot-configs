@@ -13,3 +13,6 @@ CXX=/tools/gcc-4.1.1/bin/g++
 
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
