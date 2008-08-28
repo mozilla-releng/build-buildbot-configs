@@ -1,0 +1,16 @@
+# Don't use the standard mozconfig. We don't want universal for a debug build. 
+#. $topsrcdir/build/macosx/universal/mozconfig
+
+ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
+
+ac_add_app_options ppc --enable-prebinding
+
+ac_add_options --disable-optimize
+ac_add_options --enable-debug
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-tests
+ac_add_options --enable-trace-malloc
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
