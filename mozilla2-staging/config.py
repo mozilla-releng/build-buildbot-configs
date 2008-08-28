@@ -1,8 +1,8 @@
 HGURL = 'http://hg.mozilla.org/'
-# for nss/nspr 
+# for nss/nspr
 CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
-CONFIG_SUBDIR = 'mozilla2'
+CONFIG_SUBDIR = 'mozilla2-staging'
 OBJDIR = 'obj-firefox'
 STAGE_USERNAME = 'ffxbld'
 STAGE_SERVER = 'staging-stage.build.mozilla.org'
@@ -12,6 +12,9 @@ STAGE_SSH_KEY = 'ffxbld_dsa'
 AUS2_USER = 'cltbld'
 AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
+GRAPH_SERVER = 'graphs-stage.mozilla.org'
+GRAPH_SELECTOR = 'server'
+GRAPH_BRANCH = '1.9.1'
 
 
 # All branches that are to be built MUST be listed here.
@@ -67,7 +70,6 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
-    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -78,7 +80,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
-    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
@@ -92,7 +93,6 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
-    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -100,7 +100,6 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
-    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
@@ -126,7 +125,8 @@ BRANCHES['mozilla-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -134,7 +134,8 @@ BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-    'SYMBOL_SERVER_EXTRA_BUILDID': 'linux64'
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -142,7 +143,8 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -150,21 +152,25 @@ BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/data/symbols/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'DISPLAY': ':0',
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
 ######## actionmonkey
@@ -183,12 +189,16 @@ BRANCHES['actionmonkey']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['actionmonkey']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['actionmonkey']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['actionmonkey']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['actionmonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['actionmonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['actionmonkey']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['actionmonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
-    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -196,7 +206,6 @@ BRANCHES['actionmonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
-    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
@@ -211,15 +220,18 @@ BRANCHES['actionmonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['actionmonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['actionmonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['actionmonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['actionmonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
 ######## tracemonkey
@@ -232,18 +244,22 @@ BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
-    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -251,7 +267,6 @@ BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
-    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
@@ -266,13 +281,31 @@ BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1'
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }

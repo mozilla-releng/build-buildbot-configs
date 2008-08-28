@@ -5,6 +5,7 @@ ac_add_options --enable-application=browser
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --disable-tests
+ac_add_options --enable-codesighs
 
 export CFLAGS="-gstabs -gfull -save-temps"
 export CXXFLAGS="-gstabs -gfull -save-temps"
