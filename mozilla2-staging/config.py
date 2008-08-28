@@ -70,6 +70,7 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
+    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -80,6 +81,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
+    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
@@ -93,6 +95,7 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
+    'moz2-linux-slave04',
     'moz2-linux-slave05',
     'moz2-linux-slave06'
 ]
@@ -100,6 +103,7 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave1',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
+    'moz2-win32-slave04',
     'moz2-win32-slave05',
     'moz2-win32-slave06'
 ]
