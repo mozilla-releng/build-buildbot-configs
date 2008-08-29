@@ -49,7 +49,7 @@ BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Uni
 BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['comm-central']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
     'cb-sea-linux-tbox'
 ]
