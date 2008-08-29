@@ -186,7 +186,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 flunkOnFailure=False,
             ))
             steps.append(ShellCommand(
-                command=['mkdir', '-p', 'l10n', 'obj/mozilla/dist/bin'],
+                command=['sh', '-c', 'mkdir -p l10n obj/mozilla/dist/bin'],
                 flunkOnFailure=False,
             ))
             steps.append(ShellCommand(
