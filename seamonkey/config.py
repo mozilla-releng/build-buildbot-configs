@@ -4,6 +4,7 @@ CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
 ADD_POLL_BRANCH = 'mozilla-central'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'seamonkey'
+LOCALE_REPO_URL = 'http://hg.mozilla.org/l10n-central/index.cgi/%(locale)s'
 OBJDIR = 'objdir'
 STAGE_USERNAME = 'seabld'
 STAGE_SERVER = 'stage.mozilla.org'
@@ -13,6 +14,8 @@ STAGE_SSH_KEY = 'seabld_dsa'
 AUS2_USER = 'seabld'
 AUS2_HOST = 'aus2-community.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey'
+PRODUCT = 'suite'
+MOZ_APP_NAME = 'seamonkey'
 
 
 # All branches that are to be built MUST be listed here.
@@ -46,7 +49,7 @@ BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Uni
 BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central']['tinderbox_tree'] = 'SeaMonkey'
+BRANCHES['comm-central']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
     'cb-sea-linux-tbox'
 ]
