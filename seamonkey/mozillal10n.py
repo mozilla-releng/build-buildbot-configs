@@ -246,7 +246,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
 
             if self.platform.startswith("macosx"):
                 appIniDir = '../obj/mozilla/dist/l10n-stage/%s/SeaMonkey.app/Contents/MacOS' % self.appname
-            else
+            else:
                 appIniDir = '../obj/mozilla/dist/l10n-stage/%s' % self.appname
 
             steps.append(L10nGetBuildID(
