@@ -189,6 +189,11 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 command=['sh', '-c', 'mkdir -p l10n obj/mozilla/dist/bin'],
                 flunkOnFailure=False,
             ))
+            if self.platform.startswith("macosx"):
+                steps.append(ShellCommand(
+                    command=['mkdir', '-p', 'obj/mozilla/dist/branding'],
+                    haltOnFailure=True,
+                ))
             steps.append(ShellCommand(
                 command=['rm', '-rfv', 'configs'],
                 description=['removing', 'configs'],
@@ -228,14 +233,24 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     workdir='build/l10n/%s' % locale,
                     repourl=self.localesRepoURL % {'locale': locale},
                 ))
+                if self.platform.startswith("macosx"):
+                    steps.append(ShellCommand(
+                        command=['cp', 'l10n/de/suite/installer/mac/README.txt', 'obj/mozilla/dist/bin/'],
+                        haltOnFailure=True,
+                    ))
                 steps.append(LocaleCompile(
                     locale=locale,
                     command=['make', '-C', 'obj/%s/locales' % self.product,
                              'installers-%s' % locale],
                 ))
 
+            if self.platform.startswith("macosx"):
+                appIniDir = '../obj/mozilla/dist/l10n-stage/%s/SeaMonkey.app/Contents/MacOS' % self.appname
+            else
+                appIniDir = '../obj/mozilla/dist/l10n-stage/%s' % self.appname
+
             steps.append(L10nGetBuildID(
-                builddir='../obj/mozilla/dist/l10n-stage/%s' % self.appname,
+                builddir=appIniDir,
                 workdir='build/mozilla',
             ))
             steps.append(MozillaStageUpload(
