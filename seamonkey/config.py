@@ -16,6 +16,7 @@ AUS2_HOST = 'aus2-community.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey'
 PRODUCT = 'suite'
 MOZ_APP_NAME = 'seamonkey'
+BRAND_NAME = 'SeaMonkey'
 
 
 # All branches that are to be built MUST be listed here.

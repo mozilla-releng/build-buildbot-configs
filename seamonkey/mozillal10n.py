@@ -110,6 +110,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                      'product',
                      'platform',
                      'appname',
+                     'brandname',
                      'stage_username',
                      'stage_server',
                      'stage_base_path',
@@ -121,8 +122,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
 
     def __init__(self, mainRepoURL, localesRepoURL, configRepoURL,
                  repackLocation, mainBranch, localesBranch, configDir,
-                 product, platform, appname, stage_username, stage_server,
-                 stage_base_path, stage_group, stage_ssh_key):
+                 product, platform, appname, brandname, stage_username,
+                 stage_server, stage_base_path, stage_group, stage_ssh_key):
         """
         @param mainRepoURL: the repoURL to check out the main codebase
         @param localesRepoURL: the repoURL pattern to check out localized
@@ -139,6 +140,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         @param configDir:      the configuration subdirectory in the config repo
         @param product:        the Mozilla product, e.g. suite or mail
         @param appname:        the Mozilla app name, e.g. seamonkey or thunderbird
+        @param brandname:      the app brand name, e.g. SeaMonkey or Thunderbird
         @param platform:       the platform we're building on
         @param stage_username: the stage username for MozillaStageUpload
         @param stage_server:   the stage server for MozillaStageUpload
@@ -157,6 +159,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         self.product = product
         self.platform = platform
         self.appname = appname
+        self.brandname = brandname
         self.stage_username = stage_username
         self.stage_server = stage_server
         self.stage_base_path = stage_base_path
@@ -208,7 +211,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             ))
             steps.append(ShellCommand(
                 # cp configs/seamonkey/$platform/mozconfig-l10n .mozconfig
-                command=['cp', 'configs/%s/%s/mozconfig-l10n' % (self.configDir, self.platform),
+                command=['cp', 'configs/%s/%s/mozconfig-l10n' % \
+                               (self.configDir, self.platform),
                          '.mozconfig'],
                 description=['copying', 'mozconfig'],
                 descriptionDone=['copy', 'mozconfig'],
@@ -233,9 +237,10 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     workdir='build/l10n/%s' % locale,
                     repourl=self.localesRepoURL % {'locale': locale},
                 ))
-                if self.platform.startswith("macosx"):
+                if self.platform.startswith("macosx") and self.product == "suite":
                     steps.append(ShellCommand(
-                        command=['cp', 'l10n/de/suite/installer/mac/README.txt', 'obj/mozilla/dist/bin/'],
+                        command=['cp', 'l10n/de/suite/installer/mac/README.txt',
+                                 'obj/mozilla/dist/bin/'],
                         haltOnFailure=True,
                     ))
                 steps.append(LocaleCompile(
@@ -245,7 +250,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 ))
 
             if self.platform.startswith("macosx"):
-                appIniDir = '../obj/mozilla/dist/l10n-stage/%s/SeaMonkey.app/Contents/MacOS' % self.appname
+                appIniDir = '../obj/mozilla/dist/l10n-stage/%s/%s.app/Contents/MacOS' % \
+                            (self.appname, self.brandname)
             else:
                 appIniDir = '../obj/mozilla/dist/l10n-stage/%s' % self.appname
 
