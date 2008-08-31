@@ -269,7 +269,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 ))
                 if self.platform.startswith("macosx") and self.product == "suite":
                     steps.append(ShellCommand(
-                        command=['cp', 'l10n/de/suite/installer/mac/README.txt',
+                        command=['cp', 'l10n/%s/%s/installer/mac/README.txt' \
+                                       % (locale, self.product),
                                  'obj/mozilla/dist/bin/'],
                         description=['copying', 'README'],
                         descriptionDone=['copy', 'README'],
