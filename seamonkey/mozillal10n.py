@@ -115,7 +115,12 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                      'stage_server',
                      'stage_base_path',
                      'stage_group',
-                     'stage_ssh_key']
+                     'stage_ssh_key',
+                     'update_download_base_url',
+                     'update_base_upload_dir',
+                     'update_platform',
+                     'update_user',
+                     'update_host']
 
     # This dummy attribute exists so that buildbot configuration can succeed
     steps = ()
@@ -123,7 +128,9 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
     def __init__(self, mainRepoURL, localesRepoURL, configRepoURL,
                  repackLocation, mainBranch, localesBranch, configDir,
                  product, platform, appname, brandname, stage_username,
-                 stage_server, stage_base_path, stage_group, stage_ssh_key):
+                 stage_server, stage_base_path, stage_group, stage_ssh_key,
+                 createSnippets, update_download_base_url, update_base_upload_dir,
+                 update_platform, update_user, update_host):
         """
         @param mainRepoURL: the repoURL to check out the main codebase
         @param localesRepoURL: the repoURL pattern to check out localized
@@ -147,6 +154,12 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         @param stage_base_path: the stage base path for MozillaStageUpload
         @param stage_group:    the stage group for MozillaStageUpload
         @param stage_ssh_key:  the stage ssh key for MozillaStageUpload
+        @param createSnippets: create update snippets for locale builds
+        @param update_download_base_url: download base directory, for AUS snippets
+        @param update_base_upload_dir: upload directory, for AUS snippets
+        @param update_platform: platform indicator for AUS snippets
+        @param update_user:    username on the AUS stage server, for AUS snippets
+        @param update_host:    host name of the AUS stage server, for AUS snippets
         """
 
         self.mainRepoURL = mainRepoURL
@@ -165,6 +178,12 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         self.stage_base_path = stage_base_path
         self.stage_group = stage_group
         self.stage_ssh_key = stage_ssh_key
+        self.createSnippets = createSnippets
+        self.update_download_base_url = update_download_base_url
+        self.update_base_upload_dir = update_base_upload_dir
+        self.update_platform = update_platform
+        self.update_user = update_user
+        self.update_host = update_host
 
     def newBuild(self, requests):
         """Create a list of steps to build these possibly coalesced requests.
@@ -182,19 +201,27 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             ))
             steps.append(ShellCommand(
                 command=['python', 'client.py', 'checkout'],
+                description=['running', 'client.py', 'checkout'],
+                descriptionDone=['client.py', 'checkout'],
                 haltOnFailure=True,
             ))
             steps.append(ShellCommand(
                 command=['rm', '-rf', 'obj'],
+                description=['removing', 'objdir'],
+                descriptionDone=['remove', 'objdir'],
                 flunkOnFailure=False,
             ))
             steps.append(ShellCommand(
                 command=['sh', '-c', 'mkdir -p l10n obj/mozilla/dist/bin'],
+                description=['creating', 'l10n', 'and', 'dist/bin', 'dirs'],
+                descriptionDone=['create', 'l10n', 'and', 'dist/bin', 'dirs'],
                 flunkOnFailure=False,
             ))
             if self.platform.startswith("macosx"):
                 steps.append(ShellCommand(
                     command=['mkdir', '-p', 'obj/mozilla/dist/branding'],
+                    description=['creating', 'branding', 'dir'],
+                    descriptionDone=['create', 'branding', 'dir'],
                     haltOnFailure=True,
                 ))
             steps.append(ShellCommand(
@@ -227,6 +254,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             steps.append(ShellCommand(
                 command=['make', '-C', 'obj/%s/locales' % self.product,
                          'wget-en-US', 'EN_US_BINARY_URL=%s' % self.repackLocation],
+                description=['getting', 'en-US', 'file(s)'],
+                descriptionDone=['get', 'en-US', 'file(s)'],
                 haltOnFailure=True,
             ))
 
@@ -241,12 +270,47 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     steps.append(ShellCommand(
                         command=['cp', 'l10n/de/suite/installer/mac/README.txt',
                                  'obj/mozilla/dist/bin/'],
+                        description=['copying', 'README'],
+                        descriptionDone=['copy', 'README'],
                         haltOnFailure=True,
                     ))
                 steps.append(LocaleCompile(
                     locale=locale,
                     command=['make', '-C', 'obj/%s/locales' % self.product,
                              'installers-%s' % locale],
+                ))
+                steps.append(ShellCommand(
+                    command=['make', '-C',
+                             'obj/mozilla/tools/update-packaging'],
+                    description=['create', 'complete', 'update'],
+                    haltOnFailure=True
+                ))
+            if self.createSnippets:
+                # this is a tad ugly because we need to python interpolation
+                # as well as WithProperties
+                # here's an example of what it translates to:
+                # /opt/aus2/build/0/SeaMonkey/mozilla2/WINNT_x86-msvc/2008010103/en-GB
+                AUS2_FULL_UPLOAD_DIR = '%s/%s/%%(buildid)s/%s' % \
+                    (self.update_base_upload_dir, self.update_platform, locale)
+                steps.append(CreateCompleteUpdateSnippet(
+                    objdir='build/obj/mozilla',
+                    milestone=mainBranch,
+                    baseurl='%s/nightly' % self.update_download_base_url
+                ))
+                steps.append(ShellCommand(
+                    command=['ssh', '-l', self.update_user, self.update_host,
+                            WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
+                    description=['create', 'aus2', 'upload', 'dir'],
+                    haltOnFailure=True
+                ))
+                steps.append(ShellCommand(
+                    command=['scp', '-o', 'User=%s' % self.update_user,
+                            'dist/update/complete.update.snippet',
+                            WithProperties('%s:%s/complete.txt' % \
+                              (self.update_host, AUS2_FULL_UPLOAD_DIR))],
+                    workdir='build/obj/mozilla',
+                    description=['upload', 'complete', 'snippet'],
+                    haltOnFailure=True
                 ))
 
             if self.platform.startswith("macosx"):
