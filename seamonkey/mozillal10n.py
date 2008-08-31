@@ -286,33 +286,33 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     description=['create', 'complete', 'update'],
                     haltOnFailure=True
                 ))
-            if self.createSnippets:
-                # this is a tad ugly because we need to python interpolation
-                # as well as WithProperties
-                # here's an example of what it translates to:
-                # /opt/aus2/build/0/SeaMonkey/mozilla2/WINNT_x86-msvc/2008010103/en-GB
-                AUS2_FULL_UPLOAD_DIR = '%s/%s/%%(buildid)s/%s' % \
-                    (self.update_base_upload_dir, self.update_platform, locale)
-                steps.append(CreateCompleteUpdateSnippet(
-                    objdir='build/obj/mozilla',
-                    milestone=mainBranch,
-                    baseurl='%s/nightly' % self.update_download_base_url
-                ))
-                steps.append(ShellCommand(
-                    command=['ssh', '-l', self.update_user, self.update_host,
-                             WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
-                    description=['create', 'aus2', 'upload', 'dir'],
-                    haltOnFailure=True
-                ))
-                steps.append(ShellCommand(
-                    command=['scp', '-o', 'User=%s' % self.update_user,
-                             'dist/update/complete.update.snippet',
-                             WithProperties('%s:%s/complete.txt' % \
-                                 (self.update_host, AUS2_FULL_UPLOAD_DIR))],
-                    workdir='build/obj/mozilla',
-                    description=['upload', 'complete', 'snippet'],
-                    haltOnFailure=True
-                ))
+                if self.createSnippets:
+                    # this is a tad ugly because we need to python interpolation
+                    # as well as WithProperties
+                    # here's an example of what it translates to:
+                    # /opt/aus2/build/0/SeaMonkey/mozilla2/WINNT_x86-msvc/2008010103/en-GB
+                    AUS2_FULL_UPLOAD_DIR = '%s/%s/%%(buildid)s/%s' % \
+                        (self.update_base_upload_dir, self.update_platform, locale)
+                    steps.append(CreateCompleteUpdateSnippet(
+                        objdir='build/obj/mozilla',
+                        milestone=mainBranch,
+                        baseurl='%s/nightly' % self.update_download_base_url
+                    ))
+                    steps.append(ShellCommand(
+                        command=['ssh', '-l', self.update_user, self.update_host,
+                                 WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
+                        description=['create', 'aus2', 'upload', 'dir'],
+                        haltOnFailure=True
+                    ))
+                    steps.append(ShellCommand(
+                        command=['scp', '-o', 'User=%s' % self.update_user,
+                                 'dist/update/complete.update.snippet',
+                                 WithProperties('%s:%s/complete.txt' % \
+                                     (self.update_host, AUS2_FULL_UPLOAD_DIR))],
+                        workdir='build/obj/mozilla',
+                        description=['upload', 'complete', 'snippet'],
+                        haltOnFailure=True
+                    ))
 
             if self.platform.startswith("macosx"):
                 appIniDir = '../obj/mozilla/dist/l10n-stage/%s/%s.app/Contents/MacOS' % \
