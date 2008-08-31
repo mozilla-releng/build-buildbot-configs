@@ -18,6 +18,7 @@ from calendar import timegm
 import time
 
 from buildbotcustom.steps.transfer import MozillaStageUpload
+from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 from buildbotcustom.steps.l10n import SetLocalesStep, LocaleCompile, NonLocaleMercurial, LocaleMercurial, getLocalesForRequests
 
 try:
@@ -299,15 +300,15 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 ))
                 steps.append(ShellCommand(
                     command=['ssh', '-l', self.update_user, self.update_host,
-                            WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
+                             WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
                     description=['create', 'aus2', 'upload', 'dir'],
                     haltOnFailure=True
                 ))
                 steps.append(ShellCommand(
                     command=['scp', '-o', 'User=%s' % self.update_user,
-                            'dist/update/complete.update.snippet',
-                            WithProperties('%s:%s/complete.txt' % \
-                              (self.update_host, AUS2_FULL_UPLOAD_DIR))],
+                             'dist/update/complete.update.snippet',
+                             WithProperties('%s:%s/complete.txt' % \
+                                 (self.update_host, AUS2_FULL_UPLOAD_DIR))],
                     workdir='build/obj/mozilla',
                     description=['upload', 'complete', 'snippet'],
                     haltOnFailure=True
