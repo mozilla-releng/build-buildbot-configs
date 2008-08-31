@@ -229,13 +229,13 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 command=['rm', '-rfv', 'configs'],
                 description=['removing', 'configs'],
                 descriptionDone=['remove', 'configs'],
-                haltOnFailure=True
+                haltOnFailure=True,
             ))
             steps.append(ShellCommand(
                 command=['hg', 'clone', self.configRepoURL, 'configs'],
                 description=['checking', 'out', 'configs'],
                 descriptionDone=['checkout', 'configs'],
-                haltOnFailure=True
+                haltOnFailure=True,
             ))
             steps.append(ShellCommand(
                 # cp configs/seamonkey/$platform/mozconfig-l10n .mozconfig
@@ -244,12 +244,31 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                          '.mozconfig'],
                 description=['copying', 'mozconfig'],
                 descriptionDone=['copy', 'mozconfig'],
-                haltOnFailure=True
+                haltOnFailure=True,
             ))
 
             steps.append(Compile(
                 command=['make', '-f', 'client.mk', 'configure'],
                 env = {'MOZ_OBJDIR': 'obj'},
+                haltOnFailure=True,
+            ))
+            # the next three steps are needed so we have a mar tool
+            steps.append(ShellCommand(
+                command=['make', '-C', 'make -C obj/mozilla/config'],
+                description=['making', 'config'],
+                descriptionDone=['make', 'config'],
+                haltOnFailure=True,
+            ))
+            steps.append(ShellCommand(
+                command=['make', '-C', 'make -C obj/mozilla/nsprpub'],
+                description=['making', 'nsprpub'],
+                descriptionDone=['make', 'nsprpub'],
+                haltOnFailure=True,
+            ))
+            steps.append(ShellCommand(
+                command=['make', '-C', 'make -C obj/mozilla/modules/libmar'],
+                description=['making', 'libmar'],
+                descriptionDone=['make', 'libmar'],
                 haltOnFailure=True,
             ))
             steps.append(ShellCommand(
@@ -282,10 +301,13 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                              'installers-%s' % locale],
                 ))
                 steps.append(ShellCommand(
-                    command=['make', '-C',
-                             'obj/mozilla/tools/update-packaging'],
+                    command=['make', '-C', 'obj/mozilla/tools/update-packaging',
+                             'complete-patch', 'AB_CD=%s' % locale,
+                             'DIST=../../dist/l10n-stage',
+                             'STAGE_DIR=../../dist/update',
+                             'MAR_BIN=../../dist/host/bin/mar'],
                     description=['create', 'complete', 'update'],
-                    haltOnFailure=True
+                    haltOnFailure=True,
                 ))
                 if self.createSnippets:
                     # this is a tad ugly because we need to python interpolation
@@ -303,7 +325,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                         command=['ssh', '-l', self.update_user, self.update_host,
                                  WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
                         description=['create', 'aus2', 'upload', 'dir'],
-                        haltOnFailure=True
+                        haltOnFailure=True,
                     ))
                     steps.append(ShellCommand(
                         command=['scp', '-o', 'User=%s' % self.update_user,
@@ -312,7 +334,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                                      (self.update_host, AUS2_FULL_UPLOAD_DIR))],
                         workdir='build/obj/mozilla',
                         description=['upload', 'complete', 'snippet'],
-                        haltOnFailure=True
+                        haltOnFailure=True,
                     ))
 
             if self.platform.startswith("macosx"):
