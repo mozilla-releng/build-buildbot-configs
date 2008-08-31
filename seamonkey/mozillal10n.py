@@ -254,19 +254,19 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             ))
             # the next three steps are needed so we have a mar tool
             steps.append(ShellCommand(
-                command=['make', '-C', 'make -C obj/mozilla/config'],
+                command=['make', '-C', 'obj/mozilla/config'],
                 description=['making', 'config'],
                 descriptionDone=['make', 'config'],
                 haltOnFailure=True,
             ))
             steps.append(ShellCommand(
-                command=['make', '-C', 'make -C obj/mozilla/nsprpub'],
+                command=['make', '-C', 'obj/mozilla/nsprpub'],
                 description=['making', 'nsprpub'],
                 descriptionDone=['make', 'nsprpub'],
                 haltOnFailure=True,
             ))
             steps.append(ShellCommand(
-                command=['make', '-C', 'make -C obj/mozilla/modules/libmar'],
+                command=['make', '-C', 'obj/mozilla/modules/libmar'],
                 description=['making', 'libmar'],
                 descriptionDone=['make', 'libmar'],
                 haltOnFailure=True,
