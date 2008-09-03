@@ -20,7 +20,6 @@ GRAPH_BRANCH = '1.9.1'
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},
-    'actionmonkey': {},
     'tracemonkey': {}
 }
 
@@ -174,67 +173,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['env'] = {
 BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-
-######## actionmonkey
-BRANCHES['actionmonkey']['platforms'] = {
-    'linux': {},
-    'win32': {},
-    'macosx': {}
-}
-BRANCHES['actionmonkey']['platforms']['linux']['base_name'] = 'Linux actionmonkey'
-BRANCHES['actionmonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 actionmonkey'
-BRANCHES['actionmonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 actionmonkey'
-BRANCHES['actionmonkey']['platforms']['linux']['profiled_build'] = False
-BRANCHES['actionmonkey']['platforms']['win32']['profiled_build'] = False
-BRANCHES['actionmonkey']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['actionmonkey']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['actionmonkey']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['actionmonkey']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['actionmonkey']['create_snippet'] = False
-# need this or the master.cfg will bail
-BRANCHES['actionmonkey']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['actionmonkey']['platforms']['linux']['update_platform'] = 'fake'
-BRANCHES['actionmonkey']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['actionmonkey']['platforms']['macosx']['update_platform'] = 'fake'
-BRANCHES['actionmonkey']['tinderbox_tree'] = 'MozillaTest'
-BRANCHES['actionmonkey']['platforms']['linux']['slaves'] = [
-    'moz2-linux-slave1',
-    'moz2-linux-slave02',
-    'moz2-linux-slave03',
-    'moz2-linux-slave05',
-    'moz2-linux-slave06'
-]
-BRANCHES['actionmonkey']['platforms']['win32']['slaves'] = [
-    'moz2-win32-slave1',
-    'moz2-win32-slave02',
-    'moz2-win32-slave03',
-    'moz2-win32-slave05',
-    'moz2-win32-slave06'
-]
-BRANCHES['actionmonkey']['platforms']['macosx']['slaves'] = [
-    'bm-xserve16',
-    'bm-xserve17',
-    'bm-xserve18',
-    'bm-xserve19'
-]
-BRANCHES['actionmonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['actionmonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['actionmonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['actionmonkey']['platforms']['linux']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['actionmonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['actionmonkey']['platforms']['macosx']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
