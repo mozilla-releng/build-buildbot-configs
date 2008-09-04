@@ -197,7 +197,7 @@ BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
-BRANCHES['tracemonkey']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',
