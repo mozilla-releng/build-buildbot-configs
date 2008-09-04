@@ -121,7 +121,9 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                      'update_base_upload_dir',
                      'update_platform',
                      'update_user',
-                     'update_host']
+                     'update_host',
+                     'cvsroot',
+                     ]
 
     # This dummy attribute exists so that buildbot configuration can succeed
     steps = ()
@@ -131,7 +133,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                  product, platform, appname, brandname, stage_username,
                  stage_server, stage_base_path, stage_group, stage_ssh_key,
                  createSnippets, update_download_base_url, update_base_upload_dir,
-                 update_platform, update_user, update_host):
+                 update_platform, update_user, update_host, cvsroot):
         """
         @param mainRepoURL: the repoURL to check out the main codebase
         @param localesRepoURL: the repoURL pattern to check out localized
@@ -161,6 +163,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         @param update_platform: platform indicator for AUS snippets
         @param update_user:    username on the AUS stage server, for AUS snippets
         @param update_host:    host name of the AUS stage server, for AUS snippets
+        @param cvsroot:        cvsroot to use for CVS operations
         """
 
         self.mainRepoURL = mainRepoURL
@@ -185,6 +188,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         self.update_platform = update_platform
         self.update_user = update_user
         self.update_host = update_host
+        self.cvsroot = cvsroot
 
     def newBuild(self, requests):
         """Create a list of steps to build these possibly coalesced requests.
@@ -200,9 +204,12 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 repourl=self.mainRepoURL,
                 mainBranch=self.mainBranch,
             ))
+            extra_args = []
+	    if self.cvsroot:
+                extra_args = [ '--cvsroot' , self.cvsroot ] 
             steps.append(ShellCommand(
-                command=['python', 'client.py', 'checkout'],
-                description=['running', 'client.py', 'checkout'],
+                command=['python', 'client.py', 'checkout'] + extra_args,
+                description=['running', 'client.py', 'checkout'] + extra_args,
                 descriptionDone=['client.py', 'checkout'],
                 haltOnFailure=True,
             ))
