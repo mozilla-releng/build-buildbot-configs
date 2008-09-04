@@ -205,8 +205,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 mainBranch=self.mainBranch,
             ))
             extra_args = []
-	    if self.cvsroot:
-                extra_args = [ '--cvsroot' , self.cvsroot ] 
+        if self.cvsroot:
+            extra_args = [ '--cvsroot' , self.cvsroot ] 
             steps.append(ShellCommand(
                 command=['python', 'client.py', 'checkout'] + extra_args,
                 description=['running', 'client.py', 'checkout'] + extra_args,
