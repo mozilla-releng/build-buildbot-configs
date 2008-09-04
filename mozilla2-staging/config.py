@@ -64,7 +64,7 @@ BRANCHES['mozilla-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['mozilla-central']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['mozilla-central']['tinderbox_tree'] = 'Tracemonkey'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave1',
     'moz2-linux-slave02',

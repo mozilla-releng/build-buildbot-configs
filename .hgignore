@@ -13,3 +13,4 @@ thunderbird-unittest/trunk-osx
 thunderbird-unittest/trunk-unix
 thunderbird-unittest/trunk-win32
 
+^.*/BuildSlaves.py$
