@@ -1,6 +1,3 @@
-from buildbot.steps.shell import ShellCommand
-from buildbot.status.builder import FAILURE, SUCCESS
-
 HGURL = 'http://hg.mozilla.org/'
 ADD_POLL_BRANCH = 'mozilla-central'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
@@ -15,7 +12,9 @@ STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
 AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
-
+PRODUCT = 'mail'
+MOZ_APP_NAME = 'thunderbird'
+BRAND_NAME = 'Thunderbird'
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
@@ -39,6 +38,7 @@ BRANCHES['comm-central']['platforms']['macosx']['profiled_build'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central']['create_snippet'] = True
+BRANCHES['comm-central']['create_l10n_snippet'] = False
 BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
