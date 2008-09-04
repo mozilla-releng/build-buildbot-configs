@@ -15,7 +15,7 @@ AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
-BRAND_NAME = 'Thunderbird'
+BRAND_NAME = 'Shredder'
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
