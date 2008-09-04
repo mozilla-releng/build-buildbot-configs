@@ -12,5 +12,5 @@ export MOZ_DEBUG_SYMBOLS=1
 export MOZILLA_OFFICIAL=1
 
 # Enable Building of the Palm Sync extension.
-export BUILD_PALMSYNC=1;
-export PALM_CDK_DIR='C:\PALMCDK403';
+BUILD_PALMSYNC=1
+PALM_CDK_DIR='C:\PALMCDK403'
