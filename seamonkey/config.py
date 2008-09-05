@@ -84,6 +84,8 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'BUILD_PALMSYNC': '1',
+    'PALM_CDK_DIR': 'C:\PALMCDK403',
 }
 BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,

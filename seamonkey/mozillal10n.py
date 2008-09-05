@@ -325,7 +325,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                         command=['ssh', '-l', self.update_user, self.update_host,
                                  WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
                         description=['create', 'aus2', 'upload', 'dir'],
-                        haltOnFailure=True,
+                        haltOnFailure=False,
                     ))
                     steps.append(ShellCommand(
                         command=['scp', '-o', 'User=%s' % self.update_user,
@@ -334,7 +334,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                                      (self.update_host, AUS2_FULL_UPLOAD_DIR))],
                         workdir='build/obj/mozilla',
                         description=['upload', 'complete', 'snippet'],
-                        haltOnFailure=True,
+                        haltOnFailure=False,
                     ))
 
             if self.platform.startswith("macosx"):
@@ -347,10 +347,16 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 builddir=appIniDir,
                 workdir='build/mozilla',
             ))
+            steps.append(ShellCommand(
+                command=['rm', '-v', 'obj/mozilla/dist/*.en-US.*'],
+                description=['removing', 'en-US', 'file(s)'],
+                descriptionDone=['remove', 'en-US', 'file(s)'],
+                haltOnFailure=True,
+            ))
             steps.append(MozillaStageUpload(
                 objdir='obj/mozilla',
                 username=self.stage_username,
-                milestone=self.mainBranch,
+                milestone=self.localesBranch,
                 remoteHost=self.stage_server,
                 remoteBasePath=self.stage_base_path,
                 platform=self.platform,
@@ -359,7 +365,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 releaseToDated=False,
                 releaseToLatest=True,
                 releaseToTinderboxBuilds=False,
-                tinderboxBuildsDir='%s-%s' % (self.mainBranch, self.platform),
+                tinderboxBuildsDir='%s-%s' % (self.localesBranch, self.platform),
             ))
 
         b = self.buildClass(requests)
