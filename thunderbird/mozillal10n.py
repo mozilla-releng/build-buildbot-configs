@@ -306,6 +306,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     locale=locale,
                     command=['make', '-C', 'obj/%s/locales' % self.product,
                              'installers-%s' % locale],
+                    haltOnFailure=False,
                 ))
                 steps.append(ShellCommand(
                     command=['make', '-C', 'obj/mozilla/tools/update-packaging',
@@ -314,7 +315,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                              'STAGE_DIR=../../dist/update',
                              'MAR_BIN=../../dist/host/bin/mar'],
                     description=['create', 'complete', 'update'],
-                    haltOnFailure=True,
+                    haltOnFailure=False,
                 ))
                 if self.createSnippets:
                     # this is a tad ugly because we need to python interpolation
