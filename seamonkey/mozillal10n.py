@@ -293,7 +293,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                                  'obj/mozilla/dist/bin/'],
                         description=['copying', 'README'],
                         descriptionDone=['copy', 'README'],
-                        haltOnFailure=True,
+                        haltOnFailure=False,
                     ))
                 steps.append(LocaleCompile(
                     locale=locale,
@@ -307,7 +307,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                              'STAGE_DIR=../../dist/update',
                              'MAR_BIN=../../dist/host/bin/mar'],
                     description=['create', 'complete', 'update'],
-                    haltOnFailure=True,
+                    haltOnFailure=False,
                 ))
                 if self.createSnippets:
                     # this is a tad ugly because we need to python interpolation
@@ -367,6 +367,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 releaseToLatest=True,
                 releaseToTinderboxBuilds=False,
                 tinderboxBuildsDir='%s-%s' % (self.localesBranch, self.platform),
+                uploadLangPacks=True,
             ))
 
         b = self.buildClass(requests)
