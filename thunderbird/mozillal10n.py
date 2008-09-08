@@ -355,6 +355,13 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 builddir=appIniDir,
                 workdir='build/mozilla',
             ))
+            steps.append(ShellCommand(
+                command="rm -rfv obj/mozilla/dist/%s-*.en-US.* obj/mozilla/dist/install/sea/%s-*.en-US.*" % \
+                            (self.appname, self.appname),
+                description=['removing', 'en-US', 'file(s)'],
+                descriptionDone=['remove', 'en-US', 'file(s)'],
+                warnOnFailure=True,
+            ))
             steps.append(MozillaStageUpload(
                 objdir='obj/mozilla',
                 username=self.stage_username,
