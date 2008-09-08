@@ -375,6 +375,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 releaseToLatest=True,
                 releaseToTinderboxBuilds=False,
                 tinderboxBuildsDir='%s-%s' % (self.localesBranch, self.platform),
+                uploadLangPacks=True,
             ))
 
         b = self.buildClass(requests)
