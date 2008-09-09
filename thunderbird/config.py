@@ -29,6 +29,8 @@ BRANCHES['comm-central']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
+
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--skip-calendar']
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
