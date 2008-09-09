@@ -1,7 +1,6 @@
 HGURL = 'http://hg.mozilla.org/'
 ADD_POLL_BRANCH = 'mozilla-central'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
-CVSROOT = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 CONFIG_SUBDIR = 'thunderbird'
 LOCALE_REPO_URL = 'http://hg.mozilla.org/l10n-central/index.cgi/%(locale)s'
 OBJDIR = 'objdir-tb'
@@ -31,6 +30,7 @@ BRANCHES['comm-central']['platforms'] = {
 }
 
 BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--skip-calendar']
+BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
