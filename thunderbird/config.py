@@ -33,6 +33,7 @@ BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla',
 BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['upload_stage'] = True
+BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
