@@ -18,7 +18,8 @@ BRAND_NAME = 'Shredder'
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
-    'comm-central': {}
+    'comm-central': {},
+    'comm-central-calendar': {},
 }
 
 ######## thunderbird-hg
@@ -98,3 +99,70 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
+
+######## lightning-hg
+# All platforms being built for this branch MUST be listed here.
+BRANCHES['comm-central-calendar']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {}
+}
+
+BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
+BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
+BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
+BRANCHES['comm-central-calendar']['upload_stage'] = False
+BRANCHES['comm-central-calendar']['codesighs'] = False
+BRANCHES['comm-central-calendar']['l10n'] = False
+BRANCHES['comm-central-calendar']['platforms']['linux']['base_name'] = 'Linux comm-central-calendar'
+BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'Win2k3 comm-central-calendar'
+BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central-calendar'
+BRANCHES['comm-central-calendar']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-central-calendar']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-central-calendar']['platforms']['macosx']['profiled_build'] = False
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-central-calendar']['create_snippet'] = False
+BRANCHES['comm-central-calendar']['create_l10n_snippets'] = False
+BRANCHES['comm-central-calendar']['aus2_base_upload_dir'] = False
+BRANCHES['comm-central-calendar']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-central-calendar']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-central-calendar']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-central-calendar']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-central-calendar']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-central-calendar']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-central-calendar']['tinderbox_tree'] = 'Sunbird'
+BRANCHES['comm-central-calendar']['platforms']['linux']['slaves'] = [
+    'cb-tb-linux-tbox',
+]
+BRANCHES['comm-central-calendar']['platforms']['win32']['slaves'] = [
+    'cb-sb-win32-tbox',
+]
+BRANCHES['comm-central-calendar']['platforms']['macosx']['slaves'] = [
+    'cb-xserve03',
+]
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-central-calendar']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-calendar']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-calendar']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['comm-central-calendar']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-central-calendar']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-central-calendar']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
