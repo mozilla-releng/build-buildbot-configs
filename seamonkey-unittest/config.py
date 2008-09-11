@@ -29,9 +29,9 @@ BRANCHES['comm-central']['platforms']['macosx']['mochitest_leakthreshold'] = '21
 BRANCHES['comm-central']['platforms']['linux']['mochichrome_leakthreshold'] = '8520'
 BRANCHES['comm-central']['platforms']['win32']['mochichrome_leakthreshold'] = '8477'
 BRANCHES['comm-central']['platforms']['macosx']['mochichrome_leakthreshold'] = '8612'
-BRANCHES['comm-central']['platforms']['linux']['mochibrowser_leakthreshold'] = '0'
-BRANCHES['comm-central']['platforms']['win32']['mochibrowser_leakthreshold'] = '0'
-BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leakthreshold'] = '0'
+BRANCHES['comm-central']['platforms']['linux']['mochibrowser_leakthreshold'] = '8620'
+BRANCHES['comm-central']['platforms']['win32']['mochibrowser_leakthreshold'] = '8577'
+BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leakthreshold'] = '8712'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
     'cn-sea-qm-centos5-01'
 ]
