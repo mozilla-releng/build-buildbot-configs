@@ -111,6 +111,7 @@ BRANCHES['comm-central-calendar']['platforms'] = {
 BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
+BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-calendar']['upload_stage'] = False
 BRANCHES['comm-central-calendar']['codesighs'] = False
 BRANCHES['comm-central-calendar']['l10n'] = False
