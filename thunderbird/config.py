@@ -136,7 +136,7 @@ BRANCHES['comm-central-calendar']['platforms']['win32']['upload_symbols'] = Fals
 BRANCHES['comm-central-calendar']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central-calendar']['tinderbox_tree'] = 'Sunbird'
 BRANCHES['comm-central-calendar']['platforms']['linux']['slaves'] = [
-    'cb-tb-linux-tbox',
+    'cb-sb-linux-tbox',
 ]
 BRANCHES['comm-central-calendar']['platforms']['win32']['slaves'] = [
     'cb-sb-win32-tbox',
