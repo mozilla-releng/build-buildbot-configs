@@ -9,4 +9,5 @@ class MozillaStageUploadGlob(MozillaStageUpload):
     def getPackageGlob(self):
         if self.packageGlob:
             return self.packageGlob
-        return MozillaStageUpload.getPackageGlob(self)
+        else:
+            return MozillaStageUpload.getPackageGlob(self)
