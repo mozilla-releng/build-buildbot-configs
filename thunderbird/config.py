@@ -117,6 +117,8 @@ BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
 BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-calendar']['package'] = False
 BRANCHES['comm-central-calendar']['upload_stage'] = False
+#Might be better off per-platform instead of per-branch here.
+BRANCHES['comm-central-calendar']['upload_glob'] = "%s/ppc/mozilla/dist/xpi-stage/{lightning|gdata-provider}.xpi %s/mozilla/dist/xpi-stage/{lightning|gdata-provider}.xpi" % (OBJDIR, OBJDIR)
 BRANCHES['comm-central-calendar']['stage_username'] = 'calbld'
 BRANCHES['comm-central-calendar']['stage_base_path'] = '/home/ftp/pub/calendar'
 BRANCHES['comm-central-calendar']['stage_group'] = 'calendar'
