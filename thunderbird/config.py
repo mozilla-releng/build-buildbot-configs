@@ -120,7 +120,7 @@ BRANCHES['comm-central-calendar']['upload_stage'] = False
 #Might be better off per-platform instead of per-branch here.
 BRANCHES['comm-central-calendar']['upload_glob'] = "%s/ppc/mozilla/dist/xpi-stage/lightning.xpi %s/ppc/mozilla/dist/xpi-stage/gdata-provider.xpi %s/mozilla/dist/xpi-stage/lightning.xpi %s/mozilla/dist/xpi-stage/gdata-provider.xpi" % (OBJDIR, OBJDIR, OBJDIR, OBJDIR)
 BRANCHES['comm-central-calendar']['stage_username'] = 'calbld'
-BRANCHES['comm-central-calendar']['stage_base_path'] = '/home/ftp/pub/calendar'
+BRANCHES['comm-central-calendar']['stage_base_path'] = '/home/ftp/pub/calendar/lightning'
 BRANCHES['comm-central-calendar']['stage_group'] = 'calendar'
 BRANCHES['comm-central-calendar']['stage_ssh_key'] = 'calbld_dsa'
 BRANCHES['comm-central-calendar']['codesighs'] = False
