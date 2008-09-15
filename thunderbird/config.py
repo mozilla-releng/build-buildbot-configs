@@ -117,6 +117,7 @@ BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
 BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-calendar']['package'] = False
 BRANCHES['comm-central-calendar']['upload_stage'] = False
+BRANCHES['comm-central-calendar']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
 BRANCHES['comm-central-calendar']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
 BRANCHES['comm-central-calendar']['stage_username'] = 'calbld'
