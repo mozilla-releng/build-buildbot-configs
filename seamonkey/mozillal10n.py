@@ -99,6 +99,44 @@ class L10nGetBuildID(ShellCommand):
             return FAILURE
         return SUCCESS
 
+class LocaleShellCommand(ShellCommand):
+    """Subclass of ShellCommand step for localized builds."""
+    def __init__(self, locale, **kwargs):
+        ShellCommand.__init__(self, **kwargs)
+        self.locale = locale
+        self.addFactoryArguments(locale=locale)
+
+    def describe(self, done=False):
+        d = ShellCommand.describe(self, done)
+        if isinstance(d, (str, unicode)):
+            return "%s: %s" % (self.locale, d)
+
+        d = list(d)
+        d.insert(0, "%s:" % self.locale)
+        return d
+
+    def commandComplete(self, cmd):
+        self.step_status.locale = self.locale
+
+class LocaleCreateCompleteUpdateSnippet(CreateCompleteUpdateSnippet):
+    """Subclass of CreateCompleteUpdateSnippet step for localized builds."""
+    def __init__(self, locale, **kwargs):
+        CreateCompleteUpdateSnippet.__init__(self, **kwargs)
+        self.locale = locale
+        self.addFactoryArguments(locale=locale)
+
+    def describe(self, done=False):
+        d = CreateCompleteUpdateSnippet.describe(self, done)
+        if isinstance(d, (str, unicode)):
+            return "%s: %s" % (self.locale, d)
+
+        d = list(d)
+        d.insert(0, "%s:" % self.locale)
+        return d
+
+    def commandComplete(self, cmd):
+        self.step_status.locale = self.locale
+
 class CCRepackFactory(buildbot.util.ComparableMixin):
     buildClass = Build
     compare_attrs = ['mainRepoURL',
@@ -287,7 +325,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     repourl=self.localesRepoURL % {'locale': locale},
                 ))
                 if self.platform.startswith("macosx") and self.product == "suite":
-                    steps.append(ShellCommand(
+                    steps.append(LocaleShellCommand(
+                        locale=locale,
                         command=['cp', 'l10n/%s/%s/installer/mac/README.txt' \
                                        % (locale, self.product),
                                  'obj/mozilla/dist/bin/'],
@@ -300,7 +339,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     command=['make', '-C', 'obj/%s/locales' % self.product,
                              'installers-%s' % locale],
                 ))
-                steps.append(ShellCommand(
+                steps.append(LocaleShellCommand(
+                    locale=locale,
                     command=['make', '-C', 'obj/mozilla/tools/update-packaging',
                              'complete-patch', 'AB_CD=%s' % locale,
                              'DIST=../../dist/l10n-stage',
@@ -316,18 +356,21 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     # /opt/aus2/build/0/SeaMonkey/mozilla2/WINNT_x86-msvc/2008010103/en-GB
                     AUS2_FULL_UPLOAD_DIR = '%s/%s/%%(buildid)s/%s' % \
                         (self.update_base_upload_dir, self.update_platform, locale)
-                    steps.append(CreateCompleteUpdateSnippet(
+                    steps.append(LocaleCreateCompleteUpdateSnippet(
+                        locale=locale,
                         objdir='build/obj/mozilla',
                         milestone=mainBranch,
                         baseurl='%s/nightly' % self.update_download_base_url
                     ))
-                    steps.append(ShellCommand(
+                    steps.append(LocaleShellCommand(
+                        locale=locale,
                         command=['ssh', '-l', self.update_user, self.update_host,
                                  WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
                         description=['create', 'aus2', 'upload', 'dir'],
                         haltOnFailure=False,
                     ))
-                    steps.append(ShellCommand(
+                    steps.append(LocaleShellCommand(
+                        locale=locale,
                         command=['scp', '-o', 'User=%s' % self.update_user,
                                  'dist/update/complete.update.snippet',
                                  WithProperties('%s:%s/complete.txt' % \
