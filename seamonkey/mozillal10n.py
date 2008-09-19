@@ -359,7 +359,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     steps.append(LocaleCreateCompleteUpdateSnippet(
                         locale=locale,
                         objdir='build/obj/mozilla',
-                        milestone=mainBranch,
+                        milestone=self.mainBranch,
                         baseurl='%s/nightly' % self.update_download_base_url
                     ))
                     steps.append(LocaleShellCommand(
