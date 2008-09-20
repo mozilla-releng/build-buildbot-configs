@@ -347,7 +347,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 steps.append(LocaleShellCommand(
                     locale=locale,
                     command='if [ -z `ls %s-*.%s.*` ]; then rm -rf l10n-stage; fi' % \
-                            (self.product, locale),
+                            (self.appname, locale),
                     workdir='build/obj/mozilla/dist',
                     haltOnFailure=False,
                 ))
