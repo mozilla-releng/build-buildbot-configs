@@ -116,7 +116,7 @@ BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvs
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
 BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-calendar']['package'] = False
-BRANCHES['comm-central-calendar']['upload_stage'] = False
+BRANCHES['comm-central-calendar']['upload_stage'] = True
 BRANCHES['comm-central-calendar']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
 BRANCHES['comm-central-calendar']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
@@ -134,6 +134,9 @@ BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 
 BRANCHES['comm-central-calendar']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['comm-central-calendar']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
+BRANCHES['comm-central-calendar']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
+BRANCHES['comm-central-calendar']['platforms']['macosx']['milestone'] = "comm-central/macosx-xpi"
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
