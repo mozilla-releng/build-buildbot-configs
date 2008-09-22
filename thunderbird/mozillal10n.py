@@ -68,37 +68,6 @@ class L10nNightly(Nightly):
     process_all_locales = process_all_locales
     finished_failure = finished_failure
 
-class L10nGetBuildID(ShellCommand):
-    """Retrieves the BuildID from a Mozilla tree (using platform.ini) and sets
-    it as a build property ('buildid'). If defined, uses objdir as it's base.
-    """
-    description=['getting buildid']
-    descriptionDone=['get buildid']
-    haltOnFailure=True
-
-    def __init__(self, builddir="", **kwargs):
-        ShellCommand.__init__(self, **kwargs)
-        major, minor, point = buildbot.version.split(".", 3)
-        # Buildbot 0.7.5 and below do not require this
-        if int(minor) >= 7 and int(point) >= 6:
-            self.addFactoryArguments(builddir=builddir)
-
-        self.builddir = builddir
-        self.command = ['python', 'config/printconfigsetting.py',
-                        '%s/application.ini' % self.builddir,
-                        'App', 'BuildID']
-
-    def commandComplete(self, cmd):
-        buildid = ""
-        try:
-            buildid = cmd.logs['stdio'].getText().strip().rstrip()
-            self.setProperty('buildid', buildid)
-        except:
-            log.msg("Could not find BuildID or BuildID invalid")
-            log.msg("Found: %s" % buildid)
-            return FAILURE
-        return SUCCESS
-
 class LocaleShellCommand(ShellCommand):
     """Subclass of ShellCommand step for localized builds."""
     def __init__(self, locale, **kwargs):
@@ -117,6 +86,34 @@ class LocaleShellCommand(ShellCommand):
 
     def commandComplete(self, cmd):
         self.step_status.locale = self.locale
+
+class LocaleGetBuildProperties(LocaleShellCommand):
+    """Retrieves the BuildID from a Mozilla tree (using application.ini) and sets
+    it as a build property ('buildid'). If defined, uses objdir as it's base.
+    """
+    description=['getting buildid']
+    descriptionDone=['get buildid']
+    haltOnFailure=False
+
+    def __init__(self, builddir="", **kwargs):
+        LocaleShellCommand.__init__(self, **kwargs)
+        self.builddir = builddir
+        self.addFactoryArguments(builddir=builddir)
+        self.command = ['python', 'config/printconfigsetting.py',
+                        '%s/application.ini' % self.builddir,
+                        'App', 'BuildID']
+
+    def commandComplete(self, cmd):
+        LocaleShellCommand.commandComplete(self, cmd)
+        buildid = ""
+        try:
+            buildid = cmd.logs['stdio'].getText().strip().rstrip()
+            self.setProperty('buildid', buildid)
+        except:
+            log.msg("Could not find BuildID or BuildID invalid")
+            log.msg("Found: %s" % buildid)
+            return FAILURE
+        return SUCCESS
 
 class LocaleCreateCompleteUpdateSnippet(CreateCompleteUpdateSnippet):
     """Subclass of CreateCompleteUpdateSnippet step for localized builds."""
@@ -235,6 +232,12 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
 
         locales = getLocalesForRequests(requests)
 
+        if self.platform.startswith("macosx"):
+            appIniDir = '../obj/mozilla/dist/l10n-stage/%s/%s.app/Contents/MacOS' % \
+                        (self.appname, self.brandname)
+        else:
+            appIniDir = '../obj/mozilla/dist/l10n-stage/%s' % self.appname
+
         steps = []
         if len(locales) > 0:
             steps.append(SetLocalesStep(locales=locales))
@@ -334,8 +337,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 if self.platform.startswith("macosx") and self.product == "suite":
                     steps.append(LocaleShellCommand(
                         locale=locale,
-                        command=['cp', 'l10n/%s/%s/installer/mac/README.txt' \
-                                       % (locale, self.product),
+                        command=['cp', 'l10n/%s/%s/installer/mac/README.txt' % \
+                                       (locale, self.product),
                                  'obj/mozilla/dist/bin/'],
                         description=['copying', 'README'],
                         descriptionDone=['copy', 'README'],
@@ -347,6 +350,15 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                              'installers-%s' % locale],
                     haltOnFailure=False,
                 ))
+                # the slightly hacky command below is to ensure we don't
+                # package updates on failure even though we don't halt
+                steps.append(LocaleShellCommand(
+                    locale=locale,
+                    command='if [ -z `ls %s-*.%s.*` ]; then rm -rf l10n-stage; fi' % \
+                            (self.product, locale),
+                    workdir='build/obj/mozilla/dist',
+                    haltOnFailure=False,
+                ))
                 steps.append(LocaleShellCommand(
                     locale=locale,
                     command=['make', '-C', 'obj/mozilla/tools/update-packaging',
@@ -356,6 +368,11 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                              'MAR_BIN=../../dist/host/bin/mar'],
                     description=['create', 'complete', 'update'],
                     haltOnFailure=False,
+                ))
+                steps.append(LocaleGetBuildProperties(
+                    locale=locale,
+                    builddir=appIniDir,
+                    workdir='build/mozilla',
                 ))
                 if self.createSnippets:
                     # this is a tad ugly because we need to python interpolation
@@ -385,19 +402,10 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                         haltOnFailure=True,
                     ))
 
-            if self.platform.startswith("macosx"):
-                appIniDir = '../obj/mozilla/dist/l10n-stage/%s/%s.app/Contents/MacOS' % \
-                            (self.appname, self.brandname)
-            else:
-                appIniDir = '../obj/mozilla/dist/l10n-stage/%s' % self.appname
-
-            steps.append(L10nGetBuildID(
-                builddir=appIniDir,
-                workdir='build/mozilla',
-            ))
             steps.append(ShellCommand(
-                command="rm -rfv obj/mozilla/dist/%s-*.en-US.* obj/mozilla/dist/install/sea/%s-*.en-US.*" % \
+                command="rm -rfv %s-*.en-US.* install/sea/%s-*.en-US.*" % \
                             (self.appname, self.appname),
+                workdir='build/obj/mozilla/dist',
                 description=['removing', 'en-US', 'file(s)'],
                 descriptionDone=['remove', 'en-US', 'file(s)'],
                 warnOnFailure=True,
