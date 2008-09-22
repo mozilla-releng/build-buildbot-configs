@@ -16,6 +16,7 @@ import urllib
 from xml.dom import minidom, Node
 from calendar import timegm
 import time
+import re
 
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
@@ -108,7 +109,8 @@ class LocaleGetBuildProperties(LocaleShellCommand):
         buildid = ""
         try:
             buildid = cmd.logs['stdio'].getText().strip().rstrip()
-            self.setProperty('buildid', buildid)
+            if re.match(r"\d+$", buildid):
+                self.setProperty('buildid', buildid)
         except:
             log.msg("Could not find BuildID or BuildID invalid")
             log.msg("Found: %s" % buildid)
@@ -354,8 +356,9 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 # package updates on failure even though we don't halt
                 steps.append(LocaleShellCommand(
                     locale=locale,
-                    command='if [ -z `ls %s-*.%s.*` ]; then rm -rf l10n-stage; fi' % \
-                            (self.appname, locale),
+                    command=['sh', '-c',
+                             'if [ -z `ls %s-*.%s.*` ]; then rm -rf l10n-stage; fi' % \
+                             (self.appname, locale)],
                     workdir='build/obj/mozilla/dist',
                     haltOnFailure=False,
                 ))
