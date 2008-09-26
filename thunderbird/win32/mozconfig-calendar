@@ -12,3 +12,6 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+# We don't want lightning to install itself
+export DISABLE_LIGHTNING_INSTALL=1
