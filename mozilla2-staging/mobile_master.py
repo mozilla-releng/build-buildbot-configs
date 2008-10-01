@@ -11,6 +11,10 @@ reload(buildbotcustom.changes.hgpoller)
 from buildbotcustom.changes.hgpoller import HgPoller
 from buildbot.scheduler import Scheduler, Nightly
 
+import buildbot.status.tinderbox
+reload(buildbot.status.tinderbox)
+from buildbot.status.tinderbox import TinderboxMailNotifier
+
 # most of the config is in an external file
 import config
 reload(config)
@@ -26,22 +30,40 @@ status = []
 change_source.append(HgPoller(
     hgURL=config.HGURL,
     branch='mozilla-central',
-    pushlogUrlOverride='http://hg.mozilla.org/mozilla-central/index.cgi/pushlog',
+    pushlogUrlOverride='http://hg.mozilla.org//mozilla-central/index.cgi/pushlog',
     pollInterval=1*60
 ))
 
 change_source.append(HgPoller(
     hgURL=config.HGURL,
     branch='mobile-browser',
-    pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/index.cgi/pushlog',
+    pushlogUrlOverride='http://hg.mozilla.org//mobile-browser/index.cgi/pushlog',
     pollInterval=1*60
 ))
 
 schedulers.append(Scheduler(
-    name="mobile dep scheduler",
-    branch="HEAD",
+    name="mobile mozilla-central dep scheduler",
+    branch="mozilla-central",
     treeStableTimer=3*60,
-    builderNames=["mobile-linux-arm-dep"]
+    builderNames=["mobile-linux-arm-dep"],
+    fileIsImportant=lambda c: isHgPollerTriggered(c, config.HGURL)
+))
+
+schedulers.append(Scheduler(
+    name="mobile mobile-browser dep scheduler",
+    branch="mobile-browser",
+    treeStableTimer=3*60,
+    builderNames=["mobile-linux-arm-dep"],
+    fileIsImportant=lambda c: isHgPollerTriggered(c, config.HGURL)
+))
+
+status.append(TinderboxMailNotifier(
+    fromaddr="mozilla2.buildbot@build.mozilla.org",
+    tree='MozillaTest',
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
+    relayhost="mail.build.mozilla.org",
+    builders="mobile-linux-arm-dep",
+    logCompression="bzip2"
 ))
 
 
@@ -168,10 +190,10 @@ linux_arm_dep_factory.addStep(ShellCommand(
 
 linux_arm_dep_factory.addStep(ShellCommand(
     command = ['bash', '-c',
-               'scp -oIdentityFile=~/.ssh/%s %s/build/mozilla-central/%s/mobile/dist/*.tar.bz2 ' % (STAGE_SSH_KEY, mobile_config.SBOX_HOME, mobile_config.OBJDIR) + \
+               'scp -p -oIdentityFile=~/.ssh/%s %s/build/mozilla-central/%s/mobile/dist/*.tar.bz2 ' % (STAGE_SSH_KEY, mobile_config.SBOX_HOME, mobile_config.OBJDIR) + \
                '%s/build/mozilla-central/%s/xulrunner/xulrunner/*.deb ' % (mobile_config.SBOX_HOME, mobile_config.OBJDIR) + \
                '%s/build/mozilla-central/%s/mobile/mobile/*.deb ' % (mobile_config.SBOX_HOME, mobile_config.OBJDIR) + \
-               '%s@%s:%s/tinderbox-builds/mozilla-central-linux-arm' % (STAGE_USERNAME, STAGE_SERVER, STAGE_BASE_PATH)],
+               '%s@%s:%s/tinderbox-builds/mobile-browser-linux-arm' % (STAGE_USERNAME, STAGE_SERVER, STAGE_BASE_PATH)],
     description=['uploading', 'build'],
     descriptionDone=['upload', 'build'],
     haltOnFailure=True
