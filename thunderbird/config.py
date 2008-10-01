@@ -137,6 +137,8 @@ BRANCHES['comm-central-calendar']['platforms']['macosx']['profiled_build'] = Fal
 BRANCHES['comm-central-calendar']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
 BRANCHES['comm-central-calendar']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
 BRANCHES['comm-central-calendar']['platforms']['macosx']['milestone'] = "comm-central/macosx-xpi"
+BRANCHES['comm-central-calendar']['platforms']['macosx']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
+
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
