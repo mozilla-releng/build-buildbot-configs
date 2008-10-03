@@ -53,6 +53,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = Fal
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['periodic_scheduler_period'] = 60*60*2   # 2 hours
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -190,7 +191,7 @@ BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
@@ -198,6 +199,7 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tracemonkey']['periodic_scheduler_period'] = 60*60*10   # 10 hours
 BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
