@@ -15,6 +15,10 @@ import buildbot.status.tinderbox
 reload(buildbot.status.tinderbox)
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
+import buildbotcustom.misc
+reload(buildbotcustom.misc)
+from buildbotcustom.misc import isHgPollerTriggered
+
 # most of the config is in an external file
 import config
 reload(config)
@@ -26,13 +30,6 @@ builders = []
 schedulers = []
 change_source = []
 status = []
-
-change_source.append(HgPoller(
-    hgURL=config.HGURL,
-    branch='mozilla-central',
-    pushlogUrlOverride='http://hg.mozilla.org//mozilla-central/index.cgi/pushlog',
-    pollInterval=1*60
-))
 
 change_source.append(HgPoller(
     hgURL=config.HGURL,
