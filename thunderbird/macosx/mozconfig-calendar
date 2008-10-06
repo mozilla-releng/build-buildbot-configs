@@ -3,7 +3,6 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
 else
 . $topsrcdir/build/macosx/universal/mozconfig
 fi
-ac_add_app_options ppc --enable-prebinding
 
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk

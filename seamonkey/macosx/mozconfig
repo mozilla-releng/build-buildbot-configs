@@ -3,7 +3,6 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
 else
 . $topsrcdir/build/macosx/universal/mozconfig
 fi
-ac_add_app_options ppc --enable-prebinding
 
 ac_add_options --enable-application=suite
 ac_add_options --enable-update-channel=nightly
