@@ -1,7 +1,7 @@
 hgUsername        = 'ffxbld'
 hgSshKey          = '~cltbld/.ssh/ffxbld_dsa'
 mozillaCentral    = 'http://hg.mozilla.org/mozilla-central/'
-mozillaCentralRevision = 'FILLMEOUT'
+mozillaCentralRevision = '197f83ad7678'
 relbranchOverride = ''
 baseTag           = 'FIREFOX_3_1b1'
 l10nCentral       = 'http://hg.mozilla.org/l10n-central/'
