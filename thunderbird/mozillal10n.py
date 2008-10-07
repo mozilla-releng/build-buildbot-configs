@@ -276,7 +276,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     haltOnFailure=True,
                 ))
             steps.append(ShellCommand(
-                command=['rm', '-rfv', 'configs'],
+                command=['rm', '-rf', 'configs'],
                 description=['removing', 'configs'],
                 descriptionDone=['remove', 'configs'],
                 haltOnFailure=True,
@@ -406,7 +406,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     ))
 
             steps.append(ShellCommand(
-                command="rm -rfv %s-*.en-US.* install/sea/%s-*.en-US.*" % \
+                command="rm -rf %s-*.en-US.* install/sea/%s-*.en-US.*" % \
                             (self.appname, self.appname),
                 workdir='build/obj/mozilla/dist',
                 description=['removing', 'en-US', 'file(s)'],
