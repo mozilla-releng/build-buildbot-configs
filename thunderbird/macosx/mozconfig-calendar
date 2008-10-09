@@ -7,9 +7,6 @@ fi
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk
 
-# We don't want lightning to install itself
-mk_add_options DISABLE_LIGHTNING_INSTALL=1
-
 ac_add_options --enable-application=mail
 ac_add_options --enable-calendar
 ac_add_options --enable-update-channel=nightly
@@ -27,3 +24,5 @@ export CXXFLAGS="-gstabs -gfull -save-temps"
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
+# We don't want lightning to install itself
+export DISABLE_LIGHTNING_INSTALL=1
