@@ -3,8 +3,6 @@
 
 ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 
-ac_add_app_options ppc --enable-prebinding
-
 ac_add_options --disable-optimize
 ac_add_options --enable-debug
 
