@@ -9,8 +9,8 @@ ac_add_options --disable-static
 
 ac_add_options --enable-trace-malloc
 
-export CFLAGS="-gstabs -gfull -save-temps"
-export CXXFLAGS="-gstabs -gfull -save-temps"
+#export CFLAGS="-gstabs -gfull"
+#export CXXFLAGS="-gstabs -gfull"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
