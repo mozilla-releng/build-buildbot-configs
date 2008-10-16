@@ -55,7 +55,7 @@ schedulers.append(Scheduler(
 
 status.append(TinderboxMailNotifier(
     fromaddr="mozilla2.buildbot@build.mozilla.org",
-    tree='MozillaTest',
+    tree='Mobile',
     extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
     relayhost="mail.build.mozilla.org",
     builders="mobile-linux-arm-dep",
