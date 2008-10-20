@@ -35,13 +35,16 @@ from buildbot.steps.source import Mercurial
 from buildbot.steps.shell import Compile, ShellCommand, WithProperties
 
 import buildbotcustom.env
+import buildbotcustom.misc
 import buildbotcustom.unittest.steps
 import buildbotcustom.steps.misc
 reload(buildbotcustom.env)
+reload(buildbotcustom.misc)
 reload(buildbotcustom.unittest.steps)
 reload(buildbotcustom.steps.misc)
 
 from buildbotcustom.env import *
+from buildbotcustom.misc import isHgPollerTriggered
 from buildbotcustom.unittest.steps import *
 from buildbotcustom.steps.misc import CreateDir, TinderboxShellCommand
 
@@ -78,7 +81,7 @@ schedulers.append(Scheduler(
     builderNames=['Linux mozilla-central unit test',
                   'OS X 10.5.2 mozilla-central unit test',
                   'WINNT 5.2 mozilla-central unit test'],
-    fileIsImportant=lambda c: isHgPollerTriggered(c, config.HGURL)
+    fileIsImportant=lambda c: isHgPollerTriggered(c, nightly_config.HGURL)
 ))
 
 schedulers.append(Periodic(
