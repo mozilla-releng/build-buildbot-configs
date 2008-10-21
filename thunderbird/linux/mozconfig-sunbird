@@ -20,3 +20,7 @@ ac_add_options --disable-tests
 
 CC=/tools/gcc-4.1.1/bin/gcc
 CXX=/tools/gcc-4.1.1/bin/g++
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
