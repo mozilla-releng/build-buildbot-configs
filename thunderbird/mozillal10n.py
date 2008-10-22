@@ -160,6 +160,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                      'update_user',
                      'update_host',
                      'cvsroot',
+                     'mozconfig',
                      ]
 
     # This dummy attribute exists so that buildbot configuration can succeed
@@ -170,7 +171,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                  product, platform, appname, brandname, stage_username,
                  stage_server, stage_base_path, stage_group, stage_ssh_key,
                  createSnippets, update_download_base_url, update_base_upload_dir,
-                 update_platform, update_user, update_host, cvsroot):
+                 update_platform, update_user, update_host, cvsroot, mozconfig='mozconfig-l10n'):
         """
         @param mainRepoURL: the repoURL to check out the main codebase
         @param localesRepoURL: the repoURL pattern to check out localized
@@ -201,6 +202,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         @param update_user:    username on the AUS stage server, for AUS snippets
         @param update_host:    host name of the AUS stage server, for AUS snippets
         @param cvsroot:        cvsroot to use for CVS operations
+        @param mozconfig:      name of the mozconfig file
         """
 
         self.mainRepoURL = mainRepoURL
@@ -226,6 +228,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         self.update_user = update_user
         self.update_host = update_host
         self.cvsroot = cvsroot
+        self.mozconfig = mozconfig
 
     def newBuild(self, requests):
         """Create a list of steps to build these possibly coalesced requests.
@@ -289,8 +292,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             ))
             steps.append(ShellCommand(
                 # cp configs/seamonkey/$platform/mozconfig-l10n .mozconfig
-                command=['cp', 'configs/%s/%s/mozconfig-l10n' % \
-                               (self.configDir, self.platform),
+                command=['cp', 'configs/%s/%s/%s' % \
+                               (self.configDir, self.platform, self.mozconfig),
                          '.mozconfig'],
                 description=['copying', 'mozconfig'],
                 descriptionDone=['copy', 'mozconfig'],
