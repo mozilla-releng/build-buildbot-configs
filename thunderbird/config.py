@@ -173,15 +173,18 @@ BRANCHES['comm-central-calendar']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
 }
 BRANCHES['comm-central-calendar']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
 }
 BRANCHES['comm-central-calendar']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
 }
 
