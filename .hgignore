@@ -1,16 +1,13 @@
-^thunderbird-unittest/Makefile$
-^thunderbird-unittest/.*\.pck$
-^thunderbird-unittest/.*\.pyc$
-^thunderbird-unittest/.*\.pid$
-^thunderbird-unittest/.*\.log(\.[0-9]+)?$
-^thunderbird-unittest/buildbot.htmlc.word$
-^thunderbird-unittest/public_html/index.html$
+\.pyc$
+\.pck$
+twistd\.pid$
+twistd\.log$
+twistd\.log\.[0-9]+$
+
+^.*/BuildSlaves.py$
 
 #XXX: Specific to slaves, needs another top-level container so we can
 #XXX: mass ignore it all
-
-thunderbird-unittest/trunk-osx
-thunderbird-unittest/trunk-unix
-thunderbird-unittest/trunk-win32
-
-^.*/BuildSlaves.py$
+^thunderbird.*/comm-central-.*
+^thunderbird.*/trunk-.*
+^thunderbird.*/logs
