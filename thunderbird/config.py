@@ -19,6 +19,7 @@ BRAND_NAME = 'Shredder'
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'comm-central': {},
+    'comm-central-bloat': {},
     'comm-central-calendar': {},
     'comm-central-sunbird': {},
 }
