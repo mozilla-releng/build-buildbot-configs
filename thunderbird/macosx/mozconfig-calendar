@@ -24,5 +24,3 @@ export CXXFLAGS="-gstabs -gfull -save-temps"
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
-# We don't want lightning to install itself
-export DISABLE_LIGHTNING_INSTALL=1
