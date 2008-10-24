@@ -139,7 +139,7 @@ for platform in releasePlatforms:
 
 updates_factory = ReleaseUpdatesFactory(
     cvsroot=cvsroot,
-    patcherToolsRev=patcherToolsRev,
+    patcherToolsTag=patcherToolsTag,
     mozillaCentral=mozillaCentral,
     buildTools=buildTools,
     patcherConfig=patcherConfig,
@@ -152,7 +152,11 @@ updates_factory = ReleaseUpdatesFactory(
     ftpServer=ftpServer,
     bouncerServer=bouncerServer,
     stagingServer=stagingServer,
-    useBetaChannel=useBetaChannel
+    useBetaChannel=useBetaChannel,
+    stageUsername=nightly_config.STAGE_USERNAME,
+    stageSshKey=nightly_config.STAGE_SSH_KEY,
+    ausUser=nightly_config.AUS2_USER,
+    ausHost=nightly_config.AUS2_HOST
 )
 
 builders.append({
