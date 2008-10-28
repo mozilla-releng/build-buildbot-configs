@@ -117,7 +117,7 @@ BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-ch
 BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
 BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
-BRANCHES['comm-central-calendar']['package'] = False
+BRANCHES['comm-central-calendar']['package'] = True
 BRANCHES['comm-central-calendar']['upload_stage'] = True
 BRANCHES['comm-central-calendar']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
