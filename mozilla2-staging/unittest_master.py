@@ -127,7 +127,10 @@ moz2_linux_unittest_factory.addStep(ShellCommand,
     workdir='.'
 )
 moz2_linux_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
-    command=['cp', 'mozconfigs/linux-unittest/mozconfig', 'build/.mozconfig'],
+    command=['cp',
+             'mozconfigs/%s/linux-unittest/mozconfig' % \
+               nightly_config.CONFIG_SUB_DIR,
+             'build/.mozconfig'],
     workdir='.')
 moz2_linux_unittest_factory.addStep(ShellCommand, name='mozconfig contents',
     command=['cat', '.mozconfig'])
@@ -195,7 +198,10 @@ moz2_darwin_unittest_factory.addStep(ShellCommand,
     workdir='.'
 )
 moz2_darwin_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
-    command=['cp', 'mozconfigs/macosx-unittest/mozconfig', 'build/.mozconfig'],
+    command=['cp',
+             'mozconfigs/%s/macosx-unittest/mozconfig' % \
+               nightly_config.CONFIG_SUB_DIR,
+             'build/.mozconfig'],
     workdir='.')
 moz2_darwin_unittest_factory.addStep(ShellCommand, name='mozconfig contents',
     command=['cat', '.mozconfig'])
@@ -276,7 +282,10 @@ moz2_win32_unittest_factory.addStep(ShellCommand,
     workdir='.'
 )
 moz2_win32_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
-    command=['cp', 'mozconfigs/win32-unittest/mozconfig', 'build/.mozconfig'],
+    command=['cp',
+             'mozconfigs/%s/win32-unittest/mozconfig' % \
+               nightly_config.CONFIG_SUB_DIR,
+             'build/.mozconfig'],
     workdir='.')
 moz2_win32_unittest_factory.addStep(ShellCommand, name="mozconfig contents",
     command=["type", ".mozconfig"],
