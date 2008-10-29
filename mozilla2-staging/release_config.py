@@ -22,3 +22,6 @@ ftpServer         = 'ftp.mozilla.org'
 stagingServer     = 'staging-stage.build.mozilla.org'
 bouncerServer     = 'download.mozilla.org'
 useBetaChannel    = 0
+linuxUpdateVerifyConfig = 'moz191-firefox-linux.cfg'
+macUpdateVerifyConfig   = 'moz191-firefox-mac.cfg'
+win32UpdateVerifyConfig = 'moz191-firefox-win32.cfg'

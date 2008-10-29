@@ -9,7 +9,7 @@ reload(buildbotcustom.process.factory)
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, MercurialBuildFactory, \
-  ReleaseUpdatesFactory
+  ReleaseUpdatesFactory, ReleaseFinalVerification
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -47,6 +47,10 @@ build_scheduler = Dependent(
     upstream=tag_scheduler,
     builderNames=['source', 'linux_build', 'win32_build', 'macosx_build']
 )
+
+# Purposely, there is not a Scheduler for ReleaseFinalVerification
+# This is a step run very shortly before release, and is triggered manually
+# from the waterfall
 
 schedulers.append(repo_setup_scheduler)
 schedulers.append(tag_scheduler)
@@ -185,4 +189,22 @@ builders.append({
     'category': 'release',
     'builddir': 'updates',
     'factory': updates_factory
+})
+
+
+
+final_verification_factory= ReleaseFinalVerification(
+    buildTools=buildTools,
+    cvsroot=cvsroot,
+    linuxConfig=linuxUpdateVerifyConfig,
+    macConfig=macUpdateVerifyConfig,
+    win32Config=win32UpdateVerifyConfig
+)
+
+builders.append({
+    'name': 'final_verification',
+    'slavenames': ['moz2-linux-slave04'],
+    'category': 'release',
+    'builddir': 'final_verification',
+    'factory': final_verification_factory
 })
