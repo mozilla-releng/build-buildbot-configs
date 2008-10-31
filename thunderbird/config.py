@@ -326,10 +326,9 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['update_platform'] = 'Darw
 BRANCHES['comm-central-bloat']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
-BRANCHES['comm-central-bloat']['platforms']['linux']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = [
     'momo-vm-07'
 ]
