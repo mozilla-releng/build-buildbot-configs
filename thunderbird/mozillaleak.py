@@ -1,5 +1,6 @@
 from buildbot.steps.shell import Compile, ShellCommand
 
+import os.path
 
 import buildbotcustom.steps.misc
 import buildbotcustom.steps.test
@@ -21,6 +22,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
         # extraArgs
         env = platform['env']
         objdir = platform['platform_objdir']
+        moz_objdir = os.path.join(objdir, 'mozilla')
         leak_threshold = platform.get('leak_threshold', branch.get('leak_threshold', 7261838))
         self.addStep(ShellCommand,
             description=['run leak tests'],
@@ -51,7 +53,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
          platform=platformName,
          leakFailureThreshold=leak_threshold,
          env=env,
-         objdir='objdir-tb/mozilla',
+         objdir=moz_objdir,
          testname='current',
          testnameprefix='Mail'
         )
@@ -66,7 +68,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
          platform=platformName,
          leakFailureThreshold=leak_threshold,
          env=env,
-         objdir="objdir-tb/mozilla",
+         objdir=moz_objdir,
          testname='previous',
          testnameprefix='Mail'
         )
