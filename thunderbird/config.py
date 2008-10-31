@@ -296,8 +296,7 @@ BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatz
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'comm-central'
-# Every 30 minutes for now
-BRANCHES['comm-central-bloat']['period'] = 60 * 30
+BRANCHES['comm-central-bloat']['period'] = 60 * 60 * 2
 BRANCHES['comm-central-bloat']['nightly'] = False
 BRANCHES['comm-central-bloat']['leak'] = True
 BRANCHES['comm-central-bloat']['package'] = False
