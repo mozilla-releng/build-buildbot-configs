@@ -35,6 +35,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
          bloatLog='../bloat.log',
          bloatDiffPath='mozilla/tools/rb/bloatdiff.pl',
          env=env,
+         testnameprefix='Mail',
+         testname='Mail',
         )
         self.addStep(ShellCommand,
          env=env,
@@ -49,7 +51,9 @@ def addLeakTestSteps(self,branch,platform,platformName):
          platform=platformName,
          leakFailureThreshold=leak_threshold,
          env=env,
-         testname='current'
+         objdir='objdir-tb/mozilla',
+         testname='current',
+         testnameprefix='Mail'
         )
 #        self.addStep(GraphServerPost,
 #         server=self.graphServer,
@@ -62,7 +66,9 @@ def addLeakTestSteps(self,branch,platform,platformName):
          platform=platformName,
          leakFailureThreshold=leak_threshold,
          env=env,
-         testname='previous'
+         objdir="objdir-tb/mozilla",
+         testname='previous',
+         testnameprefix='Mail'
         )
         self.addStep(ShellCommand,
          env=env,
