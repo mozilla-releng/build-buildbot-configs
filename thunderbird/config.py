@@ -286,7 +286,7 @@ BRANCHES['comm-central-sunbird']['platforms']['macosx']['env'] = {
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-central-bloat']['platforms'] = {
     'linux': {},
-#    'win32': {},
+    'win32': {},
     'macosx': {}
 }
 
@@ -305,10 +305,10 @@ BRANCHES['comm-central-bloat']['l10n'] = False
 BRANCHES['comm-central-bloat']['irc_nick'] = 'thunderbloat'
 BRANCHES['comm-central-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central bloat'
-#BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central bloat'
+BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central bloat'
 BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central bloat'
 BRANCHES['comm-central-bloat']['platforms']['linux']['profiled_build'] = False
-#BRANCHES['comm-central-bloat']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-central-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
@@ -317,12 +317,12 @@ BRANCHES['comm-central-bloat']['create_snippet'] = False
 BRANCHES['comm-central-bloat']['create_l10n_snippets'] = False
 BRANCHES['comm-central-bloat']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
 BRANCHES['comm-central-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-#BRANCHES['comm-central-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-central-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central-bloat']['platforms']['linux']['upload_symbols'] = False
-#BRANCHES['comm-central-bloat']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-central-bloat']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
@@ -331,8 +331,9 @@ BRANCHES['comm-central-bloat']['platforms']['linux']['tinderbox_tree'] = 'Thunde
 BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = [
     'momo-vm-07'
 ]
-#BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
-#]
+BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
+    'momo-vm-06'
+]
 BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
     'momo-vm-09'
 ]
@@ -340,7 +341,7 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['comm-central-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
-#BRANCHES['comm-central-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-bloat']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -352,15 +353,15 @@ BRANCHES['comm-central-bloat']['platforms']['linux']['env'] = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
 }
-#BRANCHES['comm-central-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-#    'MOZ_OBJDIR': OBJDIR,
-#    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-#    'SYMBOL_SERVER_USER': 'tbirdbld',
-#    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-#    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/tbirdbld/.ssh/tbirdbld_dsa",
-#    'TINDERBOX_OUTPUT': '1',
-#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-#}
+BRANCHES['comm-central-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/tbirdbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
 BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
