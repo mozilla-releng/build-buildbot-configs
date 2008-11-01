@@ -95,7 +95,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
     'hg', 'clone', 'http://hg.mozilla.org/mozilla-central', 'mozilla-central'],
     description=['checking', 'out', 'mozilla-central'],
     descriptionDone=['checked out', 'mozilla-central'],
-    haltOnFailure=False
+    haltOnFailure=False,
+    flunkOnFailure=False
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
@@ -111,7 +112,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
     'hg', 'clone', 'http://hg.mozilla.org/mobile-browser', 'mobile'],
     description=['checking', 'out', 'mobile-browser'],
     descriptionDone=['checked out', 'mobile-browser'],
-    haltOnFailure=False
+    haltOnFailure=False,
+    flunkOnFailure=False
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
@@ -128,7 +130,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
     'hg', 'clone', CONFIG_REPO_URL, 'buildbot-configs'],
     description=['checking', 'out', 'configs'],
     descriptionDone=['checkout', 'configs'],
-    haltOnFailure=False
+    haltOnFailure=False,
+    flunkOnFailure=False
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
