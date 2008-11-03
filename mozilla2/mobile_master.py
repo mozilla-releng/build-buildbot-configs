@@ -199,8 +199,19 @@ linux_arm_dep_factory.addStep(ShellCommand(
 
 linux_arm_dep_builder = {
     'name': 'mobile-linux-arm-dep',
-    'slavenames': ['moz2-linux-slave1', 'moz2-linux-slave02', 'moz2-linux-slave03', 'moz2-linux-slave05', 
-                  'moz2-linux-slave06', 'moz2-linux-slave11', 'moz2-linux-slave12'],
+    'slavenames': [
+        'moz2-linux-slave1',
+        'moz2-linux-slave02',
+        'moz2-linux-slave03',
+        'moz2-linux-slave05',
+        'moz2-linux-slave06',
+        'moz2-linux-slave11',
+        'moz2-linux-slave12',
+        'moz2-linux-slave13',
+        'moz2-linux-slave14',
+        'moz2-linux-slave15',
+        'moz2-linux-slave16',
+        ],
     'builddir': 'mobile-linux-arm-dep',
     'factory': linux_arm_dep_factory,
     'category': 'mobile'

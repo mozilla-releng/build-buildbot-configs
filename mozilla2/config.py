@@ -73,7 +73,11 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave05',
     'moz2-linux-slave06',
     'moz2-linux-slave11',
-    'moz2-linux-slave12'
+    'moz2-linux-slave12',
+    'moz2-linux-slave13',
+    'moz2-linux-slave14',
+    'moz2-linux-slave15',
+    'moz2-linux-slave16',
 ]
 BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = [
     'moz2-linux64-slave01'
@@ -101,7 +105,11 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave05',
     'moz2-linux-slave06',
     'moz2-linux-slave11',
-    'moz2-linux-slave12'
+    'moz2-linux-slave12',
+    'moz2-linux-slave13',
+    'moz2-linux-slave14',
+    'moz2-linux-slave15',
+    'moz2-linux-slave16',
 ]
 BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave1',
@@ -213,7 +221,11 @@ BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave05',
     'moz2-linux-slave06',
     'moz2-linux-slave11',
-    'moz2-linux-slave12'
+    'moz2-linux-slave12',
+    'moz2-linux-slave13',
+    'moz2-linux-slave14',
+    'moz2-linux-slave15',
+    'moz2-linux-slave16',
 ]
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave1',
