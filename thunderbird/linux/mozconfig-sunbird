@@ -1,12 +1,4 @@
-#
-## hostname: sb-newref-linux-tbox
-## uname: Linux sb-newref-linux-tbox.build.mozilla.org 2.6.18-8.el5 #1 SMP Thu Mar 15 19:57:35 EDT 2007 i686 athlon i386 GNU/Linux 
-#
-
-mk_add_options MOZ_CO_PROJECT=calendar
-mk_add_options MOZ_CO_MODULE="mozilla/tools/update-packaging"
 mk_add_options MOZ_MAKE_FLAGS="-j3"
-mk_add_options JS_READLINE=1
 
 ac_add_options --enable-application=calendar
 ac_add_options --enable-update-channel=nightly
@@ -23,4 +15,3 @@ CXX=/tools/gcc-4.1.1/bin/g++
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
-
