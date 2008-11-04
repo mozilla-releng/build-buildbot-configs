@@ -67,7 +67,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
-    'moz2-linux-slave1',
+    'moz2-linux-slave01',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
     'moz2-linux-slave04',
@@ -121,7 +121,7 @@ BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave04'
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
-    'moz2-linux-slave1',
+    'moz2-linux-slave01',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
     'moz2-linux-slave04',
@@ -263,7 +263,7 @@ BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
-    'moz2-linux-slave1',
+    'moz2-linux-slave01',
     'moz2-linux-slave02',
     'moz2-linux-slave03',
     'moz2-linux-slave05',
