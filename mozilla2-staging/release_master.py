@@ -195,7 +195,6 @@ builders.append({
 
 final_verification_factory= ReleaseFinalVerification(
     buildTools=buildTools,
-    cvsroot=cvsroot,
     linuxConfig=linuxUpdateVerifyConfig,
     macConfig=macUpdateVerifyConfig,
     win32Config=win32UpdateVerifyConfig
