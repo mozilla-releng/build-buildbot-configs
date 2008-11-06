@@ -89,6 +89,18 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
+    command = ['bash', '-c', 'rm -rf ' + \
+               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/mobile/dist/fennec* ' + \
+               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/xulrunner/xulrunner/*.deb ' + \
+               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/mobile/mobile/*.deb'],
+    description=['removing', 'old', 'builds'],
+    descriptionDone=['remove', 'old', 'builds'],
+    haltOnFailure=False,
+    flunkOnFailure=False,   
+    warnOnFailure=False
+))
+
+linux_arm_dep_factory.addStep(ShellCommand(
     command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build',
     'hg', 'clone', 'http://hg.mozilla.org/mozilla-central', 'mozilla-central'],
     description=['checking', 'out', 'mozilla-central'],
