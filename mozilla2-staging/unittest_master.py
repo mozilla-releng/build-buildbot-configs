@@ -124,6 +124,7 @@ addPrintChangesetStep(moz2_linux_unittest_factory)
 moz2_linux_unittest_factory.addStep(ShellCommand,
     name="buildbot configs",
     command=['hg', 'clone', nightly_config.CONFIG_REPO_URL, 'mozconfigs'],
+    flunkOnFailure=False,
     workdir='.'
 )
 moz2_linux_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
@@ -195,6 +196,7 @@ addPrintChangesetStep(moz2_darwin_unittest_factory)
 moz2_darwin_unittest_factory.addStep(ShellCommand,
     name="buildbot configs",
     command=['hg', 'clone', nightly_config.CONFIG_REPO_URL, 'mozconfigs'],
+    flunkOnFailure=False,
     workdir='.'
 )
 moz2_darwin_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
@@ -279,6 +281,7 @@ addPrintChangesetStep(moz2_win32_unittest_factory,
 moz2_win32_unittest_factory.addStep(ShellCommand,
     name="buildbot configs",
     command=['hg', 'clone', nightly_config.CONFIG_REPO_URL, 'mozconfigs'],
+    flunkOnFailure=False,
     workdir='.'
 )
 moz2_win32_unittest_factory.addStep(ShellCommand, name="copy mozconfig",
