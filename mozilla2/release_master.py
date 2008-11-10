@@ -9,7 +9,7 @@ reload(buildbotcustom.process.factory)
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, MercurialBuildFactory, \
-  ReleaseUpdatesFactory, ReleaseFinalVerification
+  ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -183,11 +183,51 @@ builders.append({
 })
 
 
+for platform in releasePlatforms:
+    pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
+
+    platformVerifyConfig = None
+    if platform == 'linux':
+        platformVerifyConfig = linuxVerifyConfig
+    if platform == 'macosx':
+        platformVerifyConfig = macVerifyConfig
+    if platform == 'win32':
+        platformVerifyConfig = win32VerifyConfig
+
+    update_verify_factory = UpdateVerifyFactory(
+        mozillaCentral=mozillaCentral,
+        buildTools=buildTools,
+        cvsroot=cvsroot,
+        patcherToolsTag=patcherToolsTag,
+        hgUsername=hgUsername,
+        baseTag=oldBaseTag,
+        appName=appName,
+        platform=platform,
+        productName=productName,
+        oldVersion=oldVersion,
+        oldBuildNumber=oldBuildNumber,
+        version=appVersion,
+        buildNumber=buildNumber,
+        ausServerUrl=ausServerUrl,
+        stagingServer=stagingServer,
+        verifyConfig=platformVerifyConfig,
+        hgSshKey=hgSshKey
+    )
+
+    builders.append({
+        'name': '%s_update_verify' % platform,
+        'slavenames': pf['slaves'],
+        'category': 'release',
+        'builddir': '%s_update_verify' % platform,
+        'factory': update_verify_factory
+    })
+
+
 final_verification_factory = ReleaseFinalVerification(
     buildTools=buildTools,
-    linuxConfig=linuxUpdateVerifyConfig,
-    macConfig=macUpdateVerifyConfig,
-    win32Config=win32UpdateVerifyConfig
+    linuxConfig=linuxVerifyConfig,
+    macConfig=macVerifyConfig,
+    win32Config=win32VerifyConfig
 )
 
 builders.append({
