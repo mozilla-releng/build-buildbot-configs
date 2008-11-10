@@ -60,14 +60,14 @@ schedulers = []
 change_source = []
 builders = []
 
-status = tinderbox.TinderboxMailNotifier(
+status.append(tinderbox.TinderboxMailNotifier(
     fromaddr="lblakk@mozilla.com",
     tree="UnitTest",
     extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
     relayhost="localhost",
     logCompression="bzip2",
     errorparser="unittest"
-)
+))
 
 ####### SCHEDULERS
 
