@@ -2,7 +2,7 @@ import buildbot, twisted
 from buildbot.changes.base import ChangeSource
 from buildbot.changes.changes import Change
 from buildbot.process.base import Build
-from buildbot.process.buildstep import BuildStep, render_properties
+from buildbot.process.buildstep import BuildStep
 from buildbot.steps.source import Mercurial
 from buildbot.steps.shell import Compile, ShellCommand, WithProperties
 from buildbot.status.builder import SUCCESS, WARNINGS, FAILURE, SKIPPED
