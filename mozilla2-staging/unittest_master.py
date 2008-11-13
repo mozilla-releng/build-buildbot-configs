@@ -94,7 +94,7 @@ schedulers.append(Periodic(
 ))
 
 schedulers.append(Scheduler(
-    name="tracemonkey",
+    name="unittest tracemonkey",
     branch="tracemonkey",
     treeStableTimer=5*60,
     builderNames=['Linux tracemonkey unit test',
