@@ -131,11 +131,21 @@ def addPrintTraceMonkeyChangesetStep(factory, env={}):
         env=env
     ))
 
+def addCleanStep(factory, env={}),
+    factory.addStep(ShellCommand,
+	command=['bash', '-c', 'rm -rf ../*-nightly/build'],
+	env = env,
+	description=['cleaning', 'old', 'builds'],
+	descriptionDone=['clean', 'old', 'builds'],
+	warnOnFailure=True,
+	flunkOnFailure=False)
+
 ##
 ## Linux UnitTest
 ##
 
 moz2_linux_unittest_factory = factory.BuildFactory()
+addCleanStep(moz2_linux_unittest_factory)
 moz2_linux_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='mozilla-central')
@@ -211,6 +221,7 @@ builders.append(mozilla2_firefox_unix_test_builder)
 ##
 
 moz2_linux_tracemonkey_unittest_factory = factory.BuildFactory()
+addCleanStep(moz2_linux_tracemonkey_unittest_factory)
 moz2_linux_tracemonkey_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='tracemonkey')
@@ -285,6 +296,7 @@ builders.append(mozilla2_firefox_unix_test_builder2)
 ##
 
 moz2_darwin_unittest_factory = factory.BuildFactory()
+addCleanStep(moz2_darwin_unittest_factory)
 moz2_darwin_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='mozilla-central')
@@ -353,6 +365,7 @@ builders.append(mozilla2_firefox_osx_test_builder)
 ##
 
 moz2_darwin_tracemonkey_unittest_factory = factory.BuildFactory()
+addCleanStep(moz2_darwin_tracemonkey_unittest_factory)
 moz2_darwin_tracemonkey_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='tracemonkey')
@@ -436,6 +449,7 @@ moz2_win32_unittest_factory.addStep(TinderboxShellCommand, name="kill firefox",
     descriptionDone="killed firefox",
     command="pskill -t firefox.exe",
     workdir="D:\\Utilities")
+addCleanStep(moz2_win32_unittest_factory)
 moz2_win32_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='mozilla-central')
@@ -532,6 +546,7 @@ moz2_win32_tracemonkey_unittest_factory.addStep(TinderboxShellCommand, name="kil
     descriptionDone="killed firefox",
     command="pskill -t firefox.exe",
     workdir="D:\\Utilities")
+addCleanStep(moz2_win32_tracemonkey_unittest_factory)
 moz2_win32_tracemonkey_unittest_factory.addStep(Mercurial, mode='update',
     baseURL='http://hg.mozilla.org/',
     defaultBranch='tracemonkey')

@@ -82,6 +82,13 @@ linux_arm_dep_factory.addStep(ShellCommand(
     warnOnFailure=False
 ))
 
+linux_arm_dep_factory.addStep(ShellCommand,
+    command=['bash', '-c', 'rm -rf ../*-nightly/build'],
+    description=['cleaning', 'old', 'builds'],
+    descriptionDone=['clean', 'old', 'builds'],
+    warnOnFailure=True,
+    flunkOnFailure=False)
+
 linux_arm_dep_factory.addStep(ShellCommand(
     command = ['/scratchbox/moz_scratchbox', '-p',
                'mkdir -p build'],

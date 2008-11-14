@@ -26,6 +26,12 @@ L10nNightlyFactory.addStep(ShellCommand,
     workdir=".",
     haltOnFailure = True)
 L10nNightlyFactory.addStep(ShellCommand,
+    command=['bash', '-c', 'rm -rf ../*-nightly/build'],
+    description=['cleaning', 'old', 'builds'],
+    descriptionDone=['clean', 'old', 'builds'],
+    warnOnFailure=True,
+    flunkOnFailure=False)
+L10nNightlyFactory.addStep(ShellCommand,
     command = ['sh', '-c', 'mkdir -p l10n-central'],
     descriptionDone="mkdir l10n-central",
     workdir="."
