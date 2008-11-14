@@ -131,7 +131,7 @@ def addPrintTraceMonkeyChangesetStep(factory, env={}):
         env=env
     ))
 
-def addCleanStep(factory, env={}),
+def addCleanStep(factory, env={}):
     factory.addStep(ShellCommand,
 	command=['bash', '-c', 'rm -rf ../*-nightly/build'],
 	env = env,
