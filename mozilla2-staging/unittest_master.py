@@ -32,7 +32,9 @@ from buildbot.scheduler import Scheduler, Periodic
 from buildbot.status import tinderbox
 
 import buildbotcustom.misc
+import buildbotcustom.process.factory
 reload(buildbotcustom.misc)
+reload(buildbotcustom.process.factory)
 
 from buildbotcustom.misc import isHgPollerTriggered
 from buildbotcustom.process.factory import UnittestBuildFactory
