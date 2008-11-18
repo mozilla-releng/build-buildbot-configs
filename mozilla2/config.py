@@ -96,7 +96,9 @@ BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
-    'bm-xserve19'
+    'bm-xserve19',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave1',
@@ -125,7 +127,9 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
-    'bm-xserve19'
+    'bm-xserve19',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -241,7 +245,9 @@ BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
-    'bm-xserve19'
+    'bm-xserve19',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
 ]
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
