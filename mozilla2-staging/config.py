@@ -14,16 +14,20 @@ AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox'
 GRAPH_SERVER = 'graphs-stage.mozilla.org'
 GRAPH_SELECTOR = 'server'
-GRAPH_BRANCH = '1.9.1'
 
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},
+    'mozilla-1.9.1': {},
     'tracemonkey': {}
 }
 
 ######## mozilla-central
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
+BRANCHES['mozilla-central']['major_version'] = '1.9.1'
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
     'linux': {},
@@ -239,7 +243,226 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
+######## mozilla-1.9.1
+BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['major_version'] = '1.9.1'
+BRANCHES['mozilla-1.9.1']['platforms'] = {
+    'linux': {},
+    'linux64': {},
+    'win32': {},
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {}
+}
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['base_name'] = 'Linux mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['base_name'] = 'Linux mozilla-1.9.1 leak test'
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 mozilla-1.9.1 leak test'
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-1.9.1 leak test'
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['profiled_build'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['profiled_build'] = False
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['mozilla-1.9.1']['create_snippet'] = True
+BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['periodic_scheduler_period'] = 60*60*2   # 2 hours
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+# We're actually using gcc4, but Firefox hardcodes gcc3
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['upload_symbols'] = True
+BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = [
+    'moz2-linux-slave01',
+    'moz2-linux-slave02',
+    'moz2-linux-slave03',
+    'moz2-linux-slave04',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave09',
+    'moz2-linux-slave10',
+    'moz2-linux-slave11',
+    'moz2-linux-slave12',
+    'moz2-linux-slave13',
+    'moz2-linux-slave14',
+    'moz2-linux-slave15',
+    'moz2-linux-slave16',
+    'moz2-linux-slave17',
+    'moz2-linux-slave18',
+]
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['slaves'] = [
+    'moz2-linux64-slave01'
+]
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['slaves'] = [
+    'moz2-win32-slave1',
+    'moz2-win32-slave02',
+    'moz2-win32-slave03',
+    'moz2-win32-slave04',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
+    'moz2-win32-slave11',
+    'moz2-win32-slave12',
+    'moz2-win32-slave13',
+    'moz2-win32-slave14',
+    'moz2-win32-slave15',
+    'moz2-win32-slave16',
+    'moz2-win32-slave17',
+    'moz2-win32-slave18',
+]
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
+    'bm-xserve16',
+    'bm-xserve17',
+    'bm-xserve18',
+    'bm-xserve19',
+    'bm-xserve22',
+    'moz2-darwin9-slave01',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave03',
+    'moz2-darwin9-slave04'
+]
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['slaves'] = [
+    'moz2-linux-slave01',
+    'moz2-linux-slave02',
+    'moz2-linux-slave03',
+    'moz2-linux-slave04',
+    'moz2-linux-slave05',
+    'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave09',
+    'moz2-linux-slave10',
+    'moz2-linux-slave11',
+    'moz2-linux-slave12',
+    'moz2-linux-slave13',
+    'moz2-linux-slave14',
+    'moz2-linux-slave15',
+    'moz2-linux-slave16',
+    'moz2-linux-slave17',
+    'moz2-linux-slave18',
+]
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['slaves'] = [
+    'moz2-win32-slave1',
+    'moz2-win32-slave02',
+    'moz2-win32-slave03',
+    'moz2-win32-slave04',
+    'moz2-win32-slave05',
+    'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
+    'moz2-win32-slave11',
+    'moz2-win32-slave12',
+    'moz2-win32-slave13',
+    'moz2-win32-slave14',
+    'moz2-win32-slave15',
+    'moz2-win32-slave16',
+    'moz2-win32-slave17',
+    'moz2-win32-slave18',
+]
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['slaves'] = [
+    'bm-xserve16',
+    'bm-xserve17',
+    'bm-xserve18',
+    'bm-xserve19',
+    'bm-xserve22',
+    'moz2-darwin9-slave01',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave03',
+    'moz2-darwin9-slave04'
+]
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
+}
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
+}
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
+}
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/data/symbols/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
+}
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':0',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
 ######## tracemonkey
+BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
+BRANCHES['tracemonkey']['major_version'] = '1.9.1'
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'win32': {},
