@@ -52,6 +52,14 @@ BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = False
+# L10n configuration
+BRANCHES['mozilla-central']['enable_l10n'] = True
+#make sure it has an ending slash
+BRANCHES['mozilla-central']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
+BRANCHES['mozilla-central']['enUS_binaryURL'] = \
+    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
+BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -269,6 +277,14 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['profiled_build'] = False
+# L10n configuration
+BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
+#make sure it has an ending slash
+BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
+BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
+    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -478,6 +494,8 @@ BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
+# L10n configuration
+BRANCHES['tracemonkey']['enable_l10n'] = False
 # need this or the master.cfg will bail
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['tracemonkey']['periodic_scheduler_period'] = 60*60*10   # 10 hours
