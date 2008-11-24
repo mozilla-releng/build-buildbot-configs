@@ -56,7 +56,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = Fal
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-central']['periodic_scheduler_period'] = 60*60*2   # 2 hours
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 # We're actually using gcc4, but Firefox hardcodes gcc3
@@ -227,7 +227,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['profiled_build'] = False
-BRANCHES['mozilla-1.9.1']['create_snippet'] = True
+BRANCHES['mozilla-1.9.1']['create_snippet'] = False
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['periodic_scheduler_period'] = 60*60*2   # 2 hours
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
