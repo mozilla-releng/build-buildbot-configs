@@ -81,7 +81,7 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand,
-    command=['bash', '-c', 'rm -rf ../*-nightly/build'],
+    command=['bash', '-c', 'rm -rf ../../*-nightly/build'],
     description=['cleaning', 'old', 'builds'],
     descriptionDone=['clean', 'old', 'builds'],
     warnOnFailure=True,
