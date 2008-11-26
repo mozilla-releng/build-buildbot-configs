@@ -9,7 +9,8 @@ reload(buildbotcustom.process.factory)
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, MercurialBuildFactory, \
-  ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification
+  ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
+  L10nVerifyFactory
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -159,6 +160,26 @@ for platform in releasePlatforms:
     })
 
 
+l10n_verification_factory = L10nVerifyFactory(
+    cvsroot=cvsroot,
+    buildTools=buildTools,
+    stagingServer=stagingServer,
+    productName=productName,
+    appVersion=appVersion,
+    buildNumber=buildNumber,
+    oldAppVersion=oldVersion,
+    oldBuildNumber=oldBuildNumber
+)
+
+builders.append({
+    'name': 'l10n_verification',
+    'slavenames': nightly_config.BRANCHES['mozilla-central']['platforms']['macosx']['slaves'],
+    'category': 'release',
+    'builddir': 'l10n_verification',
+    'factory': l10n_verification_factory
+})
+
+
 updates_factory = ReleaseUpdatesFactory(
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
@@ -190,7 +211,6 @@ builders.append({
     'builddir': 'updates',
     'factory': updates_factory
 })
-
 
 for platform in releasePlatforms:
     pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
