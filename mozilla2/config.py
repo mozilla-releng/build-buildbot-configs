@@ -27,6 +27,7 @@ BRANCHES = {
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
+BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['mozilla-central']['major_version'] = '1.9.2'
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
@@ -211,6 +212,7 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['major_version'] = '1.9.1'
 BRANCHES['mozilla-1.9.1']['platforms'] = {
     'linux': {},
