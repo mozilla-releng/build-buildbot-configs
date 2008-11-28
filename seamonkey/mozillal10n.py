@@ -342,27 +342,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 steps.append(LocaleCompile(
                     locale=locale,
                     command=['make', '-C', 'obj/%s/locales' % self.product,
-                             'installers-%s' % locale],
-                ))
-                # the slightly hacky command below is to ensure we don't
-                # package updates on failure even though we don't halt
-                steps.append(LocaleShellCommand(
-                    locale=locale,
-                    command=['sh', '-c',
-                             'if [ -z `ls %s-*.%s.*` ]; then rm -rf l10n-stage; fi' % \
-                             (self.appname, locale)],
-                    workdir='build/obj/mozilla/dist',
-                    haltOnFailure=False,
-                ))
-                steps.append(LocaleShellCommand(
-                    locale=locale,
-                    command=['make', '-C', 'obj/mozilla/tools/update-packaging',
-                             'complete-patch', 'AB_CD=%s' % locale,
-                             'DIST=../../dist/l10n-stage',
-                             'STAGE_DIR=../../dist/update',
-                             'MAR_BIN=../../dist/host/bin/mar'],
-                    description=['create', 'complete', 'update'],
-                    haltOnFailure=False,
+                             'installers-%s' % locale, 'MOZ_MAKE_COMPLETE_MAR=1'],
                 ))
                 steps.append(LocaleGetBuildProperties(
                     locale=locale,
