@@ -62,8 +62,8 @@ repositories = {
     mozillaCentral: {
         'revision': mozillaCentralRevision,
         'relbranchOverride': relbranchOverride,
-        'bumpFiles': ['config/milestone.txt', 'browser/config/version.txt',
-                      'browser/app/module.ver']
+        'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
+                      'browser/config/version.txt', 'browser/app/module.ver']
     }
 }
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nCentral,
