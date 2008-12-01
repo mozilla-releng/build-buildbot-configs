@@ -1,7 +1,7 @@
 HGURL = 'http://hg.mozilla.org/'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
-ADD_POLL_BRANCH = 'mozilla-central'
+ADD_POLL_BRANCH = 'releases/mozilla-1.9.1'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'seamonkey'
 LOCALE_REPO_URL = 'http://hg.mozilla.org/l10n-central/index.cgi/%(locale)s'
