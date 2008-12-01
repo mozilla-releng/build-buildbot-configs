@@ -1,7 +1,7 @@
 hgUsername        = 'ffxbld'
 hgSshKey          = '~cltbld/.ssh/ffxbld_dsa'
 mozillaCentral    = 'http://hg.mozilla.org/mozilla-central/'
-mozillaCentralRevision = '951178f392ef'
+mozillaCentralRevision = '3ed5ca9b8277'
 relbranchOverride = ''
 baseTag           = 'FIREFOX_3_1b2'
 l10nCentral       = 'http://hg.mozilla.org/l10n-central/'
@@ -12,7 +12,7 @@ productName       = 'firefox'
 appName           = 'browser'
 appVersion        = '3.1b2'
 milestone         = '1.9.1b2'
-buildNumber       = 1
+buildNumber       = 2
 oldVersion        = '3.1b1'
 oldBuildNumber    = 2
 oldBaseTag        = 'FIREFOX_3_1b1'
