@@ -38,15 +38,13 @@ def callDeferredOnThread(deferred, f, *args, **kwargs):
     reactor.callInThread(twisted.internet.threads._putResultInDeferred,
                          deferred, f, args, kwargs)
 
-allLocalesURL = 'http://hg.mozilla.org/comm-central/raw-file/tip/mail/locales/all-locales'
-
 # Periodic Scheduler which calculates all-locales
 
 def doPeriodicBuild(self):
     d = defer.Deferred()
     d.addCallback(self.process_all_locales)
     d.addErrback(self.finished_failure)
-    callDeferredOnThread(d, urllib.urlopen, allLocalesURL)
+    callDeferredOnThread(d, urllib.urlopen,self. allLocalesURL)
 
 def process_all_locales(self, result):
     locales = [l.strip() for l in result if l.strip() != '']
