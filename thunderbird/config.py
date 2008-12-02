@@ -36,7 +36,8 @@ BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla',
 BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['package'] = True
-BRANCHES['comm-central']['nightly'] = False
+#Disable when producing release builds
+#BRANCHES['comm-central']['nightly'] = False
 BRANCHES['comm-central']['upload_stage'] = True
 BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['l10n'] = True
