@@ -24,9 +24,9 @@ def addLeakTestSteps(self,branch,platform,platformName):
         objdir = platform['platform_objdir']
         
         if platformName.startswith("win32"):
-            moz_objdir = "mozilla\\%s" % objdir
+            moz_objdir = "%s\\mozilla" % objdir
         else:
-            moz_objdir = "mozilla/%s" % objdir
+            moz_objdir = "%s/mozilla" % objdir
         
         leak_threshold = platform.get('leak_threshold', branch.get('leak_threshold', 7261838))
         self.addStep(ShellCommand,
