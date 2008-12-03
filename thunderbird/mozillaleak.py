@@ -27,7 +27,11 @@ def addLeakTestSteps(self,branch,platform,platformName):
         self.addStep(ShellCommand,
             description=['run leak tests'],
             env=env,
-            command=['python','mailnews/test/performance/bloat/runtest.py',objdir],
+            command=['python','mailnews/test/performance/bloat/runtest.py',
+                     '--objdir', objdir, 
+                     '--bin', branch['appname'], 
+                     '--brand', branch['brand_name'], 
+                    ],
         )
         self.addStep(ShellCommand,
          env=env,
