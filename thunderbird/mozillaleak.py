@@ -17,11 +17,20 @@ from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 
+GRAPH_SERVER = 'graphs-stage.mozilla.org'
+GRAPH_SELECTOR = 'server'
+GRAPH_BRANCH = 'comm-central'
+
 def addLeakTestSteps(self,branch,platform,platformName):
         # we want the same thing run a few times here, with different
         # extraArgs
         env = platform['env']
         objdir = platform['platform_objdir']
+
+        self.graphSelector = GRAPH_SELECTOR
+        self.graphServer   = GRAPH_SERVER
+        self.graphBranch   = GRAPH_BRANCH
+        self.baseName      = platform['base_name']
         
         if platformName.startswith("win32"):
             moz_objdir = "%s\\mozilla" % objdir
@@ -49,6 +58,12 @@ def addLeakTestSteps(self,branch,platform,platformName):
          testnameprefix='Mail',
          testname='Mail',
         )
+        self.addStep(GraphServerPost,
+         server=self.graphServer,
+         selector=self.graphSelector,
+         branch=self.graphBranch,
+         resultsname=self.baseName
+        )
         self.addStep(ShellCommand,
          env=env,
          command=['cp', 'malloc.log','../malloc.log',],
@@ -66,12 +81,12 @@ def addLeakTestSteps(self,branch,platform,platformName):
          testname='current',
          testnameprefix='Mail'
         )
-#        self.addStep(GraphServerPost,
-#         server=self.graphServer,
-#         selector=self.graphSelector,
-#         branch=self.graphBranch,
-#         resultsname=self.baseName
-#        )
+        self.addStep(GraphServerPost,
+         server=self.graphServer,
+         selector=self.graphSelector,
+         branch=self.graphBranch,
+         resultsname=self.baseName
+        )
         self.addStep(CompareLeakLogs,
          mallocLog='../malloc.log.old',
          platform=platformName,
