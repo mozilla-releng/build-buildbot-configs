@@ -336,27 +336,22 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     localesBranch=self.localesBranch,
                     workdir='build/l10n/%s' % locale,
                     repourl=self.localesRepoURL % {'locale': locale},
+                    haltOnFailure=False,
+                    flunkOnFailure=False,
                 ))
-                if self.platform.startswith("macosx") and self.product == "suite":
-                    steps.append(LocaleShellCommand(
-                        locale=locale,
-                        command=['cp', 'l10n/%s/%s/installer/mac/README.txt' % \
-                                       (locale, self.product),
-                                 'obj/mozilla/dist/bin/'],
-                        description=['copying', 'README'],
-                        descriptionDone=['copy', 'README'],
-                        haltOnFailure=True,
-                    ))
                 steps.append(LocaleCompile(
                     locale=locale,
                     command=['make', '-C', 'obj/%s/locales' % self.product,
                              'installers-%s' % locale, 'MOZ_MAKE_COMPLETE_MAR=1'],
                     haltOnFailure=False,
+                    flunkOnFailure=False,
                 ))
                 steps.append(LocaleGetBuildProperties(
                     locale=locale,
                     builddir=appIniDir,
                     workdir='build/mozilla',
+                    haltOnFailure=False,
+                    flunkOnFailure=False,
                 ))
                 if self.createSnippets:
                     # this is a tad ugly because we need to python interpolation
@@ -368,13 +363,16 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                     steps.append(LocaleCreateCompleteUpdateSnippet(
                         objdir='build/obj/mozilla',
                         milestone=self.mainBranch,
-                        baseurl='%s/nightly' % self.update_download_base_url
+                        baseurl='%s/nightly' % self.update_download_base_url,
+                        haltOnFailure=False,
+                        flunkOnFailure=False,
                     ))
                     steps.append(LocaleShellCommand(
                         command=['ssh', '-l', self.update_user, self.update_host,
                                  WithProperties('mkdir -p %s' % AUS2_FULL_UPLOAD_DIR)],
                         description=['create', 'aus2', 'upload', 'dir'],
-                        haltOnFailure=True,
+                        haltOnFailure=False,
+                        flunkOnFailure=False,
                     ))
                     steps.append(LocaleShellCommand(
                         command=['scp', '-o', 'User=%s' % self.update_user,
@@ -383,7 +381,8 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                                      (self.update_host, AUS2_FULL_UPLOAD_DIR))],
                         workdir='build/obj/mozilla',
                         description=['upload', 'complete', 'snippet'],
-                        haltOnFailure=True,
+                        haltOnFailure=False,
+                        flunkOnFailure=False,
                     ))
 
             steps.append(ShellCommand(
