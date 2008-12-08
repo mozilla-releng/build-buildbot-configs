@@ -54,10 +54,10 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = Fals
 BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = False
 # L10n configuration
-BRANCHES['mozilla-central']['enable_l10n'] = True
+BRANCHES['mozilla-central']['enable_l10n'] = False
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
+    '/home/ftp/pub/mozilla.org/firefox/nightly/experimental/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
@@ -80,14 +80,12 @@ BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Firefox'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
-    'moz2-linux-slave1',
+    'moz2-linux-slave01',
     'moz2-linux-slave02',
-    'moz2-linux-slave03',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
-    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
@@ -241,7 +239,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = False
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
+    '/home/ftp/pub/mozilla.org/firefox/nightly/experimental/latest-mozilla-1.9.1-l10n/'
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
@@ -258,14 +256,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'Firefox3.1'
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = [
-    'moz2-linux-slave1',
+    'moz2-linux-slave01',
     'moz2-linux-slave02',
-    'moz2-linux-slave03',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
-    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',

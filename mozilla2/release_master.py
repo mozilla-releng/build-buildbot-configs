@@ -79,10 +79,10 @@ tag_factory = ReleaseTaggingFactory(
 
 builders.append({
     'name': 'tag',
-    'slavenames': ['moz2-linux-slave1', 'moz2-linux-slave02',
-                   'moz2-linux-slave03', 'moz2-linux-slave05',
+    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
+                   'moz2-linux-slave05',
                    'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 'moz2-linux-slave13',
+                   'moz2-linux-slave12', 
                    'moz2-linux-slave14', 'moz2-linux-slave15',
                    'moz2-linux-slave16'],
     'category': 'release',
@@ -100,10 +100,10 @@ source_factory = SingleSourceFactory(
 
 builders.append({
     'name': 'source',
-    'slavenames': ['moz2-linux-slave1', 'moz2-linux-slave02',
-                   'moz2-linux-slave03', 'moz2-linux-slave05',
+    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
+                   'moz2-linux-slave05',
                    'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 'moz2-linux-slave13',
+                   'moz2-linux-slave12', 
                    'moz2-linux-slave14', 'moz2-linux-slave15',
                    'moz2-linux-slave16'],
     'category': 'release',
@@ -192,10 +192,10 @@ updates_factory = ReleaseUpdatesFactory(
 
 builders.append({
     'name': 'updates',
-    'slavenames': ['moz2-linux-slave1', 'moz2-linux-slave02',
-                   'moz2-linux-slave03', 'moz2-linux-slave05',
+    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
+                   'moz2-linux-slave05',
                    'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 'moz2-linux-slave13',
+                   'moz2-linux-slave12',
                    'moz2-linux-slave14', 'moz2-linux-slave15',
                    'moz2-linux-slave16'],
     'category': 'release',
@@ -253,10 +253,10 @@ final_verification_factory = ReleaseFinalVerification(
 
 builders.append({
     'name': 'final_verification',
-    'slavenames': ['moz2-linux-slave1', 'moz2-linux-slave02',
-                   'moz2-linux-slave03', 'moz2-linux-slave05',
+    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
+                   'moz2-linux-slave05',
                    'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 'moz2-linux-slave13',
+                   'moz2-linux-slave12', 
                    'moz2-linux-slave14', 'moz2-linux-slave15',
                    'moz2-linux-slave16'],
     'category': 'release',
