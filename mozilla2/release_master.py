@@ -95,7 +95,8 @@ source_factory = SingleSourceFactory(
     repository=mozillaCentral,
     productName=productName,
     appVersion=appVersion,
-    baseTag=baseTag
+    baseTag=baseTag,
+    autoconfDirs=['.', 'js/src']
 )
 
 builders.append({
