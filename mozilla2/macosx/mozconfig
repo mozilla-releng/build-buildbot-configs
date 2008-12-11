@@ -6,11 +6,8 @@ ac_add_options --enable-update-packaging
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
 
-export CFLAGS="-gstabs --save-temps"
-export CXXFLAGS="-gstabs --save-temps"
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
-
-# Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j4"

@@ -116,18 +116,16 @@ builders.append({
 for platform in releasePlatforms:
     # shorthand
     pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
-    mozconfig = '%s/mozilla-central/release' % platform
 
     build_factory = MercurialBuildFactory(
         env=pf['env'],
         objdir=pf['platform_objdir'],
-        platform=platform,
+        platform=platform + '-release',
         branch='mozilla-central',
         sourceRepo=mozillaCentral.replace('mozilla-central', ''),
         configRepo=nightly_config.CONFIG_REPO_URL,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
-        mozconfig=mozconfig,
         buildRevision='%s_RELEASE' % baseTag,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.STAGE_USERNAME,
