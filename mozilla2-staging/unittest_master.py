@@ -123,7 +123,9 @@ mozilla2_firefox_unix_test_builder = {
         platform='linux',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'mozilla-central'
+        branch = 'mozilla-central',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=5,
     ),
     'category': 'mozilla-central',
 }
@@ -150,7 +152,9 @@ mozilla2_firefox_unix_test_builder2 = {
         platform='linux',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'tracemonkey'
+        branch = 'tracemonkey',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=5,
     ),
     'category': 'tracemonkey',
 }
@@ -172,7 +176,9 @@ mozilla2_firefox_osx_test_builder = {
         platform='macosx',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'mozilla-central'
+        branch = 'mozilla-central',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=10,
     ),
     'category': 'mozilla-central',
 }
@@ -194,7 +200,9 @@ mozilla2_firefox_osx_test_builder2 = {
         platform='macosx',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'tracemonkey'
+        branch = 'tracemonkey',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=10,
     ),
     'category': 'tracemonkey',
 }
@@ -221,7 +229,9 @@ firefox_trunk_win2k3_builder = {
         platform='win32',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'mozilla-central'
+        branch = 'mozilla-central',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=6,
     ),
     'category': 'mozilla-central',
 }
@@ -248,7 +258,9 @@ firefox_trunk_win2k3_builder2 = {
         platform='win32',
         config_repo_url = nightly_config.CONFIG_REPO_URL,
         config_dir = nightly_config.CONFIG_SUBDIR,
-        branch = 'tracemonkey'
+        branch = 'tracemonkey',
+        buildToolsRepo = nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=6,
     ),
     'category': 'tracemonkey',
 }

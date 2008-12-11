@@ -14,6 +14,8 @@ AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox'
 GRAPH_SERVER = 'graphs-stage.mozilla.org'
 GRAPH_SELECTOR = 'server'
+BUILD_TOOLS_REPO_URL = 'http://hg.mozilla.org/build/tools'
+DEFAULT_BUILD_SPACE = 5
 
 
 # All branches that are to be built MUST be listed here.
@@ -61,6 +63,13 @@ BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = False
+BRANCHES['mozilla-central']['platforms']['linux']['build_space'] = 5
+BRANCHES['mozilla-central']['platforms']['linux64']['build_space'] = 5
+BRANCHES['mozilla-central']['platforms']['win32']['build_space'] = 6
+BRANCHES['mozilla-central']['platforms']['macosx']['build_space'] = 10
+BRANCHES['mozilla-central']['platforms']['linux-debug']['build_space'] = 2
+BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 2
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 2
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -294,6 +303,13 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['profiled_build'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['build_space'] = 5
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['build_space'] = 5
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 6
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 15
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 2
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 2
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 2
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -510,6 +526,9 @@ BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 trace
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 5
+BRANCHES['tracemonkey']['platforms']['win32']['build_space'] = 6
+BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 15
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True

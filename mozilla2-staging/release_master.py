@@ -136,6 +136,7 @@ for platform in releasePlatforms:
         platform=platform,
         branch='mozilla-central',
         sourceRepo=mozillaCentral.replace('mozilla-central', ''),
+        buildToolsRepo=buildTools,
         configRepo=nightly_config.CONFIG_REPO_URL,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
@@ -150,8 +151,9 @@ for platform in releasePlatforms:
         uploadPackages=False,
         uploadSymbols=True,
         createSnippet=False,
-        doCleanup=True # this will clean-up the mac build dirs, but not delete
-                       # the entire thing
+        doCleanup=True, # this will clean-up the mac build dirs, but not delete
+                        # the entire thing
+        buildSpace=10,
     )
 
     builders.append({

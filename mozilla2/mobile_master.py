@@ -64,13 +64,18 @@ status.append(TinderboxMailNotifier(
 
 ####### BUILDERS
 
-from buildbot.process import factory
 from buildbot.steps.transfer import FileDownload
 from buildbot.steps.source import Mercurial
 from buildbot.steps.shell import Compile, ShellCommand, WithProperties
 
+import buildbotcustom.process.factory
+reload(buildbotcustom.process.factory)
+from buildbotcustom.process.factory import MozillaBuildFactory
 
-linux_arm_dep_factory = factory.BuildFactory()
+linux_arm_dep_factory = MozillaBuildFactory(
+    buildToolsRepo=BUILD_TOOLS_REPO_URL, buildSpace=5
+)
+
 linux_arm_dep_factory.addStep(ShellCommand(
     command = "rm /tmp/*_cltbld.log",
     description=['removing', 'logfile'],
@@ -79,13 +84,6 @@ linux_arm_dep_factory.addStep(ShellCommand(
     flunkOnFailure=False,
     warnOnFailure=False
 ))
-
-linux_arm_dep_factory.addStep(ShellCommand,
-    command=['bash', '-c', 'rm -rf ../../*-nightly/build'],
-    description=['cleaning', 'old', 'builds'],
-    descriptionDone=['clean', 'old', 'builds'],
-    warnOnFailure=True,
-    flunkOnFailure=False)
 
 linux_arm_dep_factory.addStep(ShellCommand(
     command = ['/scratchbox/moz_scratchbox', '-p',
