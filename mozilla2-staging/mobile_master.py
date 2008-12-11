@@ -161,10 +161,9 @@ linux_arm_dep_factory.addStep(ShellCommand(
     haltOnFailure=True
 ))
 
-# cp configs/mozilla2/$platform/mozconfig .mozconfig
 linux_arm_dep_factory.addStep(ShellCommand(
     command = ['/scratchbox/moz_scratchbox', '-p',
-    'cp', 'build/buildbot-configs/%s/linux-arm/mozconfig' % (CONFIG_SUBDIR),
+    'cp', 'build/buildbot-configs/%s/linux/mobile-browser/nightly/mozconfig' % (CONFIG_SUBDIR),
     'build/mozilla-central/.mozconfig'],
     description=['copying', 'mozconfig'],
     descriptionDone=['installed', 'mozconfig'],

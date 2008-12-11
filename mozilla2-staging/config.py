@@ -39,6 +39,14 @@ BRANCHES['mozilla-central']['platforms'] = {
     'macosx-debug': {},
     'win32-debug': {}
 }
+# The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
+BRANCHES['mozilla-central']['platforms']['linux']['mozconfig'] = 'linux/mozilla-central/nightly'
+BRANCHES['mozilla-central']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-central/nightly'
+BRANCHES['mozilla-central']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-central/nightly'
+BRANCHES['mozilla-central']['platforms']['win32']['mozconfig'] = 'win32/mozilla-central/nightly'
+BRANCHES['mozilla-central']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-central/debug'
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['mozconfig'] = 'macosx/mozilla-central/debug'
+BRANCHES['mozilla-central']['platforms']['win32-debug']['mozconfig'] = 'win32/mozilla-central/debug'
 BRANCHES['mozilla-central']['platforms']['linux']['base_name'] = 'Linux mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-central'
@@ -265,6 +273,13 @@ BRANCHES['mozilla-1.9.1']['platforms'] = {
     'macosx-debug': {},
     'win32-debug': {}
 }
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['mozconfig'] = 'linux/mozilla-1.9.1/nightly'
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-1.9.1/nightly'
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-1.9.1/nightly'
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['mozconfig'] = 'win32/mozilla-1.9.1/nightly'
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-1.9.1/debug'
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['mozconfig'] = 'macosx/mozilla-1.9.1/debug'
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['mozconfig'] = 'win32/mozilla-1.9.1/debug'
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['base_name'] = 'Linux mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-1.9.1'
@@ -486,6 +501,9 @@ BRANCHES['tracemonkey']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
+BRANCHES['tracemonkey']['platforms']['linux']['mozconfig'] = 'linux/tracemonkey/nightly'
+BRANCHES['tracemonkey']['platforms']['macosx']['mozconfig'] = 'macosx/tracemonkey/nightly'
+BRANCHES['tracemonkey']['platforms']['win32']['mozconfig'] = 'win32/tracemonkey/nightly'
 BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
