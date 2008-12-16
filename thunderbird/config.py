@@ -63,7 +63,7 @@ BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Uni
 BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central']['tinderbox_tree'] = 'Thunderbird'
+BRANCHES['comm-central']['tinderbox_tree'] = 'Thunderbird3.0'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
     'tb-linux-tbox',
 ]
@@ -327,7 +327,7 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['update_platform'] = 'Darw
 BRANCHES['comm-central-bloat']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'Thunderbird'
+BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'Thunderbird3.0'
 BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
 BRANCHES['comm-central-bloat']['platforms']['win32']['leak_threshold'] =  110000
