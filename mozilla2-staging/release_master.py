@@ -3,8 +3,6 @@ from buildbot.scheduler import Scheduler, Dependent
 
 import buildbotcustom.misc
 import buildbotcustom.process.factory
-reload(buildbotcustom.misc)
-reload(buildbotcustom.process.factory)
 
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \

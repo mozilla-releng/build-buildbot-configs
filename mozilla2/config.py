@@ -70,6 +70,8 @@ BRANCHES['mozilla-central']['platforms']['macosx']['build_space'] = 10
 BRANCHES['mozilla-central']['platforms']['linux-debug']['build_space'] = 2
 BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 2
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 2
+# Enable unit tests
+BRANCHES['mozilla-central']['enable_unittests'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = False
 #make sure it has an ending slash
@@ -266,6 +268,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 15
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 2
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 2
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 2
+# Enable unit tests
+BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = False
 #make sure it has an ending slash
@@ -435,6 +439,8 @@ BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 15
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
+# Enable unit tests
+BRANCHES['tracemonkey']['enable_unittests'] = True
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
 BRANCHES['tracemonkey']['create_snippet'] = False

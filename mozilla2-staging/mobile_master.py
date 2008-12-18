@@ -7,16 +7,13 @@
 ####### SCHEDULERS AND CHANGE SOURCES
 
 import buildbotcustom.changes.hgpoller
-reload(buildbotcustom.changes.hgpoller)
 from buildbotcustom.changes.hgpoller import HgPoller
 from buildbot.scheduler import Scheduler, Nightly
 
 import buildbot.status.tinderbox
-reload(buildbot.status.tinderbox)
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.misc
-reload(buildbotcustom.misc)
 from buildbotcustom.misc import isHgPollerTriggered
 
 # most of the config is in an external file
@@ -71,7 +68,6 @@ from buildbot.steps.source import Mercurial
 from buildbot.steps.shell import Compile, ShellCommand, WithProperties
 
 import buildbotcustom.process.factory
-reload(buildbotcustom.process.factory)
 from buildbotcustom.process.factory import MozillaBuildFactory
 
 linux_arm_dep_factory = MozillaBuildFactory(
