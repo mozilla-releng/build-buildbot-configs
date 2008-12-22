@@ -18,8 +18,8 @@ ac_add_options --disable-codesighs
 ac_add_options --disable-shared
 ac_add_options --enable-static
 
-export CFLAGS="-gdwarf-2"
-export CXXFLAGS="-gdwarf-2"
+export CFLAGS="-gstabs -gfull -save-temps"
+export CXXFLAGS="-gstabs -gfull -save-temps"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
