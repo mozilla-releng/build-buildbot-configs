@@ -1,14 +1,16 @@
 from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
 
+import buildbotcustom.l10n.scheduler
 import buildbotcustom.misc
 import buildbotcustom.process.factory
 
+from buildbotcustom.l10n.scheduler import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, MercurialBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory
+  L10nVerifyFactory, ReleaseRepackFactory
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -36,18 +38,34 @@ tag_scheduler = Scheduler(
     builderNames=['tag'],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, nightly_config.HGURL)
 )
-build_scheduler = Dependent(
-    name='build',
+schedulers.append(tag_scheduler)
+source_scheduler = Dependent(
+    name='source',
     upstream=tag_scheduler,
-    builderNames=['source', 'linux_build', 'win32_build', 'macosx_build']
+    builderNames=['source']
 )
+schedulers.append(source_scheduler)
+for platform in releasePlatforms:
+    build_scheduler = Dependent(
+        name='%s_build' % platform,
+        upstream=tag_scheduler,
+        builderNames=['%s_build' % platform]
+    )
+    repack_scheduler = DependentL10n(
+        name='%s_repack' % platform,
+        upstream=build_scheduler,
+        builderNames=['%s_repack' % platform],
+        repoType='hg',
+        repoPath='mozilla-central',
+        baseTag='%s_RELEASE' % baseTag,
+        localesFile='browser/locales/shipped-locales'
+    )
+    schedulers.append(build_scheduler)
+    schedulers.append(repack_scheduler)
 
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
 # from the waterfall
-
-schedulers.append(tag_scheduler)
-schedulers.append(build_scheduler)
 
 ##### Builders
 repositories = {
@@ -148,6 +166,34 @@ for platform in releasePlatforms:
         'category': 'release',
         'builddir': '%s_build' % platform,
         'factory': build_factory
+    })
+
+    repack_factory = ReleaseRepackFactory(
+        sourceRepo=nightly_config.HGURL,
+        branch='mozilla-central',
+        project=productName,
+        repoPath='mozilla-central',
+        l10nRepoPath='l10n-central',
+        stageServer=nightly_config.STAGE_SERVER,
+        stageUsername=nightly_config.STAGE_USERNAME,
+        stageSshKey=nightly_config.STAGE_SSH_KEY,
+        buildToolsRepo=nightly_config.BUILD_TOOLS_REPO_URL,
+        buildSpace=2,
+        configRepo=nightly_config.CONFIG_REPO_URL,
+        configSubDir=nightly_config.CONFIG_SUBDIR,
+        mozconfig=mozconfig,
+        platform=platform + '-release',
+        buildRevision='%s_RELEASE' % baseTag,
+        appVersion=appVersion,
+        buildNumber=buildNumber
+    )
+
+    builders.append({
+        'name': '%s_repack' % platform,
+        'slavenames': pf['slaves'],
+        'category': 'release',
+        'builddir': '%s_repack' % platform,
+        'factory': repack_factory
     })
 
 
