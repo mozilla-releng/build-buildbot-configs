@@ -57,6 +57,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
          env=env,
          testnameprefix='Mail',
          testname='Mail',
+         haltOnFailure=False,
         )
         self.addStep(GraphServerPost,
          server=self.graphServer,
@@ -79,7 +80,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
          env=env,
          objdir=moz_objdir,
          testname='current',
-         testnameprefix='Mail'
+         testnameprefix='Mail',
+         haltOnFailure=False,
         )
         self.addStep(GraphServerPost,
          server=self.graphServer,
@@ -94,7 +96,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
          env=env,
          objdir=moz_objdir,
          testname='previous',
-         testnameprefix='Mail'
+         testnameprefix='Mail',
+         haltOnFailure=False,
         )
         self.addStep(ShellCommand,
          env=env,
@@ -134,7 +137,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
         self.addStep(ShellCommand,
          env=env,
          command=['perl', 'mozilla/tools/trace-malloc/diffbloatdump.pl',
-                  '--depth=15', '../sdleak.tree.old', '../sdleak.tree']
+                  '--depth=15', '../sdleak.tree.old', '../sdleak.tree'],
+         haltOnFailure=False,
         )
         self.addStep(ShellCommand,
           env=env,
