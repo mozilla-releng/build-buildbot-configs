@@ -129,6 +129,10 @@ source_factory = SingleSourceFactory(
     productName=productName,
     appVersion=appVersion,
     baseTag=baseTag,
+    stagingServer=nightly_config.STAGE_SERVER,
+    stageUsername=nightly_config.STAGE_USERNAME,
+    stageSshKey=nightly_config.STAGE_SSH_KEY,
+    buildNumber=buildNumber,
     autoconfDirs=['.', 'js/src']
 )
 
