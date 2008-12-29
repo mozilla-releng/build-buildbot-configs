@@ -20,6 +20,7 @@ BRAND_NAME = 'Shredder'
 BRANCHES = {
     'comm-central': {},
     'comm-central-bloat': {},
+    'comm-central-trunk-bloat': {},
     'comm-central-calendar': {},
     'comm-central-sunbird': {},
 }
@@ -375,4 +376,91 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
+######## thunderbird-bloat (mozilla-central)
+# All platforms being built for this branch MUST be listed here.
+BRANCHES['comm-central-trunk-bloat']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {}
+}
 
+BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central']
+BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
+BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'mozconfig-bloat'
+BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
+BRANCHES['comm-central-trunk-bloat']['period'] = 60 * 60 * 2
+BRANCHES['comm-central-trunk-bloat']['nightly'] = False
+BRANCHES['comm-central-trunk-bloat']['leak'] = True
+BRANCHES['comm-central-trunk-bloat']['package'] = False
+BRANCHES['comm-central-trunk-bloat']['upload_stage'] = False
+BRANCHES['comm-central-trunk-bloat']['codesighs'] = False
+BRANCHES['comm-central-trunk-bloat']['l10n'] = False
+BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-test'
+BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'gozer' ]
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central mozilla-central bloat'
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central mozilla-central bloat'
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central mozilla-central bloat'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = False
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-central-trunk-bloat']['create_snippet'] = False
+BRANCHES['comm-central-trunk-bloat']['create_l10n_snippets'] = False
+BRANCHES['comm-central-trunk-bloat']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = [
+    'momo-vm-07'
+]
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = [
+    'momo-vm-06'
+]
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = [
+    'momo-vm-09'
+]
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/tbirdbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
+}
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/tbirdbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
