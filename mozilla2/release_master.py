@@ -8,7 +8,7 @@ import buildbotcustom.process.factory
 from buildbotcustom.l10n.scheduler import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
-  ReleaseTaggingFactory, SingleSourceFactory, MercurialBuildFactory, \
+  ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory
 
@@ -138,7 +138,7 @@ for platform in releasePlatforms:
     pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
     mozconfig = '%s/mozilla-central/release' % platform
 
-    build_factory = MercurialBuildFactory(
+    build_factory = ReleaseBuildFactory(
         env=pf['env'],
         objdir=pf['platform_objdir'],
         platform=platform,
@@ -156,12 +156,15 @@ for platform in releasePlatforms:
         stageSshKey=nightly_config.STAGE_SSH_KEY,
         stageBasePath=nightly_config.STAGE_BASE_PATH,
         codesighs=False,
-        uploadPackages=False,
+        uploadPackages=True,
         uploadSymbols=True,
         createSnippet=False,
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
         buildSpace=10,
+        productName=productName,
+        appVersion=appVersion,
+        buildNumber=buildNumber
     )
 
     builders.append({
