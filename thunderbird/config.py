@@ -1,5 +1,4 @@
 HGURL = 'http://hg.mozilla.org/'
-ADD_POLL_BRANCH = 'releases/mozilla-1.9.1'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'thunderbird'
 LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/index.cgi/%(locale)s'
@@ -32,7 +31,7 @@ BRANCHES['comm-central']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
-
+BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
@@ -116,6 +115,7 @@ BRANCHES['comm-central-calendar']['platforms'] = {
     'macosx': {}
 }
 
+BRANCHES['comm-central-calendar']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
@@ -198,7 +198,7 @@ BRANCHES['comm-central-sunbird']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
-
+BRANCHES['comm-central-sunbird']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-sunbird']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-sunbird']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-sunbird']['mozconfig'] = 'mozconfig-sunbird'
@@ -295,6 +295,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
     'macosx': {}
 }
 
+BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
@@ -384,6 +385,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms'] = {
     'macosx': {}
 }
 
+BRANCHES['comm-central-trunk-bloat']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central']
 BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'mozconfig-bloat'
