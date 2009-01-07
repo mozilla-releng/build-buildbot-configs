@@ -15,6 +15,13 @@ PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
 BRAND_NAME = 'Shredder'
 
+DEFAULTS = {
+    'hgurl':                  HGURL,
+    'master_branch':          'comm-central',
+    'mozilla_central_branch': 'releases/mozilla-1.9.1',
+    'add_poll_branches':      [ 'dom-inspector' ],
+}
+
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'comm-central': {},
