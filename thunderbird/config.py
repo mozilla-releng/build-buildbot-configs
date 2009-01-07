@@ -1,7 +1,7 @@
 HGURL = 'http://hg.mozilla.org/'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'thunderbird'
-LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/index.cgi/%(locale)s'
+LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir-tb'
 STAGE_USERNAME = 'tbirdbld'
 STAGE_SERVER = 'stage.mozilla.org'
