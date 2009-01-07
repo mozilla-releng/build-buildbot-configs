@@ -86,7 +86,7 @@ BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['periodic_scheduler_period'] = 60*60*2   # 2 hours
+BRANCHES['mozilla-central']['periodic_scheduler_period'] = 60*60*10   # 10 hours
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -282,7 +282,7 @@ BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['periodic_scheduler_period'] = 60*60*2   # 2 hours
+BRANCHES['mozilla-1.9.1']['periodic_scheduler_period'] = 60*60*10   # 10 hours
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
