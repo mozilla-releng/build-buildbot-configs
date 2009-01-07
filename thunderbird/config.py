@@ -5,7 +5,6 @@ LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir-tb'
 STAGE_USERNAME = 'tbirdbld'
 STAGE_SERVER = 'stage.mozilla.org'
-STAGE_BASE_PATH = '/home/ftp/pub/thunderbird'
 STAGE_GROUP = 'thunderbird'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
@@ -18,6 +17,7 @@ BRAND_NAME = 'Shredder'
 DEFAULTS = {
     'hgurl':                  HGURL,
     'master_branch':          'comm-central',
+    'stage_base_path':        '/home/ftp/pub/thunderbird',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'add_poll_branches':      [ 'dom-inspector' ],
 }
