@@ -13,6 +13,10 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
     for name in branches.keys():
         branch = branches[name]
         hgurl = getConfig(defaults, branch, 'hgurl')
+        
+        #Make sure the hg url doesn't have a trailing '/', we'll be adding one
+        if hgurl[-1:] == '/':
+            hgurl = hgurl[:-1]
         poll_branch = getConfig(defaults, branch, 'master_branch')
         for b in [poll_branch] + [getConfig(defaults, branch, 'mozilla_central_branch')] + getConfig(defaults, branch, 'add_poll_branches'):
             pushlogUrlOverride = '%s/%s/pushlog' % (hgurl, b),
