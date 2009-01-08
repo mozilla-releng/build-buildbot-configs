@@ -104,8 +104,12 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave02',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave10',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
+    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
@@ -114,11 +118,15 @@ BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = [
     'moz2-linux64-slave01'
 ]
 BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
-    'moz2-win32-slave1',
+    'moz2-win32-slave01',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
     'moz2-win32-slave05',
     'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
     'moz2-win32-slave11',
     'moz2-win32-slave12',
     'moz2-win32-slave13',
@@ -132,23 +140,35 @@ BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'bm-xserve17',
     'bm-xserve18',
     'bm-xserve19',
-    'moz2-darwin9-slave02'
+    'bm-xserve22',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
+    'moz2-darwin9-slave06',
+    'moz2-darwin9-slave07'
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave02',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave10',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
+    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
 ]
 BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
-    'moz2-win32-slave1',
+    'moz2-win32-slave01',
     'moz2-win32-slave02',
     'moz2-win32-slave05',
     'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
     'moz2-win32-slave11',
     'moz2-win32-slave12',
     'moz2-win32-slave13',
@@ -162,7 +182,11 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve17',
     'bm-xserve18',
     'bm-xserve19',
+    'bm-xserve22',
     'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
+    'moz2-darwin9-slave06',
+    'moz2-darwin9-slave07'
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -297,8 +321,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave02',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave10',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
+    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
@@ -307,11 +335,15 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux64']['slaves'] = [
     'moz2-linux64-slave01'
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['slaves'] = [
-    'moz2-win32-slave1',
+    'moz2-win32-slave01',
     'moz2-win32-slave02',
     'moz2-win32-slave03',
     'moz2-win32-slave05',
     'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
     'moz2-win32-slave11',
     'moz2-win32-slave12',
     'moz2-win32-slave13',
@@ -325,23 +357,35 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
     'bm-xserve17',
     'bm-xserve18',
     'bm-xserve19',
-    'moz2-darwin9-slave02'
+    'bm-xserve22',
+    'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
+    'moz2-darwin9-slave06',
+    'moz2-darwin9-slave07'
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave02',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave10',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
+    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['slaves'] = [
-    'moz2-win32-slave1',
+    'moz2-win32-slave01',
     'moz2-win32-slave02',
     'moz2-win32-slave05',
     'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
     'moz2-win32-slave11',
     'moz2-win32-slave12',
     'moz2-win32-slave13',
@@ -355,7 +399,11 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve17',
     'bm-xserve18',
     'bm-xserve19',
+    'bm-xserve22',
     'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
+    'moz2-darwin9-slave06',
+    'moz2-darwin9-slave07'
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['platform_objdir'] = OBJDIR
@@ -458,17 +506,25 @@ BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave02',
     'moz2-linux-slave05',
     'moz2-linux-slave06',
+    'moz2-linux-slave07',
+    'moz2-linux-slave08',
+    'moz2-linux-slave10',
     'moz2-linux-slave11',
     'moz2-linux-slave12',
+    'moz2-linux-slave13',
     'moz2-linux-slave14',
     'moz2-linux-slave15',
     'moz2-linux-slave16',
 ]
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
-    'moz2-win32-slave1',
+    'moz2-win32-slave01',
     'moz2-win32-slave02',
     'moz2-win32-slave05',
     'moz2-win32-slave06',
+    'moz2-win32-slave07',
+    'moz2-win32-slave08',
+    'moz2-win32-slave09',
+    'moz2-win32-slave10',
     'moz2-win32-slave11',
     'moz2-win32-slave12',
     'moz2-win32-slave13',
@@ -482,7 +538,11 @@ BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
     'bm-xserve17',
     'bm-xserve18',
     'bm-xserve19',
+    'bm-xserve22',
     'moz2-darwin9-slave02',
+    'moz2-darwin9-slave05',
+    'moz2-darwin9-slave06',
+    'moz2-darwin9-slave07'
 ]
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
