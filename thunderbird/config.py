@@ -129,6 +129,7 @@ BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central']
 BRANCHES['comm-central-trunk']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-trunk']['mozconfig'] = 'mozconfig'
+BRANCHES['comm-central-trunk']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk']['package'] = True
 #Disable when producing release builds
 #BRANCHES['comm-central-trunk']['nightly'] = False
