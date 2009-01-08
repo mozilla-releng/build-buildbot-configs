@@ -27,6 +27,7 @@ DEFAULTS = {
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'comm-central': {},
+    'comm-central-trunk': {},
     'comm-central-bloat': {},
     'comm-central-trunk-bloat': {},
     'comm-central-calendar': {},
