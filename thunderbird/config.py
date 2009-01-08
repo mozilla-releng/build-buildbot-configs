@@ -159,7 +159,7 @@ BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darw
 BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
     'momo-vm-12',
 ]
