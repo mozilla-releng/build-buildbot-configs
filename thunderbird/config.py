@@ -21,6 +21,7 @@ DEFAULTS = {
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'add_poll_branches':      [ 'dom-inspector' ],
     'period':                 60 * 60 * 12,
+    'irc':                    True,
 }
 
 # All branches that are to be built MUST be listed here.
