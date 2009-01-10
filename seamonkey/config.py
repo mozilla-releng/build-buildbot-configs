@@ -1,10 +1,11 @@
+# always end with a slash, tree names are concatenated to this
 HGURL = 'http://hg.mozilla.org/'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
 ADD_POLL_BRANCH = 'releases/mozilla-1.9.1'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_SUBDIR = 'seamonkey'
-LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/index.cgi/%(locale)s'
+LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir'
 STAGE_USERNAME = 'seabld'
 STAGE_SERVER = 'stage.mozilla.org'

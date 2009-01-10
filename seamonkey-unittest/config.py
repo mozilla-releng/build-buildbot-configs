@@ -1,3 +1,4 @@
+# always end with a slash, tree names are concatenated to this
 HGURL = 'http://hg.mozilla.org/'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
