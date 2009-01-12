@@ -31,7 +31,7 @@ status = []
 change_source.append(HgPoller(
     hgURL=config.HGURL,
     branch='mobile-browser',
-    pushlogUrlOverride='http://hg.mozilla.org//mobile-browser/index.cgi/pushlog',
+    pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/index.cgi/pushlog',
     pollInterval=1*60
 ))
 
@@ -93,9 +93,9 @@ linux_arm_dep_factory.addStep(ShellCommand(
 
 linux_arm_dep_factory.addStep(ShellCommand(
     command = ['bash', '-c', 'rm -rf ' + \
-               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/mobile/dist/fennec* ' + \
-               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/xulrunner/xulrunner/*.deb ' + \
-               '/scratchbox/users/cltbld/home/cltbld//build/mozilla-central/objdir/mobile/mobile/*.deb'],
+               mobile_config.SBOX_HOME + '/build/mozilla-central/objdir/mobile/dist/fennec* ' + \
+               mobile_config.SBOX_HOME + '/build/mozilla-central/objdir/xulrunner/xulrunner/*.deb ' + \
+               mobile_config.SBOX_HOME + '/build/mozilla-central/objdir/mobile/mobile/*.deb'],
     description=['removing', 'old', 'builds'],
     descriptionDone=['remove', 'old', 'builds'],
     haltOnFailure=False,
@@ -104,8 +104,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build',
-    'hg', 'clone', 'http://hg.mozilla.org/mozilla-central', 'mozilla-central'],
+    command = ['hg', 'clone', 'http://hg.mozilla.org/mozilla-central', 'mozilla-central'],
+    workdir = mobile_config.SBOX_HOME + 'build',
     description=['checking', 'out', 'mozilla-central'],
     descriptionDone=['checked out', 'mozilla-central'],
     haltOnFailure=False,
@@ -113,16 +113,16 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build/mozilla-central',
-    'hg', 'pull', '-u'],
+    command = ['hg', 'pull', '-u'],
+    workdir = mobile_config.SBOX_HOME + 'build/mozilla-central',
     description=['updating', 'from', 'mozilla-central'],
     descriptionDone=['updated', 'from', 'mozilla-central'],
     haltOnFailure=True
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build/mozilla-central',
-    'hg', 'clone', 'http://hg.mozilla.org/mobile-browser', 'mobile'],
+    command = ['hg', 'clone', 'http://hg.mozilla.org/mobile-browser', 'mobile'],
+    workdir = mobile_config.SBOX_HOME + 'build/mozilla-central',
     description=['checking', 'out', 'mobile-browser'],
     descriptionDone=['checked out', 'mobile-browser'],
     haltOnFailure=False,
@@ -130,8 +130,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build/mozilla-central/mobile',
-    'hg', 'pull', '-u'],
+    command = ['hg', 'pull', '-u'],
+    workdir = mobile_config.SBOX_HOME + 'build/mozilla-central/mobile',
     description=['updating', 'mobile-browser'],
     descriptionDone=['updating', 'mobile-browser'],
     haltOnFailure=True
@@ -139,8 +139,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
 
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build',
-    'hg', 'clone', CONFIG_REPO_URL, 'buildbot-configs'],
+    command = ['hg', 'clone', CONFIG_REPO_URL, 'buildbot-configs'],
+    workdir = mobile_config.SBOX_HOME + 'build',
     description=['checking', 'out', 'configs'],
     descriptionDone=['checkout', 'configs'],
     haltOnFailure=False,
@@ -148,8 +148,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
 ))
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['/scratchbox/moz_scratchbox', '-p', '-d', 'build/buildbot-configs',
-    'hg', 'pull', '-u'],
+    command = ['hg', 'pull', '-u'],
+    workdir = mobile_config.SBOX_HOME + 'build/buildbot-configs',
     description=['updating', 'buildbot-configs'],
     descriptionDone=['updated', 'buildbot-configs'],
     haltOnFailure=True
@@ -214,7 +214,7 @@ linux_arm_dep_factory.addStep(ShellCommand(
 linux_arm_dep_builder = {
     'name': 'mobile-linux-arm-dep',
     'slavenames': [
-        'moz2-linux-slave01',
+        'moz2-linux-slave03',
         'moz2-linux-slave04',
         ],
     'builddir': 'mobile-linux-arm-dep',
