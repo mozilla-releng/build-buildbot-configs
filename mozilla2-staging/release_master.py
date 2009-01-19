@@ -33,7 +33,7 @@ change_source.append(PBChangeSource())
 
 repo_setup_scheduler = Scheduler(
     name='repo_setup',
-    branch='mozilla-central',
+    branch=sourceRepoPath,
     treeStableTimer=0,
     builderNames=['repo_setup'],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, nightly_config.HGURL)
@@ -62,7 +62,7 @@ for platform in releasePlatforms:
         upstream=build_scheduler,
         builderNames=['%s_repack' % platform],
         repoType='hg',
-        repoPath='mozilla-central',
+        repoPath=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
         localesFile='browser/locales/shipped-locales'
     )
@@ -74,23 +74,37 @@ for platform in releasePlatforms:
 # from the waterfall
 
 ##### Builders
-repositories = {
-    mozillaCentral: {
-        'revision': mozillaCentralRevision,
+clone_repositories = {
+    sourceRepoClonePath: {
+        'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
         'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
                       'browser/config/version.txt', 'browser/app/module.ver']
     }
 }
-l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nCentral,
-                                   relbranchOverride)
-repositories.update(l10n_repos)
+l10n_clone_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoClonePath,
+                                         relbranchOverride)
+clone_repositories.update(l10n_clone_repos)
+
+tag_repositories = {
+    sourceRepoPath: {
+        'revision': sourceRepoRevision,
+        'relbranchOverride': relbranchOverride,
+        'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
+                      'browser/config/version.txt', 'browser/app/module.ver']
+    }
+}
+l10n_tag_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
+                                       relbranchOverride)
+tag_repositories.update(l10n_tag_repos)
+
 
 repository_setup_factory = StagingRepositorySetupFactory(
-    hgHost=hgHost,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     username=hgUsername,
     sshKey=hgSshKey,
-    repositories=repositories
+    repositories=clone_repositories
 )
 
 builders.append({
@@ -103,8 +117,9 @@ builders.append({
 
 
 tag_factory = ReleaseTaggingFactory(
-    repositories=repositories,
-    buildToolsRepo=buildTools,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+    repositories=tag_repositories,
     productName=productName,
     appName=appName,
     appVersion=appVersion,
@@ -125,7 +140,9 @@ builders.append({
 
 
 source_factory = SingleSourceFactory(
-    repository=mozillaCentral,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+    repoPath=sourceRepoPath,
     productName=productName,
     appVersion=appVersion,
     baseTag=baseTag,
@@ -147,17 +164,17 @@ builders.append({
 
 for platform in releasePlatforms:
     # shorthand
-    pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
-    mozconfig = '%s/mozilla-central/release' % platform
+    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
+    mozconfig = '%s/%s/release' % (platform, sourceRepoName)
 
     build_factory = ReleaseBuildFactory(
         env=pf['env'],
         objdir=pf['platform_objdir'],
         platform=platform,
-        branch='mozilla-central',
-        sourceRepo=mozillaCentral.replace('mozilla-central', ''),
-        buildToolsRepo=buildTools,
-        configRepo=nightly_config.CONFIG_REPO_URL,
+        hgHost=nightly_config.HGHOST,
+        repoPath=sourceRepoPath,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+        configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
@@ -188,17 +205,16 @@ for platform in releasePlatforms:
     })
 
     repack_factory = ReleaseRepackFactory(
-        sourceRepo=nightly_config.HGURL,
-        branch='mozilla-central',
+        hgHost=nightly_config.HGHOST,
         project=productName,
-        repoPath='mozilla-central',
-        l10nRepoPath='l10n-central',
+        repoPath=sourceRepoPath,
+        l10nRepoPath=l10nRepoPath,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.STAGE_USERNAME,
         stageSshKey=nightly_config.STAGE_SSH_KEY,
-        buildToolsRepo=nightly_config.BUILD_TOOLS_REPO_URL,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
         buildSpace=2,
-        configRepo=nightly_config.CONFIG_REPO_URL,
+        configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         mozconfig=mozconfig,
         platform=platform + '-release',
@@ -217,8 +233,9 @@ for platform in releasePlatforms:
 
 
 l10n_verification_factory = L10nVerifyFactory(
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     cvsroot=cvsroot,
-    buildTools=buildTools,
     stagingServer=stagingServer,
     productName=productName,
     appVersion=appVersion,
@@ -229,7 +246,7 @@ l10n_verification_factory = L10nVerifyFactory(
 
 builders.append({
     'name': 'l10n_verification',
-    'slavenames': nightly_config.BRANCHES['mozilla-central']['platforms']['macosx']['slaves'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
     'category': 'release',
     'builddir': 'l10n_verification',
     'factory': l10n_verification_factory
@@ -237,10 +254,11 @@ builders.append({
 
 
 updates_factory = ReleaseUpdatesFactory(
+    hgHost=nightly_config.HGHOST,
+    repoPath=sourceRepoPath,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
-    mozillaCentral=mozillaCentral,
-    buildTools=buildTools,
     patcherConfig=patcherConfig,
     baseTag=baseTag,
     appName=appName,
@@ -269,7 +287,7 @@ builders.append({
 })
 
 for platform in releasePlatforms:
-    pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
+    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
 
     platformVerifyConfig = None
     if platform == 'linux':
@@ -280,8 +298,9 @@ for platform in releasePlatforms:
         platformVerifyConfig = win32VerifyConfig
 
     update_verify_factory = UpdateVerifyFactory(
-        mozillaCentral=mozillaCentral,
-        buildTools=buildTools,
+        hgHost=nightly_config.HGHOST,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+        repoPath=sourceRepoPath,
         cvsroot=cvsroot,
         patcherToolsTag=patcherToolsTag,
         hgUsername=hgUsername,
@@ -309,7 +328,8 @@ for platform in releasePlatforms:
 
 
 final_verification_factory= ReleaseFinalVerification(
-    buildTools=buildTools,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     linuxConfig=linuxVerifyConfig,
     macConfig=macVerifyConfig,
     win32Config=win32VerifyConfig

@@ -33,7 +33,7 @@ change_source.append(PBChangeSource())
 
 tag_scheduler = Scheduler(
     name='tag',
-    branch='mozilla-central',
+    branch=sourceRepoPath,
     treeStableTimer=0,
     builderNames=['tag'],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, nightly_config.HGURL)
@@ -56,7 +56,7 @@ for platform in releasePlatforms:
         upstream=build_scheduler,
         builderNames=['%s_repack' % platform],
         repoType='hg',
-        repoPath='mozilla-central',
+        repoPath=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
         localesFile='browser/locales/shipped-locales'
     )
@@ -69,20 +69,21 @@ for platform in releasePlatforms:
 
 ##### Builders
 repositories = {
-    mozillaCentral: {
-        'revision': mozillaCentralRevision,
+    sourceRepoPath: {
+        'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
         'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
                       'browser/config/version.txt', 'browser/app/module.ver']
     }
 }
-l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nCentral,
+l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                    relbranchOverride)
 repositories.update(l10n_repos)
 
 tag_factory = ReleaseTaggingFactory(
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     repositories=repositories,
-    buildToolsRepo=buildTools,
     productName=productName,
     appName=appName,
     appVersion=appVersion,
@@ -95,12 +96,7 @@ tag_factory = ReleaseTaggingFactory(
 
 builders.append({
     'name': 'tag',
-    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
-                   'moz2-linux-slave05',
-                   'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 
-                   'moz2-linux-slave14', 'moz2-linux-slave15',
-                   'moz2-linux-slave16'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
     'factory': tag_factory
@@ -108,7 +104,9 @@ builders.append({
 
 
 source_factory = SingleSourceFactory(
-    repository=mozillaCentral,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+    repoPath=sourceRepoPath,
     productName=productName,
     appVersion=appVersion,
     baseTag=baseTag,
@@ -121,12 +119,7 @@ source_factory = SingleSourceFactory(
 
 builders.append({
     'name': 'source',
-    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
-                   'moz2-linux-slave05',
-                   'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 
-                   'moz2-linux-slave14', 'moz2-linux-slave15',
-                   'moz2-linux-slave16'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
     'factory': source_factory
@@ -135,17 +128,17 @@ builders.append({
 
 for platform in releasePlatforms:
     # shorthand
-    pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
-    mozconfig = '%s/mozilla-central/release' % platform
+    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
+    mozconfig = '%s/%s/release' % (platform, sourceRepoName)
 
     build_factory = ReleaseBuildFactory(
         env=pf['env'],
         objdir=pf['platform_objdir'],
         platform=platform,
-        branch='mozilla-central',
-        sourceRepo=mozillaCentral.replace('mozilla-central', ''),
-        buildToolsRepo=buildTools,
-        configRepo=nightly_config.CONFIG_REPO_URL,
+        hgHost=nightly_config.HGHOST,
+        repoPath=sourceRepoPath,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+        configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
@@ -176,17 +169,16 @@ for platform in releasePlatforms:
     })
 
     repack_factory = ReleaseRepackFactory(
-        sourceRepo=nightly_config.HGURL,
-        branch='mozilla-central',
+        hgHost=nightly_config.HGHOST,
         project=productName,
-        repoPath='mozilla-central',
-        l10nRepoPath='l10n-central',
+        repoPath=sourceRepoPath,
+        l10nRepoPath=l10nRepoPath,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.STAGE_USERNAME,
         stageSshKey=nightly_config.STAGE_SSH_KEY,
-        buildToolsRepo=nightly_config.BUILD_TOOLS_REPO_URL,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
         buildSpace=2,
-        configRepo=nightly_config.CONFIG_REPO_URL,
+        configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,
         mozconfig=mozconfig,
         platform=platform + '-release',
@@ -205,8 +197,9 @@ for platform in releasePlatforms:
 
 
 l10n_verification_factory = L10nVerifyFactory(
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     cvsroot=cvsroot,
-    buildTools=buildTools,
     stagingServer=stagingServer,
     productName=productName,
     appVersion=appVersion,
@@ -217,7 +210,7 @@ l10n_verification_factory = L10nVerifyFactory(
 
 builders.append({
     'name': 'l10n_verification',
-    'slavenames': nightly_config.BRANCHES['mozilla-central']['platforms']['macosx']['slaves'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
     'category': 'release',
     'builddir': 'l10n_verification',
     'factory': l10n_verification_factory
@@ -225,10 +218,11 @@ builders.append({
 
 
 updates_factory = ReleaseUpdatesFactory(
+    hgHost=nightly_config.HGHOST,
+    repoPath=sourceRepoPath,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
-    mozillaCentral=mozillaCentral,
-    buildTools=buildTools,
     patcherConfig=patcherConfig,
     baseTag=baseTag,
     appName=appName,
@@ -248,12 +242,7 @@ updates_factory = ReleaseUpdatesFactory(
 
 builders.append({
     'name': 'updates',
-    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
-                   'moz2-linux-slave05',
-                   'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12',
-                   'moz2-linux-slave14', 'moz2-linux-slave15',
-                   'moz2-linux-slave16'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
     'factory': updates_factory
@@ -261,7 +250,7 @@ builders.append({
 
 
 for platform in releasePlatforms:
-    pf = nightly_config.BRANCHES['mozilla-central']['platforms'][platform]
+    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
 
     platformVerifyConfig = None
     if platform == 'linux':
@@ -272,8 +261,9 @@ for platform in releasePlatforms:
         platformVerifyConfig = win32VerifyConfig
 
     update_verify_factory = UpdateVerifyFactory(
-        mozillaCentral=mozillaCentral,
-        buildTools=buildTools,
+        hgHost=nightly_config.HGHOST,
+        buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+        repoPath=sourceRepoPath,
         cvsroot=cvsroot,
         patcherToolsTag=patcherToolsTag,
         hgUsername=hgUsername,
@@ -301,7 +291,8 @@ for platform in releasePlatforms:
 
 
 final_verification_factory = ReleaseFinalVerification(
-    buildTools=buildTools,
+    hgHost=nightly_config.HGHOST,
+    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     linuxConfig=linuxVerifyConfig,
     macConfig=macVerifyConfig,
     win32Config=win32VerifyConfig
@@ -309,12 +300,7 @@ final_verification_factory = ReleaseFinalVerification(
 
 builders.append({
     'name': 'final_verification',
-    'slavenames': ['moz2-linux-slave01', 'moz2-linux-slave02',
-                   'moz2-linux-slave05',
-                   'moz2-linux-slave06', 'moz2-linux-slave11',
-                   'moz2-linux-slave12', 
-                   'moz2-linux-slave14', 'moz2-linux-slave15',
-                   'moz2-linux-slave16'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
     'factory': final_verification_factory

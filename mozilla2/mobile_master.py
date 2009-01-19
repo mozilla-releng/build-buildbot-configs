@@ -69,7 +69,10 @@ import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MozillaBuildFactory
 
 linux_arm_dep_factory = MozillaBuildFactory(
-    buildToolsRepo=BUILD_TOOLS_REPO_URL, buildSpace=5
+    hgHost=HGHOST,
+    repoPath='nothing',
+    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+    buildSpace=5
 )
 
 linux_arm_dep_factory.addStep(ShellCommand(
@@ -137,7 +140,8 @@ linux_arm_dep_factory.addStep(ShellCommand(
 
 
 linux_arm_dep_factory.addStep(ShellCommand(
-    command = ['hg', 'clone', CONFIG_REPO_URL, 'buildbot-configs'],
+    command = ['hg', 'clone', HGHOST + '/' + CONFIG_REPO_PATH,
+               'buildbot-configs'],
     workdir = mobile_config.SBOX_HOME + 'build',
     description=['checking', 'out', 'configs'],
     descriptionDone=['checkout', 'configs'],

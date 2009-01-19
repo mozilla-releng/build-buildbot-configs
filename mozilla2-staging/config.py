@@ -1,7 +1,11 @@
+# It's a little unfortunate to have both of these but some things (HgPoller)
+# require an URL while other things (BuildSteps) require only the host.
+# Since they're both right here it shouldn't be a problem to keep them in sync.
 HGURL = 'http://hg.mozilla.org/'
+HGHOST = 'hg.mozilla.org'
 # for nss/nspr
 CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_PATH = 'build/buildbot-configs'
 CONFIG_SUBDIR = 'mozilla2-staging'
 OBJDIR = 'obj-firefox'
 STAGE_USERNAME = 'ffxbld'
@@ -14,7 +18,7 @@ AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox'
 GRAPH_SERVER = 'graphs-stage.mozilla.org'
 GRAPH_SELECTOR = 'server'
-BUILD_TOOLS_REPO_URL = 'http://hg.mozilla.org/build/tools'
+BUILD_TOOLS_REPO_PATH = 'users/stage-ffxbld/tools'
 DEFAULT_BUILD_SPACE = 5
 
 
