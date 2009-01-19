@@ -78,10 +78,10 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 2
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
 # L10n configuration
-BRANCHES['mozilla-central']['enable_l10n'] = False
+BRANCHES['mozilla-central']['enable_l10n'] = True
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/experimental/latest-mozilla-central-l10n/'
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
