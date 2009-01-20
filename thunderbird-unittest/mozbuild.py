@@ -68,7 +68,6 @@ class MozillaClientMkPull(ShellCommand):
         env = {}
         if 'env' in kwargs:
             env = kwargs['env'].copy()
-        env['MOZ_CO_PROJECT'] = self.project
         kwargs['env'] = env
         ShellCommand.__init__(self, **kwargs)
 
