@@ -123,7 +123,7 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {
 BRANCHES['comm-central-trunk']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+#    'macosx': {}
 }
 BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--debug']
@@ -141,10 +141,10 @@ BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
 BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central trunk'
 BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'Win2k3 comm-central trunk'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central trunk'
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central trunk'
 BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -153,12 +153,12 @@ BRANCHES['comm-central-trunk']['create_l10n_snippets'] = False
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
     'momo-vm-12',
@@ -166,15 +166,15 @@ BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = [
     'momo-vm-13'
 ]
-BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
-    'momo-vm-14'
-]
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
+#    'momo-vm-14'
+#]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['comm-central-trunk']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -193,15 +193,15 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'tbirdbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
+#BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {
+#    'MOZ_OBJDIR': OBJDIR,
+#    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+#    'SYMBOL_SERVER_USER': 'tbirdbld',
+#    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+#    'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#}
 
 ######## lightning-hg
 # All platforms being built for this branch MUST be listed here.
