@@ -128,6 +128,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
             self.addStep(ShellCommand,
              env=env,
              workdir='.',
+             timeout=60*60, # Very IO/CPU intensive, give it an hour to complete
              command=['/bin/bash', '-c', 
                       'perl '
                       'build/mozilla/tools/rb/fix-%s-stack.pl '
