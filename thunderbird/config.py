@@ -150,7 +150,7 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 # generated.
 BRANCHES['comm-central-trunk']['create_snippet'] = True
 BRANCHES['comm-central-trunk']['create_l10n_snippets'] = False
-BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 #BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
