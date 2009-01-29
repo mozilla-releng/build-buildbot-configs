@@ -6,7 +6,7 @@ sourceRepoName      = 'mozilla-1.9.1'
 # It is not used for anything else.
 sourceRepoClonePath = 'releases/mozilla-1.9.1'
 sourceRepoPath      = 'users/stage-ffxbld/mozilla-1.9.1'
-sourceRepoRevision  = '9074662447ae'
+sourceRepoRevision  = 'cabcbb97bb86'
 relbranchOverride   = ''
 baseTag             = 'FIREFOX_3_1b3'
 l10nRepoClonePath   = 'releases/l10n-mozilla-1.9.1'
