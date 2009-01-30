@@ -34,7 +34,8 @@ BRANCHES = {
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-central']['major_version'] = '1.9.1'
+BRANCHES['mozilla-central']['major_version'] = '1.9.2'
+BRANCHES['mozilla-central']['product_name'] = 'firefox'
 BRANCHES['mozilla-central']['brand_name'] = 'Minefield'
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
@@ -290,6 +291,7 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['env'] = {
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['major_version'] = '1.9.1'
+BRANCHES['mozilla-1.9.1']['product_name'] = 'firefox'
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
 BRANCHES['mozilla-1.9.1']['platforms'] = {
     'linux': {},
@@ -542,6 +544,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['env'] = {
 ######## tracemonkey
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
 BRANCHES['tracemonkey']['major_version'] = '1.9.1'
+BRANCHES['tracemonkey']['product_name'] = 'firefox'
 BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
