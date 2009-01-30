@@ -148,7 +148,7 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['comm-central-trunk']['create_snippet'] = True
+BRANCHES['comm-central-trunk']['create_snippet'] = False
 BRANCHES['comm-central-trunk']['create_l10n_snippets'] = False
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
