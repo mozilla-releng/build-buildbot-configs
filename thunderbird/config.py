@@ -164,7 +164,8 @@ BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
     'momo-vm-12',
 ]
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = [
-    'momo-vm-13'
+    'momo-vm-13',
+    'momo-vm-15',
 ]
 #BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
 #    'momo-vm-14'
@@ -432,7 +433,8 @@ BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = [
     'momo-vm-07'
 ]
 BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
-    'momo-vm-06'
+    'momo-vm-06',
+    'momo-vm-15'
 ]
 BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
     'momo-vm-09'
@@ -521,7 +523,8 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = [
     'momo-vm-07'
 ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = [
-    'momo-vm-06'
+    'momo-vm-06',
+    'momo-vm-15'
 ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = [
     'momo-vm-09'
