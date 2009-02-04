@@ -337,7 +337,7 @@ BRANCHES['comm-central-sunbird']['platforms']['macosx']['update_platform'] = 'Da
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central-sunbird']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central-sunbird']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-central-sunbird']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-central-sunbird']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-sunbird']['tinderbox_tree'] = 'Sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['slaves'] = [
     'cb-sb-linux-tbox',
