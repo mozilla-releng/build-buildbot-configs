@@ -165,7 +165,8 @@ BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave04',
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
-    'moz2-darwin9-slave07'
+    'moz2-darwin9-slave07',
+    'moz2-darwin9-slave08'
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave01',
@@ -225,7 +226,8 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
     'moz2-darwin9-slave04',
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
-    'moz2-darwin9-slave07'
+    'moz2-darwin9-slave07',
+    'moz2-darwin9-slave08'
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -427,7 +429,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave04',
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
-    'moz2-darwin9-slave07'
+    'moz2-darwin9-slave07',
+    'moz2-darwin9-slave08'
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave01',
@@ -487,7 +490,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['slaves'] = [
     'moz2-darwin9-slave04',
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
-    'moz2-darwin9-slave07'
+    'moz2-darwin9-slave07',
+    'moz2-darwin9-slave08'
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -650,7 +654,8 @@ BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave04',
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
-    'moz2-darwin9-slave07'
+    'moz2-darwin9-slave07',
+    'moz2-darwin9-slave08'
 ]
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
