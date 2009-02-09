@@ -20,6 +20,8 @@ GRAPH_SERVER = 'graphs.mozilla.org'
 GRAPH_SELECTOR = 'server'
 BUILD_TOOLS_REPO_PATH = 'build/tools'
 DEFAULT_BUILD_SPACE = 5
+BASE_CLOBBER_URL = 'http://build.mozilla.org/clobberer/index.php'
+DEFAULT_CLOBBER_TIME = 24*7 # 1 week
 
 
 # All branches that are to be built MUST be listed here.
