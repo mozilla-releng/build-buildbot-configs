@@ -162,6 +162,7 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 #BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
+    'momo-vm-07',
     'momo-vm-12',
 ]
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = [
@@ -432,7 +433,8 @@ BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
 BRANCHES['comm-central-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = [
-    'momo-vm-07'
+    'momo-vm-07',
+    'momo-vm-12'
 ]
 BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
     'momo-vm-06',
@@ -523,7 +525,8 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 9
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = [
-    'momo-vm-07'
+    'momo-vm-07',
+    'momo-vm-12',
 ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = [
     'momo-vm-06',
