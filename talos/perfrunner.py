@@ -67,7 +67,7 @@ class MultiBuildScheduler(Scheduler):
         # submit
         for i in range(0, self.numberOfBuildsToTrigger):
             bs = buildset.BuildSet(self.builderNames, SourceStamp(changes=changes))
-            self.submit(bs)
+            self.submitBuildSet(bs)
 
 class MozillaWget(ShellCommand):
     """Download built Firefox client from dated staging directory."""
