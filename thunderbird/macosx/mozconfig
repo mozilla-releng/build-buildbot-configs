@@ -7,7 +7,7 @@ fi
 mk_add_options MOZ_MAKE_FLAGS=-j3
 
 ac_add_options --enable-application=mail
-ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-channel=beta
 ac_add_options --enable-update-packaging
 ac_add_options --enable-optimize
 ac_add_options --disable-debug
@@ -21,3 +21,4 @@ export CXXFLAGS="-gdwarf-2"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+ac_add_options --enable-official-branding
