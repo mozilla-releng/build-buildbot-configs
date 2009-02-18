@@ -80,10 +80,10 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 2
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 2
 BRANCHES['mozilla-central']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['linux64']['builds_before_reboot'] = None
-BRANCHES['mozilla-central']['platforms']['win32']['builds_before_reboot'] = None
+BRANCHES['mozilla-central']['platforms']['win32']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['macosx']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['linux-debug']['builds_before_reboot'] = 5
-BRANCHES['mozilla-central']['platforms']['win32-debug']['builds_before_reboot'] = None
+BRANCHES['mozilla-central']['platforms']['win32-debug']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot'] = 5
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
@@ -351,13 +351,14 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 2
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 2
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['builds_before_reboot'] = None
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['builds_before_reboot'] = None
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['builds_before_reboot'] = 5
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['builds_before_reboot'] = 5
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = 5
-BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['builds_before_reboot'] = None
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['builds_before_reboot'] = 5
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] = 5
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 200
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -600,7 +601,7 @@ BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['win32']['build_space'] = 4
 BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 15
 BRANCHES['tracemonkey']['platforms']['linux']['builds_before_reboot'] = 5
-BRANCHES['tracemonkey']['platforms']['win32']['builds_before_reboot'] = None
+BRANCHES['tracemonkey']['platforms']['win32']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['macosx']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
@@ -608,6 +609,7 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 200
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
 # need this or the master.cfg will bail
