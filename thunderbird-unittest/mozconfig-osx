@@ -5,8 +5,6 @@ else
   . $topsrcdir/.mozconfig-common
 fi
 
-mk_add_options MOZ_MAKE_FLAGS=-j2
-
 ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 
 CC="ccache gcc"
