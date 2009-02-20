@@ -11,6 +11,7 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory
+from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -30,6 +31,13 @@ status = []
 
 ##### Change sources and Schedulers
 change_source.append(PBChangeSource())
+change_source.append(FtpPoller(
+	branch="post_signing",
+	ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
+	  % (stagingServer, productName, appVersion, buildNumber)],
+	pollInterval=60*10,
+	searchString='win32_signing_build'
+))
 
 tag_scheduler = Scheduler(
     name='tag',
@@ -62,6 +70,30 @@ for platform in releasePlatforms:
     )
     schedulers.append(build_scheduler)
     schedulers.append(repack_scheduler)
+l10n_verify_scheduler = Scheduler(
+    name='l10n_verification',
+    treeStableTimer=0,
+    branch='post_signing',
+    builderNames=['l10n_verification']
+)
+schedulers.append(l10n_verify_scheduler)
+updates_scheduler = Scheduler(
+    name='updates',
+    treeStableTimer=0,
+    branch='post_signing',
+    builderNames=['updates']
+)
+schedulers.append(updates_scheduler)
+
+updateBuilderNames = []
+for platform in releasePlatforms:
+    updateBuilderNames.append('%s_update_verify' % platform)
+update_verify_scheduler = Dependent(
+    name='update_verify',
+    upstream=updates_scheduler,
+    builderNames=updateBuilderNames
+)
+schedulers.append(update_verify_scheduler)
 
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
