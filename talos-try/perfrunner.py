@@ -266,6 +266,7 @@ class MozillaUpdateConfig(ShellCommand):
         assert 'executablePath' in kwargs
         assert 'branch' in kwargs
         self.branch = kwargs['branch']
+        self.branchName = kwargs['branchName']
         self.exePath = kwargs['executablePath']
         if 'addOptions' in kwargs:
             self.addOptions = kwargs['addOptions']
@@ -277,7 +278,7 @@ class MozillaUpdateConfig(ShellCommand):
         self.changes = build.source.changes
         self.buildid = strftime("%Y%m%d%H%M", localtime(self.changes[-1].when))
         if not self.command:
-            self.setCommand(["python", "PerfConfigurator.py", "-v", "-e", self.exePath, "-t", self.title, "-b", self.branch, "-d", self.buildid, "-i", self.buildid] + self.addOptions)
+            self.setCommand(["python", "PerfConfigurator.py", "-v", "-e", self.exePath, "-t", self.title, "-b", self.branch, "-d", self.buildid, "-i", self.buildid, "--branchName", self.branchName] + self.addOptions)
 
     def describe(self, done=False):
         return ["Update config"]
@@ -500,7 +501,7 @@ class TalosFactory(BuildFactory):
     macClean   = "rm -vrf *"   
     linuxClean = "rm -vrf *" 
       
-    def __init__(self, OS, envName, buildBranch, configOptions, buildSearchString, buildDir, buildPath, talosCmd, customManifest='', cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot"):
+    def __init__(self, OS, envName, buildBranch, branchName, configOptions, buildSearchString, buildDir, buildPath, talosCmd, customManifest='', cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot"):
         BuildFactory.__init__(self)
         if OS in ('linux', 'linuxbranch',):
             cleanCmd = self.linuxClean
@@ -592,6 +593,7 @@ class TalosFactory(BuildFactory):
         self.addStep(MozillaUpdateConfig(
                            workdir="talos/",
                            branch=buildBranch,
+                           branchName=branchName,
                            haltOnFailure=True,
                            executablePath=buildPath,
                            addOptions=configOptions,
