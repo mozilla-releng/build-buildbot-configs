@@ -93,7 +93,7 @@ schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
 for platform in releasePlatforms:
-    updateBuilderNames.append('%s_update_verify, ' % platform)
+    updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
     upstream=updates_scheduler,
