@@ -1,0 +1,19 @@
+. $topsrcdir/build/macosx/universal/mozconfig
+
+ac_add_options --enable-application=browser
+ac_add_options --disable-tests
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# Enable parallel compiling
+mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+# shark specific options
+ac_add_options --enable-libxul
+ac_add_options --enable-shark
+ac_add_options --enable-debugger-info-modules
+ac_add_options --disable-install-strip
