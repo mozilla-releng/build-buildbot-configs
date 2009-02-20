@@ -1,7 +1,7 @@
 # Options for client.mk.
 mk_add_options MOZ_BUILD_PROJECTS="xulrunner mobile"
-mk_add_options MOZ_OBJDIR=@topsrcdir@/objdir
-#MOZ_OBJDIR=$topsrcdir/objdir
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+#MOZ_OBJDIR=$TOPSRCDIR/objdir
 
 #debugging options
 ac_add_options --disable-debug
@@ -29,12 +29,12 @@ ac_add_options --disable-dbm
 
 CROSS_COMPILE=1
 
-MIDL=/c/Program\ Files/Microsoft\ Visual\ Studio\ 9/VC/ce/bin/x86_arm/midl.exe
+MIDL=/d/msvs9/VC/ce/bin/x86_arm/midl.exe
 
-mk_add_options AR=@topsrcdir@/build/wince/tools/bin/arm-wince-lib
+mk_add_options AR=@TOPSRCDIR@/build/wince/tools/bin/arm-wince-lib
 
 ac_add_options --target=arm-wince
 ac_add_options --enable-win32-target=WINCE
 ac_add_options --enable-default-toolkit=cairo-windows
 
-ac_add_options --with-wince-sdk="c:/program files/windows mobile 6 sdk/pocketpc"
+ac_add_options --with-wince-sdk="d:/sdks/wm6/pocketpc"

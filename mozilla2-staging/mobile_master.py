@@ -38,14 +38,6 @@ change_source.append(HgPoller(
     pollInterval=1*60
 ))
 
-# blassey's wince patches.  to be phased out eventually.
-change_source.append(HgPoller(
-    hgURL=config.HGURL,
-    branch='wince-patches',
-    pushlogUrlOverride='http://hg.mozilla.org//users/blassey_mozilla.com/wince-patches/index.cgi/pushlog',
-    pollInterval=1*60
-))
-
 schedulers.append(Scheduler(
     name="mobile mozilla-central dep scheduler",
     branch="mozilla-central",
@@ -62,13 +54,13 @@ schedulers.append(Scheduler(
     fileIsImportant=lambda c: isHgPollerTriggered(c, config.HGURL)
 ))
 
-schedulers.append(Scheduler(
-    name="mobile wince-patches dep scheduler",
-    branch="wince-patches",
-    treeStableTimer=3*60,
-    builderNames=["mobile-wince-arm-dep"],
-    fileIsImportant=lambda c: isHgPollerTriggered(c, config.HGURL)
+schedulers.append(Nightly(
+    name="mobile nightly scheduler",
+    branch="mobile-browser",
+    hour=2,
+    builderNames=["mobile-linux-arm-nightly", "mobile-wince-arm-nightly"]
 ))
+
 
 status.append(TinderboxMailNotifier(
     fromaddr="mozilla2.buildbot@build.mozilla.org",
@@ -94,14 +86,12 @@ linux_arm_dep_factory = MaemoBuildFactory(
     stageSshKey = STAGE_SSH_KEY,
     stageServer = STAGE_SERVER,
     stageBasePath = STAGE_BASE_PATH,
-    packageGlob = "mobile/dist/*.tar.bz2 xulrunner/xulrunner/*.deb mobile/mobile/*.deb",
     mobileRepoPath = 'mobile-browser',
     platform = 'linux-arm',
-    baseWorkDir = "%s/build" % mobile_config.SBOX_HOME,
+    baseWorkDir = '%s/build' % mobile_config.SBOX_HOME,
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
     buildSpace = 5
 )
-
 linux_arm_dep_builder = {
     'name': 'mobile-linux-arm-dep',
     'slavenames': [
@@ -114,26 +104,54 @@ linux_arm_dep_builder = {
 }
 builders.append(linux_arm_dep_builder)
 
+linux_arm_nightly_factory = MaemoBuildFactory(
+    hgHost = HGHOST,
+    repoPath = 'mozilla-central',
+    configRepoPath = CONFIG_REPO_PATH,
+    configSubDir = CONFIG_SUBDIR,
+    mozconfig = "linux/mobile-browser/nightly",
+    stageUsername = STAGE_USERNAME,
+    stageGroup = STAGE_GROUP,
+    stageSshKey = STAGE_SSH_KEY,
+    stageServer = STAGE_SERVER,
+    stageBasePath = STAGE_BASE_PATH,
+    mobileRepoPath = 'mobile-browser',
+    platform = 'linux-arm',
+    baseWorkDir = '%s/build' % mobile_config.SBOX_HOME,
+    buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
+    buildSpace = 5,
+    nightly = True
+)
+linux_arm_nightly_builder = {
+    'name': 'mobile-linux-arm-nightly',
+    'slavenames': [
+        'moz2-linux-slave03',
+        'moz2-linux-slave04',
+        ],
+    'builddir': 'mobile-linux-arm-nightly',
+    'factory': linux_arm_nightly_factory,
+    'category': 'mobile'
+}
+builders.append(linux_arm_nightly_builder)
+
 wince_arm_dep_factory = WinceBuildFactory(
     hgHost = HGHOST,
     repoPath = 'mozilla-central',
     configRepoPath = CONFIG_REPO_PATH,
     configSubDir = CONFIG_SUBDIR,
+    env = mobile_config.wince_dep_env,
     mozconfig = "wince/mobile-browser/nightly",
     stageUsername = STAGE_USERNAME,
     stageGroup = STAGE_GROUP,
     stageSshKey = STAGE_SSH_KEY,
     stageServer = STAGE_SERVER,
     stageBasePath = STAGE_BASE_PATH,
-    packageGlob = "xulrunner/dist/*.zip mobile/dist/*.zip",
     mobileRepoPath = 'mobile-browser',
-    patchRepoPath = 'users/blassey_mozilla.com/wince-patches',
     platform = 'wince-arm',
     baseWorkDir = ".",
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
-    buildSpace = 0
+    buildSpace = 5
 )
-
 wince_arm_dep_builder = {
     'name': 'mobile-wince-arm-dep',
     'slavenames': [
@@ -145,3 +163,34 @@ wince_arm_dep_builder = {
     'category': 'mobile'
 }
 builders.append(wince_arm_dep_builder)
+
+wince_arm_nightly_factory = WinceBuildFactory(
+    hgHost = HGHOST,
+    repoPath = 'mozilla-central',
+    configRepoPath = CONFIG_REPO_PATH,
+    configSubDir = CONFIG_SUBDIR,
+    env = mobile_config.wince_nightly_env,
+    mozconfig = "wince/mobile-browser/nightly",
+    stageUsername = STAGE_USERNAME,
+    stageGroup = STAGE_GROUP,
+    stageSshKey = STAGE_SSH_KEY,
+    stageServer = STAGE_SERVER,
+    stageBasePath = STAGE_BASE_PATH,
+    mobileRepoPath = 'mobile-browser',
+    platform = 'wince-arm',
+    baseWorkDir = ".",
+    buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
+    buildSpace = 5,
+    nightly = True
+)
+wince_arm_nightly_builder = {
+    'name': 'mobile-wince-arm-nightly',
+    'slavenames': [
+        'mobile-win32-experiment01',
+        'mobile-win32-experiment02',
+        ],
+    'builddir': 'wince-arm-nightly',
+    'factory': wince_arm_nightly_factory,
+    'category': 'mobile'
+}
+builders.append(wince_arm_nightly_builder)
