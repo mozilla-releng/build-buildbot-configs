@@ -25,6 +25,7 @@ reload(config)
 from config import *
 import mobile_config
 reload(mobile_config)
+from mobile_config import mobile_slaves
 
 builders = []
 schedulers = []
@@ -67,7 +68,8 @@ status.append(TinderboxMailNotifier(
     tree='MozillaTest',
     extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
     relayhost="mail.build.mozilla.org",
-    builders=["mobile-linux-arm-dep", "mobile-wince-arm-dep"],
+    builders=["mobile-linux-arm-dep", "mobile-linux-arm-nightly",
+              "mobile-wince-arm-dep", "mobile-wince-arm-nightly"],
     logCompression="bzip2"
 ))
 
@@ -94,10 +96,7 @@ linux_arm_dep_factory = MaemoBuildFactory(
 )
 linux_arm_dep_builder = {
     'name': 'mobile-linux-arm-dep',
-    'slavenames': [
-        'moz2-linux-slave03',
-        'moz2-linux-slave04',
-        ],
+    'slavenames': mobile_slaves['linux-arm'],
     'builddir': 'mobile-linux-arm-dep',
     'factory': linux_arm_dep_factory,
     'category': 'mobile'
@@ -124,10 +123,7 @@ linux_arm_nightly_factory = MaemoBuildFactory(
 )
 linux_arm_nightly_builder = {
     'name': 'mobile-linux-arm-nightly',
-    'slavenames': [
-        'moz2-linux-slave03',
-        'moz2-linux-slave04',
-        ],
+    'slavenames': mobile_slaves['linux-arm'],
     'builddir': 'mobile-linux-arm-nightly',
     'factory': linux_arm_nightly_factory,
     'category': 'mobile'
@@ -154,10 +150,7 @@ wince_arm_dep_factory = WinceBuildFactory(
 )
 wince_arm_dep_builder = {
     'name': 'mobile-wince-arm-dep',
-    'slavenames': [
-        'mobile-win32-experiment01',
-        'mobile-win32-experiment02',
-        ],
+    'slavenames': mobile_slaves['wince-arm'],
     'builddir': 'wince-arm-dep',
     'factory': wince_arm_dep_factory,
     'category': 'mobile'
@@ -185,10 +178,7 @@ wince_arm_nightly_factory = WinceBuildFactory(
 )
 wince_arm_nightly_builder = {
     'name': 'mobile-wince-arm-nightly',
-    'slavenames': [
-        'mobile-win32-experiment01',
-        'mobile-win32-experiment02',
-        ],
+    'slavenames': mobile_slaves['wince-arm'],
     'builddir': 'wince-arm-nightly',
     'factory': wince_arm_nightly_factory,
     'category': 'mobile'

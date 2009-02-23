@@ -4,6 +4,44 @@
 OBJDIR = 'objdir'
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
 
+mobile_slaves = {
+    'linux-arm': [
+        'moz2-linux-slave01',
+        'moz2-linux-slave02',
+        'moz2-linux-slave03',
+        'moz2-linux-slave04',
+        'moz2-linux-slave05',
+        'moz2-linux-slave06',
+        'moz2-linux-slave07',
+        'moz2-linux-slave08',
+        'moz2-linux-slave09',
+        'moz2-linux-slave10',
+        'moz2-linux-slave11',
+        'moz2-linux-slave12',
+        'moz2-linux-slave13',
+        'moz2-linux-slave14',
+        'moz2-linux-slave15',
+        'moz2-linux-slave16',
+        'moz2-linux-slave17',
+        'moz2-linux-slave18',
+        'moz2-linux-slave19',
+    ],
+    'wince-arm': [
+        'mobile-win32-experiment01',
+        'mobile-win32-experiment02',
+        'moz2-win32-slave13',
+        'moz2-win32-slave14',
+        'moz2-win32-slave15',
+        'moz2-win32-slave16',
+        'moz2-win32-slave17',
+        'moz2-win32-slave18',
+        'moz2-win32-slave19',
+        'moz2-win32-slave20',
+        'moz2-win32-slave22',
+        'moz2-win32-slave23',
+    ],
+}
+
 wince_arm_env = {
     "DEVENVDIR": 'd:\\msvs9\\Common7\\IDE',
     "FRAMEWORK35VERSION": 'v3.5',
