@@ -110,9 +110,3 @@ wince_arm_env = {
     "VS90COMNTOOLS": 'd:\\msvs9\\Common7\\Tools\\',
     "VSINSTALLDIR": 'd:\\msvs9',
 }
-
-wince_dep_env = wince_arm_env.copy()
-wince_dep_env['TOPSRCDIR'] = '/e/builds/moz2_slave/wince-arm-dep/mozilla-central'
-
-wince_nightly_env = wince_arm_env.copy()
-wince_nightly_env['TOPSRCDIR'] = '/e/builds/moz2_slave/wince-arm-nightly/mozilla-central'
