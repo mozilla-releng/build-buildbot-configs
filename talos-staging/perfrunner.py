@@ -533,7 +533,10 @@ class TalosFactory(BuildFactory):
     macClean       = "rm -vrf *"
     linuxClean     = "rm -vrf *"
 
-    def __init__(self, OS, envName, buildBranch, branchName, configOptions, buildPath, talosCmd, customManifest='', cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot"):
+    def __init__(self, OS, envName, buildBranch, branchName, configOptions,
+            buildPath, talosCmd, customManifest='',
+            cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot",
+            workdirBase=None):
         BuildFactory.__init__(self)
         if OS in ('linux', 'linuxbranch',):
             cleanCmd = self.linuxClean
@@ -541,15 +544,17 @@ class TalosFactory(BuildFactory):
             cleanCmd = self.winClean
         else:
             cleanCmd = self.macClean
+        if workdirBase is None:
+            workdirBase = "."
         self.addStep(ShellCommand(
-                           workdir=".",
+                           workdir=workdirBase,
                            description="Cleanup",
                            command=cleanCmd,
                            env=MozillaEnvironments[envName]))
 #self.addStep(ShellCommand,
 #                           command=["cvs", "-d", cvsRoot, "co", "-d", "talos",
 #                                    "mozilla/testing/performance/talos"],
-#                           workdir=".",
+#                           workdir=workdirBase,
 #                           description="checking out talos",
 #                           haltOnFailure=True,
 #                           flunkOnFailure=True,
@@ -557,13 +562,13 @@ class TalosFactory(BuildFactory):
         self.addStep(FileDownload(
                            mastersrc="talos.zip",
                            slavedest="talos.zip",
-                           workdir="."))
+                           workdir=workdirBase))
         self.addStep(FileDownload,
                            mastersrc="scripts/count_and_reboot.py",
                            slavedest="count_and_reboot.py",
-                           workdir=".")
+                           workdir=workdirBase)
         self.addStep(MozillaInstallZip(
-                           workdir=".",
+                           workdir=workdirBase,
                            branch=buildBranch,
                            haltOnFailure=True,
                            env=MozillaEnvironments[envName],
@@ -571,39 +576,39 @@ class TalosFactory(BuildFactory):
         self.addStep(FileDownload(
                            mastersrc="scripts/generate-tpcomponent.py",
                            slavedest="generate-tpcomponent.py",
-                           workdir="talos/page_load_test"))
+                           workdir=os.path.join(workdirBase, "talos/page_load_test")))
         if customManifest != '':
             self.addStep(FileDownload(
                            mastersrc=customManifest,
                            slavedest="manifest.txt",
-                           workdir="talos/page_load_test"))
+                           workdir=os.path.join(workdirBase, "talos/page_load_test")))
         self.addStep(ShellCommand(
                            command=["python", "generate-tpcomponent.py"],
-                           workdir="talos/page_load_test",
+                           workdir=os.path.join(workdirBase, "talos/page_load_test"),
                            description="setting up pageloader",
                            haltOnFailure=True,
                            flunkOnFailure=True,
                            env=MozillaEnvironments[envName]))
         self.addStep(MozillaWgetLatestDated(
-                           workdir=".",
+                           workdir=workdirBase,
                            branch=buildBranch,
                            env=MozillaEnvironments[envName]))
         #install the browser, differs based upon platform
         if OS == 'linux':
             self.addStep(MozillaInstallTarBz2(
-                               workdir=".",
+                               workdir=workdirBase,
                                branch=buildBranch,
                                haltOnFailure=True,
                                env=MozillaEnvironments[envName]))
         elif OS == 'linuxbranch': #special case for old linux builds
             self.addStep(MozillaInstallTarGz(
-                           workdir=".",
+                           workdir=workdirBase,
                            branch=buildBranch,
                            haltOnFailure=True,
                            env=MozillaEnvironments[envName]))
         elif OS == 'win':
             self.addStep(MozillaInstallZip(
-                               workdir=".",
+                               workdir=workdirBase,
                                branch="1.9",
                                haltOnFailure=True,
                                env=MozillaEnvironments[envName]))
@@ -618,9 +623,9 @@ class TalosFactory(BuildFactory):
             self.addStep(FileDownload(
                            mastersrc="scripts/installdmg.sh",
                            slavedest="installdmg.sh",
-                           workdir="."))
+                           workdir=workdirBase))
             self.addStep(MozillaInstallDmg(
-                               workdir=".",
+                               workdir=workdirBase,
                                branch=buildBranch,
                                haltOnFailure=True,
                                env=MozillaEnvironments[envName]))
@@ -628,14 +633,14 @@ class TalosFactory(BuildFactory):
             self.addStep(FileDownload(
                            mastersrc="scripts/installdmg.ex",
                            slavedest="installdmg.ex",
-                           workdir="."))
+                           workdir=workdirBase))
             self.addStep(MozillaInstallDmgEx(
-                               workdir=".",
+                               workdir=workdirBase,
                                branch=buildBranch,
                                haltOnFailure=True,
                                env=MozillaEnvironments[envName]))
         self.addStep(MozillaUpdateConfig(
-                           workdir="talos/",
+                           workdir=os.path.join(workdirBase, "talos/"),
                            branch=buildBranch,
                            branchName=branchName,
                            haltOnFailure=True,
@@ -644,7 +649,7 @@ class TalosFactory(BuildFactory):
                            env=MozillaEnvironments[envName]))
         self.addStep(MozillaRunPerfTests(
                            warnOnWarnings=True,
-                           workdir="talos/",
+                           workdir=os.path.join(workdirBase, "talos/"),
                            branch=buildBranch,
                            timeout=21600,
                            haltOnFailure=True,
@@ -654,7 +659,7 @@ class TalosFactory(BuildFactory):
                            flunkOnFailure=False,
                            warnOnFailure=False,
                            alwaysRun=True,
-                           workdir='.',
+                           workdir=workdirBase,
                            description="reboot after 5 test runs",
                            command=["python", "count_and_reboot.py", "-f", "../talos_count.txt", "-n", "5", "-z"],
                            env=MozillaEnvironments[envName]))
