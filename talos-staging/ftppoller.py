@@ -159,9 +159,8 @@ class FtpPoller(base.ChangeSource):
                 self.lastChanges[url] = buildDate
             c = changes.Change(who = url,
                                comments = "success",
-                               files = [buildname,],
+                               files = [fullpath,],
                                branch = self.branch,
-                               when = buildDate,
-                               links = fullpath)
+                               when = buildDate,)
             self.parent.addChange(c)
             log.msg("found a browser to test (%s)" % (fullpath))

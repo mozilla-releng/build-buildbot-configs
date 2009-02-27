@@ -13,7 +13,6 @@ from buildbot.status.builder import SUCCESS, WARNINGS, FAILURE, SKIPPED, EXCEPTI
 import re, urllib, sys, os
 from time import strptime, strftime, localtime
 from datetime import datetime
-from os import path
 import copy
 
 MozillaEnvironments = { }
@@ -68,7 +67,7 @@ class MultiBuildScheduler(Scheduler):
         for i in range(0, self.numberOfBuildsToTrigger):
             ss = UnmergableSourceStamp(changes=changes)
             bs = buildset.BuildSet(self.builderNames, ss)
-            self.submit(bs)
+            self.submitBuildSet(bs)
 
 
 class LatestFileURL:
@@ -153,8 +152,8 @@ class MozillaWgetLatestDated(ShellCommand):
          ShellCommand.setBuild(self, build)
          self.changes = build.source.changes
          #a full path is always provided by the poller 
-         self.fileURL = self.changes[-1].links
-         self.filename = self.changes[-1].files[0]
+         self.fileURL = self.changes[-1].files[0]
+         self.filename = os.path.basename(self.fileURL)
     
     def getFilename(self):
         return self.filename
@@ -179,53 +178,6 @@ class MozillaWgetLatestDated(ShellCommand):
         if None != re.search('ERROR', cmd.logs['stdio'].getText()):
             return FAILURE
         return SUCCESS
-    
-
-class MozillaWgetLatest(ShellCommand):
-    """Download built Firefox client from nightly staging directory."""
-    haltOnFailure = True
-    
-    def __init__(self, **kwargs):
-        assert kwargs['url'] != ""
-        assert kwargs['filenameSearchString'] != ""
-        #if this change includes a link use it
-        if self.changes[-1].links:
-            self.url = self.changes[-1].links
-        else:
-            self.url = kwargs['url']
-        self.filenameSearchString = kwargs['filenameSearchString']
-        self.branch = "HEAD"
-        self.fileURL = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["wget"]
-        ShellCommand.__init__(self, **kwargs)
-    
-    def getFilename(self):
-        return self.filename
-    
-    def describe(self, done=False):
-        return ["Wget Download"]
-    
-    def start(self):
-        urlGetter = LatestFileURL(self.url, self.filenameSearchString)
-        self.filename = urlGetter.getLatestFilename()
-        self.fileURL = self.url + self.filename
-        if self.branch:
-            self.setProperty("fileURL", self.fileURL)
-            self.setProperty("filename", self.filename)
-        self.setCommand(["wget", "-nv", "-N", self.fileURL])
-        ShellCommand.start(self)
-    
-    def evaluateCommand(self, cmd):
-        superResult = ShellCommand.evaluateCommand(self, cmd)
-        if SUCCESS != superResult:
-            return FAILURE
-        if None != re.search('ERROR', cmd.logs['stdio'].getText()):
-            return FAILURE
-        return SUCCESS
-    
 
 class MozillaInstallZip(ShellCommand):
     """Install given file, unzipping to executablePath"""
