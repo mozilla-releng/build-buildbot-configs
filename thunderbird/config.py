@@ -90,7 +90,7 @@ BRANCHES['comm-central']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central']['platforms']['linux']['env'] = {
+BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -108,7 +108,7 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -180,7 +180,7 @@ BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central-trunk']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {
+BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -198,7 +198,7 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -276,7 +276,7 @@ BRANCHES['comm-central-calendar']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central-calendar']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-calendar']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-calendar']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central-calendar']['platforms']['linux']['env'] = {
+BRANCHES['comm-central-calendar']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -286,7 +286,7 @@ BRANCHES['comm-central-calendar']['platforms']['win32']['env'] = {'CVS_RSH': 'ss
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-calendar']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central-calendar']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -359,7 +359,7 @@ BRANCHES['comm-central-sunbird']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central-sunbird']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-sunbird']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-sunbird']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central-sunbird']['platforms']['linux']['env'] = {
+BRANCHES['comm-central-sunbird']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'calbld',
@@ -377,7 +377,7 @@ BRANCHES['comm-central-sunbird']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-sunbird']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central-sunbird']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'calbld',
@@ -452,7 +452,7 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-bloat']['platforms']['linux']['env'] = {
+BRANCHES['comm-central-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -471,7 +471,7 @@ BRANCHES['comm-central-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -545,7 +545,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = [
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -564,7 +564,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
