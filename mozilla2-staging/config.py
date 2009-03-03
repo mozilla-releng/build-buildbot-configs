@@ -361,7 +361,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['builds_before_reboot'] = 
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] = 5
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 200
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -614,7 +613,6 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 200
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
 # nightly shark build for profiling
