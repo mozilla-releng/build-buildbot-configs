@@ -22,6 +22,8 @@ DEFAULTS = {
     'add_poll_branches':      [ 'dom-inspector' ],
     'period':                 60 * 60 * 12,
     'irc':                    True,
+    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
+    'build_tools_repo':       "http://hg.mozilla.org/build/tools",
 }
 
 # All branches that are to be built MUST be listed here.
