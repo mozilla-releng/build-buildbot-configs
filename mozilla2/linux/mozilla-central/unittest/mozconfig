@@ -7,3 +7,6 @@ ac_add_options --enable-logrefcnt
 
 CC=/tools/gcc/bin/gcc
 CXX=/tools/gcc/bin/g++
+
+export CFLAGS="-gstabs+"
+export CXXFLAGS="-gstabs+"
