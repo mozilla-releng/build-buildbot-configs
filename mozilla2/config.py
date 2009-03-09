@@ -336,10 +336,10 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 # L10n configuration
-BRANCHES['mozilla-1.9.1']['enable_l10n'] = False
+BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/experimental/latest-mozilla-1.9.1-l10n/'
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'

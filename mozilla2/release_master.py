@@ -1,11 +1,11 @@
 from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
 
-import buildbotcustom.l10n.scheduler
+import buildbotcustom.l10n
 import buildbotcustom.misc
 import buildbotcustom.process.factory
 
-from buildbotcustom.l10n.scheduler import DependentL10n
+from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
