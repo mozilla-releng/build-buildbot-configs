@@ -95,6 +95,8 @@ BRANCHES['mozilla-central']['l10nUploadPath'] = \
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
+# nightly shark build for profiling
+BRANCHES['mozilla-central']['enable_shark'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -343,6 +345,8 @@ BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
     DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
+# nightly shark build for profiling
+BRANCHES['mozilla-1.9.1']['enable_shark'] = True
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['idle_timeout'] = 60*60*2   # 2 hours
@@ -554,6 +558,8 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['enable_unittests'] = True
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
+# nightly shark build for profiling
+BRANCHES['tracemonkey']['enable_shark'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
