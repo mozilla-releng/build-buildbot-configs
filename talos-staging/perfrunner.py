@@ -216,7 +216,43 @@ class MozillaInstallZip(ShellCommand):
         if None != re.search('Usage:', cmd.logs['stdio'].getText()):
             return FAILURE
         return SUCCESS
-    
+
+class MozillaWgetSymbols(ShellCommand):
+    """Download the matching symbol package with a build."""
+    haltOnFailure = False
+    _suffixes = ('.tar.bz2', '.dmg', '.zip')
+
+    def __init__(self, **kwargs):
+        #def setBuild(self, build):
+        #    ShellCommand.setBuild(self, build)
+        ShellCommand.__init__(self, **kwargs)
+
+    def describe(self, done=False):
+        return ["Wget symbols"]
+
+    def start(self):
+        buildURL = self.getProperty('fileURL')
+
+        for suffix in self._suffixes:
+            if buildURL.endswith(suffix):
+                self.symbolsURL = buildURL[:-len(suffix)] + '.crashreporter-symbols.zip'
+                break
+
+        symbolsFile = self.symbolsURL.split('/')[-1]
+        self.setProperty('symbolsFile', symbolsFile)
+        self.setCommand(['wget', '-nv', '-N', self.symbolsURL])
+        ShellCommand.start(self)
+
+class MozillaUnpackSymbols(ShellCommand):
+    def __init__(self, **kwargs):
+        ShellCommand.__init__(self, **kwargs)
+
+    def describe(self, done=False):
+        return ["Unpack symbols"]
+
+    def start(self):
+        self.setCommand(['unzip', '-o', '-d', 'symbols', self.getProperty('symbolsFile')])
+        ShellCommand.start(self)
 
 class MozillaUpdateConfig(ShellCommand):
     """Configure YAML file for run_tests.py"""
@@ -230,6 +266,7 @@ class MozillaUpdateConfig(ShellCommand):
         self.exePath = kwargs['executablePath']
         if 'addOptions' in kwargs:
             self.addOptions = kwargs['addOptions']
+        self.useSymbols = kwargs.get('useSymbols', False)
         ShellCommand.__init__(self, **kwargs)
 
     def setBuild(self, build):
@@ -237,8 +274,12 @@ class MozillaUpdateConfig(ShellCommand):
         self.title = build.slavename
         self.changes = build.source.changes
         self.buildid = strftime("%Y%m%d%H%M", localtime(self.changes[-1].when))
+
+        extraopts = copy.copy(self.addOptions)
+        if self.useSymbols:
+            extraopts += ['--symbolsPath', '../symbols']
         if not self.command:
-            self.setCommand(["python", "PerfConfigurator.py", "-v", "-e", self.exePath, "-t", self.title, "-b", self.branch, "-d", self.buildid, '--branchName', self.branchName] + self.addOptions)
+            self.setCommand(["python", "PerfConfigurator.py", "-v", "-e", self.exePath, "-t", self.title, "-b", self.branch, "-d", self.buildid, '--branchName', self.branchName] + extraopts)
 
     def describe(self, done=False):
         return ["Update config"]
@@ -529,14 +570,14 @@ class MozillaInstallDmgEx(ShellCommand):
 
 class TalosFactory(BuildFactory):
 
-    winClean       = ["touch temp.zip &", "rm", "-rf", "*.zip", "talos/", "firefox/"]
+    winClean       = ["touch temp.zip &", "rm", "-rf", "*.zip", "talos/", "firefox/", "symbols/"]
     macClean       = "rm -vrf *"
     linuxClean     = "rm -vrf *"
 
     def __init__(self, OS, envName, buildBranch, branchName, configOptions,
             buildPath, talosCmd, customManifest='',
             cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot",
-            workdirBase=None):
+            workdirBase=None, fetchSymbols=False):
         BuildFactory.__init__(self)
         if OS in ('linux', 'linuxbranch',):
             cleanCmd = self.linuxClean
@@ -593,6 +634,10 @@ class TalosFactory(BuildFactory):
                            workdir=workdirBase,
                            branch=buildBranch,
                            env=MozillaEnvironments[envName]))
+        if fetchSymbols:
+            self.addStep(MozillaWgetSymbols(workdir=workdirBase))
+            self.addStep(MozillaUnpackSymbols(workdir=workdirBase))
+
         #install the browser, differs based upon platform
         if OS == 'linux':
             self.addStep(MozillaInstallTarBz2(
@@ -646,7 +691,8 @@ class TalosFactory(BuildFactory):
                            haltOnFailure=True,
                            executablePath=buildPath,
                            addOptions=configOptions,
-                           env=MozillaEnvironments[envName]))
+                           env=MozillaEnvironments[envName],
+                           useSymbols=fetchSymbols))
         self.addStep(MozillaRunPerfTests(
                            warnOnWarnings=True,
                            workdir=os.path.join(workdirBase, "talos/"),
