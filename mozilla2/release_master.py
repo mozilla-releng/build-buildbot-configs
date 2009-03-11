@@ -64,7 +64,7 @@ for platform in releasePlatforms:
         upstream=build_scheduler,
         builderNames=['%s_repack' % platform],
         repoType='hg',
-        repoPath=sourceRepoPath,
+        branch=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
         localesFile='browser/locales/shipped-locales'
     )
