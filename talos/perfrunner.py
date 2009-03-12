@@ -527,8 +527,8 @@ class TalosFactory(BuildFactory):
                            haltOnFailure=True,
                            executablePath=buildPath,
                            addOptions=configOptions,
-                           env=MozillaEnvironments[envName]),
-                           useSymbols=fetchSymbols)
+                           env=MozillaEnvironments[envName],
+                           useSymbols=fetchSymbols))
         self.addStep(MozillaRunPerfTests(
                            warnOnWarnings=True,
                            workdir="talos/",
