@@ -52,7 +52,7 @@ BRANCHES['mozilla-central']['platforms'] = {
 }
 # The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
 BRANCHES['mozilla-central']['platforms']['linux']['mozconfig'] = 'linux/mozilla-central/nightly'
-BRANCHES['mozilla-central']['platforms']['linux64']['mozconfig'] = 'linux/mozilla-central/nightly'
+BRANCHES['mozilla-central']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['win32']['mozconfig'] = 'win32/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-central/debug'
@@ -302,7 +302,7 @@ BRANCHES['mozilla-1.9.1']['platforms'] = {
     'win32-debug': {}
 }
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['mozconfig'] = 'linux/mozilla-1.9.1/nightly'
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux/mozilla-1.9.1/nightly'
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-1.9.1/nightly'
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-1.9.1/nightly'
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['mozconfig'] = 'win32/mozilla-1.9.1/nightly'
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-1.9.1/debug'
