@@ -514,10 +514,6 @@ class TalosFactory(BuildFactory):
                            description="Cleanup",
                            command=cleanCmd,
                            env=MozillaEnvironments[envName]))
-        self.addStep(FileDownload(
-                           mastersrc="scripts/count_and_reboot.py",
-                           slavedest="count_and_reboot.py",
-                           workdir="."))
         self.addStep(ShellCommand(
                            command=["cvs", "-d", cvsRoot, "co", "-d", "talos",
                                     "mozilla/testing/performance/talos"],
@@ -609,14 +605,6 @@ class TalosFactory(BuildFactory):
                            timeout=21600,
                            haltOnFailure=True,
                            command=talosCmd,
-                           env=MozillaEnvironments[envName]))
-        self.addStep(ShellCommand(
-                           flunkOnFailure=False,
-                           warnOnFailure=False,
-                           alwaysRun=True,
-                           workdir='.',
-                           description="reboot after 1 test run",
-                           command=["python", "count_and_reboot.py", "-f", "../talos_count.txt", "-n", "1", "-z"],
                            env=MozillaEnvironments[envName]))
 
 
