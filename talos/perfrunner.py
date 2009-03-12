@@ -472,8 +472,8 @@ class TalosFactory(BuildFactory):
                            branch=buildBranch,
                            env=MozillaEnvironments[envName]))
         if fetchSymbols:
-            self.addStep(MozillaWgetSymbols(workdir=workdirBase))
-            self.addStep(MozillaUnpackSymbols(workdir=workdirBase))
+            self.addStep(MozillaWgetSymbols(workdir="."))
+            self.addStep(MozillaUnpackSymbols(workdir="."))
         #install the browser, differs based upon platform
         if OS == 'linux':
             self.addStep(MozillaInstallTarBz2(
