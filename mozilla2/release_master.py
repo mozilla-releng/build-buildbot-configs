@@ -203,6 +203,7 @@ for platform in releasePlatforms:
     repack_factory = ReleaseRepackFactory(
         hgHost=nightly_config.HGHOST,
         project=productName,
+        appName=appName,
         repoPath=sourceRepoPath,
         l10nRepoPath=l10nRepoPath,
         stageServer=nightly_config.STAGE_SERVER,
