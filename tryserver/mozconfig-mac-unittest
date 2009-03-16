@@ -1,7 +1,3 @@
-if [ -f $topsrcdir/build/macosx/universal/mozconfig ]; then
-  . $topsrcdir/build/macosx/universal/mozconfig
-fi
-
 # for parity with cvs and buildbot configs, we're not currently generating 
 # symbols on this platform
 export CFLAGS="-gdwarf-2"
