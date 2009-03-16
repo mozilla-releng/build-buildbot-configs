@@ -67,6 +67,7 @@ for platform in releasePlatforms:
     )
     repack_scheduler = DependentL10n(
         name='%s_repack' % platform,
+        platform=platform,
         upstream=build_scheduler,
         builderNames=['%s_repack' % platform],
         repoType='hg',
