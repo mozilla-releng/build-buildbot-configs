@@ -363,7 +363,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'Firefox3.1'
+BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'Firefox3.5'
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave01',
     'moz2-linux-slave02',
