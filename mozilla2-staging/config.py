@@ -295,7 +295,7 @@ BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
 }
 BRANCHES['mozilla-central']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'DISPLAY': ':0',
+    'DISPLAY': ':2',
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -570,7 +570,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
 }
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
-    'DISPLAY': ':0',
+    'DISPLAY': ':2',
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
