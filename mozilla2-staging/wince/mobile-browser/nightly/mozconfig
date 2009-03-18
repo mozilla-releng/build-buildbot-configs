@@ -16,7 +16,6 @@ ac_add_options --disable-tests
 
 #WINCE specific options
 ac_add_options --disable-javaxpcom
-ac_add_options --disable-plugins
 ac_add_options --disable-accessibility
 ac_add_options --disable-printing
 ac_add_options --disable-oji
