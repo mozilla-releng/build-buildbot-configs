@@ -7,7 +7,7 @@ from buildbot.process.buildstep import BuildStep
 from buildbot.process.factory import BuildFactory
 from buildbot.buildset import BuildSet
 from buildbot.sourcestamp import SourceStamp
-from buildbot.steps.shell import ShellCommand
+from buildbot.steps.shell import ShellCommand, WithProperties
 from buildbot.steps.transfer import FileDownload
 from buildbot.status.builder import SUCCESS, WARNINGS, FAILURE, SKIPPED, EXCEPTION
 import re, urllib, sys, os
@@ -507,7 +507,7 @@ class MozillaInstallDmg(ShellCommand):
         if 'filename' in kwargs:
             self.filename = kwargs['filename']
         if not 'command' in kwargs:
-            kwargs['command'] = ["bash", "installdmg.sh", "$FILENAME"]
+            kwargs['command'] = ["bash", "installdmg.sh", WithProperties("%(filename)s")]
         ShellCommand.__init__(self, **kwargs)
     
     def describe(self, done=False):
@@ -519,10 +519,6 @@ class MozillaInstallDmg(ShellCommand):
                 self.filename = self.getProperty("filename")
             else:
                 return FAILURE
-
-        for i in range(len(self.command)):
-            if self.command[i] == "$FILENAME":
-                self.command[i] = self.filename
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):
@@ -544,7 +540,7 @@ class MozillaInstallDmgEx(ShellCommand):
         if 'filename' in kwargs:
             self.filename = kwargs['filename']
         if not 'command' in kwargs:
-            kwargs['command'] = ["expect", "installdmg.ex", "$FILENAME"]
+            kwargs['command'] = ["expect", "installdmg.ex", WithProperties("%(filename)s")]
         ShellCommand.__init__(self, **kwargs)
     
     def describe(self, done=False):
@@ -557,9 +553,6 @@ class MozillaInstallDmgEx(ShellCommand):
             else:
                 return FAILURE
 
-        for i in range(len(self.command)):
-            if self.command[i] == "$FILENAME":
-                self.command[i] = self.filename
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):
