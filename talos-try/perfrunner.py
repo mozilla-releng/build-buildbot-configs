@@ -60,7 +60,7 @@ class noMergeMultiScheduler(Scheduler):
     """Disallow build requests to be merged"""
     def __init__(self, numberOfBuildsToTrigger=2, **kwargs):
         self.numberOfBuildsToTrigger = numberOfBuildsToTrigger
-        Scheduler.__init__self, **kwargs)
+        Scheduler.__init__(self, **kwargs)
 
     def fireTimer(self):
         self.timer = None
@@ -97,10 +97,14 @@ class MozillaWgetLatest(ShellCommand):
     
     def describe(self, done=False):
         return ["Wget Download"]
+
+    def setBuild(self, build):
+        ShellCommand.setBuild(self, build)
+        self.changes = build.source.changes
     
     def start(self):
-        self.filename = self.changes[-1].files[0]
-        self.fileURL = os.path.basename(self.filename)
+        self.fileURL = self.changes[-1].files[0]
+        self.filename = os.path.basename(self.fileURL)
         self.setProperty("fileURL", self.fileURL)
         self.setProperty("filename", self.filename)
         self.setCommand(["wget", "-nv", "-N", "--no-check-certificate", self.fileURL])
