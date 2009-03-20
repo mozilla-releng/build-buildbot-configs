@@ -22,7 +22,9 @@ BUILD_TOOLS_REPO_PATH = 'users/stage-ffxbld/tools'
 DEFAULT_BUILD_SPACE = 5
 BASE_CLOBBER_URL = 'http://build.mozilla.org/stage-clobberer/index.php'
 DEFAULT_CLOBBER_TIME = 24*7 # 1 week
-TALOS_MASTERS = ['qm-buildbot01.mozilla.org:9987']
+# List of talos masters to notify of new builds, and if a failure to notify the
+# talos master should result in a warning
+TALOS_MASTERS = [('qm-buildbot01.mozilla.org:9987', False)]
 
 
 # All branches that are to be built MUST be listed here.

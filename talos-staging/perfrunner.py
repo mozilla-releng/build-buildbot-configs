@@ -149,12 +149,19 @@ class MozillaWgetLatestDated(ShellCommand):
         ShellCommand.__init__(self, **kwargs)
 
     def setBuild(self, build):
-         ShellCommand.setBuild(self, build)
-         self.changes = build.source.changes
-         #a full path is always provided by the poller 
-         self.fileURL = self.changes[-1].files[0]
-         self.filename = os.path.basename(self.fileURL)
-    
+        ShellCommand.setBuild(self, build)
+        self.changes = build.source.changes
+        #a full url is always provided by sendchange
+        self.fileURL = self.changes[-1].files[0]
+        self.filename = os.path.basename(self.fileURL)
+        # Lie about when we started so the talos runs line up with builds on
+        # the waterfall
+        try:
+            timestamp = int(os.path.basename(os.path.dirname(self.fileURL)))
+            self.changes[-1].when = timestamp
+        except:
+            pass
+
     def getFilename(self):
         return self.filename
     
@@ -204,7 +211,7 @@ class MozillaInstallZip(ShellCommand):
             else:
                 return FAILURE
         if self.filename:
-	    self.command = self.command[:] + [self.filename]
+            self.command = self.command[:] + [self.filename]
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):
@@ -399,7 +406,7 @@ class MozillaInstallTarGz(ShellCommand):
             else:
                 return FAILURE
         if self.filename:
-	    self.command = self.command[:] + [self.filename]
+            self.command = self.command[:] + [self.filename]
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):

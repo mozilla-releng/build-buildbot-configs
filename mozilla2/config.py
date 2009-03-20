@@ -22,7 +22,13 @@ BUILD_TOOLS_REPO_PATH = 'build/tools'
 DEFAULT_BUILD_SPACE = 5
 BASE_CLOBBER_URL = 'http://build.mozilla.org/clobberer/index.php'
 DEFAULT_CLOBBER_TIME = 24*7 # 1 week
-TALOS_MASTERS = ['qm-buildbot01.mozilla.org:9987', 'qm-buildbot01.mozilla.org:9989']
+# List of talos masters to notify of new builds, and if a failure to notify the
+# talos master should result in a warning
+TALOS_MASTERS = [
+    ('qm-rhel02.mozilla.org:9988', True)
+    ('qm-buildbot01.mozilla.org:9987', False)
+    ('qm-buildbot01.mozilla.org:9989', False)
+    ]
 
 
 # All branches that are to be built MUST be listed here.
