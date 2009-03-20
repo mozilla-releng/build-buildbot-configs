@@ -16,6 +16,8 @@ from time import mktime, strptime, strftime, localtime
 from datetime import datetime
 from os import path
 import copy
+import re
+import time
 
 MozillaEnvironments = { }
 
@@ -101,12 +103,21 @@ class MozillaWgetLatest(ShellCommand):
     def setBuild(self, build):
         ShellCommand.setBuild(self, build)
         self.changes = build.source.changes
-    
-    def start(self):
         self.fileURL = self.changes[-1].files[0]
         self.filename = os.path.basename(self.fileURL)
         self.setProperty("fileURL", self.fileURL)
         self.setProperty("filename", self.filename)
+        timestamp_re = re.compile('[^\d]*(\d*-\d*-\d*_\d*:\d*).*')
+        #lie about start time
+        match = timestamp_re.search(self.fileURL)
+        if match:
+            try:
+                timestamp = int(time.mktime(time.strptime(match.group(1), '%Y-%m-%d_%H:%M')))
+                self.changes[-1].when = timestamp
+            except:
+                pass
+    
+    def start(self):
         self.setCommand(["wget", "-nv", "-N", "--no-check-certificate", self.fileURL])
         ShellCommand.start(self)
     
