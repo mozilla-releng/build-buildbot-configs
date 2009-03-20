@@ -75,103 +75,6 @@ class noMergeMultiScheduler(Scheduler):
             bs = buildset.BuildSet(self.builderNames, ss)
             self.submitBuildSet(bs)
 
-class ApacheDirectory:
-    sortByDateString = "?C=M;O=A"
-    lineParsingRegexp = r'.*<a href="\.*/*([^"]*)">.*'
-    
-    def __init__(self, url):
-        self.page = []
-        self.url = url
-        self.lineParserRE = re.compile(self.lineParsingRegexp)
-    
-    def _retrievePageAt(self, urlString):
-        content = []
-        try:
-            opener = urllib.URLopener()
-            page = opener.open(urlString + self.sortByDateString)
-            content = page.readlines()
-            opener.close()
-        except:
-            print "unable to retrieve page at: " + self.url
-        return content
-    
-    def _buildPage(self, lines):
-        for line in lines:
-            if line.startswith('<tr><td valign="top"><img src="'):
-                match = self.lineParserRE.match(line)
-                self.page.append(match.groups())
-    
-    def _retrievePage(self):
-        content = self._retrievePageAt(self.url)
-        self._buildPage(content)
-    
-    def _timeForString(self, dateString):
-        t = mktime(strptime(dateString, "%d-%b-%Y %H:%M"))
-    
-    def update(self):
-        self._retrievePage()
-    
-    def testrun(self):
-        self.update()
-        for entry in self.page:
-            print entry
-    
-    def getPage(self):
-        return self.page
-    
-    def getLatestEntry(self):
-        return self.page.last()
-    
-    def popLatestEntry(self):
-        return self.page.pop()
-    
-
-class LatestFileURL(ApacheDirectory): 
-    
-    def getLatestFilename(self):
-        '''returns tuple with full url to file[0] and just filename[1]'''
-        self.update()
-        while self.page:
-            entry = self.popLatestEntry()
-            subdir = ApacheDirectory(self.url + entry[0])
-            subdir.update()
-            subPageItems = subdir.getPage()
-            for item in subPageItems:
-                if item[0].endswith(self.filenameSearchString):
-                    return (self.url + entry[0] + item[0], item[0])
-        return ('', '')
-    
-    def testrun(self):
-        (fullURL, name) = self.getLatestFilename()
-        print fullURL
-    
-    def __init__(self, url, filenameSearchString):
-        ApacheDirectory.__init__(self, url)
-        self.filenameSearchString = filenameSearchString
-    
-
-class MozillaChangePusher(BuildStep):
-    warnOnFailure = True
-    name = "resubmit extra changes"
-
-    def start(self):
-        changes = self.step_status.build.getChanges()
-        if len(changes) > 1:
-            builderName = self.step_status.build.builder.name
-            remainingChanges = changes[1:] # everything but the first
-            # get rid of the rest of the changes in the Build and BuildStatus
-            changes = changes[:1] # only the first one
-            self.step_status.build.changes = changes
-            bs = BuildSet([builderName], SourceStamp(changes=remainingChanges))
-            # submit the buildset back to the BuildMaster
-            self.build.builder.botmaster.parent.submitBuildSet(bs)
-            self.finished(SUCCESS)
-            return
-
-        self.finished(SKIPPED)
-        return SKIPPED
-
-
 class MozillaWgetLatest(ShellCommand):
     """Download built Firefox client from nightly staging directory."""
     haltOnFailure = True
@@ -196,11 +99,10 @@ class MozillaWgetLatest(ShellCommand):
         return ["Wget Download"]
     
     def start(self):
-        urlGetter = LatestFileURL(self.url, self.filenameSearchString)
-        (self.fileURL, self.filename) = urlGetter.getLatestFilename()
-        if self.branch:
-            self.setProperty("fileURL", self.fileURL)
-            self.setProperty("filename", self.filename)
+        self.filename = self.changes[-1].files[0]
+        self.fileURL = os.path.basename(self.filename)
+        self.setProperty("fileURL", self.fileURL)
+        self.setProperty("filename", self.filename)
         self.setCommand(["wget", "-nv", "-N", "--no-check-certificate", self.fileURL])
         ShellCommand.start(self)
     
@@ -412,56 +314,6 @@ class MozillaInstallTarGz(ShellCommand):
             return FAILURE
         return SUCCESS
 
-class MozillaWgetFromChange(ShellCommand):
-    """Download built Firefox client from current change's filenames."""
-    haltOnFailure = True
-    
-    def __init__(self, **kwargs):
-        self.branch = "HEAD"
-        self.fileURL = ""
-        self.filename = ""
-        self.filenameSearchString = "en-US.win32.zip"
-        if 'filenameSearchString' in kwargs:
-            self.filenameSearchString = kwargs['filenameSearchString']
-        if 'url' in kwargs:
-            self.url = kwargs['url']
-        else:
-            self.url = None
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["wget"]
-        ShellCommand.__init__(self, **kwargs)
-
-    def setBuild(self, build):
-        ShellCommand.setBuild(self, build)
-        if not self.url:
-            self.url = build.source.changes[0].files[0]
-    
-    def getFilename(self):
-        return self.filename
-    
-    def describe(self, done=False):
-        return ["Wget Download"]
-    
-    def start(self):
-        urlGetter = LatestFileURL(self.url, self.filenameSearchString)
-        self.filename = urlGetter.getLatestFilename()
-        self.fileURL = self.url + self.filename
-        if self.branch:
-            self.setProperty("fileURL", self.fileURL)
-            self.setProperty("filename", self.filename)
-        self.setCommand(["wget",  "-nv", "-N", self.fileURL])
-        ShellCommand.start(self)
-    
-    def evaluateCommand(self, cmd):
-        superResult = ShellCommand.evaluateCommand(self, cmd)
-        if SUCCESS != superResult:
-            return FAILURE
-        if None != re.search('ERROR', cmd.logs['stdio'].getText()):
-            return FAILURE
-        return SUCCESS
-
 class MozillaInstallDmg(ShellCommand):
     """Install given file, copying to workdir"""
     
@@ -623,15 +475,3 @@ class TalosFactory(BuildFactory):
                            description="reboot after 1 test run",
                            command=["python", "count_and_reboot.py", "-f", "../talos_count.txt", "-n", "1", "-z"],
                            env=MozillaEnvironments[envName]))
-
-
-def main(argv=None):
-    if argv is None:
-        argv = sys.argv
-    # tester = LatestFileURL('https://build.mozilla.org/tryserver-builds/', "en-US.win32.zip")
-    tester = LatestFileURL('https://build.mozilla.org/tryserver-builds/', 'win32.zip')
-    tester.testrun()
-    return 0
-
-if __name__ == '__main__':
-    main()
