@@ -56,8 +56,12 @@ class noMergeSourceStamp(SourceStamp):
     def canBeMergedWith(self, other):
         return False
 
-class noMergeScheduler(Scheduler):
+class noMergeMultiScheduler(Scheduler):
     """Disallow build requests to be merged"""
+    def __init__(self, numberOfBuildsToTrigger=2, **kwargs):
+        self.numberOfBuildsToTrigger = numberOfBuildsToTrigger
+        Scheduler.__init__self, **kwargs)
+
     def fireTimer(self):
         self.timer = None
         self.nextBuildTime = None
@@ -66,9 +70,10 @@ class noMergeScheduler(Scheduler):
         self.unimportantChanges = []
 
         # submit
-        ss = noMergeSourceStamp(changes=changes)
-        bs = buildset.BuildSet(self.builderNames, ss)
-        self.submitBuildSet(bs)
+        for i in range(0, self.numberOfBuildsToTrigger):
+            ss = noMergeSourceStamp(changes=changes)
+            bs = buildset.BuildSet(self.builderNames, ss)
+            self.submitBuildSet(bs)
 
 class ApacheDirectory:
     sortByDateString = "?C=M;O=A"
