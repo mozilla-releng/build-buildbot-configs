@@ -138,7 +138,12 @@ class MozillaTryServerWgetLatest(MozillaWgetLatest):
         msg += 'TinderboxPrint: %s\n' % identifier
         self.addCompleteLog("header", msg)
 
-        return MozillaWgetLatest.evaluateCommand(self, cmd)
+        superResult = ShellCommand.evaluateCommand(self, cmd)
+        if SUCCESS != superResult:
+            return FAILURE
+        if None != re.search('ERROR', cmd.logs['stdio'].getText()):
+            return FAILURE
+        return SUCCESS
     
 
 class MozillaInstallZip(ShellCommand):
