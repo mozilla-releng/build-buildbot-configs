@@ -5,7 +5,7 @@ from buildbot import buildset
 from buildbot.buildset import BuildSet
 from buildbot.scheduler import Scheduler
 from buildbot.sourcestamp import SourceStamp
-from buildbot.steps.shell import ShellCommand
+from buildbot.steps.shell import ShellCommand, WithProperties
 from buildbot.process.buildstep import BuildStep
 from buildbot.process.factory import BuildFactory
 from buildbot.steps.transfer import FileDownload
