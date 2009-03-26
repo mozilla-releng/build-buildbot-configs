@@ -97,7 +97,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
 # L10n configuration
-BRANCHES['mozilla-central']['enable_l10n'] = False # temporary for bug 485123
+BRANCHES['mozilla-central']['enable_l10n'] = True
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
@@ -111,7 +111,7 @@ BRANCHES['mozilla-central']['enable_shark'] = True
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['idle_timeout'] = 60*60*8   # 8 hours # temporary for bug 485123
+BRANCHES['mozilla-central']['idle_timeout'] = 60*60*2   # 2 hours
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -349,7 +349,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 # L10n configuration
-BRANCHES['mozilla-1.9.1']['enable_l10n'] = False # temporary for bug 485123
+BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
@@ -360,7 +360,7 @@ BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['enable_shark'] = True
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['idle_timeout'] = 60*60*8   # 8 hours # temporary for bug 485123
+BRANCHES['mozilla-1.9.1']['idle_timeout'] = 60*60*2   # 2 hours
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
