@@ -8,6 +8,7 @@ CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 CONFIG_REPO_PATH = 'build/buildbot-configs'
 CONFIG_SUBDIR = 'mozilla2-staging'
 OBJDIR = 'obj-firefox'
+OBJDIR_UNITTESTS = 'objdir'
 STAGE_USERNAME = 'ffxbld'
 STAGE_SERVER = 'staging-stage.build.mozilla.org'
 STAGE_BASE_PATH = '/home/ftp/pub/firefox'
@@ -92,6 +93,8 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
+# And code coverage
+BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -367,6 +370,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
+BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -621,6 +625,7 @@ BRANCHES['tracemonkey']['create_snippet'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 5
+BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
 # nightly shark build for profiling
