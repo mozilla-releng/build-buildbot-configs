@@ -97,6 +97,8 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
+# And code coverage
+BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -349,6 +351,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
+BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
 #make sure it has an ending slash
@@ -570,6 +573,7 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 5
+BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
 # nightly shark build for profiling

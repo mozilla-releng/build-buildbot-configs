@@ -1,5 +1,3 @@
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
-
 export MOZ_DEBUG_SYMBOLS=1
 
 ac_add_options --enable-application=browser
