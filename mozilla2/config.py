@@ -12,8 +12,10 @@ OBJDIR_UNITTESTS = 'objdir'
 STAGE_USERNAME = 'ffxbld'
 STAGE_SERVER = 'stage.mozilla.org'
 STAGE_BASE_PATH = '/home/ftp/pub/firefox'
+STAGE_BASE_PATH_XULRUNNER = '/home/ftp/pub/xulrunner'
 STAGE_GROUP = None
 STAGE_SSH_KEY = 'ffxbld_dsa'
+STAGE_SSH_XULRUNNER_KEY = 'xrbld_dsa'
 AUS2_USER = 'cltbld'
 AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
@@ -94,6 +96,8 @@ BRANCHES['mozilla-central']['platforms']['macosx']['builds_before_reboot'] = Non
 BRANCHES['mozilla-central']['platforms']['linux-debug']['builds_before_reboot'] = None
 BRANCHES['mozilla-central']['platforms']['win32-debug']['builds_before_reboot'] = None
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot'] = None
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
@@ -278,6 +282,8 @@ BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'CHOWN_ROOT': '~/bin/chown_root',
+    'CHOWN_REVERT': '~/bin/chown_revert',
 }
 BRANCHES['mozilla-central']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -348,6 +354,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['builds_before_reboot'] = None
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = None
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['builds_before_reboot'] = None
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] = None
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
@@ -522,6 +530,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'CHOWN_ROOT': '~/bin/chown_root',
+    'CHOWN_REVERT': '~/bin/chown_revert',
 }
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -570,6 +580,8 @@ BRANCHES['tracemonkey']['platforms']['macosx']['builds_before_reboot'] = None
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
+# Disable XULRunner / SDK builds
+BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 5
