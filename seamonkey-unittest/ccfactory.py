@@ -287,7 +287,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
 
     def addPrintChangesetStep(self):
         changesetLink = '<a href=http://%s/%s/rev' % (self.hgHost, self.repoPath)
-        changesetLink += '/%(hg_revision)s title="Built from revision %(hg_revision)s">rev:%(hg_revision)s</a>'
+        changesetLink += '/%(got_revision)s title="Built from revision %(got_revision)s">rev:%(got_revision)s</a>'
         self.addStep(ShellCommand,
          command=['echo', 'TinderboxPrint:', WithProperties(changesetLink)],
         )
