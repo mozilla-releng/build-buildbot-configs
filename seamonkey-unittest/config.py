@@ -101,9 +101,9 @@ BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-m
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
+BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
 #    'cb-sea-linux-tbox',
