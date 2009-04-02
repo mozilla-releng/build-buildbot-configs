@@ -41,6 +41,9 @@ from buildbotcustom.process.factory import *
 import buildbotcustom.unittest.steps as unittest_steps
 
 class CCMercurialBuildFactory(MercurialBuildFactory):
+    def __init__(self, mozRepoPath, **kwargs):
+        self.mozRepoPath = mozRepoPath
+
     def addSourceSteps(self):
         self.addStep(Mercurial, mode='update',
          baseURL='http://%s/' % self.hgHost,
@@ -73,7 +76,7 @@ class CCMercurialBuildFactory(MercurialBuildFactory):
          workdir='build/mozilla',
          property='hg_revision'
         )
-        changesetLink = '<a href=http://%s/%s/rev' % (self.hgHost, self.repoPath)
+        changesetLink = '<a href=http://%s/%s/rev' % (self.hgHost, self.mozRepoPath)
         changesetLink += '/%(hg_revision)s title="Built from Mozilla revision %(hg_revision)s">moz:%(hg_revision)s</a>'
         self.addStep(ShellCommand,
          command=['echo', 'TinderboxPrint:', WithProperties(changesetLink)]
@@ -84,10 +87,11 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
     def __init__(self, platform, config_repo_path, config_dir, objdir,
             productName=None, brandName=None, mochitest_leak_threshold=None,
             mochichrome_leak_threshold=None, mochibrowser_leak_threshold=None,
-            **kwargs):
+            mozRepoPath, **kwargs):
         self.env = {}
         MozillaBuildFactory.__init__(self, **kwargs)
         self.config_repo_path = config_repo_path
+        self.mozRepoPath = mozRepoPath
         self.config_dir = config_dir
         self.objdir = objdir
         self.productName = productName
@@ -298,7 +302,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
          workdir='build/mozilla',
          property='hg_revision'
         )
-        changesetLink = '<a href=http://%s/%s/rev' % (self.hgHost, self.repoPath)
+        changesetLink = '<a href=http://%s/%s/rev' % (self.hgHost, self.mozRepoPath)
         changesetLink += '/%(hg_revision)s title="Built from Mozilla revision %(hg_revision)s">moz:%(hg_revision)s</a>'
         self.addStep(ShellCommand,
          command=['echo', 'TinderboxPrint:', WithProperties(changesetLink)]
