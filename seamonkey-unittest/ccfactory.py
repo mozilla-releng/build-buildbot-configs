@@ -247,7 +247,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
         )
         if self.mochitest_leak_threshold:
             extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochitest_leak_threshold
-        else
+        else:
             extra_args = ""
         self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
          test_name="mochitest-plain",
@@ -258,7 +258,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
         )
         if self.mochichrome_leak_threshold:
             extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochitest_leak_threshold
-        else
+        else:
             extra_args = ""
         self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
          test_name="mochitest-chrome",
@@ -267,7 +267,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
         )
         if self.mochibrowser_leak_threshold:
             extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochitest_leak_threshold
-        else
+        else:
             extra_args = ""
         self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
          test_name="mochitest-browser-chrome",
