@@ -216,7 +216,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
         )
 
         if platform == 'win32':
-            mozilla2_dep_unittest_factory.addStep(unittest_steps.CreateProfileWin,
+            self.addStep(unittest_steps.CreateProfileWin,
              warnOnWarnings=True,
              workdir="build",
              command = r'python mozilla\testing\tools\profiles\createTestingProfile.py --clobber --binary %s\mozilla\dist\bin\%s.exe' %
@@ -228,7 +228,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
                 app_run = '%s.app/Contents/MacOS/%s-bin' % (self.brandName, self.productName)
             else:
                 app_run = 'bin/%s' % self.productName
-            mozilla2_dep_unittest_factory.addStep(unittest_steps.CreateProfile,
+            self.addStep(unittest_steps.CreateProfile,
              warnOnWarnings=True,
              workdir="build",
              command = r'python mozilla/testing/tools/profiles/createTestingProfile.py --clobber --binary %s/mozilla/dist/%s' %
