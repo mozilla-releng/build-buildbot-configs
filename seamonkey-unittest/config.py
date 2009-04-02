@@ -5,7 +5,6 @@ HGURL = 'http://hg.mozilla.org/'
 HGHOST = 'hg.mozilla.org'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
-MOZILLA_POLL_BRANCH = 'releases/mozilla-1.9.1'
 CONFIG_REPO_PATH = 'build/buildbot-configs'
 CONFIG_SUBDIR = 'seamonkey-unittest'
 IRC_BOT_NAME = 'sea-unit-bot'
@@ -41,6 +40,7 @@ BRANCHES = {
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['comm-central']['repo_path'] = 'comm-central'
+BRANCHES['comm-central']['mozilla_repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-central']['major_version'] = '1.9.1'
 BRANCHES['comm-central']['product_name'] = 'seamonkey'
