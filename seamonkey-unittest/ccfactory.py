@@ -84,10 +84,10 @@ class CCMercurialBuildFactory(MercurialBuildFactory):
 
 
 class CCUnittestBuildFactory(MozillaBuildFactory):
-    def __init__(self, platform, config_repo_path, config_dir, objdir,
+    def __init__(self, platform, config_repo_path, config_dir, objdir, mozRepoPath,
             productName=None, brandName=None, mochitest_leak_threshold=None,
             mochichrome_leak_threshold=None, mochibrowser_leak_threshold=None,
-            mozRepoPath, **kwargs):
+            **kwargs):
         self.env = {}
         MozillaBuildFactory.__init__(self, **kwargs)
         self.config_repo_path = config_repo_path
