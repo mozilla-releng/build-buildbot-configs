@@ -24,6 +24,7 @@ ac_add_options --disable-updater
 ac_add_options --disable-installer
 ac_add_options --disable-xpinstall
 ac_add_options --disable-dbm
+ac_add_options --disable-ogg
 
 CROSS_COMPILE=1
 
