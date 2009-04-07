@@ -177,6 +177,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave23',
 ]
 BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
+    'bm-xserve12',
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
@@ -189,7 +190,11 @@ BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
     'moz2-darwin9-slave07',
-    'moz2-darwin9-slave08'
+    'moz2-darwin9-slave08',
+    'moz2-darwin9-slave09',
+    'moz2-darwin9-slave10',
+    'moz2-darwin9-slave11',
+    'moz2-darwin9-slave12',
 ]
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave01',
@@ -457,6 +462,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave23',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
+    'bm-xserve12',
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
@@ -469,7 +475,11 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
     'moz2-darwin9-slave07',
-    'moz2-darwin9-slave08'
+    'moz2-darwin9-slave08',
+    'moz2-darwin9-slave09',
+    'moz2-darwin9-slave10',
+    'moz2-darwin9-slave11',
+    'moz2-darwin9-slave12',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave01',
@@ -694,6 +704,7 @@ BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave23',
 ]
 BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
+    'bm-xserve12',
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
@@ -706,7 +717,11 @@ BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
     'moz2-darwin9-slave05',
     'moz2-darwin9-slave06',
     'moz2-darwin9-slave07',
-    'moz2-darwin9-slave08'
+    'moz2-darwin9-slave08',
+    'moz2-darwin9-slave09',
+    'moz2-darwin9-slave10',
+    'moz2-darwin9-slave11',
+    'moz2-darwin9-slave12',
 ]
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
