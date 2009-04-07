@@ -34,7 +34,7 @@ change_source.append(PBChangeSource())
 change_source.append(FtpPoller(
 	branch="post_signing",
 	ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-	  % (stagingServer, productName, appVersion, buildNumber)],
+	  % (stagingServer, productName, version, buildNumber)],
 	pollInterval= 60*10,
 	searchString='win32_signing_build'
 ))
@@ -142,7 +142,7 @@ repository_setup_factory = StagingRepositorySetupFactory(
 
 builders.append({
     'name': 'repo_setup',
-    'slavenames': ['moz2-linux-slave04'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'repo_setup',
     'factory': repository_setup_factory
@@ -155,6 +155,7 @@ tag_factory = ReleaseTaggingFactory(
     repositories=tag_repositories,
     productName=productName,
     appName=appName,
+    version=version,
     appVersion=appVersion,
     milestone=milestone,
     baseTag=baseTag,
@@ -165,7 +166,7 @@ tag_factory = ReleaseTaggingFactory(
 
 builders.append({
     'name': 'tag',
-    'slavenames': ['moz2-linux-slave04'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
     'factory': tag_factory
@@ -177,7 +178,7 @@ source_factory = SingleSourceFactory(
     buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     repoPath=sourceRepoPath,
     productName=productName,
-    appVersion=appVersion,
+    version=version,
     baseTag=baseTag,
     stagingServer=nightly_config.STAGE_SERVER,
     stageUsername=nightly_config.STAGE_USERNAME,
@@ -188,7 +189,7 @@ source_factory = SingleSourceFactory(
 
 builders.append({
    'name': 'source',
-   'slavenames': ['moz2-linux-slave04'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
    'category': 'release',
    'builddir': 'source',
    'factory': source_factory
@@ -225,7 +226,7 @@ for platform in releasePlatforms:
                         # the entire thing
         buildSpace=10,
         productName=productName,
-        appVersion=appVersion,
+        version=version,
         buildNumber=buildNumber
     )
 
@@ -253,7 +254,7 @@ for platform in releasePlatforms:
         mozconfig=mozconfig,
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
-        appVersion=appVersion,
+        version=version,
         buildNumber=buildNumber
     )
 
@@ -272,9 +273,9 @@ l10n_verification_factory = L10nVerifyFactory(
     cvsroot=cvsroot,
     stagingServer=stagingServer,
     productName=productName,
-    appVersion=appVersion,
+    version=version,
     buildNumber=buildNumber,
-    oldAppVersion=oldVersion,
+    oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber
 )
 
@@ -297,6 +298,7 @@ updates_factory = ReleaseUpdatesFactory(
     baseTag=baseTag,
     appName=appName,
     productName=productName,
+    version=version,
     appVersion=appVersion,
     oldVersion=oldVersion,
     buildNumber=buildNumber,
@@ -314,7 +316,7 @@ updates_factory = ReleaseUpdatesFactory(
 
 builders.append({
     'name': 'updates',
-    'slavenames': ['moz2-linux-slave04'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
     'factory': updates_factory
@@ -344,7 +346,7 @@ for platform in releasePlatforms:
         productName=productName,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
-        version=appVersion,
+        version=version,
         buildNumber=buildNumber,
         ausServerUrl=ausServerUrl,
         stagingServer=stagingServer,
@@ -371,7 +373,7 @@ final_verification_factory= ReleaseFinalVerification(
 
 builders.append({
     'name': 'final_verification',
-    'slavenames': ['moz2-linux-slave04'],
+    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
     'factory': final_verification_factory

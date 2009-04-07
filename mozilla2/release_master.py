@@ -34,7 +34,7 @@ change_source.append(PBChangeSource())
 change_source.append(FtpPoller(
 	branch="post_signing",
 	ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-	  % (stagingServer, productName, appVersion, buildNumber)],
+	  % (stagingServer, productName, version, buildNumber)],
 	pollInterval=60*10,
 	searchString='win32_signing_build'
 ))
@@ -119,6 +119,7 @@ tag_factory = ReleaseTaggingFactory(
     repositories=repositories,
     productName=productName,
     appName=appName,
+    version=version,
     appVersion=appVersion,
     milestone=milestone,
     baseTag=baseTag,
@@ -141,7 +142,7 @@ source_factory = SingleSourceFactory(
     buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
     repoPath=sourceRepoPath,
     productName=productName,
-    appVersion=appVersion,
+    version=version,
     baseTag=baseTag,
     stagingServer=nightly_config.STAGE_SERVER,
     stageUsername=nightly_config.STAGE_USERNAME,
@@ -189,7 +190,7 @@ for platform in releasePlatforms:
                         # the entire thing
         buildSpace=10,
         productName=productName,
-        appVersion=appVersion,
+        version=version,
         buildNumber=buildNumber
     )
 
@@ -217,7 +218,7 @@ for platform in releasePlatforms:
         mozconfig=mozconfig,
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
-        appVersion=appVersion,
+        version=version,
         buildNumber=buildNumber
     )
 
@@ -236,9 +237,9 @@ l10n_verification_factory = L10nVerifyFactory(
     cvsroot=cvsroot,
     stagingServer=stagingServer,
     productName=productName,
-    appVersion=appVersion,
+    version=version,
     buildNumber=buildNumber,
-    oldAppVersion=oldVersion,
+    oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber
 )
 
@@ -261,6 +262,7 @@ updates_factory = ReleaseUpdatesFactory(
     baseTag=baseTag,
     appName=appName,
     productName=productName,
+    version=version,
     appVersion=appVersion,
     oldVersion=oldVersion,
     buildNumber=buildNumber,
@@ -307,7 +309,7 @@ for platform in releasePlatforms:
         productName=productName,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
-        version=appVersion,
+        version=version,
         buildNumber=buildNumber,
         ausServerUrl=ausServerUrl,
         stagingServer=stagingServer,
