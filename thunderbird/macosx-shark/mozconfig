@@ -1,0 +1,18 @@
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+. $topsrcdir/mozilla/build/macosx/universal/mozconfig
+else
+. $topsrcdir/build/macosx/universal/mozconfig
+fi
+
+ac_add_options --enable-application=mail
+ac_add_options --disable-tests
+
+# shark specific options
+ac_add_options --enable-shark
+ac_add_options --enable-dtrace
+ac_add_options --enable-debugger-info-modules
+ac_add_options --disable-install-strip
+export MOZ_PKG_SPECIAL="shark"
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
