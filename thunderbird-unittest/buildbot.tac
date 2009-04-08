@@ -1,9 +1,10 @@
+
 from twisted.application import service
 from buildbot.master import BuildMaster
 
-basedir = r'/buildbot/buildbot-configs/thunderbird-unittest'
+basedir = r'/home/gozer/opt/src/mozilla.org/build/buildbot-configs/thunderbird-unittest'
 configfile = r'master.cfg'
 
 application = service.Application('buildmaster')
-BuildMaster('.', configfile).setServiceParent(application)
+BuildMaster(basedir, configfile).setServiceParent(application)
 
