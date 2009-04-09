@@ -87,7 +87,7 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
     def __init__(self, platform, config_repo_path, config_dir, objdir, mozRepoPath,
             productName=None, brandName=None, mochitest_leak_threshold=None,
             mochichrome_leak_threshold=None, mochibrowser_leak_threshold=None,
-            **kwargs):
+            exec_reftest_suites=True, exec_mochi_suites=True, **kwargs):
         self.env = {}
         MozillaBuildFactory.__init__(self, **kwargs)
         self.config_repo_path = config_repo_path
@@ -105,6 +105,8 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
             self.mochichrome_leak_threshold = mochichrome_leak_threshold
         if mochibrowser_leak_threshold:
             self.mochibrowser_leak_threshold = mochibrowser_leak_threshold
+        self.exec_reftest_suites = exec_reftest_suites
+        self.exec_mochi_suites = exec_mochi_suites
 
         self.config_repo_url = self.getRepository(self.config_repo_path)
 
@@ -248,49 +250,52 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
              clobber=True
             )
 
-        self.addStep(unittest_steps.MozillaReftest, warnOnWarnings=True,
-         test_name="reftest",
-         workdir="build/%s" % self.objdir,
-         timeout=5*60,
-        )
-        self.addStep(unittest_steps.MozillaReftest, warnOnWarnings=True,
-         test_name="crashtest",
-         workdir="build/%s" % self.objdir,
-        )
-        if self.mochitest_leak_threshold:
-            extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochitest_leak_threshold
-        else:
-            extra_args = ""
-        self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
-         test_name="mochitest-plain",
-         command = ["make", "mochitest-plain", extra_args],
-         workdir="build/%s" % self.objdir,
-         leakThreshold=mochitest_leak_threshold,
-         timeout=5*60,
-        )
-        if self.mochichrome_leak_threshold:
-            extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochichrome_leak_threshold
-        else:
-            extra_args = ""
-        self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
-         test_name="mochitest-chrome",
-         command = ["make", "mochitest-chrome", extra_args],
-         workdir="build/%s" % self.objdir,
-        )
-        if self.mochibrowser_leak_threshold:
-            extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochibrowser_leak_threshold
-        else:
-            extra_args = ""
-        self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
-         test_name="mochitest-browser-chrome",
-         command = ["make", "mochitest-browser-chrome", extra_args],
-         workdir="build/%s" % self.objdir,
-        )
-        if not self.platform == 'macosx':
-          self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
-           test_name="mochitest-a11y",
-           workdir="build/%s" % self.objdir,
-          )
+        if self.exec_reftest_suites:
+            self.addStep(unittest_steps.MozillaReftest, warnOnWarnings=True,
+             test_name="reftest",
+             workdir="build/%s" % self.objdir,
+             timeout=5*60,
+            )
+            self.addStep(unittest_steps.MozillaReftest, warnOnWarnings=True,
+             test_name="crashtest",
+             workdir="build/%s" % self.objdir,
+            )
+
+        if self.exec_mochi_suites:
+            if self.mochitest_leak_threshold:
+                extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochitest_leak_threshold
+            else:
+                extra_args = ""
+            self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
+             test_name="mochitest-plain",
+             command = ["make", "mochitest-plain", extra_args],
+             workdir="build/%s" % self.objdir,
+             leakThreshold=mochitest_leak_threshold,
+             timeout=5*60,
+            )
+            if self.mochichrome_leak_threshold:
+                extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochichrome_leak_threshold
+            else:
+                extra_args = ""
+            self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
+             test_name="mochitest-chrome",
+             command = ["make", "mochitest-chrome", extra_args],
+             workdir="build/%s" % self.objdir,
+            )
+            if self.mochibrowser_leak_threshold:
+                extra_args = "EXTRA_TEST_ARGS='--leak-threshold=%s'" % self.mochibrowser_leak_threshold
+            else:
+                extra_args = ""
+            self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
+             test_name="mochitest-browser-chrome",
+             command = ["make", "mochitest-browser-chrome", extra_args],
+             workdir="build/%s" % self.objdir,
+            )
+            if not self.platform == 'macosx':
+              self.addStep(unittest_steps.MozillaMochitest, warnOnWarnings=True,
+               test_name="mochitest-a11y",
+               workdir="build/%s" % self.objdir,
+              )
 
         self.addPostTestSteps()
 
