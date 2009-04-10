@@ -52,7 +52,6 @@ BRANCHES['comm-central']['package'] = True
 #Disable when producing release builds
 #BRANCHES['comm-central']['nightly'] = False
 BRANCHES['comm-central']['upload_stage'] = True
-BRANCHES['comm-central']['platforms']['macosx-shark']['upload_stage'] = False
 BRANCHES['comm-central']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['l10n'] = True
