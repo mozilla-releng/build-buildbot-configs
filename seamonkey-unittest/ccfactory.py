@@ -270,7 +270,6 @@ class CCUnittestBuildFactory(MozillaBuildFactory):
              test_name="mochitest-plain",
              command = ["make", "mochitest-plain", extra_args],
              workdir="build/%s" % self.objdir,
-             leakThreshold=mochitest_leak_threshold,
              timeout=5*60,
             )
             if self.mochichrome_leak_threshold:
