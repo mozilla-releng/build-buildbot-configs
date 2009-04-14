@@ -147,6 +147,12 @@ BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave17',
     'moz2-linux-slave18',
     'moz2-linux-slave19',
+    'moz2-linux-slave20',
+    'moz2-linux-slave21',
+    'moz2-linux-slave22',
+    'moz2-linux-slave23',
+    'moz2-linux-slave24',
+    'moz2-linux-slave25',
 ]
 BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = [
     'moz2-linux64-slave01'
@@ -175,6 +181,12 @@ BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave21',
     'moz2-win32-slave22',
     'moz2-win32-slave23',
+    'moz2-win32-slave24',
+    'moz2-win32-slave25',
+    'moz2-win32-slave26',
+    'moz2-win32-slave27',
+    'moz2-win32-slave28',
+    'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = [
     'bm-xserve12',
@@ -216,6 +228,12 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave17',
     'moz2-linux-slave18',
     'moz2-linux-slave19',
+    'moz2-linux-slave20',
+    'moz2-linux-slave21',
+    'moz2-linux-slave22',
+    'moz2-linux-slave23',
+    'moz2-linux-slave24',
+    'moz2-linux-slave25',
 ]
 BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave01',
@@ -241,6 +259,12 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave21',
     'moz2-win32-slave22',
     'moz2-win32-slave23',
+    'moz2-win32-slave24',
+    'moz2-win32-slave25',
+    'moz2-win32-slave26',
+    'moz2-win32-slave27',
+    'moz2-win32-slave28',
+    'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve16',
@@ -432,6 +456,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave17',
     'moz2-linux-slave18',
     'moz2-linux-slave19',
+    'moz2-linux-slave20',
+    'moz2-linux-slave21',
+    'moz2-linux-slave22',
+    'moz2-linux-slave23',
+    'moz2-linux-slave24',
+    'moz2-linux-slave25',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['slaves'] = [
     'moz2-linux64-slave01'
@@ -460,6 +490,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave21',
     'moz2-win32-slave22',
     'moz2-win32-slave23',
+    'moz2-win32-slave24',
+    'moz2-win32-slave25',
+    'moz2-win32-slave26',
+    'moz2-win32-slave27',
+    'moz2-win32-slave28',
+    'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['slaves'] = [
     'bm-xserve12',
@@ -501,6 +537,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['slaves'] = [
     'moz2-linux-slave17',
     'moz2-linux-slave18',
     'moz2-linux-slave19',
+    'moz2-linux-slave20',
+    'moz2-linux-slave21',
+    'moz2-linux-slave22',
+    'moz2-linux-slave23',
+    'moz2-linux-slave24',
+    'moz2-linux-slave25',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave01',
@@ -526,6 +568,12 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave21',
     'moz2-win32-slave22',
     'moz2-win32-slave23',
+    'moz2-win32-slave24',
+    'moz2-win32-slave25',
+    'moz2-win32-slave26',
+    'moz2-win32-slave27',
+    'moz2-win32-slave28',
+    'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['slaves'] = [
     'bm-xserve16',
@@ -678,6 +726,12 @@ BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = [
     'moz2-linux-slave17',
     'moz2-linux-slave18',
     'moz2-linux-slave19',
+    'moz2-linux-slave20',
+    'moz2-linux-slave21',
+    'moz2-linux-slave22',
+    'moz2-linux-slave23',
+    'moz2-linux-slave24',
+    'moz2-linux-slave25',
 ]
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave01',
@@ -702,6 +756,12 @@ BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = [
     'moz2-win32-slave21',
     'moz2-win32-slave22',
     'moz2-win32-slave23',
+    'moz2-win32-slave24',
+    'moz2-win32-slave25',
+    'moz2-win32-slave26',
+    'moz2-win32-slave27',
+    'moz2-win32-slave28',
+    'moz2-win32-slave29',
 ]
 BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = [
     'bm-xserve12',

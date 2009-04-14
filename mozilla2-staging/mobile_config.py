@@ -25,6 +25,12 @@ mobile_slaves = {
         'moz2-linux-slave17',
         'moz2-linux-slave18',
         'moz2-linux-slave19',
+        'moz2-linux-slave20',
+        'moz2-linux-slave21',
+        'moz2-linux-slave22',
+        'moz2-linux-slave23',
+        'moz2-linux-slave24',
+        'moz2-linux-slave25',
     ],
     'wince-arm': [
         'moz2-win32-slave01',
@@ -50,6 +56,12 @@ mobile_slaves = {
         'moz2-win32-slave21',
         'moz2-win32-slave22',
         'moz2-win32-slave23',
+        'moz2-win32-slave24',
+        'moz2-win32-slave25',
+        'moz2-win32-slave26',
+        'moz2-win32-slave27',
+        'moz2-win32-slave28',
+        'moz2-win32-slave29',
     ],
 }
 
