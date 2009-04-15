@@ -267,6 +267,7 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = [
+    'bm-xserve12',
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
@@ -576,6 +577,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['slaves'] = [
     'moz2-win32-slave29',
 ]
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['slaves'] = [
+    'bm-xserve12',
     'bm-xserve16',
     'bm-xserve17',
     'bm-xserve18',
