@@ -25,6 +25,7 @@ ac_add_options --disable-installer
 ac_add_options --disable-xpinstall
 ac_add_options --disable-dbm
 ac_add_options --disable-ogg
+ac_add_options --enable-jemalloc
 
 CROSS_COMPILE=1
 
