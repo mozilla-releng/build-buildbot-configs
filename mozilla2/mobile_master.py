@@ -17,7 +17,11 @@ import buildbotcustom.misc
 from buildbotcustom.misc import isHgPollerTriggered
 
 import buildbotcustom.process.factory
-from buildbotcustom.process.factory import MaemoBuildFactory, WinceBuildFactory
+from buildbotcustom.process.factory import MaemoBuildFactory, \
+   WinceBuildFactory, MaemoNightlyRepackFactory
+
+from buildbotcustom.l10n import NightlyL10n, Scheduler as SchedulerL10n
+
 
 # most of the config is in an external file
 import config
@@ -69,8 +73,16 @@ status.append(TinderboxMailNotifier(
     extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
     relayhost="mail.build.mozilla.org",
     builders=["mobile-linux-arm-dep", "mobile-linux-arm-nightly",
-              "mobile-wince-arm-dep", "mobile-wince-arm-nightly",
-             ],
+              "mobile-wince-arm-dep", "mobile-wince-arm-nightly"],
+    logCompression="bzip2"
+))
+
+status.append(TinderboxMailNotifier(
+    fromaddr="mozilla2.buildbot@build.mozilla.org",
+    tree='Mozilla-l10n',
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org"],
+    relayhost="mail.build.mozilla.org",
+    builders=['Maemo mozilla-central l10n'],
     logCompression="bzip2"
 ))
 
@@ -93,6 +105,8 @@ linux_arm_dep_factory = MaemoBuildFactory(
     platform = 'linux-arm',
     baseWorkDir = '%s/build' % mobile_config.SBOX_HOME,
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
     buildSpace = 5
 )
 linux_arm_dep_builder = {
@@ -120,6 +134,8 @@ linux_arm_nightly_factory = MaemoBuildFactory(
     baseWorkDir = '%s/build' % mobile_config.SBOX_HOME,
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
     buildSpace = 5,
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
     nightly = True
 )
 linux_arm_nightly_builder = {
@@ -147,6 +163,8 @@ wince_arm_dep_factory = WinceBuildFactory(
     platform = 'wince-arm',
     baseWorkDir = ".",
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
     buildSpace = 5
 )
 wince_arm_dep_builder = {
@@ -175,6 +193,8 @@ wince_arm_nightly_factory = WinceBuildFactory(
     baseWorkDir = ".",
     buildToolsRepoPath = BUILD_TOOLS_REPO_PATH,
     buildSpace = 5,
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
     nightly = True
 )
 wince_arm_nightly_builder = {
@@ -185,3 +205,74 @@ wince_arm_nightly_builder = {
     'category': 'mobile'
 }
 builders.append(wince_arm_nightly_builder)
+
+maemo_trunk_l10n_nightly_factory = MaemoNightlyRepackFactory(
+    hgHost=HGHOST,
+    project='fennec',
+    packageGlob='fennec-*.%(locale)s.linux-arm.tar.bz2',
+    appName='mobile',
+    enUSBinaryURL=DOWNLOAD_BASE_URL + '/nightly/latest-mobile-browser',
+    stageServer=STAGE_SERVER,
+    stageUsername=STAGE_USERNAME,
+    stageSshKey=STAGE_SSH_KEY,
+    stageBasePath=STAGE_BASE_PATH,
+    repoPath='mozilla-central',
+    l10nRepoPath='l10n-central',
+    mobileRepoPath='mobile-browser',
+    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+    buildSpace=2,
+    baseWorkDir='/scratchbox/users/cltbld/home/cltbld/l10n',
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
+)
+maemo_trunk_l10n_nightly_builder = {
+    'name': 'Maemo mozilla-central l10n',
+    'slavenames': mobile_slaves['linux-arm'],
+    'builddir': 'maemo-trunk-l10n-nightly',
+    'factory': maemo_trunk_l10n_nightly_factory,
+    'category': 'l10n',
+}
+builders.append(maemo_trunk_l10n_nightly_builder)
+
+maemo_191_l10n_nightly_factory = MaemoNightlyRepackFactory(
+    hgHost=HGHOST,
+    project='fennec',
+    packageGlob='fennec-*.%(locale)s.linux-arm.tar.bz2',
+    appName='mobile',
+    enUSBinaryURL=DOWNLOAD_BASE_URL + '/nightly/latest-mobile-191',
+    stageServer=STAGE_SERVER,
+    stageUsername=STAGE_USERNAME,
+    stageSshKey=STAGE_SSH_KEY,
+    stageBasePath=STAGE_BASE_PATH,
+    repoPath='releases/mozilla-1.9.1',
+    l10nRepoPath='releases/l10n-mozilla-1.9.1',
+    mobileRepoPath='mobile-browser',
+    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+    buildSpace=2,
+    baseWorkDir='/scratchbox/users/cltbld/home/cltbld/l10n',
+    clobberURL=BASE_CLOBBER_URL,
+    clobberTime=DEFAULT_CLOBBER_TIME,
+)
+maemo_191_l10n_nightly_builder = {
+    'name': 'Maemo mozilla-1.9.1 l10n',
+    'slavenames': mobile_slaves['linux-arm'],
+    'builddir': 'maemo-191-l10n-nightly',
+    'factory': maemo_191_l10n_nightly_factory,
+    'category': 'l10n',
+}
+builders.append(maemo_191_l10n_nightly_builder)
+
+# TODO: add Maemo mozilla-1.9.1 l10n once we have 1.9.1 builds and
+# bug 489313 is fixed.
+for l10n_builder in ['Maemo mozilla-central l10n']:
+    platform = 'linux'
+    schedulers.append(NightlyL10n(
+        name=l10n_builder,
+        platform=platform,
+        hour=[4],
+        builderNames=[l10n_builder],
+        repoType='hg',
+        branch='mobile-browser',
+        baseTag='default',
+        localesFile="locales/all-locales",
+    ))
