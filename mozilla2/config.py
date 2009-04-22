@@ -45,7 +45,7 @@ SLAVES = {
         10,11,12,13,14,15,16,17,18,19,
         20,22,23,24,25,26,27,28,29]],
     'macosx': ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7]] + [
-               'bm-xserve%02i' for x in [12,16,17,18,19,22]],
+               'bm-xserve%02i' % x for x in [12,16,17,18,19,22]],
 }
 
 L10N_SLAVES = {
