@@ -28,7 +28,10 @@ BASE_CLOBBER_URL = 'http://build.mozilla.org/stage-clobberer/index.php'
 DEFAULT_CLOBBER_TIME = 24*7 # 1 week
 # List of talos masters to notify of new builds, and if a failure to notify the
 # talos master should result in a warning
-TALOS_MASTERS = [('qm-buildbot01.mozilla.org:9987', False)]
+TALOS_MASTERS = [
+    ('qm-buildbot01.mozilla.org:9987', False),
+    ('talos-staging-master.mozilla.org:9010', False),
+    ]
 
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,26)],

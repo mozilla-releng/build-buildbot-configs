@@ -30,8 +30,9 @@ DEFAULT_CLOBBER_TIME = 24*7 # 1 week
 # talos master should result in a warning
 TALOS_MASTERS = [
     ('qm-rhel02.mozilla.org:9988', True),
+    ('talos-master.mozilla.org:9010', False),
+    ('talos-staging-master.mozilla.org:9010', False),
     ('qm-buildbot01.mozilla.org:9987', False),
-    ('qm-buildbot01.mozilla.org:9989', False),
     ]
 
 SLAVES = {
