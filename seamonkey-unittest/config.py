@@ -73,13 +73,13 @@ BRANCHES['comm-central']['enable_unittests'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 5
 BRANCHES['comm-central']['platforms']['linux']['mochitest_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['win32']['mochitest_leak_threshold'] = 200
-BRANCHES['comm-central']['platforms']['macosx']['mochitest_leak_threshold'] = 1112
+BRANCHES['comm-central']['platforms']['macosx']['mochitest_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['linux']['mochichrome_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['win32']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-central']['platforms']['macosx']['mochichrome_leak_threshold'] = 1112
+BRANCHES['comm-central']['platforms']['macosx']['mochichrome_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['linux']['mochibrowser_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['win32']['mochibrowser_leak_threshold'] = 0
-BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leak_threshold'] = 1112
+BRANCHES['comm-central']['platforms']['macosx']['mochibrowser_leak_threshold'] = 0
 # And code coverage
 BRANCHES['comm-central']['enable_codecoverage'] = False
 # L10n configuration
