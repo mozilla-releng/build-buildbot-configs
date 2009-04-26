@@ -47,6 +47,11 @@ L10N_SLAVES = {
     'macosx': SLAVES['macosx'][:8],
 }
 
+# List of unittest masters to notify of new builds to test, and if a failure to
+# notify the master should result in a warning
+# TODO: Do we need to diffentiate between both staging masters somehow?
+UNITTEST_MASTERS = [('localhost:9010', True)]
+
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},
