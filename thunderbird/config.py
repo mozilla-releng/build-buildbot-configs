@@ -195,7 +195,8 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = [
 ]
 BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
     'momo-vm-09',
-    'momo-vm-14'
+    'momo-vm-14',
+    'momo-vm-osx-tiger-01',
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -468,6 +469,7 @@ BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
 BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
     'momo-vm-09',
     'momo-vm-14',
+    'momo-vm-osx-tiger-01',
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -561,6 +563,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = [
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = [
     'momo-vm-09',
     'momo-vm-14',
+    'momo-vm-osx-tiger-01',
 ]
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
