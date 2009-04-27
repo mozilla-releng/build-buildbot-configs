@@ -56,6 +56,7 @@ BRANCHES['comm-central']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['codesighs'] = False
 BRANCHES['comm-central']['l10n'] = True
+BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
 BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central'
@@ -102,7 +103,7 @@ BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = [
 BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = '%s/i386' % OBJDIR
+BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
