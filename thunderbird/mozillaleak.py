@@ -39,7 +39,6 @@ def addLeakTestSteps(self,branch,platform,platformName):
         
         leak_threshold = platform.get('leak_threshold', branch.get('leak_threshold', 7261838))
         self.addStep(ShellCommand,
-            description=['run leak tests'],
             env=env,
             command=['python','mailnews/test/performance/bloat/runtest.py',
                      '--objdir', objdir, 
@@ -63,7 +62,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
          server=self.graphServer,
          selector=self.graphSelector,
          branch=self.graphBranch,
-         resultsname=self.baseName
+         resultsname=self.baseName,
         )
         self.addStep(ShellCommand,
          env=env,
