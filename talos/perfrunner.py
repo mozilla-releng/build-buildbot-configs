@@ -74,11 +74,11 @@ class MozillaWget(ShellCommand):
     """Download built Firefox client from dated staging directory."""
     haltOnFailure = True
     
-    def __init__(self, branch="HEAD", **kwargs):
+    def __init__(self, branch="HEAD", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(branch=branch)
         self.branch = branch
-        self.command = ["wget"]
+        self.command = command or ["wget"]
 
     def setBuild(self, build):
         ShellCommand.setBuild(self, build)
@@ -158,12 +158,12 @@ class MozillaUnpackSymbols(ShellCommand):
 class MozillaInstallZip(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, filename="", branch="", **kwargs):
+    def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(filename=filename, branch=branch)
         self.filename = filename
         self.branch = branch
-        self.command = ["unzip", "-o"]
+        self.command = command or ["unzip", "-o"]
     
     def describe(self, done=False):
         return ["Install zip"]
@@ -242,11 +242,11 @@ class MozillaUpdateConfig(ShellCommand):
 class MozillaRunPerfTests(ShellCommand):
     """Run the performance tests"""
     
-    def __init__(self, branch, **kwargs):
+    def __init__(self, branch, command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(branch=branch)
         self.branch = branch
-        self.command = ["python", "run_tests.py"]
+        self.command = command or ["python", "run_tests.py"]
     
     def describe(self, done=False):
         return ["Run performance tests"]
@@ -282,12 +282,12 @@ class MozillaRunPerfTests(ShellCommand):
 class MozillaInstallTarBz2(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, filename="", branch="", **kwargs):
+    def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(filename=filename, branch=branch)
         self.filename = filename
         self.branch = branch
-        self.command = ["tar", "-jvxf"]
+        self.command = command or ["tar", "-jvxf"]
     
     def describe(self, done=False):
         return ["Install tar.bz2"]
@@ -311,12 +311,12 @@ class MozillaInstallTarBz2(ShellCommand):
 class MozillaInstallTarGz(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, filename="", branch="", **kwargs):
+    def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(filename=filename, branch=branch)
         self.filename = filename
         self.branch = branch
-        self.command = ["tar", "-zvxf"]
+        self.command = command or ["tar", "-zvxf"]
     
     def describe(self, done=False):
         return ["Install tar.gz"]
@@ -340,12 +340,12 @@ class MozillaInstallTarGz(ShellCommand):
 class MozillaInstallDmg(ShellCommand):
     """Install given file, copying to workdir"""
     
-    def __init__(self, filename="", branch="", **kwargs):
+    def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(filename=filename, branch=branch)
         self.filename = filename
         self.branch = branch
-        self.command = ["bash", "installdmg.sh"]
+        self.command = command or ["bash", "installdmg.sh"]
     
     def describe(self, done=False):
         return ["Install dmg"]
@@ -371,12 +371,12 @@ class MozillaInstallDmgEx(ShellCommand):
     #This is a temporary class to test the new InstallDmg script without affecting the production mac machines
     # if this works everything should be switched over the using it
     
-    def __init__(self, filename="", branch="", **kwargs):
+    def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
         self.addFactoryArguments(filename=filename, branch=branch)
         self.filename = filename
         self.branch = branch
-        self.command = ["expect", "installdmg.ex"]
+        self.command = command or ["expect", "installdmg.ex"]
     
     def describe(self, done=False):
         return ["Install dmg"]
