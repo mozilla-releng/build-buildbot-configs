@@ -76,7 +76,7 @@ class MozillaWget(ShellCommand):
     
     def __init__(self, branch="HEAD", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(branch=branch)
+        self.addFactoryArguments(branch=branch, command=command)
         self.branch = branch
         self.command = command or ["wget"]
 
@@ -160,7 +160,8 @@ class MozillaInstallZip(ShellCommand):
     
     def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(filename=filename, branch=branch)
+        self.addFactoryArguments(filename=filename, branch=branch,
+                                 command=command)
         self.filename = filename
         self.branch = branch
         self.command = command or ["unzip", "-o"]
@@ -244,7 +245,7 @@ class MozillaRunPerfTests(ShellCommand):
     
     def __init__(self, branch, command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(branch=branch)
+        self.addFactoryArguments(branch=branch, command=command)
         self.branch = branch
         self.command = command or ["python", "run_tests.py"]
     
@@ -284,7 +285,8 @@ class MozillaInstallTarBz2(ShellCommand):
     
     def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(filename=filename, branch=branch)
+        self.addFactoryArguments(filename=filename, branch=branch,
+                                 command=command)
         self.filename = filename
         self.branch = branch
         self.command = command or ["tar", "-jvxf"]
@@ -313,7 +315,8 @@ class MozillaInstallTarGz(ShellCommand):
     
     def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(filename=filename, branch=branch)
+        self.addFactoryArguments(filename=filename, branch=branch,
+                                 command=command)
         self.filename = filename
         self.branch = branch
         self.command = command or ["tar", "-zvxf"]
@@ -342,7 +345,8 @@ class MozillaInstallDmg(ShellCommand):
     
     def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(filename=filename, branch=branch)
+        self.addFactoryArguments(filename=filename, branch=branch,
+                                 command=command)
         self.filename = filename
         self.branch = branch
         self.command = command or ["bash", "installdmg.sh"]
@@ -373,7 +377,8 @@ class MozillaInstallDmgEx(ShellCommand):
     
     def __init__(self, filename="", branch="", command=None, **kwargs):
         ShellCommand.__init__(self, **kwargs)
-        self.addFactoryArguments(filename=filename, branch=branch)
+        self.addFactoryArguments(filename=filename, branch=branch,
+                                 command=command)
         self.filename = filename
         self.branch = branch
         self.command = command or ["expect", "installdmg.ex"]
