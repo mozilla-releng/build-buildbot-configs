@@ -140,13 +140,11 @@ class MozillaWgetLatestDated(ShellCommand):
     """Download built Firefox client from dated staging directory."""
     haltOnFailure = True
     
-    def __init__(self, **kwargs):
-        self.branch = "HEAD"
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["wget"]
+    def __init__(self, branch="HEAD", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(branch=branch)
+        self.branch = branch
+        self.command = ["wget"]
 
     def setBuild(self, build):
         ShellCommand.setBuild(self, build)
@@ -189,16 +187,12 @@ class MozillaWgetLatestDated(ShellCommand):
 class MozillaInstallZip(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, **kwargs):
-        self.filename = ""
-        self.branch = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if 'filename' in kwargs:
-            self.filename = kwargs['filename']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["unzip", "-o"]
+    def __init__(self, filename="", branch="", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(filename=filename, branch=branch)
+        self.filename = filename
+        self.branch = branch
+        self.command = ["unzip", "-o"]
     
     def describe(self, done=False):
         return ["Install zip"]
@@ -264,17 +258,17 @@ class MozillaUnpackSymbols(ShellCommand):
 class MozillaUpdateConfig(ShellCommand):
     """Configure YAML file for run_tests.py"""
     
-    def __init__(self, **kwargs):
-        self.addOptions = []
-        assert 'executablePath' in kwargs
-        assert 'branch' in kwargs
-        self.branch = kwargs['branch']
-        self.branchName = kwargs['branchName']
-        self.exePath = kwargs['executablePath']
-        if 'addOptions' in kwargs:
-            self.addOptions = kwargs['addOptions']
-        self.useSymbols = kwargs.get('useSymbols', False)
+    def __init__(self, branch, executablePath, branchName, addOptions=[],
+                 useSymbols=False, **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(branch=branch, executablePath=executablePath,
+                                 branchName=branchName, addOptions=addOptions,
+                                 useSymbols=useSymbols)
+        self.branch = branch
+        self.exePath = executablePath
+        self.branchName = branchName
+        self.addOptions = addOptions
+        self.useSymbols = useSymbols
 
     def setBuild(self, build):
         ShellCommand.setBuild(self, build)
@@ -311,12 +305,11 @@ class MozillaUpdateConfig(ShellCommand):
 class MozillaRunPerfTests(ShellCommand):
     """Run the performance tests"""
     
-    def __init__(self, **kwargs):
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["python", "run_tests.py"]
+    def __init__(self, branch, **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(branch=branch)
+        self.branch = branch
+        self.command = ["python", "run_tests.py"]
     
     def describe(self, done=False):
         return ["Run performance tests"]
@@ -352,16 +345,12 @@ class MozillaRunPerfTests(ShellCommand):
 class MozillaInstallTarBz2(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, **kwargs):
-        self.filename = ""
-        self.branch = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if 'filename' in kwargs:
-            self.filename = kwargs['filename']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["tar", "-jvxf"]
+    def __init__(self, filename="", branch="", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(filename=filename, branch=branch)
+        self.filename = filename
+        self.branch = branch
+        self.command = ["tar", "-jvxf"]
     
     def describe(self, done=False):
         return ["Install tar.bz2"]
@@ -385,16 +374,12 @@ class MozillaInstallTarBz2(ShellCommand):
 class MozillaInstallTarGz(ShellCommand):
     """Install given file, unzipping to executablePath"""
     
-    def __init__(self, **kwargs):
-        self.filename = ""
-        self.branch = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if 'filename' in kwargs:
-            self.filename = kwargs['filename']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["tar", "-zvxf"]
+    def __init__(self, filename="", branch="", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(filename=filename, branch=branch)
+        self.filename = filename
+        self.branch = branch
+        self.command = ["tar", "-zvxf"]
     
     def describe(self, done=False):
         return ["Install tar.gz"]
@@ -415,107 +400,15 @@ class MozillaInstallTarGz(ShellCommand):
             return FAILURE
         return SUCCESS
 
-class MozillaWgetFromChange(ShellCommand):
-    """Download built Firefox client from current change's filenames."""
-    haltOnFailure = True
-    
-    def __init__(self, **kwargs):
-        self.branch = "HEAD"
-        self.fileURL = ""
-        self.filename = ""
-        self.filenameSearchString = "en-US.win32.zip"
-        if 'filenameSearchString' in kwargs:
-            self.filenameSearchString = kwargs['filenameSearchString']
-        if 'url' in kwargs:
-            self.url = kwargs['url']
-        else:
-            self.url = kwargs['build'].source.changes[-1].files[0]
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["wget"]
-        ShellCommand.__init__(self, **kwargs)
-    
-    def getFilename(self):
-        return self.filename
-    
-    def describe(self, done=False):
-        return ["Wget Download"]
-    
-    def start(self):
-        urlGetter = LatestFileURL(self.url, self.filenameSearchString)
-        self.filename = urlGetter.getLatestFilename()
-        self.fileURL = self.url + self.filename
-        if self.branch:
-            self.setProperty("fileURL", self.fileURL)
-            self.setProperty("filename", self.filename)
-        self.setCommand(["wget",  "-nv", "-N", self.fileURL])
-        ShellCommand.start(self)
-    
-    def evaluateCommand(self, cmd):
-        superResult = ShellCommand.evaluateCommand(self, cmd)
-        if SUCCESS != superResult:
-            return FAILURE
-        if None != re.search('ERROR', cmd.logs['stdio'].getText()):
-            return FAILURE
-        return SUCCESS
-
-class MozillaUpdateConfigFromChange(ShellCommand):
-    """Configure YAML file for run_tests.py"""
-    
-    def __init__(self, **kwargs):
-        self.title = "default"
-        self.branch = ""
-        self.currentDate = ""
-        if 'build' in kwargs:
-            self.title = kwargs['build'].slavename
-            self.changes = kwargs['build'].source.changes
-            self.buildid = self.changes[-1].comments.split(',')[0]
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        assert 'configPath' in kwargs
-        assert 'executablePath' in kwargs
-        self.configPath = kwargs['configPath']
-        self.exePath = kwargs['executablePath']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["python", "PerfConfigurator.py", "-v", "-e",
-                                 self.exePath, "-c", self.configPath,
-                                 "-t", self.title, "-b", self.branch,
-                                 "-d", self.buildid]
-        ShellCommand.__init__(self, **kwargs)
-    
-    def describe(self, done=False):
-        return ["Update config"]
-    
-    def evaluateCommand(self, cmd):
-        superResult = ShellCommand.evaluateCommand(self, cmd)
-        if SUCCESS != superResult:
-            return FAILURE
-        stdioText = cmd.logs['stdio'].getText()
-        if None != re.search('ERROR', stdioText):
-            return FAILURE
-        if None != re.search('USAGE:', stdioText):
-            return FAILURE
-        configFileMatch = re.search('outputName\s*=\s*(\w*?.yml)', stdioText)
-        if not configFileMatch:
-            return FAILURE
-        else:
-            self.setProperty("configFile", configFileMatch.group(1))
-        return SUCCESS
-
 class MozillaInstallDmg(ShellCommand):
     """Install given file, copying to workdir"""
     
-    def __init__(self, **kwargs):
-        self.filename = ""
-        self.branch = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if 'filename' in kwargs:
-            self.filename = kwargs['filename']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["bash", "installdmg.sh", WithProperties("%(filename)s")]
+    def __init__(self, filename="", branch="", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(filename=filename, branch=branch)
+        self.filename = filename
+        self.branch = branch
+        self.command = ["bash", "installdmg.sh"]
     
     def describe(self, done=False):
         return ["Install dmg"]
@@ -526,6 +419,8 @@ class MozillaInstallDmg(ShellCommand):
                 self.filename = self.getProperty("filename")
             else:
                 return FAILURE
+        if self.filename:
+            self.command = self.command[:] + [self.filename]
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):
@@ -539,16 +434,12 @@ class MozillaInstallDmgEx(ShellCommand):
     #This is a temporary class to test the new InstallDmg script without affecting the production mac machines
     # if this works everything should be switched over the using it
     
-    def __init__(self, **kwargs):
-        self.filename = ""
-        self.branch = ""
-        if 'branch' in kwargs:
-            self.branch = kwargs['branch']
-        if 'filename' in kwargs:
-            self.filename = kwargs['filename']
-        if not 'command' in kwargs:
-            kwargs['command'] = ["expect", "installdmg.ex", WithProperties("%(filename)s")]
+    def __init__(self, filename="", branch="", **kwargs):
         ShellCommand.__init__(self, **kwargs)
+        self.addFactoryArguments(filename=filename, branch=branch)
+        self.filename = filename
+        self.branch = branch
+        self.command = ["expect", "installdmg.ex"]
     
     def describe(self, done=False):
         return ["Install dmg"]
@@ -559,7 +450,8 @@ class MozillaInstallDmgEx(ShellCommand):
                 self.filename = self.getProperty("filename")
             else:
                 return FAILURE
-
+        if self.filename:
+            self.command = self.command[:] + [self.filename]
         ShellCommand.start(self)
     
     def evaluateCommand(self, cmd):
