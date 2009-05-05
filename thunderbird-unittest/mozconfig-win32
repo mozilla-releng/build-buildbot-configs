@@ -4,6 +4,3 @@ if test -e $topsrcdir/../.mozconfig-common ; then
 else
   . $topsrcdir/.mozconfig-common
 fi
-
-# Bug 427627
-ac_add_options --enable-jemalloc
