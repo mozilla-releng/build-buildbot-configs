@@ -70,6 +70,7 @@ BRANCHES['comm-central']['platforms']['win32']['builds_before_reboot'] = None
 BRANCHES['comm-central']['platforms']['macosx']['builds_before_reboot'] = None
 # Enable unit tests
 BRANCHES['comm-central']['enable_unittests'] = True
+BRANCHES['comm-central']['enable_mac_a11y'] = False
 BRANCHES['comm-central']['unittest_build_space'] = 5
 BRANCHES['comm-central']['platforms']['linux']['mochitest_leak_threshold'] = 0
 BRANCHES['comm-central']['platforms']['win32']['mochitest_leak_threshold'] = 200

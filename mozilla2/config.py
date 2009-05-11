@@ -121,6 +121,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
+BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
 # And code coverage
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
@@ -280,6 +281,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
@@ -407,6 +409,7 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
+BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 5
 BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
