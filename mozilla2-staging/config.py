@@ -52,6 +52,13 @@ L10N_SLAVES = {
 # TODO: Do we need to diffentiate between both staging masters somehow?
 UNITTEST_MASTERS = [('localhost:9010', True)]
 
+UNITTEST_SUITES = [
+    ('mochitests', ['mochitest-plain']),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell'])
+]
+
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},

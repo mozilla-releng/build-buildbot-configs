@@ -59,6 +59,13 @@ L10N_SLAVES = {
     'macosx': SLAVES['macosx'][:8],
 }
 
+UNITTEST_SUITES = [
+    ('mochitests', ['mochitest-plain']),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell'])
+]
+
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
     'mozilla-central': {},
