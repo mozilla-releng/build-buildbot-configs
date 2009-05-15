@@ -35,6 +35,10 @@ TALOS_MASTERS = [
     ('qm-buildbot01.mozilla.org:9987', False),
     ]
 
+# List of unittest masters to notify of new builds to test, and if a failure to
+# notify the master should result in a warning
+UNITTEST_MASTERS = [('localhost:9010', True)]
+
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in [
         1,2,5,6,7,8,9,
