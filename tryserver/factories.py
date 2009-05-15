@@ -106,16 +106,18 @@ try_cvs_linux_factory = factory.BuildFactory([
                     haltOnFailure=False,
                     flunkOnFailure=False,
                     workdir="."),
-
-    s(SendChangeStep,
-                    master=TALOS_TRY_MASTER,
-                    user='sendchange',
-                    branch='linux',
-                    files=[WithProperties(PACKAGE_URL)],
-                    ),
 ])
+for master,warn in TALOS_TRY_MASTERS:
+    try_cvs_linux_factory.addStep(
+     SendChangeStep,
+         master=master,
+         warnOnFailure=warn,
+         user='sendchange',
+         branch='linux',
+         files=[WithProperties(PACKAGE_URL + '/%(uploadpath)s')]
+    )
 
-try_cvs_mac_factory = factory.BuildFactory([
+try_cvs_macosx_factory = factory.BuildFactory([
     s(MozillaTryProcessing),
     s(ShellCommand, name="remove source and obj dirs",
                     command=["rm", "-rf", "mozilla"],
@@ -167,7 +169,7 @@ try_cvs_mac_factory = factory.BuildFactory([
                     descriptionDone=["packaging"],
                     command=["make", "package",
                              WithProperties(''.join(["PKG_BASENAME=%s",
-                                            "-%s-mac" % PKG_BASENAME]),
+                                            "-%s-macosx" % PKG_BASENAME]),
                                             "identifier")],
                     haltOnFailure=False,
                     flunkOnFailure=False,
@@ -175,12 +177,12 @@ try_cvs_mac_factory = factory.BuildFactory([
 
     s(ShellCommand, name="chmod package",
                     # this gets really ugly here, but it translates to this:
-                    # mozilla/$OBJDIR/ppc/dist/$IDENTIFIER-$PKG_BASENAME-mac.dmg
+                    # mozilla/$OBJDIR/ppc/dist/$IDENTIFIER-$PKG_BASENAME-macosx.dmg
                     command=["chmod", "666",
                              WithProperties(''.join(["mozilla/%s/ppc/dist/" \
                                               % OBJDIR,
                                               "%s",
-                                              "-%s-mac.dmg" % PKG_BASENAME]),
+                                              "-%s-macosx.dmg" % PKG_BASENAME]),
                                               "identifier")],
                     haltOnFailure=False,
                     flunkOnFailure=False,
@@ -194,19 +196,21 @@ try_cvs_mac_factory = factory.BuildFactory([
 
     s(MozillaUploadTryBuild,
                     slavedir="mozilla/%s/ppc/dist" % OBJDIR,
-                    baseFilename="%s-mac.dmg" % PKG_BASENAME,
+                    baseFilename="%s-macosx.dmg" % PKG_BASENAME,
                     scpString=SCP_STRING,
                     haltOnFailure=False,
                     flunkOnFailure=False,
                     workdir="."),
-
-    s(SendChangeStep,
-                    master=TALOS_TRY_MASTER,
-                    user='sendchange',
-                    branch='mac',
-                    files=[WithProperties(PACKAGE_URL)],
-                    ),
 ])
+for master,warn in TALOS_TRY_MASTERS:
+    try_cvs_macosx_factory.addStep(
+     SendChangeStep,
+         master=master,
+         warnOnFailure=warn,
+         user='sendchange',
+         branch='macosx',
+         files=[WithProperties(PACKAGE_URL + '/%(uploadpath)s')]
+    )
 
 try_cvs_win32_factory = factory.BuildFactory([
     s(MozillaTryProcessing),
@@ -297,13 +301,6 @@ try_cvs_win32_factory = factory.BuildFactory([
                 flunkOnFailure=False,
                 workdir="."),
 
-    s(SendChangeStep,
-                    master=TALOS_TRY_MASTER,
-                    user='sendchange',
-                    branch='win32',
-                    files=[WithProperties(PACKAGE_URL)],
-                    ),
-
     s(ShellCommand, name="packaging (exe)",
                     description=["creating package"],
                     descriptionDone=["packaging"],
@@ -351,6 +348,15 @@ try_cvs_win32_factory = factory.BuildFactory([
                 env=WIN32_ENVIRONMENT,
                 workdir="mozilla"),
 ])
+for master,warn in TALOS_TRY_MASTERS:
+    try_cvs_win32_factory.addStep(
+     SendChangeStep,
+         master=master,
+         warnOnFailure=warn,
+         user='sendchange',
+         branch='win32',
+         files=[WithProperties(PACKAGE_URL + '/%(uploadpath)s')]
+    )
 
 firefox_hg_linux_unittest_factory = factory.BuildFactory([
     s(MozillaTryProcessing),
@@ -434,7 +440,7 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
     )
 
 
-firefox_hg_mac_unittest_factory = factory.BuildFactory([
+firefox_hg_macosx_unittest_factory = factory.BuildFactory([
     s(MozillaTryProcessing),
     s(ShellCommand, name="remove source and obj dirs",
                     command=["rm", "-rf", "mozilla/"],
@@ -495,7 +501,7 @@ firefox_hg_mac_unittest_factory = factory.BuildFactory([
 ])
                               
 for test_name in ('reftest', 'crashtest'): 
-    firefox_hg_mac_unittest_factory.addStep(
+    firefox_hg_macosx_unittest_factory.addStep(
         unittest.MozillaReftest, 
            test_name=test_name, 
            warnOnWarnings=True,
@@ -504,7 +510,7 @@ for test_name in ('reftest', 'crashtest'):
     )
 
 for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chrome'): 
-    firefox_hg_mac_unittest_factory.addStep(
+    firefox_hg_macosx_unittest_factory.addStep(
         unittest.MozillaMochitest,
             test_name=test_name,
             warnOnWarnings=True,

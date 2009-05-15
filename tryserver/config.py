@@ -2,8 +2,9 @@ CVSROOT      = ":ext:trybld@cvs.mozilla.org:/cvsroot"
 OBJDIR       = "objdir"
 PKG_BASENAME = "firefox-try"
 SCP_STRING   = "trybld@build.mozilla.org:/builds/tryserver"
-TALOS_TRY_MASTER = "qm-rhel02.mozilla.org:9985"
-PACKAGE_URL  = "http://build.mozilla.org/tryserver-builds/%(uploadpath)s"
+TALOS_TRY_MASTERS = [("qm-rhel02.mozilla.org:9985", True)]
+PACKAGE_URL  = "http://build.mozilla.org/tryserver-builds"
+PACKAGE_DIR  = "%(who)s-%(identifier)s"
 WIN32_ENVIRONMENT = {
     'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': 'obj-firefox',
