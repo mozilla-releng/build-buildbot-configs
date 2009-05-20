@@ -132,8 +132,19 @@ class MozillaWgetLatest(ShellCommand):
 
 class MozillaTryServerWgetLatest(MozillaWgetLatest):
     def evaluateCommand(self, cmd):
-        who, rest = self.getProperty("filename").split('-', 1)
-        identifier = rest.split("-firefox-try")[0]
+        # Strip the platform and extension off of the filename.
+        # The rest of it is the identifier.
+        identifier = self.getProperty("filename").rsplit('-', 1)[0]
+        # Grab the submitter out of the dir name. CVS and Mercurial builds
+        # are a little different, so we need to try fairly hard to find
+        # the e-mail address.
+        dir = path.basename(path.dirname(self.getProperty("fileURL")))
+        who = ''
+        for section in dir.split('-'):
+            if '@' in section:
+                who = section
+                break
+
         msg =  'TinderboxPrint: %s\n' % who
         msg += 'TinderboxPrint: %s\n' % identifier
         self.addCompleteLog("header", msg)
