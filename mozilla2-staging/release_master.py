@@ -112,7 +112,7 @@ clone_repositories = {
         'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
         'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
-                      'browser/config/version.txt', 'browser/app/module.ver']
+                      'browser/config/version.txt']
     }
 }
 l10n_clone_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoClonePath,
@@ -124,7 +124,7 @@ tag_repositories = {
         'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
         'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',
-                      'browser/config/version.txt', 'browser/app/module.ver']
+                      'browser/config/version.txt']
     }
 }
 l10n_tag_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
