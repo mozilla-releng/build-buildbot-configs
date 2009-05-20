@@ -412,11 +412,6 @@ firefox_hg_linux_unittest_factory = factory.BuildFactory([
       workdir="mozilla/%s" % OBJDIR,
       timeout=5*60, # 5 minutes.
     ),
-
-    s(unittest.CreateProfile, workdir="mozilla",
-                              warnOnWarnings=True,
-                              command = "python testing/tools/profiles/createTestingProfile.py --clobber --binary %s/dist/bin/firefox" % OBJDIR,
-                              env=MozillaEnvironments['linux-unittest'])
 ])
 
 for test_name in ('reftest', 'crashtest'): 
@@ -494,10 +489,6 @@ firefox_hg_macosx_unittest_factory = factory.BuildFactory([
       workdir="mozilla/%s" % OBJDIR,
       timeout=5*60, # 5 minutes.
     ),
-
-    s(unittest.CreateProfile, workdir="mozilla",
-                              warnOnWarnings=True,
-                              command = "python testing/tools/profiles/createTestingProfile.py --clobber --binary %s/dist/bin/firefox" % OBJDIR)
 ])
                               
 for test_name in ('reftest', 'crashtest'): 
@@ -603,11 +594,6 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
       env=WIN32_ENVIRONMENT,
       timeout=5*60, # 5 minutes.
     ),
-
-    s(unittest.CreateProfileWin, workdir="mozilla",
-                                 warnOnWarnings=True,
-                                 command = "python testing\\tools\\profiles\\createTestingProfile.py --clobber --binary %s\\dist\\bin\\firefox.exe" % OBJDIR,
-                                 env=WIN32_ENVIRONMENT)
 ])
 
 for test_name in ('reftest', 'crashtest'): 
