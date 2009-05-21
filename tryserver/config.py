@@ -5,7 +5,7 @@ SCP_STRING   = "trybld@build.mozilla.org:/builds/tryserver"
 TALOS_TRY_MASTERS = [("qm-rhel02.mozilla.org:9985", True)]
 PACKAGE_URL  = "http://build.mozilla.org/tryserver-builds"
 PACKAGE_DIR  = "%(who)s-%(identifier)s"
-TINDERBOX_TREE = "http://hg.mozilla.org/MozillaTry"
+TINDERBOX_TREE = "http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTry"
 WIN32_ENVIRONMENT = {
     'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': 'obj-firefox',
