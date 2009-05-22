@@ -131,6 +131,7 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 5
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
+BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
@@ -294,6 +295,7 @@ BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
+BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'

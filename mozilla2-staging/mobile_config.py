@@ -101,6 +101,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_builddir'] = 'wince-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_l10n_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True
+MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \

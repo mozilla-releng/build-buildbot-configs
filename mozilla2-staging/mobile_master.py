@@ -59,6 +59,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         nightlyBuilders.append(builder)
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             l10nNightlyBuilders[builder] = {}
+            l10nNightlyBuilders[builder]['tree'] = branch['l10n_tree']
             l10nNightlyBuilders[builder]['l10n_builder'] = '%s l10n' % base_name
             l10nNightlyBuilders[builder]['platform'] = branch['l10n_platforms'][platform]
 
@@ -116,9 +117,11 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         if branch['enable_l10n'] and builder in l10nNightlyBuilders:
             l10n_builder = l10nNightlyBuilders[builder]['l10n_builder']
             l10nPlatform = l10nNightlyBuilders[builder]['platform']
+            tree = l10nNightlyBuilders[builder]['tree']
             m['schedulers'].append(NightlyL10n(
                 name=l10n_builder,
                 platform=l10nPlatform,
+                tree=tree,
                 hour=[4],
                 builderNames=[l10n_builder],
                 repoType='hg',
@@ -253,6 +256,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             if platform == 'linux-arm':
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
                     hgHost=HGHOST,
+                    tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
                     packageGlob='fennec-*.%(locale)s.linux-arm.tar.bz2',
