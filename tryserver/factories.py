@@ -276,31 +276,6 @@ try_cvs_win32_factory = factory.BuildFactory([
                     flunkOnFailure=False,
                     env=WIN32_ENVIRONMENT),
 
-    s(ShellCommand, name="chmod package (zip)",
-                    command=["chmod", "666",
-                        WithProperties(''.join(["mozilla/%s/dist/" \
-                            % OBJDIR,
-                            "%s", "-%s-win32.zip" % PKG_BASENAME]),
-                            "identifier")],
-                    haltOnFailure=False,
-                    flunkOnFailure=False,
-                    workdir="."),
-
-    s(MozillaCreateUploadDirectory,
-                    scpString=SCP_STRING,
-                    haltOnFailure=False,
-                    flunkOnFailure=False,
-                    workdir="."),
-
-    s(MozillaUploadTryBuild,
-                slavedir="mozilla/%s/dist" % OBJDIR,
-                # the identifier gets prepended to this in the BuildStep
-                baseFilename="%s-win32.zip" % PKG_BASENAME,
-                scpString=SCP_STRING,
-                haltOnFailure=False,
-                flunkOnFailure=False,
-                workdir="."),
-
     s(ShellCommand, name="packaging (exe)",
                     description=["creating package"],
                     descriptionDone=["packaging"],
@@ -327,6 +302,31 @@ try_cvs_win32_factory = factory.BuildFactory([
                 slavedir="mozilla/%s/dist/install/sea" % OBJDIR,
                 # the identifier gets prepended to this in the BuildStep
                 baseFilename="%s-win32.installer.exe" % PKG_BASENAME,
+                scpString=SCP_STRING,
+                haltOnFailure=False,
+                flunkOnFailure=False,
+                workdir="."),
+
+    s(MozillaCreateUploadDirectory,
+                    scpString=SCP_STRING,
+                    haltOnFailure=False,
+                    flunkOnFailure=False,
+                    workdir="."),
+
+    s(ShellCommand, name="chmod package (zip)",
+                    command=["chmod", "666",
+                        WithProperties(''.join(["mozilla/%s/dist/" \
+                            % OBJDIR,
+                            "%s", "-%s-win32.zip" % PKG_BASENAME]),
+                            "identifier")],
+                    haltOnFailure=False,
+                    flunkOnFailure=False,
+                    workdir="."),
+
+    s(MozillaUploadTryBuild,
+                slavedir="mozilla/%s/dist" % OBJDIR,
+                # the identifier gets prepended to this in the BuildStep
+                baseFilename="%s-win32.zip" % PKG_BASENAME,
                 scpString=SCP_STRING,
                 haltOnFailure=False,
                 flunkOnFailure=False,

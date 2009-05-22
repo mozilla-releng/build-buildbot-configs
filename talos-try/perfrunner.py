@@ -11,6 +11,10 @@ from buildbot.process.factory import BuildFactory
 from buildbot.steps.transfer import FileDownload
 from buildbot.status.builder import SUCCESS, WARNINGS, FAILURE, SKIPPED, EXCEPTION
 
+import buildbotcustom.steps.misc
+reload(buildbotcustom.steps.misc)
+from buildbotcustom.steps.misc import FindFile, SetBuildProperty
+
 import re, urllib, sys, os
 from time import mktime, strptime, strftime, localtime
 from datetime import datetime
@@ -409,7 +413,7 @@ class TalosFactory(BuildFactory):
     macClean   = "rm -vrf *"   
     linuxClean = "rm -vrf *" 
       
-    def __init__(self, OS, envName, buildBranch, branchName, configOptions, buildSearchString, buildDir, buildPath, talosCmd, customManifest='', cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot"):
+    def __init__(self, OS, envName, buildBranch, branchName, configOptions, buildSearchString, buildDir, talosCmd, customManifest='', cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot"):
         BuildFactory.__init__(self)
         if OS in ('linux', 'linuxbranch',):
             cleanCmd = self.linuxClean
@@ -502,12 +506,34 @@ class TalosFactory(BuildFactory):
                                branch=buildBranch,
                                haltOnFailure=True,
                                env=MozillaEnvironments[envName]))
+        if OS in ("tiger", "leopard"):
+            self.addStep(FindFile(
+             workdir="talos",
+             filename="firefox-bin",
+             directory="..",
+             max_depth=4,
+             property_name="exepath",
+             name="Find executable",
+             filetype="file"
+            ))
+        elif OS in ('xp', 'vista', 'win'):
+            self.addStep(SetBuildProperty(
+             property_name="exepath",
+             value="../firefox/firefox"
+            ))
+        else:
+            self.addStep(SetBuildProperty(
+             property_name="exepath",
+             value="../firefox/firefox-bin"
+            ))
+        exepath = WithProperties('%(exepath)s')
+
         self.addStep(MozillaUpdateConfig(
                            workdir="talos/",
                            branch=buildBranch,
                            branchName=branchName,
                            haltOnFailure=True,
-                           executablePath=buildPath,
+                           executablePath=exepath,
                            addOptions=configOptions,
                            env=MozillaEnvironments[envName]))
         self.addStep(MozillaRunPerfTests(
