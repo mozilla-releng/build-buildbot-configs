@@ -295,13 +295,17 @@ updates_factory = ReleaseUpdatesFactory(
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
     patcherConfig=patcherConfig,
-    baseTag=baseTag,
+    verifyConfigs=verifyConfigs,
     appName=appName,
     productName=productName,
     version=version,
     appVersion=appVersion,
-    oldVersion=oldVersion,
+    baseTag=baseTag,
     buildNumber=buildNumber,
+    oldVersion=oldVersion,
+    oldAppVersion=oldAppVersion,
+    oldBaseTag=oldBaseTag,
+    oldBuildNumber=oldBuildNumber,
     ftpServer=ftpServer,
     bouncerServer=bouncerServer,
     stagingServer=stagingServer,
@@ -310,6 +314,9 @@ updates_factory = ReleaseUpdatesFactory(
     stageSshKey=nightly_config.STAGE_SSH_KEY,
     ausUser=nightly_config.AUS2_USER,
     ausHost=nightly_config.AUS2_HOST,
+    ausServerUrl=ausServerUrl,
+    hgSshKey=hgSshKey,
+    hgUsername=hgUsername,
     commitPatcherConfig=False # We disable this on staging, because we don't
                               # have a CVS mirror to commit to
 )
@@ -322,53 +329,27 @@ builders.append({
     'factory': updates_factory
 })
 
+
 for platform in releasePlatforms:
-    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
-
-    platformVerifyConfig = None
-    if platform == 'linux':
-        platformVerifyConfig = linuxVerifyConfig
-    if platform == 'macosx':
-        platformVerifyConfig = macVerifyConfig
-    if platform == 'win32':
-        platformVerifyConfig = win32VerifyConfig
-
     update_verify_factory = UpdateVerifyFactory(
         hgHost=nightly_config.HGHOST,
         buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
-        repoPath=sourceRepoPath,
-        cvsroot=cvsroot,
-        patcherToolsTag=patcherToolsTag,
-        hgUsername=hgUsername,
-        baseTag=oldBaseTag,
-        appName=appName,
-        platform=platform,
-        productName=productName,
-        oldVersion=oldVersion,
-        oldBuildNumber=oldBuildNumber,
-        version=version,
-        buildNumber=buildNumber,
-        ausServerUrl=ausServerUrl,
-        stagingServer=stagingServer,
-        verifyConfig=platformVerifyConfig,
-        hgSshKey=hgSshKey
+        verifyConfig=verifyConfigs[platform],
     )
 
     builders.append({
         'name': '%s_update_verify' % platform,
-        'slavenames': pf['slaves'],
+        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]['slaves'],
         'category': 'release',
         'builddir': '%s_update_verify' % platform,
         'factory': update_verify_factory
     })
 
 
-final_verification_factory= ReleaseFinalVerification(
+final_verification_factory = ReleaseFinalVerification(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
-    linuxConfig=linuxVerifyConfig,
-    macConfig=macVerifyConfig,
-    win32Config=win32VerifyConfig
+    verifyConfigs=verifyConfigs,
 )
 
 builders.append({
