@@ -73,7 +73,8 @@ for platform in releasePlatforms:
         repoType='hg',
         branch=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
-        localesFile='browser/locales/shipped-locales'
+        localesFile='browser/locales/shipped-locales',
+        tree='release'
     )
     schedulers.append(build_scheduler)
     schedulers.append(repack_scheduler)
@@ -255,7 +256,8 @@ for platform in releasePlatforms:
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        tree='release'
     )
 
     builders.append({
