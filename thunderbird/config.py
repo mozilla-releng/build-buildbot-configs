@@ -54,7 +54,6 @@ BRANCHES['comm-central']['package'] = True
 BRANCHES['comm-central']['upload_stage'] = True
 BRANCHES['comm-central']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central']['codesighs'] = True
-BRANCHES['comm-central']['platforms']['macosx-shark']['codesighs'] = False
 BRANCHES['comm-central']['l10n'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
