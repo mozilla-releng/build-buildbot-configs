@@ -10,11 +10,11 @@ TALOS_NOCHOME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChrom
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 SLAVES = {
-    'linux': ["talos-rev2-linux%02i" % x for x in range(1,21)],
-    'xp': ["talos-rev2-xp%02i" % x for x in range(1,21)],
-    'vista': ["talos-rev2-vista%02i" % x for x in range(1,21)],
-    'tiger': ["talos-rev2-tiger%02i" % x for x in range(1,21)],
-    'leopard': ["talos-rev2-leopard%02i" % x for x in range(1,21)],
+    'linux': ["talos-rev1-linux%02i" % x for x in range(1,5)],
+    'xp': ["talos-rev1-xp%02i" % x for x in range(1,5)],
+    'vista': ["talos-rev1-vista%02i" % x for x in range(1,5)],
+    'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,5)],
+    'leopard': ["talos-rev2-leopard%02i" % x for x in range(1,2)],
 }
 
 BRANCHES = {
