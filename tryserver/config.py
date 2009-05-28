@@ -17,3 +17,4 @@ WIN32_ENVIRONMENT = {
     'SYMBOL_SERVER_SSH_KEY': '$ENV{HOME}/.ssh/id_dsa',
     'NO_FAIL_ON_TEST_ERRORS': '1'   
 }
+SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
