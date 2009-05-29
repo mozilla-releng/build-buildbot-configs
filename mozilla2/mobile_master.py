@@ -147,7 +147,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         mobile_dep_factory = None
         mobile_nightly_factory = None
 
-        if platform == 'linux-arm':
+        if platform == 'linux-gnueabi-arm':
             mobile_dep_factory = MaemoBuildFactory(
                 hgHost=HGHOST,
                 repoPath=branch['repo_path'],
@@ -253,13 +253,13 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
-            if platform == 'linux-arm':
+            if platform == 'linux-gnueabi-arm':
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
                     hgHost=HGHOST,
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='fennec-*.%(locale)s.linux-arm.tar.bz2',
+                    packageGlob='fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=STAGE_SERVER,
                     stageUsername=STAGE_USERNAME,
@@ -278,7 +278,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberTime=clobberTime,
                )
             else:
-                print 'platform %s is not linux-arm' % platform
+                print 'platform %s is not linux-gnueabi-arm' % platform
                 continue # TODO when we have WinceNightlyRepackFactory
 
             mobile_l10n_nightly_builder = {

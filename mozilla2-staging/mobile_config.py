@@ -8,7 +8,7 @@ OBJDIR = 'objdir'
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
 
 mobile_slaves = {
-    'linux-arm': config.SLAVES['linux'],
+    'linux-gnueabi-arm': config.SLAVES['linux'],
     'wince-arm': config.SLAVES['win32'],
 }
 
@@ -84,25 +84,25 @@ MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
-    'linux-arm': {},
+    'linux-gnueabi-arm': {},
     'wince-arm': {},
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['mozconfig'] = 'wince/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['base_name'] = 'Maemo mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_name'] = 'WinCE mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['build_space'] = 5
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['base_workdir'] = '%s/build' % SBOX_HOME
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['base_builddir'] = 'maemo-trunk'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['base_l10n_workdir'] = '%s/l10n' % SBOX_HOME
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build' % SBOX_HOME
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-trunk'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_l10n_workdir'] = '%s/l10n' % SBOX_HOME
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_builddir'] = 'wince-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['base_l10n_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x'
-MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-arm'] = 'linux'
+MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-trunk-l10n'
@@ -110,9 +110,9 @@ MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
     config.DOWNLOAD_BASE_URL + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-trunk']['l10n_tinderbox_tree'] = 'MozillaStaging'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['slaves'] = mobile_slaves['linux-arm']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['slaves'] = mobile_slaves['wince-arm']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-arm']['env'] = {}
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['wince-arm']['env'] = wince_arm_env
 
 
@@ -124,24 +124,24 @@ MOBILE_BRANCHES['mobile-1.9.1']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-1.9.1']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.1']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms'] = {
-    'linux-arm': {},
+    'linux-gnueabi-arm': {},
     'wince-arm': {},
 }
 MOBILE_BRANCHES['mobile-1.9.1']['l10n_platforms'] = {}
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['mozconfig'] = 'wince/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['base_name'] = 'Maemo mozilla-1.9.1'
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo mozilla-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['base_name'] = 'WinCE mozilla-1.9.1'
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['build_space'] = 5
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['base_workdir'] = '%s/build' % SBOX_HOME
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['base_builddir'] = 'maemo-1.9.1'
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['base_l10n_workdir'] = '%s/l10n' % SBOX_HOME
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build' % SBOX_HOME
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-1.9.1'
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['base_l10n_workdir'] = '%s/l10n' % SBOX_HOME
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['base_builddir'] = 'wince-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['base_l10n_workdir'] = '.'
 MOBILE_BRANCHES['mobile-1.9.1']['enable_l10n'] = False
-MOBILE_BRANCHES['mobile-1.9.1']['l10n_platforms']['linux-arm'] = 'linux'
+MOBILE_BRANCHES['mobile-1.9.1']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-1.9.1']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.1-l10n'
@@ -149,7 +149,7 @@ MOBILE_BRANCHES['mobile-1.9.1']['enUS_binaryURL'] = \
     config.DOWNLOAD_BASE_URL + '/nightly/latest-mobile-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-1.9.1']['l10n_tinderbox_tree'] = 'MozillaStaging'
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['slaves'] = mobile_slaves['linux-arm']
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['slaves'] = mobile_slaves['wince-arm']
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-arm']['env'] = {}
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['env'] = wince_arm_env
