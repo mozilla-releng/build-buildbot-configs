@@ -213,6 +213,8 @@ for platform in releasePlatforms:
         stageUsername=nightly_config.STAGE_USERNAME,
         stageSshKey=nightly_config.STAGE_SSH_KEY,
         buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
+        compareLocalesRepoPath=nightly_config.COMPARE_LOCALES_REPO_PATH,
+        compareLocalesTag=nightly_config.COMPARE_LOCALES_TAG,
         buildSpace=2,
         configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,

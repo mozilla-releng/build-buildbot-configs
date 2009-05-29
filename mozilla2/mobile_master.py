@@ -269,6 +269,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     l10nRepoPath=branch['l10n_repo_path'],
                     mobileRepoPath=branch['mobile_repo_path'],
                     buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+                    compareLocalesRepoPath=COMPARE_LOCALES_REPO_PATH,
+                    compareLocalesTag=COMPARE_LOCALES_TAG,
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
                     baseUploadDir='%s-l10n' % name,
