@@ -114,6 +114,11 @@ l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                    relbranchOverride)
 repositories.update(l10n_repos)
 
+from buildbot.process.factory import BuildFactory
+from buildbot.steps.dummy import Dummy
+dummy_factory = BuildFactory()
+dummy_factory.addStep(Dummy())
+
 tag_factory = ReleaseTaggingFactory(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
@@ -134,7 +139,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': dummy_factory
 })
 
 
@@ -157,7 +162,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': source_factory
+    'factory': dummy_factory
 })
 
 
@@ -200,7 +205,7 @@ for platform in releasePlatforms:
         'slavenames': pf['slaves'],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'factory': dummy_factory
     })
 
     repack_factory = ReleaseRepackFactory(
