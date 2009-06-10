@@ -136,6 +136,7 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['mozilla-central']['platforms']['win32']['crashtest_leak_threshold'] = 484
 BRANCHES['mozilla-central']['unittest_build_space'] = 5
 # And code coverage
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
@@ -298,6 +299,7 @@ BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
@@ -428,6 +430,7 @@ BRANCHES['tracemonkey']['enable_xulrunner'] = False
 BRANCHES['tracemonkey']['enable_unittests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['tracemonkey']['platforms']['win32']['crashtest_leak_threshold'] = 484
 BRANCHES['tracemonkey']['unittest_build_space'] = 5
 BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
