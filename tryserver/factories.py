@@ -597,9 +597,14 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
 ])
 
 for test_name in ('reftest', 'crashtest'): 
+    leakThreshold = None
+    if test_name is 'crashtest':
+        # Until bug 471647 is fixed
+        leakThreshold = 484
     firefox_hg_win32_unittest_factory.addStep(
         unittest.MozillaReftest, 
             test_name=test_name, 
+            leakThreshold=leakThreshold,
             warnOnWarnings=True,
             workdir="mozilla/objdir",
             env=WIN32_ENVIRONMENT,
@@ -607,9 +612,14 @@ for test_name in ('reftest', 'crashtest'):
     )
          
 for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chrome', 'mochitest-a11y'): 
+    leakThreshold = None
+    if test_name is 'mochitest-plain':
+        # Until bug 471647 is fixed
+        leakThreshold = 484
     firefox_hg_win32_unittest_factory.addStep(
         unittest.MozillaMochitest,
             test_name=test_name,
+            leakThreshold=leakThreshold,
             warnOnWarnings=True,
             env=WIN32_ENVIRONMENT,
             workdir="mozilla/objdir",
