@@ -228,7 +228,7 @@ for platform in releasePlatforms:
 
     builders.append({
         'name': '%s_repack' % platform,
-        'slavenames': pf['slaves'],
+        'slavenames': nightly_config.L10N_SLAVES[platform],
         'category': 'release',
         'builddir': '%s_repack' % platform,
         'factory': repack_factory
