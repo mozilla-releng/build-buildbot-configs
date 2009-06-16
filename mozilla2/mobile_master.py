@@ -295,7 +295,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 m['change_source'].append(HgPoller(
     hgURL=HGURL,
     branch='mobile-browser',
-    pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/index.cgi/pushlog',
+    pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/pushlog',
     pollInterval=1*60
 ))
 m['schedulers'].append(Scheduler(
