@@ -320,7 +320,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberURL=BASE_CLOBBER_URL,
                     clobberTime=clobberTime,
                )
-            if platform == 'linux-i686':
+            elif platform == 'linux-i686':
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
                     hgHost=HGHOST,
                     tree=branch['l10n_tree'],

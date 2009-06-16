@@ -30,6 +30,7 @@ MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-gnueabi-arm': {},
+    'linux-i686': {},
     'wince-arm': {},
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
@@ -106,4 +107,4 @@ MOBILE_BRANCHES['mobile-1.9.1']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['slaves'] = mobile_slaves['wince-arm']
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['env'] = {}
-MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['env'] = MozillaEnvironment['wince-arm']
+MOBILE_BRANCHES['mobile-1.9.1']['platforms']['wince-arm']['env'] = MozillaEnvironments['wince-arm']
