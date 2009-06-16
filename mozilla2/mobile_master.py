@@ -20,7 +20,8 @@ from buildbotcustom.scheduler import MozScheduler
 
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
-   WinceBuildFactory, MaemoNightlyRepackFactory
+   WinceBuildFactory, MaemoNightlyRepackFactory, \
+   MobileDesktopBuildFactory, MobileDesktopNightlyRepackFactory
 
 from buildbot.steps.shell import WithProperties
 
@@ -189,6 +190,48 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildSpace=buildSpace,
                 nightly = True
             )
+        elif platform == 'linux-i686':
+            mobile_dep_factory = MobileDesktopBuildFactory(
+                hgHost=HGHOST,
+                repoPath=branch['repo_path'],
+                configRepoPath=CONFIG_REPO_PATH,
+                configSubDir=CONFIG_SUBDIR,
+                mozconfig=pf['mozconfig'],
+                stageUsername=STAGE_USERNAME,
+                stageGroup=STAGE_GROUP,
+                stageSshKey=STAGE_SSH_KEY,
+                stageServer=STAGE_SERVER,
+                stageBasePath=STAGE_BASE_PATH,
+                mobileRepoPath=branch['mobile_repo_path'],
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=name,
+                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+                clobberURL=BASE_CLOBBER_URL,
+                clobberTime=clobberTime,
+                buildSpace=buildSpace
+            )
+            mobile_nightly_factory = MobileDesktopBuildFactory(
+                hgHost=HGHOST,
+                repoPath=branch['repo_path'],
+                configRepoPath=CONFIG_REPO_PATH,
+                configSubDir=CONFIG_SUBDIR,
+                mozconfig=pf['mozconfig'],
+                stageUsername=STAGE_USERNAME,
+                stageGroup=STAGE_GROUP,
+                stageSshKey=STAGE_SSH_KEY,
+                stageServer=STAGE_SERVER,
+                stageBasePath=STAGE_BASE_PATH,
+                mobileRepoPath=branch['mobile_repo_path'],
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=name,
+                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+                clobberURL=BASE_CLOBBER_URL,
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                nightly = True
+            )
         else:
             mobile_dep_factory=WinceBuildFactory(
                 hgHost=HGHOST,
@@ -277,8 +320,32 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberURL=BASE_CLOBBER_URL,
                     clobberTime=clobberTime,
                )
+            if platform == 'linux-i686':
+                mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
+                    hgHost=HGHOST,
+                    tree=branch['l10n_tree'],
+                    project=branch['product_name'],
+                    appName=branch['app_name'],
+                    packageGlob='fennec-*.%(locale)s.linux-i686.tar.bz2',
+                    enUSBinaryURL=branch['enUS_binaryURL'],
+                    stageServer=STAGE_SERVER,
+                    stageUsername=STAGE_USERNAME,
+                    stageSshKey=STAGE_SSH_KEY,
+                    stageBasePath=STAGE_BASE_PATH,
+                    repoPath=branch['repo_path'],
+                    l10nRepoPath=branch['l10n_repo_path'],
+                    mobileRepoPath=branch['mobile_repo_path'],
+                    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
+                    compareLocalesRepoPath=COMPARE_LOCALES_REPO_PATH,
+                    compareLocalesTag=COMPARE_LOCALES_TAG,
+                    buildSpace=2,
+                    baseWorkDir=pf['base_l10n_workdir'],
+                    baseUploadDir='%s-l10n' % name,
+                    clobberURL=BASE_CLOBBER_URL,
+                    clobberTime=clobberTime,
+               )
             else:
-                print 'platform %s is not linux-gnueabi-arm' % platform
+                print 'platform %s is not linux-gnueabi-arm or linux-i686' % platform
                 continue # TODO when we have WinceNightlyRepackFactory
 
             mobile_l10n_nightly_builder = {
