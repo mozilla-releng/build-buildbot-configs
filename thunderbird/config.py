@@ -14,16 +14,61 @@ PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
 BRAND_NAME = 'Shredder'
 
+BUILDERS = {
+    'linux': {
+        'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]],
+        'moco': [ 'tb-linux-tbox' ],
+    },
+    'macosx': {
+        '10.4': {
+            'momo': [ 'momo-vm-osx-tiger-%02i' % x for x in [1,2] ],
+            'moco': [ 'bm-xserve07' ], 
+        },
+        '10.5': {
+            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [1] ],
+        },
+    },
+    'win32': {
+        'momo': [ 'momo-vm-%02i' % x for x in [4,6,13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1 ] ],
+        'moco': [ 'tbnewref-win32-tbox' ],
+    },
+}
+
+import sys
+print >> sys.stderr, "Builders: %s" % BUILDERS
+
 DEFAULTS = {
+    'factory':                'build',
     'hgurl':                  HGURL,
     'master_branch':          'comm-central',
-    'stage_base_path':        '/home/ftp/pub/thunderbird',
+    'branch_name':            'comm-central',
+    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'add_poll_branches':      [ 'dom-inspector' ],
-    'period':                 60 * 60 * 12,
+    'period':                 60 * 60 * 8,
     'irc':                    True,
     'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
-    'build_tools_repo':       "http://hg.mozilla.org/build/tools",
+    'builder_type':           "build",
+    'tinderbox_tree':         "ThunderbirdTest",
+    'codesighs':               False,
+    
+    # Unit Test
+    'poll_branch':          'comm-central',
+    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
+    'platforms': {
+      'linux':  "Linux", 
+      'win32':  "Win2k3",
+      'osx':    "MacOSX 10.4",
+    },
+
+    'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
+    'build_tools_repo': "build/tools",
+    'hg_rev_shortnames': {
+      'mozilla-central':        'm-c',
+      'comm-central':           'rev',
+      'dom-inspector':          'domi',
+      'releases/mozilla-1.9.1': 'moz',
+    }
 }
 
 # All branches that are to be built MUST be listed here.
@@ -34,6 +79,70 @@ BRANCHES = {
     'comm-central-trunk-bloat': {},
     'comm-central-calendar': {},
     'comm-central-sunbird': {},
+    'comm-1.9.1-unittest': {},
+    'comm-central-unittest': {},
+}
+
+# thunderbird-unittest
+
+BRANCHES['comm-1.9.1-unittest'] = {
+    'factory': 'CCUnitTestFactory',
+    'builder_type': 'check',
+    'nightly': False,
+    'hg_branch': 'comm-central',
+    'branch_name': 'comm-1.9.1',
+    'tinderbox_tree': 'Thunderbird3.0',
+    'irc_nick': 'thunderbot',
+    'irc_channels': ['maildev'],
+    'platforms': {
+        'linux': {
+            'base_name': 'Linux comm-1.9.1',
+            'slaves': BUILDERS['linux']['momo'],
+        },
+        'win32': {
+            'base_name': 'Win2k3 comm-1.9.1',
+            'slaves': BUILDERS['win32']['momo'],
+        },
+       'macosx': {
+            'base_name': 'MacOSX 10.4 comm-1.9.1',
+            'slaves': BUILDERS['macosx']['10.4']['momo'],
+        },
+        'macosx-10.5': {
+            'base_name': 'MacOSX 10.5 comm-1.9.1',
+            'slaves': BUILDERS['macosx']['10.5']['momo'],
+        }
+    }
+}
+
+BRANCHES['comm-central-unittest'] = {
+    'factory': 'CCUnitTestFactory',
+    'builder_type': 'check',
+    'hg_branch': 'comm-central',
+    'mozilla_central_branch': 'mozilla-central',
+    'nightly': False,
+    'tinderbox_tree': 'Thunderbird',
+    'irc_nick': 'thunderbot-trunk',
+    'irc_channels': ['maildev'],
+    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/mozilla-central'],
+    'platforms': {
+        'linux': {
+            'base_name': 'Linux comm-central',
+            'slaves': BUILDERS['linux']['momo'],
+        },
+        'win32': {
+            'base_name': 'Win2k3 comm-central',
+            'slaves': BUILDERS['win32']['momo'],
+        },
+       'macosx': {
+            'base_name': 'MacOSX 10.4 comm-central',
+            'slaves': BUILDERS['macosx']['10.4']['momo'],
+        },
+        'macosx-10.5': {
+            'base_name': 'MacOSX 10.5 comm-central',
+            'slaves': BUILDERS['macosx']['10.5']['momo'],
+        },
+
+    },
 }
 
 ######## thunderbird-hg
@@ -49,6 +158,7 @@ BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla',
 BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['package'] = True
+BRANCHES['comm-central']['branch_name'] = 'comm-1.9.1'
 #Disable when producing release builds
 #BRANCHES['comm-central']['nightly'] = False
 BRANCHES['comm-central']['upload_stage'] = True
@@ -58,10 +168,10 @@ BRANCHES['comm-central']['l10n'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
 BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
-BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central'
-BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
-BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
-BRANCHES['comm-central']['platforms']['macosx-shark']['base_name'] = 'MacOSX 10.5 comm-central shark'
+BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
+BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1'
+BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1'
+BRANCHES['comm-central']['platforms']['macosx-shark']['base_name'] = 'MacOSX 10.5 comm-1.9.1 shark'
 BRANCHES['comm-central']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central']['platforms']['macosx']['profiled_build'] = False
@@ -93,10 +203,7 @@ BRANCHES['comm-central']['platforms']['win32']['slaves'] = [
 BRANCHES['comm-central']['platforms']['macosx']['slaves'] = [
     'bm-xserve07'
 ]
-BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = [
-    'momo-vm-osx-leopard-02',
-    'momo-vm-osx-leopard-01',
-]
+BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -162,9 +269,9 @@ BRANCHES['comm-central-trunk']['codesighs'] = True
 BRANCHES['comm-central-trunk']['l10n'] = False
 BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
 BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
-BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central trunk'
-BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'Win2k3 comm-central trunk'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central trunk'
+BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central'
+BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
+BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
@@ -184,20 +291,9 @@ BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
-BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = [
-    'momo-vm-07',
-    'momo-vm-12',
-]
-BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = [
-    'momo-vm-06',
-    'momo-vm-13',
-    'momo-vm-15',
-]
-BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = [
-    'momo-vm-osx-tiger-03',
-    'momo-vm-14',
-    'momo-vm-osx-tiger-01',
-]
+BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
+BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -241,6 +337,7 @@ BRANCHES['comm-central-calendar']['platforms'] = {
 }
 
 BRANCHES['comm-central-calendar']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
+BRANCHES['comm-central-calendar']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
@@ -252,22 +349,22 @@ BRANCHES['comm-central-calendar']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
 BRANCHES['comm-central-calendar']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
 BRANCHES['comm-central-calendar']['stage_username'] = 'calbld'
-BRANCHES['comm-central-calendar']['stage_base_path'] = '/home/ftp/pub/calendar/lightning'
+BRANCHES['comm-central-calendar']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
 BRANCHES['comm-central-calendar']['stage_group'] = 'calendar'
 BRANCHES['comm-central-calendar']['stage_ssh_key'] = 'calbld_dsa'
 BRANCHES['comm-central-calendar']['codesighs'] = False
 BRANCHES['comm-central-calendar']['l10n'] = False
 BRANCHES['comm-central-calendar']['irc_nick'] = 'calbuild'
 BRANCHES['comm-central-calendar']['irc_channels'] = [ 'maildev', 'calendar' ]
-BRANCHES['comm-central-calendar']['platforms']['linux']['base_name'] = 'Linux comm-central-calendar ltn'
-BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'Win2k3 comm-central-calendar ltn'
-BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central-calendar ltn'
+BRANCHES['comm-central-calendar']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 lightning'
+BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 lightning'
+BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1 lightning'
 BRANCHES['comm-central-calendar']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-central-calendar']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
-BRANCHES['comm-central-calendar']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
-BRANCHES['comm-central-calendar']['platforms']['macosx']['milestone'] = "comm-central/macosx-xpi"
+BRANCHES['comm-central-calendar']['platforms']['linux']['milestone'] = "comm-1.9.1/linux-xpi"
+BRANCHES['comm-central-calendar']['platforms']['win32']['milestone'] = "comm-1.9.1/win32-xpi"
+BRANCHES['comm-central-calendar']['platforms']['macosx']['milestone'] = "comm-1.9.1/macosx-xpi"
 BRANCHES['comm-central-calendar']['platforms']['macosx']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
 
 # If True, a complete update snippet for this branch will be generated and
@@ -324,6 +421,7 @@ BRANCHES['comm-central-sunbird']['platforms'] = {
     'macosx': {}
 }
 BRANCHES['comm-central-sunbird']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
+BRANCHES['comm-central-sunbird']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-sunbird']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-sunbird']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-sunbird']['mozconfig'] = 'mozconfig-sunbird'
@@ -331,8 +429,9 @@ BRANCHES['comm-central-sunbird']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-sunbird']['period'] = 60 * 60 * 6
 BRANCHES['comm-central-sunbird']['package'] = True
 BRANCHES['comm-central-sunbird']['upload_stage'] = True
+BRANCHES['comm-central-sunbird']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central-sunbird']['stage_username'] = 'calbld'
-BRANCHES['comm-central-sunbird']['stage_base_path'] = '/home/ftp/pub/calendar/sunbird'
+BRANCHES['comm-central-sunbird']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/sunbird'
 BRANCHES['comm-central-sunbird']['stage_group'] = 'calendar'
 BRANCHES['comm-central-sunbird']['stage_ssh_key'] = 'calbld_dsa'
 BRANCHES['comm-central-sunbird']['codesighs'] = False
@@ -343,9 +442,9 @@ BRANCHES['comm-central-sunbird']['appname'] = 'sunbird'
 BRANCHES['comm-central-sunbird']['brand_name'] = 'Calendar'
 BRANCHES['comm-central-sunbird']['irc_nick'] = 'sunbuild'
 BRANCHES['comm-central-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
-BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-central sunbird'
-BRANCHES['comm-central-sunbird']['platforms']['win32']['base_name'] = 'Win2k3 comm-central sunbird'
-BRANCHES['comm-central-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central sunbird'
+BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
+BRANCHES['comm-central-sunbird']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 sunbird'
+BRANCHES['comm-central-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1 sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-sunbird']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-sunbird']['platforms']['macosx']['profiled_build'] = False
@@ -421,6 +520,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 }
 
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
+BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
@@ -433,9 +533,10 @@ BRANCHES['comm-central-bloat']['codesighs'] = False
 BRANCHES['comm-central-bloat']['l10n'] = False
 BRANCHES['comm-central-bloat']['irc_nick'] = 'thunderbloat'
 BRANCHES['comm-central-bloat']['irc_channels'] = [ 'maildev' ]
-BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central bloat'
-BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central bloat'
-BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central bloat'
+BRANCHES['comm-central-bloat']['builder_type'] = 'bloat'
+BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
+BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1'
+BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['profiled_build'] = False
@@ -457,20 +558,9 @@ BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'Thunderbird3.0'
 BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
 BRANCHES['comm-central-bloat']['platforms']['win32']['leak_threshold'] =  110000
-BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = [
-    'momo-vm-07',
-    'momo-vm-12'
-]
-BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = [
-    'momo-vm-06',
-    'momo-vm-13',
-    'momo-vm-15'
-]
-BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = [
-    'momo-vm-osx-tiger-03',
-    'momo-vm-14',
-    'momo-vm-osx-tiger-01',
-]
+BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
+BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -519,6 +609,7 @@ BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip
 BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'mozconfig-bloat'
 BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
+BRANCHES['comm-central-trunk-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-trunk-bloat']['nightly'] = False
 BRANCHES['comm-central-trunk-bloat']['leak'] = True
 BRANCHES['comm-central-trunk-bloat']['package'] = False
@@ -527,9 +618,9 @@ BRANCHES['comm-central-trunk-bloat']['codesighs'] = False
 BRANCHES['comm-central-trunk-bloat']['l10n'] = False
 BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-trunk'
 BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'maildev' ]
-BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central mozilla-central bloat'
-BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central mozilla-central bloat'
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central mozilla-central bloat'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central'
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = False
@@ -551,20 +642,9 @@ BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
-BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = [
-    'momo-vm-07',
-    'momo-vm-12',
-]
-BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = [
-    'momo-vm-06',
-    'momo-vm-13',
-    'momo-vm-15'
-]
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = [
-    'momo-vm-osx-tiger-03',
-    'momo-vm-14',
-    'momo-vm-osx-tiger-01',
-]
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.

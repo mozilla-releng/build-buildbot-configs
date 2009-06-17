@@ -20,6 +20,9 @@ import re
 
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
+
+import buildbotcustom.steps.l10n
+reload(buildbotcustom.steps.l10n)
 from buildbotcustom.steps.l10n import SetLocalesStep, LocaleCompile, NonLocaleMercurial, LocaleMercurial, getLocalesForRequests
 
 try:
@@ -142,6 +145,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                      'repackLocation',
                      'mainBranch',
                      'localesBranch',
+                     'localesStageName',
                      'configDir',
                      'product',
                      'platform',
@@ -165,7 +169,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
     steps = ()
 
     def __init__(self, mainRepoURL, localesRepoURL, configRepoURL,
-                 repackLocation, mainBranch, localesBranch, configDir,
+                 repackLocation, mainBranch, localesBranch, localesStageName, configDir,
                  product, platform, appname, brandname, stage_username,
                  stage_server, stage_base_path, stage_group, stage_ssh_key,
                  createSnippets, update_download_base_url, update_base_upload_dir,
@@ -209,6 +213,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
         self.repackLocation = repackLocation
         self.mainBranch = mainBranch
         self.localesBranch = localesBranch
+        self.localesStageName = localesStageName
         self.configDir = configDir
         self.product = product
         self.platform = platform
@@ -396,7 +401,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
             steps.append(MozillaStageUpload(
                 objdir='obj/mozilla',
                 username=self.stage_username,
-                milestone=self.localesBranch,
+                milestone=self.localesStageName,
                 remoteHost=self.stage_server,
                 remoteBasePath=self.stage_base_path,
                 platform=self.platform,
@@ -405,7 +410,7 @@ class CCRepackFactory(buildbot.util.ComparableMixin):
                 releaseToDated=False,
                 releaseToLatest=True,
                 releaseToTinderboxBuilds=False,
-                tinderboxBuildsDir='%s-%s' % (self.localesBranch, self.platform),
+                tinderboxBuildsDir='%s-%s' % (self.localesStageName, self.platform),
                 uploadLangPacks=True,
             ))
 
