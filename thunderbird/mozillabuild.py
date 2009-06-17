@@ -9,10 +9,12 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
     # Figure out the unique pushlogs we should be polling
     
     sources = {}
-    
+    l10n = False 
     for name in branches.keys():
         branch = branches[name]
         hgurl = getConfig(defaults, branch, 'hgurl')
+        if getConfig(defaults, branch, 'l10n'):
+            l10n = True
         
         #Make sure the hg url doesn't have a trailing '/', we'll be adding one
         if hgurl[-1:] == '/':
@@ -29,4 +31,13 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
             pushlogUrlOverride="%s/%s/pushlog" % (hgurl,branch),
             branch=branch,
             pollInterval=1*60
+        ))
+
+    if l10n:
+        # XXX: 100% hard-coded, bad
+        change_source.append(HgAllLocalesPoller(
+            #XXX: picks the last seen hgurl, bad
+            hgURL = "%s/" % hgurl,
+            repositoryIndex = 'releases/l10n-mozilla-1.9.1',
+            pollInterval=180,
         ))
