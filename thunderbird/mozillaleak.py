@@ -52,7 +52,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
         )
         self.addStep(CompareBloatLogs,
          bloatLog='../bloat.log',
-         bloatDiffPath='mozilla/tools/rb/bloatdiff.pl',
+         mozillaDir="mozilla",
          env=env,
          testnameprefix='Mail',
          testname='Mail',
