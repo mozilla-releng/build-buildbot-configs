@@ -34,9 +34,6 @@ BUILDERS = {
     },
 }
 
-import sys
-print >> sys.stderr, "Builders: %s" % BUILDERS
-
 DEFAULTS = {
     'factory':                'build',
     'hgurl':                  HGURL,
