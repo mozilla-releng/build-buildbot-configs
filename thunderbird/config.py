@@ -54,7 +54,7 @@ DEFAULTS = {
     
     # Unit Test
     'poll_branch':          'comm-central',
-    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
+    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time --traceback'],
     'platforms': {
       'linux':  "Linux", 
       'win32':  "Win2k3",
@@ -154,7 +154,7 @@ BRANCHES['comm-central']['platforms'] = {
     'macosx-shark': {},
 }
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time --traceback']
 BRANCHES['comm-central']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['package'] = True
@@ -256,7 +256,7 @@ BRANCHES['comm-central-trunk']['platforms'] = {
     'macosx': {}
 }
 BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
-BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--verbose --time']
+BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--verbose --time --traceback']
 BRANCHES['comm-central-trunk']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-trunk']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central-trunk']['hg_branch'] = 'comm-central'
@@ -521,7 +521,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time --traceback']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'comm-central'
@@ -605,7 +605,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms'] = {
 }
 
 BRANCHES['comm-central-trunk-bloat']['mozilla_central_branch'] = 'mozilla-central'
-BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time']
+BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time --traceback']
 BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'mozconfig-bloat'
 BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
