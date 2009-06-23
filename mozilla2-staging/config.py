@@ -187,7 +187,6 @@ BRANCHES['mozilla-central']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-central' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -197,7 +196,6 @@ BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-central' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -207,7 +205,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-central' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -217,7 +214,6 @@ BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-central' % DOWNLOAD_BASE_URL,
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
@@ -353,7 +349,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -363,7 +358,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux64']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -373,7 +367,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL
 }
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -383,7 +376,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-mozilla-1.9.1' % DOWNLOAD_BASE_URL,
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
@@ -470,7 +462,6 @@ BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-tracemonkey' % DOWNLOAD_BASE_URL
 }
 BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -481,7 +472,6 @@ BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-tracemonkey' % DOWNLOAD_BASE_URL
 }
 BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -492,5 +482,4 @@ BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-tracemonkey' % DOWNLOAD_BASE_URL
 }
