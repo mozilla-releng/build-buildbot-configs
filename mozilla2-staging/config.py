@@ -19,7 +19,7 @@ STAGE_SSH_KEY = 'ffxbld_dsa'
 STAGE_SSH_XULRUNNER_KEY = 'xrbld_dsa'
 AUS2_USER = 'cltbld'
 AUS2_HOST = 'staging-stage.build.mozilla.org'
-DOWNLOAD_BASE_URL = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox'
+DOWNLOAD_BASE_URL = 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox'
 GRAPH_SERVER = 'graphs-stage2.mozilla.org'
 GRAPH_SELECTOR = '/server/collect.cgi'
 BUILD_TOOLS_REPO_PATH = 'users/stage-ffxbld/tools'
@@ -135,7 +135,6 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 5
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
@@ -298,7 +297,6 @@ BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False 
 BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
@@ -440,7 +438,6 @@ BRANCHES['tracemonkey']['unittest_build_space'] = 5
 BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
-BRANCHES['tracemonkey']['l10nNightlyUpdate'] = False 
 # nightly shark build for profiling
 BRANCHES['tracemonkey']['enable_shark'] = True
 # need this or the master.cfg will bail

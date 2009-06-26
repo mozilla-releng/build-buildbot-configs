@@ -142,7 +142,6 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 5
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
@@ -305,7 +304,6 @@ BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False 
 BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
@@ -437,7 +435,6 @@ BRANCHES['tracemonkey']['unittest_build_space'] = 5
 BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
-BRANCHES['tracemonkey']['l10nNightlyUpdate'] = False 
 # nightly shark build for profiling
 BRANCHES['tracemonkey']['enable_shark'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
