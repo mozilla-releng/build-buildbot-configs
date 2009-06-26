@@ -5,7 +5,9 @@ GRAPH_CONFIG = ['--oldresultsServer', 'graphs-stage.mozilla.org',
         'graphs-stage2.mozilla.org', '--resultsLink', '/server/collect.cgi']
 TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tp:tdhtml:tsvg:twinopen:tsspider:tgfx']
 
-TALOS_NOCHOME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChrome']
+TALOS_NOCHROME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChrome']
+
+TALOS_JSS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tjss']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
@@ -52,6 +54,7 @@ BRANCHES['mozilla-1.9.0']['fetch_symbols'] = False
 BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.0']['jss_tests'] = (0,True)
 BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
     'win32': [
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
@@ -80,6 +83,8 @@ BRANCHES['mozilla-central']['fetch_symbols'] = True
 BRANCHES['mozilla-central']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-central']['nochrome_tests'] = (1,True)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-central']['jss_tests'] = (1,True)
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
@@ -89,6 +94,8 @@ BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1,True)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.1']['jss_tests'] = (1,True)
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
@@ -98,3 +105,5 @@ BRANCHES['tracemonkey']['fetch_symbols'] = True
 BRANCHES['tracemonkey']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['nochrome_tests'] = (1,True)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['tracemonkey']['jss_tests'] = (0,True)
