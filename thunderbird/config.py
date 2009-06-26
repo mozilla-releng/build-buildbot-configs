@@ -197,15 +197,9 @@ BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['upload_symbols'] = False
 BRANCHES['comm-central']['tinderbox_tree'] = 'Thunderbird3.0'
-BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
-    'tb-linux-tbox',
-]
-BRANCHES['comm-central']['platforms']['win32']['slaves'] = [
-    'tbnewref-win32-tbox'
-]
-BRANCHES['comm-central']['platforms']['macosx']['slaves'] = [
-    'bm-xserve07'
-]
+BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['moco']
+BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['moco']
+BRANCHES['comm-central']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['moco']
 BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
