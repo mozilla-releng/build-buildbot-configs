@@ -41,3 +41,31 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
             repositoryIndex = 'releases/l10n-mozilla-1.9.1',
             pollInterval=180,
         ))
+        
+from buildbot.steps.shell import ShellCommand, WithProperties
+def uploadUpdateSnippet(f, aus, platform):
+    full_upload_dir = '%s/%s/%%(buildid)s/en-US' % \
+        ( aus['base_upload_dir'],
+          platform['update_platform'])
+
+    f.addStep(ShellCommand(
+        name='create aus2 upload dir',
+        command=['ssh', '-l', aus['user'], aus['host'],
+             WithProperties('mkdir -p %s' % full_upload_dir)],
+        description=['create', 'aus2', 'upload', 'dir'],
+        haltOnFailure=False,
+        flunkOnFailure=False,
+    ))
+
+    f.addStep(ShellCommand(
+        name='upload complete snippet',
+        command=['scp', '-o', 'User=%s' % aus['user'],
+             'dist/update/complete.update.snippet',
+             WithProperties('%s:%s/complete.txt' % \
+               (aus['host'], full_upload_dir))],
+        workdir='build/%s/mozilla' % platform['platform_objdir'],
+        description=['upload', 'complete', 'snippet'],
+        haltOnFailure=False,
+        flunkOnFailure=False,
+    ))
+    

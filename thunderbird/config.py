@@ -180,6 +180,12 @@ BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['create_snippet'] = False
 BRANCHES['comm-central']['create_l10n_snippets'] = False
 BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
+BRANCHES['comm-central']['aus'] = {
+    'user': 'tbirdbld',
+    'host': 'aus-staging.mozillamessaging.com',
+    'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
+}
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus/build/0/Thunderbird/comm-central'
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
