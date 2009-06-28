@@ -655,7 +655,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx-10.5']['upload_symbols
 BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx-10.5']['leak_threshold'] = 1400000
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx-10.5']['leak_threshold'] = 230000
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
