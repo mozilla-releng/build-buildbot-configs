@@ -474,7 +474,7 @@ class TalosFactory(BuildFactory):
     def __init__(self, OS, envName, buildBranch, branchName, configOptions,
             buildPath, talosCmd, customManifest='',
             cvsRoot=":pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot",
-            workdirBase=None, fetchSymbols=False):
+            workdirBase=None, fetchSymbols=False, plugins='zips/plugins.zip', pagesets='zips/pagesets.zip'):
         BuildFactory.__init__(self)
         if OS in ('linux', 'linuxbranch',):
             cleanCmd = self.linuxClean
@@ -515,10 +515,38 @@ class TalosFactory(BuildFactory):
                            mastersrc="scripts/generate-tpcomponent.py",
                            slavedest="generate-tpcomponent.py",
                            workdir=os.path.join(workdirBase, "talos/page_load_test")))
+        if plugins != '':
+            self.addStep(FileDownload(
+             mastersrc=plugins,
+             slavedest=os.path.basename(plugins),
+             workdir="talos/base_profile",
+             blocksize=640*1024,
+            ))
+            self.addStep(MozillaInstallZip(
+             workdir="talos/base_profile",
+             branch=buildBranch,
+             haltOnFailure=True,
+             env=MozillaEnvironments[envName],
+             filename=os.path.basename(plugins)))
+                               
+        if pagesets != '':      
+            self.addStep(FileDownload(
+             mastersrc=pagesets,
+             slavedest=os.path.basename(pagesets),
+             workdir="talos/page_load_test",
+             blocksize=640*1024,
+            ))
+            self.addStep(MozillaInstallZip(
+             workdir="talos/page_load_test",
+             branch=buildBranch,
+             haltOnFailure=True,
+             env=MozillaEnvironments[envName],
+             filename=os.path.basename(pagesets)))
+
         if customManifest != '':
             self.addStep(FileDownload(
                            mastersrc=customManifest,
-                           slavedest="manifest.txt",
+                           slavedest="tp3.manifest",
                            workdir=os.path.join(workdirBase, "talos/page_load_test")))
         self.addStep(ShellCommand(
                            command=["python", "generate-tpcomponent.py"],
