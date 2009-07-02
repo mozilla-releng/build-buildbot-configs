@@ -5,10 +5,8 @@ HGURL = 'http://hg.mozilla.org/'
 HGHOST = 'hg.mozilla.org'
 # for chatzilla/venkman
 CVSROOT = ':ext:seabld@cvs.mozilla.org:/cvsroot'
-#CONFIG_REPO_PATH = 'build/buildbot-configs'
-#CONFIG_SUBDIR = 'seamonkey'
-CONFIG_REPO_PATH = 'users/kairo_kairo.at/bbconf-sm2'
-CONFIG_SUBDIR = '.'
+CONFIG_REPO_PATH = 'build/buildbot-configs'
+CONFIG_SUBDIR = 'seamonkey'
 IRC_BOT_NAME = 'sea2-build-bot'
 IRC_BOT_CHANNELS = ['mozbot']
 OBJDIR = 'objdir'
@@ -58,7 +56,7 @@ BRANCHES = {
     'comm-1.9.1': {},
 }
 
-######## comm-central
+######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['comm-1.9.1']['repo_path'] = 'comm-central'
@@ -77,16 +75,16 @@ BRANCHES['comm-1.9.1']['platforms'] = {
     'linux-debug': {},
 }
 # The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
-BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig_dep'] = 'linux/comm-central/dep'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig_dep'] = 'linux64/comm-central/dep'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig_dep'] = 'macosx/comm-central/dep'
-BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig_dep'] = 'win32/comm-central/dep'
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['mozconfig_dep'] = 'linux/comm-central/debug'
+BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig_dep'] = 'linux/comm-1.9.1/dep'
+BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig_dep'] = 'linux64/comm-1.9.1/dep'
+BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig_dep'] = 'macosx/comm-1.9.1/dep'
+BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig_dep'] = 'win32/comm-1.9.1/dep'
+BRANCHES['comm-1.9.1']['platforms']['linux-debug']['mozconfig_dep'] = 'linux/comm-1.9.1/debug'
 # nightly mozconfig (not for debug builds)
-BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig'] = 'linux/comm-central/nightly'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux64/comm-central/nightly'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig'] = 'macosx/comm-central/nightly'
-BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig'] = 'win32/comm-central/nightly'
+BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig'] = 'linux/comm-1.9.1/nightly'
+BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux64/comm-1.9.1/nightly'
+BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig'] = 'macosx/comm-1.9.1/nightly'
+BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig'] = 'win32/comm-1.9.1/nightly'
 BRANCHES['comm-1.9.1']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
 BRANCHES['comm-1.9.1']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-1.9.1'
 BRANCHES['comm-1.9.1']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
@@ -150,7 +148,7 @@ BRANCHES['comm-1.9.1']['platforms']['macosx']['update_platform'] = 'Darwin_Unive
 BRANCHES['comm-1.9.1']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey-Ports'
+BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-1.9.1']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-1.9.1']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['comm-1.9.1']['platforms']['win32']['slaves'] = SLAVES['win32']
