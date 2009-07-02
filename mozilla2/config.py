@@ -72,7 +72,8 @@ UNITTEST_SUITES = [
 BRANCHES = {
     'mozilla-central': {},
     'mozilla-1.9.1': {},
-    'tracemonkey': {}
+    'tracemonkey': {},
+    'places': {},
 }
 
 ######## mozilla-central
@@ -484,6 +485,93 @@ BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
+######## places
+BRANCHES['places']['repo_path'] = 'projects/places'
+BRANCHES['places']['major_version'] = '1.9.2'
+BRANCHES['places']['product_name'] = 'firefox'
+BRANCHES['places']['app_name'] = 'browser'
+BRANCHES['places']['brand_name'] = 'Minefield'
+BRANCHES['places']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {}
+}
+BRANCHES['places']['platforms']['linux']['mozconfig'] = 'linux/places/nightly'
+BRANCHES['places']['platforms']['macosx']['mozconfig'] = 'macosx/places/nightly'
+BRANCHES['places']['platforms']['win32']['mozconfig'] = 'win32/places/nightly'
+BRANCHES['places']['platforms']['linux']['base_name'] = 'Linux places'
+BRANCHES['places']['platforms']['win32']['base_name'] = 'WINNT 5.2 places'
+BRANCHES['places']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 places'
+BRANCHES['places']['platforms']['linux']['profiled_build'] = False
+BRANCHES['places']['platforms']['win32']['profiled_build'] = False
+BRANCHES['places']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['places']['platforms']['linux']['build_space'] = 5
+BRANCHES['places']['platforms']['win32']['build_space'] = 5
+BRANCHES['places']['platforms']['macosx']['build_space'] = 5
+BRANCHES['places']['platforms']['linux']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['win32']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['macosx']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['places']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
+# Disable XULRunner / SDK builds
+BRANCHES['places']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['places']['enable_unittests'] = True
+BRANCHES['places']['enable_mac_a11y'] = True
+BRANCHES['places']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['places']['platforms']['win32']['crashtest_leak_threshold'] = 484
+BRANCHES['places']['unittest_build_space'] = 5
+BRANCHES['places']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['places']['enable_l10n'] = False
+# nightly shark build for profiling
+BRANCHES['places']['enable_shark'] = True
+BRANCHES['places']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['places']['idle_timeout'] = 60*60*10   # 10 hours
+BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['places']['platforms']['macosx']['update_platform'] = 'fake'
+BRANCHES['places']['tinderbox_tree'] = 'Places'
+BRANCHES['places']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['places']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['places']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['places']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['places']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['places']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['places']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_ffx/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
