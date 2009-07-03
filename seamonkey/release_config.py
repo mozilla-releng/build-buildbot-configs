@@ -27,6 +27,7 @@ toolsRepoClonePath         = 'build/tools' # clone this to other FOR TESTING
 toolsRepoPath              = 'users/seabld/tools'
 #cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 cvsroot                    = ':ext:robert@robert.box.kairo.at:/usr/local/cvsroot' # for patcher, etc.
+productVersionFile         = 'suite/config/version-191.txt'
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'

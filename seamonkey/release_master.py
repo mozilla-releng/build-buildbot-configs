@@ -155,7 +155,7 @@ repositories = {
     sourceRepoPath: {
         'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
-        'bumpFiles': ['suite/config/version.txt']
+        'bumpFiles': [productVersionFile]
     },
     mozillaRepoPath: {
         'revision': mozillaRepoRevision,
