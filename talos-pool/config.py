@@ -1,6 +1,6 @@
 from buildbot.steps.shell import WithProperties
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs-new.mozilla.org', '--resultsLink',
+GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org', '--resultsLink',
         '/server/collect.cgi']
 TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tp:tdhtml:tsvg:twinopen:tsspider:tgfx']
 
