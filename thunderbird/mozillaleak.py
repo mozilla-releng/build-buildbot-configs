@@ -18,7 +18,7 @@ from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 
 GRAPH_SERVER = 'graphs-stage.mozilla.org'
-GRAPH_SELECTOR = 'server'
+GRAPH_SELECTOR = '/server/collect.cgi'
 GRAPH_BRANCH = 'comm-central'
 
 def addLeakTestSteps(self,branch,platform,platformName):
