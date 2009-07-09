@@ -44,16 +44,6 @@ change_source.append(FtpPoller(
 	searchString='win32_signing_build'
 ))
 
-# the following scheduler is for TESTING ONLY
-repo_setup_scheduler = Scheduler(
-    name='repo_setup',
-    branch='clean_repo_setup',
-    treeStableTimer=0,
-    builderNames=['repo_setup'],
-    fileIsImportant=lambda c: not isHgPollerTriggered(c, nightly_config.HGURL)
-)
-schedulers.append(repo_setup_scheduler)
-
 tag_scheduler = Scheduler(
     name='tag',
     branch=sourceRepoPath,
@@ -116,40 +106,6 @@ schedulers.append(update_verify_scheduler)
 # from the waterfall
 
 ##### Builders
-# clone_repositories is for TESTING ONLY
-clone_repositories = {
-    sourceRepoClonePath: {
-        'revision': sourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
-        'bumpFiles': ['suite/config/version.txt']
-    },
-    mozillaRepoClonePath: {
-        'revision': mozillaRepoRevision,
-        'relbranchOverride': mozillaRelbranchOverride,
-        'bumpFiles': []
-    },
-    toolsRepoClonePath: {
-        'revision': 'default',
-        'relbranchOverride': '',
-        'bumpFiles': []
-    },
-}
-if inspectorRepoClonePath:
-    clone_repositories[inspectorRepoClonePath] = {
-        'revision': inspectorRepoRevision,
-        'relbranchOverride': inspectorRelbranchOverride,
-        'bumpFiles': []
-    }
-if venkmanRepoClonePath:
-    clone_repositories[venkmanRepoClonePath] = {
-        'revision': venkmanRepoRevision,
-        'relbranchOverride': venkmanRelbranchOverride,
-        'bumpFiles': []
-    }
-l10n_clone_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoClonePath,
-                                         relbranchOverride)
-clone_repositories.update(l10n_clone_repos)
-
 # repositories is what actual stuff is performed on
 repositories = {
     sourceRepoPath: {
@@ -187,23 +143,6 @@ from buildbot.steps.dummy import Dummy
 dummy_factory = BuildFactory()
 dummy_factory.addStep(Dummy())
 
-# repository_setup_factory is for TESTING ONLY
-repository_setup_factory = StagingRepositorySetupFactory(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=nightly_config.BUILD_TOOLS_REPO_PATH,
-    username=hgUsername,
-    sshKey=hgSshKey,
-    repositories=clone_repositories
-)
-
-builders.append({
-    'name': 'repo_setup',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
-    'category': 'release',
-    'builddir': 'repo_setup',
-    'factory': repository_setup_factory
-})
-
 tag_factory = CCReleaseTaggingFactory(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
@@ -227,7 +166,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': dummy_factory # tag_factory
+    'factory': tag_factory
 })
 
 
