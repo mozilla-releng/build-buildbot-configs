@@ -6,7 +6,7 @@ sourceRepoName      = 'mozilla-1.9.1'
 # It is not used for anything else.
 sourceRepoClonePath = 'releases/mozilla-1.9.1'
 sourceRepoPath      = 'users/stage-ffxbld/mozilla-1.9.1'
-sourceRepoRevision  = '027583c55155'
+sourceRepoRevision  = 'dc0e69abb566'
 relbranchOverride   = ''
 l10nRepoClonePath   = 'releases/l10n-mozilla-1.9.1'
 l10nRepoPath        = 'users/stage-ffxbld'
@@ -19,18 +19,18 @@ appName             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '3.5rc1'
-appVersion          = '3.5'
-milestone           = '1.9.1'
+version             = '3.5.1'
+appVersion          = version
+milestone           = '1.9.1.1'
 buildNumber         = 1
-baseTag             = 'FIREFOX_3_5rc1'
-oldVersion          = '3.5b4'
-oldAppVersion       = oldVersion
-oldBuildNumber      = 1
-oldBaseTag          = 'FIREFOX_3_5b4'
+baseTag             = 'FIREFOX_3_5_1'
+oldVersion          = '3.5rc3'
+oldAppVersion       = '3.5'
+oldBuildNumber      = 2
+oldBaseTag          = 'FIREFOX_3_5rc3'
 releasePlatforms    = ('linux', 'win32', 'macosx')
 patcherConfig       = 'moz191-branch-patcher2.cfg'
-patcherToolsTag     = 'UPDATE_PACKAGING_R7'
+patcherToolsTag     = 'UPDATE_PACKAGING_R8'
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
