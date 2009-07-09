@@ -14,7 +14,7 @@ ac_add_app_options mobile --with-libxul-sdk=../xulrunner/dist
 # Disabling tests due to bug 454881
 ac_add_options --disable-tests
 
-#WINCE specific options
+#WinMo specific options
 ac_add_options --disable-javaxpcom
 ac_add_options --disable-accessibility
 ac_add_options --disable-printing
