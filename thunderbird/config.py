@@ -101,13 +101,9 @@ BRANCHES['comm-1.9.1-unittest'] = {
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
-            'base_name': 'MacOSX 10.4 comm-1.9.1',
-            'slaves': BUILDERS['macosx']['10.4']['momo'],
-        },
-        'macosx-10.5': {
             'base_name': 'MacOSX 10.5 comm-1.9.1',
             'slaves': BUILDERS['macosx']['10.5']['momo'],
-        }
+        },
     }
 }
 
@@ -131,10 +127,6 @@ BRANCHES['comm-central-unittest'] = {
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
-            'base_name': 'MacOSX 10.4 comm-central',
-            'slaves': BUILDERS['macosx']['10.4']['momo'],
-        },
-        'macosx-10.5': {
             'base_name': 'MacOSX 10.5 comm-central',
             'slaves': BUILDERS['macosx']['10.5']['momo'],
         },
