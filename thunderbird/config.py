@@ -21,7 +21,6 @@ BUILDERS = {
     },
     'macosx': {
         '10.4': {
-            'momo': [ 'momo-vm-osx-tiger-%02i' % x for x in [1,2] ],
             'moco': [ 'bm-xserve07' ], 
         },
         '10.5': {
