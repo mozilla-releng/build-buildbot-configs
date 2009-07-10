@@ -253,10 +253,7 @@ BRANCHES['comm-central-trunk']['package'] = True
 #Disable when producing release builds
 #BRANCHES['comm-central-trunk']['nightly'] = False
 BRANCHES['comm-central-trunk']['upload_stage'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx-10.5']['upload_stage'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx-10.5']['create_snippet'] = False
 BRANCHES['comm-central-trunk']['milestone'] = 'comm-central-trunk'
-BRANCHES['comm-central-trunk']['platforms']['macosx-10.5']['milestone'] = 'comm-central-trunk-10.5-test'
 BRANCHES['comm-central-trunk']['codesighs'] = True
 BRANCHES['comm-central-trunk']['l10n'] = False
 BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
