@@ -4,6 +4,8 @@ else
 . $topsrcdir/build/macosx/universal/mozconfig
 fi
 
+mk_add_options MOZ_MAKE_FLAGS="-j4"
+
 ac_add_options --enable-application=mail
 ac_add_options --disable-tests
 ac_add_options --enable-static
