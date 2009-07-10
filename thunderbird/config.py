@@ -24,7 +24,7 @@ BUILDERS = {
             'moco': [ 'bm-xserve07' ], 
         },
         '10.5': {
-            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [1] ],
+            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [2,3,4] ],
         },
     },
     'win32': {
