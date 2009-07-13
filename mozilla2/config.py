@@ -500,23 +500,41 @@ BRANCHES['places']['brand_name'] = 'Minefield'
 BRANCHES['places']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {},
 }
 BRANCHES['places']['platforms']['linux']['mozconfig'] = 'linux/places/nightly'
 BRANCHES['places']['platforms']['macosx']['mozconfig'] = 'macosx/places/nightly'
 BRANCHES['places']['platforms']['win32']['mozconfig'] = 'win32/places/nightly'
+BRANCHES['places']['platforms']['linux-debug']['mozconfig'] = 'linux/places/debug'
+BRANCHES['places']['platforms']['macosx-debug']['mozconfig'] = 'macosx/places/debug'
+BRANCHES['places']['platforms']['win32-debug']['mozconfig'] = 'win32/places/debug
 BRANCHES['places']['platforms']['linux']['base_name'] = 'Linux places'
 BRANCHES['places']['platforms']['win32']['base_name'] = 'WINNT 5.2 places'
 BRANCHES['places']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 places'
+BRANCHES['places']['platforms']['linux-debug']['base_name'] = 'Linux places leak test'
+BRANCHES['places']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 places leak test'
+BRANCHES['places']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 places leak test'
 BRANCHES['places']['platforms']['linux']['profiled_build'] = False
 BRANCHES['places']['platforms']['win32']['profiled_build'] = False
 BRANCHES['places']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['places']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['places']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['places']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['places']['platforms']['linux']['build_space'] = 5
 BRANCHES['places']['platforms']['win32']['build_space'] = 5
 BRANCHES['places']['platforms']['macosx']['build_space'] = 5
+BRANCHES['places']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['places']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['places']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['places']['platforms']['linux']['builds_before_reboot'] = None
 BRANCHES['places']['platforms']['win32']['builds_before_reboot'] = None
 BRANCHES['places']['platforms']['macosx']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['linux-debug']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['win32-debug']['builds_before_reboot'] = None
+BRANCHES['places']['platforms']['macosx-debug']['builds_before_reboot'] = None
 BRANCHES['places']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['places']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
@@ -544,9 +562,15 @@ BRANCHES['places']['tinderbox_tree'] = 'Places'
 BRANCHES['places']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['places']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['places']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['places']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['places']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['places']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 BRANCHES['places']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['places']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['places']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['places']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['places']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['places']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['places']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -575,5 +599,22 @@ BRANCHES['places']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':2',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
