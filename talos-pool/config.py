@@ -25,6 +25,7 @@ BRANCHES = {
     'mozilla-1.9.1': {},
     'mozilla-1.9.0': {},
     'tracemonkey': {},
+    'places': {},
 }
 
 PLATFORMS = {
@@ -100,6 +101,7 @@ BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1,True)
 BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1,True)
 # How many jss tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.1']['jss_tests'] = (1,True)
+# How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (0,True)
 
 ######## tracemonkey
@@ -112,4 +114,18 @@ BRANCHES['tracemonkey']['chrome_tests'] = (1,True)
 BRANCHES['tracemonkey']['nochrome_tests'] = (1,True)
 # How many jss tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['jss_tests'] = (0,True)
+# How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['tp4_tests'] = (0,True)
+
+######## places
+BRANCHES['places']['branch_name'] = "Places"
+BRANCHES['places']['build_branch'] = "Places"
+BRANCHES['places']['fetch_symbols'] = True
+# How many chrome tests per build to run, and whether to merge build requests
+BRANCHES['places']['chrome_tests'] = (1,True)
+# How many nochrome tests per build to run, and whether to merge build requests
+BRANCHES['places']['nochrome_tests'] = (0,True)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['places']['jss_tests'] = (0,True)
+# How many tp4 tests per build to run, and whether to merge build requests
+BRANCHES['places']['tp4_tests'] = (1,True)
