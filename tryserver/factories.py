@@ -497,7 +497,8 @@ for test_name in ('reftest', 'crashtest'):
            test_name=test_name, 
            warnOnWarnings=True,
            workdir="mozilla/objdir",
-           timeout=60*5
+           timeout=60*5,
+           env=MozillaEnvironments['macosx-unittest'],
     )
 
 for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chrome'): 
@@ -506,7 +507,8 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
             test_name=test_name,
             warnOnWarnings=True,
             workdir="mozilla/objdir",
-            timeout=60*5
+            timeout=60*5,
+            env=MozillaEnvironments['macosx-unittest'],
     )
 
 firefox_hg_win32_unittest_factory = factory.BuildFactory([
@@ -541,12 +543,12 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
                     flunkOnFailure=True,
                     workdir=".",
                     timeout=60*60, # 1 hour
-                    env=WIN32_ENVIRONMENT),
+                    env=MozillaEnvironments['win32-unittest']),
 
     s(ShellCommand, name="dump env vars",
                     workdir=".",
                     command="set | sort",
-                    env=WIN32_ENVIRONMENT),
+                    env=MozillaEnvironments['win32-unittest']),
 
     s(MozillaTryServerHgClone, workdir="mozilla/"),
 
@@ -567,7 +569,7 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
     s(ShellCommand, name="mozconfig contents",
                     command=["cat", ".mozconfig"],
                     workdir="mozilla",
-                    env=WIN32_ENVIRONMENT),
+                    env=MozillaEnvironments['win32-unittest']),
 
     s(ShellCommand, name="building",
                     description=["building"],
@@ -577,13 +579,13 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
                     flunkOnFailure=True,
                     workdir="mozilla",
                     timeout=3600,
-                    env=WIN32_ENVIRONMENT),
+                    env=MozillaEnvironments['win32-unittest']),
 
     s(unittest.MozillaCheck,
       test_name="check",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
-      env=WIN32_ENVIRONMENT,
+      env=MozillaEnvironments['win32-unittest'],
       timeout=5*60, # 5 minutes.
     ),
 
@@ -591,7 +593,7 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
       test_name="xpcshell-tests",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
-      env=WIN32_ENVIRONMENT,
+      env=MozillaEnvironments['win32-unittest'],
       timeout=5*60, # 5 minutes.
     ),
 ])
@@ -607,7 +609,7 @@ for test_name in ('reftest', 'crashtest'):
             leakThreshold=leakThreshold,
             warnOnWarnings=True,
             workdir="mozilla/objdir",
-            env=WIN32_ENVIRONMENT,
+            env=MozillaEnvironments['win32-unittest'],
             timeout=60*5
     )
          
@@ -621,7 +623,7 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
             test_name=test_name,
             leakThreshold=leakThreshold,
             warnOnWarnings=True,
-            env=WIN32_ENVIRONMENT,
+            env=MozillaEnvironments['win32-unittest'],
             workdir="mozilla/objdir",
             timeout=60*5
     )

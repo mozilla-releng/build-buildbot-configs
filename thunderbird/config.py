@@ -21,11 +21,10 @@ BUILDERS = {
     },
     'macosx': {
         '10.4': {
-            'momo': [ 'momo-vm-osx-tiger-%02i' % x for x in [1,2] ],
             'moco': [ 'bm-xserve07' ], 
         },
         '10.5': {
-            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [1] ],
+            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [2,3,4] ],
         },
     },
     'win32': {
@@ -101,13 +100,9 @@ BRANCHES['comm-1.9.1-unittest'] = {
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
-            'base_name': 'MacOSX 10.4 comm-1.9.1',
-            'slaves': BUILDERS['macosx']['10.4']['momo'],
-        },
-        'macosx-10.5': {
             'base_name': 'MacOSX 10.5 comm-1.9.1',
             'slaves': BUILDERS['macosx']['10.5']['momo'],
-        }
+        },
     }
 }
 
@@ -131,10 +126,6 @@ BRANCHES['comm-central-unittest'] = {
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
-            'base_name': 'MacOSX 10.4 comm-central',
-            'slaves': BUILDERS['macosx']['10.4']['momo'],
-        },
-        'macosx-10.5': {
             'base_name': 'MacOSX 10.5 comm-central',
             'slaves': BUILDERS['macosx']['10.5']['momo'],
         },
@@ -180,6 +171,12 @@ BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['create_snippet'] = False
 BRANCHES['comm-central']['create_l10n_snippets'] = False
 BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
+BRANCHES['comm-central']['aus'] = {
+    'user': 'tbirdbld',
+    'host': 'aus-staging.mozillamessaging.com',
+    'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
+}
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus/build/0/Thunderbird/comm-central'
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
@@ -191,15 +188,9 @@ BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['upload_symbols'] = False
 BRANCHES['comm-central']['tinderbox_tree'] = 'Thunderbird3.0'
-BRANCHES['comm-central']['platforms']['linux']['slaves'] = [
-    'tb-linux-tbox',
-]
-BRANCHES['comm-central']['platforms']['win32']['slaves'] = [
-    'tbnewref-win32-tbox'
-]
-BRANCHES['comm-central']['platforms']['macosx']['slaves'] = [
-    'bm-xserve07'
-]
+BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['moco']
+BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['moco']
+BRANCHES['comm-central']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['moco']
 BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -250,7 +241,7 @@ BRANCHES['comm-central']['platforms']['macosx-shark']['env'] = {'CVS_RSH': 'ssh'
 BRANCHES['comm-central-trunk']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
 }
 BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--verbose --time --traceback']
@@ -268,10 +259,11 @@ BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
 BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
+BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
+
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -290,7 +282,7 @@ BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
-BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
+BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -513,7 +505,7 @@ BRANCHES['comm-central-sunbird']['platforms']['macosx']['env'] = {'CVS_RSH': 'ss
 BRANCHES['comm-central-bloat']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
 }
 
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
@@ -533,7 +525,7 @@ BRANCHES['comm-central-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1'
-BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1'
+BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['profiled_build'] = False
@@ -553,11 +545,11 @@ BRANCHES['comm-central-bloat']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central-bloat']['tinderbox_tree'] = 'Thunderbird3.0'
 BRANCHES['comm-central-bloat']['platforms']['linux']['leak_threshold'] = 970000
-BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
+BRANCHES['comm-central-bloat']['platforms']['macosx']['leak_threshold'] = 2450000
 BRANCHES['comm-central-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
-BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
+BRANCHES['comm-central-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -598,7 +590,7 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh'
 BRANCHES['comm-central-trunk-bloat']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
 }
 
 BRANCHES['comm-central-trunk-bloat']['mozilla_central_branch'] = 'mozilla-central'
@@ -617,7 +609,7 @@ BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-trunk'
 BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-central'
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = False
@@ -637,11 +629,11 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['upload_symbols'] = F
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 1400000
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 2300000
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.4']['momo']
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -650,29 +642,17 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['platform_objdir'] = 
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'tbirdbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/home/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
 }
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'tbirdbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'tbirdbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }

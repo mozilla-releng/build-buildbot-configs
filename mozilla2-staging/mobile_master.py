@@ -20,7 +20,7 @@ from buildbotcustom.scheduler import MozScheduler
 
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
-   WinceBuildFactory, MaemoNightlyRepackFactory,\
+   WinmoBuildFactory, MaemoNightlyRepackFactory,\
    MobileDesktopBuildFactory, MobileDesktopNightlyRepackFactory
 
 from buildbot.steps.shell import WithProperties
@@ -233,7 +233,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 nightly = True
             )
         else:
-            mobile_dep_factory=WinceBuildFactory(
+            mobile_dep_factory=WinmoBuildFactory(
                 hgHost=HGHOST,
                 repoPath=branch['repo_path'],
                 configRepoPath=CONFIG_REPO_PATH,
@@ -254,7 +254,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
             )
-            mobile_nightly_factory=WinceBuildFactory(
+            mobile_nightly_factory=WinmoBuildFactory(
                 hgHost=HGHOST,
                 repoPath=branch['repo_path'],
                 configRepoPath=CONFIG_REPO_PATH,
@@ -346,7 +346,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                )
             else:
                 print 'platform %s is not linux-gnueabi-arm or linux-i686' % platform
-                continue # TODO when we have WinceNightlyRepackFactory
+                continue # TODO when we have WinmoNightlyRepackFactory
 
             mobile_l10n_nightly_builder = {
                 'name': l10nNightlyBuilders[nightly_builder]['l10n_builder'],

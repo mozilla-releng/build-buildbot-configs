@@ -17,7 +17,7 @@ from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 
-GRAPH_SERVER = 'graphs-stage.mozilla.org'
+GRAPH_SERVER = 'graphs-stage-old.mozilla.org'
 GRAPH_SELECTOR = 'server'
 GRAPH_BRANCH = 'comm-central'
 
