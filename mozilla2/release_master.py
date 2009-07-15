@@ -53,7 +53,7 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
-for platform in ['linux']:
+for platform in ['macosx']:
     build_scheduler = Dependent(
         name='%s_build' % platform,
         upstream=tag_scheduler,
