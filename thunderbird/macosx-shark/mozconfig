@@ -24,4 +24,3 @@ export MOZ_PKG_SPECIAL="shark"
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
-ac_add_options --enable-official-branding
