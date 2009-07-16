@@ -173,7 +173,7 @@ BRANCHES['comm-central']['create_l10n_snippets'] = False
 BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/trunk'
 BRANCHES['comm-central']['aus'] = {
     'user': 'tbirdbld',
-    'host': 'aus-staging.mozillamessaging.com',
+    'host': 'aus-staging.sj.mozillamessaging.com',
     'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
 }
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus/build/0/Thunderbird/comm-central'
