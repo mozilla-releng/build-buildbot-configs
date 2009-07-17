@@ -20,7 +20,6 @@ ac_add_options --disable-accessibility
 ac_add_options --disable-printing
 ac_add_options --disable-oji
 ac_add_options --disable-vista-sdk-requirements
-ac_add_options --disable-updater
 ac_add_options --disable-installer
 ac_add_options --disable-dbm
 ac_add_options --disable-ogg
