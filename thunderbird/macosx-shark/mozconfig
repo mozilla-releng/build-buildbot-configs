@@ -1,9 +1,3 @@
-if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
-. $topsrcdir/mozilla/build/macosx/universal/mozconfig
-else
-. $topsrcdir/build/macosx/universal/mozconfig
-fi
-
 mk_add_options MOZ_MAKE_FLAGS="-j2"
 
 ac_add_options --enable-application=mail
