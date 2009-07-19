@@ -198,7 +198,7 @@ BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['maco
 BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
