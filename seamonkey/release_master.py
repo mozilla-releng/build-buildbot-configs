@@ -58,7 +58,7 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
-for platform in releaseBuildPlatforms:
+for platform in releasePlatforms:
     build_scheduler = Dependent(
         name='%s_build' % platform,
         upstream=tag_scheduler,
@@ -166,7 +166,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': dummy_factory # tag_factory
+    'factory': tag_factory
 })
 
 
@@ -193,7 +193,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': dummy_factory # source_factory
+    'factory': source_factory
 })
 
 
