@@ -412,23 +412,41 @@ BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {},
 }
 BRANCHES['tracemonkey']['platforms']['linux']['mozconfig'] = 'linux/tracemonkey/nightly'
 BRANCHES['tracemonkey']['platforms']['macosx']['mozconfig'] = 'macosx/tracemonkey/nightly'
 BRANCHES['tracemonkey']['platforms']['win32']['mozconfig'] = 'win32/tracemonkey/nightly'
+BRANCHES['tracemonkey']['platforms']['linux-debug']['mozconfig'] = 'linux/tracemonkey/debug'
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['mozconfig'] = 'macosx/tracemonkey/debug'
+BRANCHES['tracemonkey']['platforms']['win32-debug']['mozconfig'] = 'win32/tracemonkey/debug'
 BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux-debug']['base_name'] = 'Linux tracemonkey leak test'
+BRANCHES['tracemonkey']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 tracemonkey leak test'
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 tracemonkey leak test'
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['win32']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 5
+BRANCHES['tracemonkey']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['tracemonkey']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['tracemonkey']['platforms']['linux']['builds_before_reboot'] = None
 BRANCHES['tracemonkey']['platforms']['win32']['builds_before_reboot'] = None
 BRANCHES['tracemonkey']['platforms']['macosx']['builds_before_reboot'] = None
+BRANCHES['tracemonkey']['platforms']['linux-debug']['builds_before_reboot'] = None
+BRANCHES['tracemonkey']['platforms']['win32-debug']['builds_before_reboot'] = None
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['builds_before_reboot'] = None
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
@@ -458,9 +476,15 @@ BRANCHES['tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['tracemonkey']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['tracemonkey']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['tracemonkey']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -489,6 +513,23 @@ BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':2',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
