@@ -20,6 +20,7 @@ mobile_slaves = {
 MOBILE_BRANCHES = {
     'mobile-trunk': {},
     'mobile-1.9.1': {},
+    'mobile-tracemonkey': {},
     'mobile-electrolysis': {},
 }
 
@@ -109,6 +110,24 @@ MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['slaves'] = mo
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
+
+### mobile-tracemonkey
+MOBILE_BRANCHES['mobile-tracemonkey']['repo_path'] = 'tracemonkey'
+MOBILE_BRANCHES['mobile-tracemonkey']['mobile_repo_path'] = 'mobile-browser'
+MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
+MOBILE_BRANCHES['mobile-tracemonkey']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
+    'linux-gnueabi-arm': {},
+}
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Tracemonkey'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build' % SBOX_HOME
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-tracemonkey'
+MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'Mobile'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
 
 ### electrolysis
 MOBILE_BRANCHES['mobile-electrolysis']['repo_path'] = 'projects/electrolysis'
