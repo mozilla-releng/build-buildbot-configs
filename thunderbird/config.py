@@ -379,9 +379,7 @@ BRANCHES['comm-central-calendar']['platforms']['win32']['slaves'] = [
 ]
 BRANCHES['comm-central-calendar']['platforms']['macosx']['slaves'] = [
     'cb-xserve03',
-    'bm-xserve07',
 ]
-BRANCHES['comm-central-calendar']['platforms']['macosx']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -466,9 +464,7 @@ BRANCHES['comm-central-sunbird']['platforms']['win32']['slaves'] = [
 ]
 BRANCHES['comm-central-sunbird']['platforms']['macosx']['slaves'] = [
     'cb-xserve03',
-    'bm-xserve07',
 ]
-BRANCHES['comm-central-sunbird']['platforms']['macosx']['cvsroot'] = ':ext:tbirdbld@cvs.mozilla.org:/cvsroot'
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
