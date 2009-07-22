@@ -113,7 +113,7 @@ BRANCHES['tracemonkey']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['nochrome_tests'] = (1,True)
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['jss_tests'] = (0,True)
+BRANCHES['tracemonkey']['jss_tests'] = (1,True)
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['tp4_tests'] = (0,True)
 
@@ -126,6 +126,6 @@ BRANCHES['places']['chrome_tests'] = (1,True)
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['places']['nochrome_tests'] = (0,True)
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['places']['jss_tests'] = (0,True)
+BRANCHES['places']['jss_tests'] = (1,True)
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['places']['tp4_tests'] = (1,True)
