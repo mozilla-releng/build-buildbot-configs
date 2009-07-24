@@ -538,7 +538,7 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
             workdir="D:\\Utilities"),
 
     s(ShellCommand, name="remove source and obj dirs",
-                    command=["rm", "-rf", "mozilla/"],
+                    command=["rmdir", "/s", "/q", "mozilla"],
                     haltOnFailure=True,
                     flunkOnFailure=True,
                     workdir=".",
