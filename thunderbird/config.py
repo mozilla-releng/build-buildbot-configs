@@ -17,19 +17,14 @@ BRAND_NAME = 'Shredder'
 BUILDERS = {
     'linux': {
         'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]],
-        'moco': [ 'tb-linux-tbox' ],
     },
     'macosx': {
-        '10.4': {
-            'moco': [ 'bm-xserve07' ], 
-        },
         '10.5': {
             'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [2,3,4] ],
         },
     },
     'win32': {
         'momo': [ 'momo-vm-%02i' % x for x in [4,6,13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1 ] ],
-        'moco': [ 'tbnewref-win32-tbox' ],
     },
 }
 
