@@ -40,7 +40,7 @@ TALOS_MASTERS = [
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,26)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,2)],
-    'win32': ['moz2-win32-slave%02i' % x for x in range(1,30)],
+    'win32': ['moz2-win32-slave%02i' % x for x in range(1,40)],
     'macosx': ['moz2-darwin9-slave%02i' % x for x in range(1,19)] + [
                'bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]],
 }
