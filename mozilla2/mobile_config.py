@@ -125,7 +125,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_s
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build' % SBOX_HOME
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
-MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'Mobile'
+MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
 
