@@ -22,8 +22,8 @@ SYMBOL_SERVER_XULRUNNER_PATH = '/mnt/netapp/breakpad/symbols_xr/'
 AUS2_USER = 'cltbld'
 AUS2_HOST = 'staging-stage.build.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox'
-GRAPH_SERVER = 'graphs-stage-old.mozilla.org'
-GRAPH_SELECTOR = 'server'
+GRAPH_SERVER = 'graphs-stage.mozilla.org'
+GRAPH_SELECTOR = '/server/collect.cgi'
 BUILD_TOOLS_REPO_PATH = 'users/stage-ffxbld/tools'
 COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
 COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
@@ -40,7 +40,7 @@ TALOS_MASTERS = [
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,26)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,2)],
-    'win32': ['moz2-win32-slave%02i' % x for x in range(1,30)],
+    'win32': ['moz2-win32-slave%02i' % x for x in range(1,40)],
     'macosx': ['moz2-darwin9-slave%02i' % x for x in range(1,19)] + [
                'bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]],
 }
@@ -69,6 +69,7 @@ BRANCHES = {
     'mozilla-1.9.1': {},
     'tracemonkey': {},
     'places': {},
+    'electrolysis': {},
 }
 
 ######## mozilla-central
@@ -413,23 +414,41 @@ BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {}
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {},
 }
 BRANCHES['tracemonkey']['platforms']['linux']['mozconfig'] = 'linux/tracemonkey/nightly'
 BRANCHES['tracemonkey']['platforms']['macosx']['mozconfig'] = 'macosx/tracemonkey/nightly'
 BRANCHES['tracemonkey']['platforms']['win32']['mozconfig'] = 'win32/tracemonkey/nightly'
+BRANCHES['tracemonkey']['platforms']['linux-debug']['mozconfig'] = 'linux/tracemonkey/debug'
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['mozconfig'] = 'macosx/tracemonkey/debug'
+BRANCHES['tracemonkey']['platforms']['win32-debug']['mozconfig'] = 'win32/tracemonkey/debug'
 BRANCHES['tracemonkey']['platforms']['linux']['base_name'] = 'Linux tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['base_name'] = 'WINNT 5.2 tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux-debug']['base_name'] = 'Linux tracemonkey leak test'
+BRANCHES['tracemonkey']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 tracemonkey leak test'
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 tracemonkey leak test'
 BRANCHES['tracemonkey']['platforms']['linux']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['win32']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 5
+BRANCHES['tracemonkey']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['tracemonkey']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['tracemonkey']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['win32']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['macosx']['builds_before_reboot'] = 5
+BRANCHES['tracemonkey']['platforms']['linux-debug']['builds_before_reboot'] = 5
+BRANCHES['tracemonkey']['platforms']['win32-debug']['builds_before_reboot'] = 5
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
@@ -459,9 +478,15 @@ BRANCHES['tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['tracemonkey']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['tracemonkey']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 BRANCHES['tracemonkey']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['tracemonkey']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
@@ -490,6 +515,23 @@ BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':2',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['tracemonkey']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
@@ -619,6 +661,136 @@ BRANCHES['places']['platforms']['macosx-debug']['env'] = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['places']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
+######## electrolysis
+BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
+BRANCHES['electrolysis']['major_version'] = '1.9.2'
+BRANCHES['electrolysis']['product_name'] = 'firefox'
+BRANCHES['electrolysis']['app_name'] = 'browser'
+BRANCHES['electrolysis']['brand_name'] = 'Minefield'
+BRANCHES['electrolysis']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {},
+}
+BRANCHES['electrolysis']['platforms']['linux']['mozconfig'] = 'linux/electrolysis/nightly'
+BRANCHES['electrolysis']['platforms']['macosx']['mozconfig'] = 'macosx/electrolysis/nightly'
+BRANCHES['electrolysis']['platforms']['win32']['mozconfig'] = 'win32/electrolysis/nightly'
+BRANCHES['electrolysis']['platforms']['linux-debug']['mozconfig'] = 'linux/electrolysis/debug'
+BRANCHES['electrolysis']['platforms']['macosx-debug']['mozconfig'] = 'macosx/electrolysis/debug'
+BRANCHES['electrolysis']['platforms']['win32-debug']['mozconfig'] = 'win32/electrolysis/debug'
+BRANCHES['electrolysis']['platforms']['linux']['base_name'] = 'Linux electrolysis'
+BRANCHES['electrolysis']['platforms']['win32']['base_name'] = 'WINNT 5.2 electrolysis'
+BRANCHES['electrolysis']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 electrolysis'
+BRANCHES['electrolysis']['platforms']['linux-debug']['base_name'] = 'Linux electrolysis leak test'
+BRANCHES['electrolysis']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 electrolysis leak test'
+BRANCHES['electrolysis']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 electrolysis leak test'
+BRANCHES['electrolysis']['platforms']['linux']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['macosx-debug']['profiled_build'] = False
+BRANCHES['electrolysis']['platforms']['linux']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['win32']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['macosx']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['linux-debug']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['win32-debug']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['macosx-debug']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['linux']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['win32']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['macosx']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['linux-debug']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['win32-debug']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['macosx-debug']['builds_before_reboot'] = 5
+BRANCHES['electrolysis']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['electrolysis']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['electrolysis']['platforms']['macosx']['upload_symbols'] = True
+BRANCHES['electrolysis']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['electrolysis']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['electrolysis']['enable_unittests'] = True
+BRANCHES['electrolysis']['enable_mac_a11y'] = True
+BRANCHES['electrolysis']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['electrolysis']['platforms']['win32']['crashtest_leak_threshold'] = 484
+BRANCHES['electrolysis']['unittest_build_space'] = 5
+BRANCHES['electrolysis']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['electrolysis']['enable_l10n'] = False
+BRANCHES['electrolysis']['l10nNightlyUpdate'] = False 
+BRANCHES['electrolysis']['l10nDatedDirs'] = False 
+# nightly shark build for profiling
+BRANCHES['electrolysis']['enable_shark'] = True
+# need this or the master.cfg will bail
+BRANCHES['electrolysis']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['electrolysis']['idle_timeout'] = 60*60*10   # 10 hours
+BRANCHES['electrolysis']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['electrolysis']['platforms']['win32']['update_platform'] = 'fake'
+BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
+BRANCHES['electrolysis']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['electrolysis']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['electrolysis']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['electrolysis']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['electrolysis']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['electrolysis']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['electrolysis']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
+BRANCHES['electrolysis']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['electrolysis']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['electrolysis']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['electrolysis']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['electrolysis']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['electrolysis']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
+BRANCHES['electrolysis']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['electrolysis']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['electrolysis']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['electrolysis']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':2',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['electrolysis']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['electrolysis']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
