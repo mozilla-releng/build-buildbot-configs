@@ -71,7 +71,7 @@ for platform in releasePlatforms:
         tree='release'
     )
     schedulers.append(build_scheduler)
-    if platform == 'macosx':
+    if platform == 'win32':
         schedulers.append(repack_scheduler)
 l10n_verify_scheduler = Scheduler(
     name='l10n_verification',
@@ -163,7 +163,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': source_factory
+    'factory': dummy_factory
 })
 
 
