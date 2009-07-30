@@ -71,7 +71,8 @@ for platform in releasePlatforms:
         tree='release'
     )
     schedulers.append(build_scheduler)
-    schedulers.append(repack_scheduler)
+    if platform == 'macosx':
+        schedulers.append(repack_scheduler)
 l10n_verify_scheduler = Scheduler(
     name='l10n_verification',
     treeStableTimer=0,
