@@ -8,15 +8,10 @@ import buildbotcustom.process.factory
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
-  ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
+  CCReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory, ReleaseRepackFactory
+  L10nVerifyFactory, CCReleaseRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
-
-# comm-central logic, temporary location
-import ccfactory
-reload(ccfactory)
-from ccfactory import CCReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, CCReleaseRepackFactory
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
