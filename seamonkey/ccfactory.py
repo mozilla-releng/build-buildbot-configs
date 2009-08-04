@@ -80,7 +80,7 @@ class CCSourceFactory(ReleaseFactory):
                  autoconfDirs=['.'], buildSpace=1, **kwargs):
         ReleaseFactory.__init__(self, buildSpace=buildSpace, **kwargs)
         releaseTag = '%s_RELEASE' % (baseTag)
-        sourceTarball = 'source/%s-%s-source.tar.bz2' % (productName,
+        sourceTarball = 'source/%s-%s.source.tar.bz2' % (productName,
                                                          version)
         # '-c' is for "release to candidates dir"
         postUploadCmd = 'post_upload.py -p %s -v %s -n %s -c' % \
