@@ -6,7 +6,7 @@ sourceRepoName      = 'mozilla-central'
 # It is not used for anything else.
 sourceRepoClonePath = sourceRepoName
 sourceRepoPath      = 'users/stage-ffxbld/mozilla-central'
-sourceRepoRevision  = 'todo'
+sourceRepoRevision  = '5c913c4662d8'
 relbranchOverride   = ''
 l10nRepoClonePath   = 'l10n-central'
 l10nRepoPath        = 'users/stage-ffxbld'
@@ -24,10 +24,10 @@ appVersion          = version
 milestone           = '1.9.2a1'
 buildNumber         = 1
 baseTag             = 'FIREFOX_3_6a1'
-oldVersion          = 'none'
-oldAppVersion       = 'none'
+oldVersion          = ''
+oldAppVersion       = ''
 oldBuildNumber      = 1
-oldBaseTag          = 'none'
+oldBaseTag          = ''
 releasePlatforms    = ('linux', 'win32', 'macosx')
 # TODO: create this file before 3.6a2
 patcherConfig       = 'moz192-branch-patcher2.cfg'
@@ -37,7 +37,7 @@ stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
 useBetaChannel      = 0
-# TODO: create this file before 3.6a2
+# TODO: create these files before 3.6a2
 verifyConfigs       = {'linux':  'moz192-firefox-linux.cfg',
                        'macosx': 'moz192-firefox-mac.cfg',
                        'win32':  'moz192-firefox-win32.cfg'}
