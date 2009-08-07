@@ -41,7 +41,8 @@ DEFAULTS = {
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
     'codesighs':               False,
-    'brand_name':             'Thunderbird',
+    'product_name':           'Thunderbird',
+    'brand_name':             'Shredder',
     
     # Unit Test
     'poll_branch':          'comm-central',
@@ -431,6 +432,7 @@ BRANCHES['comm-central-sunbird']['l10n_mozconfig'] = 'mozconfig-sunbird-l10n'
 BRANCHES['comm-central-sunbird']['product'] = 'calendar'
 BRANCHES['comm-central-sunbird']['appname'] = 'sunbird'
 BRANCHES['comm-central-sunbird']['brand_name'] = 'Sunbird'
+BRANCHES['comm-central-sunbird']['product_name'] = 'Sunbird'
 BRANCHES['comm-central-sunbird']['irc_nick'] = 'sunbuild'
 BRANCHES['comm-central-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
 BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
