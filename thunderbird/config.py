@@ -422,6 +422,7 @@ BRANCHES['comm-central-sunbird']['upload_stage'] = True
 BRANCHES['comm-central-sunbird']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central-sunbird']['stage_username'] = 'calbld'
 BRANCHES['comm-central-sunbird']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/sunbird'
+BRANCHES['comm-central-sunbird']['stage_project'] = 'calendar/sunbird'
 BRANCHES['comm-central-sunbird']['stage_group'] = 'calendar'
 BRANCHES['comm-central-sunbird']['stage_ssh_key'] = 'calbld_dsa'
 BRANCHES['comm-central-sunbird']['codesighs'] = False
