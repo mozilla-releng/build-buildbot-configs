@@ -32,15 +32,6 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
             branch=branch,
             pollInterval=1*60
         ))
-
-    if l10n:
-        # XXX: 100% hard-coded, bad
-        change_source.append(HgAllLocalesPoller(
-            #XXX: picks the last seen hgurl, bad
-            hgURL = "%s/" % hgurl,
-            repositoryIndex = 'releases/l10n-mozilla-1.9.1',
-            pollInterval=180,
-        ))
         
 from buildbot.steps.shell import ShellCommand, WithProperties
 def uploadUpdateSnippet(f, aus, platform):

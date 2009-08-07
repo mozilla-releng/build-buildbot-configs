@@ -12,7 +12,6 @@ AUS2_HOST = 'aus2-staging.mozilla.org'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
-BRAND_NAME = 'Shredder'
 
 BUILDERS = {
     'linux': {
@@ -42,6 +41,7 @@ DEFAULTS = {
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
     'codesighs':               False,
+    'brand_name':             'Thunderbird',
     
     # Unit Test
     'poll_branch':          'comm-central',
@@ -148,6 +148,8 @@ BRANCHES['comm-central']['upload_stage'] = True
 BRANCHES['comm-central']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['l10n'] = True
+BRANCHES['comm-central']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
+BRANCHES['comm-central']['l10n_tree'] = 'tb30x'
 BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
 BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
@@ -249,7 +251,9 @@ BRANCHES['comm-central-trunk']['package'] = True
 BRANCHES['comm-central-trunk']['upload_stage'] = True
 BRANCHES['comm-central-trunk']['milestone'] = 'comm-central-trunk'
 BRANCHES['comm-central-trunk']['codesighs'] = True
-BRANCHES['comm-central-trunk']['l10n'] = False
+BRANCHES['comm-central-trunk']['l10n'] = True
+BRANCHES['comm-central-trunk']['l10n_repo'] = 'l10n-central'
+BRANCHES['comm-central-trunk']['l10n_tree'] = 'tb31x'
 BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
 BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central'
@@ -421,10 +425,12 @@ BRANCHES['comm-central-sunbird']['stage_group'] = 'calendar'
 BRANCHES['comm-central-sunbird']['stage_ssh_key'] = 'calbld_dsa'
 BRANCHES['comm-central-sunbird']['codesighs'] = False
 BRANCHES['comm-central-sunbird']['l10n'] = True
+BRANCHES['comm-central-sunbird']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
+BRANCHES['comm-central-sunbird']['l10n_tree'] = 'sunbird10x'
 BRANCHES['comm-central-sunbird']['l10n_mozconfig'] = 'mozconfig-sunbird-l10n'
 BRANCHES['comm-central-sunbird']['product'] = 'calendar'
 BRANCHES['comm-central-sunbird']['appname'] = 'sunbird'
-BRANCHES['comm-central-sunbird']['brand_name'] = 'Calendar'
+BRANCHES['comm-central-sunbird']['brand_name'] = 'Sunbird'
 BRANCHES['comm-central-sunbird']['irc_nick'] = 'sunbuild'
 BRANCHES['comm-central-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
 BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
