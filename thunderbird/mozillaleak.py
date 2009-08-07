@@ -17,8 +17,10 @@ from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 
-GRAPH_SERVER = 'graphs-stage-old.mozilla.org'
-GRAPH_SELECTOR = 'server'
+from buildbot.steps.shell import SetProperty
+
+GRAPH_SERVER = 'graphs.mozilla.org'
+GRAPH_SELECTOR = '/server/collect.cgi'
 GRAPH_BRANCH = 'comm-central'
 
 def addLeakTestSteps(self,branch,platform,platformName):
@@ -51,19 +53,40 @@ def addLeakTestSteps(self,branch,platform,platformName):
          command=['cp', 'bloat.log', '../bloat.log'],
         )
         self.addStep(CompareBloatLogs,
-         bloatLog='../bloat.log',
-         mozillaDir="mozilla",
+         bloatLog='bloat.log',
+         mozillaDir="/mozilla",
          env=env,
          testnameprefix='Mail',
          testname='Mail',
+         workdir='.',
          haltOnFailure=False,
         )
-        self.addStep(GraphServerPost,
-         server=self.graphServer,
-         selector=self.graphSelector,
-         branch=self.graphBranch,
-         resultsname=self.baseName,
+
+        self.addStep(SetProperty,
+          command=['python', 'build/mozilla/config/printconfigsetting.py',
+          'build/objdir-tb/mozilla/dist/bin/application.ini',
+          'App', 'BuildID'],
+          property='buildid',
+          workdir='.',
+          description=['getting', 'buildid'],
+          descriptionDone=['got', 'buildid']
         )
+        self.addStep(SetProperty,
+          command=['python', 'build/mozilla/config/printconfigsetting.py',
+          'build/objdir-tb/mozilla/dist/bin/application.ini',
+          'App', 'SourceStamp'],
+          property='sourcestamp',
+          workdir='.',
+          description=['getting', 'sourcestamp'],
+          descriptionDone=['got', 'sourcestamp']
+        )
+
+#        self.addStep(GraphServerPost,
+#         server=self.graphServer,
+#         selector=self.graphSelector,
+#         branch=self.graphBranch,
+#         resultsname=self.baseName,
+#        )
         self.addStep(ShellCommand,
          env=env,
          command=['cp', 'malloc.log','../malloc.log',],
@@ -82,12 +105,12 @@ def addLeakTestSteps(self,branch,platform,platformName):
          testnameprefix='Mail',
          haltOnFailure=False,
         )
-        self.addStep(GraphServerPost,
-         server=self.graphServer,
-         selector=self.graphSelector,
-         branch=self.graphBranch,
-         resultsname=self.baseName
-        )
+#        self.addStep(GraphServerPost,
+#         server=self.graphServer,
+#         selector=self.graphSelector,
+#         branch=self.graphBranch,
+#         resultsname=self.baseName
+#        )
         self.addStep(CompareLeakLogs,
          mallocLog='../malloc.log.old',
          platform=platformName,
