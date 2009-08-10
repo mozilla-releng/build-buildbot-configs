@@ -48,6 +48,7 @@ mobileBuilders = []
 # Like the main cfg, except mobile
 for name in sorted(MOBILE_BRANCHES.keys()):
     branch = MOBILE_BRANCHES[name]
+    mainConfig = branch['main_config']
     builders = []
     nightlyBuilders = []
     l10nNightlyBuilders = {}
@@ -86,7 +87,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             logCompression='bzip2',
             builders=l10n_builders,
             binaryURL='http://%s/pub/mozilla.org/firefox/nightly/latest-%s-l10n' \
-                      % (STAGE_SERVER, name)
+                      % (mainConfig['stage_server'], name)
         ))
         # Locale-specific page
         m['status'].append(TinderboxMailNotifier(
@@ -97,7 +98,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             logCompression='bzip2',
             builders=l10n_builders,
             binaryURL='http://%s/pub/mozilla.org/firefox/nightly/latest-%s-l10n' \
-                      % (STAGE_SERVER, name)
+                      % (mainConfig['stage_server'], name)
         ))
 
     #
@@ -136,142 +137,142 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         treeStableTimer=3*60,
         idleTimeout=branch.get('idle_timeout', None),
         builderNames=builders,
-        fileIsImportant=lambda c: isHgPollerTriggered(c, HGURL)
+        fileIsImportant=lambda c: isHgPollerTriggered(c, mainConfig['hgurl'])
     ))
 
     for platform in sorted(branch['platforms'].keys()):
         pf = branch['platforms'][platform]
 
-        buildSpace = pf.get('build_space', DEFAULT_BUILD_SPACE)
-        clobberTime = pf.get('clobber_time', DEFAULT_CLOBBER_TIME)
+        buildSpace = pf.get('build_space', mainConfig['default_build_space'])
+        clobberTime = pf.get('clobber_time', mainConfig['default_clobber_time'])
 
         mobile_dep_factory = None
         mobile_nightly_factory = None
 
         if platform == 'linux-gnueabi-arm':
             mobile_dep_factory = MaemoBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace
             )
             mobile_nightly_factory = MaemoBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
                 nightly = True
             )
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
             )
             mobile_nightly_factory = MobileDesktopBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
                 nightly = True
             )
         else:
             mobile_dep_factory=WinmoBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 env=pf['env'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
             )
             mobile_nightly_factory=WinmoBuildFactory(
-                hgHost=HGHOST,
+                hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
-                configRepoPath=CONFIG_REPO_PATH,
-                configSubDir=CONFIG_SUBDIR,
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
                 env=pf['env'],
                 mozconfig=pf['mozconfig'],
-                stageUsername=STAGE_USERNAME,
-                stageGroup=STAGE_GROUP,
-                stageSshKey=STAGE_SSH_KEY,
-                stageServer=STAGE_SERVER,
-                stageBasePath=STAGE_BASE_PATH,
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
-                buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                clobberURL=BASE_CLOBBER_URL,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
                 nightly=True,
@@ -298,50 +299,50 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             mobile_l10n_nightly_factory = None
             if platform == 'linux-gnueabi-arm':
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
-                    hgHost=HGHOST,
+                    hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
                     packageGlob='fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                     enUSBinaryURL=branch['enUS_binaryURL'],
-                    stageServer=STAGE_SERVER,
-                    stageUsername=STAGE_USERNAME,
-                    stageSshKey=STAGE_SSH_KEY,
-                    stageBasePath=STAGE_BASE_PATH,
+                    stageServer=mainConfig['stage_server'],
+                    stageUsername=mainConfig['stage_username'],
+                    stageSshKey=mainConfig['stage_ssh_key'],
+                    stageBasePath=mainConfig['stage_base_path'],
                     repoPath=branch['repo_path'],
                     l10nRepoPath=branch['l10n_repo_path'],
                     mobileRepoPath=branch['mobile_repo_path'],
-                    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                    compareLocalesRepoPath=COMPARE_LOCALES_REPO_PATH,
-                    compareLocalesTag=COMPARE_LOCALES_TAG,
+                    buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                    compareLocalesRepoPath=mainConfig['compare_locales_repo_path'],
+                    compareLocalesTag=mainConfig['compare_locales_tag'],
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
                     baseUploadDir='%s-l10n' % name,
-                    clobberURL=BASE_CLOBBER_URL,
+                    clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                )
             elif platform == 'linux-i686':
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
-                    hgHost=HGHOST,
+                    hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
                     packageGlob='fennec-*.%(locale)s.linux-i686.tar.bz2',
                     enUSBinaryURL=branch['enUS_binaryURL'],
-                    stageServer=STAGE_SERVER,
-                    stageUsername=STAGE_USERNAME,
-                    stageSshKey=STAGE_SSH_KEY,
-                    stageBasePath=STAGE_BASE_PATH,
+                    stageServer=mainConfig['stage_server'],
+                    stageUsername=mainConfig['stage_username'],
+                    stageSshKey=mainConfig['stage_ssh_key'],
+                    stageBasePath=mainConfig['stage_base_path'],
                     repoPath=branch['repo_path'],
                     l10nRepoPath=branch['l10n_repo_path'],
                     mobileRepoPath=branch['mobile_repo_path'],
-                    buildToolsRepoPath=BUILD_TOOLS_REPO_PATH,
-                    compareLocalesRepoPath=COMPARE_LOCALES_REPO_PATH,
-                    compareLocalesTag=COMPARE_LOCALES_TAG,
+                    buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                    compareLocalesRepoPath=mainConfig['compare_locales_repo_path'],
+                    compareLocalesTag=mainConfig['compare_locales_tag'],
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
                     baseUploadDir='%s-l10n' % name,
-                    clobberURL=BASE_CLOBBER_URL,
+                    clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                )
             else:
@@ -360,7 +361,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
 # mobile-browser, which is shared
 m['change_source'].append(HgPoller(
-    hgURL=HGURL,
+    hgURL=mainConfig['hgurl'],
     branch='mobile-browser',
     pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/pushlog',
     pollInterval=1*60
@@ -370,5 +371,5 @@ m['schedulers'].append(Scheduler(
     branch="mobile-browser",
     treeStableTimer=3*60,
     builderNames=mobileBuilders,
-    fileIsImportant=lambda c: isHgPollerTriggered(c, HGURL)
+    fileIsImportant=lambda c: isHgPollerTriggered(c, mainConfig['hgurl'])
 ))

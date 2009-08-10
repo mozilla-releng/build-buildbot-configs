@@ -1,47 +1,4 @@
-# It's a little unfortunate to have both of these but some things (HgPoller)
-# require an URL while other things (BuildSteps) require only the host.
-# Since they're both right here it shouldn't be a problem to keep them in sync.
-HGURL = 'http://hg.mozilla.org/'
-HGHOST = 'hg.mozilla.org'
-# for nss/nspr
-CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-CONFIG_REPO_PATH = 'build/buildbot-configs'
-CONFIG_SUBDIR = 'mozilla2'
-OBJDIR = 'obj-firefox'
-OBJDIR_UNITTESTS = 'objdir'
-STAGE_USERNAME = 'ffxbld'
-STAGE_USERNAME_XULRUNNER = 'xrbld'
-STAGE_SERVER = 'stage.mozilla.org'
-STAGE_BASE_PATH = '/home/ftp/pub/firefox'
-STAGE_BASE_PATH_XULRUNNER = '/home/ftp/pub/xulrunner'
-STAGE_GROUP = None
-STAGE_SSH_KEY = 'ffxbld_dsa'
-STAGE_SSH_XULRUNNER_KEY = 'xrbld_dsa'
-SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_ffx/'
-SYMBOL_SERVER_XULRUNNER_PATH = '/mnt/netapp/breakpad/symbols_xr/'
-AUS2_USER = 'cltbld'
-AUS2_HOST = 'aus2-staging.mozilla.org'
-DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox'
-GRAPH_SERVER = 'graphs.mozilla.org'
-GRAPH_SELECTOR = '/server/collect.cgi'
-BUILD_TOOLS_REPO_PATH = 'build/tools'
-COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
-COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
-DEFAULT_BUILD_SPACE = 5
-BASE_CLOBBER_URL = 'http://build.mozilla.org/clobberer/index.php'
-DEFAULT_CLOBBER_TIME = 24*7 # 1 week
-# List of talos masters to notify of new builds, and if a failure to notify the
-# talos master should result in a warning
-TALOS_MASTERS = [
-    ('qm-rhel02.mozilla.org:9988', True),
-    ('talos-master.mozilla.org:9010', False),
-    ('talos-staging-master.mozilla.org:9010', False),
-    ('qm-buildbot01.mozilla.org:9987', False),
-    ]
-
-# List of unittest masters to notify of new builds to test, and if a failure to
-# notify the master should result in a warning
-UNITTEST_MASTERS = [('localhost:9010', True)]
+from copy import deepcopy
 
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in [
@@ -58,18 +15,68 @@ SLAVES = {
                'bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]],
 }
 
-L10N_SLAVES = {
-    'linux': SLAVES['linux'][:8],
-    'win32': SLAVES['win32'][:8],
-    'macosx': SLAVES['macosx'][:8],
+# Everything in this list will be set in the branch dict at the end of this file
+# For example,
+#  BRANCHES['mozilla-central']['hgurl'] = HGURL
+#  BRANCHES['mozilla-central']['hghost'] = HGHOST
+#  ...
+BRANCH_LEVEL_VARS = {
+    # It's a little unfortunate to have both of these but some things (HgPoller)
+    # require an URL while other things (BuildSteps) require only the host.
+    # Since they're both right here it shouldn't be
+    # a problem to keep them in sync.
+    'hgurl': 'http://hg.mozilla.org/',
+    'hghost': 'hg.mozilla.org',
+    'config_repo_path': 'build/buildbot-configs',
+    'config_subdir': 'mozilla2',
+    'objdir': 'obj-firefox',
+    'objdir_unittests': 'objdir',
+    'stage_username': 'ffxbld',
+    'stage_username_xulrunner': 'xrbld',
+    'stage_server': 'stage.mozilla.org',
+    'stage_base_path': '/home/ftp/pub/firefox',
+    'stage_base_path_xulrunner': '/home/ftp/pub/xulrunner',
+    'stage_group': None,
+    'stage_ssh_key': 'ffxbld_dsa',
+    'stage_ssh_xulrunner_key': 'xrbld_dsa',
+    'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
+    'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
+    'aus2_user': 'cltbld',
+    'aus2_host': 'aus2-staging.mozilla.org',
+    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
+    'graph_server': 'graphs.mozilla.org',
+    'graph_selector': '/server/collect.cgi',
+    'build_tools_repo_path': 'build/tools',
+    'compare_locales_repo_path': 'build/compare-locales',
+    'compare_locales_tag': 'RELEASE_AUTOMATION',
+    'default_build_space': 5,
+    'base_clobber_url': 'http://build.mozilla.org/clobberer/index.php',
+    'default_clobber_time': 24*7, # 1 week
+    # List of talos masters to notify of new builds,
+    # and if a failure to notify the talos master should result in a warning
+    'talos_masters': [
+        ('qm-rhel02.mozilla.org:9988', True),
+        ('talos-master.mozilla.org:9010', False),
+        ('talos-staging-master.mozilla.org:9010', False),
+        ('qm-buildbot01.mozilla.org:9987', False),
+    ],
+    # List of unittest masters to notify of new builds to test,
+    # and if a failure to notify the master should result in a warning
+    'unittest_masters': [('localhost:9010', True)],
+    'unittest_suites': [
+        ('mochitests', ['mochitest-plain']),
+        ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                            'mochitest-browser-chrome', 'mochitest-a11y',
+                            'xpcshell'])
+    ],
+    'xulrunner_tinderbox_tree': 'XULRunner',
+    'weekly_tinderbox_tree': 'Testing',
+    'l10n_tinderbox_tree': 'Mozilla-l10n',
 }
 
-UNITTEST_SUITES = [
-    ('mochitests', ['mochitest-plain']),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell'])
-]
+# shorthand, because these are used often
+OBJDIR = BRANCH_LEVEL_VARS['objdir']
+SYMBOL_SERVER_PATH = BRANCH_LEVEL_VARS['symbol_server_path']
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
@@ -79,6 +86,11 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
 }
+
+# We copy the global vars in first, so branches can override them if they want to
+for branch in BRANCHES.keys():
+    for attr in BRANCH_LEVEL_VARS.keys():
+        BRANCHES[branch][attr] = deepcopy(BRANCH_LEVEL_VARS[attr])
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -154,7 +166,7 @@ BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
-    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # nightly shark build for profiling
 BRANCHES['mozilla-central']['enable_shark'] = True
@@ -176,6 +188,7 @@ BRANCHES['mozilla-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Firefox'
+BRANCHES['mozilla-central']['packaged_unittest_tinderbox_tree'] = 'Firefox-Unittest'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = SLAVES['win32']
@@ -318,7 +331,7 @@ BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
-    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 # nightly shark build for profiling
 BRANCHES['mozilla-1.9.1']['enable_shark'] = True
@@ -334,6 +347,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'Firefox3.5'
+BRANCHES['mozilla-1.9.1']['packaged_unittest_tinderbox_tree'] = 'Firefox3.5-Unittest'
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['slaves'] = SLAVES['win32']
@@ -474,6 +488,7 @@ BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
+BRANCHES['tracemonkey']['packaged_unittest_tinderbox_tree'] = 'TraceMonkey-Unittest'
 BRANCHES['tracemonkey']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['tracemonkey']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['tracemonkey']['platforms']['macosx']['slaves'] = SLAVES['macosx']
@@ -602,6 +617,7 @@ BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['places']['tinderbox_tree'] = 'Places'
+BRANCHES['places']['packaged_unittest_tinderbox_tree'] = 'Places-Unittest'
 BRANCHES['places']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['places']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['places']['platforms']['macosx']['slaves'] = SLAVES['macosx']
@@ -732,6 +748,7 @@ BRANCHES['electrolysis']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['tinderbox_tree'] = 'Electrolysis'
+BRANCHES['electrolysis']['packaged_unittest_tinderbox_tree'] = 'Electrolysis-Unittest'
 BRANCHES['electrolysis']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['electrolysis']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['electrolysis']['platforms']['macosx']['slaves'] = SLAVES['macosx']

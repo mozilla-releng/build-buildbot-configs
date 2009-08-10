@@ -1,42 +1,7 @@
-# It's a little unfortunate to have both of these but some things (HgPoller)
-# require an URL while other things (BuildSteps) require only the host.
-# Since they're both right here it shouldn't be a problem to keep them in sync.
-HGURL = 'http://hg.mozilla.org/'
-HGHOST = 'hg.mozilla.org'
-# for nss/nspr
-CVSROOT = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-CONFIG_REPO_PATH = 'build/buildbot-configs'
-CONFIG_SUBDIR = 'mozilla2-staging'
-OBJDIR = 'obj-firefox'
-OBJDIR_UNITTESTS = 'objdir'
-STAGE_USERNAME = 'ffxbld'
-STAGE_USERNAME_XULRUNNER = 'xrbld'
-STAGE_SERVER = 'staging-stage.build.mozilla.org'
-STAGE_BASE_PATH = '/home/ftp/pub/firefox'
-STAGE_BASE_PATH_XULRUNNER = '/home/ftp/pub/xulrunner'
-STAGE_GROUP = None
-STAGE_SSH_KEY = 'ffxbld_dsa'
-STAGE_SSH_XULRUNNER_KEY = 'xrbld_dsa'
-SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_ffx/'
-SYMBOL_SERVER_XULRUNNER_PATH = '/mnt/netapp/breakpad/symbols_xr/'
-AUS2_USER = 'cltbld'
-AUS2_HOST = 'staging-stage.build.mozilla.org'
-DOWNLOAD_BASE_URL = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox'
-GRAPH_SERVER = 'graphs-stage.mozilla.org'
-GRAPH_SELECTOR = '/server/collect.cgi'
-BUILD_TOOLS_REPO_PATH = 'users/stage-ffxbld/tools'
-COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
-COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
-DEFAULT_BUILD_SPACE = 5
-BASE_CLOBBER_URL = 'http://build.mozilla.org/stage-clobberer/index.php'
-DEFAULT_CLOBBER_TIME = 24*7 # 1 week
-# List of talos masters to notify of new builds, and if a failure to notify the
-# talos master should result in a warning
-TALOS_MASTERS = [
-    ('qm-buildbot01.mozilla.org:9987', False),
-    ('talos-staging-master.mozilla.org:9010', False),
-    ]
+from copy import deepcopy
 
+# This is only used within this file so it doesn't need to be part of the
+# big dict
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,26)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,2)],
@@ -45,23 +10,68 @@ SLAVES = {
                'bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]],
 }
 
-L10N_SLAVES = {
-    'linux': SLAVES['linux'][:8],
-    'win32': SLAVES['win32'][:8],
-    'macosx': SLAVES['macosx'][:8],
+# Everything in this list will be set in the branch dict at the end of this file
+# For example,
+#  BRANCHES['mozilla-central']['hgurl'] = HGURL
+#  BRANCHES['mozilla-central']['hghost'] = HGHOST
+#  ...
+BRANCH_LEVEL_VARS = {
+    # It's a little unfortunate to have both of these but some things (HgPoller)
+    # require an URL while other things (BuildSteps) require only the host.
+    # Since they're both right here it shouldn't be a problem
+    # to keep them in sync.
+    'hgurl': 'http://hg.mozilla.org/',
+    'hghost': 'hg.mozilla.org',
+    'config_repo_path': 'build/buildbot-configs',
+    'config_subdir': 'mozilla2-staging',
+    'objdir': 'obj-firefox',
+    'objdir_unittests': 'objdir',
+    'stage_username': 'ffxbld',
+    'stage_username_xulrunner': 'xrbld',
+    'stage_server': 'staging-stage.build.mozilla.org',
+    'stage_base_path': '/home/ftp/pub/firefox',
+    'stage_base_path_xulrunner': '/home/ftp/pub/xulrunner',
+    'stage_group': None,
+    'stage_ssh_key': 'ffxbld_dsa',
+    'stage_ssh_xulrunner_key': 'xrbld_dsa',
+    'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
+    'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
+    'aus2_user': 'cltbld',
+    'aus2_host': 'staging-stage.build.mozilla.org',
+    'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
+    'graph_server': 'graphs-stage.mozilla.org',
+    'graph_selector': '/server/collect.cgi',
+    'build_tools_repo_path': 'users/stage-ffxbld/tools',
+    'compare_locales_repo_path': 'build/compare-locales',
+    'compare_locales_tag': 'RELEASE_AUTOMATION',
+    'default_build_space': 5,
+    'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
+    'default_clobber_time': 24*7, # 1 week
+    # List of talos masters to notify of new builds, and if a failure
+    # to notify the talos master should result in a warning
+    'talos_masters': [
+        ('qm-buildbot01.mozilla.org:9987', False),
+        ('talos-staging-master.mozilla.org:9010', False)
+    ],
+    # List of unittest masters to notify of new builds to test,
+    # and if a failure to notify the master should result in a warning
+    'unittest_masters': [('localhost:9010', True),
+                         ('localhost:9011', True)],
+    'unittest_suites': [
+        ('mochitests', ['mochitest-plain']),
+        ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                            'mochitest-browser-chrome', 'mochitest-a11y',
+                            'xpcshell'])
+    ],
+    'xulrunner_tinderbox_tree': 'MozillaTest',
+    'weekly_tinderbox_tree': 'MozillaTest',
+    'l10n_tinderbox_tree': 'MozillaStaging',
+    'packaged_unittest_tinderbox_tree': 'MozillaTest'
 }
 
-# List of unittest masters to notify of new builds to test, and if a failure to
-# notify the master should result in a warning
-# TODO: Do we need to diffentiate between both staging masters somehow?
-UNITTEST_MASTERS = [('localhost:9010', True)]
-
-UNITTEST_SUITES = [
-    ('mochitests', ['mochitest-plain']),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell'])
-]
+# short name, because it's used a lot
+OBJDIR = BRANCH_LEVEL_VARS['objdir']
+SYMBOL_SERVER_PATH = BRANCH_LEVEL_VARS['symbol_server_path']
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
@@ -71,6 +81,11 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
 }
+
+# We copy the global vars in first, so branches can override them if they want to
+for branch in BRANCHES.keys():
+    for attr in BRANCH_LEVEL_VARS.keys():
+        BRANCHES[branch][attr] = deepcopy(BRANCH_LEVEL_VARS[attr])
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -146,7 +161,7 @@ BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
-    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-central'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # nightly shark build for profiling
 BRANCHES['mozilla-central']['enable_shark'] = True
@@ -310,7 +325,7 @@ BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
-    DOWNLOAD_BASE_URL + '/nightly/latest-mozilla-1.9.1'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 # nightly shark build for profiling
 BRANCHES['mozilla-1.9.1']['enable_shark'] = True
@@ -624,7 +639,6 @@ BRANCHES['places']['platforms']['linux']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-places' % DOWNLOAD_BASE_URL
 }
 BRANCHES['places']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -635,7 +649,6 @@ BRANCHES['places']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-places' % DOWNLOAD_BASE_URL
 }
 BRANCHES['places']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -646,7 +659,6 @@ BRANCHES['places']['platforms']['macosx']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'LATEST_MAR_URL': '%s/nightly/latest-places' % DOWNLOAD_BASE_URL
 }
 BRANCHES['places']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,

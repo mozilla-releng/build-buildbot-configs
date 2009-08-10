@@ -25,6 +25,7 @@ MOBILE_BRANCHES = {
 }
 
 ### mozilla-central
+MOBILE_BRANCHES['mobile-trunk']['main_config'] = config.BRANCHES['mozilla-central']
 MOBILE_BRANCHES['mobile-trunk']['repo_path'] = 'mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
@@ -62,7 +63,7 @@ MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
-    config.DOWNLOAD_BASE_URL + '/nightly/latest-mobile-trunk'
+    config.BRANCHES['mozilla-central']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-trunk']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
@@ -75,6 +76,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['env'] = MozillaEnviro
 
 
 ### mobile-1.9.1
+MOBILE_BRANCHES['mobile-1.9.1']['main_config'] = config.BRANCHES['mozilla-1.9.1']
 MOBILE_BRANCHES['mobile-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['mobile_repo_path'] = 'mobile-browser'
@@ -103,7 +105,7 @@ MOBILE_BRANCHES['mobile-1.9.1']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.1-l10n'
 MOBILE_BRANCHES['mobile-1.9.1']['enUS_binaryURL'] = \
-    config.DOWNLOAD_BASE_URL + '/nightly/latest-mobile-1.9.1'
+    config.BRANCHES['mozilla-1.9.1']['download_base_url'] + '/nightly/latest-mobile-1.9.1'
 MOBILE_BRANCHES['mobile-1.9.1']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-1.9.1']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
@@ -112,6 +114,7 @@ MOBILE_BRANCHES['mobile-1.9.1']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.1']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 
 ### mobile-tracemonkey
+MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
 MOBILE_BRANCHES['mobile-tracemonkey']['repo_path'] = 'tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
@@ -130,6 +133,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
 
 ### electrolysis
+MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
 MOBILE_BRANCHES['mobile-electrolysis']['repo_path'] = 'projects/electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
@@ -159,7 +163,7 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_builddir'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_l10n_workdir'] = '.'
 MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
-    config.DOWNLOAD_BASE_URL + '/nightly/latest-mobile-electrolysis'
+    config.BRANCHES['electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
