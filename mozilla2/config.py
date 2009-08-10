@@ -163,7 +163,7 @@ BRANCHES['mozilla-central']['enable_shark'] = True
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['idle_timeout'] = 60*60*2   # 2 hours
+BRANCHES['mozilla-central']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -324,7 +324,7 @@ BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['enable_shark'] = True
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['idle_timeout'] = 60*60*2   # 2 hours
+BRANCHES['mozilla-1.9.1']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
@@ -469,7 +469,7 @@ BRANCHES['tracemonkey']['enable_shark'] = True
 BRANCHES['tracemonkey']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['tracemonkey']['idle_timeout'] = 60*60*10   # 10 hours
+BRANCHES['tracemonkey']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
@@ -597,7 +597,7 @@ BRANCHES['places']['enable_shark'] = True
 BRANCHES['places']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['places']['idle_timeout'] = 60*60*10   # 10 hours
+BRANCHES['places']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['macosx']['update_platform'] = 'fake'
@@ -727,7 +727,7 @@ BRANCHES['electrolysis']['enable_shark'] = True
 BRANCHES['electrolysis']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['electrolysis']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['electrolysis']['idle_timeout'] = 60*60*10   # 10 hours
+BRANCHES['electrolysis']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['electrolysis']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
