@@ -2,7 +2,7 @@ CVSROOT      = ":ext:trybld@cvs.mozilla.org:/cvsroot"
 OBJDIR       = "objdir"
 PKG_BASENAME = "firefox-try"
 SCP_STRING   = "trybld@build.mozilla.org:/builds/tryserver"
-TALOS_TRY_MASTERS = [("qm-rhel02.mozilla.org:9985", True)]
+TALOS_TRY_MASTERS = [("talos-master.mozilla.org:9011", True)]
 PACKAGE_URL  = "http://build.mozilla.org/tryserver-builds"
 PACKAGE_DIR  = "%(who)s-%(identifier)s"
 TINDERBOX_TREE = "http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTry"
