@@ -159,8 +159,8 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 5
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-central']['l10nDatedDirs'] = False
+BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
