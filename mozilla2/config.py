@@ -5,7 +5,7 @@ SLAVES = {
         1,2,5,6,7,8,9,
         10,11,12,13,14,15,16,18,19,
         20,21,22,23,24,25]],
-    'linux64': ['moz2-linux64-slave%02i' % x for x in [1]],
+    'linux64': ['moz2-linux64-slave%02i' % x for x in [1,2]],
     'win32': ['moz2-win32-slave%02i' % x for x in [
         1,2,5,6,7,8,9,
         10,11,12,13,14,15,16,17,18,19,
