@@ -5,6 +5,7 @@ twistd\.log$
 twistd\.log\.[0-9]+$
 
 ^.*/BuildSlaves.py$
+^.*/passwords.py$
 
 #XXX: Specific to slaves, needs another top-level container so we can
 #XXX: mass ignore it all

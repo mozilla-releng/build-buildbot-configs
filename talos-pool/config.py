@@ -22,6 +22,7 @@ SLAVES = {
 
 BRANCHES = {
     'mozilla-central': {},
+    'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
     'mozilla-1.9.0': {},
     'tracemonkey': {},
@@ -103,6 +104,19 @@ BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1,True)
 BRANCHES['mozilla-1.9.1']['jss_tests'] = (1,True)
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1,True)
+
+######## mozilla-1.9.2
+BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
+BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
+BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
+# How many chrome tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1,True)
+# How many nochrome tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1,True)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.2']['jss_tests'] = (1,True)
+# How many tp4 tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1,True)
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
