@@ -214,6 +214,13 @@ for master,warn in TALOS_TRY_MASTERS:
 
 try_cvs_win32_factory = factory.BuildFactory([
     s(MozillaTryProcessing),
+    s(ShellCommand, name="pacify rmdir",
+                    description="Pacify rmdir",
+                    descriptionDone="Pacified rmdir",
+                    command=["bash", "-c",
+                             "if [ ! -d mozilla ]; then mkdir -v mozilla; fi"],
+                    workdir="."),
+
     s(ShellCommand, name="remove source and obj dirs",
                     command=["rmdir", "/s", "/q", "mozilla"],
                     workdir=".",
