@@ -537,6 +537,13 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
             command="pskill -t firefox.exe",
             workdir="D:\\Utilities"),
 
+    s(ShellCommand, name="pacify rmdir",
+                    description="Pacify rmdir",
+                    descriptionDone="Pacified rmdir",
+                    command=["bash", "-c",
+                             "if [ ! -d mozilla ]; then mkdir -v mozilla; fi"],
+                    workdir="."),
+
     s(ShellCommand, name="remove source and obj dirs",
                     command=["rmdir", "/s", "/q", "mozilla"],
                     haltOnFailure=True,
