@@ -157,7 +157,7 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True 
-BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
+BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'

@@ -162,7 +162,7 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
-BRANCHES['mozilla-central']['l10n_tree'] = 'fx36x'
+BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
@@ -483,7 +483,7 @@ BRANCHES['mozilla-1.9.2']['enable_codecoverage'] = False
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = False 
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = False 
-BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx35x'
+BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.2-l10n/'
