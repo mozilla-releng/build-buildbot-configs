@@ -2,7 +2,7 @@ from buildbot.steps.shell import WithProperties
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org', '--resultsLink', '/server/collect.cgi']
 
-TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tp:tdhtml:tsvg:twinopen:tsspider:tgfx']
+TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:tsvg:twinopen:tsspider:tgfx']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 

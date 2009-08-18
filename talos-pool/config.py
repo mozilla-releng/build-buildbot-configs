@@ -2,7 +2,7 @@ from buildbot.steps.shell import WithProperties
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org', '--resultsLink',
         '/server/collect.cgi']
-TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tp:tdhtml:tsvg:twinopen:tsspider:tgfx']
+TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:tsvg:twinopen:tsspider:tgfx']
 
 TALOS_NOCHROME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChrome']
 
