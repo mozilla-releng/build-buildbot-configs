@@ -59,7 +59,6 @@ BRANCH_LEVEL_VARS = {
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
-        ('qm-rhel02.mozilla.org:9988', True),
         ('talos-master.mozilla.org:9010', False),
         ('talos-staging-master.mozilla.org:9010', False),
         ('qm-buildbot01.mozilla.org:9987', False),
