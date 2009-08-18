@@ -105,6 +105,8 @@ BRANCHES['mozilla-central']['major_version'] = '1.9.2'
 BRANCHES['mozilla-central']['product_name'] = 'firefox'
 BRANCHES['mozilla-central']['app_name'] = 'browser'
 BRANCHES['mozilla-central']['brand_name'] = 'Minefield'
+BRANCHES['mozilla-central']['start_hour'] = [3] 
+BRANCHES['mozilla-central']['start_minute'] = [2] 
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
     'linux': {},
@@ -286,6 +288,8 @@ BRANCHES['mozilla-1.9.1']['major_version'] = '1.9.1'
 BRANCHES['mozilla-1.9.1']['product_name'] = 'firefox'
 BRANCHES['mozilla-1.9.1']['app_name'] = 'browser'
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
+BRANCHES['mozilla-1.9.1']['start_hour'] = [3] 
+BRANCHES['mozilla-1.9.1']['start_minute'] = [2] 
 BRANCHES['mozilla-1.9.1']['platforms'] = {
     'linux': {},
     'linux64': {},
@@ -442,6 +446,8 @@ BRANCHES['mozilla-1.9.2']['major_version'] = '1.9.2'
 BRANCHES['mozilla-1.9.2']['product_name'] = 'firefox'
 BRANCHES['mozilla-1.9.2']['app_name'] = 'browser'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
+BRANCHES['mozilla-1.9.2']['start_hour'] = [3] 
+BRANCHES['mozilla-1.9.2']['start_minute'] = [32] 
 BRANCHES['mozilla-1.9.2']['platforms'] = {
     'linux': {},
     'linux64': {},
@@ -610,6 +616,8 @@ BRANCHES['tracemonkey']['major_version'] = '1.9.2'
 BRANCHES['tracemonkey']['product_name'] = 'firefox'
 BRANCHES['tracemonkey']['app_name'] = 'browser'
 BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
+BRANCHES['tracemonkey']['start_hour'] = [3] 
+BRANCHES['tracemonkey']['start_minute'] = [32] 
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'win32': {},
@@ -741,6 +749,8 @@ BRANCHES['places']['major_version'] = '1.9.2'
 BRANCHES['places']['product_name'] = 'firefox'
 BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
+BRANCHES['places']['start_hour'] = [4] 
+BRANCHES['places']['start_minute'] = [2] 
 BRANCHES['places']['platforms'] = {
     'linux': {},
     'win32': {},
@@ -870,6 +880,8 @@ BRANCHES['electrolysis']['major_version'] = '1.9.2'
 BRANCHES['electrolysis']['product_name'] = 'firefox'
 BRANCHES['electrolysis']['app_name'] = 'browser'
 BRANCHES['electrolysis']['brand_name'] = 'Minefield'
+BRANCHES['electrolysis']['start_hour'] = [4] 
+BRANCHES['electrolysis']['start_minute'] = [2] 
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
     'win32': {},
