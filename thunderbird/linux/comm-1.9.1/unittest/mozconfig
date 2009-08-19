@@ -13,3 +13,6 @@ ac_add_options --enable-logrefcnt
 
 CC="ccache /tools/gcc-4.1.1/bin/gcc"
 CXX="ccache /tools/gcc-4.1.1/bin/g++"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1

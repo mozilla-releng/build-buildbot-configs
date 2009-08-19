@@ -14,3 +14,6 @@ ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 
 CC="ccache gcc"
 CXX="ccache g++"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1

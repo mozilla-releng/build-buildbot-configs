@@ -11,3 +11,6 @@ ac_add_options --enable-trace-malloc
 
 CC="ccache gcc"
 CXX="ccache g++"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
