@@ -12,5 +12,8 @@ CXX=/tools/gcc/bin/g++
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
 
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1

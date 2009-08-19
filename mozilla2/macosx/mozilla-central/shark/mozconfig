@@ -5,6 +5,9 @@ ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.5.sdk
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
 
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
