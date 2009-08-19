@@ -429,7 +429,6 @@ BRANCHES['comm-central-sunbird']['codesighs'] = False
 BRANCHES['comm-central-sunbird']['l10n'] = True
 BRANCHES['comm-central-sunbird']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-central-sunbird']['l10n_tree'] = 'sunbird10x'
-BRANCHES['comm-central-sunbird']['l10n_mozconfig'] = 'mozconfig-sunbird-l10n'
 BRANCHES['comm-central-sunbird']['product'] = 'calendar'
 BRANCHES['comm-central-sunbird']['appname'] = 'sunbird'
 BRANCHES['comm-central-sunbird']['brand_name'] = 'Sunbird'
