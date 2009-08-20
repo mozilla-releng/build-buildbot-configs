@@ -512,8 +512,8 @@ BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.2']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = False 
-BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = False 
+BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True 
+BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True 
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
