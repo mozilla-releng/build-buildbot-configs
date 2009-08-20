@@ -8,6 +8,9 @@ TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s
 
 TALOS_JSS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tjss']
 
+TALOS_DIRTY_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med']
+TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip']
+
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 
 SLAVES = {

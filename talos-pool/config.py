@@ -8,6 +8,9 @@ TALOS_NOCHROME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChro
 
 TALOS_JSS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tjss']
 
+TALOS_DIRTY_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med']
+TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip']
+
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
@@ -54,11 +57,11 @@ BRANCHES['mozilla-1.9.0']['branch_name'] = "Firefox3.0"
 BRANCHES['mozilla-1.9.0']['build_branch'] = "1.9.0"
 BRANCHES['mozilla-1.9.0']['fetch_symbols'] = False
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1,True)
-BRANCHES['mozilla-1.9.0']['jss_tests'] = (0,True)
-BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0,True)
+BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1,True, [])
+BRANCHES['mozilla-1.9.0']['jss_tests'] = (0,True, [])
+BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0,True, [])
 BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
     'win32': [
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
@@ -84,62 +87,72 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-central']['chrome_tests'] = (1,True)
+BRANCHES['mozilla-central']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-central']['nochrome_tests'] = (1,True)
+BRANCHES['mozilla-central']['nochrome_tests'] = (1,True, [])
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-central']['jss_tests'] = (1,True)
+BRANCHES['mozilla-central']['jss_tests'] = (1,True, [])
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-central']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-central']['tp4_tests'] = (1,True)
+BRANCHES['mozilla-central']['tp4_tests'] = (1,True, [])
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
 BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
 BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1,True, [])
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.1']['jss_tests'] = (1,True)
+BRANCHES['mozilla-1.9.1']['jss_tests'] = (1,True, [])
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1,True)
+BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1,True, [])
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1,True)
+BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1,True, [])
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.2']['jss_tests'] = (1,True)
+BRANCHES['mozilla-1.9.2']['jss_tests'] = (1,True, [])
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1,True)
+BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1,True, [])
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
 BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
 BRANCHES['tracemonkey']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['chrome_tests'] = (1,True)
+BRANCHES['tracemonkey']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['nochrome_tests'] = (1,True)
+BRANCHES['tracemonkey']['nochrome_tests'] = (1,True, [])
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['jss_tests'] = (1,True)
+BRANCHES['tracemonkey']['jss_tests'] = (1,True, [])
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['tp4_tests'] = (1,True)
+BRANCHES['tracemonkey']['tp4_tests'] = (1,True, [])
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
 BRANCHES['places']['build_branch'] = "Places"
 BRANCHES['places']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['places']['chrome_tests'] = (1,True)
+BRANCHES['places']['chrome_tests'] = (1,True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['places']['nochrome_tests'] = (0,True)
+BRANCHES['places']['nochrome_tests'] = (0,True, [])
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['places']['jss_tests'] = (1,True)
+BRANCHES['places']['jss_tests'] = (1,True, [])
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['places']['tp4_tests'] = (1,True)
+BRANCHES['places']['tp4_tests'] = (1,True, [])
