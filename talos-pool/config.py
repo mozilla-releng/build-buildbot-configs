@@ -17,7 +17,7 @@ TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s
 
 SLAVES = {
     'linux': ["talos-rev2-linux%02i" % x for x in range(1,21)],
-    'xp': ["talos-rev2-xp%02i" % x for x in range(1,21)],
+    'xp': ["talos-rev2-xp%02i" % x for x in range(1,25)],
     'vista': ["talos-rev2-vista%02i" % x for x in range(1,21)],
     'tiger': ["talos-rev2-tiger%02i" % x for x in range(1,21)],
     'leopard': ["talos-rev2-leopard%02i" % x for x in range(1,21)],
