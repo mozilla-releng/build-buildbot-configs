@@ -20,7 +20,7 @@ SLAVES = {
     'xp': ["talos-rev1-xp%02i" % x for x in range(1,5)],
     'vista': ["talos-rev1-vista%02i" % x for x in range(1,5)],
     'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,5)],
-    'leopard': ["talos-rev2-leopard%02i" % x for x in range(1,2)],
+    'leopard': ["talos-rev1-leopard%02i" % x for x in range(1,5)],
 }
 
 BRANCHES = {
