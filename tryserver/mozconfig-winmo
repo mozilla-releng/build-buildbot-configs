@@ -25,6 +25,7 @@ ac_add_options --disable-dbm
 ac_add_options --disable-ogg
 ac_add_options --enable-jemalloc
 ac_add_options --enable-splashscreen
+ac_add_options --enable-faststart
 
 CROSS_COMPILE=1
 
