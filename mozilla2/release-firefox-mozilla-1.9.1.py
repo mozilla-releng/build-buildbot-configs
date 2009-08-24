@@ -15,7 +15,7 @@ appName            = 'browser'
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version            = '3.5.3'
-appVersion         = appVersion
+appVersion         = version
 milestone          = '1.9.1.3'
 buildNumber        = 1
 baseTag            = 'FIREFOX_3_5_3'
