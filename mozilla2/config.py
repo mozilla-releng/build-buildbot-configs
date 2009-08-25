@@ -4,6 +4,8 @@ import buildbotcustom.env
 reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
+MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7,9,10,11,12,13,14,15,16,17,18]]
+XSERVES   = ['bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]]
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in [
         1,2,5,6,7,8,9,
@@ -15,8 +17,7 @@ SLAVES = {
         10,11,12,13,14,15,16,17,18,19,
         20,22,23,24,25,26,27,28,29,30,
         31,32,33,34,35,36,37,38,39]],
-    'macosx': ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7,9,10,11,12,13,14,15,16,17,18]] + [
-               'bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]],
+    'macosx': MAC_MINIS + XSERVES,
 }
 
 # Everything in this list will be set in the branch dict at the end of this file
