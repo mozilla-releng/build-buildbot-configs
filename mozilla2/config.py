@@ -886,44 +886,44 @@ BRANCHES['electrolysis']['start_minute'] = [2]
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
     'win32': {},
-    'macosx': {},
+#    'macosx': {},
     'linux-debug': {},
-    'macosx-debug': {},
+#    'macosx-debug': {},
     'win32-debug': {},
 }
 BRANCHES['electrolysis']['platforms']['linux']['mozconfig'] = 'linux/electrolysis/nightly'
-BRANCHES['electrolysis']['platforms']['macosx']['mozconfig'] = 'macosx/electrolysis/nightly'
+#BRANCHES['electrolysis']['platforms']['macosx']['mozconfig'] = 'macosx/electrolysis/nightly'
 BRANCHES['electrolysis']['platforms']['win32']['mozconfig'] = 'win32/electrolysis/nightly'
 BRANCHES['electrolysis']['platforms']['linux-debug']['mozconfig'] = 'linux/electrolysis/debug'
-BRANCHES['electrolysis']['platforms']['macosx-debug']['mozconfig'] = 'macosx/electrolysis/debug'
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['mozconfig'] = 'macosx/electrolysis/debug'
 BRANCHES['electrolysis']['platforms']['win32-debug']['mozconfig'] = 'win32/electrolysis/debug'
 BRANCHES['electrolysis']['platforms']['linux']['base_name'] = 'Linux electrolysis'
 BRANCHES['electrolysis']['platforms']['win32']['base_name'] = 'WINNT 5.2 electrolysis'
-BRANCHES['electrolysis']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 electrolysis'
+#BRANCHES['electrolysis']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['base_name'] = 'Linux electrolysis leak test'
 BRANCHES['electrolysis']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 electrolysis leak test'
-BRANCHES['electrolysis']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 electrolysis leak test'
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 electrolysis leak test'
 BRANCHES['electrolysis']['platforms']['linux']['profiled_build'] = False
 BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False
-BRANCHES['electrolysis']['platforms']['macosx']['profiled_build'] = False
+#BRANCHES['electrolysis']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['electrolysis']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['electrolysis']['platforms']['win32-debug']['profiled_build'] = False
-BRANCHES['electrolysis']['platforms']['macosx-debug']['profiled_build'] = False
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['electrolysis']['platforms']['linux']['build_space'] = 5
 BRANCHES['electrolysis']['platforms']['win32']['build_space'] = 5
-BRANCHES['electrolysis']['platforms']['macosx']['build_space'] = 5
+#BRANCHES['electrolysis']['platforms']['macosx']['build_space'] = 5
 BRANCHES['electrolysis']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['electrolysis']['platforms']['win32-debug']['build_space'] = 4
-BRANCHES['electrolysis']['platforms']['macosx-debug']['build_space'] = 3
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['electrolysis']['platforms']['linux']['builds_before_reboot'] = None
 BRANCHES['electrolysis']['platforms']['win32']['builds_before_reboot'] = None
-BRANCHES['electrolysis']['platforms']['macosx']['builds_before_reboot'] = None
+#BRANCHES['electrolysis']['platforms']['macosx']['builds_before_reboot'] = None
 BRANCHES['electrolysis']['platforms']['linux-debug']['builds_before_reboot'] = None
 BRANCHES['electrolysis']['platforms']['win32-debug']['builds_before_reboot'] = None
-BRANCHES['electrolysis']['platforms']['macosx-debug']['builds_before_reboot'] = None
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['builds_before_reboot'] = None
 BRANCHES['electrolysis']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['electrolysis']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['electrolysis']['platforms']['macosx']['upload_symbols'] = True
+#BRANCHES['electrolysis']['platforms']['macosx']['upload_symbols'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 # Enable unit tests
@@ -945,20 +945,20 @@ BRANCHES['electrolysis']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['electrolysis']['idle_timeout'] = 60*60*9   # 9 hours
 BRANCHES['electrolysis']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
+#BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['tinderbox_tree'] = 'Electrolysis'
 BRANCHES['electrolysis']['packaged_unittest_tinderbox_tree'] = 'Electrolysis-Unittest'
 BRANCHES['electrolysis']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['electrolysis']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['electrolysis']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+#BRANCHES['electrolysis']['platforms']['macosx']['slaves'] = SLAVES['macosx']
 BRANCHES['electrolysis']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 BRANCHES['electrolysis']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['electrolysis']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 BRANCHES['electrolysis']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['electrolysis']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['electrolysis']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+#BRANCHES['electrolysis']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
-BRANCHES['electrolysis']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
 BRANCHES['electrolysis']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['electrolysis']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -980,16 +980,16 @@ BRANCHES['electrolysis']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['electrolysis']['platforms']['macosx']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-    'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
+#BRANCHES['electrolysis']['platforms']['macosx']['env'] = {
+#    'MOZ_OBJDIR': OBJDIR,
+#    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+#    'SYMBOL_SERVER_USER': 'ffxbld',
+#    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+#    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+#    'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#}
 BRANCHES['electrolysis']['platforms']['linux-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'DISPLAY': ':2',
@@ -997,11 +997,11 @@ BRANCHES['electrolysis']['platforms']['linux-debug']['env'] = {
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['electrolysis']['platforms']['macosx-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
+#BRANCHES['electrolysis']['platforms']['macosx-debug']['env'] = {
+#    'MOZ_OBJDIR': OBJDIR,
+#    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#}
 BRANCHES['electrolysis']['platforms']['win32-debug']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
