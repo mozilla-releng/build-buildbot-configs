@@ -20,5 +20,8 @@ export CXXFLAGS="-gdwarf-2"
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
+CC="ccache gcc"
+CXX="ccache g++"
+
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1

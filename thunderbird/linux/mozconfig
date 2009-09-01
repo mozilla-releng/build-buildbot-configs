@@ -10,8 +10,8 @@ ac_add_options --enable-codesighs
 ac_add_options --disable-shared
 ac_add_options --enable-static
 
-CC=/tools/gcc-4.1.1/bin/gcc
-CXX=/tools/gcc-4.1.1/bin/g++
+CC="ccache /tools/gcc-4.1.1/bin/gcc"
+CXX="ccache /tools/gcc-4.1.1/bin/g++"
 
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"

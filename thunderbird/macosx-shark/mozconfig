@@ -16,5 +16,8 @@ ac_add_options --enable-debugger-info-modules
 ac_add_options --disable-install-strip
 export MOZ_PKG_SPECIAL="shark"
 
+CC="ccache gcc"
+CXX="ccache g++"
+
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
