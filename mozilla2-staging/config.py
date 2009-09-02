@@ -9,7 +9,7 @@ from buildbotcustom.env import MozillaEnvironments
 MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in range(1,19)]
 XSERVES   = ['bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]]
 SLAVES = {
-    'linux': ['moz2-linux-slave%02i' % x for x in range(1,26)],
+    'linux': ['moz2-linux-slave%02i' % x for x in range(1,36)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,3)],
     'win32': ['moz2-win32-slave%02i' % x for x in range(1,50)],
     'macosx': MAC_MINIS + XSERVES,
