@@ -4,8 +4,8 @@ export JAVA_HOME=/tools/jdk
 ac_add_options --enable-application=xulrunner
 ac_add_options --disable-tests
 
-CC=/tools/gcc/bin/gcc
-CXX=/tools/gcc/bin/g++
+CC=/tools/gcc-4.3.3/installed/bin/gcc
+CXX=/tools/gcc-4.3.3/installed/bin/g++
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
