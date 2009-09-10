@@ -1,7 +1,17 @@
+# Options for client.mk.
 mk_add_options MOZ_BUILD_PROJECTS="xulrunner mobile"
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
-mk_add_options MOZ_PKG_FORMAT=BZ2
-ac_add_options --disable-javaxpcom
+mk_add_options MOZ_PKG_FORMAT=ZIP
+
+# Global options
+ac_add_options --disable-debug
+ac_add_options --enable-optimize
+ac_add_options --enable-tests
+
+# XULRunner options
 ac_add_app_options xulrunner --enable-application=xulrunner
+ac_add_app_options xulrunner --disable-javaxpcom
+
+# mobile options
 ac_add_app_options mobile --enable-application=mobile
 ac_add_app_options mobile --with-libxul-sdk=../xulrunner/dist

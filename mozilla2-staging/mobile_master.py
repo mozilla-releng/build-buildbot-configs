@@ -54,8 +54,11 @@ for name in sorted(MOBILE_BRANCHES.keys()):
     l10nNightlyBuilders = {}
     for platform in branch['platforms'].keys():
         base_name = branch['platforms'][platform]['base_name']
-        builders.append('%s build' % base_name)
-        mobileBuilders.append('%s build' % base_name)
+
+        # hack alert: no dep desktop builds
+        if platform not in ['macosx-i686', 'win32-i686']:
+            builders.append('%s build' % base_name)
+            mobileBuilders.append('%s build' % base_name)
 
         builder = '%s nightly' % base_name
         nightlyBuilders.append(builder)
@@ -198,12 +201,15 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 configRepoPath=mainConfig['config_repo_path'],
                 configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
+                env=pf['env'],
                 stageUsername=mainConfig['stage_username'],
                 stageGroup=mainConfig['stage_group'],
                 stageSshKey=mainConfig['stage_ssh_key'],
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
+                packageGlob="-r mobile/dist/*.tar.bz2 " +
+                            "xulrunner/dist/*.tar.bz2",
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
@@ -218,13 +224,65 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 configRepoPath=mainConfig['config_repo_path'],
                 configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
+                env=pf['env'],
                 stageUsername=mainConfig['stage_username'],
                 stageGroup=mainConfig['stage_group'],
                 stageSshKey=mainConfig['stage_ssh_key'],
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
+                packageGlob="-r mobile/dist/*.tar.bz2 " +
+                            "xulrunner/dist/*.tar.bz2",
                 platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=name,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                nightly = True
+            )
+        elif platform == 'macosx-i686':
+            mobile_nightly_factory = MobileDesktopBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath=branch['repo_path'],
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                env=pf['env'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
+                mobileRepoPath=branch['mobile_repo_path'],
+                packageGlob="-r mobile/dist/*.dmg ",
+                platform="macosx",
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=name,
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                nightly = True
+            )
+        elif platform == 'win32-i686':
+            mobile_nightly_factory = MobileDesktopBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath=branch['repo_path'],
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                env=pf['env'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=mainConfig['stage_base_path'],
+                mobileRepoPath=branch['mobile_repo_path'],
+                platform="win32",
+                packageGlob="-r mobile/dist/*.zip " +
+                            "xulrunner/dist/*.zip",
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
@@ -277,13 +335,15 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildSpace=buildSpace,
                 nightly=True,
             )
-        mobile_dep_builder = {
-            'name': '%s build' % pf['base_name'],
-            'slavenames': pf['slaves'],
-            'builddir': pf['base_builddir'],
-            'factory': mobile_dep_factory,
-            'category': name
-        }
+        mobile_dep_builder = None
+        if mobile_dep_factory is not None:
+            mobile_dep_builder = {
+                'name': '%s build' % pf['base_name'],
+                'slavenames': pf['slaves'],
+                'builddir': pf['base_builddir'],
+                'factory': mobile_dep_factory,
+                'category': name
+            }
         nightly_builder = '%s nightly' % pf['base_name']
         mobile_nightly_builder = {
             'name': nightly_builder,
@@ -292,7 +352,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             'factory': mobile_nightly_factory,
             'category': name
         }
-        m['builders'].append(mobile_dep_builder)
+        if mobile_dep_builder is not None:
+            m['builders'].append(mobile_dep_builder)
         m['builders'].append(mobile_nightly_builder)
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
