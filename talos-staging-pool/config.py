@@ -7,8 +7,8 @@ TALOS_NOCHROME_CONFIG_OPTIONS = GRAPH_CONFIG + TALOS_CONFIG_OPTIONS + ['--noChro
 
 TALOS_JSS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tjss']
 
-TALOS_DIRTY_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med']
-TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip']
+TALOS_DIRTY_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med:ts_places_generated_max']
+TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbot/profiles/dirtyMaxDBs.zip']
 
 
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
@@ -61,7 +61,7 @@ BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1, True, [])
 # How many nochrome tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1, True, [])
 BRANCHES['mozilla-1.9.0']['jss_tests'] = (0,True, [])
-BRANCHES['mozilla-1.9.0']['dirty_tests'] = (1, True, [])
+BRANCHES['mozilla-1.9.0']['dirty_tests'] = (0, True, [])
 BRANCHES['mozilla-1.9.0']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0,True, [])
 BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
@@ -122,6 +122,7 @@ BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1,True, [])
 BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1,True, [])
 # How many jss tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.2']['jss_tests'] = (1,True, [])
+BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS)
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1,True, [])
 
 ######## tracemonkey
