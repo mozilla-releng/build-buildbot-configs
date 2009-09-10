@@ -48,9 +48,6 @@ ac_add_options --enable-default-toolkit=cairo-windows
 ac_add_options --with-wince-sdk="d:/sdks/wce500/standardsdk_500"
 ac_add_options --with-ogles-sdk="d:/sdks/tegra042/platformlibs"
 
-ac_add_options --enable-update-channel=nightly
-ac_add_options --enable-update-packaging
-
 # For NSS symbols, bug 514295 needs fixing first
 # export MOZ_DEBUG_SYMBOLS=1
 
