@@ -22,6 +22,7 @@ from buildbotcustom.process.factory import MaemoBuildFactory, \
    WinmoBuildFactory, MaemoNightlyRepackFactory, \
    MobileDesktopBuildFactory, MobileDesktopNightlyRepackFactory
 
+from buildbot.steps import trigger
 from buildbot.steps.shell import WithProperties
 
 from buildbotcustom.l10n import NightlyL10n, Scheduler as SchedulerL10n
@@ -126,13 +127,13 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 name=l10n_builder,
                 platform=l10nPlatform,
                 tree=tree,
-                hour=[4],
                 builderNames=[l10n_builder],
                 repoType='hg',
                 branch=branch['mobile_repo_path'],
                 baseTag='default',
                 localesFile=branch['allLocalesFile']
             ))
+
     m['schedulers'].append(MozScheduler(
         name='mobile %s' % name,
         branch=branch['repo_path'],
@@ -151,6 +152,13 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         mobile_dep_factory = None
         mobile_nightly_factory = None
 
+        nightly_builder = '%s nightly' % pf['base_name']
+        triggeredSchedulers=None
+        if branch['enable_l10n'] and \
+           platform in branch['l10n_platforms'] and \
+           nightly_builder in l10nNightlyBuilders:
+            triggeredSchedulers=[l10nNightlyBuilders[nightly_builder]['l10n_builder']]
+            
         if platform == 'linux-gnueabi-arm':
             mobile_dep_factory = MaemoBuildFactory(
                 hgHost=mainConfig['hghost'],
@@ -191,7 +199,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                nightly = True
+                nightly = True,
+                triggerBuilds = True,
+                triggeredSchedulers=triggeredSchedulers
             )
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
@@ -239,7 +249,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                nightly = True
+                nightly = True,
+                triggerBuilds = True,
+                triggeredSchedulers=triggeredSchedulers
             )
         elif platform == 'macosx-i686':
             mobile_nightly_factory = MobileDesktopBuildFactory(
