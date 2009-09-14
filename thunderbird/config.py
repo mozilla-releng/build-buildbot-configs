@@ -272,7 +272,6 @@ BRANCHES['comm-central-trunk']['aus'] = {
     'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-central',
 }
 BRANCHES['comm-central-trunk']['create_l10n_snippets'] = False
-BRANCHES['comm-central-trunk']['aus2_host'] = 'aus-staging.sj.mozillamessaging.com'
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
@@ -451,8 +450,6 @@ BRANCHES['comm-central-sunbird']['aus'] = {
     'host': 'aus2-community.mozilla.org',
     'base_upload_dir': '/opt/aus2/build/0/Sunbird/trunk',
 }
-BRANCHES['comm-central-sunbird']['aus2_host'] = 'aus2-community.mozilla.org'
-BRANCHES['comm-central-sunbird']['aus2_user'] = 'calbld'
 BRANCHES['comm-central-sunbird']['create_l10n_snippets'] = False
 BRANCHES['comm-central-sunbird']['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
