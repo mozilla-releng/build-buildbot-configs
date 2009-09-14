@@ -50,7 +50,7 @@ DEFAULTS = {
     'platforms': {
       'linux':  "Linux", 
       'win32':  "Win2k3",
-      'osx':    "MacOSX 10.4",
+      'osx':    "MacOSX 10.5",
     },
 
     'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
@@ -347,7 +347,7 @@ BRANCHES['comm-central-calendar']['irc_nick'] = 'calbuild'
 BRANCHES['comm-central-calendar']['irc_channels'] = [ 'maildev', 'calendar' ]
 BRANCHES['comm-central-calendar']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 lightning'
 BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 lightning'
-BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1 lightning'
+BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 lightning'
 BRANCHES['comm-central-calendar']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['macosx']['profiled_build'] = False
@@ -437,7 +437,7 @@ BRANCHES['comm-central-sunbird']['irc_nick'] = 'sunbuild'
 BRANCHES['comm-central-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
 BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 sunbird'
-BRANCHES['comm-central-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.4 comm-1.9.1 sunbird'
+BRANCHES['comm-central-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-sunbird']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-sunbird']['platforms']['macosx']['profiled_build'] = False
