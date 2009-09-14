@@ -7,7 +7,7 @@
 ####### SCHEDULERS AND CHANGE SOURCES
 
 import buildbotcustom.changes.hgpoller
-from buildbotcustom.changes.hgpoller import HgPoller, HgAllLocalesPoller
+from buildbotcustom.changes.hgpoller import BuildbotHgPoller
 from buildbot.scheduler import Scheduler, Nightly
 
 import buildbot.status.tinderbox
@@ -433,7 +433,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
 
 # mobile-browser, which is shared
-m['change_source'].append(HgPoller(
+m['change_source'].append(BuildbotHgPoller(
     hgURL=mainConfig['hgurl'],
     branch='mobile-browser',
     pushlogUrlOverride='http://hg.mozilla.org/mobile-browser/pushlog',
