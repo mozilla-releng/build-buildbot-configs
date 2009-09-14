@@ -3,8 +3,7 @@ def getConfig(defaults, branch, value, default=None):
 
 import buildbotcustom.changes.hgpoller
 reload(buildbotcustom.changes.hgpoller)
-from buildbotcustom.changes.hgpoller import BuildbotHgAllLocalesPoller, \
-  BuildbotHgPoller
+from buildbotcustom.changes.hgpoller import HgAllLocalesPoller, HgPoller
 
 def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
     # Figure out the unique pushlogs we should be polling
@@ -27,7 +26,7 @@ def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
                 sources[b] = pushlogUrlOverride
 
     for branch in sorted(sources.keys()):
-        change_source.append(BuildbotHgPoller(
+        change_source.append(HgPoller(
             hgURL="%s/" % hgurl,
             pushlogUrlOverride="%s/%s/pushlog" % (hgurl,branch),
             branch=branch,
