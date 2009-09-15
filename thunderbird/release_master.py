@@ -68,7 +68,7 @@ for platform in releasePlatforms:
         repoType='hg',
         branch=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
-        localesFile='suite/locales/shipped-locales'
+        localesFile='%s/locales/shipped-locales' % appName,
     )
     schedulers.append(build_scheduler)
     schedulers.append(repack_scheduler)
