@@ -1,5 +1,8 @@
 HGURL = 'http://hg.mozilla.org/'
+HGHOST = 'hg.mozilla.org'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_PATH = 'build/buildbot-configs'
+COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
 CONFIG_SUBDIR = 'thunderbird'
 LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir-tb'
@@ -660,3 +663,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {'CVS_RSH':
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
+
+# Release automation expect to find these
+STAGE_BASE_PATH=DEFAULTS['stage_base_path']
+COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
