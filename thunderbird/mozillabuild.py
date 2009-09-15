@@ -2,7 +2,6 @@ def getConfig(defaults, branch, value, default=None):
     return branch.get(value, defaults.get(value, default))
 
 import buildbotcustom.changes.hgpoller
-reload(buildbotcustom.changes.hgpoller)
 from buildbotcustom.changes.hgpoller import HgAllLocalesPoller, HgPoller
 
 def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):

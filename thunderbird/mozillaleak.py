@@ -6,10 +6,6 @@ import buildbotcustom.steps.misc
 import buildbotcustom.steps.test
 import buildbotcustom.steps.transfer
 import buildbotcustom.steps.updates
-reload(buildbotcustom.steps.misc)
-reload(buildbotcustom.steps.test)
-reload(buildbotcustom.steps.transfer)
-reload(buildbotcustom.steps.updates)
 
 from buildbotcustom.steps.misc import SetMozillaBuildProperties
 from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \

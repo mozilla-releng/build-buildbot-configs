@@ -3,6 +3,7 @@ from buildbot.scheduler import Scheduler, Dependent
 
 import buildbotcustom.l10n
 import buildbotcustom.misc
+reload(buildbotcustom.misc)
 import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
