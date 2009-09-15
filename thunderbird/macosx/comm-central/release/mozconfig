@@ -1,0 +1,30 @@
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+. $topsrcdir/mozilla/build/macosx/universal/mozconfig
+else
+. $topsrcdir/build/macosx/universal/mozconfig
+fi
+
+ac_add_options --enable-application=mail
+ac_add_options --enable-update-channel=beta
+ac_add_options --enable-update-packaging
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+ac_add_options --enable-codesighs
+ac_add_options --disable-shared
+ac_add_options --enable-static
+ac_add_options --enable-official-branding
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# XXX: Can't do that when building universal, it uses CC="gcc -arch ppc" internally
+# XXX: and doing this would stomp on it
+#CC="ccache gcc"
+#CXX="ccache g++"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
