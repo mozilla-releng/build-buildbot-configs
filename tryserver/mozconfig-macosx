@@ -17,3 +17,6 @@ ac_add_options --disable-tests
 ac_add_options --disable-install-strip
 mk_add_options RUN_AUTOCONF_LOCALLY=1
 mk_add_options AUTOCONF=/usr/local/bin/autoconf-2.13
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1

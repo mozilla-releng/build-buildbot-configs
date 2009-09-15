@@ -9,4 +9,5 @@ ac_add_options --enable-jemalloc
 mk_add_options RUN_AUTOCONF_LOCALLY=1
 mk_add_options AUTOCONF=/local/bin/autoconf-2.13
 
+# For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1

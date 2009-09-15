@@ -15,3 +15,5 @@ CXX=/tools/gcc-4.3.3/installed/bin/g++
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
 
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
