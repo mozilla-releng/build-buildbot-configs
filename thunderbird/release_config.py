@@ -1,7 +1,7 @@
 hgUsername                 = 'tbirdbld'
 hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
-sourceRepoName             = 'comm-1.9.1' # buildbot branch name
+sourceRepoName             = 'comm-central' # buildbot branch name
 sourceRepoPath             = 'comm-central'
 sourceRepoRevision         = ''
 relbranchOverride          = ''
@@ -12,7 +12,7 @@ mozillaRelbranchOverride   = ''
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = ''
 inspectorRelbranchOverride = ''
-venkmanRepoPath            = 'venkman' # leave empty if venkman is not to be tagged
+venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
