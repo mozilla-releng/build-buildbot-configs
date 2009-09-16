@@ -40,13 +40,13 @@ oldAppVersion              = oldVersion
 oldBuildNumber             = 1
 oldBaseTag                 = 'THUNDERBIRD_3_0b3'
 releasePlatforms           = ('linux', 'win32', 'macosx')
-patcherConfig              = 'moz191-thunderbird-branch-patcher2.cfg'
+patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
 useBetaChannel             = 0
-verifyConfigs              = {'linux':  'moz191-thunderbird-linux.cfg',
-                              'macosx': 'moz191-thunderbird-mac.cfg',
-                              'win32':  'moz191-thunderbird-win32.cfg'}
+verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
+                              'macosx': 'moz19-thunderbird-mac.cfg',
+                              'win32':  'moz19-thunderbird-win32.cfg'}
