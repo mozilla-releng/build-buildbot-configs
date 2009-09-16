@@ -2,8 +2,8 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.2'
 sourceRepoPath     = 'releases/mozilla-1.9.2'
-# TODO: Add a sourceRepoRevision before trying to use this config to tag
-sourceRepoRevision = ''
+# NB: tagging was done manually for 3.6a2
+sourceRepoRevision = '9270914d2bda'
 relbranchOverride  = ''
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile   = 'l10n-changesets'
@@ -24,8 +24,9 @@ oldVersion         = '3.6a1'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
 oldBaseTag         = 'FIREFOX_3_6a1'
-enUSPlatforms      = ('linux', 'win32', 'macosx', 'wince')
-l10nPlatforms      = ('linux', 'win32', 'macosx')
+# TODO: restore these tuples to full platform list before 3.6b1
+enUSPlatforms      = ('wince', )
+l10nPlatforms      = ()
 # TODO: create this file before 3.6b1
 patcherConfig      = 'moz192-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R9'
