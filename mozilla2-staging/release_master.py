@@ -33,11 +33,11 @@ status = []
 ##### Change sources and Schedulers
 change_source.append(PBChangeSource())
 change_source.append(FtpPoller(
-	branch="post_signing",
-	ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-	  % (stagingServer, productName, version, buildNumber)],
-	pollInterval= 60*10,
-	searchString='win32_signing_build'
+    branch="post_signing",
+    ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
+             % (stagingServer, productName, version, buildNumber)],
+    pollInterval= 60*10,
+    searchString='win32_signing_build'
 ))
 
 repo_setup_scheduler = Scheduler(
@@ -60,25 +60,26 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     build_scheduler = Dependent(
         name='%s_build' % platform,
         upstream=tag_scheduler,
         builderNames=['%s_build' % platform]
     )
-    repack_scheduler = DependentL10n(
-        name='%s_repack' % platform,
-        platform=platform,
-        upstream=build_scheduler,
-        builderNames=['%s_repack' % platform],
-        repoType='hg',
-        branch=sourceRepoPath,
-        baseTag='%s_RELEASE' % baseTag,
-        localesFile='browser/locales/shipped-locales',
-        tree='release'
-    )
     schedulers.append(build_scheduler)
-    schedulers.append(repack_scheduler)
+    if platform in l10nPlatforms:
+        repack_scheduler = DependentL10n(
+            name='%s_repack' % platform,
+            platform=platform,
+            upstream=build_scheduler,
+            builderNames=['%s_repack' % platform],
+            repoType='hg',
+            branch=sourceRepoPath,
+            baseTag='%s_RELEASE' % baseTag,
+            localesFile='browser/locales/shipped-locales',
+            tree='release'
+        )
+        schedulers.append(repack_scheduler)
 l10n_verify_scheduler = Scheduler(
     name='l10n_verification',
     treeStableTimer=0,
@@ -95,7 +96,7 @@ updates_scheduler = Scheduler(
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
@@ -198,7 +199,7 @@ builders.append({
 })
 
 
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     # shorthand
     pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, sourceRepoName)
@@ -240,36 +241,37 @@ for platform in releasePlatforms:
         'factory': build_factory
     })
 
-    repack_factory = ReleaseRepackFactory(
-        hgHost=branchConfig['hghost'],
-        project=productName,
-        appName=appName,
-        repoPath=sourceRepoPath,
-        l10nRepoPath=l10nRepoPath,
-        stageServer=branchConfig['stage_server'],
-        stageUsername=branchConfig['stage_username'],
-        stageSshKey=branchConfig['stage_ssh_key'],
-        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
-        compareLocalesTag=branchConfig['compare_locales_tag'],
-        buildSpace=2,
-        configRepoPath=branchConfig['config_repo_path'],
-        configSubDir=branchConfig['config_subdir'],
-        mozconfig=mozconfig,
-        platform=platform + '-release',
-        buildRevision='%s_RELEASE' % baseTag,
-        version=version,
-        buildNumber=buildNumber,
-        tree='release'
-    )
+    if platform in l10nPlatforms:
+        repack_factory = ReleaseRepackFactory(
+            hgHost=branchConfig['hghost'],
+            project=productName,
+            appName=appName,
+            repoPath=sourceRepoPath,
+            l10nRepoPath=l10nRepoPath,
+            stageServer=branchConfig['stage_server'],
+            stageUsername=branchConfig['stage_username'],
+            stageSshKey=branchConfig['stage_ssh_key'],
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
+            compareLocalesTag=branchConfig['compare_locales_tag'],
+            buildSpace=2,
+            configRepoPath=branchConfig['config_repo_path'],
+            configSubDir=branchConfig['config_subdir'],
+            mozconfig=mozconfig,
+            platform=platform + '-release',
+            buildRevision='%s_RELEASE' % baseTag,
+            version=version,
+            buildNumber=buildNumber,
+            tree='release'
+        )
 
-    builders.append({
-        'name': '%s_repack' % platform,
-        'slavenames': branchConfig['l10n_slaves'][platform],
-        'category': 'release',
-        'builddir': '%s_repack' % platform,
-        'factory': repack_factory
-    })
+        builders.append({
+            'name': '%s_repack' % platform,
+            'slavenames': branchConfig['l10n_slaves'][platform],
+            'category': 'release',
+            'builddir': '%s_repack' % platform,
+            'factory': repack_factory
+        })
 
 
 l10n_verification_factory = L10nVerifyFactory(
@@ -335,7 +337,7 @@ builders.append({
 })
 
 
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     update_verify_factory = UpdateVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],

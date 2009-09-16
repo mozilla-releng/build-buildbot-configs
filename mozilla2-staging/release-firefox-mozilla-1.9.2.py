@@ -1,14 +1,15 @@
 hgUsername          = 'stage-ffxbld'
 hgSshKey            = '~cltbld/.ssh/ffxbld_dsa'
-sourceRepoName      = 'mozilla-central'
+sourceRepoName      = 'mozilla-1.9.2'
 # This parameter (and it's l10n equivalent) is for staging only and necessary
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
-sourceRepoClonePath = sourceRepoName
-sourceRepoPath      = 'users/stage-ffxbld/mozilla-central'
-sourceRepoRevision  = '5c913c4662d8'
+sourceRepoClonePath = 'releases/mozilla-1.9.2'
+sourceRepoPath      = 'users/stage-ffxbld/mozilla-1.9.2'
+# TODO: Add a sourceRepoRevision before trying to use this config to tag
+sourceRepoRevision  = ''
 relbranchOverride   = ''
-l10nRepoClonePath   = 'l10n-central'
+l10nRepoClonePath   = 'releases/l10n-mozilla-1.9.2'
 l10nRepoPath        = 'users/stage-ffxbld'
 l10nRevisionFile    = 'l10n-changesets'
 cvsroot             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
@@ -19,17 +20,18 @@ appName             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '3.6a1'
+version             = '3.6a2'
 appVersion          = version
-milestone           = '1.9.2a1'
+milestone           = '1.9.2a2'
 buildNumber         = 1
-baseTag             = 'FIREFOX_3_6a1'
-oldVersion          = ''
-oldAppVersion       = ''
+baseTag             = 'FIREFOX_3_6a2'
+oldVersion          = '3.6a1'
+oldAppVersion       = oldVersion
 oldBuildNumber      = 1
-oldBaseTag          = ''
-releasePlatforms    = ('linux', 'win32', 'macosx')
-# TODO: create this file before 3.6a2
+oldBaseTag          = 'FIREFOX_3_6a1'
+enUSPlatforms       = ('linux', 'win32', 'macosx', 'wince')
+l10nPlatforms       = ('linux', 'win32', 'macosx')
+# TODO: create this file before 3.6b1
 patcherConfig       = 'moz192-branch-patcher2.cfg'
 patcherToolsTag     = 'UPDATE_PACKAGING_R9'
 ftpServer           = 'ftp.mozilla.org'
@@ -37,7 +39,8 @@ stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
 useBetaChannel      = 0
-# TODO: create these files before 3.6a2
+# TODO: create these files before 3.6b1
 verifyConfigs       = {'linux':  'moz192-firefox-linux.cfg',
                        'macosx': 'moz192-firefox-mac.cfg',
-                       'win32':  'moz192-firefox-win32.cfg'}
+                       'win32':  'moz192-firefox-win32.cfg',
+                       'wince':  'moz192-firefox-wince.cfg'}
