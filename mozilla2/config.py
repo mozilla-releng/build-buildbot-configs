@@ -8,7 +8,7 @@ MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7,9,10,11,12,13,14,15,
 XSERVES   = ['bm-xserve%02i' % x for x in [11,12,16,17,18,19,22]]
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in [1,2] +
-              range(5,17) + range(18,36)],
+              range(5,17) + range(18,41)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in [1,2]],
     'win32': ['moz2-win32-slave%02i' % x for x in [1,2] +
               range(5,21) + range(22,50)],
