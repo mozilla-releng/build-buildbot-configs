@@ -55,7 +55,7 @@ PLATFORMS['linux']['linux'] = {'name': "Linux"}
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['macosx']['slave_platforms']
-NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + 'leopard'
+NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + ['leopard']
 
 
 ######## mozilla-1.9.0
