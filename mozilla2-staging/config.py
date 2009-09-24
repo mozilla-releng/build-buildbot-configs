@@ -145,7 +145,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-central']['platforms']['wince']['build_space'] = 4
 BRANCHES['mozilla-central']['platforms']['macosx']['build_space'] = 5
 BRANCHES['mozilla-central']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 5
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['mozilla-central']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['linux64']['builds_before_reboot'] = 5
@@ -159,6 +159,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
+BRANCHES['mozilla-central']['enable_packaged_debug_unittests'] = True
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-central']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -333,6 +334,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['enable_packaged_debug_unittests'] = False
 BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -505,6 +507,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['enable_packaged_debug_unittests'] = False
 BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -682,6 +685,7 @@ BRANCHES['tracemonkey']['create_snippet'] = False
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
+BRANCHES['tracemonkey']['enable_packaged_debug_unittests'] = False
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tracemonkey']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -826,6 +830,7 @@ BRANCHES['places']['create_snippet'] = False
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['places']['enable_unittests'] = True
+BRANCHES['places']['enable_packaged_debug_unittests'] = False
 BRANCHES['places']['enable_mac_a11y'] = True
 BRANCHES['places']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['places']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -956,6 +961,7 @@ BRANCHES['electrolysis']['create_snippet'] = False
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['electrolysis']['enable_unittests'] = True
+BRANCHES['electrolysis']['enable_packaged_debug_unittests'] = False
 BRANCHES['electrolysis']['enable_mac_a11y'] = True
 BRANCHES['electrolysis']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['electrolysis']['platforms']['win32']['crashtest_leak_threshold'] = 484
