@@ -1,4 +1,3 @@
-from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
 
 import buildbotcustom.l10n
@@ -31,7 +30,6 @@ change_source = []
 status = []
 
 ##### Change sources and Schedulers
-change_source.append(PBChangeSource())
 change_source.append(FtpPoller(
     branch="post_signing",
     ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
