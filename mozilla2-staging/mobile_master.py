@@ -376,7 +376,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
+                    packageGlob='fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
+                                'install/fennec-*.%(locale)s.langpack.xpi',
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
@@ -400,7 +401,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='fennec-*.%(locale)s.linux-i686.tar.bz2',
+                    packageGlob='fennec-*.%(locale)s.linux-i686.tar.bz2 ' +
+                                'install/fennec-*.%(locale)s.langpack.xpi',
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
