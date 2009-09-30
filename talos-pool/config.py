@@ -139,27 +139,27 @@ BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
 BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
 BRANCHES['tracemonkey']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['chrome_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['tracemonkey']['chrome_tests'] = (1,True, [], NO_TIGER)
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['nochrome_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['tracemonkey']['nochrome_tests'] = (1,True, [], NO_TIGER)
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['jss_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['tracemonkey']['jss_tests'] = (1,True, [], NO_TIGER)
 # How many dirty ts tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, ALL_PLATFORMS)
+BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['tracemonkey']['tp4_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['tracemonkey']['tp4_tests'] = (1,True, [], NO_TIGER)
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
 BRANCHES['places']['build_branch'] = "Places"
 BRANCHES['places']['fetch_symbols'] = True
 # How many chrome tests per build to run, and whether to merge build requests
-BRANCHES['places']['chrome_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['places']['chrome_tests'] = (1,True, [], NO_TIGER)
 # How many nochrome tests per build to run, and whether to merge build requests
-BRANCHES['places']['nochrome_tests'] = (0,True, [], ALL_PLATFORMS)
+BRANCHES['places']['nochrome_tests'] = (0,True, [], NO_TIGER)
 # How many jss tests per build to run, and whether to merge build requests
-BRANCHES['places']['jss_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['places']['jss_tests'] = (1,True, [], NO_TIGER)
 # How many dirty ts tests per build to run, and whether to merge build requests
-BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, ALL_PLATFORMS)
+BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER)
 # How many tp4 tests per build to run, and whether to merge build requests
-BRANCHES['places']['tp4_tests'] = (1,True, [], ALL_PLATFORMS)
+BRANCHES['places']['tp4_tests'] = (1,True, [], NO_TIGER)
