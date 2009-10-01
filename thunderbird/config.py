@@ -607,7 +607,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms'] = {
 BRANCHES['comm-central-trunk-bloat']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time']
 BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
-BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'mozconfig-bloat'
+BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'comm-central/debug/mozconfig'
 BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-trunk-bloat']['nightly'] = False
