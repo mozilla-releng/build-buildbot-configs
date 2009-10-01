@@ -81,7 +81,7 @@ BRANCHES = {
 # thunderbird-unittest
 
 BRANCHES['comm-1.9.1-unittest'] = {
-    'factory': 'CCUnitTestFactory',
+    'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'nightly': False,
     'hg_branch': 'comm-central',
@@ -106,7 +106,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
 }
 
 BRANCHES['comm-central-unittest'] = {
-    'factory': 'CCUnitTestFactory',
+    'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'hg_branch': 'comm-central',
     'mozilla_central_branch': 'mozilla-central',
