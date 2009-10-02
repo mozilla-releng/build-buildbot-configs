@@ -11,3 +11,6 @@ ac_add_options --disable-tests
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+. $topsrcdir/configs/mozilla2-staging/win32/include/vista-sdk-mozconfig
+
