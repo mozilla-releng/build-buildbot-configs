@@ -15,6 +15,3 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
-
-# Bug 520327
-ac_add_options --with-windows-version=600
