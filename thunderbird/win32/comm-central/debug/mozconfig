@@ -14,3 +14,6 @@ ac_add_options --enable-trace-malloc
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+
+# Bug 520327
+ac_add_options --with-windows-version=600
