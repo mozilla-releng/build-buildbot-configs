@@ -13,5 +13,3 @@ ac_add_options --enable-logrefcnt
 # Bug 427627
 ac_add_options --enable-jemalloc
 
-# Bug 520327
-ac_add_options --with-windows-version=600
