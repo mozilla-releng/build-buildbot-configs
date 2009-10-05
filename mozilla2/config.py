@@ -251,7 +251,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     # Source server support, bug 506702
-    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/sdk/srcsrv/pdbstr.exe'
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 BRANCHES['mozilla-central']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
 BRANCHES['mozilla-central']['platforms']['wince']['env'].update(
