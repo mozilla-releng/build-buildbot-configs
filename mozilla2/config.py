@@ -241,7 +241,8 @@ BRANCHES['mozilla-central']['platforms']['linux64']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['mozilla-central']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -249,6 +250,8 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/sdk/srcsrv/pdbstr.exe'
 }
 BRANCHES['mozilla-central']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
 BRANCHES['mozilla-central']['platforms']['wince']['env'].update(
