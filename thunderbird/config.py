@@ -46,6 +46,7 @@ DEFAULTS = {
     'codesighs':               False,
     'product_name':           'Thunderbird',
     'brand_name':             'Shredder',
+    'l10n_nightly_updates':    False,
     
     # Unit Test
     'poll_branch':          'comm-central',
@@ -170,7 +171,6 @@ BRANCHES['comm-central']['platforms']['macosx-shark']['profiled_build'] = False
 # generated.
 BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['platforms']['macosx-shark']['create_snippet'] = False
-BRANCHES['comm-central']['create_l10n_snippets'] = False
 BRANCHES['comm-central']['aus'] = {
     'user': 'tbirdbld',
     'host': 'aus-staging.sj.mozillamessaging.com',
@@ -274,7 +274,7 @@ BRANCHES['comm-central-trunk']['aus'] = {
     'host': 'aus-staging.sj.mozillamessaging.com',
     'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-central',
 }
-BRANCHES['comm-central-trunk']['create_l10n_snippets'] = False
+BRANCHES['comm-central-trunk']['l10n_nightly_updates'] = True
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
@@ -364,7 +364,6 @@ BRANCHES['comm-central-calendar']['platforms']['macosx']['upload_glob'] = "mozil
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-calendar']['create_snippet'] = False
-BRANCHES['comm-central-calendar']['create_l10n_snippets'] = False
 BRANCHES['comm-central-calendar']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-calendar']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-calendar']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
@@ -453,7 +452,6 @@ BRANCHES['comm-central-sunbird']['aus'] = {
     'host': 'aus2-community.mozilla.org',
     'base_upload_dir': '/opt/aus2/build/0/Sunbird/trunk',
 }
-BRANCHES['comm-central-sunbird']['create_l10n_snippets'] = False
 BRANCHES['comm-central-sunbird']['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-sunbird']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
@@ -542,7 +540,6 @@ BRANCHES['comm-central-bloat']['platforms']['macosx']['profiled_build'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-bloat']['create_snippet'] = False
-BRANCHES['comm-central-bloat']['create_l10n_snippets'] = False
 BRANCHES['comm-central-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
@@ -628,7 +625,6 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = 
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-trunk-bloat']['create_snippet'] = False
-BRANCHES['comm-central-trunk-bloat']['create_l10n_snippets'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
