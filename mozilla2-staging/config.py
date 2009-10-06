@@ -418,7 +418,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux64']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -426,6 +427,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -600,7 +603,8 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux64']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -608,6 +612,8 @@ BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
 BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'].update(
@@ -758,7 +764,8 @@ BRANCHES['tracemonkey']['platforms']['linux64']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['tracemonkey']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -767,6 +774,8 @@ BRANCHES['tracemonkey']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'tracemonkey',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 BRANCHES['tracemonkey']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -892,7 +901,8 @@ BRANCHES['places']['platforms']['linux']['env'] = {
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['places']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['places']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -901,6 +911,8 @@ BRANCHES['places']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 BRANCHES['places']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
@@ -1027,7 +1039,8 @@ BRANCHES['electrolysis']['platforms']['linux']['env'] = {
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['electrolysis']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+BRANCHES['electrolysis']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
@@ -1036,6 +1049,8 @@ BRANCHES['electrolysis']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 #BRANCHES['electrolysis']['platforms']['macosx']['env'] = {
 #    'MOZ_OBJDIR': OBJDIR,

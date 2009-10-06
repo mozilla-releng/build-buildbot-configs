@@ -15,6 +15,8 @@ WIN32_ENVIRONMENT = {
     'SYMBOL_SERVER_USER': 'trybld',
     'SYMBOL_SERVER_PATH': '/symbols/windows',
     'SYMBOL_SERVER_SSH_KEY': '$ENV{HOME}/.ssh/id_dsa',
-    'NO_FAIL_ON_TEST_ERRORS': '1'   
+    'NO_FAIL_ON_TEST_ERRORS': '1',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
