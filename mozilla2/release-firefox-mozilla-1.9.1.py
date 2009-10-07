@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.1'
 sourceRepoPath     = 'releases/mozilla-1.9.1'
-sourceRepoRevision = '45436bc0b7fd'
+sourceRepoRevision = '09522dd1776e'
 relbranchOverride  = ''
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile   = 'l10n-changesets'
@@ -14,15 +14,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.5.3'
+version            = '3.5.4'
 appVersion         = version
-milestone          = '1.9.1.3'
+milestone          = '1.9.1.4'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_5_3'
-oldVersion         = '3.5.2'
+baseTag            = 'FIREFOX_3_5_4'
+oldVersion         = '3.5.3'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_5_2'
+oldBaseTag         = 'FIREFOX_3_5_3'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = enUSPlatforms
 patcherConfig      = 'moz191-branch-patcher2.cfg'
