@@ -401,7 +401,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             elif platform.endswith('i686'):
                 if platform == 'linux-i686':
                     realPlatform = 'linux'
-                    packageGlob = "fennec-*.%(locale)s.linux-i686.tar.bz2" +
+                    packageGlob = "fennec-*.%(locale)s.linux-i686.tar.bz2" + \
                                   "install/fennec-*.%(locale)s.langpack.xpi"
                 elif platform == 'macosx-i686':
                     realPlatform = 'macosx'
