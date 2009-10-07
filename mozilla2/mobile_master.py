@@ -275,7 +275,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                nightly = True
+                nightly = True,
+                triggerBuilds = True,
+                triggeredSchedulers=triggeredSchedulers
             )
         elif platform == 'win32-i686':
             mobile_nightly_factory = MobileDesktopBuildFactory(
@@ -300,7 +302,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                nightly = True
+                nightly = True,
+                triggerBuilds = True,
+                triggeredSchedulers=triggeredSchedulers
             )
         else:
             mobile_dep_factory=WinmoBuildFactory(
@@ -394,15 +398,26 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                )
-            elif platform == 'linux-i686':
+            elif platform.endswith('i686'):
+                if platform == 'linux-i686':
+                    realPlatform = 'linux'
+                    packageGlob = "fennec-*.%(locale)s.linux-i686.tar.bz2" +
+                                  "install/fennec-*.%(locale)s.langpack.xpi"
+                elif platform == 'macosx-i686':
+                    realPlatform = 'macosx'
+                    packageGlob = "-r fennec-*.%(locale)s.mac.dmg"
+                elif platform == 'win32-i686':
+                    realPlatform = 'win32'
+                    packageGlob = "fennec-*.%(locale)s.win32.zip"
+
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
                     hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='fennec-*.%(locale)s.linux-i686.tar.bz2 ' +
-                                'install/fennec-*.%(locale)s.langpack.xpi',
+                    packageGlob=packageGlob,
                     enUSBinaryURL=branch['enUS_binaryURL'],
+                    platform=realPlatform,
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
                     stageSshKey=mainConfig['stage_ssh_key'],
@@ -419,9 +434,6 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                )
-            else:
-                print 'platform %s is not linux-gnueabi-arm or linux-i686' % platform
-                continue # TODO when we have WinmoNightlyRepackFactory
 
             mobile_l10n_nightly_builder = {
                 'name': l10nNightlyBuilders[nightly_builder]['l10n_builder'],

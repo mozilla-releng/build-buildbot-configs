@@ -75,6 +75,8 @@ MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x_mc'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-i686'] = 'linux'
+MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['macosx-i686'] = 'macosx'
+MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-trunk-l10n'
@@ -147,6 +149,8 @@ MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tree'] = 'fennec10x_192'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-i686'] = 'linux'
+#MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['macosx-i686'] = 'macosx'
+#MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-1.9.2']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2-l10n'
