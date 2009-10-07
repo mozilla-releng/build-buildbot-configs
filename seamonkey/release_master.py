@@ -161,7 +161,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': dummy_factory #tag_factory
+    'factory': tag_factory
 })
 
 
@@ -188,7 +188,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': dummy_factory #source_factory
+    'factory': source_factory
 })
 
 
@@ -235,7 +235,7 @@ for platform in releasePlatforms:
         'slavenames': pf['slaves'],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': dummy_factory #build_factory
+        'factory': build_factory
     })
 
     repack_factory = CCReleaseRepackFactory(

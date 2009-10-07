@@ -5,7 +5,7 @@ else
 fi
 
 ac_add_options --enable-application=suite
-ac_add_options --enable-update-channel=beta
+ac_add_options --enable-update-channel=release
 ac_add_options --enable-update-packaging
 ac_add_options --disable-tests
 
