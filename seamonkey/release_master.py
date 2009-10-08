@@ -103,11 +103,11 @@ schedulers.append(update_verify_scheduler)
 ##### Builders
 # repositories is what actual stuff is performed on
 repositories = {
-    sourceRepoPath: {
-        'revision': sourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
-        'bumpFiles': [productVersionFile]
-    },
+#    sourceRepoPath: {
+#        'revision': sourceRepoRevision,
+#        'relbranchOverride': relbranchOverride,
+#        'bumpFiles': [productVersionFile]
+#    },
     mozillaRepoPath: {
         'revision': mozillaRepoRevision,
         'relbranchOverride': mozillaRelbranchOverride,
@@ -128,7 +128,7 @@ if venkmanRepoPath:
     }
 
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
-                                   l10nRelbranchOverride)
+                                   relbranchOverride)
 repositories.update(l10n_repos)
 
 
