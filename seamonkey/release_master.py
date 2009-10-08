@@ -128,7 +128,7 @@ if venkmanRepoPath:
     }
 
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
-                                   relbranchOverride)
+                                   l10nRelbranchOverride)
 repositories.update(l10n_repos)
 
 
