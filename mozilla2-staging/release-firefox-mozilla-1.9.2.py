@@ -30,10 +30,8 @@ oldBuildNumber      = 1
 oldBaseTag          = 'FIREFOX_3_6a1'
 enUSPlatforms       = ('linux', 'win32', 'macosx', 'wince')
 l10nPlatforms       = ('linux', 'win32', 'macosx')
-# TODO: create this file before 3.6b1
 patcherConfig       = 'moz192-branch-patcher2.cfg'
-# TODO: this will need to change to support WinCE for 3.6b2/rc1
-patcherToolsTag     = 'UPDATE_PACKAGING_R9'
+patcherToolsTag     = 'UPDATE_PACKAGING_R10'
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
