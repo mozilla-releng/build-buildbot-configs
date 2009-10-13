@@ -1055,6 +1055,7 @@ BRANCHES['electrolysis']['platforms']['linux-debug']['env'] = {
     'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LD_LIBRARY_PATH', '/tools/gcc-4.3.3/installed/lib',
 }
 #BRANCHES['electrolysis']['platforms']['macosx-debug']['env'] = {
 #    'MOZ_OBJDIR': OBJDIR,
