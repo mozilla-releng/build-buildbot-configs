@@ -176,6 +176,7 @@ BRANCHES['comm-central']['aus'] = {
     'host': 'aus-staging.sj.mozillamessaging.com',
     'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
 }
+BRANCHES['comm-central']['l10n_nightly_updates'] = True
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
