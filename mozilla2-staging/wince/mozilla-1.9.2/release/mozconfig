@@ -1,7 +1,6 @@
 ac_add_options --enable-application=browser
 
 ac_add_options --enable-optimize
-ac_add_options --enable-debugger-info-modules
 
 ac_add_options --enable-libxul
 
