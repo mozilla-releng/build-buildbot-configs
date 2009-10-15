@@ -108,28 +108,28 @@ repositories = {
         'relbranchOverride': relbranchOverride,
         'bumpFiles': [productVersionFile]
     },
-#    mozillaRepoPath: {
-#        'revision': mozillaRepoRevision,
-#        'relbranchOverride': mozillaRelbranchOverride,
-#        'bumpFiles': []
-#    },
+    mozillaRepoPath: {
+        'revision': mozillaRepoRevision,
+        'relbranchOverride': mozillaRelbranchOverride,
+        'bumpFiles': []
+    },
 }
-#if inspectorRepoPath:
-#    repositories[inspectorRepoPath] = {
-#        'revision': inspectorRepoRevision,
-#        'relbranchOverride': inspectorRelbranchOverride,
-#        'bumpFiles': []
-#    }
-#if venkmanRepoPath:
-#    repositories[venkmanRepoPath] = {
-#        'revision': venkmanRepoRevision,
-#        'relbranchOverride': venkmanRelbranchOverride,
-#        'bumpFiles': []
-#    }
+if inspectorRepoPath:
+    repositories[inspectorRepoPath] = {
+        'revision': inspectorRepoRevision,
+        'relbranchOverride': inspectorRelbranchOverride,
+        'bumpFiles': []
+    }
+if venkmanRepoPath:
+    repositories[venkmanRepoPath] = {
+        'revision': venkmanRepoRevision,
+        'relbranchOverride': venkmanRelbranchOverride,
+        'bumpFiles': []
+    }
 
-#l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
-#                                   relbranchOverride)
-#repositories.update(l10n_repos)
+l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
+                                   relbranchOverride)
+repositories.update(l10n_repos)
 
 
 # dummy factory for TESTING purposes
