@@ -13,6 +13,8 @@ TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbo
 
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 
+TALOS_COLD_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold']
+
 SLAVES = {
     'linux': ["qm-pubuntu-try%02i" % x for x in range(1,10)],
     'xp': ["qm-pxp-try%02i" % x for x in range(1,8)],
@@ -40,3 +42,5 @@ PLATFORMS['win32']['vista'] = {'name': "WINNT 6.0"}
 PLATFORMS['linux']['slave_platforms'] = ['linux']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['linux'] = {'name': "Linux"}
+
+NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms']
