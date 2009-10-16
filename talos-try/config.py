@@ -14,11 +14,11 @@ TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbo
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 
 SLAVES = {
-    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,7)],
-    'xp': ["qm-pxp-try%02i" % x for x in range(1,7)],
-    'vista': ["qm-pvista-try%02i" % x for x in range(1,7)],
-    'tiger': ["qm-ptiger-try%02i" % x for x in range(1,7)],
-    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,7)],
+    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,10)],
+    'xp': ["qm-pxp-try%02i" % x for x in range(1,8)],
+    'vista': ["qm-pvista-try%02i" % x for x in range(1,10)],
+    'tiger': ["qm-ptiger-try%02i" % x for x in range(1,3)],
+    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,8)],
 }
 
 PLATFORMS = {
