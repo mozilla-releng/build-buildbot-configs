@@ -13,7 +13,7 @@ from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 
-from buildbot.steps.shell import SetProperty
+from buildbot.steps.shell import SetProperty, WithProperties
 
 GRAPH_SERVER = 'graphs.mozilla.org'
 GRAPH_SELECTOR = '/server/collect.cgi'
@@ -35,6 +35,28 @@ def addLeakTestSteps(self,branch,platform,platformName):
         else:
             moz_objdir = "%s/mozilla" % objdir
         
+        self.addStep(ShellCommand,
+         command=['make', 'buildsymbols'],
+         env=env,
+         workdir='build/%s' % objdir,
+         haltOnFailure=True,
+         timeout=60*30,
+        )
+
+        self.addStep(SetProperty,
+         command=['bash', '-c', 'pwd'],
+         property='toolsdir',
+         workdir='tools'
+        )
+
+        platform_minidump_path = {
+            'linux': WithProperties('%(toolsdir:-)s/breakpad/linux/minidump_stackwalk'),
+            'win32': WithProperties('%(toolsdir:-)s/breakpad/win32/minidump_stackwalk.exe'),
+            'macosx': WithProperties('%(toolsdir:-)s/breakpad/osx/minidump_stackwalk'),
+            }
+
+        env['MINIDUMP_STACKWALK'] = platform_minidump_path[platformName]
+
         leak_threshold = platform.get('leak_threshold', branch.get('leak_threshold', 7261838))
         self.addStep(ShellCommand,
             env=env,
@@ -43,6 +65,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
                      '--bin', branch['appname'], 
                      '--brand', branch['brand_name'], 
                     ],
+            warnOnFailure=True,
+            haltOnFailure=True,
         )
         self.addStep(ShellCommand,
          env=env,

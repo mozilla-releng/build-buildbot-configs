@@ -14,5 +14,8 @@ ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.5.sdk
 CC="ccache gcc-4.2"
 CXX="ccache g++-4.2"
 
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
