@@ -158,6 +158,7 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
+BRANCHES['mozilla-central']['enable_checktests'] = True
 BRANCHES['mozilla-central']['enable_packaged_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_packaged_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
@@ -342,6 +343,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['enable_packaged_debug_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_packaged_opt_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
@@ -514,6 +516,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['builds_before_reboot'] =
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['enable_packaged_debug_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_packaged_opt_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
@@ -691,6 +694,7 @@ BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['enable_unittests'] = True
+BRANCHES['tracemonkey']['enable_checktests'] = True
 BRANCHES['tracemonkey']['enable_packaged_debug_unittests'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['enable_packaged_opt_unittests'] = False
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
@@ -728,6 +732,7 @@ BRANCHES['tracemonkey']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
 BRANCHES['tracemonkey']['platforms']['linux']['env'] = {
@@ -843,6 +848,7 @@ BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['places']['enable_unittests'] = True
+BRANCHES['places']['enable_checktests'] = True
 BRANCHES['places']['enable_packaged_debug_unittests'] = False
 BRANCHES['places']['platforms']['linux']['enable_packaged_opt_unittests'] = False
 BRANCHES['places']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
@@ -981,6 +987,7 @@ BRANCHES['electrolysis']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['electrolysis']['enable_unittests'] = True
+BRANCHES['electrolysis']['enable_checktests'] = True
 BRANCHES['electrolysis']['enable_packaged_debug_unittests'] = False
 BRANCHES['electrolysis']['platforms']['linux']['enable_packaged_opt_unittests'] = False
 BRANCHES['electrolysis']['platforms']['win32']['enable_packaged_opt_unittests'] = False
