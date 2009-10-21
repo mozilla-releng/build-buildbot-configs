@@ -67,6 +67,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
                     ],
             warnOnFailure=True,
             haltOnFailure=True,
+            flunkOnFailure=True,
         )
         self.addStep(ShellCommand,
          env=env,
