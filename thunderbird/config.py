@@ -49,7 +49,6 @@ DEFAULTS = {
     'l10n_nightly_updates':    False,
     
     # Unit Test
-    'poll_branch':          'comm-central',
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
     'platforms': {
       'linux':  "Linux", 
@@ -64,6 +63,7 @@ DEFAULTS = {
       'comm-central':           'rev',
       'dom-inspector':          'domi',
       'releases/mozilla-1.9.1': 'moz',
+      'releases/comm-1.9.1':    'rev',
     }
 }
 
@@ -85,7 +85,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'nightly': False,
-    'hg_branch': 'comm-central',
+    'hg_branch': 'releases/comm-1.9.1',
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
     'irc_nick': 'thunderbot',
@@ -147,6 +147,7 @@ BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['package'] = True
 BRANCHES['comm-central']['branch_name'] = 'comm-1.9.1'
+BRANCHES['comm-central']['hg_branch'] = 'releases/comm-1.9.1'
 #Disable when producing release builds
 #BRANCHES['comm-central']['nightly'] = False
 BRANCHES['comm-central']['upload_stage'] = True
@@ -332,10 +333,10 @@ BRANCHES['comm-central-calendar']['platforms'] = {
 
 BRANCHES['comm-central-calendar']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-calendar']['branch_name'] = 'comm-1.9.1'
+BRANCHES['comm-central-calendar']['hg_branch'] = 'releases/comm-1.9.1'
 BRANCHES['comm-central-calendar']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-calendar']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-calendar']['mozconfig'] = 'mozconfig-calendar'
-BRANCHES['comm-central-calendar']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-calendar']['period'] = 60 * 60 * 6
 BRANCHES['comm-central-calendar']['package'] = True
 BRANCHES['comm-central-calendar']['upload_stage'] = True
@@ -415,10 +416,10 @@ BRANCHES['comm-central-sunbird']['platforms'] = {
 }
 BRANCHES['comm-central-sunbird']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-sunbird']['branch_name'] = 'comm-1.9.1'
+BRANCHES['comm-central-sunbird']['hg_branch'] = 'releases/comm-1.9.1'
 BRANCHES['comm-central-sunbird']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-central-sunbird']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-sunbird']['mozconfig'] = 'mozconfig-sunbird'
-BRANCHES['comm-central-sunbird']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-sunbird']['period'] = 60 * 60 * 6
 BRANCHES['comm-central-sunbird']['package'] = True
 BRANCHES['comm-central-sunbird']['upload_stage'] = True
@@ -518,10 +519,10 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
+BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
 BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
-BRANCHES['comm-central-bloat']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-bloat']['nightly'] = False
 BRANCHES['comm-central-bloat']['leak'] = True
 BRANCHES['comm-central-bloat']['package'] = False
