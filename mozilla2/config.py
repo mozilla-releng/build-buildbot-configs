@@ -158,6 +158,13 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_unittests'] = True
+BRANCHES['mozilla-central']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell'])
+]
 BRANCHES['mozilla-central']['enable_packaged_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_packaged_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
