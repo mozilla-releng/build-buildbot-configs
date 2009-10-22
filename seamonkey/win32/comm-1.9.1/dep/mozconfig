@@ -11,4 +11,8 @@ export MOZILLA_OFFICIAL=1
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
 
+if test -e "$topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig"; then
 . $topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig
+else
+. $topsrcdir/../configs/seamonkey/win32/include/vista-sdk-mozconfig
+fi
