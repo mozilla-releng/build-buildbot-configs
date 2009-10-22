@@ -24,9 +24,6 @@ ac_add_options --disable-windows-mobile-components
 export CFLAGS="-QRarch6 -QRfpe-"
 export CXXFLAGS="-QRarch6 -QRfpe-"
 
-# No need to build the tests for now
-ac_add_options --disable-tests
-
 # Disable some things that aren't necessary right now;
 # these might or might not actually work should they be needed.
 ac_add_options --disable-javaxpcom
