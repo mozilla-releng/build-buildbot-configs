@@ -60,7 +60,7 @@ BRANCHES = {
 ######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
-BRANCHES['comm-1.9.1']['repo_path'] = 'comm-central'
+BRANCHES['comm-1.9.1']['repo_path'] = 'releases/comm-1.9.1'
 BRANCHES['comm-1.9.1']['mozilla_repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['major_version'] = '1.9.1'
@@ -215,7 +215,7 @@ BRANCHES['comm-1.9.1']['platforms']['linux-debug']['env'] = {
 BRANCHES['comm-central-trunk']['repo_path'] = 'comm-central'
 BRANCHES['comm-central-trunk']['mozilla_repo_path'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['comm-central-trunk']['major_version'] = '1.9.2'
+BRANCHES['comm-central-trunk']['major_version'] = '1.9.3'
 BRANCHES['comm-central-trunk']['product_name'] = 'seamonkey'
 BRANCHES['comm-central-trunk']['app_name'] = 'suite'
 BRANCHES['comm-central-trunk']['brand_name'] = 'SeaMonkey'
