@@ -33,7 +33,6 @@ BUILDERS = {
 DEFAULTS = {
     'factory':                'build',
     'hgurl':                  HGURL,
-    'master_branch':          'comm-central',
     'branch_name':            'comm-central',
     'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
