@@ -31,6 +31,7 @@ ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
 bouncerServer      = 'download.mozilla.org'
 talosTestPlatforms = ('linux', 'win32', 'macosx')
+unittestPlatforms  = ('linux', 'win32', 'macosx')
 ausServerUrl       = 'https://aus2.mozilla.org'
 useBetaChannel     = 0
 verifyConfigs      = {'linux':  'moz192-firefox-linux.cfg',

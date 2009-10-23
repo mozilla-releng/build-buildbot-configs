@@ -31,6 +31,7 @@ oldBaseTag          = 'FIREFOX_3_6a1'
 enUSPlatforms       = ('linux', 'win32', 'macosx', 'wince')
 l10nPlatforms       = ('linux', 'win32', 'macosx')
 talosTestPlatforms  = ('linux', 'win32', 'macosx')
+unittestPlatforms   = ('linux', 'win32', 'macosx')
 patcherConfig       = 'moz192-branch-patcher2.cfg'
 patcherToolsTag     = 'UPDATE_PACKAGING_R10'
 ftpServer           = 'ftp.mozilla.org'
