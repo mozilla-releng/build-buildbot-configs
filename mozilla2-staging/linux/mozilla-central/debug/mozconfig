@@ -1,7 +1,7 @@
 ac_add_options --enable-application=browser
 
 ac_add_options --disable-optimize
-ac_add_options --enable-debug
+ac_add_options --enable-debug="-gstabs+"
 ac_add_options --enable-libxul
 
 ac_add_options --enable-tests
@@ -9,9 +9,6 @@ ac_add_options --enable-trace-malloc
 
 CC=/tools/gcc-4.3.3/installed/bin/gcc
 CXX=/tools/gcc-4.3.3/installed/bin/g++
-
-#export CFLAGS="-gstabs+"
-#export CXXFLAGS="-gstabs+"
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
