@@ -8,8 +8,8 @@ ac_add_options --enable-logrefcnt
 
 mk_add_options MOZ_MAKE_FLAGS="-j3"
 
-if test -e "$topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig"; then
-. $topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig
+if test -e "$topsrcdir/mozconfigs/seamonkey/win32/include/vista-sdk-mozconfig"; then
+. $topsrcdir/mozconfigs/seamonkey/win32/include/vista-sdk-mozconfig
 else
-. $topsrcdir/../configs/seamonkey/win32/include/vista-sdk-mozconfig
+. $topsrcdir/../mozconfigs/seamonkey/win32/include/vista-sdk-mozconfig
 fi
