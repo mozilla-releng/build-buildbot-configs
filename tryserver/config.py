@@ -20,3 +20,4 @@ WIN32_ENVIRONMENT = {
     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
+BUILD_TOOLS_REPO = 'http://hg.mozilla.org/build/tools/'

@@ -1,5 +1,5 @@
 from buildbot.process import factory
-from buildbot.steps.shell import ShellCommand, WithProperties
+from buildbot.steps.shell import ShellCommand, WithProperties, SetProperty
 
 import buildbotcustom.env
 import buildbotcustom.steps.misc
@@ -373,6 +373,16 @@ firefox_hg_linux_unittest_factory = factory.BuildFactory([
                     flunkOnFailure=True,
                     workdir="."),
 
+    s(ShellCommand, name='rm buildtools',
+                    command=['rm', '-rf', 'tools'],
+                    description=['clobber', 'build tools'],
+                    workdir='.'),
+
+    s(ShellCommand, name='clone buildtools',
+                    command=['hg', 'clone', BUILD_TOOLS_REPO],
+                    description=['clone', 'build tools'],
+                    workdir='.'),
+
     s(ShellCommand, name="dump env vars",
                     workdir=".",
                     command="env | sort"),
@@ -406,28 +416,49 @@ firefox_hg_linux_unittest_factory = factory.BuildFactory([
                     timeout=3600,
                     workdir="mozilla"),
 
-    s(unittest.MozillaCheck,
+    s(ShellCommand, name="make buildsymbols",
+                    command=["make", "buildsymbols"],
+                    haltOnFailure=True,
+                    workdir="mozilla/%s" % OBJDIR,
+    ),
+
+    s(SetProperty, name="get toolsdir",
+                   command=['bash', '-c', 'pwd'],
+                   property='toolsdir',
+                   workdir='tools',
+    ),
+
+])
+
+linuxUnittestEnv = MozillaEnvironments['linux-unittest'].copy()
+linuxUnittestEnv['MINIDUMP_STACKWALK'] = \
+    WithProperties('%(toolsdir:-)s/breakpad/linux/minidump_stackwalk')
+
+firefox_hg_linux_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="check",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
+      env=linuxUnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
 
-    s(unittest.MozillaCheck,
+firefox_hg_linux_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="xpcshell-tests",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
+      env=linuxUnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
-])
 
 for test_name in ('reftest', 'crashtest'): 
     firefox_hg_linux_unittest_factory.addStep(
         unittest.MozillaReftest, 
              test_name=test_name, 
              warnOnWarnings=True,
-             workdir="mozilla/objdir",
-             env=MozillaEnvironments['linux-unittest'],
+             workdir="mozilla/%s" % OBJDIR,
+             env=linuxUnittestEnv,
              timeout=60*5
     )
 
@@ -436,8 +467,8 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
         unittest.MozillaMochitest,
                 test_name=test_name,
                 warnOnWarnings=True,
-                env=MozillaEnvironments['linux-unittest'],
-                workdir="mozilla/objdir",
+                env=linuxUnittestEnv,
+                workdir="mozilla/%s" % OBJDIR,
                 timeout=60*5
     )
 
@@ -449,6 +480,16 @@ firefox_hg_macosx_unittest_factory = factory.BuildFactory([
                     haltOnFailure=True,
                     flunkOnFailure=True,
                     workdir="."),
+
+    s(ShellCommand, name='rm buildtools',
+                    command=['rm', '-rf', 'tools'],
+                    description=['clobber', 'build tools'],
+                    workdir='.'),
+
+    s(ShellCommand, name='clone buildtools',
+                    command=['hg', 'clone', BUILD_TOOLS_REPO],
+                    description=['clone', 'build tools'],
+                    workdir='.'),
 
     s(ShellCommand, name="dump env vars",
                     workdir=".",
@@ -483,29 +524,50 @@ firefox_hg_macosx_unittest_factory = factory.BuildFactory([
                     timeout=3600,
                     workdir="mozilla"),
 
-    s(unittest.MozillaCheck,
+    s(ShellCommand, name="make buildsymbols",
+                    command=["make", "buildsymbols"],
+                    haltOnFailure=True,
+                    workdir="mozilla/%s" % OBJDIR,
+    ),
+
+    s(SetProperty, name="get toolsdir",
+                   command=['bash', '-c', 'pwd'],
+                   property='toolsdir',
+                   workdir='tools',
+    ),
+
+])
+
+macosxUnittestEnv = MozillaEnvironments['macosx-unittest'].copy()
+macosxUnittestEnv['MINIDUMP_STACKWALK'] = \
+    WithProperties('%(toolsdir:-)s/breakpad/osx/minidump_stackwalk')
+
+firefox_hg_macosx_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="check",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
+      env=macosxUnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
 
-    s(unittest.MozillaCheck,
+firefox_hg_macosx_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="xpcshell-tests",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
+      env=macosxUnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
-])
-                              
+
 for test_name in ('reftest', 'crashtest'): 
     firefox_hg_macosx_unittest_factory.addStep(
         unittest.MozillaReftest, 
            test_name=test_name, 
            warnOnWarnings=True,
-           workdir="mozilla/objdir",
+           workdir="mozilla/%s" % OBJDIR,
+           env=macosxUnittestEnv,
            timeout=60*5,
-           env=MozillaEnvironments['macosx-unittest'],
     )
 
 for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chrome'): 
@@ -513,9 +575,9 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
         unittest.MozillaMochitest,
             test_name=test_name,
             warnOnWarnings=True,
-            workdir="mozilla/objdir",
+            workdir="mozilla/%s" % OBJDIR,
+            env=macosxUnittestEnv,
             timeout=60*5,
-            env=MozillaEnvironments['macosx-unittest'],
     )
 
 firefox_hg_win32_unittest_factory = factory.BuildFactory([
@@ -559,6 +621,16 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
                     timeout=60*60, # 1 hour
                     env=MozillaEnvironments['win32-unittest']),
 
+    s(ShellCommand, name='rm buildtools',
+                    command=['rm', '-rf', 'tools'],
+                    description=['clobber', 'build tools'],
+                    workdir='.'),
+
+    s(ShellCommand, name='clone buildtools',
+                    command=['hg', 'clone', BUILD_TOOLS_REPO],
+                    description=['clone', 'build tools'],
+                    workdir='.'),
+
     s(ShellCommand, name="dump env vars",
                     workdir=".",
                     command="set | sort",
@@ -595,22 +667,41 @@ firefox_hg_win32_unittest_factory = factory.BuildFactory([
                     timeout=3600,
                     env=MozillaEnvironments['win32-unittest']),
 
-    s(unittest.MozillaCheck,
+    s(ShellCommand, name="make buildsymbols",
+                    command=["make", "buildsymbols"],
+                    haltOnFailure=True,
+                    workdir="mozilla/%s" % OBJDIR,
+    ),
+
+    s(SetProperty, name="get toolsdir",
+                   command=['bash', '-c', 'pwd'],
+                   property='toolsdir',
+                   workdir='tools',
+    ),
+
+])
+
+win32UnittestEnv = MozillaEnvironments['win32-unittest'].copy()
+win32UnittestEnv['MINIDUMP_STACKWALK'] = \
+    WithProperties('%(toolsdir:-)s/breakpad/win32/minidump_stackwalk.exe')
+
+firefox_hg_win32_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="check",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
-      env=MozillaEnvironments['win32-unittest'],
+      env=win32UnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
 
-    s(unittest.MozillaCheck,
+firefox_hg_win32_unittest_factory.addStep(
+    unittest.MozillaCheck,
       test_name="xpcshell-tests",
       warnOnWarnings=True,
       workdir="mozilla/%s" % OBJDIR,
-      env=MozillaEnvironments['win32-unittest'],
+      env=win32UnittestEnv,
       timeout=5*60, # 5 minutes.
     ),
-])
 
 for test_name in ('reftest', 'crashtest'): 
     leakThreshold = None
@@ -622,8 +713,8 @@ for test_name in ('reftest', 'crashtest'):
             test_name=test_name, 
             leakThreshold=leakThreshold,
             warnOnWarnings=True,
-            workdir="mozilla/objdir",
-            env=MozillaEnvironments['win32-unittest'],
+            workdir="mozilla/%s" % OBJDIR,
+            env=win32UnittestEnv,
             timeout=60*5
     )
          
@@ -637,7 +728,7 @@ for test_name in ('mochitest-plain', 'mochitest-chrome', 'mochitest-browser-chro
             test_name=test_name,
             leakThreshold=leakThreshold,
             warnOnWarnings=True,
-            env=MozillaEnvironments['win32-unittest'],
-            workdir="mozilla/objdir",
+            workdir="mozilla/%s" % OBJDIR,
+            env=win32UnittestEnv,
             timeout=60*5
     )
