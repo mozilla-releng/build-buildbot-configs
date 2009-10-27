@@ -649,8 +649,11 @@ BRANCHES['tracemonkey']['major_version'] = '1.9.2'
 BRANCHES['tracemonkey']['product_name'] = 'firefox'
 BRANCHES['tracemonkey']['app_name'] = 'browser'
 BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
-BRANCHES['tracemonkey']['start_hour'] = [3] 
-BRANCHES['tracemonkey']['start_minute'] = [32] 
+BRANCHES['tracemonkey']['start_hour'] = [3]
+BRANCHES['tracemonkey']['start_minute'] = [32]
+for suite in BRANCHES['tracemonkey']['unittest_suites']:
+    if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
