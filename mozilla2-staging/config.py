@@ -976,6 +976,9 @@ BRANCHES['electrolysis']['app_name'] = 'browser'
 BRANCHES['electrolysis']['brand_name'] = 'Minefield'
 BRANCHES['electrolysis']['start_hour'] = [4] 
 BRANCHES['electrolysis']['start_minute'] = [2] 
+for suite in BRANCHES['electrolysis']['unittest_suites']:
+    if suite[0] == 'everythingelse':
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
     'win32': {},
