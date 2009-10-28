@@ -34,6 +34,7 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_scripts'] = 'http://stag
 BRANCHES['mozilla-central']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.mv.mozilla.com/maemo/pageloader.tar.bz2'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
+    'tp4_nochrome': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -45,6 +46,10 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['suite_n
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-trunk-tp4'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 mozilla-central talos Tp4 nochrome'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-trunk-tp4-nochrome'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-central talos Ts'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-trunk-ts'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
@@ -126,6 +131,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_scripts'] = 'http://stagin
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.mv.mozilla.com/maemo/pageloader.tar.bz2'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
+    'tp4_nochrome': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -137,6 +143,10 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['suite_nam
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-1.9.2-tp4'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 mozilla-1.9.2 talos Tp4 nochrome'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-1.9.2-tp4-nochrome'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-1.9.2 talos Ts'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-1.9.2-ts'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
@@ -217,6 +227,7 @@ BRANCHES['tracemonkey']['platforms']['n810']['talos_scripts'] = 'http://staging-
 BRANCHES['tracemonkey']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.mv.mozilla.com/maemo/pageloader.tar.bz2'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
+    'tp4_nochrome': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -228,6 +239,10 @@ BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['suite_name'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-tm-tp4'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 tracemonkey talos Tp4 nochrome'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-tm-tp4-nochrome'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 tracemonkey talos Ts'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-tm-ts'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
