@@ -171,7 +171,6 @@ BRANCHES['mozilla-central']['platforms']['linux64']['enable_packaged_opt_unittes
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_packaged_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_packaged_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['wince']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_checktests'] = True
@@ -532,7 +531,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_packaged_opt_unittests
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_packaged_opt_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['wince']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['crashtest_leak_threshold'] = 484

@@ -11,6 +11,9 @@ ac_add_options --enable-optimize
 ac_add_app_options mobile --enable-application=mobile
 ac_add_app_options mobile --with-libxul-sdk=../xulrunner/dist
 
+# Disabling tests due to bug 454881
+ac_add_options --disable-tests
+
 #WinMo specific options
 ac_add_options --disable-javaxpcom
 ac_add_options --disable-accessibility
