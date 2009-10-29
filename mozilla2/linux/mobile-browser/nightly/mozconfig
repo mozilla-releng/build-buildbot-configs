@@ -18,4 +18,4 @@ ac_add_options --prefix=/usr/local
 ac_add_options --libdir=/usr/local
 
 # use official branding
-ac_add_options --enable-official-branding
+ac_add_app_options mobile --enable-official-branding
