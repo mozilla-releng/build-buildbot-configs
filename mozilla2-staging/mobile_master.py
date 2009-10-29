@@ -20,13 +20,13 @@ from buildbotcustom.scheduler import MozScheduler
 
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
-   WinmoBuildFactory, MaemoNightlyRepackFactory,\
+   WinmoBuildFactory, MaemoNightlyRepackFactory, \
    MobileDesktopBuildFactory, MobileDesktopNightlyRepackFactory
 
 from buildbot.steps import trigger
 from buildbot.steps.shell import WithProperties
 
-from buildbotcustom.l10n import NightlyL10n, Scheduler as SchedulerL10n
+from buildbotcustom.l10n import MultiNightlyL10n, NightlyL10n, Scheduler as SchedulerL10n
 
 
 # most of the config is in an external file
@@ -113,12 +113,25 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
     # nightly builders
     for builder in nightlyBuilders:
-        nightly_scheduler=Nightly(
-            name=builder,
-            branch=branch['mobile_repo_path'], # mobile_repo_path
-            hour=[1],
-            builderNames=[builder]
-        )
+        if builder in l10nNightlyBuilders and \
+           branch['enable_l10n'] and branch['enable_multi_locale'] and \
+           builder.startswith('Maemo') and builder.endswith('nightly') and \
+           l10nNightlyBuilders[builder]['platform'] in ('linux-gnueabi-arm'):
+            nightly_scheduler=MultiNightlyL10n(
+                name=builder,
+                branch=branch['mobile_repo_path'], # mobile_repo_path
+                hour=[1],
+                builderNames=[builder],
+                localesFile=branch['multiLocalesFile'],
+                platform=l10nNightlyBuilders[builder]['platform'],
+            )
+        else:
+            nightly_scheduler=Nightly(
+                name=builder,
+                branch=branch['mobile_repo_path'], # mobile_repo_path
+                hour=[1],
+                builderNames=[builder],
+            )
         m['schedulers'].append(nightly_scheduler)
         if branch['enable_l10n'] and builder in l10nNightlyBuilders:
             l10n_builder = l10nNightlyBuilders[builder]['l10n_builder']
@@ -175,12 +188,15 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
+                baseBuildDir=pf['base_builddir'],
                 baseUploadDir=name,
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace
             )
+            nightlyWorkDir  = pf['base_workdir']  + '-nightly'
+            nightlyBuildDir = pf['base_builddir'] + '-nightly'
             mobile_nightly_factory = MaemoBuildFactory(
                 hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
@@ -194,13 +210,16 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageBasePath=mainConfig['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform=platform,
-                baseWorkDir=pf['base_workdir'],
+                baseWorkDir=nightlyWorkDir,
+                baseBuildDir=nightlyBuildDir,
                 baseUploadDir=name,
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
                 nightly = True,
+                multiLocale = branch['enable_multi_locale'],
+                l10nRepoPath = branch['l10n_repo_path'],
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
             )
@@ -226,7 +245,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
-                buildSpace=buildSpace,
+                buildSpace=buildSpace
             )
             mobile_nightly_factory = MobileDesktopBuildFactory(
                 hgHost=mainConfig['hghost'],
@@ -410,7 +429,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 elif platform == 'win32-i686':
                     realPlatform = 'win32'
                     packageGlob = "fennec-*.%(locale)s.win32.zip"
-                 
+
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
                     hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
