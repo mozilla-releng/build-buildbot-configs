@@ -5,3 +5,6 @@ ac_add_options --disable-javaxpcom
 ac_add_app_options xulrunner --enable-application=xulrunner
 ac_add_app_options mobile --enable-application=mobile
 ac_add_app_options mobile --with-libxul-sdk=../xulrunner/dist
+
+CC=/tools/gcc-4.3.3/installed/bin/gcc
+CXX=/tools/gcc-4.3.3/installed/bin/g++
