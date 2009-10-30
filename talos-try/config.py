@@ -16,11 +16,11 @@ TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 TALOS_COLD_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold']
 
 SLAVES = {
-    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,10)],
-    'xp': ["qm-pxp-try%02i" % x for x in range(1,8)],
-    'vista': ["qm-pvista-try%02i" % x for x in range(1,10)],
+    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,12)],
+    'xp': ["qm-pxp-try%02i" % x for x in range(1,11)],
+    'vista': ["qm-pvista-try%02i" % x for x in range(1,12)],
     'tiger': ["qm-ptiger-try%02i" % x for x in range(1,3)],
-    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,8)],
+    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,12)],
 }
 
 PLATFORMS = {
