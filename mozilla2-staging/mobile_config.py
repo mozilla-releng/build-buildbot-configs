@@ -187,17 +187,25 @@ MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-tracemonkey']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
     'linux-gnueabi-arm': {},
+    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Tracemonkey'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_name'] = 'WinMo Tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-tracemonkey' % SBOX_HOME
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-tracemonkey'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_workdir'] = '.'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_builddir'] = 'winmo-tm'
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 
 ### electrolysis
 MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
