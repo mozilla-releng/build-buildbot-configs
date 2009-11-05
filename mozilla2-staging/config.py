@@ -158,7 +158,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot']
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
-BRANCHES['mozilla-central']['enable_unittests'] = True
 BRANCHES['mozilla-central']['unittest_suites'] = [
     # Turn on chunks for mochitests
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
@@ -166,12 +165,12 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
                         'mochitest-browser-chrome', 'mochitest-a11y',
                         'xpcshell'])
 ]
-BRANCHES['mozilla-central']['enable_packaged_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['enable_packaged_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_packaged_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_packaged_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['wince']['enable_packaged_opt_unittests'] = False
+BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
+BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_checktests'] = True
@@ -179,6 +178,9 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-central']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -354,12 +356,9 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] =
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
-BRANCHES['mozilla-1.9.1']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['enable_packaged_debug_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_packaged_opt_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -533,13 +532,9 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['builds_before_reboot'] =
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
-BRANCHES['mozilla-1.9.2']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['enable_packaged_debug_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_packaged_opt_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['enable_packaged_opt_unittests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['mochitest_leak_threshold'] = 484
@@ -722,11 +717,9 @@ BRANCHES['tracemonkey']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['tracemonkey']['enable_unittests'] = True
-BRANCHES['tracemonkey']['enable_packaged_debug_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['enable_packaged_opt_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['enable_packaged_opt_unittests'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_checktests'] = True
@@ -879,11 +872,9 @@ BRANCHES['places']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['places']['enable_unittests'] = True
-BRANCHES['places']['enable_packaged_debug_unittests'] = False
-BRANCHES['places']['platforms']['linux']['enable_packaged_opt_unittests'] = False
-BRANCHES['places']['platforms']['macosx']['enable_packaged_opt_unittests'] = False
-BRANCHES['places']['platforms']['win32']['enable_packaged_opt_unittests'] = False
+BRANCHES['places']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['places']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['places']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['places']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['places']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['places']['platforms']['win32']['enable_checktests'] = True
@@ -1024,10 +1015,9 @@ BRANCHES['electrolysis']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['electrolysis']['enable_unittests'] = True
-BRANCHES['electrolysis']['enable_packaged_debug_unittests'] = False
-BRANCHES['electrolysis']['platforms']['linux']['enable_packaged_opt_unittests'] = False
-BRANCHES['electrolysis']['platforms']['win32']['enable_packaged_opt_unittests'] = False
+BRANCHES['electrolysis']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['electrolysis']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['electrolysis']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['electrolysis']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['win32']['enable_checktests'] = True
