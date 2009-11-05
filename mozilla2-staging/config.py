@@ -1072,6 +1072,10 @@ BRANCHES['electrolysis']['platforms']['linux']['env'] = {
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'electrolysis',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+}
+BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
 }
 BRANCHES['electrolysis']['platforms']['win32']['env'] = {
     'CVS_RSH': 'ssh',
