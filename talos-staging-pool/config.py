@@ -17,7 +17,7 @@ TALOS_COLD_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold']
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 SLAVES = {
-    'linux': ["talos-rev1-linux%02i" % x for x in range(1,5)],
+    'linux': ["talos-rev1-linux%02i" % x for x in range(1,6)],
     'xp': ["talos-rev1-xp%02i" % x for x in range(1,5)],
     'vista': ["talos-rev1-vista%02i" % x for x in range(1,5)],
     'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,5)],
