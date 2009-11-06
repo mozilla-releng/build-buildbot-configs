@@ -56,6 +56,8 @@ BRANCH_LEVEL_VARS = {
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
         ('talos-master.mozilla.org:9010', True),
+        ('talos-staging-master.mozilla.org:9010', False),
+        ('talos-master02.mv.mozilla.com:9010', False),
         ('talos-staging-master02.mv.mozilla.com:9010', False),
     ],
     # List of unittest masters to notify of new builds to test,
