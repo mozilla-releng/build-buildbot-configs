@@ -2,16 +2,16 @@ hgUsername                 = 'tbirdbld'
 hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-central' # buildbot branch name
-sourceRepoPath             = 'comm-central'
-sourceRepoRevision         = '393f7f54019e'
-relbranchOverride          = 'COMM1913_20090915_RELBRANCH'
+sourceRepoPath             = 'releases/comm-1.9.1'
+sourceRepoRevision         = '-'
+#relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = '6880fe2d3eca'
+mozillaRepoRevision        = '-'
 #mozillaRelbranchOverride   = 'GECKO1913_20090824_RELBRANCH' # put Gecko relbranch here that we base upon
-mozillaRelbranchOverride   = 'COMM1913_20090915_RELBRANCH'
+#mozillaRelbranchOverride   = 'COMM1913_20090915_RELBRANCH'
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
-inspectorRepoRevision      = '653c0e6ca601'
-inspectorRelbranchOverride = 'COMM1913_20090915_RELBRANCH'
+inspectorRepoRevision      = '-'
+#inspectorRelbranchOverride = 'COMM1913_20090915_RELBRANCH'
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -30,15 +30,16 @@ appName                    = 'mail'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.0b4'
+version                    = '3.0'
 appVersion                 = version
+#XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.1.3'
-buildNumber                = 5
-baseTag                    = 'THUNDERBIRD_3_0b4'
-oldVersion                 = '3.0b3'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_0rc1'
+oldVersion                 = '3.0b4'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
-oldBaseTag                 = 'THUNDERBIRD_3_0b3'
+oldBaseTag                 = 'THUNDERBIRD_3_0b4'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
