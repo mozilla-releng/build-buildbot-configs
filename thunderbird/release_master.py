@@ -2,8 +2,6 @@ from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
 
 import buildbotcustom.l10n
-calesFile='%s/locales/shipped-locales' % appName,             
-+        locales={ 'zh-TW': ['linux']},   
 import buildbotcustom.misc
 reload(buildbotcustom.misc)
 import buildbotcustom.process.factory
