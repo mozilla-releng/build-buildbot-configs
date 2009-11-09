@@ -4,7 +4,7 @@ def getConfig(defaults, branch, value, default=None):
 import buildbotcustom.changes.hgpoller
 from buildbotcustom.changes.hgpoller import HgAllLocalesPoller, HgPoller
 
-def setupHGPollersFromBranches(defaults, branches, change_source, fixed_branch):
+def setupHGPollersFromBranches(defaults, branches, change_source):
     # Figure out the unique pushlogs we should be polling
     
     sources = {}
