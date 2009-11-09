@@ -2,6 +2,8 @@ from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
 
 import buildbotcustom.l10n
+calesFile='%s/locales/shipped-locales' % appName,             
++        locales={ 'zh-TW': ['linux']},   
 import buildbotcustom.misc
 reload(buildbotcustom.misc)
 import buildbotcustom.process.factory
@@ -69,6 +71,9 @@ for platform in releasePlatforms:
         branch=sourceRepoPath,
         baseTag='%s_RELEASE' % baseTag,
         localesFile='%s/locales/shipped-locales' % appName,
+        # If a few locales are needed, do this instead:
+        #locales={ 'zh-TW': ['linux']},
+
     )
     schedulers.append(build_scheduler)
     schedulers.append(repack_scheduler)
