@@ -73,6 +73,7 @@ BRANCHES = {
     'comm-central-bloat': {},
     'comm-central-trunk-bloat': {},
     'comm-central-calendar': {},
+    'comm-central-lightning' {},
     'comm-central-sunbird': {},
     'comm-1.9.1-unittest': {},
     'comm-central-unittest': {},
@@ -401,6 +402,90 @@ BRANCHES['comm-central-calendar']['platforms']['win32']['env'] = {'CVS_RSH': 'ss
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central-calendar']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
+######## lightning-trunk
+# All platforms being built for this branch MUST be listed here.
+BRANCHES['comm-central-lightning']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {}
+}
+
+BRANCHES['comm-central-lightning']['mozilla_central_branch'] = 'mozilla-central'
+BRANCHES['comm-central-lightning']['branch_name'] = 'comm-central'
+BRANCHES['comm-central-lightning']['hg_branch'] = 'comm-central'
+BRANCHES['comm-central-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
+BRANCHES['comm-central-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
+BRANCHES['comm-central-lightning']['mozconfig'] = 'mozconfig-calendar'
+BRANCHES['comm-central-lightning']['period'] = 60 * 60 * 6
+BRANCHES['comm-central-lightning']['package'] = True
+BRANCHES['comm-central-lightning']['upload_stage'] = True
+BRANCHES['comm-central-lightning']['upload_complete_mar'] = False
+#Might be better off per-platform instead of per-branch here.
+BRANCHES['comm-central-lightning']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
+BRANCHES['comm-central-lightning']['stage_username'] = 'calbld'
+BRANCHES['comm-central-lightning']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
+BRANCHES['comm-central-lightning']['stage_group'] = 'calendar'
+BRANCHES['comm-central-lightning']['stage_ssh_key'] = 'calbld_dsa'
+BRANCHES['comm-central-lightning']['codesighs'] = False
+BRANCHES['comm-central-lightning']['l10n'] = False
+BRANCHES['comm-central-lightning']['irc_nick'] = 'lt-trunk-builds'
+BRANCHES['comm-central-lightning']['irc_channels'] = [ 'calendar' ]
+BRANCHES['comm-central-lightning']['platforms']['linux']['base_name'] = 'Linux comm-central lightning'
+BRANCHES['comm-central-lightning']['platforms']['win32']['base_name'] = 'Win2k3 comm-central lightning'
+BRANCHES['comm-central-lightning']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central lightning'
+BRANCHES['comm-central-lightning']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-central-lightning']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-central-lightning']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['comm-central-lightning']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
+BRANCHES['comm-central-lightning']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
+BRANCHES['comm-central-lightning']['platforms']['macosx']['milestone'] = "comm-central/macosx-xpi"
+BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
+
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-central-lightning']['create_snippet'] = False
+BRANCHES['comm-central-lightning']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-central-lightning']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-central-lightning']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-central-lightning']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-central-lightning']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-central-lightning']['tinderbox_tree'] = 'ThunderbirdTest'
+BRANCHES['comm-central-lightning']['platforms']['linux']['slaves'] = [
+    'cb-sb-linux-tbox',
+]
+BRANCHES['comm-central-lightning']['platforms']['win32']['slaves'] = [
+    'cb-sb-win32-tbox',
+]
+BRANCHES['comm-central-lightning']['platforms']['macosx']['slaves'] = [
+    'cb-xserve03',
+]
+
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-central-lightning']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-lightning']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-lightning']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['comm-central-lightning']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-central-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
