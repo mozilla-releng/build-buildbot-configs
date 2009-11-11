@@ -17,6 +17,8 @@ TALOS_COLD_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold']
 
 TALOS_SVG_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity']
 
+TALOS_V8_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'v8']
+
 SLAVES = {
     'linux': ["qm-pubuntu-try%02i" % x for x in range(1,12)],
     'xp': ["qm-pxp-try%02i" % x for x in range(1,11)],
