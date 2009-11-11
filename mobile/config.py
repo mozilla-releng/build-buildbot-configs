@@ -1,5 +1,5 @@
 SLAVES = {
-    'n810': ['maemo-n810-%02i' % x for x in range(1,41)],
+    'n810': ['maemo-n810-%02i' % x for x in range(1,81)],
 }
 
 BRANCHES = {
