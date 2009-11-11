@@ -186,7 +186,7 @@ BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_unittests'] = Tr
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-central']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['mozilla-central']['unittest_build_space'] = 5
+BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
@@ -731,7 +731,7 @@ BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tracemonkey']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['tracemonkey']['unittest_build_space'] = 5
+BRANCHES['tracemonkey']['unittest_build_space'] = 6
 BRANCHES['tracemonkey']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
@@ -886,7 +886,7 @@ BRANCHES['places']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['places']['enable_mac_a11y'] = True
 BRANCHES['places']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['places']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['places']['unittest_build_space'] = 5
+BRANCHES['places']['unittest_build_space'] = 6
 BRANCHES['places']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['places']['enable_l10n'] = False
@@ -1029,7 +1029,7 @@ BRANCHES['electrolysis']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['electrolysis']['enable_mac_a11y'] = True
 BRANCHES['electrolysis']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['electrolysis']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['electrolysis']['unittest_build_space'] = 5
+BRANCHES['electrolysis']['unittest_build_space'] = 6
 BRANCHES['electrolysis']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['electrolysis']['enable_l10n'] = False
