@@ -35,6 +35,7 @@ BRANCHES = {
     'mozilla-1.9.0': {},
     'tracemonkey': {},
     'places': {},
+    'electrolysis': {},
 }
 
 PLATFORMS = {
@@ -182,3 +183,21 @@ BRANCHES['places']['tp4_tests'] = (1, True, [], NO_TIGER)
 BRANCHES['places']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
 BRANCHES['places']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
 BRANCHES['places']['v8_tests'] = (0, True, [], NO_TIGER_NO_WIN)
+
+######## electrolysis
+BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
+BRANCHES['electrolysis']['build_branch'] = "Electrolysis"
+BRANCHES['electrolysis']['fetch_symbols'] = True
+# How many chrome tests per build to run, and whether to merge build requests
+BRANCHES['electrolysis']['chrome_tests'] = (1,True, [], NO_TIGER)
+# How many nochrome tests per build to run, and whether to merge build requests
+BRANCHES['electrolysis']['nochrome_tests'] = (0,True, [], NO_TIGER)
+# How many jss tests per build to run, and whether to merge build requests
+BRANCHES['electrolysis']['jss_tests'] = (1,True, [], NO_TIGER)
+# How many dirty ts tests per build to run, and whether to merge build requests
+BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER)
+# How many tp4 tests per build to run, and whether to merge build requests
+BRANCHES['electrolysis']['tp4_tests'] = (1,True, [], NO_TIGER)
+BRANCHES['electrolysis']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
+BRANCHES['electrolysis']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
+BRANCHES['electrolysis']['v8_tests'] = (0, True, [], NO_TIGER_NO_WIN)
