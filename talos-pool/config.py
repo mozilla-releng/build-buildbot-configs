@@ -115,8 +115,8 @@ BRANCHES['mozilla-central']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TI
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-central']['tp4_tests'] = (1,True, [], NO_TIGER)
 BRANCHES['mozilla-central']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['mozilla-central']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['mozilla-central']['v8_tests'] = (0, True, [], NO_TIGER_NO_WIN)
+BRANCHES['mozilla-central']['svg_tests'] = (1, True, [], NO_TIGER)
+BRANCHES['mozilla-central']['v8_tests'] = (0, True, [], NO_TIGER)
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
@@ -133,8 +133,8 @@ BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, ALL_PLA
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1,True, [], ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, [], NO_WIN)
-BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, [], NO_WIN)
-BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, [], NO_WIN)
+BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, [], ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, [], ALL_PLATFORMS)
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
@@ -151,8 +151,8 @@ BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, ALL_PLA
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1,True, [], ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, [], NO_WIN)
-BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, [], NO_WIN)
-BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, [], NO_WIN)
+BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, [], ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, [], ALL_PLATFORMS)
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
@@ -169,7 +169,7 @@ BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER)
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['tracemonkey']['tp4_tests'] = (1,True, [], NO_TIGER)
 BRANCHES['tracemonkey']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['tracemonkey']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
+BRANCHES['tracemonkey']['svg_tests'] = (1, True, [], NO_TIGER)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, [], NO_TIGER)
 
 ######## places
@@ -187,8 +187,8 @@ BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER)
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['places']['tp4_tests'] = (1,True, [], NO_TIGER)
 BRANCHES['places']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['places']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['places']['v8_tests'] = (0, True, [], NO_TIGER_NO_WIN)
+BRANCHES['places']['svg_tests'] = (1, True, [], NO_TIGER)
+BRANCHES['places']['v8_tests'] = (0, True, [], NO_TIGER)
 
 ######## electrolysis
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
@@ -205,5 +205,5 @@ BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_ADDONS, NO_TIGER
 # How many tp4 tests per build to run, and whether to merge build requests
 BRANCHES['electrolysis']['tp4_tests'] = (1,True, [], NO_TIGER)
 BRANCHES['electrolysis']['cold_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['electrolysis']['svg_tests'] = (1, True, [], NO_TIGER_NO_WIN)
-BRANCHES['electrolysis']['v8_tests'] = (0, True, [], NO_TIGER_NO_WIN)
+BRANCHES['electrolysis']['svg_tests'] = (1, True, [], NO_TIGER)
+BRANCHES['electrolysis']['v8_tests'] = (0, True, [], NO_TIGER)
