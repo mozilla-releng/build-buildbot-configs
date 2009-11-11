@@ -2,7 +2,7 @@ from buildbot.steps.shell import WithProperties
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org', '--resultsLink', '/server/collect.cgi']
 
-TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:tsvg:twinopen:tsspider:tgfx']
+TALOS_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider:tgfx']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
@@ -14,6 +14,8 @@ TALOS_DIRTY_ADDONS = ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbo
 TALOS_TP4_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tp4']
 
 TALOS_COLD_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold']
+
+TALOS_SVG_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity']
 
 SLAVES = {
     'linux': ["talos-rev1-linux%02i" % x for x in range(1,10)],
