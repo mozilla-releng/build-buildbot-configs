@@ -49,11 +49,6 @@ DEFAULTS = {
     
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
-    'platforms': {
-      'linux':  "Linux", 
-      'win32':  "WINNT 5.2",
-      'osx':    "MacOSX 10.5",
-    },
 
     'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
     'build_tools_repo': "build/tools",
