@@ -51,7 +51,7 @@ DEFAULTS = {
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
     'platforms': {
       'linux':  "Linux", 
-      'win32':  "Win2k3",
+      'win32':  "WINNT 5.2",
       'osx':    "MacOSX 10.5",
     },
 
@@ -96,7 +96,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
             'slaves': BUILDERS['linux']['momo'],
         },
         'win32': {
-            'base_name': 'Win2k3 comm-1.9.1',
+            'base_name': 'WINNT 5.2 comm-1.9.1',
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
@@ -122,7 +122,7 @@ BRANCHES['comm-central-unittest'] = {
             'slaves': BUILDERS['linux']['momo'],
         },
         'win32': {
-            'base_name': 'Win2k3 comm-central',
+            'base_name': 'WINNT 5.2 comm-central',
             'slaves': BUILDERS['win32']['momo'],
         },
        'macosx': {
@@ -164,7 +164,7 @@ BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
 BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
-BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1'
+BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1'
 BRANCHES['comm-central']['platforms']['macosx-shark']['base_name'] = 'MacOSX 10.5 comm-1.9.1 shark'
 BRANCHES['comm-central']['platforms']['linux']['profiled_build'] = False
@@ -265,7 +265,7 @@ BRANCHES['comm-central-trunk']['l10n_tree'] = 'tb31x'
 BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
 BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central'
-BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
+BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
@@ -356,7 +356,7 @@ BRANCHES['comm-central-calendar']['l10n'] = False
 BRANCHES['comm-central-calendar']['irc_nick'] = 'calbuild'
 BRANCHES['comm-central-calendar']['irc_channels'] = [ 'maildev', 'calendar' ]
 BRANCHES['comm-central-calendar']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 lightning'
-BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 lightning'
+BRANCHES['comm-central-calendar']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1 lightning'
 BRANCHES['comm-central-calendar']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 lightning'
 BRANCHES['comm-central-calendar']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-calendar']['platforms']['win32']['profiled_build'] = False
@@ -440,7 +440,7 @@ BRANCHES['comm-central-lightning']['l10n'] = False
 BRANCHES['comm-central-lightning']['irc_nick'] = 'lt-trunk-builds'
 BRANCHES['comm-central-lightning']['irc_channels'] = [ 'calendar' ]
 BRANCHES['comm-central-lightning']['platforms']['linux']['base_name'] = 'Linux comm-central lightning'
-BRANCHES['comm-central-lightning']['platforms']['win32']['base_name'] = 'Win2k3 comm-central lightning'
+BRANCHES['comm-central-lightning']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central lightning'
 BRANCHES['comm-central-lightning']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central lightning'
 BRANCHES['comm-central-lightning']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-lightning']['platforms']['win32']['profiled_build'] = False
@@ -528,7 +528,7 @@ BRANCHES['comm-central-sunbird']['product_name'] = 'Sunbird'
 BRANCHES['comm-central-sunbird']['irc_nick'] = 'sunbuild'
 BRANCHES['comm-central-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
 BRANCHES['comm-central-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
-BRANCHES['comm-central-sunbird']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1 sunbird'
+BRANCHES['comm-central-sunbird']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1 sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 sunbird'
 BRANCHES['comm-central-sunbird']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-sunbird']['platforms']['win32']['profiled_build'] = False
@@ -621,7 +621,7 @@ BRANCHES['comm-central-bloat']['irc_nick'] = 'thunderbloat'
 BRANCHES['comm-central-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
-BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-1.9.1'
+BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-bloat']['platforms']['win32']['profiled_build'] = False
@@ -706,7 +706,7 @@ BRANCHES['comm-central-trunk-bloat']['l10n'] = False
 BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-trunk'
 BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central'
-BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'Win2k3 comm-central'
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['profiled_build'] = False
