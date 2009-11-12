@@ -43,7 +43,7 @@ baseTag                    = 'THUNDERBIRD_3_0rc1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.0b4'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
+oldBuildNumber             = 2
 oldBaseTag                 = 'THUNDERBIRD_3_0b4'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
