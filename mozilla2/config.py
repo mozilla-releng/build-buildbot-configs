@@ -104,9 +104,6 @@ BRANCHES['mozilla-central']['app_name'] = 'browser'
 BRANCHES['mozilla-central']['brand_name'] = 'Minefield'
 BRANCHES['mozilla-central']['start_hour'] = [3] 
 BRANCHES['mozilla-central']['start_minute'] = [2] 
-for suite in BRANCHES['mozilla-central']['unittest_suites']:
-    if suite[0] == 'everythingelse':
-        suite[1].append('jsreftest')
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['mozilla-central']['platforms'] = {
     'linux': {},
@@ -167,7 +164,7 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
     ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
                         'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell'])
+                        'xpcshell', 'jsreftest'])
 ]
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
