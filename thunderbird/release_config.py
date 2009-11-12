@@ -5,17 +5,16 @@ sourceRepoName             = 'comm-central' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
 sourceRepoRevision         = '6ec88ca5bf7a'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM1915_20091112_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '57f71400f4cf'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
 mozillaRelbranchOverride   = 'GECKO1914_20091006_RELBRANCH' # put Gecko relbranch here that we base upon
-#mozillaRelbranchOverride   = 'COMM1913_20090915_RELBRANCH'
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '18a1c983c8ee'
-#inspectorRelbranchOverride = 'COMM1913_20090915_RELBRANCH'
+inspectorRelbranchOverride = 'COMM1915_20091112_RELBRANCH'
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
