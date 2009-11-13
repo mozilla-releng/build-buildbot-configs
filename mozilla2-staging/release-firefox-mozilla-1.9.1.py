@@ -29,6 +29,7 @@ oldAppVersion       = '3.5'
 oldBuildNumber      = 2
 oldBaseTag          = 'FIREFOX_3_5'
 enUSPlatforms       = ('linux', 'win32', 'macosx')
+talosTestPlatforms  = ()
 l10nPlatforms       = enUSPlatforms
 patcherConfig       = 'moz191-branch-patcher2.cfg'
 patcherToolsTag     = 'UPDATE_PACKAGING_R9'

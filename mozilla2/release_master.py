@@ -165,6 +165,10 @@ for platform in enUSPlatforms:
     # shorthand
     pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, sourceRepoName)
+    if platform in talosTestPlatforms:
+        talosMasters = branchConfig['talos_masters']
+    else:
+        talosMasters = None
 
     build_factory = ReleaseBuildFactory(
         env=pf['env'],
@@ -192,7 +196,8 @@ for platform in enUSPlatforms:
         buildSpace=10,
         productName=productName,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        talosMasters=talosMasters
     )
 
     builders.append({

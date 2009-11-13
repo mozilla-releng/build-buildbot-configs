@@ -31,6 +31,7 @@ patcherConfig      = 'moz193-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R9'
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
+talosTestPlatforms = ('linux', 'win32', 'macosx')
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 useBetaChannel     = 0
