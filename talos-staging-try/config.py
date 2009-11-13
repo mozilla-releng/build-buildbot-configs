@@ -20,11 +20,12 @@ TALOS_SVG_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity']
 TALOS_V8_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'v8']
 
 SLAVES = {
-    'linux': ["talos-rev1-linux%02i" % x for x in range(1,10)],
-    'xp': ["talos-rev1-xp%02i" % x for x in range(1,10)],
-    'vista': ["talos-rev1-vista%02i" % x for x in range(1,10)],
-    'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,10)],
-    'leopard': ["talos-rev1-leopard%02i" % x for x in range(1,10)],
+    'linux': ["talos-rev1-linux%02i" % x for x in range(1,6)],
+    'xp': ["talos-rev1-xp%02i" % x for x in range(1,5)],
+    'vista': ["talos-rev1-vista%02i" % x for x in range(1,5)],
+    'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,5)],
+    'leopard': ["talos-rev1-leopard%02i" % x for x in range(1,5)],
+
 }
 
 PLATFORMS = {
