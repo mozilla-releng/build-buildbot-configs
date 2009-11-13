@@ -399,11 +399,15 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
+                    packageGlob='-r %(locale)s ' +
+                                'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
                                 'install/fennec-*.%(locale)s.langpack.xpi',
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
+                    configSubDir=mainConfig['config_subdir'],
+                    mozconfig=pf['mozconfig'],
+                    configRepoPath=mainConfig['config_repo_path'],
                     stageSshKey=mainConfig['stage_ssh_key'],
                     stageBasePath=mainConfig['stage_base_path'],
                     repoPath=branch['repo_path'],
