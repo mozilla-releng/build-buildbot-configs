@@ -7,9 +7,6 @@ ac_add_options --disable-shared
 ac_add_options --enable-update-packaging
 ac_add_options --enable-codesighs
 
-# shark specific options
-ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.5.sdk
-
 ac_add_options --enable-shark
 ac_add_options --enable-dtrace
 ac_add_options --enable-debugger-info-modules
