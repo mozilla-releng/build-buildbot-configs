@@ -13,7 +13,7 @@ SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx'],
     'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx', '--noChrome'],
     'jss': GRAPH_CONFIG + ['--activeTests', 'tjss'],
-    'dirty': GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med:ts_places_generated_max'],
+    'dirty': GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med:ts_places_generated_max:ts_cold_generated_min:ts_cold_generated_med:ts_cold_generated_max'],
     'tp4': GRAPH_CONFIG + ['--activeTests', 'tp4'],
     'cold': GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold'],
     'v8': GRAPH_CONFIG + ['--activeTests', 'v8'],
