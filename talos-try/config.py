@@ -20,11 +20,11 @@ TALOS_SVG_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity']
 TALOS_V8_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'v8']
 
 SLAVES = {
-    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,12)],
+    'linux': ["qm-pubuntu-try%02i" % x for x in range(1,17)],
     'xp': ["qm-pxp-try%02i" % x for x in range(1,11)],
     'vista': ["qm-pvista-try%02i" % x for x in range(1,12)],
     'tiger': ["qm-ptiger-try%02i" % x for x in range(1,3)],
-    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,12)],
+    'leopard': ["qm-pleopard-try%02i" % x for x in range(1,17)],
 }
 
 PLATFORMS = {
