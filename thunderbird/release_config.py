@@ -3,15 +3,15 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-central' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '6ec88ca5bf7a'
+sourceRepoRevision         = '31dbe7e912dc'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM1915_20091112_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = '57f71400f4cf'
+mozillaRepoRevision        = 'ebb9e52cff37'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'GECKO1914_20091006_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM1915_20091112_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '18a1c983c8ee'
 inspectorRelbranchOverride = 'COMM1915_20091112_RELBRANCH'
