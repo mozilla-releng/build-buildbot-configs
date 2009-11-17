@@ -37,7 +37,7 @@ version                    = '3.0rc1'
 appVersion                 = '3.0'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.1.5'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'THUNDERBIRD_3_0rc1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.0b4'
