@@ -69,6 +69,8 @@ BRANCH_LEVEL_VARS = {
                             'mochitest-browser-chrome', 'mochitest-a11y',
                             'xpcshell'])
     ],
+    'geriatric_masters': [],
+    'geriatric_branches': {},
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
@@ -166,6 +168,14 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
                         'mochitest-browser-chrome', 'mochitest-a11y',
                         'xpcshell', 'jsreftest'])
 ]
+BRANCHES['mozilla-central']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
+BRANCHES['mozilla-central']['geriatric_branches'] = {
+    'win32': ['p3-win-unit'],
+    'linux': ['p3-linux-unit'],
+    'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
+}
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = True

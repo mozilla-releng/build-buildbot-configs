@@ -69,6 +69,8 @@ BRANCH_LEVEL_VARS = {
                             'mochitest-browser-chrome', 'mochitest-a11y',
                             'xpcshell'])
     ],
+    'geriatric_masters': [],
+    'geriatric_branches': {},
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',
     'l10n_tinderbox_tree': 'MozillaStaging',
