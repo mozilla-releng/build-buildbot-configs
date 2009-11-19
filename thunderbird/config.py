@@ -140,7 +140,7 @@ BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
 
 #Follow the gecko 1.9.1.5 revision until we release 3.0
-BRANCHES['comm-central']['nightly_client_py_args'] = ['--mozilla-rev=FIREFOX_3_5_5_RELEASE']
+BRANCHES['comm-central']['nightly_client_py_args'] = ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
 
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
