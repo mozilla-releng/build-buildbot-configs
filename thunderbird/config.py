@@ -77,6 +77,8 @@ BRANCHES = {
 # thunderbird-unittest
 
 BRANCHES['comm-1.9.1-unittest'] = {
+    #Follow the 3.0rc1 release branch until we release 3.0
+    'client_py_args' :  DEFAULTS['client_py_args'] + ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
     'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'nightly': False,
@@ -137,11 +139,8 @@ BRANCHES['comm-central']['platforms'] = {
     'macosx-shark': {},
 }
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
-
-#Follow the gecko 1.9.1.5 revision until we release 3.0
-BRANCHES['comm-central']['nightly_client_py_args'] = ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
-
+#Follow the 3.0rc1 release branch until we release 3.0
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
 BRANCHES['comm-central']['package'] = True
@@ -603,8 +602,9 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
-BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
+#Follow the 3.0rc1 release branch until we release 3.0
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
+BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
 BRANCHES['comm-central-bloat']['nightly'] = False
 BRANCHES['comm-central-bloat']['leak'] = True
