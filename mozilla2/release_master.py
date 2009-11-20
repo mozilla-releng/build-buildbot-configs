@@ -30,13 +30,13 @@ change_source = []
 status = []
 
 ##### Change sources and Schedulers
-change_source.append(FtpPoller(
-    branch="post_signing",
-    ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-             % (stagingServer, productName, version, buildNumber)],
-    pollInterval= 60*10,
-    searchString='win32_signing_build'
-))
+#change_source.append(FtpPoller(
+#    branch="post_signing",
+#    ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
+#             % (stagingServer, productName, version, buildNumber)],
+#    pollInterval= 60*10,
+#    searchString='win32_signing_build'
+#))
 
 tag_scheduler = Scheduler(
     name='tag',
