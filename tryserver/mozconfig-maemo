@@ -9,6 +9,6 @@ ac_add_app_options mobile --enable-application=mobile
 ac_add_app_options mobile --with-libxul-sdk=../xulrunner/dist
 
 # install locations for xulrunner/fennec for Maemo
-ac_add_options --prefix=/usr/local
-ac_add_options --libdir=/usr/local
+ac_add_options --prefix=/opt/mozilla
+ac_add_options --libdir=/opt/mozilla
 
