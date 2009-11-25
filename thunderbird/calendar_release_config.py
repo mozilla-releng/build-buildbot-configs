@@ -27,7 +27,7 @@ cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patche
 productVersionFile         = 'calendar/sunbird/config/version.txt'
 productName                = 'sunbird'
 brandName                  = 'Sunbird'
-appName                    = 'calendar'
+appName                    = 'calendar/sunbird'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
