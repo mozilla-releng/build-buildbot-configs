@@ -3,7 +3,7 @@ hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1-sunbird' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '1d5c52e21b70'
+sourceRepoRevision         = '39add317ae93'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
