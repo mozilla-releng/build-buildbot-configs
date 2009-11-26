@@ -3,18 +3,18 @@ hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1-sunbird' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '39add317ae93'
+sourceRepoRevision         = 'ad78d20918bd'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM1915_20091125_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '37d0f274bafc'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = '' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM1915_20091125_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'ebe59a415752'
-inspectorRelbranchOverride = ''
+inspectorRelbranchOverride = 'COMM1915_20091125_RELBRANCH'
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -42,7 +42,7 @@ baseTag                    = 'SUNBIRD_1_0b1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = ''
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
+oldBuildNumber             = 2
 oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
