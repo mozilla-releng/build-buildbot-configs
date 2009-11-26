@@ -4,19 +4,18 @@ else
 . $topsrcdir/build/macosx/universal/mozconfig
 fi
 
-mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
-mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk
+# related bugids 466308, 417045, 421534
+#mk_add_options MOZ_MAKE_FLAGS="-j6"
 
-ac_add_options --enable-application=mail
-ac_add_options --enable-calendar
+ac_add_options --enable-application=calendar
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
-ac_add_options --enable-optimize
 ac_add_options --disable-debug
-ac_add_options --disable-tests
-ac_add_options --disable-codesighs
-ac_add_options --disable-shared
+ac_add_options --enable-optimize
 ac_add_options --enable-static
+ac_add_options --disable-shared
+ac_add_options --disable-installer
+ac_add_options --disable-tests
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
