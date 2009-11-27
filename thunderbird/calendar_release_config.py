@@ -3,7 +3,7 @@ hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1-sunbird' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = 'ad78d20918bd'
+sourceRepoRevision         = 'bcb342415365'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM1915_20091125_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
@@ -37,12 +37,12 @@ version                    = '1.0b1'
 appVersion                 = '1.0b1'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.1.5'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'SUNBIRD_1_0b1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = ''
 oldAppVersion              = oldVersion
-oldBuildNumber             = 2
+oldBuildNumber             = 1
 oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
