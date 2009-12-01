@@ -40,10 +40,10 @@ milestone                  = '1.9.1.5'
 buildNumber                = 1
 baseTag                    = 'THUNDERBIRD_3_0rc2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.0b4'
-oldAppVersion              = oldVersion
-oldBuildNumber             = 5
-oldBaseTag                 = 'THUNDERBIRD_3_0b4'
+oldVersion                 = '3.0rc1'
+oldAppVersion              = '3.0'
+oldBuildNumber             = 3
+oldBaseTag                 = 'THUNDERBIRD_3_0rc1'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
