@@ -33,16 +33,16 @@ appName                    = 'mail'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.0rc1'
+version                    = '3.0rc2'
 appVersion                 = '3.0'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.1.5'
-buildNumber                = 3
-baseTag                    = 'THUNDERBIRD_3_0rc1'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_0rc2'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.0b4'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 4
+oldBuildNumber             = 5
 oldBaseTag                 = 'THUNDERBIRD_3_0b4'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
