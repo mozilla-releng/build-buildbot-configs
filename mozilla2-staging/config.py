@@ -61,8 +61,8 @@ BRANCH_LEVEL_VARS = {
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', True),
-                         ('localhost:9011', True)],
+    'unittest_masters': [('localhost:9010', True, 0),
+                         ('localhost:9011', True, 0)],
     'unittest_suites': [
         ('mochitests', ['mochitest-plain']),
         ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
