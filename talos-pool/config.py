@@ -73,10 +73,8 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['macosx']['slave_platforms']
-NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platform
-s'] + ['leopard']
-NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms
-']
+NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + ['leopard']
+NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms']
 NO_TIGER_NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + ['leopard']
 
 ########
