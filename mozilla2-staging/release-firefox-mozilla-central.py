@@ -43,5 +43,4 @@ useBetaChannel      = 0
 # TODO: create these files before 3.7a2
 verifyConfigs       = {'linux':  'moz193-firefox-linux.cfg',
                        'macosx': 'moz193-firefox-mac.cfg',
-                       'win32':  'moz193-firefox-win32.cfg',
-                       'wince':  'moz193-firefox-wince.cfg'}
+                       'win32':  'moz193-firefox-win32.cfg'}

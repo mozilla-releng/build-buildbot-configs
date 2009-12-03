@@ -88,7 +88,7 @@ updates_scheduler = Scheduler(
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
-for platform in enUSPlatforms:
+for platform in sorted(verifyConfigs.keys()):
     updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
@@ -302,7 +302,7 @@ builders.append({
 })
 
 
-for platform in enUSPlatforms:
+for platform in sorted(verifyConfigs.keys()):
     update_verify_factory = UpdateVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
