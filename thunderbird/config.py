@@ -71,6 +71,7 @@ BRANCHES = {
     'comm-central-lightning' {},
     'comm-1.9.1-sunbird': {},
     'comm-1.9.1-unittest': {},
+    'comm-1.9.2-unittest': {},
     'comm-central-unittest': {},
 }
 
@@ -103,6 +104,30 @@ BRANCHES['comm-1.9.1-unittest'] = {
     }
 }
 
+BRANCHES['comm-1.9.2-unittest'] = {
+    'factory': 'CCUnittestBuildFactory',
+    'builder_type': 'check',
+    'hg_branch': 'comm-central',
+    'branch_name': 'comm-1.9.2',
+    'mozilla_central_branch': 'releases/mozilla-1.9.2'
+    'nightly': False,
+    'tinderbox_tree': 'Thunderbird3.1',
+    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'],
+    'platforms': {
+        'linux': {
+            'base_name': 'Linux comm-1.9.2',
+            'slaves': BUILDERS['linux']['momo'],
+        },
+        'win32': {
+            'base_name': 'WINNT 5.2 comm-1.9.2',
+            'slaves': BUILDERS['win32']['momo'],
+        },
+       'macosx': {
+            'base_name': 'MacOSX 10.5 comm-1.9.2',
+            'slaves': BUILDERS['macosx']['10.5']['momo'],
+        },
+    },
+}
 BRANCHES['comm-central-unittest'] = {
     'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
