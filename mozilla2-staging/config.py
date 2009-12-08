@@ -11,7 +11,8 @@ XSERVES   = ['bm-xserve%02i' % x for x in [7,9,11,12,16,17,18,19,21,22]]
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,51)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32': ['moz2-win32-slave%02i' % x for x in range(1,60)],
+    'win32': ['moz2-win32-slave%02i' % x for x in range(1,60)] + \
+             ['win32-slave%02i' % x for x in range(1,60)],
     'macosx': MAC_MINIS + XSERVES,
 }
 
