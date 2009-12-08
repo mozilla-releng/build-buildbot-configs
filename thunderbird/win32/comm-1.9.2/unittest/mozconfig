@@ -11,4 +11,5 @@ ac_add_options --disable-debug
 ac_add_options --enable-logrefcnt
 
 # Bug 427627
-ac_add_options --enable-jemalloc
+# Disabled due to bug 533424
+#ac_add_options --enable-jemalloc
