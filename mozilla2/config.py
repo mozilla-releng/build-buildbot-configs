@@ -180,7 +180,7 @@ BRANCHES['mozilla-central']['geriatric_branches'] = {
 }
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
