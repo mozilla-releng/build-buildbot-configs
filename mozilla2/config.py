@@ -10,9 +10,7 @@ SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in [1,2] +
               range(5,17) + range(18,51)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32': ['moz2-win32-slave%02i' % x for x in [1,2] +
-              range(5,21) + range(22,60)] + \
-             ['win32-slave%02i' % x for x in [1,2] + range(5,21) +
+    'win32': ['win32-slave%02i' % x for x in [1,2] + range(5,21) +
               range(22,60)],
     'macosx': MAC_MINIS + XSERVES,
 }
