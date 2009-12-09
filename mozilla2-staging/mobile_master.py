@@ -82,6 +82,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         l10n_builders = []
         for b in l10nNightlyBuilders:
             l10n_builders.append(l10nNightlyBuilders[b]['l10n_builder'])
+            l10n_builders.append(l10nNightlyBuilders[b]['l10n_builder'] + " build")
         # General tinderbox page
         m['status'].append(TinderboxMailNotifier(
             fromaddr="buildbot@mozilla.com",
@@ -395,6 +396,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             mobile_l10n_nightly_factory = None
             if platform == 'linux-gnueabi-arm':
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
+                    nightly = True,
                     hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
@@ -421,7 +423,36 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     baseUploadDir='%s-l10n' % name,
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
-               )
+                )
+                mobile_l10n_dep_factory = MaemoNightlyRepackFactory(
+                    nightly = False,
+                    hgHost=mainConfig['hghost'],
+                    tree=branch['l10n_tree'],
+                    project=branch['product_name'],
+                    appName=branch['app_name'],
+                    packageGlob='-r %(locale)s ' +
+                                'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
+                                'install/fennec-*.%(locale)s.langpack.xpi',
+                    enUSBinaryURL=branch['enUS_binaryURL'],
+                    stageServer=mainConfig['stage_server'],
+                    stageUsername=mainConfig['stage_username'],
+                    configSubDir=mainConfig['config_subdir'],
+                    mozconfig=pf['mozconfig'],
+                    configRepoPath=mainConfig['config_repo_path'],
+                    stageSshKey=mainConfig['stage_ssh_key'],
+                    stageBasePath=mainConfig['stage_base_path'],
+                    repoPath=branch['repo_path'],
+                    l10nRepoPath=branch['l10n_repo_path'],
+                    mobileRepoPath=branch['mobile_repo_path'],
+                    buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                    compareLocalesRepoPath=mainConfig['compare_locales_repo_path'],
+                    compareLocalesTag=mainConfig['compare_locales_tag'],
+                    buildSpace=2,
+                    baseWorkDir=pf['base_l10n_workdir'],
+                    baseUploadDir='%s-l10n' % name,
+                    clobberURL=mainConfig['base_clobber_url'],
+                    clobberTime=clobberTime,
+                )
             elif platform.endswith('i686'):
                 if platform == 'linux-i686':
                     realPlatform = 'linux'
@@ -435,6 +466,32 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     packageGlob = "fennec-*.%(locale)s.win32.zip"
 
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
+                    nightly=True,
+                    hgHost=mainConfig['hghost'],
+                    tree=branch['l10n_tree'],
+                    project=branch['product_name'],
+                    appName=branch['app_name'],
+                    packageGlob=packageGlob,
+                    enUSBinaryURL=branch['enUS_binaryURL'],
+                    platform=realPlatform,
+                    stageServer=mainConfig['stage_server'],
+                    stageUsername=mainConfig['stage_username'],
+                    stageSshKey=mainConfig['stage_ssh_key'],
+                    stageBasePath=mainConfig['stage_base_path'],
+                    repoPath=branch['repo_path'],
+                    l10nRepoPath=branch['l10n_repo_path'],
+                    mobileRepoPath=branch['mobile_repo_path'],
+                    buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                    compareLocalesRepoPath=mainConfig['compare_locales_repo_path'],
+                    compareLocalesTag=mainConfig['compare_locales_tag'],
+                    buildSpace=2,
+                    baseWorkDir=pf['base_l10n_workdir'],
+                    baseUploadDir='%s-l10n' % name,
+                    clobberURL=mainConfig['base_clobber_url'],
+                    clobberTime=clobberTime,
+                )
+                mobile_l10n_dep_factory = MobileDesktopNightlyRepackFactory(
+                    nightly=False,
                     hgHost=mainConfig['hghost'],
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
@@ -467,6 +524,14 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 'category': name,
             }
             m['builders'].append(mobile_l10n_nightly_builder)
+            mobile_l10n_dep_builder = {
+                'name': l10nNightlyBuilders[nightly_builder]['l10n_builder'] + " build",
+                'slavenames': pf['slaves'],
+                'builddir': '%s-l10n-dep' % (pf['base_builddir']),
+                'factory': mobile_l10n_dep_factory,
+                'category': name,
+            }
+            m['builders'].append(mobile_l10n_dep_builder)
 
 
 # mobile-browser, which is shared
