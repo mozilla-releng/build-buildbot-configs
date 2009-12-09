@@ -188,7 +188,7 @@ BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, NO_TIGER)
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
 BRANCHES['places']['build_branch'] = "Places"
-BRANCHES['places']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['places']['tinderbox_tree'] = "Places"
 BRANCHES['places']['talos_command'] = TALOS_CMD
 BRANCHES['places']['fetch_symbols'] = True
 BRANCHES['places']['chrome_tests'] = (1, True, {}, NO_TIGER)
