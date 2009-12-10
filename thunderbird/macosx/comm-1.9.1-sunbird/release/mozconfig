@@ -4,6 +4,9 @@ else
 . $topsrcdir/build/macosx/universal/mozconfig
 fi
 
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk
+
 # related bugids 466308, 417045, 421534
 #mk_add_options MOZ_MAKE_FLAGS="-j6"
 
