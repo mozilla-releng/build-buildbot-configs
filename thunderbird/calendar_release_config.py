@@ -3,7 +3,7 @@ hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1-sunbird' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '65fcedf15e56'
+sourceRepoRevision         = '1f32ff11083d'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM1915_20091204_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
@@ -27,7 +27,7 @@ cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patche
 productVersionFile         = 'calendar/sunbird/config/version.txt'
 productName                = 'sunbird'
 brandName                  = 'Sunbird'
-appName                    = 'sunbird'
+appName                    = 'calendar'
 projectName                = 'calendar'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
