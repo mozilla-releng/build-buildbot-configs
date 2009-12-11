@@ -51,7 +51,7 @@ ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
-useBetaChannel             = 0
+useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
                               'macosx': 'moz19-thunderbird-mac.cfg',
                               'win32':  'moz19-thunderbird-win32.cfg'}
