@@ -30,7 +30,7 @@ MIDL=/d/msvs9/VC/ce/bin/x86_arm/midl.exe
 
 mk_add_options AR=@TOPSRCDIR@/build/wince/tools/bin/arm-wince-lib
 
-ac_add_options --target=arm-wince
+ac_add_options --target=arm-wince-winmo
 ac_add_options --enable-win32-target=WINCE
 ac_add_options --enable-default-toolkit=cairo-windows
 
