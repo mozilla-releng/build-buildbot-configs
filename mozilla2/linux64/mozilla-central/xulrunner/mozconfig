@@ -12,3 +12,6 @@ CXX=/tools/gcc/bin/g++
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+# We're using GCC 4.2 which has a bug we can work around.
+export ac_cv_have_visibility_class_bug=yes
