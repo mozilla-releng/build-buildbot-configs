@@ -166,7 +166,7 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
     ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
                         'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest'])
+                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
 ]
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -661,6 +661,7 @@ BRANCHES['tracemonkey']['start_minute'] = [32]
 for suite in BRANCHES['tracemonkey']['unittest_suites']:
     if suite[0] == 'everythingelse':
         suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
@@ -830,6 +831,10 @@ BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
 BRANCHES['places']['start_hour'] = [4] 
 BRANCHES['places']['start_minute'] = [2] 
+for suite in BRANCHES['places']['unittest_suites']:
+    if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['places']['platforms'] = {
     'linux': {},
     'win32': {},
@@ -973,6 +978,7 @@ BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2] 
 for suite in BRANCHES['electrolysis']['unittest_suites']:
     if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
         suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
