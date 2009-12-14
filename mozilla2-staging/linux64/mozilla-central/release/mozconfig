@@ -17,3 +17,6 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+# We're using GCC 4.2 which has a bug we can work around.
+export ac_cv_have_visibility_class_bug=yes

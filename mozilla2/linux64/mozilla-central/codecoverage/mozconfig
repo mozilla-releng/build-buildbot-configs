@@ -11,3 +11,6 @@ ac_add_options --disable-optimize
 ac_add_options --enable-chrome-format=flat
 
 mk_add_options MOZ_MAKE_FLAGS="-j3"
+
+# We're using GCC 4.2 which has a bug we can work around.
+export ac_cv_have_visibility_class_bug=yes

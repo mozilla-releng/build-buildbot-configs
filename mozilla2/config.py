@@ -166,7 +166,7 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
     ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
                         'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest'])
+                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
 ]
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -661,6 +661,7 @@ BRANCHES['tracemonkey']['start_minute'] = [32]
 for suite in BRANCHES['tracemonkey']['unittest_suites']:
     if suite[0] == 'everythingelse':
         suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
@@ -715,12 +716,18 @@ BRANCHES['tracemonkey']['enable_xulrunner'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tracemonkey']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -824,6 +831,10 @@ BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
 BRANCHES['places']['start_hour'] = [4] 
 BRANCHES['places']['start_minute'] = [2] 
+for suite in BRANCHES['places']['unittest_suites']:
+    if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['places']['platforms'] = {
     'linux': {},
     'win32': {},
@@ -967,6 +978,7 @@ BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2] 
 for suite in BRANCHES['electrolysis']['unittest_suites']:
     if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
         suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
