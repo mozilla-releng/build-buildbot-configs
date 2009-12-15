@@ -7,7 +7,7 @@ TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s
 
 TALOS_DIRTY_OPTS = {'talosAddOns': ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbot/profiles/dirtyMaxDBs.zip']}
 
-TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
+TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'} 
 
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx'],
@@ -22,6 +22,7 @@ SUITES = {
 
 SLAVES = {
     'linux': ["talos-rev1-linux%02i" % x for x in range(1,6)],
+    'linux64' : ["talos-rev2-x64%02i" % x for x in range (1,2)],
     'xp': ["talos-rev1-xp%02i" % x for x in range(1,5)],
     'vista': ["talos-rev1-vista%02i" % x for x in range(1,5)],
     'tiger': ["talos-rev1-tiger%02i" % x for x in range(1,5)],
@@ -42,6 +43,7 @@ PLATFORMS = {
     'macosx': {},
     'win32': {},
     'linux': {},
+    'linux64' : {},
 }
 
 PLATFORMS['macosx']['slave_platforms'] = ['tiger', 'leopard']
@@ -58,17 +60,22 @@ PLATFORMS['linux']['slave_platforms'] = ['linux']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['linux'] = {'name': "Linux"}
 
+PLATFORMS['linux64']['slave_platforms'] = ['linux64']
+PLATFORMS['linux64']['env_name'] = 'linux-perf'
+PLATFORMS['linux64']['linux64'] = {'name': "Linux64"}
+
 # Copy the slave names into PLATFORMS[platform][slave_platform]
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = SLAVES[slave_platform]
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
+                PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
-NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + ['leopard']
-NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms']
-NO_TIGER_NO_WIN = PLATFORMS['linux']['slave_platforms'] + ['leopard']
+                PLATFORMS['macosx']['slave_platforms'] 
+NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + ['leopard']
+NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms']
+NO_TIGER_NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + ['leopard']
 
 ########
 # Entries in BRANCHES for tests should be a tuple of:
@@ -100,6 +107,10 @@ BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/fx-linux-tbox-mozilla1.9.0/",
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
         ],
+    'linux64': [
+        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/fx-linux-tbox-mozilla1.9.0/",
+        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
+        ],
     'macosx': [
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/bm-xserve08-mozilla1.9.0/",
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
@@ -108,6 +119,7 @@ BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
 BRANCHES['mozilla-1.9.0']['ftp_searchstrings'] = {
     'win32': "en-US.win32.zip",
     'linux': "en-US.linux-i686.tar.bz2",
+    'linux64': "en-US.linux-x86_64.tar.bz2",
     'macosx': "en-US.mac.dmg",
 }
 

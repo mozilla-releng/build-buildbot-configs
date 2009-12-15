@@ -11,7 +11,7 @@ XSERVES   = ['bm-xserve%02i' % x for x in [7,9,11,12,16,17,18,19,21,22]]
 SLAVES = {
     'linux': ['moz2-linux-slave%02i' % x for x in range(1,51)],
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32': ['moz2-win32-slave%02i' % x for x in range(1,60)],
+    'win32':  ['win32-slave%02i' % x for x in range(1,60)],
     'macosx': MAC_MINIS + XSERVES,
 }
 
@@ -61,8 +61,8 @@ BRANCH_LEVEL_VARS = {
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', True),
-                         ('localhost:9011', True)],
+    'unittest_masters': [('localhost:9010', True, 0),
+                         ('localhost:9011', True, 0)],
     'unittest_suites': [
         ('mochitests', ['mochitest-plain']),
         ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
@@ -149,7 +149,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-central']['platforms']['wince']['build_space'] = 4
 BRANCHES['mozilla-central']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-central']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 5
+BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 7
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['mozilla-central']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['mozilla-central']['platforms']['linux64']['builds_before_reboot'] = 5
@@ -167,11 +167,11 @@ BRANCHES['mozilla-central']['unittest_suites'] = [
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
     ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
                         'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest'])
+                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
 ]
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
@@ -669,6 +669,7 @@ BRANCHES['tracemonkey']['start_minute'] = [32]
 for suite in BRANCHES['tracemonkey']['unittest_suites']:
     if suite[0] == 'everythingelse':
         suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
@@ -704,7 +705,7 @@ BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['win32']['build_space'] = 5
 BRANCHES['tracemonkey']['platforms']['macosx']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['tracemonkey']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['tracemonkey']['platforms']['win32-debug']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['tracemonkey']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['tracemonkey']['platforms']['linux64']['builds_before_reboot'] = 5
@@ -724,12 +725,18 @@ BRANCHES['tracemonkey']['enable_xulrunner'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tracemonkey']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -831,6 +838,10 @@ BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
 BRANCHES['places']['start_hour'] = [4] 
 BRANCHES['places']['start_minute'] = [2] 
+for suite in BRANCHES['places']['unittest_suites']:
+    if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
+        suite[1].append('mochitest-ipcplugins')
 BRANCHES['places']['platforms'] = {
     'linux': {},
     'win32': {},
@@ -861,7 +872,7 @@ BRANCHES['places']['platforms']['linux']['build_space'] = 5
 BRANCHES['places']['platforms']['win32']['build_space'] = 5
 BRANCHES['places']['platforms']['macosx']['build_space'] = 7
 BRANCHES['places']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['places']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['places']['platforms']['win32-debug']['build_space'] = 7
 BRANCHES['places']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['places']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['win32']['builds_before_reboot'] = 5
@@ -973,6 +984,7 @@ BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2] 
 for suite in BRANCHES['electrolysis']['unittest_suites']:
     if suite[0] == 'everythingelse':
+        suite[1].append('jsreftest')
         suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
@@ -1004,7 +1016,7 @@ BRANCHES['electrolysis']['platforms']['linux']['build_space'] = 5
 BRANCHES['electrolysis']['platforms']['win32']['build_space'] = 5
 BRANCHES['electrolysis']['platforms']['macosx']['build_space'] = 7
 BRANCHES['electrolysis']['platforms']['linux-debug']['build_space'] = 5
-BRANCHES['electrolysis']['platforms']['win32-debug']['build_space'] = 5
+BRANCHES['electrolysis']['platforms']['win32-debug']['build_space'] = 7
 BRANCHES['electrolysis']['platforms']['macosx-debug']['build_space'] = 5
 BRANCHES['electrolysis']['platforms']['linux']['builds_before_reboot'] = 5
 BRANCHES['electrolysis']['platforms']['win32']['builds_before_reboot'] = 5

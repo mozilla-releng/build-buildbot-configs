@@ -5,6 +5,7 @@ ac_add_options --enable-application=browser
 ac_add_options --enable-update-channel=beta
 ac_add_options --enable-update-packaging
 ac_add_options --enable-jemalloc
+ac_add_options --enable-tests
 ac_add_options --with-branding=browser/branding/unofficial
 ac_add_options --with-crashreporter-enable-percent=10
 

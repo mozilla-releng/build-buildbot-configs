@@ -42,7 +42,8 @@ SLAVES = {
     'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2]] +
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['cb-sea-win32-tbox'],
-    'macosx': ['cb-seamonkey-osx-%02i' % x for x in [1,2,3,4]],
+    'macosx': ['cb-seamonkey-osx-%02i' % x for x in [1,2,3,4]] +
+              ['cb-sea-miniosx%02i' % x for x in [1,2,3,4,5]],
 }
 
 L10N_SLAVES = {
