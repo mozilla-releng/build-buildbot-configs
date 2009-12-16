@@ -1,0 +1,174 @@
+{
+  "af": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ar": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "be": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "bg": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "bn-BD": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "cs": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "de": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "el": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "es-AR": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "es-CL": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "es-ES": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "et": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "eu": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "fa": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "fr": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "fy-NL": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ga-IE": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "gl": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "he": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "hu": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "is": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "it": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "ja": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ja-JP-mac": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "kk": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ko": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "lt": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "lv": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "nb-NO": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "nl": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "nn-NO": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "pl": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "pt-BR": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "rm": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ro": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "ru": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "sk": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "sq": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "sv-SE": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "te": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "tr": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "zh-CN": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  },
+  "zh-TW": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  }
+}
