@@ -167,7 +167,7 @@ BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 #Follow the 3.0rc1 release branch until we release 3.0
 BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
-BRANCHES['comm-central']['mozconfig'] = 'mozconfig'
+BRANCHES['comm-central']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central']['package'] = True
 BRANCHES['comm-central']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central']['hg_branch'] = 'releases/comm-1.9.1'
@@ -270,7 +270,7 @@ BRANCHES['comm-central-trunk']['platforms'] = {
 BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--verbose --time']
 BRANCHES['comm-central-trunk']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
-BRANCHES['comm-central-trunk']['mozconfig'] = 'mozconfig'
+BRANCHES['comm-central-trunk']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central-trunk']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk']['package'] = True
 #Disable when producing release builds
@@ -630,7 +630,7 @@ BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
 #Follow the 3.0rc1 release branch until we release 3.0
 BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1915_20091112_RELBRANCH']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
-BRANCHES['comm-central-bloat']['mozconfig'] = 'mozconfig-bloat'
+BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
 BRANCHES['comm-central-bloat']['leak'] = True
 BRANCHES['comm-central-bloat']['package'] = False
@@ -714,7 +714,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms'] = {
 BRANCHES['comm-central-trunk-bloat']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time']
 BRANCHES['comm-central-trunk-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
-BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'comm-central/debug/mozconfig'
+BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-trunk-bloat']['nightly'] = False
