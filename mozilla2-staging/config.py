@@ -666,10 +666,12 @@ BRANCHES['tracemonkey']['app_name'] = 'browser'
 BRANCHES['tracemonkey']['brand_name'] = 'Minefield'
 BRANCHES['tracemonkey']['start_hour'] = [3]
 BRANCHES['tracemonkey']['start_minute'] = [32]
-for suite in BRANCHES['tracemonkey']['unittest_suites']:
-    if suite[0] == 'everythingelse':
-        suite[1].append('jsreftest')
-        suite[1].append('mochitest-ipcplugins')
+BRANCHES['tracemonkey']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
