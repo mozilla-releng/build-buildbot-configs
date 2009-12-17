@@ -45,6 +45,7 @@ DEFAULTS = {
     'codesighs':               False,
     'product_name':           'Thunderbird',
     'brand_name':             'Shredder',
+    'build_space':            3,
     'l10n_nightly_updates':    False,
     
     # Unit Test
