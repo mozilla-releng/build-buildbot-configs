@@ -664,6 +664,7 @@ BRANCHES['tracemonkey']['unittest_suites'] = [
     ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
                         'mochitest-browser-chrome', 'mochitest-a11y',
                         'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
+]
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
     'linux64': {},
