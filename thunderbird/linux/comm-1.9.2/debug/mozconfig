@@ -12,8 +12,8 @@ ac_add_options --enable-trace-malloc
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
 
-CC="ccache /tools/gcc-4.3.3/bin/gcc"
-CXX="ccache /tools/gcc-4.3.3/bin/g++"
+CC="ccache /tools/gcc-4.1.1/bin/gcc"
+CXX="ccache /tools/gcc-4.1.1/bin/g++"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
