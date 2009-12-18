@@ -179,7 +179,8 @@ tag_factory = ReleaseTaggingFactory(
     baseTag=baseTag,
     buildNumber=buildNumber,
     hgUsername=hgUsername,
-    hgSshKey=hgSshKey
+    hgSshKey=hgSshKey,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -202,7 +203,8 @@ source_factory = SingleSourceFactory(
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
     buildNumber=buildNumber,
-    autoconfDirs=['.', 'js/src']
+    autoconfDirs=['.', 'js/src'],
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -263,6 +265,7 @@ for platform in enUSPlatforms:
         packageTests=packageTests,
         unittestMasters=unittestMasters,
         unittestBranch=unittestBranch,
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -294,7 +297,8 @@ for platform in enUSPlatforms:
             buildRevision='%s_RELEASE' % baseTag,
             version=version,
             buildNumber=buildNumber,
-            tree='release'
+            tree='release',
+            clobberURL=branchConfig['base_clobber_url'],
         )
 
         builders.append({
@@ -329,7 +333,8 @@ l10n_verification_factory = L10nVerifyFactory(
     version=version,
     buildNumber=buildNumber,
     oldVersion=oldVersion,
-    oldBuildNumber=oldBuildNumber
+    oldBuildNumber=oldBuildNumber,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -370,8 +375,10 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
-    commitPatcherConfig=False # We disable this on staging, because we don't
-                              # have a CVS mirror to commit to
+    # We disable this on staging, because we don't have a CVS mirror to
+    # commit to
+    commitPatcherConfig=False,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -388,6 +395,7 @@ for platform in sorted(verifyConfigs.keys()):
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=verifyConfigs[platform],
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -403,6 +411,7 @@ final_verification_factory = ReleaseFinalVerification(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     verifyConfigs=verifyConfigs,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
