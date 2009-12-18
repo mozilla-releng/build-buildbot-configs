@@ -69,7 +69,7 @@ BRANCHES = {
     'comm-central-bloat': {},
     'comm-central-trunk-bloat': {},
     'comm-1.9.1-lightning': {},
-    'comm-central-lightning' {},
+    'comm-central-lightning': {},
     'comm-1.9.1-sunbird': {},
     'comm-1.9.1-unittest': {},
     'comm-1.9.2-unittest': {},
