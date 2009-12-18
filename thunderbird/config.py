@@ -73,6 +73,7 @@ BRANCHES = {
     'comm-1.9.1-sunbird': {},
     'comm-1.9.1-unittest': {},
     'comm-1.9.2-unittest': {},
+    'comm-1.9.2-bloat': {},
     'comm-central-unittest': {},
 }
 
@@ -694,6 +695,91 @@ BRANCHES['comm-central-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'XPCOM_DEBUG_BREAK': 'stack',
 }
 BRANCHES['comm-central-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'XPCOM_DEBUG_BREAK': 'stack',
+}
+
+######## thunderbird-bloat
+# All platforms being built for this branch MUST be listed here.
+BRANCHES['comm-1.9.2-bloat']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {},
+}
+
+BRANCHES['comm-1.9.2-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
+BRANCHES['comm-1.9.2-bloat']['branch_name'] = 'comm-1.9.2'
+BRANCHES['comm-1.9.2-bloat']['hg_branch'] = 'releases/comm-1.9.1'
+#Follow the 3.0rc1 release branch until we release 3.0
+BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-1.9.2-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
+BRANCHES['comm-1.9.2-bloat']['mozconfig'] = 'debug/mozconfig'
+BRANCHES['comm-1.9.2-bloat']['nightly'] = False
+BRANCHES['comm-1.9.2-bloat']['leak'] = True
+BRANCHES['comm-1.9.2-bloat']['package'] = False
+BRANCHES['comm-1.9.2-bloat']['upload_stage'] = False
+BRANCHES['comm-1.9.2-bloat']['codesighs'] = False
+BRANCHES['comm-1.9.2-bloat']['l10n'] = False
+BRANCHES['comm-1.9.2-bloat']['builder_type'] = 'bloat'
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['base_name'] = 'Linux %s' % BRANCHES['comm-1.9.2-bloat']['branch_name']
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 %s' % BRANCHES['comm-1.9.2-bloat']['branch_name']
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 %s' % BRANCHES['comm-1.9.2-bloat']['branch_name']
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['profiled_build'] = False
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-1.9.2-bloat']['create_snippet'] = False
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['upload_symbols'] = False
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-1.9.2-bloat']['tinderbox_tree'] = 'Thunderbird3.0'
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['leak_threshold'] = 970000
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['leak_threshold'] = 2500000
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['leak_threshold'] =  110000
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'XPCOM_DEBUG_BREAK': 'stack',
+    'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
+}
+BRANCHES['comm-1.9.2-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'XPCOM_DEBUG_BREAK': 'stack',
+}
+BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
