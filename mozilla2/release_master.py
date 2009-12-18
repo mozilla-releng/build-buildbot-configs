@@ -1,15 +1,17 @@
 from buildbot.scheduler import Scheduler, Dependent
+from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
 import buildbotcustom.misc
 import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
-from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
+from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
+  generateTestBuilderNames, generateTestBuilder
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory, ReleaseRepackFactory
+  L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -25,6 +27,7 @@ import config as nightly_config
 branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
 builders = []
+test_builders = []
 schedulers = []
 change_source = []
 status = []
@@ -97,6 +100,20 @@ update_verify_scheduler = Dependent(
 )
 schedulers.append(update_verify_scheduler)
 
+for platform in unittestPlatforms:
+    platform_test_builders = []
+    base_name = branchConfig['platforms'][platform]['base_name']
+    for suites_name, suites in branchConfig['unittest_suites']:
+        platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
+
+    s = Scheduler(
+     name='%s_release_unittest' % platform,
+     treeStableTimer=0,
+     branch='%s-release-unittest' % platform,
+     builderNames=platform_test_builders,
+    )
+    schedulers.append(s)
+
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
 # from the waterfall
@@ -126,7 +143,8 @@ tag_factory = ReleaseTaggingFactory(
     baseTag=baseTag,
     buildNumber=buildNumber,
     hgUsername=hgUsername,
-    hgSshKey=hgSshKey
+    hgSshKey=hgSshKey,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -149,7 +167,8 @@ source_factory = SingleSourceFactory(
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
     buildNumber=buildNumber,
-    autoconfDirs=['.', 'js/src']
+    autoconfDirs=['.', 'js/src'],
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -169,6 +188,15 @@ for platform in enUSPlatforms:
         talosMasters = branchConfig['talos_masters']
     else:
         talosMasters = None
+
+    if platform in unittestPlatforms:
+        packageTests = True
+        unittestMasters = branchConfig['unittest_masters']
+        unittestBranch = '%s-release-unittest' % platform
+    else:
+        packageTests = False
+        unittestMasters = None
+        unittestBranch = None
 
     build_factory = ReleaseBuildFactory(
         env=pf['env'],
@@ -197,7 +225,11 @@ for platform in enUSPlatforms:
         productName=productName,
         version=version,
         buildNumber=buildNumber,
-        talosMasters=talosMasters
+        talosMasters=talosMasters,
+        packageTests=packageTests,
+        unittestMasters=unittestMasters,
+        unittestBranch=unittestBranch,
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -229,7 +261,8 @@ for platform in enUSPlatforms:
             buildRevision='%s_RELEASE' % baseTag,
             version=version,
             buildNumber=buildNumber,
-            tree='release'
+            tree='release',
+            clobberURL=branchConfig['base_clobber_url'],
         )
 
         builders.append({
@@ -240,6 +273,20 @@ for platform in enUSPlatforms:
             'factory': repack_factory
         })
 
+    if platform in unittestPlatforms:
+        mochitestLeakThreshold = pf.get('mochitest_leak_threshold', None)
+        crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
+        for suites_name, suites in branchConfig['unittest_suites']:
+            # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
+            if platform == 'macosx' and 'mochitest-a11y' in suites:
+                suites = suites[:]
+                suites.remove('mochitest-a11y')
+
+            test_builders.extend(generateTestBuilder(
+                branchConfig, 'release', platform, "%s_test" % platform,
+                "release-%s-unittest" % (platform,),
+                suites_name, suites, mochitestLeakThreshold,
+                crashtestLeakThreshold))
 
 l10n_verification_factory = L10nVerifyFactory(
     hgHost=branchConfig['hghost'],
@@ -250,7 +297,8 @@ l10n_verification_factory = L10nVerifyFactory(
     version=version,
     buildNumber=buildNumber,
     oldVersion=oldVersion,
-    oldBuildNumber=oldBuildNumber
+    oldBuildNumber=oldBuildNumber,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -291,6 +339,7 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -307,6 +356,7 @@ for platform in sorted(verifyConfigs.keys()):
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=verifyConfigs[platform],
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -322,6 +372,7 @@ final_verification_factory = ReleaseFinalVerification(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     verifyConfigs=verifyConfigs,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -331,3 +382,24 @@ builders.append({
     'builddir': 'final_verification',
     'factory': final_verification_factory
 })
+
+status.append(TinderboxMailNotifier(
+    fromaddr="mozilla2.buildbot@build.mozilla.org",
+    tree=branchConfig["tinderbox_tree"] + "-Release",
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    relayhost="mail.build.mozilla.org",
+    builders=[b['name'] for b in builders],
+    logCompression="bzip2")
+)
+
+status.append(TinderboxMailNotifier(
+    fromaddr="mozilla2.buildbot@build.mozilla.org",
+    tree=branchConfig["tinderbox_tree"] + "-Release",
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    relayhost="mail.build.mozilla.org",
+    builders=[b['name'] for b in test_builders],
+    logCompression="bzip2",
+    errorparser="unittest")
+)
+
+builders.extend(test_builders)

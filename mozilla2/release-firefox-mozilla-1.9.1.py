@@ -30,6 +30,7 @@ patcherToolsTag    = 'UPDATE_PACKAGING_R9'
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
 talosTestPlatforms = ()
+unittestPlatforms  = ()
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 useBetaChannel     = 1

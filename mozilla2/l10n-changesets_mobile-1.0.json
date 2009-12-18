@@ -1,0 +1,146 @@
+{
+  "ar": {
+    "revision": "4cf8917e616d",
+    "platforms": ["maemo"]
+  },
+  "be": {
+    "revision": "8a1502c24f42",
+    "platforms": ["maemo"]
+  },
+  "ca": {
+    "revision": "667f1946d297",
+    "platforms": ["maemo"]
+  },
+  "cs": {
+    "revision": "51aff7bd2240",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "da": {
+    "revision": "ad1596411f01",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "de": {
+    "revision": "8f32355a62c1",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "el": {
+    "revision": "6ec6ae997778",
+    "platforms": ["maemo"]
+  },
+  "es-ES": {
+    "revision": "531d7120ef3b",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "eu": {
+    "revision": "9f95f99aaf42",
+    "platforms": ["maemo"]
+  },
+  "fa": {
+    "revision": "920b601a4912",
+    "platforms": ["maemo"]
+  },
+  "fi": {
+    "revision": "b855937934c8",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "fr": {
+    "revision": "be4df5037fd6",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "fy-NL": {
+    "revision": "78853e620e66",
+    "platforms": ["maemo"]
+  },
+  "ga-IE": {
+    "revision": "6347dcb30711",
+    "platforms": ["maemo"]
+  },
+  "gl": {
+    "revision": "6ef761454550",
+    "platforms": ["maemo"]
+  },
+  "hu": {
+    "revision": "c8de0359ab5e",
+    "platforms": ["maemo"]
+  },
+  "it": {
+    "revision": "0cf125e1e127",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "ja": {
+    "revision": "ca8410d1e128",
+    "platforms": ["maemo"]
+  },
+  "lt": {
+    "revision": "a1e34208858c",
+    "platforms": ["maemo"]
+  },
+  "nb-NO": {
+    "revision": "be8d6d3c8b56",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "nl": {
+    "revision": "de678a100c14",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "nn-NO": {
+    "revision": "bf3241a9c3e3",
+    "platforms": ["maemo"]
+  },
+  "pa-IN": {
+    "revision": "3536f97ba85b",
+    "platforms": ["maemo"]
+  },
+  "pl": {
+    "revision": "95a495832647",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "pt-BR": {
+    "revision": "439239c5b437",
+    "platforms": ["maemo"]
+  },
+  "pt-PT": {
+    "revision": "77fcc862465d",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "ro": {
+    "revision": "c4ea70fb212e",
+    "platforms": ["maemo"]
+  },
+  "ru": {
+    "revision": "d51fefdfd74a",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "sk": {
+    "revision": "2e57e189385f",
+    "platforms": ["maemo"]
+  },
+  "sl": {
+    "revision": "060beab34771",
+    "platforms": ["maemo"]
+  },
+  "sr": {
+    "revision": "82d42b3cff82",
+    "platforms": ["maemo"]
+  },
+  "tr": {
+    "revision": "87b974e241e1",
+    "platforms": ["maemo"]
+  },
+  "uk": {
+    "revision": "d4f7454a0d28",
+    "platforms": ["maemo"]
+  },
+  "vi": {
+    "revision": "69a41a07c064",
+    "platforms": ["maemo"]
+  },
+  "zh-CN": {
+    "revision": "19298639d899",
+    "platforms": ["maemo"]
+  },
+  "zh-TW": {
+    "revision": "e4b27a589296",
+    "platforms": ["maemo"]
+  }
+}
