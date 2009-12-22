@@ -19,7 +19,7 @@ GRAPH_SERVER = 'graphs.mozilla.org'
 GRAPH_SELECTOR = '/server/collect.cgi'
 GRAPH_BRANCH = 'comm-central'
 
-def addLeakTestSteps(self,branch,platform,platformName):
+def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
         # we want the same thing run a few times here, with different
         # extraArgs
         env = platform['env']
@@ -59,27 +59,47 @@ def addLeakTestSteps(self,branch,platform,platformName):
 
         leak_threshold = platform.get('leak_threshold', branch.get('leak_threshold', 7261838))
         self.addStep(ShellCommand,
+            command=['make', 'mailbloat'],
             env=env,
-            command=['python','mailnews/test/performance/bloat/runtest.py',
-                     '--objdir', objdir, 
-                     '--bin', branch['appname'], 
-                     '--brand', branch['brand_name'], 
-                    ],
+            workdir='build/%s' % objdir,
             warnOnFailure=True,
             haltOnFailure=True,
             flunkOnFailure=False,
         )
         self.addStep(ShellCommand,
-         env=env,
-         command=['cp', 'bloat.log', '../bloat.log'],
+         name='get_bloat_log',
+         env=self.env,
+         workdir='.',
+         command=['wget', '-O', 'bloat.log.old',
+                  'http://%s/pub/mozilla.org/%s/%s/bloat.log' % \
+                    (STAGE_SERVER, self.productName, logUploadDir)],
+         warnOnFailure=True,
+         flunkOnFailure=False
+        )
+        self.addStep(ShellCommand,
+         name='mv_bloat_log',
+         env=self.env,
+         command=['mv', '%s/_leaktest/bloat.log' % self.mozillaObjdir,
+                  '../bloat.log'],
+        )
+        self.addStep(ShellCommand,
+         name='upload_bloat_log',
+         env=self.env,
+         command=['scp', '-o', 'User=%s' % STAGE_USERNAME,
+                  '-o', 'IdentityFile=~/.ssh/%s' % STAGE_SSH_KEY,
+                  '../bloat.log',
+                  '%s:%s/%s' % (STAGE_SERVER, STAGE_BASE_PATH,
+                                logUploadDir)]
         )
         self.addStep(CompareBloatLogs,
+         name='compare_bloat_log',
          bloatLog='bloat.log',
          mozillaDir="/mozilla",
          env=env,
          testnameprefix='Mail',
          testname='Mail',
          workdir='.',
+         warnOnFailure=True,
          haltOnFailure=False,
         )
 
@@ -109,14 +129,37 @@ def addLeakTestSteps(self,branch,platform,platformName):
 #         resultsname=self.baseName,
 #        )
         self.addStep(ShellCommand,
-         env=env,
-         command=['cp', 'malloc.log','../malloc.log',],
+         name='get_malloc_log',
+         env=self.env,
+         workdir='.',
+         command=['wget', '-O', 'malloc.log.old',
+                  'http://%s/pub/mozilla.org/%s/%s/malloc.log' % \
+                    (STAGE_SERVER, self.productName, logUploadDir)]
         )
         self.addStep(ShellCommand,
-         env=env,
-         command=['cp', 'sdleak.log', '../sdleak.log',],
+         name='get_sdleak_log',
+         env=self.env,
+         workdir='.',
+         command=['wget', '-O', 'sdleak.tree.old',
+                  'http://%s/pub/mozilla.org/%s/%s/sdleak.tree' % \
+                    (STAGE_SERVER, self.productName, logUploadDir)]
+        )
+        self.addStep(ShellCommand,
+         name='mv_malloc_log',
+         env=self.env,
+         command=['mv',
+                  '%s/_leaktest/malloc.log' % self.mozillaObjdir,
+                  '../malloc.log'],
+        )
+        self.addStep(ShellCommand,
+         name='mv_sdleak_log',
+         env=self.env,
+         command=['mv',
+                  '%s/_leaktest/sdleak.log' % self.mozillaObjdir,
+                  '../sdleak.log'],
         )
         self.addStep(CompareLeakLogs,
+         name='compare_current_leak_log',
          mallocLog='../malloc.log',
          platform=platformName,
          leakFailureThreshold=leak_threshold,
@@ -124,7 +167,8 @@ def addLeakTestSteps(self,branch,platform,platformName):
          objdir=moz_objdir,
          testname='current',
          testnameprefix='Mail',
-         haltOnFailure=False,
+         warnOnFailure=True,
+         haltOnFailure=True,
         )
 #        self.addStep(GraphServerPost,
 #         server=self.graphServer,
@@ -143,6 +187,7 @@ def addLeakTestSteps(self,branch,platform,platformName):
          haltOnFailure=False,
         )
         self.addStep(ShellCommand,
+         name='create_sdleak_tree',
          env=env,
          workdir='.',
          command=['bash', '-c',
@@ -150,25 +195,15 @@ def addLeakTestSteps(self,branch,platform,platformName):
                   '--depth=15 --use-address /dev/null sdleak.log '
                   '> sdleak.tree']
         )
-        self.addStep(ShellCommand,
-          env=env,
-          command=['cp', '../sdleak.log', '../sdleak.log.old'],
-        )
-        self.addStep(ShellCommand,
-          env=env,
-          command=['cp', '../malloc.log', '../malloc.log.old'],
-        )
-        self.addStep(ShellCommand,
-          env=env,
-          command=['cp', '../bloat.log', '../bloat.log.old'],
-        )
         if platformName in ('macosx', 'linux'):
             self.addStep(ShellCommand,
+             name='create_sdleak_raw',
              env=env,
              workdir='.',
              command=['cp', 'sdleak.tree', 'sdleak.tree.raw']
             )
             self.addStep(ShellCommand,
+             name='get_fix_stack',
              env=env,
              workdir='.',
              timeout=60*60, # Very IO/CPU intensive, give it an hour to complete
@@ -179,13 +214,19 @@ def addLeakTestSteps(self,branch,platform,platformName):
                       '> sdleak.tree' % platformName]
             )
         self.addStep(ShellCommand,
+         name='upload_logs',
+         env=self.env,
+         command=['scp', '-o', 'User=%s' % STAGE_USERNAME,
+                  '-o', 'IdentityFile=~/.ssh/%s' % STAGE_SSH_KEY,
+                  '../malloc.log', '../sdleak.tree',
+                  '%s:%s/%s' % (STAGE_SERVER, STAGE_BASE_PATH,
+                                logUploadDir)]
+        )
+        self.addStep(ShellCommand,
+         name='compare_sdleak_tree',
          env=env,
          command=['perl', 'mozilla/tools/trace-malloc/diffbloatdump.pl',
                   '--depth=15', '../sdleak.tree.old', '../sdleak.tree'],
          haltOnFailure=False,
-        )
-        self.addStep(ShellCommand,
-          env=env,
-          command=['cp', '../sdleak.tree', '../sdleak.tree.old'],
         )
 
