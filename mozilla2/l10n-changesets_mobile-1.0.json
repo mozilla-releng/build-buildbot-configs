@@ -72,7 +72,7 @@
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "ja": {
-    "revision": "291a4fe0994e",
+    "revision": "a74eeb9a28fa",
     "platforms": ["maemo"]
   },
   "lt": {
