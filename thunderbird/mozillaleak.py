@@ -19,7 +19,7 @@ GRAPH_SERVER = 'graphs.mozilla.org'
 GRAPH_SELECTOR = '/server/collect.cgi'
 GRAPH_BRANCH = 'comm-central'
 
-def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
+def addLeakTestSteps(self,branch,platform,platformName,productName, logUploadDir, defaults):
         # we want the same thing run a few times here, with different
         # extraArgs
         env = platform['env']
@@ -40,7 +40,7 @@ def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
          env=env,
          workdir='build/%s' % objdir,
          haltOnFailure=True,
-         timeout=60*30,
+         timeout=60*60,
         )
 
         self.addStep(SetProperty,
@@ -68,27 +68,27 @@ def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
         )
         self.addStep(ShellCommand,
          name='get_bloat_log',
-         env=self.env,
+         env=env,
          workdir='.',
          command=['wget', '-O', 'bloat.log.old',
                   'http://%s/pub/mozilla.org/%s/%s/bloat.log' % \
-                    (STAGE_SERVER, self.productName, logUploadDir)],
+                    (branch.get('stage_server',defaults.get('stage_server')), productName, logUploadDir)],
          warnOnFailure=True,
          flunkOnFailure=False
         )
         self.addStep(ShellCommand,
          name='mv_bloat_log',
-         env=self.env,
-         command=['mv', '%s/_leaktest/bloat.log' % self.mozillaObjdir,
+         env=env,
+         command=['mv', '%s/bloat.log' % objdir,
                   '../bloat.log'],
         )
         self.addStep(ShellCommand,
          name='upload_bloat_log',
-         env=self.env,
-         command=['scp', '-o', 'User=%s' % STAGE_USERNAME,
-                  '-o', 'IdentityFile=~/.ssh/%s' % STAGE_SSH_KEY,
+         env=env,
+         command=['scp', '-o', 'User=%s' % platform.get('stage_username',branch.get('stage_username',defaults.get('stage_username'))),
+                  '-o', 'IdentityFile=~/.ssh/%s' % platform.get('stage_ssh_key',branch.get('stage_ssh_key',defaults.get('stage_ssh_key'))),
                   '../bloat.log',
-                  '%s:%s/%s' % (STAGE_SERVER, STAGE_BASE_PATH,
+                  '%s:%s/%s' % (branch.get('stage_server',defaults.get('stage_server')), platform.get('stage_base_path',branch.get('stage_base_path',defaults.get('stage_base_path'))),
                                 logUploadDir)]
         )
         self.addStep(CompareBloatLogs,
@@ -130,32 +130,32 @@ def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
 #        )
         self.addStep(ShellCommand,
          name='get_malloc_log',
-         env=self.env,
+         env=env,
          workdir='.',
          command=['wget', '-O', 'malloc.log.old',
                   'http://%s/pub/mozilla.org/%s/%s/malloc.log' % \
-                    (STAGE_SERVER, self.productName, logUploadDir)]
+                    (branch.get('stage_server',defaults.get('stage_server')), productName, logUploadDir)]
         )
         self.addStep(ShellCommand,
          name='get_sdleak_log',
-         env=self.env,
+         env=env,
          workdir='.',
          command=['wget', '-O', 'sdleak.tree.old',
                   'http://%s/pub/mozilla.org/%s/%s/sdleak.tree' % \
-                    (STAGE_SERVER, self.productName, logUploadDir)]
+                    (branch.get('stage_server',defaults.get('stage_server')), productName, logUploadDir)]
         )
         self.addStep(ShellCommand,
          name='mv_malloc_log',
-         env=self.env,
+         env=env,
          command=['mv',
-                  '%s/_leaktest/malloc.log' % self.mozillaObjdir,
+                  '%s/malloc.log' % objdir,
                   '../malloc.log'],
         )
         self.addStep(ShellCommand,
          name='mv_sdleak_log',
-         env=self.env,
+         env=env,
          command=['mv',
-                  '%s/_leaktest/sdleak.log' % self.mozillaObjdir,
+                  '%s/sdleak.log' % objdir,
                   '../sdleak.log'],
         )
         self.addStep(CompareLeakLogs,
@@ -215,11 +215,11 @@ def addLeakTestSteps(self,branch,platform,platformName,logUploadDir):
             )
         self.addStep(ShellCommand,
          name='upload_logs',
-         env=self.env,
-         command=['scp', '-o', 'User=%s' % STAGE_USERNAME,
-                  '-o', 'IdentityFile=~/.ssh/%s' % STAGE_SSH_KEY,
+         env=env,
+         command=['scp', '-o', 'User=%s' % platform.get('stage_username',branch.get('stage_username',defaults.get('stage_username'))),
+                  '-o', 'IdentityFile=~/.ssh/%s' % platform.get('stage_ssh_key',branch.get('stage_ssh_key',defaults.get('stage_ssh_key'))),
                   '../malloc.log', '../sdleak.tree',
-                  '%s:%s/%s' % (STAGE_SERVER, STAGE_BASE_PATH,
+                  '%s:%s/%s' % (branch.get('stage_server',defaults.get('stage_server')), platform.get('stage_base_path',branch.get('stage_base_path',defaults.get('stage_base_path'))),
                                 logUploadDir)]
         )
         self.addStep(ShellCommand,
