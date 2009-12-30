@@ -9,14 +9,14 @@ NIGHTLY_ENV = {
     'SSH_KEY': '/home/cltbld/.ssh/ffxbld_dsa',
 }
 REAL_RELEASE_ENV = {
-    'STAGE_USERNAME': 'cltbld',
+    'STAGE_USERNAME': 'ffxbld',
     'STAGE_SERVER': 'stage.mozilla.org',
     'BASE_STAGE_PATH': '/home/ftp/pub/mozilla.org/mobile/repos',
     'BASE_STAGE_URL': 'http://ftp.mozilla.org/pub/mozilla.org/mobile/repos',
     'SSH_KEY': '/home/cltbld/.ssh/ffxbld_dsa',
 }
 CANDIDATES_RELEASE_ENV = {
-    'STAGE_USERNAME': 'cltbld',
+    'STAGE_USERNAME': 'ffxbld',
     'STAGE_SERVER': 'stage.mozilla.org',
     'BASE_STAGE_PATH': '/home/ftp/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/repos',
     'BASE_STAGE_URL': 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/repos',
