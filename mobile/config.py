@@ -1,5 +1,5 @@
 SLAVES = {
-    'n810': ['maemo-n810-%02i' % x for x in range(1,81)],
+    'n810': ['maemo-n810-%02i' % x for x in [1,3,4,5,6] + range(9,81)],
 }
 
 BRANCHES = {
@@ -35,6 +35,8 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_pageloader'] = 'http://p
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
     'tp4_nochrome': {},
+    'tpan': {},
+    'tzoom': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -50,6 +52,14 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-trunk-tp4-nochrome'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 mozilla-central talos Tpan'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-trunk-tpan'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 60
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 mozilla-central talos Tzoom'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-trunk-tzoom'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 60
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-central talos Ts'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-trunk-ts'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
@@ -132,6 +142,8 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_pageloader'] = 'http://pro
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
     'tp4_nochrome': {},
+    'tpan': {},
+    'tzoom': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -147,6 +159,14 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-1.9.2-tp4-nochrome'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 mozilla-1.9.2 talos Tpan'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-1.9.2-tpan'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 60
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 mozilla-1.9.2 talos Tzoom'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-1.9.2-tzoom'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 60
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-1.9.2 talos Ts'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-1.9.2-ts'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
@@ -228,6 +248,8 @@ BRANCHES['tracemonkey']['platforms']['n810']['talos_pageloader'] = 'http://produ
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites'] = {
     'tp4': {},
     'tp4_nochrome': {},
+    'tpan': {},
+    'tzoom': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
@@ -243,6 +265,14 @@ BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['su
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-tm-tp4-nochrome'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 tracemonkey talos Tpan'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-tm-tpan'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 60
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 tracemonkey talos Tzoom'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-tm-tzoom'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
+BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 60
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 tracemonkey talos Ts'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-tm-ts'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
