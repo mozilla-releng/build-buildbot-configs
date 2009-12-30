@@ -11,18 +11,18 @@ STAGE_SERVER = 'stage.mozilla.org'
 STAGE_GROUP = 'thunderbird'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
-AUS2_HOST = 'aus2-staging.mozilla.org'
+AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
 
 BUILDERS = {
     'linux': {
-        'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]],
+        'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2]],
     },
     'macosx': {
         '10.5': {
-            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [2,3,4,5] ],
+            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [3,4,5] ] + [ 'mini-%02i' % x for x in [ 1,2 ] ]
         },
     },
     'win32': {
@@ -45,8 +45,14 @@ DEFAULTS = {
     'codesighs':               False,
     'product_name':           'Thunderbird',
     'brand_name':             'Shredder',
-    'build_space':            3,
+    'app_name':			'thunderbird',
+    'build_space':            5,
     'l10n_nightly_updates':    False,
+
+    'stage_username':		STAGE_USERNAME,
+    'stage_server':		STAGE_SERVER,
+    'stage_group':		STAGE_GROUP,
+    'stage_ssh_key':		STAGE_SSH_KEY,
     
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
@@ -82,7 +88,7 @@ BRANCHES = {
 
 BRANCHES['comm-1.9.1-unittest'] = {
     #Follow the 3.0rc1 release branch until we release 3.0
-    'client_py_args' :  DEFAULTS['client_py_args'] + ['--mozilla-rev=COMM1916_20091130_RELBRANCH']
+    'client_py_args' :  DEFAULTS['client_py_args'] + ['--mozilla-rev=COMM1916_20091130_RELBRANCH'],
     'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'nightly': False,
@@ -112,7 +118,7 @@ BRANCHES['comm-1.9.2-unittest'] = {
     'builder_type': 'check',
     'hg_branch': 'comm-central',
     'branch_name': 'comm-1.9.2',
-    'mozilla_central_branch': 'releases/mozilla-1.9.2'
+    'mozilla_central_branch': 'releases/mozilla-1.9.2',
     'nightly': False,
     'tinderbox_tree': 'Thunderbird3.1',
     'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'],
@@ -164,8 +170,9 @@ BRANCHES['comm-central']['platforms'] = {
     'linux': {},
     'win32': {},
     'macosx': {},
-    'macosx-shark': {},
+#    'macosx-shark': {},
 }
+BRANCHES['comm-central']['platforms']['macosx']['nightly_builder'] = ['mini-01', 'mini-02']
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 #Follow the 3.0rc1 release branch until we release 3.0
 BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1916_20091130_RELBRANCH']
@@ -182,22 +189,22 @@ BRANCHES['comm-central']['codesighs'] = True
 BRANCHES['comm-central']['l10n'] = True
 BRANCHES['comm-central']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-central']['l10n_tree'] = 'tb30x'
-BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
+#BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
 BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
 BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
 BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1'
-BRANCHES['comm-central']['platforms']['macosx-shark']['base_name'] = 'MacOSX 10.5 comm-1.9.1 shark'
+#BRANCHES['comm-central']['platforms']['macosx-shark']['base_name'] = 'MacOSX 10.5 comm-1.9.1 shark'
 BRANCHES['comm-central']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-central']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-central']['platforms']['macosx-shark']['profiled_build'] = False
+#BRANCHES['comm-central']['platforms']['macosx-shark']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central']['create_snippet'] = True
-BRANCHES['comm-central']['platforms']['macosx-shark']['create_snippet'] = False
+#BRANCHES['comm-central']['platforms']['macosx-shark']['create_snippet'] = False
 BRANCHES['comm-central']['aus'] = {
     'user': 'tbirdbld',
     'host': 'aus-staging.sj.mozillamessaging.com',
@@ -207,25 +214,26 @@ BRANCHES['comm-central']['l10n_nightly_updates'] = True
 BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-BRANCHES['comm-central']['platforms']['macosx-shark']['update_platform'] = 'Darwin_Universal-gcc3-shark'
+#BRANCHES['comm-central']['platforms']['macosx-shark']['update_platform'] = 'Darwin_Universal-gcc3-shark'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['macosx-shark']['upload_symbols'] = False
+#BRANCHES['comm-central']['platforms']['macosx-shark']['upload_symbols'] = False
 BRANCHES['comm-central']['tinderbox_tree'] = 'Thunderbird3.0'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
 BRANCHES['comm-central']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
-BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['macosx']['10.5']['momo']
+#BRANCHES['comm-central']['platforms']['macosx']['slaves'] = ['mini-01','mini-02']
+#BRANCHES['comm-central']['platforms']['macosx-shark']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = OBJDIR
+#BRANCHES['comm-central']['platforms']['macosx-shark']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -253,15 +261,15 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
-BRANCHES['comm-central']['platforms']['macosx-shark']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'tbirdbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbirdbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
+#BRANCHES['comm-central']['platforms']['macosx-shark']['env'] = {'CVS_RSH': 'ssh',
+#    'MOZ_OBJDIR': OBJDIR,
+#    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+#    'SYMBOL_SERVER_USER': 'tbirdbld',
+#    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+#    'SYMBOL_SERVER_SSH_KEY': "/Users/tbirdbld/.ssh/tbirdbld_dsa",
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#}
 
 BRANCHES['comm-1.9.2']['platforms'] = {
     'linux': {},
@@ -269,7 +277,7 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'macosx': {},
 }
 BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
 BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-1.9.2']['package'] = True
@@ -315,7 +323,6 @@ BRANCHES['comm-1.9.2']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10
 BRANCHES['comm-1.9.2']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.2']['platforms']['macosx-shark']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -351,6 +358,7 @@ BRANCHES['comm-central-trunk']['platforms'] = {
     'win32': {},
     'macosx': {},
 }
+BRANCHES['comm-central-trunk']['platforms']['macosx']['nightly_builder'] = ['mini-01', 'mini-02']
 BRANCHES['comm-central-trunk']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central','--hg-options=--verbose --time']
 BRANCHES['comm-central-trunk']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
@@ -798,7 +806,7 @@ BRANCHES['comm-1.9.2-bloat']['platforms'] = {
 BRANCHES['comm-1.9.2-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['hg_branch'] = 'comm-central'
-BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'],
+BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
 BRANCHES['comm-1.9.2-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-1.9.2-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-1.9.2-bloat']['nightly'] = False
