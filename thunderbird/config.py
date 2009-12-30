@@ -72,6 +72,7 @@ BRANCHES = {
     'comm-central-lightning': {},
     'comm-1.9.1-sunbird': {},
     'comm-1.9.1-unittest': {},
+    'comm-1.9.2': {},
     'comm-1.9.2-unittest': {},
     'comm-1.9.2-bloat': {},
     'comm-central-unittest': {},
@@ -253,6 +254,87 @@ BRANCHES['comm-central']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 BRANCHES['comm-central']['platforms']['macosx-shark']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
+BRANCHES['comm-1.9.2']['platforms'] = {
+    'linux': {},
+    'win32': {},
+    'macosx': {},
+}
+BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
+BRANCHES['comm-1.9.2']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
+BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
+BRANCHES['comm-1.9.2']['package'] = True
+BRANCHES['comm-1.9.2']['branch_name'] = 'comm-1.9.2'
+BRANCHES['comm-1.9.2']['hg_branch'] = 'comm-central'
+BRANCHES['comm-1.9.2']['upload_stage'] = True
+BRANCHES['comm-1.9.2']['milestone'] = 'comm-1.9.2'
+BRANCHES['comm-1.9.2']['codesighs'] = True
+BRANCHES['comm-1.9.2']['l10n'] = True
+BRANCHES['comm-1.9.2']['l10n_repo'] = 'releases/l10n-mozilla-1.9.2'
+BRANCHES['comm-1.9.2']['l10n_tree'] = 'tb31x'
+BRANCHES['comm-1.9.2']['platforms']['linux']['base_name'] = 'Linux comm-1.9.2'
+BRANCHES['comm-1.9.2']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.2'
+BRANCHES['comm-1.9.2']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.2'
+BRANCHES['comm-1.9.2']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-1.9.2']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-1.9.2']['platforms']['macosx']['profiled_build'] = False
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-1.9.2']['create_snippet'] = True
+BRANCHES['comm-1.9.2']['aus'] = {
+    'user': 'tbirdbld',
+    'host': 'aus-staging.sj.mozillamessaging.com',
+    'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.2',
+}
+BRANCHES['comm-1.9.2']['l10n_nightly_updates'] = True
+BRANCHES['comm-1.9.2']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-1.9.2']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-1.9.2']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-1.9.2']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['comm-1.9.2']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['comm-1.9.2']['platforms']['macosx']['upload_symbols'] = True
+BRANCHES['comm-1.9.2']['tinderbox_tree'] = 'Thunderbird3.1'
+BRANCHES['comm-1.9.2']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-1.9.2']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
+BRANCHES['comm-1.9.2']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-1.9.2']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['comm-1.9.2']['platforms']['macosx-shark']['platform_objdir'] = OBJDIR
+BRANCHES['comm-1.9.2']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-1.9.2']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+    'SYMBOL_SERVER_USER': 'tbirdbld',
+    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_tbrd/',
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['comm-1.9.2']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
     'SYMBOL_SERVER_USER': 'tbirdbld',
