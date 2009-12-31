@@ -46,7 +46,7 @@ DEFAULTS = {
     'product_name':           'Thunderbird',
     'brand_name':             'Shredder',
     'app_name':			'thunderbird',
-    'build_space':            5,
+    'build_space':            8,
     'l10n_nightly_updates':    False,
 
     'stage_username':		STAGE_USERNAME,
