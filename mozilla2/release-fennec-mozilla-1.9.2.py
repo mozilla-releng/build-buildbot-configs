@@ -6,11 +6,11 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = '3596945fe21e'
+mozSourceRepoRevision  = '593beb0d1e7d'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = '44cf520a5194'
-relbranchOverride   = ''
+mobileSourceRepoRevision  = '0725f34a703d'
+relbranchOverride   = 'GECKO192_20091230_RELBRANCH'
 l10nRepoPath        = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile    = 'l10n-changesets_mobile-1.0.json'
 productName         = 'fennec'
@@ -24,7 +24,7 @@ mergeLocales        = False
 version             = '1.0rc1'
 appVersion          = '1.0'
 milestone           = '1.9.2'
-buildNumber         = 1
+buildNumber         = 2
 baseTag             = 'FENNEC_1_0'
 enUSPlatforms       = ('maemo',)
 l10nPlatforms       = enUSPlatforms
