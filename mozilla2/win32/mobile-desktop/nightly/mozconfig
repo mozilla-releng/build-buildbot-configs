@@ -9,6 +9,7 @@ export WIN32_REDIST_DIR=/d/msvs9/VC/redist/x86/Microsoft.VC90.CRT
 ac_add_options --disable-debug
 ac_add_options --enable-optimize
 ac_add_options --enable-tests
+ac_add_options --enable-jemalloc
 
 # XULRunner options
 ac_add_app_options xulrunner --enable-application=xulrunner
