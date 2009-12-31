@@ -32,4 +32,4 @@ talosTestPlatforms  = ()
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging.mozilla.org'
 stageBasePath       = '/home/ftp/pub/mobile/candidates'
-base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (stagingServer, version, buildNumber)
+base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)

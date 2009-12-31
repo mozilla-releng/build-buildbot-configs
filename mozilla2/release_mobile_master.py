@@ -202,7 +202,7 @@ for platform in enUSPlatforms:
                 stageBasePath='%s/%s-candidates/build%d/maemo' % (stageBasePath,
                                                                   version,
                                                                   buildNumber),
-                baseWorkDir=pf['base_l10n_workdir'],
+                baseWorkDir='%s-release' % pf['base_l10n_workdir'],
                 l10nTag='%s_RELEASE' % baseTag,
                 hgHost=branchConfig['hghost'],
                 repoPath=mozSourceRepoPath,
