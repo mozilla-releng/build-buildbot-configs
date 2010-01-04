@@ -193,6 +193,7 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 6
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True 
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
@@ -370,6 +371,7 @@ BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
+BRANCHES['mozilla-1.9.1']['l10n_platforms'] = ['linux','win32','macosx'] 
 BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False 
 BRANCHES['mozilla-1.9.1']['l10nDatedDirs'] = False 
 BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
@@ -547,6 +549,7 @@ BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.2']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
+BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True 
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
