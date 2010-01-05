@@ -45,7 +45,7 @@ DEBSIGN_CONFIG['branches']['1.9.2']['enable_release'] = True
 DEBSIGN_CONFIG['branches']['1.9.2']['release_base_xulrunner_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/build2/maemo/multi'
 DEBSIGN_CONFIG['branches']['1.9.2']['release_env'] = RELEASE_ENV
 
-TRIGGER_CONFIG['sendchange_master'] = "production-mobile-master.mv.mozilla.com:9011"
+TRIGGER_CONFIG['sendchange_master'] = "production-mobile-master.build.mozilla.org:9011"
 TRIGGER_CONFIG['branches'] = {
     'trunk': {},
     '1.9.2': {},
