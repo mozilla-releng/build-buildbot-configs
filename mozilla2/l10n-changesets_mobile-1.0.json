@@ -4,7 +4,7 @@
     "platforms": ["maemo"]
   },
   "be": {
-    "revision": "8a1502c24f42",
+    "revision": "64687347aa65",
     "platforms": ["maemo"]
   },
   "ca": {
@@ -96,7 +96,7 @@
     "platforms": ["maemo"]
   },
   "pl": {
-    "revision": "95a495832647",
+    "revision": "d37d02d70778",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "pt-BR": {
