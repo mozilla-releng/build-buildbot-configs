@@ -52,7 +52,7 @@
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "fy-NL": {
-    "revision": "78853e620e66",
+    "revision": "ad9a06ddeeb1",
     "platforms": ["maemo"]
   },
   "ga-IE": {
@@ -72,7 +72,7 @@
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "ja": {
-    "revision": "a74eeb9a28fa",
+    "revision": "4370c055c5b2",
     "platforms": ["maemo"]
   },
   "lt": {
