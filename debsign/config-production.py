@@ -18,8 +18,8 @@ REAL_RELEASE_ENV = {
 CANDIDATES_RELEASE_ENV = {
     'STAGE_USERNAME': 'ffxbld',
     'STAGE_SERVER': 'stage.mozilla.org',
-    'BASE_STAGE_PATH': '/home/ftp/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/repos',
-    'BASE_STAGE_URL': 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/repos',
+    'BASE_STAGE_PATH': '/home/ftp/pub/mozilla.org/mobile/candidates/1.0rc2-candidates/repos',
+    'BASE_STAGE_URL': 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc2-candidates/repos',
     'SSH_KEY': '/home/cltbld/.ssh/ffxbld_dsa',
 }
  
@@ -42,7 +42,7 @@ DEBSIGN_CONFIG['branches']['trunk']['enable_release'] = False
 DEBSIGN_CONFIG['branches']['1.9.2']['nightly_base_xulrunner_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2'
 DEBSIGN_CONFIG['branches']['1.9.2']['nightly_env'] = NIGHTLY_ENV
 DEBSIGN_CONFIG['branches']['1.9.2']['enable_release'] = True
-DEBSIGN_CONFIG['branches']['1.9.2']['release_base_xulrunner_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/build2/maemo/multi'
+DEBSIGN_CONFIG['branches']['1.9.2']['release_base_xulrunner_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc2-candidates/build1/maemo/multi'
 DEBSIGN_CONFIG['branches']['1.9.2']['release_env'] = RELEASE_ENV
 
 TRIGGER_CONFIG['sendchange_master'] = "production-mobile-master.build.mozilla.org:9011"
@@ -55,4 +55,4 @@ TRIGGER_CONFIG['mobile_repo'] = 'http://hg.mozilla.org/mobile-browser'
 TRIGGER_CONFIG['locales_file'] = 'mobile/locales/all-locales'
 TRIGGER_CONFIG['conf_file'] = 'mobile/confvars.sh'
 
-TRIGGER_CONFIG['release_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc1-candidates/build2/maemo'
+TRIGGER_CONFIG['release_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/candidates/1.0rc2-candidates/build1/maemo'

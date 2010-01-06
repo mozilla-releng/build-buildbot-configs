@@ -36,7 +36,7 @@ status = []
 
 (l10n_repos, platform_locales) = get_locales_from_json(l10nRevisionFile,
                                                        l10nRepoPath,
-                                                       relbranchOverride)
+                                                       l10nRelbranchOverride)
 
 tag_scheduler = Scheduler(
     name='mobile_tag',
@@ -77,12 +77,12 @@ for platform in enUSPlatforms:
 repositories = {
     mozSourceRepoPath: {
         'revision': mozSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mozRelbranchOverride,
         'bumpFiles': [],
     },
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mobileRelbranchOverride,
         'bumpFiles': [],
     },
 }

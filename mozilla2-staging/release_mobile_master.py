@@ -38,10 +38,10 @@ status = []
 (l10n_clone_repos, platform_locales) = get_locales_from_json(
                                          l10nRevisionFile,
                                          l10nRepoClonePath,
-                                         relbranchOverride)
+                                         l10nRelbranchOverride)
 (l10n_tag_repos, platform_locales) = get_locales_from_json(l10nRevisionFile,
                                                            l10nRepoPath,
-                                                           relbranchOverride)
+                                                           l10nRelbranchOverride)
 
 repo_setup_scheduler = Scheduler(
     name='mobile_repo_setup',
@@ -88,12 +88,12 @@ for platform in enUSPlatforms:
 clone_repositories = {
     mozSourceRepoClonePath: {
         'revision': mozSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mozRelbranchOverride,
         'bumpFiles': [],
     },
     mobileSourceRepoClonePath: {
         'revision': mobileSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mobileRelbranchOverride,
         'bumpFiles': [],
     },
 }
@@ -102,12 +102,12 @@ clone_repositories.update(l10n_clone_repos)
 tag_repositories = {
     mozSourceRepoPath: {
         'revision': mozSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mozRelbranchOverride,
         'bumpFiles': []
     },
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
+        'relbranchOverride': mobileRelbranchOverride,
         'bumpFiles': []
     }
 }
