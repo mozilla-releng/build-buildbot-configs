@@ -44,7 +44,7 @@
     "platforms": ["maemo"]
   },
   "fi": {
-    "revision": "b855937934c8",
+    "revision": "02b8c9702257",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "fr": {
