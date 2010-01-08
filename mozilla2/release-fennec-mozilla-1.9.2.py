@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = '90e7eac5b605'
+mozSourceRepoRevision  = '9d39ebbdb610'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = 'f789f40c380f'
+mobileSourceRepoRevision  = '50cd730a1a0a'
 mozRelbranchOverride      = 'GECKO192_20100105_RELBRANCH'
 l10nRelbranchOverride     = 'GECKO192_20100105_RELBRANCH'
 mobileRelbranchOverride   = 'GECKO192_20100105_RELBRANCH'
@@ -26,7 +26,7 @@ mergeLocales        = False
 version             = '1.0rc2'
 appVersion          = '1.0'
 milestone           = '1.9.2'
-buildNumber         = 2
+buildNumber         = 3
 baseTag             = 'FENNEC_1_0rc2'
 enUSPlatforms       = ('maemo',)
 l10nPlatforms       = enUSPlatforms
