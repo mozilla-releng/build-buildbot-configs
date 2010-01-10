@@ -26,3 +26,7 @@ export MOZILLA_OFFICIAL=1
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+
+# Don't try and install lightning - we just need to have it built for it to
+# be uploaded
+DISABLE_LIGHTNING_INSTALL=1
