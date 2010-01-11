@@ -159,6 +159,8 @@ BRANCHES['mozilla-central']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['win32-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['builds_before_reboot'] = 1
+# Enable Nightly builds
+BRANCHES['mozilla-central']['enable_nightly'] = True
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
@@ -367,6 +369,8 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['builds_before_reboot'] = 1
+# Enable Nightly builds
+BRANCHES['mozilla-1.9.1']['enable_nightly'] = True
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
@@ -536,6 +540,8 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['builds_before_reboot'] = 1
+# Enable Nightly builds
+BRANCHES['mozilla-1.9.2']['enable_nightly'] = True
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
@@ -717,6 +723,8 @@ BRANCHES['tracemonkey']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['upload_symbols'] = True
+# Enable Nightly builds
+BRANCHES['tracemonkey']['enable_nightly'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
@@ -883,6 +891,8 @@ BRANCHES['places']['platforms']['macosx-debug']['builds_before_reboot'] = 1
 BRANCHES['places']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['places']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
+# Enable Nightly builds
+BRANCHES['places']['enable_nightly'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests
@@ -1028,6 +1038,8 @@ BRANCHES['electrolysis']['platforms']['macosx-debug']['builds_before_reboot'] = 
 BRANCHES['electrolysis']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['electrolysis']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['electrolysis']['platforms']['macosx']['upload_symbols'] = True
+# Enable Nightly builds
+BRANCHES['electrolysis']['enable_nightly'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 # Enable unit tests
