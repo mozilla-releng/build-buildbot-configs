@@ -3,18 +3,18 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '0ee60a0ba075'
+sourceRepoRevision         = 'eeb567bb0464'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM1917_20100111_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '67094ede1785'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM1916_20091130_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM1917_20100111_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '18a1c983c8ee'
-inspectorRelbranchOverride = ''
+inspectorRelbranchOverride = 'COMM1917_20100111_RELBRANCH'
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
