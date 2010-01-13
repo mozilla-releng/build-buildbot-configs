@@ -94,7 +94,7 @@ clone_repositories = {
     mobileSourceRepoClonePath: {
         'revision': mobileSourceRepoRevision,
         'relbranchOverride': mobileRelbranchOverride,
-        'bumpFiles': [],
+        'bumpFiles': ['default-version.txt'],
     },
 }
 clone_repositories.update(l10n_clone_repos)
@@ -108,7 +108,7 @@ tag_repositories = {
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
         'relbranchOverride': mobileRelbranchOverride,
-        'bumpFiles': []
+        'bumpFiles': ['default-version.txt']
     }
 }
 tag_repositories.update(l10n_tag_repos)

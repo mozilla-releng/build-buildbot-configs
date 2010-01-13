@@ -83,7 +83,7 @@ repositories = {
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
         'relbranchOverride': mobileRelbranchOverride,
-        'bumpFiles': [],
+        'bumpFiles': ['default-version.txt'],
     },
 }
 repositories.update(l10n_repos)
