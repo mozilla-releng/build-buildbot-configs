@@ -6,8 +6,8 @@ ac_add_options --disable-debug
 ac_add_options --enable-tests
 ac_add_options --enable-codesighs
 
-CC=/tools/gcc/bin/gcc
-CXX=/tools/gcc/bin/g++
+CC="ccache /tools/gcc/bin/gcc"
+CXX="ccache /tools/gcc/bin/g++"
 
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"

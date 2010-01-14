@@ -109,6 +109,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
@@ -117,6 +118,8 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_UMASK': '002',
             },
         },
         'linux64': {
@@ -138,6 +141,8 @@ PLATFORM_VARS = {
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_UMASK': '002',
             }
         },
         'macosx': {
@@ -195,12 +200,15 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_UMASK': '002',
             },
         },
         'macosx-debug': {

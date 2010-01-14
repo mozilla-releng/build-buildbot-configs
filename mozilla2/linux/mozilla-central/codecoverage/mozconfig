@@ -6,6 +6,10 @@ export EXTRA_DSO_LDFLAGS="-lgcov -static-libgcc"
 CC=/tools/gcc-4.3.3/installed/bin/gcc
 CXX=/tools/gcc-4.3.3/installed/bin/g++
 
+# Don't use ccache here
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
+
 ac_add_options --enable-application=browser
 
 ac_add_options --enable-debug
