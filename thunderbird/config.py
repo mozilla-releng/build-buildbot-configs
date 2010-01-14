@@ -604,6 +604,7 @@ BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': '
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
 }
 
 ######## sunbird-hg
