@@ -65,9 +65,11 @@ BRANCH_LEVEL_VARS = {
                          ('localhost:9011', True, 0)],
     'unittest_suites': [
         ('mochitests', ['mochitest-plain']),
-        ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                            'mochitest-browser-chrome', 'mochitest-a11y',
-                            'xpcshell'])
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+            'mochitest-a11y']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
     ],
     'geriatric_masters': [],
     'geriatric_branches': {},
@@ -167,9 +169,12 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 BRANCHES['mozilla-central']['unittest_suites'] = [
     # Turn on chunks for mochitests
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y', 'mochitest-ipcplugins']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+    ('jsreftest', ['jsreftest']),
 ]
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
@@ -678,9 +683,12 @@ BRANCHES['tracemonkey']['start_minute'] = [32]
 BRANCHES['tracemonkey']['unittest_suites'] = [
     # Turn on chunks for mochitests
     ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest', 'mochitest-ipcplugins'])
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y', 'mochitest-ipcplugins']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+    ('jsreftest', ['jsreftest']),
 ]
 BRANCHES['tracemonkey']['platforms'] = {
     'linux': {},
@@ -850,11 +858,11 @@ BRANCHES['places']['major_version'] = '1.9.2'
 BRANCHES['places']['product_name'] = 'firefox'
 BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
-BRANCHES['places']['start_hour'] = [4] 
-BRANCHES['places']['start_minute'] = [2] 
+BRANCHES['places']['start_hour'] = [4]
+BRANCHES['places']['start_minute'] = [2]
+BRANCHES['places']['unittest_suites'].append( ('jsreftest', ['jsreftest']) )
 for suite in BRANCHES['places']['unittest_suites']:
-    if suite[0] == 'everythingelse':
-        suite[1].append('jsreftest')
+    if suite[0] == 'mochitest-other':
         suite[1].append('mochitest-ipcplugins')
 BRANCHES['places']['platforms'] = {
     'linux': {},
@@ -996,11 +1004,11 @@ BRANCHES['electrolysis']['major_version'] = '1.9.2'
 BRANCHES['electrolysis']['product_name'] = 'firefox'
 BRANCHES['electrolysis']['app_name'] = 'browser'
 BRANCHES['electrolysis']['brand_name'] = 'Minefield'
-BRANCHES['electrolysis']['start_hour'] = [4] 
-BRANCHES['electrolysis']['start_minute'] = [2] 
+BRANCHES['electrolysis']['start_hour'] = [4]
+BRANCHES['electrolysis']['start_minute'] = [2]
+BRANCHES['electrolysis']['unittest_suites'].append( ('jsreftest', ['jsreftest']) )
 for suite in BRANCHES['electrolysis']['unittest_suites']:
-    if suite[0] == 'everythingelse':
-        suite[1].append('jsreftest')
+    if suite[0] == 'mochitest-other':
         suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['platforms'] = {
     'linux': {},
