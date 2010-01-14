@@ -127,6 +127,7 @@ BRANCHES['comm-1.9.1']['platforms']['macosx']['mochibrowser_leak_threshold'] = 0
 BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-1.9.1']['enable_l10n'] = True
+BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-1.9.1']['l10n_tree'] = 'sea20x'
 #make sure it has an ending slash
 BRANCHES['comm-1.9.1']['l10nUploadPath'] = \
@@ -279,6 +280,7 @@ BRANCHES['comm-central-trunk']['platforms']['macosx']['mochibrowser_leak_thresho
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea21x'
 #make sure it has an ending slash
 BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
