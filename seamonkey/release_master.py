@@ -8,7 +8,7 @@ import buildbotcustom.process.factory
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
-  CCReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
+  ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, CCReleaseRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
@@ -126,6 +126,12 @@ if venkmanRepoPath:
         'relbranchOverride': venkmanRelbranchOverride,
         'bumpFiles': []
     }
+if chatzillaRepoPath:
+    repositories[chatzillaRepoPath] = {
+        'revision': chatzillaRepoRevision,
+        'relbranchOverride': chatzillaRelbranchOverride,
+        'bumpFiles': []
+    }
 
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                    relbranchOverride)
@@ -138,7 +144,7 @@ from buildbot.steps.dummy import Dummy
 dummy_factory = BuildFactory()
 dummy_factory.addStep(Dummy())
 
-tag_factory = CCReleaseTaggingFactory(
+tag_factory = ReleaseTaggingFactory(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     repositories=repositories,
@@ -151,9 +157,7 @@ tag_factory = CCReleaseTaggingFactory(
     buildNumber=buildNumber,
     hgUsername=hgUsername,
     hgSshKey=hgSshKey,
-    relbranchPrefix=relbranchPrefix,
-    chatzillaTimestamp=chatzillaTimestamp,
-    cvsroot=chatzillaCVSRoot
+    relbranchPrefix=relbranchPrefix
 )
 
 builders.append({
@@ -179,7 +183,8 @@ source_factory = CCSourceFactory(
     mozRepoPath=mozillaRepoPath,
     inspectorRepoPath=inspectorRepoPath,
     venkmanRepoPath=venkmanRepoPath,
-    cvsroot=chatzillaCVSRoot,
+    chatzillaRepoPath=chatzillaRepoPath,
+    cvsroot=cvsroot,
     autoconfDirs=['.', 'mozilla', 'mozilla/js/src']
 )
 
@@ -206,7 +211,8 @@ for platform in releasePlatforms:
         mozRepoPath=mozillaRepoPath,
         inspectorRepoPath=inspectorRepoPath,
         venkmanRepoPath=venkmanRepoPath,
-        cvsroot=chatzillaCVSRoot,
+        chatzillaRepoPath=chatzillaRepoPath,
+        cvsroot=cvsroot,
         buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
         configRepoPath=nightly_config.CONFIG_REPO_PATH,
         configSubDir=nightly_config.CONFIG_SUBDIR,
@@ -247,7 +253,8 @@ for platform in releasePlatforms:
         mozRepoPath=mozillaRepoPath,
         inspectorRepoPath=inspectorRepoPath,
         venkmanRepoPath=venkmanRepoPath,
-        cvsroot=chatzillaCVSRoot,
+        chatzillaRepoPath=chatzillaRepoPath,
+        cvsroot=cvsroot,
         l10nRepoPath=l10nRepoPath,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.STAGE_USERNAME,
