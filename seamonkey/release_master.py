@@ -24,6 +24,8 @@ from release_config import *
 import config as nightly_config
 reload(nightly_config)
 
+branchConfig = nightly_config.BRANCHES[sourceRepoName]
+
 builders = []
 schedulers = []
 change_source = []
@@ -44,7 +46,7 @@ tag_scheduler = Scheduler(
     branch=sourceRepoPath,
     treeStableTimer=0,
     builderNames=['tag'],
-    fileIsImportant=lambda c: not isHgPollerTriggered(c, nightly_config.HGURL)
+    fileIsImportant=lambda c: not isHgPollerTriggered(c, branchConfig['hgurl'])
 )
 schedulers.append(tag_scheduler)
 source_scheduler = Dependent(
@@ -145,8 +147,8 @@ dummy_factory = BuildFactory()
 dummy_factory.addStep(Dummy())
 
 tag_factory = ReleaseTaggingFactory(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+    hgHost=branchConfig['hghost'],
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     repositories=repositories,
     productName=productName,
     appName=appName,
@@ -162,7 +164,7 @@ tag_factory = ReleaseTaggingFactory(
 
 builders.append({
     'name': 'tag',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
     'factory': tag_factory
@@ -170,15 +172,15 @@ builders.append({
 
 
 source_factory = CCSourceFactory(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+    hgHost=branchConfig['hghost'],
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     repoPath=sourceRepoPath,
     productName=productName,
     version=version,
     baseTag=baseTag,
-    stagingServer=nightly_config.STAGE_SERVER,
-    stageUsername=nightly_config.STAGE_USERNAME,
-    stageSshKey=nightly_config.STAGE_SSH_KEY,
+    stagingServer=branchConfig['stage_server'],
+    stageUsername=branchConfig['stage_username'],
+    stageSshKey=branchConfig['stage_ssh_key'],
     buildNumber=buildNumber,
     mozRepoPath=mozillaRepoPath,
     inspectorRepoPath=inspectorRepoPath,
@@ -190,7 +192,7 @@ source_factory = CCSourceFactory(
 
 builders.append({
     'name': 'source',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
     'factory': source_factory
@@ -199,31 +201,31 @@ builders.append({
 
 for platform in releasePlatforms:
     # shorthand
-    pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
+    pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, sourceRepoName)
 
     build_factory = CCReleaseBuildFactory(
         env=pf['env'],
         objdir=pf['platform_objdir'],
         platform=platform,
-        hgHost=nightly_config.HGHOST,
+        hgHost=branchConfig['hghost'],
         repoPath=sourceRepoPath,
         mozRepoPath=mozillaRepoPath,
         inspectorRepoPath=inspectorRepoPath,
         venkmanRepoPath=venkmanRepoPath,
         chatzillaRepoPath=chatzillaRepoPath,
         cvsroot=cvsroot,
-        buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
-        configRepoPath=nightly_config.CONFIG_REPO_PATH,
-        configSubDir=nightly_config.CONFIG_SUBDIR,
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        configRepoPath=branchConfig['config_repo_path'],
+        configSubDir=branchConfig['config_subdir'],
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
         buildRevision='%s_RELEASE' % baseTag,
-        stageServer=nightly_config.STAGE_SERVER,
-        stageUsername=nightly_config.STAGE_USERNAME,
-        stageGroup=nightly_config.STAGE_GROUP,
-        stageSshKey=nightly_config.STAGE_SSH_KEY,
-        stageBasePath=nightly_config.STAGE_BASE_PATH,
+        stageServer=branchConfig['stage_server'],
+        stageUsername=branchConfig['stage_username'],
+        stageGroup=branchConfig['stage_group'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        stageBasePath=branchConfig['stage_base_path'],
         codesighs=False,
         uploadPackages=True,
         uploadSymbols=True,
@@ -245,7 +247,7 @@ for platform in releasePlatforms:
     })
 
     repack_factory = CCReleaseRepackFactory(
-        hgHost=nightly_config.HGHOST,
+        hgHost=branchConfig['hghost'],
         project=productName,
         appName=appName,
         brandName=brandName,
@@ -256,15 +258,15 @@ for platform in releasePlatforms:
         chatzillaRepoPath=chatzillaRepoPath,
         cvsroot=cvsroot,
         l10nRepoPath=l10nRepoPath,
-        stageServer=nightly_config.STAGE_SERVER,
-        stageUsername=nightly_config.STAGE_USERNAME,
-        stageSshKey=nightly_config.STAGE_SSH_KEY,
-        buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
-        compareLocalesRepoPath=nightly_config.COMPARE_LOCALES_REPO_PATH,
-        compareLocalesTag=nightly_config.COMPARE_LOCALES_TAG,
+        stageServer=branchConfig['stage_server'],
+        stageUsername=branchConfig['stage_username'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
+        compareLocalesTag=branchConfig['compare_locales_tag'],
         buildSpace=2,
-        configRepoPath=nightly_config.CONFIG_REPO_PATH,
-        configSubDir=nightly_config.CONFIG_SUBDIR,
+        configRepoPath=branchConfig['config_repo_path'],
+        configSubDir=branchConfig['config_subdir'],
         mozconfig=mozconfig,
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
@@ -282,8 +284,8 @@ for platform in releasePlatforms:
 
 
 l10n_verification_factory = L10nVerifyFactory(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+    hgHost=branchConfig['hghost'],
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     cvsroot=cvsroot,
     stagingServer=stagingServer,
     productName=productName,
@@ -295,7 +297,7 @@ l10n_verification_factory = L10nVerifyFactory(
 
 builders.append({
     'name': 'l10n_verification',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
+    'slavenames': branchConfig['platforms']['macosx']['slaves'],
     'category': 'release',
     'builddir': 'l10n_verification',
     'factory': l10n_verification_factory
@@ -303,10 +305,10 @@ builders.append({
 
 
 updates_factory = ReleaseUpdatesFactory(
-    hgHost=nightly_config.HGHOST,
+    hgHost=branchConfig['hghost'],
     repoPath=sourceRepoPath,
     mozRepoPath=mozillaRepoPath,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
     patcherConfig=patcherConfig,
@@ -326,10 +328,10 @@ updates_factory = ReleaseUpdatesFactory(
     bouncerServer=bouncerServer,
     stagingServer=stagingServer,
     useBetaChannel=useBetaChannel,
-    stageUsername=nightly_config.STAGE_USERNAME,
-    stageSshKey=nightly_config.STAGE_SSH_KEY,
-    ausUser=nightly_config.AUS2_USER,
-    ausHost=nightly_config.AUS2_HOST,
+    stageUsername=branchConfig['stage_username'],
+    stageSshKey=branchConfig['stage_ssh_key'],
+    ausUser=branchConfig['aus2_user'],
+    ausHost=branchConfig['aus2_host'],
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
@@ -337,7 +339,7 @@ updates_factory = ReleaseUpdatesFactory(
 
 builders.append({
     'name': 'updates',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
     'factory': updates_factory
@@ -346,14 +348,14 @@ builders.append({
 
 for platform in releasePlatforms:
     update_verify_factory = UpdateVerifyFactory(
-        hgHost=nightly_config.HGHOST,
-        buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+        hgHost=branchConfig['hghost'],
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=verifyConfigs[platform],
     )
 
     builders.append({
         'name': '%s_update_verify' % platform,
-        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]['slaves'],
+        'slavenames': branchConfig['platforms'][platform]['slaves'],
         'category': 'release',
         'builddir': '%s_update_verify' % platform,
         'factory': update_verify_factory
@@ -361,14 +363,14 @@ for platform in releasePlatforms:
 
 
 final_verification_factory = ReleaseFinalVerification(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+    hgHost=branchConfig['hghost'],
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     verifyConfigs=verifyConfigs,
 )
 
 builders.append({
     'name': 'final_verification',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
     'factory': final_verification_factory
