@@ -65,7 +65,7 @@ TRIGGER_CONFIG['branches'] = {
 }
 TRIGGER_CONFIG['branches']['trunk']['env'] = NIGHTLY_ENV
 TRIGGER_CONFIG['branches']['1.9.2']['env'] = NIGHTLY_ENV
-TRIGGER_CONFIG['release_mobile_tag'] = 'FENNEC_1_0rc2_RELEASE'
+TRIGGER_CONFIG['branches']['1.9.2']['release_mobile_tag'] = 'FENNEC_1_0rc2_RELEASE'
 TRIGGER_CONFIG['mobile_repo'] = 'http://hg.mozilla.org/mobile-browser'
 TRIGGER_CONFIG['locales_file'] = 'mobile/locales/all-locales'
 TRIGGER_CONFIG['conf_file'] = 'mobile/confvars.sh'
