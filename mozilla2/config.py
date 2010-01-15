@@ -185,7 +185,7 @@ BRANCHES['mozilla-central']['geriatric_branches'] = {
     'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
 }
 BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
@@ -737,7 +737,7 @@ BRANCHES['tracemonkey']['enable_nightly'] = True
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['tracemonkey']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['tracemonkey']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
