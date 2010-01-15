@@ -6,7 +6,7 @@ NIGHTLY_ENV = {
     'STAGE_SERVER': 'stage.mozilla.org',
     'BASE_STAGE_PATH': '/home/ftp',
     'BASE_STAGE_URL': 'http://ftp.mozilla.org',
-    'STAGE_PATH': '/pub/mozilla.org/mobile/repos',
+    'STAGE_DIR': '/pub/mozilla.org/mobile/repos',
     'SSH_KEY': '/home/cltbld/.ssh/ffxbld_dsa',
 }
 REAL_RELEASE_ENV = {
