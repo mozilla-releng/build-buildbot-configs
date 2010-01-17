@@ -1,12 +1,13 @@
-from buildbot.changes.pb import PBChangeSource
 from buildbot.scheduler import Scheduler, Dependent
+from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
 import buildbotcustom.misc
 import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
-from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
+from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
+  generateTestBuilderNames, generateCCTestBuilder
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -22,23 +23,22 @@ from release_config import *
 # for the 'build' step we use many of the same vars as the nightlies do.
 # we import those so we don't have to duplicate them in release_config
 import config as nightly_config
-reload(nightly_config)
 
 branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
 builders = []
+test_builders = []
 schedulers = []
 change_source = []
 status = []
 
 ##### Change sources and Schedulers
-change_source.append(PBChangeSource())
 change_source.append(FtpPoller(
-	branch="post_signing",
-	ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-	  % (stagingServer, productName, version, buildNumber)],
-	pollInterval=60*10,
-	searchString='win32_signing_build'
+    branch="post_signing",
+    ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
+             % (stagingServer, productName, version, buildNumber)],
+    pollInterval= 60*10,
+    searchString='win32_signing_build'
 ))
 
 tag_scheduler = Scheduler(
@@ -55,24 +55,26 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     build_scheduler = Dependent(
         name='%s_build' % platform,
         upstream=tag_scheduler,
         builderNames=['%s_build' % platform]
     )
-    repack_scheduler = DependentL10n(
-        name='%s_repack' % platform,
-        platform=platform,
-        upstream=build_scheduler,
-        builderNames=['%s_repack' % platform],
-        repoType='hg',
-        branch=sourceRepoPath,
-        baseTag='%s_RELEASE' % baseTag,
-        localesFile='suite/locales/shipped-locales'
-    )
     schedulers.append(build_scheduler)
-    schedulers.append(repack_scheduler)
+    if platform in l10nPlatforms:
+        repack_scheduler = DependentL10n(
+            name='%s_repack' % platform,
+            platform=platform,
+            upstream=build_scheduler,
+            builderNames=['%s_repack' % platform],
+            repoType='hg',
+            branch=sourceRepoPath,
+            baseTag='%s_RELEASE' % baseTag,
+            localesFile='suite/locales/shipped-locales',
+            tree='release'
+        )
+        schedulers.append(repack_scheduler)
 l10n_verify_scheduler = Scheduler(
     name='l10n_verification',
     treeStableTimer=0,
@@ -89,7 +91,7 @@ updates_scheduler = Scheduler(
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
-for platform in releasePlatforms:
+for platform in sorted(verifyConfigs.keys()):
     updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
@@ -98,12 +100,25 @@ update_verify_scheduler = Dependent(
 )
 schedulers.append(update_verify_scheduler)
 
+for platform in unittestPlatforms:
+    platform_test_builders = []
+    base_name = branchConfig['platforms'][platform]['base_name']
+    for suites_name, suites in branchConfig['unittest_suites']:
+        platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
+
+    s = Scheduler(
+     name='%s_release_unittest' % platform,
+     treeStableTimer=0,
+     branch='%s-release-unittest' % platform,
+     builderNames=platform_test_builders,
+    )
+    schedulers.append(s)
+
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
 # from the waterfall
 
 ##### Builders
-# repositories is what actual stuff is performed on
 repositories = {
     sourceRepoPath: {
         'revision': sourceRepoRevision,
@@ -159,7 +174,8 @@ tag_factory = ReleaseTaggingFactory(
     buildNumber=buildNumber,
     hgUsername=hgUsername,
     hgSshKey=hgSshKey,
-    relbranchPrefix=relbranchPrefix
+    relbranchPrefix=relbranchPrefix,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -187,7 +203,8 @@ source_factory = CCSourceFactory(
     venkmanRepoPath=venkmanRepoPath,
     chatzillaRepoPath=chatzillaRepoPath,
     cvsroot=cvsroot,
-    autoconfDirs=['.', 'mozilla', 'mozilla/js/src']
+    autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -199,10 +216,23 @@ builders.append({
 })
 
 
-for platform in releasePlatforms:
+for platform in enUSPlatforms:
     # shorthand
     pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, sourceRepoName)
+    if platform in talosTestPlatforms:
+        talosMasters = branchConfig['talos_masters']
+    else:
+        talosMasters = None
+
+    if platform in unittestPlatforms:
+        packageTests = True
+        unittestMasters = branchConfig['unittest_masters']
+        unittestBranch = '%s-release-unittest' % platform
+    else:
+        packageTests = False
+        unittestMasters = None
+        unittestBranch = None
 
     build_factory = CCReleaseBuildFactory(
         env=pf['env'],
@@ -235,7 +265,12 @@ for platform in releasePlatforms:
         buildSpace=10,
         productName=productName,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        talosMasters=talosMasters,
+        packageTests=packageTests,
+        unittestMasters=unittestMasters,
+        unittestBranch=unittestBranch,
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -246,42 +281,59 @@ for platform in releasePlatforms:
         'factory': build_factory
     })
 
-    repack_factory = CCReleaseRepackFactory(
-        hgHost=branchConfig['hghost'],
-        project=productName,
-        appName=appName,
-        brandName=brandName,
-        repoPath=sourceRepoPath,
-        mozRepoPath=mozillaRepoPath,
-        inspectorRepoPath=inspectorRepoPath,
-        venkmanRepoPath=venkmanRepoPath,
-        chatzillaRepoPath=chatzillaRepoPath,
-        cvsroot=cvsroot,
-        l10nRepoPath=l10nRepoPath,
-        stageServer=branchConfig['stage_server'],
-        stageUsername=branchConfig['stage_username'],
-        stageSshKey=branchConfig['stage_ssh_key'],
-        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
-        compareLocalesTag=branchConfig['compare_locales_tag'],
-        buildSpace=2,
-        configRepoPath=branchConfig['config_repo_path'],
-        configSubDir=branchConfig['config_subdir'],
-        mozconfig=mozconfig,
-        platform=platform + '-release',
-        buildRevision='%s_RELEASE' % baseTag,
-        version=version,
-        buildNumber=buildNumber
-    )
+    if platform in l10nPlatforms:
+        repack_factory = CCReleaseRepackFactory(
+            hgHost=branchConfig['hghost'],
+            project=productName,
+            appName=appName,
+            brandName=brandName,
+            repoPath=sourceRepoPath,
+            mozRepoPath=mozillaRepoPath,
+            inspectorRepoPath=inspectorRepoPath,
+            venkmanRepoPath=venkmanRepoPath,
+            chatzillaRepoPath=chatzillaRepoPath,
+            cvsroot=cvsroot,
+            l10nRepoPath=l10nRepoPath,
+            stageServer=branchConfig['stage_server'],
+            stageUsername=branchConfig['stage_username'],
+            stageSshKey=branchConfig['stage_ssh_key'],
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
+            compareLocalesTag=branchConfig['compare_locales_tag'],
+            buildSpace=2,
+            configRepoPath=branchConfig['config_repo_path'],
+            configSubDir=branchConfig['config_subdir'],
+            mozconfig=mozconfig,
+            platform=platform + '-release',
+            buildRevision='%s_RELEASE' % baseTag,
+            version=version,
+            buildNumber=buildNumber,
+            tree='release',
+            clobberURL=branchConfig['base_clobber_url'],
+        )
 
-    builders.append({
-        'name': '%s_repack' % platform,
-        'slavenames': pf['slaves'],
-        'category': 'release',
-        'builddir': '%s_repack' % platform,
-        'factory': repack_factory
-    })
+        builders.append({
+            'name': '%s_repack' % platform,
+            'slavenames': branchConfig['l10n_slaves'][platform],
+            'category': 'release',
+            'builddir': '%s_repack' % platform,
+            'factory': repack_factory
+        })
 
+    if platform in unittestPlatforms:
+        mochitestLeakThreshold = pf.get('mochitest_leak_threshold', None)
+        crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
+        for suites_name, suites in branchConfig['unittest_suites']:
+            # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
+            if platform == 'macosx' and 'mochitest-a11y' in suites:
+                suites = suites[:]
+                suites.remove('mochitest-a11y')
+
+            test_builders.extend(generateCCTestBuilder(
+                branchConfig, 'release', platform, "%s_test" % platform,
+                "release-%s-unittest" % (platform,),
+                suites_name, suites, mochitestLeakThreshold,
+                crashtestLeakThreshold))
 
 l10n_verification_factory = L10nVerifyFactory(
     hgHost=branchConfig['hghost'],
@@ -292,7 +344,8 @@ l10n_verification_factory = L10nVerifyFactory(
     version=version,
     buildNumber=buildNumber,
     oldVersion=oldVersion,
-    oldBuildNumber=oldBuildNumber
+    oldBuildNumber=oldBuildNumber,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -335,6 +388,7 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -346,11 +400,12 @@ builders.append({
 })
 
 
-for platform in releasePlatforms:
+for platform in sorted(verifyConfigs.keys()):
     update_verify_factory = UpdateVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=verifyConfigs[platform],
+        clobberURL=branchConfig['base_clobber_url'],
     )
 
     builders.append({
@@ -366,6 +421,7 @@ final_verification_factory = ReleaseFinalVerification(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     verifyConfigs=verifyConfigs,
+    clobberURL=branchConfig['base_clobber_url'],
 )
 
 builders.append({
@@ -375,3 +431,24 @@ builders.append({
     'builddir': 'final_verification',
     'factory': final_verification_factory
 })
+
+status.append(TinderboxMailNotifier(
+    fromaddr="comm.buildbot@build.mozilla.org",
+    tree=branchConfig["tinderbox_tree"] + "-Release",
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    relayhost="mail.build.mozilla.org",
+    builders=[b['name'] for b in builders],
+    logCompression="bzip2")
+)
+
+status.append(TinderboxMailNotifier(
+    fromaddr="comm.buildbot@build.mozilla.org",
+    tree=branchConfig["tinderbox_tree"] + "-Release",
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    relayhost="mail.build.mozilla.org",
+    builders=[b['name'] for b in test_builders],
+    logCompression="bzip2",
+    errorparser="unittest")
+)
+
+builders.extend(test_builders)
