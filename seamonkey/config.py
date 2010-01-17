@@ -329,9 +329,9 @@ BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
-BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = False
+BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
-BRANCHES['comm-central-trunk']['l10nDatedDirs'] = False
+BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea21x'
 #make sure it has an ending slash
 BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
