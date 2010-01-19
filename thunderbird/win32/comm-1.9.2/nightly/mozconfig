@@ -1,5 +1,3 @@
-ac_add_options --with-branding=mail/branding/unofficial
-
 ac_add_options --enable-application=mail
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
