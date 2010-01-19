@@ -3,7 +3,7 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'comm-central'
-sourceRepoRevision         = ''
+sourceRepoRevision         = '0d8aabd78c66'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
@@ -43,7 +43,7 @@ baseTag                    = 'THUNDERBIRD_3_1_a1'
 oldVersion                 = ''
 oldAppVersion              = ''
 oldBuildNumber             = 1
-oldBaseTag                 = 'THUNDERBIRD_3_0'
+oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
