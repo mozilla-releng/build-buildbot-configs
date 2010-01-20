@@ -11,7 +11,8 @@ from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory
+  L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory, \
+  PartnerRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -75,6 +76,14 @@ for platform in enUSPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
+if doPartnerRepacks:
+    partner_scheduler = Scheduler(
+        name='partner_repacks',
+        treeStableTimer=0,
+        branch='post_signing',
+        builderNames=['partner_repack'],
+    )
+    schedulers.append(partner_scheduler)
 l10n_verify_scheduler = Scheduler(
     name='l10n_verification',
     treeStableTimer=0,
@@ -287,6 +296,28 @@ for platform in enUSPlatforms:
                 "release-%s-unittest" % (platform,),
                 suites_name, suites, mochitestLeakThreshold,
                 crashtestLeakThreshold))
+
+if doPartnerRepacks:
+    partner_repack_factory = PartnerRepackFactory(
+        hgHost=branchConfig['hghost'],
+        repoPath=sourceRepoPath,
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        productName=productName,
+        version=version,
+        buildNumber=buildNumber,
+        partnersRepoPath=partnersRepoPath,
+        stagingServer=stagingServer,
+        stageUsername=branchConfig['stage_username'],
+        stageSshKey=branchConfig['stage_ssh_key'],    
+    )
+
+    builders.append({
+        'name': 'partner_repack',
+        'slavenames': branchConfig['platforms']['macosx']['slaves'],
+        'category': 'release',
+        'builddir': 'partner_repack',
+        'factory': partner_repack_factory
+    })
 
 l10n_verification_factory = L10nVerifyFactory(
     hgHost=branchConfig['hghost'],
