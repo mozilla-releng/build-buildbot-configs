@@ -42,3 +42,5 @@ useBetaChannel      = 0
 verifyConfigs       = {'linux':  'moz191-firefox-linux.cfg',
                        'macosx': 'moz191-firefox-mac.cfg',
                        'win32':  'moz191-firefox-win32.cfg'}
+doPartnerRepacks    = True
+partnersRepoPath    = 'build/partner-repacks'
