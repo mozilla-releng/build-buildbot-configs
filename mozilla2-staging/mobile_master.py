@@ -194,7 +194,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
-                buildSpace=buildSpace
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot']
             )
             nightlyWorkDir  = pf['base_workdir']  + '-nightly'
             nightlyBuildDir = pf['base_builddir'] + '-nightly'
@@ -218,6 +219,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly = True,
                 multiLocale = branch['enable_multi_locale'],
                 l10nRepoPath = branch['l10n_repo_path'],
@@ -246,7 +248,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
-                buildSpace=buildSpace
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot']
             )
             mobile_nightly_factory = MobileDesktopBuildFactory(
                 hgHost=mainConfig['hghost'],
@@ -270,6 +273,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly = True,
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
@@ -296,6 +300,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly = True,
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
@@ -323,6 +328,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly = True,
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
@@ -348,6 +354,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot']
             )
             mobile_nightly_factory=WinmoBuildFactory(
                 hgHost=mainConfig['hghost'],
@@ -369,6 +376,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly=True,
             )
         mobile_dep_builder = None

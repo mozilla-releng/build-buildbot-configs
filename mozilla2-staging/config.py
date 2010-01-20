@@ -907,7 +907,7 @@ BRANCHES['places']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['places']['create_snippet'] = False
 # Enable Nightly builds
-BRANCHES['places']['enable_nightly'] = True
+BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests

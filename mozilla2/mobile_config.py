@@ -56,6 +56,11 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-trunk' % SBOX_HOME
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-trunk'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -133,6 +138,11 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-1.9.2' % SBOX_HOME
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-1.9.2'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -195,6 +205,8 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_na
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_name'] = 'WinMo Tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-tracemonkey' % SBOX_HOME
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_workdir'] = '.'
@@ -228,6 +240,9 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_name'] = 
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-electrolysis' % SBOX_HOME
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-electrolysis'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
