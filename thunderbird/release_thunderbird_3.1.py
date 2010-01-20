@@ -26,7 +26,7 @@ toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:cltbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'mail/config/version-192.txt'
 productName                = 'thunderbird'
-brandName                  = 'Thunderbird'
+brandName                  = 'Lanikai'
 appName                    = 'mail'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
