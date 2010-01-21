@@ -60,13 +60,14 @@ BRANCH_LEVEL_VARS = {
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', False, 0)],
-    'unittest_suites': [],
-    #'unittest_suites': [
+    'unittest_suites': [
     #    ('mochitests', ['mochitest-plain']),
-    #    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-    #                        'mochitest-browser-chrome', 'mochitest-a11y',
-    #                        'xpcshell'])
-    #],
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+            'mochitest-a11y']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+    ],
     'geriatric_masters': [],
     'geriatric_branches': {},
     'weekly_tinderbox_tree': 'Testing',
@@ -312,9 +313,6 @@ BRANCHES['comm-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = Non
 # Enable Nightly builds
 BRANCHES['comm-1.9.1']['enable_nightly'] = True
 # Enable unit tests
-BRANCHES['comm-1.9.1']['unittest_suites'] = [
-    ('xpcshell', ['xpcshell']),
-]
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
@@ -438,7 +436,7 @@ BRANCHES['comm-1.9.2']['product_name'] = 'seamonkey'
 BRANCHES['comm-1.9.2']['app_name'] = 'suite'
 BRANCHES['comm-1.9.2']['brand_name'] = 'SeaMonkey'
 BRANCHES['comm-1.9.2']['start_hour'] = [0]
-BRANCHES['comm-1.9.2']['start_minute'] = [0]
+BRANCHES['comm-1.9.2']['start_minute'] = [15]
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-1.9.2']['platforms'] = {
     'linux': {},
@@ -475,6 +473,7 @@ BRANCHES['comm-1.9.2']['platforms']['macosx']['builds_before_reboot'] = None
 # Enable Nightly builds
 BRANCHES['comm-1.9.2']['enable_nightly'] = False
 # Enable unit tests
+BRANCHES['comm-1.9.2']['unittest_suites'] = []
 BRANCHES['comm-1.9.2']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['comm-1.9.2']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['comm-1.9.2']['platforms']['win32']['enable_unittests'] = False
