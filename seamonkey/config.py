@@ -439,14 +439,12 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'linux64': {},
     'win32': {},
     'macosx': {},
-    'linux-debug': {},
 }
 # The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
 BRANCHES['comm-1.9.2']['platforms']['linux']['mozconfig_dep'] = 'linux/comm-1.9.2/dep'
 BRANCHES['comm-1.9.2']['platforms']['linux64']['mozconfig_dep'] = 'linux64/comm-1.9.2/dep'
 BRANCHES['comm-1.9.2']['platforms']['macosx']['mozconfig_dep'] = 'macosx/comm-1.9.2/dep'
 BRANCHES['comm-1.9.2']['platforms']['win32']['mozconfig_dep'] = 'win32/comm-1.9.2/dep'
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['mozconfig_dep'] = 'linux/comm-1.9.2/debug'
 # nightly mozconfig (not for debug builds)
 BRANCHES['comm-1.9.2']['platforms']['linux']['mozconfig'] = 'linux/comm-1.9.2/nightly'
 BRANCHES['comm-1.9.2']['platforms']['linux64']['mozconfig'] = 'linux64/comm-1.9.2/nightly'
@@ -456,22 +454,18 @@ BRANCHES['comm-1.9.2']['platforms']['linux']['base_name'] = 'Linux comm-1.9.2'
 BRANCHES['comm-1.9.2']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-1.9.2'
 BRANCHES['comm-1.9.2']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.2'
 BRANCHES['comm-1.9.2']['platforms']['macosx']['base_name'] = 'OS X 10.5 comm-1.9.2'
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['base_name'] = 'Linux comm-1.9.2 leak test'
 BRANCHES['comm-1.9.2']['platforms']['linux']['profiled_build'] = False
 BRANCHES['comm-1.9.2']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['comm-1.9.2']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-1.9.2']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['comm-1.9.2']['platforms']['linux']['build_space'] = 6
 BRANCHES['comm-1.9.2']['platforms']['linux64']['build_space'] = 6
 BRANCHES['comm-1.9.2']['platforms']['win32']['build_space'] = 7
 BRANCHES['comm-1.9.2']['platforms']['macosx']['build_space'] = 5
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['build_space'] = 4
 BRANCHES['comm-1.9.2']['platforms']['linux']['builds_before_reboot'] = None
 BRANCHES['comm-1.9.2']['platforms']['linux64']['builds_before_reboot'] = None
 BRANCHES['comm-1.9.2']['platforms']['win32']['builds_before_reboot'] = None
 BRANCHES['comm-1.9.2']['platforms']['macosx']['builds_before_reboot'] = None
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['builds_before_reboot'] = None
 # Enable Nightly builds
 BRANCHES['comm-1.9.2']['enable_nightly'] = False
 # Enable unit tests
@@ -530,7 +524,6 @@ BRANCHES['comm-1.9.2']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-1.9.2']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['comm-1.9.2']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-1.9.2']['platforms']['macosx']['slaves'] = SLAVES['macosx']
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
@@ -538,7 +531,6 @@ BRANCHES['comm-1.9.2']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
 BRANCHES['comm-1.9.2']['platforms']['linux']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -578,11 +570,4 @@ BRANCHES['comm-1.9.2']['platforms']['macosx']['env'] = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
-}
-BRANCHES['comm-1.9.2']['platforms']['linux-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'DISPLAY': ':2',
-    'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
