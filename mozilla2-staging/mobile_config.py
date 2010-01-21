@@ -33,6 +33,9 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -87,7 +90,7 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-trunk-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
     config.BRANCHES['mozilla-central']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'MozillaTest'
@@ -105,7 +108,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
 }
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-
+MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['create_snippet'] = True
 
 
 ### mobile-1.9.2
@@ -115,6 +118,9 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-1.9.2'
+MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -169,7 +175,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-1.9.2']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
@@ -187,6 +193,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
 }
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### mobile-tracemonkey
 MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
@@ -195,6 +202,8 @@ MOBILE_BRANCHES['mobile-tracemonkey']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-tracemonkey']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-tracemonkey']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-tracemonkey']['aus2_base_upload_dir'] = None
+MOBILE_BRANCHES['mobile-tracemonkey']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
     'linux-gnueabi-arm': {},
     'winmo-arm': {},
@@ -218,6 +227,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### electrolysis
 MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
@@ -226,6 +236,8 @@ MOBILE_BRANCHES['mobile-electrolysis']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-electrolysis']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-electrolysis']['aus2_base_upload_dir'] = None
+MOBILE_BRANCHES['mobile-electrolysis']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -264,3 +276,4 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['slaves'] = mob
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['create_snippet'] = False
