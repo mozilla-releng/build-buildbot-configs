@@ -143,6 +143,9 @@ BRANCHES['comm-central-trunk']['platforms']['linux-debug']['builds_before_reboot
 # Enable Nightly builds
 BRANCHES['comm-central-trunk']['enable_nightly'] = True
 # Enable unit tests
+BRANCHES['comm-central-trunk']['unittest_suites'] = [
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['enable_unittests'] = False
@@ -193,7 +196,7 @@ BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
-BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
+BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Ports'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-central-trunk']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = SLAVES['win32']
@@ -309,6 +312,9 @@ BRANCHES['comm-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = Non
 # Enable Nightly builds
 BRANCHES['comm-1.9.1']['enable_nightly'] = True
 # Enable unit tests
+BRANCHES['comm-1.9.1']['unittest_suites'] = [
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
@@ -359,7 +365,7 @@ BRANCHES['comm-1.9.1']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey2.0'
-BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.0'
+BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Ports'
 BRANCHES['comm-1.9.1']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-1.9.1']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['comm-1.9.1']['platforms']['win32']['slaves'] = SLAVES['win32']
