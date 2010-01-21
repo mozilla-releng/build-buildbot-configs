@@ -181,7 +181,7 @@ BRANCHES['comm-central-trunk']['enable_shark'] = False
 # generated.
 BRANCHES['comm-central-trunk']['create_snippet'] = True
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-central-trunk'
-BRANCHES['comm-central-trunk']['idle_timeout'] = 60*60*4   # 4 hours
+BRANCHES['comm-central-trunk']['idle_timeout'] = 60*60*6   # 6 hours
 # We're actually using gcc4, but the platform hardcodes gcc3
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -347,7 +347,7 @@ BRANCHES['comm-1.9.1']['enable_shark'] = False
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
-BRANCHES['comm-1.9.1']['idle_timeout'] = 60*60*4   # 4 hours
+BRANCHES['comm-1.9.1']['idle_timeout'] = 60*60*6   # 6 hours
 # We're actually using gcc4, but the platform hardcodes gcc3
 BRANCHES['comm-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
@@ -507,7 +507,7 @@ BRANCHES['comm-1.9.2']['enable_shark'] = False
 # generated.
 BRANCHES['comm-1.9.2']['create_snippet'] = True
 BRANCHES['comm-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.2'
-BRANCHES['comm-1.9.2']['idle_timeout'] = 60*60*4   # 4 hours
+BRANCHES['comm-1.9.2']['idle_timeout'] = 60*60*12   # 12 hours
 # We're actually using gcc4, but the platform hardcodes gcc3
 BRANCHES['comm-1.9.2']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['comm-1.9.2']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
