@@ -14,15 +14,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.6rc2'
+version            = '3.6'
 appVersion         = '3.6'
 milestone          = '1.9.2'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_6rc2'
-oldVersion         = '3.6rc1'
+baseTag            = 'FIREFOX_3_6'
+oldVersion         = '3.6rc2'
 oldAppVersion      = '3.6'
 oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_6rc1'
+oldBaseTag         = 'FIREFOX_3_6rc2'
 enUSPlatforms      = ('linux', 'win32', 'macosx', 'wince')
 l10nPlatforms      = ('linux', 'win32', 'macosx')
 patcherConfig      = 'moz192-branch-patcher2.cfg'
