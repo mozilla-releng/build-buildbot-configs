@@ -61,7 +61,7 @@ BRANCH_LEVEL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', False, 0)],
     'unittest_suites': [
-    #    ('mochitests', ['mochitest-plain']),
+        ('mochitests', ['mochitest-plain']),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
             'mochitest-a11y']),
         ('reftest', ['reftest']),
@@ -323,8 +323,6 @@ BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['unittest_exec_xpcshell_suites'] = True
-BRANCHES['comm-1.9.1']['unittest_exec_reftest_suites'] = True
-BRANCHES['comm-1.9.1']['unittest_exec_mochi_suites'] = True
 BRANCHES['comm-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux']['crashtest_leak_threshold'] = 0
 BRANCHES['comm-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -372,7 +370,7 @@ BRANCHES['comm-1.9.1']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey2.0'
-BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Ports'
+BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.0'
 BRANCHES['comm-1.9.1']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-1.9.1']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['comm-1.9.1']['platforms']['win32']['slaves'] = SLAVES['win32']
