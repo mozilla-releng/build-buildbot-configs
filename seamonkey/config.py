@@ -68,6 +68,11 @@ BRANCH_LEVEL_VARS = {
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
     ],
+    # Unittest suites to run directly in the unittest build cycle
+    'unittest_exec_xpcshell_suites': False,
+    'unittest_exec_reftest_suites': False,
+    'unittest_exec_mochi_suites': False,
+    'unittest_exec_mozmill_suites': False,
     'geriatric_masters': [],
     'geriatric_branches': {},
     'weekly_tinderbox_tree': 'Testing',
@@ -316,6 +321,9 @@ BRANCHES['comm-1.9.1']['enable_nightly'] = True
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['comm-1.9.1']['unittest_exec_xpcshell_suites'] = True
+BRANCHES['comm-1.9.1']['unittest_exec_reftest_suites'] = True
+BRANCHES['comm-1.9.1']['unittest_exec_mochi_suites'] = True
 BRANCHES['comm-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux']['crashtest_leak_threshold'] = 0
 BRANCHES['comm-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
