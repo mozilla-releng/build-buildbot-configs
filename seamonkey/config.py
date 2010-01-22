@@ -155,6 +155,7 @@ BRANCHES['comm-central-trunk']['unittest_suites'] = [
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['enable_unittests'] = False
+BRANCHES['comm-central-trunk']['platforms']['linux-debug']['enable_unittests'] = True
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
 BRANCHES['comm-central-trunk']['platforms']['linux']['crashtest_leak_threshold'] = 0
 BRANCHES['comm-central-trunk']['platforms']['win32']['crashtest_leak_threshold'] = 484
