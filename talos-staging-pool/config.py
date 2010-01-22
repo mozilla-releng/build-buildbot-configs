@@ -37,6 +37,7 @@ BRANCHES = {
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
+    'lorentz': {},
 }
 
 PLATFORMS = {
@@ -214,3 +215,18 @@ BRANCHES['electrolysis']['tp4_tests'] = (1,True, TALOS_TP4_OPTS, NO_TIGER)
 BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
 BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, NO_TIGER)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, NO_TIGER)
+
+######## lorentz
+BRANCHES['lorentz']['branch_name'] = "Lorentz"
+BRANCHES['lorentz']['build_branch'] = "Lorentz"
+BRANCHES['lorentz']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['lorentz']['talos_command'] = TALOS_CMD
+BRANCHES['lorentz']['fetch_symbols'] = True
+BRANCHES['lorentz']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['lorentz']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['lorentz']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['lorentz']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['lorentz']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['lorentz']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['lorentz']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
