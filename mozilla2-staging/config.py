@@ -91,6 +91,7 @@ BRANCHES = {
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
+    'lorentz': {},
 }
 
 # We copy the global vars in first, so branches can override them if they want to
@@ -1152,3 +1153,190 @@ BRANCHES['electrolysis']['platforms']['win32-debug']['env'] = {
     'XPCOM_DEBUG_BREAK': 'stack-and-abort',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
+
+######## lorentz
+BRANCHES['lorentz']['repo_path'] = 'projects/firefox-lorentz'
+BRANCHES['lorentz']['major_version'] = '1.9.2'
+BRANCHES['lorentz']['product_name'] = 'firefox'
+BRANCHES['lorentz']['app_name'] = 'browser'
+BRANCHES['lorentz']['brand_name'] = 'Lorentz'
+BRANCHES['lorentz']['start_hour'] = [3]
+BRANCHES['lorentz']['start_minute'] = [32]
+BRANCHES['lorentz']['platforms'] = {
+    'linux': {},
+    'linux64': {},
+    'win32': {},
+    'wince': {},
+    'macosx': {},
+    'linux-debug': {},
+    'macosx-debug': {},
+    'win32-debug': {}
+}
+BRANCHES['lorentz']['platforms']['linux']['mozconfig'] = 'linux/lorentz/nightly'
+BRANCHES['lorentz']['platforms']['linux64']['mozconfig'] = 'linux64/lorentz/nightly'
+BRANCHES['lorentz']['platforms']['macosx']['mozconfig'] = 'macosx/lorentz/nightly'
+BRANCHES['lorentz']['platforms']['win32']['mozconfig'] = 'win32/lorentz/nightly'
+BRANCHES['lorentz']['platforms']['wince']['mozconfig'] = 'wince/lorentz/nightly'
+BRANCHES['lorentz']['platforms']['linux-debug']['mozconfig'] = 'linux/lorentz/debug'
+BRANCHES['lorentz']['platforms']['macosx-debug']['mozconfig'] = 'macosx/lorentz/debug'
+BRANCHES['lorentz']['platforms']['win32-debug']['mozconfig'] = 'win32/lorentz/debug'
+BRANCHES['lorentz']['platforms']['linux']['base_name'] = 'Linux lorentz'
+BRANCHES['lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64 lorentz'
+BRANCHES['lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
+BRANCHES['lorentz']['platforms']['wince']['base_name'] = 'WINCE 5.0 lorentz'
+BRANCHES['lorentz']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 lorentz'
+BRANCHES['lorentz']['platforms']['linux-debug']['base_name'] = 'Linux lorentz leak test'
+BRANCHES['lorentz']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 lorentz leak test'
+BRANCHES['lorentz']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 lorentz leak test'
+BRANCHES['lorentz']['platforms']['linux']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['linux64']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['win32']['profiled_build'] = True
+BRANCHES['lorentz']['platforms']['wince']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['macosx']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['linux-debug']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['win32-debug']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['macosx-debug']['profiled_build'] = False
+BRANCHES['lorentz']['platforms']['linux']['build_space'] = 5
+BRANCHES['lorentz']['platforms']['linux64']['build_space'] = 5
+BRANCHES['lorentz']['platforms']['win32']['build_space'] = 7
+BRANCHES['lorentz']['platforms']['wince']['build_space'] = 4
+BRANCHES['lorentz']['platforms']['macosx']['build_space'] = 7
+BRANCHES['lorentz']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['lorentz']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['lorentz']['platforms']['macosx-debug']['build_space'] = 3
+BRANCHES['lorentz']['platforms']['linux']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['linux64']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['win32']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['wince']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['macosx']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['linux-debug']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['win32-debug']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['platforms']['macosx-debug']['builds_before_reboot'] = 5
+BRANCHES['lorentz']['create_snippet'] = False
+# Enable Nightly builds
+BRANCHES['lorentz']['enable_nightly'] = True
+# Enable XULRunner / SDK builds
+BRANCHES['lorentz']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['lorentz']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['lorentz']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['lorentz']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['lorentz']['platforms']['wince']['packageTests'] = True
+BRANCHES['lorentz']['enable_mac_a11y'] = False
+BRANCHES['lorentz']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['lorentz']['platforms']['win32']['crashtest_leak_threshold'] = 484
+BRANCHES['lorentz']['unittest_build_space'] = 5
+BRANCHES['lorentz']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['lorentz']['enable_l10n'] = False
+BRANCHES['lorentz']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
+BRANCHES['lorentz']['l10nNightlyUpdate'] = False 
+BRANCHES['lorentz']['l10nDatedDirs'] = False 
+BRANCHES['lorentz']['l10n_tree'] = 'lorentz'
+#make sure it has an ending slash
+BRANCHES['lorentz']['enUS_binaryURL'] = \
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-lorentz'
+# nightly shark build for profiling
+BRANCHES['lorentz']['enable_shark'] = True
+# need this or the master.cfg will bail
+BRANCHES['lorentz']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['lorentz']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+# We're actually using gcc4, but Firefox hardcodes gcc3
+BRANCHES['lorentz']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
+BRANCHES['lorentz']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['lorentz']['platforms']['wince']['update_platform'] = 'WINCE_arm-msvc'
+BRANCHES['lorentz']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['lorentz']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['lorentz']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['lorentz']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['lorentz']['platforms']['wince']['upload_symbols'] = False
+BRANCHES['lorentz']['platforms']['macosx']['upload_symbols'] = True
+BRANCHES['lorentz']['tinderbox_tree'] = 'MozillaTest'
+BRANCHES['lorentz']['packaged_unittest_tinderbox_tree'] = 'MozillaTest'
+BRANCHES['lorentz']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['lorentz']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['lorentz']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['lorentz']['platforms']['wince']['slaves'] = SLAVES['win32']
+BRANCHES['lorentz']['platforms']['macosx']['slaves'] = SLAVES['macosx']
+BRANCHES['lorentz']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['lorentz']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['lorentz']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['lorentz']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['linux64']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['wince']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
+BRANCHES['lorentz']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
+BRANCHES['lorentz']['platforms']['linux']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'lorentz',
+}
+BRANCHES['lorentz']['platforms']['linux64']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-lorentz',
+}
+BRANCHES['lorentz']['platforms']['win32']['env'] = {
+    'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'lorentz',
+    # Source server support, bug 506702
+    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+}
+BRANCHES['lorentz']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
+BRANCHES['lorentz']['platforms']['wince']['env'].update(
+    BRANCHES['lorentz']['platforms']['win32']['env'])
+BRANCHES['lorentz']['platforms']['macosx']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'lorentz',
+    'CHOWN_ROOT': '~/bin/chown_root',
+    'CHOWN_REVERT': '~/bin/chown_revert',
+}
+BRANCHES['lorentz']['platforms']['linux-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'DISPLAY': ':2',
+    'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['lorentz']['platforms']['macosx-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['lorentz']['platforms']['win32-debug']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+
