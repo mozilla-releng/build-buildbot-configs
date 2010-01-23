@@ -1156,6 +1156,7 @@ BRANCHES['electrolysis']['platforms']['win32-debug']['env'] = {
 
 ######## lorentz
 BRANCHES['lorentz']['repo_path'] = 'projects/firefox-lorentz'
+BRANCHES['lorentz']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
 BRANCHES['lorentz']['major_version'] = '1.9.2'
 BRANCHES['lorentz']['product_name'] = 'firefox'
 BRANCHES['lorentz']['app_name'] = 'browser'
