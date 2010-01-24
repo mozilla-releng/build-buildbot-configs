@@ -149,9 +149,9 @@ BRANCHES['comm-central-trunk']['platforms']['linux-debug']['builds_before_reboot
 # Enable Nightly builds
 BRANCHES['comm-central-trunk']['enable_nightly'] = True
 # Enable unit tests
-BRANCHES['comm-central-trunk']['unittest_suites'] = [
-    ('xpcshell', ['xpcshell']),
-]
+#BRANCHES['comm-central-trunk']['unittest_suites'] = [
+#    ('xpcshell', ['xpcshell']),
+#]
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['enable_unittests'] = False
