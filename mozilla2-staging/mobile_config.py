@@ -345,7 +345,7 @@ MOBILE_BRANCHES['mobile-lorentz']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-lorentz']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-lorentz-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-lorentz']['main_config']['download_base_url']  '/nightly/latest-mobile-lorentz'
+    MOBILE_BRANCHES['mobile-lorentz']['main_config']['download_base_url'] + '/nightly/latest-mobile-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
