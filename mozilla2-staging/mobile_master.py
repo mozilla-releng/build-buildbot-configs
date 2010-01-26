@@ -354,7 +354,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot']
+                buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly=False,
                 createSnippet=False,
             )
