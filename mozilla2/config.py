@@ -1237,7 +1237,7 @@ BRANCHES['lorentz']['l10n_tree'] = 'lorentz'
 BRANCHES['lorentz']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-lorentz-l10n/'
 BRANCHES['lorentz']['enUS_binaryURL'] = \
-    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-lorentz'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-firefox-lorentz'
 BRANCHES['lorentz']['allLocalesFile'] = 'browser/locales/all-locales'
 # nightly shark build for profiling
 BRANCHES['lorentz']['enable_shark'] = True

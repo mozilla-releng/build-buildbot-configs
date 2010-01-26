@@ -1238,7 +1238,7 @@ BRANCHES['lorentz']['l10nDatedDirs'] = False
 BRANCHES['lorentz']['l10n_tree'] = 'lorentz'
 #make sure it has an ending slash
 BRANCHES['lorentz']['enUS_binaryURL'] = \
-    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-lorentz'
+    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-firefox-lorentz'
 # nightly shark build for profiling
 BRANCHES['lorentz']['enable_shark'] = True
 # need this or the master.cfg will bail
