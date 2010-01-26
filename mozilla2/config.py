@@ -1170,14 +1170,16 @@ BRANCHES['lorentz']['platforms'] = {
     'macosx-debug': {},
     'win32-debug': {}
 }
-BRANCHES['lorentz']['platforms']['linux']['mozconfig'] = 'linux/lorentz/nightly'
-BRANCHES['lorentz']['platforms']['linux64']['mozconfig'] = 'linux64/lorentz/nightly'
-BRANCHES['lorentz']['platforms']['macosx']['mozconfig'] = 'macosx/lorentz/nightly'
-BRANCHES['lorentz']['platforms']['win32']['mozconfig'] = 'win32/lorentz/nightly'
-BRANCHES['lorentz']['platforms']['wince']['mozconfig'] = 'wince/lorentz/nightly'
-BRANCHES['lorentz']['platforms']['linux-debug']['mozconfig'] = 'linux/lorentz/debug'
-BRANCHES['lorentz']['platforms']['macosx-debug']['mozconfig'] = 'macosx/lorentz/debug'
-BRANCHES['lorentz']['platforms']['win32-debug']['mozconfig'] = 'win32/lorentz/debug'
+# UnittestBuildFactory uses repo_path to compute the mozconfig for its old-style unit test
+# builds, which forces the path for these opt and debug builds
+BRANCHES['lorentz']['platforms']['linux']['mozconfig'] = 'linux/firefox-lorentz/nightly'
+BRANCHES['lorentz']['platforms']['linux64']['mozconfig'] = 'linux64/firefox-lorentz/nightly'
+BRANCHES['lorentz']['platforms']['macosx']['mozconfig'] = 'macosx/firefox-lorentz/nightly'
+BRANCHES['lorentz']['platforms']['win32']['mozconfig'] = 'win32/firefox-lorentz/nightly'
+BRANCHES['lorentz']['platforms']['wince']['mozconfig'] = 'wince/firefox-lorentz/nightly'
+BRANCHES['lorentz']['platforms']['linux-debug']['mozconfig'] = 'linux/firefox-lorentz/debug'
+BRANCHES['lorentz']['platforms']['macosx-debug']['mozconfig'] = 'macosx/firefox-lorentz/debug'
+BRANCHES['lorentz']['platforms']['win32-debug']['mozconfig'] = 'win32/firefox-lorentz/debug'
 BRANCHES['lorentz']['platforms']['linux']['base_name'] = 'Linux lorentz'
 BRANCHES['lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64 lorentz'
 BRANCHES['lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
