@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = '9d39ebbdb610'
+mozSourceRepoRevision  = '3106e75962d3'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = '50cd730a1a0a'
-mozRelbranchOverride      = 'GECKO192_20100105_RELBRANCH'
-l10nRelbranchOverride     = 'GECKO192_20100105_RELBRANCH'
-mobileRelbranchOverride   = 'GECKO192_20100105_RELBRANCH'
+mobileSourceRepoRevision  = '269af0364214'
+mozRelbranchOverride      = ''
+l10nRelbranchOverride     = ''
+mobileRelbranchOverride   = ''
 l10nRepoPath        = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile    = 'l10n-changesets_mobile-1.0.json'
 productName         = 'fennec'
@@ -23,15 +23,15 @@ mergeLocales        = False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '1.0rc2'
+version             = '1.0rc3'
 appVersion          = '1.0'
-milestone           = '1.9.2'
-buildNumber         = 3
-baseTag             = 'FENNEC_1_0rc2'
+milestone           = '1.9.2.1'
+buildNumber         = 1
+baseTag             = 'FENNEC_1_0rc3'
 enUSPlatforms       = ('maemo',)
 l10nPlatforms       = enUSPlatforms
 talosTestPlatforms  = ()
 ftpServer           = 'ftp.mozilla.org'
-stagingServer       = 'staging.mozilla.org'
+stagingServer       = 'stage.mozilla.org'
 stageBasePath       = '/home/ftp/pub/mobile/candidates'
 base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)
