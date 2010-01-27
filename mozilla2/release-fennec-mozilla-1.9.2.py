@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = '3106e75962d3'
+mozSourceRepoRevision  = 'a506e0a4f6c3'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = '269af0364214'
-mozRelbranchOverride      = ''
-l10nRelbranchOverride     = ''
-mobileRelbranchOverride   = ''
+mobileSourceRepoRevision  = '478c11a1af6e'
+mozRelbranchOverride      = 'GECKO1921_20100126_RELBRANCH'
+l10nRelbranchOverride     = 'GECKO1921_20100126_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO1921_20100126_RELBRANCH'
 l10nRepoPath        = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile    = 'l10n-changesets_mobile-1.0.json'
 productName         = 'fennec'
@@ -24,7 +24,7 @@ mergeLocales        = False
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version             = '1.0rc3'
-appVersion          = '1.0'
+appVersion          = '1.0.0'
 milestone           = '1.9.2.1'
 buildNumber         = 1
 baseTag             = 'FENNEC_1_0rc3'
