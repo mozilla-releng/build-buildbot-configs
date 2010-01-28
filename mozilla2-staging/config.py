@@ -864,12 +864,9 @@ BRANCHES['places']['app_name'] = 'browser'
 BRANCHES['places']['brand_name'] = 'Minefield'
 BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
-BRANCHES['places']['unittest_suites'].append( ('jsreftest', ['jsreftest']) )
-for suite in BRANCHES['places']['unittest_suites']:
-    if suite[0] == 'mochitest-other':
-        suite[1].append('mochitest-ipcplugins')
 BRANCHES['places']['platforms'] = {
     'linux': {},
+    'linux64': {},
     'win32': {},
     'macosx': {},
     'linux-debug': {},
@@ -877,36 +874,42 @@ BRANCHES['places']['platforms'] = {
     'win32-debug': {},
 }
 BRANCHES['places']['platforms']['linux']['mozconfig'] = 'linux/places/nightly'
+BRANCHES['places']['platforms']['linux64']['mozconfig'] = 'linux64/places/nightly'
 BRANCHES['places']['platforms']['macosx']['mozconfig'] = 'macosx/places/nightly'
 BRANCHES['places']['platforms']['win32']['mozconfig'] = 'win32/places/nightly'
 BRANCHES['places']['platforms']['linux-debug']['mozconfig'] = 'linux/places/debug'
 BRANCHES['places']['platforms']['macosx-debug']['mozconfig'] = 'macosx/places/debug'
 BRANCHES['places']['platforms']['win32-debug']['mozconfig'] = 'win32/places/debug'
 BRANCHES['places']['platforms']['linux']['base_name'] = 'Linux places'
+BRANCHES['places']['platforms']['linux64']['base_name'] = 'Linux x86-64 places'
 BRANCHES['places']['platforms']['win32']['base_name'] = 'WINNT 5.2 places'
 BRANCHES['places']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 places'
 BRANCHES['places']['platforms']['linux-debug']['base_name'] = 'Linux places leak test'
 BRANCHES['places']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 places leak test'
 BRANCHES['places']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 places leak test'
 BRANCHES['places']['platforms']['linux']['profiled_build'] = False
-BRANCHES['places']['platforms']['win32']['profiled_build'] = False
+BRANCHES['places']['platforms']['linux64']['profiled_build'] = False
+BRANCHES['places']['platforms']['win32']['profiled_build'] = True
 BRANCHES['places']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['places']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['places']['platforms']['win32-debug']['profiled_build'] = False
 BRANCHES['places']['platforms']['macosx-debug']['profiled_build'] = False
-BRANCHES['places']['platforms']['linux']['build_space'] = 5
+BRANCHES['places']['platforms']['linux']['build_space'] = 6
+BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['win32']['build_space'] = 9
 BRANCHES['places']['platforms']['macosx']['build_space'] = 8
 BRANCHES['places']['platforms']['linux-debug']['build_space'] = 7
 BRANCHES['places']['platforms']['win32-debug']['build_space'] = 7
 BRANCHES['places']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['places']['platforms']['linux']['builds_before_reboot'] = 5
+BRANCHES['places']['platforms']['linux64']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['win32']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['macosx']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['linux-debug']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['win32-debug']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['macosx-debug']['builds_before_reboot'] = 5
 BRANCHES['places']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['places']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['places']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['places']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['places']['create_snippet'] = False
@@ -915,15 +918,31 @@ BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['places']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['places']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['places']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['places']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y', 'mochitest-ipcplugins']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+    ('jsreftest', ['jsreftest']),
+]
+BRANCHES['places']['platforms']['linux']['enable_unittests'] = False
+BRANCHES['places']['platforms']['macosx']['enable_unittests'] = False
+BRANCHES['places']['platforms']['win32']['enable_unittests'] = False
+BRANCHES['places']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['places']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['places']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['places']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['places']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['places']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['places']['platforms']['linux-debug']['enable_checktests'] = True
 BRANCHES['places']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['places']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['places']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['places']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['places']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['places']['enable_mac_a11y'] = True
 BRANCHES['places']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['places']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -936,16 +955,19 @@ BRANCHES['places']['enable_shark'] = True
 # need this or the master.cfg will bail
 BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['places']['platforms']['linux64']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['places']['tinderbox_tree'] = 'MozillaTest'
 BRANCHES['places']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['places']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['places']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['places']['platforms']['macosx']['slaves'] = SLAVES['macosx']
 BRANCHES['places']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 BRANCHES['places']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
 BRANCHES['places']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 BRANCHES['places']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['places']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['places']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['places']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['places']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
@@ -958,6 +980,16 @@ BRANCHES['places']['platforms']['linux']['env'] = {
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
     'MOZ_SYMBOLS_EXTRA_BUILDID': 'places',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+}
+BRANCHES['places']['platforms']['linux64']['env'] = {
+    'MOZ_OBJDIR': OBJDIR,
+    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_USER': 'ffxbld',
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-places',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
