@@ -9,6 +9,7 @@ ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
+ac_add_options --disable-install-strip
 
 ac_add_options --enable-static
 ac_add_options --disable-shared
@@ -16,8 +17,11 @@ ac_add_options --disable-shared
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
 
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
 # Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j2"
+mk_add_options MOZ_MAKE_FLAGS="-j4"
