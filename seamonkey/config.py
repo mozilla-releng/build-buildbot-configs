@@ -150,6 +150,8 @@ BRANCHES['comm-central-trunk']['platforms']['linux-debug']['builds_before_reboot
 BRANCHES['comm-central-trunk']['enable_nightly'] = True
 # Enable unit tests
 BRANCHES['comm-central-trunk']['unittest_suites'] = [
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y']),
     ('xpcshell', ['xpcshell']),
 ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
