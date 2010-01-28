@@ -7,6 +7,7 @@ fi
 ac_add_options --enable-application=suite
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
+# static build with tests is not supported (e.g. in crashreporter)
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
 ac_add_options --disable-install-strip

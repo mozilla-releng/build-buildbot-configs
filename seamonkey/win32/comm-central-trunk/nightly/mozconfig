@@ -2,7 +2,8 @@ ac_add_options --enable-application=suite
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --enable-jemalloc
-ac_add_options --enable-tests
+# static build with tests is not supported (e.g. in crashreporter)
+ac_add_options --disable-tests
 
 ac_add_options --enable-static
 ac_add_options --disable-shared
