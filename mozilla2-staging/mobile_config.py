@@ -93,7 +93,7 @@ MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
-    config.BRANCHES['mozilla-central']['download_base_url'] + '/nightly/latest-mobile-trunk'
+    MOBILE_BRANCHES['mobile-trunk']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-trunk']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
@@ -271,7 +271,7 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_l10n_work
 MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
-    config.BRANCHES['electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
+    MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
