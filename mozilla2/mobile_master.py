@@ -90,7 +90,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             relayhost='mail.build.mozilla.org',
             logCompression='bzip2',
             builders=l10n_builders,
-            binaryURL='http://%s/pub/mozilla.org/firefox/nightly/latest-%s-l10n' \
+            binaryURL='http://%s/pub/mozilla.org/mobile/nightly/latest-%s-l10n' \
                       % (mainConfig['stage_server'], name)
         ))
         # Locale-specific page
@@ -101,7 +101,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             relayhost='mail.build.mozilla.org',
             logCompression='bzip2',
             builders=l10n_builders,
-            binaryURL='http://%s/pub/mozilla.org/firefox/nightly/latest-%s-l10n' \
+            binaryURL='http://%s/pub/mozilla.org/mobile/nightly/latest-%s-l10n' \
                       % (mainConfig['stage_server'], name)
         ))
 

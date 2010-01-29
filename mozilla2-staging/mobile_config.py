@@ -345,7 +345,7 @@ MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-lorentz']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-lorentz']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-lorentz']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-lorentz-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-lorentz']['main_config']['download_base_url'] + '/nightly/latest-mobile-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'

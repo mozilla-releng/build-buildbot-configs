@@ -22,12 +22,12 @@ BRANCHES['mozilla-central']['platforms']['n810']['buildbot_branch'] = 'maemo-tru
 BRANCHES['mozilla-central']['platforms']['n810']['talos_branch'] = 'mobile'
 BRANCHES['mozilla-central']['platforms']['n810']['poll_interval'] = 5*60
 BRANCHES['mozilla-central']['platforms']['n810']['unit_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/mobile-trunk/',
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
 ]
 BRANCHES['mozilla-central']['platforms']['n810']['talos_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/mobile-trunk/',
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
 ]
 BRANCHES['mozilla-central']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
@@ -129,12 +129,12 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['buildbot_branch'] = 'maemo-1.9.2
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_branch'] = 'mobile-1.9.2'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['poll_interval'] = 5*60
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['unit_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/mobile-1.9.2/',
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-1.9.2/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2/',
 ]
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2/',
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/mobile-1.9.2/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-1.9.2/',
 ]
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
@@ -236,11 +236,11 @@ BRANCHES['tracemonkey']['platforms']['n810']['buildbot_branch'] = 'maemo-tm'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_branch'] = 'mobile-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['n810']['poll_interval'] = 5*60
 BRANCHES['tracemonkey']['platforms']['n810']['unit_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-tracemonkey/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
 ]
 BRANCHES['tracemonkey']['platforms']['n810']['talos_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/mobile-tracemonkey/',
-    'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-tracemonkey/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
 ]
 BRANCHES['tracemonkey']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'

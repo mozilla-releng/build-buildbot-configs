@@ -52,13 +52,13 @@ DEBSIGN_CONFIG['branches'] = {
     '1.9.2': {},
 }
 DEBSIGN_CONFIG['branches']['trunk']['nightly_base_stage_path'] = '/home/ftp'
-DEBSIGN_CONFIG['branches']['trunk']['nightly_base_stage_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mobile-trunk'
-DEBSIGN_CONFIG['branches']['trunk']['nightly_stage_dir'] = '/pub/mozilla.org/firefox/nightly/latest-mobile-trunk'
+DEBSIGN_CONFIG['branches']['trunk']['nightly_base_stage_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk'
+DEBSIGN_CONFIG['branches']['trunk']['nightly_stage_dir'] = '/pub/mozilla.org/mobile/nightly/latest-mobile-trunk'
 DEBSIGN_CONFIG['branches']['trunk']['nightly_env'] = NIGHTLY_ENV
 DEBSIGN_CONFIG['branches']['trunk']['enable_release'] = False
 DEBSIGN_CONFIG['branches']['1.9.2']['nightly_base_stage_path'] = '/home/ftp'
 DEBSIGN_CONFIG['branches']['1.9.2']['nightly_base_stage_url'] = 'http://ftp.mozilla.org'
-DEBSIGN_CONFIG['branches']['1.9.2']['nightly_stage_dir'] = '/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2'
+DEBSIGN_CONFIG['branches']['1.9.2']['nightly_stage_dir'] = '/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2'
 DEBSIGN_CONFIG['branches']['1.9.2']['nightly_env'] = NIGHTLY_ENV
 DEBSIGN_CONFIG['branches']['1.9.2']['enable_release'] = True
 DEBSIGN_CONFIG['branches']['trunk']['release_base_stage_path'] = '/var/www/html'

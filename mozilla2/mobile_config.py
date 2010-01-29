@@ -35,8 +35,8 @@ MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/firefox'
-MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/firefox'
+MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -91,7 +91,7 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-trunk-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
     config.BRANCHES['mozilla-central']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'Mobile'
@@ -119,8 +119,8 @@ MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/firefox'
-MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/firefox'
+MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -175,7 +175,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-1.9.2']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-1.9.2-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mobile-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
@@ -203,8 +203,8 @@ MOBILE_BRANCHES['mobile-tracemonkey']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-tracemonkey']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-tracemonkey']['aus2_base_upload_dir'] = None
-MOBILE_BRANCHES['mobile-tracemonkey']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/firefox'
-MOBILE_BRANCHES['mobile-tracemonkey']['stage_base_path'] = '/home/ftp/pub/firefox'
+MOBILE_BRANCHES['mobile-tracemonkey']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-tracemonkey']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
     'linux-gnueabi-arm': {},
     'winmo-arm': {},
@@ -238,8 +238,8 @@ MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-electrolysis']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-electrolysis']['aus2_base_upload_dir'] = None
-MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/firefox'
-MOBILE_BRANCHES['mobile-electrolysis']['stage_base_path'] = '/home/ftp/pub/firefox'
+MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-electrolysis']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -289,8 +289,8 @@ MOBILE_BRANCHES['mobile-lorentz']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-lorentz']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-lorentz']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/firefox'
-MOBILE_BRANCHES['mobile-lorentz']['stage_base_path'] = '/home/ftp/pub/firefox'
+MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-lorentz']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-lorentz']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -345,7 +345,7 @@ MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-lorentz']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-lorentz']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-lorentz']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mobile-lorentz-l10n'
+    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-lorentz']['main_config']['download_base_url'] + '/nightly/latest-mobile-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
