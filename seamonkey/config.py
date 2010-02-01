@@ -136,9 +136,9 @@ BRANCHES['comm-central-trunk']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['linux-debug']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux']['build_space'] = 6
+BRANCHES['comm-central-trunk']['platforms']['linux']['build_space'] = 7
 BRANCHES['comm-central-trunk']['platforms']['linux64']['build_space'] = 5
-BRANCHES['comm-central-trunk']['platforms']['win32']['build_space'] = 7
+BRANCHES['comm-central-trunk']['platforms']['win32']['build_space'] = 8
 BRANCHES['comm-central-trunk']['platforms']['macosx']['build_space'] = 5
 BRANCHES['comm-central-trunk']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['comm-central-trunk']['platforms']['linux']['builds_before_reboot'] = None
@@ -150,8 +150,9 @@ BRANCHES['comm-central-trunk']['platforms']['linux-debug']['builds_before_reboot
 BRANCHES['comm-central-trunk']['enable_nightly'] = True
 # Enable unit tests
 BRANCHES['comm-central-trunk']['unittest_suites'] = [
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y']),
+    ('mochitests', ['mochitest-plain']),
+#    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+#        'mochitest-a11y']),
     ('xpcshell', ['xpcshell']),
 ]
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
