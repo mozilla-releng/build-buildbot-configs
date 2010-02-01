@@ -5,7 +5,7 @@ sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'comm-central'
 sourceRepoRevision         = '0d8aabd78c66'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM192_20100119_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
 mozillaRepoRevision        = '818851040d95'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -14,7 +14,7 @@ mozillaRepoRevision        = '818851040d95'
 mozillaRelbranchOverride   = 'COMM192_20100119_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = ''
-inspectorRelbranchOverride = ''
+inspectorRelbranchOverride = 'COMM192_20100119_RELBRANCH'
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -37,7 +37,7 @@ version                    = '3.1a1'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'THUNDERBIRD_3_1_a1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = ''
