@@ -38,6 +38,8 @@ DEFAULTS = {
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'add_poll_branches':      [ 'dom-inspector' ],
     'period':                 60 * 60 * 8,
+    'nightly_hour':          [3],
+    'nightly_minute':        [0],
     'irc':                    True,
     'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
     'builder_type':           "build",
