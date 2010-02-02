@@ -58,8 +58,10 @@ class FtpPoller(base.ChangeSource):
     loop = None
     volatile = ['loop']
     working = 0
+    lastBuild = 0 # time of last build
     
-    def __init__(self, branch="", tree="Firefox", pollInterval=30, ftpURLs=[], searchString=""):
+    def __init__(self, branch="", tree="Firefox", pollInterval=30, ftpURLs=[],
+            searchString="", buildInterval=None):
         """
         @type   ftpURLs:            list of strings
         @param  ftpURLs:            The ftp directories to monitor
@@ -75,6 +77,12 @@ class FtpPoller(base.ChangeSource):
                                     changes
         @type   searchString:       string
         @param  searchString:       file type of the build we are looking for
+
+        @type   buildInterval:      integer
+        @type   buildInterval:      Minimum time (in seconds) between builds.
+                                    If new changes occur before the
+                                    buildInterval has elapsed, they are
+                                    ignored.
         """
         
         self.ftpURLs = ftpURLs
@@ -85,6 +93,7 @@ class FtpPoller(base.ChangeSource):
         for url in self.ftpURLs:
           self.lastChanges[url] = time.time()
         self.searchString = searchString
+        self.buildInterval = buildInterval
     
     def startService(self):
         self.loop = LoopingCall(self.poll)
@@ -149,6 +158,13 @@ class FtpPoller(base.ChangeSource):
 
         #if we have a new browser to test, test it
         for buildname, fullpath, buildDate in dateList:
+            # If we have a buildInterval set, and less than buildInterval
+            # seconds have elapsed since our last build, then ignore this
+            # change.
+            if self.buildInterval is not None:
+                if time.time() - self.lastBuild < self.buildInterval:
+                    continue
+
             if (url in self.lastChanges):
                 if (self.lastChanges[url] >= buildDate):
                     # change too old
@@ -163,4 +179,5 @@ class FtpPoller(base.ChangeSource):
                                branch = self.branch,
                                )
             self.parent.addChange(c)
+            self.lastBuild = time.time()
             log.msg("found a browser to test (%s)" % (fullpath))
