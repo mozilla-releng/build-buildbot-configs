@@ -1,0 +1,28 @@
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+. $topsrcdir/mozilla/build/macosx/universal/mozconfig
+else
+. $topsrcdir/build/macosx/universal/mozconfig
+fi
+
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk
+
+ac_add_options --enable-application=mail
+ac_add_options --enable-calendar
+ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-packaging
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+ac_add_options --disable-codesighs
+ac_add_options --disable-shared
+ac_add_options --enable-static
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
