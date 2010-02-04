@@ -184,6 +184,7 @@ BRANCHES['comm-central']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central']['hg_branch'] = 'releases/comm-1.9.1'
 #Disable when producing release builds
 #BRANCHES['comm-central']['nightly'] = False
+BRANCHES['comm-central']['nightly_hour'] = [0]
 BRANCHES['comm-central']['upload_stage'] = True
 BRANCHES['comm-central']['milestone'] = 'comm-1.9.1'
 BRANCHES['comm-central']['codesighs'] = True
