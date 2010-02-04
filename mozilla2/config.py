@@ -116,7 +116,6 @@ BRANCHES['mozilla-central']['platforms'] = {
     'linux': {},
     'linux64': {},
     'win32': {},
-    'wince': {},
     'macosx': {},
     'linux-debug': {},
     'macosx-debug': {},
@@ -127,14 +126,12 @@ BRANCHES['mozilla-central']['platforms']['linux']['mozconfig'] = 'linux/mozilla-
 BRANCHES['mozilla-central']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['win32']['mozconfig'] = 'win32/mozilla-central/nightly'
-BRANCHES['mozilla-central']['platforms']['wince']['mozconfig'] = 'wince/mozilla-central/nightly'
 BRANCHES['mozilla-central']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-central/debug'
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['mozconfig'] = 'macosx/mozilla-central/debug'
 BRANCHES['mozilla-central']['platforms']['win32-debug']['mozconfig'] = 'win32/mozilla-central/debug'
 BRANCHES['mozilla-central']['platforms']['linux']['base_name'] = 'Linux mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-central'
-BRANCHES['mozilla-central']['platforms']['wince']['base_name'] = 'WINCE 5.0 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux-debug']['base_name'] = 'Linux mozilla-central leak test'
 BRANCHES['mozilla-central']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 mozilla-central leak test'
@@ -142,7 +139,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['base_name'] = 'OS X 10
 BRANCHES['mozilla-central']['platforms']['linux']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['profiled_build'] = True
-BRANCHES['mozilla-central']['platforms']['wince']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-central']['platforms']['win32-debug']['profiled_build'] = False
@@ -150,7 +146,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['profiled_build'] = Fal
 BRANCHES['mozilla-central']['platforms']['linux']['build_space'] = 6
 BRANCHES['mozilla-central']['platforms']['linux64']['build_space'] = 6
 BRANCHES['mozilla-central']['platforms']['win32']['build_space'] = 9
-BRANCHES['mozilla-central']['platforms']['wince']['build_space'] = 4
 BRANCHES['mozilla-central']['platforms']['macosx']['build_space'] = 8
 BRANCHES['mozilla-central']['platforms']['linux-debug']['build_space'] = 7
 BRANCHES['mozilla-central']['platforms']['win32-debug']['build_space'] = 7
@@ -158,7 +153,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['build_space'] = 5
 BRANCHES['mozilla-central']['platforms']['linux']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['linux64']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['win32']['builds_before_reboot'] = 1
-BRANCHES['mozilla-central']['platforms']['wince']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-central']['platforms']['win32-debug']['builds_before_reboot'] = 1
@@ -192,7 +186,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_checktests'] = True
@@ -211,7 +204,7 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx'] 
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -231,21 +224,18 @@ BRANCHES['mozilla-central']['platforms']['linux']['update_platform'] = 'Linux_x8
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['mozilla-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['mozilla-central']['platforms']['wince']['update_platform'] = 'WINCE_arm-msvc'
 BRANCHES['mozilla-central']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['mozilla-central']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-central']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['mozilla-central']['platforms']['wince']['upload_symbols'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Firefox'
 BRANCHES['mozilla-central']['packaged_unittest_tinderbox_tree'] = 'Firefox'
 BRANCHES['mozilla-central']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-central']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['mozilla-central']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-central']['platforms']['wince']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-central']['platforms']['macosx']['slaves'] = SLAVES['macosx']
 BRANCHES['mozilla-central']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-central']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -256,7 +246,6 @@ BRANCHES['mozilla-central']['platforms']['macosx-debug']['slaves'] = SLAVES['mac
 BRANCHES['mozilla-central']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['mozilla-central']['platforms']['wince']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['mozilla-central']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
@@ -291,9 +280,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['env'] = {
     # Source server support, bug 506702
     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
-BRANCHES['mozilla-central']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['mozilla-central']['platforms']['wince']['env'].update(
-    BRANCHES['mozilla-central']['platforms']['win32']['env'])
 BRANCHES['mozilla-central']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -501,7 +487,6 @@ BRANCHES['mozilla-1.9.2']['platforms'] = {
     'linux': {},
     'linux64': {},
     'win32': {},
-    'wince': {},
     'macosx': {},
     'linux-debug': {},
     'macosx-debug': {},
@@ -511,14 +496,12 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux']['mozconfig'] = 'linux/mozilla-1.
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['mozconfig'] = 'linux64/mozilla-1.9.2/nightly'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['mozconfig'] = 'macosx/mozilla-1.9.2/nightly'
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['mozconfig'] = 'win32/mozilla-1.9.2/nightly'
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['mozconfig'] = 'wince/mozilla-1.9.2/nightly'
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['mozconfig'] = 'linux/mozilla-1.9.2/debug'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['mozconfig'] = 'macosx/mozilla-1.9.2/debug'
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['mozconfig'] = 'win32/mozilla-1.9.2/debug'
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['base_name'] = 'Linux mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['base_name'] = 'Linux x86-64 mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['base_name'] = 'WINNT 5.2 mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['base_name'] = 'WINCE 5.0 mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['base_name'] = 'Linux mozilla-1.9.2 leak test'
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 mozilla-1.9.2 leak test'
@@ -526,7 +509,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['profiled_build'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['profiled_build'] = False
@@ -534,7 +516,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['profiled_build'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 5
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 5
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 7
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['build_space'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
@@ -542,7 +523,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['builds_before_reboot'] = 1
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['builds_before_reboot'] = 1
@@ -558,7 +538,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['packageTests'] = True
 BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -566,7 +545,7 @@ BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 BRANCHES['mozilla-1.9.2']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
+BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx'] 
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True 
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True 
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
@@ -583,19 +562,16 @@ BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/m
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['update_platform'] = 'WINCE_arm-msvc'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['upload_symbols'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['mozilla-1.9.2']['packaged_unittest_tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['slaves'] = SLAVES['macosx']
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -603,7 +579,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['slaves'] = SLAVES['macos
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
@@ -638,9 +613,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'] = {
     # Source server support, bug 506702
     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'].update(
-    BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'])
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -1196,7 +1168,6 @@ BRANCHES['firefox-lorentz']['platforms'] = {
     'linux': {},
     'linux64': {},
     'win32': {},
-    'wince': {},
     'macosx': {},
     'linux-debug': {},
     'macosx-debug': {},
@@ -1208,14 +1179,12 @@ BRANCHES['firefox-lorentz']['platforms']['linux']['mozconfig'] = 'linux/firefox-
 BRANCHES['firefox-lorentz']['platforms']['linux64']['mozconfig'] = 'linux64/firefox-lorentz/nightly'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['mozconfig'] = 'macosx/firefox-lorentz/nightly'
 BRANCHES['firefox-lorentz']['platforms']['win32']['mozconfig'] = 'win32/firefox-lorentz/nightly'
-BRANCHES['firefox-lorentz']['platforms']['wince']['mozconfig'] = 'wince/firefox-lorentz/nightly'
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['mozconfig'] = 'linux/firefox-lorentz/debug'
 BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['mozconfig'] = 'macosx/firefox-lorentz/debug'
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['mozconfig'] = 'win32/firefox-lorentz/debug'
 BRANCHES['firefox-lorentz']['platforms']['linux']['base_name'] = 'Linux lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
-BRANCHES['firefox-lorentz']['platforms']['wince']['base_name'] = 'WINCE 5.0 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['base_name'] = 'Linux lorentz leak test'
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 lorentz leak test'
@@ -1223,7 +1192,6 @@ BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['base_name'] = 'OS X 10
 BRANCHES['firefox-lorentz']['platforms']['linux']['profiled_build'] = False
 BRANCHES['firefox-lorentz']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['firefox-lorentz']['platforms']['win32']['profiled_build'] = True
-BRANCHES['firefox-lorentz']['platforms']['wince']['profiled_build'] = False
 BRANCHES['firefox-lorentz']['platforms']['macosx']['profiled_build'] = False
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['profiled_build'] = False
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['profiled_build'] = False
@@ -1231,7 +1199,6 @@ BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['profiled_build'] = Fal
 BRANCHES['firefox-lorentz']['platforms']['linux']['build_space'] = 5
 BRANCHES['firefox-lorentz']['platforms']['linux64']['build_space'] = 5
 BRANCHES['firefox-lorentz']['platforms']['win32']['build_space'] = 7
-BRANCHES['firefox-lorentz']['platforms']['wince']['build_space'] = 4
 BRANCHES['firefox-lorentz']['platforms']['macosx']['build_space'] = 7
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['build_space'] = 4
@@ -1239,7 +1206,6 @@ BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['linux']['builds_before_reboot'] = 1
 BRANCHES['firefox-lorentz']['platforms']['linux64']['builds_before_reboot'] = 1
 BRANCHES['firefox-lorentz']['platforms']['win32']['builds_before_reboot'] = 1
-BRANCHES['firefox-lorentz']['platforms']['wince']['builds_before_reboot'] = 1
 BRANCHES['firefox-lorentz']['platforms']['macosx']['builds_before_reboot'] = 1
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['builds_before_reboot'] = 1
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['builds_before_reboot'] = 1
@@ -1253,7 +1219,6 @@ BRANCHES['firefox-lorentz']['enable_xulrunner'] = True
 BRANCHES['firefox-lorentz']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['firefox-lorentz']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['firefox-lorentz']['platforms']['wince']['packageTests'] = True
 BRANCHES['firefox-lorentz']['enable_mac_a11y'] = False
 BRANCHES['firefox-lorentz']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['firefox-lorentz']['platforms']['win32']['crashtest_leak_threshold'] = 484
@@ -1261,7 +1226,7 @@ BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
 BRANCHES['firefox-lorentz']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['firefox-lorentz']['enable_l10n'] = True
-BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx','wince'] 
+BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx'] 
 BRANCHES['firefox-lorentz']['l10nNightlyUpdate'] = False 
 BRANCHES['firefox-lorentz']['l10nDatedDirs'] = False 
 BRANCHES['firefox-lorentz']['l10n_tree'] = 'lorentz'
@@ -1279,21 +1244,18 @@ BRANCHES['firefox-lorentz']['platforms']['linux']['update_platform'] = 'Linux_x8
 # We're actually using gcc4, but Firefox hardcodes gcc3
 BRANCHES['firefox-lorentz']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['firefox-lorentz']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['firefox-lorentz']['platforms']['wince']['update_platform'] = 'WINCE_arm-msvc'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['firefox-lorentz']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['firefox-lorentz']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['firefox-lorentz']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['firefox-lorentz']['platforms']['wince']['upload_symbols'] = False
 BRANCHES['firefox-lorentz']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['firefox-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
 BRANCHES['firefox-lorentz']['packaged_unittest_tinderbox_tree'] = 'Firefox-Lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['firefox-lorentz']['platforms']['linux64']['slaves'] = SLAVES['linux64']
 BRANCHES['firefox-lorentz']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['firefox-lorentz']['platforms']['wince']['slaves'] = SLAVES['win32']
 BRANCHES['firefox-lorentz']['platforms']['macosx']['slaves'] = SLAVES['macosx']
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -1304,7 +1266,6 @@ BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['slaves'] = SLAVES['mac
 BRANCHES['firefox-lorentz']['platforms']['linux']['platform_objdir'] = OBJDIR
 BRANCHES['firefox-lorentz']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['firefox-lorentz']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['firefox-lorentz']['platforms']['wince']['platform_objdir'] = OBJDIR
 BRANCHES['firefox-lorentz']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
 BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
@@ -1342,9 +1303,6 @@ BRANCHES['firefox-lorentz']['platforms']['win32']['env'] = {
     # Source server support, bug 506702
     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
 }
-BRANCHES['firefox-lorentz']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['firefox-lorentz']['platforms']['wince']['env'].update(
-    BRANCHES['firefox-lorentz']['platforms']['win32']['env'])
 BRANCHES['firefox-lorentz']['platforms']['macosx']['env'] = {
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',

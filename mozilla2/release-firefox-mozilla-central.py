@@ -24,7 +24,7 @@ oldVersion         = ''
 oldAppVersion      = ''
 oldBuildNumber     = 1
 oldBaseTag         = ''
-enUSPlatforms      = ('linux', 'win32', 'macosx', 'wince')
+enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = ('linux', 'win32', 'macosx')
 # TODO: create this file before 3.7a2
 patcherConfig      = 'moz193-branch-patcher2.cfg'
