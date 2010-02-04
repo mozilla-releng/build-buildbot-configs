@@ -76,7 +76,6 @@ GLOBAL_VARS = {
         'linux': {},
         'linux64': {},
         'win32': {},
-        'wince': {},
         'macosx': {},
         'linux-debug': {},
         'macosx-debug': {},
@@ -184,18 +183,6 @@ PLATFORM_VARS = {
                 # Source server support, bug 506702
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
             },
-        },
-        'wince': {
-            'base_name': 'WINCE 5.0 %(branch)s',
-            'mozconfig': 'wince/%(branch)s/nightly',
-            'profiled_build': False,
-            'builds_before_reboot': 5,
-            'build_space': 4,
-            'upload_symbols': False,
-            'slaves': SLAVES['win32'],
-            'platform_objdir': OBJDIR,
-            'update_platform': 'WINCE_arm-msvc',
-            'packageTests': True,
         },
         'linux-debug': {
             'base_name': 'Linux %(branch)s leak test',
@@ -343,7 +330,7 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 6
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx','wince']
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
@@ -358,9 +345,6 @@ BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['mozilla-central']['platforms']['wince']['env'].update(
-    BRANCHES['mozilla-central']['platforms']['win32']['env'])
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
@@ -407,7 +391,6 @@ BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 7
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['build_space'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
@@ -424,7 +407,7 @@ BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx','wince']
+BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
@@ -439,9 +422,6 @@ BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
 # generated.
 BRANCHES['mozilla-1.9.2']['create_snippet'] = True
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['mozilla-1.9.2']['platforms']['wince']['env'].update(
-    BRANCHES['mozilla-1.9.2']['platforms']['win32']['env'])
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
@@ -600,7 +580,6 @@ BRANCHES['firefox-lorentz']['start_minute'] = [32]
 BRANCHES['firefox-lorentz']['platforms']['linux']['base_name'] = 'Linux lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
-BRANCHES['firefox-lorentz']['platforms']['wince']['base_name'] = 'WINCE 5.0 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['base_name'] = 'Linux lorentz leak test'
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 lorentz leak test'
@@ -608,7 +587,6 @@ BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['base_name'] = 'OS X 10
 BRANCHES['firefox-lorentz']['platforms']['linux']['build_space'] = 5
 BRANCHES['firefox-lorentz']['platforms']['linux64']['build_space'] = 5
 BRANCHES['firefox-lorentz']['platforms']['win32']['build_space'] = 7
-BRANCHES['firefox-lorentz']['platforms']['wince']['build_space'] = 4
 BRANCHES['firefox-lorentz']['platforms']['macosx']['build_space'] = 7
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['build_space'] = 4
@@ -626,7 +604,7 @@ BRANCHES['firefox-lorentz']['platforms']['win32']['crashtest_leak_threshold'] = 
 BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['firefox-lorentz']['enable_l10n'] = False
-BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx','wince']
+BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['firefox-lorentz']['l10nNightlyUpdate'] = False
 BRANCHES['firefox-lorentz']['l10nDatedDirs'] = False
 BRANCHES['firefox-lorentz']['l10n_tree'] = 'lorentz'
@@ -639,9 +617,6 @@ BRANCHES['firefox-lorentz']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUIL
 BRANCHES['firefox-lorentz']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-lorentz'
 BRANCHES['firefox-lorentz']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
-BRANCHES['firefox-lorentz']['platforms']['wince']['env'] = MozillaEnvironments['winmo-arm'].copy()
-BRANCHES['firefox-lorentz']['platforms']['wince']['env'].update(
-    BRANCHES['firefox-lorentz']['platforms']['win32']['env'])
 
 if __name__ == "__main__":
     import sys, pprint
