@@ -50,7 +50,7 @@ BRANCH_LEVEL_VARS = {
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
     'graph_server': None, #'graphs-stage.mozilla.org',
     'graph_selector': '/server/collect.cgi',
-    'build_tools_repo_path': 'build/tools',
+    'build_tools_repo_path': 'users/seabld/buildtools',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
