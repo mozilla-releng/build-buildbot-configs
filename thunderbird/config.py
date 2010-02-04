@@ -90,7 +90,7 @@ BRANCHES = {
 # thunderbird-unittest
 
 BRANCHES['comm-1.9.1-unittest'] = {
-    'client_py_args' :  DEFAULTS['client_py_args'] + ['--mozilla-rev=COMM1918_20100202_RELBRANCH']
+    'client_py_args' :  DEFAULTS['client_py_args'] + ['--mozilla-rev=COMM1918_20100202_RELBRANCH'],
     'factory': 'CCUnittestBuildFactory',
     'builder_type': 'check',
     'nightly': False,
@@ -123,7 +123,7 @@ BRANCHES['comm-1.9.2-unittest'] = {
     'mozilla_central_branch': 'releases/mozilla-1.9.2',
     'nightly': False,
     'tinderbox_tree': 'Thunderbird3.1',
-    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'], + ['--mozilla-rev=COMM192_20100119_RELBRANCH']
+    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'], 
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-1.9.2',
@@ -279,7 +279,7 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'macosx': {},
 }
 BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM192_20100119_RELBRANCH']
+BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
 BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-1.9.2']['package'] = True
@@ -451,7 +451,7 @@ BRANCHES['comm-1.9.2-lightning']['platforms'] = {
 BRANCHES['comm-1.9.2-lightning']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-lightning']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-lightning']['hg_branch'] = 'releases/comm-central'
-BRANCHES['comm-1.9.2-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-rev=COMM192_20100119_RELBRANCH']
+BRANCHES['comm-1.9.2-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
 BRANCHES['comm-1.9.2-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2-lightning']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-1.9.2-lightning']['period'] = 60 * 60 * 6
@@ -809,7 +809,7 @@ BRANCHES['comm-1.9.2-bloat']['platforms'] = {
 BRANCHES['comm-1.9.2-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['hg_branch'] = 'comm-central'
-BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM192_20100119_RELBRANCH']
+BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
 BRANCHES['comm-1.9.2-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-1.9.2-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-1.9.2-bloat']['nightly'] = False
