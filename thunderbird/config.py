@@ -521,6 +521,7 @@ BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ss
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
 }
 
 ######## lightning-trunk
