@@ -48,7 +48,7 @@ BRANCH_LEVEL_VARS = {
     'aus2_user': 'seabld',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
-    'graph_server': None, #'graphs-stage.mozilla.org',
+    'graph_server': 'graphs-stage.mozilla.org',
     'graph_selector': '/server/collect.cgi',
     'build_tools_repo_path': 'users/seabld/buildtools',
     'compare_locales_repo_path': 'build/compare-locales',
