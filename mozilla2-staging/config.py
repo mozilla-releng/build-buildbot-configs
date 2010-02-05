@@ -8,10 +8,14 @@ from buildbotcustom.env import MozillaEnvironments
 # big dict
 MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in range(1,38)]
 XSERVES   = ['bm-xserve%02i' % x for x in [7,9,11,12,16,17,18,19,21,22]]
+WIN32_VMS = ['win32-slave%02i' % x for x in range(1,60)]
+WIN32_IXS = ['w32-ix-slave%02i' % x for x in range(1,26)]
+LINUX_VMS = ['moz2-linux-slave%02i' % x for x in range(1,51)]
+LINUX_IXS = ['moz2-linux-ix-slave%02i' % x for x in range(1,26)]
 SLAVES = {
-    'linux': ['moz2-linux-slave%02i' % x for x in range(1,51)],
+    'linux': LINUX_VMS + LINUX_IXS,
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32':  ['win32-slave%02i' % x for x in range(1,60)],
+    'win32':  WIN32_VMS + WIN32_IXS,
     'macosx': MAC_MINIS + XSERVES,
 }
 
