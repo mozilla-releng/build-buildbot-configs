@@ -22,8 +22,8 @@ SLAVES = {
 GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
-    # Since they're both right here it shouldn't be a problem
-    # to keep them in sync.
+    # Since they're both right here it shouldn't be
+    # a problem to keep them in sync.
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'config_repo_path': 'build/buildbot-configs',
@@ -51,8 +51,8 @@ GLOBAL_VARS = {
     'default_build_space': 5,
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'default_clobber_time': 24*7, # 1 week
-    # List of talos masters to notify of new builds, and if a failure
-    # to notify the talos master should result in a warning
+    # List of talos masters to notify of new builds,
+    # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master.mozilla.org:9010', False),
@@ -92,10 +92,9 @@ GLOBAL_VARS = {
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_nightly': True,
-    'major_version': '1.9.2',
 }
 
-# short name, because it's used a lot
+# shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 
@@ -105,7 +104,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux/%(branch)s/nightly',
             'profiled_build': False,
             'builds_before_reboot': 5,
-            'build_space': 5,
+            'build_space': 6,
             'upload_symbols': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
@@ -125,7 +124,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux64/%(branch)s/nightly',
             'profiled_build': False,
             'builds_before_reboot': 5,
-            'build_space': 5,
+            'build_space': 6,
             'upload_symbols': False,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
@@ -209,7 +208,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx/%(branch)s/debug',
             'profiled_build': False,
             'builds_before_reboot': 5,
-            'build_space': 3,
+            'build_space': 5,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
             'env': {
@@ -234,37 +233,14 @@ PLATFORM_VARS = {
         },
 }
 
-# All branches that are to be built MUST be listed here, along with their platforms.
+# All branches that are to be built MUST be listed here, along with their
+# platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {},
-    'mozilla-1.9.1': {'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx': {},
-            'linux-debug': {},
-            'macosx-debug': {},
-            'win32-debug': {}
-        }},
+    'mozilla-1.9.1': {},
     'mozilla-1.9.2': {},
-    'tracemonkey': {'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx': {},
-            'linux-debug': {},
-            'macosx-debug': {},
-            'win32-debug': {},
-        }},
-    'places': {'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx': {},
-            'linux-debug': {},
-            'macosx-debug': {},
-            'win32-debug': {},
-        }},
+    'tracemonkey': {},
+    'places': {},
     'electrolysis': {'platforms': {
             'linux': {},
             'win32': {},
@@ -297,7 +273,6 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-central']['product_name'] = 'firefox'
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
@@ -334,8 +309,8 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 6
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -353,7 +328,6 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['major_version'] = '1.9.1'
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
 BRANCHES['mozilla-1.9.1']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
@@ -361,6 +335,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
@@ -381,23 +356,22 @@ BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['major_version'] = '1.9.2'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 5
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 5
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
@@ -421,9 +395,6 @@ BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
 BRANCHES['mozilla-1.9.2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
 BRANCHES['mozilla-1.9.2']['create_snippet'] = True
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
 
@@ -476,6 +447,7 @@ BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 
@@ -484,7 +456,6 @@ BRANCHES['places']['repo_path'] = 'projects/places'
 BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
-# Enable Nightly builds
 BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
@@ -539,7 +510,6 @@ BRANCHES['electrolysis']['unittest_suites'].append( ('jsreftest', ['jsreftest'])
 for suite in BRANCHES['electrolysis']['unittest_suites']:
     if suite[0] == 'mochitest-other':
         suite[1].append('mochitest-ipcplugins')
-BRANCHES['electrolysis']['platforms']['macosx-debug']['build_space'] = 5
 BRANCHES['electrolysis']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
@@ -577,7 +547,6 @@ BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] =
 ######## lorentz
 BRANCHES['firefox-lorentz']['repo_path'] = 'projects/firefox-lorentz'
 BRANCHES['firefox-lorentz']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-BRANCHES['firefox-lorentz']['major_version'] = '1.9.2'
 BRANCHES['firefox-lorentz']['brand_name'] = 'Lorentz'
 BRANCHES['firefox-lorentz']['start_hour'] = [3]
 BRANCHES['firefox-lorentz']['start_minute'] = [32]
@@ -603,8 +572,6 @@ BRANCHES['firefox-lorentz']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['firefox-lorentz']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['firefox-lorentz']['enable_mac_a11y'] = False
-BRANCHES['firefox-lorentz']['platforms']['win32']['mochitest_leak_threshold'] = 484
-BRANCHES['firefox-lorentz']['platforms']['win32']['crashtest_leak_threshold'] = 484
 BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['firefox-lorentz']['enable_l10n'] = False
