@@ -183,7 +183,7 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': dummy_factory #tag_factory
 })
 
 
@@ -212,7 +212,7 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': source_factory
+    'factory': dummy_factory #source_factory
 })
 
 
@@ -278,10 +278,10 @@ for platform in enUSPlatforms:
         'slavenames': branchConfig['nightly_slaves'][platform],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'factory': dummy_factory #build_factory
     })
 
-    if platform in l10nPlatforms:
+    if platform in ('win32',) #l10nPlatforms:
         repack_factory = CCReleaseRepackFactory(
             hgHost=branchConfig['hghost'],
             project=productName,
