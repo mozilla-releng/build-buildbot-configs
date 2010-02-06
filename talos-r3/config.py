@@ -47,20 +47,20 @@ PLATFORMS = {
 
 PLATFORMS['macosx']['slave_platforms'] = ['leopard']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard'] = {'name': "MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp'] = {'name': "WINNT 5.1"}
-PLATFORMS['win32']['win7'] = {'name': "WINNT 7.0"}
+PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
+PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 7.0"}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
-PLATFORMS['linux']['fedora'] = {'name': "Fedora 12"}
+PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
-PLATFORMS['linux64']['fedora64'] = {'name': "Fedora 12x64"}
+PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 
 
 # Copy the slave names into PLATFORMS[platform][slave_platform]
