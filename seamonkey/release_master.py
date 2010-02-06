@@ -281,7 +281,7 @@ for platform in enUSPlatforms:
         'factory': dummy_factory #build_factory
     })
 
-    if platform in ('win32',) #l10nPlatforms:
+    if platform in ['win32'] #l10nPlatforms:
         repack_factory = CCReleaseRepackFactory(
             hgHost=branchConfig['hghost'],
             project=productName,
