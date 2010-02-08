@@ -142,9 +142,11 @@ clone_repositories = {
                       'browser/config/version.txt']
     }
 }
-l10n_clone_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoClonePath,
-                                         relbranchOverride)
-clone_repositories.update(l10n_clone_repos)
+if len(l10nPlatforms) > 0:
+    l10n_clone_repos = get_l10n_repositories(l10nRevisionFile,
+                                             l10nRepoClonePath,
+                                             relbranchOverride)
+    clone_repositories.update(l10n_clone_repos)
 
 tag_repositories = {
     sourceRepoPath: {
@@ -154,9 +156,10 @@ tag_repositories = {
                       'browser/config/version.txt']
     }
 }
-l10n_tag_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
-                                       relbranchOverride)
-tag_repositories.update(l10n_tag_repos)
+if len(l10nPlatforms) > 0:
+    l10n_tag_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
+                                           relbranchOverride)
+    tag_repositories.update(l10n_tag_repos)
 
 
 repository_setup_factory = StagingRepositorySetupFactory(

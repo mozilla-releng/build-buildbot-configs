@@ -2,8 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-# TODO: Add a sourceRepoRevision before trying to use this config to tag
-sourceRepoRevision = ''
+sourceRepoRevision = 'db1f6446efda'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
@@ -25,7 +24,7 @@ oldAppVersion      = ''
 oldBuildNumber     = 1
 oldBaseTag         = ''
 enUSPlatforms      = ('linux', 'win32', 'macosx')
-l10nPlatforms      = ('linux', 'win32', 'macosx')
+l10nPlatforms      = ()
 # TODO: create this file before 3.7a2
 patcherConfig      = 'moz193-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R9'
