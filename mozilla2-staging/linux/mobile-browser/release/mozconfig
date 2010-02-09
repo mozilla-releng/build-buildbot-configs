@@ -3,6 +3,8 @@ mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 
 export LDFLAGS='-Wl,-rpath-link,/usr/lib:/lib'
 
+ac_add_options --with-maemo-version=5
+
 # install locations for xulrunner/fennec for Maemo
 ac_add_options --prefix=/opt/mozilla
 ac_add_options --libdir=/opt/mozilla
