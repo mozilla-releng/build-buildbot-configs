@@ -240,8 +240,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
-                packageGlob="-r mobile/dist/*.tar.bz2 " +
-                            "xulrunner/dist/*.tar.bz2",
+                packageGlobList=['-r', 'mobile/dist/*.tar.bz2',
+                                 'xulrunner/dist/*.tar.bz2'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
@@ -264,8 +264,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
-                packageGlob="-r mobile/dist/*.tar.bz2 " +
-                            "xulrunner/dist/*.tar.bz2",
+                packageGlobList=['-r', 'mobile/dist/*.tar.bz2',
+                                 'xulrunner/dist/*.tar.bz2'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
@@ -292,7 +292,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
-                packageGlob="-r mobile/dist/*.dmg ",
+                packageGlobList=['-r', 'mobile/dist/*.dmg'],
                 platform="macosx",
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
@@ -320,8 +320,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform="win32",
-                packageGlob="-r mobile/dist/*.zip " +
-                            "xulrunner/dist/*.zip",
+                packageGlobList=['-r', 'mobile/dist/*.zip',
+                                 'xulrunner/dist/*.zip'],
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
@@ -416,9 +416,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='-r %(locale)s ' +
-                                'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
-                                'install/fennec-*.%(locale)s.langpack.xpi',
+                    packageGlobList=['-r', '%(locale)s',
+                                     'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
+                                     'install/fennec-*.%(locale)s.langpack.xpi'],
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
@@ -445,9 +445,9 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob='-r %(locale)s ' +
-                                'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2 ' +
-                                'install/fennec-*.%(locale)s.langpack.xpi',
+                    packageGlobList=['-r', '%(locale)s',
+                                     'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
+                                     'install/fennec-*.%(locale)s.langpack.xpi'],
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
@@ -471,14 +471,14 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             elif platform.endswith('i686'):
                 if platform == 'linux-i686':
                     realPlatform = 'linux'
-                    packageGlob = "fennec-*.%(locale)s.linux-i686.tar.bz2 " + \
-                                  "install/fennec-*.%(locale)s.langpack.xpi"
+                    packageGlobList = ['fennec-*.%(locale)s.linux-i686.tar.bz2',
+                                       'install/fennec-*.%(locale)s.langpack.xpi']
                 elif platform == 'macosx-i686':
                     realPlatform = 'macosx'
-                    packageGlob = "-r fennec-*.%(locale)s.mac.dmg"
+                    packageGlobList = ['-r', 'fennec-*.%(locale)s.mac.dmg']
                 elif platform == 'win32-i686':
                     realPlatform = 'win32'
-                    packageGlob = "fennec-*.%(locale)s.win32.zip"
+                    packageGlobList = ['fennec-*.%(locale)s.win32.zip']
 
                 mobile_l10n_nightly_factory = MobileDesktopNightlyRepackFactory(
                     nightly=True,
@@ -486,7 +486,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob=packageGlob,
+                    packageGlobList=packageGlobList,
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     platform=realPlatform,
                     stageServer=mainConfig['stage_server'],
@@ -511,7 +511,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     tree=branch['l10n_tree'],
                     project=branch['product_name'],
                     appName=branch['app_name'],
-                    packageGlob=packageGlob,
+                    packageGlobList=packageGlobList,
                     enUSBinaryURL=branch['enUS_binaryURL'],
                     platform=realPlatform,
                     stageServer=mainConfig['stage_server'],

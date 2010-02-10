@@ -250,7 +250,7 @@ for platform in enUSPlatforms:
                 repoPath=mozSourceRepoPath,
                 l10nRepoPath=l10nRepoPath,
                 mobileRepoPath=mobileSourceRepoPath,
-                packageGlob='-r %(locale)s',
+                packageGlobList=['-r', '%(locale)s'],
                 buildToolsRepoPath=branchConfig['build_tools_repo_path'],
                 compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
                 compareLocalesTag=branchConfig['compare_locales_tag'],
