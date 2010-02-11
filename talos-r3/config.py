@@ -53,7 +53,7 @@ PLATFORMS['macosx']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
-PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 7.0"}
+PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
