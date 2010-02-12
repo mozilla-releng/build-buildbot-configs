@@ -26,7 +26,7 @@ SLAVES = {
     'xp': ["talos-r3-xp-%03i" % x for x in range(1,41)],
     'win7': ["talos-r3-w7-%03i" % x for x in range(1,41)],
     'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,41)],
-    'snow': ["talos-r3-snow-%03i" % x for x in range(1,21)],
+    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,21)],
 }
 
 BRANCHES = {
@@ -46,9 +46,10 @@ PLATFORMS = {
     'linux64' : {},
 }
 
-PLATFORMS['macosx']['slave_platforms'] = ['leopard']
+PLATFORMS['macosx']['slave_platforms'] = ['leopard', 'snowleopard']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
