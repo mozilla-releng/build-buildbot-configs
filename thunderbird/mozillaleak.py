@@ -65,6 +65,7 @@ def addLeakTestSteps(self,branch,platform,platformName,productName, logUploadDir
             warnOnFailure=True,
             haltOnFailure=True,
             flunkOnFailure=False,
+            timeout=15*60 # 15 minutes
         )
         self.addStep(ShellCommand,
          name='get_bloat_log',
