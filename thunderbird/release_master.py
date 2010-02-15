@@ -25,6 +25,9 @@ from release_config import *
 import config as nightly_config
 reload(nightly_config)
 
+for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path']:
+    nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
+
 builders = []
 schedulers = []
 change_source = []
