@@ -841,7 +841,7 @@ BRANCHES['places']['platforms'] = {
     'win32-debug': {},
 }
 BRANCHES['places']['platforms']['linux']['mozconfig'] = 'linux/places/nightly'
-BRANCHES['places']['platforms']['linux64']['mozconfig'] = 'linux/places/nightly'
+BRANCHES['places']['platforms']['linux64']['mozconfig'] = 'linux64/places/nightly'
 BRANCHES['places']['platforms']['macosx']['mozconfig'] = 'macosx/places/nightly'
 BRANCHES['places']['platforms']['win32']['mozconfig'] = 'win32/places/nightly'
 BRANCHES['places']['platforms']['linux-debug']['mozconfig'] = 'linux/places/debug'
