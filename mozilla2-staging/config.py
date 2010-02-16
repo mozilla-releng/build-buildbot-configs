@@ -274,15 +274,7 @@ BRANCHES = {
     'mozilla-1.9.2': {},
     'tracemonkey': {},
     'places': {},
-    'electrolysis': {'platforms': {
-            'linux': {},
-            'win32': {},
-            'macosx': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx-debug': {},
-            'win32-debug': {},
-        }},
+    'electrolysis': {},
     'firefox-lorentz': {},
 }
 
