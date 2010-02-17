@@ -193,7 +193,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
 }
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = False
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = True
 
 ### mobile-tracemonkey
 MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
