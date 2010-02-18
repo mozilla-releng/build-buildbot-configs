@@ -107,7 +107,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
-MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['create_snippet'] = True
 
@@ -191,7 +191,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = False
 
@@ -361,6 +361,6 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
     'CHOWN_ROOT': '~/bin/chown_root',
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = MozillaEnvironments['win32-fennec']
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['create_snippet'] = False

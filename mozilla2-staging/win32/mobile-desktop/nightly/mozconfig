@@ -3,7 +3,7 @@ mk_add_options MOZ_BUILD_PROJECTS="xulrunner mobile"
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 mk_add_options MOZ_PKG_FORMAT=ZIP
 
-export WIN32_REDIST_DIR=/d/msvs9/VC/redist/x86/Microsoft.VC90.CRT
+export WIN32_REDIST_DIR=/d/msvs8/VC/redist/x86/Microsoft.VC80.CRT
 
 # Global options
 ac_add_options --disable-debug
