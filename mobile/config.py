@@ -85,32 +85,10 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['build_
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
     'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
@@ -192,32 +170,10 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['build_di
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
     'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
@@ -298,32 +254,10 @@ BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['build_dir'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
 BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
     'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
