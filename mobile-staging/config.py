@@ -1,26 +1,137 @@
 SLAVES = {
     'n810': ['maemo-n810-%02i' % x for x in [1,3,4,5,6] + range(9,81)],
+    'n900': ['n900-%03i' % x for x in range(1,21)],
 }
 
 BRANCHES = {
     'mozilla-central': {},
     'mozilla-1.9.2': {},
     'tracemonkey'  : {},
+    'electrolysis': {},
+    'places': {},
+    'lorentz': {},
+    'try': {},
 }
 
 #
-# {{{1 mozilla-central
+# {{{1 Branch Defaults
 #
-BRANCHES['mozilla-central']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['mozilla-central']['graph_server'] = "graphs-stage.mozilla.org"
-BRANCHES['mozilla-central']['platforms'] = {
-    'n810': {},
+defaultBranch = {}
+defaultBranch['tinderbox_tree'] = "MozillaTest"
+defaultBranch['graph_server'] = "graphs-stage.mozilla.org" 
+defaultBranch['platforms'] = {}
+defaultBranch['buildbot_branch'] = 'default_branch'
+
+#
+# {{{1 Platform Defaults
+#
+defaultPlatform = {}
+defaultPlatform['slaves'] = []
+defaultPlatform['talos_branch'] = 'talos_branch'
+defaultPlatform['poll_interval'] = 5*60
+defaultPlatform['reboot'] = True
+defaultPlatform['rebootCmd'] = 'reboot ; sleep 600'
+defaultPlatform['poller_string'] = 'invalid.nonexistant' #For overriding
+defaultPlatform['talos_suites'] = {
+    'tp4': {},
+    'tp4_nochrome': {},
+    'tpan': {},
+    'tzoom': {},
+    'ts': {},
+    'twinopen': {},
+    'tdhtml': {},
+    'tsvg': {},
+    'tsspider': {},
+    'tgfx': {},
 }
-BRANCHES['mozilla-central']['platforms']['n810']['base_name'] = 'Maemo mozilla-central'
-BRANCHES['mozilla-central']['platforms']['n810']['slaves'] = SLAVES['n810']
-BRANCHES['mozilla-central']['platforms']['n810']['buildbot_branch'] = 'maemo-trunk'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_branch'] = 'mobile'
-BRANCHES['mozilla-central']['platforms']['n810']['poll_interval'] = 5*60
+defaultPlatform['talos_suites']['tp4']['suite_name'] = 'talos Tp4'
+defaultPlatform['talos_suites']['tp4']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tp4']['timeout'] = 90
+defaultPlatform['talos_suites']['tp4_nochrome']['suite_name'] = 'talos Tp4 nochrome'
+defaultPlatform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tp4_nochrome']['timeout'] = 90
+defaultPlatform['talos_suites']['tpan']['suite_name'] = 'talos Tpan'
+defaultPlatform['talos_suites']['tpan']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tpan']['timeout'] = 90
+defaultPlatform['talos_suites']['tzoom']['suite_name'] = 'talos Tzoom'
+defaultPlatform['talos_suites']['tzoom']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tzoom']['timeout'] = 90
+defaultPlatform['talos_suites']['ts']['suite_name'] = 'talos Ts'
+defaultPlatform['talos_suites']['ts']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['ts']['timeout'] = 60
+defaultPlatform['talos_suites']['twinopen']['suite_name'] = 'talos Twinopen'
+defaultPlatform['talos_suites']['twinopen']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['twinopen']['timeout'] = 60
+defaultPlatform['talos_suites']['tdhtml']['suite_name'] = 'talos Tdhtml'
+defaultPlatform['talos_suites']['tdhtml']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tdhtml']['timeout'] = 60
+defaultPlatform['talos_suites']['tsvg']['suite_name'] = 'talos Tsvg'
+defaultPlatform['talos_suites']['tsvg']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tsvg']['timeout'] = 60
+defaultPlatform['talos_suites']['tsspider']['suite_name'] = 'talos Tsspider'
+defaultPlatform['talos_suites']['tsspider']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tsspider']['timeout'] = 60
+defaultPlatform['talos_suites']['tgfx']['suite_name'] = 'talos Tgfx'
+defaultPlatform['talos_suites']['tgfx']['config_file'] = 'mobile.config'
+defaultPlatform['talos_suites']['tgfx']['timeout'] = 60
+defaultPlatform['test_suites'] = {
+    'mochitest1': {},
+    'mochitest2': {},
+    'mochitest3': {},
+    'mochitest4': {},
+    'chrome':     {},
+    'reftest':    {},
+    'crashtest':  {},
+    'xpcshell':   {},
+}
+defaultPlatform['test_suites']['mochitest1']['testType'] = "mochitest"
+defaultPlatform['test_suites']['mochitest1']['totalClients'] = 4
+defaultPlatform['test_suites']['mochitest1']['clientNumber'] = 1
+defaultPlatform['test_suites']['mochitest1']['knownFailCount'] = 11
+defaultPlatform['test_suites']['mochitest2']['testType'] = "mochitest"
+defaultPlatform['test_suites']['mochitest2']['totalClients'] = 4
+defaultPlatform['test_suites']['mochitest2']['clientNumber'] = 2
+defaultPlatform['test_suites']['mochitest2']['knownFailCount'] = 223
+defaultPlatform['test_suites']['mochitest3']['testType'] = "mochitest"
+defaultPlatform['test_suites']['mochitest3']['totalClients'] = 4
+defaultPlatform['test_suites']['mochitest3']['clientNumber'] = 3
+defaultPlatform['test_suites']['mochitest3']['knownFailCount'] = 72
+defaultPlatform['test_suites']['mochitest4']['testType'] = "mochitest"
+defaultPlatform['test_suites']['mochitest4']['totalClients'] = 4
+defaultPlatform['test_suites']['mochitest4']['clientNumber'] = 4
+defaultPlatform['test_suites']['mochitest4']['knownFailCount'] = 188
+defaultPlatform['test_suites']['chrome']['knownFailCount'] = 545
+defaultPlatform['test_suites']['reftest']['knownFailCount'] = 98
+defaultPlatform['test_suites']['crashtest']['knownFailCount'] = 4
+defaultPlatform['test_suites']['xpcshell']['knownFailCount'] = 182
+
+#
+# {{{2 Nokia N810 Specializations
+#
+defaultN810 = deepcopy(defaultPlatform)
+defaultN810['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
+defaultN810['talos_pageloader'] = 'http://staging-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
+defaultN810['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
+defaultN810['slaves'] = SLAVES['n810']
+
+#
+# {{{2 Nokia N900 Specializations
+#
+defaultN900 = deepcopy(defaultPlatform)
+default['rebootCmd'] = "sudo reboot-user ; sleep 600"
+defaultN900['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
+defaultN900['talos_pageloader'] = 'http://staging-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
+defaultN900['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2' #May need to specialize this for QT
+defaultN900['slaves'] = SLAVES['n900']
+
+
+# {{{1 Mozilla Central
+BRANCHES['mozilla-central'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['mozilla-central']['tinderbox_tree'] = "LALA"
+BRANCHES['mozilla-central']['talos_branch'] = 'mobile'
+
+# {{{2 Mozilla Central n810 GTK Specializations
+BRANCHES['mozilla-central']['platforms'].update({'n810': deepcopy(defaultN810)})
 BRANCHES['mozilla-central']['platforms']['n810']['unit_build_dirs'] = [
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
@@ -29,301 +140,248 @@ BRANCHES['mozilla-central']['platforms']['n810']['talos_build_dirs'] = [
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
 ]
-BRANCHES['mozilla-central']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites'] = {
-    'tp4': {},
-    'tp4_nochrome': {},
-    'tpan': {},
-    'tzoom': {},
-    'ts': {},
-    'twinopen': {},
-    'tdhtml': {},
-    'tsvg': {},
-    'tsspider': {},
-    'tgfx': {},
-}
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['suite_name'] = 'N810 mozilla-central talos Tp4'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-trunk-tp4'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 mozilla-central talos Tp4 nochrome'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-trunk-tp4-nochrome'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 mozilla-central talos Tpan'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-trunk-tpan'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 90
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 mozilla-central talos Tzoom'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-trunk-tzoom'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 90
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-central talos Ts'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-trunk-ts'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['ts']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['twinopen']['suite_name'] = 'N810 mozilla-central talos Twinopen'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['twinopen']['build_dir'] = 'n810-trunk-twinopen'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['twinopen']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['twinopen']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tdhtml']['suite_name'] = 'N810 mozilla-central talos Tdhtml'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tdhtml']['build_dir'] = 'n810-trunk-tdhtml'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tdhtml']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tdhtml']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsvg']['suite_name'] = 'N810 mozilla-central talos Tsvg'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsvg']['build_dir'] = 'n810-trunk-tsvg'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsvg']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsvg']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsspider']['suite_name'] = 'N810 mozilla-central talos Tsspider'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsspider']['build_dir'] = 'n810-trunk-tsspider'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsspider']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tsspider']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['suite_name'] = 'N810 mozilla-central talos Tgfx'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['build_dir'] = 'n810-trunk-tgfx'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-central']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
-    'reftest':    {},
-    'crashtest':  {},
-    'xpcshell':   {},
-}
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
 
 #
-# {{{1 mozilla-1.9.2
-#
-BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['mozilla-1.9.2']['graph_server'] = "graphs-stage.mozilla.org"
-BRANCHES['mozilla-1.9.2']['platforms'] = {
-    'n810': {},
-}
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['base_name'] = 'Maemo mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['slaves'] = SLAVES['n810']
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['buildbot_branch'] = 'maemo-1.9.2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_branch'] = 'mobile-1.9.2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['poll_interval'] = 5*60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['unit_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-1.9.2/',
-    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2/',
+# {{{2 Mozilla Central n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['mozilla-central']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['mozilla-central']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
 ]
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_build_dirs'] = [
-    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2/',
-    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-1.9.2/',
+BRANCHES['mozilla-central']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk/',
 ]
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites'] = {
-    'tp4': {},
-    'tp4_nochrome': {},
-    'tpan': {},
-    'tzoom': {},
-    'ts': {},
-    'twinopen': {},
-    'tdhtml': {},
-    'tsvg': {},
-    'tsspider': {},
-    'tgfx': {},
-}
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['suite_name'] = 'N810 mozilla-1.9.2 talos Tp4'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-1.9.2-tp4'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 mozilla-1.9.2 talos Tp4 nochrome'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-1.9.2-tp4-nochrome'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 mozilla-1.9.2 talos Tpan'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-1.9.2-tpan'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 90
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 mozilla-1.9.2 talos Tzoom'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-1.9.2-tzoom'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 90
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 mozilla-1.9.2 talos Ts'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-1.9.2-ts'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['ts']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['twinopen']['suite_name'] = 'N810 mozilla-1.9.2 talos Twinopen'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['twinopen']['build_dir'] = 'n810-1.9.2-twinopen'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['twinopen']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['twinopen']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tdhtml']['suite_name'] = 'N810 mozilla-1.9.2 talos Tdhtml'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tdhtml']['build_dir'] = 'n810-1.9.2-tdhtml'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tdhtml']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tdhtml']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsvg']['suite_name'] = 'N810 mozilla-1.9.2 talos Tsvg'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsvg']['build_dir'] = 'n810-1.9.2-tsvg'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsvg']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsvg']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsspider']['suite_name'] = 'N810 mozilla-1.9.2 talos Tsspider'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsspider']['build_dir'] = 'n810-1.9.2-tsspider'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsspider']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tsspider']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['suite_name'] = 'N810 mozilla-1.9.2 talos Tgfx'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['build_dir'] = 'n810-1.9.2-tgfx'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
-    'reftest':    {},
-    'crashtest':  {},
-    'xpcshell':   {},
-}
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
 
 #
-# {{{1 TraceMonkey
-#
-BRANCHES['tracemonkey']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['tracemonkey']['graph_server'] = "graphs-stage.mozilla.org"
-BRANCHES['tracemonkey']['platforms'] = {
-    'n810': {},
-}
-BRANCHES['tracemonkey']['platforms']['n810']['base_name'] = 'Maemo tracemonkey'
-BRANCHES['tracemonkey']['platforms']['n810']['slaves'] = SLAVES['n810']
-BRANCHES['tracemonkey']['platforms']['n810']['buildbot_branch'] = 'maemo-tm'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_branch'] = 'mobile-tracemonkey'
-BRANCHES['tracemonkey']['platforms']['n810']['poll_interval'] = 5*60
+# {{{2 Mozilla Central n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['mozilla-central']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['mozilla-central']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-qt/',
+]
+BRANCHES['mozilla-central']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-trunk-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-qt/',
+]
+
+# {{{1 Tracemonkey
+BRANCHES['tracemonkey'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['tracemonkey']['tinderbox_tree'] = "LALA"
+BRANCHES['tracemonkey']['talos_branch'] = 'mobile'
+
+# {{{2 Tracemonkey n810 GTK Specializations
+BRANCHES['tracemonkey']['platforms'].update({'n810': deepcopy(defaultN810)})
 BRANCHES['tracemonkey']['platforms']['n810']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey/',
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
 ]
 BRANCHES['tracemonkey']['platforms']['n810']['talos_build_dirs'] = [
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey/',
     'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
 ]
-BRANCHES['tracemonkey']['platforms']['n810']['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_scripts'] = 'http://staging-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_pageloader'] = 'http://staging-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites'] = {
-    'tp4': {},
-    'tp4_nochrome': {},
-    'tpan': {},
-    'tzoom': {},
-    'ts': {},
-    'twinopen': {},
-    'tdhtml': {},
-    'tsvg': {},
-    'tsspider': {},
-    'tgfx': {},
-}
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['suite_name'] = 'N810 tracemonkey talos Tp4'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['build_dir'] = 'n810-tm-tp4'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4']['timeout'] = 90
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['suite_name'] = 'N810 tracemonkey talos Tp4 nochrome'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['build_dir'] = 'n810-tm-tp4-nochrome'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tp4_nochrome']['timeout'] = 90
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['suite_name'] = 'N810 tracemonkey talos Tpan'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['build_dir'] = 'n810-tm-tpan'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tpan']['timeout'] = 90
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['suite_name'] = 'N810 tracemonkey talos Tzoom'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['build_dir'] = 'n810-tm-tzoom'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tzoom']['timeout'] = 90
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['suite_name'] = 'N810 tracemonkey talos Ts'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['build_dir'] = 'n810-tm-ts'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['ts']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['twinopen']['suite_name'] = 'N810 tracemonkey talos Twinopen'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['twinopen']['build_dir'] = 'n810-tm-twinopen'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['twinopen']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['twinopen']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tdhtml']['suite_name'] = 'N810 tracemonkey talos Tdhtml'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tdhtml']['build_dir'] = 'n810-tm-tdhtml'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tdhtml']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tdhtml']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsvg']['suite_name'] = 'N810 tracemonkey talos Tsvg'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsvg']['build_dir'] = 'n810-tm-tsvg'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsvg']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsvg']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsspider']['suite_name'] = 'N810 tracemonkey talos Tsspider'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsspider']['build_dir'] = 'n810-tm-tsspider'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsspider']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tsspider']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['suite_name'] = 'N810 tracemonkey talos Tgfx'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['build_dir'] = 'n810-tm-tgfx'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['config_file'] = 'mobile.config'
-BRANCHES['tracemonkey']['platforms']['n810']['talos_suites']['tgfx']['timeout'] = 60
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites'] = {
-    'mochitest1': {},
-    'mochitest2': {},
-    'mochitest3': {},
-    'mochitest4': {},
-    'chrome':     {},
-    'reftest':    {},
-    'crashtest':  {},
-    'xpcshell':   {},
-}
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['clientNumber'] = 1
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest1']['knownFailCount'] = 11
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['clientNumber'] = 2
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest2']['knownFailCount'] = 223
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['clientNumber'] = 3
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest3']['knownFailCount'] = 72
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['testType'] = "mochitest"
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['totalClients'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['clientNumber'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['mochitest4']['knownFailCount'] = 188
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['chrome']['knownFailCount'] = 545
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
+
+#
+# {{{2 Tracemonkey n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['tracemonkey']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['tracemonkey']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
+]
+BRANCHES['tracemonkey']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey/',
+]
+
+#
+# {{{2 Tracemonkey n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['tracemonkey']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['tracemonkey']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey-qt/',
+]
+BRANCHES['tracemonkey']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-tracemonkey-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-tracemonkey-qt/',
+]
+
+# {{{1 Electrolysis
+BRANCHES['electrolysis'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['electrolysis']['tinderbox_tree'] = "LALA"
+BRANCHES['electrolysis']['talos_branch'] = 'mobile'
+
+# {{{2 Electrolysis n810 GTK Specializations
+BRANCHES['electrolysis']['platforms'].update({'n810': deepcopy(defaultN810)})
+BRANCHES['electrolysis']['platforms']['n810']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis/',
+]
+BRANCHES['electrolysis']['platforms']['n810']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis/',
+]
+
+#
+# {{{2 Electrolysis n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['electrolysis']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['electrolysis']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis/',
+]
+BRANCHES['electrolysis']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis/',
+]
+
+#
+# {{{2 Electrolysis n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['electrolysis']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['electrolysis']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis-qt/',
+]
+BRANCHES['electrolysis']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-electrolysis-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-electrolysis-qt/',
+]
+
+
+# {{{1 Lorentz
+BRANCHES['lorentz'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['lorentz']['tinderbox_tree'] = "LALA"
+BRANCHES['lorentz']['talos_branch'] = 'mobile'
+
+# {{{2 Lorentz n810 GTK Specializations
+BRANCHES['lorentz']['platforms'].update({'n810': deepcopy(defaultN810)})
+BRANCHES['lorentz']['platforms']['n810']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz/',
+]
+BRANCHES['lorentz']['platforms']['n810']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz/',
+]
+
+#
+# {{{2 Lorentz n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['lorentz']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['lorentz']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz/',
+]
+BRANCHES['lorentz']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz/',
+]
+
+#
+# {{{2 Lorentz n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['lorentz']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['lorentz']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-qt/',
+]
+BRANCHES['lorentz']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-lorentz-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-qt/',
+]
+
+
+# {{{1 Places
+BRANCHES['places'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['places']['tinderbox_tree'] = "LALA"
+BRANCHES['places']['talos_branch'] = 'mobile'
+
+# {{{2 Places n810 GTK Specializations
+BRANCHES['places']['platforms'].update({'n810': deepcopy(defaultN810)})
+BRANCHES['places']['platforms']['n810']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places/',
+]
+BRANCHES['places']['platforms']['n810']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places/',
+]
+
+#
+# {{{2 Places n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['places']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['places']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places/',
+]
+BRANCHES['places']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places/',
+]
+
+#
+# {{{2 Places n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['places']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['places']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places-qt/',
+]
+BRANCHES['places']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-places-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-places-qt/',
+]
+
+# {{{1 Try
+BRANCHES['try'] = deepcopy(defaultBranch)
+#TODO: BRANCHES['try']['tinderbox_tree'] = "LALA"
+BRANCHES['try']['talos_branch'] = 'mobile'
+
+# {{{2 Try n810 GTK Specializations
+BRANCHES['try']['platforms'].update({'n810': deepcopy(defaultN810)})
+BRANCHES['try']['platforms']['n810']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try/',
+]
+BRANCHES['try']['platforms']['n810']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try/',
+]
+
+#
+# {{{2 Try n900 GTK Specializations
+# When Maemo 5 builds start happening, change the *_build_dirs to be n900 ones
+BRANCHES['try']['platforms'].update({'n900': deepcopy(defaultN900)})
+BRANCHES['try']['platforms']['n900']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try/',
+]
+BRANCHES['try']['platforms']['n900']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try/',
+]
+
+#
+# {{{2 Try n900 QT Specializations
+# Until QT builds start showing up, this will poll and find nothing
+BRANCHES['try']['platforms'].update({'n900-qt': deepcopy(defaultN900)}
+BRANCHES['try']['platforms']['n900-qt']['unit_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try-qt/',
+]
+BRANCHES['try']['platforms']['n900-qt']['talos_build_dirs'] = [
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/mobile-try-qt/',
+    'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/latest-mobile-try-qt/',
+]
+
+
+
+
+
+
+
