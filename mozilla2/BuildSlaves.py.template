@@ -1,0 +1,6 @@
+SlavePasswords = {
+        'linux': 'pass',
+        'linux64': 'pass',
+        'win32': 'pass',
+        'macosx': 'pass',
+        }
