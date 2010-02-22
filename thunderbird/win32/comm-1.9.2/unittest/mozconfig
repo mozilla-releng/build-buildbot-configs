@@ -13,3 +13,9 @@ ac_add_options --enable-logrefcnt
 # Bug 427627
 # Disabled due to bug 533424
 #ac_add_options --enable-jemalloc
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1

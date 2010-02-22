@@ -13,5 +13,8 @@ ac_add_options --enable-logrefcnt
 CC="ccache gcc"
 CXX="ccache g++"
 
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
