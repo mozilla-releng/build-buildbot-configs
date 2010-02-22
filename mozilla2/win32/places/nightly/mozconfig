@@ -13,5 +13,4 @@ export MOZ_DEBUG_SYMBOLS=1
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
-# Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j4"
+. $topsrcdir/configs/mozilla2/win32/include/choose-make-flags
