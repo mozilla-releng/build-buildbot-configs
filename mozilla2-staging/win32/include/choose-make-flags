@@ -1,0 +1,7 @@
+hostname=`hostname`
+flags="-j4"
+if `echo $hostname | grep -q ix`; then
+    flags="-j1"
+fi
+
+mk_add_options MOZ_MAKE_FLAGS="$flags"

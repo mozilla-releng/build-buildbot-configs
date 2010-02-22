@@ -12,4 +12,4 @@ export MOZ_DEBUG_SYMBOLS=1
 export MOZILLA_OFFICIAL=1
 
 . $topsrcdir/configs/mozilla2-staging/win32/include/vista-sdk-mozconfig
-
+. $topsrcdir/configs/mozilla2-staging/win32/include/choose-make-flags

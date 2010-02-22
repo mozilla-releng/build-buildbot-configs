@@ -10,3 +10,5 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+. $topsrcdir/configs/mozilla2-staging/win32/include/choose-make-flags
