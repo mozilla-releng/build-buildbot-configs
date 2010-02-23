@@ -25,13 +25,9 @@ SLAVES = {
 }
 
 BRANCHES = {
-    'mozilla-central': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
     'mozilla-1.9.0': {},
-    'tracemonkey': {},
-    'places': {},
-    'electrolysis': {},
     'firefox-lorentz': {},
 }
 
