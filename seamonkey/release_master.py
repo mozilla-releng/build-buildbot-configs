@@ -275,7 +275,7 @@ for platform in enUSPlatforms:
 
     builders.append({
         'name': '%s_build' % platform,
-        'slavenames': branchConfig['nightly_slaves'][platform],
+        'slavenames': branchConfig['slaves'][platform],
         'category': 'release',
         'builddir': '%s_build' % platform,
         'factory': build_factory

@@ -4,9 +4,6 @@ import buildbotcustom.env
 reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
-MAC_FULL = ['cb-seamonkey-osx-%02i' % x for x in [1,2,3,4]] + \
-           ['cb-sea-miniosx%02i' % x for x in [2,3,4,5]]
-MAC_LOW  = ['cb-sea-miniosx%02i' % x for x in [1]]
 SLAVES = {
     'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2]] +
              ['cb-seamonkey-linuxdebug-%02i' % x for x in [1]] +
@@ -16,7 +13,7 @@ SLAVES = {
     'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2]] +
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['cb-sea-win32-tbox'],
-    'macosx': MAC_FULL + MAC_LOW,
+    'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2,3,4,5]],
 }
 
 
@@ -48,7 +45,7 @@ BRANCH_LEVEL_VARS = {
     'aus2_user': 'seabld',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
-    'graph_server': 'graphs-stage.mozilla.org',
+    'graph_server': 'graphs.mozilla.org',
     'graph_selector': '/server/collect.cgi',
     'build_tools_repo_path': 'build/tools',
     'compare_locales_repo_path': 'build/compare-locales',
