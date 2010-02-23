@@ -21,12 +21,7 @@ SUITES = {
 }
 
 SLAVES = {
-    'linux': ["talos-rev2-linux%02i" % x for x in range(1,21)],
-    'linux64' : ["talos-rev2-x64%02i" % x for x in range (1,16)],
-    'xp': ["talos-rev2-xp%02i" % x for x in range(1,25)],
-    'vista': ["talos-rev2-vista%02i" % x for x in range(1,21)],
     'tiger': ["talos-rev2-tiger%02i" % x for x in range(1,21)],
-    'leopard': ["talos-rev2-leopard%02i" % x for x in range(1,21)],
 }
 
 BRANCHES = {
@@ -42,41 +37,18 @@ BRANCHES = {
 
 PLATFORMS = {
     'macosx': {},
-    'win32': {},
-    'linux': {},
-    'linux64' : {},
 }
 
-PLATFORMS['macosx']['slave_platforms'] = ['tiger', 'leopard']
+PLATFORMS['macosx']['slave_platforms'] = ['tiger']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['tiger'] = {'name': "MacOSX Darwin 8.8.1"}
-PLATFORMS['macosx']['leopard'] = {'name': "MacOSX Darwin 9.0.0"}
-
-PLATFORMS['win32']['slave_platforms'] = ['xp', 'vista']
-PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp'] = {'name': "WINNT 5.1"}
-PLATFORMS['win32']['vista'] = {'name': "WINNT 6.0"}
-
-PLATFORMS['linux']['slave_platforms'] = ['linux']
-PLATFORMS['linux']['env_name'] = 'linux-perf'
-PLATFORMS['linux']['linux'] = {'name': "Linux"}
-
-PLATFORMS['linux64']['slave_platforms'] = ['linux64']
-PLATFORMS['linux64']['env_name'] = 'linux-perf'
-PLATFORMS['linux64']['linux64'] = {'name': "Linux64"}
 
 # Copy the slave names into PLATFORMS[platform][slave_platform]
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = SLAVES[slave_platform]
 
-ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-                PLATFORMS['linux64']['slave_platforms'] + \
-                PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
-NO_TIGER = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + ['leopard']
-NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['macosx']['slave_platforms']
-NO_TIGER_NO_WIN = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + ['leopard']
+ALL_PLATFORMS = PLATFORMS['macosx']['slave_platforms']
 
 ########
 # Entries in BRANCHES for tests should be a tuple of:
@@ -124,21 +96,6 @@ BRANCHES['mozilla-1.9.0']['ftp_searchstrings'] = {
     'macosx': "en-US.mac.dmg",
 }
 
-######## mozilla-central
-BRANCHES['mozilla-central']['branch_name'] = "Firefox"
-BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-central']['tinderbox_tree'] = "Firefox"
-BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
-BRANCHES['mozilla-central']['fetch_symbols'] = True
-BRANCHES['mozilla-central']['chrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['mozilla-central']['nochrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['mozilla-central']['jss_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['mozilla-central']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_TIGER)
-BRANCHES['mozilla-central']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, NO_TIGER)
-BRANCHES['mozilla-central']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
-BRANCHES['mozilla-central']['svg_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, NO_TIGER)
-
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
 BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
@@ -150,7 +107,7 @@ BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 
@@ -167,54 +124,9 @@ BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-
-######## tracemonkey
-BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
-BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
-BRANCHES['tracemonkey']['tinderbox_tree'] = "TraceMonkey"
-BRANCHES['tracemonkey']['talos_command'] = TALOS_CMD
-BRANCHES['tracemonkey']['fetch_symbols'] = True
-BRANCHES['tracemonkey']['chrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['tracemonkey']['nochrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['tracemonkey']['jss_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_TIGER)
-BRANCHES['tracemonkey']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, NO_TIGER)
-BRANCHES['tracemonkey']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
-BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, NO_TIGER)
-
-######## places
-BRANCHES['places']['branch_name'] = "Places"
-BRANCHES['places']['build_branch'] = "Places"
-BRANCHES['places']['tinderbox_tree'] = "Places"
-BRANCHES['places']['talos_command'] = TALOS_CMD
-BRANCHES['places']['fetch_symbols'] = True
-BRANCHES['places']['chrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['places']['nochrome_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['places']['jss_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_TIGER)
-BRANCHES['places']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, NO_TIGER)
-BRANCHES['places']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
-BRANCHES['places']['svg_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['places']['v8_tests'] = (0, True, {}, NO_TIGER)
-
-######## electrolysis
-BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
-BRANCHES['electrolysis']['build_branch'] = "Electrolysis"
-BRANCHES['electrolysis']['tinderbox_tree'] = "Electrolysis"
-BRANCHES['electrolysis']['talos_command'] = TALOS_CMD
-BRANCHES['electrolysis']['fetch_symbols'] = True
-BRANCHES['electrolysis']['chrome_tests'] = (1,True, {}, NO_TIGER)
-BRANCHES['electrolysis']['nochrome_tests'] = (0,True, {}, NO_TIGER)
-BRANCHES['electrolysis']['jss_tests'] = (1,True, {}, NO_TIGER)
-BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_TIGER)
-BRANCHES['electrolysis']['tp4_tests'] = (1,True, TALOS_TP4_OPTS, NO_TIGER)
-BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
-BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, NO_TIGER)
-BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, NO_TIGER)
 
 ######## firefox-lorentz
 BRANCHES['firefox-lorentz']['branch_name'] = "Firefox-Lorentz"
@@ -227,6 +139,6 @@ BRANCHES['firefox-lorentz']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
