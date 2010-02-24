@@ -3,7 +3,7 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'comm-central'
-sourceRepoRevision         = '150d01e5d1b3'
+sourceRepoRevision         = 'c1bb767189c1'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM192_20100119_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
@@ -33,17 +33,17 @@ appName                    = 'mail'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1a1'
+version                    = '3.1a2'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2'
-buildNumber                = 3
-baseTag                    = 'THUNDERBIRD_3_1_a1'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_1_a2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = ''
-oldAppVersion              = ''
-oldBuildNumber             = 1
-oldBaseTag                 = ''
+oldVersion                 = '3.1a1'
+oldAppVersion              = oldVersion
+oldBuildNumber             = 3
+oldBaseTag                 = 'THUNDERBIRD_3_1_a1'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
