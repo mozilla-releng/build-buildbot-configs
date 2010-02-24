@@ -39,3 +39,4 @@ verifyConfigs      = {'linux':  'moz191-firefox-linux.cfg',
                       'win32':  'moz191-firefox-win32.cfg'}
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
+majorUpdateRepoPath = None

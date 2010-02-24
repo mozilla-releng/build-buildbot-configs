@@ -1,4 +1,4 @@
-from buildbot.scheduler import Scheduler, Dependent
+from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
@@ -12,7 +12,7 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory, \
-  PartnerRepackFactory
+  PartnerRepackFactory, MajorUpdateFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -114,6 +114,16 @@ update_verify_scheduler = Dependent(
     builderNames=updateBuilderNames
 )
 schedulers.append(update_verify_scheduler)
+
+if majorUpdateRepoPath:
+    majorUpdateBuilderNames = []
+    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+        majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
+    major_update_verify_scheduler = Triggerable(
+        name='major_update_verify',
+        builderNames=majorUpdateBuilderNames
+    )
+    schedulers.append(major_update_verify_scheduler)
 
 for platform in unittestPlatforms:
     platform_test_builders = []
@@ -413,6 +423,7 @@ updates_factory = ReleaseUpdatesFactory(
     # commit to
     commitPatcherConfig=False,
     clobberURL=branchConfig['base_clobber_url'],
+    oldRepoPath=sourceRepoPath
 )
 
 builders.append({
@@ -455,6 +466,70 @@ builders.append({
     'builddir': 'final_verification',
     'factory': final_verification_factory
 })
+
+if majorUpdateRepoPath:
+    # Not attached to any Scheduler
+    major_update_factory = MajorUpdateFactory(
+        hgHost=branchConfig['hghost'],
+        repoPath=majorUpdateRepoPath,
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        cvsroot=cvsroot,
+        patcherToolsTag=patcherToolsTag,
+        patcherConfig=majorUpdatePatcherConfig,
+        verifyConfigs=majorUpdateVerifyConfigs,
+        appName=appName,
+        productName=productName,
+        version=majorUpdateToVersion,
+        appVersion=majorUpdateAppVersion,
+        baseTag=majorUpdateBaseTag,
+        buildNumber=majorUpdateBuildNumber,
+        oldVersion=version,
+        oldAppVersion=appVersion,
+        oldBaseTag=baseTag,
+        oldBuildNumber=buildNumber,
+        ftpServer=ftpServer,
+        bouncerServer=bouncerServer,
+        stagingServer=stagingServer,
+        useBetaChannel=useBetaChannel,
+        stageUsername=branchConfig['stage_username'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        ausUser=branchConfig['aus2_user'],
+        ausHost=branchConfig['aus2_host'],
+        ausServerUrl=ausServerUrl,
+        hgSshKey=hgSshKey,
+        hgUsername=hgUsername,
+        # We disable this on staging, because we don't have a CVS mirror to
+        # commit to
+        commitPatcherConfig=False,
+        clobberURL=branchConfig['base_clobber_url'],
+        oldRepoPath=sourceRepoPath,
+        triggerSchedulers=['major_update_verify']
+    )
+    
+    builders.append({
+        'name': 'major_update',
+        'slavenames': branchConfig['platforms']['linux']['slaves'],
+        'category': 'release',
+        'builddir': 'major_update',
+        'factory': major_update_factory
+    })
+    
+    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+        major_update_verify_factory = UpdateVerifyFactory(
+            hgHost=branchConfig['hghost'],
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            verifyConfig=majorUpdateVerifyConfigs[platform],
+            clobberURL=branchConfig['base_clobber_url'],
+        )
+    
+        builders.append({
+            'name': '%s_major_update_verify' % platform,
+            'slavenames': branchConfig['platforms'][platform]['slaves'],
+            'category': 'release',
+            'builddir': '%s_major_update_verify' % platform,
+            'factory': major_update_verify_factory
+        })
+
 
 status.append(TinderboxMailNotifier(
     fromaddr="mozilla2.buildbot@build.mozilla.org",

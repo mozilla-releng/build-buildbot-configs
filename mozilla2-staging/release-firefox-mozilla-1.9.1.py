@@ -19,15 +19,15 @@ appName             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '3.5.1'
+version             = '3.5.8'
 appVersion          = version
-milestone           = '1.9.1.1'
+milestone           = '1.9.1.8'
 buildNumber         = 1
-baseTag             = 'FIREFOX_3_5_1'
-oldVersion          = '3.5rc3'
-oldAppVersion       = '3.5'
-oldBuildNumber      = 2
-oldBaseTag          = 'FIREFOX_3_5'
+baseTag             = 'FIREFOX_3_5_8'
+oldVersion          = '3.5.7'
+oldAppVersion       = '3.5.7'
+oldBuildNumber      = 1
+oldBaseTag          = 'FIREFOX_3_5_7'
 enUSPlatforms       = ('linux', 'win32', 'macosx')
 talosTestPlatforms  = ()
 unittestPlatforms   = ()
@@ -38,9 +38,18 @@ ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
-useBetaChannel      = 0
+useBetaChannel      = 1
 verifyConfigs       = {'linux':  'moz191-firefox-linux.cfg',
                        'macosx': 'moz191-firefox-mac.cfg',
                        'win32':  'moz191-firefox-win32.cfg'}
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
+majorUpdateRepoPath    = 'users/stage-ffxbld/mozilla-1.9.2'
+majorUpdateToVersion   = '3.6rc2'
+majorUpdateAppVersion  = '3.6'
+majorUpdateBuildNumber = 1
+majorUpdateBaseTag     = 'FIREFOX_3_6rc2'
+majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
+majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
+                            'macosx': 'moz191-firefox-mac-major.cfg',
+                            'win32':  'moz191-firefox-win32-major.cfg'}
