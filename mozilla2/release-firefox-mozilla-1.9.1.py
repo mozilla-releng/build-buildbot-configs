@@ -39,4 +39,12 @@ verifyConfigs      = {'linux':  'moz191-firefox-linux.cfg',
                       'win32':  'moz191-firefox-win32.cfg'}
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
-majorUpdateRepoPath = None
+majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
+majorUpdateToVersion   = '3.6.2'
+majorUpdateAppVersion  = majorUpdateToVersion
+majorUpdateBuildNumber = 1
+majorUpdateBaseTag     = 'FIREFOX_3_6_2_RELEASE'
+majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
+majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
+                            'macosx': 'moz191-firefox-mac-major.cfg',
+                            'win32':  'moz191-firefox-win32-major.cfg'}
