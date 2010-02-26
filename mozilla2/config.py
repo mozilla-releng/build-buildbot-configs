@@ -81,6 +81,7 @@ GLOBAL_VARS = {
         'win32': {},
         'macosx': {},
         'linux-debug': {},
+        'linux64-debug': {},
         'macosx-debug': {},
         'win32-debug': {},
     },
@@ -215,6 +216,26 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
             },
         },
+        'linux64-debug': {
+            'base_name': 'Linux x86-64 %(branch)s leak test',
+            'mozconfig': 'linux64/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': 1,
+            'download_symbols': False,
+            'build_space': 7,
+            'slaves': SLAVES['linux64'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'DISPLAY': ':2',
+                'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_UMASK': '002',
+            },
+        },
         'macosx-debug': {
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
@@ -255,14 +276,7 @@ BRANCHES = {
     'mozilla-1.9.2': {},
     'tracemonkey': {},
     'places': {},
-    'electrolysis': {'platforms': {
-            'linux': {},
-            'win32': {},
-            'macosx': {},
-            'linux-debug': {},
-            'macosx-debug': {},
-            'win32-debug': {},
-        }},
+    'electrolysis': {},
     'firefox-lorentz': {},
 }
 
@@ -320,9 +334,11 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['mozilla-central']['platforms']['linux64-debug']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux64-debug']['enable_unittests'] = False 
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
@@ -358,6 +374,7 @@ BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 4
 BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
@@ -396,6 +413,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 5
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
@@ -456,9 +474,11 @@ BRANCHES['tracemonkey']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_unittests'] = False 
 BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
@@ -474,6 +494,7 @@ BRANCHES['tracemonkey']['platforms']['linux64']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
+BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
@@ -510,9 +531,11 @@ BRANCHES['places']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['places']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['places']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['places']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['places']['platforms']['linux64-debug']['enable_checktests'] = True
 BRANCHES['places']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['places']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['places']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['places']['platforms']['linux64-debug']['enable_unittests'] = False 
 BRANCHES['places']['platforms']['macosx-debug']['enable_unittests'] = True
 BRANCHES['places']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['places']['enable_mac_a11y'] = True
@@ -554,6 +577,7 @@ BRANCHES['electrolysis']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['macosx']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['win32']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['electrolysis']['platforms']['linux64-debug']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['macosx-debug']['enable_checktests'] = True
 BRANCHES['electrolysis']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['electrolysis']['enable_mac_a11y'] = True
@@ -575,6 +599,7 @@ BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['tinderbox_tree'] = 'Electrolysis'
 BRANCHES['electrolysis']['packaged_unittest_tinderbox_tree'] = 'Electrolysis'
 
@@ -589,6 +614,7 @@ BRANCHES['firefox-lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64
 BRANCHES['firefox-lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['base_name'] = 'Linux lorentz leak test'
+BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['base_name'] = 'Linux x86-64 lorentz leak test'
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 lorentz leak test'
 BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 lorentz leak test'
 BRANCHES['firefox-lorentz']['platforms']['linux']['build_space'] = 5
@@ -596,6 +622,7 @@ BRANCHES['firefox-lorentz']['platforms']['linux64']['build_space'] = 5
 BRANCHES['firefox-lorentz']['platforms']['win32']['build_space'] = 7
 BRANCHES['firefox-lorentz']['platforms']['macosx']['build_space'] = 7
 BRANCHES['firefox-lorentz']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['build_space'] = 4
 BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['create_snippet'] = False
