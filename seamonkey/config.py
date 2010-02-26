@@ -5,12 +5,11 @@ reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
 SLAVES = {
-    'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2]] +
-             ['cb-seamonkey-linuxdebug-%02i' % x for x in [1]] +
+    'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
              ['cb-sea-linux-tbox'],
     'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]],
-    'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2]] +
+    'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['cb-sea-win32-tbox'],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2,3,4,5]],
