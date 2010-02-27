@@ -159,18 +159,12 @@ BRANCHES['comm-central-trunk']['platforms']['win32-debug']['builds_before_reboot
 # Enable Nightly builds
 BRANCHES['comm-central-trunk']['enable_nightly'] = True
 # Enable unit tests
-BRANCHES['comm-central-trunk']['unittest_suites'] = [
-#    ('mochitests', ['mochitest-plain']),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y']),
-    ('xpcshell', ['xpcshell']),
-]
 BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['enable_unittests'] = False
 BRANCHES['comm-central-trunk']['platforms']['linux-debug']['enable_unittests'] = True
 BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['enable_unittests'] = False
+BRANCHES['comm-central-trunk']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
 BRANCHES['comm-central-trunk']['platforms']['linux']['crashtest_leak_threshold'] = 0
 BRANCHES['comm-central-trunk']['platforms']['macosx']['crashtest_leak_threshold'] = 0
