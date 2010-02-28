@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = 'db1f6446efda'
+sourceRepoRevision = '3874a469cf09'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
@@ -14,11 +14,11 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.7a1'
+version            = '3.7a2'
 appVersion         = version
-milestone          = '1.9.3a1'
+milestone          = '1.9.3a2'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_7a1'
+baseTag            = 'FIREFOX_3_7a2'
 oldVersion         = ''
 oldAppVersion      = ''
 oldBuildNumber     = 1
@@ -35,7 +35,7 @@ unittestPlatforms  = ('linux', 'win32', 'macosx')
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 useBetaChannel     = 0
-# TODO: create these files before 3.7a2
+# TODO: create these files before first 3.7 requiring updates
 verifyConfigs      = {'linux':  'moz193-firefox-linux.cfg',
                       'macosx': 'moz193-firefox-mac.cfg',
                       'win32':  'moz193-firefox-win32.cfg'}
