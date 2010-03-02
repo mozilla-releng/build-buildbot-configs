@@ -3,18 +3,18 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'comm-central'
-sourceRepoRevision         = 'c1bb767189c1'
+sourceRepoRevision         = '8a57290de34e'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM192_20100119_RELBRANCH'
+relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = '4c949e59cf95'
+mozillaRepoRevision        = 'f20ea707314c'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM192_20100119_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM192_20100302_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
-inspectorRepoRevision      = ''
-inspectorRelbranchOverride = 'COMM192_20100119_RELBRANCH'
+inspectorRepoRevision      = '2bbdd20af50a'
+inspectorRelbranchOverride = ''
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -33,12 +33,12 @@ appName                    = 'mail'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1a2'
+version                    = '3.1b1'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '1.9.2'
+milestone                  = '1.9.2.2'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_1_a2'
+baseTag                    = 'THUNDERBIRD_3_1_b1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.1a1'
 oldAppVersion              = oldVersion
