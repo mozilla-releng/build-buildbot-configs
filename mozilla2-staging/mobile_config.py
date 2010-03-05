@@ -179,7 +179,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
 MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-1.9.2']['main_config']['download_base_url'] + '/nightly/latest-mobile-1.9.2'
+    MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] + '/nightly/latest-mobile-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
@@ -347,7 +347,7 @@ MOBILE_BRANCHES['mobile-lorentz']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-lorentz']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-lorentz']['main_config']['download_base_url'] + '/nightly/latest-mobile-lorentz'
+    MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] + '/nightly/latest-mobile-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']

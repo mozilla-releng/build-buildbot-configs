@@ -236,6 +236,7 @@ for platform in enUSPlatforms:
 
     if platform in l10nPlatforms:
         if platform == 'maemo':
+            releaseBuildDir = pf['base_builddir'] + '-l10n-release'
             repack_factory = MaemoReleaseRepackFactory(
                 enUSBinaryURL='%s/maemo' % (base_enUS_binaryURL),
                 stageServer=branchConfig['stage_server'],
@@ -245,6 +246,7 @@ for platform in enUSPlatforms:
                                                                   version,
                                                                   buildNumber),
                 baseWorkDir='%s-release' % pf['base_l10n_workdir'],
+                baseBuildDir=releaseBuildDir,
                 l10nTag='%s_RELEASE' % baseTag,
                 hgHost=branchConfig['hghost'],
                 repoPath=mozSourceRepoPath,

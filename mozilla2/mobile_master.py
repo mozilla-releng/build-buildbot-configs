@@ -402,6 +402,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
             if platform == 'linux-gnueabi-arm':
+                nightlyBuildDir = pf['base_builddir'] + '-l10n'
+                depBuildDir = pf['base_builddir'] + '-l10n-dep'
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
                     nightly = True,
                     hgHost=mainConfig['hghost'],
@@ -427,6 +429,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     compareLocalesTag=mainConfig['compare_locales_tag'],
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
+                    baseBuildDir=nightlyBuildDir,
                     baseUploadDir='%s-l10n' % name,
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
@@ -456,6 +459,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     compareLocalesTag=mainConfig['compare_locales_tag'],
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
+                    baseBuildDir=depBuildDir,
                     baseUploadDir='%s-l10n' % name,
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
