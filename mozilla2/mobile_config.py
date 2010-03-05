@@ -81,7 +81,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_builddir'] = 'winmo-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-trunk-l10n'
-MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x_mc'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
@@ -165,7 +165,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_builddir'] = 'winmo-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-1.9.2-l10n'
-MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-1.9.2']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tree'] = 'fennec10x_192'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
@@ -335,7 +335,7 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_l10n_workdir'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_builddir'] = 'winmo-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-lorentz']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-lorentz']['l10n_tree'] = 'fennec10x_192'
 MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
