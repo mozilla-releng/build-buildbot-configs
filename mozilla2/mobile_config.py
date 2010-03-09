@@ -81,7 +81,8 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_builddir'] = 'winmo-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-trunk-l10n'
-MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-trunk']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x_mc'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
@@ -165,7 +166,8 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_builddir'] = 'winmo-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-1.9.2-l10n'
-MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-1.9.2']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tree'] = 'fennec10x_192'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
@@ -222,6 +224,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_bu
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_builddir'] = 'winmo-tm'
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
@@ -269,6 +272,7 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_workdir']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_builddir'] = 'winmo-electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-electrolysis-l10n'
 MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
@@ -335,7 +339,8 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_l10n_workdir'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_builddir'] = 'winmo-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-lorentz']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-lorentz']['enable_multi_locale'] = True
 MOBILE_BRANCHES['mobile-lorentz']['l10n_tree'] = 'fennec10x_192'
 MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'

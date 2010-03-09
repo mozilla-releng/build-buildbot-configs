@@ -348,6 +348,7 @@ BRANCHES['mozilla-central']['unittest_build_space'] = 6
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
+BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
@@ -388,6 +389,7 @@ BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
+BRANCHES['mozilla-1.9.1']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-1.9.1']['l10nDatedDirs'] = False
@@ -430,6 +432,7 @@ BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
+BRANCHES['mozilla-1.9.2']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
@@ -486,6 +489,7 @@ BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['tracemonkey']['enable_l10n'] = False
+BRANCHES['tracemonkey']['enable_l10n_onchange'] = False
 BRANCHES['tracemonkey']['l10nNightlyUpdate'] = False
 BRANCHES['tracemonkey']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
@@ -543,6 +547,7 @@ BRANCHES['places']['enable_mac_a11y'] = True
 BRANCHES['places']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['places']['enable_l10n'] = False
+BRANCHES['places']['enable_l10n_onchange'] = False
 # need this or the master.cfg will bail
 BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
@@ -585,6 +590,7 @@ BRANCHES['electrolysis']['enable_mac_a11y'] = True
 BRANCHES['electrolysis']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['electrolysis']['enable_l10n'] = False
+BRANCHES['electrolysis']['enable_l10n_onchange'] = False
 BRANCHES['electrolysis']['l10nNightlyUpdate'] = False
 BRANCHES['electrolysis']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
@@ -637,6 +643,7 @@ BRANCHES['firefox-lorentz']['enable_mac_a11y'] = False
 BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['firefox-lorentz']['enable_l10n'] = True
+BRANCHES['firefox-lorentz']['enable_l10n_onchange'] = True
 BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['firefox-lorentz']['l10nNightlyUpdate'] = False
 BRANCHES['firefox-lorentz']['l10nDatedDirs'] = False
