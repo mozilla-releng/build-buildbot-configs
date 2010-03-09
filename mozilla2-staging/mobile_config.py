@@ -371,7 +371,7 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['create_snippet'] = False
 
-### mozilla-central
+### mozilla-addonsmgr
 MOBILE_BRANCHES['mobile-addonsmgr']['main_config'] = config.BRANCHES['addonsmgr']
 MOBILE_BRANCHES['mobile-addonsmgr']['repo_path'] = 'projects/addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['l10n_repo_path'] = 'l10n-central'
@@ -388,7 +388,6 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {
     'win32-i686': {},
     'winmo-arm': {},
 }
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
@@ -428,19 +427,9 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_l10n_workdir
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_multi_locale'] = False
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_tree'] = 'fennec10x_addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_platforms']['linux-i686'] = 'linux'
-#MOBILE_BRANCHES['mobile-addonsmgr']['l10n_platforms']['macosx-i686'] = 'macosx'
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_platforms']['win32-i686'] = 'win32'
-MOBILE_BRANCHES['mobile-addonsmgr']['allLocalesFile'] = "locales/all-locales"
-MOBILE_BRANCHES['mobile-addonsmgr']['multiLocalesFile'] = "locales/maemo-locales"
-MOBILE_BRANCHES['mobile-addonsmgr']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-addonsmgr-l10n'
 MOBILE_BRANCHES['mobile-addonsmgr']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] + '/nightly/latest-mobile-addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['tinderbox_tree'] = 'MozillaTest'
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_tinderbox_tree'] = 'MozillaStaging'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
