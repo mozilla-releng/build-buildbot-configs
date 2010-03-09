@@ -276,6 +276,7 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'firefox-lorentz': {},
+    'addonsmgr': {},
 }
 
 # Copy global vars in first, then platform vars
@@ -652,6 +653,58 @@ BRANCHES['firefox-lorentz']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUIL
 BRANCHES['firefox-lorentz']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-lorentz'
 BRANCHES['firefox-lorentz']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
 BRANCHES['firefox-lorentz']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
+
+######## addonsmgr
+BRANCHES['addonsmgr']['repo_path'] = 'projects/addonsmgr'
+BRANCHES['addonsmgr']['start_hour'] = [4]
+BRANCHES['addonsmgr']['start_minute'] = [2]
+BRANCHES['addonsmgr']['enable_nightly'] = False
+BRANCHES['addonsmgr']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y', 'mochitest-ipcplugins']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+    ('jsreftest', ['jsreftest']),
+]
+BRANCHES['addonsmgr']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['addonsmgr']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['addonsmgr']['platforms']['linux']['enable_unittests'] = False
+BRANCHES['addonsmgr']['platforms']['linux64']['enable_unittests'] = False
+BRANCHES['addonsmgr']['platforms']['macosx']['enable_unittests'] = False
+BRANCHES['addonsmgr']['platforms']['win32']['enable_unittests'] = False
+BRANCHES['addonsmgr']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['linux']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['macosx']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['win32']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['macosx-debug']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['addonsmgr']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['addonsmgr']['platforms']['win32-debug']['enable_unittests'] = True
+BRANCHES['addonsmgr']['enable_mac_a11y'] = True
+BRANCHES['addonsmgr']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['addonsmgr']['enable_l10n'] = False
+BRANCHES['addonsmgr']['l10nNightlyUpdate'] = False
+BRANCHES['addonsmgr']['l10nDatedDirs'] = False
+# need this or the master.cfg will bail
+BRANCHES['addonsmgr']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['addonsmgr']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
+BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-addonsmgr'
+BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
+BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 
 if __name__ == "__main__":
     import sys, pprint

@@ -1,0 +1,16 @@
+# for pgo
+mk_add_options PROFILE_GEN_SCRIPT='$(PYTHON) $(MOZ_OBJDIR)/_profile/pgo/profileserver.py'
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-packaging
+ac_add_options --enable-jemalloc
+ac_add_options --enable-tests
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+. $topsrcdir/configs/mozilla2-staging/win32/include/choose-make-flags

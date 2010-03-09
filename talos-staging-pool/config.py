@@ -38,6 +38,7 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'firefox-lorentz': {},
+    'addonsmgr': {},
 }
 
 PLATFORMS = {
@@ -230,3 +231,18 @@ BRANCHES['firefox-lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFOR
 BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['firefox-lorentz']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+
+######## addonsmgr
+BRANCHES['addonsmgr']['branch_name'] = "Addonsmgr"
+BRANCHES['addonsmgr']['build_branch'] = "Addonsmgr"
+BRANCHES['addonsmgr']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['addonsmgr']['talos_command'] = TALOS_CMD
+BRANCHES['addonsmgr']['fetch_symbols'] = True
+BRANCHES['addonsmgr']['chrome_tests'] = (0, True, {}, NO_TIGER)
+BRANCHES['addonsmgr']['nochrome_tests'] = (0, True, {}, NO_TIGER)
+BRANCHES['addonsmgr']['jss_tests'] = (1, True, {}, NO_TIGER)
+BRANCHES['addonsmgr']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_TIGER)
+BRANCHES['addonsmgr']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, NO_TIGER)
+BRANCHES['addonsmgr']['cold_tests'] = (1, True, {}, NO_TIGER_NO_WIN)
+BRANCHES['addonsmgr']['svg_tests'] = (0, True, {}, NO_TIGER)
+BRANCHES['addonsmgr']['v8_tests'] = (0, True, {}, NO_TIGER)
