@@ -12,5 +12,6 @@ export CXXFLAGS="-gstabs+"
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gstabs+"
 
 mk_add_options MOZ_MAKE_FLAGS="-j3"

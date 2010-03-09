@@ -12,6 +12,7 @@ CXX="ccache /tools/gcc-4.3.3/installed/bin/g++"
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gstabs+"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1

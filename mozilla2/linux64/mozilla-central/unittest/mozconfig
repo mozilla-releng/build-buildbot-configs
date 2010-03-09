@@ -12,6 +12,7 @@ export CXXFLAGS="-gstabs+"
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gstabs+"
 
 # We're using GCC 4.2 which has a bug we can work around.
 export ac_cv_have_visibility_class_bug=yes
