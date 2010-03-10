@@ -213,7 +213,7 @@ BRANCHES['electrolysis']['nochrome_tests'] = (0,True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['jss_tests'] = (1,True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['tp4_tests'] = (1,True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, ALL_PLATFORMS_NO_WIN)
+BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 
