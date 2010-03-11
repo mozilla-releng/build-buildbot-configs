@@ -1,21 +1,15 @@
 ac_add_options --enable-application=browser
-
+ac_add_options --enable-jemalloc
 ac_add_options --disable-optimize
 ac_add_options --enable-debug
 ac_add_options --enable-libxul
-
-ac_add_options --enable-tests
 ac_add_options --enable-trace-malloc
-
-CC="ccache /tools/gcc-4.3.3/installed/bin/gcc"
-CXX="ccache /tools/gcc-4.3.3/installed/bin/g++"
-
-export CFLAGS="-gstabs+"
-export CXXFLAGS="-gstabs+"
+ac_add_options --enable-tests
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
-ac_add_options --enable-debug-symbols="-gstabs+"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+. $topsrcdir/configs/mozilla2/win32/include/choose-make-flags

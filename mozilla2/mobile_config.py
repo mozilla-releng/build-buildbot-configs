@@ -25,6 +25,7 @@ MOBILE_BRANCHES = {
     'mobile-tracemonkey': {},
     'mobile-electrolysis': {},
     'mobile-lorentz': {},
+    'mobile-addonsmgr': {},
 }
 
 ### mozilla-central
@@ -369,3 +370,77 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['create_snippet'] = False
+
+### mozilla-addonsmgr
+MOBILE_BRANCHES['mobile-addonsmgr']['main_config'] = config.BRANCHES['addonsmgr']
+MOBILE_BRANCHES['mobile-addonsmgr']['repo_path'] = 'projects/addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['l10n_repo_path'] = 'l10n-central'
+MOBILE_BRANCHES['mobile-addonsmgr']['mobile_repo_path'] = 'mobile-browser'
+MOBILE_BRANCHES['mobile-addonsmgr']['product_name'] = 'fennec'
+MOBILE_BRANCHES['mobile-addonsmgr']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-addonsmgr']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] = 'http://stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-addonsmgr']['stage_base_path'] = '/home/ftp/pub/mobile'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {
+    'linux-gnueabi-arm': {},
+    'linux-i686': {},
+    'macosx-i686': {},
+    'win32-i686': {},
+    'winmo-arm': {},
+}
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-addonsmgr/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop Addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop Addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop Addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_name'] = 'WinMo Addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['build_space'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['builds_before_reboot'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['builds_before_reboot'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['builds_before_reboot'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['builds_before_reboot'] = 5
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-addonsmgr' % SBOX_HOME
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-addonsmgr'
+# This base directory is for the individual locales repackaging; it is not for the multi-locale build
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_l10n_workdir'] = '%s/build/maemo-addonsmgr-l10n' % SBOX_HOME
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-addonsmgr-l10n'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_builddir'] = 'macosx-fennec-addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_l10n_workdir'] = 'build/macosx-fennec-addonsmgr-l10n'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_workdir'] = '.'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_builddir'] = 'w32mob-addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-addonsmgr-l10n'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_workdir'] = '.'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_builddir'] = 'winmo-addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-addonsmgr-l10n'
+MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n'] = False
+MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n_onchange'] = False
+MOBILE_BRANCHES['mobile-addonsmgr']['enable_multi_locale'] = False
+MOBILE_BRANCHES['mobile-addonsmgr']['enUS_binaryURL'] = \
+    MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] + '/nightly/latest-mobile-addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['tinderbox_tree'] = 'AddonsMgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['env'] = {}
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['env'] = {}
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = {
+    'CHOWN_ROOT': '~/bin/chown_root',
+    'CHOWN_REVERT': '~/bin/chown_revert',
+}
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['env'] = {}
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['create_snippet'] = False
