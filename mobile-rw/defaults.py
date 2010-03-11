@@ -14,10 +14,10 @@ default_platform['per_checkin'] = True
 default_platform['unit_build_dirs'] = []
 default_platform['talos_build_dirs'] = []
 default_platform['talos_suites'] = {
-#     'tp4': {},
-#     'tp4_nochrome': {},
-#     'tpan': {},
-#     'tzoom': {},
+    # 'tp4': {},
+    # 'tp4_nochrome': {},
+    # 'tpan': {},
+    # 'tzoom': {},
     'ts': {},
     'twinopen': {},
     'tdhtml': {},
