@@ -17,6 +17,9 @@ SLAVES = {
     'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
     'win32':  WIN32_VMS + WIN32_IXS,
     'macosx': MAC_MINIS + XSERVES,
+    'try-win32': ['try-w32-slave%02i' % x for x in range(1,20)],
+    'try-linux': ['try-linux-slave%02i' % x for x in range(1,20)],
+    'try-macosx': ['try-mac-slave%02i' % x for x in range(1,20)],
 }
 
 GLOBAL_VARS = {
@@ -277,6 +280,7 @@ BRANCHES = {
     'electrolysis': {},
     'firefox-lorentz': {},
     'addonsmgr': {},
+    'tryserver': {},
 }
 
 # Copy global vars in first, then platform vars
@@ -705,6 +709,73 @@ BRANCHES['addonsmgr']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] 
 BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-addonsmgr'
 BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
+
+######## tryserver
+# Try-specific configs 
+BRANCHES['tryserver']['enable_merging'] = False
+BRANCHES['tryserver']['enable_try'] = True
+BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
+# This is a path, relative to HGURL, where the repository is located
+# HGURL  repo_path should be a valid repository
+BRANCHES['tryserver']['download_base_url'] =['http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds']
+BRANCHES['tryserver']['repo_path'] = 'try'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/tryserver-builds'
+BRANCHES['tryserver']['start_hour'] = [3]
+BRANCHES['tryserver']['start_minute'] = [2]
+BRANCHES['tryserver']['platforms']['linux']['build_space'] = 5
+BRANCHES['tryserver']['platforms']['linux64']['build_space'] = 5
+BRANCHES['tryserver']['platforms']['win32']['build_space'] = 7
+BRANCHES['tryserver']['platforms']['macosx']['build_space'] = 6
+BRANCHES['tryserver']['platforms']['linux-debug']['build_space'] = 3
+BRANCHES['tryserver']['platforms']['win32-debug']['build_space'] = 5
+BRANCHES['tryserver']['platforms']['macosx-debug']['build_space'] = 3
+# Disable Nightly builds
+BRANCHES['tryserver']['enable_nightly'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['tryserver']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['tryserver']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell', 'jsreftest'])
+]
+BRANCHES['tryserver']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['linux64']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['linux-debug']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['macosx-debug']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['win32-debug']['enable_unittests'] = True
+BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['tryserver']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['tryserver']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['tryserver']['platforms']['linux']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['macosx']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['win32']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['linux-debug']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['macosx-debug']['enable_checktests'] = True
+BRANCHES['tryserver']['platforms']['win32-debug']['enable_checktests'] = True
+BRANCHES['tryserver']['enable_mac_a11y'] = True
+BRANCHES['tryserver']['platforms']['win32']['mochitest_leak_threshold'] = 484
+BRANCHES['tryserver']['platforms']['win32']['crashtest_leak_threshold'] = 484
+BRANCHES['tryserver']['unittest_build_space'] = 6
+BRANCHES['tryserver']['enable_l10n'] = False
+BRANCHES['tryserver']['enable_l10n_onchange'] = False
+BRANCHES['tryserver']['l10nNightlyUpdate'] = False
+BRANCHES['tryserver']['l10nDatedDirs'] = False
+BRANCHES['tryserver']['enable_codecoverage'] = False
+BRANCHES['tryserver']['enable_shark'] = False
+BRANCHES['tryserver']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 
 if __name__ == "__main__":
     import sys, pprint
