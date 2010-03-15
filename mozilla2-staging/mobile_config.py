@@ -35,7 +35,7 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
@@ -111,7 +111,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
 }
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['create_snippet'] = True
+MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
@@ -120,7 +120,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/mozilla-1.9.2'
+MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
@@ -196,7 +196,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
 }
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = False
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = True
 
 ### mobile-tracemonkey
 MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
@@ -293,7 +293,7 @@ MOBILE_BRANCHES['mobile-lorentz']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9
 MOBILE_BRANCHES['mobile-lorentz']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-lorentz']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-lorentz']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/lorentz'
+MOBILE_BRANCHES['mobile-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-lorentz']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-lorentz']['platforms'] = {
@@ -378,7 +378,7 @@ MOBILE_BRANCHES['mobile-addonsmgr']['l10n_repo_path'] = 'l10n-central'
 MOBILE_BRANCHES['mobile-addonsmgr']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-addonsmgr']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-addonsmgr']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-addonsmgr']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Fennec/addonsmgr'
+MOBILE_BRANCHES['mobile-addonsmgr']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-addonsmgr']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {

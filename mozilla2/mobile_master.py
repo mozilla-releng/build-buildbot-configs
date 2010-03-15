@@ -377,6 +377,11 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildSpace=buildSpace,
                 buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly=True,
+                createSnippet=pf['create_snippet'],
+                downloadBaseURL=branch['download_base_url'],
+                ausUser=mainConfig['aus2_user'],
+                ausHost=mainConfig['aus2_host'],
+                ausBaseUploadDir=branch['aus2_base_upload_dir'],
             )
         mobile_dep_builder = None
         if mobile_dep_factory is not None:
