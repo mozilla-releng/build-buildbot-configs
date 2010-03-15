@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = '3874a469cf09'
+sourceRepoRevision = 'fcd3ffeb34ef'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
@@ -14,15 +14,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.7a2'
+version            = '3.7a3'
 appVersion         = version
-milestone          = '1.9.3a2'
+milestone          = '1.9.3a3'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_7a2'
-oldVersion         = ''
-oldAppVersion      = ''
+baseTag            = 'FIREFOX_3_7a3'
+oldVersion         = '3.7a2'
+oldAppVersion      = oldVersion
 oldBuildNumber     = 1
-oldBaseTag         = ''
+oldBaseTag         = 'FIREFOX_3_7a2'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = ()
 # TODO: create this file before 3.7a2
