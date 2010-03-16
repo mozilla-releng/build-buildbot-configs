@@ -100,21 +100,33 @@ mozilla2_2 = mozilla2 + MasterConfig(
 talos_staging = MasterConfig(
         'talos-staging-pool',
         globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ],
         )
 
 talos_staging_try = MasterConfig(
         'talos-staging-try',
         globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ],
         )
 
 talos = MasterConfig(
         'talos-pool',
         globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ],
         )
 
 talos_try = MasterConfig(
         'talos-try',
         globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ],
         )
 
 masters = {
