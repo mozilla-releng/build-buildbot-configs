@@ -22,7 +22,7 @@ BUILDERS = {
     },
     'macosx': {
         '10.5': {
-            'momo': [ 'momo-vm-osx-leopard-%02i' % x for x in [3,4,5] ] + [ 'mini-%02i' % x for x in [ 1,2 ] ]
+            'momo': [ 'mini-%02i' % x for x in [ 1,2,3,4,5 ] ]
         },
     },
     'win32': {
