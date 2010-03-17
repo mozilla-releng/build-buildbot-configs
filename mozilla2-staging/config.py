@@ -7,7 +7,7 @@ from buildbotcustom.env import MozillaEnvironments
 # This is only used within this file so it doesn't need to be part of the
 # big dict
 MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in range(1,38)]
-XSERVES   = ['bm-xserve%02i' % x for x in [7,9,11,12,16,17,18,19,21,22]]
+XSERVES   = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
 WIN32_VMS = ['win32-slave%02i' % x for x in range(1,60)]
 WIN32_IXS = ['mw32-ix-slave%02i' % x for x in range(1,26)]
 LINUX_VMS = ['moz2-linux-slave%02i' % x for x in range(1,51)]
