@@ -121,6 +121,14 @@ repositories = {
         'bumpFiles': []
     },
 }
+
+if buildToolsRepoPath:
+    repositories[buildToolsRepoPath] = {
+        'revision': buildToolsRepoRevision,
+        'relbranchOverride': buildToolsRelbranchOverride,
+        'bumpFiles': []
+    }
+
 if inspectorRepoPath:
     repositories[inspectorRepoPath] = {
         'revision': inspectorRepoRevision,
