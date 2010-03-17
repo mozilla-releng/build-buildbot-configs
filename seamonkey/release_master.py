@@ -131,24 +131,24 @@ repositories = {
         'bumpFiles': []
     },
 }
-#if inspectorRepoPath:
-#    repositories[inspectorRepoPath] = {
-#        'revision': inspectorRepoRevision,
-#        'relbranchOverride': inspectorRelbranchOverride,
-#        'bumpFiles': []
-#    }
+if inspectorRepoPath:
+    repositories[inspectorRepoPath] = {
+        'revision': inspectorRepoRevision,
+        'relbranchOverride': inspectorRelbranchOverride,
+        'bumpFiles': []
+    }
 if venkmanRepoPath:
     repositories[venkmanRepoPath] = {
         'revision': venkmanRepoRevision,
         'relbranchOverride': venkmanRelbranchOverride,
         'bumpFiles': []
     }
-#if chatzillaRepoPath:
-#    repositories[chatzillaRepoPath] = {
-#        'revision': chatzillaRepoRevision,
-#        'relbranchOverride': chatzillaRelbranchOverride,
-#        'bumpFiles': []
-#    }
+if chatzillaRepoPath:
+    repositories[chatzillaRepoPath] = {
+        'revision': chatzillaRepoRevision,
+        'relbranchOverride': chatzillaRelbranchOverride,
+        'bumpFiles': []
+    }
 
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                    relbranchOverride)
@@ -183,7 +183,7 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': dummy_factory # tag_factory
 })
 
 
@@ -212,7 +212,7 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': source_factory
+    'factory': dummy_factory # source_factory
 })
 
 
@@ -278,7 +278,7 @@ for platform in enUSPlatforms:
         'slavenames': pf['slaves'],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'factory': dummy_factory # build_factory
     })
 
     if platform in l10nPlatforms:
