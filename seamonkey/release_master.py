@@ -131,24 +131,24 @@ repositories = {
         'bumpFiles': []
     },
 }
-if inspectorRepoPath:
-    repositories[inspectorRepoPath] = {
-        'revision': inspectorRepoRevision,
-        'relbranchOverride': inspectorRelbranchOverride,
-        'bumpFiles': []
-    }
+#if inspectorRepoPath:
+#    repositories[inspectorRepoPath] = {
+#        'revision': inspectorRepoRevision,
+#        'relbranchOverride': inspectorRelbranchOverride,
+#        'bumpFiles': []
+#    }
 if venkmanRepoPath:
     repositories[venkmanRepoPath] = {
         'revision': venkmanRepoRevision,
         'relbranchOverride': venkmanRelbranchOverride,
         'bumpFiles': []
     }
-if chatzillaRepoPath:
-    repositories[chatzillaRepoPath] = {
-        'revision': chatzillaRepoRevision,
-        'relbranchOverride': chatzillaRelbranchOverride,
-        'bumpFiles': []
-    }
+#if chatzillaRepoPath:
+#    repositories[chatzillaRepoPath] = {
+#        'revision': chatzillaRepoRevision,
+#        'relbranchOverride': chatzillaRelbranchOverride,
+#        'bumpFiles': []
+#    }
 
 l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                    relbranchOverride)
