@@ -633,7 +633,7 @@ BRANCHES['firefox-lorentz']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['firefox-lorentz']['platforms']['win32-debug']['build_space'] = 4
 BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['build_space'] = 3
-BRANCHES['firefox-lorentz']['create_snippet'] = False
+BRANCHES['firefox-lorentz']['create_snippet'] = True
 # Enable XULRunner / SDK builds
 BRANCHES['firefox-lorentz']['enable_xulrunner'] = True
 # Enable unit tests
@@ -656,7 +656,7 @@ BRANCHES['firefox-lorentz']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-firefox-lorentz'
 BRANCHES['firefox-lorentz']['allLocalesFile'] = 'browser/locales/all-locales'
 # need this or the master.cfg will bail
-BRANCHES['firefox-lorentz']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['firefox-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/firefox-lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
 BRANCHES['firefox-lorentz']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-lorentz'
 BRANCHES['firefox-lorentz']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
