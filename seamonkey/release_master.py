@@ -361,6 +361,7 @@ updates_factory = ReleaseUpdatesFactory(
     hgHost=branchConfig['hghost'],
     repoPath=sourceRepoPath,
     mozRepoPath=mozillaRepoPath,
+    oldRepoPath=sourceRepoPath, # see bug 492913 comment #53
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     cvsroot=cvsroot,
     patcherToolsTag=patcherToolsTag,
