@@ -5,7 +5,7 @@ reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
 MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) +
-             range(29,38)]
+             range(29,68)]
 XSERVES   = ['bm-xserve%02i' % x for x in [7,9,11,12,16,17,18,19,21,22]]
 LINUX_VMS = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) +
              range(18,51)]
