@@ -64,12 +64,13 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', False, 0)],
     'unittest_suites': [
-        ('mochitests', ['mochitest-plain']),
+        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-            'mochitest-a11y']),
+            'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
     ],
     'geriatric_masters': [],
     'geriatric_branches': {},
@@ -123,6 +124,8 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
+            'enable_opt_unittests': True,
+            'enable_checktests': True,
         },
         'linux64': {
             'base_name': 'Linux x86-64 %(branch)s',
@@ -146,7 +149,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
-            }
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
         },
         'macosx': {
             'base_name': 'OS X 10.5.2 %(branch)s',
@@ -170,6 +175,8 @@ PLATFORM_VARS = {
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
             },
+            'enable_opt_unittests': True,
+            'enable_checktests': True,
         },
         'win32': {
             'base_name': 'WINNT 5.2 %(branch)s',
@@ -196,6 +203,8 @@ PLATFORM_VARS = {
                 # Source server support, bug 506702
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
             },
+            'enable_opt_unittests': True,
+            'enable_checktests': True,
         },
         'linux-debug': {
             'base_name': 'Linux %(branch)s leak test',
@@ -216,6 +225,8 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
+            'enable_unittests': False,
+            'enable_checktests': True,
         },
         'linux64-debug': {
             'base_name': 'Linux x86-64 %(branch)s leak test',
@@ -236,6 +247,7 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
+            'enable_checktests': True,
         },
         'macosx-debug': {
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
@@ -251,6 +263,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
+            'enable_unittests': True,
+            'enable_checktests': True,
         },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
@@ -266,6 +280,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
+            'enable_unittests': True,
+            'enable_checktests': True,
         },
 }
 
@@ -308,16 +324,6 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
-BRANCHES['mozilla-central']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y', 'mochitest-ipcplugins']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-    ('jsreftest', ['jsreftest']),
-]
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
@@ -326,23 +332,6 @@ BRANCHES['mozilla-central']['geriatric_branches'] = {
     'linux': ['p3-linux-unit'],
     'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
 }
-BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['win32']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['linux64-debug']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_checktests'] = True
-BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux64-debug']['enable_unittests'] = False 
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
@@ -383,9 +372,30 @@ BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
 # Enable unit tests
+BRANCHES['mozilla-1.9.1']['unittest_suites'] = [
+    ('mochitests', ['mochitest-plain']),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 # L10n configuration
@@ -423,12 +433,27 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
+BRANCHES['mozilla-1.9.2']['unittest_suites'] = [
+    ('mochitests', ['mochitest-plain']),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 # L10n configuration
@@ -453,39 +478,12 @@ BRANCHES['mozilla-1.9.2']['packaged_unittest_tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
 BRANCHES['tracemonkey']['start_hour'] = [3]
 BRANCHES['tracemonkey']['start_minute'] = [32]
-BRANCHES['tracemonkey']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y', 'mochitest-ipcplugins']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-    ('jsreftest', ['jsreftest']),
-]
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
 BRANCHES['tracemonkey']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['tracemonkey']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['win32']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['win32']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_unittests'] = False 
-BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 6
 # L10n configuration
@@ -516,34 +514,6 @@ BRANCHES['places']['create_snippet'] = False
 BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['places']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y', 'mochitest-ipcplugins']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-    ('jsreftest', ['jsreftest']),
-]
-BRANCHES['places']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['places']['platforms']['macosx']['enable_unittests'] = False
-BRANCHES['places']['platforms']['win32']['enable_unittests'] = False
-BRANCHES['places']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['places']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['places']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['places']['platforms']['linux']['enable_checktests'] = True
-BRANCHES['places']['platforms']['macosx']['enable_checktests'] = True
-BRANCHES['places']['platforms']['win32']['enable_checktests'] = True
-BRANCHES['places']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['places']['platforms']['linux64-debug']['enable_checktests'] = True
-BRANCHES['places']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['places']['platforms']['win32-debug']['enable_checktests'] = True
-BRANCHES['places']['platforms']['linux-debug']['enable_unittests'] = True
-BRANCHES['places']['platforms']['linux64-debug']['enable_unittests'] = False 
-BRANCHES['places']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['places']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['places']['enable_mac_a11y'] = True
 BRANCHES['places']['unittest_build_space'] = 6
 # L10n configuration
@@ -568,25 +538,10 @@ BRANCHES['places']['packaged_unittest_tinderbox_tree'] = 'Places'
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
 BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2]
-BRANCHES['electrolysis']['unittest_suites'].append( ('jsreftest', ['jsreftest']) )
-for suite in BRANCHES['electrolysis']['unittest_suites']:
-    if suite[0] == 'mochitest-other':
-        suite[1].append('mochitest-ipcplugins')
 BRANCHES['electrolysis']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False
-# Enable unit tests
-BRANCHES['electrolysis']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['electrolysis']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['electrolysis']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['electrolysis']['platforms']['linux']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['macosx']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['win32']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['linux64-debug']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['electrolysis']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['electrolysis']['enable_mac_a11y'] = True
 BRANCHES['electrolysis']['unittest_build_space'] = 6
 # L10n configuration
@@ -637,9 +592,30 @@ BRANCHES['firefox-lorentz']['create_snippet'] = True
 # Enable XULRunner / SDK builds
 BRANCHES['firefox-lorentz']['enable_xulrunner'] = True
 # Enable unit tests
+BRANCHES['firefox-lorentz']['unittest_suites'] = [
+    ('mochitests', ['mochitest-plain']),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['firefox-lorentz']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['firefox-lorentz']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['linux']['enable_checktests'] = False
+BRANCHES['firefox-lorentz']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['linux-debug']['enable_checktests'] = False
+BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_checktests'] = False
+BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['enable_checktests'] = False
 BRANCHES['firefox-lorentz']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['firefox-lorentz']['platforms']['win32']['enable_opt_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['win32']['enable_checktests'] = False
+BRANCHES['firefox-lorentz']['platforms']['win32-debug']['enable_unittests'] = False
+BRANCHES['firefox-lorentz']['platforms']['win32-debug']['enable_checktests'] = False
 BRANCHES['firefox-lorentz']['enable_mac_a11y'] = False
 BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
 # L10n configuration
@@ -669,40 +645,11 @@ BRANCHES['addonsmgr']['repo_path'] = 'projects/addonsmgr'
 BRANCHES['addonsmgr']['start_hour'] = [4]
 BRANCHES['addonsmgr']['start_minute'] = [2]
 BRANCHES['addonsmgr']['enable_nightly'] = False
-BRANCHES['addonsmgr']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y', 'mochitest-ipcplugins']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-    ('jsreftest', ['jsreftest']),
-]
 BRANCHES['addonsmgr']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['addonsmgr']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['addonsmgr']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['macosx']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['win32']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_opt_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['addonsmgr']['platforms']['win32']['enable_opt_unittests'] = True
-BRANCHES['addonsmgr']['platforms']['linux']['enable_checktests'] = True
 BRANCHES['addonsmgr']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['macosx']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['win32']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['win32-debug']['enable_checktests'] = True
-BRANCHES['addonsmgr']['platforms']['linux-debug']['enable_unittests'] = True
-BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['addonsmgr']['platforms']['win32-debug']['enable_unittests'] = True
 BRANCHES['addonsmgr']['enable_mac_a11y'] = True
 BRANCHES['addonsmgr']['enable_shark'] = False
 # L10n configuration
