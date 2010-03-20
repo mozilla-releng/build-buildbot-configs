@@ -227,7 +227,7 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
-            'enable_unittests': False,
+            'enable_unittests': True,
             'enable_checktests': True,
         },
         'linux64-debug': {
@@ -250,6 +250,7 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
+            'enable_unittests': False,
             'enable_checktests': True,
         },
         'macosx-debug': {

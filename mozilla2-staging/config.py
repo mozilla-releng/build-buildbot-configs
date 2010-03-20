@@ -227,8 +227,8 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
             },
-            'enable_checktests': True,
             'enable_unittests': True,
+            'enable_checktests': True,
         },
         'linux64-debug': {
             'base_name': 'Linux x86-64 %(branch)s leak test',
@@ -247,8 +247,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_checktests': True,
             'enable_unittests': False,
+            'enable_checktests': True,
         },
         'macosx-debug': {
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
@@ -264,8 +264,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_checktests': True,
             'enable_unittests': True,
+            'enable_checktests': True,
         },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
@@ -281,8 +281,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_checktests': True,
             'enable_unittests': True,
+            'enable_checktests': True,
         },
 }
 
@@ -391,7 +391,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_checktests'] = False
-
 BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
 # L10n configuration
