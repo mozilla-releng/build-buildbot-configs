@@ -41,6 +41,7 @@ GLOBAL_VARS = {
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
+    'aus2_ssh_key': 'cltbld_dsa',
     'aus2_host': 'aus2-staging.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
     'graph_server': 'graphs.mozilla.org',
@@ -95,6 +96,10 @@ GLOBAL_VARS = {
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_nightly': True,
+    'hash_type': 'sha512',
+    'create_snippet': False,
+    'create_partial': False,
+    'create_partial_l10n': False,
 }
 
 # shorthand, because these are used often
@@ -357,7 +362,12 @@ BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['create_partial'] = True
+BRANCHES['mozilla-central']['create_partial_l10n'] = True
+BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld',
+BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa',
+BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Firefox'
 BRANCHES['mozilla-central']['packaged_unittest_tinderbox_tree'] = 'Firefox'
 
@@ -417,6 +427,7 @@ BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = 'Firefox3.5'
 BRANCHES['mozilla-1.9.1']['packaged_unittest_tinderbox_tree'] = 'Firefox3.5'
 
@@ -475,6 +486,7 @@ BRANCHES['mozilla-1.9.2']['enUS_binaryURL'] = \
 BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.2']['create_snippet'] = True
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['mozilla-1.9.2']['packaged_unittest_tinderbox_tree'] = 'Firefox3.6'
 
