@@ -675,7 +675,7 @@ BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID']
 # Try-specific configs 
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
-BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['enable_mail_notifier'] = False
 BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
