@@ -64,6 +64,7 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', True, 0),
                          ('localhost:9011', True, 0),
+                         ('localhost:9012', True, 0),
                          ('talos-staging-master02.build.mozilla.org:9010', True, 0),],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
