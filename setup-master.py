@@ -170,9 +170,41 @@ talos_try = MasterConfig(
             ],
         )
 
+mozilla = MasterConfig(
+        'mozilla',
+        globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('passwords.py.template', 'passwords.py'),
+            ],
+        )
+
+mozilla_staging_scheduler_master = mozilla + MasterConfig(
+        local_links = [
+            ('staging_scheduler_master_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('scheduler_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_builder_master1 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 masters = {
-        'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2],
+        'mozilla2-staging': [
+            mozilla2_staging1,
+            mozilla2_staging2,
+            ],
         'mozilla2': [mozilla2_1, mozilla2_2],
+        'mozilla': [
+            mozilla_staging_scheduler_master,
+            mozilla_staging_builder_master1,
+            ],
         'talos-staging': [talos_staging],
         'talos-staging-try': [talos_staging_try],
         'talos': [talos],

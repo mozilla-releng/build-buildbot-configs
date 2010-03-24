@@ -4,24 +4,13 @@ import buildbotcustom.env
 reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
-# This is only used within this file so it doesn't need to be part of the
-# big dict
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,69)]
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
-WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)]
-LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,25)]
-SLAVES = {
-    'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32':       WIN32_VMS + WIN32_IXS,
-    'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
-}
+import localconfig
+reload(localconfig)
+from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
+                        LINUX_IXS, WIN32_VMS, WIN32_IXS, SLAVES
 
-GLOBAL_VARS = {
+GLOBAL_VARS = localconfig.GLOBAL_VARS.copy()
+GLOBAL_VARS.update({
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
@@ -29,12 +18,10 @@ GLOBAL_VARS = {
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'config_repo_path': 'build/buildbot-configs',
-    'config_subdir': 'mozilla2-staging',
     'objdir': 'obj-firefox',
     'objdir_unittests': 'objdir',
     'stage_username': 'ffxbld',
     'stage_username_xulrunner': 'xrbld',
-    'stage_server': 'staging-stage.build.mozilla.org',
     'stage_base_path': '/home/ftp/pub/firefox',
     'stage_base_path_xulrunner': '/home/ftp/pub/xulrunner',
     'stage_group': None,
@@ -44,31 +31,11 @@ GLOBAL_VARS = {
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
-    'aus2_host': 'staging-stage.build.mozilla.org',
-    'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
-    'graph_server': 'graphs-stage.mozilla.org',
     'graph_selector': '/server/collect.cgi',
-    'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
-    'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'default_clobber_time': 24*7, # 1 week
-    # List of talos masters to notify of new builds,
-    # and if a failure to notify the talos master should result in a warning
-    'talos_masters': [
-        ('talos-staging-master02.build.mozilla.org:9010', False),
-        ('talos-staging-master02.build.mozilla.org:9012', False),
-        ('talos-master02.build.mozilla.org:9010', False),
-    ],
-    # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', True, 0),
-                         ('localhost:9011', True, 0),
-                         ('localhost:9012', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9010', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9012', True, 0),
-                        ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
@@ -80,10 +47,6 @@ GLOBAL_VARS = {
     ],
     'geriatric_masters': [],
     'geriatric_branches': {},
-    'xulrunner_tinderbox_tree': 'MozillaTest',
-    'weekly_tinderbox_tree': 'MozillaTest',
-    'l10n_tinderbox_tree': 'MozillaStaging',
-    'packaged_unittest_tinderbox_tree': 'MozillaTest',
     'platforms': {
         'linux': {},
         'linux64': {},
@@ -99,7 +62,6 @@ GLOBAL_VARS = {
     'product_name': 'firefox',
     'app_name': 'browser',
     'brand_name': 'Minefield',
-    'tinderbox_tree': 'MozillaTest',
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_nightly': True,
@@ -107,7 +69,7 @@ GLOBAL_VARS = {
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
-}
+})
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
@@ -118,7 +80,7 @@ PLATFORM_VARS = {
             'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 6,
             'upload_symbols': True,
             'download_symbols': True,
@@ -128,7 +90,7 @@ PLATFORM_VARS = {
             'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
@@ -145,7 +107,7 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 6,
             'upload_symbols': True,
             'download_symbols': False,
@@ -155,7 +117,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
@@ -173,7 +135,7 @@ PLATFORM_VARS = {
             'base_name': 'OS X 10.5.2 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
@@ -182,7 +144,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
@@ -198,18 +160,18 @@ PLATFORM_VARS = {
         'macosx64': {
             'base_name': 'OS X 10.6.2 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
+            'packageTests': True,
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 8,
             'upload_symbols': False,
             'download_symbols': False,
-            'packageTests': True,
             'slaves': SLAVES['macosx-snow'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
@@ -226,7 +188,7 @@ PLATFORM_VARS = {
             'base_name': 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
             'profiled_build': True,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 9,
             'upload_symbols': True,
             'download_symbols': True,
@@ -238,7 +200,7 @@ PLATFORM_VARS = {
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
@@ -255,7 +217,7 @@ PLATFORM_VARS = {
             'base_name': 'Linux %(branch)s leak test',
             'mozconfig': 'linux/%(branch)s/debug',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 7,
             'slaves': SLAVES['linux'],
@@ -278,7 +240,7 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s leak test',
             'mozconfig': 'linux64/%(branch)s/debug',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': False,
             'packageTests': True,
             'build_space': 7,
@@ -302,7 +264,7 @@ PLATFORM_VARS = {
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 5,
             'slaves': SLAVES['macosx'],
@@ -319,10 +281,10 @@ PLATFORM_VARS = {
         'macosx64-debug': {
             'base_name': 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
-            'profiled_build': False,
-            'builds_before_reboot': 5,
-            'download_symbols': True,
             'packageTests': True,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': True,
             'build_space': 5,
             'slaves': SLAVES['macosx-snow'],
             'platform_objdir': OBJDIR,
@@ -331,18 +293,15 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_opt_unittests': False,
+            'enable_unittests': False,
             'enable_checktests': False,
-            'talos_masters': [
-                ('talos-staging-master02.build.mozilla.org:9010', False),
-                ('talos-staging-master02.build.mozilla.org:9012', False),
-            ],
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
             'profiled_build': False,
-            'builds_before_reboot': 5,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 7,
             'slaves': SLAVES['win32'],
@@ -362,23 +321,22 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {},
-    'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
-                                      'linux64': {}, 'linux64-debug': {}, 
-                                      'macosx': {}, 'macosx-debug': {}, 
-                                      'win32': {}, 'win32-debug': {}, 
+    'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {},
+                                      'linux64': {}, 'linux64-debug': {},
+                                      'macosx': {}, 'macosx-debug': {},
+                                      'win32': {}, 'win32-debug': {},
                                     },
                      },
-    'mozilla-1.9.2': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
-                                      'linux64': {}, 'linux64-debug': {}, 
-                                      'macosx': {}, 'macosx-debug': {}, 
-                                      'win32': {}, 'win32-debug': {}, 
+    'mozilla-1.9.2': { 'platforms': { 'linux': {}, 'linux-debug': {},
+                                      'linux64': {}, 'linux64-debug': {},
+                                      'macosx': {}, 'macosx-debug': {},
+                                      'win32': {}, 'win32-debug': {},
                                     },
                      },
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
     'addonsmgr': {},
-    'tryserver': {},
 }
 
 # Copy global vars in first, then platform vars
@@ -397,15 +355,50 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
 
+    # Copy in local config
+    if branch in localconfig.BRANCHES:
+        for key, value in localconfig.BRANCHES[branch].items():
+            if key == 'platforms':
+                # Merge in these values
+                if 'platforms' not in BRANCHES[branch]:
+                    BRANCHES[branch]['platforms'] = {}
+
+                for platform, platform_config in value.items():
+                    for key, value in platform_config.items():
+                        value = deepcopy(value)
+                        if isinstance(value, str):
+                            value = value % locals()
+                        BRANCHES[branch]['platforms'][platform][key] = value
+            else:
+                BRANCHES[branch][key] = deepcopy(value)
+
+    for platform, platform_config in localconfig.PLATFORM_VARS.items():
+        if platform in BRANCHES[branch]['platforms']:
+            for key, value in platform_config.items():
+                value = deepcopy(value)
+                if isinstance(value, str):
+                    value = value % locals()
+                BRANCHES[branch]['platforms'][platform][key] = value
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-central']['l10n_modules'] = ['browser','dom','toolkit']
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['mozilla-central']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
+BRANCHES['mozilla-central']['geriatric_branches'] = {
+    'win32': ['p3-win-unit'],
+    'linux': ['p3-linux-unit'],
+    'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
+}
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
@@ -466,10 +459,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
@@ -498,7 +487,7 @@ BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-central'
+BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -529,9 +518,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_checktests'] = False
@@ -638,11 +624,6 @@ BRANCHES['electrolysis']['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/too
 BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
     'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
 }
-BRANCHES['electrolysis']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-BRANCHES['electrolysis']['platforms']['linux64']['unittest-env'] = {
-    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-}
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
@@ -663,11 +644,9 @@ BRANCHES['addonsmgr']['enable_nightly'] = False
 BRANCHES['addonsmgr']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['addonsmgr']['enable_xulrunner'] = False
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_opt_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_unittests'] = False
+# Enable unit tests
+BRANCHES['addonsmgr']['platforms']['linux64']['enable_checktests'] = True
 BRANCHES['addonsmgr']['enable_mac_a11y'] = True
-BRANCHES['addonsmgr']['unittest_build_space'] = 6
 BRANCHES['addonsmgr']['enable_shark'] = False
 # L10n configuration
 BRANCHES['addonsmgr']['enable_l10n'] = False
@@ -679,61 +658,6 @@ BRANCHES['addonsmgr']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] 
 BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-addonsmgr'
 BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-
-######## tryserver
-# Try-specific configs 
-BRANCHES['tryserver']['enable_merging'] = False
-BRANCHES['tryserver']['enable_try'] = True
-BRANCHES['tryserver']['enable_mail_notifier'] = False
-BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
-BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
-BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
-# This is a path, relative to HGURL, where the repository is located
-# HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['download_base_url'] =['http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds']
-BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/tryserver-builds'
-BRANCHES['tryserver']['start_hour'] = [3]
-BRANCHES['tryserver']['start_minute'] = [2]
-BRANCHES['tryserver']['platforms']['linux']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['linux64']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['win32']['build_space'] = 7
-BRANCHES['tryserver']['platforms']['macosx']['build_space'] = 6
-BRANCHES['tryserver']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['tryserver']['platforms']['win32-debug']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['macosx-debug']['build_space'] = 3
-# Disable Nightly builds
-BRANCHES['tryserver']['enable_nightly'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['tryserver']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['tryserver']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest'])
-]
-BRANCHES['tryserver']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['linux64-debug']['enable_checktests'] = False
-BRANCHES['tryserver']['enable_mac_a11y'] = True
-BRANCHES['tryserver']['platforms']['win32']['mochitest_leak_threshold'] = 484
-BRANCHES['tryserver']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['tryserver']['unittest_build_space'] = 6
-BRANCHES['tryserver']['enable_l10n'] = False
-BRANCHES['tryserver']['enable_l10n_onchange'] = False
-BRANCHES['tryserver']['l10nNightlyUpdate'] = False
-BRANCHES['tryserver']['l10nDatedDirs'] = False
-BRANCHES['tryserver']['enable_codecoverage'] = False
-BRANCHES['tryserver']['enable_shark'] = False
-BRANCHES['tryserver']['create_snippet'] = False
-# need this or the master.cfg will bail
-BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 
 if __name__ == "__main__":
     import sys, pprint
