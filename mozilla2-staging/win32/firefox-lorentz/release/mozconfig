@@ -7,8 +7,6 @@ ac_add_options --enable-update-packaging
 ac_add_options --enable-jemalloc
 ac_add_options --enable-official-branding
 ac_add_options --enable-tests
-# disabled prior to 3.6b1
-# ac_add_options --with-crashreporter-enable-percent=10
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
