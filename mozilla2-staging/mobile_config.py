@@ -15,7 +15,6 @@ mobile_slaves = {
     'linux-gnueabi-arm': config.SLAVES['linux'],
     'linux-i686': config.SLAVES['linux'],
     'macosx-i686': config.SLAVES['macosx'],
-    'winmo-arm': config.SLAVES['win32'],
     'win32-i686': config.SLAVES['win32'],
 }
 
@@ -43,29 +42,24 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-trunk/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_name'] = 'WinMo mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-trunk' % SBOX_HOME
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-trunk'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -79,9 +73,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_l10n_workdir']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_builddir'] = 'w32mob-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-trunk-l10n'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_builddir'] = 'winmo-trunk'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n_onchange'] = True
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
@@ -102,7 +93,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = mo
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
@@ -110,8 +100,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
@@ -128,29 +116,24 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-1.9.2/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_name'] = 'WinMo mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-1.9.2' % SBOX_HOME
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-1.9.2'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -164,9 +147,6 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['base_l10n_workdir']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_builddir'] = 'w32mob-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-1.9.2-l10n'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_builddir'] = 'winmo-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-1.9.2-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n_onchange'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['enable_multi_locale'] = True
@@ -187,7 +167,6 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['slaves'] = mo
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
@@ -195,8 +174,6 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['winmo-arm']['create_snippet'] = True
 
 ### mobile-tracemonkey
 MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
@@ -210,29 +187,19 @@ MOBILE_BRANCHES['mobile-tracemonkey']['download_base_url'] = 'http://staging-sta
 MOBILE_BRANCHES['mobile-tracemonkey']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
     'linux-gnueabi-arm': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-trunk/nightly'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Tracemonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_name'] = 'WinMo Tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_space'] = 5
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-tracemonkey' % SBOX_HOME
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-tracemonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['base_builddir'] = 'winmo-tm'
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### electrolysis
 MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
@@ -247,20 +214,15 @@ MOBILE_BRANCHES['mobile-electrolysis']['stage_base_path'] = '/home/ftp/pub/mobil
 MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-trunk/nightly'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_name'] = 'WinMo electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-electrolysis' % SBOX_HOME
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-electrolysis'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -269,9 +231,6 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_workdir'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-electrolysis'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-electrolysis-l10n'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_builddir'] = 'winmo-electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-electrolysis-l10n'
 MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enable_multi_locale'] = False
@@ -280,11 +239,8 @@ MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
 MOBILE_BRANCHES['mobile-electrolysis']['tinderbox_tree'] = 'MozillaTest'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### mobile-lorentz
 MOBILE_BRANCHES['mobile-lorentz']['main_config'] = config.BRANCHES['firefox-lorentz']
@@ -301,29 +257,24 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-lorentz/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_name'] = 'WinMo lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['builds_before_reboot'] = 1
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-lorentz' % SBOX_HOME
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-lorentz'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -337,9 +288,6 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_l10n_workdir
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_builddir'] = 'w32mob-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_builddir'] = 'winmo-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-lorentz-l10n'
 MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-lorentz']['enable_l10n_onchange'] = True
 MOBILE_BRANCHES['mobile-lorentz']['enable_multi_locale'] = True
@@ -360,7 +308,6 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = 
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
@@ -368,8 +315,6 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['winmo-arm']['create_snippet'] = False
 
 ### mozilla-addonsmgr
 MOBILE_BRANCHES['mobile-addonsmgr']['main_config'] = config.BRANCHES['addonsmgr']
@@ -386,28 +331,23 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
-    'winmo-arm': {},
 }
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['mozconfig'] = 'winmo/mobile-addonsmgr/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop Addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop Addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop Addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_name'] = 'WinMo Addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-addonsmgr' % SBOX_HOME
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-addonsmgr'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -421,9 +361,6 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_l10n_workd
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_builddir'] = 'w32mob-addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-addonsmgr-l10n'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_builddir'] = 'winmo-addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['base_l10n_workdir'] = 'winmo-addonsmgr-l10n'
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-addonsmgr']['enable_multi_locale'] = False
@@ -434,7 +371,6 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['slaves'] 
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['slaves'] = mobile_slaves['winmo-arm']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = {
@@ -442,5 +378,3 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = {
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['env'] = MozillaEnvironments['winmo-arm']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['winmo-arm']['create_snippet'] = False

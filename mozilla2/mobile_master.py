@@ -19,8 +19,8 @@ from buildbotcustom.scheduler import MozScheduler
 
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
-   WinmoBuildFactory, MaemoNightlyRepackFactory, \
-   MobileDesktopBuildFactory, MobileDesktopNightlyRepackFactory
+   MaemoNightlyRepackFactory, MobileDesktopBuildFactory, \
+   MobileDesktopNightlyRepackFactory
 
 from buildbot.steps import trigger
 from buildbot.steps.shell import WithProperties
@@ -331,57 +331,6 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 nightly = True,
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
-            )
-        else:
-            mobile_dep_factory=WinmoBuildFactory(
-                hgHost=mainConfig['hghost'],
-                repoPath=branch['repo_path'],
-                configRepoPath=mainConfig['config_repo_path'],
-                configSubDir=mainConfig['config_subdir'],
-                env=pf['env'],
-                mozconfig=pf['mozconfig'],
-                stageUsername=mainConfig['stage_username'],
-                stageGroup=mainConfig['stage_group'],
-                stageSshKey=mainConfig['stage_ssh_key'],
-                stageServer=mainConfig['stage_server'],
-                stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=branch['mobile_repo_path'],
-                platform=platform,
-                baseWorkDir=pf['base_workdir'],
-                baseUploadDir=name,
-                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
-                clobberURL=mainConfig['base_clobber_url'],
-                clobberTime=clobberTime,
-                buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot'],
-            )
-            mobile_nightly_factory=WinmoBuildFactory(
-                hgHost=mainConfig['hghost'],
-                repoPath=branch['repo_path'],
-                configRepoPath=mainConfig['config_repo_path'],
-                configSubDir=mainConfig['config_subdir'],
-                env=pf['env'],
-                mozconfig=pf['mozconfig'],
-                stageUsername=mainConfig['stage_username'],
-                stageGroup=mainConfig['stage_group'],
-                stageSshKey=mainConfig['stage_ssh_key'],
-                stageServer=mainConfig['stage_server'],
-                stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=branch['mobile_repo_path'],
-                platform=platform,
-                baseWorkDir=pf['base_workdir'],
-                baseUploadDir=name,
-                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
-                clobberURL=mainConfig['base_clobber_url'],
-                clobberTime=clobberTime,
-                buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot'],
-                nightly=True,
-                createSnippet=pf['create_snippet'],
-                downloadBaseURL=branch['download_base_url'],
-                ausUser=mainConfig['aus2_user'],
-                ausHost=mainConfig['aus2_host'],
-                ausBaseUploadDir=branch['aus2_base_upload_dir'],
             )
         mobile_dep_builder = None
         if mobile_dep_factory is not None:
