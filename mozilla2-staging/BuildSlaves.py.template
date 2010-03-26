@@ -5,5 +5,6 @@ SlavePasswords = {
         'win32': 'pass',
         'try-win32': 'pass',
         'macosx': 'pass',
+        'macosx-snow': 'pass',
         'try-macosx': 'pass',
         }
