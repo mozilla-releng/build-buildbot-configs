@@ -19,6 +19,8 @@ TALOS_SVG_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity']
 
 TALOS_V8_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'v8']
 
+TALOS_SCROLL_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tscroll']
+
 SLAVES = {
     'linux': ["qm-pubuntu-try%02i" % x for x in range(1,17)],
     'xp': ["qm-pxp-try%02i" % x for x in range(1,11)],

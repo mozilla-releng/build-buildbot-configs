@@ -18,6 +18,7 @@ SUITES = {
     'cold': GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold'],
     'v8': GRAPH_CONFIG + ['--activeTests', 'v8'],
     'svg': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
+    'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
 }
 
 SLAVES = {
@@ -67,6 +68,7 @@ BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS
 BRANCHES['mozilla-1.9.0']['cold_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.0']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
     'win32': [
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
@@ -106,6 +108,7 @@ BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS
 BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
@@ -123,6 +126,7 @@ BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## firefox-lorentz
 BRANCHES['firefox-lorentz']['branch_name'] = "Firefox-Lorentz"
@@ -138,3 +142,4 @@ BRANCHES['firefox-lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFOR
 BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['firefox-lorentz']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
