@@ -7,14 +7,14 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # It is not used for anything else.
 mozSourceRepoClonePath = 'releases/mozilla-1.9.2'
 mozSourceRepoPath      = 'users/stage-ffxbld/mozilla-1.9.2'
-mozSourceRepoRevision  = '32f7c526813a'
+mozSourceRepoRevision  = 'a506e0a4f6c3'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoClonePath = 'mobile-browser'
 mobileSourceRepoPath      = 'users/stage-ffxbld/mobile-browser'
-mobileSourceRepoRevision  = 'b05200e571c8'
-mozRelbranchOverride   = ''
-l10nRelbranchOverride   = ''
-mobileRelbranchOverride   = ''
+mobileSourceRepoRevision  = '8c76c50845b6'
+mozRelbranchOverride   = 'GECKO1921_20100126_RELBRANCH'
+l10nRelbranchOverride   = 'GECKO1921_20100126_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO1921_20100126_RELBRANCH'
 l10nRepoClonePath   = 'releases/l10n-mozilla-1.9.2'
 l10nRepoPath        = 'users/stage-ffxbld'
 l10nRevisionFile    = 'l10n-changesets_mobile-1.0.json'
@@ -26,11 +26,11 @@ mergeLocales        = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '1.0rc1'
-appVersion          = '1.0'
-milestone           = '1.9.2'
+version             = '1.0.1rc1'
+appVersion          = '1.0.1'
+milestone           = '1.9.2.1'
 buildNumber         = 1
-baseTag             = 'FENNEC_1_0rc1'
+baseTag             = 'FENNEC_1_0_1rc1'
 enUSPlatforms       = ('maemo',)
 l10nPlatforms       = enUSPlatforms
 talosTestPlatforms  = ()
@@ -38,3 +38,6 @@ ftpServer           = 'staging-stage.build.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 stageBasePath       = '/home/ftp/pub/mobile/candidates'
 base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)
+doPartnerRepacks    = True
+partnersRepoPath    = 'build/partner-repacks'
+partnerRepackPlatforms = ('maemo',)

@@ -10,7 +10,8 @@ from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_locales_from_json, \
                                 isHgPollerTriggered
 from buildbotcustom.process.factory import ReleaseTaggingFactory, \
-  MultiSourceFactory, MaemoReleaseBuildFactory, MaemoReleaseRepackFactory
+  MultiSourceFactory, MaemoReleaseBuildFactory, MaemoReleaseRepackFactory, \
+  PartnerRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -72,6 +73,13 @@ for platform in enUSPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
+    if doPartnerRepacks:
+        partner_scheduler = Dependent(
+            name='partner_repacks',
+            upstream=build_scheduler,
+            builderNames=['partner_repack']
+        )
+        schedulers.append(partner_scheduler)
 
 ##### Builders
 repositories = {
@@ -230,3 +238,30 @@ for platform in enUSPlatforms:
             'builddir': '%s_repack' % platform,
             'factory': repack_factory
         })
+
+if doPartnerRepacks:
+    partner_repack_factory = PartnerRepackFactory(
+        hgHost=branchConfig['hghost'],
+        repoPath='mozRepoPath',
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        productName='mobile',
+        version=version,
+        buildNumber=buildNumber,
+        partnersRepoPath=partnersRepoPath,
+        stagingServer=stagingServer,
+        stageUsername=branchConfig['stage_username'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        nightlyDir='candidates',
+        platformList=partnerRepackPlatforms,
+        baseWorkDir='%s-partner' % mobileBranchConfig['platforms']['linux-gnueabi-arm']['base_workdir'],
+        python='python2.5',
+        packageDmg=False,
+        createRemoteStageDir=True
+    )
+    builders.append({
+        'name': 'partner_repack',
+        'slavenames': branchConfig['platforms']['linux']['slaves'],
+        'category': 'release',
+        'builddir': 'partner_repack',
+        'factory': partner_repack_factory
+    })

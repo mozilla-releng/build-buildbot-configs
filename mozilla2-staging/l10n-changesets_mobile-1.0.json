@@ -1,174 +1,150 @@
 {
-  "af": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
   "ar": {
-    "revision": "default",
+    "revision": "4cf8917e616d",
     "platforms": ["maemo"]
   },
   "be": {
-    "revision": "default",
+    "revision": "64687347aa65",
     "platforms": ["maemo"]
   },
-  "bg": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "bn-BD": {
-    "revision": "default",
+  "ca": {
+    "revision": "667f1946d297",
     "platforms": ["maemo"]
   },
   "cs": {
-    "revision": "default",
-    "platforms": ["maemo"]
+    "revision": "51aff7bd2240",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "da": {
+    "revision": "ad1596411f01",
+    "platforms": ["maemo", "maemo-multilocale"]
   },
   "de": {
-    "revision": "default",
+    "revision": "8f32355a62c1",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "el": {
-    "revision": "default",
+    "revision": "6ec6ae997778",
     "platforms": ["maemo"]
   },
   "es-AR": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "es-CL": {
-    "revision": "default",
+    "revision": "e8c4dd619405",
     "platforms": ["maemo"]
   },
   "es-ES": {
-    "revision": "default",
+    "revision": "531d7120ef3b",
     "platforms": ["maemo", "maemo-multilocale"]
   },
-  "et": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
   "eu": {
-    "revision": "default",
+    "revision": "9f95f99aaf42",
     "platforms": ["maemo"]
   },
   "fa": {
-    "revision": "default",
+    "revision": "920b601a4912",
     "platforms": ["maemo"]
   },
+  "fi": {
+    "revision": "02b8c9702257",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
   "fr": {
-    "revision": "default",
+    "revision": "be4df5037fd6",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "fy-NL": {
-    "revision": "default",
+    "revision": "ad9a06ddeeb1",
     "platforms": ["maemo"]
   },
   "ga-IE": {
-    "revision": "default",
+    "revision": "cb55eb229e43",
     "platforms": ["maemo"]
   },
   "gl": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "he": {
-    "revision": "default",
+    "revision": "6ef761454550",
     "platforms": ["maemo"]
   },
   "hu": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "is": {
-    "revision": "default",
+    "revision": "c8de0359ab5e",
     "platforms": ["maemo"]
   },
   "it": {
-    "revision": "default",
+    "revision": "0cf125e1e127",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "ja": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "ja-JP-mac": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "kk": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "ko": {
-    "revision": "default",
+    "revision": "4370c055c5b2",
     "platforms": ["maemo"]
   },
   "lt": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "lv": {
-    "revision": "default",
+    "revision": "a1e34208858c",
     "platforms": ["maemo"]
   },
   "nb-NO": {
-    "revision": "default",
-    "platforms": ["maemo"]
+    "revision": "be8d6d3c8b56",
+    "platforms": ["maemo", "maemo-multilocale"]
   },
   "nl": {
-    "revision": "default",
+    "revision": "de678a100c14",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "nn-NO": {
-    "revision": "default",
+    "revision": "bf3241a9c3e3",
+    "platforms": ["maemo"]
+  },
+  "pa-IN": {
+    "revision": "3536f97ba85b",
     "platforms": ["maemo"]
   },
   "pl": {
-    "revision": "default",
-    "platforms": ["maemo"]
+    "revision": "d37d02d70778",
+    "platforms": ["maemo", "maemo-multilocale"]
   },
   "pt-BR": {
-    "revision": "default",
+    "revision": "439239c5b437",
     "platforms": ["maemo"]
   },
-  "rm": {
-    "revision": "default",
-    "platforms": ["maemo"]
+  "pt-PT": {
+    "revision": "77fcc862465d",
+    "platforms": ["maemo", "maemo-multilocale"]
   },
   "ro": {
-    "revision": "default",
+    "revision": "c4ea70fb212e",
     "platforms": ["maemo"]
   },
   "ru": {
-    "revision": "default",
+    "revision": "d51fefdfd74a",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "sk": {
-    "revision": "default",
+    "revision": "2e57e189385f",
     "platforms": ["maemo"]
   },
-  "sq": {
-    "revision": "default",
+  "sl": {
+    "revision": "060beab34771",
     "platforms": ["maemo"]
   },
-  "sv-SE": {
-    "revision": "default",
-    "platforms": ["maemo"]
-  },
-  "te": {
-    "revision": "default",
+  "sr": {
+    "revision": "82d42b3cff82",
     "platforms": ["maemo"]
   },
   "tr": {
-    "revision": "default",
+    "revision": "87b974e241e1",
+    "platforms": ["maemo"]
+  },
+  "uk": {
+    "revision": "d4f7454a0d28",
+    "platforms": ["maemo"]
+  },
+  "vi": {
+    "revision": "69a41a07c064",
     "platforms": ["maemo"]
   },
   "zh-CN": {
-    "revision": "default",
+    "revision": "19298639d899",
     "platforms": ["maemo"]
   },
   "zh-TW": {
-    "revision": "default",
+    "revision": "e4b27a589296",
     "platforms": ["maemo"]
   }
 }
