@@ -85,9 +85,9 @@ for platform in enUSPlatforms:
         schedulers.append(repack_scheduler)
     if doPartnerRepacks:
         partner_scheduler = Dependent(
-            name='partner_repacks',
+            name='mobile_partner_repacks',
             upstream=build_scheduler,
-            builderNames=['partner_repack']
+            builderNames=['mobile_partner_repack']
         )
         schedulers.append(partner_scheduler)
 
@@ -300,9 +300,9 @@ if doPartnerRepacks:
         createRemoteStageDir=True
     )
     builders.append({
-        'name': 'partner_repack',
+        'name': 'mobile_partner_repack',
         'slavenames': branchConfig['platforms']['linux']['slaves'],
         'category': 'release',
-        'builddir': 'partner_repack',
+        'builddir': 'mobile_partner_repack',
         'factory': partner_repack_factory
     })
