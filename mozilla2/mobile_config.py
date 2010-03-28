@@ -160,7 +160,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile'
-MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mobile-l10n'
+MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] + '/nightly/latest-mobile-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
