@@ -14,7 +14,7 @@ export MOZ_DEBUG_SYMBOLS=1
 export MOZILLA_OFFICIAL=1
 
 # Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j2"
+#mk_add_options MOZ_MAKE_FLAGS="-j2"
 
 if test -e "$topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig"; then
 . $topsrcdir/configs/seamonkey/win32/include/vista-sdk-mozconfig
