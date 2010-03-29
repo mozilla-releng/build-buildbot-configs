@@ -388,6 +388,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     baseUploadDir='%s-l10n' % name,
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
+                    platform=platform,
                 )
                 if branch['enable_l10n_onchange']:
                     mobile_l10n_dep_factory = MaemoNightlyRepackFactory(
@@ -419,6 +420,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                         baseUploadDir='%s-l10n' % name,
                         clobberURL=mainConfig['base_clobber_url'],
                         clobberTime=clobberTime,
+                        platform=platform,
                     )
             elif platform.endswith('i686'):
                 if platform == 'linux-i686':
