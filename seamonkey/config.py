@@ -398,6 +398,7 @@ BRANCHES['comm-1.9.1']['enable_shark'] = False
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
+BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['idle_timeout'] = 60*60*6   # 6 hours
 # We're actually using gcc4, but the platform hardcodes gcc3
 BRANCHES['comm-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
