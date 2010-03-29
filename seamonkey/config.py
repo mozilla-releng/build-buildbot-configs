@@ -42,6 +42,7 @@ BRANCH_LEVEL_VARS = {
     'stage_ssh_key': 'seabld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_sea/',
     'aus2_user': 'seabld',
+    'aus2_ssh_key': 'seabld_dsa',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
     'graph_server': 'graphs.mozilla.org',
@@ -75,6 +76,10 @@ BRANCH_LEVEL_VARS = {
     'geriatric_branches': {},
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
+    'hash_type': 'sha512',
+    'create_snippet': False,
+    'create_partial': False,
+    'create_partial_l10n': False,
 }
 
 # shorthand, because these are used often
@@ -208,7 +213,10 @@ BRANCHES['comm-central-trunk']['enable_shark'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-trunk']['create_snippet'] = True
-BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-central-trunk'
+BRANCHES['comm-central-trunk']['create_partial'] = True
+BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
 BRANCHES['comm-central-trunk']['idle_timeout'] = 60*60*6   # 6 hours
 # We're actually using gcc4, but the platform hardcodes gcc3
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'

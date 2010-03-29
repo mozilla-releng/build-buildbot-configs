@@ -385,6 +385,7 @@ updates_factory = ReleaseUpdatesFactory(
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
     ausUser=branchConfig['aus2_user'],
+    ausSshKey=branchConfig['aus2_ssh_key'],
     ausHost=branchConfig['aus2_host'],
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
