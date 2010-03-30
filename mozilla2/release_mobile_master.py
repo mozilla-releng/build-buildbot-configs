@@ -20,6 +20,8 @@ import release_mobile_config
 reload(release_mobile_config)
 from release_mobile_config import *
 
+from mobile_master import MOBILE_L10N_SLAVES
+
 # for the 'build' step we use many of the same vars as the nightlies do.
 # we import those so we don't have to duplicate them in release_config
 import config as nightly_config
@@ -233,7 +235,7 @@ for platform in enUSPlatforms:
 
         builders.append({
             'name': '%s_repack' % platform,
-            'slavenames': pf['slaves'],
+            'slavenames': MOBILE_L10N_SLAVES['linux-gnueabi-arm'],
             'category': 'release',
             'builddir': '%s_repack' % platform,
             'factory': repack_factory

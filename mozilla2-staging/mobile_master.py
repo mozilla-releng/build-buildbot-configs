@@ -35,7 +35,14 @@ reload(config)
 from config import *
 import mobile_config
 reload(mobile_config)
-from mobile_config import MOBILE_BRANCHES
+from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
+
+MOBILE_L10N_SLAVES = {
+    'linux-gnueabi-arm': MOBILE_SLAVES['linux-gnueabi-arm'],
+    'linux-i686': MOBILE_SLAVES['linux-i686'],
+    'macosx-i686': MOBILE_SLAVES['macosx-i686'],
+    'win32-i686': MOBILE_SLAVES['win32-i686'],
+}
 
 m = {}
 
@@ -488,7 +495,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
             mobile_l10n_nightly_builder = {
                 'name': l10nNightlyBuilders[nightly_builder]['l10n_builder'],
-                'slavenames': pf['slaves'],
+                'slavenames': MOBILE_L10N_SLAVES[platform],
                 'builddir': '%s-l10n-nightly' % (pf['base_builddir']),
                 'factory': mobile_l10n_nightly_factory,
                 'category': name,
@@ -498,7 +505,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             if branch['enable_l10n_onchange']:
                 mobile_l10n_dep_builder = {
                     'name': l10nNightlyBuilders[nightly_builder]['l10n_builder'] + " build",
-                    'slavenames': pf['slaves'],
+                    'slavenames': MOBILE_L10N_SLAVES[platform],
                     'builddir': '%s-l10n-dep' % (pf['base_builddir']),
                     'factory': mobile_l10n_dep_factory,
                     'category': name,

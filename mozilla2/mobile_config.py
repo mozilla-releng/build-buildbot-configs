@@ -11,7 +11,7 @@ from buildbotcustom.env import MozillaEnvironments
 OBJDIR = 'objdir'
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
 
-mobile_slaves = {
+MOBILE_SLAVES = {
     'linux-gnueabi-arm': config.SLAVES['linux'],
     'linux-i686': config.SLAVES['linux'],
     'macosx-i686': config.SLAVES['macosx'],
@@ -89,10 +89,10 @@ MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-trunk']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'Mobile'
 MOBILE_BRANCHES['mobile-trunk']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = {
@@ -163,10 +163,10 @@ MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] + '/nightly/latest-mobile-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
-MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env'] = {
@@ -198,7 +198,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n_onchange'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['env'] = {}
 
 ### electrolysis
@@ -237,8 +237,8 @@ MOBILE_BRANCHES['mobile-electrolysis']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['tinderbox_tree'] = 'Electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env'] = {}
 
@@ -304,10 +304,10 @@ MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] + '/nightly/latest-mobile-lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
 MOBILE_BRANCHES['mobile-lorentz']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
@@ -367,10 +367,10 @@ MOBILE_BRANCHES['mobile-addonsmgr']['enable_multi_locale'] = False
 MOBILE_BRANCHES['mobile-addonsmgr']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] + '/nightly/latest-mobile-addonsmgr'
 MOBILE_BRANCHES['mobile-addonsmgr']['tinderbox_tree'] = 'AddonsMgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['slaves'] = mobile_slaves['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = mobile_slaves['linux-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = mobile_slaves['macosx-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['slaves'] = mobile_slaves['win32-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = {
