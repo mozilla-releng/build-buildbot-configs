@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = 'a506e0a4f6c3'
+mozSourceRepoRevision  = '6593cc89edd4'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = '8c76c50845b6'
+mobileSourceRepoRevision  = '3cc29c13fb87'
 mozRelbranchOverride      = 'GECKO1921_20100126_RELBRANCH'
 l10nRelbranchOverride     = 'GECKO1921_20100126_RELBRANCH'
 mobileRelbranchOverride   = 'GECKO1921_20100126_RELBRANCH'
