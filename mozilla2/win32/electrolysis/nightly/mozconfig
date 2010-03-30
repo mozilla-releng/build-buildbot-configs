@@ -2,7 +2,7 @@
 mk_add_options PROFILE_GEN_SCRIPT='$(PYTHON) $(MOZ_OBJDIR)/_profile/pgo/profileserver.py'
 
 ac_add_options --enable-application=browser
-ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-channel=nightly-electrolysis
 ac_add_options --enable-update-packaging
 ac_add_options --enable-jemalloc
 ac_add_options --enable-tests
