@@ -485,8 +485,12 @@ BRANCHES['mozilla-1.9.2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.2']['create_snippet'] = True
-BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['create_partial'] = True
+BRANCHES['mozilla-1.9.2']['create_partial_l10n'] = True
+BRANCHES['mozilla-1.9.2']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-1.9.2']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['mozilla-1.9.2']['packaged_unittest_tinderbox_tree'] = 'Firefox3.6'
 
