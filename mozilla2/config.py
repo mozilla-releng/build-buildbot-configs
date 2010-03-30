@@ -496,10 +496,8 @@ BRANCHES['tracemonkey']['start_hour'] = [3]
 BRANCHES['tracemonkey']['start_minute'] = [32]
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
-BRANCHES['tracemonkey']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
-# Enable unit tests
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True
 BRANCHES['tracemonkey']['unittest_build_space'] = 6
 # L10n configuration
@@ -507,18 +505,19 @@ BRANCHES['tracemonkey']['enable_l10n'] = False
 BRANCHES['tracemonkey']['enable_l10n_onchange'] = False
 BRANCHES['tracemonkey']['l10nNightlyUpdate'] = False
 BRANCHES['tracemonkey']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['tracemonkey']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['tracemonkey']['platforms']['linux']['update_platform'] = 'fake'
-BRANCHES['tracemonkey']['platforms']['linux64']['update_platform'] = 'fake'
-BRANCHES['tracemonkey']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['tracemonkey']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['create_snippet'] = True
+BRANCHES['tracemonkey']['create_partial'] = False
+BRANCHES['tracemonkey']['create_partial_l10n'] = False
+BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
+BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['tracemonkey']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
+BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
 BRANCHES['tracemonkey']['tinderbox_tree'] = 'TraceMonkey'
 BRANCHES['tracemonkey']['packaged_unittest_tinderbox_tree'] = 'TraceMonkey'
 
@@ -554,7 +553,6 @@ BRANCHES['places']['packaged_unittest_tinderbox_tree'] = 'Places'
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
 BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2]
-BRANCHES['electrolysis']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False
@@ -565,11 +563,6 @@ BRANCHES['electrolysis']['enable_l10n'] = False
 BRANCHES['electrolysis']['enable_l10n_onchange'] = False
 BRANCHES['electrolysis']['l10nNightlyUpdate'] = False
 BRANCHES['electrolysis']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['electrolysis']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['electrolysis']['platforms']['linux']['update_platform'] = 'fake'
-BRANCHES['electrolysis']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['electrolysis']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['electrolysis']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
 BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
@@ -579,6 +572,13 @@ BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID
 BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+BRANCHES['electrolysis']['create_snippet'] = True
+BRANCHES['electrolysis']['create_partial'] = False
+BRANCHES['electrolysis']['create_partial_l10n'] = False
+BRANCHES['electrolysis']['aus2_user'] = 'ffxbld'
+BRANCHES['electrolysis']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['electrolysis']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
+BRANCHES['electrolysis']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
 BRANCHES['electrolysis']['tinderbox_tree'] = 'Electrolysis'
 BRANCHES['electrolysis']['packaged_unittest_tinderbox_tree'] = 'Electrolysis'
 
