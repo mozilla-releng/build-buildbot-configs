@@ -15,7 +15,7 @@ def generate_build_dirs(branch):
                 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/%s/' % branch['ftp_string'])
 
 SLAVES = {
-    'n900': ['n900-%03i' % x for x in range(1,21)],
+    'n900': ['n900-%03i' % x for x in range(1,51)],
 }
 
 default_n900['slaves'] = SLAVES['n900']
