@@ -20,6 +20,8 @@ import release_mobile_config
 reload(release_mobile_config)
 from release_mobile_config import *
 
+import mobile_master
+reload(mobile_master)
 from mobile_master import MOBILE_L10N_SLAVES
 
 # for the 'build' step we use many of the same vars as the nightlies do.
