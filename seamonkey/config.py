@@ -215,7 +215,7 @@ PLATFORM_VARS = {
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
-                'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+                'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
