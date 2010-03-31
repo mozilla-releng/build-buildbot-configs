@@ -149,7 +149,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
         },
         'macosx': {
-            'base_name': 'OS X 10.5.2 %(branch)s',
+            'base_name': 'OS X 10.5 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
             'mozconfig_dep': 'macosx/%(branch)s/dep',
             'profiled_build': False,
@@ -223,7 +223,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
         },
         'macosx-debug': {
-            'base_name': 'OS X 10.5.2 %(branch)s leak test',
+            'base_name': 'OS X 10.5 %(branch)s leak test',
             'mozconfig_dep': 'macosx/%(branch)s/debug',
             'profiled_build': False,
             'builds_before_reboot': None,
