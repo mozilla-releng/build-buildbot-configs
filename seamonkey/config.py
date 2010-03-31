@@ -84,7 +84,7 @@ GLOBAL_VARS = {
     'app_name': 'suite',
     'brand_name': 'SeaMonkey',
     'tinderbox_tree': 'MozillaTest',
-    'enable_shark': True,
+    'enable_shark': False,
     'enable_codecoverage': False,
     'enable_nightly': True,
     'hash_type': 'sha512',
