@@ -338,6 +338,7 @@ BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux64']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_checktests'] = False
