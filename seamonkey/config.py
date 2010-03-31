@@ -16,12 +16,7 @@ SLAVES = {
 }
 
 
-# Everything in this list will be set in the branch dict at the end of this file
-# For example,
-#  BRANCHES['mozilla-central']['hgurl'] = HGURL
-#  BRANCHES['mozilla-central']['hghost'] = HGHOST
-#  ...
-BRANCH_LEVEL_VARS = {
+GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
@@ -76,6 +71,22 @@ BRANCH_LEVEL_VARS = {
     'geriatric_branches': {},
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
+    'platforms': {
+        'linux': {},
+        'linux64': {},
+        'win32': {},
+        'macosx': {},
+        'linux-debug': {},
+        'macosx-debug': {},
+        'win32-debug': {},
+    },
+    'product_name': 'seamonkey',
+    'app_name': 'suite',
+    'brand_name': 'SeaMonkey',
+    'tinderbox_tree': 'MozillaTest',
+    'enable_shark': True,
+    'enable_codecoverage': False,
+    'enable_nightly': True,
     'hash_type': 'sha512',
     'create_snippet': False,
     'create_partial': False,
@@ -83,20 +94,198 @@ BRANCH_LEVEL_VARS = {
 }
 
 # shorthand, because these are used often
-OBJDIR = BRANCH_LEVEL_VARS['objdir']
-SYMBOL_SERVER_PATH = BRANCH_LEVEL_VARS['symbol_server_path']
+OBJDIR = GLOBAL_VARS['objdir']
+SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 
-# All branches that are to be built MUST be listed here.
-BRANCHES = {
-    'comm-central-trunk': {},
-    'comm-1.9.1': {},
-    'comm-1.9.2': {},
+PLATFORM_VARS = {
+        'linux': {
+            'base_name': 'Linux %(branch)s',
+            'mozconfig': 'linux/%(branch)s/nightly',
+            'mozconfig_dep': 'linux/%(branch)s/dep',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'build_space': 6,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Linux_x86-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+        },
+        'linux64': {
+            'base_name': 'Linux x86-64 %(branch)s',
+            'mozconfig': 'linux64/%(branch)s/nightly',
+            'mozconfig_dep': 'linux64/%(branch)s/dep',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'build_space': 6,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'packageTests': True,
+            'slaves': SLAVES['linux64'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Linux_x86_64-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+        },
+        'macosx': {
+            'base_name': 'OS X 10.5.2 %(branch)s',
+            'mozconfig': 'macosx/%(branch)s/nightly',
+            'mozconfig_dep': 'macosx/%(branch)s/dep',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'build_space': 8,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'slaves': SLAVES['macosx'],
+            'platform_objdir': "%s/ppc" % OBJDIR,
+            'update_platform': 'Darwin_Universal-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+        },
+        'win32': {
+            'base_name': 'WINNT 5.2 %(branch)s',
+            'mozconfig': 'win32/%(branch)s/nightly',
+            'mozconfig_dep': 'win32/%(branch)s/dep',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'build_space': 9,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'slaves': SLAVES['win32'],
+            'platform_objdir': OBJDIR,
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+            'update_platform': 'WINNT_x86-msvc',
+            'env': {
+                'CVS_RSH': 'ssh',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                # Source server support, bug 506702
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+        },
+        'linux-debug': {
+            'base_name': 'Linux %(branch)s leak test',
+            'mozconfig_dep': 'linux/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'download_symbols': True,
+            'build_space': 7,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'DISPLAY': ':2',
+                'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_unittests': True,
+            'enable_checktests': True,
+        },
+        'macosx-debug': {
+            'base_name': 'OS X 10.5.2 %(branch)s leak test',
+            'mozconfig_dep': 'macosx/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'download_symbols': True,
+            'build_space': 5,
+            'slaves': SLAVES['macosx'],
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_unittests': True,
+            'enable_checktests': True,
+        },
+        'win32-debug': {
+            'base_name': 'WINNT 5.2 %(branch)s leak test',
+            'mozconfig_dep': 'win32/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'download_symbols': True,
+            'build_space': 7,
+            'slaves': SLAVES['win32'],
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_unittests': True,
+            'enable_checktests': True,
+        },
 }
 
-# We copy the global vars in first, so branches can override them if they want to
+# All branches that are to be built MUST be listed here, along with their
+# platforms (if different from the default set).
+BRANCHES = {
+    'comm-central-trunk': {},
+    'comm-1.9.1': {'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx': {},
+            'linux-debug': {},
+        }},
+}
+
+# Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
-    for attr in BRANCH_LEVEL_VARS.keys():
-        BRANCHES[branch][attr] = deepcopy(BRANCH_LEVEL_VARS[attr])
+    for key, value in GLOBAL_VARS.items():
+        # Don't override platforms if it's set
+        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+            continue
+        BRANCHES[branch][key] = deepcopy(value)
+
+    for platform, platform_config in PLATFORM_VARS.items():
+        if platform in BRANCHES[branch]['platforms']:
+            for key, value in platform_config.items():
+                value = deepcopy(value)
+                if isinstance(value, str):
+                    value = value % locals()
+                BRANCHES[branch]['platforms'][platform][key] = value
 
 ######## comm-central-trunk
 # This is a path, relative to HGURL, where the repository is located
@@ -104,99 +293,15 @@ for branch in BRANCHES.keys():
 BRANCHES['comm-central-trunk']['repo_path'] = 'comm-central'
 BRANCHES['comm-central-trunk']['mozilla_repo_path'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['comm-central-trunk']['major_version'] = '1.9.3'
-BRANCHES['comm-central-trunk']['product_name'] = 'seamonkey'
-BRANCHES['comm-central-trunk']['app_name'] = 'suite'
-BRANCHES['comm-central-trunk']['brand_name'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['start_hour'] = [0]
 BRANCHES['comm-central-trunk']['start_minute'] = [30]
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-central-trunk']['platforms'] = {
-    'linux': {},
-    'linux64': {},
-    'macosx': {},
-    'win32': {},
-    'linux-debug': {},
-    'macosx-debug': {},
-    'win32-debug': {},
-}
-# The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
-BRANCHES['comm-central-trunk']['platforms']['linux']['mozconfig_dep'] = 'linux/comm-central-trunk/dep'
-BRANCHES['comm-central-trunk']['platforms']['linux64']['mozconfig_dep'] = 'linux64/comm-central-trunk/dep'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['mozconfig_dep'] = 'macosx/comm-central-trunk/dep'
-BRANCHES['comm-central-trunk']['platforms']['win32']['mozconfig_dep'] = 'win32/comm-central-trunk/dep'
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['mozconfig_dep'] = 'linux/comm-central-trunk/debug'
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['mozconfig_dep'] = 'macosx/comm-central-trunk/debug'
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['mozconfig_dep'] = 'win32/comm-central-trunk/debug'
-# nightly mozconfig (not for debug builds)
-BRANCHES['comm-central-trunk']['platforms']['linux']['mozconfig'] = 'linux/comm-central-trunk/nightly'
-BRANCHES['comm-central-trunk']['platforms']['linux64']['mozconfig'] = 'linux64/comm-central-trunk/nightly'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['mozconfig'] = 'macosx/comm-central-trunk/nightly'
-BRANCHES['comm-central-trunk']['platforms']['win32']['mozconfig'] = 'win32/comm-central-trunk/nightly'
-BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central-trunk'
-BRANCHES['comm-central-trunk']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-central-trunk'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'OS X 10.5 comm-central-trunk'
-BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central-trunk'
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['base_name'] = 'Linux comm-central-trunk leak test'
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5 comm-central-trunk leak test'
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 comm-central-trunk leak test'
-BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux64']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['profiled_build'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux']['build_space'] = 7
-BRANCHES['comm-central-trunk']['platforms']['linux64']['build_space'] = 5
-BRANCHES['comm-central-trunk']['platforms']['macosx']['build_space'] = 5
-BRANCHES['comm-central-trunk']['platforms']['win32']['build_space'] = 8
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['build_space'] = 3
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['build_space'] = 3
-BRANCHES['comm-central-trunk']['platforms']['linux']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['linux64']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['macosx']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['win32']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['builds_before_reboot'] = None
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['builds_before_reboot'] = None
-# Enable Nightly builds
-BRANCHES['comm-central-trunk']['enable_nightly'] = True
-# Enable unit tests
-BRANCHES['comm-central-trunk']['platforms']['linux']['enable_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['win32']['enable_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['enable_unittests'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['enable_unittests'] = True
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['enable_unittests'] = True
-BRANCHES['comm-central-trunk']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['win32']['enable_opt_unittests'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux']['enable_checktests'] = False
-BRANCHES['comm-central-trunk']['platforms']['macosx']['enable_checktests'] = False
-BRANCHES['comm-central-trunk']['platforms']['win32']['enable_checktests'] = False
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['enable_checktests'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['enable_checktests'] = True
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['enable_checktests'] = True
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
-BRANCHES['comm-central-trunk']['platforms']['linux']['crashtest_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['macosx']['crashtest_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['comm-central-trunk']['platforms']['linux']['mochitest_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['macosx']['mochitest_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['win32']['mochitest_leak_threshold'] = 484
-BRANCHES['comm-central-trunk']['platforms']['linux']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['macosx']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['win32']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['linux']['mochibrowser_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['macosx']['mochibrowser_leak_threshold'] = 0
-BRANCHES['comm-central-trunk']['platforms']['win32']['mochibrowser_leak_threshold'] = 0
 BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
+BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
@@ -205,10 +310,8 @@ BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea21x'
 BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-central-trunk-l10n/'
 BRANCHES['comm-central-trunk']['enUS_binaryURL'] = \
-    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-comm-central-trunk'
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central-trunk'
 BRANCHES['comm-central-trunk']['allLocalesFile'] = 'suite/locales/all-locales'
-# nightly shark build for profiling
-BRANCHES['comm-central-trunk']['enable_shark'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -217,93 +320,8 @@ BRANCHES['comm-central-trunk']['create_partial'] = True
 BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
-BRANCHES['comm-central-trunk']['idle_timeout'] = 60*60*6   # 6 hours
-# We're actually using gcc4, but the platform hardcodes gcc3
-BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-central-trunk']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
-BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
-BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-central-trunk']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = SLAVES['macosx']
-BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-central-trunk']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['linux64']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-trunk']['platforms']['linux64']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
-    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'CHOWN_ROOT': '~/bin/chown_root',
-    'CHOWN_REVERT': '~/bin/chown_revert',
-}
-BRANCHES['comm-central-trunk']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    # Source server support, bug 506702
-    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
-}
-BRANCHES['comm-central-trunk']['platforms']['linux-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'DISPLAY': ':2',
-    'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-trunk']['platforms']['win32-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
 
 ######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located
@@ -311,71 +329,23 @@ BRANCHES['comm-central-trunk']['platforms']['win32-debug']['env'] = {
 BRANCHES['comm-1.9.1']['repo_path'] = 'releases/comm-1.9.1'
 BRANCHES['comm-1.9.1']['mozilla_repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
-BRANCHES['comm-1.9.1']['major_version'] = '1.9.1'
-BRANCHES['comm-1.9.1']['product_name'] = 'seamonkey'
-BRANCHES['comm-1.9.1']['app_name'] = 'suite'
-BRANCHES['comm-1.9.1']['brand_name'] = 'SeaMonkey'
 BRANCHES['comm-1.9.1']['start_hour'] = [0]
 BRANCHES['comm-1.9.1']['start_minute'] = [0]
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-1.9.1']['platforms'] = {
-    'linux': {},
-    'linux64': {},
-    'win32': {},
-    'macosx': {},
-    'linux-debug': {},
-}
-# The mozconfig file to use, relative to CONFIG_REPO_URL/CONFIG_SUBDIR
-BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig_dep'] = 'linux/comm-1.9.1/dep'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig_dep'] = 'linux64/comm-1.9.1/dep'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig_dep'] = 'macosx/comm-1.9.1/dep'
-BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig_dep'] = 'win32/comm-1.9.1/dep'
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['mozconfig_dep'] = 'linux/comm-1.9.1/debug'
-# nightly mozconfig (not for debug builds)
-BRANCHES['comm-1.9.1']['platforms']['linux']['mozconfig'] = 'linux/comm-1.9.1/nightly'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['mozconfig'] = 'linux64/comm-1.9.1/nightly'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mozconfig'] = 'macosx/comm-1.9.1/nightly'
-BRANCHES['comm-1.9.1']['platforms']['win32']['mozconfig'] = 'win32/comm-1.9.1/nightly'
-BRANCHES['comm-1.9.1']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-1.9.1'
-BRANCHES['comm-1.9.1']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['base_name'] = 'OS X 10.5 comm-1.9.1'
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['base_name'] = 'Linux comm-1.9.1 leak test'
-BRANCHES['comm-1.9.1']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-1.9.1']['platforms']['linux64']['profiled_build'] = False
-BRANCHES['comm-1.9.1']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-1.9.1']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['profiled_build'] = False
-BRANCHES['comm-1.9.1']['platforms']['linux']['build_space'] = 6
-BRANCHES['comm-1.9.1']['platforms']['linux64']['build_space'] = 6
-BRANCHES['comm-1.9.1']['platforms']['win32']['build_space'] = 7
-BRANCHES['comm-1.9.1']['platforms']['macosx']['build_space'] = 5
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['build_space'] = 4
-BRANCHES['comm-1.9.1']['platforms']['linux']['builds_before_reboot'] = None
-BRANCHES['comm-1.9.1']['platforms']['linux64']['builds_before_reboot'] = None
-BRANCHES['comm-1.9.1']['platforms']['win32']['builds_before_reboot'] = None
-BRANCHES['comm-1.9.1']['platforms']['macosx']['builds_before_reboot'] = None
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['builds_before_reboot'] = None
-# Enable Nightly builds
-BRANCHES['comm-1.9.1']['enable_nightly'] = True
-# Enable unit tests
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
+BRANCHES['comm-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
+BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
+BRANCHES['comm-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
+BRANCHES['comm-1.9.1']['platforms']['win32']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['unittest_exec_xpcshell_suites'] = True
 BRANCHES['comm-1.9.1']['enable_mac_a11y'] = False
-BRANCHES['comm-1.9.1']['platforms']['linux']['crashtest_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['comm-1.9.1']['platforms']['macosx']['crashtest_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['linux']['mochitest_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['win32']['mochitest_leak_threshold'] = 484
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mochitest_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['linux']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['win32']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mochichrome_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['linux']['mochibrowser_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['win32']['mochibrowser_leak_threshold'] = 0
-BRANCHES['comm-1.9.1']['platforms']['macosx']['mochibrowser_leak_threshold'] = 0
 BRANCHES['comm-1.9.1']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
@@ -389,86 +359,13 @@ BRANCHES['comm-1.9.1']['l10n_tree'] = 'sea20x'
 BRANCHES['comm-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-1.9.1-l10n/'
 BRANCHES['comm-1.9.1']['enUS_binaryURL'] = \
-    BRANCH_LEVEL_VARS['download_base_url'] + '/nightly/latest-comm-1.9.1'
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-1.9.1'
 BRANCHES['comm-1.9.1']['allLocalesFile'] = 'suite/locales/all-locales'
-# nightly shark build for profiling
-BRANCHES['comm-1.9.1']['enable_shark'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
-BRANCHES['comm-1.9.1']['idle_timeout'] = 60*60*6   # 6 hours
-# We're actually using gcc4, but the platform hardcodes gcc3
-BRANCHES['comm-1.9.1']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-1.9.1']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
-BRANCHES['comm-1.9.1']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-1.9.1']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-1.9.1']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-1.9.1']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-1.9.1']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey2.0'
 BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.0'
-BRANCHES['comm-1.9.1']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-1.9.1']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-1.9.1']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-1.9.1']['platforms']['macosx']['slaves'] = SLAVES['macosx']
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-1.9.1']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1']['platforms']['linux64']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1']['platforms']['linux']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1']['platforms']['linux64']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/home/seabld/.ssh/seabld_dsa",
-    'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    # Source server support, bug 506702
-    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
-}
-BRANCHES['comm-1.9.1']['platforms']['macosx']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'seabld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'CHOWN_ROOT': '~/bin/chown_root',
-    'CHOWN_REVERT': '~/bin/chown_revert',
-}
-BRANCHES['comm-1.9.1']['platforms']['linux-debug']['env'] = {
-    'MOZ_OBJDIR': OBJDIR,
-    'DISPLAY': ':2',
-    'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
