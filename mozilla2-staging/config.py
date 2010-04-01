@@ -569,7 +569,7 @@ BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDI
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['create_snippet'] = True
-BRANCHES['tracemonkey']['create_partial'] = False
+BRANCHES['tracemonkey']['create_partial'] = True
 BRANCHES['tracemonkey']['create_partial_l10n'] = False
 BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
 BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
@@ -631,7 +631,7 @@ BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDI
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['create_snippet'] = True
-BRANCHES['electrolysis']['create_partial'] = False
+BRANCHES['electrolysis']['create_partial'] = True
 BRANCHES['electrolysis']['create_partial_l10n'] = False
 BRANCHES['electrolysis']['aus2_user'] = 'ffxbld'
 BRANCHES['electrolysis']['aus2_ssh_key'] = 'ffxbld_dsa'
