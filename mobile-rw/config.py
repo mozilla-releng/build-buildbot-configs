@@ -1,4 +1,7 @@
 from copy import deepcopy
+
+import defaults
+reload(defaults)
 from defaults import default_platform, default_n810, default_n900
 
 def generate_build_dirs(branch):
