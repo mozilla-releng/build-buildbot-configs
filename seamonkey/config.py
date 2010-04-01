@@ -146,7 +146,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
         },
         'macosx': {
             'base_name': 'OS X 10.5 %(branch)s',
