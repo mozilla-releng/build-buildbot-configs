@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from buildbot.steps.shell import WithProperties
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
@@ -81,6 +83,98 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
 
 NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] 
 
+BRANCH_UNITTEST_VARS = {
+    'hghost': 'hg.mozilla.org',
+    'build_tools_repo_path': 'users/stage-ffxbld/tools',
+    # turn on platforms as we get them running
+    'platforms': {
+        'macosx': {},
+    },
+}
+
+PLATFORM_UNITTEST_VARS = {
+        'linux': {
+            'builds_before_reboot': 1,
+            'unittest-env' : {'DISPLAY': ':0'},
+        },
+        'win32': {
+            'builds_before_reboot': 1,
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+        },
+        'macosx': {
+            'builds_before_reboot': 1,
+            'opt_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
+            'debug_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
+        },
+        'linux64': {
+            'builds_before_reboot': 1,
+            'unittest-env' : {'DISPLAY': 0},
+        },
+}
+UNITTEST_SUITES = {
+    'opt_unittest_suites': [
+            # Turn on chunks for mochitests
+            ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+            ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                'mochitest-a11y', 'mochitest-ipcplugins']),
+            ('reftest', ['reftest']),
+            ('crashtest', ['crashtest']),
+            ('xpcshell', ['xpcshell']),
+            ('jsreftest', ['jsreftest']),
+        ],
+    'debug_unittest_suites': [
+            # Turn on chunks for mochitests
+            ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+            ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                'mochitest-a11y', 'mochitest-ipcplugins']),
+            ('reftest', ['reftest']),
+            ('crashtest', ['crashtest']),
+            ('xpcshell', ['xpcshell']),
+            ('jsreftest', ['jsreftest']),
+        ],
+}
+
+# Copy unittest vars in first, then platform vars
+for branch in BRANCHES.keys():
+    for key, value in BRANCH_UNITTEST_VARS.items():
+        # Don't override platforms if it's set
+        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+            continue
+        BRANCHES[branch][key] = deepcopy(value)
+
+    for platform, platform_config in PLATFORM_UNITTEST_VARS.items():
+        if platform in BRANCHES[branch]['platforms']:
+            for key, value in platform_config.items():
+                value = deepcopy(value)
+                if isinstance(value, str):
+                    value = value % locals()
+                BRANCHES[branch]['platforms'][platform][key] = value
+    for platform in BRANCHES[branch]['platforms']:
+        for key, value in UNITTEST_SUITES.items():
+            # don't override platform specified unittests
+            if key in BRANCHES[branch]['platforms'][platform]:
+                continue
+            BRANCHES[branch]['platforms'][platform][key] = deepcopy(value)
+
 ########
 # Entries in BRANCHES for tests should be a tuple of:
 # - Number of tests to run per build
@@ -145,6 +239,9 @@ BRANCHES['mozilla-central']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
+BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx']['enable_debug_unittests'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
