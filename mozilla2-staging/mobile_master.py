@@ -180,8 +180,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
            platform in branch['l10n_platforms'] and \
            nightly_builder in l10nNightlyBuilders:
             triggeredSchedulers=[l10nNightlyBuilders[nightly_builder]['l10n_builder']]
-            
-        if platform == 'linux-gnueabi-arm':
+
+        if platform == 'linux-gnueabi-arm' or 'maemo5' in platform:
             mobile_dep_factory = MaemoBuildFactory(
                 hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
@@ -193,16 +193,25 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageSshKey=mainConfig['stage_ssh_key'],
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=branch['mobile_repo_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                        branch.get('mobile_repo_path')),
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseBuildDir=pf['base_builddir'],
-                baseUploadDir=name,
+                baseUploadDir=pf.get('base_upload_dir', name),
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot']
+                buildsBeforeReboot=pf['builds_before_reboot'],
+                sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
+                mobileObjdir=pf.get('mobile_objdir', 'mobile'),
+                xulrunnerObjdir=pf.get('xulrunner_objdir', 'xulrunner'),
+                packageGlobList=pf.get('glob_list', ['mobile/dist/*.tar.bz2',
+                                                     'mobile/mobile/*.deb',
+                                                     'mobile/dist/deb_name.txt',
+                                                     'xulrunner/dist/*.tar.bz2']),
+                debs=pf.get('debs', True),
             )
             nightlyWorkDir  = pf['base_workdir']  + '-nightly'
             nightlyBuildDir = pf['base_builddir'] + '-nightly'
@@ -217,21 +226,31 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageSshKey=mainConfig['stage_ssh_key'],
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=branch['mobile_repo_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                        branch.get('mobile_repo_path')),
                 platform=platform,
                 baseWorkDir=nightlyWorkDir,
                 baseBuildDir=nightlyBuildDir,
-                baseUploadDir=name,
+                baseUploadDir=pf.get('base_upload_dir', name),
                 buildToolsRepoPath=mainConfig['build_tools_repo_path'],
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
                 buildsBeforeReboot=pf['builds_before_reboot'],
                 nightly = True,
-                multiLocale = branch['enable_multi_locale'],
+                multiLocale = pf.get('enable_multi_locale',
+                                     branch['enable_multi_locale']),
                 l10nRepoPath = branch['l10n_repo_path'],
                 triggerBuilds = True,
-                triggeredSchedulers=triggeredSchedulers
+                triggeredSchedulers=triggeredSchedulers,
+                sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
+                mobileObjdir=pf.get('mobile_objdir', 'mobile'),
+                xulrunnerObjdir=pf.get('xulrunner_objdir', 'xulrunner'),
+                packageGlobList=pf.get('glob_list', ['mobile/dist/*.tar.bz2',
+                                                     'mobile/mobile/*.deb',
+                                                     'mobile/dist/deb_name.txt',
+                                                     'xulrunner/dist/*.tar.bz2']),
+                debs=pf.get('debs', True),
             )
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
@@ -256,7 +275,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 clobberURL=mainConfig['base_clobber_url'],
                 clobberTime=clobberTime,
                 buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot']
+                buildsBeforeReboot=pf['builds_before_reboot'],
             )
             mobile_nightly_factory = MobileDesktopBuildFactory(
                 hgHost=mainConfig['hghost'],

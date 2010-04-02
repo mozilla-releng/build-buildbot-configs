@@ -1,6 +1,8 @@
 # -*- python -*-
 # ex: set syntax=python:
 
+from copy import deepcopy
+
 import config
 reload(config)
 
@@ -45,6 +47,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
@@ -119,6 +122,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
 }
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
@@ -189,6 +193,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
     'linux-gnueabi-arm': {},
 }
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo Tracemonkey'
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['build_space'] = 5
 MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 5
@@ -216,6 +221,7 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
     'linux-i686': {},
 }
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop electrolysis'
@@ -260,6 +266,7 @@ MOBILE_BRANCHES['mobile-lorentz']['platforms'] = {
 }
 MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
@@ -333,6 +340,7 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {
     'win32-i686': {},
 }
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
@@ -378,3 +386,54 @@ MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = {
     'CHOWN_REVERT': '~/bin/chown_revert',
 }
 MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['env'] = {}
+
+#This is needed because we don't use the real branch name as the branch name.
+hacktionary = {'mobile-trunk': 'mozilla-central',
+               'mobile-1.9.2': 'mozilla-1.9.2',
+               'mobile-tracemonkey': 'tracemonkey',
+               'mobile-electrolysis': 'electrolysis',
+               'mobile-lorentz': 'lorentz',
+               'mobile-addonsmgr': 'addonsmgr'}
+
+#Create configs for Maemo5 GTK that are identical to Maemo4 GTK in all respects other than:
+#  -naming
+#  -workdirs
+#  -upload location
+#  -no multilocale
+#  -no l10n
+#  -qt builds use qt mozconfigs
+for toolkit in ['gtk', 'qt']:
+    for branch in MOBILE_BRANCHES.keys():
+        if 'lorentz' in branch:
+                continue
+        if 'qt' in toolkit and '1.9.2' in branch:
+                continue
+        maemo5 = deepcopy(MOBILE_BRANCHES[branch]['platforms']['linux-gnueabi-arm'])
+        maemo5['base_name'] = "Maemo 5 %s %s" % (toolkit.upper(),
+                                                 hacktionary.get(branch, branch))
+        if 'qt' in toolkit:
+            maemo5['glob_list'] = ['dist/*.tar.*']
+            maemo5['debs'] = False
+        else:
+            maemo5['glob_list'] = ['dist/*.tar.bz2',
+                                   'dist/deb_name.txt',
+                                   'mobile/*.deb']
+        if 'electrolysis' in branch:
+            maemo5['mozconfig'] += "-%s-e10s" % toolkit
+            maemo5['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
+        else:
+            maemo5['mozconfig'] += "-%s" % toolkit
+        maemo5['base_workdir'] = '%s/build/%s-maemo5-%s' % (SBOX_HOME,
+                                                            branch, toolkit)
+        maemo5['base_builddir'] = '%s-maemo5-%s' % (branch, toolkit)
+        maemo5['base_upload_dir'] = '%s-maemo5-%s' % (branch, toolkit)
+        maemo5['base_l10n_workdir'] = '%s/build/%s-maemo5-%s-l10n' % (SBOX_HOME,
+                                                                      toolkit, branch)
+        maemo5['mobile_objdir'] = '.'
+        maemo5['xulrunner_objdir'] = '.'
+        maemo5['sb_target'] = 'FREMANTLE_ARMEL'
+        maemo5['enable_multi_locale'] = False
+        MOBILE_BRANCHES[branch]['platforms']['maemo5-%s'%toolkit] = maemo5
+
+if __name__=="__main__":
+    print MOBILE_BRANCHES
