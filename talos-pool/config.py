@@ -47,6 +47,11 @@ for platform, platform_config in PLATFORMS.items():
 
 ALL_PLATFORMS = PLATFORMS['macosx']['slave_platforms']
 
+BRANCH_UNITTEST_VARS = {
+    # need platforms here because of unittest packaged tests in talos-r3
+    'platforms': {},
+}
+
 ########
 # Entries in BRANCHES for tests should be a tuple of:
 # - Number of tests to run per build
