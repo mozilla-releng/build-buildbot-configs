@@ -19,6 +19,7 @@ SUITES = {
     'v8': GRAPH_CONFIG + ['--activeTests', 'v8'],
     'svg': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
     'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
+    'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
 }
 
 SLAVES = {
@@ -68,6 +69,7 @@ BRANCHES['mozilla-1.9.0']['fetch_symbols'] = False
 BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['jss_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.0']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['cold_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -108,6 +110,7 @@ BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -126,6 +129,7 @@ BRANCHES['mozilla-1.9.2']['fetch_release_symbols'] = False
 BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -142,6 +146,7 @@ BRANCHES['firefox-lorentz']['fetch_symbols'] = True
 BRANCHES['firefox-lorentz']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['jss_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['firefox-lorentz']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, ALL_PLATFORMS)
