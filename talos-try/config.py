@@ -21,6 +21,9 @@ TALOS_V8_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'v8']
 
 TALOS_SCROLL_CONFIG_OPTIONS = GRAPH_CONFIG + ['--activeTests', 'tscroll']
 
+TALOS_DROMAEO_CONFIG_OPTIONS =  GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom']
+
+
 SLAVES = {
     'linux': ["qm-pubuntu-try%02i" % x for x in range(1,17)],
     'xp': ["qm-pxp-try%02i" % x for x in range(1,11)],
