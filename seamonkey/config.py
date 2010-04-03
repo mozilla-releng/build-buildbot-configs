@@ -332,6 +332,14 @@ BRANCHES['comm-1.9.1']['mozilla_repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['start_hour'] = [0]
 BRANCHES['comm-1.9.1']['start_minute'] = [0]
+BRANCHES['comm-1.9.1']['unittest_suites'] = [
+    ('mochitests', ['mochitest-plain']),
+    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+        'mochitest-a11y']),
+    ('reftest', ['reftest']),
+    ('crashtest', ['crashtest']),
+    ('xpcshell', ['xpcshell']),
+]
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_checktests'] = False
