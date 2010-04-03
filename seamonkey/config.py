@@ -55,7 +55,7 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', False, 0)],
     'unittest_suites': [
-        ('mochitests', ['mochitest-plain']),
+        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
             'mochitest-a11y']),
         ('reftest', ['reftest']),
