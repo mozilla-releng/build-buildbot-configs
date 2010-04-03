@@ -91,7 +91,7 @@ GLOBAL_VARS = {
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
-    'idle_timeout' = 60*60*12,     # 12 hours
+    'idle_timeout': 60*60*12,     # 12 hours
 }
 
 # shorthand, because these are used often
