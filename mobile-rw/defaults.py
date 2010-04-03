@@ -4,6 +4,7 @@ from copy import deepcopy
 #
 default_platform = {}
 default_platform['slaves'] = []
+default_platform['ftp_dir'] = ''
 default_platform['poll_interval'] = 5*60
 default_platform['reboot'] = True
 default_platform['reboot_cmd'] = ['sudo', 'reboot-user']
@@ -13,9 +14,10 @@ default_platform['nightly'] = True
 default_platform['per_checkin'] = True
 default_platform['unit_build_dirs'] = []
 default_platform['talos_build_dirs'] = []
+default_platform['browser_wait'] = 7
 default_platform['talos_suites'] = {
-    # 'tp4': {},
-    # 'tp4_nochrome': {},
+#     'tp4': {},
+#     'tp4_nochrome': {},
     'tpan': {},
     'tzoom': {},
     'ts': {},
@@ -95,6 +97,7 @@ default_n810['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 default_n810['disable_scaling'] = True
 default_n810['reboot'] = True
 default_n810['reboot_cmd'] = 'reboot ; sleep 600'
+default_n810['browser_wait'] = 20
 
 #
 # {{{2 Nokia N900 Specializations
@@ -102,4 +105,5 @@ default_n810['reboot_cmd'] = 'reboot ; sleep 600'
 default_n900 = deepcopy(default_platform)
 default_n900['reboot'] = True
 default_n900['reboot_cmd'] = ['sudo', 'reboot-user']
-default_n900['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2' #May need to specialize this for QT
+default_n900['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
+
