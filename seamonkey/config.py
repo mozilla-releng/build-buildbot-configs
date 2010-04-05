@@ -319,8 +319,8 @@ BRANCHES['comm-central-trunk']['allLocalesFile'] = 'suite/locales/all-locales'
 BRANCHES['comm-central-trunk']['create_snippet'] = True
 BRANCHES['comm-central-trunk']['create_partial'] = True
 BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
-BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
-BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/mozilla-central'
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
+BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
 
