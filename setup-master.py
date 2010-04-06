@@ -97,6 +97,47 @@ mozilla2_2 = mozilla2 + MasterConfig(
             ],
         )
 
+debsign = MasterConfig(
+        'debsign',
+        globs=['*.py', '*.cfg'],
+        renames=[
+            ('passwords.py.template', 'passwords.py'),
+        ],
+        local_links=[],
+        )
+
+debsign_production = debsign + MasterConfig(
+        local_links=[
+            ('master-production.cfg', 'master.cfg'),
+            ('config-production.py', 'config.py'),
+            ],
+        )
+
+debsign_staging = debsign + MasterConfig(
+        local_links=[
+            ('master-staging.cfg', 'master.cfg'),
+            ('config-staging.py', 'config.py'),
+            ],
+        )
+
+mobile_rw = MasterConfig(
+        'mobile-rw',
+        globs=['*.py', '*.cfg'],
+        local_links=[],
+        )
+
+mobile_rw_production = mobile_rw + MasterConfig(
+        local_links=[
+            ('config-production.py', 'config.py'),
+            ],
+        )
+
+mobile_rw_staging = mobile_rw + MasterConfig(
+        local_links=[
+            ('config-staging.py', 'config.py'),
+            ],
+        )
+
 talos_staging = MasterConfig(
         'talos-staging-pool',
         globs=['*.py', '*.cfg'],
@@ -136,6 +177,8 @@ masters = {
         'talos-staging-try': [talos_staging_try],
         'talos': [talos],
         'talos-try': [talos_try],
+        'debsign': [debsign_production, debsign_staging],
+        'mobile_rw': [mobile_rw_production, mobile_rw_staging],
         }
 
 if __name__ == "__main__":
