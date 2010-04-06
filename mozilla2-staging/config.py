@@ -138,6 +138,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
             'base_name': 'Linux x86-64 %(branch)s',
@@ -165,6 +166,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {
             'base_name': 'OS X 10.5.2 %(branch)s',
@@ -190,6 +192,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
             'base_name': 'OS X 10.6 %(branch)s',
@@ -247,6 +250,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux-debug': {
             'base_name': 'Linux %(branch)s leak test',
@@ -269,6 +273,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64-debug': {
             'base_name': 'Linux x86-64 %(branch)s leak test',
@@ -289,6 +294,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx-debug': {
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
@@ -306,6 +312,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
             'base_name': 'OS X 10.6 %(branch)s leak test',
@@ -344,6 +351,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': True,
             'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
 }
 
