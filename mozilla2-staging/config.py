@@ -215,6 +215,10 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'enable_checktests': False,
+            'talos_masters': [
+                ('talos-staging-master02.build.mozilla.org:9010', False),
+                ('talos-staging-master02.build.mozilla.org:9012', False),
+            ],
         },
         'win32': {
             'base_name': 'WINNT 5.2 %(branch)s',
@@ -319,6 +323,10 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
+            'talos_masters': [
+                ('talos-staging-master02.build.mozilla.org:9010', False),
+                ('talos-staging-master02.build.mozilla.org:9012', False),
+            ],
         },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
