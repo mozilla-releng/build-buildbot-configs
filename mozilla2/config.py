@@ -4,19 +4,19 @@ import buildbotcustom.env
 reload(buildbotcustom.env)
 from buildbotcustom.env import MozillaEnvironments
 
-MAC_MINIS = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) +
-             range(29,68)]
-XSERVES   = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
-LINUX_VMS = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) +
-             range(18,51)]
-LINUX_IXS = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,26)]
-WIN32_VMS = ['win32-slave%02i' % x for x in [1,2] + range(5,21) + range(22,60)]
-WIN32_IXS = ['mw32-ix-slave%02i' % x for x in range(2,26)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
+XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
+LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
+LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,26)]
+WIN32_VMS      = ['win32-slave%02i' % x for x in [1,2] + range(5,21) + range(22,60)]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,26)]
 SLAVES = {
-    'linux': LINUX_VMS + LINUX_IXS,
-    'linux64': ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32': WIN32_VMS + WIN32_IXS,
-    'macosx': MAC_MINIS + XSERVES,
+    'linux':       LINUX_VMS + LINUX_IXS,
+    'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
+    'win32':       WIN32_VMS + WIN32_IXS,
+    'macosx':      MAC_MINIS + XSERVES,
+    'macosx-snow': MAC_SNOW_MINIS,
 }
 
 GLOBAL_VARS = {
@@ -85,9 +85,11 @@ GLOBAL_VARS = {
         'linux64': {},
         'win32': {},
         'macosx': {},
+        'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
         'macosx-debug': {},
+        'macosx64-debug': {},
         'win32-debug': {},
     },
     'product_name': 'firefox',
@@ -174,6 +176,32 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
             'update_platform': 'Darwin_Universal-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+            },
+            'enable_opt_unittests': True,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
+        'macosx64': {
+            'base_name': 'OS X 10.6.2 %(branch)s',
+            'mozconfig': 'macosx64/%(branch)s/nightly',
+            'profiled_build': False,
+            'builds_before_reboot': 1,
+            'build_space': 8,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'slaves': SLAVES['macosx-snow'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -283,6 +311,24 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
+        'macosx64-debug': {
+            'base_name': 'OS X 10.6.2 %(branch)s leak test',
+            'mozconfig': 'macosx64/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': 1,
+            'download_symbols': True,
+            'build_space': 5,
+            'slaves': SLAVES['macosx-snow'],
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_unittests': True,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
@@ -307,12 +353,27 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {},
-    'mozilla-1.9.1': {},
-    'mozilla-1.9.2': {},
+    'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
+                                      'linux64': {}, 'linux64-debug': {}, 
+                                      'macosx': {}, 'macosx-debug': {}, 
+                                      'win32': {}, 'win32-debug': {}, 
+                                    },
+                     },
+    'mozilla-1.9.2': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
+                                      'linux64': {}, 'linux64-debug': {}, 
+                                      'macosx': {}, 'macosx-debug': {}, 
+                                      'win32': {}, 'win32-debug': {}, 
+                                    },
+                     },
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
-    'firefox-lorentz': {},
+    'firefox-lorentz': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
+                                        'linux64': {}, 'linux64-debug': {}, 
+                                        'macosx': {}, 'macosx-debug': {}, 
+                                        'win32': {}, 'win32-debug': {}, 
+                                      },
+                       },
     'addonsmgr': {},
 }
 

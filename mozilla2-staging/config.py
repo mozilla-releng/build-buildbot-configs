@@ -204,7 +204,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'slaves': SLAVES['macosx-snow'],
             'platform_objdir': OBJDIR,
-            'update_platform': 'Darwin_Universal-gcc3',
+            'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
