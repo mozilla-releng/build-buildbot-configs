@@ -4,19 +4,19 @@ import defaults
 reload(defaults)
 from defaults import default_n900
 
-base_dep_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox_builds/'
+base_dep_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds/'
 base_nightly_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
 
 def generate_platform(base_platform, build_branch, nightly_unit, nightly_talos, dep_unit, dep_talos):
     new_platform = deepcopy(base_platform)
     if dep_talos:
-        new_platform['talos_build_dir'] = base_dep_location + build_branch
+        new_platform['talos_build_dirs'].append(base_dep_location + build_branch)
     if dep_unit:
-        new_platform['unit_build_dir'] = base_dep_location + build_branch
+        new_platform['unit_build_dirs'].append(base_dep_location + build_branch)
     if nightly_talos:
-        new_platform['talos_build_dir'] = "%slatest-%s" % (base_nightly_location,build_branch)
+        new_platform['talos_build_dirs'].append("%slatest-%s" % (base_nightly_location,build_branch))
     if nightly_unit:
-        new_platform['unit_build_dir'] = "%slatest-%s" % (base_nightly_location,build_branch)
+        new_platform['unit_build_dirs'].append("%slatest-%s" % (base_nightly_location,build_branch))
     return new_platform
 
 
