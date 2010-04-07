@@ -16,7 +16,7 @@ def generate_platform(base_platform, build_branch, nightly_unit, nightly_talos, 
     if nightly_talos:
         new_platform['talos_build_dirs'].append("%slatest-%s" % (base_nightly_location,build_branch))
     if nightly_unit:
-        new_platform['unit_build_dirs'].append"%slatest-%s" % (base_nightly_location,build_branch))
+        new_platform['unit_build_dirs'].append("%slatest-%s" % (base_nightly_location,build_branch))
     return new_platform
 
 
