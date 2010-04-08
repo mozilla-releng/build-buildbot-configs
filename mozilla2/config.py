@@ -325,8 +325,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_unittests': True,
-            'enable_checktests': True,
+            'enable_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {

@@ -328,8 +328,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_opt_unittests': True,
-            'enable_checktests': True,
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
             'talos_masters': [
                 ('talos-staging-master02.build.mozilla.org:9010', False),
                 ('talos-staging-master02.build.mozilla.org:9012', False),
