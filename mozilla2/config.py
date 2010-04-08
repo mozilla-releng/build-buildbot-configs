@@ -213,8 +213,8 @@ PLATFORM_VARS = {
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
             },
-            'enable_opt_unittests': True,
-            'enable_checktests': True,
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32': {
