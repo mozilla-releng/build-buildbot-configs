@@ -53,15 +53,14 @@ mozilla2_staging = MasterConfig(
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ],
-        local_links=[
-            ('release-fennec-mozilla-1.9.2.py', 'release_mobile_config.py'),
-            ],
+        local_links=[],
         )
 
 mozilla2_staging1 = mozilla2_staging + MasterConfig(
         local_links=[
             ('master1.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
+            ('release_mobile_config1.py', 'release_mobile_config.py'),
             ],
         )
 
@@ -69,6 +68,7 @@ mozilla2_staging2 = mozilla2_staging + MasterConfig(
         local_links=[
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
+            ('release_mobile_config2.py', 'release_mobile_config.py'),
             ],
         )
 
@@ -78,15 +78,14 @@ mozilla2 = MasterConfig(
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ],
-        local_links=[
-            ('release-fennec-mozilla-1.9.2.py', 'release_mobile_config.py'),
-            ],
+        local_links=[],
         )
 
 mozilla2_1 = mozilla2 + MasterConfig(
         local_links=[
             ('master1.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
+            ('release_mobile_config1.py', 'release_mobile_config.py'),
             ],
         )
 
@@ -94,6 +93,7 @@ mozilla2_2 = mozilla2 + MasterConfig(
         local_links=[
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
+            ('release_mobile_config2.py', 'release_mobile_config.py'),
             ],
         )
 
