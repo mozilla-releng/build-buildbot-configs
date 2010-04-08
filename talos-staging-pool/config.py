@@ -93,9 +93,12 @@ BRANCH_UNITTEST_VARS = {
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     # turn on platforms as we get them running
     'platforms': {
+        'linux': {},
+        'linux64': {},
         'macosx': {},
     },
 }
+
 PLATFORM_UNITTEST_VARS = {
         'linux': {
             'builds_before_reboot': 1,
@@ -118,7 +121,7 @@ PLATFORM_UNITTEST_VARS = {
                 ('xpcshell', ['xpcshell']),
                 ('jsreftest', ['jsreftest']),
             ],
-           'debug_unittest_suites': [
+            'debug_unittest_suites': [
                 # Turn on chunks for mochitests
                 ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
                 ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
@@ -134,6 +137,7 @@ PLATFORM_UNITTEST_VARS = {
             'unittest-env' : {'DISPLAY': ':0'},
         },
 }
+
 UNITTEST_SUITES = {
     'opt_unittest_suites': [
             # Turn on chunks for mochitests
@@ -246,6 +250,10 @@ BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
