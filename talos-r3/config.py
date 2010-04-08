@@ -46,15 +46,19 @@ BRANCHES = {
 
 PLATFORMS = {
     'macosx': {},
+    'macosx64': {},
     'win32': {},
     'linux': {},
     'linux64' : {},
 }
 
-PLATFORMS['macosx']['slave_platforms'] = ['leopard', 'snowleopard']
+PLATFORMS['macosx']['slave_platforms'] = ['leopard']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
-PLATFORMS['macosx']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
+
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard']
+PLATFORMS['macosx64']['env_name'] = 'mac-perf'
+PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
@@ -78,9 +82,10 @@ for platform, platform_config in PLATFORMS.items():
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
+                PLATFORMS['macosx']['slave_platforms'] + \
+                PLATFORMS['macosx64']['slave_platforms']
 
-NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] 
+NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] 
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -213,12 +218,14 @@ BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/bm-xserve08-mozilla1.9.0/",
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
         ],
+    'macosx64': [],
 }
 BRANCHES['mozilla-1.9.0']['ftp_searchstrings'] = {
     'win32': "en-US.win32.zip",
     'linux': "en-US.linux-i686.tar.bz2",
     'linux64': "en-US.linux-x86_64.tar.bz2",
     'macosx': "en-US.mac.dmg",
+    'macosx64': "en-US.mac.dmg",
 }
 
 ######## mozilla-central
