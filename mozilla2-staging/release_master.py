@@ -424,7 +424,8 @@ updates_factory = ReleaseUpdatesFactory(
     # commit to
     commitPatcherConfig=False,
     clobberURL=branchConfig['base_clobber_url'],
-    oldRepoPath=sourceRepoPath
+    oldRepoPath=sourceRepoPath,
+    releaseNotesUrl=releaseNotesUrl,
 )
 
 builders.append({
@@ -505,7 +506,8 @@ if majorUpdateRepoPath:
         commitPatcherConfig=False,
         clobberURL=branchConfig['base_clobber_url'],
         oldRepoPath=sourceRepoPath,
-        triggerSchedulers=['major_update_verify']
+        triggerSchedulers=['major_update_verify'],
+        releaseNotesUrl=majorUpdateReleaseNotesUrl,
     )
     
     builders.append({

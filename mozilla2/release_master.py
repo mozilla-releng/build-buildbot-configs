@@ -383,7 +383,8 @@ updates_factory = ReleaseUpdatesFactory(
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
     clobberURL=branchConfig['base_clobber_url'],
-    oldRepoPath=sourceRepoPath
+    oldRepoPath=sourceRepoPath,
+    releaseNotesUrl=releaseNotesUrl,
 )
 
 builders.append({
@@ -461,7 +462,8 @@ if majorUpdateRepoPath:
         hgUsername=hgUsername,
         clobberURL=branchConfig['base_clobber_url'],
         oldRepoPath=sourceRepoPath,
-        triggerSchedulers=['major_update_verify']
+        triggerSchedulers=['major_update_verify'],
+        releaseNotesUrl=majorUpdateReleaseNotesUrl,
     )
     
     builders.append({

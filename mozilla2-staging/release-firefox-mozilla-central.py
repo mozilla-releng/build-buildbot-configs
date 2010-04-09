@@ -40,6 +40,7 @@ ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
+releaseNotesUrl     = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
 useBetaChannel      = 0
 # TODO: create these files before 3.7a2
 verifyConfigs       = {'linux':  'moz193-firefox-linux.cfg',

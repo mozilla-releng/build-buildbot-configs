@@ -38,6 +38,7 @@ ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
+releaseNotesUrl     = None
 useBetaChannel      = 0
 # TODO: create these files before 3.6b1
 verifyConfigs       = {'linux':  'moz192-firefox-linux.cfg',

@@ -33,6 +33,7 @@ talosTestPlatforms = ()
 unittestPlatforms  = ()
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
+releaseNotesUrl     = None
 useBetaChannel     = 1
 verifyConfigs      = {'linux':  'moz191-firefox-linux.cfg',
                       'macosx': 'moz191-firefox-mac.cfg',
@@ -44,6 +45,7 @@ majorUpdateToVersion   = '3.6.3'
 majorUpdateAppVersion  = majorUpdateToVersion
 majorUpdateBuildNumber = 1
 majorUpdateBaseTag     = 'FIREFOX_3_6_3'
+majorUpdateReleaseNotesUrl = 'http://www.mozilla.com/%locale%/firefox/3.6/details/index.html'
 majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
                             'macosx': 'moz191-firefox-mac-major.cfg',

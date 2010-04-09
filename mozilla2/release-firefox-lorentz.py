@@ -33,6 +33,7 @@ ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'stage-old.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'https://aus2.mozilla.org'
+releaseNotesUrl     = None
 useBetaChannel      = 0
 verifyConfigs       = {'linux':  'moz192-firefox-linux-lorentz.cfg',
                        'macosx': 'moz192-firefox-mac-lorentz.cfg',
