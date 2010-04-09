@@ -414,6 +414,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                     platform=platform,
+                    sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
                 )
                 if branch['enable_l10n_onchange']:
                     mobile_l10n_dep_factory = MaemoNightlyRepackFactory(
@@ -446,6 +447,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                         clobberURL=mainConfig['base_clobber_url'],
                         clobberTime=clobberTime,
                         platform=platform,
+                        sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
                     )
             elif platform.endswith('i686'):
                 if platform == 'linux-i686':
