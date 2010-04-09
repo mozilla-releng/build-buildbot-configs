@@ -108,6 +108,7 @@ PLATFORM_VARS = {
             'build_space': 6,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
@@ -160,6 +161,7 @@ PLATFORM_VARS = {
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
             'update_platform': 'Darwin_Universal-gcc3',
@@ -187,6 +189,7 @@ PLATFORM_VARS = {
             'build_space': 9,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'mochitest_leak_threshold': 484,
@@ -350,6 +353,7 @@ BRANCHES['comm-1.9.1']['unittest_suites'] = [
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['linux']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
@@ -358,9 +362,11 @@ BRANCHES['comm-1.9.1']['platforms']['linux64']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['macosx']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_checktests'] = False
+BRANCHES['comm-1.9.1']['platforms']['win32']['packageTests'] = False
 BRANCHES['comm-1.9.1']['unittest_exec_xpcshell_suites'] = True
 BRANCHES['comm-1.9.1']['enable_mac_a11y'] = False
 BRANCHES['comm-1.9.1']['unittest_build_space'] = 6
