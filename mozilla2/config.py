@@ -368,12 +368,6 @@ BRANCHES = {
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
-    'firefox-lorentz': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
-                                        'linux64': {}, 'linux64-debug': {}, 
-                                        'macosx': {}, 'macosx-debug': {}, 
-                                        'win32': {}, 'win32-debug': {}, 
-                                      },
-                       },
     'addonsmgr': {},
 }
 
@@ -655,81 +649,6 @@ BRANCHES['electrolysis']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox
 BRANCHES['electrolysis']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
 BRANCHES['electrolysis']['tinderbox_tree'] = 'Electrolysis'
 BRANCHES['electrolysis']['packaged_unittest_tinderbox_tree'] = 'Electrolysis'
-
-######## lorentz
-BRANCHES['firefox-lorentz']['repo_path'] = 'projects/firefox-lorentz'
-BRANCHES['firefox-lorentz']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-BRANCHES['firefox-lorentz']['brand_name'] = 'Lorentz'
-BRANCHES['firefox-lorentz']['start_hour'] = [3]
-BRANCHES['firefox-lorentz']['start_minute'] = [32]
-BRANCHES['firefox-lorentz']['platforms']['linux']['base_name'] = 'Linux lorentz'
-BRANCHES['firefox-lorentz']['platforms']['linux64']['base_name'] = 'Linux x86-64 lorentz'
-BRANCHES['firefox-lorentz']['platforms']['win32']['base_name'] = 'WINNT 5.2 lorentz'
-BRANCHES['firefox-lorentz']['platforms']['macosx']['base_name'] = 'OS X 10.5.2 lorentz'
-BRANCHES['firefox-lorentz']['platforms']['linux-debug']['base_name'] = 'Linux lorentz leak test'
-BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['base_name'] = 'Linux x86-64 lorentz leak test'
-BRANCHES['firefox-lorentz']['platforms']['win32-debug']['base_name'] = 'WINNT 5.2 lorentz leak test'
-BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 lorentz leak test'
-BRANCHES['firefox-lorentz']['platforms']['linux']['build_space'] = 5
-BRANCHES['firefox-lorentz']['platforms']['linux64']['build_space'] = 5
-BRANCHES['firefox-lorentz']['platforms']['win32']['build_space'] = 7
-BRANCHES['firefox-lorentz']['platforms']['macosx']['build_space'] = 7
-BRANCHES['firefox-lorentz']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['build_space'] = 3
-BRANCHES['firefox-lorentz']['platforms']['win32-debug']['build_space'] = 4
-BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['build_space'] = 3
-BRANCHES['firefox-lorentz']['create_snippet'] = True
-# Enable XULRunner / SDK builds
-BRANCHES['firefox-lorentz']['enable_xulrunner'] = True
-# Enable unit tests
-BRANCHES['firefox-lorentz']['unittest_suites'] = [
-    ('mochitests', ['mochitest-plain']),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-]
-BRANCHES['firefox-lorentz']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['firefox-lorentz']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['linux']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['linux64-debug']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['macosx']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['macosx-debug']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['firefox-lorentz']['platforms']['win32']['enable_opt_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['win32']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['platforms']['win32-debug']['enable_unittests'] = False
-BRANCHES['firefox-lorentz']['platforms']['win32-debug']['enable_checktests'] = False
-BRANCHES['firefox-lorentz']['enable_mac_a11y'] = False
-BRANCHES['firefox-lorentz']['unittest_build_space'] = 5
-# L10n configuration
-BRANCHES['firefox-lorentz']['enable_l10n'] = True
-BRANCHES['firefox-lorentz']['enable_l10n_onchange'] = True
-BRANCHES['firefox-lorentz']['l10n_platforms'] = ['linux','win32','macosx']
-BRANCHES['firefox-lorentz']['l10nNightlyUpdate'] = False
-BRANCHES['firefox-lorentz']['l10nDatedDirs'] = False
-BRANCHES['firefox-lorentz']['l10n_tree'] = 'lorentz'
-#make sure it has an ending slash
-BRANCHES['firefox-lorentz']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-lorentz-l10n/'
-BRANCHES['firefox-lorentz']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-firefox-lorentz'
-BRANCHES['firefox-lorentz']['allLocalesFile'] = 'browser/locales/all-locales'
-# need this or the master.cfg will bail
-BRANCHES['firefox-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/firefox-lorentz'
-BRANCHES['firefox-lorentz']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/firefox-lorentz'
-BRANCHES['firefox-lorentz']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
-BRANCHES['firefox-lorentz']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-lorentz'
-BRANCHES['firefox-lorentz']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
-BRANCHES['firefox-lorentz']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'lorentz'
-BRANCHES['firefox-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
-BRANCHES['firefox-lorentz']['packaged_unittest_tinderbox_tree'] = 'Firefox-Lorentz'
 
 ######## addonsmgr
 BRANCHES['addonsmgr']['repo_path'] = 'projects/addonsmgr'

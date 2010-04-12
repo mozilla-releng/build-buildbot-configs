@@ -25,7 +25,6 @@ MOBILE_BRANCHES = {
     'mobile-1.9.2': {},
     'mobile-tracemonkey': {},
     'mobile-electrolysis': {},
-    'mobile-lorentz': {},
     'mobile-addonsmgr': {},
 }
 
@@ -248,81 +247,6 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = MO
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-gnueabi-arm']['env'] = {}
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env'] = {}
 
-### mobile-lorentz
-MOBILE_BRANCHES['mobile-lorentz']['main_config'] = config.BRANCHES['firefox-lorentz']
-MOBILE_BRANCHES['mobile-lorentz']['repo_path'] = 'projects/firefox-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-lorentz']['mobile_repo_path'] = 'mobile-browser'
-MOBILE_BRANCHES['mobile-lorentz']['product_name'] = 'fennec'
-MOBILE_BRANCHES['mobile-lorentz']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-lorentz']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
-MOBILE_BRANCHES['mobile-lorentz']['stage_base_path'] = '/home/ftp/pub/mobile'
-MOBILE_BRANCHES['mobile-lorentz']['platforms'] = {
-    'linux-gnueabi-arm': {},
-    'linux-i686': {},
-    'macosx-i686': {},
-    'win32-i686': {},
-}
-MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms'] = {}
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['mozconfig'] = 'linux/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['sb_target'] = 'CHINOOK-ARMEL-2007'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['mozconfig'] = 'linux/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['mozconfig'] = 'macosx/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['mozconfig'] = 'win32/mobile-desktop/nightly'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_name'] = 'Maemo lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['build_space'] = 5
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['builds_before_reboot'] = 1
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['builds_before_reboot'] = 1
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['builds_before_reboot'] = 1
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['builds_before_reboot'] = 1
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_workdir'] = '%s/build/maemo-lorentz' % SBOX_HOME
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_builddir'] = 'maemo-lorentz'
-# This base directory is for the individual locales repackaging; it is not for the multi-locale build
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['base_l10n_workdir'] = '%s/build/maemo-lorentz-l10n' % SBOX_HOME
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_builddir'] = 'macosx-fennec-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['base_l10n_workdir'] = 'build/macosx-fennec-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_builddir'] = 'w32mob-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['enable_l10n'] = True 
-MOBILE_BRANCHES['mobile-lorentz']['enable_l10n_onchange'] = False 
-MOBILE_BRANCHES['mobile-lorentz']['enable_multi_locale'] = True
-MOBILE_BRANCHES['mobile-lorentz']['l10n_tree'] = 'fennec10x_192'
-MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
-MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['linux-i686'] = 'linux'
-#MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['macosx-i686'] = 'macosx'
-MOBILE_BRANCHES['mobile-lorentz']['l10n_platforms']['win32-i686'] = 'win32'
-MOBILE_BRANCHES['mobile-lorentz']['allLocalesFile'] = "locales/all-locales"
-MOBILE_BRANCHES['mobile-lorentz']['multiLocalesFile'] = "locales/maemo-locales"
-MOBILE_BRANCHES['mobile-lorentz']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-lorentz-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-lorentz']['download_base_url'] + '/nightly/latest-mobile-lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['tinderbox_tree'] = 'Firefox-Lorentz'
-MOBILE_BRANCHES['mobile-lorentz']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['slaves'] = MOBILE_SLAVES['linux-gnueabi-arm']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-gnueabi-arm']['env'] = {}
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['linux-i686']['env'] = {}
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['macosx-i686']['env'] = {
-    'CHOWN_ROOT': '~/bin/chown_root',
-    'CHOWN_REVERT': '~/bin/chown_revert',
-}
-MOBILE_BRANCHES['mobile-lorentz']['platforms']['win32-i686']['env'] = {}
-
 ### mozilla-addonsmgr
 MOBILE_BRANCHES['mobile-addonsmgr']['main_config'] = config.BRANCHES['addonsmgr']
 MOBILE_BRANCHES['mobile-addonsmgr']['repo_path'] = 'projects/addonsmgr'
@@ -393,7 +317,6 @@ hacktionary = {'mobile-trunk': 'mozilla-central',
                'mobile-1.9.2': 'mozilla-1.9.2',
                'mobile-tracemonkey': 'tracemonkey',
                'mobile-electrolysis': 'electrolysis',
-               'mobile-lorentz': 'lorentz',
                'mobile-addonsmgr': 'addonsmgr'}
 
 #Create configs for Maemo5 GTK that are identical to Maemo4 GTK in all respects other than:
@@ -405,8 +328,6 @@ hacktionary = {'mobile-trunk': 'mozilla-central',
 #  -qt builds use qt mozconfigs
 for toolkit in ['gtk', 'qt']:
     for branch in MOBILE_BRANCHES.keys():
-        if 'lorentz' in branch:
-                continue
         if 'qt' in toolkit and '1.9.2' in branch:
                 continue
         maemo5 = deepcopy(MOBILE_BRANCHES[branch]['platforms']['linux-gnueabi-arm'])
