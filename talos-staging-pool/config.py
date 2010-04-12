@@ -41,7 +41,6 @@ BRANCHES = {
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
-    'firefox-lorentz': {},
     'addonsmgr': {},
 }
 
@@ -336,22 +335,6 @@ BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-
-######## firefox-lorentz
-BRANCHES['firefox-lorentz']['branch_name'] = "Firefox-Lorentz"
-BRANCHES['firefox-lorentz']['build_branch'] = "Firefox-Lorentz"
-BRANCHES['firefox-lorentz']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['firefox-lorentz']['talos_command'] = TALOS_CMD
-BRANCHES['firefox-lorentz']['fetch_symbols'] = True
-BRANCHES['firefox-lorentz']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['firefox-lorentz']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['firefox-lorentz']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## addonsmgr
 BRANCHES['addonsmgr']['branch_name'] = "Addonsmgr"
