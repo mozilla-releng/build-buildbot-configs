@@ -95,6 +95,7 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'macosx': {},
+        'macosx64': {},
     },
 }
 
@@ -109,6 +110,29 @@ PLATFORM_UNITTEST_VARS = {
             'crashtest_leak_threshold': 484,
         },
         'macosx': {
+            'builds_before_reboot': 1,
+            'opt_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
+            'debug_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
+        },
+        'macosx64': {
             'builds_before_reboot': 1,
             'opt_unittest_suites': [
                 # Turn on chunks for mochitests
@@ -249,6 +273,8 @@ BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
