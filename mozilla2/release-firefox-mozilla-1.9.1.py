@@ -33,7 +33,9 @@ talosTestPlatforms = ()
 unittestPlatforms  = ()
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
-releaseNotesUrl     = None
+ausUser            = 'cltbld'
+ausSshKey          = 'cltbld_dsa'
+releaseNotesUrl    = None
 useBetaChannel     = 1
 verifyConfigs      = {'linux':  'moz191-firefox-linux.cfg',
                       'macosx': 'moz191-firefox-mac.cfg',

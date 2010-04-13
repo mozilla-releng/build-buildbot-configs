@@ -34,7 +34,9 @@ talosTestPlatforms = ('linux', 'win32', 'macosx')
 unittestPlatforms  = ('linux', 'win32', 'macosx')
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
-releaseNotesUrl     = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
+ausUser            = 'cltbld'
+ausSshKey          = 'cltbld_dsa'
+releaseNotesUrl    = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
 useBetaChannel     = 0
 # TODO: create these files before first 3.7 requiring updates
 verifyConfigs      = {'linux':  'moz193-firefox-linux.cfg',
