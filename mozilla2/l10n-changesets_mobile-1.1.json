@@ -1,150 +1,74 @@
 {
   "ar": {
-    "revision": "4cf8917e616d",
+    "revision": "ce3c384377d4",
     "platforms": ["maemo"]
   },
   "be": {
-    "revision": "64687347aa65",
+    "revision": "ac64245a0005",
     "platforms": ["maemo"]
   },
   "ca": {
-    "revision": "667f1946d297",
-    "platforms": ["maemo"]
-  },
-  "cs": {
-    "revision": "51aff7bd2240",
-    "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "da": {
-    "revision": "ad1596411f01",
-    "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "de": {
-    "revision": "8f32355a62c1",
-    "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "el": {
-    "revision": "6ec6ae997778",
+    "revision": "4fcb11f59439",
     "platforms": ["maemo"]
   },
   "es-AR": {
-    "revision": "e8c4dd619405",
+    "revision": "9f11765f5b61",
     "platforms": ["maemo"]
   },
   "es-ES": {
-    "revision": "531d7120ef3b",
+    "revision": "b94dc443ae75",
     "platforms": ["maemo", "maemo-multilocale"]
   },
-  "eu": {
-    "revision": "9f95f99aaf42",
-    "platforms": ["maemo"]
-  },
-  "fa": {
-    "revision": "920b601a4912",
+  "et": {
+    "revision": "3cdc06f00579",
     "platforms": ["maemo"]
   },
   "fi": {
-    "revision": "02b8c9702257",
+    "revision": "040e81aa86eb",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "fr": {
-    "revision": "be4df5037fd6",
+    "revision": "153d7586b41a",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "fy-NL": {
-    "revision": "ad9a06ddeeb1",
+    "revision": "c64c82933658",
     "platforms": ["maemo"]
   },
   "ga-IE": {
-    "revision": "cb55eb229e43",
-    "platforms": ["maemo"]
-  },
-  "gl": {
-    "revision": "6ef761454550",
-    "platforms": ["maemo"]
-  },
-  "hu": {
-    "revision": "c8de0359ab5e",
+    "revision": "dffb054ba48c",
     "platforms": ["maemo"]
   },
   "it": {
-    "revision": "0cf125e1e127",
+    "revision": "ca44b9999bfa",
     "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "ja": {
-    "revision": "4370c055c5b2",
-    "platforms": ["maemo"]
   },
   "lt": {
-    "revision": "a1e34208858c",
+    "revision": "bfd7474ca8da",
     "platforms": ["maemo"]
-  },
-  "nb-NO": {
-    "revision": "be8d6d3c8b56",
-    "platforms": ["maemo", "maemo-multilocale"]
   },
   "nl": {
-    "revision": "de678a100c14",
+    "revision": "a7cf96e43781",
     "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "nn-NO": {
-    "revision": "bf3241a9c3e3",
-    "platforms": ["maemo"]
   },
   "pa-IN": {
-    "revision": "3536f97ba85b",
+    "revision": "54c738be935c",
     "platforms": ["maemo"]
-  },
-  "pl": {
-    "revision": "d37d02d70778",
-    "platforms": ["maemo", "maemo-multilocale"]
   },
   "pt-BR": {
-    "revision": "439239c5b437",
-    "platforms": ["maemo"]
-  },
-  "pt-PT": {
-    "revision": "77fcc862465d",
-    "platforms": ["maemo", "maemo-multilocale"]
-  },
-  "ro": {
-    "revision": "c4ea70fb212e",
+    "revision": "ba5c2a21884a",
     "platforms": ["maemo"]
   },
   "ru": {
-    "revision": "d51fefdfd74a",
+    "revision": "86d7a70ea921",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "sk": {
-    "revision": "2e57e189385f",
-    "platforms": ["maemo"]
-  },
-  "sl": {
-    "revision": "060beab34771",
-    "platforms": ["maemo"]
-  },
-  "sr": {
-    "revision": "82d42b3cff82",
-    "platforms": ["maemo"]
-  },
-  "tr": {
-    "revision": "87b974e241e1",
-    "platforms": ["maemo"]
-  },
-  "uk": {
-    "revision": "d4f7454a0d28",
-    "platforms": ["maemo"]
-  },
-  "vi": {
-    "revision": "69a41a07c064",
-    "platforms": ["maemo"]
-  },
-  "zh-CN": {
-    "revision": "19298639d899",
+    "revision": "03ca2ee8858b",
     "platforms": ["maemo"]
   },
   "zh-TW": {
-    "revision": "e4b27a589296",
+    "revision": "73304b498e28",
     "platforms": ["maemo"]
   }
 }
