@@ -11,7 +11,8 @@ from buildbotcustom.misc import get_locales_from_json, \
                                 isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, MultiSourceFactory, MaemoReleaseBuildFactory, \
-  MaemoReleaseRepackFactory, PartnerRepackFactory
+  MaemoReleaseRepackFactory, PartnerRepackFactory, \
+  ReleaseMobileDesktopBuildFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -87,13 +88,33 @@ for platform in enUSPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
-    if doPartnerRepacks:
-        partner_scheduler = Dependent(
-            name='mobile_partner_repacks',
+for platform in enUSDesktopPlatforms:
+    build_scheduler = Dependent(
+        name='mobile_%s_desktop_build' % platform,
+        upstream=tag_scheduler,
+        builderNames=['mobile_%s_desktop_build' % platform]
+    )
+    schedulers.append(build_scheduler)
+    if platform in l10nDesktopPlatforms:
+        repack_scheduler = DependentL10n(
+            name='mobile_%s_desktop_repack' % platform,
+            platform=platform,
             upstream=build_scheduler,
-            builderNames=['mobile_partner_repack']
+            builderNames=['mobile_%s_desktop_repack' % platform],
+            repoType='hg',
+            branch=mobileSourceRepoPath,
+            baseTag='%s_RELEASE' % baseTag,
+            locales=platform_locales[platform],
+            tree='release'
         )
-        schedulers.append(partner_scheduler)
+        schedulers.append(repack_scheduler)
+if doPartnerRepacks:
+    partner_scheduler = Dependent(
+        name='mobile_partner_repacks',
+        upstream=build_scheduler,
+        builderNames=['mobile_partner_repack']
+    )
+    schedulers.append(partner_scheduler)
 
 ##### Builders
 clone_repositories = {
@@ -203,8 +224,15 @@ builders.append({
 
 
 for platform in enUSPlatforms:
+
+    baseUploadDir='%s-candidates/build%d' % (version, buildNumber)
+    candidatesPath = '%s/%s' % (stageBasePath, baseUploadDir)
+    build_factory = None
+    repack_factory = None
+
     if platform == 'maemo':
         pf = mobileBranchConfig['platforms']['linux-gnueabi-arm']
+        clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
         mozconfig = 'linux/%s/release' % mobileSourceRepoName
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
@@ -217,18 +245,20 @@ for platform in enUSPlatforms:
             mozconfig=mozconfig,
             stageUsername=branchConfig['stage_username'],
             stageServer=branchConfig['stage_server'],
-            stageBasePath='%s/%s-candidates/build%d' % (stageBasePath,
-                                                        version, buildNumber),
             stageSshKey=branchConfig['stage_ssh_key'],
+            stageBasePath=candidatesPath,
             mobileRepoPath=mobileSourceRepoPath,
             mozRevision='%s_RELEASE' % baseTag,
             mobileRevision='%s_RELEASE' % baseTag,
             l10nTag='%s_RELEASE' % baseTag,
             platform='linux-gnueabi-arm',
+            buildsBeforeReboot=pf['builds_before_reboot'],
             baseWorkDir=releaseWorkDir,
             baseBuildDir=releaseBuildDir,
-            baseUploadDir='%s-candidates/build%d' % (version, buildNumber),
+            baseUploadDir=baseUploadDir,
             buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            clobberURL=branchConfig['base_clobber_url'],
+            clobberTime=clobberTime,
             buildSpace=10,
             mergeLocales=mergeLocales,
             locales=platform_locales['maemo-multilocale'].keys(),
@@ -236,7 +266,6 @@ for platform in enUSPlatforms:
             l10nRepoPath=l10nRepoPath,
             triggerBuilds=False,
         )
-
     builders.append({
         'name': '%s_build' % platform,
         'slavenames': pf['slaves'],
@@ -283,6 +312,57 @@ for platform in enUSPlatforms:
             'builddir': '%s_repack' % platform,
             'factory': repack_factory
         })
+for platform in enUSDesktopPlatforms:
+    pf = mobileBranchConfig['platforms'][platform]
+    clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
+    packageGlobList = []
+    if platform == 'linux-i686':
+        packageGlobList = ['-r', 'mobile/dist/*.tar.bz2',
+                           'xulrunner/dist/*.tar.bz2']
+    elif platform == 'macosx-i686':
+        packageGlobList = ['-r', 'mobile/dist/*.dmg']
+    elif platform == 'win32-i686':
+        packageGlobList = ['-r', 'mobile/dist/*.zip',
+                           'xulrunner/dist/*.zip']
+    
+    build_factory = ReleaseMobileDesktopBuildFactory(
+        hgHost=branchConfig['hghost'],
+        repoPath=mozSourceRepoPath,
+        configRepoPath=branchConfig['config_repo_path'],
+        configSubDir=branchConfig['config_subdir'],
+        mozconfig=pf['mozconfig'],
+        env=pf['env'],
+        stageUsername=branchConfig['stage_username'],
+        stageGroup=branchConfig['stage_group'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        stageServer=branchConfig['stage_server'],
+        stageBasePath='%s/%s' % (candidatesPath, platform),
+        mobileRepoPath=mobileSourceRepoPath,
+        mozRevision='%s_RELEASE' % baseTag,
+        mobileRevision='%s_RELEASE' % baseTag,
+        platform=platform,
+        packageGlobList=packageGlobList,
+        baseWorkDir=pf['base_workdir'],
+        baseUploadDir=baseUploadDir,
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        clobberURL=branchConfig['base_clobber_url'],
+        clobberTime=clobberTime,
+        buildSpace=10,
+        buildsBeforeReboot=pf['builds_before_reboot'],
+        triggerBuilds=False,
+    )
+
+    builders.append({
+        'name': 'mobile_%s_desktop_build' % platform,
+        'slavenames': pf['slaves'],
+        'category': 'release',
+        'builddir': 'mobile_%s_desktop_build' % platform,
+        'factory': build_factory
+    })
+
+    if platform in l10nDesktopPlatforms:
+        # Not implemented yet
+        pass
 
 if doPartnerRepacks:
     partner_repack_factory = PartnerRepackFactory(
