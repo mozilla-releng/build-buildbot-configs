@@ -57,15 +57,17 @@ GLOBAL_VARS = {
     'talos_masters': [
         ('talos-master.mozilla.org:9010', True),
         ('talos-master.mozilla.org:9012', False),
-        ('talos-staging-master.mozilla.org:9010', False),
-        ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-master02.build.mozilla.org:9010', False),
+        ('talos-staging-master02.build.mozilla.org:9010', False),
+        ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [('localhost:9010', False, 0),
+                         ('talos-master.mozilla.org:9012', False, 0),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 0),
-                         ('talos-master.mozilla.org:9012', False, 0)],
+                         ('talos-staging-master02.build.mozilla.org:9012', False, 0),
+                        ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
