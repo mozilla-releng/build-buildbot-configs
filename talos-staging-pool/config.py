@@ -134,6 +134,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'macosx64': {
             'builds_before_reboot': 1,
+            'download_symbols': False,
             'opt_unittest_suites': [
                 # Turn on chunks for mochitests
                 ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
