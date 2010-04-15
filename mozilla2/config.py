@@ -145,7 +145,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': 1,
             'build_space': 6,
-            'upload_symbols': False,
+            'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
             'slaves': SLAVES['linux64'],
