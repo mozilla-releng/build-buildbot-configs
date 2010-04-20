@@ -11,6 +11,7 @@ from buildbot.scheduler import Scheduler, Nightly
 
 import buildbot.status.tinderbox
 from buildbot.status.tinderbox import TinderboxMailNotifier
+from buildbot.status.mail import MailNotifier
 
 import buildbotcustom.misc
 from buildbotcustom.misc import isHgPollerTriggered
@@ -34,7 +35,7 @@ reload(config)
 from config import *
 import mobile_config
 reload(mobile_config)
-from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES 
+from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
 
 MOBILE_L10N_SLAVES = {
     'linux-gnueabi-arm': MOBILE_SLAVES['linux-gnueabi-arm'][-8:],
@@ -51,6 +52,7 @@ m['change_source'] = []
 m['status'] = []
 
 mobileBuilders = []
+mailNotifyBuilders = []
 
 # Like the main cfg, except mobile
 for name in sorted(MOBILE_BRANCHES.keys()):
@@ -83,6 +85,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         builders=builders + nightlyBuilders,
         logCompression='bzip2'
     ))
+
+    mailNotifyBuilders.extend(builders + nightlyBuilders)
 
     if branch['enable_l10n']:
         l10n_builders = []
@@ -545,4 +549,16 @@ m['schedulers'].append(Scheduler(
     treeStableTimer=3*60,
     builderNames=mobileBuilders,
     fileIsImportant=lambda c: isHgPollerTriggered(c, mainConfig['hgurl'])
+))
+
+#
+# mobile build failures go here: bug 548051
+#
+m['status'].append(MailNotifier(
+    fromaddr="mobile-build-failures@mozilla.com",
+    sendToInterestedUsers=False,
+    extraRecipients=['mobile-build-failures@mozilla.com'],
+    mode="failing",
+    builders=mailNotifyBuilders,
+    relayhost="smtp.mozilla.org"
 ))
