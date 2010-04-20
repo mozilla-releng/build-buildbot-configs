@@ -16,6 +16,7 @@ ac_add_app_options xulrunner --disable-javaxpcom
 ac_add_app_options xulrunner --with-arm-kuser
 # updater isn't used for Maemo
 ac_add_app_options xulrunner --disable-updater
+ac_add_app_options xulrunner --disable-ipc
 
 # mobile options
 
