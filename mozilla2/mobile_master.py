@@ -555,9 +555,9 @@ m['schedulers'].append(Scheduler(
 # mobile build failures go here: bug 548051
 #
 m['status'].append(MailNotifier(
-    fromaddr="mobile-build-failures@mozilla.com",
+    fromaddr="mobile-build-failures@mozilla.org",
     sendToInterestedUsers=False,
-    extraRecipients=['mobile-build-failures@mozilla.com'],
+    extraRecipients=['mobile-build-failures@mozilla.org'],
     mode="failing",
     builders=mailNotifyBuilders,
     relayhost="smtp.mozilla.org"
