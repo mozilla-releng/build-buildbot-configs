@@ -350,8 +350,6 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_upload_dir'] = '%s-maemo5-%s' % (branch, toolkit)
         maemo5['base_l10n_workdir'] = '%s/build/%s-maemo5-%s-l10n' % (SBOX_HOME,
                                                                       toolkit, branch)
-        maemo5['mobile_objdir'] = '.'
-        maemo5['xulrunner_objdir'] = '.'
         maemo5['sb_target'] = 'FREMANTLE_ARMEL'
         maemo5['enable_multi_locale'] = False
         MOBILE_BRANCHES[branch]['platforms']['maemo5-%s'%toolkit] = maemo5
