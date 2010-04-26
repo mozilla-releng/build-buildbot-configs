@@ -15,6 +15,9 @@ mozillaRelbranchOverride   = ''
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '27b0e9ef1715'
 inspectorRelbranchOverride = ''
+buildToolsRepoPath            = '' # leave empty if buildTools is not to be tagged
+buildToolsRepoRevision        = ''
+buildToolsRelbranchOverride   = ''
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -28,7 +31,8 @@ productVersionFile         = 'calendar/sunbird/config/version.txt'
 productName                = 'sunbird'
 brandName                  = 'Sunbird'
 appName                    = 'calendar'
-projectName                = 'calendar'
+ftpName			   = 'calendar/sunbird'
+projectName                = 'sunbird'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
