@@ -687,18 +687,12 @@ BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['download_base_url'] =['http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds']
+BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['config_repo_path'] = 'users/lsblakk_mozilla.com/buildbot-configs'
 BRANCHES['tryserver']['repo_path'] = 'try'
 BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/tryserver-builds'
 BRANCHES['tryserver']['start_hour'] = [3]
 BRANCHES['tryserver']['start_minute'] = [2]
-BRANCHES['tryserver']['platforms']['linux']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['linux64']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['win32']['build_space'] = 7
-BRANCHES['tryserver']['platforms']['macosx']['build_space'] = 6
-BRANCHES['tryserver']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['tryserver']['platforms']['win32-debug']['build_space'] = 5
-BRANCHES['tryserver']['platforms']['macosx-debug']['build_space'] = 3
 # Disable Nightly builds
 BRANCHES['tryserver']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
@@ -711,12 +705,6 @@ BRANCHES['tryserver']['unittest_suites'] = [
                         'mochitest-browser-chrome', 'mochitest-a11y',
                         'xpcshell', 'jsreftest'])
 ]
-BRANCHES['tryserver']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 BRANCHES['tryserver']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tryserver']['platforms']['win32']['crashtest_leak_threshold'] = 484
