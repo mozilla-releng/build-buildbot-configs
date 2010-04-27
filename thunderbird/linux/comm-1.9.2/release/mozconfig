@@ -9,6 +9,7 @@ ac_add_options --disable-tests
 ac_add_options --enable-codesighs
 ac_add_options --disable-shared
 ac_add_options --enable-static
+ac_add_options --enable-official-branding
 
 CC="ccache /tools/gcc-4.1.1/bin/gcc"
 CXX="ccache /tools/gcc-4.1.1/bin/g++"
