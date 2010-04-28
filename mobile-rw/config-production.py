@@ -51,7 +51,7 @@ BRANCHES = {
     },
     'mozilla-1.9.2': {
         'talos_branch': 'mobile-1.9.2',
-        'tinderbox_tree': 'Mobile',
+        'tinderbox_tree': 'Mobile1.1',
         'graph_server': 'graphs.mozilla.org',
         'tree_stable_timer': 2,
         'platforms': {

@@ -96,7 +96,7 @@ BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['xpcshell']['kno
 #
 # {{{1 mozilla-1.9.2
 #
-BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = "Mobile"
+BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = "Mobile1.1"
 BRANCHES['mozilla-1.9.2']['graph_server'] = "graphs.mozilla.org"
 BRANCHES['mozilla-1.9.2']['platforms'] = {
     'n810': {},

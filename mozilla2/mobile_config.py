@@ -107,7 +107,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
 MOBILE_BRANCHES['mobile-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'mobile-browser'
+MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-1.9.2'
@@ -162,7 +162,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2-l10n'
-MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile1.1'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] + '/nightly/latest-mobile-1.9.2'
