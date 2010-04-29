@@ -40,8 +40,7 @@ BRANCHES = {
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-#                build_branch='mobile-trunk-maemo5-gtk',
-                build_branch='mobile-trunk',
+                build_branch='mobile-trunk-maemo5-gtk',
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
 #            'n900-qt': generate_platform(default_n900,
@@ -52,13 +51,12 @@ BRANCHES = {
     },
     'mozilla-1.9.2': {
         'talos_branch': 'mobile-1.9.2',
-        'tinderbox_tree': 'Mobile',
+        'tinderbox_tree': 'Mobile1.1',
         'graph_server': 'graphs.mozilla.org',
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-#                build_branch='mobile-1.9.2-maemo5-gtk',
-                build_branch='mobile-1.9.2',
+                build_branch='mobile-1.9.2-maemo5-gtk',
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
         },
@@ -70,8 +68,7 @@ BRANCHES = {
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-#                build_branch='mobile-tracemonkey-maemo5-gtk',
-                build_branch='mobile-tracemonkey',
+                build_branch='mobile-tracemonkey-maemo5-gtk',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=True),
 #            'n900-qt': generate_platform(default_n900,
@@ -87,8 +84,7 @@ BRANCHES = {
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-#                build_branch='mobile-electrolysis-maemo5-gtk',
-                build_branch='mobile-electrolysis',
+                build_branch='mobile-electrolysis-maemo5-gtk',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
 #            'n900-qt': generate_platform(default_n900,

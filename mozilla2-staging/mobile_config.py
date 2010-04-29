@@ -107,7 +107,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
 MOBILE_BRANCHES['mobile-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'mobile-browser'
+MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-1.9.2'
@@ -350,8 +350,6 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_upload_dir'] = '%s-maemo5-%s' % (branch, toolkit)
         maemo5['base_l10n_workdir'] = '%s/build/%s-maemo5-%s-l10n' % (SBOX_HOME,
                                                                       toolkit, branch)
-        maemo5['mobile_objdir'] = '.'
-        maemo5['xulrunner_objdir'] = '.'
         maemo5['sb_target'] = 'FREMANTLE_ARMEL'
         maemo5['enable_multi_locale'] = False
         MOBILE_BRANCHES[branch]['platforms']['maemo5-%s'%toolkit] = maemo5

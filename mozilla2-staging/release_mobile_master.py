@@ -317,13 +317,11 @@ for platform in enUSDesktopPlatforms:
     clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
     packageGlobList = []
     if platform == 'linux-i686':
-        packageGlobList = ['-r', 'mobile/dist/*.tar.bz2',
-                           'xulrunner/dist/*.tar.bz2']
+        packageGlobList = ['-r', 'dist/*.tar.bz2']
     elif platform == 'macosx-i686':
-        packageGlobList = ['-r', 'mobile/dist/*.dmg']
+        packageGlobList = ['-r', 'dist/*.dmg']
     elif platform == 'win32-i686':
-        packageGlobList = ['-r', 'mobile/dist/*.zip',
-                           'xulrunner/dist/*.zip']
+        packageGlobList = ['-r', 'dist/*.zip']
     
     build_factory = ReleaseMobileDesktopBuildFactory(
         hgHost=branchConfig['hghost'],

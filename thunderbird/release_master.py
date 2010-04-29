@@ -28,6 +28,7 @@ reload(nightly_config)
 for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
 
+
 builders = []
 schedulers = []
 change_source = []
@@ -158,7 +159,7 @@ tag_factory = CCReleaseTaggingFactory(
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     repositories=repositories,
     productName=productName,
-    appName=appName,
+    appName=ftpName,
     version=version,
     appVersion=appVersion,
     milestone=milestone,

@@ -31,6 +31,7 @@ productVersionFile         = 'mail/config/version-191.txt'
 productName                = 'thunderbird'
 brandName                  = 'Thunderbird'
 appName                    = 'mail'
+ftpName                    = appName
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
