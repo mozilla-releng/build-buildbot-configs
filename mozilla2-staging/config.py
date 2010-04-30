@@ -196,7 +196,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
-            'base_name': 'OS X 10.6 %(branch)s',
+            'base_name': 'OS X 10.6.2 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'profiled_build': False,
             'builds_before_reboot': 5,
