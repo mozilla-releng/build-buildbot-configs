@@ -14,3 +14,7 @@ ac_add_options --with-arm-kuser
 ac_add_options --disable-updater
 ac_add_options --enable-application=mobile
 ac_add_options --disable-ipc
+ac_add_options --enable-debug-symbols
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
