@@ -334,12 +334,13 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_name'] = "Maemo 5 %s %s" % (toolkit.upper(),
                                                  hacktionary.get(branch, branch))
         if 'qt' in toolkit:
-            maemo5['glob_list'] = ['dist/*.tar.*']
+            maemo5['glob_list'] = ['dist/*.tar.*', 'dist/*.zip']
             maemo5['debs'] = False
         else:
             maemo5['glob_list'] = ['dist/*.tar.bz2',
                                    'dist/deb_name.txt',
-                                   'mobile/*.deb']
+                                   'mobile/*.deb',
+                                   'dist/*.zip']
         if 'electrolysis' in branch:
             maemo5['mozconfig'] += "-%s-e10s" % toolkit
             maemo5['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
