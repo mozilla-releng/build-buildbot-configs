@@ -7,7 +7,7 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateTestBuilder
+  generateTestBuilderNames, generateTestBuilder, _nextFastSlave
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -185,7 +185,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'repo_setup',
-    'factory': repository_setup_factory
+    'factory': repository_setup_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -210,7 +211,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': tag_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -234,7 +236,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
    'category': 'release',
    'builddir': 'source',
-   'factory': source_factory
+   'factory': source_factory,
+   'nextSlave': _nextFastSlave,
 })
 
 
@@ -295,7 +298,8 @@ for platform in enUSPlatforms:
         'slavenames': pf['slaves'],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'factory': build_factory,
+        'nextSlave': _nextFastSlave,
     })
 
     if platform in l10nPlatforms:
@@ -328,7 +332,8 @@ for platform in enUSPlatforms:
             'slavenames': branchConfig['l10n_slaves'][platform],
             'category': 'release',
             'builddir': '%s_repack' % platform,
-            'factory': repack_factory
+            'factory': repack_factory,
+            'nextSlave': _nextFastSlave,
         })
 
     if platform in unittestPlatforms:
@@ -365,7 +370,8 @@ if doPartnerRepacks:
         'slavenames': branchConfig['platforms']['macosx']['slaves'],
         'category': 'release',
         'builddir': 'partner_repack',
-        'factory': partner_repack_factory
+        'factory': partner_repack_factory,
+        'nextSlave': _nextFastSlave,
     })
 
 l10n_verification_factory = L10nVerifyFactory(
@@ -386,7 +392,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['macosx']['slaves'],
     'category': 'release',
     'builddir': 'l10n_verification',
-    'factory': l10n_verification_factory
+    'factory': l10n_verification_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -433,7 +440,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
-    'factory': updates_factory
+    'factory': updates_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -450,7 +458,8 @@ for platform in sorted(verifyConfigs.keys()):
         'slavenames': branchConfig['platforms'][platform]['slaves'],
         'category': 'release',
         'builddir': '%s_update_verify' % platform,
-        'factory': update_verify_factory
+        'factory': update_verify_factory,
+        'nextSlave': _nextFastSlave,
     })
 
 
@@ -466,7 +475,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
-    'factory': final_verification_factory
+    'factory': final_verification_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 if majorUpdateRepoPath:
@@ -515,7 +525,8 @@ if majorUpdateRepoPath:
         'slavenames': branchConfig['platforms']['linux']['slaves'],
         'category': 'release',
         'builddir': 'major_update',
-        'factory': major_update_factory
+        'factory': major_update_factory,
+        'nextSlave': _nextFastSlave,
     })
     
     for platform in sorted(majorUpdateVerifyConfigs.keys()):
@@ -531,7 +542,8 @@ if majorUpdateRepoPath:
             'slavenames': branchConfig['platforms'][platform]['slaves'],
             'category': 'release',
             'builddir': '%s_major_update_verify' % platform,
-            'factory': major_update_verify_factory
+            'factory': major_update_verify_factory,
+            'nextSlave': _nextFastSlave,
         })
 
 
