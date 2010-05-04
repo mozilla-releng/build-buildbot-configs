@@ -6,17 +6,14 @@ c['status'] = [
         WebStatus(http_port=8010, allowForce=True)
 ]
 
-c['buildbotURL'] = 'http://staging-master.build.mozilla.org:8010/'
+c['buildbotURL'] = 'http://production-master01.build.mozilla.org:8010/'
 
 from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole(1235, "cltbld", "password")
 
 from config import BRANCHES
-# Do everything!
-#ACTIVE_BRANCHES = BRANCHES.keys()
-#ACTIVE_BRANCHES.remove('tryserver')
-# I changed my mind; do only trunk
-ACTIVE_BRANCHES = ['mozilla-central']
+# Do only a few branches for now
+ACTIVE_BRANCHES = ['places', 'addonsmgr']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
