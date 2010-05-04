@@ -38,6 +38,7 @@ MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/mobile'
+MOBILE_BRANCHES['mobile-trunk']['mail_on_failure'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},
@@ -113,6 +114,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-1.9.2'
 MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['mail_on_failure'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'linux-gnueabi-arm': {},
     'linux-i686': {},

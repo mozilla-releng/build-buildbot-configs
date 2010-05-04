@@ -86,7 +86,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         logCompression='bzip2'
     ))
 
-    mailNotifyBuilders.extend(builders + nightlyBuilders)
+    if branch.get('mail_on_failure', False):
+        mailNotifyBuilders.extend(builders + nightlyBuilders)
 
     if branch['enable_l10n']:
         l10n_builders = []
