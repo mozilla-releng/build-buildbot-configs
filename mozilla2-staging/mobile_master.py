@@ -21,7 +21,8 @@ from buildbotcustom.scheduler import MozScheduler
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
    MaemoNightlyRepackFactory, MobileDesktopBuildFactory, \
-   MobileDesktopNightlyRepackFactory
+   MobileDesktopNightlyRepackFactory, \
+   AndroidBuildFactory
 
 from buildbot.steps import trigger
 from buildbot.steps.shell import WithProperties
@@ -42,6 +43,7 @@ MOBILE_L10N_SLAVES = {
     'linux-i686': MOBILE_SLAVES['linux-i686'],
     'macosx-i686': MOBILE_SLAVES['macosx-i686'],
     'win32-i686': MOBILE_SLAVES['win32-i686'],
+    'android-r7': MOBILE_SLAVES['android-r7'],
 }
 
 m = {}
@@ -247,6 +249,59 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                                                      'dist/deb_name.txt',
                                                      'dist/*.zip']),
                 debs=pf.get('debs', True),
+            )
+        elif 'android' in platform:
+            mobile_dep_factory = AndroidBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
+                mozRevision='android2',  #branch.get('revision', 'default'),
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=branch['stage_base_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                      branch.get('mobile_repo_path')),
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=pf.get('base_upload_dir', name),
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
+                packageGlobList=pf.get('glob_list', ['embedding/android/fennec.apk',]),
+                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
+            )
+            mobile_nightly_factory = AndroidBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
+                mozRevision='android2',  #branch.get('revision', 'default'),
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=branch['stage_base_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                      branch.get('mobile_repo_path')),
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=pf.get('base_upload_dir', name),
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
+                nightly = True,
+                triggerBuilds = False,
+                packageGlobList=pf.get('glob_list', ['embedding/android/fennec.apk',]),
+                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
             )
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
