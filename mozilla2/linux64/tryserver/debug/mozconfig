@@ -1,0 +1,29 @@
+ac_add_options --enable-application=browser
+
+ac_add_options --disable-optimize
+ac_add_options --enable-debug
+
+ac_add_options --enable-tests
+ac_add_options --enable-trace-malloc
+
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
+
+#export CFLAGS="-gdwarf-2"
+#export CXXFLAGS="-gdwarf-2"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# We're using GCC 4.2 which has a bug we can work around.
+export ac_cv_have_visibility_class_bug=yes
+if [ -f $topsrcdir/mozconfig-extra ] ; then
+  . $topsrcdir/mozconfig-extra
+fi
+if [ -f $topsrcdir/mozconfig-extra-linux64 ] ; then
+  . $topsrcdir/mozconfig-extra-linux64
+fi
