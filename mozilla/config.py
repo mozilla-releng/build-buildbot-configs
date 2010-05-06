@@ -69,6 +69,7 @@ GLOBAL_VARS.update({
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
+    'l10n_modules': ['browser','dom','toolkit'],
 })
 
 # shorthand, because these are used often
@@ -385,7 +386,6 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-central']['l10n_modules'] = ['browser','dom','toolkit']
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
