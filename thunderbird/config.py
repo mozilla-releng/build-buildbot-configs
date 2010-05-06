@@ -98,6 +98,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'hg_branch': 'releases/comm-1.9.1',
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
+    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
     'irc_nick': 'thunderbot',
     'irc_channels': ['maildev'],
     'platforms': {
@@ -107,7 +108,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
         },
         'win32': {
             'base_name': 'WINNT 5.2 comm-1.9.1',
-            'slaves': BUILDERS['win32']['momo'],
+            'slaves': BUILDERS['win32']['momo'],REL
         },
        'macosx': {
             'base_name': 'MacOSX 10.5 comm-1.9.1',
@@ -125,7 +126,6 @@ BRANCHES['comm-1.9.2-unittest'] = {
     'nightly': False,
     'mozmill': True,
     'tinderbox_tree': 'Thunderbird3.1',
-    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'], 
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-1.9.2',
@@ -151,7 +151,6 @@ BRANCHES['comm-central-unittest'] = {
     'tinderbox_tree': 'Thunderbird',
     'irc_nick': 'thunderbot-trunk',
     'irc_channels': ['maildev'],
-    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/mozilla-central'],
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-central',
@@ -186,7 +185,7 @@ BRANCHES['comm-central']['stage_ssh_key'] = STAGE_SSH_KEY
 BRANCHES['comm-central']['stage_base_path'] = DEFAULTS['stage_base_path']
 
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1919_20100316_RELBRANCH']
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central']['package'] = True
@@ -733,7 +732,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
