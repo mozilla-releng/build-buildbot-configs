@@ -40,6 +40,8 @@ from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
 
 MOBILE_L10N_SLAVES = {
     'linux-gnueabi-arm': MOBILE_SLAVES['linux-gnueabi-arm'],
+    'maemo5-gtk': MOBILE_SLAVES['maemo5-gtk'],
+    'maemo5-qt': MOBILE_SLAVES['maemo5-qt'],
     'linux-i686': MOBILE_SLAVES['linux-i686'],
     'macosx-i686': MOBILE_SLAVES['macosx-i686'],
     'win32-i686': MOBILE_SLAVES['win32-i686'],
@@ -125,8 +127,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
     for builder in nightlyBuilders:
         if builder in l10nNightlyBuilders and \
            branch['enable_l10n'] and branch['enable_multi_locale'] and \
-           builder.startswith('Maemo') and builder.endswith('nightly') and \
-           l10nNightlyBuilders[builder]['platform'] in ('linux-gnueabi-arm'):
+           builder.startswith('Maemo') and builder.endswith('nightly'):
             nightly_scheduler=MultiNightlyL10n(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
@@ -432,7 +433,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
-            if platform == 'linux-gnueabi-arm':
+            if platform in ('linux-gnueabi-arm', 'maemo5-gtk', 'maemo5-qt'):
                 nightlyBuildDir = pf['base_builddir'] + '-l10n'
                 depBuildDir = pf['base_builddir'] + '-l10n-dep'
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
@@ -444,7 +445,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     packageGlobList=['-r', '%(locale)s',
                                      'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                                      'install/fennec-*.%(locale)s.langpack.xpi'],
-                    enUSBinaryURL=branch['enUS_binaryURL'],
+                    enUSBinaryURL=pf.get('enUS_binaryURL', branch['enUS_binaryURL']),
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
                     configSubDir=mainConfig['config_subdir'],
@@ -477,7 +478,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                         packageGlobList=['-r', '%(locale)s',
                                          'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                                          'install/fennec-*.%(locale)s.langpack.xpi'],
-                        enUSBinaryURL=branch['enUS_binaryURL'],
+                        enUSBinaryURL=pf.get('enUS_binaryURL', branch['enUS_binaryURL']),
                         stageServer=mainConfig['stage_server'],
                         stageUsername=mainConfig['stage_username'],
                         configSubDir=mainConfig['config_subdir'],

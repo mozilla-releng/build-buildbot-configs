@@ -15,6 +15,8 @@ SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
 
 MOBILE_SLAVES = {
     'linux-gnueabi-arm': config.SLAVES['linux'],
+    'maemo5-gtk': config.SLAVES['linux'],
+    'maemo5-qt': config.SLAVES['linux'],
     'linux-i686': config.SLAVES['linux'],
     'macosx-i686': config.SLAVES['macosx'],
     'win32-i686': config.SLAVES['win32'],
@@ -79,7 +81,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True 
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
-MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec10x_mc'
+MOBILE_BRANCHES['mobile-trunk']['l10n_tree'] = 'fennec_mc'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-i686'] = 'linux'
 #MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['macosx-i686'] = 'macosx'
@@ -155,7 +157,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['base_l10n_workdir'] 
 MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n'] = True 
 MOBILE_BRANCHES['mobile-1.9.2']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-1.9.2']['enable_multi_locale'] = True
-MOBILE_BRANCHES['mobile-1.9.2']['l10n_tree'] = 'fennec10x_192'
+MOBILE_BRANCHES['mobile-1.9.2']['l10n_tree'] = 'fennec11x'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-gnueabi-arm'] = 'linux'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-i686'] = 'linux'
 #MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['macosx-i686'] = 'macosx'
@@ -321,13 +323,13 @@ hacktionary = {'mobile-trunk': 'mozilla-central',
                'mobile-electrolysis': 'electrolysis',
                'mobile-addonsmgr': 'addonsmgr'}
 
-#Create configs for Maemo5 GTK that are identical to Maemo4 GTK in all respects other than:
+# Create configs for Maemo5 GTK/QT that are identical to Maemo4 GTK in all
+# respects other than:
 #  -naming
 #  -workdirs
 #  -upload location
-#  -no multilocale
-#  -no l10n
 #  -qt builds use qt mozconfigs
+#  -no QT debs, multilocale, or l10n until bug 555351 is fixed
 for toolkit in ['gtk', 'qt']:
     for branch in MOBILE_BRANCHES.keys():
         if 'qt' in toolkit and '1.9.2' in branch:
@@ -338,11 +340,11 @@ for toolkit in ['gtk', 'qt']:
         if 'qt' in toolkit:
             maemo5['glob_list'] = ['dist/*.tar.*', 'dist/*.zip']
             maemo5['debs'] = False
-        else:
-            maemo5['glob_list'] = ['dist/*.tar.bz2',
-                                   'dist/deb_name.txt',
-                                   'mobile/*.deb',
-                                   'dist/*.zip']
+            maemo5['enable_multi_locale'] = False
+        elif 'l10n_platforms' in MOBILE_BRANCHES[branch]:
+            MOBILE_BRANCHES[branch]['l10n_platforms']['maemo5-%s'%toolkit] = 'linux'
+            maemo5['enUS_binaryURL'] = '%s-maemo5-%s' % \
+              (MOBILE_BRANCHES[branch]['enUS_binaryURL'], toolkit)
         if 'electrolysis' in branch:
             maemo5['mozconfig'] += "-%s-e10s" % toolkit
             maemo5['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
@@ -355,7 +357,6 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_l10n_workdir'] = '%s/build/%s-maemo5-%s-l10n' % (SBOX_HOME,
                                                                       toolkit, branch)
         maemo5['sb_target'] = 'FREMANTLE_ARMEL'
-        maemo5['enable_multi_locale'] = False
         MOBILE_BRANCHES[branch]['platforms']['maemo5-%s'%toolkit] = maemo5
 
 if __name__=="__main__":
