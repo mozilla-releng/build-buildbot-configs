@@ -25,6 +25,7 @@ oldBuildNumber     = 1
 oldBaseTag         = 'FIREFOX_3_7a3'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = ()
+xulrunnerPlatforms = enUSPlatforms
 # TODO: create this file before 3.7a2
 patcherConfig      = 'moz193-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R9'

@@ -32,6 +32,7 @@ enUSPlatforms       = ('linux', 'win32', 'macosx')
 talosTestPlatforms  = ()
 unittestPlatforms   = ()
 l10nPlatforms       = enUSPlatforms
+xulrunnerPlatforms  = enUSPlatforms
 patcherConfig       = 'moz191-branch-patcher2.cfg'
 patcherToolsTag     = 'UPDATE_PACKAGING_R9'
 ftpServer           = 'ftp.mozilla.org'

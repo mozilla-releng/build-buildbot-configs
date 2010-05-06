@@ -31,6 +31,7 @@ ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
 talosTestPlatforms = ()
 unittestPlatforms  = ()
+xulrunnerPlatforms = enUSPlatforms
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
