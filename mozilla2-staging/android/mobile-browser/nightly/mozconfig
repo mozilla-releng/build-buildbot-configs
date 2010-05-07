@@ -1,4 +1,5 @@
 mk_add_options JAVAC=/tools/jdk6/bin/javac
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 
 ac_add_options --enable-application=mobile
 
