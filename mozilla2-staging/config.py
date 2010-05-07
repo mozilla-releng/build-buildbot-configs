@@ -136,6 +136,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'DISPLAY': ':2',
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
