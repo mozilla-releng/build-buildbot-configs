@@ -24,12 +24,12 @@ SUITES = {
 }
 
 SLAVES = {
-    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,41)],
-    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,21)],
-    'xp': ["talos-r3-xp-%03i" % x for x in range(1,41)],
-    'win7': ["talos-r3-w7-%03i" % x for x in range(1,41)],
-    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,41)],
-    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,21)],
+    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,51)],
+    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,51)],
+    'xp': ["talos-r3-xp-%03i" % x for x in range(1,51)],
+    'win7': ["talos-r3-w7-%03i" % x for x in range(1,51)],
+    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,51)],
+    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,51)],
 }
 
 BRANCHES = {
