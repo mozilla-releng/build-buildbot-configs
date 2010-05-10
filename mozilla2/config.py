@@ -14,7 +14,7 @@ WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,26)]
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
-    'win32':       WIN32_VMS,
+    'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
     'macosx-snow': MAC_SNOW_MINIS,
 }
