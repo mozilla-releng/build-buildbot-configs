@@ -38,7 +38,7 @@ reload(mobile_config)
 from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
 
 MOBILE_L10N_SLAVES = {
-    'linux-gnueabi-arm': MOBILE_SLAVES['linux-gnueabi-arm'][-8:],
+    'maemo4': MOBILE_SLAVES['maemo4'][-8:],
     'maemo5-gtk': MOBILE_SLAVES['maemo5-gtk'][-8:],
     'maemo5-qt': MOBILE_SLAVES['maemo5-qt'][-8:],
     'linux-i686': MOBILE_SLAVES['linux-i686'][-8:],
@@ -186,7 +186,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
            nightly_builder in l10nNightlyBuilders:
             triggeredSchedulers=[l10nNightlyBuilders[nightly_builder]['l10n_builder']]
 
-        if platform == 'linux-gnueabi-arm' or 'maemo5' in platform:
+        if platform.startswith('maemo'):
             mobile_dep_factory = MaemoBuildFactory(
                 hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
@@ -382,7 +382,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
-            if platform in ('linux-gnueabi-arm', 'maemo5-gtk', 'maemo5-qt'):
+            if platform.startswith('maemo'):
                 nightlyBuildDir = pf['base_builddir'] + '-l10n'
                 depBuildDir = pf['base_builddir'] + '-l10n-dep'
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(

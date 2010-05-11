@@ -65,15 +65,18 @@ for platform in enUSPlatforms:
     )
     schedulers.append(build_scheduler)
     if platform in l10nPlatforms:
+        l10nPlatform = platform
+        if l10nPlatform.startswith('maemo'):
+            l10nPlatform = 'maemo'
         repack_scheduler = DependentL10n(
             name='%s_repack' % platform,
-            platform=platform,
+            platform=l10nPlatform,
             upstream=build_scheduler,
             builderNames=['%s_repack' % platform],
             repoType='hg',
             branch=mobileSourceRepoPath,
             baseTag='%s_RELEASE' % baseTag,
-            locales=platform_locales[platform],
+            locales=platform_locales[l10nPlatform],
             tree='release'
         )
         schedulers.append(repack_scheduler)
@@ -187,10 +190,10 @@ for platform in enUSPlatforms:
     build_factory = None
     repack_factory = None
 
-    if platform == 'maemo':
-        pf = mobileBranchConfig['platforms']['linux-gnueabi-arm']
+    if platform.startswith('maemo'):
+        pf = mobileBranchConfig['platforms'][platform]
         clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
-        mozconfig = 'linux/%s/release' % mobileSourceRepoName
+        mozconfig = 'mobile/%s/%s/release' % (platform, mobileSourceRepoName)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
         build_factory = MaemoReleaseBuildFactory(
@@ -208,7 +211,7 @@ for platform in enUSPlatforms:
             mozRevision='%s_RELEASE' % baseTag,
             mobileRevision='%s_RELEASE' % baseTag,
             l10nTag='%s_RELEASE' % baseTag,
-            platform='linux-gnueabi-arm',
+            platform=platform,
             buildsBeforeReboot=pf['builds_before_reboot'],
             baseWorkDir=releaseWorkDir,
             baseBuildDir=releaseBuildDir,
@@ -233,16 +236,17 @@ for platform in enUSPlatforms:
     })
 
     if platform in l10nPlatforms:
-        if platform == 'maemo':
+        if platform.startswith('maemo'):
             releaseBuildDir = pf['base_builddir'] + '-l10n-release'
             repack_factory = MaemoReleaseRepackFactory(
-                enUSBinaryURL='%s/maemo' % (base_enUS_binaryURL),
+                enUSBinaryURL='%s/%s' % (base_enUS_binaryURL, platform),
                 stageServer=branchConfig['stage_server'],
                 stageUsername=branchConfig['stage_username'],
                 stageSshKey=branchConfig['stage_ssh_key'],
-                stageBasePath='%s/%s-candidates/build%d/maemo' % (stageBasePath,
-                                                                  version,
-                                                                  buildNumber),
+                stageBasePath='%s/%s-candidates/build%d/%s' % (stageBasePath,
+                                                               version,
+                                                               buildNumber,
+                                                               platform),
                 baseWorkDir='%s-release' % pf['base_l10n_workdir'],
                 baseBuildDir=releaseBuildDir,
                 l10nTag='%s_RELEASE' % baseTag,
@@ -265,7 +269,7 @@ for platform in enUSPlatforms:
 
         builders.append({
             'name': '%s_repack' % platform,
-            'slavenames': MOBILE_L10N_SLAVES['linux-gnueabi-arm'],
+            'slavenames': MOBILE_L10N_SLAVES['maemo4'],
             'category': 'release',
             'builddir': '%s_repack' % platform,
             'factory': repack_factory
@@ -293,7 +297,7 @@ for platform in enUSDesktopPlatforms:
         repoPath=mozSourceRepoPath,
         configRepoPath=branchConfig['config_repo_path'],
         configSubDir=branchConfig['config_subdir'],
-        mozconfig=pf['mozconfig'],
+        mozconfig=pf['mozconfig'].replace('nightly', 'release'),
         env=pf['env'],
         stageUsername=branchConfig['stage_username'],
         stageGroup=branchConfig['stage_group'],
@@ -341,7 +345,7 @@ if doPartnerRepacks:
         stageSshKey=branchConfig['stage_ssh_key'],
         nightlyDir='candidates',
         platformList=partnerRepackPlatforms,
-        baseWorkDir='%s-partner' % mobileBranchConfig['platforms']['linux-gnueabi-arm']['base_workdir'],
+        baseWorkDir='%s-partner' % mobileBranchConfig['platforms']['maemo4']['base_workdir'],
         python='python2.5',
         packageDmg=False,
         createRemoteStageDir=True

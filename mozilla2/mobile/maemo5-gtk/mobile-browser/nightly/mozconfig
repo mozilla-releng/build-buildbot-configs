@@ -1,0 +1,17 @@
+#ac_add_options --with-qtdir=/opt/qt4-maemo5
+
+mk_add_options MOZ_MAKE_FLAGS=-j9
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+
+#ac_add_options --enable-debug
+#ac_add_options --disable-optimize
+
+ac_add_options --enable-application=mobile
+ac_add_options --with-arm-kuser
+#ac_add_options --enable-ipc
+
+ac_add_options --with-maemo-version=5
+ac_add_options --enable-debug-symbols
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
