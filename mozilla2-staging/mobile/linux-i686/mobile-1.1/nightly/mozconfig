@@ -2,6 +2,12 @@ mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 mk_add_options MOZ_PKG_FORMAT=BZ2
 ac_add_options --disable-javaxpcom
 ac_add_options --enable-application=mobile
+ac_add_options --disable-ipc
 
 CC=/tools/gcc-4.3.3/installed/bin/gcc
 CXX=/tools/gcc-4.3.3/installed/bin/g++
+
+export CFLAGS="-gdwarf-2"  
+export CXXFLAGS="-gdwarf-2"
+export MOZ_DEBUG_SYMBOLS=1
+export MOZILLA_OFFICIAL=1

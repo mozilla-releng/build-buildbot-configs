@@ -1,42 +1,20 @@
-mk_add_options JAVAC=/tools/jdk6/bin/javac
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+# Uncomment these two lines to use objdir with client.mk
+OBJDIR=objdir
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/$OBJDIR
 
-ac_add_options --enable-application=mobile
-
-ac_add_options --disable-ogg
-ac_add_options --disable-wave
-
-ac_add_options --with-arm-kuser
-
-# Global options
-ac_add_options --disable-debug
-ac_add_options --enable-optimize
-ac_add_options --enable-libxul
-
-# mobile options
-ac_add_options --disable-installer
-ac_add_options --disable-crashreporter
-ac_add_options --disable-printing
-ac_add_options --disable-javaxpcom
-
-# android options
-ac_add_options --target=arm-android-eabi
-
+# Add the correct paths here:
 ac_add_options --with-android-ndk=/tools/android-ndk
 ac_add_options --with-android-sdk=/tools/android-sdk/platforms/android-7
 ac_add_options --with-android-tools=/tools/android-sdk/tools
 
+# android options
+ac_add_options --enable-application=mobile
+ac_add_options --target=arm-android-eabi
 ac_add_options --with-endian=little
-ac_add_options --enable-tree-freetype
-ac_add_options --enable-faststripe
 
-# other options
-ac_add_options --disable-necko-wifi
-ac_add_options --disable-plugins
-
-# to fix
-#ac_add_options --disable-crypto
-# ssltunnel can't build if we disable crypto
-
+# ssltunnel can't build because the ndk doesn't have string, vector, or algorithm headers
 ac_add_options --disable-tests
 
+export MOZ_DEBUG_SYMBOLS=1
+export MOZILLA_OFFICIAL=1
+ac_add_options --disable-ogg
