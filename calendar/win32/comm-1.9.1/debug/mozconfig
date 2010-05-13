@@ -1,0 +1,16 @@
+ac_add_options --enable-application=mail
+ac_add_options --enable-debug
+ac_add_options --disable-optimize
+ac_add_options --enable-tests
+
+ac_add_options --enable-shared
+ac_add_options --disable-static
+ac_add_options --enable-static-mail
+
+# Jemalloc gets disabled if trace-malloc is on, so don't bother enabling it here
+#ac_add_options --enable-jemalloc
+
+ac_add_options --enable-trace-malloc
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1

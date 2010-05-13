@@ -1,0 +1,25 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+mk_add_options MOZ_MAKE_FLAGS="-j8"
+
+ac_add_options --enable-application=mail
+
+ac_add_options --enable-tests
+ac_add_options --enable-shared
+ac_add_options --disable-static
+
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --enable-logrefcnt
+
+CC="ccache /tools/gcc-4.3.3/bin/gcc"
+CXX="ccache /tools/gcc-4.3.3/bin/g++"
+
+export CFLAGS="-gstabs+"
+export CXXFLAGS="-gstabs+"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gstabs+"
