@@ -62,7 +62,8 @@ GLOBAL_VARS = {
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', False, 0),
+    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 0),
+                         ('production-master02.build.mozilla.org:9010', False, 0),
                          ('talos-master02.build.mozilla.org:9012', False, 0),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 0),
                          ('talos-staging-master02.build.mozilla.org:9012', False, 0),
