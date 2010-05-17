@@ -95,7 +95,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'hg_branch': 'releases/comm-1.9.1',
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
-    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
+    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH'],
     'irc_nick': 'thunderbot',
     'irc_channels': ['maildev'],
     'platforms': {
@@ -123,6 +123,7 @@ BRANCHES['comm-1.9.2-unittest'] = {
     'nightly': False,
     'mozmill': True,
     'tinderbox_tree': 'Thunderbird3.1',
+    'client_py_extra_args': ['--mozilla-rev=COMM1924_20100514_RELBRANCH'],
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-1.9.2',
@@ -283,7 +284,7 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'macosx': {},
 }
 BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
+BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
 BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-1.9.2']['package'] = True
@@ -543,7 +544,7 @@ BRANCHES['comm-1.9.2-bloat']['platforms'] = {
 BRANCHES['comm-1.9.2-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['hg_branch'] = 'releases/comm-1.9.2'
-BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] 
+BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
 BRANCHES['comm-1.9.2-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-1.9.2-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-1.9.2-bloat']['nightly'] = False
