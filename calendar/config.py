@@ -92,7 +92,7 @@ BRANCHES['comm-1.9.2-lightning']['platforms'] = {
 BRANCHES['comm-1.9.2-lightning']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-lightning']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-lightning']['hg_branch'] = 'releases/comm-1.9.2'
-BRANCHES['comm-1.9.2-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] 
+BRANCHES['comm-1.9.2-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
 BRANCHES['comm-1.9.2-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2-lightning']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-1.9.2-lightning']['period'] = 60 * 60 * 6
