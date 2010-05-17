@@ -684,15 +684,15 @@ BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID']
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
 BRANCHES['tryserver']['enable_mail_notifier'] = False
-BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['config_repo_path'] = 'users/lsblakk_mozilla.com/buildbot-configs'
 BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/tryserver-builds'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['start_hour'] = [3]
 BRANCHES['tryserver']['start_minute'] = [2]
 # Disable Nightly builds
