@@ -21,6 +21,7 @@ MOBILE_SLAVES = {
     'linux-i686': config.SLAVES['linux'],
     'macosx-i686': config.SLAVES['macosx'],
     'win32-i686': config.SLAVES['win32'],
+    'android-r7': config.SLAVES['linux'],
 }
 
 MOBILE_BRANCHES = {
@@ -63,6 +64,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
+    'android-r7': {},
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-browser/nightly'
@@ -70,6 +72,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['sb_target'] = 'CHINOOK-A
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['mozconfig'] = 'mobile/macosx-i686/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['mozconfig'] = 'mobile/win32-i686/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['upload_symbols'] = False
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['upload_symbols'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['upload_symbols'] = True
@@ -78,14 +81,17 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_name'] = 'Maemo moz
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_name'] = 'Android mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['builds_before_reboot'] = 1
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_workdir'] = '%s/build/maemo-trunk' % SBOX_HOME
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_builddir'] = 'maemo-trunk'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -99,6 +105,9 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_l10n_workdir']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_builddir'] = 'w32mob-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-trunk-l10n'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_builddir'] = 'android-trunk'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_l10n_workdir'] = 'android-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True 
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n_onchange'] = False 
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
@@ -107,6 +116,7 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['maemo4'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-i686'] = 'linux'
 #MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['macosx-i686'] = 'macosx'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
+#MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['android-r7'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
@@ -119,6 +129,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['slaves'] = MOBILE_SLAVES
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['slaves'] = MOBILE_SLAVES['android-r7']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['env'] = DEFAULT_LINUX_ENV.copy()
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-maemo4'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['env'] = DEFAULT_LINUX_ENV.copy()
@@ -127,6 +138,8 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = DEFAULT_MAC
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = DEFAULT_WIN32_ENV.copy()
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env'] = DEFAULT_LINUX_ENV.copy()
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
