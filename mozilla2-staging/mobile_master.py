@@ -280,7 +280,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildSpace=buildSpace,
                 buildsBeforeReboot=pf['builds_before_reboot'],
                 uploadSymbols=pf.get('upload_symbols', False),
-                packageGlobList=pf.get('glob_list', ['embedding/android/fennec.apk',]),
+                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
                 #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
             )
             mobile_nightly_factory = AndroidBuildFactory(
@@ -309,7 +309,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 nightly = True,
                 triggerBuilds = False,
                 uploadSymbols=pf.get('upload_symbols', False),
-                packageGlobList=pf.get('glob_list', ['embedding/android/fennec.apk',]),
+                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
                 #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
             )
         elif platform == 'linux-i686':

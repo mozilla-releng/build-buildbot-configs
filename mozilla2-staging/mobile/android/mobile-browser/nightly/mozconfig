@@ -12,9 +12,6 @@ ac_add_options --enable-application=mobile
 ac_add_options --target=arm-android-eabi
 ac_add_options --with-endian=little
 
-# sign w/ staging key
-mk_add_options JARSIGNER_FLAGS=staging
-
 # ssltunnel can't build because the ndk doesn't have string, vector, or algorithm headers
 ac_add_options --disable-tests
 
