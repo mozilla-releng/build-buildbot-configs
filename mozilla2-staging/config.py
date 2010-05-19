@@ -60,7 +60,6 @@ GLOBAL_VARS = {
     'talos_masters': [
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master02.build.mozilla.org:9012', False),
-        ('talos-master02.build.mozilla.org:9010', False),
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
