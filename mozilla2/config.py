@@ -705,7 +705,7 @@ BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
 BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
-BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['enable_mail_notifier'] = False
 BRANCHES['tryserver']['package_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
