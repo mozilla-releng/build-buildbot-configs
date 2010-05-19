@@ -3,18 +3,22 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '0bedc9cee8a5'
+sourceRepoRevision         = '3f51b3c1799e'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM1925_20100427_RELBRANCH'
+relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = 'afa51044ecf0'
+mozillaRepoRevision        = '8922696d812c'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM1925_20100427_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM1924_20100514_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
-inspectorRepoRevision      = '27b0e9ef1715'
-inspectorRelbranchOverride = 'COMM1925_20100427_RELBRANCH'
+inspectorRepoRevision      = 'c1b38e365772'
+inspectorRelbranchOverride = ''
+buildToolsRepoPath            = '' # leave empty if buildTools is not to be tagged
+buildToolsRepoRevision        = ''
+#buildToolsRepoRevision        = '479375734669'
+buildToolsRelbranchOverride   = ''
 venkmanRepoPath            = '' # leave empty if venkman is not to be tagged
 venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
@@ -34,17 +38,17 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1b2'
-appVersion                 = version
+version                    = '3.1rc1'
+appVersion                 = '3.1'
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '1.9.2.5'
-buildNumber                = 2
-baseTag                    = 'THUNDERBIRD_3_1_b2'
+milestone                  = '1.9.2.4'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_1_rc1'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.1b1'
+oldVersion                 = '3.1b2'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
-oldBaseTag                 = 'THUNDERBIRD_3_1_b1'
+oldBuildNumber             = 2
+oldBaseTag                 = 'THUNDERBIRD_3_1_b2'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
