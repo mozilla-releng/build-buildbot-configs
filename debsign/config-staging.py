@@ -67,9 +67,9 @@ DEBSIGN_CONFIG['branches']['1.9.2']['nightly']['extra_debs_list'] = None
 DEBSIGN_CONFIG['branches']['1.9.2']['enable_release'] = True
 DEBSIGN_CONFIG['branches']['trunk']['release']['base_stage_path'] = '/var/www/html'
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['base_stage_url'] = 'http://staging-mobile-master.build.mozilla.org'
-DEBSIGN_CONFIG['branches']['1.9.2']['release']['stage_dir'] = '/candidates/1.0.1rc1-candidates/build1/maemo'
+DEBSIGN_CONFIG['branches']['1.9.2']['release']['stage_dir'] = '/candidates/1.1rc1-candidates/build1/maemo4'
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['env'] = RELEASE_ENV
-DEBSIGN_CONFIG['branches']['1.9.2']['release']['extra_debs_list'] = ['http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile/candidates/1.0.1rc1-candidates/build1/maemo/multi/xulrunner_1.9.2.1+rc1_armel.deb']
+DEBSIGN_CONFIG['branches']['1.9.2']['release']['extra_debs_list'] = None
 
 #
 # Trigger config
@@ -82,6 +82,6 @@ TRIGGER_CONFIG['branches'] = {
 }
 TRIGGER_CONFIG['branches']['trunk']['env'] = NIGHTLY_TRIGGER_ENV
 TRIGGER_CONFIG['branches']['1.9.2']['env'] = NIGHTLY_TRIGGER_ENV
-TRIGGER_CONFIG['branches']['1.9.2']['release_mobile_tag'] = 'FENNEC_1_0rc2_RELEASE'
-TRIGGER_CONFIG['mobile_repo'] = 'http://hg.mozilla.org/mobile-browser'
+TRIGGER_CONFIG['branches']['1.9.2']['release_mobile_tag'] = 'default'
+TRIGGER_CONFIG['mobile_repo'] = 'http://hg.mozilla.org/releases/mobile-1.1'
 TRIGGER_CONFIG['locales_file'] = 'mobile/locales/all-locales'
