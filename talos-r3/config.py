@@ -382,7 +382,7 @@ BRANCHES['addonsmgr']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
 BRANCHES['tryserver']['build_branch'] = "Tryserver"
-BRANCHES['tryserver']['tinderbox_tree'] = "Tryserver"
+BRANCHES['tryserver']['tinderbox_tree'] = "MozillaTry"
 BRANCHES['tryserver']['talos_command'] = TALOS_CMD
 BRANCHES['tryserver']['fetch_symbols'] = True
 BRANCHES['tryserver']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
