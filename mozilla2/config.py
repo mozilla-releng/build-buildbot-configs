@@ -722,7 +722,7 @@ BRANCHES['tryserver']['unittest_suites'] = [
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 0)]
-BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTry'
+BRANCHES['tryserver']['tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['enable_l10n'] = False
