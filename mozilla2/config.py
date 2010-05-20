@@ -87,7 +87,6 @@ GLOBAL_VARS = {
         ('jsreftest', ['jsreftest']),
     ],
     'geriatric_masters': [],
-    'geriatric_branches': {},
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
@@ -419,11 +418,6 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
-BRANCHES['mozilla-central']['geriatric_branches'] = {
-    'win32': ['p3-win-unit'],
-    'linux': ['p3-linux-unit'],
-    'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
-}
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
