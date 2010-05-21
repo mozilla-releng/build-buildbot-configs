@@ -3,18 +3,18 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '3f51b3c1799e'
+sourceRepoRevision         = 'f47d3e48b1a6'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM1924_20100519_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = '8922696d812c'
+mozillaRepoRevision        = '96d514d88fb1'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
 mozillaRelbranchOverride   = 'COMM1924_20100514_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'c1b38e365772'
-inspectorRelbranchOverride = ''
+inspectorRelbranchOverride = 'COMM1924_20100519_RELBRANCH'
 buildToolsRepoPath            = '' # leave empty if buildTools is not to be tagged
 buildToolsRepoRevision        = ''
 #buildToolsRepoRevision        = '479375734669'
@@ -42,7 +42,7 @@ version                    = '3.1rc1'
 appVersion                 = '3.1'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2.4'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'THUNDERBIRD_3_1_rc1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.1b2'
