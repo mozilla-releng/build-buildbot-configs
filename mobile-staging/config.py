@@ -89,7 +89,7 @@ BRANCHES['mozilla-central']['platforms']['n810']['test_suites'] = {
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
+BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 310
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['mozilla-central']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
 
@@ -174,7 +174,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites'] = {
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
+BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 310
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
 
@@ -258,6 +258,6 @@ BRANCHES['tracemonkey']['platforms']['n810']['test_suites'] = {
     'crashtest':  {},
     'xpcshell':   {},
 }
-BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 98
+BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['reftest']['knownFailCount'] = 310
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['crashtest']['knownFailCount'] = 4
 BRANCHES['tracemonkey']['platforms']['n810']['test_suites']['xpcshell']['knownFailCount'] = 182
