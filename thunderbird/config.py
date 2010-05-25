@@ -95,7 +95,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'hg_branch': 'releases/comm-1.9.1',
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
-    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH'],
+#    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH'],
     'irc_nick': 'thunderbot',
     'irc_channels': ['maildev'],
     'platforms': {
@@ -458,7 +458,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
