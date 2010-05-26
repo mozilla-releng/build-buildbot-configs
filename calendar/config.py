@@ -3,18 +3,18 @@ HGHOST = 'hg.mozilla.org'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_REPO_PATH = 'build/buildbot-configs'
 COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
-CONFIG_SUBDIR = 'thunderbird'
+CONFIG_SUBDIR = 'calendar'
 LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir-tb'
 STAGE_USERNAME = 'tbirdbld'
 STAGE_SERVER = 'stage.mozilla.org'
-STAGE_GROUP = 'thunderbird'
+STAGE_GROUP = 'calendar'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
 AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
-DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
+DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
 PRODUCT = 'mail'
-MOZ_APP_NAME = 'thunderbird'
+MOZ_APP_NAME = 'sunbird'
 
 ORGANIZATION = 'community'
 
@@ -36,7 +36,7 @@ DEFAULTS = {
     'factory':                'build',
     'hgurl':                  HGURL,
     'branch_name':            'comm-central',
-    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
+    'stage_base_path':        '/home/ftp/pub/mozilla.org/calendar',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'add_poll_branches':      [ 'dom-inspector' ],
     'period':                 60 * 60 * 8,
@@ -48,9 +48,9 @@ DEFAULTS = {
     'tinderbox_tree':         "ThunderbirdTest",
     'codesighs':               False,
     'mozmill':                 False,
-    'product_name':           'Thunderbird',
-    'brand_name':             'Shredder',
-    'app_name':			'thunderbird',
+    'product_name':           'sunbird',
+    'brand_name':             'Sunbird',
+    'app_name':			      'calendar',
     'build_space':            8,
     'l10n_nightly_updates':    False,
 
