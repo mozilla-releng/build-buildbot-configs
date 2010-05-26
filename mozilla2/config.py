@@ -8,12 +8,21 @@ MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
+LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,25)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1,2] + range(5,21) + range(22,60)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,26)]
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,20)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,20)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,30)]
+TRY_SLAVES = {
+    'linux':       TRY_LINUX,
+    'win32':       TRY_WIN32,
+    'macosx':      TRY_MAC,
+}
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
+    'linux64':     LINUX64_VMS, 
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
     'macosx-snow': MAC_SNOW_MINIS,
@@ -56,15 +65,15 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
         ('talos-master.mozilla.org:9010', True),
-        ('talos-master.mozilla.org:9012', False),
-        ('talos-master02.build.mozilla.org:9010', False),
+        ('talos-master02.build.mozilla.org:9012', True),
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', False, 0),
-                         ('talos-master.mozilla.org:9012', False, 0),
+    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 0),
+                         ('production-master02.build.mozilla.org:9010', False, 0),
+                         ('talos-master02.build.mozilla.org:9012', False, 0),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 0),
                          ('talos-staging-master02.build.mozilla.org:9012', False, 0),
                         ],
@@ -78,7 +87,6 @@ GLOBAL_VARS = {
         ('jsreftest', ['jsreftest']),
     ],
     'geriatric_masters': [],
-    'geriatric_branches': {},
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
@@ -134,6 +142,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'DISPLAY': ':2',
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
@@ -373,6 +382,11 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'addonsmgr': {},
+    'tryserver': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
+                                  'macosx': {}, 'macosx-debug': {}, 
+                                  'win32': {}, 'win32-debug': {}, 
+                                },
+                 },
 }
 
 # Copy global vars in first, then platform vars
@@ -404,11 +418,6 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
-BRANCHES['mozilla-central']['geriatric_branches'] = {
-    'win32': ['p3-win-unit'],
-    'linux': ['p3-linux-unit'],
-    'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
-}
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
@@ -682,6 +691,62 @@ BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] 
 BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 BRANCHES['addonsmgr']['tinderbox_tree'] = 'AddonsMgr'
 BRANCHES['addonsmgr']['packaged_unittest_tinderbox_tree'] = 'AddonsMgr'
+
+######## tryserver
+# Try-specific configs 
+BRANCHES['tryserver']['stage_username'] = 'trybld'
+BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
+BRANCHES['tryserver']['enable_merging'] = False
+BRANCHES['tryserver']['enable_try'] = True
+BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['package_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
+# This is a path, relative to HGURL, where the repository is located
+# HGURL  repo_path should be a valid repository
+BRANCHES['tryserver']['repo_path'] = 'try'
+BRANCHES['tryserver']['start_hour'] = [3]
+BRANCHES['tryserver']['start_minute'] = [2]
+# Disable Nightly builds
+BRANCHES['tryserver']['enable_nightly'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['tryserver']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['tryserver']['unittest_suites'] = [
+    # Turn on chunks for mochitests
+    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
+                        'mochitest-browser-chrome', 'mochitest-a11y',
+                        'xpcshell', 'jsreftest'])
+]
+BRANCHES['tryserver']['enable_mac_a11y'] = True
+# only do unittests locally until they are switched over to talos-r3
+BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 0)]
+BRANCHES['tryserver']['tinderbox_tree'] = 'MozillaTry'
+BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'MozillaTry'
+BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['enable_l10n'] = False
+BRANCHES['tryserver']['enable_l10n_onchange'] = False
+BRANCHES['tryserver']['l10nNightlyUpdate'] = False
+BRANCHES['tryserver']['l10nDatedDirs'] = False
+BRANCHES['tryserver']['enable_codecoverage'] = False
+BRANCHES['tryserver']['enable_shark'] = False
+BRANCHES['tryserver']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'build.mozilla.org'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
  
 if __name__ == "__main__":
     import sys, pprint

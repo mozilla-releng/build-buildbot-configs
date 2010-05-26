@@ -7,12 +7,12 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateTestBuilder
+  generateTestBuilderNames, generateTestBuilder, _nextFastSlave
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory, \
-  PartnerRepackFactory, MajorUpdateFactory
+  PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -56,6 +56,15 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
+
+if xulrunnerPlatforms:
+    xulrunner_source_scheduler = Dependent(
+        name='xulrunner_source',
+        upstream=tag_scheduler,
+        builderNames=['xulrunner_source']
+    )
+    schedulers.append(xulrunner_source_scheduler)
+
 for platform in enUSPlatforms:
     build_scheduler = Dependent(
         name='%s_build' % platform,
@@ -76,6 +85,15 @@ for platform in enUSPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
+
+for platform in xulrunnerPlatforms:
+    xulrunner_build_scheduler = Dependent(
+        name='xulrunner_%s_build' % platform,
+        upstream=tag_scheduler,
+        builderNames=['xulrunner_%s_build' % platform]
+    )
+    schedulers.append(xulrunner_build_scheduler)
+
 if doPartnerRepacks:
     partner_scheduler = Scheduler(
         name='partner_repacks',
@@ -172,7 +190,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': tag_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -196,9 +215,33 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'source',
-    'factory': source_factory
+    'factory': source_factory,
+    'nextSlave': _nextFastSlave,
 })
 
+if xulrunnerPlatforms:
+    xulrunner_source_factory = SingleSourceFactory(
+        hgHost=branchConfig['hghost'],
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        repoPath=sourceRepoPath,
+        productName='xulrunner',
+        version=milestone,
+        baseTag=baseTag,
+        stagingServer=branchConfig['stage_server'],
+        stageUsername=branchConfig['stage_username_xulrunner'],
+        stageSshKey=branchConfig['stage_ssh_xulrunner_key'],
+        buildNumber=buildNumber,
+        autoconfDirs=['.', 'js/src'],
+        clobberURL=branchConfig['base_clobber_url'],
+    )
+
+    builders.append({
+       'name': 'xulrunner_source',
+       'slavenames': branchConfig['platforms']['linux']['slaves'],
+       'category': 'release',
+       'builddir': 'xulrunner_source',
+       'factory': xulrunner_source_factory
+    })
 
 for platform in enUSPlatforms:
     # shorthand
@@ -257,7 +300,8 @@ for platform in enUSPlatforms:
         'slavenames': pf['slaves'],
         'category': 'release',
         'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'factory': build_factory,
+        'nextSlave': _nextFastSlave,
     })
 
     if platform in l10nPlatforms:
@@ -290,7 +334,8 @@ for platform in enUSPlatforms:
             'slavenames': branchConfig['l10n_slaves'][platform],
             'category': 'release',
             'builddir': '%s_repack' % platform,
-            'factory': repack_factory
+            'factory': repack_factory,
+            'nextSlave': _nextFastSlave,
         })
 
     if platform in unittestPlatforms:
@@ -307,6 +352,53 @@ for platform in enUSPlatforms:
                 "release-%s-unittest" % (platform,),
                 suites_name, suites, mochitestLeakThreshold,
                 crashtestLeakThreshold))
+
+for platform in xulrunnerPlatforms:
+    pf = branchConfig['platforms'][platform]
+    xr_env = pf['env'].copy()
+    xr_env['SYMBOL_SERVER_USER'] = branchConfig['stage_username_xulrunner']
+    xr_env['SYMBOL_SERVER_PATH'] = branchConfig['symbol_server_xulrunner_path']
+    xr_env['SYMBOL_SERVER_SSH_KEY'] = \
+        xr_env['SYMBOL_SERVER_SSH_KEY'].replace(branchConfig['stage_ssh_key'],
+                                                branchConfig['stage_ssh_xulrunner_key'])
+    xulrunner_build_factory = XulrunnerReleaseBuildFactory(
+        env=xr_env,
+        objdir=pf['platform_objdir'],
+        platform=platform,
+        hgHost=branchConfig['hghost'],
+        repoPath=sourceRepoPath,
+        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        configRepoPath=branchConfig['config_repo_path'],
+        configSubDir=branchConfig['config_subdir'],
+        profiledBuild=None,
+        mozconfig = '%s/%s/xulrunner' % (platform, sourceRepoName),
+        buildRevision='%s_RELEASE' % baseTag,
+        stageServer=branchConfig['stage_server'],
+        stageUsername=branchConfig['stage_username_xulrunner'],
+        stageGroup=branchConfig['stage_group'],
+        stageSshKey=branchConfig['stage_ssh_xulrunner_key'],
+        stageBasePath=branchConfig['stage_base_path_xulrunner'],
+        codesighs=False,
+        uploadPackages=True,
+        uploadSymbols=True,
+        createSnippet=False,
+        doCleanup=True, # this will clean-up the mac build dirs, but not delete
+                        # the entire thing
+        buildSpace=pf.get('build_space', nightly_config.GLOBAL_VARS['default_build_space']),
+        productName='xulrunner',
+        version=milestone,
+        buildNumber=buildNumber,
+        clobberURL=branchConfig['base_clobber_url'],
+        packageSDK=True,
+    )
+
+    builders.append({
+        'name': 'xulrunner_%s_build' % platform,
+        'slavenames': pf['slaves'],
+        'category': 'release',
+        'builddir': 'xulrunner_%s_build' % platform,
+        'factory': xulrunner_build_factory
+    })
 
 if doPartnerRepacks:
     partner_repack_factory = PartnerRepackFactory(
@@ -327,7 +419,8 @@ if doPartnerRepacks:
         'slavenames': branchConfig['platforms']['macosx']['slaves'],
         'category': 'release',
         'builddir': 'partner_repack',
-        'factory': partner_repack_factory
+        'factory': partner_repack_factory,
+        'nextSlave': _nextFastSlave,
     })
 
 l10n_verification_factory = L10nVerifyFactory(
@@ -348,7 +441,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['macosx']['slaves'],
     'category': 'release',
     'builddir': 'l10n_verification',
-    'factory': l10n_verification_factory
+    'factory': l10n_verification_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -392,7 +486,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
-    'factory': updates_factory
+    'factory': updates_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 
@@ -409,7 +504,8 @@ for platform in sorted(verifyConfigs.keys()):
         'slavenames': branchConfig['platforms'][platform]['slaves'],
         'category': 'release',
         'builddir': '%s_update_verify' % platform,
-        'factory': update_verify_factory
+        'factory': update_verify_factory,
+        'nextSlave': _nextFastSlave,
     })
 
 
@@ -425,7 +521,8 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
-    'factory': final_verification_factory
+    'factory': final_verification_factory,
+    'nextSlave': _nextFastSlave,
 })
 
 if majorUpdateRepoPath:
@@ -471,7 +568,8 @@ if majorUpdateRepoPath:
         'slavenames': branchConfig['platforms']['linux']['slaves'],
         'category': 'release',
         'builddir': 'major_update',
-        'factory': major_update_factory
+        'factory': major_update_factory,
+        'nextSlave': _nextFastSlave,
     })
     
     for platform in sorted(majorUpdateVerifyConfigs.keys()):
@@ -487,7 +585,8 @@ if majorUpdateRepoPath:
             'slavenames': branchConfig['platforms'][platform]['slaves'],
             'category': 'release',
             'builddir': '%s_major_update_verify' % platform,
-            'factory': major_update_verify_factory
+            'factory': major_update_verify_factory,
+            'nextSlave': _nextFastSlave,
         })
 
 

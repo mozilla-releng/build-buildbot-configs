@@ -24,12 +24,12 @@ SUITES = {
 }
 
 SLAVES = {
-    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,41)],
-    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,21)],
-    'xp': ["talos-r3-xp-%03i" % x for x in range(1,41)],
-    'win7': ["talos-r3-w7-%03i" % x for x in range(1,41)],
-    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,41)],
-    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,21)],
+    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,51)],
+    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,51)],
+    'xp': ["talos-r3-xp-%03i" % x for x in range(1,51)],
+    'win7': ["talos-r3-w7-%03i" % x for x in range(1,51)],
+    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,51)],
+    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,51)],
 }
 
 BRANCHES = {
@@ -41,6 +41,7 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'addonsmgr': {},
+    'tryserver': {},
 }
 
 PLATFORMS = {
@@ -377,3 +378,28 @@ BRANCHES['addonsmgr']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['addonsmgr']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['addonsmgr']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addonsmgr']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+
+######## tryserver
+BRANCHES['tryserver']['branch_name'] = "Tryserver"
+BRANCHES['tryserver']['build_branch'] = "Tryserver"
+BRANCHES['tryserver']['tinderbox_tree'] = "MozillaTry"
+BRANCHES['tryserver']['talos_command'] = TALOS_CMD
+BRANCHES['tryserver']['fetch_symbols'] = True
+BRANCHES['tryserver']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['tryserver']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['tryserver']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['tryserver']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['repo_path'] = "try"
+BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx']['enable_debug_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = False
+BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['linux']['enable_debug_unittests'] = False
+BRANCHES['tryserver']['platforms']['linux64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['linux64']['enable_debug_unittests'] = False

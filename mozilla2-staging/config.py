@@ -8,14 +8,15 @@ from buildbotcustom.env import MozillaEnvironments
 # big dict
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,69)]
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
+XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
+LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
+LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)] 
+LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,25)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)]
-LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,25)]
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
+    'linux64':     LINUX64_VMS, 
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
     'macosx-snow': MAC_SNOW_MINIS,
@@ -59,13 +60,12 @@ GLOBAL_VARS = {
     'talos_masters': [
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master02.build.mozilla.org:9012', False),
-        ('talos-master02.build.mozilla.org:9010', False),
     ],
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('localhost:9010', True, 0),
-                         ('localhost:9011', True, 0),
-                         ('localhost:9012', True, 0),
+    'unittest_masters': [('staging-master.build.mozilla.org:9010', True, 0),
+                         ('staging-master.build.mozilla.org:9011', True, 0),
+                         ('staging-master.build.mozilla.org:9012', True, 0),
                          ('talos-staging-master02.build.mozilla.org:9010', True, 0),
                          ('talos-staging-master02.build.mozilla.org:9012', True, 0),
                         ],
@@ -136,6 +136,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'DISPLAY': ':2',
             },
             'enable_opt_unittests': True,
             'enable_checktests': True,
@@ -685,15 +686,15 @@ BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID']
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
 BRANCHES['tryserver']['enable_mail_notifier'] = False
-BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/tryserver-builds'
+BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['config_repo_path'] = 'users/lsblakk_mozilla.com/buildbot-configs'
 BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/tryserver-builds'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['start_hour'] = [3]
 BRANCHES['tryserver']['start_minute'] = [2]
 # Disable Nightly builds

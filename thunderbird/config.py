@@ -78,9 +78,6 @@ BRANCHES = {
     'comm-central-trunk': {},
     'comm-central-bloat': {},
     'comm-central-trunk-bloat': {},
-    'comm-1.9.2-lightning': {},
-    'comm-central-lightning': {},
-    'comm-1.9.1-sunbird': {},
     'comm-1.9.1-unittest': {},
     'comm-1.9.2': {},
     'comm-1.9.2-unittest': {},
@@ -98,6 +95,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'hg_branch': 'releases/comm-1.9.1',
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
+#    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH'],
     'irc_nick': 'thunderbot',
     'irc_channels': ['maildev'],
     'platforms': {
@@ -107,7 +105,7 @@ BRANCHES['comm-1.9.1-unittest'] = {
         },
         'win32': {
             'base_name': 'WINNT 5.2 comm-1.9.1',
-            'slaves': BUILDERS['win32']['momo'],
+            'slaves': BUILDERS['win32']['momo'],REL
         },
        'macosx': {
             'base_name': 'MacOSX 10.5 comm-1.9.1',
@@ -125,7 +123,7 @@ BRANCHES['comm-1.9.2-unittest'] = {
     'nightly': False,
     'mozmill': True,
     'tinderbox_tree': 'Thunderbird3.1',
-    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'], 
+    'client_py_extra_args': ['--mozilla-rev=COMM1924_20100514_RELBRANCH'],
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-1.9.2',
@@ -151,7 +149,6 @@ BRANCHES['comm-central-unittest'] = {
     'tinderbox_tree': 'Thunderbird',
     'irc_nick': 'thunderbot-trunk',
     'irc_channels': ['maildev'],
-    'client_py_args': DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/mozilla-central'],
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-central',
@@ -186,7 +183,7 @@ BRANCHES['comm-central']['stage_ssh_key'] = STAGE_SSH_KEY
 BRANCHES['comm-central']['stage_base_path'] = DEFAULTS['stage_base_path']
 
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM1919_20100316_RELBRANCH']
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central']['package'] = True
@@ -287,7 +284,7 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'macosx': {},
 }
 BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2']
+BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
 BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-1.9.2']['package'] = True
@@ -450,278 +447,6 @@ BRANCHES['comm-central-trunk']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh'
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
-######## lightning-hg
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-1.9.2-lightning']['platforms'] = {
-    'linux': {},
-    'win32': {},
-    'macosx': {}
-}
-
-BRANCHES['comm-1.9.2-lightning']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2-lightning']['branch_name'] = 'comm-1.9.2'
-BRANCHES['comm-1.9.2-lightning']['hg_branch'] = 'releases/comm-1.9.2'
-BRANCHES['comm-1.9.2-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] 
-BRANCHES['comm-1.9.2-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
-BRANCHES['comm-1.9.2-lightning']['mozconfig'] = 'mozconfig-lightning'
-BRANCHES['comm-1.9.2-lightning']['period'] = 60 * 60 * 6
-BRANCHES['comm-1.9.2-lightning']['package'] = True
-BRANCHES['comm-1.9.2-lightning']['upload_stage'] = True
-BRANCHES['comm-1.9.2-lightning']['upload_complete_mar'] = False
-#Might be better off per-platform instead of per-branch here.
-BRANCHES['comm-1.9.2-lightning']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
-BRANCHES['comm-1.9.2-lightning']['stage_username'] = 'calbld'
-BRANCHES['comm-1.9.2-lightning']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
-BRANCHES['comm-1.9.2-lightning']['stage_group'] = 'calendar'
-BRANCHES['comm-1.9.2-lightning']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-1.9.2-lightning']['codesighs'] = False
-BRANCHES['comm-1.9.2-lightning']['l10n'] = False
-BRANCHES['comm-1.9.2-lightning']['irc_nick'] = 'calbuild'
-BRANCHES['comm-1.9.2-lightning']['irc_channels'] = [ 'maildev', 'calendar' ]
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['base_name'] = 'Linux comm-1.9.2 lightning'
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.2 lightning'
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.2 lightning'
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['milestone'] = "comm-1.9.2/linux-xpi"
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['milestone'] = "comm-1.9.2/win32-xpi"
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['milestone'] = "comm-1.9.2/macosx-xpi"
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
-
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-1.9.2-lightning']['create_snippet'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['comm-1.9.2-lightning']['tinderbox_tree'] = 'Calendar1.0'
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['slaves'] = [
-    'cb-sb-linux-tbox',
-]
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['slaves'] = [
-    'cb-sb-win32-tbox',
-]
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['slaves'] = [
-    'cb-xserve03',
-]
-
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.2-lightning']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.2-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.2-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'DISABLE_LIGHTNING_INSTALL': '1',
-}
-
-######## lightning-trunk
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-central-lightning']['platforms'] = {
-    'linux': {},
-    'win32': {},
-    'macosx': {}
-}
-
-BRANCHES['comm-central-lightning']['mozilla_central_branch'] = 'mozilla-central'
-BRANCHES['comm-central-lightning']['branch_name'] = 'comm-central'
-BRANCHES['comm-central-lightning']['hg_branch'] = 'comm-central'
-BRANCHES['comm-central-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
-BRANCHES['comm-central-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
-BRANCHES['comm-central-lightning']['mozconfig'] = 'mozconfig-lightning'
-BRANCHES['comm-central-lightning']['period'] = 60 * 60 * 6
-BRANCHES['comm-central-lightning']['package'] = True
-BRANCHES['comm-central-lightning']['upload_stage'] = True
-BRANCHES['comm-central-lightning']['upload_complete_mar'] = False
-#Might be better off per-platform instead of per-branch here.
-BRANCHES['comm-central-lightning']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
-BRANCHES['comm-central-lightning']['stage_username'] = 'calbld'
-BRANCHES['comm-central-lightning']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
-BRANCHES['comm-central-lightning']['stage_group'] = 'calendar'
-BRANCHES['comm-central-lightning']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-central-lightning']['codesighs'] = False
-BRANCHES['comm-central-lightning']['l10n'] = False
-BRANCHES['comm-central-lightning']['irc_nick'] = 'lt-trunk-builds'
-BRANCHES['comm-central-lightning']['irc_channels'] = [ 'calendar' ]
-BRANCHES['comm-central-lightning']['platforms']['linux']['base_name'] = 'Linux comm-central lightning'
-BRANCHES['comm-central-lightning']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central lightning'
-BRANCHES['comm-central-lightning']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central lightning'
-BRANCHES['comm-central-lightning']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-central-lightning']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-central-lightning']['platforms']['macosx']['profiled_build'] = False
-BRANCHES['comm-central-lightning']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
-BRANCHES['comm-central-lightning']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
-BRANCHES['comm-central-lightning']['platforms']['macosx']['milestone'] = "comm-central/macosx-xpi"
-BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
-
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-central-lightning']['create_snippet'] = False
-BRANCHES['comm-central-lightning']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-central-lightning']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-central-lightning']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-central-lightning']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['comm-central-lightning']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['comm-central-lightning']['tinderbox_tree'] = 'Sunbird'
-BRANCHES['comm-central-lightning']['platforms']['linux']['slaves'] = [
-    'cb-sb-linux-tbox',
-]
-BRANCHES['comm-central-lightning']['platforms']['win32']['slaves'] = [
-    'cb-sb-win32-tbox',
-]
-BRANCHES['comm-central-lightning']['platforms']['macosx']['slaves'] = [
-    'cb-xserve03',
-]
-
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-central-lightning']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-lightning']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central-lightning']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-central-lightning']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'DISABLE_LIGHTNING_INSTALL': '1',
-}
-
-######## sunbird-hg
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-1.9.1-sunbird']['platforms'] = {
-    'linux': {},
-    'win32': {},
-    'macosx': {}
-}
-BRANCHES['comm-1.9.1-sunbird']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['branch_name'] = 'comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
-BRANCHES['comm-1.9.1-sunbird']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
-BRANCHES['comm-1.9.1-sunbird']['mozconfig'] = 'mozconfig-sunbird'
-BRANCHES['comm-1.9.1-sunbird']['period'] = 60 * 60 * 6
-BRANCHES['comm-1.9.1-sunbird']['package'] = True
-BRANCHES['comm-1.9.1-sunbird']['upload_stage'] = True
-BRANCHES['comm-1.9.1-sunbird']['milestone'] = 'comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['stage_username'] = 'calbld'
-BRANCHES['comm-1.9.1-sunbird']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['stage_project'] = 'calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['stage_group'] = 'calendar'
-BRANCHES['comm-1.9.1-sunbird']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-1.9.1-sunbird']['codesighs'] = False
-BRANCHES['comm-1.9.1-sunbird']['l10n'] = True
-BRANCHES['comm-1.9.1-sunbird']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['l10n_tree'] = 'sunbird10x'
-BRANCHES['comm-1.9.1-sunbird']['product'] = 'calendar'
-BRANCHES['comm-1.9.1-sunbird']['appname'] = 'sunbird'
-BRANCHES['comm-1.9.1-sunbird']['brand_name'] = 'Sunbird'
-BRANCHES['comm-1.9.1-sunbird']['product_name'] = 'Sunbird'
-BRANCHES['comm-1.9.1-sunbird']['irc_nick'] = 'sunbuild'
-BRANCHES['comm-1.9.1-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['profiled_build'] = False
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-1.9.1-sunbird']['create_snippet'] = True
-BRANCHES['comm-1.9.1-sunbird']['aus'] = {
-    'user': 'calbld',
-    'host': 'aus2-community.mozilla.org',
-    'base_upload_dir': '/opt/aus2/build/0/Sunbird/trunk',
-}
-BRANCHES['comm-1.9.1-sunbird']['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['tinderbox_tree'] = 'Calendar1.0'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['slaves'] = [
-    'cb-sb-linux-tbox',
-]
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['slaves'] = [
-    'cb-sb-win32-tbox',
-]
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['slaves'] = [
-    'cb-xserve03',
-]
-
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/home/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/Users/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-
-
 ######## thunderbird-bloat
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-central-bloat']['platforms'] = {
@@ -733,7 +458,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
@@ -819,7 +544,7 @@ BRANCHES['comm-1.9.2-bloat']['platforms'] = {
 BRANCHES['comm-1.9.2-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['branch_name'] = 'comm-1.9.2'
 BRANCHES['comm-1.9.2-bloat']['hg_branch'] = 'releases/comm-1.9.2'
-BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] 
+BRANCHES['comm-1.9.2-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
 BRANCHES['comm-1.9.2-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-1.9.2-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-1.9.2-bloat']['nightly'] = False

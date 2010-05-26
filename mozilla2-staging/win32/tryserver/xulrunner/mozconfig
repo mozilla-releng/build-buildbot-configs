@@ -10,3 +10,9 @@ ac_add_options --disable-installer
 ac_add_options --disable-tests
 
 . $topsrcdir/configs/mozilla2-staging/win32/include/choose-make-flags
+if [ -f $topsrcdir/mozconfig-extra ] ; then
+  . $topsrcdir/mozconfig-extra
+fi
+if [ -f $topsrcdir/mozconfig-extra-win32 ] ; then
+  . $topsrcdir/mozconfig-extra-win32
+fi

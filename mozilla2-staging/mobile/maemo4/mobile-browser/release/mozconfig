@@ -1,0 +1,20 @@
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
+
+export LDFLAGS='-Wl,-rpath-link,/usr/lib:/lib'
+
+ac_add_options --with-maemo-version=5
+
+# install locations for Maemo
+ac_add_options --prefix=/opt/mozilla
+ac_add_options --libdir=/opt/mozilla
+
+ac_add_options --disable-javaxpcom
+ac_add_options --with-arm-kuser
+# updater isn't used for Maemo
+ac_add_options --disable-updater
+ac_add_options --disable-ipc
+ac_add_options --enable-application=mobile
+ac_add_options --enable-official-branding
+
+ac_add_options --enable-debug-symbols="-gdwarf-2"
+export MOZILLA_OFFICIAL=1

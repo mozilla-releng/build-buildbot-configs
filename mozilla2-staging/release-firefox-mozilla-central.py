@@ -33,6 +33,7 @@ enUSPlatforms       = ('linux', 'win32', 'macosx')
 l10nPlatforms       = ('linux', 'win32', 'macosx')
 talosTestPlatforms  = ('linux', 'win32', 'macosx')
 unittestPlatforms   = ('linux', 'win32', 'macosx')
+xulrunnerPlatforms  = enUSPlatforms
 # TODO: create this file before 3.7a2
 patcherConfig       = 'moz193-branch-patcher2.cfg'
 patcherToolsTag     = 'UPDATE_PACKAGING_R9'

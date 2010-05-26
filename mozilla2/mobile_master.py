@@ -1,3 +1,4 @@
+# -*- python -*-
 # ex: set syntax=python:
 
 ####### BUILDSLAVES
@@ -21,7 +22,8 @@ from buildbotcustom.scheduler import MozScheduler
 import buildbotcustom.process.factory
 from buildbotcustom.process.factory import MaemoBuildFactory, \
    MaemoNightlyRepackFactory, MobileDesktopBuildFactory, \
-   MobileDesktopNightlyRepackFactory
+   MobileDesktopNightlyRepackFactory, \
+   AndroidBuildFactory
 
 from buildbot.steps import trigger
 from buildbot.steps.shell import WithProperties
@@ -38,10 +40,13 @@ reload(mobile_config)
 from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
 
 MOBILE_L10N_SLAVES = {
-    'linux-gnueabi-arm': MOBILE_SLAVES['linux-gnueabi-arm'][-8:],
+    'maemo4': MOBILE_SLAVES['maemo4'][-8:],
+    'maemo5-gtk': MOBILE_SLAVES['maemo5-gtk'][-8:],
+    'maemo5-qt': MOBILE_SLAVES['maemo5-qt'][-8:],
     'linux-i686': MOBILE_SLAVES['linux-i686'][-8:],
     'macosx-i686': MOBILE_SLAVES['macosx-i686'][-8:],
     'win32-i686': MOBILE_SLAVES['win32-i686'][-8:],
+    'android-r7': MOBILE_SLAVES['android-r7'][-8:],
 }
 
 m = {}
@@ -86,7 +91,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         logCompression='bzip2'
     ))
 
-    mailNotifyBuilders.extend(builders + nightlyBuilders)
+    if branch.get('mail_on_failure', False):
+        mailNotifyBuilders.extend(builders + nightlyBuilders)
 
     if branch['enable_l10n']:
         l10n_builders = []
@@ -126,8 +132,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
     for builder in nightlyBuilders:
         if builder in l10nNightlyBuilders and \
            branch['enable_l10n'] and branch['enable_multi_locale'] and \
-           builder.startswith('Maemo') and builder.endswith('nightly') and \
-           l10nNightlyBuilders[builder]['platform'] in ('linux-gnueabi-arm'):
+           builder.startswith('Maemo') and builder.endswith('nightly'):
             nightly_scheduler=MultiNightlyL10n(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
@@ -184,7 +189,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
            nightly_builder in l10nNightlyBuilders:
             triggeredSchedulers=[l10nNightlyBuilders[nightly_builder]['l10n_builder']]
 
-        if platform == 'linux-gnueabi-arm' or 'maemo5' in platform:
+        if platform.startswith('maemo'):
             mobile_dep_factory = MaemoBuildFactory(
                 hgHost=mainConfig['hghost'],
                 repoPath=branch['repo_path'],
@@ -198,6 +203,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=pf.get('mobile_repo_path',
                                         branch.get('mobile_repo_path')),
+                env=pf['env'],
                 platform=platform,
                 baseWorkDir=pf['base_workdir'],
                 baseBuildDir=pf['base_builddir'],
@@ -208,6 +214,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 buildSpace=buildSpace,
                 buildsBeforeReboot=pf['builds_before_reboot'],
                 sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
+                uploadSymbols=False,
                 packageGlobList=pf.get('glob_list', ['dist/*.tar.bz2',
                                                      'mobile/*.deb',
                                                      'dist/deb_name.txt',
@@ -229,6 +236,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=pf.get('mobile_repo_path',
                                         branch.get('mobile_repo_path')),
+                env=pf['env'],
                 platform=platform,
                 baseWorkDir=nightlyWorkDir,
                 baseBuildDir=nightlyBuildDir,
@@ -245,11 +253,69 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers,
                 sb_target=pf.get('sb_target', 'CHINOOK-ARMEL-2007'),
+                uploadSymbols=pf.get('upload_symbols', False),
                 packageGlobList=pf.get('glob_list', ['dist/*.tar.bz2',
                                                      'mobile/*.deb',
                                                      'dist/deb_name.txt',
                                                      'dist/*.zip']),
                 debs=pf.get('debs', True),
+            )
+        elif 'android' in platform:
+            mobile_dep_factory = AndroidBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
+                mozRevision='android2',  #branch.get('revision', 'default'),
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=branch['stage_base_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                      branch.get('mobile_repo_path')),
+                env=pf['env'],
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=pf.get('base_upload_dir', name),
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
+                uploadSymbols=False,
+                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
+                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
+            )
+            mobile_nightly_factory = AndroidBuildFactory(
+                hgHost=mainConfig['hghost'],
+                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
+                mozRevision='android2',  #branch.get('revision', 'default'),
+                configRepoPath=mainConfig['config_repo_path'],
+                configSubDir=mainConfig['config_subdir'],
+                mozconfig=pf['mozconfig'],
+                stageUsername=mainConfig['stage_username'],
+                stageGroup=mainConfig['stage_group'],
+                stageSshKey=mainConfig['stage_ssh_key'],
+                stageServer=mainConfig['stage_server'],
+                stageBasePath=branch['stage_base_path'],
+                mobileRepoPath=pf.get('mobile_repo_path',
+                                      branch.get('mobile_repo_path')),
+                env=pf['env'],
+                platform=platform,
+                baseWorkDir=pf['base_workdir'],
+                baseUploadDir=pf.get('base_upload_dir', name),
+                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
+                clobberURL=mainConfig['base_clobber_url'],
+                clobberTime=clobberTime,
+                buildSpace=buildSpace,
+                buildsBeforeReboot=pf['builds_before_reboot'],
+                nightly = True,
+                triggerBuilds = False,
+                uploadSymbols=pf.get('upload_symbols', False),
+                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
+                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
             )
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
@@ -265,6 +331,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
+                uploadSymbols=False,
                 packageGlobList=['-r', 'dist/*.tar.bz2',
                                  'dist/*.zip'],
                 platform=platform,
@@ -289,6 +356,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
+                uploadSymbols=pf.get('upload_symbols', False),
                 packageGlobList=['-r', 'dist/*.tar.bz2',
                                  'dist/*.zip'],
                 platform=platform,
@@ -317,6 +385,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
+                uploadSymbols=pf.get('upload_symbols', False),
                 packageGlobList=['-r', 'dist/*.dmg'],
                 platform="macosx",
                 baseWorkDir=pf['base_workdir'],
@@ -345,6 +414,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
                 platform="win32",
+                uploadSymbols=pf.get('upload_symbols', False),
                 packageGlobList=['-r', 'dist/*.zip'],
                 baseWorkDir=pf['base_workdir'],
                 baseUploadDir=name,
@@ -380,7 +450,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
-            if platform == 'linux-gnueabi-arm':
+            if platform.startswith('maemo'):
                 nightlyBuildDir = pf['base_builddir'] + '-l10n'
                 depBuildDir = pf['base_builddir'] + '-l10n-dep'
                 mobile_l10n_nightly_factory = MaemoNightlyRepackFactory(
@@ -392,7 +462,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     packageGlobList=['-r', '%(locale)s',
                                      'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                                      'install/fennec-*.%(locale)s.langpack.xpi'],
-                    enUSBinaryURL=branch['enUS_binaryURL'],
+                    enUSBinaryURL=pf.get('enUS_binaryURL', branch['enUS_binaryURL']),
                     stageServer=mainConfig['stage_server'],
                     stageUsername=mainConfig['stage_username'],
                     configSubDir=mainConfig['config_subdir'],
@@ -409,7 +479,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                     buildSpace=2,
                     baseWorkDir=pf['base_l10n_workdir'],
                     baseBuildDir=nightlyBuildDir,
-                    baseUploadDir='%s-l10n' % name,
+                    baseUploadDir='%s-l10n' % pf.get('base_upload_dir', name),
                     clobberURL=mainConfig['base_clobber_url'],
                     clobberTime=clobberTime,
                     platform=platform,
@@ -425,7 +495,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                         packageGlobList=['-r', '%(locale)s',
                                          'fennec-*.%(locale)s.linux-gnueabi-arm.tar.bz2',
                                          'install/fennec-*.%(locale)s.langpack.xpi'],
-                        enUSBinaryURL=branch['enUS_binaryURL'],
+                        enUSBinaryURL=pf.get('enUS_binaryURL', branch['enUS_binaryURL']),
                         stageServer=mainConfig['stage_server'],
                         stageUsername=mainConfig['stage_username'],
                         configSubDir=mainConfig['config_subdir'],
@@ -442,7 +512,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                         buildSpace=2,
                         baseWorkDir=pf['base_l10n_workdir'],
                         baseBuildDir=depBuildDir,
-                        baseUploadDir='%s-l10n' % name,
+                        baseUploadDir='%s-l10n' % pf.get('base_upload_dir', name),
                         clobberURL=mainConfig['base_clobber_url'],
                         clobberTime=clobberTime,
                         platform=platform,
