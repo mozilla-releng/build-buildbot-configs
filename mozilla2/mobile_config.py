@@ -404,7 +404,7 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_upload_dir'] = '%s-maemo5-%s' % (branch, toolkit)
         maemo5['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = '%s-maemo5-%s' % (hacktionary.get(branch, branch), toolkit)
         maemo5['base_l10n_workdir'] = '%s/build/%s-maemo5-%s-l10n' % (SBOX_HOME,
-                                                                      toolkit, branch)
+                                                                      branch, toolkit)
         maemo5['sb_target'] = 'FREMANTLE_ARMEL'
         MOBILE_BRANCHES[branch]['platforms']['maemo5-%s'%toolkit] = maemo5
 
