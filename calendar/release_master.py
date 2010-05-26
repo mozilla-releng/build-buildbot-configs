@@ -236,7 +236,7 @@ for platform in releasePlatforms:
         stageBasePath=nightly_config.BRANCHES[sourceRepoName]['stage_base_path'],
         codesighs=False,
         uploadPackages=True,
-        uploadSymbols=True,
+        uploadSymbols=nightly_config.BRANCHES[sourceRepoName]['upload_symbols'],
         createSnippet=False,
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
