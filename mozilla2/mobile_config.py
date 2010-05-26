@@ -119,8 +119,6 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
 #MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['android-r7'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
-MOBILE_BRANCHES['mobile-trunk']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
     MOBILE_BRANCHES['mobile-trunk']['download_base_url'] + '/nightly/latest-mobile-trunk'
 MOBILE_BRANCHES['mobile-trunk']['tinderbox_tree'] = 'Mobile'
@@ -203,8 +201,6 @@ MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['linux-i686'] = 'linux'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms']['win32-i686'] = 'win32'
 MOBILE_BRANCHES['mobile-1.9.2']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-1.9.2']['multiLocalesFile'] = "locales/maemo-locales"
-MOBILE_BRANCHES['mobile-1.9.2']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/mobile/nightly/latest-mobile-1.9.2-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['tinderbox_tree'] = 'Mobile1.1'
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 MOBILE_BRANCHES['mobile-1.9.2']['enUS_binaryURL'] = \
