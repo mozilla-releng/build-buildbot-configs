@@ -78,7 +78,6 @@ DEFAULTS = {
 BRANCHES = {
     'comm-1.9.2-lightning': {},
     'comm-central-lightning': {},
-    'comm-1.9.1-sunbird': {},
 }
 
 ######## lightning-hg
@@ -237,101 +236,6 @@ BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': '
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'DISABLE_LIGHTNING_INSTALL': '1',
-}
-
-######## sunbird-hg
-# All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-1.9.1-sunbird']['platforms'] = {
-    'linux': {},
-    'win32': {},
-    'macosx': {}
-}
-BRANCHES['comm-1.9.1-sunbird']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['branch_name'] = 'comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
-BRANCHES['comm-1.9.1-sunbird']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
-BRANCHES['comm-1.9.1-sunbird']['mozconfig'] = 'mozconfig-sunbird'
-BRANCHES['comm-1.9.1-sunbird']['period'] = 60 * 60 * 6
-BRANCHES['comm-1.9.1-sunbird']['package'] = True
-BRANCHES['comm-1.9.1-sunbird']['upload_stage'] = True
-BRANCHES['comm-1.9.1-sunbird']['milestone'] = 'comm-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['stage_username'] = 'calbld'
-BRANCHES['comm-1.9.1-sunbird']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['stage_project'] = 'calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['stage_group'] = 'calendar'
-BRANCHES['comm-1.9.1-sunbird']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-1.9.1-sunbird']['codesighs'] = False
-BRANCHES['comm-1.9.1-sunbird']['l10n'] = True
-BRANCHES['comm-1.9.1-sunbird']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
-BRANCHES['comm-1.9.1-sunbird']['l10n_tree'] = 'sunbird10x'
-BRANCHES['comm-1.9.1-sunbird']['product'] = 'calendar'
-BRANCHES['comm-1.9.1-sunbird']['appname'] = 'sunbird'
-BRANCHES['comm-1.9.1-sunbird']['brand_name'] = 'Sunbird'
-BRANCHES['comm-1.9.1-sunbird']['product_name'] = 'Sunbird'
-BRANCHES['comm-1.9.1-sunbird']['irc_nick'] = 'sunbuild'
-BRANCHES['comm-1.9.1-sunbird']['irc_channels'] = [ 'maildev','calendar' ]
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1 sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['profiled_build'] = False
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-1.9.1-sunbird']['create_snippet'] = True
-BRANCHES['comm-1.9.1-sunbird']['aus'] = {
-    'user': 'calbld',
-    'host': 'aus2-community.mozilla.org',
-    'base_upload_dir': '/opt/aus2/build/0/Sunbird/trunk',
-}
-BRANCHES['comm-1.9.1-sunbird']['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['upload_symbols'] = True
-BRANCHES['comm-1.9.1-sunbird']['tinderbox_tree'] = 'Calendar1.0'
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['community']
-
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
-BRANCHES['comm-1.9.1-sunbird']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/home/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1-sunbird']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-}
-BRANCHES['comm-1.9.1-sunbird']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
-    'SYMBOL_SERVER_USER': 'calbld',
-    'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_sbrd/',
-    'SYMBOL_SERVER_SSH_KEY': "/Users/calbld/.ssh/calbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
 
 # Release automation expect to find these
