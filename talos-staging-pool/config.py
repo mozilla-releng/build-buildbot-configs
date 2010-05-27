@@ -315,6 +315,8 @@ BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = True
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
@@ -331,6 +333,10 @@ BRANCHES['tracemonkey']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = True
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
