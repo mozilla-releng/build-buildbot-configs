@@ -46,7 +46,6 @@ GLOBAL_VARS.update({
         ('jsreftest', ['jsreftest']),
     ],
     'geriatric_masters': [],
-    'geriatric_branches': {},
     'platforms': {
         'linux': {},
         'linux64': {},
@@ -69,7 +68,11 @@ GLOBAL_VARS.update({
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
-    'l10n_modules': ['browser','dom','toolkit'],
+    'l10n_modules': [
+            'browser', 'extensions/reporter',
+            'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+            'security/manager',
+            ],
 })
 
 # shorthand, because these are used often
@@ -90,6 +93,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'env': {
+                'DISPLAY': ':2',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
@@ -117,6 +121,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',
             'env': {
+                'DISPLAY': ':2',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
@@ -394,11 +399,6 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
-BRANCHES['mozilla-central']['geriatric_branches'] = {
-    'win32': ['p3-win-unit'],
-    'linux': ['p3-linux-unit'],
-    'macosx': ['g4-leopard-unit', 'g4-tiger-unit'],
-}
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
