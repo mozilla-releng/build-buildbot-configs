@@ -26,7 +26,6 @@ GLOBAL_VARS = {
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
-        ('production-master01.build.mozilla.org:9009', False, 0),
         ('talos-master.mozilla.org:9010', True),
         ('talos-master02.build.mozilla.org:9012', True),
         ('talos-staging-master02.build.mozilla.org:9010', False),
