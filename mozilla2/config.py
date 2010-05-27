@@ -6,7 +6,7 @@ from buildbotcustom.env import MozillaEnvironments
 
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
+XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,25)]
