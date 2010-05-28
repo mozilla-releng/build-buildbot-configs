@@ -251,7 +251,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['env']['MOZ_SYMBOLS
 MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
 MOBILE_BRANCHES['mobile-electrolysis']['repo_path'] = 'projects/electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['l10n_repo_path'] = 'l10n-central'
-MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'mobile-browser'
+MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
 MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-electrolysis']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-electrolysis']['aus2_base_upload_dir'] = None
@@ -261,9 +261,9 @@ MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
     'maemo4': {},
     'linux-i686': {},
 }
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-e10s/nightly'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['sb_target'] = 'CHINOOK-ARMEL-2007'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-browser/nightly'
+MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-e10s/nightly'
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['upload_symbols'] = True
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['upload_symbols'] = True
 MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['base_name'] = 'Maemo electrolysis'
@@ -393,11 +393,7 @@ for toolkit in ['gtk', 'qt']:
             MOBILE_BRANCHES[branch]['l10n_platforms']['maemo5-%s'%toolkit] = 'linux'
             maemo5['enUS_binaryURL'] = '%s-maemo5-%s' % \
               (MOBILE_BRANCHES[branch]['enUS_binaryURL'], toolkit)
-        if 'electrolysis' in branch:
-            maemo5['mozconfig'] = re.sub('maemo4/mobile-[^/]*', 'maemo5-%s/mobile-e10s' % toolkit, maemo5['mozconfig'])
-            maemo5['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
-        else:
-            maemo5['mozconfig'] = maemo5['mozconfig'].replace('maemo4', 'maemo5-%s' % toolkit)
+        maemo5['mozconfig'] = maemo5['mozconfig'].replace('maemo4', 'maemo5-%s' % toolkit)
         maemo5['base_workdir'] = '%s/build/%s-maemo5-%s' % (SBOX_HOME,
                                                             branch, toolkit)
         maemo5['base_builddir'] = '%s-maemo5-%s' % (branch, toolkit)
