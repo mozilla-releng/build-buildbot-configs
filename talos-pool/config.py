@@ -5,7 +5,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
-TALOS_DIRTY_OPTS = {'talosAddOns': ['/builds/buildbot/profiles/dirtyDBs.zip', '/builds/buildbot/profiles/dirtyMaxDBs.zip']}
+TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
 TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 
@@ -64,6 +64,7 @@ BRANCHES['mozilla-1.9.0']['build_branch'] = "1.9.0"
 BRANCHES['mozilla-1.9.0']['tinderbox_tree'] = "Firefox3.0"
 BRANCHES['mozilla-1.9.0']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.0']['fetch_symbols'] = False
+BRANCHES['mozilla-1.9.0']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.0']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -104,6 +105,7 @@ BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
 BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = "Firefox3.5"
 BRANCHES['mozilla-1.9.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
+BRANCHES['mozilla-1.9.1']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -120,6 +122,7 @@ BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
+BRANCHES['mozilla-1.9.2']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-1.9.2']['release_tests'] = 5
 BRANCHES['mozilla-1.9.2']['fetch_release_symbols'] = False
 BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)

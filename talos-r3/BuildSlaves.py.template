@@ -1,0 +1,13 @@
+SlavePasswords = {
+    "linux": "pass",
+    "linux64": "pass",
+    "fedora": "pass",
+    "fedora64": "pass",
+    "tiger": "pass",
+    "leopard": "pass",
+    "snowleopard": "pass",
+    "xp": "pass",
+    "win7": "pass",
+    "vista": "pass",
+}
+
