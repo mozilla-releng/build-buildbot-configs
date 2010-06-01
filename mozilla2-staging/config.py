@@ -698,14 +698,6 @@ BRANCHES['tryserver']['start_minute'] = [2]
 BRANCHES['tryserver']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tryserver']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['tryserver']['unittest_suites'] = [
-    # Turn on chunks for mochitests
-    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-    ('everythingelse', ['reftest', 'crashtest', 'mochitest-chrome',
-                        'mochitest-browser-chrome', 'mochitest-a11y',
-                        'xpcshell', 'jsreftest'])
-]
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 BRANCHES['tryserver']['platforms']['win32']['mochitest_leak_threshold'] = 484
 BRANCHES['tryserver']['platforms']['win32']['crashtest_leak_threshold'] = 484
