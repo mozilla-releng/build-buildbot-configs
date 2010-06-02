@@ -12,11 +12,7 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole(1235, "cltbld", "password")
 
 from config import BRANCHES
-# Do everything!
-#ACTIVE_BRANCHES = BRANCHES.keys()
-#ACTIVE_BRANCHES.remove('tryserver')
-# I changed my mind; do only trunk
-ACTIVE_BRANCHES = ['mozilla-central']
+ACTIVE_BRANCHES = ['mozilla-central', 'addonsmgr', 'places', 'electrolysis']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg

@@ -13,7 +13,7 @@ c['manhole'] = manhole.PasswordManhole(1235, "cltbld", "password")
 
 from config import BRANCHES
 # Do only a few branches for now
-ACTIVE_BRANCHES = ['places', 'addonsmgr']
+ACTIVE_BRANCHES = ['places', 'addonsmgr', 'electrolysis']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
