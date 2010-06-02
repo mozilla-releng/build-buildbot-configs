@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-1.9.2'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-1.9.2'
-mozSourceRepoRevision  = 'FILLMEIN'
+mozSourceRepoRevision  = '2cb83e106cf7'
 mobileSourceRepoName      = 'mobile-1.1'
 mobileSourceRepoPath      = 'releases/mobile-1.1'
-mobileSourceRepoRevision  = 'FILLMEIN'
+mobileSourceRepoRevision  = '4a51427bed7c'
 mozRelbranchOverride      = ''
 l10nRelbranchOverride     = ''
 mobileRelbranchOverride   = ''
@@ -17,7 +17,7 @@ l10nRepoPath        = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile    = 'l10n-changesets_mobile-1.1.json'
 productName         = 'fennec'
 appName             = 'mobile'
-mergeLocales        = True
+mergeLocales        = False
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
