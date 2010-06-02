@@ -113,7 +113,7 @@ repositories = {
     mozSourceRepoPath: {
         'revision': mozSourceRepoRevision,
         'relbranchOverride': mozRelbranchOverride,
-        'bumpFiles': [],
+        'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt'],
     },
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,

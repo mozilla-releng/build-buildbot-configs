@@ -124,7 +124,7 @@ clone_repositories = {
     mozSourceRepoClonePath: {
         'revision': mozSourceRepoRevision,
         'relbranchOverride': mozRelbranchOverride,
-        'bumpFiles': [],
+        'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt'],
     },
     mobileSourceRepoClonePath: {
         'revision': mobileSourceRepoRevision,
@@ -138,7 +138,7 @@ tag_repositories = {
     mozSourceRepoPath: {
         'revision': mozSourceRepoRevision,
         'relbranchOverride': mozRelbranchOverride,
-        'bumpFiles': []
+        'bumpFiles': ['config/milestone.txt', 'js/src/config/milestone.txt',]
     },
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
