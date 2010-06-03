@@ -55,7 +55,7 @@ DEBSIGN_CONFIG['branches']['1.9.2']['nightly']['extra_debs_list'] = None
 DEBSIGN_CONFIG['branches']['1.9.2']['enable_release'] = True
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['base_stage_path'] = '/home/ftp'
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['base_stage_url'] = 'http://ftp.mozilla.org'
-DEBSIGN_CONFIG['branches']['1.9.2']['release']['stage_dir'] = '/pub/mozilla.org/mobile/candidates/1.1rc1-candidates/build1/maemo4'
+DEBSIGN_CONFIG['branches']['1.9.2']['release']['stage_dir'] = '/pub/mozilla.org/mobile/candidates/1.1rc1-candidates/build2/maemo4'
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['env'] = RELEASE_ENV
 DEBSIGN_CONFIG['branches']['1.9.2']['release']['extra_debs_list'] = []
 
