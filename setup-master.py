@@ -203,36 +203,74 @@ mozilla = MasterConfig(
             ],
         )
 
-mozilla_staging_scheduler_master = mozilla + MasterConfig(
+mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
         local_links = [
-            ('staging_scheduler_master_localconfig.py', 'master_localconfig.py'),
+            ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
 
-mozilla_staging_builder_master1 = mozilla + MasterConfig(
+mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
         local_links = [
-            ('staging_builder_master_localconfig.py', 'master_localconfig.py'),
+            ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
 
+mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_scheduler_master = mozilla + MasterConfig(
+        local_links = [
+            ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('scheduler_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
+        local_links = [
+            ('production_builder_master_pm01_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
+        local_links = [
+            ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+
 masters = {
-        'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
-        'mozilla2': [mozilla2_1, mozilla2_2, try_master],
         'mozilla': [
-            mozilla_staging_scheduler_master,
-            mozilla_staging_builder_master1,
-            ],
-        'talos-staging': [talos_staging],
-        'talos-staging-try': [talos_staging_try],
-        'talos': [talos],
-        'talos-try': [talos_try],
-        'talos-r3': [talos_r3],
-        'debsign': [debsign_production, debsign_staging],
-        'mobile_rw': [mobile_rw_production, mobile_rw_staging],
+            mozilla_staging_scheduler_master_sm01,
+            mozilla_staging_builder_master_sm01,
+            mozilla_staging_univeral_master_sm02,
+            mozilla_production_scheduler_master,
+            mozilla_production_builder_master_pm01,
+            mozilla_production_builder_master_pm03,
+         ],
+        # These don't work with 0.8.0 yet:
+        # 'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
+        # 'mozilla2': [mozilla2_1, mozilla2_2, try_master],
+        # 'talos-staging': [talos_staging],
+        # 'talos-staging-try': [talos_staging_try],
+        # 'talos': [talos],
+        # 'talos-try': [talos_try],
+        # 'talos-r3': [talos_r3],
+        # 'debsign': [debsign_production, debsign_staging],
+        # 'mobile_rw': [mobile_rw_production, mobile_rw_staging],
         }
 
 if __name__ == "__main__":

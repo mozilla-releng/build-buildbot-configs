@@ -9,7 +9,7 @@ c['status'] = [
 c['buildbotURL'] = 'http://production-master01.build.mozilla.org:8010/'
 
 from buildbot import manhole
-c['manhole'] = manhole.PasswordManhole(1235, "cltbld", "password")
+c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES
 # Do only a few branches for now
