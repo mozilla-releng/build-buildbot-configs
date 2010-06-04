@@ -72,6 +72,14 @@ mozilla2_staging2 = mozilla2_staging + MasterConfig(
             ],
         )
 
+try_staging = mozilla2_staging + MasterConfig(
+        local_links=[
+            ('master3.cfg', 'master.cfg'),
+            ('release_config1.py', 'release_config.py'),
+            ('release_mobile_config1.py', 'release_mobile_config.py'),
+            ],
+        )
+
 mozilla2 = MasterConfig(
         'mozilla2',
         globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
@@ -94,6 +102,14 @@ mozilla2_2 = mozilla2 + MasterConfig(
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
             ('release_mobile_config2.py', 'release_mobile_config.py'),
+            ],
+        )
+
+try_master = mozilla2 + MasterConfig(
+        local_links=[
+            ('master3.cfg', 'master.cfg'),
+            ('release_config1.py', 'release_config.py'),
+            ('release_mobile_config1.py', 'release_mobile_config.py'),
             ],
         )
 
@@ -204,11 +220,8 @@ mozilla_staging_builder_master1 = mozilla + MasterConfig(
         )
 
 masters = {
-        'mozilla2-staging': [
-            mozilla2_staging1,
-            mozilla2_staging2,
-            ],
-        'mozilla2': [mozilla2_1, mozilla2_2],
+        'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
+        'mozilla2': [mozilla2_1, mozilla2_2, try_master],
         'mozilla': [
             mozilla_staging_scheduler_master,
             mozilla_staging_builder_master1,
