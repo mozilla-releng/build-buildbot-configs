@@ -7,13 +7,25 @@ from buildbotcustom.env import MozillaEnvironments
 # This is only used within this file so it doesn't need to be part of the
 # big dict
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,69)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,68)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
-LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
+LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,51) + range(52,61)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)] 
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,25)]
-WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
+WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,60)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)]
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,24)] + ['moz2-linux-slave51']
+TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,6)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,20)] + ['moz2-darwin9-slave68']
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,30)] + ['moz2-win32-slave60']
+TRY_SLAVES = {
+    'linux':       TRY_LINUX,
+    'linux64':     TRY_LINUX64,
+    'win32':       TRY_WIN32,
+    'macosx':      TRY_MAC,
+    'macosx-snow': TRY_MAC64,
+}
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS, 
@@ -315,7 +327,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
-            'base_name': 'OS X 10.6 %(branch)s leak test',
+            'base_name': 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
             'profiled_build': False,
             'builds_before_reboot': 5,
@@ -680,6 +692,9 @@ BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID']
 
 ######## tryserver
 # Try-specific configs 
+BRANCHES['tryserver']['stage_username'] = 'trybld'
+BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
 BRANCHES['tryserver']['enable_mail_notifier'] = False
@@ -688,10 +703,7 @@ BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['download_base_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
-BRANCHES['tryserver']['config_repo_path'] = 'users/lsblakk_mozilla.com/buildbot-configs'
 BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['start_hour'] = [3]
 BRANCHES['tryserver']['start_minute'] = [2]
 # Disable Nightly builds
@@ -711,7 +723,25 @@ BRANCHES['tryserver']['enable_shark'] = False
 BRANCHES['tryserver']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'staging-stage.build.mozilla.org'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 
 if __name__ == "__main__":
     import sys, pprint
