@@ -3,7 +3,7 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '8092632c4f66'
+sourceRepoRevision         = '04a804c3584c'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM1924_20100519_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
