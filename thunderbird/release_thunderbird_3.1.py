@@ -3,11 +3,11 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '72cb49ee6ab2'
+sourceRepoRevision         = '04a804c3584c'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM1924_20100519_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = '96d514d88fb1'
+mozillaRepoRevision        = '9dcd813b2fc8'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -38,17 +38,17 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1rc1'
+version                    = '3.1rc2'
 appVersion                 = '3.1'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2.4'
-buildNumber                = 3
-baseTag                    = 'THUNDERBIRD_3_1_rc1'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_1_rc2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.1b2'
-oldAppVersion              = oldVersion
-oldBuildNumber             = 2
-oldBaseTag                 = 'THUNDERBIRD_3_1_b2'
+oldVersion                 = '3.1rc1'
+oldAppVersion              = '3.1'
+oldBuildNumber             = 3
+oldBaseTag                 = 'THUNDERBIRD_3_1_rc1'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R9'
@@ -56,7 +56,7 @@ ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
-useBetaChannel             = 0
+useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz192-thunderbird-linux.cfg',
                               'macosx': 'moz192-thunderbird-mac.cfg',
                               'win32':  'moz192-thunderbird-win32.cfg'}
