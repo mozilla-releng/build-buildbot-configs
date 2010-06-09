@@ -52,3 +52,6 @@ verifyConfigs       = {'linux':  'moz192-firefox-linux.cfg',
 doPartnerRepacks    = True
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath = None
+# Tuxedo/Bouncer related
+tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoServerUrl     = 'https://tuxedo.stage.mozilla.com/api/'

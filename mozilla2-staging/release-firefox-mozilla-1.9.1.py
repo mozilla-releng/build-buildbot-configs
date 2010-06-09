@@ -60,3 +60,6 @@ majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
                             'macosx': 'moz191-firefox-mac-major.cfg',
                             'win32':  'moz191-firefox-win32-major.cfg'}
+# Tuxedo/Bouncer related
+tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoServerUrl     = 'https://tuxedo.stage.mozilla.com/api/'

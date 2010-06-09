@@ -1,3 +1,4 @@
+import os
 from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
@@ -12,7 +13,8 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory, \
-  PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory
+  PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory, \
+  TuxedoEntrySubmitterFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -592,6 +594,29 @@ if majorUpdateRepoPath:
             'nextSlave': _nextFastSlave,
         })
 
+bouncer_submitter_factory = TuxedoEntrySubmitterFactory(
+    baseTag=baseTag,
+    appName=appName,
+    config=tuxedoConfig,
+    productName=productName,
+    version=version,
+    tuxedoServerUrl=tuxedoServerUrl,
+    enUSPlatforms=enUSPlatforms,
+    l10nPlatforms=l10nPlatforms,
+    oldVersion=oldVersion,
+    hgHost=branchConfig['hghost'],
+    repoPath=sourceRepoPath,
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+    credentialsFile=os.path.join(os.getcwd(), "BuildSlaves.py"),
+)
+
+builders.append({
+    'name': 'bouncer_submitter',
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
+    'category': 'release',
+    'builddir': 'bouncer_submitter',
+    'factory': bouncer_submitter_factory
+})
 
 status.append(TinderboxMailNotifier(
     fromaddr="mozilla2.buildbot@build.mozilla.org",
