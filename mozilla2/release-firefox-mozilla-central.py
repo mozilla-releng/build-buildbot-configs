@@ -23,16 +23,17 @@ oldVersion         = '3.7a3'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
 oldBaseTag         = 'FIREFOX_3_7a3'
-enUSPlatforms      = ('linux', 'win32', 'macosx')
+enUSPlatforms      = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms      = ()
 xulrunnerPlatforms = enUSPlatforms
-# TODO: create this file before 3.7a2
 patcherConfig      = 'moz193-branch-patcher2.cfg'
-patcherToolsTag    = 'UPDATE_PACKAGING_R9'
+patcherToolsTag    = 'UPDATE_PACKAGING_R11'
+binaryName         = 'MozillaDeveloperPreview'
+oldBinaryName      = 'MozillaDeveloperPreview'
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
-talosTestPlatforms = ('linux', 'win32', 'macosx')
-unittestPlatforms  = ('linux', 'win32', 'macosx')
+talosTestPlatforms = enUSPlatforms
+unittestPlatforms  = enUSPlatforms
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
@@ -40,9 +41,11 @@ ausSshKey          = 'cltbld_dsa'
 releaseNotesUrl    = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
 useBetaChannel     = 0
 # TODO: create these files before first 3.7 requiring updates
-verifyConfigs      = {'linux':  'moz193-firefox-linux.cfg',
-                      'macosx': 'moz193-firefox-mac.cfg',
-                      'win32':  'moz193-firefox-win32.cfg'}
+verifyConfigs       = {'linux':    'moz193-firefox-linux.cfg',
+                       'linux64':  'moz193-firefox-linux64.cfg',
+                       'macosx':   'moz193-firefox-mac.cfg',
+                       'macosx64': 'moz193-firefox-mac64.cfg',
+                       'win32':    'moz193-firefox-win32.cfg'}
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath = None

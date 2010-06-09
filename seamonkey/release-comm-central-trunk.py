@@ -42,7 +42,7 @@ enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ()
 # TODO: create this file before 2.1a2
 patcherConfig              = 'moz193-seamonkey-branch-patcher2.cfg'
-patcherToolsTag            = 'UPDATE_PACKAGING_R9'
+patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 talosTestPlatforms         = ()

@@ -382,7 +382,7 @@ for platform in enUSPlatforms:
         crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
         for suites_name, suites in branchConfig['unittest_suites']:
             # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
-            if platform == 'macosx' and 'mochitest-a11y' in suites:
+            if platform.startswith('macosx') and 'mochitest-a11y' in suites:
                 suites = suites[:]
                 suites.remove('mochitest-a11y')
 
@@ -472,6 +472,7 @@ l10n_verification_factory = L10nVerifyFactory(
     oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber,
     clobberURL=branchConfig['base_clobber_url'],
+    l10nPlatforms=l10nPlatforms,
 )
 
 builders.append({
@@ -520,6 +521,8 @@ updates_factory = ReleaseUpdatesFactory(
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=sourceRepoPath,
     releaseNotesUrl=releaseNotesUrl,
+    binaryName=binaryName,
+    oldBinaryName=oldBinaryName,
 )
 
 builders.append({
