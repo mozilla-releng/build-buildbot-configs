@@ -43,11 +43,11 @@ appVersion                 = '1.0b2'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2.4'
 buildNumber                = 2
-baseTag                    = 'CALENDAR_1_0b2_rc2'
+baseTag                    = 'CALENDAR_1_0b2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = ''
+oldVersion                 = '1.0b1'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
+oldBuildNumber             = 7
 oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
