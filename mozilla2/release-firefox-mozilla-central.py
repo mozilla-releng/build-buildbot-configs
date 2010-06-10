@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = '6bdb8153b671'
+sourceRepoRevision = 'b84d0be52070'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
@@ -14,18 +14,18 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.7a4'
+version            = '3.7a5'
 appVersion         = version
-milestone          = '1.9.3a4'
+milestone          = '1.9.3a5'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_7a4'
-oldVersion         = '3.7a3'
+baseTag            = 'FIREFOX_3_7a5'
+oldVersion         = '3.7a4'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_7a3'
+oldBaseTag         = 'FIREFOX_3_7a4'
 enUSPlatforms      = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms      = ()
-xulrunnerPlatforms = enUSPlatforms
+xulrunnerPlatforms = ()
 patcherConfig      = 'moz193-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R11'
 binaryName         = 'MozillaDeveloperPreview'
