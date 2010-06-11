@@ -57,6 +57,7 @@ stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2-community.mozilla.org'
 useBetaChannel             = 1
+l10nPlatforms              = ('linux', 'win32', 'macosx')
 verifyConfigs              = {'linux':  'moz19-calendar-linux.cfg',
                               'macosx': 'moz19-calendar-mac.cfg',
                               'win32':  'moz19-calendar-win32.cfg'}
