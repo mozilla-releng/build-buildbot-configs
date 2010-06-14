@@ -644,6 +644,7 @@ bouncer_submitter_factory = TuxedoEntrySubmitterFactory(
     config=tuxedoConfig,
     productName=productName,
     version=version,
+    milestone=milestone,
     tuxedoServerUrl=tuxedoServerUrl,
     enUSPlatforms=enUSPlatforms,
     l10nPlatforms=l10nPlatforms,

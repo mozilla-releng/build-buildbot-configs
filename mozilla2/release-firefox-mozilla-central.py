@@ -50,5 +50,5 @@ doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath = None
 # Tuxedo/Bouncer related
-tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoConfig        = 'firefox-devpreview-tuxedo.ini'
 tuxedoServerUrl     = 'https://bounceradmin.mozilla.com/api/'
