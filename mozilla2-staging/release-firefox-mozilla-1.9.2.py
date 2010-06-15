@@ -34,7 +34,9 @@ talosTestPlatforms  = ('linux', 'win32', 'macosx')
 unittestPlatforms   = ('linux', 'win32', 'macosx')
 xulrunnerPlatforms  = enUSPlatforms
 patcherConfig       = 'moz192-branch-patcher2.cfg'
-patcherToolsTag     = 'UPDATE_PACKAGING_R10'
+patcherToolsTag     = 'UPDATE_PACKAGING_R11'
+binaryName          = productName.capitalize()
+oldBinaryName       = binaryName
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
@@ -50,3 +52,6 @@ verifyConfigs       = {'linux':  'moz192-firefox-linux.cfg',
 doPartnerRepacks    = True
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath = None
+# Tuxedo/Bouncer related
+tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoServerUrl     = 'https://tuxedo.stage.mozilla.com/api/'

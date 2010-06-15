@@ -43,20 +43,21 @@ appVersion                 = '1.0b2'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2.4'
 buildNumber                = 2
-baseTag                    = 'CALENDAR_1_0b2_rc2'
+baseTag                    = 'CALENDAR_1_0b2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = ''
+oldVersion                 = '1.0b1'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
+oldBuildNumber             = 7
 oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
-patcherToolsTag            = 'UPDATE_PACKAGING_R9'
+patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2-community.mozilla.org'
 useBetaChannel             = 1
+l10nPlatforms              = ('linux', 'win32', 'macosx')
 verifyConfigs              = {'linux':  'moz19-calendar-linux.cfg',
                               'macosx': 'moz19-calendar-mac.cfg',
                               'win32':  'moz19-calendar-win32.cfg'}

@@ -149,6 +149,7 @@ BRANCHES['comm-central-unittest'] = {
     'tinderbox_tree': 'Thunderbird',
     'irc_nick': 'thunderbot-trunk',
     'irc_channels': ['maildev'],
+    'period': 60 * 60 * 14,
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-central',
@@ -373,6 +374,7 @@ BRANCHES['comm-central-trunk']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk']['package'] = True
 #Disable when producing release builds
 BRANCHES['comm-central-trunk']['nightly'] = True
+BRANCHES['comm-central-trunk']['period'] = 60 * 60 * 14
 BRANCHES['comm-central-trunk']['upload_stage'] = True
 BRANCHES['comm-central-trunk']['milestone'] = 'comm-central-trunk'
 BRANCHES['comm-central-trunk']['codesighs'] = True
@@ -632,6 +634,7 @@ BRANCHES['comm-central-trunk-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-trunk-bloat']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-trunk-bloat']['nightly'] = False
+BRANCHES['comm-central-trunk-bloat']['period'] = 60 * 60 * 14
 BRANCHES['comm-central-trunk-bloat']['leak'] = True
 BRANCHES['comm-central-trunk-bloat']['package'] = False
 BRANCHES['comm-central-trunk-bloat']['upload_stage'] = False

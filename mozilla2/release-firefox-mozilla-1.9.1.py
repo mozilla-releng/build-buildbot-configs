@@ -26,7 +26,9 @@ oldBaseTag         = 'FIREFOX_3_5_9'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = enUSPlatforms
 patcherConfig      = 'moz191-branch-patcher2.cfg'
-patcherToolsTag    = 'UPDATE_PACKAGING_R9'
+patcherToolsTag    = 'UPDATE_PACKAGING_R11'
+binaryName         = productName.capitalize()
+oldBinaryName      = binaryName
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
 talosTestPlatforms = ()
@@ -53,3 +55,6 @@ majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
                             'macosx': 'moz191-firefox-mac-major.cfg',
                             'win32':  'moz191-firefox-win32-major.cfg'}
+# Tuxedo/Bouncer related
+tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoServerUrl     = 'https://bounceradmin.mozilla.com/api/'

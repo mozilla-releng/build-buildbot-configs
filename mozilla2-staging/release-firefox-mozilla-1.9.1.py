@@ -34,7 +34,9 @@ unittestPlatforms   = ()
 l10nPlatforms       = enUSPlatforms
 xulrunnerPlatforms  = enUSPlatforms
 patcherConfig       = 'moz191-branch-patcher2.cfg'
-patcherToolsTag     = 'UPDATE_PACKAGING_R9'
+patcherToolsTag     = 'UPDATE_PACKAGING_R11'
+binaryName          = productName.capitalize()
+oldBinaryName       = binaryName
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 bouncerServer       = 'download.mozilla.org'
@@ -58,3 +60,6 @@ majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
                             'macosx': 'moz191-firefox-mac-major.cfg',
                             'win32':  'moz191-firefox-win32-major.cfg'}
+# Tuxedo/Bouncer related
+tuxedoConfig        = 'firefox-tuxedo.ini'
+tuxedoServerUrl     = 'https://tuxedo.stage.mozilla.com/api/'

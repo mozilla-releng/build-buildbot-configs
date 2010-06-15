@@ -177,7 +177,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': tag_factory
+    'factory': dummy_factory
 })
 
 
@@ -186,6 +186,7 @@ source_factory = CCSourceFactory(
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     repoPath=sourceRepoPath,
     productName=productName,
+    ftpName=ftpName,
     version=version,
     baseTag=baseTag,
     stagingServer=nightly_config.STAGE_SERVER,
@@ -236,12 +237,13 @@ for platform in releasePlatforms:
         stageBasePath=nightly_config.BRANCHES[sourceRepoName]['stage_base_path'],
         codesighs=False,
         uploadPackages=True,
-        uploadSymbols=nightly_config.BRANCHES[sourceRepoName]['upload_symbols'],
+        uploadSymbols=False,
         createSnippet=False,
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
         buildSpace=10,
         productName=productName,
+        ftpName=ftpName,
         version=version,
         buildNumber=buildNumber
     )
@@ -299,7 +301,8 @@ l10n_verification_factory = L10nVerifyFactory(
     version=version,
     buildNumber=buildNumber,
     oldVersion=oldVersion,
-    oldBuildNumber=oldBuildNumber
+    oldBuildNumber=oldBuildNumber,
+#    l10nPlatforms=l10nPlatforms,
 )
 
 builders.append({

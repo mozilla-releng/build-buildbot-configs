@@ -356,6 +356,7 @@ l10n_verification_factory = L10nVerifyFactory(
     oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber,
     clobberURL=branchConfig['base_clobber_url'],
+    l10nPlatforms=l10nPlatforms,
 )
 
 builders.append({

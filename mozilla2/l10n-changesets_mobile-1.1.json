@@ -23,6 +23,10 @@
     "revision": "4750d99e2858",
     "platforms": ["maemo", "maemo-multilocale"]
   },
+  "el": {
+    "revision": "e8aac0a45a06",
+    "platforms": ["maemo"]
+  },
   "es-AR": {
     "revision": "10792a2c9ea0",
     "platforms": ["maemo"]
@@ -88,7 +92,7 @@
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "ru": {
-    "revision": "ebcca21dc5d6",
+    "revision": "d55e904d6ea0",
     "platforms": ["maemo", "maemo-multilocale"]
   },
   "sk": {
@@ -100,7 +104,7 @@
     "platforms": ["maemo"]
   },
   "uk": {
-    "revision": "0a0ff60d1122",
+    "revision": "8a3b4ebf1e77",
     "platforms": ["maemo"]
   },
   "zh-CN": {

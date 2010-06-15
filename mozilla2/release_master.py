@@ -1,3 +1,4 @@
+import os
 from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
@@ -12,7 +13,8 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, SingleSourceFactory, ReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, ReleaseRepackFactory, UnittestPackagedBuildFactory, \
-  PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory
+  PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory, \
+  TuxedoEntrySubmitterFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -343,7 +345,7 @@ for platform in enUSPlatforms:
         crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
         for suites_name, suites in branchConfig['unittest_suites']:
             # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
-            if platform == 'macosx' and 'mochitest-a11y' in suites:
+            if platform.startswith('macosx') and 'mochitest-a11y' in suites:
                 suites = suites[:]
                 suites.remove('mochitest-a11y')
 
@@ -434,6 +436,7 @@ l10n_verification_factory = L10nVerifyFactory(
     oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber,
     clobberURL=branchConfig['base_clobber_url'],
+    l10nPlatforms=l10nPlatforms,
 )
 
 builders.append({
@@ -479,6 +482,8 @@ updates_factory = ReleaseUpdatesFactory(
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=sourceRepoPath,
     releaseNotesUrl=releaseNotesUrl,
+    binaryName=binaryName,
+    oldBinaryName=oldBinaryName,
 )
 
 builders.append({
@@ -589,6 +594,30 @@ if majorUpdateRepoPath:
             'nextSlave': _nextFastSlave,
         })
 
+bouncer_submitter_factory = TuxedoEntrySubmitterFactory(
+    baseTag=baseTag,
+    appName=appName,
+    config=tuxedoConfig,
+    productName=productName,
+    version=version,
+    milestone=milestone,
+    tuxedoServerUrl=tuxedoServerUrl,
+    enUSPlatforms=enUSPlatforms,
+    l10nPlatforms=l10nPlatforms,
+    oldVersion=oldVersion,
+    hgHost=branchConfig['hghost'],
+    repoPath=sourceRepoPath,
+    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+    credentialsFile=os.path.join(os.getcwd(), "BuildSlaves.py"),
+)
+
+builders.append({
+    'name': 'bouncer_submitter',
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
+    'category': 'release',
+    'builddir': 'bouncer_submitter',
+    'factory': bouncer_submitter_factory
+})
 
 status.append(TinderboxMailNotifier(
     fromaddr="mozilla2.buildbot@build.mozilla.org",
