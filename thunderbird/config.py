@@ -20,6 +20,9 @@ BUILDERS = {
     'linux': {
         'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2]],
     },
+    'linux64': {
+        'momo': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3 ]],
+     },
     'macosx': {
         '10.5': {
             'momo': [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ],
@@ -103,6 +106,10 @@ BRANCHES['comm-1.9.1-unittest'] = {
             'base_name': 'Linux comm-1.9.1',
             'slaves': BUILDERS['linux']['momo'],
         },
+        'linux64': {
+            'base_name': 'Linux x86-64 comm-1.9.1',
+            'slaves': BUILDERS['linux64']['momo'],
+         },
         'win32': {
             'base_name': 'WINNT 5.2 comm-1.9.1',
             'slaves': BUILDERS['win32']['momo'],REL
@@ -129,6 +136,10 @@ BRANCHES['comm-1.9.2-unittest'] = {
             'base_name': 'Linux comm-1.9.2',
             'slaves': BUILDERS['linux']['momo'],
         },
+        'linux64': {
+            'base_name': 'Linux x86-64 comm-1.9.2',
+            'slaves': BUILDERS['linux64']['momo'],
+        },
         'win32': {
             'base_name': 'WINNT 5.2 comm-1.9.2',
             'slaves': BUILDERS['win32']['momo'],
@@ -154,6 +165,10 @@ BRANCHES['comm-central-unittest'] = {
         'linux': {
             'base_name': 'Linux comm-central',
             'slaves': BUILDERS['linux']['momo'],
+        },
+        'linux64': {
+            'base_name': 'Linux x86-64 comm-central',
+            'slaves': BUILDERS['linux64']['momo'],
         },
         'win32': {
             'base_name': 'WINNT 5.2 comm-central',
