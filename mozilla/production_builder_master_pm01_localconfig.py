@@ -12,8 +12,8 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES
-# Do only a few branches for now
-ACTIVE_BRANCHES = ['places', 'addonsmgr', 'electrolysis', 'tracemonkey']
+ACTIVE_BRANCHES = ['places', 'addonsmgr', 'electrolysis', 'tracemonkey',
+    'mozilla-1.9.1', 'mozilla-1.9.2']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
