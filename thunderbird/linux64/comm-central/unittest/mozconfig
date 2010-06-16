@@ -11,8 +11,8 @@ ac_add_options --enable-optimize
 ac_add_options --disable-debug
 ac_add_options --enable-logrefcnt
 
-CC="ccache /tools/gcc-4.2.3/bin/gcc"
-CXX="ccache /tools/gcc-4.2.3/bin/g++"
+CC="ccache /tools/gcc-4.3.3/bin/gcc"
+CXX="ccache /tools/gcc-4.3.3/bin/g++"
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
