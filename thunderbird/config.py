@@ -378,6 +378,7 @@ BRANCHES['comm-1.9.2']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-central-trunk']['platforms'] = {
     'linux': {},
+    'linux64': {},
     'win32': {},
     'macosx': {},
 }
@@ -394,6 +395,7 @@ BRANCHES['comm-central-trunk']['upload_stage'] = True
 BRANCHES['comm-central-trunk']['milestone'] = 'comm-central-trunk'
 BRANCHES['comm-central-trunk']['codesighs'] = True
 BRANCHES['comm-central-trunk']['l10n'] = True
+BRANCHES['comm-central-trunk']['platforms']['linux64']['l10n'] = False
 BRANCHES['comm-central-trunk']['l10n_repo'] = 'l10n-central'
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'tb31x'
 BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
@@ -402,9 +404,11 @@ BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 #BRANCHES['comm-central-trunk']['platforms']['macosx']['nightly_builder'] = ['mini-02'],
 
 BRANCHES['comm-central-trunk']['platforms']['linux']['base_name'] = 'Linux comm-central'
+BRANCHES['comm-central-trunk']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-central-trunk']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk']['platforms']['macosx']['profiled_build'] = False
 
@@ -419,21 +423,25 @@ BRANCHES['comm-central-trunk']['aus'] = {
 }
 BRANCHES['comm-central-trunk']['l10n_nightly_updates'] = True
 BRANCHES['comm-central-trunk']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-central-trunk']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['comm-central-trunk']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-trunk']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central-trunk']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['comm-central-trunk']['platforms']['linux64']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-central-trunk']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
 BRANCHES['comm-central-trunk']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['comm-central-trunk']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-trunk']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['macosx']['platform_objdir'] = '%s/ppc' % OBJDIR
 BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
@@ -445,6 +453,7 @@ BRANCHES['comm-central-trunk']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
 }
+BRANCHES['comm-central-trunk']['platforms']['linux64']['env'] = BRANCHES['comm-central-trunk']['platforms']['linux']['env']
 BRANCHES['comm-central-trunk']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
