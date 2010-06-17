@@ -134,6 +134,7 @@ PLATFORM_VARS = {
             'build_space': 6,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
@@ -191,6 +192,7 @@ PLATFORM_VARS = {
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
             'update_platform': 'Darwin_Universal-gcc3',
@@ -271,6 +273,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': 1,
             'download_symbols': True,
+            'packageTests': True,
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
@@ -318,6 +321,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': 1,
             'download_symbols': True,
+            'packageTests': True,
             'build_space': 5,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
@@ -450,10 +454,10 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Fire
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['tinderbox_tree'] = 'Firefox'
 BRANCHES['mozilla-central']['packaged_unittest_tinderbox_tree'] = 'Firefox'
+BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['packageTests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['packageTests'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
