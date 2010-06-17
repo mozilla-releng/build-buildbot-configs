@@ -467,7 +467,7 @@ BRANCHES['mozilla-1.9.3']['l10n_tree'] = 'fx40x'
 BRANCHES['mozilla-1.9.3']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.3-l10n/'
 BRANCHES['mozilla-1.9.3']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url']  '/nightly/latest-mozilla-1.9.3'
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.3'
 BRANCHES['mozilla-1.9.3']['allLocalesFile'] = 'browser/locales/all-locales'
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
