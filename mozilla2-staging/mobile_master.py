@@ -258,8 +258,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         elif 'android' in platform:
             mobile_dep_factory = AndroidBuildFactory(
                 hgHost=mainConfig['hghost'],
-                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
-                mozRevision='android2',  #branch.get('revision', 'default'),
+                repoPath=branch['repo_path'],
+                mozRevision=branch.get('revision', 'default'),
                 configRepoPath=mainConfig['config_repo_path'],
                 configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
@@ -285,8 +285,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             )
             mobile_nightly_factory = AndroidBuildFactory(
                 hgHost=mainConfig['hghost'],
-                repoPath='users/vladimir_mozilla.com/mozilla-droid', #branch['repo_path'],
-                mozRevision='android2',  #branch.get('revision', 'default'),
+                repoPath=branch['repo_path'],
+                mozRevision=branch.get('revision', 'default'),
                 configRepoPath=mainConfig['config_repo_path'],
                 configSubDir=mainConfig['config_subdir'],
                 mozconfig=pf['mozconfig'],
