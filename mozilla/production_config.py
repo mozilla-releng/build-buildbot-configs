@@ -115,6 +115,19 @@ BRANCHES = {
             },
         }
     },
+   'maple': {
+        'tinderbox_tree': 'Maple',
+        'packaged_unittest_tinderbox_tree': 'Maple',
+    },
+    'cedar': {
+        'tinderbox_tree': 'Cedar',
+        'packaged_unittest_tinderbox_tree': 'Cedar',
+    },
+    'birch': {
+        'tinderbox_tree': 'Birch',
+        'packaged_unittest_tinderbox_tree': 'Birch',
+    },
+
 }
 
 PLATFORM_VARS = {

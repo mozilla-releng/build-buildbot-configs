@@ -350,6 +350,9 @@ BRANCHES = {
     'electrolysis': {},
     'addonsmgr': {},
     'tryserver': {},
+    'maple': {},
+    'cedar': {},
+    'birch': {},
 }
 
 # Copy global vars in first, then platform vars
@@ -760,6 +763,76 @@ BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
+
+######## maple
+BRANCHES['maple']['repo_path'] = 'projects/maple'
+BRANCHES['maple']['start_hour'] = [4]
+BRANCHES['maple']['start_minute'] = [2]
+BRANCHES['maple']['enable_nightly'] = False
+BRANCHES['maple']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['maple']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['maple']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['maple']['enable_mac_a11y'] = True
+BRANCHES['maple']['enable_shark'] = False
+# L10n configuration
+BRANCHES['maple']['enable_l10n'] = False
+BRANCHES['maple']['l10nNightlyUpdate'] = False
+BRANCHES['maple']['l10nDatedDirs'] = False
+# need this or the master.cfg will bail
+BRANCHES['maple']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['maple']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
+BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
+BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
+BRANCHES['maple']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
+
+######## cedar
+BRANCHES['cedar']['repo_path'] = 'projects/cedar'
+BRANCHES['cedar']['start_hour'] = [4]
+BRANCHES['cedar']['start_minute'] = [2]
+BRANCHES['cedar']['enable_nightly'] = False
+BRANCHES['cedar']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['cedar']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['cedar']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['cedar']['enable_mac_a11y'] = True
+BRANCHES['cedar']['enable_shark'] = False
+# L10n configuration
+BRANCHES['cedar']['enable_l10n'] = False
+BRANCHES['cedar']['l10nNightlyUpdate'] = False
+BRANCHES['cedar']['l10nDatedDirs'] = False
+# need this or the master.cfg will bail
+BRANCHES['cedar']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['cedar']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
+BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-cedar'
+BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
+BRANCHES['cedar']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
+
+######## birch
+BRANCHES['birch']['repo_path'] = 'projects/birch'
+BRANCHES['birch']['start_hour'] = [4]
+BRANCHES['birch']['start_minute'] = [2]
+BRANCHES['birch']['enable_nightly'] = False
+BRANCHES['birch']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['birch']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['birch']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['birch']['enable_mac_a11y'] = True
+BRANCHES['birch']['enable_shark'] = False
+# L10n configuration
+BRANCHES['birch']['enable_l10n'] = False
+BRANCHES['birch']['l10nNightlyUpdate'] = False
+BRANCHES['birch']['l10nDatedDirs'] = False
+# need this or the master.cfg will bail
+BRANCHES['birch']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
+BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
+BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
+BRANCHES['birch']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
