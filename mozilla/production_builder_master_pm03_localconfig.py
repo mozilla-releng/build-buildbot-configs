@@ -13,7 +13,7 @@ c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld",
 
 from config import BRANCHES, SLAVES
 ACTIVE_BRANCHES = ['places', 'addonsmgr', 'electrolysis', 'tracemonkey',
-    'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central']
+    'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-1.9.3', 'mozilla-central']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
