@@ -1,6 +1,6 @@
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,16,17,18,19,21,22]]
+XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,25)]
@@ -13,6 +13,20 @@ SLAVES = {
     'macosx':      MAC_MINIS + XSERVES,
     'macosx-snow': MAC_SNOW_MINIS,
 }
+
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
+TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,6)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,40)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
+TRY_SLAVES = {
+    'linux':       TRY_LINUX,
+    'linux64':     TRY_LINUX64,
+    'win32':       TRY_WIN32,
+    'macosx':      TRY_MAC,
+    'macosx-snow': TRY_MAC64,
+}
+
 
 # Local overrides for default values
 GLOBAL_VARS = {
@@ -76,6 +90,26 @@ BRANCHES = {
     'addonsmgr': {
         'tinderbox_tree': 'AddonsMgr',
         'packaged_unittest_tinderbox_tree': 'AddonsMgr',
+    },
+    'tryserver': {
+        'tinderbox_tree': 'MozillaTry',
+        'packaged_unittest_tinderbox_tree': 'MozillaTry',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'enable_mail_notifier': True,
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'platforms': {
+            'win32': {
+                'env': {
+                    'SYMBOL_SERVER_HOST': 'build.mozilla.org',
+                    'CVS_RSH': 'ssh',
+                    'MOZ_OBJDIR': 'obj-firefox',
+                    'TINDERBOX_OUTPUT': '1',
+                    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                    # Source server support, bug 506702
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                },
+            },
+        }
     },
 }
 

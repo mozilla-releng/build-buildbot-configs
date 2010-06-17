@@ -13,6 +13,8 @@ SLAVES = {
     'macosx-snow': MAC_SNOW_MINIS,
 }
 
+TRY_SLAVES = SLAVES
+
 GLOBAL_VARS = {
     'config_subdir': 'mozilla2-staging',
     'stage_server': 'staging-stage.build.mozilla.org',
@@ -46,6 +48,11 @@ SYMBOL_SERVER_HOST = 'staging-stage.build.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {
+    'tryserver': {
+        'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
+        'enable_mail_notifier': False,
+        'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+    }
 }
 
 PLATFORM_VARS = {

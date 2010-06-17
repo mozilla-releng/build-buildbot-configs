@@ -7,7 +7,8 @@ from buildbotcustom.env import MozillaEnvironments
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
-                        LINUX_IXS, WIN32_VMS, WIN32_IXS, SLAVES
+                        LINUX_IXS, WIN32_VMS, WIN32_IXS, SLAVES, \
+                        TRY_SLAVES
 
 GLOBAL_VARS = localconfig.GLOBAL_VARS.copy()
 GLOBAL_VARS.update({
@@ -347,6 +348,7 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'addonsmgr': {},
+    'tryserver': {},
 }
 
 # Copy global vars in first, then platform vars
@@ -663,6 +665,53 @@ BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'
 BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 
+######## tryserver
+# Try-specific configs
+BRANCHES['tryserver']['stage_username'] = 'trybld'
+BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
+BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
+BRANCHES['tryserver']['enable_merging'] = False
+BRANCHES['tryserver']['enable_try'] = True
+BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
+# This is a path, relative to HGURL, where the repository is located
+# HGURL  repo_path should be a valid repository
+BRANCHES['tryserver']['repo_path'] = 'try'
+BRANCHES['tryserver']['start_hour'] = [3]
+BRANCHES['tryserver']['start_minute'] = [2]
+# Disable Nightly builds
+BRANCHES['tryserver']['enable_nightly'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['tryserver']['enable_xulrunner'] = False
+BRANCHES['tryserver']['enable_mac_a11y'] = True
+# only do unittests locally until they are switched over to talos-r3
+BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 0)]
+BRANCHES['tryserver']['enable_l10n'] = False
+BRANCHES['tryserver']['enable_l10n_onchange'] = False
+BRANCHES['tryserver']['l10nNightlyUpdate'] = False
+BRANCHES['tryserver']['l10nDatedDirs'] = False
+BRANCHES['tryserver']['enable_codecoverage'] = False
+BRANCHES['tryserver']['enable_shark'] = False
+BRANCHES['tryserver']['create_snippet'] = False
+# need this or the master.cfg will bail
+BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]

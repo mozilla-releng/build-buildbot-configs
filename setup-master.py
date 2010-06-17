@@ -243,6 +243,14 @@ mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
+        local_links = [
+            ('production_try_builder_master_pm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
         local_links = [
             ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
@@ -260,6 +268,7 @@ masters = {
             mozilla_production_scheduler_master,
             mozilla_production_builder_master_pm01,
             mozilla_production_builder_master_pm03,
+            mozilla_production_try_builder_master_pm02,
          ],
         # These don't work with 0.8.0 yet:
         # 'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
