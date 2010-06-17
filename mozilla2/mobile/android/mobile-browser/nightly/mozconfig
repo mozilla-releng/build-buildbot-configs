@@ -2,19 +2,25 @@
 OBJDIR=objdir
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/$OBJDIR
 
-# Add the correct paths here:
-ac_add_options --with-android-ndk=/tools/android-ndk
-ac_add_options --with-android-sdk=/tools/android-sdk/platforms/android-7
-ac_add_options --with-android-tools=/tools/android-sdk/tools
+# Global options
+ac_add_options --disable-debug
+ac_add_options --enable-optimize
 
-# android options
+# Build Fennec
 ac_add_options --enable-application=mobile
+
+# Android
 ac_add_options --target=arm-android-eabi
 ac_add_options --with-endian=little
+ac_add_options --with-android-ndk="/tools/android-ndk"
+ac_add_options --with-android-sdk="/tools/android-sdk/platforms/android-8"
+ac_add_options --with-android-tools="/tools/android-sdk/tools"
+
+export MOZ_DEBUG_SYMBOLS=1
+export MOZILLA_OFFICIAL=1
 
 # ssltunnel can't build because the ndk doesn't have string, vector, or algorithm headers
 ac_add_options --disable-tests
 
-export MOZ_DEBUG_SYMBOLS=1
-export MOZILLA_OFFICIAL=1
 ac_add_options --disable-ogg
+
