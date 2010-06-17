@@ -433,7 +433,7 @@ BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['linux']['enable_unittests'] = False
+BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
 
