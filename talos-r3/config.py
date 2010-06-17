@@ -43,6 +43,9 @@ BRANCHES = {
     'electrolysis': {},
     'addonsmgr': {},
     'tryserver': {},
+    'maple': {},
+    'cedar': {},
+    'birch': {},
 }
 
 PLATFORMS = {
@@ -421,6 +424,57 @@ BRANCHES['addonsmgr']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['addonsmgr']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['addonsmgr']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addonsmgr']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+
+######## maple
+BRANCHES['maple']['branch_name'] = "Maple"
+BRANCHES['maple']['build_branch'] = "Maple"
+BRANCHES['maple']['tinderbox_tree'] = "Maple"
+BRANCHES['maple']['talos_command'] = TALOS_CMD
+BRANCHES['maple']['fetch_symbols'] = True
+BRANCHES['maple']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['maple']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['maple']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['maple']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['maple']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+
+######## cedar
+BRANCHES['cedar']['branch_name'] = "Cedar"
+BRANCHES['cedar']['build_branch'] = "Cedar"
+BRANCHES['cedar']['tinderbox_tree'] = "Cedar"
+BRANCHES['cedar']['talos_command'] = TALOS_CMD
+BRANCHES['cedar']['fetch_symbols'] = True
+BRANCHES['cedar']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['cedar']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['cedar']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['cedar']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['cedar']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+
+######## birch
+BRANCHES['birch']['branch_name'] = "Birch"
+BRANCHES['birch']['build_branch'] = "Birch"
+BRANCHES['birch']['tinderbox_tree'] = "Birch"
+BRANCHES['birch']['talos_command'] = TALOS_CMD
+BRANCHES['birch']['fetch_symbols'] = True
+BRANCHES['birch']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['birch']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['birch']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['birch']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['birch']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
