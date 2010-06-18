@@ -227,6 +227,14 @@ mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
+            ]
+        )
+
 mozilla_production_scheduler_master = mozilla + MasterConfig(
         local_links = [
             ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
@@ -265,6 +273,7 @@ masters = {
             mozilla_staging_scheduler_master_sm01,
             mozilla_staging_builder_master_sm01,
             mozilla_staging_univeral_master_sm02,
+            mozilla_staging_univeral_master_sm03,
             mozilla_production_scheduler_master,
             mozilla_production_builder_master_pm01,
             mozilla_production_builder_master_pm03,
