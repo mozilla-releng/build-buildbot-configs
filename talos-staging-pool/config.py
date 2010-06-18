@@ -35,7 +35,6 @@ SLAVES = {
 
 BRANCHES = {
     'mozilla-central': {},
-    'mozilla-1.9.3': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
     'mozilla-1.9.0': {},
@@ -326,32 +325,6 @@ BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['repo_path'] = "mozilla-1.9.2"
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = True
-
-######## mozilla-1.9.3
-BRANCHES['mozilla-1.9.3']['branch_name'] = "Firefox4.0"
-BRANCHES['mozilla-1.9.3']['build_branch'] = "1.9.3"
-BRANCHES['mozilla-1.9.3']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['mozilla-1.9.3']['talos_command'] = TALOS_CMD
-BRANCHES['mozilla-1.9.3']['fetch_symbols'] = True
-BRANCHES['mozilla-1.9.3']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['mozilla-1.9.3']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['mozilla-1.9.3']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.3']['repo_path'] = "mozilla-1.9.3"
-BRANCHES['mozilla-1.9.3']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['macosx64']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux64']['enable_debug_unittests'] = True
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
