@@ -376,7 +376,7 @@ hacktionary = {'mobile-trunk': 'mozilla-central',
 #  -workdirs
 #  -upload location
 #  -qt builds use qt mozconfigs
-#  -no QT debs, multilocale, or l10n until bug 555351 is fixed
+#  -no QT multilocale or l10n until bug 555351 is fixed
 for toolkit in ['gtk', 'qt']:
     for branch in MOBILE_BRANCHES.keys():
         if 'qt' in toolkit and '1.9.2' in branch:
@@ -385,8 +385,8 @@ for toolkit in ['gtk', 'qt']:
         maemo5['base_name'] = "Maemo 5 %s %s" % (toolkit.upper(),
                                                  hacktionary.get(branch, branch))
         if 'qt' in toolkit:
-            maemo5['glob_list'] = ['dist/*.tar.*', 'dist/*.zip']
-            maemo5['debs'] = False
+            maemo5['glob_list'] = ['dist/*.tar.*', 'dist/*.zip',
+                                   'mobile/*.deb', 'dist/deb_name.txt']
             maemo5['enable_multi_locale'] = False
             maemo5['upload_symbols'] = False
         elif 'l10n_platforms' in MOBILE_BRANCHES[branch]:
