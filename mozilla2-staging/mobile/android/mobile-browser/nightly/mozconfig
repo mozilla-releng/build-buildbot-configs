@@ -16,6 +16,7 @@ ac_add_options --with-android-ndk="/tools/android-ndk"
 ac_add_options --with-android-sdk="/tools/android-sdk/platforms/android-8"
 ac_add_options --with-android-tools="/tools/android-sdk/tools"
 
+export JAVA_HOME=/tools/jdk6
 export MOZ_DEBUG_SYMBOLS=1
 export MOZILLA_OFFICIAL=1
 
