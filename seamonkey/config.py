@@ -356,7 +356,6 @@ BRANCHES['comm-1.9.1']['unittest_suites'] = [
         'mochitest-a11y']),
     ('reftest', ['reftest']),
     ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
 ]
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
