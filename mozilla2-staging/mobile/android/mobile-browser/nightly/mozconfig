@@ -22,6 +22,3 @@ export MOZILLA_OFFICIAL=1
 
 # ssltunnel can't build because the ndk doesn't have string, vector, or algorithm headers
 ac_add_options --disable-tests
-
-ac_add_options --disable-ogg
-
