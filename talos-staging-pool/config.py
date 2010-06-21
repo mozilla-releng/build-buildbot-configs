@@ -46,6 +46,7 @@ BRANCHES = {
     'maple': {},
     'cedar': {},
     'birch': {},
+    'jaegermonkey': {},
 }
 
 PLATFORMS = {
@@ -449,6 +450,23 @@ BRANCHES['birch']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['birch']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+
+######## jaegermonkey
+BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
+BRANCHES['jaegermonkey']['build_branch'] = "Jaegermonkey"
+BRANCHES['jaegermonkey']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['jaegermonkey']['talos_command'] = TALOS_CMD
+BRANCHES['jaegermonkey']['fetch_symbols'] = True
+BRANCHES['jaegermonkey']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['jaegermonkey']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['cold_tests'] = (0, True, {}, NO_WIN)
+BRANCHES['jaegermonkey']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
