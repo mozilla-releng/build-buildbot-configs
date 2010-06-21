@@ -42,6 +42,7 @@ GLOBAL_VARS = {
     'talos_masters': [
         ('talos-master.mozilla.org:9010', True),
         ('talos-master02.build.mozilla.org:9012', True),
+        ('test-master01.build.mozilla.org:9012', True),
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
@@ -50,6 +51,7 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('production-master01.build.mozilla.org:9009', False, 0),
         ('talos-master02.build.mozilla.org:9012', False, 0),
+        ('test-master01.build.mozilla.org:9012', False, 0),
         ('talos-staging-master02.build.mozilla.org:9010', False, 0),
         ('talos-staging-master02.build.mozilla.org:9012', False, 0),
     ],
