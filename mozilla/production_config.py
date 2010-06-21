@@ -97,6 +97,10 @@ BRANCHES = {
         'tinderbox_tree': 'AddonsMgr',
         'packaged_unittest_tinderbox_tree': 'AddonsMgr',
     },
+    'jaegermonkey': {
+        'tinderbox_tree': 'Jaegermonkey',
+        'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
+    },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
         'packaged_unittest_tinderbox_tree': 'MozillaTry',

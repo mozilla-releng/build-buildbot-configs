@@ -349,6 +349,7 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'addonsmgr': {},
+    'jaegermonkey': {},
     'tryserver': {},
     'maple': {},
     'cedar': {},
@@ -715,6 +716,29 @@ BRANCHES['addonsmgr']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] 
 BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-addonsmgr'
 BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
+
+######## jaegermonkey
+BRANCHES['jaegermonkey']['repo_path'] = 'projects/jaegermonkey'
+BRANCHES['jaegermonkey']['start_hour'] = [4]
+BRANCHES['jaegermonkey']['start_minute'] = [2]
+BRANCHES['jaegermonkey']['enable_nightly'] = False
+BRANCHES['jaegermonkey']['create_snippet'] = False
+# Disable XULRunner / SDK builds
+BRANCHES['jaegermonkey']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['jaegermonkey']['platforms']['linux64']['enable_checktests'] = True
+BRANCHES['jaegermonkey']['enable_mac_a11y'] = True
+BRANCHES['jaegermonkey']['enable_shark'] = False
+# L10n configuration
+BRANCHES['jaegermonkey']['enable_l10n'] = False
+BRANCHES['jaegermonkey']['l10nNightlyUpdate'] = False
+BRANCHES['jaegermonkey']['l10nDatedDirs'] = False
+# need this or the master.cfg will bail
+BRANCHES['jaegermonkey']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['jaegermonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
+BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-jaegermonkey'
+BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
+BRANCHES['jaegermonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 
 ######## tryserver
 # Try-specific configs
