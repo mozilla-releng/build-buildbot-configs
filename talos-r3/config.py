@@ -28,6 +28,7 @@ SLAVES = {
     'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,51)],
     'xp': ["talos-r3-xp-%03i" % x for x in range(1,51)],
     'win7': ["talos-r3-w7-%03i" % x for x in range(1,51)],
+    'w764': ["t-r3-w764-%03i" % x for x in range(1,51)],
     'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,51)],
     'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,51)],
 }
@@ -51,6 +52,7 @@ PLATFORMS = {
     'macosx': {},
     'macosx64': {},
     'win32': {},
+    'win64': {},
     'linux': {},
     'linux64' : {},
 }
@@ -67,6 +69,10 @@ PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
+
+PLATFORMS['win64']['slave_platforms'] = ['w764']
+PLATFORMS['win64']['env_name'] = 'win64-perf'
+PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64"}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -85,6 +91,7 @@ for platform, platform_config in PLATFORMS.items():
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
+                PLATFORMS['win64']['slave_platforms'] + \
                 PLATFORMS['macosx']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
 
@@ -92,13 +99,14 @@ NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_p
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
-    'build_tools_repo_path': 'users/stage-ffxbld/tools',
+    'build_tools_repo_path': 'build/tools',
     # turn on platforms as we get them running
     'platforms': {
         'linux': {},
         'linux64': {},
         'macosx': {},
         'macosx64': {},
+        'win64': {},
     },
 }
 
@@ -111,6 +119,30 @@ PLATFORM_UNITTEST_VARS = {
             'builds_before_reboot': 1,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
+        },
+        'win64': {
+            'builds_before_reboot': 1,
+            'download_symbols': False,
+            'opt_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
+            'debug_unittest_suites': [
+                # Turn on chunks for mochitests
+                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                    'mochitest-ipcplugins']),
+                ('reftest', ['reftest']),
+                ('crashtest', ['crashtest']),
+                ('xpcshell', ['xpcshell']),
+                ('jsreftest', ['jsreftest']),
+            ],
         },
         'macosx': {
             'builds_before_reboot': 1,
@@ -238,6 +270,10 @@ BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
         ],
+    'win64': [
+        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
+        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
+        ],
     'linux': [
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/fx-linux-tbox-mozilla1.9.0/",
         "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
@@ -254,6 +290,7 @@ BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
 }
 BRANCHES['mozilla-1.9.0']['ftp_searchstrings'] = {
     'win32': "en-US.win32.zip",
+    'win64': "en-US.win64-x86_64.zip",
     'linux': "en-US.linux-i686.tar.bz2",
     'linux64': "en-US.linux-x86_64.tar.bz2",
     'macosx': "en-US.mac.dmg",
@@ -285,6 +322,8 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
