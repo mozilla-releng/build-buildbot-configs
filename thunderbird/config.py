@@ -647,6 +647,7 @@ BRANCHES['comm-1.9.2-bloat']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-central-trunk-bloat']['platforms'] = {
     'linux': {},
+    'linux64': {},
     'win32': {},
     'macosx': {},
 }
@@ -667,9 +668,11 @@ BRANCHES['comm-central-trunk-bloat']['l10n'] = False
 BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-trunk'
 BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['profiled_build'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = False
 # If True, a complete update snippet for this branch will be generated and
@@ -677,18 +680,22 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['profiled_build'] = 
 # generated.
 BRANCHES['comm-central-trunk-bloat']['create_snippet'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['leak_threshold'] = 970000
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 2300000
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = BUILDERS['macosx']['10.5']['momo']
 # This is used in a bunch of places where something needs to be run from
@@ -704,6 +711,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 
     'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
     'XPCOM_DEBUG_BREAK': 'stack',
 }
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['env'] = BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] 
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
