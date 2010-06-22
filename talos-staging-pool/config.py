@@ -35,6 +35,7 @@ SLAVES = {
 
 BRANCHES = {
     'mozilla-central': {},
+    'mozilla-2.0': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
     'mozilla-1.9.0': {},
@@ -287,6 +288,34 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
+
+######## mozilla-2.0
+BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
+BRANCHES['mozilla-2.0']['build_branch'] = "2.0"
+BRANCHES['mozilla-2.0']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['mozilla-2.0']['talos_command'] = TALOS_CMD
+BRANCHES['mozilla-2.0']['fetch_symbols'] = True
+BRANCHES['mozilla-2.0']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['mozilla-2.0']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
+BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['macosx64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['macosx64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
