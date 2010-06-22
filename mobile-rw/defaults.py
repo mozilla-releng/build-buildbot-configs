@@ -4,11 +4,9 @@ from copy import deepcopy
 #
 default_platform = {}
 default_platform['slaves'] = []
-default_platform['ftp_dir'] = ''
 default_platform['poll_interval'] = 5*60
 default_platform['reboot'] = True
 default_platform['reboot_cmd'] = ['sudo', 'reboot-user']
-default_platform['poller_string'] = 'invalid.nonexistant' #For overriding
 default_platform['disable_scaling'] = False
 default_platform['nightly'] = True
 default_platform['per_checkin'] = True
