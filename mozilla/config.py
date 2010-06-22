@@ -782,6 +782,10 @@ BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
+BRANCHES['tryserver']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = False
 
 ######## maple
 BRANCHES['maple']['repo_path'] = 'projects/maple'
