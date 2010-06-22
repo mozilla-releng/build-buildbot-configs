@@ -381,12 +381,7 @@ for toolkit in ['gtk', 'qt']:
         maemo5 = deepcopy(MOBILE_BRANCHES[branch]['platforms']['maemo4'])
         maemo5['base_name'] = "Maemo 5 %s %s" % (toolkit.upper(),
                                                  hacktionary.get(branch, branch))
-        if 'qt' in toolkit:
-            maemo5['glob_list'] = ['dist/*.tar.*', 'dist/*.zip',
-                                   'mobile/*.deb', 'dist/deb_name.txt']
-            maemo5['enable_multi_locale'] = False
-            maemo5['upload_symbols'] = False
-        elif 'l10n_platforms' in MOBILE_BRANCHES[branch]:
+        if 'l10n_platforms' in MOBILE_BRANCHES[branch]:
             MOBILE_BRANCHES[branch]['l10n_platforms']['maemo5-%s'%toolkit] = 'linux'
             maemo5['enUS_binaryURL'] = '%s-maemo5-%s' % \
               (MOBILE_BRANCHES[branch]['enUS_binaryURL'], toolkit)
