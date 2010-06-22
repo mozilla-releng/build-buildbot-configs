@@ -77,7 +77,7 @@ BRANCHES = {
         'tinderbox_tree': 'Firefox3.6',
         'packaged_unittest_tinderbox_tree': 'Firefox3.6',
     },
-    'mozilla-1.9.3': {
+    'mozilla-2.0': {
         'tinderbox_tree': 'Firefox4.0',
         'packaged_unittest_tinderbox_tree': 'Firefox4.0',
     },

@@ -332,7 +332,7 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {},
-    'mozilla-1.9.3': {},
+    'mozilla-2.0': {},
     'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {},
                                       'linux64': {}, 'linux64-debug': {},
                                       'macosx': {}, 'macosx-debug': {},
@@ -442,52 +442,48 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = Fals
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
 
-######## mozilla-1.9.3
-BRANCHES['mozilla-1.9.3']['repo_path'] = 'releases/mozilla-1.9.3'
-BRANCHES['mozilla-1.9.3']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-1.9.3']['start_hour'] = [3]
-BRANCHES['mozilla-1.9.3']['start_minute'] = [2]
+######## mozilla-2.0
+BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
+BRANCHES['mozilla-2.0']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-2.0']['start_hour'] = [3]
+BRANCHES['mozilla-2.0']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
-BRANCHES['mozilla-1.9.3']['enable_xulrunner'] = True
+BRANCHES['mozilla-2.0']['enable_xulrunner'] = True
 # Enable unit tests
-BRANCHES['mozilla-1.9.3']['geriatric_masters'] = [
+BRANCHES['mozilla-2.0']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
-BRANCHES['mozilla-1.9.3']['enable_mac_a11y'] = True
-BRANCHES['mozilla-1.9.3']['unittest_build_space'] = 6
+BRANCHES['mozilla-2.0']['enable_mac_a11y'] = True
+BRANCHES['mozilla-2.0']['unittest_build_space'] = 6
 # And code coverage
-BRANCHES['mozilla-1.9.3']['enable_codecoverage'] = False
+BRANCHES['mozilla-2.0']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['mozilla-1.9.3']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.3']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-1.9.3']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-1.9.3']['l10n_platforms'] = ['linux','win32','macosx']
-BRANCHES['mozilla-1.9.3']['l10nDatedDirs'] = True
-BRANCHES['mozilla-1.9.3']['l10n_tree'] = 'fx40x'
+BRANCHES['mozilla-2.0']['enable_l10n'] = True
+BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-2.0']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-2.0']['l10nDatedDirs'] = True
+BRANCHES['mozilla-2.0']['l10n_tree'] = 'fx40x'
 #make sure it has an ending slash
-BRANCHES['mozilla-1.9.3']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.3-l10n/'
-BRANCHES['mozilla-1.9.3']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.3'
-BRANCHES['mozilla-1.9.3']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-2.0']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-2.0-l10n/'
+BRANCHES['mozilla-2.0']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-2.0'
+BRANCHES['mozilla-2.0']['allLocalesFile'] = 'browser/locales/all-locales'
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['mozilla-1.9.3']['create_snippet'] = True
-BRANCHES['mozilla-1.9.3']['create_partial'] = True
-BRANCHES['mozilla-1.9.3']['create_partial_l10n'] = True
-BRANCHES['mozilla-1.9.3']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-1.9.3']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-1.9.3']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.3'
-BRANCHES['mozilla-1.9.3']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.3'
-BRANCHES['mozilla-1.9.3']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.3']['platforms']['macosx-debug']['packageTests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.3']['platforms']['macosx']['packageTests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.3']['platforms']['linux-debug']['packageTests'] = True
-BRANCHES['mozilla-1.9.3']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.3']['platforms']['linux']['packageTests'] = True
+BRANCHES['mozilla-2.0']['create_snippet'] = True
+BRANCHES['mozilla-2.0']['create_partial'] = True
+BRANCHES['mozilla-2.0']['create_partial_l10n'] = True
+BRANCHES['mozilla-2.0']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-2.0']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
+BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
+BRANCHES['mozilla-2.0']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['mozilla-2.0']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
