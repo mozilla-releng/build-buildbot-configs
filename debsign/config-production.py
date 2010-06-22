@@ -8,7 +8,7 @@ BRANCHES = {
 }
 BRANCHES["mozilla-central"]["script_repo_tag"] = 'PRODUCTION'
 BRANCHES["mozilla-central"]["nightly_config_file"] = "deb_repos/trunk_nightly.json"
-BRANCHES["mozilla-central"]["nightly_platforms"] = ["chinook", "fremantle"]
+BRANCHES["mozilla-central"]["nightly_platforms"] = ["chinook", "fremantle", "fremantle-qt"]
 BRANCHES["mozilla-central"]["enable_release"] = False
 
 BRANCHES["mozilla-1.9.2"]["script_repo_tag"] = 'PRODUCTION'
