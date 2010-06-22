@@ -198,7 +198,7 @@ PLATFORM_VARS = {
             'mozconfig': 'win32/%(branch)s/nightly',
             'profiled_build': True,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 9,
+            'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
             'slaves': SLAVES['win32'],
@@ -314,7 +314,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
-            'build_space': 7,
+            'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'env': {
