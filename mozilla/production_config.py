@@ -68,6 +68,8 @@ BRANCHES = {
     'mozilla-central': {
         'packaged_unittest_tinderbox_tree': 'Firefox',
         'tinderbox_tree': 'Firefox',
+        'mobile_tinderbox_tree': 'Mobile',
+        'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
     },
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',
@@ -76,6 +78,7 @@ BRANCHES = {
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'packaged_unittest_tinderbox_tree': 'Firefox3.6',
+        'mobile_tinderbox_tree': 'Mobile1.1',
     },
     'mozilla-2.0': {
         'tinderbox_tree': 'Firefox4.0',
@@ -83,26 +86,32 @@ BRANCHES = {
     },
     'tracemonkey': {
         'tinderbox_tree': 'TraceMonkey',
+        'mobile_tinderbox_tree': 'TraceMonkey',
         'packaged_unittest_tinderbox_tree': 'TraceMonkey',
     },
     'places': {
         'tinderbox_tree': 'Places',
+        'mobile_tinderbox_tree': 'Places',
         'packaged_unittest_tinderbox_tree': 'Places',
     },
     'electrolysis': {
         'tinderbox_tree': 'Electrolysis',
+        'mobile_tinderbox_tree': 'Electrolysis',
         'packaged_unittest_tinderbox_tree': 'Electrolysis',
     },
     'addonsmgr': {
         'tinderbox_tree': 'AddonsMgr',
+        'mobile_tinderbox_tree': 'AddonsMgr',
         'packaged_unittest_tinderbox_tree': 'AddonsMgr',
     },
     'jaegermonkey': {
         'tinderbox_tree': 'Jaegermonkey',
+        'mobile_tinderbox_tree': 'Jaegermonkey',
         'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
+        'mobile_tinderbox_tree': 'MozillaTry',
         'packaged_unittest_tinderbox_tree': 'MozillaTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
@@ -126,14 +135,17 @@ BRANCHES = {
     },
    'maple': {
         'tinderbox_tree': 'Maple',
+        'mobile_tinderbox_tree': 'Maple',
         'packaged_unittest_tinderbox_tree': 'Maple',
     },
     'cedar': {
         'tinderbox_tree': 'Cedar',
+        'mobile_tinderbox_tree': 'Cedar',
         'packaged_unittest_tinderbox_tree': 'Cedar',
     },
     'birch': {
         'tinderbox_tree': 'Birch',
+        'mobile_tinderbox_tree': 'Birch',
         'packaged_unittest_tinderbox_tree': 'Birch',
     },
 

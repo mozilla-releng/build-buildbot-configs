@@ -21,15 +21,11 @@ MOBILE_SLAVES = {
     'linux-i686': config.SLAVES['linux'],
     'macosx-i686': config.SLAVES['macosx'],
     'win32-i686': config.SLAVES['win32'],
-    'android-r7': config.SLAVES['linux'],
 }
 
 MOBILE_BRANCHES = {
     'mobile-trunk': {},
     'mobile-1.9.2': {},
-    'mobile-tracemonkey': {},
-    'mobile-electrolysis': {},
-    'mobile-addonsmgr': {},
 }
 
 DEFAULT_ENV = {
@@ -63,7 +59,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'linux-i686': {},
     'macosx-i686': {},
     'win32-i686': {},
-    'android-r7': {},
 }
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-browser/nightly'
@@ -71,7 +66,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['sb_target'] = 'CHINOOK-A
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['mozconfig'] = 'mobile/macosx-i686/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['mozconfig'] = 'mobile/win32-i686/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['upload_symbols'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['upload_symbols'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['upload_symbols'] = True
@@ -80,17 +74,14 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_name'] = 'Maemo moz
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_name'] = 'Android mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['build_space'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['builds_before_reboot'] = 5
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_workdir'] = '%s/build/maemo-trunk' % SBOX_HOME
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['base_builddir'] = 'maemo-trunk'
 # This base directory is for the individual locales repackaging; it is not for the multi-locale build
@@ -104,9 +95,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['base_l10n_workdir']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_workdir'] = '.'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_builddir'] = 'w32mob-trunk'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-trunk-l10n'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_builddir'] = 'android-trunk'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['base_l10n_workdir'] = 'android-trunk-l10n'
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n'] = True
 MOBILE_BRANCHES['mobile-trunk']['enable_l10n_onchange'] = True
 MOBILE_BRANCHES['mobile-trunk']['enable_multi_locale'] = True
@@ -115,7 +103,6 @@ MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['maemo4'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['linux-i686'] = 'linux'
 #MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['macosx-i686'] = 'macosx'
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['win32-i686'] = 'win32'
-#MOBILE_BRANCHES['mobile-trunk']['l10n_platforms']['android-r7'] = 'linux'
 MOBILE_BRANCHES['mobile-trunk']['allLocalesFile'] = "locales/all-locales"
 MOBILE_BRANCHES['mobile-trunk']['multiLocalesFile'] = "locales/maemo-locales"
 MOBILE_BRANCHES['mobile-trunk']['enUS_binaryURL'] = \
@@ -126,7 +113,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['slaves'] = MOBILE_SLAVES
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['slaves'] = MOBILE_SLAVES['android-r7']
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['env'] = DEFAULT_LINUX_ENV.copy()
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-maemo4'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['env'] = DEFAULT_LINUX_ENV.copy()
@@ -135,8 +121,6 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env'] = DEFAULT_MAC
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = DEFAULT_WIN32_ENV.copy()
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
@@ -216,156 +200,10 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['env']['MOZ_SYMBOLS_
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env'] = DEFAULT_WIN32_ENV.copy()
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-1.9.2'
 
-### mobile-tracemonkey
-MOBILE_BRANCHES['mobile-tracemonkey']['main_config'] = config.BRANCHES['tracemonkey']
-MOBILE_BRANCHES['mobile-tracemonkey']['repo_path'] = 'tracemonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['l10n_repo_path'] = 'l10n-central'
-MOBILE_BRANCHES['mobile-tracemonkey']['mobile_repo_path'] = 'mobile-browser'
-MOBILE_BRANCHES['mobile-tracemonkey']['product_name'] = 'fennec'
-MOBILE_BRANCHES['mobile-tracemonkey']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-tracemonkey']['aus2_base_upload_dir'] = None
-MOBILE_BRANCHES['mobile-tracemonkey']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
-MOBILE_BRANCHES['mobile-tracemonkey']['stage_base_path'] = '/home/ftp/pub/mobile'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms'] = {
-    'maemo4': {},
-}
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['sb_target'] = 'CHINOOK-ARMEL-2007'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['base_name'] = 'Maemo Tracemonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['build_space'] = 5
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['base_workdir'] = '%s/build/maemo-tracemonkey' % SBOX_HOME
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['base_builddir'] = 'maemo-tracemonkey'
-MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n'] = False
-MOBILE_BRANCHES['mobile-tracemonkey']['enable_l10n_onchange'] = False
-MOBILE_BRANCHES['mobile-tracemonkey']['enable_multi_locale'] = False
-MOBILE_BRANCHES['mobile-tracemonkey']['tinderbox_tree'] = 'MozillaTest'
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['slaves'] = MOBILE_SLAVES['maemo4']
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo4'
-
-### electrolysis
-MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
-MOBILE_BRANCHES['mobile-electrolysis']['repo_path'] = 'projects/electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['l10n_repo_path'] = 'l10n-central'
-MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
-MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
-MOBILE_BRANCHES['mobile-electrolysis']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-electrolysis']['aus2_base_upload_dir'] = None
-MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
-MOBILE_BRANCHES['mobile-electrolysis']['stage_base_path'] = '/home/ftp/pub/mobile'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms'] = {
-    'maemo4': {},
-    'linux-i686': {},
-}
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-e10s/nightly'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['sb_target'] = 'CHINOOK-ARMEL-2007'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-e10s/nightly'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['base_name'] = 'Maemo electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['build_space'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['base_workdir'] = '%s/build/maemo-electrolysis' % SBOX_HOME
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['base_builddir'] = 'maemo-electrolysis'
-# This base directory is for the individual locales repackaging; it is not for the multi-locale build
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['base_l10n_workdir'] = '%s/build/maemo-electrolysis-l10n' % SBOX_HOME
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-electrolysis'
-# This base directory is for the individual locales repackaging; it is not for the multi-locale build
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-electrolysis-l10n'
-MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n'] = False
-MOBILE_BRANCHES['mobile-electrolysis']['enable_l10n_onchange'] = False
-MOBILE_BRANCHES['mobile-electrolysis']['enable_multi_locale'] = False
-MOBILE_BRANCHES['mobile-electrolysis']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-electrolysis']['download_base_url'] + '/nightly/latest-mobile-electrolysis'
-MOBILE_BRANCHES['mobile-electrolysis']['tinderbox_tree'] = 'MozillaTest'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['slaves'] = MOBILE_SLAVES['maemo4']
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo4'
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-electrolysis']['platforms']['linux-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-
-### mozilla-addonsmgr
-MOBILE_BRANCHES['mobile-addonsmgr']['main_config'] = config.BRANCHES['addonsmgr']
-MOBILE_BRANCHES['mobile-addonsmgr']['repo_path'] = 'projects/addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['l10n_repo_path'] = 'l10n-central'
-MOBILE_BRANCHES['mobile-addonsmgr']['mobile_repo_path'] = 'mobile-browser'
-MOBILE_BRANCHES['mobile-addonsmgr']['product_name'] = 'fennec'
-MOBILE_BRANCHES['mobile-addonsmgr']['app_name'] = 'mobile'
-MOBILE_BRANCHES['mobile-addonsmgr']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
-MOBILE_BRANCHES['mobile-addonsmgr']['stage_base_path'] = '/home/ftp/pub/mobile'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms'] = {
-    'maemo4': {},
-    'linux-i686': {},
-    'macosx-i686': {},
-    'win32-i686': {},
-}
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['sb_target'] = 'CHINOOK-ARMEL-2007'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['mozconfig'] = 'mobile/macosx-i686/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['mozconfig'] = 'mobile/win32-i686/mobile-browser/nightly'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['upload_symbols'] = True
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['base_name'] = 'Maemo Addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop Addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop Addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop Addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['build_space'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['build_space'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['builds_before_reboot'] = 5
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['base_workdir'] = '%s/build/maemo-addonsmgr' % SBOX_HOME
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['base_builddir'] = 'maemo-addonsmgr'
-# This base directory is for the individual locales repackaging; it is not for the multi-locale build
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['base_l10n_workdir'] = '%s/build/maemo-addonsmgr-l10n' % SBOX_HOME
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-addonsmgr-l10n'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_workdir'] = 'build'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_builddir'] = 'macosx-fennec-addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['base_l10n_workdir'] = 'build/macosx-fennec-addonsmgr-l10n'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_workdir'] = '.'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_builddir'] = 'w32mob-addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-addonsmgr-l10n'
-MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n'] = False
-MOBILE_BRANCHES['mobile-addonsmgr']['enable_l10n_onchange'] = False
-MOBILE_BRANCHES['mobile-addonsmgr']['enable_multi_locale'] = False
-MOBILE_BRANCHES['mobile-addonsmgr']['enUS_binaryURL'] = \
-    MOBILE_BRANCHES['mobile-addonsmgr']['download_base_url'] + '/nightly/latest-mobile-addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['tinderbox_tree'] = 'MozillaTest'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['slaves'] = MOBILE_SLAVES['maemo4']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr-maemo4'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['env'] = DEFAULT_LINUX_ENV.copy()
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['linux-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env'] = DEFAULT_MACOSX_ENV.copy()
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['macosx-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['env'] = DEFAULT_WIN32_ENV.copy()
-MOBILE_BRANCHES['mobile-addonsmgr']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-
 #This is needed because we don't use the real branch name as the branch name.
 hacktionary = {'mobile-trunk': 'mozilla-central',
                'mobile-1.9.2': 'mozilla-1.9.2',
-               'mobile-tracemonkey': 'tracemonkey',
-               'mobile-electrolysis': 'electrolysis',
-               'mobile-addonsmgr': 'addonsmgr'}
+              }
 
 # Create configs for Maemo5 GTK/QT that are identical to Maemo4 GTK in all
 # respects other than:

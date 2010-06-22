@@ -41,6 +41,7 @@ GLOBAL_VARS = {
     'l10n_tinderbox_tree': 'MozillaStaging',
     'packaged_unittest_tinderbox_tree': 'MozillaTest',
     'tinderbox_tree': 'MozillaTest',
+    'mobile_tinderbox_tree': 'MobileTest',
 }
 
 BUILDS_BEFORE_REBOOT = 5

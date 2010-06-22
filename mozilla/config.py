@@ -20,14 +20,18 @@ GLOBAL_VARS.update({
     'hghost': 'hg.mozilla.org',
     'config_repo_path': 'build/buildbot-configs',
     'objdir': 'obj-firefox',
+    'mobile_objdir': 'obj-fennec',
     'objdir_unittests': 'objdir',
     'stage_username': 'ffxbld',
     'stage_username_xulrunner': 'xrbld',
+    'stage_username_mobile': 'ffxbld',
     'stage_base_path': '/home/ftp/pub/firefox',
     'stage_base_path_xulrunner': '/home/ftp/pub/xulrunner',
+    'stage_base_path_mobile': '/home/ftp/pub/mobile',
     'stage_group': None,
     'stage_ssh_key': 'ffxbld_dsa',
     'stage_ssh_xulrunner_key': 'xrbld_dsa',
+    'stage_ssh_mobile_key': 'ffxbld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
@@ -59,12 +63,24 @@ GLOBAL_VARS.update({
         'macosx64-debug': {},
         'win32-debug': {},
     },
+    'mobile_repo_path': 'mobile-browser',
+    'mobile_platforms': {
+        'maemo4': {},
+        'maemo5-gtk': {},
+        'maemo5-qt': {},
+        'android-r7': {},
+        'linux': {},
+        'win32': {},
+        'macosx': {},
+    },
     'product_name': 'firefox',
     'app_name': 'browser',
     'brand_name': 'Minefield',
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_nightly': True,
+    'enable_mobile_nightly': True,
+    'enable_mobile_dep': True,
     'hash_type': 'sha512',
     'create_snippet': False,
     'create_partial': False,
@@ -74,11 +90,198 @@ GLOBAL_VARS.update({
             'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
             'security/manager',
             ],
+    'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
+    'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
+
 })
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
+MOBILE_OBJDIR = GLOBAL_VARS['mobile_objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
+
+MOBILE_PLATFORM_VARS = {
+    'maemo4':{
+        'base_name': 'Maemo 4 %(branch)s',
+        'mozconfig': 'mobile/maemo4/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': False,
+        'env': {
+            'CC': '/scratchbox/compilers/bin/gcc',
+            'CXX': '/scratchbox/compilers/bin/g++',
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+        },
+        'package_globlist': ['dist/*.tar.bz2', 'dist/*.zip',
+                             'mobile/*.deb', 'dist/deb_name.txt'],
+        'upload_platform': 'linux',
+        'scratchbox_target': 'CHINOOK-ARMEL-2007',
+        'multi_locale': False,
+        'l10n_repo_path': 'l10n-central',
+        'compare_locales_tag': 'RELEASE_AUTOMATION',
+        'l10n_tag': 'default',
+        'merge_locales': True,
+    },
+    'maemo5-gtk':{
+        'base_name': 'Maemo 5 GTK %(branch)s',
+        'mozconfig': 'mobile/maemo5-gtk/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': False,
+        'env': {
+            'CC': '/scratchbox/compilers/bin/gcc',
+            'CXX': '/scratchbox/compilers/bin/g++',
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+        },
+        'package_globlist': ['dist/*.tar.bz2', 'dist/*.zip',
+                             'mobile/*.deb', 'dist/deb_name.txt'],
+        'upload_platform': 'linux',
+        'scratchbox_target': 'FREMANTLE_ARMEL',
+        'multi_locale': False,
+        'l10n_repo_path': 'l10n-central',
+        'compare_locales_tag': 'RELEASE_AUTOMATION',
+        'l10n_tag': 'default',
+        'merge_locales': True,
+    },
+    'maemo5-qt':{
+        'base_name': 'Maemo 5 QT %(branch)s',
+        'mozconfig': 'mobile/maemo5-qt/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': False,
+        'env': {
+            'CC': '/scratchbox/compilers/bin/gcc',
+            'CXX': '/scratchbox/compilers/bin/g++',
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+        },
+        'package_globlist': ['dist/*.tar.bz2', 'dist/*.zip',
+                             'mobile/*.deb', 'dist/deb_name.txt'],
+        'upload_platform': 'linux',
+        'scratchbox_target': 'FREMANTLE_ARMEL',
+        'multi_locale': False,
+        'l10n_repo_path': 'l10n-central',
+        'compare_locales_tag': 'RELEASE_AUTOMATION',
+        'l10n_tag': 'default',
+        'merge_locales': True,
+    },
+    'android-r7': {
+        'base_name': 'Android R7 %(branch)s',
+        'mozconfig': 'mobile/android/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': True,
+        'env': {
+            'JAVA_HOME': '/tools/jdk6',
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+        },
+        'package_globlist': ['embedding/android/*.apk'],
+    },
+    'linux': {
+        'base_name': 'Linux Mobile Desktop %(branch)s',
+        'mozconfig': 'mobile/linux-i686/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': True,
+        'env': {
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+        },
+        'package_globlist': ['-r', 'dist/*.tar.bz2', 'dist/*.zip'],
+    },
+    'macosx': {
+        'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',
+        'mozconfig': 'mobile/macosx-i686/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['macosx'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': True,
+        'enable_mobile_dep': False,
+        'env': {
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+            'CHOWN_ROOT': '~/bin/chown_root',
+            'CHOWN_REVERT': '~/bin/chown_revert',
+        },
+        'package_globlist': ['-r', 'dist/*.dmg'],
+     },
+     'win32': {
+        'base_name': 'WINNT 5.2 Mobile Desktop %(branch)s',
+        'mozconfig': 'mobile/win32-i686/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['win32'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_mobile_dep': False,
+        'env': {
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+        },
+        'package_globlist': ['-r', 'dist/*.zip'],
+    },
+}
+
 
 PLATFORM_VARS = {
         'linux': {
@@ -331,8 +534,8 @@ PLATFORM_VARS = {
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
 BRANCHES = {
-    'mozilla-central': {},
-    'mozilla-2.0': {},
+    'mozilla-central': {'mobile_platforms': { 'android-r7': {} }},
+    'mozilla-2.0': {'mobile_platforms': {}},
     'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {},
                                       'linux64': {}, 'linux64-debug': {},
                                       'macosx': {}, 'macosx-debug': {},
@@ -344,13 +547,14 @@ BRANCHES = {
                                       'macosx': {}, 'macosx-debug': {},
                                       'win32': {}, 'win32-debug': {},
                                     },
+                       'mobile_platforms': {},
                      },
     'tracemonkey': {},
-    'places': {},
+    'places': {'mobile_platforms': { 'android-r7': {} }},
     'electrolysis': {},
-    'addonsmgr': {},
+    'addonsmgr': {'mobile_platforms': { 'android-r7': {} }},
     'jaegermonkey': {},
-    'tryserver': {},
+    'tryserver': { 'mobile_platforms': {}},
     'maple': {},
     'cedar': {},
     'birch': {},
@@ -362,6 +566,8 @@ for branch in BRANCHES.keys():
         # Don't override platforms if it's set
         if key == 'platforms' and 'platforms' in BRANCHES[branch]:
             continue
+        elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
+            continue
         BRANCHES[branch][key] = deepcopy(value)
 
     for platform, platform_config in PLATFORM_VARS.items():
@@ -371,6 +577,10 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+    for mobile_platform, mobile_platform_config in MOBILE_PLATFORM_VARS.items():
+        if mobile_platform in BRANCHES[branch]['mobile_platforms'].keys():
+            BRANCHES[branch]['mobile_platforms'][mobile_platform] = deepcopy(mobile_platform_config)
 
     # Copy in local config
     if branch in localconfig.BRANCHES:
@@ -396,6 +606,11 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+    for mobile_platform, mobile_platform_config in MOBILE_PLATFORM_VARS.items():
+        if mobile_platform in BRANCHES[branch]['mobile_platforms']:
+            BRANCHES[branch]['mobile_platforms'][mobile_platform] = deepcopy(mobile_platform_config)
+
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -441,6 +656,7 @@ BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = Fa
 BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
@@ -549,6 +765,7 @@ BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
@@ -629,6 +846,12 @@ BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'
 BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['mobile_platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo4'
+BRANCHES['tracemonkey']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-gtk'
+BRANCHES['tracemonkey']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-qt'
+BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['create_snippet'] = True
 BRANCHES['tracemonkey']['create_partial'] = True
 BRANCHES['tracemonkey']['create_partial_l10n'] = False
@@ -665,6 +888,7 @@ BRANCHES['places']['platforms']['linux']['build_space'] = 6
 
 ######## electrolysis
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
+BRANCHES['electrolysis']['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
 BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2]
 # Disable XULRunner / SDK builds
@@ -686,6 +910,18 @@ BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID
 BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+BRANCHES['electrolysis']['mobile_platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo4'
+BRANCHES['electrolysis']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-gtk'
+BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-qt'
+BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
+BRANCHES['electrolysis']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
+BRANCHES['electrolysis']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
+BRANCHES['electrolysis']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-e10s/nightly'
 BRANCHES['electrolysis']['create_snippet'] = True
 BRANCHES['electrolysis']['create_partial'] = True
 BRANCHES['electrolysis']['create_partial_l10n'] = False
