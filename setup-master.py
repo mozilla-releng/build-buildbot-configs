@@ -154,11 +154,21 @@ mobile_rw_staging = mobile_rw + MasterConfig(
             ],
         )
 
-talos_staging = MasterConfig(
+talos_staging_1 = MasterConfig(
         'talos-staging-pool',
         globs=['*.py', '*.cfg'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('master1.cfg', 'master.cfg')
+            ],
+        )
+
+talos_staging_2 = MasterConfig(
+        'talos-staging-pool',
+        globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('master2.cfg', 'master.cfg')
             ],
         )
 
@@ -207,7 +217,7 @@ talos_try = MasterConfig(
 masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
         'mozilla2': [mozilla2_1, mozilla2_2, try_master],
-        'talos-staging': [talos_staging],
+        'talos-staging': [talos_staging_1, talos_staging_2],
         'talos-staging-try': [talos_staging_try],
         'talos': [talos],
         'talos-try': [talos_try],
