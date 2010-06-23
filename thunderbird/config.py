@@ -300,7 +300,7 @@ BRANCHES['comm-1.9.2']['platforms'] = {
     'macosx': {},
 }
 BRANCHES['comm-1.9.2']['mozilla_central_branch'] = 'releases/mozilla-1.9.2'
-BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] + ['--mozilla-rev=COMM1924_20100514_RELBRANCH']
+BRANCHES['comm-1.9.2']['client_py_args'] = DEFAULTS['client_py_args'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2'] 
 BRANCHES['comm-1.9.2']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-1.9.2']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-1.9.2']['package'] = True
