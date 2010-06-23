@@ -484,7 +484,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
