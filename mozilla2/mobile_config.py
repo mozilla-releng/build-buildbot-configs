@@ -251,7 +251,7 @@ MOBILE_BRANCHES['mobile-tracemonkey']['platforms']['maemo4']['env']['MOZ_SYMBOLS
 MOBILE_BRANCHES['mobile-electrolysis']['main_config'] = config.BRANCHES['electrolysis']
 MOBILE_BRANCHES['mobile-electrolysis']['repo_path'] = 'projects/electrolysis'
 MOBILE_BRANCHES['mobile-electrolysis']['l10n_repo_path'] = 'l10n-central'
-MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
+MOBILE_BRANCHES['mobile-electrolysis']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-electrolysis']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-electrolysis']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-electrolysis']['aus2_base_upload_dir'] = None
