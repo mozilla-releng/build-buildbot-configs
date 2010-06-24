@@ -118,7 +118,7 @@ BRANCHES = {
         'enable_mail_notifier': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'unittest_masters': [('test-master01.build.mozilla.org:9012', True, 0),
-            ('talos-staging-master02.build.mozilla.org:9012', True, 0),
+            ('talos-master02.build.mozilla.org:9012', True, 0),
             ('production-master01.build.mozilla.org:9009', True, 0)],
         'platforms': {
             'win32': {
