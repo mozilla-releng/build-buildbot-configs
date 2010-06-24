@@ -353,7 +353,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
-BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = True 
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
