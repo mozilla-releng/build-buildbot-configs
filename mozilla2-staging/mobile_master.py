@@ -68,12 +68,13 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         base_name = branch['platforms'][platform]['base_name']
 
         # hack alert: no dep desktop builds
-        if platform not in ['macosx-i686', 'win32-i686']:
+        if platform not in ['macosx-i686', 'win32-i686', 'android-r7']:
             builders.append('%s build' % base_name)
             mobileBuilders.append('%s build' % base_name)
 
-        builder = '%s nightly' % base_name
-        nightlyBuilders.append(builder)
+        if platform not in ['android-r7']:
+            builder = '%s nightly' % base_name
+            nightlyBuilders.append(builder)
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             l10nNightlyBuilders[builder] = {}
             l10nNightlyBuilders[builder]['tree'] = branch['l10n_tree']
