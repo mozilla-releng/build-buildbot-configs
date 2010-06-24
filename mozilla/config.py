@@ -206,7 +206,7 @@ MOBILE_PLATFORM_VARS = {
         'enable_ccache': True,
         'env': {
             'JAVA_HOME': '/tools/jdk6',
-            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/'
+            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
