@@ -256,62 +256,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 debs=pf.get('debs', True),
             )
         elif 'android' in platform:
-            mobile_dep_factory = AndroidBuildFactory(
-                hgHost=mainConfig['hghost'],
-                repoPath=branch['repo_path'],
-                mozRevision=branch.get('revision', 'default'),
-                configRepoPath=mainConfig['config_repo_path'],
-                configSubDir=mainConfig['config_subdir'],
-                mozconfig=pf['mozconfig'],
-                stageUsername=mainConfig['stage_username'],
-                stageGroup=mainConfig['stage_group'],
-                stageSshKey=mainConfig['stage_ssh_key'],
-                stageServer=mainConfig['stage_server'],
-                stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=pf.get('mobile_repo_path',
-                                      branch.get('mobile_repo_path')),
-                env=pf['env'],
-                platform=platform,
-                baseWorkDir=pf['base_workdir'],
-                baseUploadDir=pf.get('base_upload_dir', name),
-                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
-                clobberURL=mainConfig['base_clobber_url'],
-                clobberTime=clobberTime,
-                buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot'],
-                uploadSymbols=False,
-                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
-                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
-            )
-            mobile_nightly_factory = AndroidBuildFactory(
-                hgHost=mainConfig['hghost'],
-                repoPath=branch['repo_path'],
-                mozRevision=branch.get('revision', 'default'),
-                configRepoPath=mainConfig['config_repo_path'],
-                configSubDir=mainConfig['config_subdir'],
-                mozconfig=pf['mozconfig'],
-                stageUsername=mainConfig['stage_username'],
-                stageGroup=mainConfig['stage_group'],
-                stageSshKey=mainConfig['stage_ssh_key'],
-                stageServer=mainConfig['stage_server'],
-                stageBasePath=branch['stage_base_path'],
-                mobileRepoPath=pf.get('mobile_repo_path',
-                                      branch.get('mobile_repo_path')),
-                env=pf['env'],
-                platform=platform,
-                baseWorkDir=pf['base_workdir'],
-                baseUploadDir=pf.get('base_upload_dir', name),
-                buildToolsRepoPath=mainConfig['build_tools_repo_path'],
-                clobberURL=mainConfig['base_clobber_url'],
-                clobberTime=clobberTime,
-                buildSpace=buildSpace,
-                buildsBeforeReboot=pf['builds_before_reboot'],
-                nightly = True,
-                triggerBuilds = False,
-                uploadSymbols=pf.get('upload_symbols', False),
-                packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
-                #packageGlobList=pf.get('glob_list', ['dist/*.apk',]),
-            )
+            mobile_dep_factory = None
+            mobile_nightly_factory = None
         elif platform == 'linux-i686':
             mobile_dep_factory = MobileDesktopBuildFactory(
                 hgHost=mainConfig['hghost'],
@@ -422,7 +368,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 triggerBuilds = True,
                 triggeredSchedulers=triggeredSchedulers
             )
-        mobile_dep_builder = None
+
         if mobile_dep_factory is not None:
             mobile_dep_builder = {
                 'name': '%s build' % pf['base_name'],
@@ -431,17 +377,17 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 'factory': mobile_dep_factory,
                 'category': name
             }
-        nightly_builder = '%s nightly' % pf['base_name']
-        mobile_nightly_builder = {
-            'name': nightly_builder,
-            'slavenames': pf['slaves'],
-            'builddir': '%s-nightly' % (pf['base_builddir']),
-            'factory': mobile_nightly_factory,
-            'category': name
-        }
-        if mobile_dep_builder is not None:
             m['builders'].append(mobile_dep_builder)
-        m['builders'].append(mobile_nightly_builder)
+        if mobile_nightly_factory is not None:
+            nightly_builder = '%s nightly' % pf['base_name']
+            mobile_nightly_builder = {
+                'name': nightly_builder,
+                'slavenames': pf['slaves'],
+                'builddir': '%s-nightly' % (pf['base_builddir']),
+                'factory': mobile_nightly_factory,
+                'category': name
+            }
+            m['builders'].append(mobile_nightly_builder)
 
         if branch['enable_l10n'] and platform in branch['l10n_platforms']:
             mobile_l10n_nightly_factory = None
