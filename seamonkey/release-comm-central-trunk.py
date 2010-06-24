@@ -49,7 +49,7 @@ unittestPlatforms          = ()
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2-community.mozilla.org'
 releaseNotesUrl            = None
-useBetaChannel             = 1
+useBetaChannel             = 0
 verifyConfigs              = {'linux':  'moz20-seamonkey-linux.cfg',
                               'macosx': 'moz20-seamonkey-mac.cfg',
                               'win32':  'moz20-seamonkey-win32.cfg'}
