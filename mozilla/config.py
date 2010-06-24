@@ -888,7 +888,6 @@ BRANCHES['places']['platforms']['linux']['build_space'] = 6
 
 ######## electrolysis
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
-BRANCHES['electrolysis']['mobile_repo_path'] = 'users/pavlov_mozilla.com/mobile-e10s'
 BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2]
 # Disable XULRunner / SDK builds
