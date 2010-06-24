@@ -74,6 +74,7 @@ BRANCHES = {
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',
         'tinderbox_tree': 'Firefox3.5',
+        'mobile_tinderbox_tree': 'MobileTest',
     },
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
