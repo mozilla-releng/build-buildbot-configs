@@ -108,6 +108,7 @@ BRANCH_UNITTEST_VARS = {
         'linux64': {},
         'macosx': {},
         'macosx64': {},
+        'win32': {},
         'win64': {},
     },
 }
@@ -116,86 +117,106 @@ PLATFORM_UNITTEST_VARS = {
         'linux': {
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
+            'fedora': {},
+        },
+        'linux64': {
+            'builds_before_reboot': 1,
+            'unittest-env' : {'DISPLAY': ':0'},
+            'fedora64': {},
         },
         'win32': {
             'builds_before_reboot': 1,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
+            'env_name' : 'win32-perf-unittest',
+            # We can't yet run unit tests for WinXP - see bug 563036
+            'xp': {
+                'opt_unittest_suites': [],
+                'debug_unittest_suites': [],
+            },
+            # We want to add reftests-d2d for Win7
+            'win7': {
+                'opt_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-a11y', 'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('reftest-d2d', ['reftest-d2d']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+            }
         },
         'win64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
-            'opt_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
-            'debug_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
+            'w764': {
+                'opt_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+            }
         },
         'macosx': {
             'builds_before_reboot': 1,
-            'opt_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
-            'debug_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
+            # We don't have a11y on mochitest-other for Mac
+            'leopard': {
+                'opt_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+                'debug_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+            },
         },
         'macosx64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
-            'opt_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
-            'debug_unittest_suites': [
-                # Turn on chunks for mochitests
-                ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                    'mochitest-ipcplugins']),
-                ('reftest', ['reftest']),
-                ('crashtest', ['crashtest']),
-                ('xpcshell', ['xpcshell']),
-                ('jsreftest', ['jsreftest']),
-            ],
-        },
-        'linux64': {
-            'builds_before_reboot': 1,
-            'unittest-env' : {'DISPLAY': ':0'},
+            # We don't have a11y on mochitest-other for Mac
+            'snowleopard': {
+                'opt_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+                'debug_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+            }
         },
 }
 
@@ -238,11 +259,14 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
     for platform in BRANCHES[branch]['platforms']:
-        for key, value in UNITTEST_SUITES.items():
-            # don't override platform specified unittests
-            if key in BRANCHES[branch]['platforms'][platform]:
-                continue
-            BRANCHES[branch]['platforms'][platform][key] = deepcopy(value)
+        # If we want to test for a certain architeture for multiple operating systems.
+        # An example is that win32 packages can be tested on 'xp' and 'win7'
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            for key, value in UNITTEST_SUITES.items():
+                # don't override platform specified unittests
+                if key in BRANCHES[branch]['platforms'][platform][slave_platform]:
+                    continue
+                BRANCHES[branch]['platforms'][platform][slave_platform][key] = deepcopy(value)
 
 ########
 # Entries in BRANCHES for tests should be a tuple of:
@@ -324,8 +348,12 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = False 
+# We can't yet run unit tests on debug builds - see bug 562459
+BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = False 
+# We can't yet run unit tests on debug builds - see bug 562459
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
