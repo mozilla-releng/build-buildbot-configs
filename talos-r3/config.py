@@ -348,10 +348,10 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
 BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
-BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
 BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
 
