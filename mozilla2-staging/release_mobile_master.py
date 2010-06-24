@@ -91,6 +91,13 @@ for platform in enUSPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
+    if doPartnerRepacks and platform in partnerRepackPlatforms:
+        partner_scheduler = Dependent(
+            name='%s_partner_repack' % platform,
+            upstream=build_scheduler,
+            builderNames=['%s_partner_repack' % platform]
+        )
+        schedulers.append(partner_scheduler)
 for platform in enUSDesktopPlatforms:
     build_scheduler = Dependent(
         name='mobile_%s_desktop_build' % platform,
@@ -111,13 +118,6 @@ for platform in enUSDesktopPlatforms:
             tree='release'
         )
         schedulers.append(repack_scheduler)
-if doPartnerRepacks:
-    partner_scheduler = Dependent(
-        name='mobile_partner_repacks',
-        upstream=build_scheduler,
-        builderNames=['mobile_partner_repack']
-    )
-    schedulers.append(partner_scheduler)
 
 ##### Builders
 clone_repositories = {
@@ -232,10 +232,10 @@ for platform in enUSPlatforms:
     candidatesPath = '%s/%s' % (stageBasePath, baseUploadDir)
     build_factory = None
     repack_factory = None
+    pf = mobileBranchConfig['platforms'][platform]
+    clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
 
     if platform.startswith('maemo'):
-        pf = mobileBranchConfig['platforms'][platform]
-        clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
         mozconfig = 'mobile/%s/%s/release' % (platform, mobileSourceRepoName)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
@@ -256,6 +256,7 @@ for platform in enUSPlatforms:
             l10nTag='%s_RELEASE' % baseTag,
             platform=platform,
             uploadSymbols=True,
+            sb_target=pf['sb_target'],
             buildsBeforeReboot=pf['builds_before_reboot'],
             baseWorkDir=releaseWorkDir,
             baseBuildDir=releaseBuildDir,
@@ -303,6 +304,7 @@ for platform in enUSPlatforms:
                 compareLocalesTag=branchConfig['compare_locales_tag'],
                 mergeLocales=mergeLocales,
                 buildSpace=2,
+                sb_target=pf['sb_target'],
                 configRepoPath=branchConfig['config_repo_path'],
                 configSubDir=branchConfig['config_subdir'],
                 mozconfig=mozconfig,
@@ -317,6 +319,33 @@ for platform in enUSPlatforms:
             'builddir': '%s_repack' % platform,
             'factory': repack_factory
         })
+    if doPartnerRepacks and platform in partnerRepackPlatforms:
+        partner_repack_factory = PartnerRepackFactory(
+            hgHost=branchConfig['hghost'],
+            repoPath='mozSourceRepoPath',
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            productName='mobile',
+            version=version,
+            buildNumber=buildNumber,
+            partnersRepoPath=partnersRepoPath,
+            stagingServer=stagingServer,
+            stageUsername=branchConfig['stage_username'],
+            stageSshKey=branchConfig['stage_ssh_key'],
+            nightlyDir='candidates',
+            platformList=[platform],
+            baseWorkDir='%s-partner' % mobileBranchConfig['platforms'][platform]['base_workdir'],
+            python='python2.5',
+            packageDmg=False,
+            createRemoteStageDir=True
+        )
+        builders.append({
+            'name': '%s_partner_repack' % platform,
+            'slavenames': branchConfig['platforms']['linux']['slaves'],
+            'category': 'release',
+            'builddir': '%s_partner_repack' % platform,
+            'factory': partner_repack_factory
+        })
+
 for platform in enUSDesktopPlatforms:
     pf = mobileBranchConfig['platforms'][platform]
     clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
@@ -368,29 +397,3 @@ for platform in enUSDesktopPlatforms:
         # Not implemented yet
         pass
 
-if doPartnerRepacks:
-    partner_repack_factory = PartnerRepackFactory(
-        hgHost=branchConfig['hghost'],
-        repoPath='mozSourceRepoPath',
-        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        productName='mobile',
-        version=version,
-        buildNumber=buildNumber,
-        partnersRepoPath=partnersRepoPath,
-        stagingServer=stagingServer,
-        stageUsername=branchConfig['stage_username'],
-        stageSshKey=branchConfig['stage_ssh_key'],
-        nightlyDir='candidates',
-        platformList=partnerRepackPlatforms,
-        baseWorkDir='%s-partner' % mobileBranchConfig['platforms']['maemo4']['base_workdir'],
-        python='python2.5',
-        packageDmg=False,
-        createRemoteStageDir=True
-    )
-    builders.append({
-        'name': 'mobile_partner_repack',
-        'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
-        'builddir': 'mobile_partner_repack',
-        'factory': partner_repack_factory
-    })

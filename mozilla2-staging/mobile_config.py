@@ -134,6 +134,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env'] = DEFAULT_WIN3
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env'] = DEFAULT_LINUX_ENV.copy()
 MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['glob_list'] = ['embedding/android/*.apk']
 
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
