@@ -15,7 +15,7 @@ SLAVES = {
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
-TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,6)]
+TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,40)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11)]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
