@@ -12,7 +12,7 @@ default_platform['nightly'] = True
 default_platform['per_checkin'] = True
 default_platform['unit_build_dirs'] = []
 default_platform['talos_build_dirs'] = []
-default_platform['browser_wait'] = 7
+default_platform['browser_wait'] = 20
 default_platform['talos_suites'] = {
 #     'tp4': {},
 #     'tp4_nochrome': {},
