@@ -535,27 +535,55 @@ PLATFORM_VARS = {
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
 BRANCHES = {
-    'mozilla-central': {'mobile_platforms': { 'android-r7': {} }},
-    'mozilla-2.0': {'mobile_platforms': {}},
-    'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {},
-                                      'linux64': {}, 'linux64-debug': {},
-                                      'macosx': {}, 'macosx-debug': {},
-                                      'win32': {}, 'win32-debug': {},
-                                    },
-                     },
-    'mozilla-1.9.2': { 'platforms': { 'linux': {}, 'linux-debug': {},
-                                      'linux64': {}, 'linux64-debug': {},
-                                      'macosx': {}, 'macosx-debug': {},
-                                      'win32': {}, 'win32-debug': {},
-                                    },
-                       'mobile_platforms': {},
-                     },
-    'tracemonkey': {},
-    'places': {'mobile_platforms': { 'android-r7': {} }},
-    'electrolysis': {},
-    'addonsmgr': {'mobile_platforms': { 'android-r7': {} }},
-    'jaegermonkey': {},
-    'tryserver': { 'mobile_platforms': {}},
+    'mozilla-central': {
+        'mobile_platforms': {
+            'android-r7': {},
+        }
+    },
+    'mozilla-2.0': {
+        'mobile_platforms': {},
+    },
+    'mozilla-1.9.1': {
+        'platforms': {
+            'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
+            'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
+        },
+        'mobile_platforms': {},
+    },
+    'mozilla-1.9.2': {
+        'platforms': {
+            'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
+            'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
+        },
+        'mobile_platforms': {},
+    },
+    'tracemonkey': {
+        'mobile_platforms': {
+            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
+            'linux': {}, 'win32': {}, 'macosx': {},
+        },
+    },
+    'places': {
+        'mobile_platforms': {},
+    },
+    'electrolysis': {
+        'mobile_platforms': {
+            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
+            'linux': {}, 'win32': {}, 'macosx': {},
+        },
+    },
+    'addonsmgr': {
+        'mobile_platforms': {},
+    },
+    'jaegermonkey': {
+        'mobile_platforms': {
+            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
+            'linux': {}, 'win32': {}, 'macosx': {},
+        },
+    },
+    'tryserver': {
+        'mobile_platforms': {},
+    },
     'maple': {},
     'cedar': {},
     'birch': {},
@@ -958,6 +986,7 @@ BRANCHES['jaegermonkey']['repo_path'] = 'projects/jaegermonkey'
 BRANCHES['jaegermonkey']['start_hour'] = [4]
 BRANCHES['jaegermonkey']['start_minute'] = [2]
 BRANCHES['jaegermonkey']['enable_nightly'] = False
+BRANCHES['jaegermonkey']['enable_mobile_nightly'] = False
 BRANCHES['jaegermonkey']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['jaegermonkey']['enable_xulrunner'] = False
@@ -1028,6 +1057,7 @@ BRANCHES['maple']['repo_path'] = 'projects/maple'
 BRANCHES['maple']['start_hour'] = [4]
 BRANCHES['maple']['start_minute'] = [2]
 BRANCHES['maple']['enable_nightly'] = False
+BRANCHES['maple']['enable_mobile_nightly'] = False
 BRANCHES['maple']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['maple']['enable_xulrunner'] = False
@@ -1051,6 +1081,7 @@ BRANCHES['cedar']['repo_path'] = 'projects/cedar'
 BRANCHES['cedar']['start_hour'] = [4]
 BRANCHES['cedar']['start_minute'] = [2]
 BRANCHES['cedar']['enable_nightly'] = False
+BRANCHES['cedar']['enable_mobile_nightly'] = False
 BRANCHES['cedar']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['cedar']['enable_xulrunner'] = False
@@ -1074,6 +1105,7 @@ BRANCHES['birch']['repo_path'] = 'projects/birch'
 BRANCHES['birch']['start_hour'] = [4]
 BRANCHES['birch']['start_minute'] = [2]
 BRANCHES['birch']['enable_nightly'] = False
+BRANCHES['birch']['enable_mobile_nightly'] = False
 BRANCHES['birch']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['birch']['enable_xulrunner'] = False
