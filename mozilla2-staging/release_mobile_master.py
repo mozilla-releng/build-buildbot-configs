@@ -12,7 +12,7 @@ from buildbotcustom.misc import get_locales_from_json, \
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, MultiSourceFactory, MaemoReleaseBuildFactory, \
   MaemoReleaseRepackFactory, PartnerRepackFactory, \
-  ReleaseMobileDesktopBuildFactory
+  ReleaseMobileDesktopBuildFactory, AndroidReleaseBuildFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -270,6 +270,34 @@ for platform in enUSPlatforms:
             multiLocale=mobileBranchConfig['enable_multi_locale'],
             l10nRepoPath=l10nRepoPath,
             triggerBuilds=False,
+        )
+    elif platform.startswith('android'):
+        mozconfig = 'mobile/android/%s/release' % (mobileSourceRepoName)
+        releaseWorkDir  = pf['base_workdir'] + '-release'
+        build_factory = AndroidReleaseBuildFactory(
+            env=pf['env'],
+            hgHost=branchConfig['hghost'],
+            repoPath=mozSourceRepoPath,
+            configRepoPath=branchConfig['config_repo_path'],
+            configSubDir=branchConfig['config_subdir'],
+            mozconfig=mozconfig,
+            stageUsername=branchConfig['stage_username'],
+            stageServer=branchConfig['stage_server'],
+            stageSshKey=branchConfig['stage_ssh_key'],
+            stageBasePath=candidatesPath,
+            mobileRepoPath=mobileSourceRepoPath,
+            mozRevision='%s_RELEASE' % baseTag,
+            mobileRevision='%s_RELEASE' % baseTag,
+            platform=platform,
+            uploadSymbols=True,
+            buildsBeforeReboot=pf['builds_before_reboot'],
+            baseWorkDir=releaseWorkDir,
+            baseUploadDir=baseUploadDir,
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            clobberURL=branchConfig['base_clobber_url'],
+            clobberTime=clobberTime,
+            buildSpace=10,
+            packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
         )
     builders.append({
         'name': '%s_build' % platform,
