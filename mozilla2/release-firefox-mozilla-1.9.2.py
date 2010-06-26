@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.2'
 sourceRepoPath     = 'releases/mozilla-1.9.2'
-sourceRepoRevision = '37f5a4a97d26'
+sourceRepoRevision = 'd58a3937538c'
 relbranchOverride  = 'GECKO1924_20100413_RELBRANCH'
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile   = 'l10n-changesets_mozilla-1.9.2'
@@ -14,15 +14,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.6.4'
-appVersion         = version 
-milestone          = '1.9.2.4'
-buildNumber        = 7
-baseTag            = 'FIREFOX_3_6_4'
-oldVersion         = '3.6.3'
-oldAppVersion      = '3.6.3'
-oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_6_3'
+version            = '3.6.6'
+appVersion         = version
+milestone          = '1.9.2.6'
+buildNumber        = 1
+baseTag            = 'FIREFOX_3_6_6'
+oldVersion         = '3.6.4'
+oldAppVersion      = '3.6.4'
+oldBuildNumber     = 7
+oldBaseTag         = 'FIREFOX_3_6_4'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = ('linux', 'win32', 'macosx')
 talosTestPlatforms = ('linux', 'win32', 'macosx')
