@@ -333,7 +333,7 @@ for platform in enUSPlatforms:
 
         builders.append({
             'name': '%s_repack' % platform,
-            'slavenames': branchConfig['l10n_slaves'][platform],
+            'slavenames': pf['slaves'],
             'category': 'release',
             'builddir': '%s_repack' % platform,
             'factory': repack_factory,
