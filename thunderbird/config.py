@@ -29,7 +29,7 @@ BUILDERS = {
         },
     },
     'win32': {
-        'momo': [ 'momo-vm-%02i' % x for x in [4,6,13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10 ] ],
+        'momo': [ 'momo-vm-%02i' % x for x in [6,13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10 ] ],
     },
 }
 
@@ -484,7 +484,7 @@ BRANCHES['comm-central-bloat']['platforms'] = {
 BRANCHES['comm-central-bloat']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-central-bloat']['branch_name'] = 'comm-1.9.1'
 BRANCHES['comm-central-bloat']['hg_branch'] = 'releases/comm-1.9.1'
-BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time']
+BRANCHES['comm-central-bloat']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time' ]
 BRANCHES['comm-central-bloat']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot' 
 BRANCHES['comm-central-bloat']['mozconfig'] = 'debug/mozconfig'
 BRANCHES['comm-central-bloat']['nightly'] = False
@@ -692,8 +692,8 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['upload_symbols'] = 
 BRANCHES['comm-central-trunk-bloat']['tinderbox_tree'] = 'Thunderbird'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['leak_threshold'] = 970000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['leak_threshold'] = 970000
-BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 2300000
-BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  110000
+BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['leak_threshold'] = 3400000
+BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['leak_threshold'] =  1400000
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['slaves'] = BUILDERS['linux']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['slaves'] = BUILDERS['win32']['momo']
@@ -702,6 +702,7 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['slaves'] = BUILDERS
 # the objdir. This is necessary because of universal builds on Mac
 # creating subdirectories inside of the objdir.
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['platform_objdir'] = OBJDIR
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
