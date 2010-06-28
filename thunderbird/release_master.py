@@ -300,7 +300,7 @@ l10n_verification_factory = L10nVerifyFactory(
     buildNumber=buildNumber,
     oldVersion=oldVersion,
     oldBuildNumber=oldBuildNumber,
-    l10nPlatforms=l10nPlatforms,
+#   l10nPlatforms=l10nPlatforms,
 )
 
 builders.append({
