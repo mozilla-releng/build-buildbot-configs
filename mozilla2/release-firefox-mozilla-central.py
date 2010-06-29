@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = 'b84d0be52070'
+sourceRepoRevision = 'd08120d3792e'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
@@ -14,21 +14,21 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.7a5'
+version            = '4.0b1'
 appVersion         = version
-milestone          = '1.9.3a5'
+milestone          = '2.0b1'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_7a5'
-oldVersion         = '3.7a4'
+baseTag            = 'FIREFOX_4_0b1'
+oldVersion         = '3.7a5'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_7a4'
+oldBaseTag         = 'FIREFOX_3_7a5'
 enUSPlatforms      = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms      = ()
 xulrunnerPlatforms = ()
 patcherConfig      = 'moz193-branch-patcher2.cfg'
 patcherToolsTag    = 'UPDATE_PACKAGING_R11'
-binaryName         = 'MozillaDeveloperPreview'
+binaryName         = 'Firefox'
 oldBinaryName      = 'MozillaDeveloperPreview'
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
@@ -38,9 +38,8 @@ bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
 ausSshKey          = 'cltbld_dsa'
-releaseNotesUrl    = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
+releaseNotesUrl    = 'http://www.mozilla.com/firefox/4.0b1/releasenotes'
 useBetaChannel     = 0
-# TODO: create these files before first 3.7 requiring updates
 verifyConfigs       = {'linux':    'moz193-firefox-linux.cfg',
                        'linux64':  'moz193-firefox-linux64.cfg',
                        'macosx':   'moz193-firefox-mac.cfg',
