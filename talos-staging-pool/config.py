@@ -41,7 +41,6 @@ BRANCHES = {
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
-    'addonsmgr': {},
     'tryserver': {},
     'maple': {},
     'cedar': {},
@@ -402,23 +401,6 @@ BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-
-######## addonsmgr
-BRANCHES['addonsmgr']['branch_name'] = "Addonsmgr"
-BRANCHES['addonsmgr']['build_branch'] = "Addonsmgr"
-BRANCHES['addonsmgr']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['addonsmgr']['talos_command'] = TALOS_CMD
-BRANCHES['addonsmgr']['fetch_symbols'] = True
-BRANCHES['addonsmgr']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['addonsmgr']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['addonsmgr']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addonsmgr']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## maple
 BRANCHES['maple']['branch_name'] = "Maple"

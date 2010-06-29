@@ -572,9 +572,6 @@ BRANCHES = {
             'linux': {}, 'win32': {}, 'macosx': {},
         },
     },
-    'addonsmgr': {
-        'mobile_platforms': {},
-    },
     'jaegermonkey': {
         'mobile_platforms': {
             'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
@@ -957,29 +954,6 @@ BRANCHES['electrolysis']['aus2_user'] = 'ffxbld'
 BRANCHES['electrolysis']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['electrolysis']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
 BRANCHES['electrolysis']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
-
-######## addonsmgr
-BRANCHES['addonsmgr']['repo_path'] = 'projects/addonsmgr'
-BRANCHES['addonsmgr']['start_hour'] = [4]
-BRANCHES['addonsmgr']['start_minute'] = [2]
-BRANCHES['addonsmgr']['enable_nightly'] = False
-BRANCHES['addonsmgr']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['addonsmgr']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['addonsmgr']['enable_mac_a11y'] = True
-BRANCHES['addonsmgr']['enable_shark'] = False
-# L10n configuration
-BRANCHES['addonsmgr']['enable_l10n'] = False
-BRANCHES['addonsmgr']['l10nNightlyUpdate'] = False
-BRANCHES['addonsmgr']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['addonsmgr']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['addonsmgr']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-BRANCHES['addonsmgr']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-addonsmgr'
-BRANCHES['addonsmgr']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
-BRANCHES['addonsmgr']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'addonsmgr'
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['repo_path'] = 'projects/jaegermonkey'
