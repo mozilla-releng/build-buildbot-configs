@@ -18,7 +18,7 @@ MOZ_APP_NAME = 'thunderbird'
 
 BUILDERS = {
     'linux': {
-        'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2]],
+        'momo': [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6]],
     },
     'linux64': {
         'momo': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3 ]],
