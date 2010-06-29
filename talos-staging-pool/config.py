@@ -38,7 +38,6 @@ BRANCHES = {
     'mozilla-2.0': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
-    'mozilla-1.9.0': {},
     'tracemonkey': {},
     'places': {},
     'electrolysis': {},
@@ -251,49 +250,6 @@ for branch in BRANCHES.keys():
 # - Whether queue merging is on
 # - TalosFactory options
 # - Which platforms to run on
-
-######## mozilla-1.9.0
-BRANCHES['mozilla-1.9.0']['branch_name'] = "Firefox3.0"
-BRANCHES['mozilla-1.9.0']['build_branch'] = "1.9.0"
-BRANCHES['mozilla-1.9.0']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['mozilla-1.9.0']['talos_command'] = TALOS_CMD
-BRANCHES['mozilla-1.9.0']['fetch_symbols'] = False
-BRANCHES['mozilla-1.9.0']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['mozilla-1.9.0']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['cold_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.0']['ftp_urls'] = {
-    'win32': [
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/FX-WIN32-TBOX-mozilla1.9.0/",
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
-        ],
-    'linux': [
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/fx-linux-tbox-mozilla1.9.0/",
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
-        ],
-    'linux64': [
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/fx-linux-tbox-mozilla1.9.0/",
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
-        ],
-    'macosx': [
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/bm-xserve08-mozilla1.9.0/",
-        "http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.9.0/",
-        ],
-    'macosx64': [],
-}
-BRANCHES['mozilla-1.9.0']['ftp_searchstrings'] = {
-    'win32': "en-US.win32.zip",
-    'linux': "en-US.linux-i686.tar.bz2",
-    'linux64': "en-US.linux-x86_64.tar.bz2",
-    'macosx': "en-US.mac.dmg",
-    'macosx64': "en-US.mac.dmg",
-}
 
 ######## mozilla-central
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
