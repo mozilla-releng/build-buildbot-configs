@@ -214,6 +214,80 @@ talos_try = MasterConfig(
             ],
         )
 
+mozilla = MasterConfig(
+        'mozilla',
+        globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('passwords.py.template', 'passwords.py'),
+            ],
+        )
+
+mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('scheduler_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
+        local_links = [
+            ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_scheduler_master = mozilla + MasterConfig(
+        local_links = [
+            ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('scheduler_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
+        local_links = [
+            ('production_builder_master_pm01_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
+        local_links = [
+            ('production_try_builder_master_pm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
+        local_links = [
+            ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+
 masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
         'mozilla2': [mozilla2_1, mozilla2_2, try_master],
@@ -226,17 +300,37 @@ masters = {
         'mobile_rw': [mobile_rw_production, mobile_rw_staging],
         }
 
+# Buildbot 0.8.0 masters
+masters_080 = {
+        'mozilla': [
+            mozilla_staging_scheduler_master_sm01,
+            mozilla_staging_builder_master_sm01,
+            mozilla_staging_univeral_master_sm02,
+            mozilla_staging_univeral_master_sm03,
+            mozilla_production_scheduler_master,
+            mozilla_production_builder_master_pm01,
+            mozilla_production_builder_master_pm03,
+            mozilla_production_try_builder_master_pm02,
+         ],
+        }
+
 if __name__ == "__main__":
     from optparse import OptionParser
 
     parser = OptionParser(__doc__)
     parser.set_defaults(action=None)
     parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
+    parser.add_option("-8", action="store_true", dest="buildbot080", default=False)
 
     options, args = parser.parse_args()
 
+    if options.buildbot080:
+        master_map = masters_080
+    else:
+        master_map = masters
+
     if options.action == "list":
-        for master_name, master_list in sorted(masters.items()):
+        for master_name, master_list in sorted(master_map.items()):
             n = len(master_list)
             if n == 1:
                 print master_name
@@ -250,14 +344,14 @@ if __name__ == "__main__":
 
     master_dir, master_name = args[:2]
 
-    if master_name not in masters:
+    if master_name not in master_map:
         parser.error("Unknown master %s" % master_name)
 
-    n = len(masters[master_name])
+    n = len(master_map[master_name])
     if n == 1:
         if len(args) > 2:
             parser.error("Master %s doesn't require a number" % master_name)
-        m = masters[master_name][0]
+        m = master_map[master_name][0]
     else:
         if len(args) == 2:
             parser.error("Master %s requires a number" % master_name)
@@ -269,6 +363,6 @@ if __name__ == "__main__":
         if not 1 <= master_num <= n:
             parser.error("master_num must be between 1 and %s" % n)
         # master_num-1 because we accept 1-based numbers, and the array is 0-based
-        m = masters[master_name][master_num-1]
+        m = master_map[master_name][master_num-1]
 
     m.createMaster(master_dir)
