@@ -481,7 +481,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'packageTests': True,
-            'build_space': 5,
+            'build_space': 10,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
             'env': {
@@ -500,7 +500,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
-            'build_space': 5,
+            'build_space': 10,
             'slaves': SLAVES['macosx-snow'],
             'platform_objdir': OBJDIR,
             'env': {
@@ -799,8 +799,8 @@ BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 5
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 5
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 8
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
