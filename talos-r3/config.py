@@ -285,6 +285,7 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['tinderbox_tree'] = "Firefox"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
+BRANCHES['mozilla-central']['fetch_release_symbols'] = False
 BRANCHES['mozilla-central']['release_tests'] = 5
 BRANCHES['mozilla-central']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-central']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
