@@ -157,7 +157,7 @@ for platform in unittestPlatforms:
     s = Scheduler(
      name='%s_release_unittest' % platform,
      treeStableTimer=0,
-     branch='%s-release-unittest' % platform,
+     branch='%s-release-%s-opt-unittest' % (sourceRepoName, platform),
      builderNames=platform_test_builders,
     )
     schedulers.append(s)
@@ -299,7 +299,8 @@ for platform in enUSPlatforms:
     if platform in unittestPlatforms:
         packageTests = True
         unittestMasters = branchConfig['unittest_masters']
-        unittestBranch = '%s-release-unittest' % platform
+        unittestBranch = '%s-release-%s-opt-unittest' % (sourceRepoName,
+                                                         platform)
     else:
         packageTests = False
         unittestMasters = None
@@ -393,7 +394,7 @@ for platform in enUSPlatforms:
 
             test_builders.extend(generateTestBuilder(
                 branchConfig, 'release', platform, "%s_test" % platform,
-                "release-%s-unittest" % (platform,),
+                '%s-release-%s-opt-unittest' % (sourceRepoName, platform),
                 suites_name, suites, mochitestLeakThreshold,
                 crashtestLeakThreshold))
 
