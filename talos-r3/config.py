@@ -311,7 +311,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
-BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = True 
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
@@ -340,7 +340,7 @@ BRANCHES['mozilla-2.0']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_debug_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
@@ -553,14 +553,17 @@ BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+# unittest configs
 BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = True
+BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = False
 BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux64']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['win64']['enable_debug_unittests'] = True
+BRANCHES['tryserver']['platforms']['win32']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['win32']['enable_debug_unittests'] = False
+BRANCHES['tryserver']['platforms']['win64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['win64']['enable_debug_unittests'] = False

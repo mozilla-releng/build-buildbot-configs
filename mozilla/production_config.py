@@ -47,11 +47,12 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
+    # if a failure to notify the master should result in a warning,
+    # and if to turn the build red if sendchange times out
     'unittest_masters': [
-        ('production-master01.build.mozilla.org:9009', False, 0),
-        ('talos-master02.build.mozilla.org:9012', False, 0),
-        ('test-master01.build.mozilla.org:9012', False, 0),
+        ('production-master01.build.mozilla.org:9009', True, 0),
+        ('talos-master02.build.mozilla.org:9012', True, 0),
+        ('test-master01.build.mozilla.org:9012', True, 0),
         ('talos-staging-master02.build.mozilla.org:9010', False, 0),
         ('talos-staging-master02.build.mozilla.org:9012', False, 0),
     ],
@@ -117,7 +118,6 @@ BRANCHES = {
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
-        'unittest_masters': [('production-master01.build.mozilla.org:9009', True, 0)],
         'platforms': {
             'win32': {
                 'env': {
