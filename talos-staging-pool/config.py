@@ -29,6 +29,7 @@ SLAVES = {
     'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,4)],
     'xp': ["talos-r3-xp-%03i" % x for x in range(1,4)],
     'win7': ["talos-r3-w7-%03i" % x for x in range(1,4)],
+    'w764': ["t-r3-w764-%03i" % x for x in range(1,4)],
     'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,4)],
     'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,4)],
 }
@@ -52,6 +53,7 @@ PLATFORMS = {
     'macosx': {},
     'macosx64': {},
     'win32': {},
+    'win64': {},
     'linux': {},
     'linux64' : {},
 }
@@ -68,6 +70,10 @@ PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "WINNT 6.1"}
+
+PLATFORMS['win64']['slave_platforms'] = ['w764']
+PLATFORMS['win64']['env_name'] = 'win64-perf'
+PLATFORMS['win64']['w764'] = {'name': "WINNT 6.1 x64"}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -86,6 +92,7 @@ for platform, platform_config in PLATFORMS.items():
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
+                PLATFORMS['win64']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms'] + \
                 PLATFORMS['macosx']['slave_platforms']
 
@@ -101,6 +108,7 @@ BRANCH_UNITTEST_VARS = {
         'macosx': {},
         'macosx64': {},
         'win32': {},
+        'win64': {},
     },
 }
 
@@ -134,6 +142,22 @@ PLATFORM_UNITTEST_VARS = {
                         'mochitest-a11y', 'mochitest-ipcplugins']),
                     ('reftest', ['reftest']),
                     ('reftest-d2d', ['reftest-d2d']),
+                    ('crashtest', ['crashtest']),
+                    ('xpcshell', ['xpcshell']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+            }
+        },
+        'win64': {
+            'builds_before_reboot': 1,
+            'download_symbols': False,
+            'w764': {
+                'opt_unittest_suites': [
+                    # Turn on chunks for mochitests
+                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                        'mochitest-ipcplugins']),
+                    ('reftest', ['reftest']),
                     ('crashtest', ['crashtest']),
                     ('xpcshell', ['xpcshell']),
                     ('jsreftest', ['jsreftest']),
@@ -278,6 +302,8 @@ BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = 
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
 BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
