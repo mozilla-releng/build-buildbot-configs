@@ -79,13 +79,16 @@ for platform in releasePlatforms:
     )
     schedulers.append(build_scheduler)
     schedulers.append(repack_scheduler)
-l10n_verify_scheduler = Scheduler(
-    name='l10n_verification',
-    treeStableTimer=0,
-    branch='post_signing',
-    builderNames=['l10n_verification']
-)
-schedulers.append(l10n_verify_scheduler)
+
+for platform in l10nPlatforms:
+    l10n_verify_scheduler = Scheduler(
+        name='%s_l10n_verification' % platform,
+        treeStableTimer=0,
+        branch='post_signing',
+        builderNames=['%s_l10n_verification' % platform]
+    )
+    schedulers.append(l10n_verify_scheduler)
+
 updates_scheduler = Scheduler(
     name='updates',
     treeStableTimer=0,
@@ -292,26 +295,27 @@ for platform in releasePlatforms:
     })
 
 
-l10n_verification_factory = L10nVerifyFactory(
-    hgHost=nightly_config.HGHOST,
-    buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
-    cvsroot=cvsroot,
-    stagingServer=stagingServer,
-    productName=productName,
-    version=version,
-    buildNumber=buildNumber,
-    oldVersion=oldVersion,
-    oldBuildNumber=oldBuildNumber,
-#    l10nPlatforms=l10nPlatforms,
-)
+for platform in l10nPlatforms:
+    l10n_verification_factory = L10nVerifyFactory(
+        hgHost=nightly_config.HGHOST,
+        buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
+        cvsroot=cvsroot,
+        stagingServer=stagingServer,
+        productName=productName,
+        version=version,
+        buildNumber=buildNumber,
+        oldVersion=oldVersion,
+        oldBuildNumber=oldBuildNumber,
+        platform=platform,
+    )
 
-builders.append({
-    'name': 'l10n_verification',
-    'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
-    'category': 'release',
-    'builddir': 'l10n_verification',
-    'factory': l10n_verification_factory
-})
+    builders.append({
+        'name': '%s_l10n_verification' % platform,
+        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
+        'category': 'release',
+        'builddir': '%s_l10n_verification' % platform,
+        'factory': l10n_verification_factory
+    })
 
 
 updates_factory = ReleaseUpdatesFactory(
