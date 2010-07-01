@@ -3,15 +3,15 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '04a804c3584c'
+sourceRepoRevision         = '3d2b8eca5482'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM1924_20100519_RELBRANCH'
+relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = '9dcd813b2fc8'
+mozillaRepoRevision        = 'cd17c59acd80'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM1924_20100514_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'GECKO1927_20100701_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'c1b38e365772'
 inspectorRelbranchOverride = 'COMM1924_20100519_RELBRANCH'
@@ -39,17 +39,17 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1'
-appVersion                 = '3.1'
+version                    = '3.1.1'
+appVersion                 = '3.1.1'
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '1.9.2.4'
+milestone                  = '1.9.2.7'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_1'
+baseTag                    = 'THUNDERBIRD_3_1_1'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.1rc1'
+oldVersion                 = '3.1rc2'
 oldAppVersion              = '3.1'
-oldBuildNumber             = 3
-oldBaseTag                 = 'THUNDERBIRD_3_1_rc1'
+oldBuildNumber             = 1
+oldBaseTag                 = 'THUNDERBIRD_3_1_rc2'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R11'
