@@ -1048,6 +1048,10 @@ BRANCHES['tryserver']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['
 BRANCHES['tryserver']['mobile_platforms']['maemo4']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['mobile_platforms']['android-r7']['upload_symbols'] = False
+BRANCHES['tryserver']['mobile_platforms']['maemo4']['upload_symbols'] = False
+BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
+BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
 ######## maple
 BRANCHES['maple']['repo_path'] = 'projects/maple'
