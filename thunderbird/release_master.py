@@ -25,9 +25,11 @@ from release_config import *
 import config as nightly_config
 reload(nightly_config)
 
+#XXX: Our current buildbot config is inconsistent with the branch name itself, fix it
+nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].copy()
+
 for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
-
 
 builders = []
 schedulers = []
@@ -304,11 +306,11 @@ for platform in l10nPlatforms:
         buildNumber=buildNumber,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
-        platform=platform,
+#        platform=platform,
     )
 
     builders.append({
-        'name': '%s_l10n_verification' % platform
+        'name': '%s_l10n_verification' % platform,
         'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
         'category': 'release',
         'builddir': '%s_l10n_verification' % platform,
