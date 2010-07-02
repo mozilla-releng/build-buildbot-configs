@@ -579,7 +579,12 @@ BRANCHES = {
         },
     },
     'tryserver': {
-        'mobile_platforms': {},
+        'mobile_platforms': {
+            'maemo5-gtk': {},
+            'maemo5-qt': {},
+            'maemo4': {},
+            'android-r7': {},
+        },
     },
     'maple': {},
     'cedar': {},
@@ -982,8 +987,11 @@ BRANCHES['jaegermonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDI
 ######## tryserver
 # Try-specific configs
 BRANCHES['tryserver']['stage_username'] = 'trybld'
+BRANCHES['tryserver']['stage_username_mobile'] = 'trybld'
 BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
+BRANCHES['tryserver']['stage_ssh_mobile_key'] = 'trybld_dsa'
 BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
+BRANCHES['tryserver']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/tryserver-builds'
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
@@ -994,6 +1002,7 @@ BRANCHES['tryserver']['start_hour'] = [3]
 BRANCHES['tryserver']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['tryserver']['enable_nightly'] = False
+BRANCHES['tryserver']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tryserver']['enable_xulrunner'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
@@ -1030,6 +1039,15 @@ BRANCHES['tryserver']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['tryserver']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
+BRANCHES['tryserver']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile-tryserver/maemo4'
+BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
+BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
+BRANCHES['tryserver']['mobile_platforms']['android-r7']['package_globlist'] = ['objdir/embedding/android/*.apk']
+BRANCHES['tryserver']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['mobile_platforms']['maemo4']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['slaves'] = TRY_SLAVES['linux']
 
 ######## maple
 BRANCHES['maple']['repo_path'] = 'projects/maple'
