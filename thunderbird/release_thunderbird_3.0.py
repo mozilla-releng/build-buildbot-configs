@@ -5,7 +5,7 @@ sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
 sourceRepoRevision         = 'dcfa7f4510b1'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM19111_20100701_RELBRANCH'
+relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '68b47271b5fe'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -25,6 +25,7 @@ chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
 l10nRepoPath               = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile           = 'l10n-thunderbird-changesets-3.0'
+l10nPlatforms              = ['linux', 'macosx', 'win32' ]
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:cltbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'mail/config/version-191.txt'
