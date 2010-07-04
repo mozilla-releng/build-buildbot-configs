@@ -166,7 +166,7 @@ BRANCHES['comm-central-lightning']['platforms'] = {
     'win32': {},
     'macosx': {}
 }
-
+BRANCHES['comm-central-lightning']['nightly'] = False
 BRANCHES['comm-central-lightning']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-lightning']['branch_name'] = 'comm-central'
 BRANCHES['comm-central-lightning']['hg_branch'] = 'comm-central'
