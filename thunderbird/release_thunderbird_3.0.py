@@ -7,7 +7,7 @@ sourceRepoRevision         = '04c503656164'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM19111_20100702_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = '68b47271b5fe'
+mozillaRepoRevision        = 'c145b4c4bc77'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
