@@ -5,7 +5,7 @@ sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
 sourceRepoRevision         = 'dcfa7f4510b1'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM19111_20100702_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '68b47271b5fe'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -43,7 +43,7 @@ appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 # Look in release-firefox-mozilla-1.9.1.py for the milestone value
 milestone                  = '1.9.1.11'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'THUNDERBIRD_3_0_6'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.0.5'
