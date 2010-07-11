@@ -319,7 +319,7 @@ BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['comm-central-trunk']['enable_l10n'] = True
+BRANCHES['comm-central-trunk']['enable_l10n'] = False   # temporary, while nightlies are off as well
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
