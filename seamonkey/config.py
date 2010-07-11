@@ -341,6 +341,7 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/S
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
+BRANCHES['comm-central-trunk']['enable_nightly'] = False   # temporary, while we try to get stable static builds again
 
 ######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located
