@@ -22,6 +22,7 @@ appName             = 'browser'
 # appVersion, not version.
 version             = '3.7a5'
 appVersion          = version
+# NB: this will become 2.0.x not 2.0.0.x, bug 577875
 milestone           = '1.9.3a5'
 buildNumber         = 1
 baseTag             = 'FIREFOX_3_7a5'
@@ -46,7 +47,6 @@ ausUser             = 'cltbld'
 ausSshKey           = 'cltbld_dsa'
 releaseNotesUrl     = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
 useBetaChannel      = 0
-# TODO: create these files before 3.7a2
 verifyConfigs       = {'linux':    'moz193-firefox-linux.cfg',
                        'linux64':  'moz193-firefox-linux64.cfg',
                        'macosx':   'moz193-firefox-mac.cfg',

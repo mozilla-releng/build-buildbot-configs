@@ -16,6 +16,7 @@ appName            = 'browser'
 # appVersion, not version.
 version            = '4.0b1'
 appVersion         = version
+# NB: this will become 2.0.x not 2.0.0.x, bug 577875
 milestone          = '2.0b1'
 buildNumber        = 2
 baseTag            = 'FIREFOX_4_0b1'
