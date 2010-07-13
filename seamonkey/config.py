@@ -319,7 +319,7 @@ BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['comm-central-trunk']['enable_l10n'] = False   # temporary, while nightlies are off as well
+BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
@@ -341,7 +341,6 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/S
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
-BRANCHES['comm-central-trunk']['enable_nightly'] = False   # temporary, while we try to get stable static builds again
 
 ######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located
