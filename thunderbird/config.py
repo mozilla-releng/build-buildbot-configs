@@ -11,6 +11,7 @@ STAGE_SERVER = 'stage.mozilla.org'
 STAGE_GROUP = 'thunderbird'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
 AUS2_USER = 'tbirdbld'
+AUS2_SSH_KEY = 'tbirdbld_dsa'
 AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 PRODUCT = 'mail'
@@ -63,7 +64,6 @@ DEFAULTS = {
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
 
-    'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
     'build_tools_repo': "build/tools",
     'hg_rev_shortnames': {
       'mozilla-central':        'moz',
