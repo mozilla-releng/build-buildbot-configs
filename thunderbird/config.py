@@ -389,7 +389,6 @@ BRANCHES['comm-central-trunk']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central-trunk']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-trunk']['package'] = True
 #Disable when producing release builds
-BRANCHES['comm-central-trunk']['nightly'] = False
 BRANCHES['comm-central-trunk']['period'] = 60 * 60 * 14
 BRANCHES['comm-central-trunk']['upload_stage'] = True
 BRANCHES['comm-central-trunk']['milestone'] = 'comm-central-trunk'
