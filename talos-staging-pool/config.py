@@ -1,5 +1,4 @@
 from copy import deepcopy
-from twisted.python import log
 
 from buildbot.steps.shell import WithProperties
 
@@ -8,9 +7,13 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
+TALOS_ADDON_CMD = ['python', 'run_tests.py', '--screen', WithProperties('%(configFile)s')]
+
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
 TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
+
+TALOS_ADDON_OPTS = {'addonTester' : True, 'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx'],
@@ -22,6 +25,7 @@ SUITES = {
     'svg': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
     'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
     'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
+    'addon': ['--activeTests', 'ts:tp4'],
 }
 
 SLAVES = {
@@ -47,6 +51,7 @@ BRANCHES = {
     'cedar': {},
     'birch': {},
     'jaegermonkey': {},
+    'addontester': {},
 }
 
 PLATFORMS = {
@@ -93,10 +98,10 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['win64']['slave_platforms'] + \
-                PLATFORMS['macosx64']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
+                PLATFORMS['macosx']['slave_platforms'] + \
+                PLATFORMS['macosx64']['slave_platforms']
 
-NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
+NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] 
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -280,6 +285,8 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['tinderbox_tree'] = "MozillaTest"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
+BRANCHES['mozilla-central']['fetch_release_symbols'] = False
+BRANCHES['mozilla-central']['release_tests'] = 5
 BRANCHES['mozilla-central']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-central']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -290,6 +297,7 @@ BRANCHES['mozilla-central']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_debug_unittests'] = True
@@ -303,7 +311,8 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
 BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False
+# We can't yet run unit tests on debug builds - see bug 562459
+BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
@@ -321,6 +330,7 @@ BRANCHES['mozilla-2.0']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_debug_unittests'] = True
@@ -331,7 +341,7 @@ BRANCHES['mozilla-2.0']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_debug_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = True
+BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
@@ -349,6 +359,7 @@ BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
@@ -368,9 +379,32 @@ BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['repo_path'] = "mozilla-1.9.2"
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = False 
+
+######## addontester - tests against 1.9.2
+BRANCHES['addontester']['branch_name'] = "Firefox3.6"
+BRANCHES['addontester']['build_branch'] = "1.9.2"
+BRANCHES['addontester']['tinderbox_tree'] = "Firefox3.6"
+BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
+BRANCHES['addontester']['fetch_symbols'] = False
+BRANCHES['addontester']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['addontester']['fetch_release_symbols'] = False
+BRANCHES['addontester']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['addontester']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['addontester']['cold_tests'] = (0, True, {}, NO_WIN)
+BRANCHES['addontester']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['addontester']['repo_path'] = "mozilla-1.9.2"
+BRANCHES['addontester']['platforms']['linux']['enable_opt_unittests'] = False 
+BRANCHES['addontester']['platforms']['linux']['enable_debug_unittests'] = False 
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
@@ -388,11 +422,12 @@ BRANCHES['tracemonkey']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = False 
+BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = False 
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = False 
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = False 
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
@@ -410,6 +445,7 @@ BRANCHES['places']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['places']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['places']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## electrolysis
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
@@ -419,7 +455,7 @@ BRANCHES['electrolysis']['talos_command'] = TALOS_CMD
 BRANCHES['electrolysis']['fetch_symbols'] = True
 BRANCHES['electrolysis']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['electrolysis']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['electrolysis']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
@@ -427,6 +463,7 @@ BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## maple
 BRANCHES['maple']['branch_name'] = "Maple"
@@ -444,6 +481,7 @@ BRANCHES['maple']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['maple']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['maple']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## cedar
 BRANCHES['cedar']['branch_name'] = "Cedar"
@@ -461,6 +499,7 @@ BRANCHES['cedar']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['cedar']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## birch
 BRANCHES['birch']['branch_name'] = "Birch"
@@ -478,6 +517,7 @@ BRANCHES['birch']['cold_tests'] = (1, True, {}, NO_WIN)
 BRANCHES['birch']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['birch']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
@@ -495,6 +535,7 @@ BRANCHES['jaegermonkey']['cold_tests'] = (0, True, {}, NO_WIN)
 BRANCHES['jaegermonkey']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
@@ -512,14 +553,18 @@ BRANCHES['tryserver']['cold_tests'] = (1, False, {}, NO_WIN)
 BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+# unittest configs
 BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = True
+BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = False
 BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['tryserver']['platforms']['linux64']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['win64']['enable_debug_unittests'] = True
+BRANCHES['tryserver']['platforms']['win32']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['win32']['enable_debug_unittests'] = False
+BRANCHES['tryserver']['platforms']['win64']['enable_opt_unittests'] = False
+BRANCHES['tryserver']['platforms']['win64']['enable_debug_unittests'] = False

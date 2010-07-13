@@ -247,7 +247,7 @@ UNITTEST_SUITES = {
         ],
 }
 
-# Copy unittest vars in first, then platform vars
+# Copy unittest vars in first, then platform vars, then add unittest suites to each active platform
 for branch in BRANCHES.keys():
     for key, value in BRANCH_UNITTEST_VARS.items():
         # Don't override platforms if it's set
