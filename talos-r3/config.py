@@ -340,6 +340,8 @@ BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux']['enable_debug_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_debug_unittests'] = True
+#BRANCHES['mozilla-2.0']['platforms']['win32']['enable_opt_unittests'] = True
+#BRANCHES['mozilla-2.0']['platforms']['win32']['enable_debug_unittests'] = False
 BRANCHES['mozilla-2.0']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = False
 
@@ -360,6 +362,19 @@ BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['repo_path'] = "mozilla-1.9.1"
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['mozilla-1.9.1']['platforms']['macosx64']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-1.9.1']['platforms']['macosx64']['enable_debug_unittests'] = False 
+#BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_opt_unittests'] = True
+#BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_debug_unittests'] = False 
+#BRANCHES['mozilla-1.9.1']['platforms']['win64']['enable_opt_unittests'] = False 
+#BRANCHES['mozilla-1.9.1']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
@@ -381,8 +396,18 @@ BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['repo_path'] = "mozilla-1.9.2"
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = False 
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_debug_unittests'] = False 
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['mozilla-1.9.2']['platforms']['macosx64']['enable_opt_unittests'] = False 
+BRANCHES['mozilla-1.9.2']['platforms']['macosx64']['enable_debug_unittests'] = False 
+#BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_opt_unittests'] = True 
+#BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_debug_unittests'] = False 
+#BRANCHES['mozilla-1.9.2']['platforms']['win64']['enable_opt_unittests'] = False 
+#BRANCHES['mozilla-1.9.2']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## addontester - tests against 1.9.2
 BRANCHES['addontester']['branch_name'] = "Firefox3.6"
