@@ -9,7 +9,7 @@ import buildbotcustom.process.factory
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
-  CCReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
+  ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, CCReleaseRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
@@ -28,7 +28,7 @@ reload(nightly_config)
 #XXX: Our current buildbot config is inconsistent with the branch name itself, fix it
 nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].copy()
 
-for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path']:
+for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
 
 builders = []
@@ -159,7 +159,7 @@ from buildbot.steps.dummy import Dummy
 dummy_factory = BuildFactory()
 dummy_factory.addStep(Dummy())
 
-tag_factory = CCReleaseTaggingFactory(
+tag_factory = ReleaseTaggingFactory(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     repositories=repositories,
@@ -173,8 +173,7 @@ tag_factory = CCReleaseTaggingFactory(
     hgUsername=hgUsername,
     hgSshKey=hgSshKey,
     relbranchPrefix=relbranchPrefix,
-    chatzillaTimestamp=chatzillaTimestamp,
-    cvsroot=chatzillaCVSRoot
+    clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
 )
 
 builders.append({
@@ -201,7 +200,8 @@ source_factory = CCSourceFactory(
     inspectorRepoPath=inspectorRepoPath,
     venkmanRepoPath=venkmanRepoPath,
     cvsroot=chatzillaCVSRoot,
-    autoconfDirs=['.', 'mozilla', 'mozilla/js/src']
+    autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
+    clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
 )
 
 builders.append({
@@ -248,7 +248,8 @@ for platform in releasePlatforms:
         buildSpace=10,
         productName=productName,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     )
 
     builders.append({
@@ -283,7 +284,8 @@ for platform in releasePlatforms:
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     )
 
     builders.append({
@@ -301,14 +303,15 @@ for platform in l10nPlatforms:
         buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
         cvsroot=cvsroot,
         stagingServer=stagingServer,
+        stagingUser='tbirdbld',
         productName=productName,
         version=version,
         buildNumber=buildNumber,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
-#        platform=platform,
+        platform=platform,
+        clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     )
-
     builders.append({
         'name': '%s_l10n_verification' % platform,
         'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
@@ -345,10 +348,14 @@ updates_factory = ReleaseUpdatesFactory(
     stageUsername=nightly_config.BRANCHES[sourceRepoName]['stage_username'],
     stageSshKey=nightly_config.BRANCHES[sourceRepoName]['stage_ssh_key'],
     ausUser=nightly_config.AUS2_USER,
+    ausSshKey=nightly_config.AUS2_SSH_KEY,
     ausHost=nightly_config.AUS2_HOST,
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
+    clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
+    oldRepoPath=sourceRepoPath,
+#    releaseNotesUrl=releaseNotesUrl,
 )
 
 builders.append({
@@ -365,6 +372,7 @@ for platform in releasePlatforms:
         hgHost=nightly_config.HGHOST,
         buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
         verifyConfig=verifyConfigs[platform],
+        clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     )
 
     builders.append({
@@ -380,6 +388,7 @@ final_verification_factory = ReleaseFinalVerification(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     verifyConfigs=verifyConfigs,
+    clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
 )
 
 builders.append({
