@@ -449,10 +449,18 @@ BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = False 
-BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = False 
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = False 
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = False 
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True 
+BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = True 
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = True 
+BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = True 
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['tracemonkey']['platforms']['macosx64']['enable_opt_unittests'] = True 
+BRANCHES['tracemonkey']['platforms']['macosx64']['enable_debug_unittests'] = True 
+#BRANCHES['tracemonkey']['platforms']['win32']['enable_opt_unittests'] = True 
+#BRANCHES['tracemonkey']['platforms']['win32']['enable_debug_unittests'] = False 
+#BRANCHES['tracemonkey']['platforms']['win64']['enable_opt_unittests'] = True 
+#BRANCHES['tracemonkey']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
