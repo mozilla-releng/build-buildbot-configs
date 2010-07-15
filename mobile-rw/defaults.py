@@ -95,7 +95,7 @@ default_n810['maemkit_tarball'] = 'http://production-mobile-master.build.mozilla
 default_n810['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 default_n810['disable_scaling'] = True
 default_n810['reboot'] = True
-default_n810['reboot_cmd'] = 'reboot ; sleep 600'
+default_n810['reboot_cmd'] = ['sudo', 'reboot-user']
 default_n810['browser_wait'] = 20
 
 #

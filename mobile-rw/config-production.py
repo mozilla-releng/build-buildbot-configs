@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import defaults
 reload(defaults)
-from defaults import default_n900
+from defaults import default_n900, default_n810
 
 base_dep_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds'
 base_nightly_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly'
@@ -23,9 +23,11 @@ def generate_platform(base_platform, build_branch, talos_branch,nightly_unit,
 
 SLAVES = {
     'n900': ['n900-%03i' % x for x in range(1,51)],
+    'n810': ['maemo-n810-%02i' % x for x in range(1,81)],
 }
 
 default_n900['slaves'] = SLAVES['n900']
+default_n810['slaves'] = SLAVES['n810']
 
 MASTER = {'name': 'production-mobile-master',
           'slave_port': 9020,
@@ -49,6 +51,11 @@ BRANCHES = {
                 talos_branch='mobile-qt',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
+            'n810': generate_platform(default_n810,
+                build_branch='mobile-trunk',
+                talos_branch='mobile',
+                nightly_unit=True, dep_unit=True,
+                nightly_talos=True, dep_talos=True),
         },
     },
     'mozilla-1.9.2': {
@@ -61,6 +68,11 @@ BRANCHES = {
                 talos_branch='mobile-1.9.2',
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
+            'n810': generate_platform(default_n810,
+                build_branch='mobile-1.9.2',
+                talos_branch='mobile-1.9.2',
+                nightly_unit=True, dep_unit=True,
+                nightly_talos=True, dep_talos=True),
         },
     },
     'tracemonkey': {
@@ -69,15 +81,20 @@ BRANCHES = {
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-                build_branch='mobile-tracemonkey-maemo5-gtk',
+                build_branch='tracemonkey-maemo5-gtk',
                 talos_branch='mobile-tracemonkey',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=True),
             'n900-qt': generate_platform(default_n900,
-                build_branch='mobile-tracemonkey-maemo5-qt',
+                build_branch='tracemonkey-maemo5-qt',
                 talos_branch='mobile-tracemonkey-qt',
                 nightly_unit=False, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
+            'n810': generate_platform(default_n810,
+                build_branch='tracemonkey-maemo4',
+                talos_branch='mobile-tracemonkey',
+                nightly_unit=True, dep_unit=False,
+                nightly_talos=True, dep_talos=True),
         },
     },
     'electrolysis': {
@@ -86,13 +103,18 @@ BRANCHES = {
         'tree_stable_timer': 2,
         'platforms': {
             'n900-gtk': generate_platform(default_n900,
-                build_branch='mobile-electrolysis-maemo5-gtk',
+                build_branch='electrolysis-maemo5-gtk',
                 talos_branch='mobile-electrolysis',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
             'n900-qt': generate_platform(default_n900,
-                build_branch='mobile-electrolysis-maemo5-qt',
+                build_branch='electrolysis-maemo5-qt',
                 talos_branch='mobile-electrolysis-qt',
+                nightly_unit=True, dep_unit=False,
+                nightly_talos=True, dep_talos=False),
+            'n810': generate_platform(default_n810,
+                build_branch='electrolysis-maemo4',
+                talos_branch='mobile-electrolysis',
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
         },
