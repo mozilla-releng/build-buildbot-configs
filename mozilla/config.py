@@ -1043,7 +1043,6 @@ BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-t
 BRANCHES['tryserver']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile-tryserver/maemo4'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
-BRANCHES['tryserver']['mobile_platforms']['android-r7']['package_globlist'] = ['objdir/embedding/android/*.apk']
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo4']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
