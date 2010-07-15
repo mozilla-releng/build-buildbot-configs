@@ -199,7 +199,7 @@ BRANCHES['comm-central']['stage_ssh_key'] = STAGE_SSH_KEY
 BRANCHES['comm-central']['stage_base_path'] = DEFAULTS['stage_base_path']
 
 BRANCHES['comm-central']['mozilla_central_branch'] = 'releases/mozilla-1.9.1'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19110_20100506_RELBRANCH']
+BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'] + ['--mozilla-rev=COMM19111_20100701_RELBRANCH']
 BRANCHES['comm-central']['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
 BRANCHES['comm-central']['mozconfig'] = 'nightly/mozconfig'
 BRANCHES['comm-central']['package'] = True
