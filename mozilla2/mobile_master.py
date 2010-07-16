@@ -44,8 +44,8 @@ MOBILE_L10N_SLAVES = {
     'maemo5-gtk': MOBILE_SLAVES['maemo5-gtk'][-8:],
     'maemo5-qt': MOBILE_SLAVES['maemo5-qt'][-8:],
     'linux-i686': MOBILE_SLAVES['linux-i686'][-8:],
-    'macosx-i686': MOBILE_SLAVES['macosx-i686'][-8:],
-    'win32-i686': MOBILE_SLAVES['win32-i686'][-8:],
+    'macosx-i686': MOBILE_SLAVES['macosx-i686'],
+    'win32-i686': MOBILE_SLAVES['win32-i686'],
     'android-r7': MOBILE_SLAVES['android-r7'][-8:],
 }
 
