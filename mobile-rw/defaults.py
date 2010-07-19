@@ -89,9 +89,9 @@ default_platform['test_suites']['xpcshell']['known_fail_count'] = 182
 # {{{2 Nokia N810 Specializations
 #
 default_n810 = deepcopy(default_platform)
-default_n810['talos_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo/talos.tar.bz2'
-default_n810['pageloader_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo/pageloader.tar.bz2'
-default_n810['maemkit_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo/maemkit.tar.bz2'
+default_n810['talos_tarball'] = 'http://10.250.48.135/maemo/talos.tar.bz2'
+default_n810['pageloader_tarball'] = 'http://10.250.48.135/maemo/pageloader.tar.bz2'
+default_n810['maemkit_tarball'] = 'http://10.250.48.135/maemo/maemkit.tar.bz2'
 default_n810['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 default_n810['disable_scaling'] = True
 default_n810['reboot'] = True
@@ -102,9 +102,9 @@ default_n810['browser_wait'] = 20
 # {{{2 Nokia N900 Specializations
 #
 default_n900 = deepcopy(default_platform)
-default_n900['talos_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo5/talos.tar.bz2'
-default_n900['pageloader_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo5/pageloader.tar.bz2'
-default_n900['maemkit_tarball'] = 'http://production-mobile-master.build.mozilla.org/maemo5/maemkit.tar.bz2'
+default_n900['talos_tarball'] = 'http://10.250.48.135/maemo5/talos.tar.bz2'
+default_n900['pageloader_tarball'] = 'http://10.250.48.135/maemo5/pageloader.tar.bz2'
+default_n900['maemkit_tarball'] = 'http://10.250.48.135/maemo5/maemkit.tar.bz2'
 default_n900['reboot'] = True
 default_n900['reboot_cmd'] = ['sudo', 'reboot-user']
 default_n900['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
