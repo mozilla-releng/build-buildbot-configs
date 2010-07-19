@@ -1,5 +1,5 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,69)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,55)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)]
@@ -13,7 +13,19 @@ SLAVES = {
     'macosx-snow': MAC_SNOW_MINIS,
 }
 
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
+TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,27)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
+
 TRY_SLAVES = SLAVES
+TRY_SLAVES['linux'] += TRY_LINUX
+TRY_SLAVES['linux64'] += TRY_LINUX64
+TRY_SLAVES['macosx'] += TRY_MAC
+TRY_SLAVES['macosx-snow'] += TRY_MAC64
+TRY_SLAVES['win32'] += TRY_WIN32
+
 
 GLOBAL_VARS = {
     'config_subdir': 'mozilla2-staging',
