@@ -1,5 +1,5 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,55)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68) + range(68,73)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
@@ -16,8 +16,8 @@ SLAVES = {
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
-TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,40)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,27)]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
 TRY_SLAVES = {
     'linux':       TRY_LINUX,
