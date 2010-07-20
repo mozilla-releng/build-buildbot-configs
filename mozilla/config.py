@@ -89,6 +89,7 @@ GLOBAL_VARS.update({
             'browser', 'extensions/reporter',
             'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
             'security/manager',
+            'sync/services',
             ],
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
@@ -780,6 +781,11 @@ BRANCHES['mozilla-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-1.9.1']['l10nDatedDirs'] = False
 BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
+BRANCHES['mozilla-1.9.1']['l10n_modules'] =  [
+    'browser', 'extensions/reporter',
+    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+    'security/manager',
+    ],
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
@@ -842,6 +848,11 @@ BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
+BRANCHES['mozilla-1.9.2']['l10n_modules'] =  [
+    'browser', 'extensions/reporter',
+    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+    'security/manager',
+    ],
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.2-l10n/'
