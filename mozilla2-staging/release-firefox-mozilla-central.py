@@ -12,6 +12,11 @@ relbranchOverride   = ''
 l10nRepoClonePath   = 'l10n-central'
 l10nRepoPath        = 'users/stage-ffxbld'
 l10nRevisionFile    = 'l10n-changesets'
+# mergeLocales allows missing localized strings to be filled in by their en-US
+# equivalent string. This is on (True) by default for nightly builds, but 
+# should be False for releases *EXCEPT* alphas and early betas. If in doubt, 
+# ask release-drivers.
+mergeLocales        = True
 cvsroot             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 productName         = 'firefox'
 appName             = 'browser'
@@ -20,24 +25,24 @@ appName             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '3.7a5'
+version             = '4.0b2'
 appVersion          = version
 # NB: this will become 2.0.x not 2.0.0.x, bug 577875
-milestone           = '1.9.3a5'
+milestone           = '2.0b2'
 buildNumber         = 1
-baseTag             = 'FIREFOX_3_7a5'
-oldVersion          = '3.7a4'
+baseTag             = 'FIREFOX_4_0b2'
+oldVersion          = '4.0b1'
 oldAppVersion       = oldVersion
-oldBuildNumber      = 1
-oldBaseTag          = 'FIREFOX_3_7a4'
+oldBuildNumber      = 2
+oldBaseTag          = 'FIREFOX_4_0b1'
 enUSPlatforms       = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms       = enUSPlatforms
 talosTestPlatforms  = enUSPlatforms
 unittestPlatforms   = enUSPlatforms
 xulrunnerPlatforms  = enUSPlatforms
 patcherConfig       = 'moz193-branch-patcher2.cfg'
-binaryName          = 'MozillaDeveloperPreview'
-oldBinaryName       = 'MozillaDeveloperPreview'
+binaryName          = 'Firefox'
+oldBinaryName       = binaryName
 patcherToolsTag     = 'UPDATE_PACKAGING_R11'
 ftpServer           = 'ftp.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
@@ -56,5 +61,5 @@ doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath = None
 # Tuxedo/Bouncer related
-tuxedoConfig        = 'firefox-devpreview-tuxedo.ini'
+tuxedoConfig        = 'firefox-tuxedo.ini'
 tuxedoServerUrl     = 'https://tuxedo.stage.mozilla.com/api/'

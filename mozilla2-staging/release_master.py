@@ -356,6 +356,7 @@ for platform in enUSPlatforms:
             appName=appName,
             repoPath=sourceRepoPath,
             l10nRepoPath=l10nRepoPath,
+            mergeLocales=mergeLocales,
             stageServer=branchConfig['stage_server'],
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],

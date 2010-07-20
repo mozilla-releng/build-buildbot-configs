@@ -6,6 +6,11 @@ sourceRepoRevision = '65c30e4ee631'
 relbranchOverride  = 'GECKO20b1_20100628_RELBRANCH'
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets'
+# mergeLocales allows missing localized strings to be filled in by their en-US
+# equivalent string. This is on (True) by default for nightly builds, but
+# should be False for releases *EXCEPT* alphas and early betas. If in doubt,
+# ask release-drivers.
+mergeLocales       = True
 cvsroot            = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 productName        = 'firefox'
 appName            = 'browser'
