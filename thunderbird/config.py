@@ -715,3 +715,16 @@ BRANCHES['comm-central-trunk-bloat']['platforms']['macosx']['env'] = {'CVS_RSH':
 # Release automation expect to find these
 STAGE_BASE_PATH=DEFAULTS['stage_base_path']
 COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
+
+if __name__ == "__main__":
+    import sys, pprint
+    args = sys.argv[1:]
+
+    if len(args) > 0:
+        branches = args
+    else:
+        branches = BRANCHES.keys()
+
+    for branch in branches:
+        print branch
+        pprint.pprint(BRANCHES[branch])
