@@ -136,19 +136,19 @@ debsign_staging = debsign + MasterConfig(
             ],
         )
 
-mobile_rw = MasterConfig(
-        'mobile-rw',
+mobile = MasterConfig(
+        'mobile',
         globs=['*.py', '*.cfg'],
         local_links=[],
         )
 
-mobile_rw_production = mobile_rw + MasterConfig(
+mobile_production = mobile + MasterConfig(
         local_links=[
             ('config-production.py', 'config.py'),
             ],
         )
 
-mobile_rw_staging = mobile_rw + MasterConfig(
+mobile_staging = mobile + MasterConfig(
         local_links=[
             ('config-staging.py', 'config.py'),
             ],
@@ -169,14 +169,6 @@ talos_staging_2 = MasterConfig(
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('master2.cfg', 'master.cfg')
-            ],
-        )
-
-talos_staging_try = MasterConfig(
-        'talos-staging-try',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ],
         )
 
@@ -206,11 +198,12 @@ talos_r3_2 = MasterConfig(
             ],
         )
 
-talos_try = MasterConfig(
-        'talos-try',
+talos_r3_3 = MasterConfig(
+        'talos-r3',
         globs=['*.py', '*.cfg'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('master3.cfg', 'master.cfg')
             ],
         )
 
@@ -292,12 +285,10 @@ masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
         'mozilla2': [mozilla2_1, mozilla2_2, try_master],
         'talos-staging': [talos_staging_1, talos_staging_2],
-        'talos-staging-try': [talos_staging_try],
         'talos': [talos],
-        'talos-try': [talos_try],
-        'talos-r3': [talos_r3_1, talos_r3_2],
+        'talos-r3': [talos_r3_1, talos_r3_2, talos_r3_3],
         'debsign': [debsign_production, debsign_staging],
-        'mobile_rw': [mobile_rw_production, mobile_rw_staging],
+        'mobile': [mobile_production, mobile_staging],
         }
 
 # Buildbot 0.8.0 masters
