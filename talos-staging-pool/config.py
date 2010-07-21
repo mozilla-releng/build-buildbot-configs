@@ -555,6 +555,10 @@ BRANCHES['tryserver']['tinderbox_tree'] = "MozillaTest"
 BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['talos_command'] = TALOS_CMD
 BRANCHES['tryserver']['fetch_symbols'] = True
+# Disable this on staging so people don't get notified of staging tests
+BRANCHES['tryserver']['enable_mail_notifier'] = False
+BRANCHES['tryserver']['package_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['tryserver']['chrome_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['nochrome_tests'] = (1, False, {}, ALL_PLATFORMS)
