@@ -890,6 +890,10 @@ BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
 BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
 BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = False
 
 ######## places
 BRANCHES['places']['repo_path'] = 'projects/places'
