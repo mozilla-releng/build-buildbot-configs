@@ -120,6 +120,7 @@ BRANCHES = {
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'talos_masters': [('localhost:9011', False)],
         'platforms': {
             'win32': {
                 'env': {
