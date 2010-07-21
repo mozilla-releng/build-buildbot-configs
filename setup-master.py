@@ -172,14 +172,6 @@ talos_staging_2 = MasterConfig(
             ],
         )
 
-talos_staging_try = MasterConfig(
-        'talos-staging-try',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ],
-        )
-
 talos = MasterConfig(
         'talos-pool',
         globs=['*.py', '*.cfg'],
@@ -212,14 +204,6 @@ talos_r3_3 = MasterConfig(
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('master3.cfg', 'master.cfg')
-            ],
-        )
-
-talos_try = MasterConfig(
-        'talos-try',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ],
         )
 
@@ -301,9 +285,7 @@ masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
         'mozilla2': [mozilla2_1, mozilla2_2, try_master],
         'talos-staging': [talos_staging_1, talos_staging_2],
-        'talos-staging-try': [talos_staging_try],
         'talos': [talos],
-        'talos-try': [talos_try],
         'talos-r3': [talos_r3_1, talos_r3_2, talos_r3_3],
         'debsign': [debsign_production, debsign_staging],
         'mobile': [mobile_production, mobile_staging],
