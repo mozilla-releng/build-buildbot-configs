@@ -1,7 +1,0 @@
-SlavePasswords = {
-        'linux': 'pass',
-        'xp': 'pass',
-        'vista': 'pass',
-        'tiger': 'pass',
-        'leopard': 'pass',
-        }
