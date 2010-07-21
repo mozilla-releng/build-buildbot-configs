@@ -44,7 +44,6 @@ DEFAULTS = {
     'period':                 60 * 60 * 8,
     'nightly_hour':          [3],
     'nightly_minute':        [0],
-    'irc':                    True,
     'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
@@ -99,8 +98,6 @@ BRANCHES['comm-1.9.1-unittest'] = {
     'branch_name': 'comm-1.9.1',
     'tinderbox_tree': 'Thunderbird3.0',
 #    'client_py_extra_args': ['--mozilla-rev=COMM19110_20100506_RELBRANCH'],
-    'irc_nick': 'thunderbot',
-    'irc_channels': ['maildev'],
     'platforms': {
         'linux': {
             'base_name': 'Linux comm-1.9.1',
@@ -158,8 +155,6 @@ BRANCHES['comm-central-unittest'] = {
     'nightly': False,
     'mozmill': True,
     'tinderbox_tree': 'Thunderbird',
-    'irc_nick': 'thunderbot-trunk',
-    'irc_channels': ['maildev'],
     'period': 60 * 60 * 14,
     'platforms': {
         'linux': {
@@ -215,8 +210,6 @@ BRANCHES['comm-central']['l10n'] = True
 BRANCHES['comm-central']['l10n_repo'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['comm-central']['l10n_tree'] = 'tb30x'
 #BRANCHES['comm-central']['platforms']['macosx-shark']['l10n'] = False
-BRANCHES['comm-central']['irc_nick'] = 'thunderbuild'
-BRANCHES['comm-central']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
 BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
 BRANCHES['comm-central']['platforms']['macosx']['base_name'] = 'MacOSX 10.5 comm-1.9.1'
@@ -397,8 +390,6 @@ BRANCHES['comm-central-trunk']['l10n'] = True
 BRANCHES['comm-central-trunk']['platforms']['linux64']['l10n'] = False
 BRANCHES['comm-central-trunk']['l10n_repo'] = 'l10n-central'
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'tb31x'
-BRANCHES['comm-central-trunk']['irc_nick'] = 'thunderbuild-trunk'
-BRANCHES['comm-central-trunk']['irc_channels'] = [ 'maildev' ]
 
 #BRANCHES['comm-central-trunk']['platforms']['macosx']['nightly_builder'] = ['mini-02'],
 
@@ -492,8 +483,6 @@ BRANCHES['comm-central-bloat']['package'] = False
 BRANCHES['comm-central-bloat']['upload_stage'] = False
 BRANCHES['comm-central-bloat']['codesighs'] = False
 BRANCHES['comm-central-bloat']['l10n'] = False
-BRANCHES['comm-central-bloat']['irc_nick'] = 'thunderbloat'
-BRANCHES['comm-central-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-bloat']['builder_type'] = 'bloat'
 BRANCHES['comm-central-bloat']['platforms']['linux']['base_name'] = 'Linux comm-1.9.1'
 BRANCHES['comm-central-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-1.9.1'
@@ -664,8 +653,6 @@ BRANCHES['comm-central-trunk-bloat']['package'] = False
 BRANCHES['comm-central-trunk-bloat']['upload_stage'] = False
 BRANCHES['comm-central-trunk-bloat']['codesighs'] = False
 BRANCHES['comm-central-trunk-bloat']['l10n'] = False
-BRANCHES['comm-central-trunk-bloat']['irc_nick'] = 'thunderbloat-trunk'
-BRANCHES['comm-central-trunk-bloat']['irc_channels'] = [ 'maildev' ]
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux']['base_name'] = 'Linux comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['linux64']['base_name'] = 'Linux x86-64 comm-central'
 BRANCHES['comm-central-trunk-bloat']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central'
