@@ -552,6 +552,11 @@ BRANCHES = {
             'android-r7': {},
         }
     },
+    'shadow-central': {
+        'mobile_platforms': {
+            'android-r7': {},
+        }
+    },
     'mozilla-2.0': {
         'mobile_platforms': {},
     },
@@ -701,6 +706,40 @@ BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = Fals
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+
+######## shadow-central
+# custom settings for shadow-central repo
+BRANCHES['shadow-central']['hgurl'] = 'https://hgpvt.mozilla.org/'
+BRANCHES['shadow-central']['hghost'] = 'ssh://ffxbld@hgpvt.mozilla.org'
+BRANCHES['shadow-central']['stage_base_path'] = '/mnt/eql/builds/firefox/pvt-builds'
+BRANCHES['shadow-central']['stage_ssh_key'] = 'stg_ffxbld/ffxbld_dsa'
+# have to use complete config repo path so it doesn't look to https://hgpvt.mozilla.org
+BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/buildbot-configs'
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
+BRANCHES['shadow-central']['start_hour'] = [3]
+BRANCHES['shadow-central']['start_minute'] = [2]
+# Enable XULRunner / SDK builds
+BRANCHES['shadow-central']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['shadow-central']['enable_mac_a11y'] = True
+BRANCHES['shadow-central']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['shadow-central']['enable_l10n'] = False
+BRANCHES['shadow-central']['l10nNightlyUpdate'] = False
+BRANCHES['shadow-central']['l10nDatedDirs'] = False
+# need this or master.cfg will bail
+BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['shadow-central']['platforms']['linux-debug']['enable_unittests'] = False
+BRANCHES['shadow-central']['platforms']['linux']['enable_opt_unittests'] = False
+BRANCHES['shadow-central']['platforms']['macosx-debug']['enable_unittests'] = False
+BRANCHES['shadow-central']['platforms']['macosx']['enable_opt_unittests'] = False
+BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
+BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
