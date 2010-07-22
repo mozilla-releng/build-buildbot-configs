@@ -40,6 +40,7 @@ SLAVES = {
 
 BRANCHES = {
     'mozilla-central': {},
+    'shadow-central': {},
     'mozilla-2.0': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
@@ -313,6 +314,41 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = Fa
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 # We can't yet run unit tests on debug builds - see bug 562459
 BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
+
+######## shadow-central
+BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
+BRANCHES['shadow-central']['build_branch'] = "Shadow-Central"
+BRANCHES['shadow-central']['tinderbox_tree'] = "MozillaTest"
+BRANCHES['shadow-central']['talos_command'] = TALOS_CMD
+BRANCHES['shadow-central']['fetch_symbols'] = True
+BRANCHES['shadow-central']['fetch_release_symbols'] = False
+BRANCHES['shadow-central']['release_tests'] = 5
+BRANCHES['shadow-central']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['shadow-central']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['shadow-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['repo_path'] = "shadow-central"
+BRANCHES['shadow-central']['platforms']['macosx']['enable_opt_unittests'] = True
+BRANCHES['shadow-central']['platforms']['macosx']['enable_debug_unittests'] = True
+BRANCHES['shadow-central']['platforms']['macosx64']['enable_opt_unittests'] = True
+BRANCHES['shadow-central']['platforms']['macosx64']['enable_debug_unittests'] = True
+BRANCHES['shadow-central']['platforms']['linux']['enable_opt_unittests'] = True
+BRANCHES['shadow-central']['platforms']['linux']['enable_debug_unittests'] = True
+BRANCHES['shadow-central']['platforms']['linux64']['enable_opt_unittests'] = True
+BRANCHES['shadow-central']['platforms']['linux64']['enable_debug_unittests'] = True
+BRANCHES['shadow-central']['platforms']['win32']['enable_opt_unittests'] = True
+# We can't yet run unit tests on debug builds - see bug 562459
+BRANCHES['shadow-central']['platforms']['win32']['enable_debug_unittests'] = False 
+BRANCHES['shadow-central']['platforms']['win64']['enable_opt_unittests'] = True
+# We can't yet run unit tests on debug builds - see bug 562459
+BRANCHES['shadow-central']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
