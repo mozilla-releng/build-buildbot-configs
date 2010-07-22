@@ -10,7 +10,7 @@ SLAVES = {
     'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64': MAC_SNOW_MINIS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
@@ -23,7 +23,7 @@ TRY_SLAVES = SLAVES
 TRY_SLAVES['linux'] += TRY_LINUX
 TRY_SLAVES['linux64'] += TRY_LINUX64
 TRY_SLAVES['macosx'] += TRY_MAC
-TRY_SLAVES['macosx-snow'] += TRY_MAC64
+TRY_SLAVES['macosx64'] += TRY_MAC64
 TRY_SLAVES['win32'] += TRY_WIN32
 
 

@@ -24,14 +24,14 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64,
     'win32':       TRY_WIN32,
     'macosx':      TRY_MAC,
-    'macosx-snow': TRY_MAC64,
+    'macosx64':    TRY_MAC64,
 }
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS, 
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64':    MAC_SNOW_MINIS,
 }
 
 GLOBAL_VARS = {
@@ -220,7 +220,7 @@ PLATFORM_VARS = {
             'upload_symbols': False,
             'download_symbols': False,
             'packageTests': True,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
@@ -339,7 +339,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 5,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -732,12 +732,12 @@ BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False

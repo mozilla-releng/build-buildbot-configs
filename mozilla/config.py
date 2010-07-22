@@ -380,7 +380,7 @@ PLATFORM_VARS = {
             'build_space': 8,
             'upload_symbols': False,
             'download_symbols': False,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
@@ -502,7 +502,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 10,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -1035,12 +1035,12 @@ BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
