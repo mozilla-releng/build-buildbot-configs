@@ -74,12 +74,13 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('staging-master.build.mozilla.org:9010', True, 0),
-                         ('staging-master.build.mozilla.org:9011', True, 0),
-                         ('staging-master.build.mozilla.org:9012', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9010', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9012', True, 0),
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [('staging-master.build.mozilla.org:9010', True, 1),
+                         ('staging-master.build.mozilla.org:9011', True, 1),
+                         ('staging-master.build.mozilla.org:9012', True, 1),
+                         ('talos-staging-master02.build.mozilla.org:9010', True, 1),
+                         ('talos-staging-master02.build.mozilla.org:9012', True, 1),
                         ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),

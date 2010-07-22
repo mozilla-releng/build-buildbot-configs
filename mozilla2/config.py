@@ -78,14 +78,15 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 0),
-                         ('production-master02.build.mozilla.org:9010', False, 0),
-                         ('talos-master02.build.mozilla.org:9012', False, 0),
-                         ('test-master01.build.mozilla.org:9012', False, 0),
-                         ('test-master02.build.mozilla.org:9012', False, 0),
-                         ('talos-staging-master02.build.mozilla.org:9010', False, 0),
-                         ('talos-staging-master02.build.mozilla.org:9012', False, 0),
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 5),
+                         ('production-master02.build.mozilla.org:9010', False, 5),
+                         ('talos-master02.build.mozilla.org:9012', False, 5),
+                         ('test-master01.build.mozilla.org:9012', False, 5),
+                         ('test-master02.build.mozilla.org:9012', False, 5),
+                         ('talos-staging-master02.build.mozilla.org:9010', False, 1),
+                         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
                         ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
@@ -725,7 +726,7 @@ BRANCHES['tryserver']['enable_nightly'] = False
 BRANCHES['tryserver']['enable_xulrunner'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
-BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 0)]
+BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 5)]
 BRANCHES['tryserver']['tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
