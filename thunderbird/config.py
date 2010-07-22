@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 HGURL = 'http://hg.mozilla.org/'
 HGHOST = 'hg.mozilla.org'
 CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
