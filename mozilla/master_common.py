@@ -12,4 +12,3 @@ c['slaves'] = []
 c['builders'] = []
 c['schedulers'] = []
 c['change_source'] = []
-

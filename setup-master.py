@@ -280,6 +280,70 @@ mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_tests = MasterConfig(
+        'mozilla-tests',
+        globs=['*.py', '*.cfg'],
+        renames=[
+            ('BuildSlaves.py.template', 'BuildSlaves.py'),
+            ('passwords.py.template', 'passwords.py'),
+            ],
+        )
+
+mozilla_staging_tests_scheduler_master = mozilla_tests + MasterConfig(
+        local_links = [
+            ('staging_tests_scheduler_master.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_tests_master1 = mozilla_tests + MasterConfig(
+        local_links = [
+            ('staging_tests_master_stm01_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_staging_tests_master2 = mozilla_tests + MasterConfig(
+        local_links = [
+            ('staging_tests_master_stm02_localconfig.py', 'master_localconfig.py'),
+            ('staging_config.py', 'localconfig.py'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_scheduler_master = mozilla_tests + MasterConfig(
+        local_links = [
+            ('production_tests_scheduler_master_pm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_talos_master02 = mozilla_tests + MasterConfig(
+        local_links = [
+            ('production_tests_master_talos-master02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
+        local_links = [
+            ('production_tests_master_tm01_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_tm02 = mozilla_tests + MasterConfig(
+        local_links = [
+            ('production_tests_master_tm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
 
 masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
@@ -302,7 +366,16 @@ masters_080 = {
             mozilla_production_builder_master_pm01,
             mozilla_production_builder_master_pm03,
             mozilla_production_try_builder_master_pm02,
-         ],
+        ],
+        'mozilla-tests': [
+            mozilla_staging_tests_scheduler_master,
+            mozilla_staging_tests_master1,
+            mozilla_staging_tests_master2,
+            mozilla_production_tests_scheduler_master,
+            mozilla_production_tests_master_talos_master02,
+            mozilla_production_tests_master_tm01,
+            mozilla_production_tests_master_tm02,
+        ],
         }
 
 if __name__ == "__main__":

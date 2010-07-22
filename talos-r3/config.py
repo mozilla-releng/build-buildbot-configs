@@ -587,3 +587,28 @@ BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['a11y_tests'] = (1, True, {}, NO_MAC)
+
+if __name__ == "__main__":
+    import sys, pprint, re
+
+    class BBPrettyPrinter(pprint.PrettyPrinter):
+        def format(self, object, context, maxlevels, level):
+            if isinstance(object, WithProperties):
+                return pprint.PrettyPrinter.format(self, object.fmtstring, context, maxlevels, level)
+            return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
+
+    args = sys.argv[1:]
+
+    if len(args) > 0:
+        branches = args
+    else:
+        branches = BRANCHES.keys()
+
+    pp = BBPrettyPrinter()
+    for branch in branches:
+        print branch
+        print pp.pprint(BRANCHES[branch])
+
+    for suite in SUITES:
+        print suite
+        print pp.pprint(SUITES[suite])

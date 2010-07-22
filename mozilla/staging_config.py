@@ -38,15 +38,14 @@ GLOBAL_VARS = {
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
-        ('talos-staging-master02.build.mozilla.org:9010', False),
-        ('talos-staging-master02.build.mozilla.org:9012', False),
+        ('staging-master.build.mozilla.org:9009', True),
+        ('talos-staging-master02.build.mozilla.org:9012', True),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('localhost:9009', True, 1),
-        ('talos-staging-master02.build.mozilla.org:9010', True, 1),
+        ('staging-master.build.mozilla.org:9009', True, 1),
         ('talos-staging-master02.build.mozilla.org:9012', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
