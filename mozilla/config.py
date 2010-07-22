@@ -665,7 +665,8 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx', 'macosx64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -709,7 +710,8 @@ BRANCHES['mozilla-2.0']['enable_codecoverage'] = False
 BRANCHES['mozilla-2.0']['enable_l10n'] = True
 BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-2.0']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux' , 'linux64', 'win32',
+                                             'macosx', 'macosx64']
 BRANCHES['mozilla-2.0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-2.0']['l10n_tree'] = 'fx40x'
 #make sure it has an ending slash
