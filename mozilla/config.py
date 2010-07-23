@@ -719,6 +719,8 @@ BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/bu
 BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
 BRANCHES['shadow-central']['start_hour'] = [3]
 BRANCHES['shadow-central']['start_minute'] = [2]
+BRANCHES['shadow-central']['create_snippet'] = False
+BRANCHES['shadow-central']['enable_nightly'] = False
 # Enable XULRunner / SDK builds
 BRANCHES['shadow-central']['enable_xulrunner'] = True
 # Disable codesighs for now until ability to upload/download from secure server exists bug 581106
