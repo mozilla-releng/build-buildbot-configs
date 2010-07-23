@@ -838,7 +838,7 @@ BRANCHES['mozilla-1.9.1']['l10n_modules'] =  [
     'browser', 'extensions/reporter',
     'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
     'security/manager',
-    ],
+    ]
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
@@ -905,7 +905,7 @@ BRANCHES['mozilla-1.9.2']['l10n_modules'] =  [
     'browser', 'extensions/reporter',
     'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
     'security/manager',
-    ],
+    ]
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.2-l10n/'
