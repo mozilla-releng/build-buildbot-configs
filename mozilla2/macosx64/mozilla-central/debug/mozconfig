@@ -12,3 +12,11 @@ ac_add_options --enable-debug-symbols="-gdwarf-2"
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+# To build a 32bit dump_syms but 64bit app, bug 577431
+ac_add_options --host=i386-apple-darwin
+ac_add_options --target=x86_64-apple-darwin
+export HOST_CC="gcc-4.2 -arch i386"
+export HOST_CXX="g++-4.2 -arch i386"
+export CC="gcc-4.2 -arch x86_64"
+export CXX="g++-4.2 -arch x86_64"
