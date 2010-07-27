@@ -1,4 +1,4 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,30) + range(40,55]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,30) + range(40,55)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [1,2,5,6,7] + range(9,27) + range(29,68) + range(68,73)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
