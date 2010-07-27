@@ -129,7 +129,7 @@ BRANCHES = {
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
-        'talos_masters': [('localhost:9011', False)],
+        'talos_masters': [],
         'platforms': {
             'win32': {
                 'env': {
@@ -141,6 +141,34 @@ BRANCHES = {
                     # Source server support, bug 506702
                     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
                 },
+                'talos_masters': [],
+            },
+            'win32-debug': {
+                'talos_masters': [],
+            },
+            'linux': {
+                'talos_masters': [],
+            },
+            'linux-debug': {
+                'talos_masters': [],
+            },
+            'linux64': {
+                'talos_masters': [],
+            },
+            'linux64-debug': {
+                'talos_masters': [],
+            },
+            'macosx': {
+                'talos_masters': [],
+            },
+            'macosx-debug': {
+                'talos_masters': [],
+            },
+            'macosx64': {
+                'talos_masters': [],
+            },
+            'macosx64-debug': {
+                'talos_masters': [],
             },
         }
     },
