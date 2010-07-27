@@ -138,7 +138,7 @@ PLATFORM_UNITTEST_VARS = {
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'env_name' : 'win32-perf-unittest',
-            'enable_opt_unittests': False,
+            'enable_opt_unittests': True,
             # We can't yet run unit tests on debug builds - see bug 562459
             'enable_debug_unittests': False,
             # We can't yet run unit tests for WinXP - see bug 563036
@@ -164,7 +164,7 @@ PLATFORM_UNITTEST_VARS = {
         'win64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
-            'enable_opt_unittests': False,
+            'enable_opt_unittests': True,
             # We can't yet run unit tests on debug builds - see bug 562459
             'enable_debug_unittests': False,
             'w764': {
