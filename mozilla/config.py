@@ -316,7 +316,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
@@ -346,7 +346,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {
@@ -374,7 +374,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
@@ -457,7 +457,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64-debug': {
@@ -482,7 +482,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx-debug': {
@@ -502,7 +502,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
