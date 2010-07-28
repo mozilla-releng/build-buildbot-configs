@@ -1,5 +1,5 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,55)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68) + range(68,73)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,30) + range(40,55)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [1,2,5,6,7] + range(9,27) + range(29,68) + range(68,73)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
@@ -11,20 +11,20 @@ SLAVES = {
     'linux64':     LINUX64_VMS,
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64':    MAC_SNOW_MINIS,
 }
 
-TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
-TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
-TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,27)]
-TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,26)]
+TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,27)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,32)]
 TRY_SLAVES = {
     'linux':       TRY_LINUX,
     'linux64':     TRY_LINUX64,
     'win32':       TRY_WIN32,
     'macosx':      TRY_MAC,
-    'macosx-snow': TRY_MAC64,
+    'macosx64':    TRY_MAC64,
 }
 
 
@@ -49,14 +49,14 @@ GLOBAL_VARS = {
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
-    # and if to turn the build red if sendchange times out
+    # and sendchange retry count before give up
     'unittest_masters': [
-        ('production-master01.build.mozilla.org:9009', True, 0),
-        ('talos-master02.build.mozilla.org:9012', True, 0),
-        ('test-master01.build.mozilla.org:9012', True, 0),
-        ('test-master02.build.mozilla.org:9012', True, 0),
-        ('talos-staging-master02.build.mozilla.org:9010', False, 0),
-        ('talos-staging-master02.build.mozilla.org:9012', False, 0),
+        ('production-master01.build.mozilla.org:9009', True, 5),
+        ('talos-master02.build.mozilla.org:9012', True, 5),
+        ('test-master01.build.mozilla.org:9012', True, 5),
+        ('test-master02.build.mozilla.org:9012', True, 5),
+        ('talos-staging-master02.build.mozilla.org:9010', False, 1),
+        ('talos-staging-master02.build.mozilla.org:9012', False, 1),
     ],
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
@@ -73,6 +73,15 @@ BRANCHES = {
         'tinderbox_tree': 'Firefox',
         'mobile_tinderbox_tree': 'Mobile',
         'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
+    },
+    'shadow-central': {
+        'packaged_unittest_tinderbox_tree': 'Shadow-Central',
+        'tinderbox_tree': 'Shadow-Central',
+        'mobile_tinderbox_tree': 'Shadow-Central',
+        'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
+        'download_base_url': 'http://stage.mozilla.org/pvt-builds/firefox/shadow-central-builds',
+        'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
+        'package_url': 'http://stage.mozilla.org/pvt-builds/firefox/shadow-central-builds',
     },
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',
@@ -120,7 +129,7 @@ BRANCHES = {
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
-        'talos_masters': [('localhost:9011', False)],
+        'talos_masters': [],
         'platforms': {
             'win32': {
                 'env': {
@@ -132,6 +141,34 @@ BRANCHES = {
                     # Source server support, bug 506702
                     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
                 },
+                'talos_masters': [],
+            },
+            'win32-debug': {
+                'talos_masters': [],
+            },
+            'linux': {
+                'talos_masters': [],
+            },
+            'linux-debug': {
+                'talos_masters': [],
+            },
+            'linux64': {
+                'talos_masters': [],
+            },
+            'linux64-debug': {
+                'talos_masters': [],
+            },
+            'macosx': {
+                'talos_masters': [],
+            },
+            'macosx-debug': {
+                'talos_masters': [],
+            },
+            'macosx64': {
+                'talos_masters': [],
+            },
+            'macosx64-debug': {
+                'talos_masters': [],
             },
         }
     },

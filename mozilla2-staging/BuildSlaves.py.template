@@ -5,7 +5,7 @@ SlavePasswords = {
         'win32': 'pass',
         'try-win32': 'pass',
         'macosx': 'pass',
-        'macosx-snow': 'pass',
+        'macosx64': 'pass',
         'try-macosx': 'pass',
         }
 tuxedoUsername = 'user'

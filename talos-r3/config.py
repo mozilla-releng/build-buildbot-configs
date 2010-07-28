@@ -40,6 +40,7 @@ SLAVES = {
 
 BRANCHES = {
     'mozilla-central': {},
+    'shadow-central': {},
     'mozilla-2.0': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
@@ -121,11 +122,15 @@ PLATFORM_UNITTEST_VARS = {
         'linux': {
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': True,
             'fedora': {},
         },
         'linux64': {
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': True,
             'fedora64': {},
         },
         'win32': {
@@ -133,6 +138,9 @@ PLATFORM_UNITTEST_VARS = {
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'env_name' : 'win32-perf-unittest',
+            'enable_opt_unittests': True,
+            # We can't yet run unit tests on debug builds - see bug 562459
+            'enable_debug_unittests': False,
             # We can't yet run unit tests for WinXP - see bug 563036
             'xp': {
                 'opt_unittest_suites': [],
@@ -156,6 +164,9 @@ PLATFORM_UNITTEST_VARS = {
         'win64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
+            'enable_opt_unittests': True,
+            # We can't yet run unit tests on debug builds - see bug 562459
+            'enable_debug_unittests': False,
             'w764': {
                 'opt_unittest_suites': [
                     # Turn on chunks for mochitests
@@ -171,6 +182,8 @@ PLATFORM_UNITTEST_VARS = {
         },
         'macosx': {
             'builds_before_reboot': 1,
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': True,
             # We don't have a11y on mochitest-other for Mac
             'leopard': {
                 'opt_unittest_suites': [
@@ -198,6 +211,8 @@ PLATFORM_UNITTEST_VARS = {
         'macosx64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': True,
             # We don't have a11y on mochitest-other for Mac
             'snowleopard': {
                 'opt_unittest_suites': [
@@ -283,6 +298,7 @@ for branch in BRANCHES.keys():
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['tinderbox_tree'] = "Firefox"
+BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
 BRANCHES['mozilla-central']['fetch_release_symbols'] = False
@@ -298,26 +314,33 @@ BRANCHES['mozilla-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['macosx64']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux64']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
-# We can't yet run unit tests on debug builds - see bug 562459
-BRANCHES['mozilla-central']['platforms']['win32']['enable_debug_unittests'] = False 
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
-# We can't yet run unit tests on debug builds - see bug 562459
-BRANCHES['mozilla-central']['platforms']['win64']['enable_debug_unittests'] = False 
+
+######## shadow-central
+BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
+BRANCHES['shadow-central']['build_branch'] = "Shadow-Central"
+BRANCHES['shadow-central']['tinderbox_tree'] = "Shadow-Central"
+BRANCHES['shadow-central']['repo_path'] = "shadow-central"
+BRANCHES['shadow-central']['talos_command'] = TALOS_CMD
+BRANCHES['shadow-central']['fetch_symbols'] = True
+BRANCHES['shadow-central']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['shadow-central']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['cold_tests'] = (1, True, {}, NO_WIN)
+BRANCHES['shadow-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['shadow-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
 BRANCHES['mozilla-2.0']['build_branch'] = "2.0"
 BRANCHES['mozilla-2.0']['tinderbox_tree'] = "Firefox4.0"
+BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 BRANCHES['mozilla-2.0']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-2.0']['fetch_symbols'] = True
 BRANCHES['mozilla-2.0']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -331,24 +354,12 @@ BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
-BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['macosx64']['enable_debug_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['linux64']['enable_debug_unittests'] = True
-#BRANCHES['mozilla-2.0']['platforms']['win32']['enable_opt_unittests'] = True
-#BRANCHES['mozilla-2.0']['platforms']['win32']['enable_debug_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-2.0']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
 BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
 BRANCHES['mozilla-1.9.1']['tinderbox_tree'] = "Firefox3.5"
+BRANCHES['mozilla-1.9.1']['enable_unittests'] = False 
 BRANCHES['mozilla-1.9.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.1']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -362,24 +373,12 @@ BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['repo_path'] = "mozilla-1.9.1"
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False 
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_debug_unittests'] = False 
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['macosx64']['enable_opt_unittests'] = False 
-BRANCHES['mozilla-1.9.1']['platforms']['macosx64']['enable_debug_unittests'] = False 
-#BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_opt_unittests'] = True
-#BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_debug_unittests'] = False 
-#BRANCHES['mozilla-1.9.1']['platforms']['win64']['enable_opt_unittests'] = False 
-#BRANCHES['mozilla-1.9.1']['platforms']['win64']['enable_debug_unittests'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-1.9.2']['tinderbox_tree'] = "Firefox3.6"
+BRANCHES['mozilla-1.9.2']['enable_unittests'] = False 
 BRANCHES['mozilla-1.9.2']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.2']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -395,24 +394,12 @@ BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['repo_path'] = "mozilla-1.9.2"
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_opt_unittests'] = False 
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_debug_unittests'] = False 
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['macosx64']['enable_opt_unittests'] = False 
-BRANCHES['mozilla-1.9.2']['platforms']['macosx64']['enable_debug_unittests'] = False 
-#BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_opt_unittests'] = True 
-#BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_debug_unittests'] = False 
-#BRANCHES['mozilla-1.9.2']['platforms']['win64']['enable_opt_unittests'] = False 
-#BRANCHES['mozilla-1.9.2']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## addontester - tests against 1.9.2
 BRANCHES['addontester']['branch_name'] = "Firefox3.6"
 BRANCHES['addontester']['build_branch'] = "1.9.2"
 BRANCHES['addontester']['tinderbox_tree'] = "Firefox3.6"
+BRANCHES['addontester']['enable_unittests'] = False 
 BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
 BRANCHES['addontester']['fetch_symbols'] = False
 BRANCHES['addontester']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -427,14 +414,12 @@ BRANCHES['addontester']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['addontester']['repo_path'] = "mozilla-1.9.2"
-BRANCHES['addontester']['platforms']['linux']['enable_opt_unittests'] = False 
-BRANCHES['addontester']['platforms']['linux']['enable_debug_unittests'] = False 
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
 BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
 BRANCHES['tracemonkey']['tinderbox_tree'] = "TraceMonkey"
+BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
 BRANCHES['tracemonkey']['talos_command'] = TALOS_CMD
 BRANCHES['tracemonkey']['fetch_symbols'] = True
 BRANCHES['tracemonkey']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -448,24 +433,12 @@ BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = True 
-BRANCHES['tracemonkey']['platforms']['linux']['enable_debug_unittests'] = True 
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_opt_unittests'] = True 
-BRANCHES['tracemonkey']['platforms']['linux64']['enable_debug_unittests'] = True 
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['macosx64']['enable_opt_unittests'] = True 
-BRANCHES['tracemonkey']['platforms']['macosx64']['enable_debug_unittests'] = True 
-#BRANCHES['tracemonkey']['platforms']['win32']['enable_opt_unittests'] = True 
-#BRANCHES['tracemonkey']['platforms']['win32']['enable_debug_unittests'] = False 
-#BRANCHES['tracemonkey']['platforms']['win64']['enable_opt_unittests'] = True 
-#BRANCHES['tracemonkey']['platforms']['win64']['enable_debug_unittests'] = False 
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
 BRANCHES['places']['build_branch'] = "Places"
 BRANCHES['places']['tinderbox_tree'] = "Places"
+BRANCHES['places']['repo_path'] = "projects/places"
 BRANCHES['places']['talos_command'] = TALOS_CMD
 BRANCHES['places']['fetch_symbols'] = True
 BRANCHES['places']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -484,6 +457,7 @@ BRANCHES['places']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
 BRANCHES['electrolysis']['build_branch'] = "Electrolysis"
 BRANCHES['electrolysis']['tinderbox_tree'] = "Electrolysis"
+BRANCHES['electrolysis']['repo_path'] = "projects/electrolysis"
 BRANCHES['electrolysis']['talos_command'] = TALOS_CMD
 BRANCHES['electrolysis']['fetch_symbols'] = True
 BRANCHES['electrolysis']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -502,6 +476,7 @@ BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATF
 BRANCHES['maple']['branch_name'] = "Maple"
 BRANCHES['maple']['build_branch'] = "Maple"
 BRANCHES['maple']['tinderbox_tree'] = "Maple"
+BRANCHES['maple']['repo_path'] = "projects/maple"
 BRANCHES['maple']['talos_command'] = TALOS_CMD
 BRANCHES['maple']['fetch_symbols'] = True
 BRANCHES['maple']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -520,6 +495,7 @@ BRANCHES['maple']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['build_branch'] = "Cedar"
 BRANCHES['cedar']['tinderbox_tree'] = "Cedar"
+BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['talos_command'] = TALOS_CMD
 BRANCHES['cedar']['fetch_symbols'] = True
 BRANCHES['cedar']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -538,6 +514,7 @@ BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['birch']['branch_name'] = "Birch"
 BRANCHES['birch']['build_branch'] = "Birch"
 BRANCHES['birch']['tinderbox_tree'] = "Birch"
+BRANCHES['birch']['repo_path'] = "projects/birch"
 BRANCHES['birch']['talos_command'] = TALOS_CMD
 BRANCHES['birch']['fetch_symbols'] = True
 BRANCHES['birch']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -556,6 +533,7 @@ BRANCHES['birch']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
 BRANCHES['jaegermonkey']['build_branch'] = "Jaegermonkey"
 BRANCHES['jaegermonkey']['tinderbox_tree'] = "Jaegermonkey"
+BRANCHES['jaegermonkey']['repo_path'] = "projects/jaegermonkey"
 BRANCHES['jaegermonkey']['talos_command'] = TALOS_CMD
 BRANCHES['jaegermonkey']['fetch_symbols'] = True
 BRANCHES['jaegermonkey']['support_url_base'] = 'http://build.mozilla.org/talos'
@@ -574,8 +552,13 @@ BRANCHES['jaegermonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATF
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
 BRANCHES['tryserver']['build_branch'] = "Tryserver"
 BRANCHES['tryserver']['tinderbox_tree'] = "MozillaTry"
+BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['talos_command'] = TALOS_CMD
 BRANCHES['tryserver']['fetch_symbols'] = True
+BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['enable_merging'] = False
+BRANCHES['tryserver']['package_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['tryserver']['chrome_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['nochrome_tests'] = (1, False, {}, ALL_PLATFORMS)
@@ -587,17 +570,3 @@ BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-# unittest configs
-BRANCHES['tryserver']['repo_path'] = "try"
-BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['macosx64']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64']['enable_opt_unittests'] = True
-BRANCHES['tryserver']['platforms']['linux64']['enable_debug_unittests'] = True
-BRANCHES['tryserver']['platforms']['win32']['enable_opt_unittests'] = False
-BRANCHES['tryserver']['platforms']['win32']['enable_debug_unittests'] = False
-BRANCHES['tryserver']['platforms']['win64']['enable_opt_unittests'] = False
-BRANCHES['tryserver']['platforms']['win64']['enable_debug_unittests'] = False

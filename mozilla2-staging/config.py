@@ -24,14 +24,14 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64,
     'win32':       TRY_WIN32,
     'macosx':      TRY_MAC,
-    'macosx-snow': TRY_MAC64,
+    'macosx64':    TRY_MAC64,
 }
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS, 
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64':    MAC_SNOW_MINIS,
 }
 
 GLOBAL_VARS = {
@@ -74,12 +74,13 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('staging-master.build.mozilla.org:9010', True, 0),
-                         ('staging-master.build.mozilla.org:9011', True, 0),
-                         ('staging-master.build.mozilla.org:9012', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9010', True, 0),
-                         ('talos-staging-master02.build.mozilla.org:9012', True, 0),
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [('staging-master.build.mozilla.org:9010', True, 1),
+                         ('staging-master.build.mozilla.org:9011', True, 1),
+                         ('staging-master.build.mozilla.org:9012', True, 1),
+                         ('talos-staging-master02.build.mozilla.org:9010', True, 1),
+                         ('talos-staging-master02.build.mozilla.org:9012', True, 1),
                         ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
@@ -220,7 +221,7 @@ PLATFORM_VARS = {
             'upload_symbols': False,
             'download_symbols': False,
             'packageTests': True,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
@@ -339,7 +340,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 5,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -429,7 +430,8 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx', 'macosx64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -732,12 +734,12 @@ BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False

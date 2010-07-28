@@ -89,6 +89,7 @@ GLOBAL_VARS.update({
             'browser', 'extensions/reporter',
             'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
             'security/manager',
+            'sync/services',
             ],
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
@@ -214,6 +215,7 @@ MOBILE_PLATFORM_VARS = {
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
             'CCACHE_UMASK': '002',
+            'LC_ALL': 'C',
         },
         'package_globlist': ['embedding/android/*.apk'],
     },
@@ -235,6 +237,7 @@ MOBILE_PLATFORM_VARS = {
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
             'CCACHE_UMASK': '002',
+            'LC_ALL': 'C',
         },
         'package_globlist': ['-r', 'dist/*.tar.bz2', 'dist/*.zip'],
     },
@@ -259,6 +262,7 @@ MOBILE_PLATFORM_VARS = {
             'CCACHE_UMASK': '002',
             'CHOWN_ROOT': '~/bin/chown_root',
             'CHOWN_REVERT': '~/bin/chown_revert',
+            'LC_ALL': 'C',
         },
         'package_globlist': ['-r', 'dist/*.dmg'],
      },
@@ -309,8 +313,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
             },
-            'enable_opt_unittests': True,
+            'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -338,6 +343,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -365,8 +371,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
             },
-            'enable_opt_unittests': True,
+            'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -379,7 +386,7 @@ PLATFORM_VARS = {
             'build_space': 8,
             'upload_symbols': False,
             'download_symbols': False,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
@@ -392,6 +399,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
             'enable_checktests': False,
@@ -405,6 +413,7 @@ PLATFORM_VARS = {
             'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'mochitest_leak_threshold': 484,
@@ -445,8 +454,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -469,6 +479,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -488,8 +499,9 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -501,12 +513,13 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 10,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
             },
             'enable_unittests': False,
             'enable_checktests': False,
@@ -518,6 +531,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
+            'packageTests': True,
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
@@ -536,6 +550,11 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
+        'mobile_platforms': {
+            'android-r7': {},
+        }
+    },
+    'shadow-central': {
         'mobile_platforms': {
             'android-r7': {},
         }
@@ -664,7 +683,8 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx', 'macosx64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -683,11 +703,40 @@ BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+
+######## shadow-central
+# custom settings for shadow-central repo
+BRANCHES['shadow-central']['hgurl'] = 'https://hgpvt.mozilla.org/'
+BRANCHES['shadow-central']['hghost'] = 'ssh://ffxbld@hgpvt.mozilla.org'
+BRANCHES['shadow-central']['stage_base_path'] = '/mnt/eql/builds/firefox/pvt-builds'
+# have to use complete config repo path so it doesn't look to https://hgpvt.mozilla.org
+BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/buildbot-configs'
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
+BRANCHES['shadow-central']['start_hour'] = [3]
+BRANCHES['shadow-central']['start_minute'] = [2]
+BRANCHES['shadow-central']['create_snippet'] = False
+BRANCHES['shadow-central']['enable_nightly'] = False
+# Enable XULRunner / SDK builds
+BRANCHES['shadow-central']['enable_xulrunner'] = True
+# Disable codesighs for now until ability to upload/download from secure server exists bug 581106
+BRANCHES['shadow-central']['enable_codesighs'] = False
+# Enable unit tests
+BRANCHES['shadow-central']['enable_mac_a11y'] = True
+BRANCHES['shadow-central']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['shadow-central']['enable_l10n'] = False
+BRANCHES['shadow-central']['l10nNightlyUpdate'] = False
+BRANCHES['shadow-central']['l10nDatedDirs'] = False
+# need this or master.cfg will bail
+BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
+BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
@@ -708,7 +757,8 @@ BRANCHES['mozilla-2.0']['enable_codecoverage'] = False
 BRANCHES['mozilla-2.0']['enable_l10n'] = True
 BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-2.0']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux' , 'linux64', 'win32',
+                                             'macosx', 'macosx64']
 BRANCHES['mozilla-2.0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-2.0']['l10n_tree'] = 'fx40x'
 #make sure it has an ending slash
@@ -727,10 +777,6 @@ BRANCHES['mozilla-2.0']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-2.0']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
-BRANCHES['mozilla-2.0']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
@@ -780,6 +826,11 @@ BRANCHES['mozilla-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-1.9.1']['l10nDatedDirs'] = False
 BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
+BRANCHES['mozilla-1.9.1']['l10n_modules'] =  [
+    'browser', 'extensions/reporter',
+    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+    'security/manager',
+    ]
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
@@ -842,6 +893,11 @@ BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
+BRANCHES['mozilla-1.9.2']['l10n_modules'] =  [
+    'browser', 'extensions/reporter',
+    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+    'security/manager',
+    ]
 #make sure it has an ending slash
 BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.2-l10n/'
@@ -890,10 +946,6 @@ BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
 BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
 BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
-BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = False
 
 ######## places
 BRANCHES['places']['repo_path'] = 'projects/places'
@@ -1024,12 +1076,12 @@ BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
@@ -1039,10 +1091,6 @@ BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'tryb
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 # Sending unittests to test masters
-BRANCHES['tryserver']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['tryserver']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
 BRANCHES['tryserver']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile-tryserver/maemo4'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'

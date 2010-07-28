@@ -1,4 +1,4 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,55)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,30) + range(40,55)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
@@ -10,7 +10,7 @@ SLAVES = {
     'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64': MAC_SNOW_MINIS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
@@ -23,7 +23,7 @@ TRY_SLAVES = SLAVES
 TRY_SLAVES['linux'] += TRY_LINUX
 TRY_SLAVES['linux64'] += TRY_LINUX64
 TRY_SLAVES['macosx'] += TRY_MAC
-TRY_SLAVES['macosx-snow'] += TRY_MAC64
+TRY_SLAVES['macosx64'] += TRY_MAC64
 TRY_SLAVES['win32'] += TRY_WIN32
 
 
@@ -42,11 +42,12 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
     'unittest_masters': [
-        ('localhost:9009', True, 0),
-        ('talos-staging-master02.build.mozilla.org:9010', True, 0),
-        ('talos-staging-master02.build.mozilla.org:9012', True, 0),
+        ('localhost:9009', True, 1),
+        ('talos-staging-master02.build.mozilla.org:9010', True, 1),
+        ('talos-staging-master02.build.mozilla.org:9012', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',
@@ -65,6 +66,48 @@ BRANCHES = {
         'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
         'enable_mail_notifier': False,
         'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'talos_masters': [],
+        'platforms': {
+            'win32': {
+                'env': {
+                    'SYMBOL_SERVER_HOST': 'build.mozilla.org',
+                    'CVS_RSH': 'ssh',
+                    'MOZ_OBJDIR': 'obj-firefox',
+                    'TINDERBOX_OUTPUT': '1',
+                    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                    # Source server support, bug 506702
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                },
+                'talos_masters': [],
+            },
+            'win32-debug': {
+                'talos_masters': [],
+            },
+            'linux': {
+                'talos_masters': [],
+            },
+            'linux-debug': {
+                'talos_masters': [],
+            },
+            'linux64': {
+                'talos_masters': [],
+            },
+            'linux64-debug': {
+                'talos_masters': [],
+            },
+            'macosx': {
+                'talos_masters': [],
+            },
+            'macosx-debug': {
+                'talos_masters': [],
+            },
+            'macosx64': {
+                'talos_masters': [],
+            },
+            'macosx64-debug': {
+                'talos_masters': [],
+            },
+        }
     }
 }
 

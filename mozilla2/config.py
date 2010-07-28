@@ -6,7 +6,7 @@ from buildbotcustom.env import MozillaEnvironments
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,30) + range(40,55)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
@@ -24,14 +24,14 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64,
     'win32':       TRY_WIN32,
     'macosx':      TRY_MAC,
-    'macosx-snow': TRY_MAC64,
+    'macosx64':    TRY_MAC64,
 }
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS, 
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx-snow': MAC_SNOW_MINIS,
+    'macosx64':    MAC_SNOW_MINIS,
 }
 
 GLOBAL_VARS = {
@@ -78,14 +78,15 @@ GLOBAL_VARS = {
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
     # List of unittest masters to notify of new builds to test,
-    # and if a failure to notify the master should result in a warning
-    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 0),
-                         ('production-master02.build.mozilla.org:9010', False, 0),
-                         ('talos-master02.build.mozilla.org:9012', False, 0),
-                         ('test-master01.build.mozilla.org:9012', False, 0),
-                         ('test-master02.build.mozilla.org:9012', False, 0),
-                         ('talos-staging-master02.build.mozilla.org:9010', False, 0),
-                         ('talos-staging-master02.build.mozilla.org:9012', False, 0),
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [('production-master.build.mozilla.org:9010', False, 5),
+                         ('production-master02.build.mozilla.org:9010', False, 5),
+                         ('talos-master02.build.mozilla.org:9012', False, 5),
+                         ('test-master01.build.mozilla.org:9012', False, 5),
+                         ('test-master02.build.mozilla.org:9012', False, 5),
+                         ('talos-staging-master02.build.mozilla.org:9010', False, 1),
+                         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
                         ],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
@@ -224,7 +225,7 @@ PLATFORM_VARS = {
             'upload_symbols': False,
             'download_symbols': False,
             'packageTests': True,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
@@ -346,7 +347,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 5,
-            'slaves': SLAVES['macosx-snow'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -437,7 +438,8 @@ BRANCHES['mozilla-central']['enable_codecoverage'] = True
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-central']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx', 'macosx64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -724,7 +726,7 @@ BRANCHES['tryserver']['enable_nightly'] = False
 BRANCHES['tryserver']['enable_xulrunner'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
-BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 0)]
+BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 5)]
 BRANCHES['tryserver']['tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'MozillaTry'
 BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
@@ -741,12 +743,12 @@ BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx-snow']
+BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
