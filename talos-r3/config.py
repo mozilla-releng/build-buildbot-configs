@@ -556,6 +556,7 @@ BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['talos_command'] = TALOS_CMD
 BRANCHES['tryserver']['fetch_symbols'] = True
 BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['package_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['support_url_base'] = 'http://build.mozilla.org/talos'
