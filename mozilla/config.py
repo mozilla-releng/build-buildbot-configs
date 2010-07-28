@@ -315,8 +315,8 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
             },
-            'enable_opt_unittests': True,
-            'enable_checktests': True,
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
@@ -346,7 +346,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {
@@ -373,8 +373,8 @@ PLATFORM_VARS = {
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
             },
-            'enable_opt_unittests': True,
-            'enable_checktests': True,
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
@@ -413,6 +413,7 @@ PLATFORM_VARS = {
             'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
+            'packageTests': True,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'mochitest_leak_threshold': 484,
@@ -455,8 +456,8 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
             },
-            'enable_unittests': True,
-            'enable_checktests': True,
+            'enable_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64-debug': {
@@ -481,7 +482,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx-debug': {
@@ -500,8 +501,8 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
             },
-            'enable_unittests': True,
-            'enable_checktests': True,
+            'enable_unittests': False,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
@@ -530,6 +531,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
+            'packageTests': True,
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
@@ -701,10 +703,6 @@ BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-central']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ######## shadow-central
@@ -734,10 +732,6 @@ BRANCHES['shadow-central']['l10nNightlyUpdate'] = False
 BRANCHES['shadow-central']['l10nDatedDirs'] = False
 # need this or master.cfg will bail
 BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['shadow-central']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['shadow-central']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['shadow-central']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['shadow-central']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
@@ -783,10 +777,6 @@ BRANCHES['mozilla-2.0']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-2.0']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
-BRANCHES['mozilla-2.0']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-2.0']['platforms']['linux']['enable_opt_unittests'] = False
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
@@ -956,10 +946,6 @@ BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
 BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['tracemonkey']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
 BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
-BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['tracemonkey']['platforms']['macosx']['enable_opt_unittests'] = False
 
 ######## places
 BRANCHES['places']['repo_path'] = 'projects/places'
@@ -1105,10 +1091,6 @@ BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'tryb
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 # Sending unittests to test masters
-BRANCHES['tryserver']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['tryserver']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['tryserver']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
 BRANCHES['tryserver']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile-tryserver/maemo4'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
