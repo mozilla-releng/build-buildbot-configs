@@ -26,7 +26,7 @@ SUITES = {
     'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
     'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
     'addon': ['--activeTests', 'ts:tp4'],
-    'a11y': ['--activeTests', 'a11y'],
+    'a11y': GRAPH_CONFIG + ['--activeTests', 'a11y'],
 }
 
 SLAVES = {
