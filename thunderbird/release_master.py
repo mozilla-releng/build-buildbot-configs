@@ -28,7 +28,7 @@ reload(nightly_config)
 #XXX: Our current buildbot config is inconsistent with the branch name itself, fix it
 nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].copy()
 
-for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
+for v in ['stage_username','stage_server', 'stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
 
 builders = []

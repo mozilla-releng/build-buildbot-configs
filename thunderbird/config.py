@@ -258,14 +258,6 @@ for config_name in build_configs:
         config['env']['SYMBOL_SERVER_USER'] = 'tbirdbld'
         config['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
 
-    #TODO - why just this configuration?
-    if config_name in ['comm-central']:
-        config['stage_base_path'] = '/home/ftp/pub/mozilla.org/thunderbird'
-        config['stage_group'] = 'thunderbird'
-        config['stage_server'] = 'stage.mozilla.org'
-        config['stage_ssh_key'] = 'tbirdbld_dsa'
-        config['stage_username'] = 'tbirdbld'
-
     if config['builder_type'] == 'bloat':
         config['mozconfig'] = 'debug/mozconfig'
         config['nightly'] = False
