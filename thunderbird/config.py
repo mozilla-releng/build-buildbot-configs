@@ -248,7 +248,6 @@ for config_name in build_configs:
 
     #if config_name not in ['comm-1.9.2-unittest', 'comm-central-unittest']: #TODO
     if config['builder_type'] != 'check':
-        config['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
         config['env']['CVS_RSH'] = 'ssh'
         config['env']['MOZ_OBJDIR'] = 'objdir-tb'
         config['env']['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
