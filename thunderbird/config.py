@@ -178,6 +178,22 @@ build_configs = {
         'nightly': False,
         'tinderbox_tree': 'Thunderbird3.1',
     },
+    'comm-1.9.1-unittest': {
+        'branch_config':  'comm-1.9.1',
+        'builder_type': 'check',
+        'env': {},
+        'factory': 'CCUnittestBuildFactory',
+        'hg_branch':  'releases/comm-1.9.1', #
+        'leak_threshold': {
+            'linux': 970000,
+            'macosx': 2500000,
+            'win32': 110000,
+        },
+        'mozilla_central_branch':  'releases/mozilla-1.9.1', #
+        'mozmill': True,
+        'nightly': False,
+        'tinderbox_tree': 'Thunderbird3.0',
+    },
     'comm-central': {
         'aus': {
             'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
@@ -340,8 +356,6 @@ for branch in ['comm-central-unittest', 'comm-1.9.2-unittest']:
                 del BRANCHES[branch]['platforms'][platform][key]
 
 
-
-
 # ----------------
 
 HGURL = 'http://hg.mozilla.org/'
@@ -418,6 +432,6 @@ if __name__ == "__main__":
     else:
         branches = BRANCHES.keys()
 
-    for branch in ['comm-central-unittest', 'comm-1.9.2-bloat', 'comm-1.9.2-unittest', 'comm-1.9.2', 'comm-central-trunk-bloat', 'comm-central-trunk', 'comm-central', 'comm-central-bloat']:
+    for branch in branches:
         print branch
         pprint.pprint(BRANCHES[branch])
