@@ -283,7 +283,7 @@ for config_name in build_configs:
             config['platforms']['linux64']['l10n'] = {}
         config['platforms']['linux64']['l10n'] = False
 
-    if config['builder_type'] != 'check':
+    if config.get('codesighs') == True:
         config['env']['TINDERBOX_OUTPUT'] = '1'
 
     for platform in branch_config['platforms']:
