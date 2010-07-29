@@ -402,7 +402,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32': {
@@ -522,7 +522,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
             },
             'enable_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {

@@ -240,7 +240,7 @@ PLATFORM_VARS = {
                 'CHOWN_REVERT': '~/bin/chown_revert',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32': {
@@ -355,7 +355,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
             'enable_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {
