@@ -229,9 +229,6 @@ for config_name in build_configs:
     if not config.has_key('platforms'):
         config['env'] = {}
 
-    # common to all build configs
-    config['host'] = 'us-staging.sj.mozillamessaging.com'
-
     #if config_name not in ['comm-1.9.2-unittest', 'comm-central-unittest']: #TODO
     if config['builder_type'] != 'check':
         config['cvsroot'] = ':pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot'
@@ -312,7 +309,6 @@ for config_name in build_configs:
     if branch_config['branch_name'] != '':
         BRANCHES[config_name]['branch_name'] = branch_config['branch_name']
     key_copy(build_configs[config_name], BRANCHES[config_name], [ 'branch_config', 'leak_threshold', 'env' ] )
-    del BRANCHES[config_name]['host']
 
     for platform in branch_config['platforms']:
         # for each platform's keys...
