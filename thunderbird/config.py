@@ -143,6 +143,7 @@ build_configs = {
         },
         'milestone': 'comm-1.9.2', #
         'mozilla_central_branch':  'releases/mozilla-1.9.2', #
+        'nightly_hour': [0],
         'tinderbox_tree': 'Thunderbird3.1',
     },
     'comm-1.9.2-bloat': {
