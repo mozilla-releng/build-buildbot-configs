@@ -26,6 +26,7 @@ SUITES = {
     'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
     'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
     'addon': ['--activeTests', 'ts:tp4'],
+    'a11y': ['--activeTests', 'a11y'],
 }
 
 SLAVES = {
@@ -103,6 +104,8 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
 
 NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] 
+
+NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms'] 
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -314,6 +317,7 @@ BRANCHES['mozilla-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['a11y_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 
@@ -335,6 +339,7 @@ BRANCHES['shadow-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['shadow-central']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
@@ -354,6 +359,7 @@ BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-2.0']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
@@ -373,6 +379,7 @@ BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
@@ -394,6 +401,7 @@ BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## addontester - tests against 1.9.2
 BRANCHES['addontester']['branch_name'] = "Firefox3.6"
@@ -414,6 +422,7 @@ BRANCHES['addontester']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['addontester']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
@@ -433,6 +442,7 @@ BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['tracemonkey']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
@@ -452,6 +462,7 @@ BRANCHES['places']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['places']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## electrolysis
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
@@ -471,6 +482,7 @@ BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['electrolysis']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## maple
 BRANCHES['maple']['branch_name'] = "Maple"
@@ -490,6 +502,7 @@ BRANCHES['maple']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['maple']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## cedar
 BRANCHES['cedar']['branch_name'] = "Cedar"
@@ -509,6 +522,7 @@ BRANCHES['cedar']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['cedar']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## birch
 BRANCHES['birch']['branch_name'] = "Birch"
@@ -528,6 +542,7 @@ BRANCHES['birch']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['birch']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
@@ -547,6 +562,7 @@ BRANCHES['jaegermonkey']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['jaegermonkey']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
@@ -570,3 +586,4 @@ BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['tryserver']['a11y_tests'] = (1, True, {}, NO_MAC)
