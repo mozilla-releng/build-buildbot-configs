@@ -14,11 +14,11 @@ SLAVES = {
     'macosx64':    MAC_SNOW_MINIS,
 }
 
-TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,26)]
+TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,27)]
-TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,32)]
+TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,37)]
 TRY_SLAVES = {
     'linux':       TRY_LINUX,
     'linux64':     TRY_LINUX64,
