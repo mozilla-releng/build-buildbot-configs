@@ -52,7 +52,7 @@ platforms = {
         'update_platform':  'WINNT_x86-msvc',
         'display_name':  'WINNT 5.2',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-%02i' % x for x in [6,13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10 ] ],
+        'slaves': [ 'momo-vm-%02i' % x for x in [13,15,16] ] + [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11 ] ],
         'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa',
     },
     'macosx': {
