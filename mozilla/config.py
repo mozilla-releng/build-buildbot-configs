@@ -709,7 +709,7 @@ BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOL
 # custom settings for shadow-central repo
 BRANCHES['shadow-central']['hgurl'] = 'https://hgpvt.mozilla.org/'
 BRANCHES['shadow-central']['hghost'] = 'ssh://ffxbld@hgpvt.mozilla.org'
-BRANCHES['shadow-central']['stage_base_path'] = '/mnt/eql/builds/firefox/pvt-builds'
+BRANCHES['shadow-central']['stage_base_path'] = '/home/ftp/pub/firefox/pvt-builds'
 # have to use complete config repo path so it doesn't look to https://hgpvt.mozilla.org
 BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/buildbot-configs'
 # This is a path, relative to HGURL, where the repository is located

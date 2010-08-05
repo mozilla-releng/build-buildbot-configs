@@ -74,9 +74,7 @@ BRANCHES = {
         'tinderbox_tree': 'Shadow-Central',
         'mobile_tinderbox_tree': 'Shadow-Central',
         'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
-        'download_base_url': 'http://stage.mozilla.org/pvt-builds/firefox/shadow-central-builds',
-        'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
-        'package_url': 'http://stage.mozilla.org/pvt-builds/firefox/shadow-central-builds',
+        'build_tools_repo_path' : 'http://hg.mozilla.org/build/tools',
     },
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',
