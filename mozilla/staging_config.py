@@ -14,19 +14,17 @@ SLAVES = {
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
-TRY_LINUX_IXS  = []
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,27)]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
-TRY_WIN32_IXS  = []
 
 TRY_SLAVES = SLAVES
-TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
+TRY_SLAVES['linux'] += TRY_LINUX
 TRY_SLAVES['linux64'] += TRY_LINUX64
 TRY_SLAVES['macosx'] += TRY_MAC
 TRY_SLAVES['macosx64'] += TRY_MAC64
-TRY_SLAVES['win32'] += TRY_WIN32 + TRY_WIN32_IXS
+TRY_SLAVES['win32'] += TRY_WIN32
 
 
 GLOBAL_VARS = {
