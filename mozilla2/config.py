@@ -70,10 +70,7 @@ GLOBAL_VARS = {
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
     'talos_masters': [
-        ('talos-master.mozilla.org:9010', True),
-        ('talos-master02.build.mozilla.org:9012', True),
-        ('test-master01.build.mozilla.org:9012', True),
-        ('test-master02.build.mozilla.org:9012', True),
+        ('production-master01.build.mozilla.org:9009', True),
         ('talos-staging-master02.build.mozilla.org:9010', False),
         ('talos-staging-master02.build.mozilla.org:9012', False),
     ],
@@ -81,10 +78,7 @@ GLOBAL_VARS = {
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [('production-master.build.mozilla.org:9010', False, 5),
-                         ('production-master02.build.mozilla.org:9010', False, 5),
-                         ('talos-master02.build.mozilla.org:9012', False, 5),
-                         ('test-master01.build.mozilla.org:9012', False, 5),
-                         ('test-master02.build.mozilla.org:9012', False, 5),
+                         ('production-master01.build.mozilla.org:9009', False, 5),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 1),
                          ('talos-staging-master02.build.mozilla.org:9012', False, 1),
                         ],
