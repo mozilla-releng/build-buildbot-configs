@@ -160,18 +160,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             # We can't yet run unit tests on debug builds - see bug 562459
             'enable_debug_unittests': False,
-            'w764': {
-                'opt_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
-            }
+            'w764': {},
         },
         'macosx': {
             'builds_before_reboot': 1,
