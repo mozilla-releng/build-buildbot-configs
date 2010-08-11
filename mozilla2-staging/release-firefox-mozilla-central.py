@@ -38,8 +38,8 @@ oldBaseTag          = 'FIREFOX_4_0b1'
 enUSPlatforms       = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms       = enUSPlatforms
 talosTestPlatforms  = enUSPlatforms
-# We now run unit tests on the minis
-unittestPlatforms   = () 
+# We now run unit tests on the minis except win32
+unittestPlatforms   = ('win32',) 
 xulrunnerPlatforms  = enUSPlatforms
 patcherConfig       = 'moz193-branch-patcher2.cfg'
 binaryName          = 'Firefox'
