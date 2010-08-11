@@ -38,10 +38,11 @@ GLOBAL_VARS = {
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     # List of talos masters to notify of new builds,
-    # and if a failure to notify the talos master should result in a warning
+    # and if a failure to notify the talos master should result in a warning,
+    # and sendchange retry count before give up
     'talos_masters': [
-        ('staging-master.build.mozilla.org:9009', True),
-        ('talos-staging-master02.build.mozilla.org:9012', True),
+        ('staging-master.build.mozilla.org:9009', True, 1),
+        ('talos-staging-master02.build.mozilla.org:9012', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
