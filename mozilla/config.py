@@ -808,6 +808,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_unittests'] = Fals
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['packageTests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_checktests'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['packageTests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_checktests'] = False
