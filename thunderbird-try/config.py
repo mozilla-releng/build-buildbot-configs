@@ -316,9 +316,9 @@ BRANCHES['tryserver']['enable_xulrunner'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
 #BRANCHES['tryserver']['unittest_masters'] = []
-BRANCHES['tryserver']['tinderbox_tree'] = 'ThunderbirdTest'
-BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'ThunderbirdTest'
-BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['tinderbox_tree'] = 'ThunderbirdTry'
+BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'ThunderbirdTry'
+BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/tryserver-builds'
 BRANCHES['tryserver']['enable_l10n'] = False
 BRANCHES['tryserver']['enable_l10n_onchange'] = False
 BRANCHES['tryserver']['l10nNightlyUpdate'] = False
