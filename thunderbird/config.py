@@ -45,7 +45,7 @@ platforms = {
         'update_platform':  'Linux_x86_64-gcc3',
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3 ]],
+        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5 ]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
