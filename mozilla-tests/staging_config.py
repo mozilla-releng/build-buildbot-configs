@@ -14,6 +14,9 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
 GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
+    'stage_server': 'staging-stage.build.mozilla.org',
+    'stage_username': 'ffxbld',
+    'stage_ssh_key': 'ffxbld_dsa',
 }
 
 BRANCHES = {

@@ -13,6 +13,9 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
 
 GLOBAL_VARS = {
     'build_tools_repo_path': 'build/tools',
+    'stage_server': 'stage.mozilla.org',
+    'stage_username': 'ffxbld',
+    'stage_ssh_key': 'ffxbld_dsa',
 }
 
 # Local branch overrides
