@@ -33,6 +33,7 @@ GLOBAL_VARS.update({
     'stage_ssh_xulrunner_key': 'xrbld_dsa',
     'stage_ssh_mobile_key': 'ffxbld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
+    'symbol_server_mobile_path': '/mnt/netapp/breakpad/symbols_mob/',
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
@@ -101,6 +102,7 @@ GLOBAL_VARS.update({
 OBJDIR = GLOBAL_VARS['objdir']
 MOBILE_OBJDIR = GLOBAL_VARS['mobile_objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
+SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 MOBILE_PLATFORM_VARS = {
     'maemo4':{
@@ -118,7 +120,7 @@ MOBILE_PLATFORM_VARS = {
             'CXX': '/scratchbox/compilers/bin/g++',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -149,7 +151,7 @@ MOBILE_PLATFORM_VARS = {
             'CXX': '/scratchbox/compilers/bin/g++',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -180,7 +182,7 @@ MOBILE_PLATFORM_VARS = {
             'CXX': '/scratchbox/compilers/bin/g++',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -211,7 +213,7 @@ MOBILE_PLATFORM_VARS = {
             'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -236,7 +238,7 @@ MOBILE_PLATFORM_VARS = {
             'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -258,7 +260,7 @@ MOBILE_PLATFORM_VARS = {
         'env': {
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -281,7 +283,7 @@ MOBILE_PLATFORM_VARS = {
         'env': {
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
             'CCACHE_DIR': '/builds/slave/ccache',
@@ -305,7 +307,7 @@ MOBILE_PLATFORM_VARS = {
         'env': {
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
             'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
             'MOZ_OBJDIR': MOBILE_OBJDIR,
         },
