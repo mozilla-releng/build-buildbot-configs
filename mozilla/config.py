@@ -226,7 +226,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'upload_symbols': False,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
