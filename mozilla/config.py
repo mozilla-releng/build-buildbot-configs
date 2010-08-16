@@ -69,6 +69,7 @@ GLOBAL_VARS.update({
         'maemo5-gtk': {},
         'maemo5-qt': {},
         'android-r7': {},
+        'android-r7-nothumb': {},
         'linux': {},
         'win32': {},
         'macosx': {},
@@ -205,6 +206,31 @@ MOBILE_PLATFORM_VARS = {
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
+        'env': {
+            'JAVA_HOME': '/tools/jdk6',
+            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+            'LC_ALL': 'C',
+        },
+        'package_globlist': ['embedding/android/*.apk'],
+    },
+    'android-r7-nothumb': {
+        'base_name': 'Android R7 Thumbless %(branch)s',
+        'mozconfig': 'mobile/android-nothumb/mobile-browser/nightly',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'upload_symbols': True,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': True,
+        'enable_mobile_dep': False,
         'env': {
             'JAVA_HOME': '/tools/jdk6',
             'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
@@ -552,6 +578,7 @@ BRANCHES = {
     'mozilla-central': {
         'mobile_platforms': {
             'android-r7': {},
+            'android-r7-nothumb': {},
         }
     },
     'shadow-central': {
@@ -577,25 +604,12 @@ BRANCHES = {
         'mobile_platforms': {},
     },
     'tracemonkey': {
-        'mobile_platforms': {
-            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
-            'linux': {}, 'win32': {}, 'macosx': {},
-        },
     },
     'places': {
-        'mobile_platforms': {},
     },
     'electrolysis': {
-        'mobile_platforms': {
-            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
-            'linux': {}, 'win32': {}, 'macosx': {},
-        },
     },
     'jaegermonkey': {
-        'mobile_platforms': {
-            'maemo5-gtk': {}, 'maemo5-qt': {}, 'maemo4': {},
-            'linux': {}, 'win32': {}, 'macosx': {},
-        },
     },
     'tryserver': {
         'mobile_platforms': {
