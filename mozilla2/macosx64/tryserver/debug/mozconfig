@@ -1,3 +1,4 @@
+
 ac_add_options --disable-optimize
 ac_add_options --enable-debug
 ac_add_options --enable-libxul
@@ -5,9 +6,6 @@ ac_add_options --enable-libxul
 ac_add_options --enable-application=browser
 ac_add_options --enable-tests
 ac_add_options --enable-trace-malloc
-
-# temporary until we upgrade the try slaves RAM, bug 584820
-ac_add_options --disable-crashreporter
 
 # See bug 583318
 ac_add_options --enable-macos-target=10.6
