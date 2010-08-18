@@ -41,6 +41,7 @@ GLOBAL_VARS.update({
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
+    'default_l10n_space': 3,
     'default_clobber_time': 24*7, # 1 week
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
