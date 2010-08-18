@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = '9aa39b619a19'
+sourceRepoRevision = '9d6448b6a677'
 relbranchOverride  = 'GECKO20b4_20100817_RELBRANCH'
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets_mozilla-2.0'
@@ -23,7 +23,7 @@ version            = '4.0b4'
 appVersion         = version
 # NB: this will become 2.0.x not 2.0.0.x, bug 577875
 milestone          = '2.0b4'
-buildNumber        = 2
+buildNumber        = 3
 baseTag            = 'FIREFOX_4_0b4'
 oldVersion         = '4.0b3'
 oldAppVersion      = oldVersion
