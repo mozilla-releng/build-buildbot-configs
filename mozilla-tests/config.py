@@ -111,20 +111,73 @@ BRANCH_UNITTEST_VARS = {
     },
 }
 
+UNITTEST_SUITES = {
+    'opt_unittest_suites': [
+        # Turn on chunks for mochitests
+        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                             'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+    ],
+    'debug_unittest_suites': [
+        # Turn on chunks for mochitests
+        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
+                             'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+    ],
+}
+
+def removeSuite(suiteName, suiteList):
+    '''It removes 'suite' from 'suiteList' and returns it.
+    
+    Keyword arguments:
+    suiteName -- it is the name of the suite that we want to remove
+    suiteList -- it is the list of suites from where we want to remove
+                 suiteList is a list of tuples. The tuples is formed
+                 of a string and a list of suites.
+    '''
+    # Let's iterate over each tuple
+    for i, info in enumerate(suiteList):
+        name, suites = info 
+        # Let's see if suiteName is on this list of suites
+        if suiteName in suites:
+            suites = suites[:]
+            suites.remove(suiteName)
+            suiteList[i] = (name, suites)
+    return suiteList
+
+
 PLATFORM_UNITTEST_VARS = {
         'linux': {
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            'fedora': {},
+            'fedora': {
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
+                    [('opengl', ['opengl'])],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] +
+                    [('opengl', ['opengl'])],
+            },
         },
         'linux64': {
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            'fedora64': {},
+            'fedora64': {
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
+                    [('opengl', ['opengl'])],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] +
+                    [('opengl', ['opengl'])],
+            },
         },
         'win32': {
             'builds_before_reboot': 1,
@@ -139,19 +192,11 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites': [],
                 'debug_unittest_suites': [],
             },
-            # We want to add reftests-d2d for Win7
             'win7': {
-                'opt_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-a11y', 'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('reftest-d2d', ['reftest-d2d']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
+                    [('reftest-d2d', ['reftest-d2d']), ('direct3D', ['direct3D'])],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] + 
+                    [('reftest-d2d', ['reftest-d2d']), ('direct3D', ['direct3D'])],
             }
         },
         'win64': {
@@ -166,81 +211,20 @@ PLATFORM_UNITTEST_VARS = {
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            # We don't have a11y on mochitest-other for Mac
             'leopard': {
-                'opt_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
-                'debug_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
         },
         'macosx64': {
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            # We don't have a11y on mochitest-other for Mac
             'snowleopard': {
-                'opt_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
-                'debug_unittest_suites': [
-                    # Turn on chunks for mochitests
-                    ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                        'mochitest-ipcplugins']),
-                    ('reftest', ['reftest']),
-                    ('crashtest', ['crashtest']),
-                    ('xpcshell', ['xpcshell']),
-                    ('jsreftest', ['jsreftest']),
-                ],
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             }
         },
-}
-
-UNITTEST_SUITES = {
-    'opt_unittest_suites': [
-            # Turn on chunks for mochitests
-            ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-            ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                'mochitest-a11y', 'mochitest-ipcplugins']),
-            ('reftest', ['reftest']),
-            ('crashtest', ['crashtest']),
-            ('xpcshell', ['xpcshell']),
-            ('jsreftest', ['jsreftest']),
-        ],
-    'debug_unittest_suites': [
-            # Turn on chunks for mochitests
-            ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-            ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                'mochitest-a11y', 'mochitest-ipcplugins']),
-            ('reftest', ['reftest']),
-            ('crashtest', ['crashtest']),
-            ('xpcshell', ['xpcshell']),
-            ('jsreftest', ['jsreftest']),
-        ],
 }
 
 # Copy unittest vars in first, then platform vars
