@@ -94,7 +94,7 @@ build_configs = {
         'env': {},
         'hg_branch': 'comm-central',
         'l10n_repo': 'l10n-central',
-        'l10n_tree': 'tb31x',
+        'l10n_tree': 'tb',
         'leak_threshold': {
             'linux': 970000,
             'macosx': 2500000,
