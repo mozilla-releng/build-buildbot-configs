@@ -327,6 +327,12 @@ for config_name in build_configs:
            and build_configs[config_name].has_key('builder_type') and build_configs[config_name]['builder_type'] == 'bloat':
             BRANCHES[config_name]['platforms'][platform]['leak_threshold'] = build_configs[config_name]['leak_threshold'][platform]
         key_copy(platforms[platform], BRANCHES[config_name]['platforms'][platform], ['display_name','SYMBOL_SERVER_SSH_KEY'] )
+
+        #Codesighs not supported on win32
+        if build_configs[config_name].get('codesighs') == True:
+            if platform == 'win32':
+                BRANCHES[config_name]['platforms']['win32']['codesighs'] = False
+
         # set environment from various sources
         BRANCHES[config_name]['platforms'][platform]['env'] = {}
         key_copy(build_configs[config_name]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
