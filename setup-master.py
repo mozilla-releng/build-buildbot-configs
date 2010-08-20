@@ -345,6 +345,22 @@ mozilla_production_tests_master_tm02 = mozilla_tests + MasterConfig(
             ]
         )
 
+mozilla_preproduction_scheduler_master = mozilla + MasterConfig(
+        local_links = [
+            ('preproduction_scheduler_master_localconfig.py', 'master_localconfig.py'),
+            ('preproduction_config.py', 'localconfig.py'),
+            ('scheduler_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_preproduction_builder_master = mozilla + MasterConfig(
+        local_links = [
+            ('preproduction_builder_master_localconfig.py', 'master_localconfig.py'),
+            ('preproduction_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 masters = {
         'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
         'mozilla2': [mozilla2_1, mozilla2_2, try_master],
@@ -375,6 +391,10 @@ masters_080 = {
             mozilla_production_tests_master_talos_master02,
             mozilla_production_tests_master_tm01,
             mozilla_production_tests_master_tm02,
+        ],
+        'mozilla-preproduction': [
+            mozilla_preproduction_scheduler_master,
+            mozilla_preproduction_builder_master,
         ],
         }
 
