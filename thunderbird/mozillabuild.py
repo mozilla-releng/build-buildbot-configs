@@ -21,16 +21,19 @@ def setupHGPollersFromBranches(defaults, branches, change_source):
         poll_branch = getConfig(defaults, branch, 'hg_branch')
         for b in [poll_branch] + [getConfig(defaults, branch, 'mozilla_central_branch')] + getConfig(defaults, branch, 'add_poll_branches'):
             pushlogUrlOverride = '%s/%s/pushlog' % (hgurl, b),
-            if not sources.get(b):
-                sources[b] = pushlogUrlOverride
+            if not sources.get(poll_branch):
+                sources[poll_branch] = {}
+            sources[poll_branch][b] = 1
 
     for branch in sorted(sources.keys()):
-        change_source.append(HgPoller(
-            hgURL="%s/" % hgurl,
-            pushlogUrlOverride="%s/%s/pushlog" % (hgurl,branch),
-            branch=poll_branch,
-            pollInterval=1*60
-        ))
+        for poll in sorted(sources[branch].keys()):
+            pushlog = "%s/%s/pushlog" % (hgurl, poll)
+            change_source.append(HgPoller(
+                hgURL="%s/" % hgurl,
+                pushlogUrlOverride=pushlog,
+                branch=branch,
+                pollInterval=1*60
+            ))
         
 from buildbot.steps.shell import ShellCommand, WithProperties
 def uploadUpdateSnippet(f, aus, platform):
