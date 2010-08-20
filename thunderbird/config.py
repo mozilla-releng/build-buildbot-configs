@@ -90,6 +90,7 @@ build_configs = {
         },
         'branch_config': 'comm-central',
         'builder_type': 'nightly',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
         'env': {},
         'hg_branch': 'comm-central',
@@ -259,7 +260,7 @@ for config_name in build_configs:
         config['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
 
     if config['builder_type'] == 'bloat':
-        config['mozconfig'] = 'debug/mozconfig'
+        config['mozconfig'] = 'debug'
         config['nightly'] = False
         config['leak'] = True
         config['package'] = False
@@ -268,7 +269,7 @@ for config_name in build_configs:
         config['l10n'] = False
         config['create_snippet'] = False
     elif config['builder_type'] == 'nightly':
-        config['mozconfig'] = 'nightly/mozconfig'
+        config['mozconfig'] = 'nightly'
         config['package'] = True
         config['upload_stage'] = True
         config['codesighs'] = True
