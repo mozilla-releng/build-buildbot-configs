@@ -357,7 +357,8 @@ for branch in ['comm-central-unittest', 'comm-1.9.2-unittest']:
 # Enable ccache statistics for linuxes and mac
 for branch in sorted(build_configs.keys()):
     for platform in ('linux','linux64','macosx'):
-        BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
+        if BRANCHES[branch]['platforms'].get(platform):
+            BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
 
 
 # ----------------
