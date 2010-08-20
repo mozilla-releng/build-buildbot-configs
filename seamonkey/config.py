@@ -54,7 +54,7 @@ GLOBAL_VARS = {
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
-    'unittest_masters': [('localhost:9010', False, 5)],
+    'unittest_masters': [('cb-seamonkey-linuxmaster-01.mozilla.org:9010', False, 5)],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
