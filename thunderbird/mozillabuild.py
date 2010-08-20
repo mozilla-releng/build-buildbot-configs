@@ -28,7 +28,7 @@ def setupHGPollersFromBranches(defaults, branches, change_source):
         change_source.append(HgPoller(
             hgURL="%s/" % hgurl,
             pushlogUrlOverride="%s/%s/pushlog" % (hgurl,branch),
-            branch=branch,
+            branch=poll_branch,
             pollInterval=1*60
         ))
         
