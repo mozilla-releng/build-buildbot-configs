@@ -1,0 +1,10 @@
+{
+  "de": {
+    "revision": "default",
+    "platforms": ["maemo", "maemo-multilocale"]
+  },
+  "el": {
+    "revision": "default",
+    "platforms": ["maemo"]
+  }
+}
