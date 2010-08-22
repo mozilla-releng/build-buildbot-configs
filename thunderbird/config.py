@@ -132,6 +132,7 @@ build_configs = {
         },
         'branch_config':  'comm-1.9.2',
         'builder_type': 'nightly',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
         'env': {},
         'hg_branch':  'releases/comm-1.9.2', #
@@ -204,6 +205,7 @@ build_configs = {
         },
         'branch_config':  'comm-1.9.1',
         'builder_type': 'nightly',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-rev=COMM19111_20100701_RELBRANCH' ],
         'env': {},
         'hg_branch':  'releases/comm-1.9.1',
