@@ -18,7 +18,7 @@ GLOBAL_VARS.update({
     # a problem to keep them in sync.
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
-    'config_repo_path': 'build/buildbot-configs',
+    'config_subdir': 'mozilla2',
     'objdir': 'obj-firefox',
     'mobile_objdir': 'obj-fennec',
     'objdir_unittests': 'objdir',
