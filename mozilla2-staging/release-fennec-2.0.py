@@ -12,7 +12,7 @@ mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoClonePath = 'mobile-browser'
 mobileSourceRepoPath      = 'users/stage-ffxbld/mobile-browser'
 mobileSourceRepoRevision  = 'default'
-mozRelbranchOverride   = ''
+mozRelbranchOverride   = 'GECKO20b5pre_20100820_RELBRANCH'
 l10nRelbranchOverride   = ''
 mobileRelbranchOverride   = ''
 l10nRepoClonePath   = 'l10n-central'
@@ -21,6 +21,7 @@ l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
 appName             = 'mobile'
 mergeLocales        = True
+disableMultiLocale  = True
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
@@ -31,8 +32,9 @@ appVersion          = version
 milestone           = '2.0b5pre'
 buildNumber         = 1
 baseTag             = 'FENNEC_2_0a1'
-enUSPlatforms       = ('maemo4', 'maemo5-gtk', 'maemo5-qt', 'android-r7')
-l10nPlatforms       = ('maemo4', 'maemo5-gtk', 'maemo5-qt')
+#enUSPlatforms       = ('maemo4', 'maemo5-gtk', 'maemo5-qt', 'android-r7')
+enUSPlatforms       = ('maemo5-gtk', 'android-r7')
+l10nPlatforms       = ()
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
 l10nDesktopPlatforms = ()
 talosTestPlatforms  = ()
@@ -40,6 +42,6 @@ ftpServer           = 'staging-stage.build.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 stageBasePath       = '/home/ftp/pub/mobile/candidates'
 base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)
-doPartnerRepacks    = True
+doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
 partnerRepackPlatforms = ('maemo4', 'maemo5-gtk')

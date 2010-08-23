@@ -236,6 +236,10 @@ for platform in enUSPlatforms:
     clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
 
     if platform.startswith('maemo'):
+        if disableMultiLocale:
+            multiLocale = False
+        else:
+            multiLocale = mobileBranchConfig['enable_multi_locale']
         mozconfig = 'mobile/%s/%s/release' % (platform, mobileSourceRepoName)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
@@ -267,7 +271,7 @@ for platform in enUSPlatforms:
             buildSpace=10,
             mergeLocales=mergeLocales,
             locales=platform_locales['maemo-multilocale'].keys(),
-            multiLocale=mobileBranchConfig['enable_multi_locale'],
+            multiLocale=multiLocale,
             l10nRepoPath=l10nRepoPath,
             triggerBuilds=False,
         )
