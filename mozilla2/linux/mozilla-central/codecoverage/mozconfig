@@ -1,11 +1,14 @@
 export CFLAGS="-fprofile-arcs -ftest-coverage"
 export CXXFLAGS="-fprofile-arcs -ftest-coverage"
-export LDFLAGS="-lgcov -static-libgcc -static-libstdc++"
-export EXTRA_DSO_LDFLAGS="-lgcov -static-libgcc -static-libstdc++"
+export LDFLAGS="-lgcov -static-libgcc"
+export EXTRA_DSO_LDFLAGS="-lgcov -static-libgcc"
+
+CC=/tools/gcc-4.3.3/installed/bin/gcc
+CXX=/tools/gcc-4.3.3/installed/bin/g++
 
 # Don't use ccache here
-CC=/tools/gcc-4.5/bin/gcc
-CXX=/tools/gcc-4.5/bin/g++
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
 
 ac_add_options --enable-application=browser
 
