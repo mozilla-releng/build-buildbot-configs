@@ -406,6 +406,9 @@ DEFAULTS = {
     'build_space':            8,
     'l10n_nightly_updates':    False,
 
+    'create_partial':          False,
+    'create_snippet':          False,
+
     'stage_username':		STAGE_USERNAME,
     'stage_server':		STAGE_SERVER,
     'stage_group':		STAGE_GROUP,
