@@ -5,6 +5,7 @@ ac_add_options --enable-update-packaging
 ac_add_options --disable-debug
 ac_add_options --enable-tests
 ac_add_options --enable-codesighs
+ac_add_options --disable-auto-deps
 
 CC=/tools/gcc/bin/gcc
 CXX=/tools/gcc/bin/g++
