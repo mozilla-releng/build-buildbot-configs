@@ -356,6 +356,7 @@ updates_factory = ReleaseUpdatesFactory(
     clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     oldRepoPath=sourceRepoPath,
 #    releaseNotesUrl=releaseNotesUrl,
+    testOlderPartials=testOlderPartials,
 )
 
 builders.append({

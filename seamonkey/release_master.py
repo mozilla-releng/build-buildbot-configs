@@ -407,6 +407,7 @@ updates_factory = ReleaseUpdatesFactory(
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=sourceRepoPath,
     releaseNotesUrl=releaseNotesUrl,
+    testOlderPartials=testOlderPartials
 )
 
 builders.append({
@@ -487,6 +488,7 @@ if majorUpdateRepoPath:
         oldRepoPath=sourceRepoPath,
         triggerSchedulers=['major_update_verify'],
         releaseNotesUrl=majorUpdateReleaseNotesUrl,
+        testOlderPartials=testOlderPartials
     )
 
     builders.append({

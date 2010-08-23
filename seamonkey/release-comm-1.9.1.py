@@ -48,6 +48,7 @@ talosTestPlatforms         = ()
 unittestPlatforms          = ()
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2-community.mozilla.org'
+testOlderPartials          = True
 releaseNotesUrl            = None
 useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz191-seamonkey-linux.cfg',

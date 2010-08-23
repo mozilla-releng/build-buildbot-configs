@@ -43,6 +43,7 @@ bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
 ausSshKey          = 'cltbld_dsa'
+testOlderPartials  = True
 releaseNotesUrl    = None
 useBetaChannel     = 1
 verifyConfigs      = {'linux':  'moz192-firefox-linux.cfg',

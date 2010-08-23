@@ -48,6 +48,7 @@ bouncerServer       = 'download.mozilla.org'
 ausServerUrl        = 'http://staging-stage.build.mozilla.org'
 ausUser             = 'cltbld'
 ausSshKey           = 'cltbld_dsa'
+testOlderPartials   = True
 releaseNotesUrl     = None
 useBetaChannel      = 0
 # TODO: create these files before 3.6b1

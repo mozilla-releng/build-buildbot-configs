@@ -531,6 +531,7 @@ updates_factory = ReleaseUpdatesFactory(
     releaseNotesUrl=releaseNotesUrl,
     binaryName=binaryName,
     oldBinaryName=oldBinaryName,
+    testOlderPartials=testOlderPartials
 )
 
 builders.append({
@@ -616,6 +617,7 @@ if majorUpdateRepoPath:
         oldRepoPath=sourceRepoPath,
         triggerSchedulers=['major_update_verify'],
         releaseNotesUrl=majorUpdateReleaseNotesUrl,
+        testOlderPartials=testOlderPartials
     )
     
     builders.append({
