@@ -568,7 +568,7 @@ BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['tryserver']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
 BRANCHES['tryserver']['repo_path'] = "try"
 # remove after we enable building symbols on try mac64
 BRANCHES['tryserver']['platforms']['macosx64']['download_symbols'] = False
