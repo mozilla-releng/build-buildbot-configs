@@ -91,7 +91,7 @@ build_configs = {
         'branch_config': 'comm-central',
         'builder_type': 'nightly',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'env': {},
         'hg_branch': 'comm-central',
         'l10n_repo': 'l10n-central',
@@ -134,7 +134,7 @@ build_configs = {
         'branch_config':  'comm-1.9.2',
         'builder_type': 'nightly',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time'],
         'env': {},
         'hg_branch':  'releases/comm-1.9.2', #
         'l10n_repo': 'releases/l10n-mozilla-1.9.2', #
@@ -208,7 +208,7 @@ build_configs = {
         'branch_config':  'comm-1.9.1',
         'builder_type': 'nightly',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-rev=COMM19111_20100701_RELBRANCH' ],
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-rev=COMM19112_20100824_RELBRANCH' ],
         'env': {},
         'hg_branch':  'releases/comm-1.9.1',
         'l10n_repo': 'releases/l10n-mozilla-1.9.1', #
