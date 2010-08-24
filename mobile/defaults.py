@@ -97,6 +97,12 @@ default_n810['disable_scaling'] = True
 default_n810['reboot'] = True
 default_n810['reboot_cmd'] = ['sudo', 'reboot-user']
 default_n810['browser_wait'] = 20
+default_n810['env'] = {
+    #Turns out that this variable is critical but isn't set properly
+    #by running buildbot, even though a standard environment should
+    #be set up by running buildbot under sudo
+    'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/tmp/session_bus_socket'
+}
 
 #
 # {{{2 Nokia N900 Specializations
