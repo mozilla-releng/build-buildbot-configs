@@ -112,6 +112,7 @@ build_configs = {
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
+            'DISPLAY': ':2',
         },
         'hg_branch':  'comm-central',
         'leak_threshold': {
@@ -154,6 +155,7 @@ build_configs = {
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
+            'DISPLAY': ':2',
         },
         'hg_branch':  'releases/comm-1.9.2', #
         'leak_threshold': {
@@ -227,6 +229,7 @@ build_configs = {
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
+            'DISPLAY': ':2',
         },
         'hg_branch':  'releases/comm-1.9.1',
         'leak_threshold': {
