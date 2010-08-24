@@ -10,8 +10,7 @@ from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
                         LINUX_IXS, WIN32_VMS, WIN32_IXS, SLAVES, \
                         TRY_SLAVES
 
-GLOBAL_VARS = localconfig.GLOBAL_VARS.copy()
-GLOBAL_VARS.update({
+GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
@@ -97,7 +96,8 @@ GLOBAL_VARS.update({
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
 
-})
+}
+GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
