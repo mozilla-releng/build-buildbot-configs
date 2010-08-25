@@ -71,6 +71,7 @@ build_configs = {
         'env': {},
         'factory': 'CCUnittestBuildFactory',
         'hg_branch': 'comm-central',
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'leak_threshold': {
             'linux': 970000,
             'macosx': 2500000,
@@ -173,6 +174,7 @@ build_configs = {
         'env': {},
         'factory': 'CCUnittestBuildFactory',
         'hg_branch':  'releases/comm-1.9.2', #
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'leak_threshold': {
             'linux': 970000,
             'macosx': 2500000,
@@ -189,6 +191,7 @@ build_configs = {
         'env': {},
         'factory': 'CCUnittestBuildFactory',
         'hg_branch':  'releases/comm-1.9.1', #
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'leak_threshold': {
             'linux': 970000,
             'macosx': 2500000,
