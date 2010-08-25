@@ -142,6 +142,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
