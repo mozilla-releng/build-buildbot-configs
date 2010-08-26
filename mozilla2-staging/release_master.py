@@ -149,18 +149,19 @@ if majorUpdateRepoPath:
     schedulers.append(major_update_verify_scheduler)
 
 for platform in unittestPlatforms:
-    platform_test_builders = []
-    base_name = branchConfig['platforms'][platform]['base_name']
-    for suites_name, suites in branchConfig['unittest_suites']:
-        platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
+    if pf['enable_opt_unittests']:
+        platform_test_builders = []
+        base_name = branchConfig['platforms'][platform]['base_name']
+        for suites_name, suites in branchConfig['unittest_suites']:
+            platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
 
-    s = Scheduler(
-     name='%s_release_unittest' % platform,
-     treeStableTimer=0,
-     branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
-     builderNames=platform_test_builders,
-    )
-    schedulers.append(s)
+        s = Scheduler(
+         name='%s_release_unittest' % platform,
+         treeStableTimer=0,
+         branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+         builderNames=platform_test_builders,
+        )
+        schedulers.append(s)
 
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
@@ -384,7 +385,7 @@ for platform in enUSPlatforms:
             'nextSlave': _nextFastSlave,
         })
 
-    if platform in unittestPlatforms:
+    if pf['enable_opt_unittests']: 
         mochitestLeakThreshold = pf.get('mochitest_leak_threshold', None)
         crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
         for suites_name, suites in branchConfig['unittest_suites']:

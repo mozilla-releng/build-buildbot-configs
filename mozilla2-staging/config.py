@@ -219,7 +219,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': 5,
             'build_space': 8,
-            'upload_symbols': False,
+            'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
             'slaves': SLAVES['macosx64'],
@@ -303,12 +303,15 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
+            'enable_ccache': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_UMASK': '002',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -348,12 +351,9 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
             },
-            'enable_opt_unittests': False,
-            'enable_checktests': False,
-            'talos_masters': [
-                ('talos-staging-master02.build.mozilla.org:9010', False),
-                ('talos-staging-master02.build.mozilla.org:9012', False),
-            ],
+            'enable_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
@@ -484,10 +484,6 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
@@ -516,7 +512,7 @@ BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-central'
+BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Firefox/mozilla-1.9.1'
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -547,9 +543,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_unittests'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_checktests'] = False
@@ -656,11 +649,6 @@ BRANCHES['electrolysis']['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/too
 BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
     'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
 }
-BRANCHES['electrolysis']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-BRANCHES['electrolysis']['platforms']['linux64']['unittest-env'] = {
-    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-}
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
@@ -681,11 +669,9 @@ BRANCHES['addonsmgr']['enable_nightly'] = False
 BRANCHES['addonsmgr']['create_snippet'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['addonsmgr']['enable_xulrunner'] = False
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux64']['enable_opt_unittests'] = False
-BRANCHES['addonsmgr']['platforms']['linux64-debug']['enable_unittests'] = False
+# Enable unit tests
+BRANCHES['addonsmgr']['platforms']['linux64']['enable_checktests'] = True
 BRANCHES['addonsmgr']['enable_mac_a11y'] = True
-BRANCHES['addonsmgr']['unittest_build_space'] = 6
 BRANCHES['addonsmgr']['enable_shark'] = False
 # L10n configuration
 BRANCHES['addonsmgr']['enable_l10n'] = False
@@ -719,9 +705,11 @@ BRANCHES['tryserver']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['tryserver']['enable_xulrunner'] = False
 BRANCHES['tryserver']['enable_mac_a11y'] = True
-BRANCHES['tryserver']['platforms']['win32']['mochitest_leak_threshold'] = 484
-BRANCHES['tryserver']['platforms']['win32']['crashtest_leak_threshold'] = 484
-BRANCHES['tryserver']['unittest_build_space'] = 6
+# only do unittests locally until they are switched over to talos-r3
+BRANCHES['tryserver']['unittest_masters'] = [('localhost:9011', True, 5)]
+BRANCHES['tryserver']['tinderbox_tree'] = 'MozillaTry'
+BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'MozillaTry'
+BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['enable_l10n'] = False
 BRANCHES['tryserver']['enable_l10n_onchange'] = False
 BRANCHES['tryserver']['l10nNightlyUpdate'] = False
