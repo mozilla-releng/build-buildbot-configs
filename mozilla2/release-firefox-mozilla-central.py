@@ -39,8 +39,7 @@ oldBinaryName      = 'MozillaDeveloperPreview'
 ftpServer          = 'ftp.mozilla.org'
 stagingServer      = 'stage-old.mozilla.org'
 talosTestPlatforms = enUSPlatforms
-# We now run unit tests on the minis except win32
-unittestPlatforms  = ('win32',) 
+unittestPlatforms  = enUSPlatforms 
 bouncerServer      = 'download.mozilla.org'
 ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'

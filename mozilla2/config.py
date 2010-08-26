@@ -42,6 +42,7 @@ GLOBAL_VARS = {
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'config_repo_path': 'build/buildbot-configs',
+    # Custom mozconfig example: 'config_repo_path': 'build/stage-ffxbld/buildbot-configs',
     'config_subdir': 'mozilla2',
     'objdir': 'obj-firefox',
     'objdir_unittests': 'objdir',
@@ -78,6 +79,7 @@ GLOBAL_VARS = {
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [('production-master.build.mozilla.org:9010', False, 5),
+                         ('production-master02.build.mozilla.org:9010', False, 5),
                          ('production-master01.build.mozilla.org:9009', False, 5),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 1),
                          ('talos-staging-master02.build.mozilla.org:9012', False, 1),
@@ -752,7 +754,7 @@ BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'buil
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
- 
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
