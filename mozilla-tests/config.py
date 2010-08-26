@@ -429,8 +429,6 @@ BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['a11y_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
-# remove after they merge http://hg.mozilla.org/mozilla-central/rev/95e7649e256d
-BRANCHES['tracemonkey']['platforms']['macosx64']['download_symbols'] = False
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
@@ -450,8 +448,6 @@ BRANCHES['places']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['a11y_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['places']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-# remove after they merge http://hg.mozilla.org/mozilla-central/rev/95e7649e256d
-BRANCHES['places']['platforms']['macosx64']['download_symbols'] = False
 
 ######## electrolysis
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
@@ -509,8 +505,6 @@ BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['cedar']['a11y_tests'] = (1, True, {}, NO_MAC)
-# remove after they merge http://hg.mozilla.org/mozilla-central/rev/95e7649e256d
-BRANCHES['cedar']['platforms']['macosx64']['download_symbols'] = False
 
 ######## birch
 BRANCHES['birch']['branch_name'] = "Birch"
@@ -549,8 +543,6 @@ BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['a11y_tests'] = (0, True, {}, NO_MAC)
-# remove after they merge http://hg.mozilla.org/mozilla-central/rev/95e7649e256d
-BRANCHES['jaegermonkey']['platforms']['macosx64']['download_symbols'] = False
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
@@ -570,8 +562,6 @@ BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
 BRANCHES['tryserver']['repo_path'] = "try"
-# remove after we enable building symbols on try mac64
-BRANCHES['tryserver']['platforms']['macosx64']['download_symbols'] = False
 
 if __name__ == "__main__":
     import sys, pprint, re
