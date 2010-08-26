@@ -102,7 +102,7 @@ build_configs = {
             'macosx': 2500000,
             'win32': 110000,
         },
-        'milestone': 'comm-central-trunk',
+        'milestone': 'comm-central',
         'mozilla_central_branch':  'mozilla-central',
         'period': 50400,
         'tinderbox_tree': 'Thunderbird'
