@@ -126,6 +126,7 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'MozillaTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'enable_mail_notifier': True,
+        'notify_real_author': True,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'talos_masters': [],
         'platforms': {

@@ -50,6 +50,7 @@ BRANCHES = {
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
         'enable_mail_notifier': True,
+        'notify_real_author': True,
         'enable_merging': False,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'package_dir': '%(who)s-%(got_revision)s',

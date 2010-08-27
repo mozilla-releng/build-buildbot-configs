@@ -21,8 +21,8 @@ GLOBAL_VARS = {
 
 BRANCHES = {
         'tryserver': {
-            # Disable this on staging so people don't get notified of staging tests
-            'enable_mail_notifier': False,
+            'enable_mail_notifier': False, # Set to True when testing
+            'email_override': [], # Set to your address when testing
             'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
             'package_dir': '%(who)s-%(got_revision)s',
             'stage_username': 'trybld',

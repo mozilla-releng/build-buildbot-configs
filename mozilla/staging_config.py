@@ -66,7 +66,8 @@ SYMBOL_SERVER_HOST = 'staging-stage.build.mozilla.org'
 BRANCHES = {
     'tryserver': {
         'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
-        'enable_mail_notifier': False,
+        'enable_mail_notifier': False, # Set to True when testing
+        'email_override': [], # Set to your address when testing
         'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'talos_masters': [],
         'platforms': {
