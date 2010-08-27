@@ -25,6 +25,8 @@ BRANCHES = {
             'enable_mail_notifier': False,
             'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
             'package_dir': '%(who)s-%(got_revision)s',
+            'stage_username': 'trybld',
+            'stage_ssh_key': 'trybld_dsa',
         },
 }
 

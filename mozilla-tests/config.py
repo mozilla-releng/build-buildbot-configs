@@ -582,8 +582,8 @@ if __name__ == "__main__":
     pp = BBPrettyPrinter()
     for branch in branches:
         print branch
-        print pp.pprint(BRANCHES[branch])
+        pp.pprint(BRANCHES[branch])
 
     for suite in SUITES:
         print suite
-        print pp.pprint(SUITES[suite])
+        pp.pprint(SUITES[suite])

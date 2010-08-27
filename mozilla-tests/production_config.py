@@ -53,6 +53,8 @@ BRANCHES = {
         'enable_merging': False,
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'package_dir': '%(who)s-%(got_revision)s',
+        'stage_username': 'trybld',
+        'stage_ssh_key': 'trybld_dsa',
     },
     'birch': {
         'tinderbox_tree': 'Birch',
