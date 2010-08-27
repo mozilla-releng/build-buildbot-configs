@@ -383,9 +383,11 @@ STAGE_USERNAME = 'tbirdbld'
 STAGE_SERVER = 'stage.mozilla.org'
 STAGE_GROUP = 'thunderbird'
 STAGE_SSH_KEY = 'tbirdbld_dsa'
+
 AUS2_USER = 'tbirdbld'
 AUS2_SSH_KEY = 'tbirdbld_dsa'
-AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
+AUS2_HOST = 'momo-build-adm-01.sj.mozillamessaging.com'
+
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 PRODUCT = 'mail'
 MOZ_APP_NAME = 'thunderbird'
