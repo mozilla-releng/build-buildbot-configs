@@ -15,6 +15,9 @@ AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird'
 PRODUCT = 'mail'
 MOZ_APP_NAME = 'sunbird'
+SYMBOL_SERVER_HOST = 'dm-symbolpush01.mozilla.org'
+SYMBOL_SERVER_USER = 'calbld'
+SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_sbrd/'
 
 ORGANIZATION = 'community'
 
@@ -207,9 +210,9 @@ BRANCHES['comm-central-lightning']['platforms']['win32']['update_platform'] = 'W
 BRANCHES['comm-central-lightning']['platforms']['macosx']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-central-lightning']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['comm-central-lightning']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_symbols'] = False
+BRANCHES['comm-central-lightning']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['comm-central-lightning']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['comm-central-lightning']['platforms']['macosx']['upload_symbols'] = True
 BRANCHES['comm-central-lightning']['tinderbox_tree'] = 'Sunbird'
 BRANCHES['comm-central-lightning']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-central-lightning']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
@@ -225,17 +228,29 @@ BRANCHES['comm-central-lightning']['platforms']['linux']['env'] = {'CVS_RSH': 's
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-central-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
     'TINDERBOX_OUTPUT': '1',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'DISABLE_LIGHTNING_INSTALL': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
 }
 
 # Release automation expect to find these
