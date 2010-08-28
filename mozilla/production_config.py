@@ -49,8 +49,6 @@ GLOBAL_VARS = {
         ('talos-master.mozilla.org:9010', True, 5),
         ('staging-master.build.mozilla.org:9009', False, 1),
         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
-        ('10.250.48.248:9012', False, 1), #tools-staging-master.mv.mozilla.com
-        ('10.250.48.248:9010', False, 1), #tools-staging-master.mv.mozilla.com
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
@@ -59,8 +57,6 @@ GLOBAL_VARS = {
         ('production-master01.build.mozilla.org:9009', True, 5),
         ('staging-master.build.mozilla.org:9009', False, 1),
         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
-        ('10.250.48.248:9012', False, 1), #tools-staging-master.mv.mozilla.com
-        ('10.250.48.248:9010', False, 1), #tools-staging-master.mv.mozilla.com
     ],
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
