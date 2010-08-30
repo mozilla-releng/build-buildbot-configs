@@ -149,7 +149,7 @@ if majorUpdateRepoPath:
     schedulers.append(major_update_verify_scheduler)
 
 for platform in unittestPlatforms:
-    if pf['enable_opt_unittests']:
+    if branchConfig['platforms'][platform]['enable_opt_unittests']:
         platform_test_builders = []
         base_name = branchConfig['platforms'][platform]['base_name']
         for suites_name, suites in branchConfig['unittest_suites']:
