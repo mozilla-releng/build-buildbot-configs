@@ -533,7 +533,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['build_space'] = 3
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
+BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 6
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
