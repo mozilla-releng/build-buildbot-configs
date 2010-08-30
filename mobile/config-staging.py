@@ -7,17 +7,21 @@ from defaults import default_n900, default_n810
 base_dep_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds'
 base_nightly_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly'
 
-def generate_platform(base_platform, build_branch, talos_branch,nightly_unit,
-                      nightly_talos, dep_unit, dep_talos):
+def generate_platform(base_platform, build_branch, talos_branch,
+                      nightly_multi=False, nightly_unit=False,
+                      nightly_talos=False, dep_unit=False, dep_talos=False):
     new_platform = deepcopy(base_platform)
+    nightly_location = "%s/latest-%s/" % (base_nightly_location, build_branch)
+    if nightly_multi:
+        nightly_location += "en-US/"
     if dep_talos:
         new_platform['talos_build_dirs'].append('%s/%s/' % (base_dep_location, build_branch))
     if dep_unit:
         new_platform['unit_build_dirs'].append('%s/%s/' % (base_dep_location, build_branch))
     if nightly_talos:
-        new_platform['talos_build_dirs'].append("%s/latest-%s/" % (base_nightly_location,build_branch))
+        new_platform['talos_build_dirs'].append(nightly_location)
     if nightly_unit:
-        new_platform['unit_build_dirs'].append("%s/latest-%s/" % (base_nightly_location,build_branch))
+        new_platform['unit_build_dirs'].append(nightly_location)
     new_platform['talos_branch'] = talos_branch
     return new_platform
 
@@ -51,11 +55,13 @@ BRANCHES = {
             'n900-gtk': generate_platform(default_n900,
                 build_branch='mozilla-central-maemo5-gtk',
                 talos_branch='mobile',
+                nightly_multi=True,
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
             'n900-qt': generate_platform(default_n900,
                 build_branch='mozilla-central-maemo5-qt',
                 talos_branch='mobile-qt',
+                nightly_multi=True,
                 nightly_unit=True, dep_unit=False,
                 nightly_talos=True, dep_talos=False),
         },
@@ -68,11 +74,13 @@ BRANCHES = {
             'n900-gtk': generate_platform(default_n900,
                 build_branch='mozilla-1.9.2-maemo5-gtk',
                 talos_branch='mobile-1.9.2',
+                nightly_multi=True,
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
             'n810': generate_platform(default_n810,
                 build_branch='mozilla-1.9.2-maemo4',
                 talos_branch='mobile-1.9.2',
+                nightly_multi=True,
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
         },
