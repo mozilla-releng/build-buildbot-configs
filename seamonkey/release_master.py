@@ -11,7 +11,8 @@ from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory, CCReleaseRepackFactory, MajorUpdateFactory
+  L10nVerifyFactory, CCReleaseRepackFactory, UnittestPackagedBuildFactory, \
+  MajorUpdateFactory, TuxedoEntrySubmitterFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -114,18 +115,19 @@ if majorUpdateRepoPath:
     schedulers.append(major_update_verify_scheduler)
 
 for platform in unittestPlatforms:
-    platform_test_builders = []
-    base_name = branchConfig['platforms'][platform]['base_name']
-    for suites_name, suites in branchConfig['unittest_suites']:
-        platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
+    if branchConfig['platforms'][platform]['enable_opt_unittests']:
+        platform_test_builders = []
+        base_name = branchConfig['platforms'][platform]['base_name']
+        for suites_name, suites in branchConfig['unittest_suites']:
+            platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
 
-    s = Scheduler(
-     name='%s_release_unittest' % platform,
-     treeStableTimer=0,
-     branch='%s-release-unittest' % platform,
-     builderNames=platform_test_builders,
-    )
-    schedulers.append(s)
+        s = Scheduler(
+         name='%s_release_unittest' % platform,
+         treeStableTimer=0,
+         branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+         builderNames=platform_test_builders,
+        )
+        schedulers.append(s)
 
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
@@ -241,7 +243,8 @@ for platform in enUSPlatforms:
     if platform in unittestPlatforms:
         packageTests = True
         unittestMasters = branchConfig['unittest_masters']
-        unittestBranch = '%s-release-unittest' % platform
+        unittestBranch = 'release-%s-%s-opt-unittest' % (sourceRepoName,
+                                                         platform)
     else:
         packageTests = False
         unittestMasters = None
@@ -307,6 +310,7 @@ for platform in enUSPlatforms:
             chatzillaRepoPath=chatzillaRepoPath,
             cvsroot=cvsroot,
             l10nRepoPath=l10nRepoPath,
+            mergeLocales=mergeLocales,
             stageServer=branchConfig['stage_server'],
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],
@@ -333,18 +337,18 @@ for platform in enUSPlatforms:
             'factory': repack_factory
         })
 
-    if platform in unittestPlatforms:
+    if pf['enable_opt_unittests']:
         mochitestLeakThreshold = pf.get('mochitest_leak_threshold', None)
         crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
         for suites_name, suites in branchConfig['unittest_suites']:
             # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
-            if platform == 'macosx' and 'mochitest-a11y' in suites:
+            if platform.startswith('macosx') and 'mochitest-a11y' in suites:
                 suites = suites[:]
                 suites.remove('mochitest-a11y')
 
             test_builders.extend(generateCCTestBuilder(
                 branchConfig, 'release', platform, "%s_test" % platform,
-                "release-%s-unittest" % (platform,),
+                'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
                 suites_name, suites, mochitestLeakThreshold,
                 crashtestLeakThreshold))
 
@@ -407,6 +411,8 @@ updates_factory = ReleaseUpdatesFactory(
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=sourceRepoPath,
     releaseNotesUrl=releaseNotesUrl,
+    binaryName=binaryName,
+    oldBinaryName=oldBinaryName,
     testOlderPartials=testOlderPartials
 )
 
@@ -515,6 +521,31 @@ if majorUpdateRepoPath:
             'factory': major_update_verify_factory,
         })
 
+# XXX: SeaMonkey atm doesn't have permission to use this :(
+#bouncer_submitter_factory = TuxedoEntrySubmitterFactory(
+#    baseTag=baseTag,
+#    appName=appName,
+#    config=tuxedoConfig,
+#    productName=productName,
+#    version=version,
+#    milestone=milestone,
+#    tuxedoServerUrl=tuxedoServerUrl,
+#    enUSPlatforms=enUSPlatforms,
+#    l10nPlatforms=l10nPlatforms,
+#    oldVersion=oldVersion,
+#    hgHost=branchConfig['hghost'],
+#    repoPath=sourceRepoPath,
+#    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+#    credentialsFile=os.path.join(os.getcwd(), "BuildSlaves.py"),
+#)
+
+#builders.append({
+#    'name': 'bouncer_submitter',
+#    'slavenames': branchConfig['platforms']['linux']['slaves'],
+#    'category': 'release',
+#    'builddir': 'bouncer_submitter',
+#    'factory': bouncer_submitter_factory
+#})
 
 status.append(TinderboxMailNotifier(
     fromaddr="comm.buildbot@build.mozilla.org",

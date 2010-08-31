@@ -21,6 +21,11 @@ l10nRepoPath               = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile           = 'l10n-changesets'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'suite/config/version-191.txt'
+# mergeLocales allows missing localized strings to be filled in by their en-US
+# equivalent string. This is on (True) by default for nightly builds, but
+# should be False for releases *EXCEPT* alphas and early betas. If in doubt,
+# ask release-drivers.
+mergeLocales               = False
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'
@@ -42,6 +47,8 @@ enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz191-seamonkey-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R11'
+binaryName                 = brandName
+oldBinaryName              = binaryName
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 talosTestPlatforms         = ()
@@ -55,3 +62,6 @@ verifyConfigs              = {'linux':  'moz191-seamonkey-linux.cfg',
                               'macosx': 'moz191-seamonkey-mac.cfg',
                               'win32':  'moz191-seamonkey-win32.cfg'}
 majorUpdateRepoPath        = None
+# Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
+#tuxedoConfig        = 'seamonkey-tuxedo.ini'
+#tuxedoServerUrl     = 'https://bounceradmin.mozilla.com/api/'

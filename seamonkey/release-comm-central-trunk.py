@@ -21,6 +21,11 @@ l10nRepoPath               = 'l10n-central'
 l10nRevisionFile           = 'l10n-changesets'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'suite/config/version.txt'
+# mergeLocales allows missing localized strings to be filled in by their en-US
+# equivalent string. This is on (True) by default for nightly builds, but
+# should be False for releases *EXCEPT* alphas and early betas. If in doubt,
+# ask release-drivers.
+mergeLocales               = False
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'
@@ -42,6 +47,8 @@ enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ()
 patcherConfig              = 'moz20-seamonkey-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R12'
+binaryName                 = brandName
+oldBinaryName              = binaryName
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 talosTestPlatforms         = ()
@@ -55,3 +62,6 @@ verifyConfigs              = {'linux':  'moz20-seamonkey-linux.cfg',
                               'macosx': 'moz20-seamonkey-mac.cfg',
                               'win32':  'moz20-seamonkey-win32.cfg'}
 majorUpdateRepoPath        = None
+# Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
+#tuxedoConfig        = 'seamonkey-tuxedo.ini'
+#tuxedoServerUrl     = 'https://bounceradmin.mozilla.com/api/'
