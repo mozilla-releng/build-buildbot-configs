@@ -11,8 +11,9 @@ c['buildbotURL'] = 'http://preproduction-master.build.mozilla.org:8010/'
 from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
 
-from config import BRANCHES, SLAVES, MISC_CONFIG
+from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = BRANCHES.keys()
+ACTIVE_PROJECTS = PROJECTS.keys()
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg

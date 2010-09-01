@@ -91,12 +91,17 @@ BRANCHES = {
 PLATFORM_VARS = {
 }
 
-MISC_CONFIG = {
+PROJECTS = {
     'fuzzing': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'ffxbld@staging-stage.build.mozilla.org',
         'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
-        'fuzzing_idle_slaves': 0,
+        'idle_slaves': 0,
+    },
+    'nanojit': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'MozillaTest',
     },
 }

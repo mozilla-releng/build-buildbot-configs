@@ -12,7 +12,7 @@ for master_name in $(python setup-master.py $extra_args -l); do
     mkdir $master_dir
     echo -n "${master_name}... "
     python setup-master.py $extra_args $master_dir $master_name
-    (cd $master_dir; buildbot checkconfig > /dev/null && echo OK) || { echo "Broken pieces are in $master_dir"; exit_code=1; }
+    (cd $master_dir; buildbot checkconfig > /dev/null && echo OK) || { echo "Broken pieces are in $master_dir"; exit_code=1; false; }
     rm -rf $master_dir
 done
 

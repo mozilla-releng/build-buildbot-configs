@@ -97,16 +97,21 @@ GLOBAL_VARS = {
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
-MISC_CONFIG = {
+PROJECTS = {
     'fuzzing': {
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64'],
-    }
+    },
+    'nanojit': {
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32', 'arm'],
+        'hgurl': 'http://hg.mozilla.org',
+        'repo_path': 'projects/nanojit-central',
+    },
 }
-for k, v in localconfig.MISC_CONFIG.items():
-    if k not in MISC_CONFIG:
-        MISC_CONFIG[k] = {}
+for k, v in localconfig.PROJECTS.items():
+    if k not in PROJECTS:
+        PROJECTS[k] = {}
     for k1, v1 in v.items():
-        MISC_CONFIG[k][k1] = v1
+        PROJECTS[k][k1] = v1
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
@@ -1188,4 +1193,4 @@ if __name__ == "__main__":
         print branch
         pprint.pprint(BRANCHES[branch])
 
-    pprint.pprint(MISC_CONFIG)
+    pprint.pprint(PROJECTS)
