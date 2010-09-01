@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-"""setup-master.py master_dir master [master_num]
+"""setup-master.py master_dir master_name
 
-Sets up mozilla buildbot master in master_dir.  Some masters require an
-additional number since they have been split up, e.g. mozilla2"""
+Sets up mozilla buildbot master in master_dir."""
 
 import os, glob, shutil, subprocess
 
 class MasterConfig:
-    def __init__(self, name=None, globs=None, renames=None, local_links=None):
+    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None):
         self.name = name or None
+        self.config_dir = config_dir
         self.globs = globs or []
         self.renames = renames or []
         self.local_links = local_links or []
@@ -16,6 +16,7 @@ class MasterConfig:
     def __add__(self, o):
         retval = MasterConfig(
                 name = self.name or o.name,
+                config_dir = self.config_dir or o.config_dir,
                 globs = self.globs + o.globs,
                 renames = self.renames + o.renames,
                 local_links = self.local_links + o.local_links,
@@ -28,7 +29,7 @@ class MasterConfig:
         if not os.path.exists(master_dir):
             os.makedirs(master_dir)
         for g in self.globs:
-            for f in glob.glob(os.path.join(self.name, g)):
+            for f in glob.glob(os.path.join(self.config_dir, g)):
                 dst = os.path.join(master_dir, os.path.basename(f))
                 if os.path.lexists(dst):
                     os.unlink(dst)
@@ -45,10 +46,10 @@ class MasterConfig:
             dst = os.path.join(master_dir, dst)
             if os.path.lexists(dst):
                 os.unlink(dst)
-            shutil.copy(os.path.join(self.name, src), dst)
+            shutil.copy(os.path.join(self.config_dir, src), dst)
 
 mozilla2_staging = MasterConfig(
-        'mozilla2-staging',
+        config_dir='mozilla2-staging',
         globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
@@ -57,6 +58,7 @@ mozilla2_staging = MasterConfig(
         )
 
 mozilla2_staging1 = mozilla2_staging + MasterConfig(
+        "staging-moz2_master",
         local_links=[
             ('master1.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
@@ -65,6 +67,7 @@ mozilla2_staging1 = mozilla2_staging + MasterConfig(
         )
 
 mozilla2_staging2 = mozilla2_staging + MasterConfig(
+        "staging-moz2_master2",
         local_links=[
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
@@ -73,6 +76,7 @@ mozilla2_staging2 = mozilla2_staging + MasterConfig(
         )
 
 try_staging = mozilla2_staging + MasterConfig(
+        "staging-try_master",
         local_links=[
             ('master3.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
@@ -81,7 +85,7 @@ try_staging = mozilla2_staging + MasterConfig(
         )
 
 mozilla2 = MasterConfig(
-        'mozilla2',
+        config_dir='mozilla2',
         globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
@@ -90,6 +94,7 @@ mozilla2 = MasterConfig(
         )
 
 mozilla2_1 = mozilla2 + MasterConfig(
+        "pm-moz2_master",
         local_links=[
             ('master1.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
@@ -98,6 +103,7 @@ mozilla2_1 = mozilla2 + MasterConfig(
         )
 
 mozilla2_2 = mozilla2 + MasterConfig(
+        "pm02-moz2_master",
         local_links=[
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
@@ -106,6 +112,7 @@ mozilla2_2 = mozilla2 + MasterConfig(
         )
 
 try_master = mozilla2 + MasterConfig(
+        "trymaster",
         local_links=[
             ('master3.cfg', 'master.cfg'),
             ('release_config1.py', 'release_config.py'),
@@ -114,7 +121,7 @@ try_master = mozilla2 + MasterConfig(
         )
 
 debsign = MasterConfig(
-        'debsign',
+        config_dir='debsign',
         globs=['*.py', '*.cfg'],
         renames=[
             ('passwords.py.template', 'passwords.py'),
@@ -123,6 +130,7 @@ debsign = MasterConfig(
         )
 
 debsign_production = debsign + MasterConfig(
+        "production-debsign",
         local_links=[
             ('master-production.cfg', 'master.cfg'),
             ('config-production.py', 'config.py'),
@@ -130,6 +138,7 @@ debsign_production = debsign + MasterConfig(
         )
 
 debsign_staging = debsign + MasterConfig(
+        "staging-debsign",
         local_links=[
             ('master-staging.cfg', 'master.cfg'),
             ('config-staging.py', 'config.py'),
@@ -137,78 +146,27 @@ debsign_staging = debsign + MasterConfig(
         )
 
 mobile = MasterConfig(
-        'mobile',
+        config_dir='mobile',
         globs=['*.py', '*.cfg'],
         local_links=[],
         )
 
 mobile_production = mobile + MasterConfig(
+        "production-mobile",
         local_links=[
             ('config-production.py', 'config.py'),
             ],
         )
 
 mobile_staging = mobile + MasterConfig(
+        "staging-mobile",
         local_links=[
             ('config-staging.py', 'config.py'),
             ],
         )
 
-talos_staging_1 = MasterConfig(
-        'talos-staging-pool',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ('master1.cfg', 'master.cfg')
-            ],
-        )
-
-talos_staging_2 = MasterConfig(
-        'talos-staging-pool',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ('master2.cfg', 'master.cfg')
-            ],
-        )
-
-talos = MasterConfig(
-        'talos-pool',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ],
-        )
-
-talos_r3_1 = MasterConfig(
-        'talos-r3',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ('master1.cfg', 'master.cfg')
-            ],
-        )
-
-talos_r3_2 = MasterConfig(
-        'talos-r3',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ('master2.cfg', 'master.cfg')
-            ],
-        )
-
-talos_r3_3 = MasterConfig(
-        'talos-r3',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ('master3.cfg', 'master.cfg')
-            ],
-        )
-
 mozilla = MasterConfig(
-        'mozilla',
+        config_dir='mozilla',
         globs=['*.py', '*.cfg'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
@@ -217,6 +175,7 @@ mozilla = MasterConfig(
         )
 
 mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
+        "staging-scheduler_master",
         local_links = [
             ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -225,6 +184,7 @@ mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
         )
 
 mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
+        "staging-builder_master1",
         local_links = [
             ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -233,6 +193,7 @@ mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
         )
 
 mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
+        "staging-builder_master2",
         local_links = [
             ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -241,6 +202,7 @@ mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
         )
 
 mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
+        "staging-builder_master3",
         local_links = [
             ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -249,6 +211,7 @@ mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
         )
 
 mozilla_production_scheduler_master = mozilla + MasterConfig(
+        "pm01-scheduler",
         local_links = [
             ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -257,6 +220,7 @@ mozilla_production_scheduler_master = mozilla + MasterConfig(
         )
 
 mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
+        "pm01-builder",
         local_links = [
             ('production_builder_master_pm01_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -265,6 +229,7 @@ mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
         )
 
 mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
+        "pm02-trybuilder",
         local_links = [
             ('production_try_builder_master_pm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -273,6 +238,7 @@ mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
         )
 
 mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
+        "pm03-builder",
         local_links = [
             ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -281,7 +247,7 @@ mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
         )
 
 mozilla_tests = MasterConfig(
-        'mozilla-tests',
+        config_dir="mozilla-tests",
         globs=['*.py', '*.cfg'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
@@ -290,6 +256,7 @@ mozilla_tests = MasterConfig(
         )
 
 mozilla_staging_tests_scheduler_master = mozilla_tests + MasterConfig(
+        "staging-tests_scheduler",
         local_links = [
             ('staging_tests_scheduler_master.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -298,6 +265,7 @@ mozilla_staging_tests_scheduler_master = mozilla_tests + MasterConfig(
         )
 
 mozilla_staging_tests_master1 = mozilla_tests + MasterConfig(
+        "staging-tests_master1",
         local_links = [
             ('staging_tests_master_stm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -306,6 +274,7 @@ mozilla_staging_tests_master1 = mozilla_tests + MasterConfig(
         )
 
 mozilla_staging_tests_master2 = mozilla_tests + MasterConfig(
+        "staging-tests_master2",
         local_links = [
             ('staging_tests_master_stm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
@@ -314,6 +283,7 @@ mozilla_staging_tests_master2 = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_scheduler_master = mozilla_tests + MasterConfig(
+        "pm02-tests_scheduler",
         local_links = [
             ('production_tests_scheduler_master_pm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -322,6 +292,7 @@ mozilla_production_tests_scheduler_master = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_master_talos_master02 = mozilla_tests + MasterConfig(
+        "talos-master02-tests_master",
         local_links = [
             ('production_tests_master_talos-master02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -330,6 +301,7 @@ mozilla_production_tests_master_talos_master02 = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
+        "tm01-tests_master",
         local_links = [
             ('production_tests_master_tm01_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -338,6 +310,7 @@ mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_master_tm02 = mozilla_tests + MasterConfig(
+        "tm02-tests_master",
         local_links = [
             ('production_tests_master_tm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -346,6 +319,7 @@ mozilla_production_tests_master_tm02 = mozilla_tests + MasterConfig(
         )
 
 mozilla_preproduction_scheduler_master = mozilla + MasterConfig(
+        "preprod-scheduler_master",
         local_links = [
             ('preproduction_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
@@ -354,6 +328,7 @@ mozilla_preproduction_scheduler_master = mozilla + MasterConfig(
         )
 
 mozilla_preproduction_builder_master = mozilla + MasterConfig(
+        "preprod-builder",
         local_links = [
             ('preproduction_builder_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
@@ -361,42 +336,38 @@ mozilla_preproduction_builder_master = mozilla + MasterConfig(
             ]
         )
 
-masters = {
-        'mozilla2-staging': [mozilla2_staging1, mozilla2_staging2, try_staging],
-        'mozilla2': [mozilla2_1, mozilla2_2, try_master],
-        'talos-staging': [talos_staging_1, talos_staging_2],
-        'talos': [talos],
-        'talos-r3': [talos_r3_1, talos_r3_2, talos_r3_3],
-        'debsign': [debsign_production, debsign_staging],
-        'mobile': [mobile_production, mobile_staging],
-        }
+masters = [
+        mozilla2_staging1, mozilla2_staging2, try_staging,
+        mozilla2_1, mozilla2_2, try_master,
+        debsign_production, debsign_staging,
+        mobile_production, mobile_staging,
+        ]
 
 # Buildbot 0.8.0 masters
-masters_080 = {
-        'mozilla': [
-            mozilla_staging_scheduler_master_sm01,
-            mozilla_staging_builder_master_sm01,
-            mozilla_staging_univeral_master_sm02,
-            mozilla_staging_univeral_master_sm03,
-            mozilla_production_scheduler_master,
-            mozilla_production_builder_master_pm01,
-            mozilla_production_builder_master_pm03,
-            mozilla_production_try_builder_master_pm02,
-        ],
-        'mozilla-tests': [
-            mozilla_staging_tests_scheduler_master,
-            mozilla_staging_tests_master1,
-            mozilla_staging_tests_master2,
-            mozilla_production_tests_scheduler_master,
-            mozilla_production_tests_master_talos_master02,
-            mozilla_production_tests_master_tm01,
-            mozilla_production_tests_master_tm02,
-        ],
-        'mozilla-preproduction': [
-            mozilla_preproduction_scheduler_master,
-            mozilla_preproduction_builder_master,
-        ],
-        }
+masters_080 = [
+        # Build Masters
+        mozilla_staging_scheduler_master_sm01,
+        mozilla_staging_builder_master_sm01,
+        mozilla_staging_univeral_master_sm02,
+        mozilla_staging_univeral_master_sm03,
+        mozilla_production_scheduler_master,
+        mozilla_production_builder_master_pm01,
+        mozilla_production_builder_master_pm03,
+        mozilla_production_try_builder_master_pm02,
+
+        # Test masters
+        mozilla_staging_tests_scheduler_master,
+        mozilla_staging_tests_master1,
+        mozilla_staging_tests_master2,
+        mozilla_production_tests_scheduler_master,
+        mozilla_production_tests_master_talos_master02,
+        mozilla_production_tests_master_tm01,
+        mozilla_production_tests_master_tm02,
+
+        # Preproduction masters
+        mozilla_preproduction_scheduler_master,
+        mozilla_preproduction_builder_master,
+    ]
 
 if __name__ == "__main__":
     from optparse import OptionParser
@@ -409,21 +380,20 @@ if __name__ == "__main__":
     options, args = parser.parse_args()
 
     if options.buildbot080:
-        master_map = masters_080
+        master_list = masters_080
     else:
-        master_map = masters
+        master_list = masters
+
+    # Make sure we don't have duplicate names
+    master_map = dict((m.name, m) for m in master_list)
+    assert len(master_map.values()) == len(master_list), "Duplicate master names"
 
     if options.action == "list":
-        for master_name, master_list in sorted(master_map.items()):
-            n = len(master_list)
-            if n == 1:
-                print master_name
-            else:
-                for i in range(1,n+1):
-                    print master_name, i
+        for m in master_list:
+            print m.name
         parser.exit()
 
-    if len(args) < 2:
+    if len(args) < 1:
         parser.error("You need at least 2 arguments")
 
     master_dir, master_name = args[:2]
@@ -431,22 +401,5 @@ if __name__ == "__main__":
     if master_name not in master_map:
         parser.error("Unknown master %s" % master_name)
 
-    n = len(master_map[master_name])
-    if n == 1:
-        if len(args) > 2:
-            parser.error("Master %s doesn't require a number" % master_name)
-        m = master_map[master_name][0]
-    else:
-        if len(args) == 2:
-            parser.error("Master %s requires a number" % master_name)
-        try:
-            master_num = int(args[2])
-        except ValueError:
-            parser.error("master_num must be an integer")
-
-        if not 1 <= master_num <= n:
-            parser.error("master_num must be between 1 and %s" % n)
-        # master_num-1 because we accept 1-based numbers, and the array is 0-based
-        m = master_map[master_name][master_num-1]
-
+    m = master_map[master_name]
     m.createMaster(master_dir)
