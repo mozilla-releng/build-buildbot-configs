@@ -31,15 +31,15 @@ GLOBAL_VARS = {
     # a problem to keep them in sync.
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
-    'config_repo_path': 'users/gozer_mozillamessaging.com/buildbot-configs',
+    'config_repo_path': 'build/buildbot-configs',
     'config_subdir': 'thunderbird',
     'objdir': 'objdir',
     'objdir_unittests': 'objdir',
     'stage_server': 'stage.mozilla.org',
     'stage_group': None,
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'graph_server': 'graphs.mozilla.org',
-    'graph_selector': '/server/collect.cgi',
+    'graph_server': None,
+    'graph_selector': None,
     'build_tools_repo_path': 'build/tools',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
@@ -52,7 +52,7 @@ GLOBAL_VARS = {
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [
-                          ('localhost:9015', False, 0),
+                          ('buildbot-master-01.sj.mozillamessaging.com:9015', True, 5),
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
