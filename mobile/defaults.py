@@ -14,8 +14,8 @@ default_platform['unit_build_dirs'] = []
 default_platform['talos_build_dirs'] = []
 default_platform['browser_wait'] = 20
 default_platform['talos_suites'] = {
-     'tp4': {},
-     'tp4_nochrome': {},
+#     'tp4': {},
+#     'tp4_nochrome': {},
     'tpan': {},
     'tzoom': {},
     'ts': {},
@@ -25,10 +25,10 @@ default_platform['talos_suites'] = {
     'tsspider': {},
     'tgfx': {},
 }
-default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
-default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
-default_platform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
-default_platform['talos_suites']['tp4_nochrome']['timeout'] = 1.5*60*60
+#default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
+#default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
+#default_platform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+#default_platform['talos_suites']['tp4_nochrome']['timeout'] = 1.5*60*60
 default_platform['talos_suites']['tpan']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tpan']['timeout'] = 1.5*60*60
 default_platform['talos_suites']['tzoom']['config_file'] = 'mobile.config'
