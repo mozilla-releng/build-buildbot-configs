@@ -52,7 +52,7 @@ GLOBAL_VARS = {
     # List of unittest masters to notify of new builds to test,
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [
-                          ('buildbot-master-01.sj.mozillamessaging.com:9015', True, 5),
+                          ('momo-vm-03.sj.mozillamessaging.com:9015', False, 3),
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
