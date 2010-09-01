@@ -383,7 +383,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx/%(branch)s/nightly',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 10,
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
