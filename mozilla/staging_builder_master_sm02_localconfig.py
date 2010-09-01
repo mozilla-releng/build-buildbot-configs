@@ -11,7 +11,7 @@ c['buildbotURL'] = 'http://staging-master.build.mozilla.org:8011/'
 from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld", "password")
 
-from config import BRANCHES, SLAVES
+from config import BRANCHES, SLAVES, MISC_CONFIG
 ACTIVE_BRANCHES = BRANCHES.keys()
 
 # Set up our fast slaves

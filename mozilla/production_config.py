@@ -162,3 +162,13 @@ BRANCHES = {
 
 PLATFORM_VARS = {
 }
+
+MISC_CONFIG = {
+    'fuzzing': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
+        'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
+        'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
+        'fuzzing_idle_slaves': 3,
+    },
+}

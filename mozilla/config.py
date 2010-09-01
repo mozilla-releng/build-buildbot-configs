@@ -99,6 +99,17 @@ GLOBAL_VARS = {
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
+MISC_CONFIG = {
+    'fuzzing': {
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64'],
+    }
+}
+for k, v in localconfig.MISC_CONFIG.items():
+    if k not in MISC_CONFIG:
+        MISC_CONFIG[k] = {}
+    for k1, v1 in v.items():
+        MISC_CONFIG[k][k1] = v1
+
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
 MOBILE_OBJDIR = GLOBAL_VARS['mobile_objdir']
@@ -1219,3 +1230,5 @@ if __name__ == "__main__":
     for branch in branches:
         print branch
         pprint.pprint(BRANCHES[branch])
+
+    pprint.pprint(MISC_CONFIG)
