@@ -56,6 +56,7 @@ patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
+releaseNotesUrl            = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
 testOlderPartials          = True
 useBetaChannel             = 1

@@ -58,6 +58,7 @@ ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
+releaseNotesUrl		   = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 testOlderPartials          = True
 useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',

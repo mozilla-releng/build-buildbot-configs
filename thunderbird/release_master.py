@@ -355,7 +355,7 @@ updates_factory = ReleaseUpdatesFactory(
     hgUsername=hgUsername,
     clobberURL=nightly_config.BRANCHES[sourceRepoName]['clobber_url'],
     oldRepoPath=sourceRepoPath,
-#    releaseNotesUrl=releaseNotesUrl,
+    releaseNotesUrl=releaseNotesUrl,
     testOlderPartials=testOlderPartials,
 )
 
