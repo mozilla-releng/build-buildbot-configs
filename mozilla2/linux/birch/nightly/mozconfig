@@ -6,8 +6,8 @@ ac_add_options --disable-debug
 ac_add_options --enable-tests
 ac_add_options --enable-codesighs
 
-CC="ccache /tools/gcc-4.3.3/installed/bin/gcc"
-CXX="ccache /tools/gcc-4.3.3/installed/bin/g++"
+CC=/tools/gcc-4.3.3/installed/bin/gcc
+CXX=/tools/gcc-4.3.3/installed/bin/g++
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
@@ -31,3 +31,6 @@ fi
 if [ -f $topsrcdir/mozconfig-extra-linux ] ; then
   . $topsrcdir/mozconfig-extra-linux
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

@@ -6,8 +6,8 @@ ac_add_options --disable-debug
 ac_add_options --enable-tests
 ac_add_options --enable-codesighs
 
-CC="ccache /tools/gcc/bin/gcc"
-CXX="ccache /tools/gcc/bin/g++"
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
 
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
@@ -24,3 +24,6 @@ mk_add_options PROFILE_GEN_SCRIPT=@TOPSRCDIR@/build/profile_pageloader.pl
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache
