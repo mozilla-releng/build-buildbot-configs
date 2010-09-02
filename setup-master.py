@@ -75,15 +75,6 @@ mozilla2_staging2 = mozilla2_staging + MasterConfig(
             ],
         )
 
-try_staging = mozilla2_staging + MasterConfig(
-        "staging-try_master",
-        local_links=[
-            ('master3.cfg', 'master.cfg'),
-            ('release_config1.py', 'release_config.py'),
-            ('release_mobile_config1.py', 'release_mobile_config.py'),
-            ],
-        )
-
 mozilla2 = MasterConfig(
         config_dir='mozilla2',
         globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
@@ -108,15 +99,6 @@ mozilla2_2 = mozilla2 + MasterConfig(
             ('master2.cfg', 'master.cfg'),
             ('release_config2.py', 'release_config.py'),
             ('release_mobile_config2.py', 'release_mobile_config.py'),
-            ],
-        )
-
-try_master = mozilla2 + MasterConfig(
-        "trymaster",
-        local_links=[
-            ('master3.cfg', 'master.cfg'),
-            ('release_config1.py', 'release_config.py'),
-            ('release_mobile_config1.py', 'release_mobile_config.py'),
             ],
         )
 
@@ -337,8 +319,8 @@ mozilla_preproduction_builder_master = mozilla + MasterConfig(
         )
 
 masters = [
-        mozilla2_staging1, mozilla2_staging2, try_staging,
-        mozilla2_1, mozilla2_2, try_master,
+        mozilla2_staging1, mozilla2_staging2,
+        mozilla2_1, mozilla2_2,
         debsign_production, debsign_staging,
         mobile_production, mobile_staging,
         ]
