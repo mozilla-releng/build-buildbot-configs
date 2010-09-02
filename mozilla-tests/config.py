@@ -17,8 +17,8 @@ TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 TALOS_ADDON_OPTS = {'addonTester' : True, 'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 
 SUITES = {
-    'chrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx'],
-    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider:tgfx', '--noChrome'],
+    'chrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider'],
+    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider', '--noChrome'],
     'dirty': GRAPH_CONFIG + ['--activeTests', 'ts:ts_places_generated_min:ts_places_generated_med:ts_places_generated_max:ts_cold_generated_min:ts_cold_generated_med:ts_cold_generated_max'],
     'tp4': GRAPH_CONFIG + ['--activeTests', 'tp4'],
     'cold': GRAPH_CONFIG + ['--activeTests', 'ts:ts_cold'],
