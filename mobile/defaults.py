@@ -52,6 +52,7 @@ default_platform['test_suites'] = {
 #547130    'mochitest3': {},
 #547130    'mochitest4': {},
 #547130    'chrome':     {},
+    'browser-chrome': {},
     'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
@@ -72,9 +73,12 @@ default_platform['test_suites'] = {
 #default_platform['test_suites']['mochitest4']['timeout'] = 60*60
 #default_platform['test_suites']['mochitest4']['clients'] = (4,4)
 #default_platform['test_suites']['mochitest4']['known_fail_count'] = 188
-#default_platform['test_suites']['chrome']['test_type'] = 'mochitest'
+#default_platform['test_suites']['chrome']['test_type'] = 'chrome'
 #default_platform['test_suites']['chrome']['timeout'] = 60*60
 #default_platform['test_suites']['chrome']['known_fail_count'] = 545
+default_platform['test_suites']['browser-chrome']['test_type'] = 'browser-chrome'
+default_platform['test_suites']['browser-chrome']['timeout'] = 60*60
+default_platform['test_suites']['browser-chrome']['known_fail_count'] = 0
 default_platform['test_suites']['reftest']['test_type'] = 'reftest'
 default_platform['test_suites']['reftest']['timeout'] = 60*60
 default_platform['test_suites']['reftest']['known_fail_count'] = 310
