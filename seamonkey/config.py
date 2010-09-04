@@ -106,7 +106,7 @@ PLATFORM_VARS = {
             'mozconfig_dep': 'linux/%(branch)s/dep',
             'profiled_build': False,
             'builds_before_reboot': None,
-            'build_space': 7,
+            'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
