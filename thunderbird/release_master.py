@@ -13,6 +13,7 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, CCReleaseRepackFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
+from buildbot.status.tinderbox import TinderboxMailNotifier
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -27,6 +28,8 @@ reload(nightly_config)
 
 #XXX: Our current buildbot config is inconsistent with the branch name itself, fix it
 nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].copy()
+
+branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
 for v in ['stage_username','stage_server', 'stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
@@ -399,3 +402,12 @@ builders.append({
     'builddir': 'final_verification',
     'factory': final_verification_factory
 })
+
+status.append(TinderboxMailNotifier(
+    fromaddr="thunderbird2.buildbot@build.mozilla.org",
+    tree=branchConfig["tinderbox_tree"] + "-Release",
+    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    relayhost="mx.mozillamessaging.com",
+    builders=[b['name'] for b in builders],
+    logCompression="bzip2")
+)
