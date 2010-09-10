@@ -3,11 +3,11 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '56b339909f61' # from GO email for comm-1.9.1 branch
+sourceRepoRevision         = '4702557ae9b2' # from GO email for comm-1.9.1 branch
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = '' # leave blank if you want buildbot to create a tag on comm-1.9.1
+relbranchOverride          = 'COMM19112_20100824_RELBRANCH' # leave blank if you want buildbot to create a tag on comm-1.9.1
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = 'b2e4c16d7372'
+mozillaRepoRevision        = 'a7e4f113f897'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -38,18 +38,18 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.0.7'
+version                    = '3.0.8'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 # Look in release-firefox-mozilla-1.9.1.py for the milestone value
 milestone                  = '1.9.1.12'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_0_7'
+baseTag                    = 'THUNDERBIRD_3_0_8'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.0.6'
+oldVersion                 = '3.0.7'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 2
-oldBaseTag                 = 'THUNDERBIRD_3_0_6'
+oldBuildNumber             = 1
+oldBaseTag                 = 'THUNDERBIRD_3_0_7'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 # Patcher should stay the same until we move to gecko 2.0
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
