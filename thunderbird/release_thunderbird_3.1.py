@@ -3,11 +3,11 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = 'e82ee158c3fc'
+sourceRepoRevision         = '75a65749863c'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM1929_20100825_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = 'f61e1541695e'
+mozillaRepoRevision        = '3506423fd794'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -39,17 +39,17 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.1.3'
-appVersion                 = '3.1.3'
+version                    = '3.1.4'
+appVersion                 = '3.1.4'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '1.9.2.9'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_1_3'
+baseTag                    = 'THUNDERBIRD_3_1_4'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.1.2'
-oldAppVersion              = '3.1.2'
+oldVersion                 = '3.1.3'
+oldAppVersion              = '3.1.3'
 oldBuildNumber             = 1
-oldBaseTag                 = 'THUNDERBIRD_3_1_2'
+oldBaseTag                 = 'THUNDERBIRD_3_1_3'
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz192-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R11'
