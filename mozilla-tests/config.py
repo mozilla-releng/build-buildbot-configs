@@ -212,8 +212,10 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'leopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]) +
+                    [('opengl', ['opengl'])],
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]) +
+                    [('opengl', ['opengl'])],
             },
         },
         'macosx64': {
