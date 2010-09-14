@@ -102,6 +102,15 @@ mozilla2_2 = mozilla2 + MasterConfig(
             ],
         )
 
+mozilla2_3 = mozilla2 + MasterConfig(
+        "pm-2-moz2_master",
+        local_links=[
+            ('master3.cfg', 'master.cfg'),
+            ('release_config3.py', 'release_config.py'),
+            ('release_mobile_config3.py', 'release_mobile_config.py'),
+            ],
+        )
+
 debsign = MasterConfig(
         config_dir='debsign',
         globs=['*.py', '*.cfg'],
