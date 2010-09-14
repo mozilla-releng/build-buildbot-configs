@@ -20,9 +20,6 @@ export JAVA_HOME=/tools/jdk6
 export MOZ_DEBUG_SYMBOLS=1
 export MOZILLA_OFFICIAL=1
 
-# ssltunnel can't build because the ndk doesn't have string, vector, or algorithm headers
-ac_add_options --disable-tests
-
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi
