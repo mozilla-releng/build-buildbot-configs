@@ -2,8 +2,8 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = 'f6b08f0179e3'
-relbranchOverride  = ''
+sourceRepoRevision = '11e16ebb2d38'
+relbranchOverride  = 'GECKO20b5_20100831_RELBRANCH'
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets_mozilla-2.0'
 # mergeLocales allows missing localized strings to be filled in by their en-US
@@ -19,16 +19,16 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '4.0b5'
+version            = '4.0b6'
 appVersion         = version
 # NB: this will become 2.0.x not 2.0.0.x, bug 577875
-milestone          = '2.0b5'
+milestone          = '2.0b6'
 buildNumber        = 1
-baseTag            = 'FIREFOX_4_0b5'
-oldVersion         = '4.0b4'
+baseTag            = 'FIREFOX_4_0b6'
+oldVersion         = '4.0b5'
 oldAppVersion      = oldVersion
-oldBuildNumber     = 3
-oldBaseTag         = 'FIREFOX_4_0b4'
+oldBuildNumber     = 1
+oldBaseTag         = 'FIREFOX_4_0b5'
 enUSPlatforms      = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
 l10nPlatforms      = enUSPlatforms
 xulrunnerPlatforms = ()
@@ -45,7 +45,7 @@ ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
 ausSshKey          = 'cltbld_dsa'
 testOlderPartials  = False
-releaseNotesUrl    = 'http://www.mozilla.com/%locale%/firefox/4.0b5/releasenotes/'
+releaseNotesUrl    = 'http://www.mozilla.com/%locale%/firefox/4.0b6/releasenotes/'
 useBetaChannel     = 0
 verifyConfigs      = {'linux':    'moz20-firefox-linux.cfg',
                       'linux64':  'moz20-firefox-linux64.cfg',
