@@ -329,7 +329,7 @@ mozilla_preproduction_builder_master = mozilla + MasterConfig(
 
 masters = [
         mozilla2_staging1, mozilla2_staging2,
-        mozilla2_1, mozilla2_2,
+        mozilla2_1, mozilla2_2, mozilla2_3,
         debsign_production, debsign_staging,
         mobile_production, mobile_staging,
         ]
