@@ -79,6 +79,7 @@ GLOBAL_VARS = {
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [('production-master.build.mozilla.org:9010', False, 5),
+                         ('production-master.build.mozilla.org:9011', False, 5),
                          ('production-master02.build.mozilla.org:9010', False, 5),
                          ('production-master01.build.mozilla.org:9009', False, 5),
                          ('talos-staging-master02.build.mozilla.org:9010', False, 1),
