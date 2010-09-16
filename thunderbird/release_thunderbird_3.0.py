@@ -57,6 +57,8 @@ patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
+ausUser                    = 'tbirdbld_dsa'
+ausSshKey                  = 'tbirdbld'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
 releaseNotesUrl		   = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 testOlderPartials          = True
@@ -64,3 +66,15 @@ useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
                               'macosx': 'moz19-thunderbird-mac.cfg',
                               'win32':  'moz19-thunderbird-win32.cfg'}
+
+
+majorUpdateRepoPath    = 'releases/comm-1.9.2'
+majorUpdateToVersion   = '3.1.4'
+majorUpdateAppVersion  = majorUpdateToVersion
+majorUpdateBuildNumber = 2
+majorUpdateBaseTag     = 'THUNDERBIRD_3_1_4'
+majorUpdateReleaseNotesUrl = 'http://www.mozillamessaging.com/%locale%/thunderbird/3.1/details/index.html'
+majorUpdatePatcherConfig = 'moz19-thunderbird-branch-major-update-patcher2.cfg'
+majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
+                            'macosx': 'moz191-firefox-mac-major.cfg',
+                            'win32':  'moz191-firefox-win32-major.cfg'}

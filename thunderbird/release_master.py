@@ -1,5 +1,5 @@
 from buildbot.changes.pb import PBChangeSource
-from buildbot.scheduler import Scheduler, Dependent
+from buildbot.scheduler import Scheduler, Dependent, Triggerable
 
 import buildbotcustom.l10n
 import buildbotcustom.misc
@@ -11,7 +11,7 @@ from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
-  L10nVerifyFactory, CCReleaseRepackFactory
+  L10nVerifyFactory, CCReleaseRepackFactory, MajorUpdateFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
@@ -32,7 +32,12 @@ nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].
 branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
 for v in ['stage_username','stage_server', 'stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
-    nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
+    branchConfig[v] = nightly_config.DEFAULTS[v]
+    
+branchConfig['hghost'] = nightly_config.HGHOST
+branchConfig['build_tools_repo_path'] = toolsRepoPath
+branchConfig['aus2_host'] = nightly_config.AUS2_HOST
+branchConfig['base_clobber_url'] = nightly_config.BRANCHES[sourceRepoName]['clobber_url']
 
 builders = []
 schedulers = []
@@ -111,6 +116,17 @@ update_verify_scheduler = Dependent(
     builderNames=updateBuilderNames
 )
 schedulers.append(update_verify_scheduler)
+
+if majorUpdateRepoPath:
+    majorUpdateBuilderNames = []
+    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+        majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
+    major_update_verify_scheduler = Triggerable(
+        name='major_update_verify',
+        builderNames=majorUpdateBuilderNames
+    )
+    schedulers.append(major_update_verify_scheduler)
+
 
 # Purposely, there is not a Scheduler for ReleaseFinalVerification
 # This is a step run very shortly before release, and is triggered manually
@@ -402,6 +418,70 @@ builders.append({
     'builddir': 'final_verification',
     'factory': final_verification_factory
 })
+
+if majorUpdateRepoPath:
+    # Not attached to any Scheduler
+    major_update_factory = MajorUpdateFactory(
+        hgHost=branchConfig['hghost'],
+        repoPath=majorUpdateRepoPath,
+        buildToolsRepoPath=toolsRepoPath,
+        cvsroot=cvsroot,
+        patcherToolsTag=patcherToolsTag,
+        patcherConfig=majorUpdatePatcherConfig,
+        verifyConfigs=majorUpdateVerifyConfigs,
+        appName=ftpName,
+        productName=productName,
+        version=majorUpdateToVersion,
+        appVersion=majorUpdateAppVersion,
+        baseTag=majorUpdateBaseTag,
+        buildNumber=majorUpdateBuildNumber,
+        oldVersion=version,
+        oldAppVersion=appVersion,
+        oldBaseTag=baseTag,
+        oldBuildNumber=buildNumber,
+        ftpServer=ftpServer,
+        bouncerServer=bouncerServer,
+        stagingServer=stagingServer,
+        useBetaChannel=useBetaChannel,
+        stageUsername=branchConfig['stage_username'],
+        stageSshKey=branchConfig['stage_ssh_key'],
+        ausUser=ausUser,
+        ausSshKey=ausSshKey,
+        ausHost=branchConfig['aus2_host'],
+        ausServerUrl=ausServerUrl,
+        hgSshKey=hgSshKey,
+        hgUsername=hgUsername,
+        clobberURL=branchConfig['base_clobber_url'],
+        oldRepoPath=sourceRepoPath,
+        triggerSchedulers=['major_update_verify'],
+        releaseNotesUrl=majorUpdateReleaseNotesUrl,
+        testOlderPartials=testOlderPartials
+    )
+
+    builders.append({
+        'name': 'major_update',
+        'slavenames': branchConfig['platforms']['linux']['slaves'],
+        'category': 'release',
+        'builddir': 'major_update',
+        'factory': major_update_factory,
+    })
+
+    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+        major_update_verify_factory = UpdateVerifyFactory(
+            hgHost=branchConfig['hghost'],
+            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+            verifyConfig=majorUpdateVerifyConfigs[platform],
+            clobberURL=branchConfig['base_clobber_url'],
+        )
+
+        builders.append({
+            'name': '%s_major_update_verify' % platform,
+            'slavenames': branchConfig['platforms'][platform]['slaves'],
+            'category': 'release',
+            'builddir': '%s_major_update_verify' % platform,
+            'factory': major_update_verify_factory,
+#            'nextSlave': _nextFastSlave,
+        })
 
 status.append(TinderboxMailNotifier(
     fromaddr="thunderbird2.buildbot@build.mozilla.org",
