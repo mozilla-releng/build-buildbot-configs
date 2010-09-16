@@ -64,3 +64,16 @@ l10nPlatforms              = ['linux', 'macosx', 'win32' ]
 verifyConfigs              = {'linux':  'moz192-thunderbird-linux.cfg',
                               'macosx': 'moz192-thunderbird-mac.cfg',
                               'win32':  'moz192-thunderbird-win32.cfg'}
+
+# Version numbers we are updating _TO_
+# N/A for Thunderbird 3.x (until the next major version is released)
+majorUpdateRepoPath    = ''
+majorUpdateToVersion   = ''
+majorUpdateAppVersion  = ''
+majorUpdateBuildNumber = ''
+majorUpdateBaseTag     = ''
+majorUpdateReleaseNotesUrl = ''
+majorUpdatePatcherConfig = ''
+majorUpdateVerifyConfigs = {'linux':  '',
+                            'macosx': '',
+                            'win32':  ''}

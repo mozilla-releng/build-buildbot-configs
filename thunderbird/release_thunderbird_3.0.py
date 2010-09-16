@@ -67,7 +67,7 @@ verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
                               'macosx': 'moz19-thunderbird-mac.cfg',
                               'win32':  'moz19-thunderbird-win32.cfg'}
 
-
+# Version numbers we are updating _TO_
 majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
 majorUpdateToVersion   = '3.1.4'
 majorUpdateAppVersion  = majorUpdateToVersion
