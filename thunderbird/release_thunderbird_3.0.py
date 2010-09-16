@@ -25,7 +25,6 @@ chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
 l10nRepoPath               = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile           = 'l10n-thunderbird-changesets-3.0'
-l10nPlatforms              = ['linux', 'macosx', 'win32' ]
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:cltbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'mail/config/version-191.txt'
@@ -50,18 +49,23 @@ oldVersion                 = '3.0.7'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
 oldBaseTag                 = 'THUNDERBIRD_3_0_7'
-releasePlatforms           = ('linux', 'win32', 'macosx')
+enUSPlatforms             = ('linux', 'win32', 'macosx')
+l10nPlatforms             = enUSPlatforms
+#unittestPlatforms         = enUSPlatforms
+unittestPlatforms          = ()
+xulrunnerPlatforms         = ()
 # Patcher should stay the same until we move to gecko 2.0
 patcherConfig              = 'moz19-thunderbird-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
 stagingServer              = 'stage-old.mozilla.org'
 bouncerServer              = 'download.mozilla.org'
-ausUser                    = 'tbirdbld'
-ausSshKey                  = 'tbirdbld_dsa'
+ausUser                    = 'tbirdbld_dsa'
+ausSshKey                  = 'tbirdbld'
 ausServerUrl               = 'https://aus2.mozillamessaging.com'
 releaseNotesUrl		   = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 testOlderPartials          = True
+doPartnerRepacks	   = False
 useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
                               'macosx': 'moz19-thunderbird-mac.cfg',
@@ -75,7 +79,7 @@ majorUpdateAppVersion  = majorUpdateToVersion
 majorUpdateBuildNumber = 2
 majorUpdateBaseTag     = 'THUNDERBIRD_3_1_4'
 majorUpdateReleaseNotesUrl = 'http://www.mozillamessaging.com/%locale%/thunderbird/3.1/details/index.html'
-majorUpdatePatcherConfig = 'moz19-thunderbird-branch-major-update-patcher2.cfg'
+majorUpdatePatcherConfig = 'moz192-thunderbird-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-thunderbird-linux-major.cfg',
                             'macosx': 'moz191-thunderbird-mac-major.cfg',
                             'win32':  'moz191-thunderbird-win32-major.cfg'}
