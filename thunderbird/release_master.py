@@ -423,7 +423,8 @@ if majorUpdateRepoPath:
     # Not attached to any Scheduler
     major_update_factory = MajorUpdateFactory(
         hgHost=branchConfig['hghost'],
-        repoPath=majorUpdateRepoPath,
+        repoPath=majorUpdateSourceRepoPath,
+        mozRepoPath=majorUpdateRepoPath,
         buildToolsRepoPath=toolsRepoPath,
         cvsroot=cvsroot,
         patcherToolsTag=patcherToolsTag,

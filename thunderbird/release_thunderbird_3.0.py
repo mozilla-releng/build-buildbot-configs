@@ -69,6 +69,7 @@ verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
 
 
 majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
+majorUpdateSourceRepoPath = 'releases/comm-1.9.2'
 majorUpdateToVersion   = '3.1.4'
 majorUpdateAppVersion  = majorUpdateToVersion
 majorUpdateBuildNumber = 2
