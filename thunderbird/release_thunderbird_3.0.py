@@ -68,13 +68,13 @@ verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
                               'win32':  'moz19-thunderbird-win32.cfg'}
 
 
-majorUpdateRepoPath    = 'releases/comm-1.9.2'
+majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
 majorUpdateToVersion   = '3.1.4'
 majorUpdateAppVersion  = majorUpdateToVersion
 majorUpdateBuildNumber = 2
 majorUpdateBaseTag     = 'THUNDERBIRD_3_1_4'
 majorUpdateReleaseNotesUrl = 'http://www.mozillamessaging.com/%locale%/thunderbird/3.1/details/index.html'
 majorUpdatePatcherConfig = 'moz19-thunderbird-branch-major-update-patcher2.cfg'
-majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
-                            'macosx': 'moz191-firefox-mac-major.cfg',
-                            'win32':  'moz191-firefox-win32-major.cfg'}
+majorUpdateVerifyConfigs = {'linux':  'moz191-thunderbird-linux-major.cfg',
+                            'macosx': 'moz191-thunderbird-mac-major.cfg',
+                            'win32':  'moz191-thunderbird-win32-major.cfg'}
