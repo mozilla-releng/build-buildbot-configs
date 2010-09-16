@@ -34,6 +34,7 @@ GLOBAL_VARS = {
     'stage_server': 'preproduction-stage.build.mozilla.org',
     'aus2_host': 'preproduction-stage.build.mozilla.org',
     'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',#TODO
     'build_tools_repo_path': 'users/prepr-ffxbld/tools',#TODO
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php', #TODO
@@ -66,6 +67,7 @@ SYMBOL_SERVER_HOST = 'preproduction-stage.build.mozilla.org'
 BRANCHES = {
     'tryserver': {
         'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
+        'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,
         'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
         'talos_masters': [],

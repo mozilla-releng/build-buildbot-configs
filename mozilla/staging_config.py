@@ -34,6 +34,7 @@ GLOBAL_VARS = {
     'stage_server': 'staging-stage.build.mozilla.org',
     'aus2_host': 'staging-stage.build.mozilla.org',
     'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
@@ -66,6 +67,7 @@ SYMBOL_SERVER_HOST = 'staging-stage.build.mozilla.org'
 BRANCHES = {
     'tryserver': {
         'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
+        'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
         'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',

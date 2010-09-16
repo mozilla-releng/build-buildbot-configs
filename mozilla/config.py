@@ -220,6 +220,7 @@ MOBILE_PLATFORM_VARS = {
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
+        'update_platform': 'Android_arm-eabi-gcc3',
         'env': {
             'JAVA_HOME': '/tools/jdk6',
             'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
@@ -726,12 +727,15 @@ BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-central']['create_snippet'] = True
+BRANCHES['mozilla-central']['create_mobile_snippet'] = True
 BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
+BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ######## shadow-central
@@ -801,12 +805,16 @@ BRANCHES['mozilla-2.0']['allLocalesFile'] = 'browser/locales/all-locales'
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-2.0']['create_snippet'] = True
+# turn on in bug 594867
+BRANCHES['mozilla-2.0']['create_mobile_snippet'] = False
 BRANCHES['mozilla-2.0']['create_partial'] = True
 BRANCHES['mozilla-2.0']['create_partial_l10n'] = True
 BRANCHES['mozilla-2.0']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-2.0']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
+BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
+BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
