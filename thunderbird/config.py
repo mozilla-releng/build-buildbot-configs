@@ -110,6 +110,7 @@ build_configs = {
     'comm-central-trunk-bloat': {
         'branch_config':  'comm-central',
         'builder_type':  'bloat',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
@@ -153,6 +154,7 @@ build_configs = {
     'comm-1.9.2-bloat': {
         'branch_config':  'comm-1.9.2',
         'builder_type':  'bloat',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
@@ -229,6 +231,7 @@ build_configs = {
     'comm-central-bloat': {
         'branch_config':  'comm-1.9.1',
         'builder_type':  'bloat',
+        'factory': 'CCNightlyBuildFactory',
         'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
