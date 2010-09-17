@@ -40,13 +40,13 @@ reload(mobile_config)
 from mobile_config import MOBILE_BRANCHES, MOBILE_SLAVES
 
 MOBILE_L10N_SLAVES = {
-    'maemo4': MOBILE_SLAVES['maemo4'][-8:],
-    'maemo5-gtk': MOBILE_SLAVES['maemo5-gtk'][-8:],
-    'maemo5-qt': MOBILE_SLAVES['maemo5-qt'][-8:],
-    'linux-i686': MOBILE_SLAVES['linux-i686'][-8:],
+    'maemo4': LINUX_IXS,
+    'maemo5-gtk': LINUX_IXS,
+    'maemo5-qt': LINUX_IXS,
+    'linux-i686': LINUX_IXS,
     'macosx-i686': MOBILE_SLAVES['macosx-i686'],
     'win32-i686': MOBILE_SLAVES['win32-i686'],
-    'android-r7': MOBILE_SLAVES['android-r7'][-8:],
+    'android-r7': LINUX_IXS,
 }
 
 m = {}
