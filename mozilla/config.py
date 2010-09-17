@@ -66,7 +66,6 @@ GLOBAL_VARS = {
     },
     'mobile_repo_path': 'mobile-browser',
     'mobile_platforms': {
-        'maemo4': {},
         'maemo5-gtk': {},
         'maemo5-qt': {},
         'android-r7': {},
@@ -117,37 +116,6 @@ SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 MOBILE_PLATFORM_VARS = {
-    'maemo4':{
-        'base_name': 'Maemo 4 %(branch)s',
-        'mozconfig': 'mobile/maemo4/mobile-browser/nightly',
-        'profiled_build': False,
-        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 6,
-        'upload_symbols': True,
-        'slaves': SLAVES['linux'],
-        'platform_objdir': MOBILE_OBJDIR,
-        'enable_ccache': False,
-        'env': {
-            'CC': '/scratchbox/compilers/bin/gcc',
-            'CXX': '/scratchbox/compilers/bin/g++',
-            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'MOZ_OBJDIR': MOBILE_OBJDIR,
-            'CCACHE_DIR': '/builds/slave/ccache',
-            'CCACHE_UMASK': '002',
-        },
-        'package_globlist': ['dist/*.tar.bz2', 'dist/*.zip',
-                             'mobile/*.deb', 'dist/deb_name.txt'],
-        'upload_platform': 'linux',
-        'scratchbox_target': 'CHINOOK-ARMEL-2007',
-        'multi_locale': False,
-        'l10n_repo_path': 'l10n-central',
-        'compare_locales_tag': 'RELEASE_AUTOMATION',
-        'l10n_tag': 'default',
-        'merge_locales': True,
-    },
     'maemo5-gtk':{
         'base_name': 'Maemo 5 GTK %(branch)s',
         'mozconfig': 'mobile/maemo5-gtk/mobile-browser/nightly',
@@ -631,7 +599,6 @@ BRANCHES = {
         'mobile_platforms': {
             'maemo5-gtk': {},
             'maemo5-qt': {},
-            'maemo4': {},
             'android-r7': {},
         },
     },
@@ -976,7 +943,6 @@ BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDI
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-tracemonkey'
-BRANCHES['tracemonkey']['mobile_platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo4'
 BRANCHES['tracemonkey']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-gtk'
 BRANCHES['tracemonkey']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-qt'
 BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
@@ -1042,8 +1008,6 @@ BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDI
 BRANCHES['electrolysis']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-BRANCHES['electrolysis']['mobile_platforms']['maemo4']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo4'
-BRANCHES['electrolysis']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-gtk'
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-qt'
@@ -1139,15 +1103,12 @@ BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/sym
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 # Sending unittests to test masters
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
-BRANCHES['tryserver']['mobile_platforms']['maemo4']['mozconfig'] = 'mobile-tryserver/maemo4'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['mobile_platforms']['maemo4']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['upload_symbols'] = False
-BRANCHES['tryserver']['mobile_platforms']['maemo4']['upload_symbols'] = False
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 

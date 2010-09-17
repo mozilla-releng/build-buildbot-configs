@@ -40,4 +40,4 @@ stageBasePath       = '/home/ftp/pub/mobile/candidates'
 base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
-partnerRepackPlatforms = ('maemo4', 'maemo5-gtk')
+partnerRepackPlatforms = ('maemo5-gtk',)
