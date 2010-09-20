@@ -273,7 +273,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
                 stageServer=mainConfig['stage_server'],
                 stageBasePath=branch['stage_base_path'],
                 mobileRepoPath=branch['mobile_repo_path'],
-                uploadSymbols=False,
+                uploadSymbols=pf.get('upload_symbols', False),
                 packageGlobList=['-r', 'dist/*.tar.bz2',
                                  'dist/*.zip'],
                 platform='linux',
