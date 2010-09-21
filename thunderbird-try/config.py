@@ -44,6 +44,7 @@ GLOBAL_VARS = {
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
+    'default_l10n_space': 3,
     'base_clobber_url': 'http://build.mozillamessaging.com/staging/clobberer',
     'default_clobber_time': 24*7, # 1 week
     # List of talos masters to notify of new builds,
@@ -300,9 +301,11 @@ BRANCHES['tryserver']['stage_ssh_key'] = 'tbirdbld_dsa'
 BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/thunderbird/tryserver-builds'
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
+BRANCHES['tryserver']['cc_try_factory' ] = True
 BRANCHES['tryserver']['run_client_py'] = True
 BRANCHES['tryserver']['alive_step'] = 'mailbloat'
 BRANCHES['tryserver']['enable_mail_notifier'] = True
+BRANCHES['tryserver']['notify_real_author'] = True
 BRANCHES['tryserver']['package_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
