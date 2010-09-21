@@ -56,6 +56,9 @@ td {
 .start,.running {
     background-color: yellow;
 }
+.retry {
+    background-color: #770088;
+}
 
 /* color trunk/branch builder links differently */
 
