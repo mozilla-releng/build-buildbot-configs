@@ -30,8 +30,8 @@ export MOZILLA_OFFICIAL=1
 
 # XXX: Can't do that when building universal, it uses CC="gcc -arch ppc" internally
 # XXX: and doing this would stomp on it
-#CC="ccache gcc"
-#CXX="ccache g++"
+#CC=gcc
+#CXX=g++
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
@@ -43,3 +43,6 @@ fi
 if [ -f $topsrcdir/mozconfig-extra-macosx ] ; then
   . $topsrcdir/mozconfig-extra-macosx
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

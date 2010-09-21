@@ -8,8 +8,8 @@ ac_add_options --enable-static
 ac_add_options --enable-codesighs
 ac_add_options --disable-auto-deps
 
-CC="ccache /tools/gcc-4.3.3/bin/gcc"
-CXX="ccache /tools/gcc-4.3.3/bin/g++"
+CC=/tools/gcc-4.3.3/bin/gcc
+CXX=/tools/gcc-4.3.3/bin/g++
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
@@ -36,3 +36,6 @@ fi
 if [ -f $topsrcdir/mozconfig-extra-linux64 ] ; then
   . $topsrcdir/mozconfig-extra-linux64
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

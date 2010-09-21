@@ -9,8 +9,8 @@ ac_add_options --enable-static-mail
 
 ac_add_options --enable-trace-malloc
 
-CC="ccache gcc-4.2"
-CXX="ccache g++-4.2"
+CC=gcc-4.2
+CXX=g++-4.2
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
@@ -25,3 +25,6 @@ fi
 if [ -f $topsrcdir/mozconfig-extra-macosx ] ; then
   . $topsrcdir/mozconfig-extra-macosx
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache
