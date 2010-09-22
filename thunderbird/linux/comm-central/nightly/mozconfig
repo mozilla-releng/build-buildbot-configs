@@ -7,8 +7,6 @@ ac_add_options --enable-update-packaging
 ac_add_options --disable-debug
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
-ac_add_options --disable-shared
-ac_add_options --enable-static
 
 # XXX disable pedantic until we get MOZ_IPC or we resolve the build issues
 ac_add_options --disable-pedantic
