@@ -28,9 +28,12 @@ export MOZILLA_OFFICIAL=1
 
 # XXX: Can't do that when building universal, it uses CC="gcc -arch ppc" internally
 # XXX: and doing this would stomp on it
-#CC="ccache gcc"
-#CXX="ccache g++"
+#CC=gcc
+#CXX=g++
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
 ac_add_options --enable-debug-symbols="-gdwarf-2"
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache
