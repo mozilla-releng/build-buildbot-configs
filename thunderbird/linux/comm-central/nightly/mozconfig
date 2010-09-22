@@ -11,8 +11,8 @@ ac_add_options --enable-codesighs
 # XXX disable pedantic until we get MOZ_IPC or we resolve the build issues
 ac_add_options --disable-pedantic
 
-CC=/tools/gcc-4.3.3/bin/gcc
-CXX=/tools/gcc-4.3.3/bin/g++
+CC="ccache /tools/gcc-4.3.3/bin/gcc"
+CXX="ccache /tools/gcc-4.3.3/bin/g++"
 
 export CFLAGS="-gstabs+"
 export CXXFLAGS="-gstabs+"
@@ -23,6 +23,3 @@ export MOZILLA_OFFICIAL=1
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
 ac_add_options --enable-debug-symbols="-gstabs+"
-
-#Use ccache
-ac_add_options --with-ccache=/usr/bin/ccache
