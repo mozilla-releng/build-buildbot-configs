@@ -23,4 +23,4 @@ if [ -f $topsrcdir/mozconfig-extra-macosx ] ; then
 fi
 
 #Use ccache
-ac_add_options --with-ccache=/usr/bin/ccache
+ac_add_options --with-ccache=/opt/local/bin/ccache
