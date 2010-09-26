@@ -1,3 +1,5 @@
+. $topsrcdir/build/macosx/universal/mozconfig
+
 export MOZILLA_OFFICIAL=1
 
 # For NSS symbols
