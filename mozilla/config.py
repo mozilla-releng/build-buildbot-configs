@@ -56,7 +56,6 @@ GLOBAL_VARS = {
         'linux': {},
         'linux64': {},
         'win32': {},
-        'macosx': {},
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
@@ -392,11 +391,11 @@ PLATFORM_VARS = {
             'packageTests': True,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
             'slaves': SLAVES['macosx64'],
-            'platform_objdir': OBJDIR,
+            'platform_objdir': "%s/i386" % OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -681,7 +680,7 @@ BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx', 'macosx64']
+                                                 'macosx64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -735,7 +734,6 @@ BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
 BRANCHES['shadow-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 
@@ -759,7 +757,7 @@ BRANCHES['mozilla-2.0']['enable_l10n'] = True
 BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-2.0']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux' , 'linux64', 'win32',
-                                             'macosx', 'macosx64']
+                                             'macosx64']
 BRANCHES['mozilla-2.0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-2.0']['l10n_tree'] = 'fx40x'
 #make sure it has an ending slash
@@ -941,7 +939,6 @@ BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_valgrind_checktest
 BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-gtk'
 BRANCHES['tracemonkey']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-qt'
@@ -974,11 +971,9 @@ BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['linux64']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['places']['platforms']['macosx']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
 BRANCHES['places']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-places'
 BRANCHES['places']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
-BRANCHES['places']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
 BRANCHES['places']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-places'
 BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['linux']['build_space'] = 6
@@ -1004,7 +999,6 @@ BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
     'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
 }
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-electrolysis'
 BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
@@ -1048,7 +1042,6 @@ BRANCHES['jaegermonkey']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['jaegermonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
-BRANCHES['jaegermonkey']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
 
 ######## tryserver
@@ -1086,7 +1079,6 @@ BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
-BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
@@ -1095,7 +1087,6 @@ BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macos
 BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
@@ -1134,7 +1125,6 @@ BRANCHES['maple']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['maple']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
 BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
 BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
-BRANCHES['maple']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
 BRANCHES['maple']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-maple'
 
 ######## cedar
@@ -1159,7 +1149,6 @@ BRANCHES['cedar']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['cedar']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
 BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-cedar'
 BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
-BRANCHES['cedar']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
 BRANCHES['cedar']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-cedar'
 
 ######## birch
@@ -1184,7 +1173,6 @@ BRANCHES['birch']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
 BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
-BRANCHES['birch']['platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
 
 if __name__ == "__main__":
