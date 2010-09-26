@@ -47,6 +47,7 @@ BRANCHES = {
     'addontester': {},
 }
 
+# Talos
 PLATFORMS = {
     'macosx': {},
     'macosx64': {},
@@ -56,12 +57,13 @@ PLATFORMS = {
     'linux64' : {},
 }
 
-PLATFORMS['macosx']['slave_platforms'] = ['leopard']
+PLATFORMS['macosx']['slave_platforms'] = ['leopard-old']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['leopard-old'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard']
+PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
+PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
@@ -71,7 +73,9 @@ PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
-PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64"}
+PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
+                              'download_symbols': False,
+                             }
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -81,22 +85,30 @@ PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 
-
-# Copy the slave names into PLATFORMS[platform][slave_platform]
+# Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
+# the -old suffix if necessary
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
-        platform_config[slave_platform]['slaves'] = SLAVES[slave_platform]
+        platform_config[slave_platform]['slaves'] = SLAVES[slave_platform.split('-')[0]]
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['win64']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
 
-NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
+NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms']
+
+# these three are for mozilla-1.9.1 and mozilla-1.9.2
+OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
+                PLATFORMS['win32']['slave_platforms'] + \
+                PLATFORMS['macosx']['slave_platforms']
+
+OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms']
+
+OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -111,6 +123,7 @@ BRANCH_UNITTEST_VARS = {
     },
 }
 
+# Default set of unit tests
 UNITTEST_SUITES = {
     'opt_unittest_suites': [
         # Turn on chunks for mochitests
@@ -153,7 +166,8 @@ def removeSuite(suiteName, suiteList):
             suiteList[i] = (name, suites)
     return suiteList
 
-
+# You must define opt_unittest_suites when enable_opt_unittests is True for a 
+# platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
         'linux': {
             'builds_before_reboot': 1,
@@ -205,15 +219,17 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             # We can't yet run unit tests on debug builds - see bug 562459
             'enable_debug_unittests': False,
-            'w764': {},
+            'w764': {
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
+            },
         },
         'macosx': {
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            'leopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]) +
-                    [('opengl', ['opengl'])],
+            'leopard-old': {
+                'opt_unittest_suites' : [],
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]) +
                     [('opengl', ['opengl'])],
             },
@@ -222,10 +238,15 @@ PLATFORM_UNITTEST_VARS = {
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
+            'leopard': {
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]) +
+                    [('opengl', ['opengl'])],
+                'debug_unittest_suites' : [],
+            },
             'snowleopard': {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            }
+            },
         },
 }
 
@@ -250,15 +271,6 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
-    for platform in BRANCHES[branch]['platforms']:
-        # If we want to test for a certain architeture for multiple operating systems.
-        # An example is that win32 packages can be tested on 'xp' and 'win7'
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            for key, value in UNITTEST_SUITES.items():
-                # don't override platform specified unittests
-                if key in BRANCHES[branch]['platforms'][platform][slave_platform]:
-                    continue
-                BRANCHES[branch]['platforms'][platform][slave_platform][key] = deepcopy(value)
 
     # Copy in local config
     if branch in localconfig.BRANCHES:
@@ -359,17 +371,17 @@ BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
 BRANCHES['mozilla-1.9.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.1']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.1']['a11y_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-1.9.1']['chrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, {}, OLD_BRANCH_NO_WIN)
+BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.1']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = False
 
 ######## mozilla-1.9.2
@@ -380,17 +392,17 @@ BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
 BRANCHES['mozilla-1.9.2']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['mozilla-1.9.2']['release_tests'] = 5
 BRANCHES['mozilla-1.9.2']['fetch_release_symbols'] = False
-BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, {}, OLD_BRANCH_NO_WIN)
+BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 
 ######## addontester - tests against 1.9.2
@@ -400,17 +412,17 @@ BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
 BRANCHES['addontester']['fetch_symbols'] = False
 BRANCHES['addontester']['support_url_base'] = 'http://build.mozilla.org/talos'
 BRANCHES['addontester']['fetch_release_symbols'] = False
-BRANCHES['addontester']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['addontester']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['addontester']['cold_tests'] = (0, True, {}, NO_WIN)
-BRANCHES['addontester']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['addontester']['a11y_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['addontester']['chrome_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['nochrome_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['dromaeo_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['cold_tests'] = (0, True, {}, OLD_BRANCH_NO_WIN)
+BRANCHES['addontester']['svg_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['addontester']['enable_unittests'] = False
 
 ######## tracemonkey
