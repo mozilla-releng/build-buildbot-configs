@@ -265,7 +265,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': None,
             'download_symbols': True,
-            'build_space': 7,
+            'build_space': 8,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'env': {
