@@ -45,7 +45,7 @@ GLOBAL_VARS = {
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
     'default_l10n_space': 3,
-    'base_clobber_url': 'http://build.mozillamessaging.com/staging/clobberer',
+    'base_clobber_url': 'http://build.mozillamessaging.com/clobberer',
     'default_clobber_time': 24*7, # 1 week
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
@@ -57,6 +57,7 @@ GLOBAL_VARS = {
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
+        ('xpcshell', ['xpcshell']),
     ],
     'geriatric_masters': [],
     'platforms': {
@@ -301,6 +302,7 @@ BRANCHES['tryserver']['stage_ssh_key'] = 'tbirdbld_dsa'
 BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/thunderbird/tryserver-builds'
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
+BRANCHES['tryserver']['repo_path'] = 'try-comm-central'
 BRANCHES['tryserver']['cc_try_factory' ] = True
 BRANCHES['tryserver']['run_client_py'] = True
 BRANCHES['tryserver']['alive_step'] = 'mailbloat'
