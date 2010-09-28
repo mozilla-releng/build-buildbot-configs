@@ -3,9 +3,9 @@ MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [1,2,5,6,7] + range(9,27
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,47)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + ['linux-ix-slave%02i' % x for x in range(12,18)]
+LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + ['linux-ix-slave%02i' % x for x in range(12,43)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1,2] + range(5,21) + range(22,50)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,22)] + ['w32-ix-slave%02i' % x for x in range(22,26)]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,22)] + ['w32-ix-slave%02i' % x for x in range(22,43)]
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS,
