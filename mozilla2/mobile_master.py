@@ -134,25 +134,19 @@ for name in sorted(MOBILE_BRANCHES.keys()):
         if builder in l10nNightlyBuilders and \
            branch['enable_l10n'] and branch['enable_multi_locale'] and \
            builder.startswith('Maemo') and builder.endswith('nightly'):
-            hour=[1]
-            if name='mobile-trunk':
-                hour=[12]
             nightly_scheduler=MultiNightlyL10n(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
-                hour=hour,
+                hour=[1],
                 builderNames=[builder],
                 localesFile=branch['multiLocalesFile'],
                 platform=l10nNightlyBuilders[builder]['platform'],
             )
         else:
-            hour=[1]
-            if name='mobile-trunk':
-                hour=[12]
             nightly_scheduler=Nightly(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
-                hour=hour,
+                hour=[1],
                 builderNames=[builder],
             )
         m['schedulers'].append(nightly_scheduler)
