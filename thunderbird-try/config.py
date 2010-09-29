@@ -155,6 +155,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
+                'MOZ_PKG_PLATFORM': 'mac',
             },
             'enable_opt_unittests': True,
             'enable_checktests': False,

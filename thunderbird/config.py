@@ -60,6 +60,9 @@ platforms = {
         'display_name':  'MacOSX 10.5',
         'slaves': [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ],
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
+        # Override default of mac64 for trunk builds until we switch
+        # (bug 599796/bug 558837)
+        'env': { 'MOZ_PKG_PLATFORM': 'mac' },
     },
 }
 
