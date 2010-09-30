@@ -2,8 +2,8 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.1'
 sourceRepoPath     = 'releases/mozilla-1.9.1'
-sourceRepoRevision = '5b7c41486f5d'
-relbranchOverride  = 'GECKO19112_20100824_RELBRANCH'
+sourceRepoRevision = '06ad1b12aef9'
+relbranchOverride  = ''
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile   = 'l10n-changesets'
 # mergeLocales allows missing localized strings to be filled in by their en-US
@@ -19,15 +19,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.5.13'
+version            = '3.5.14'
 appVersion         = version
-milestone          = '1.9.1.13'
+milestone          = '1.9.1.14'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_5_13'
-oldVersion         = '3.5.12'
+baseTag            = 'FIREFOX_3_5_14'
+oldVersion         = '3.5.13'
 oldAppVersion      = oldVersion
 oldBuildNumber     = 1
-oldBaseTag         = 'FIREFOX_3_5_12'
+oldBaseTag         = 'FIREFOX_3_5_13'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = enUSPlatforms
 patcherConfig      = 'moz191-branch-patcher2.cfg'
@@ -52,10 +52,10 @@ verifyConfigs      = {'linux':  'moz191-firefox-linux.cfg',
 doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
 majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
-majorUpdateToVersion   = '3.6.10'
+majorUpdateToVersion   = '3.6.11'
 majorUpdateAppVersion  = majorUpdateToVersion
 majorUpdateBuildNumber = 1
-majorUpdateBaseTag     = 'FIREFOX_3_6_10'
+majorUpdateBaseTag     = 'FIREFOX_3_6_11'
 majorUpdateReleaseNotesUrl = 'http://www.mozilla.com/%locale%/firefox/3.6/details/index.html'
 majorUpdatePatcherConfig = 'moz191-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-firefox-linux-major.cfg',
