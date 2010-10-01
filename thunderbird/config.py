@@ -114,7 +114,7 @@ build_configs = {
         'branch_config':  'comm-central',
         'builder_type':  'bloat',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
+        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
             'DISPLAY': ':2',
@@ -158,7 +158,7 @@ build_configs = {
         'branch_config':  'comm-1.9.2',
         'builder_type':  'bloat',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
+        'client_py_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
             'DISPLAY': ':2',
@@ -235,7 +235,7 @@ build_configs = {
         'branch_config':  'comm-1.9.1',
         'builder_type':  'bloat',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time' ],
+        'client_py_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
             'DISPLAY': ':2',
@@ -260,6 +260,10 @@ for config_name in build_configs:
     config['platforms'] = {}
     if not config.has_key('platforms'):
         config['env'] = {}
+
+    if not config.has_key('client_py_extra_args'):
+        config['client_py_extra_args'] = []
+    config['client_py_extra_args'].extend(['--skip-venkman', '--skip-chatzilla'])
 
     #if config_name not in ['comm-1.9.2-unittest', 'comm-central-unittest']: #TODO
     if config['builder_type'] != 'check':
