@@ -3,7 +3,7 @@ hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.1'
 sourceRepoPath     = 'releases/mozilla-1.9.1'
 sourceRepoRevision = '06ad1b12aef9'
-relbranchOverride  = ''
+relbranchOverride  = 'GECKO19114_20100930_RELBRANCH '
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile   = 'l10n-changesets'
 # mergeLocales allows missing localized strings to be filled in by their en-US
@@ -22,7 +22,7 @@ appName            = 'browser'
 version            = '3.5.14'
 appVersion         = version
 milestone          = '1.9.1.14'
-buildNumber        = 1
+buildNumber        = 2
 baseTag            = 'FIREFOX_3_5_14'
 oldVersion         = '3.5.13'
 oldAppVersion      = oldVersion
