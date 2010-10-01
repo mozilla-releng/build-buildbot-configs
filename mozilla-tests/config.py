@@ -470,17 +470,17 @@ BRANCHES['electrolysis']['talos_command'] = TALOS_CMD
 BRANCHES['electrolysis']['repo_path'] = "projects/electrolysis"
 BRANCHES['electrolysis']['fetch_symbols'] = True
 BRANCHES['electrolysis']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['electrolysis']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['electrolysis']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['electrolysis']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['electrolysis']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['electrolysis']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['electrolysis']['cold_tests'] = (1, True, {}, NO_WIN)
-BRANCHES['electrolysis']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['chrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['electrolysis']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['electrolysis']['cold_tests'] = (0, True, {}, NO_WIN)
+BRANCHES['electrolysis']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['electrolysis']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['electrolysis']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['electrolysis']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['electrolysis']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## maple
 BRANCHES['maple']['branch_name'] = "Maple"
