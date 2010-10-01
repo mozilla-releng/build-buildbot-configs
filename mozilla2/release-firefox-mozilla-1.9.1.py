@@ -3,7 +3,7 @@ hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.1'
 sourceRepoPath     = 'releases/mozilla-1.9.1'
 sourceRepoRevision = '06ad1b12aef9'
-relbranchOverride  = 'GECKO19114_20100930_RELBRANCH '
+relbranchOverride  = 'GECKO19114_20100930_RELBRANCH'
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile   = 'l10n-changesets'
 # mergeLocales allows missing localized strings to be filled in by their en-US
