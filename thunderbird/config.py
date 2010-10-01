@@ -216,7 +216,7 @@ build_configs = {
         'branch_config':  'comm-1.9.1',
         'builder_type': 'nightly',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-rev=COMM19112_20100824_RELBRANCH' ],
+        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-rev=COMM19114_20101001_RELBRANCH' ],
         'env': {},
         'hg_branch':  'releases/comm-1.9.1',
         'l10n_repo': 'releases/l10n-mozilla-1.9.1', #
