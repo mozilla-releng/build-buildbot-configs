@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-central'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = 'f0e151e87568'
+mozSourceRepoRevision  = '4791cfde3ca0'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = 'b964062e3c53'
-mozRelbranchOverride      = 'GECKO20b5pre_20100820_RELBRANCH'
-l10nRelbranchOverride     = 'GECKO20b5pre_20100823_RELBRANCH'
-mobileRelbranchOverride   = 'GECKO20b5pre_20100823_RELBRANCH'
+mobileSourceRepoRevision  = '840649eabc3b'
+mozRelbranchOverride      = 'GECKO20b7pre_20100929_RELBRANCH'
+l10nRelbranchOverride     = 'GECKO20b7pre_20100929_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO20b7pre_20100929_RELBRANCH'
 l10nRepoPath        = 'l10n-central'
 l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
@@ -24,11 +24,11 @@ disableMultiLocale  = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '2.0a1'
+version             = '4.0b1'
 appVersion          = version
-milestone           = '2.0b5pre'
-buildNumber         = 3
-baseTag             = 'FENNEC_2_0a1'
+milestone           = '2.0b7pre'
+buildNumber         = 1
+baseTag             = 'FENNEC_4_0b1'
 oldVersion          = '2.0a1'
 oldAppVersion       = oldVersion
 oldBuildNumber      = 3
