@@ -278,6 +278,17 @@ for platform in enUSPlatforms:
     elif platform.startswith('android'):
         mozconfig = 'mobile/android/%s/release' % (mobileSourceRepoName)
         releaseWorkDir  = pf['base_workdir'] + '-release'
+        previousCandidateDir='%s-candidates/build%s/%s' % (oldVersion,
+                                                           oldBuildNumber,
+                                                           platform)
+        currentCandidateDir='%s-candidates/build%s/%s' % (version,
+                                                          buildNumber,
+                                                          platform)
+        updatePlatform='Android_arm-eabi-gcc3'
+        ausPreviousUploadDir = "%s/%s/%s/%%(previous_buildid)s/en-US/betatest" % \
+                               (ausBaseUploadDir, oldVersion, updatePlatform)
+        ausFullUploadDir = '%s/%s/%s/%%(buildid)s/en-US/betatest' % \
+                           (ausBaseUploadDir, version, updatePlatform)
         build_factory = AndroidReleaseBuildFactory(
             env=pf['env'],
             hgHost=branchConfig['hghost'],
@@ -302,6 +313,17 @@ for platform in enUSPlatforms:
             clobberTime=clobberTime,
             buildSpace=10,
             packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
+            createSnippet=True,
+            ausUser=ausUser,
+            ausSshKey=ausSshKey,
+            ausPreviousUploadDir=ausPreviousUploadDir,
+            ausFullUploadDir=ausFullUploadDir,
+            ausHost=branchConfig['aus2_host'],
+            downloadBaseURL='%s/candidates' % (
+              mobileBranchConfig['download_base_url']),
+            previousCandidateDir=previousCandidateDir,
+            currentCandidateDir=currentCandidateDir,
+            updatePlatform=updatePlatform,
         )
     builders.append({
         'name': '%s_build' % platform,
