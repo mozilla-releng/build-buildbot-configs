@@ -294,6 +294,8 @@ for config_name in build_configs:
         config['l10n'] = True
         config['l10n_nightly_updates'] = True
         config['create_snippet'] = True
+        if config['hg_branch'] in ['comm-central']:
+            config['packageTests'] = True
 
     if config_name in ['comm-central', 'comm-1.9.2', 'comm-central-trunk']:
         #TODO - clean this up
