@@ -41,6 +41,7 @@ version                    = '3.0.4'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 # Look in release-firefox-mozilla-1.9.1.py for the milestone value
+# Derived from mozillaRelbranchOverride. eg: COMM1919_20100316_RELBRANCH == 1.9.1.9
 milestone                  = '1.9.1.9'
 buildNumber                = 1
 baseTag                    = 'THUNDERBIRD_3_0_4'

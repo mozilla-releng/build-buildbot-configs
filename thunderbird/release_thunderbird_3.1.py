@@ -42,7 +42,8 @@ ftpName                    = appName
 version                    = '3.1.5'
 appVersion                 = '3.1.5'
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '1.9.2.9'
+# Derived from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
+milestone                  = '1.9.2.11'
 buildNumber                = 1
 baseTag                    = 'THUNDERBIRD_3_1_5'
 # The old version is the revision from which we should generate update snippets.
