@@ -3,18 +3,18 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = '0337cbaa6e73' # from GO email for comm-1.9.1 branch
+sourceRepoRevision         = 'a60b91cc7a4a' # from GO email for comm-1.9.1 branch
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM19112_20100824_RELBRANCH' # leave blank if you want buildbot to create a tag on comm-1.9.1
+relbranchOverride          = '' # leave blank if you want buildbot to create a tag on comm-1.9.1
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = 'a23ad037ceac'
+mozillaRepoRevision        = '00d47396bd90'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM19112_20100824_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM19114_20101001_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '18a1c983c8ee'
-inspectorRelbranchOverride = 'COMM19110_20100510_RELBRANCH'
+inspectorRelbranchOverride = ''
 buildToolsRepoPath            = '' # leave empty if buildTools is not to be tagged
 buildToolsRepoRevision        = ''
 buildToolsRelbranchOverride   = ''
@@ -37,19 +37,19 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.0.8'
+version                    = '3.0.9'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 # Look in release-firefox-mozilla-1.9.1.py for the milestone value
 # Derived from mozillaRelbranchOverride. eg: COMM1919_20100316_RELBRANCH == 1.9.1.9
 milestone                  = '1.9.1.12'
-buildNumber                = 2
-baseTag                    = 'THUNDERBIRD_3_0_8'
+buildNumber                = 1
+baseTag                    = 'THUNDERBIRD_3_0_9'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.0.7'
+oldVersion                 = '3.0.8'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
-oldBaseTag                 = 'THUNDERBIRD_3_0_7'
+oldBuildNumber             = 2
+oldBaseTag                 = 'THUNDERBIRD_3_0_8'
 enUSPlatforms             = ('linux', 'win32', 'macosx')
 l10nPlatforms             = enUSPlatforms
 #unittestPlatforms         = enUSPlatforms
@@ -75,10 +75,10 @@ verifyConfigs              = {'linux':  'moz19-thunderbird-linux.cfg',
 # Version numbers we are updating _TO_
 majorUpdateRepoPath    = 'releases/mozilla-1.9.2'
 majorUpdateSourceRepoPath = 'releases/comm-1.9.2'
-majorUpdateToVersion   = '3.1.4'
+majorUpdateToVersion   = '3.1.5'
 majorUpdateAppVersion  = majorUpdateToVersion
-majorUpdateBuildNumber = 2
-majorUpdateBaseTag     = 'THUNDERBIRD_3_1_4'
+majorUpdateBuildNumber = 1
+majorUpdateBaseTag     = 'THUNDERBIRD_3_1_5'
 majorUpdateReleaseNotesUrl = 'http://www.mozillamessaging.com/%locale%/thunderbird/3.1/details/index.html'
 majorUpdatePatcherConfig = 'moz192-thunderbird-branch-major-update-patcher2.cfg'
 majorUpdateVerifyConfigs = {'linux':  'moz191-thunderbird-linux-major.cfg',
