@@ -437,6 +437,8 @@ for platform in enUSDesktopPlatforms:
         buildSpace=10,
         buildsBeforeReboot=pf['builds_before_reboot'],
         triggerBuilds=False,
+        version=version,
+        buildNumber=buildNumber,
     )
 
     builders.append({
