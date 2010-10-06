@@ -108,7 +108,10 @@ build_configs = {
         'milestone': 'comm-central',
         'mozilla_central_branch':  'mozilla-central',
         'period': 50400,
-        'tinderbox_tree': 'Thunderbird'
+        'tinderbox_tree': 'Thunderbird',
+        'unittest_masters': [
+           ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
+         ],
     },
     'comm-central-trunk-bloat': {
         'branch_config':  'comm-central',
