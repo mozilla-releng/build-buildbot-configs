@@ -135,35 +135,35 @@ for platform in unittestPlatforms:
 
 ##### Builders
 repositories = {
-    sourceRepoPath: {
-        'revision': sourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
-        'bumpFiles': [productVersionFile]
-    },
-    mozillaRepoPath: {
-        'revision': mozillaRepoRevision,
-        'relbranchOverride': mozillaRelbranchOverride,
-        'bumpFiles': []
-    },
+#    sourceRepoPath: {
+#        'revision': sourceRepoRevision,
+#        'relbranchOverride': relbranchOverride,
+#        'bumpFiles': [productVersionFile]
+#    },
+#    mozillaRepoPath: {
+#        'revision': mozillaRepoRevision,
+#        'relbranchOverride': mozillaRelbranchOverride,
+#        'bumpFiles': []
+#    },
 }
-if inspectorRepoPath:
-    repositories[inspectorRepoPath] = {
-        'revision': inspectorRepoRevision,
-        'relbranchOverride': inspectorRelbranchOverride,
-        'bumpFiles': []
-    }
+#if inspectorRepoPath:
+#    repositories[inspectorRepoPath] = {
+#        'revision': inspectorRepoRevision,
+#        'relbranchOverride': inspectorRelbranchOverride,
+#        'bumpFiles': []
+#    }
 if venkmanRepoPath:
     repositories[venkmanRepoPath] = {
         'revision': venkmanRepoRevision,
         'relbranchOverride': venkmanRelbranchOverride,
         'bumpFiles': []
     }
-if chatzillaRepoPath:
-    repositories[chatzillaRepoPath] = {
-        'revision': chatzillaRepoRevision,
-        'relbranchOverride': chatzillaRelbranchOverride,
-        'bumpFiles': []
-    }
+#if chatzillaRepoPath:
+#    repositories[chatzillaRepoPath] = {
+#        'revision': chatzillaRepoRevision,
+#        'relbranchOverride': chatzillaRelbranchOverride,
+#        'bumpFiles': []
+#    }
 
 if len(l10nPlatforms) > 0:
     l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
