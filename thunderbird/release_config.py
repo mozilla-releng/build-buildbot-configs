@@ -1,1 +1,1 @@
-release_thunderbird_3.1.p
+release_thunderbird_3.1.py
