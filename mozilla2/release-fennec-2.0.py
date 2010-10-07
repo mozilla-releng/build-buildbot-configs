@@ -6,7 +6,7 @@ mozSourceRepoName      = 'mozilla-central'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = '6bd3e0d8c5d1'
+mozSourceRepoRevision  = '54ee8240f2f9'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
 mobileSourceRepoRevision  = '7b91493b311b'
@@ -27,7 +27,7 @@ disableMultiLocale  = True
 version             = '4.0b1'
 appVersion          = version
 milestone           = '2.0b7pre'
-buildNumber         = 2
+buildNumber         = 3
 baseTag             = 'FENNEC_4_0b1'
 oldVersion          = '4.0b1'
 oldAppVersion       = oldVersion
