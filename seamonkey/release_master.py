@@ -166,7 +166,7 @@ if chatzillaRepoPath:
     }
 
 if len(l10nPlatforms) > 0:
-   l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
+    l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                       relbranchOverride)
     repositories.update(l10n_repos)
 
