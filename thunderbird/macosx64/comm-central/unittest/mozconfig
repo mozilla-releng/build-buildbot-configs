@@ -12,4 +12,4 @@ ac_add_options --enable-debug-symbols="-gdwarf-2"
 export MOZILLA_OFFICIAL=1
 
 #Use ccache
-ac_add_options --with-ccache=/opt/local/bin/ccache
+#ac_add_options --with-ccache=/opt/local/bin/ccache
