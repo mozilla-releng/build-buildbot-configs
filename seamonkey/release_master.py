@@ -198,7 +198,7 @@ builders.append({
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': dummy_factory #tag_factory
+    'factory': tag_factory
 })
 
 
