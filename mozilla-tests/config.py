@@ -175,10 +175,8 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'fedora': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
-                    [('opengl', ['opengl'])],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] +
-                    [('opengl', ['opengl'])],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
         },
         'linux64': {
@@ -187,10 +185,8 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'fedora64': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
-                    [('opengl', ['opengl'])],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] +
-                    [('opengl', ['opengl'])],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
         },
         'win32': {
@@ -207,10 +203,8 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites': [],
             },
             'win7': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:] +
-                    [('reftest-d2d', ['reftest-d2d']), ('direct3D', ['direct3D'])],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:] + 
-                    [('reftest-d2d', ['reftest-d2d']), ('direct3D', ['direct3D'])],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
         'win64': {
@@ -230,8 +224,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': True,
             'leopard-old': {
                 'opt_unittest_suites' : [],
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]) +
-                    [('opengl', ['opengl'])],
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
         },
         'macosx64': {
@@ -239,8 +232,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'leopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]) +
-                    [('opengl', ['opengl'])],
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : [],
             },
             'snowleopard': {
