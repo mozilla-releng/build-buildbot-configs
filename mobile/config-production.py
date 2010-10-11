@@ -33,6 +33,10 @@ SLAVES = {
 default_n900['slaves'] = SLAVES['n900']
 default_n810['slaves'] = SLAVES['n810']
 
+# Remove these to run tp4 in production
+del default_n900['talos_suites']['tp4']
+del default_n900['talos_suites']['tp4_nochrome']
+
 MASTER = {'name': 'production-mobile-master',
           'slave_port': 9020,
           'http_port': 8020,

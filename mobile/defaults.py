@@ -14,8 +14,8 @@ default_platform['unit_build_dirs'] = []
 default_platform['talos_build_dirs'] = []
 default_platform['browser_wait'] = 20
 default_platform['talos_suites'] = {
-#     'tp4': {},
-#     'tp4_nochrome': {},
+    'tp4': {},
+    'tp4_nochrome': {},
     'tpan': {},
     'tzoom': {},
     'ts': {},
@@ -25,10 +25,10 @@ default_platform['talos_suites'] = {
     'tsspider': {},
     'tgfx': {},
 }
-#default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
-#default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
-#default_platform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
-#default_platform['talos_suites']['tp4_nochrome']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
+default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
+default_platform['talos_suites']['tp4_nochrome']['timeout'] = 1.5*60*60
 default_platform['talos_suites']['tpan']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tpan']['timeout'] = 1.5*60*60
 default_platform['talos_suites']['tzoom']['config_file'] = 'mobile.config'
@@ -96,6 +96,8 @@ default_n810 = deepcopy(default_platform)
 default_n810['talos_tarball'] = 'http://10.250.48.135/maemo/talos.tar.bz2'
 default_n810['pageloader_tarball'] = 'http://10.250.48.135/maemo/pageloader.tar.bz2'
 default_n810['maemkit_tarball'] = 'http://10.250.48.135/maemo/maemkit.tar.bz2'
+default_n810['tp4_tarball'] = 'http://10.250.48.135/maemo/tp4.tar.bz2'
+default_n810['tp4_parent_dir'] = '/tools'
 default_n810['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
 default_n810['disable_scaling'] = True
 default_n810['reboot'] = True
@@ -115,6 +117,8 @@ default_n900 = deepcopy(default_platform)
 default_n900['talos_tarball'] = 'http://10.250.48.135/maemo5/talos.tar.bz2'
 default_n900['pageloader_tarball'] = 'http://10.250.48.135/maemo5/pageloader.tar.bz2'
 default_n900['maemkit_tarball'] = 'http://10.250.48.135/maemo5/maemkit.tar.bz2'
+default_n900['tp4_tarball'] = 'http://10.250.48.135/maemo5/tp4.tar.bz2'
+default_n900['tp4_parent_dir'] = '/home/user'
 default_n900['reboot'] = True
 default_n900['reboot_cmd'] = ['sudo', 'reboot-user']
 default_n900['poller_string'] = 'fennec-.*\.en-US\.linux.*arm\.tar\.bz2'
