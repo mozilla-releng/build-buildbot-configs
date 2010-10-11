@@ -1,11 +1,11 @@
 SLAVES = {
-    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,54)],
-    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,56)],
-    'xp': ["talos-r3-xp-%03i" % x for x in range(1,54)],
-    'win7': ["talos-r3-w7-%03i" % x for x in range(1,40) + range(41,54)],
-    'w764': ["t-r3-w764-%03i" % x for x in range(1,51)],
-    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,54)],
-    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,56)],
+    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,10) + range(11,54)],
+    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,10) + range(11,56)],
+    'xp': ["talos-r3-xp-%03i" % x for x in range(1,10) + range(11,54)],
+    'win7': ["talos-r3-w7-%03i" % x for x in range(1,10) + range(11,40) + range(41,54)],
+    'w764': ["t-r3-w764-%03i" % x for x in range(1,10) + range(11,51)],
+    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,10) + range(11,54)],
+    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,10) + range(11,56)],
 }
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
