@@ -9,7 +9,6 @@ if test -n $oldtopsrcdir; then
   export topsrcdir=$oldtopsrcdir
 fi
 
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../tbuniv
 ac_add_options --enable-application=mail
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
