@@ -573,9 +573,7 @@ BRANCHES = {
         }
     },
     'shadow-central': {
-        'mobile_platforms': {
-            'android-r7': {},
-        }
+        'mobile_platforms': {},
     },
     'mozilla-2.0': {
         'mobile_platforms': {},
@@ -743,7 +741,6 @@ BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILD
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
-BRANCHES['shadow-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
