@@ -206,6 +206,7 @@ MOBILE_PLATFORM_VARS = {
             'LC_ALL': 'C',
         },
         'package_globlist': ['embedding/android/*.apk'],
+        'talos_masters': GLOBAL_VARS['talos_masters'],
     },
     'android-r7-nothumb': {
         'base_name': 'Android R7 Thumbless %(branch)s',
