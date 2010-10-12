@@ -21,7 +21,7 @@ def key_copy(dfrom, dto, exceptions):
 branch_configs = {
     'comm-central': {  # key is branch display name
         'branch_name': '', # actual hg branch
-        'platforms': ['linux', 'linux64', 'macosx', 'mac64', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'comm-1.9.1': {
         'branch_name': 'comm-1.9.1',
@@ -60,11 +60,11 @@ platforms = {
         'display_name':  'MacOSX 10.5',
         'slaves': [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ],
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
-        # Override default of mac64 for trunk builds until we switch
+        # Override default of macosx64 for trunk builds until we switch
         # (bug 599796/bug 558837)
         'env': { 'MOZ_PKG_PLATFORM': 'mac' },
     },
-    'mac64': {
+    'macosx64': {
         'update_platform':  'Darwin_Universal-gcc3',
         'display_name':  'MacOSX 10.6',
         'slaves': [ 'mini64-%02i' % x for x in [ 1 ] ],
@@ -109,7 +109,7 @@ build_configs = {
         'leak_threshold': {
             'linux': 970000,
             'macosx': 2500000,
-            'mac64': 2500000,
+            'macosx64': 2500000,
             'win32': 110000,
         },
         'milestone': 'comm-central',
@@ -337,7 +337,7 @@ for config_name in build_configs:
         elif config['builder_type'] == 'nightly':
             config['platforms'][platform]['upload_symbols'] = True
             # Mac OS X hack
-            if platform == 'mac64':
+            if platform == 'macosx64':
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb/x86_64'
             elif platform.find('macos') == 0:
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb/ppc'
