@@ -5,7 +5,7 @@ sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
 sourceRepoRevision         = '07df3759cbf9'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
+relbranchOverride          = 'COMM19211_20101004_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
 mozillaRepoRevision        = '2d507a5bbfd3'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
