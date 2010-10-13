@@ -67,7 +67,7 @@ platforms = {
     'macosx64': {
         'update_platform':  'Darwin_Universal-gcc3',
         'display_name':  'MacOSX 10.6',
-        'slaves': [ 'mini64-%02i' % x for x in [ 1 ] ],
+        'slaves': [ 'mini64-%02i' % x for x in [ ] ],
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
     },
 }
