@@ -3,7 +3,7 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.2' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = '07df3759cbf9'
+sourceRepoRevision         = '428ebf09e9ca'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM19211_20101004_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
@@ -44,7 +44,7 @@ appVersion                 = '3.1.5'
 #XXX: Not entirely certain if/where this is used.
 # Derived from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
 milestone                  = '1.9.2.11'
-buildNumber                = 2
+buildNumber                = 3
 baseTag                    = 'THUNDERBIRD_3_1_5'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.1.4'
