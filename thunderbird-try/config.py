@@ -9,6 +9,7 @@ from buildbotcustom.env import MozillaEnvironments
 TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in range (1,2)]
 TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in range (1,2)]
 TRY_MAC        = ['mini-01','mini-10']
+TRY_MAC64      = ['mini64-01']
 TRY_WIN32      = ['momo-vm-win2k3-03', 'momo-vm-win2k3-16']
 
 
@@ -18,6 +19,7 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64,
     'win32':       TRY_WIN32,
     'macosx':      TRY_MAC,
+    'macosx64':    TRY_MAC64,
 }
 
 SLAVES = {
@@ -156,6 +158,32 @@ PLATFORM_VARS = {
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'MOZ_PKG_PLATFORM': 'mac',
+            },
+            'enable_opt_unittests': True,
+            'enable_checktests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
+        'macosx64': {
+            'base_name': 'OS X 10.6 %(branch)s',
+            'mozconfig': 'macosx/%(branch)s/nightly',
+            'profiled_build': False,
+            'builds_before_reboot': 0,
+            'build_space': 8,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'packageTests': True,
+            'platform_objdir': "%s/x86_64" % OBJDIR,
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'tbrdbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbrdbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
             },
             'enable_opt_unittests': True,
             'enable_checktests': False,
