@@ -67,6 +67,7 @@ GLOBAL_VARS = {
         'linux64': {},
         'win32': {},
         'macosx': {},
+        'macosx64': {},
     },
     'product_name': 'thunderbird',
     'app_name': 'mail',
@@ -165,7 +166,7 @@ PLATFORM_VARS = {
         },
         'macosx64': {
             'base_name': 'OS X 10.6 %(branch)s',
-            'mozconfig': 'macosx/%(branch)s/nightly',
+            'mozconfig': 'macosx64/%(branch)s/nightly',
             'profiled_build': False,
             'builds_before_reboot': 0,
             'build_space': 8,
@@ -279,6 +280,24 @@ PLATFORM_VARS = {
             'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
+        'macosx64-debug': {
+            'base_name': 'OS X 10.6 %(branch)s leak test',
+            'mozconfig': 'macosx64/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': 0,
+            'download_symbols': True,
+            'packageTests': True,
+            'build_space': 5,
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            },
+            'enable_unittests': True,
+            'enable_checktests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
         'win32-debug': {
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
@@ -304,6 +323,7 @@ BRANCHES = {
     'tryserver': { 'platforms': { 'linux': {}, #'linux-debug': {},
                                   'win32': {}, #'win32-debug': {},
                                   'macosx': {},# 'macosx-debug': {},
+                                  'macosx64': {},# 'macosx64-debug': {},
                                   'linux64': {},# 'linux64-debug': {}, 
                                  }},
 }
@@ -363,19 +383,15 @@ BRANCHES['tryserver']['enable_shark'] = False
 BRANCHES['tryserver']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
-BRANCHES['tryserver']['platforms']['macosx']['slaves'] = TRY_SLAVES['macosx']
+for platform in ['linux', 'linux64', 'win32', 'macosx', 'macosx64']:
+    BRANCHES['tryserver']['platforms'][platform]['slaves'] = TRY_SLAVES[platform]
+    BRANCHES['tryserver']['platforms'][platform]['upload_symbols'] = False
+
 #BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 #BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 #BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 #BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 #BRANCHES['tryserver']['platforms']['linux-debug']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = False
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'build.mozilla.org'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
