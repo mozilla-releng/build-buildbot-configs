@@ -7,7 +7,7 @@ sourceRepoRevision         = '07df3759cbf9'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.2'
-mozillaRepoRevision        = 'f5e9537ed7c0'
+mozillaRepoRevision        = '2d507a5bbfd3'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -44,7 +44,7 @@ appVersion                 = '3.1.5'
 #XXX: Not entirely certain if/where this is used.
 # Derived from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
 milestone                  = '1.9.2.11'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'THUNDERBIRD_3_1_5'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.1.4'
