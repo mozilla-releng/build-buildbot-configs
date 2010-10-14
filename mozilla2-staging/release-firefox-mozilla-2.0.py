@@ -7,7 +7,7 @@ sourceRepoName      = 'mozilla-central'
 sourceRepoClonePath = sourceRepoName
 sourceRepoPath      = 'users/stage-ffxbld/mozilla-central'
 # TODO: Add a sourceRepoRevision before trying to use this config to tag
-sourceRepoRevision  = ''
+sourceRepoRevision  = 'd0b8dbaced2c'
 relbranchOverride   = ''
 l10nRepoClonePath   = 'l10n-central'
 l10nRepoPath        = 'users/stage-ffxbld'
@@ -25,17 +25,17 @@ appName             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '4.0b2'
+version             = '4.0b7'
 appVersion          = version
 # NB: this will become 2.0.x not 2.0.0.x, bug 577875
-milestone           = '2.0b2'
+milestone           = '2.0b7'
 buildNumber         = 1
-baseTag             = 'FIREFOX_4_0b2'
-oldVersion          = '4.0b1'
+baseTag             = 'FIREFOX_4_0b7'
+oldVersion          = '4.0b6'
 oldAppVersion       = oldVersion
 oldBuildNumber      = 2
-oldBaseTag          = 'FIREFOX_4_0b1'
-enUSPlatforms       = ('linux', 'linux64', 'win32', 'macosx', 'macosx64')
+oldBaseTag          = 'FIREFOX_4_0b6'
+enUSPlatforms       = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms       = enUSPlatforms
 talosTestPlatforms  = enUSPlatforms
 unittestPlatforms   = enUSPlatforms
@@ -55,7 +55,6 @@ releaseNotesUrl     = 'http://www.mozilla.org/projects/devpreview/releasenotes/'
 useBetaChannel      = 0
 verifyConfigs       = {'linux':    'moz20-firefox-linux.cfg',
                        'linux64':  'moz20-firefox-linux64.cfg',
-                       'macosx':   'moz20-firefox-mac.cfg',
                        'macosx64': 'moz20-firefox-mac64.cfg',
                        'win32':    'moz20-firefox-win32.cfg'}
 doPartnerRepacks    = False
