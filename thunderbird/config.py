@@ -21,7 +21,8 @@ def key_copy(dfrom, dto, exceptions):
 branch_configs = {
     'comm-central': {  # key is branch display name
         'branch_name': '', # actual hg branch
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx', 'win32'],
+        #'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'comm-1.9.1': {
         'branch_name': 'comm-1.9.1',
