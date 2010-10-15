@@ -5,8 +5,8 @@ ac_add_options --enable-tests
 
 ac_add_options --enable-trace-malloc
 
-export CFLAGS="-gstabs+"
-export CXXFLAGS="-gstabs+"
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
 
 CC=/tools/gcc-4.3.3/bin/gcc
 CXX=/tools/gcc-4.3.3/bin/g++
@@ -16,7 +16,7 @@ export MOZILLA_OFFICIAL=1
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
-ac_add_options --enable-debug-symbols="-gstabs+"
+ac_add_options --enable-debug-symbols="-gdwarf-2"
 
 #Use ccache
 ac_add_options --with-ccache=/usr/bin/ccache
