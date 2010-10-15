@@ -392,7 +392,7 @@ for branch in sorted(build_configs.keys()):
     for platform in ('linux','linux64','macosx'):
         if BRANCHES[branch]['platforms'].get(platform):
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
-        BRANCHES[branch]['builds_before_reboot'] = 5
+            BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 5
 
 
 
