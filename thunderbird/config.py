@@ -339,7 +339,7 @@ for config_name in build_configs:
             config['platforms'][platform]['upload_symbols'] = True
             # Mac OS X hack
             if platform == 'macosx64':
-                config['platforms'][platform]['platform_objdir'] = 'objdir-tb/x86_64'
+                config['platforms'][platform]['platform_objdir'] = 'objdir-tb/i386'
             elif platform.find('macos') == 0:
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb/ppc'
 

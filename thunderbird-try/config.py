@@ -173,7 +173,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'platform_objdir': "%s/x86_64" % OBJDIR,
+            'platform_objdir': "%s/i386" % OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
