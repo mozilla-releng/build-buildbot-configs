@@ -10,5 +10,6 @@ SlavePasswords = {
     "win7": "pass",
     "w764": "pass",
     "vista": "pass",
+    "tegra_android": "pass",
 }
 

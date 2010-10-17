@@ -6,6 +6,7 @@ SLAVES = {
     'w764': ["t-r3-w764-%03i" % x for x in range(1,4)],
     'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,4)],
     'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,4)],
+    'tegra_android': ['tegra-%03i' % x for x in range(1,4)],
 }
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
@@ -13,6 +14,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
 
 GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
+    'mobile_tinderbox_tree': 'MobileTest',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'stage_server': 'staging-stage.build.mozilla.org',
     'stage_username': 'ffxbld',

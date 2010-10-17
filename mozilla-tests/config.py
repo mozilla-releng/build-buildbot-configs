@@ -16,6 +16,17 @@ TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 
 TALOS_ADDON_OPTS = {'addonTester' : True, 'plugins': 'zips/plugins.zip', 'pageset': 'zips/pagesets.zip'}
 
+TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
+                             'remoteTests':  True,
+                             'remoteExtras': { 'options': [ '--sampleConfig', 'remote.config',
+                                                            '--output', 'local.yml',
+                                                            '--webServer', 'bm-remote.build.mozilla.org',
+                                                            '--browserWait', '60',
+                                                          ],
+                                               'exePath': 'org.mozilla.fennec',
+                                             },
+                           }
+
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider'],
     'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider', '--noChrome'],
@@ -28,6 +39,9 @@ SUITES = {
     'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
     'addon': ['--activeTests', 'ts:tp4'],
     'a11y': GRAPH_CONFIG + ['--activeTests', 'a11y'],
+    'remote-ts': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
+    'remote-tdhtml': GRAPH_CONFIG + ['--activeTests', 'tdhtml', '--noChrome'],
+    'remote-tsvg': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
 }
 
 BRANCHES = {
@@ -55,6 +69,7 @@ PLATFORMS = {
     'win64': {},
     'linux': {},
     'linux64' : {},
+    'android': {},
 }
 
 PLATFORMS['macosx']['slave_platforms'] = ['leopard-old']
@@ -85,11 +100,21 @@ PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 
+PLATFORMS['android']['slave_platforms'] = ['tegra_android']
+PLATFORMS['android']['env_name'] = 'android-perf'
+PLATFORMS['android']['is_mobile'] = True
+PLATFORMS['android']['tegra_android'] = {'name': "Tegra 250",
+                                         'download_symbols': False,
+                                        }
+
+
 # Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
 # the -old suffix if necessary
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = SLAVES[slave_platform.split('-')[0]]
+
+MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -100,6 +125,8 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms']
+
+ANDROID = PLATFORMS['android']['slave_platforms']
 
 # these three are for mozilla-1.9.1 and mozilla-1.9.2
 OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
@@ -120,6 +147,7 @@ BRANCH_UNITTEST_VARS = {
         'macosx64': {},
         'win32': {},
         'win64': {},
+        'android': {},
     },
 }
 
@@ -240,6 +268,16 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
         },
+        'android': {
+            'builds_before_reboot':  1,
+            'enable_opt_unittests': False,
+            'enable_debug_unittests': False,
+            'download_symbols': False,
+            'tegra_android': {
+                'opt_unittest_suites': [],
+                'debug_unittest_suites': [],
+            },
+        },
 }
 
 # Copy unittest vars in first, then platform vars
@@ -298,6 +336,7 @@ for branch in BRANCHES.keys():
 
 ######## mozilla-central
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
+BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
@@ -315,12 +354,17 @@ BRANCHES['mozilla-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-central']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
+BRANCHES['shadow-central']['mobile_branch_name'] = "Shadow-Central"
 BRANCHES['shadow-central']['build_branch'] = "Shadow-Central"
 BRANCHES['shadow-central']['talos_command'] = TALOS_CMD
 BRANCHES['shadow-central']['fetch_symbols'] = True
@@ -331,6 +375,9 @@ BRANCHES['shadow-central']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['shadow-central']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['shadow-central']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['shadow-central']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['shadow-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -340,6 +387,7 @@ BRANCHES['shadow-central']['repo_path'] = "shadow-central"
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['branch_name'] = "Firefox4.0"
+BRANCHES['mozilla-2.0']['mobile_branch_name'] = "Mobile4.0"
 BRANCHES['mozilla-2.0']['build_branch'] = "2.0"
 BRANCHES['mozilla-2.0']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-2.0']['fetch_symbols'] = True
@@ -350,6 +398,9 @@ BRANCHES['mozilla-2.0']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['mozilla-2.0']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -359,6 +410,7 @@ BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['branch_name'] = "Firefox3.5"
+BRANCHES['mozilla-1.9.1']['mobile_branch_name'] = "Firefox3.5"
 BRANCHES['mozilla-1.9.1']['build_branch'] = "1.9.1"
 BRANCHES['mozilla-1.9.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.1']['fetch_symbols'] = True
@@ -369,6 +421,9 @@ BRANCHES['mozilla-1.9.1']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFO
 BRANCHES['mozilla-1.9.1']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
+BRANCHES['mozilla-1.9.1']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -378,6 +433,7 @@ BRANCHES['mozilla-1.9.1']['enable_unittests'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
+BRANCHES['mozilla-1.9.2']['mobile_branch_name'] = "Mobile1.1"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-1.9.2']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-1.9.2']['fetch_symbols'] = True
@@ -390,6 +446,9 @@ BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFO
 BRANCHES['mozilla-1.9.2']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
+BRANCHES['mozilla-1.9.2']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -399,6 +458,7 @@ BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 
 ######## addontester - tests against 1.9.2
 BRANCHES['addontester']['branch_name'] = "Firefox3.6"
+BRANCHES['addontester']['mobile_branch_name'] = "Firefox3.6"
 BRANCHES['addontester']['build_branch'] = "1.9.2"
 BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
 BRANCHES['addontester']['fetch_symbols'] = False
@@ -410,6 +470,9 @@ BRANCHES['addontester']['dromaeo_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORM
 BRANCHES['addontester']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
+BRANCHES['addontester']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['addontester']['svg_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -419,6 +482,7 @@ BRANCHES['addontester']['enable_unittests'] = False
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
+BRANCHES['tracemonkey']['mobile_branch_name'] = "TraceMonkey"
 BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
 BRANCHES['tracemonkey']['talos_command'] = TALOS_CMD
 BRANCHES['tracemonkey']['fetch_symbols'] = True
@@ -429,6 +493,9 @@ BRANCHES['tracemonkey']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['tracemonkey']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -438,6 +505,7 @@ BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"
+BRANCHES['places']['mobile_branch_name'] = "Places"
 BRANCHES['places']['build_branch'] = "Places"
 BRANCHES['places']['talos_command'] = TALOS_CMD
 BRANCHES['places']['fetch_symbols'] = True
@@ -449,6 +517,9 @@ BRANCHES['places']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['places']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['places']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['places']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['places']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -457,6 +528,7 @@ BRANCHES['places']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 
 ######## electrolysis
 BRANCHES['electrolysis']['branch_name'] = "Electrolysis"
+BRANCHES['electrolysis']['mobile_branch_name'] = "Electrolysis"
 BRANCHES['electrolysis']['build_branch'] = "Electrolysis"
 BRANCHES['electrolysis']['talos_command'] = TALOS_CMD
 BRANCHES['electrolysis']['repo_path'] = "projects/electrolysis"
@@ -468,6 +540,9 @@ BRANCHES['electrolysis']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['electrolysis']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['electrolysis']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -476,6 +551,7 @@ BRANCHES['electrolysis']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## maple
 BRANCHES['maple']['branch_name'] = "Maple"
+BRANCHES['maple']['mobile_branch_name'] = "Maple"
 BRANCHES['maple']['build_branch'] = "Maple"
 BRANCHES['maple']['repo_path'] = "projects/maple"
 BRANCHES['maple']['talos_command'] = TALOS_CMD
@@ -487,6 +563,9 @@ BRANCHES['maple']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['maple']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['maple']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['maple']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['maple']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['maple']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['maple']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -495,6 +574,7 @@ BRANCHES['maple']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## cedar
 BRANCHES['cedar']['branch_name'] = "Cedar"
+BRANCHES['cedar']['mobile_branch_name'] = "Cedar"
 BRANCHES['cedar']['build_branch'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['talos_command'] = TALOS_CMD
@@ -506,6 +586,9 @@ BRANCHES['cedar']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['cedar']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['cedar']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['cedar']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['cedar']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -514,6 +597,7 @@ BRANCHES['cedar']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## birch
 BRANCHES['birch']['branch_name'] = "Birch"
+BRANCHES['birch']['mobile_branch_name'] = "Birch"
 BRANCHES['birch']['build_branch'] = "Birch"
 BRANCHES['birch']['repo_path'] = "projects/birch"
 BRANCHES['birch']['talos_command'] = TALOS_CMD
@@ -525,6 +609,9 @@ BRANCHES['birch']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['birch']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['birch']['cold_tests'] = (1, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['birch']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['birch']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['birch']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['birch']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -533,6 +620,7 @@ BRANCHES['birch']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
+BRANCHES['jaegermonkey']['mobile_branch_name'] = "Jaegermonkey"
 BRANCHES['jaegermonkey']['build_branch'] = "Jaegermonkey"
 BRANCHES['jaegermonkey']['repo_path'] = "projects/jaegermonkey"
 BRANCHES['jaegermonkey']['talos_command'] = TALOS_CMD
@@ -544,6 +632,9 @@ BRANCHES['jaegermonkey']['dromaeo_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['tp4_tests'] = (0, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['jaegermonkey']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['jaegermonkey']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -552,6 +643,7 @@ BRANCHES['jaegermonkey']['a11y_tests'] = (0, True, {}, NO_MAC)
 
 ######## tryserver
 BRANCHES['tryserver']['branch_name'] = "Tryserver"
+BRANCHES['tryserver']['mobile_branch_name'] = "Tryserver"
 BRANCHES['tryserver']['build_branch'] = "Tryserver"
 BRANCHES['tryserver']['talos_command'] = TALOS_CMD
 BRANCHES['tryserver']['fetch_symbols'] = True
@@ -562,6 +654,9 @@ BRANCHES['tryserver']['dromaeo_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['dirty_tests'] = (1, False, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['cold_tests'] = (1, False, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['tryserver']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
