@@ -72,9 +72,11 @@ PLATFORMS = {
     'android': {},
 }
 
-PLATFORMS['macosx']['slave_platforms'] = ['leopard-old']
+# work around path length problem bug 599795
+# leopard-o == leopard-old
+PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard-old'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
@@ -109,7 +111,7 @@ PLATFORMS['android']['tegra_android'] = {'name': "Tegra 250",
 
 
 # Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
-# the -old suffix if necessary
+# the -o suffix if necessary
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = SLAVES[slave_platform.split('-')[0]]
@@ -250,7 +252,7 @@ PLATFORM_UNITTEST_VARS = {
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
-            'leopard-old': {
+            'leopard-o': {
                 'opt_unittest_suites' : [],
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
@@ -365,7 +367,7 @@ BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suit
 BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx']['leopard-old']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
