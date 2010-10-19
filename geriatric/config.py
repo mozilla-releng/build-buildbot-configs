@@ -10,6 +10,7 @@ all_tests = ('xpcshell', 'crashtest', 'reftest', 'mochitest-plain')
 branches = {
     'mozilla-1.9.2': {
         'tinderbox_tree': 'GeriatricMachines',
+        'repo_path': 'releases/mozilla-1.9.2',
         'platforms': {
             'linux': {
                 'variants': ['fedora12-p3'],
@@ -27,6 +28,7 @@ branches = {
     },
     'mozilla-1.9.1': {
         'tinderbox_tree': 'GeriatricMachines',
+        'repo_path': 'releases/mozilla-1.9.1',
         'platforms': {
             'linux': {
                 'variants': ['fedora12-p3'],
@@ -44,6 +46,7 @@ branches = {
     },
     'mozilla-2.0': {
         'tinderbox_tree': 'GeriatricMachines',
+        'repo_path': 'releases/mozilla-2.0',
         'platforms': {
             'linux': {
                 'variants': ['fedora12-p3'],
@@ -57,6 +60,7 @@ branches = {
     },
     'mozilla-central': {
         'tinderbox_tree': 'GeriatricMachines',
+        'repo_path': 'releases/mozilla-1.9.2',
         'platforms': {
             'linux': {
                 'variants': ['fedora12-p3'],
