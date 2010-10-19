@@ -363,14 +363,14 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 
 ######## shadow-central
