@@ -51,6 +51,7 @@ GLOBAL_VARS = {
         ('xpcshell', ['xpcshell']),
         ('jsreftest', ['jsreftest']),
     ],
+    'geriatric_masters': [],
     'platforms': {
         'linux': {},
         'linux64': {},
@@ -671,6 +672,9 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
+BRANCHES['mozilla-central']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
@@ -744,6 +748,9 @@ BRANCHES['mozilla-2.0']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-2.0']['enable_xulrunner'] = True
 # Enable unit tests
+BRANCHES['mozilla-2.0']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
 BRANCHES['mozilla-2.0']['enable_mac_a11y'] = True
 BRANCHES['mozilla-2.0']['unittest_build_space'] = 6
 # And code coverage

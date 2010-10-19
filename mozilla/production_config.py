@@ -58,7 +58,6 @@ GLOBAL_VARS = {
     # and sendchange retry count before give up
     'unittest_masters': [
         ('production-master01.build.mozilla.org:9009', True, 5),
-        ('geriatric-master.build.mozilla.org:9989', False, 5),
         ('staging-master.build.mozilla.org:9009', False, 1),
         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
     ],
