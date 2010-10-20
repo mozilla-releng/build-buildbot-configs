@@ -328,6 +328,9 @@ for config_name in build_configs:
         if not config['builder_type'] == 'check':
             config['platforms'][platform]['profiled_build']  = False
 
+        if config_name in ['comm-central-trunk']:
+            config['platforms'][platform]['enable_checktests'] = True
+
         if config['builder_type'] == 'bloat':
             config['platforms'][platform]['upload_symbols'] = False
             if platform.find('linux') == 0:
@@ -448,7 +451,8 @@ DEFAULTS = {
     'stage_server':		STAGE_SERVER,
     'stage_group':		STAGE_GROUP,
     'stage_ssh_key':		STAGE_SSH_KEY,
-    
+    'enable_checktests':        False,
+
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
 
