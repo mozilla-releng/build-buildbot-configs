@@ -27,7 +27,7 @@ def generate_platform(base_platform, build_branch, talos_branch,
 
 
 SLAVES = {
-    'n900': ['n900-%03i' % x for x in range(1,51)],
+    'n900': ['n900-%03i' % x for x in range(1,91)],
     'n810': ['maemo-n810-%02i' % x for x in range(1,81)],
 }
 
