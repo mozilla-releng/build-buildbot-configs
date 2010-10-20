@@ -105,7 +105,7 @@ PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Tegra 250",
+PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
                                          'download_symbols': False,
                                         }
 
