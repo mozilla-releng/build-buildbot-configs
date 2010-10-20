@@ -158,7 +158,7 @@ mobile_staging = mobile + MasterConfig(
 
 mozilla = MasterConfig(
         config_dir='mozilla',
-        globs=['*.py', '*.cfg'],
+        globs=['*.py', '*.cfg', 'l10n-changesets*'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('passwords.py.template', 'passwords.py'),
@@ -171,6 +171,7 @@ mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
             ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
+            ('release_config', 'release_config_sm01.py'),
             ]
         )
 
@@ -180,6 +181,7 @@ mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
             ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
+            ('release_config_sm01.py', 'release_config.py'),
             ]
         )
 
@@ -189,6 +191,7 @@ mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
             ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
+            ('release_config_sm02.py', 'release_config.py'),
             ]
         )
 
@@ -198,6 +201,7 @@ mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
             ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
+            ('release_config_sm03.py', 'release_config.py'),
             ]
         )
 

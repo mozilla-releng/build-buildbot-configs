@@ -22,3 +22,5 @@ buildbotcustom.misc.fastRegexes.extend([
     '-ix-',
     'xserve',
     ])
+ENABLE_RELEASES = False
+STAGING = False
