@@ -398,7 +398,8 @@ for branch in sorted(build_configs.keys()):
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
             BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
 
-
+del BRANCHES['comm-central-unittest']['platforms']['linux']
+del BRANCHES['comm-central-unittest']['platforms']['linux64']
 
 # ----------------
 
