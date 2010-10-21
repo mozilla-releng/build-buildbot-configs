@@ -44,8 +44,12 @@ update:
 	@hg -R buildbot-configs identify >> master.log
 	hg -R buildbot-configs pull -r $(CONFIG_BRANCH)
 	hg -R buildbot-configs up -C
+	@echo -n "buildbot-configs new rev: " | tee -a master.log
+	@hg -R buildbot-configs identify >> master.log
 	@echo -n "buildbotcustom old rev: " | tee -a master.log
 	@hg -R buildbotcustom identify >> master.log
 	hg -R buildbotcustom pull -r $(CUSTOM_BRANCH)
 	hg -R buildbotcustom up -C
+	@echo -n "buildbotcustom new rev: " | tee -a master.log
+	@hg -R buildbotcustom identify >> master.log
 	@echo Finished updating at `date` | tee -a master.log
