@@ -91,7 +91,8 @@ build_configs = {
         'mozmill': True, #
         'nightly': False, #
         'period': 50400,
-        'tinderbox_tree': 'Thunderbird'
+        'tinderbox_tree': 'Thunderbird',
+        'exec_xpcshell_suites': False,
     },
     'comm-central-trunk': {
         'aus': {
@@ -452,6 +453,7 @@ DEFAULTS = {
     'stage_group':		STAGE_GROUP,
     'stage_ssh_key':		STAGE_SSH_KEY,
     'enable_checktests':        False,
+    'exec_xpcshell_suites':     True,
 
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
