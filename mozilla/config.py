@@ -185,6 +185,7 @@ MOBILE_PLATFORM_VARS = {
     'android-r7': {
         'base_name': 'Android R7 %(branch)s',
         'mozconfig': 'mobile/android/mobile-browser/nightly',
+        'mozharness_config': 'multi_locale/trunk_android.json',
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
@@ -205,6 +206,7 @@ MOBILE_PLATFORM_VARS = {
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
         },
+        'multi_locale': True,
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
     },
@@ -693,6 +695,7 @@ BRANCHES['mozilla-central']['l10nUploadPath'] = \
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-central']['enable_multi_locale'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
