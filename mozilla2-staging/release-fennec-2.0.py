@@ -21,23 +21,23 @@ l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
 appName             = 'mobile'
 mergeLocales        = True
-disableMultiLocale  = True
+disableMultiLocale  = False
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '2.0b1'
+version             = '4.0b2'
 appVersion          = version
-milestone           = '2.0b5pre'
+milestone           = '4.0b7pre'
 buildNumber         = 1
-baseTag             = 'FENNEC_2_0b1'
-oldVersion          = '2.0a1'
+baseTag             = 'FENNEC_4_0b2'
+oldVersion          = '4.0b1'
 oldAppVersion       = oldVersion
-oldBuildNumber      = 3
-oldBaseTag          = 'FENNEC_2_0b1'
+oldBuildNumber      = 1
+oldBaseTag          = 'FENNEC_4_0b1'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
-l10nPlatforms       = ()
+l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
 l10nDesktopPlatforms = ()
 talosTestPlatforms  = ()

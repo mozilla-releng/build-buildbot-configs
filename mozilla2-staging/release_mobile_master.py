@@ -129,7 +129,7 @@ clone_repositories = {
     mobileSourceRepoClonePath: {
         'revision': mobileSourceRepoRevision,
         'relbranchOverride': mobileRelbranchOverride,
-        'bumpFiles': ['default-version.txt'],
+        'bumpFiles': ['confvars.sh'],
     },
 }
 clone_repositories.update(l10n_clone_repos)
@@ -143,7 +143,7 @@ tag_repositories = {
     mobileSourceRepoPath: {
         'revision': mobileSourceRepoRevision,
         'relbranchOverride': mobileRelbranchOverride,
-        'bumpFiles': ['default-version.txt']
+        'bumpFiles': ['confvars.sh']
     }
 }
 tag_repositories.update(l10n_tag_repos)
@@ -285,9 +285,9 @@ for platform in enUSPlatforms:
                                                           buildNumber,
                                                           platform)
         updatePlatform='Android_arm-eabi-gcc3'
-        ausPreviousUploadDir = "%s/%s/%s/%%(previous_buildid)s/en-US/betatest" % \
+        ausPreviousUploadDir = "%s/%s/%s/%%(previous_buildid)s/en-US/beta-cck-test" % \
                                (ausBaseUploadDir, oldVersion, updatePlatform)
-        ausFullUploadDir = '%s/%s/%s/%%(buildid)s/en-US/betatest' % \
+        ausFullUploadDir = '%s/%s/%s/%%(buildid)s/en-US/beta-cck-test' % \
                            (ausBaseUploadDir, version, updatePlatform)
         build_factory = AndroidReleaseBuildFactory(
             env=pf['env'],
@@ -323,7 +323,12 @@ for platform in enUSPlatforms:
               mobileBranchConfig['download_base_url']),
             previousCandidateDir=previousCandidateDir,
             currentCandidateDir=currentCandidateDir,
+            version=version,
+            previousVersion=oldVersion,
+            buildNumber=buildNumber,
             updatePlatform=updatePlatform,
+            multiLocale=multiLocale,
+            mozharnessConfig="multi_locale/staging_4.0_release_android.json",
         )
     builders.append({
         'name': '%s_build' % platform,
