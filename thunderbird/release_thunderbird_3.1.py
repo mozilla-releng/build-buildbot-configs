@@ -45,7 +45,7 @@ appVersion                 = version
 # Derived from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
 milestone                  = '1.9.2.12'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_1_5'
+baseTag                    = 'THUNDERBIRD_3_1_6'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '3.1.5'
 oldAppVersion              = oldVersion
