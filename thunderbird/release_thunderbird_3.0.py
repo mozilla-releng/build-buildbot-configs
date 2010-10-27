@@ -3,9 +3,9 @@ hgSshKey                   = '~cltbld/.ssh/tbirdbld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = 'a60b91cc7a4a' # from GO email for comm-1.9.1 branch
+sourceRepoRevision         = '196fe03ed74b' # from GO email for comm-1.9.1 branch
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = '' # leave blank if you want buildbot to create a tag on comm-1.9.1
+relbranchOverride          = 'COMM19112_20101005_RELBRANCH' # leave blank if you want buildbot to create a tag on comm-1.9.1
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
 mozillaRepoRevision        = '00d47396bd90'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -37,19 +37,19 @@ ftpName                    = appName
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '3.0.9'
+version                    = '3.0.10'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 # Look in release-firefox-mozilla-1.9.1.py for the milestone value
 # Derived from mozillaRelbranchOverride. eg: COMM1919_20100316_RELBRANCH == 1.9.1.9
-milestone                  = '1.9.1.12'
+milestone                  = '1.9.1.15'
 buildNumber                = 1
-baseTag                    = 'THUNDERBIRD_3_0_9'
+baseTag                    = 'THUNDERBIRD_3_0_10'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '3.0.8'
+oldVersion                 = '3.0.9'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 2
-oldBaseTag                 = 'THUNDERBIRD_3_0_8'
+oldBuildNumber             = 1
+oldBaseTag                 = 'THUNDERBIRD_3_0_9'
 enUSPlatforms             = ('linux', 'win32', 'macosx')
 l10nPlatforms             = enUSPlatforms
 #unittestPlatforms         = enUSPlatforms
