@@ -7,11 +7,11 @@ sourceRepoRevision         = '196fe03ed74b' # from GO email for comm-1.9.1 branc
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM19112_20101005_RELBRANCH' # leave blank if you want buildbot to create a tag on comm-1.9.1
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = '00d47396bd90'
+mozillaRepoRevision        = '79d09182f178'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM19114_20101001_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRelbranchOverride   = 'COMM19115_20101027_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '18a1c983c8ee'
 inspectorRelbranchOverride = ''
