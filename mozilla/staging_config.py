@@ -95,8 +95,8 @@ PROJECTS = {
     'fuzzing': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-        'fuzzing_remote_host': 'ffxbld@staging-stage.build.mozilla.org',
-        'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
+        'fuzzing_remote_host': 'stage-ffxbld@dm-pvtbuild01.mozilla.org',
+        'fuzzing_base_dir': '/mnt/pvt_builds/staging/fuzzing/',
         'idle_slaves': 0,
     },
     'nanojit': {
