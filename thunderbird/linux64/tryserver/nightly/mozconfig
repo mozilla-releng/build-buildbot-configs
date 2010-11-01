@@ -1,7 +1,5 @@
 # mozconfig.common only exists in mozilla-central
 if ! test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" && ! test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
-  # Nothing specific to do for mozilla-central
-else
   # 1.9.2 specific options.
   ac_add_options --enable-static
   ac_add_options --disable-shared
