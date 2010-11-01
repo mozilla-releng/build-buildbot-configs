@@ -1,16 +1,39 @@
-if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common"; then
-  # We need some hackery to deal with the mozilla/ build system calling this
-  # mozconfig.
-  oldtopsrcdir=$topsrcdir
-  export topsrcdir=$topsrcdir/mozilla
-fi
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../trytest
 
-mk_add_options MOZ_BUILD_PROJECTS="ppc i386"
-. $topsrcdir/build/macosx/universal/mozconfig.common
-export MOZ_PKG_VERSION=mac
+# mozconfig.common only exists in mozilla-central
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
 
-if test -n $oldtopsrcdir; then
-  export topsrcdir=$oldtopsrcdir
+  # Now in comm-central land.
+  if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common"; then
+    # We need some hackery to deal with the mozilla/ build system calling this
+    # mozconfig.
+    oldtopsrcdir=$topsrcdir
+    export topsrcdir=$topsrcdir/mozilla
+  fi
+
+  mk_add_options MOZ_BUILD_PROJECTS="ppc i386"
+  . $topsrcdir/build/macosx/universal/mozconfig.common
+  export MOZ_PKG_VERSION=mac
+
+  if test -n $oldtopsrcdir; then
+    export topsrcdir=$oldtopsrcdir
+  fi
+
+  # No specific options needed here.
+
+else
+
+  # Treat this as a 1.9.2 mozconfig.
+  if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+    . $topsrcdir/mozilla/build/macosx/universal/mozconfig
+  else
+    . $topsrcdir/build/macosx/universal/mozconfig
+  fi
+
+  # 1.9.2 specific options.
+  ac_add_options --enable-static
+  ac_add_options --disable-shared
+
 fi
 
 ac_add_options --enable-application=mail
