@@ -1,5 +1,3 @@
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../trytest
-
 # mozconfig.common only exists in mozilla-central
 if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
 
