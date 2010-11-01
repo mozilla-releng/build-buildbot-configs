@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-central'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = 'b0132c16f574'
+mozSourceRepoRevision  = '57bc64a3949f'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = '3f6795993406'
-mozRelbranchOverride      = ''
-l10nRelbranchOverride     = ''
-mobileRelbranchOverride   = ''
+mobileSourceRepoRevision  = '9218ed68347b'
+mozRelbranchOverride      = 'GECKO20b7pre_20101029_RELBRANCH'
+l10nRelbranchOverride     = 'GECKO20b7pre_20101029_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO20b7pre_20101029_RELBRANCH'
 l10nRepoPath        = 'l10n-central'
 l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
@@ -27,7 +27,7 @@ disableMultiLocale  = False
 version             = '4.0b2'
 appVersion          = version
 milestone           = '2.0b7pre'
-buildNumber         = 1
+buildNumber         = 2
 baseTag             = 'FENNEC_4_0b2'
 oldVersion          = '4.0b1'
 oldAppVersion       = oldVersion
