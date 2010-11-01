@@ -450,7 +450,7 @@ for platform in enUSDesktopPlatforms:
         'name': 'mobile_%s_desktop_build' % platform,
         'slavenames': pf['slaves'],
         'category': 'release',
-        'builddir': 'mobile_%s_desktop_build' % platform,
+        'builddir': 'rel_mob_%s' % platform,
         'factory': build_factory
     })
 
