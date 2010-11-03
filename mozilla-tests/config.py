@@ -178,11 +178,24 @@ UNITTEST_SUITES = {
         ('xpcshell', ['xpcshell']),
         ('jsreftest', ['jsreftest']),
     ],
+    'mobile_unittest_suites': [
+        # The disabled test suites are only disabled until we can get
+        # to 100% green
+        #('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        #('mochitest-other', ['mochitest-chrome', 'mochitest-a11y',
+        #                     'mochitest-ipcplugins']),
+        ('mobile-mochitest-browser-chrome', ['mobile-mochitest-browser-chrome']),
+        #('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        #('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+    ],
+
 }
 
 def removeSuite(suiteName, suiteList):
     '''It removes 'suite' from 'suiteList' and returns it.
-    
+
     Keyword arguments:
     suiteName -- it is the name of the suite that we want to remove
     suiteList -- it is the list of suites from where we want to remove
@@ -191,7 +204,7 @@ def removeSuite(suiteName, suiteList):
     '''
     # Let's iterate over each tuple
     for i, info in enumerate(suiteList):
-        name, suites = info 
+        name, suites = info
         # Let's see if suiteName is on this list of suites
         if suiteName in suites:
             suites = suites[:]
@@ -210,6 +223,7 @@ PLATFORM_UNITTEST_VARS = {
             'fedora': {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
+                'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
             },
         },
         'linux64': {
@@ -367,6 +381,7 @@ BRANCHES['mozilla-central']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FE
 BRANCHES['mozilla-central']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
