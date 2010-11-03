@@ -405,6 +405,7 @@ for platform in xulrunnerPlatforms:
     xr_env = pf['env'].copy()
     xr_env['SYMBOL_SERVER_USER'] = branchConfig['stage_username_xulrunner']
     xr_env['SYMBOL_SERVER_PATH'] = branchConfig['symbol_server_xulrunner_path']
+    xr_env['POST_SYMBOL_UPLOAD_CMD'] = branchConfig['symbol_server_post_upload_cmd']
     xr_env['SYMBOL_SERVER_SSH_KEY'] = \
         xr_env['SYMBOL_SERVER_SSH_KEY'].replace(branchConfig['stage_ssh_key'],
                                                 branchConfig['stage_ssh_xulrunner_key'])
