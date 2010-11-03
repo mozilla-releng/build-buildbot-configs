@@ -456,6 +456,9 @@ DEFAULTS = {
     'enable_checktests':        False,
     'exec_xpcshell_suites':     True,
 
+    'graph_server':		'graphs.mozilla.org',
+    'graph_selector':           '/server/collect.cgi',
+
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
 
