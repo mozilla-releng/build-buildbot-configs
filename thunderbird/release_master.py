@@ -385,7 +385,7 @@ for platform in enUSPlatforms:
 if doPartnerRepacks:
     partner_repack_factory = PartnerRepackFactory(
         hgHost=branchConfig['hghost'],
-        repoPath=sourceRepoPath,
+        repoPath=mozillaRepoPath,
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         productName=productName,
         version=version,
