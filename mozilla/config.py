@@ -99,7 +99,7 @@ GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64'],
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'nanojit': {
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32', 'arm'],
