@@ -25,6 +25,11 @@ def generate_platform(base_platform, build_branch, talos_branch,
     new_platform['talos_branch'] = talos_branch
     return new_platform
 
+def try_platform(base_platform, talos_branch):
+    new_platform = deepcopy(base_platform)
+    new_platform['talos_branch'] = talos_branch
+    return new_platform
+
 SLAVES = {
     'n900': ['n900-%03i' % x for x in range(1,91)],
 }
@@ -72,6 +77,15 @@ BRANCHES = {
                 nightly_multi=True,
                 nightly_unit=True, dep_unit=True,
                 nightly_talos=True, dep_talos=True),
+        },
+    },
+    'tryserver': {
+        'tinderbox_tree': 'MobileTest',
+        'graph_server': 'graphs-stage.mozilla.org',
+        'tree_stable_timer': None,
+        'enable_try': True,
+        'platforms': {
+            'n900-gtk': try_platform(default_n900, 'mobile-try')
         },
     },
     'tracemonkey': {
