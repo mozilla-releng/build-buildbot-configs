@@ -46,7 +46,7 @@ GLOBAL_VARS = {
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
-    'base_clobber_url': None, # 'http://build.mozilla.org/clobberer/index.php',
+    'base_clobber_url': 'http://cb-seamonkey-linuxmaster-01.mozilla.org/index.php',
     'default_clobber_time': 24*7, # 1 week
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
