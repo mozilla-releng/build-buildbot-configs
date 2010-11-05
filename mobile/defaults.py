@@ -27,24 +27,34 @@ default_platform['talos_suites'] = {
 }
 default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tp4']['nochrome'] = False
 default_platform['talos_suites']['tp4_nochrome']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tp4_nochrome']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tp4_nochrome']['nochrome'] = True
 default_platform['talos_suites']['tpan']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tpan']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tpan']['nochrome'] = True
 default_platform['talos_suites']['tzoom']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tzoom']['timeout'] = 1.5*60*60
+default_platform['talos_suites']['tzoom']['nochrome'] = True
 default_platform['talos_suites']['ts']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['ts']['timeout'] = 60*60
+default_platform['talos_suites']['ts']['nochrome'] = True
 default_platform['talos_suites']['twinopen']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['twinopen']['timeout'] = 60*60
+default_platform['talos_suites']['twinopen']['nochrome'] = True
 default_platform['talos_suites']['tdhtml']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tdhtml']['timeout'] = 60*60
+default_platform['talos_suites']['tdhtml']['nochrome'] = True
 default_platform['talos_suites']['tsvg']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tsvg']['timeout'] = 60*60
+default_platform['talos_suites']['tsvg']['nochrome'] = True
 default_platform['talos_suites']['tsspider']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tsspider']['timeout'] = 60*60
+default_platform['talos_suites']['tsspider']['nochrome'] = True
 default_platform['talos_suites']['tgfx']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tgfx']['timeout'] = 60*60
+default_platform['talos_suites']['tgfx']['nochrome'] = True
 
 default_platform['test_suites'] = {
 #547130    'mochitest1': {}, #Enabled for testing my factory/config changes.
