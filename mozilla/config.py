@@ -126,7 +126,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': False,
@@ -157,7 +157,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': False,
@@ -189,7 +189,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -216,7 +216,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': False,
+        'generate_symbols': True,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -241,7 +241,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -263,7 +263,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['macosx'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -288,7 +288,7 @@ MOBILE_PLATFORM_VARS = {
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
-        'upload_symbols': True,
+        'generate_symbols': True,
         'slaves': SLAVES['win32'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_mobile_dep': False,
@@ -696,6 +696,7 @@ BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-central']['enable_multi_locale'] = True
+BRANCHES['mozilla-central']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -710,6 +711,7 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+BRANCHES['mozilla-central']['mobile_platforms']['android-r7-nothumb']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-nothumb'
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -772,6 +774,8 @@ BRANCHES['mozilla-2.0']['l10nUploadPath'] = \
 BRANCHES['mozilla-2.0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-2.0'
 BRANCHES['mozilla-2.0']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-2.0']['enable_multi_locale'] = True
+BRANCHES['mozilla-2.0']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
