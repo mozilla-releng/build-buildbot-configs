@@ -166,6 +166,7 @@ UNITTEST_SUITES = {
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
         ('jsreftest', ['jsreftest']),
+        ('mozmill-all', ['mozmill']),
     ],
     'debug_unittest_suites': [
         # Turn on chunks for mochitests
@@ -176,6 +177,7 @@ UNITTEST_SUITES = {
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
         ('jsreftest', ['jsreftest']),
+        ('mozmill-all', ['mozmill']),
     ],
     'mobile_unittest_suites': [
         # The disabled test suites are only disabled until we can get
