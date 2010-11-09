@@ -80,7 +80,7 @@ BRANCHES = {
         },
     },
     'tryserver': {
-        'tinderbox_tree': 'MobileTest',
+        'tinderbox_tree': 'MozillaTry',
         'graph_server': 'graphs-stage.mozilla.org',
         'tree_stable_timer': None,
         'enable_try': True,
