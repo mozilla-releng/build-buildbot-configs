@@ -83,6 +83,9 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Shadow-Central',
         'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
         'build_tools_repo_path' : 'http://hg.mozilla.org/build/tools',
+        'stage_server' : 'dm-pvtbuild01.mozilla.org',
+        'hghost' : 'ssh://ffxbld@hgpvt.mozilla.org',
+        'stage_base_path' : '/mnt/pvt-builds'
     },
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',
