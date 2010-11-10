@@ -123,3 +123,14 @@ BRANCHES = {
         },
     },
 }
+
+for i in ('browser-chrome', 'crashtest', 'reftest', 'xpcshell'):
+    if BRANCHES.has_key('tryserver'):
+        if BRANCHES['tryserver']['platforms']['n900-gtk']['test_suites'].has_key(i):
+            del BRANCHES['tryserver']['platforms']['n900-gtk']['test_suites'][i]
+
+for j in ('tzoom',):
+    if BRANCHES.has_key('tryserver'):
+        if BRANCHES['tryserver']['platforms']['n900-gtk']['talos_suites'].has_key(j):
+            del BRANCHES['tryserver']['platforms']['n900-gtk']['talos_suites'][j]
+
