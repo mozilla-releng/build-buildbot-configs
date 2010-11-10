@@ -75,25 +75,6 @@ platforms = {
 
 
 build_configs = {
-    'comm-central-unittest': {
-        'branch_config': 'comm-central',
-        'builder_type': 'check',
-        'env': {},
-        'factory': 'CCUnittestBuildFactory',
-        'hg_branch': 'comm-central',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'mozilla_central_branch':  'mozilla-central',
-        'mozmill': True, #
-        'nightly': False, #
-        'period': 50400,
-        'tinderbox_tree': 'Thunderbird',
-        'exec_xpcshell_suites': False,
-    },
     'comm-central-trunk': {
         'aus': {
             'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-central',
@@ -277,7 +258,6 @@ for config_name in build_configs:
         config['client_py_extra_args'] = []
     config['client_py_extra_args'].extend(['--skip-venkman', '--skip-chatzilla'])
 
-    #if config_name not in ['comm-1.9.2-unittest', 'comm-central-unittest']: #TODO
     if config['builder_type'] != 'check':
         config['env']['CVS_RSH'] = 'ssh'
         config['env']['MOZ_OBJDIR'] = 'objdir-tb'
@@ -376,7 +356,7 @@ for config_name in build_configs:
         if platforms[platform].has_key('env'):
             key_copy(platforms[platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
         key_copy(build_configs[config_name]['platforms'][platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
-        if config_name not in ['comm-central-trunk-bloat', 'comm-1.9.2-unittest', 'comm-central-unittest']: #TODO
+        if config_name not in ['comm-central-trunk-bloat', 'comm-1.9.2-unittest']: #TODO
             BRANCHES[config_name]['platforms'][platform]['env']['SYMBOL_SERVER_SSH_KEY'] = platforms[platform]['SYMBOL_SERVER_SSH_KEY']
 
 #TODO - make changes to avoid these last minute cleanups
@@ -385,7 +365,7 @@ for branch in ['comm-1.9.2-bloat', 'comm-1.9.2', 'comm-central']:
     del BRANCHES[branch]['platforms']['linux64']
 for branch in ['comm-1.9.2', 'comm-central', 'comm-central-trunk']:
     del BRANCHES[branch]['builder_type']
-for branch in ['comm-central-unittest', 'comm-1.9.2-unittest']:
+for branch in ['comm-1.9.2-unittest']:
     for platform in ['linux', 'linux64', 'macosx', 'win32']:
         for key in ['env', 'platform_objdir', 'update_platform']:
             if BRANCHES[branch]['platforms'][platform].has_key(key):
@@ -397,9 +377,6 @@ for branch in sorted(build_configs.keys()):
         if BRANCHES[branch]['platforms'].get(platform):
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
             BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
-
-del BRANCHES['comm-central-unittest']['platforms']['linux']
-del BRANCHES['comm-central-unittest']['platforms']['linux64']
 
 # ----------------
 
