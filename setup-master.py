@@ -158,7 +158,7 @@ mobile_staging = mobile + MasterConfig(
 
 mozilla = MasterConfig(
         config_dir='mozilla',
-        globs=['*.py', '*.cfg', 'l10n-changesets*'],
+        globs=['*.py', '*.cfg', 'l10n-changesets*', 'release_templates'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('passwords.py.template', 'passwords.py'),

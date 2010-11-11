@@ -55,4 +55,8 @@ releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer related
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
+# Release Notification configuration
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['releaseTemplates']    = 'release_templates'
 
