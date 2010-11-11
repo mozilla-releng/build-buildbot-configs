@@ -3,18 +3,16 @@ export JAVA_HOME=/tools/jdk
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
-export LDFLAGS="-static-libstdc++"
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 
 ac_add_options --enable-application=xulrunner
 ac_add_options --disable-tests
 
-CC=/tools/gcc-4.5/bin/gcc
-CXX=/tools/gcc-4.5/bin/g++
+CC=/tools/gcc-4.3.3/installed/bin/gcc
+CXX=/tools/gcc-4.3.3/installed/bin/g++
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
-mk_add_options PROFILE_GEN_SCRIPT='$(PYTHON) @MOZ_OBJDIR@/_profile/pgo/profileserver.py'
 
 #Use ccache
 ac_add_options --with-ccache=/usr/bin/ccache
