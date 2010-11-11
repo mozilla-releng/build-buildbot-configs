@@ -176,7 +176,8 @@ PROJECTS = {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'ffxbld@dm-pvtbuild01.mozilla.org',
-        'fuzzing_base_dir': '/mnt/pvt_builds/fuzzing/',
+        # Path needs extra leading slash due to optparse expansion on Win32
+        'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
         'idle_slaves': 3,
     },
     'nanojit': {
