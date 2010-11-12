@@ -728,7 +728,7 @@ BRANCHES['shadow-central']['enable_nightly'] = False
 # Enable XULRunner / SDK builds
 BRANCHES['shadow-central']['enable_xulrunner'] = False
 # Disable codesighs for now until ability to upload/download from secure server exists bug 581106
-BRANCHES['shadow-central']['enable_codesighs'] = False
+BRANCHES['shadow-central']['enable_codesighs'] = True
 # Enable unit tests
 BRANCHES['shadow-central']['enable_mac_a11y'] = True
 BRANCHES['shadow-central']['unittest_build_space'] = 6
