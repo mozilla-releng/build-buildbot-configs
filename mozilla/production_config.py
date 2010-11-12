@@ -85,7 +85,8 @@ BRANCHES = {
         'build_tools_repo_path' : 'http://hg.mozilla.org/build/tools',
         'stage_server' : 'dm-pvtbuild01.mozilla.org',
         'hghost' : 'ssh://ffxbld@hgpvt.mozilla.org',
-        'stage_base_path' : '/mnt/pvt-builds'
+        'stage_base_path' : '/mnt/pvt_builds',
+        'stage_log_base_url': 'https://dm-pvtbuild01.mozilla.org',
     },
     'mozilla-1.9.1': {
         'packaged_unittest_tinderbox_tree': 'Firefox3.5',

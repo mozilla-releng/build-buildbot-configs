@@ -88,7 +88,8 @@ BRANCHES = {
     },
     'shadow-central': {
         'stage_server' : 'dm-pvtbuild01.mozilla.org',
-        'stage_base_path' : '/mnt/pvt-builds/staging',
+        'stage_base_path' : '/mnt/pvt_builds/staging',
+        'stage_log_base_url': 'https://dm-pvtbuild01.mozilla.org/staging',
         'package_url': 'https://dm-pvtbuild01.mozilla.org/staging/shadow-central/',
         'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
         'hghost' : 'ssh://stage-ffxbld@hgpvt.mozilla.org',
