@@ -194,10 +194,10 @@ for platform in enUSPlatforms:
     clobberTime = pf.get('clobber_time', branchConfig['default_clobber_time'])
 
     if platform.startswith('maemo'):
-        if disableMultiLocale:
-            multiLocale = False
-        else:
+        if enableMultiLocale:
             multiLocale = mobileBranchConfig['enable_multi_locale']
+        else:
+            multiLocale = False
         mozconfig = 'mobile/%s/%s/release' % (platform, mobileSourceRepoName)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
