@@ -371,12 +371,13 @@ for branch in ['comm-1.9.2-unittest']:
             if BRANCHES[branch]['platforms'][platform].has_key(key):
                 del BRANCHES[branch]['platforms'][platform][key]
 
-# Enable ccache statistics for linuxes and mac
 for branch in sorted(build_configs.keys()):
     for platform in ('linux','linux64','macosx'):
         if BRANCHES[branch]['platforms'].get(platform):
+            # Enable ccache statistics for linuxes and mac
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
-            BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
+    for platform in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
 
 # ----------------
 
