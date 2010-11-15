@@ -21,8 +21,7 @@ def key_copy(dfrom, dto, exceptions):
 branch_configs = {
     'comm-central': {  # key is branch display name
         'branch_name': '', # actual hg branch
-        'platforms': ['linux', 'linux64', 'macosx', 'win32'],
-        #'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'comm-1.9.1': {
         'branch_name': 'comm-1.9.1',
@@ -68,7 +67,7 @@ platforms = {
     'macosx64': {
         'update_platform':  'Darwin_x86_64-gcc3',
         'display_name':  'MacOSX 10.6',
-        'slaves': [ 'mini64-%02i' % x for x in [ ] ],
+        'slaves': [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1 ] ],
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
     },
 }
@@ -363,6 +362,13 @@ for config_name in build_configs:
 
 for branch in ['comm-1.9.2-bloat', 'comm-1.9.2', 'comm-central']:
     del BRANCHES[branch]['platforms']['linux64']
+
+# 32-64 universal switch for mac
+for branch in ['comm-central-trunk-bloat']:
+    del BRANCHES[branch]['platforms']['macosx64']
+for branch in ['comm-central-trunk']:
+    del BRANCHES[branch]['platforms']['macosx']
+
 for branch in ['comm-1.9.2', 'comm-central', 'comm-central-trunk']:
     del BRANCHES[branch]['builder_type']
 for branch in ['comm-1.9.2-unittest']:
@@ -372,7 +378,7 @@ for branch in ['comm-1.9.2-unittest']:
                 del BRANCHES[branch]['platforms'][platform][key]
 
 for branch in sorted(build_configs.keys()):
-    for platform in ('linux','linux64','macosx'):
+    for platform in ('linux','linux64','macosx', 'macosx64'):
         if BRANCHES[branch]['platforms'].get(platform):
             # Enable ccache statistics for linuxes and mac
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
