@@ -310,6 +310,7 @@ for gloKey in gloConfig:
                    ['appVersion', 'version'],
                    ['oldAppVersion', 'oldVersion'],
                    ['l10nPlatforms', 'enUSPlatforms'],
+                   ['unittestPlatforms', 'enUSPlatforms'],
                    ['appVersion', 'version'],
                    ['majorUpdateAppVersion', 'majorUpdateToVersion'],
                   ]:
@@ -512,7 +513,9 @@ for gloKey in gloConfig:
         )
         schedulers.append(major_update_verify_scheduler)
     
-    for platform in unittestPlatforms:
+    Â#XXX Temporarily disabled until we get the unittest builders fixed
+    # for platform in unittestPlatforms:
+    for platform in ():
         if branchConfig['platforms'][platform]['enable_opt_unittests']:
             platform_test_builders = []
             base_name = branchConfig['platforms'][platform]['base_name']
