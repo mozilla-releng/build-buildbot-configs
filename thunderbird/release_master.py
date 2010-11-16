@@ -218,7 +218,7 @@ gloConfig = {
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'mozilla-central',
-        'mozillaRepoRevision'        : '4d78e3075d88',
+        'mozillaRepoRevision'        : '622d3a8f8ab1',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
