@@ -106,6 +106,7 @@ gloConfig = {
                                       'macosx': 'moz19-thunderbird-mac.cfg',
                                       'win32':  'moz19-thunderbird-win32.cfg'},
         'packageTests'               : False,
+        'unittestMaster'             : (),
         
         # 'Version' numbers we are updating _TO_
         'majorUpdateRepoPath'    : 'releases/mozilla-1.9.2',
@@ -194,6 +195,7 @@ gloConfig = {
                                       'macosx': 'moz192-thunderbird-mac.cfg',
                                       'win32':  'moz192-thunderbird-win32.cfg'},
         'packageTests'               : False,
+        'unittestMasters'            : (),
         
         # 'Version' numbers we are updating _TO_
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
@@ -285,7 +287,9 @@ gloConfig = {
                                         'macosx64': 'moz20-thunderbird-mac64.cfg',
                                         'win32'   : 'moz20-thunderbird-win32.cfg'},
         'packageTests'               : True,
-        
+        #XXX: Should really be obtained from config.py, but this will do for now.
+        'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
+
         # 'Version' numbers we are updating _TO_
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : '',
@@ -391,10 +395,9 @@ for gloKey in gloConfig:
     majorUpdateReleaseNotesUrl = gloConfig[gloKey]['majorUpdateReleaseNotesUrl']
     partnersRepoPath           = gloConfig[gloKey]['partnersRepoPath']
     packageTests               = gloConfig[gloKey]['packageTests']
+    unittestMasters            = gloConfig[gloKey]['unittestMasters']
 
     branchConfig = nightly_config.BRANCHES[sourceRepoName]
-
-    unittest_masters = branchConfig['unittest_masters']
 
     for v in ['hgurl', 'stage_username','stage_server', 'stage_ssh_key','stage_group','stage_base_path', 'clobber_url']:
         branchConfig[v] = nightly_config.DEFAULTS[v]
@@ -513,7 +516,7 @@ for gloKey in gloConfig:
         )
         schedulers.append(major_update_verify_scheduler)
     
-    Â#XXX Temporarily disabled until we get the unittest builders fixed
+    #XXX Temporarily disabled until we get the unittest builders fixed
     # for platform in unittestPlatforms:
     for platform in ():
         if branchConfig['platforms'][platform]['enable_opt_unittests']:
@@ -661,9 +664,9 @@ for gloKey in gloConfig:
         pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
         mozconfig = '%s/%s/release' % (platform, sourceRepoName)
 
-        unittest_branch = None
-        if unittest_masters:
-            unittest_branch = 'release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey)
+        unittestBranch = None
+        if unittestMasters:
+            unittestBranch = 'release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey)
 
         build_factory = CCReleaseBuildFactory(
             env=pf['env'],
@@ -698,8 +701,8 @@ for gloKey in gloConfig:
             buildNumber=buildNumber,
             clobberURL=branchConfig['base_clobber_url'],
             packageTests=packageTests,
-            unittestMasters=unittest_masters,
-            unittestBranch=unittest_branch,
+            unittestMasters=unittestMasters,
+            unittestBranch=unittestBranch,
         )
     
         builders.append({
