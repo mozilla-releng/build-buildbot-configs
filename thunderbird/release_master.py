@@ -86,8 +86,6 @@ gloConfig = {
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_0_9',
         'enUSPlatforms'             : ('linux', 'win32', 'macosx'),
-        #'l10nPlatforms'             : enUSPlatforms,
-        #unittestPlatforms         = 'enUSPlatforms'
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         # 'Patcher' should stay the same until we move to gecko 2.0
@@ -176,8 +174,6 @@ gloConfig = {
         'oldBuildNumber'             : 3,
         'oldBaseTag'                 : 'THUNDERBIRD_3_1_5',
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
-        #'l10nPlatforms'              : enUSPlatforms,
-        #unittestPlatforms         = 'enUSPlatforms'
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
@@ -193,7 +189,6 @@ gloConfig = {
         'doPartnerRepacks'           : True,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
-        'l10nPlatforms'              : ['linux', 'macosx', 'win32' ],
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
                                       'macosx': 'moz192-thunderbird-mac.cfg',
                                       'win32':  'moz192-thunderbird-win32.cfg'},
@@ -268,7 +263,7 @@ gloConfig = {
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : '',
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
-        #'l10nPlatforms'              : l10nPlatforms,
+        'l10nPlatforms'              : (),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz20-thunderbird-branch-patcher2.cfg',
@@ -284,7 +279,6 @@ gloConfig = {
         'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 0,
-        #'l10nPlatforms'              : ['linux', 'macosx', 'win32' ], # delete this line
         'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
                                         'linux64' : 'moz20-thunderbird-linux64.cfg',
                                         'macosx64': 'moz20-thunderbird-mac64.cfg',
@@ -312,12 +306,13 @@ gloConfig = {
 for gloKey in gloConfig:
     for copy, orig in [
                    ['appVersion', 'version'],
-                   ['l10nPlatforms', 'enUSPlatforms'],
                    ['oldAppVersion', 'oldVersion'],
+                   ['l10nPlatforms', 'enUSPlatforms'],
                    ['appVersion', 'version'],
                    ['majorUpdateAppVersion', 'majorUpdateToVersion'],
                   ]:
-        gloConfig[gloKey][copy] = gloConfig[gloKey][orig]
+         if not copy in gloConfig[gloKey]:
+             gloConfig[gloKey][copy] = gloConfig[gloKey][orig]
 
 
 #XXX: Our current buildbot config is inconsistent with the branch name itself, fix it
