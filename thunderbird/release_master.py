@@ -245,7 +245,7 @@ gloConfig = {
         'buildToolsRepoPath'	   : '',
         'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
-        'productName'                : 'miramar',
+        'productName'                : 'thunderbird',
         'brandName'                  : 'Miramar',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
