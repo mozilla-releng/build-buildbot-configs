@@ -106,7 +106,7 @@ gloConfig = {
                                       'macosx': 'moz19-thunderbird-mac.cfg',
                                       'win32':  'moz19-thunderbird-win32.cfg'},
         'packageTests'               : False,
-        'unittestMaster'             : (),
+        'unittestMasters'            : (),
         
         # 'Version' numbers we are updating _TO_
         'majorUpdateRepoPath'    : 'releases/mozilla-1.9.2',
@@ -218,17 +218,17 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-central-trunk', # buildbot branch name
         'sourceRepoPath'             : 'comm-central',
-        'sourceRepoRevision'         : 'eee469ed90be',
+        'sourceRepoRevision'         : '21431d746abf',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'mozilla-central',
-        'mozillaRepoRevision'        : '622d3a8f8ab1',
+        'mozillaRepoRevision'        : 'da98fe199be0',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
         'mozillaRelbranchOverride'   : '', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
-        'inspectorRepoRevision'      : '',
+        'inspectorRepoRevision'      : '2001a7394d4f',
         'inspectorRelbranchOverride' : '',
         'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
         'buildToolsRepoRevision'        : '',
