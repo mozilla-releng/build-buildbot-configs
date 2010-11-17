@@ -24,3 +24,4 @@ buildbotcustom.misc.fastRegexes.extend([
     ])
 ENABLE_RELEASES = True
 STAGING = True
+RESERVED_SLAVES = "reserved_slaves_sm02"
