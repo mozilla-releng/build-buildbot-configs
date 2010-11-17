@@ -320,6 +320,7 @@ PLATFORM_VARS = {
             'enable_ccache': True,
             'env': {
                 'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
@@ -349,6 +350,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'env': {
                 'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
@@ -407,6 +409,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
@@ -465,6 +468,7 @@ PLATFORM_VARS = {
             'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -490,6 +494,7 @@ PLATFORM_VARS = {
             'enable_ccache': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -534,6 +539,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',

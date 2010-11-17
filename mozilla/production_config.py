@@ -37,6 +37,7 @@ TRY_SLAVES = {
 # Local overrides for default values
 GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
+    'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus2-staging.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',

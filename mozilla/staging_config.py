@@ -31,6 +31,7 @@ TRY_SLAVES['win32'] += TRY_WIN32 + TRY_WIN32_IXS
 
 GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
+    'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'staging-stage.build.mozilla.org',
     'aus2_host': 'staging-stage.build.mozilla.org',
     'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
