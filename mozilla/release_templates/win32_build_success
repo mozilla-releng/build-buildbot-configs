@@ -1,0 +1,5 @@
+%(releaseName)s: %(platform)s builds available
+
+%(platform)s unsigned builds available for %(releaseName)s
+
+-buildbot
