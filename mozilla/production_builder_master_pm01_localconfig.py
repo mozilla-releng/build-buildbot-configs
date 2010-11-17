@@ -16,6 +16,7 @@ ACTIVE_BRANCHES = ['places', 'electrolysis', 'tracemonkey', 'shadow-central',
     'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central',# 'mozilla-2.0',
     'maple', 'cedar', 'birch', 'jaegermonkey']
 ACTIVE_PROJECTS = PROJECTS.keys()
+ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-2.0', ]
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg

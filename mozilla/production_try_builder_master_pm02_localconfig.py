@@ -13,6 +13,7 @@ c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld",
 
 from config import BRANCHES, TRY_SLAVES, PROJECTS
 ACTIVE_BRANCHES = ['tryserver']
+ACTIVE_RELEASE_BRANCHES = []
 # Override with TRY_SLAVES
 SLAVES = TRY_SLAVES
 
