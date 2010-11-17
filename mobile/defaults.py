@@ -57,35 +57,35 @@ default_platform['talos_suites']['tgfx']['timeout'] = 60*60
 default_platform['talos_suites']['tgfx']['nochrome'] = True
 
 default_platform['test_suites'] = {
-#547130    'mochitest1': {}, #Enabled for testing my factory/config changes.
-#547130    'mochitest2': {},
-#547130    'mochitest3': {},
-#547130    'mochitest4': {},
-#547130    'chrome':     {},
+    'mochitest1': {}, #Enabled for testing my factory/config changes.
+    'mochitest2': {},
+    'mochitest3': {},
+    'mochitest4': {},
+    'chrome':     {},
     'browser-chrome': {},
     'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
 }
-#default_platform['test_suites']['mochitest1']['test_type'] = "mochitest"
-#default_platform['test_suites']['mochitest1']['timeout'] = 60*60
-#default_platform['test_suites']['mochitest1']['clients'] = (1,4) #i.e. 1 of 4
-#default_platform['test_suites']['mochitest1']['known_fail_count'] = 0
-#default_platform['test_suites']['mochitest2']['test_type'] = "mochitest"
-#default_platform['test_suites']['mochitest2']['timeout'] = 60*60
-#default_platform['test_suites']['mochitest2']['clients'] = (2,4)
-#default_platform['test_suites']['mochitest2']['known_fail_count'] = 0
-#default_platform['test_suites']['mochitest3']['test_type'] = "mochitest"
-#default_platform['test_suites']['mochitest3']['timeout'] = 60*60
-#default_platform['test_suites']['mochitest3']['clients'] = (3,4)
-#default_platform['test_suites']['mochitest3']['known_fail_count'] = 0
-#default_platform['test_suites']['mochitest4']['test_type'] = "mochitest"
-#default_platform['test_suites']['mochitest4']['timeout'] = 60*60
-#default_platform['test_suites']['mochitest4']['clients'] = (4,4)
-#default_platform['test_suites']['mochitest4']['known_fail_count'] = 0
-#default_platform['test_suites']['chrome']['test_type'] = 'chrome'
-#default_platform['test_suites']['chrome']['timeout'] = 60*60
-#default_platform['test_suites']['chrome']['known_fail_count'] = 545
+default_platform['test_suites']['mochitest1']['test_type'] = "mochitest"
+default_platform['test_suites']['mochitest1']['timeout'] = 60*60
+default_platform['test_suites']['mochitest1']['clients'] = (1,4) #i.e. 1 of 4
+default_platform['test_suites']['mochitest1']['known_fail_count'] = 0
+default_platform['test_suites']['mochitest2']['test_type'] = "mochitest"
+default_platform['test_suites']['mochitest2']['timeout'] = 60*60
+default_platform['test_suites']['mochitest2']['clients'] = (2,4)
+default_platform['test_suites']['mochitest2']['known_fail_count'] = 0
+default_platform['test_suites']['mochitest3']['test_type'] = "mochitest"
+default_platform['test_suites']['mochitest3']['timeout'] = 60*60
+default_platform['test_suites']['mochitest3']['clients'] = (3,4)
+default_platform['test_suites']['mochitest3']['known_fail_count'] = 0
+default_platform['test_suites']['mochitest4']['test_type'] = "mochitest"
+default_platform['test_suites']['mochitest4']['timeout'] = 60*60
+default_platform['test_suites']['mochitest4']['clients'] = (4,4)
+default_platform['test_suites']['mochitest4']['known_fail_count'] = 0
+default_platform['test_suites']['chrome']['test_type'] = 'chrome'
+default_platform['test_suites']['chrome']['timeout'] = 60*60
+default_platform['test_suites']['chrome']['known_fail_count'] = 545
 default_platform['test_suites']['browser-chrome']['test_type'] = 'browser-chrome'
 default_platform['test_suites']['browser-chrome']['timeout'] = 60*60
 default_platform['test_suites']['browser-chrome']['known_fail_count'] = 0
