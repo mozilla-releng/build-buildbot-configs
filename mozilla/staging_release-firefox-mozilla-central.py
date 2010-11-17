@@ -10,6 +10,7 @@ releaseConfig['relbranchOverride']   = 'GECKO20b5_20100831_RELBRANCH'
 releaseConfig['l10nRepoClonePath']   = 'l10n-central'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
+releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['productName']         = 'firefox'

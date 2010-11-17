@@ -8,6 +8,7 @@ releaseConfig['sourceRepoRevision']  = '2cfbdde77508'
 releaseConfig['relbranchOverride']   = 'GECKO19211_20100930_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
+releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = False
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['productName']         = 'firefox'
