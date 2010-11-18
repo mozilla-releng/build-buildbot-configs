@@ -326,7 +326,9 @@ for gloKey in gloConfig:
 nightly_config.BRANCHES['comm-1.9.1'] = nightly_config.BRANCHES['comm-central'].copy()
 
 builders = []
+all_builders = []
 test_builders = []
+all_test_builders = []
 schedulers = []
 change_source = []
 status = []
@@ -996,8 +998,13 @@ for gloKey in gloConfig:
         tree=branchConfig["tinderbox_tree"] + "-Release",
         extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
         relayhost="mx.mozillamessaging.com",
-        builders=[b['name'] for b in builders],
+        builders=[b['name'] for b in builders + test_builders],
         logCompression="bzip2")
     )
+    all_builders.extend(builders)
+    all_test_builders.extend(test_builders)
+    builders = []
+    test_builders = []
 
-builders.extend(test_builders)
+builders = all_builders
+builders.extend(all_test_builders)
