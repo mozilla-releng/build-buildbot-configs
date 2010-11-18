@@ -516,15 +516,17 @@ for gloKey in gloConfig:
         )
         schedulers.append(major_update_verify_scheduler)
     
-    #XXX Temporarily disabled until we get the unittest builders fixed
-    # for platform in unittestPlatforms:
-    for platform in ():
-        if branchConfig['platforms'][platform]['enable_opt_unittests']:
+    for platform in unittestPlatforms:
+
+        if unittestMasters:
             platform_test_builders = []
             base_name = branchConfig['platforms'][platform]['base_name']
-            for suites_name, suites in branchConfig['unittest_suites']:
-                platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
-    
+            #for suites_name, suites in branchConfig['unittest_suites']:
+            for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
+                #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
+                platform_test_builders.append('%s_unittest_%s_%s' % (platform, suites_name, gloKey))
+            import sys
+            print >> sys.stderr, "Branch: %s" % 'release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey) 
             s = Scheduler(
              name='%s_release_unittest_%s' % (platform, gloKey),
              treeStableTimer=0,
@@ -664,9 +666,15 @@ for gloKey in gloConfig:
         pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
         mozconfig = '%s/%s/release' % (platform, sourceRepoName)
 
-        unittestBranch = None
-        if unittestMasters:
-            unittestBranch = 'release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey)
+        if platform in unittestPlatforms:
+            packageTests = True
+            unittestMasters = branchConfig['unittest_masters']
+            unittestBranch = 'release-%s-%s-opt-unittest_%s' % (sourceRepoName,
+                                                                platform, gloKey)
+        else:
+            packageTests = False
+            unittestMasters = None
+            unittestBranch = None
 
         build_factory = CCReleaseBuildFactory(
             env=pf['env'],
@@ -712,42 +720,80 @@ for gloKey in gloConfig:
             'builddir': '%s_build_%s' % (platform, gloKey),
             'factory': build_factory,
         })
-    
-        repack_factory = CCReleaseRepackFactory(
-            hgHost=branchConfig['hghost'],
-            project=productName,
-            appName=appName,
-            brandName=brandName,
-            repoPath=sourceRepoPath,
-            mozRepoPath=mozillaRepoPath,
-            inspectorRepoPath=inspectorRepoPath,
-            venkmanRepoPath=venkmanRepoPath,
-            cvsroot=chatzillaCVSRoot,
-            l10nRepoPath=l10nRepoPath,
-            stageServer=nightly_config.STAGE_SERVER,
-            stageUsername=branchConfig['stage_username'],
-            stageSshKey=branchConfig['stage_ssh_key'],
-            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-            compareLocalesRepoPath=nightly_config.COMPARE_LOCALES_REPO_PATH,
-            compareLocalesTag=nightly_config.COMPARE_LOCALES_TAG,
-            buildSpace=5,
-            configRepoPath=nightly_config.CONFIG_REPO_PATH,
-            configSubDir=nightly_config.CONFIG_SUBDIR,
-            mozconfig=mozconfig,
-            platform=platform + '-release',
-            buildRevision='%s_RELEASE' % baseTag,
-            version=version,
-            buildNumber=buildNumber,
-            clobberURL=branchConfig['base_clobber_url'],
-        )
-    
-        builders.append({
-            'name': '%s_repack_%s' % (platform, gloKey),
-            'slavenames': pf['slaves'],
-            'category': 'release',
-            'builddir': '%s_repack_%s' % (platform, gloKey),
-            'factory': repack_factory,
-        })
+        if platform in l10nPlatforms:
+            repack_factory = CCReleaseRepackFactory(
+                hgHost=branchConfig['hghost'],
+                project=productName,
+                appName=appName,
+                brandName=brandName,
+                repoPath=sourceRepoPath,
+                mozRepoPath=mozillaRepoPath,
+                inspectorRepoPath=inspectorRepoPath,
+                venkmanRepoPath=venkmanRepoPath,
+                cvsroot=chatzillaCVSRoot,
+                l10nRepoPath=l10nRepoPath,
+                stageServer=nightly_config.STAGE_SERVER,
+                stageUsername=branchConfig['stage_username'],
+                stageSshKey=branchConfig['stage_ssh_key'],
+                buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+                compareLocalesRepoPath=nightly_config.COMPARE_LOCALES_REPO_PATH,
+                compareLocalesTag=nightly_config.COMPARE_LOCALES_TAG,
+                buildSpace=5,
+                configRepoPath=nightly_config.CONFIG_REPO_PATH,
+                configSubDir=nightly_config.CONFIG_SUBDIR,
+                mozconfig=mozconfig,
+                platform=platform + '-release',
+                buildRevision='%s_RELEASE' % baseTag,
+                version=version,
+                buildNumber=buildNumber,
+                clobberURL=branchConfig['base_clobber_url'],
+            )
+
+            builders.append({
+                'name': '%s_repack_%s' % (platform, gloKey),
+                'slavenames': pf['slaves'],
+                'category': 'release',
+                'builddir': '%s_repack_%s' % (platform, gloKey),
+                'factory': repack_factory,
+            })
+
+        if unittestMasters:
+            mochitestLeakThreshold = pf.get('mochitest_leak_threshold', None)
+            crashtestLeakThreshold = pf.get('crashtest_leak_threshold', None)
+            for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
+                # Release builds on mac don't have a11y enabled, do disable the mochitest-a11y test
+                if platform.startswith('macosx') and 'mochitest-a11y' in suites:
+                    suites = suites[:]
+                    suites.remove('mochitest-a11y')
+              
+                release_packaged_tests_factory = UnittestPackagedBuildFactory(
+                    platform=platform,
+                    test_suites=suites,
+                    productName=productName,
+                    hgHost=branchConfig['hghost'],
+                    repoPath=sourceRepoPath,
+                    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+                    buildSpace=1.0,
+                    downloadSymbols=True,
+                    buildsBeforeReboot=pf.get('builds_before_reboot', 0),
+                )
+  
+                unittest_builder_name = '%s_unittest_%s_%s' % (platform, suites_name, gloKey)
+  
+                builder = {
+                    'name': unittest_builder_name,
+                    'slavenames': pf['slaves'],
+                    'builddir': '%s-unittest-%s-%s' % (platform, suites_name, gloKey),
+                    'factory': release_packaged_tests_factory,
+                    'category': 'release',
+                }
+                test_builders.append(builder)
+
+#                test_builders.extend(generateTestBuilder(
+#                    branchConfig, 'release', platform, "%s_test" % platform,
+#                    'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+#                    suites_name, suites, mochitestLeakThreshold,
+#                    crashtestLeakThreshold))
     
     
     if doPartnerRepacks:
@@ -953,3 +999,5 @@ for gloKey in gloConfig:
         builders=[b['name'] for b in builders],
         logCompression="bzip2")
     )
+
+builders.extend(test_builders)
