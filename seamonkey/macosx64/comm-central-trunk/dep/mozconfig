@@ -1,0 +1,31 @@
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+  # We need some hackery to deal with the mozilla/ build system calling this
+  # mozconfig.
+  oldtopsrcdir=$topsrcdir
+  export topsrcdir=$topsrcdir/mozilla
+fi
+
+. $topsrcdir/build/macosx/universal/mozconfig
+
+if test -n $oldtopsrcdir; then
+  export topsrcdir=$oldtopsrcdir
+fi
+
+ac_add_options --enable-application=suite
+ac_add_options --enable-update-channel=nightly
+ac_add_options --enable-update-packaging
+ac_add_options --enable-codesighs
+ac_add_options --disable-install-strip
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# Enable parallel compiling
+mk_add_options MOZ_MAKE_FLAGS="-j4"
