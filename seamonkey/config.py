@@ -12,7 +12,9 @@ SLAVES = {
     'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['cb-sea-win32-tbox'],
-    'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2,3,4,5]],
+    'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
+    'macosx64': ['cb-sea-miniosx%02i' % x for x in [3,4,5] +
+                ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]],
 }
 
 
@@ -77,8 +79,10 @@ GLOBAL_VARS = {
         'linux64': {},
         'win32': {},
         'macosx': {},
+        'macosx64': {},
         'linux-debug': {},
         'macosx-debug': {},
+        'macosx64-debug': {},
         'win32-debug': {},
     },
     'product_name': 'seamonkey',
@@ -184,6 +188,37 @@ PLATFORM_VARS = {
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'MOZ_PKG_PLATFORM': 'mac',
+                'LC_ALL': 'C',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
+        'macosx64': {
+            'base_name': 'OS X 10.6 %(branch)s',
+            'mozconfig': 'macosx64/%(branch)s/nightly',
+            'mozconfig_dep': 'macosx64/%(branch)s/dep',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'build_space': 8,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'packageTests': True,
+            'slaves': SLAVES['macosx64'],
+            'platform_objdir': "%s/i386" % OBJDIR,
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -255,6 +290,26 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
+            },
+            'enable_unittests': True,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
+        'macosx64-debug': {
+            'base_name': 'OS X 10.6 %(branch)s leak test',
+            'mozconfig_dep': 'macosx64/%(branch)s/debug',
+            'profiled_build': False,
+            'builds_before_reboot': None,
+            'download_symbols': True,
+            'build_space': 5,
+            'slaves': SLAVES['macosx64'],
+            'platform_objdir': OBJDIR,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
             },
             'enable_unittests': True,
             'enable_checktests': True,
@@ -324,7 +379,7 @@ BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
-BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea21x'
 #make sure it has an ending slash
