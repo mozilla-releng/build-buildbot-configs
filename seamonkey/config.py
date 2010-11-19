@@ -369,6 +369,7 @@ BRANCHES['comm-central-trunk']['mozilla_repo_path'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['comm-central-trunk']['start_hour'] = [0]
 BRANCHES['comm-central-trunk']['start_minute'] = [30]
+BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 %(branch)s'
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
 BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 # And code coverage
