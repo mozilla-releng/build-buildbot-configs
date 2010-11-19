@@ -77,7 +77,6 @@ GLOBAL_VARS = {
         'linux': {},
         'linux64': {},
         'win32': {},
-        'macosx': {},
         'macosx64': {},
         'linux-debug': {},
         'macosx-debug': {},
