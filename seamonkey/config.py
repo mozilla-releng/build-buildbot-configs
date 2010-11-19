@@ -13,8 +13,7 @@ SLAVES = {
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['cb-sea-win32-tbox'],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
-    'macosx64': ['cb-sea-miniosx%02i' % x for x in [3,4,5]] +
-                ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]],
+    'macosx64': ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]],
 }
 
 
