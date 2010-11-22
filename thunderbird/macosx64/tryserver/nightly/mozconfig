@@ -26,6 +26,7 @@ else
   ac_add_options --target=i386-apple-darwin9.2.0
   ac_add_options --enable-static
   ac_add_options --disable-shared
+  ac_add_options --disable-crashreporter
   CC="gcc-4.2 -arch i386"
   CXX="g++-4.2 -arch i386"
   HOST_CC="gcc-4.2"
