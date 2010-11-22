@@ -30,6 +30,9 @@ BRANCHES = {
             'stage_username': 'trybld',
             'stage_ssh_key': 'trybld_dsa',
         },
+        'shadow-central': {
+            'stage_server': 'dm-pvtbuild01.mozilla.org',
+        },
 }
 
 PLATFORM_VARS = {

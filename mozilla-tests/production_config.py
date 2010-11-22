@@ -28,6 +28,7 @@ BRANCHES = {
     'shadow-central': {
         'tinderbox_tree': 'Shadow-Central',
         'mobile_tinderbox_tree': 'Shadow-Central',
+        'stage_server': 'dm-pvtbuild01.mozilla.org',
     },
     'mozilla-2.0': {
         'tinderbox_tree': 'Firefox4.0',
