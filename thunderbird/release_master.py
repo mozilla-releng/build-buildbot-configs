@@ -998,9 +998,20 @@ for gloKey in gloConfig:
         tree=branchConfig["tinderbox_tree"] + "-Release",
         extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
         relayhost="mx.mozillamessaging.com",
-        builders=[b['name'] for b in builders + test_builders],
+        builders=[b['name'] for b in builders],
         logCompression="bzip2")
     )
+
+    status.append(TinderboxMailNotifier(
+        fromaddr="thunderbird2.buildbot@build.mozilla.org",
+        tree=branchConfig["tinderbox_tree"] + "-Release",
+        extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+        relayhost="mx.mozillamessaging.com",
+        builders=[b['name'] for b in test_builders],
+        logCompression="bzip2",
+        errorparser="unittest")
+    )
+
     all_builders.extend(builders)
     all_test_builders.extend(test_builders)
     builders = []
