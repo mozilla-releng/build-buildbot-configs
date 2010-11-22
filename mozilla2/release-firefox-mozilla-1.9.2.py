@@ -2,8 +2,8 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-1.9.2'
 sourceRepoPath     = 'releases/mozilla-1.9.2'
-sourceRepoRevision = 'e2ad3b93a543'
-relbranchOverride  = 'GECKO19211_20100930_RELBRANCH'
+sourceRepoRevision = '5d2cbf9c9669'
+relbranchOverride  = ''
 l10nRepoPath       = 'releases/l10n-mozilla-1.9.2'
 l10nRevisionFile   = 'l10n-changesets_mozilla-1.9.2'
 # mergeLocales allows missing localized strings to be filled in by their en-US
@@ -19,15 +19,15 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '3.6.12'
+version            = '3.6.13'
 appVersion         = version
-milestone          = '1.9.2.12'
+milestone          = '1.9.2.13'
 buildNumber        = 1
-baseTag            = 'FIREFOX_3_6_12'
-oldVersion         = '3.6.11'
+baseTag            = 'FIREFOX_3_6_13'
+oldVersion         = '3.6.12'
 oldAppVersion      = oldVersion
-oldBuildNumber     = 3
-oldBaseTag         = 'FIREFOX_3_6_11'
+oldBuildNumber     = 1
+oldBaseTag         = 'FIREFOX_3_6_12'
 enUSPlatforms      = ('linux', 'win32', 'macosx')
 l10nPlatforms      = ('linux', 'win32', 'macosx')
 talosTestPlatforms = ('linux', 'win32', 'macosx')
