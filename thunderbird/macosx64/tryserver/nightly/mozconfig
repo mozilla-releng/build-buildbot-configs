@@ -12,14 +12,30 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test 
   if test -n $oldtopsrcdir; then
     export topsrcdir=$oldtopsrcdir
   fi
+
+  #Use ccache
+  ac_add_options --with-ccache=/opt/local/bin/ccache
 else
   # Treat this as a 1.9.2 mozconfig. Here we are accepting that 1.9.2 try
   # server builds will only work with 10.5 and above and only on i386
   # architecture. This simplifies what builders we need on try server.
 
   # 1.9.2 specific options.
+  ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.5.sdk
+  ac_add_options --enable-macos-target=10.5
+  ac_add_options --target=i386-apple-darwin9.2.0
   ac_add_options --enable-static
   ac_add_options --disable-shared
+  CC="gcc-4.2 -arch i386"
+  CXX="g++-4.2 -arch i386"
+  HOST_CC="gcc-4.2"
+  HOST_CXX="g++-4.2"
+  RANLIB=ranlib
+  AR=ar
+  AS=$CC
+  LD=ld
+  STRIP="strip -x -S"
+  CROSS_COMPILE=1
 fi
 
 ac_add_options --enable-application=mail
@@ -48,7 +64,5 @@ if [ -f $topsrcdir/mozconfig-extra-macosx64 ] ; then
   . $topsrcdir/mozconfig-extra-macosx64
 fi
 
-#Use ccache
-ac_add_options --with-ccache=/opt/local/bin/ccache
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j8"
