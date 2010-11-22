@@ -1,9 +1,5 @@
 from copy import deepcopy
 
-import buildbotcustom.env
-reload(buildbotcustom.env)
-from buildbotcustom.env import MozillaEnvironments
-
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \

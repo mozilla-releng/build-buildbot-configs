@@ -1,9 +1,5 @@
 from copy import deepcopy
 
-import buildbotcustom.env
-reload(buildbotcustom.env)
-from buildbotcustom.env import MozillaEnvironments
-
 # This is only used within this file so it doesn't need to be part of the
 # big dict
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]

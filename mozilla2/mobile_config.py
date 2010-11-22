@@ -7,10 +7,6 @@ import re
 import config
 reload(config)
 
-import buildbotcustom.env
-reload(buildbotcustom.env)
-from buildbotcustom.env import MozillaEnvironments
-
 OBJDIR = 'objdir'
 SBOX_HOME = '/scratchbox/users/cltbld/home/cltbld'
 
