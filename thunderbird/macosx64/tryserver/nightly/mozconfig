@@ -1,12 +1,25 @@
-if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
-  oldtopsrcdir=$topsrcdir
-  export topsrcdir=$topsrcdir/mozilla
-fi
+# mozconfig.common only exists in mozilla-central
+if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
 
-. $topsrcdir/build/macosx/universal/mozconfig
+  # Now in comm-central land.
+  if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
+    oldtopsrcdir=$topsrcdir
+    export topsrcdir=$topsrcdir/mozilla
+  fi
 
-if test -n $oldtopsrcdir; then
-  export topsrcdir=$oldtopsrcdir
+  . $topsrcdir/build/macosx/universal/mozconfig
+
+  if test -n $oldtopsrcdir; then
+    export topsrcdir=$oldtopsrcdir
+  fi
+else
+  # Treat this as a 1.9.2 mozconfig. Here we are accepting that 1.9.2 try
+  # server builds will only work with 10.5 and above and only on i386
+  # architecture. This simplifies what builders we need on try server.
+
+  # 1.9.2 specific options.
+  ac_add_options --enable-static
+  ac_add_options --disable-shared
 fi
 
 ac_add_options --enable-application=mail
