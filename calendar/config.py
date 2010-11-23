@@ -174,7 +174,6 @@ BRANCHES['comm-central-lightning']['mozilla_central_branch'] = 'mozilla-central'
 BRANCHES['comm-central-lightning']['branch_name'] = 'comm-central'
 BRANCHES['comm-central-lightning']['hg_branch'] = 'comm-central'
 BRANCHES['comm-central-lightning']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
-BRANCHES['comm-central-lightning']['cvsroot'] = ':ext:calbld@cvs.mozilla.org:/cvsroot'
 BRANCHES['comm-central-lightning']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-central-lightning']['period'] = 60 * 60 * 6
 BRANCHES['comm-central-lightning']['package'] = True
