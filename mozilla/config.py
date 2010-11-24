@@ -1,4 +1,5 @@
 from copy import deepcopy
+from buildbot.process.properties import WithProperties
 
 import localconfig
 reload(localconfig)
@@ -325,6 +326,8 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
+                'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
             },
@@ -356,7 +359,9 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
+                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
@@ -470,6 +475,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
+                'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
             },
@@ -496,6 +503,8 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
+                'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
             },
