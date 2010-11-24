@@ -76,6 +76,11 @@ GLOBAL_VARS = {
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_nightly': True,
+
+    # if true, this branch will get bundled and uploaded to ftp.m.o for users
+    # to download and thereby accelerate their cloning
+    'enable_weekly_bundle': False,
+
     'enable_mobile_nightly': True,
     'enable_mobile_dep': True,
     'hash_type': 'sha512',
@@ -689,6 +694,7 @@ BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
+BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
