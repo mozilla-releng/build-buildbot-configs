@@ -38,15 +38,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.1', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.1',
-        'sourceRepoRevision'         : '196fe03ed74b', # from GO email for comm-1.9.1 branch
+        'sourceRepoRevision'         : 'ad5b9c3e12a0', # from GO email for comm-1.9.1 branch
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM19112_20101005_RELBRANCH', # leave blank if you want buildbot to create a tag on comm-1.9.1
+        'relbranchOverride'          : '', # leave blank if you want buildbot to create a tag on comm-1.9.1
         'mozillaRepoPath'            : 'releases/mozilla-1.9.1',
-        'mozillaRepoRevision'        : '79d09182f178',
+        'mozillaRepoRevision'        : '25fc0d274143',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'COMM19115_20101027_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM19116_20101123_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '18a1c983c8ee',
         'inspectorRelbranchOverride' : '',
@@ -72,19 +72,19 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.0.10',
+        'version'                    : '3.0.11',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Look' in release-firefox-mozilla-1.9.1.py for the milestone value
         # 'Derived' from mozillaRelbranchOverride. eg: COMM1919_20100316_RELBRANCH == 1.9.1.9
-        'milestone'                  : '1.9.1.15',
+        'milestone'                  : '1.9.1.16',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_0_10',
+        'baseTag'                    : 'THUNDERBIRD_3_0_11',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.0.9',
+        'oldVersion'                 : '3.0.10',
         #'oldAppVersion'              : oldVersion,
         'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_0_9',
+        'oldBaseTag'                 : 'THUNDERBIRD_3_0_10',
         'enUSPlatforms'             : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
@@ -99,7 +99,7 @@ gloConfig = {
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'releaseNotesUrl'		   : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'testOlderPartials'          : True,
-        'doPartnerRepacks'	   : False,
+        'doPartnerRepacks'	         : False,
         'partnersRepoPath'           : None,
         'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux':  'moz19-thunderbird-linux.cfg',
@@ -111,10 +111,10 @@ gloConfig = {
         # 'Version' numbers we are updating _TO_
         'majorUpdateRepoPath'    : 'releases/mozilla-1.9.2',
         'majorUpdateSourceRepoPath' : 'releases/comm-1.9.2',
-        'majorUpdateToVersion'   : '3.1.5',
+        'majorUpdateToVersion'   : '3.1.7',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_3_1_5',
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_3_1_7',
         'majorUpdateReleaseNotesUrl' : 'http://www.mozillamessaging.com/%locale%/thunderbird/3.1/details/index.html',
         'majorUpdatePatcherConfig' : 'moz192-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz191-thunderbird-linux-major.cfg',
