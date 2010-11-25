@@ -33,6 +33,8 @@ GLOBAL_VARS = {
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
+    'hg_username': 'ffxbld',
+    'hg_ssh_key': '~cltbld/.ssh/ffxbld_dsa',
     'graph_selector': '/server/collect.cgi',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
@@ -75,6 +77,8 @@ GLOBAL_VARS = {
     'brand_name': 'Minefield',
     'enable_shark': True,
     'enable_codecoverage': False,
+    'enable_blocklist_update': False,
+    'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
@@ -729,6 +733,8 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7-nothumb']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-nothumb'
+BRANCHES['mozilla-central']['enable_blocklist_update'] = True
+BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = True
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -775,6 +781,8 @@ BRANCHES['mozilla-2.0']['enable_mac_a11y'] = True
 BRANCHES['mozilla-2.0']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['mozilla-2.0']['enable_codecoverage'] = False
+BRANCHES['mozilla-2.0']['enable_blocklist_update'] = False
+BRANCHES['mozilla-2.0']['blocklist_update_on_closed_tree'] = False
 # L10n configuration
 BRANCHES['mozilla-2.0']['enable_l10n'] = True
 BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
@@ -876,6 +884,8 @@ BRANCHES['mozilla-1.9.1']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-1.9.1']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['enable_blocklist_update'] = True
+BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = True
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -943,6 +953,8 @@ BRANCHES['mozilla-1.9.2']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-1.9.2']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
+BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = True
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'

@@ -59,6 +59,7 @@ GLOBAL_VARS = {
     'packaged_unittest_tinderbox_tree': 'MozillaTest',
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
+    'hg_username': 'stage-ffxbld',
 }
 
 BUILDS_BEFORE_REBOOT = 5
@@ -66,6 +67,18 @@ SYMBOL_SERVER_HOST = 'staging-stage.build.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {
+    'mozilla-central': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-1.9.2': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-1.9.1': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
     'tryserver': {
         'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
