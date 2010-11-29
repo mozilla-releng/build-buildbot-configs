@@ -127,15 +127,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '428ebf09e9ca',
+        'sourceRepoRevision'         : 'bf2a9c8424b6',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM19211_20101004_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '4d78e3075d88',
+        'mozillaRepoRevision'        : 'af7a49ca89b2',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO19212_20101027_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO19213_20101122_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : 'c1b38e365772',
         'inspectorRelbranchOverride' : 'COMM1929_20100910_RELBRANCH',
@@ -163,18 +163,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.6',
+        'version'                    : '3.1.7',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.12',
+        'milestone'                  : '1.9.2.13',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_1_6',
+        'baseTag'                    : 'THUNDERBIRD_3_1_7',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.5',
+        'oldVersion'                 : '3.1.6',
         #'oldAppVersion'              : oldVersion,
-        'oldBuildNumber'             : 3,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_5',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_6',
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
@@ -188,7 +188,7 @@ gloConfig = {
         'ausSshKey'                  : 'tbirdbld_dsa',
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'testOlderPartials'          : False,
-        'doPartnerRepacks'           : True,
+        'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',

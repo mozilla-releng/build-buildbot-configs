@@ -12,6 +12,9 @@ releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['otherReposToTag']     = {
+    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION'
+}
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
