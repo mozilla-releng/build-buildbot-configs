@@ -243,9 +243,7 @@ PLATFORM_UNITTEST_VARS = {
             'crashtest_leak_threshold': 484,
             'env_name' : 'win32-perf-unittest',
             'enable_opt_unittests': True,
-            # We can't yet run unit tests on debug builds - see bug 562459
-            'enable_debug_unittests': False,
-            # We can't yet run unit tests for WinXP - see bug 563036
+            'enable_debug_unittests': True,
             'xp': {
                 'opt_unittest_suites': [],
                 'debug_unittest_suites': [],
