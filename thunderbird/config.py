@@ -35,6 +35,7 @@ branch_configs = {
 
 platforms = {
     'linux': {
+        'check_objdir': 'objdir-tb',
         'update_platform': 'Linux_x86-gcc3',
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
@@ -42,6 +43,7 @@ platforms = {
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
+        'check_objdir': 'objdir-tb',
         'update_platform':  'Linux_x86_64-gcc3',
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
@@ -49,6 +51,7 @@ platforms = {
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
+        'check_objdir': 'objdir-tb',
         'update_platform':  'WINNT_x86-msvc',
         'display_name':  'WINNT 5.2',
         'platform_objdir': 'objdir-tb',
@@ -318,13 +321,16 @@ for config_name in build_configs:
             # Mac OS X hack
             if platform.find('macos') == 0:
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb'
+                config['platforms'][platform]['check_objdir'] = 'objdir-tb'
         elif config['builder_type'] == 'nightly':
             config['platforms'][platform]['upload_symbols'] = True
             # Mac OS X hack
             if platform == 'macosx64':
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb/i386'
+                config['platforms'][platform]['check_objdir'] = 'objdir-tb/x86_64'
             elif platform.find('macos') == 0:
                 config['platforms'][platform]['platform_objdir'] = 'objdir-tb/ppc'
+                config['platforms'][platform]['check_objdir'] = 'objdir-tb/ppc'
 
 # create final data structure
 BRANCHES = {}
