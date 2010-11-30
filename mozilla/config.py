@@ -102,22 +102,6 @@ GLOBAL_VARS = {
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
-PROJECTS = {
-    'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
-    },
-    'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32', 'arm'],
-        'hgurl': 'http://hg.mozilla.org',
-        'repo_path': 'projects/nanojit-central',
-    },
-}
-for k, v in localconfig.PROJECTS.items():
-    if k not in PROJECTS:
-        PROJECTS[k] = {}
-    for k1, v1 in v.items():
-        PROJECTS[k][k1] = v1
-
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
 MOBILE_OBJDIR = GLOBAL_VARS['mobile_objdir']
@@ -577,6 +561,29 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
 }
+
+PROJECTS = {
+    'fuzzing': {
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+    },
+    'nanojit': {
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32', 'arm'],
+        'hgurl': 'http://hg.mozilla.org',
+        'repo_path': 'projects/nanojit-central',
+    },
+    'valgrind': {
+        'platforms': ['linux', 'linux64'],
+        'job_interval': 24*3600, # Once a day
+        'linux': {'env': PLATFORM_VARS['linux']['env']},
+        'linux64': {'env': PLATFORM_VARS['linux']['env']},
+    },
+}
+for k, v in localconfig.PROJECTS.items():
+    if k not in PROJECTS:
+        PROJECTS[k] = {}
+    for k1, v1 in v.items():
+        PROJECTS[k][k1] = v1
+
 
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
