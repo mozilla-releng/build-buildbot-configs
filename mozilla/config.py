@@ -1,5 +1,10 @@
 from copy import deepcopy
-from buildbot.process.properties import WithProperties
+
+try:
+    from buildbot.process.properties import WithProperties
+except ImportError:
+    def WithProperties(fmtstring, *args):
+        return fmtstring
 
 import localconfig
 reload(localconfig)
