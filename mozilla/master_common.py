@@ -6,6 +6,7 @@ c['changeHorizon'] = None
 c['logCompressionMethod'] = 'gz'
 c['eventHorizon'] = 20
 c['buildCacheSize'] = 10
+c['changeCacheSize'] = 10000
 
 c['status'] = []
 c['slaves'] = []
