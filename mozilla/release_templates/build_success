@@ -1,5 +1,4 @@
 %(releaseName)s: %(platform)s builds available
-
 %(platform)s builds available for %(releaseName)s
 
 -buildbot

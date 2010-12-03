@@ -1,5 +1,4 @@
 %(releaseName)s: build step failed on %(platform)s
-
 %(platform)s build step failed for %(releaseName)s
 
 -buildbot

@@ -1,5 +1,4 @@
 Signing complete for %(releaseName)s
-
 Signed win32 builds available for %(releaseName)s,
 
 -buildbot
