@@ -1036,14 +1036,8 @@ BRANCHES['electrolysis']['l10nNightlyUpdate'] = False
 BRANCHES['electrolysis']['l10nDatedDirs'] = False
 BRANCHES['electrolysis']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-electrolysis'
-BRANCHES['electrolysis']['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-BRANCHES['electrolysis']['platforms']['linux']['unittest-env'] = {
-    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-}
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-electrolysis'
-BRANCHES['electrolysis']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-BRANCHES['electrolysis']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-gtk'
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-qt'
@@ -1216,6 +1210,20 @@ BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'b
 BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
 BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
+
+# Bug 578880, remove the following block after gcc-4.5 switch
+for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
+               'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
+               'tracemonkey', 'tryserver'):
+    for platform in ('linux', 'linux64'):
+        BRANCHES[branch]['platforms'][platform]['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+        BRANCHES[branch]['platforms']['%s-debug' % platform]['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+        BRANCHES[branch]['platforms'][platform]['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+        }
+        BRANCHES[branch]['platforms']['%s-debug' % platform]['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+        }
 
 if __name__ == "__main__":
     import sys, pprint
