@@ -964,7 +964,7 @@ for gloKey in gloConfig:
             hgUsername=hgUsername,
             clobberURL=branchConfig['base_clobber_url'],
             oldRepoPath=sourceRepoPath,
-            triggerSchedulers=['major_update_verify'],
+            triggerSchedulers=['major_update_verify_%s' % gloKey],
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
             testOlderPartials=testOlderPartials
         )
