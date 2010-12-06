@@ -1,11 +1,5 @@
 from copy import deepcopy
 
-try:
-    from buildbot.process.properties import WithProperties
-except ImportError:
-    def WithProperties(fmtstring, *args):
-        return fmtstring
-
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
@@ -340,7 +334,6 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
@@ -375,7 +368,6 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
-                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
                 'LC_ALL': 'C',
             },
             'enable_opt_unittests': False,
@@ -489,7 +481,6 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
@@ -517,7 +508,6 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_BASEDIR': WithProperties('%(basedir:-)s'),
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
@@ -1000,7 +990,7 @@ BRANCHES['places']['repo_path'] = 'projects/places'
 BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
-BRANCHES['places']['enable_nightly'] = False
+BRANCHES['places']['enable_nightly'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 BRANCHES['places']['enable_mac_a11y'] = True
