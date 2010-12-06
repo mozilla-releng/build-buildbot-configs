@@ -1000,7 +1000,7 @@ BRANCHES['places']['repo_path'] = 'projects/places'
 BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
-BRANCHES['places']['enable_nightly'] = False
+BRANCHES['places']['enable_nightly'] = True
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 BRANCHES['places']['enable_mac_a11y'] = True
