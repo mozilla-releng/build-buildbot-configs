@@ -1,21 +1,7 @@
 # mozconfig.common only exists in mozilla-central
 if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
 
-  # Now in comm-central land.
-  if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common"; then
-    # We need some hackery to deal with the mozilla/ build system calling this
-    # mozconfig.
-    oldtopsrcdir=$topsrcdir
-    export topsrcdir=$topsrcdir/mozilla
-  fi
-
-  mk_add_options MOZ_BUILD_PROJECTS="ppc i386"
-  . $topsrcdir/build/macosx/universal/mozconfig.common
   export MOZ_PKG_VERSION=mac
-
-  if test -n $oldtopsrcdir; then
-    export topsrcdir=$oldtopsrcdir
-  fi
 
   # No specific options needed here.
 

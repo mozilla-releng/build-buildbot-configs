@@ -187,4 +187,9 @@ PROJECTS = {
         'idle_slaves': 3,
         'tinderbox_tree': 'Nanojit',
     },
+    'valgrind': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 5, # 5 slaves have to be idle before we start
+        'tinderbox_tree': 'Firefox',
+    },
 }
