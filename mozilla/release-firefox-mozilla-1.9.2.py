@@ -12,7 +12,9 @@ releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = False
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION'
+    'build/compare-locales': 'RELEASE_AUTOMATION',
+    'build/buildbot': 'production-0.8',
+    'build/partner-repacks': 'default'
 }
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['productName']         = 'firefox'
