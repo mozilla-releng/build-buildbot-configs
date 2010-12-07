@@ -98,6 +98,7 @@ GLOBAL_VARS = {
             ],
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
+    'use_old_updater': False,
 
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
@@ -822,6 +823,7 @@ BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
 BRANCHES['mozilla-1.9.1']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
+BRANCHES['mozilla-1.9.1']['use_old_updater'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 3
@@ -896,6 +898,7 @@ BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
+BRANCHES['mozilla-1.9.2']['use_old_updater'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
