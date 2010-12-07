@@ -128,4 +128,9 @@ PROJECTS = {
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
+    'valgrind': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'MozillaTest',
+    },
 }

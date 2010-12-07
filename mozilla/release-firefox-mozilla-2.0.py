@@ -11,7 +11,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION'
+    'build/compare-locales': 'RELEASE_AUTOMATION',
+    'build/buildbot': 'production-0.8'
 }
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['productName']         = 'firefox'
