@@ -720,6 +720,8 @@ BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
 BRANCHES['tryserver']['repo_path'] = "try"
+BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
+
 
 if __name__ == "__main__":
     import sys, pprint, re
