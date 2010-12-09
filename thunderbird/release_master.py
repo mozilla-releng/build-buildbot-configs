@@ -454,11 +454,9 @@ for gloKey in gloConfig:
                 platform=platform,
                 upstream=build_scheduler,
                 builderNames=['%s_repack_%s' % (platform, gloKey)],
-                repoType='hg',
                 branch=sourceRepoPath,
                 baseTag='%s_RELEASE' % baseTag,
                 localesFile='%s/locales/shipped-locales' % appName,
-                tree='release',
                 # If a few locales are needed, do this instead:
                 #locales={ 'zh-TW': ['linux']},
             )
@@ -527,8 +525,6 @@ for gloKey in gloConfig:
             for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
                 #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
                 platform_test_builders.append('%s_unittest_%s_%s' % (platform, suites_name, gloKey))
-            import sys
-            print >> sys.stderr, "Branch: %s" % 'release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey) 
             s = Scheduler(
              name='%s_release_unittest_%s' % (platform, gloKey),
              treeStableTimer=0,
@@ -778,6 +774,7 @@ for gloKey in gloConfig:
                     buildSpace=1.0,
                     downloadSymbols=True,
                     buildsBeforeReboot=pf.get('builds_before_reboot', 0),
+                    env={},
                 )
   
                 unittest_builder_name = '%s_unittest_%s_%s' % (platform, suites_name, gloKey)
