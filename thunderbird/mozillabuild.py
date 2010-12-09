@@ -20,14 +20,13 @@ def setupHGPollersFromBranches(defaults, branches, change_source):
             hgurl = hgurl[:-1]
         poll_branch = getConfig(defaults, branch, 'hg_branch')
         for b in [poll_branch] + [getConfig(defaults, branch, 'mozilla_central_branch')] + getConfig(defaults, branch, 'add_poll_branches'):
-            pushlogUrlOverride = '%s/%s/pushlog' % (hgurl, b),
             if not sources.get(poll_branch):
                 sources[poll_branch] = {}
             sources[poll_branch][b] = 1
 
     for branch in sorted(sources.keys()):
         for poll in sorted(sources[branch].keys()):
-            pushlog = "%s/%s/pushlog" % (hgurl, poll)
+            pushlog = "%s/%s/json-pushes?full=1" % (hgurl, poll)
             change_source.append(HgPoller(
                 hgURL="%s/" % hgurl,
                 pushlogUrlOverride=pushlog,
