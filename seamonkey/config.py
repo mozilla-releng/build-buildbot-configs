@@ -1,9 +1,5 @@
 from copy import deepcopy
 
-import buildbotcustom.env
-reload(buildbotcustom.env)
-from buildbotcustom.env import MozillaEnvironments
-
 SLAVES = {
     'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
