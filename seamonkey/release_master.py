@@ -73,7 +73,6 @@ for platform in enUSPlatforms:
             branch=sourceRepoPath,
             baseTag='%s_RELEASE' % baseTag,
             localesFile='suite/locales/shipped-locales',
-            tree='release'
         )
         schedulers.append(repack_scheduler)
 
