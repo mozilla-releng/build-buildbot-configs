@@ -8,3 +8,5 @@ SlavePasswords = {
         'macosx64': 'pass',
         'try-macosx': 'pass',
         }
+tuxedoUsername = 'user'
+tuxedoPassword = 'passwd'
