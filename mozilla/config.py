@@ -1024,6 +1024,8 @@ BRANCHES['places']['platforms']['linux']['build_space'] = 6
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
 BRANCHES['electrolysis']['start_hour'] = [4]
 BRANCHES['electrolysis']['start_minute'] = [2]
+BRANCHES['electrolysis']['enable_nightly'] = False
+BRANCHES['electrolysis']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['electrolysis']['enable_xulrunner'] = False
 BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False

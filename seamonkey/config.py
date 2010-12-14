@@ -1,9 +1,5 @@
 from copy import deepcopy
 
-import buildbotcustom.env
-reload(buildbotcustom.env)
-from buildbotcustom.env import MozillaEnvironments
-
 SLAVES = {
     'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
@@ -159,7 +155,7 @@ PLATFORM_VARS = {
                 'DISPLAY': ':2',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {

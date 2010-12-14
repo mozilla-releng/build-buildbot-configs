@@ -69,11 +69,9 @@ for platform in enUSPlatforms:
             platform=platform,
             upstream=build_scheduler,
             builderNames=['%s_repack' % platform],
-            repoType='hg',
             branch=sourceRepoPath,
             baseTag='%s_RELEASE' % baseTag,
             localesFile='suite/locales/shipped-locales',
-            tree='release'
         )
         schedulers.append(repack_scheduler)
 
