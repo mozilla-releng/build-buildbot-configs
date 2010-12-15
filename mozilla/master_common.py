@@ -14,6 +14,11 @@ c['builders'] = []
 c['schedulers'] = []
 c['change_source'] = []
 
+# Builders from these branches are given higher priority.
+PRIORITY_BRANCHES = ['mozilla-central',
+                     'mozilla-1.9.2',
+                     'mozilla-1.9.1']
+
 # Give the release builders priority over other builders
 def prioritizeBuilders(botmaster, builders):
     def sortkey(builder):
@@ -31,10 +36,14 @@ def prioritizeBuilders(botmaster, builders):
 
         if builder.builder_status.category.startswith('release'):
             priority = 0
+        elif builder.properties and \
+             builder.properties.has_key('branch') and \
+             builder.properties['branch'] in PRIORITY_BRANCHES:
+            priority = 1 
         elif builder.builder_status.category.startswith('try'):
-            priority = 2
+            priority = 3
         else:
-            priority = 1
+            priority = 2
 
         return priority, req_priority, submitted_at
     builders.sort(key=sortkey)
