@@ -61,7 +61,7 @@ default_platform['test_suites'] = {
     'mochitest2': {},
     'mochitest3': {},
     'mochitest4': {},
-    'chrome':     {},
+#    'chrome':     {},
     'browser-chrome': {},
     'reftest':    {},
     'crashtest':  {},
@@ -83,9 +83,9 @@ default_platform['test_suites']['mochitest4']['test_type'] = "mochitest"
 default_platform['test_suites']['mochitest4']['timeout'] = 60*60
 default_platform['test_suites']['mochitest4']['clients'] = (4,4)
 default_platform['test_suites']['mochitest4']['known_fail_count'] = 0
-default_platform['test_suites']['chrome']['test_type'] = 'chrome'
-default_platform['test_suites']['chrome']['timeout'] = 60*60
-default_platform['test_suites']['chrome']['known_fail_count'] = 545
+#default_platform['test_suites']['chrome']['test_type'] = 'chrome'
+#default_platform['test_suites']['chrome']['timeout'] = 60*60
+#default_platform['test_suites']['chrome']['known_fail_count'] = 545
 default_platform['test_suites']['browser-chrome']['test_type'] = 'browser-chrome'
 default_platform['test_suites']['browser-chrome']['timeout'] = 60*60
 default_platform['test_suites']['browser-chrome']['known_fail_count'] = 0
@@ -97,7 +97,7 @@ default_platform['test_suites']['crashtest']['timeout'] = 60*60
 default_platform['test_suites']['crashtest']['known_fail_count'] = 0
 default_platform['test_suites']['xpcshell']['test_type'] = 'xpcshell'
 default_platform['test_suites']['xpcshell']['timeout'] = 60*60
-default_platform['test_suites']['xpcshell']['known_fail_count'] = 182
+default_platform['test_suites']['xpcshell']['known_fail_count'] = 0
 
 #
 # {{{2 Nokia N810 Specializations
