@@ -452,6 +452,7 @@ BRANCHES['comm-1.9.1']['unittest_build_space'] = 6
 BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-1.9.1']['enable_l10n'] = True
+BRANCHES['comm-1.9.1']['enable_l10n_onchange'] = True
 BRANCHES['comm-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-1.9.1']['l10nDatedDirs'] = False
