@@ -23,10 +23,6 @@ branch_configs = {
         'branch_name': '', # actual hg branch
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
-    'comm-1.9.1': {
-        'branch_name': 'comm-1.9.1',
-        'platforms': ['linux', 'macosx', 'win32'],
-    },
     'comm-1.9.2': {
         'branch_name': 'comm-1.9.2',
         'platforms': ['linux', 'linux64', 'macosx', 'win32'],
@@ -39,7 +35,7 @@ platforms = {
         'update_platform': 'Linux_x86-gcc3',
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
-        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6]],
+        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,10]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
@@ -70,7 +66,7 @@ platforms = {
     'macosx64': {
         'update_platform':  'Darwin_x86_64-gcc3',
         'display_name':  'MacOSX 10.6',
-        'slaves': [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1 ] ],
+        'slaves': [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ],
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
     },
 }
@@ -184,65 +180,6 @@ build_configs = {
         'mozmill': True,
         'nightly': False,
         'tinderbox_tree': 'Thunderbird3.1',
-    },
-    'comm-1.9.1-unittest': {
-        'branch_config':  'comm-1.9.1',
-        'builder_type': 'check',
-        'env': {},
-        'factory': 'CCUnittestBuildFactory',
-        'hg_branch':  'releases/comm-1.9.1', #
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'mozilla_central_branch':  'releases/mozilla-1.9.1', #
-        'mozmill': True,
-        'nightly': False,
-        'tinderbox_tree': 'Thunderbird3.0',
-    },
-    'comm-central': {
-        'aus': {
-            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.1',
-            'host': 'aus-staging.sj.mozillamessaging.com',
-            'user': 'tbirdbld',
-        },
-        'branch_config':  'comm-1.9.1',
-        'builder_type': 'nightly',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-rev=COMM19116_20101123_RELBRANCH' ],
-        'env': {},
-        'hg_branch':  'releases/comm-1.9.1',
-        'l10n_repo': 'releases/l10n-mozilla-1.9.1', #
-        'l10n_tree': 'tb30x',
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'milestone': 'comm-1.9.1', #
-        'mozilla_central_branch':  'releases/mozilla-1.9.1',
-        'nightly_hour': [0],
-        'tinderbox_tree': 'Thunderbird3.0',
-    },
-    'comm-central-bloat': {
-        'branch_config':  'comm-1.9.1',
-        'builder_type':  'bloat',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'env': {
-            'XPCOM_DEBUG_BREAK': 'stack',
-            'DISPLAY': ':2',
-        },
-        'hg_branch':  'releases/comm-1.9.1',
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'mozilla_central_branch':  'releases/mozilla-1.9.1',
-        'tinderbox_tree': 'Thunderbird3.0',
     },
 }
 
@@ -366,7 +303,7 @@ for config_name in build_configs:
 
 #TODO - make changes to avoid these last minute cleanups
 
-for branch in ['comm-1.9.2-bloat', 'comm-1.9.2', 'comm-central']:
+for branch in ['comm-1.9.2-bloat', 'comm-1.9.2']:
     del BRANCHES[branch]['platforms']['linux64']
 
 # 32-64 universal switch for mac
@@ -375,7 +312,7 @@ for branch in ['comm-central-trunk-bloat']:
 for branch in ['comm-central-trunk']:
     del BRANCHES[branch]['platforms']['macosx']
 
-for branch in ['comm-1.9.2', 'comm-central', 'comm-central-trunk']:
+for branch in ['comm-1.9.2', 'comm-central-trunk']:
     del BRANCHES[branch]['builder_type']
 for branch in ['comm-1.9.2-unittest']:
     for platform in ['linux', 'linux64', 'macosx', 'win32']:
@@ -459,7 +396,6 @@ DEFAULTS = {
       'dom-inspector':          'domi',
       'releases/mozilla-1.9.1': 'moz191',
       'releases/mozilla-1.9.2': 'moz192',
-      'releases/comm-1.9.1':    'cc191',
     }
 }
 
