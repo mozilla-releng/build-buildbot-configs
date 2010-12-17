@@ -21,37 +21,26 @@ GLOBAL_VARS = {
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'cvsroot': ':ext:seabld@cvs.mozilla.org:/cvsroot', #?
-    'config_repo_path': 'build/buildbot-configs',
     'config_subdir': 'seamonkey',
     'irc_bot_name': 'sea-build-bot', #?
     'irc_bot_channels': ['mozbot'], #?
     'objdir': 'objdir',
     'objdir_unittests': 'objdir',
     'stage_username': 'seabld',
-    'stage_server': 'stage.mozilla.org',
     'stage_base_path': '/home/ftp/pub/seamonkey',
     'stage_group': 'seamonkey',
     'stage_ssh_key': 'seabld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_sea/',
     'aus2_user': 'seabld',
     'aus2_ssh_key': 'seabld_dsa',
-    'aus2_host': 'aus2-community.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
-    'graph_server': 'graphs.mozilla.org',
+    'hg_username': 'seabld',
+    'hg_ssh_key': '~seabld/.ssh/seabld_dsa',
     'graph_selector': '/server/collect.cgi',
-    'build_tools_repo_path': 'build/tools',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'default_build_space': 5,
-    'base_clobber_url': 'http://cb-seamonkey-linuxmaster-01.mozilla.org/index.php',
+    'default_l10n_space': 3,
     'default_clobber_time': 24*7, # 1 week
-    # List of talos masters to notify of new builds,
-    # and if a failure to notify the talos master should result in a warning
-    'talos_masters': [],
-    # List of unittest masters to notify of new builds to test,
-    # if a failure to notify the master should result in a warning,
-    # and sendchange retry count before give up
-    'unittest_masters': [('cb-seamonkey-linuxmaster-01.mozilla.org:9010', False, 5)],
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
@@ -67,8 +56,6 @@ GLOBAL_VARS = {
     'unittest_exec_mozmill_suites': False,
     'geriatric_masters': [],
     'geriatric_branches': {},
-    'weekly_tinderbox_tree': 'Testing',
-    'l10n_tinderbox_tree': 'Mozilla-l10n',
     'platforms': {
         'linux': {},
         'linux64': {},
@@ -82,15 +69,48 @@ GLOBAL_VARS = {
     'product_name': 'seamonkey',
     'app_name': 'suite',
     'brand_name': 'SeaMonkey',
-    'tinderbox_tree': 'MozillaTest',
     'enable_shark': False,
     'enable_codecoverage': False,
+    'enable_blocklist_update': False,
+    'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
+
+    # if true, this branch will get bundled and uploaded to ftp.m.o for users
+    # to download and thereby accelerate their cloning
+    'enable_weekly_bundle': False,
+
     'hash_type': 'sha512',
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
+    'l10n_modules': [
+            'suite', 'editor/ui',
+            'netwerk', 'dom', 'toolkit',
+            'security/manager',
+            'sync/services',
+            ],
+    'use_old_updater': False,
     'idle_timeout': 60*60*12,     # 12 hours
+
+    # staging/production-dependent settings - all is production for us
+    'config_repo_path': 'build/buildbot-configs',
+    'buildbotcustom_repo_path': 'build/buildbotcustom',
+    'stage_server': 'stage.mozilla.org',
+    'aus2_host': 'aus2-community.mozilla.org',
+    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
+    'graph_server': 'graphs.mozilla.org',
+    'build_tools_repo_path': 'build/tools',
+    'base_clobber_url': 'http://cb-seamonkey-linuxmaster-01.mozilla.org/index.php',
+    # List of talos masters to notify of new builds,
+    # and if a failure to notify the talos master should result in a warning
+    'talos_masters': [],
+    # List of unittest masters to notify of new builds to test,
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [('cb-seamonkey-linuxmaster-01.mozilla.org:9010', False, 5)],
+    'weekly_tinderbox_tree': 'Testing',
+    'l10n_tinderbox_tree': 'Mozilla-l10n',
+    'tinderbox_tree': 'MozillaTest',
 }
 
 # shorthand, because these are used often
@@ -391,6 +411,7 @@ BRANCHES['comm-central-trunk']['create_partial'] = True
 BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
+# staging/production-dependent settings - all is production for us
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
 
@@ -431,6 +452,7 @@ BRANCHES['comm-1.9.1']['unittest_build_space'] = 6
 BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-1.9.1']['enable_l10n'] = True
+BRANCHES['comm-1.9.1']['enable_l10n_onchange'] = True
 BRANCHES['comm-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-1.9.1']['l10nDatedDirs'] = False
@@ -447,5 +469,6 @@ BRANCHES['comm-1.9.1']['allLocalesFile'] = 'suite/locales/all-locales'
 BRANCHES['comm-1.9.1']['create_snippet'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
+# staging/production-dependent settings - all is production for us
 BRANCHES['comm-1.9.1']['tinderbox_tree'] = 'SeaMonkey2.0'
 BRANCHES['comm-1.9.1']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.0'
