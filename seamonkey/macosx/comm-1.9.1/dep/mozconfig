@@ -10,6 +10,10 @@ ac_add_options --enable-update-packaging
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
 
+# Making dep static per bug 619917
+ac_add_options --enable-static
+ac_add_options --disable-shared
+
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
 
