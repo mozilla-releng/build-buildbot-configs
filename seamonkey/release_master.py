@@ -429,6 +429,7 @@ for platform in sorted(verifyConfigs.keys()):
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=verifyConfigs[platform],
         clobberURL=branchConfig['base_clobber_url'],
+        useOldUpdater=branchConfig.get('use_old_updater', False),
     )
 
     builders.append({
