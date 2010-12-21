@@ -2,7 +2,7 @@ hgUsername         = 'ffxbld'
 hgSshKey           = '~cltbld/.ssh/ffxbld_dsa'
 sourceRepoName     = 'mozilla-central'
 sourceRepoPath     = sourceRepoName
-sourceRepoRevision = 'f7016571b472'
+sourceRepoRevision = 'd78f9cb65e91'
 relbranchOverride  = ''
 l10nRepoPath       = 'l10n-central'
 l10nRevisionFile   = 'l10n-changesets_mozilla-2.0'
@@ -19,17 +19,17 @@ appName            = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version            = '4.0b7'
+version            = '4.0b8'
 appVersion         = version
 # NB: this will become 2.0.x not 2.0.0.x, bug 577875
-milestone          = '2.0b7'
+milestone          = '2.0b8'
 buildNumber        = 1
-baseTag            = 'FIREFOX_4_0b7'
-oldVersion         = '4.0b6'
+baseTag            = 'FIREFOX_4_0b8'
+oldVersion         = '4.0b7'
 oldAppVersion      = oldVersion
-oldBuildNumber     = 2
-oldBaseTag         = 'FIREFOX_4_0b6'
-enUSPlatforms      = ('linux', 'linux64', 'win32', 'macosx64')
+oldBuildNumber     = 1
+oldBaseTag         = 'FIREFOX_4_0b7'
+enUSPlatforms      = ('win32',)
 l10nPlatforms      = enUSPlatforms
 xulrunnerPlatforms = ()
 patcherConfig      = 'moz20-branch-patcher2.cfg'
@@ -45,7 +45,7 @@ ausServerUrl       = 'https://aus2.mozilla.org'
 ausUser            = 'cltbld'
 ausSshKey          = 'cltbld_dsa'
 testOlderPartials  = False
-releaseNotesUrl    = 'http://www.mozilla.com/%locale%/firefox/4.0b7/releasenotes/'
+releaseNotesUrl    = 'http://www.mozilla.com/%locale%/firefox/4.0b8/releasenotes/'
 useBetaChannel     = 0
 verifyConfigs      = {'linux':    'moz20-firefox-linux.cfg',
                       'linux64':  'moz20-firefox-linux64.cfg',
