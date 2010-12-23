@@ -99,7 +99,7 @@ gloConfig = {
         'ausSshKey'                  : 'tbirdbld_dsa',
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'testOlderPartials'          : False,
-        'doPartnerRepacks'           : False,
+        'doPartnerRepacks'           : True,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
