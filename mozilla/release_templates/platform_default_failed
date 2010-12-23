@@ -1,0 +1,4 @@
+%(releaseName)s: failed at %(stage)s on %(platform)s
+%(stage)s failed for %(releaseName)s on %(platform)s
+
+-buildbot
