@@ -1,0 +1,4 @@
+%(releaseName)s: completed %(stage)s on %(platform)s
+%(stage)s complete for %(releaseName)s on %(platform)s
+
+-buildbot

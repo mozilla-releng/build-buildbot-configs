@@ -1000,7 +1000,7 @@ BRANCHES['places']['repo_path'] = 'projects/places'
 BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
-BRANCHES['places']['enable_nightly'] = True
+BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 BRANCHES['places']['enable_mac_a11y'] = True
@@ -1217,15 +1217,22 @@ BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] =
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
                'tracemonkey', 'tryserver'):
-    for platform in ('linux', 'linux64'):
-        BRANCHES[branch]['platforms'][platform]['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-        BRANCHES[branch]['platforms']['%s-debug' % platform]['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-        BRANCHES[branch]['platforms'][platform]['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-        BRANCHES[branch]['platforms']['%s-debug' % platform]['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
+    BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+    BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
+    BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+    BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
+    BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
+        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+    }
+    BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
+        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+    }
+    BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
+        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+    }
+    BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
+        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+    }
 
 if __name__ == "__main__":
     import sys, pprint

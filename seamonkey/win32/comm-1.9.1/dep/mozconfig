@@ -3,6 +3,10 @@ ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --enable-jemalloc
 
+# Making dep static per bug 619917
+ac_add_options --enable-static
+ac_add_options --disable-shared
+
 ac_add_options --disable-tests
 
 export MOZ_DEBUG_SYMBOLS=1

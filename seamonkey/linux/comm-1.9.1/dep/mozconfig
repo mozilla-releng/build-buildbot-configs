@@ -6,6 +6,10 @@ ac_add_options --disable-debug
 ac_add_options --disable-tests
 ac_add_options --enable-codesighs
 
+# Making dep static per bug 619917
+ac_add_options --enable-static
+ac_add_options --disable-shared
+
 CC=/tools/gcc/bin/gcc
 CXX=/tools/gcc/bin/g++
 
