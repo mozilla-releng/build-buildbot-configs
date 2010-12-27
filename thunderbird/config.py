@@ -328,6 +328,11 @@ for branch in sorted(build_configs.keys()):
     for platform in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
 
+for branch in ['comm-central-trunk']:
+  for platform in ['linux','linux64']:
+    BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
+    BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
+
 # ----------------
 
 HGURL = 'http://hg.mozilla.org/'
