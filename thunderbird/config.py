@@ -35,7 +35,7 @@ platforms = {
         'update_platform': 'Linux_x86-gcc3',
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
-        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,10]],
+        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
@@ -43,7 +43,7 @@ platforms = {
         'update_platform':  'Linux_x86_64-gcc3',
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5 ]],
+        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
