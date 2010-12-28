@@ -40,7 +40,8 @@ export MOZILLA_OFFICIAL=1
 mk_add_options PROFILE_GEN_SCRIPT=@TOPSRCDIR@/build/profile_pageloader.pl
 
 # Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j4"
+CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi
