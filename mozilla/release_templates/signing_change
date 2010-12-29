@@ -1,4 +1,6 @@
-Signing complete for %(releaseName)s
-Signed win32 builds available for %(releaseName)s,
+%(releaseName)s: All signed builds now available
+All signed builds now available
+
+%(ftpURL)s
 
 -buildbot

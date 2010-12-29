@@ -1,4 +1,6 @@
-%(releaseName)s: %(platform)s builds available
-%(platform)s unsigned builds available for %(releaseName)s
+%(releaseName)s: %(platform)s unsigned en-US build available
+unsigned %(platform)s en-US build available for %(releaseName)s
+
+%(ftpURL)s
 
 -buildbot
