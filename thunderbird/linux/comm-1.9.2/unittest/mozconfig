@@ -1,5 +1,4 @@
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
-mk_add_options MOZ_MAKE_FLAGS="-j8"
 
 ac_add_options --enable-application=mail
 
@@ -22,3 +21,7 @@ export MOZILLA_OFFICIAL=1
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+
+# Enable parallel compiling
+CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"

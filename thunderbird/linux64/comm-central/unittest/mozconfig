@@ -1,5 +1,4 @@
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
-mk_add_options MOZ_MAKE_FLAGS="-j8"
 
 ac_add_options --enable-application=mail
 ac_add_options --enable-tests
@@ -27,3 +26,7 @@ export ac_cv_have_visibility_class_bug=yes
 
 #Use ccache
 ac_add_options --with-ccache=/usr/bin/ccache
+
+# Enable parallel compiling
+CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
