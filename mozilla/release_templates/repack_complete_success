@@ -1,4 +1,6 @@
-%(releaseName)s: completed l10n repacks on %(platform)s
-l10n repacks available for %(releaseName)s on %(platform)s
+%(releaseName)s: All %(platform)s builds now available
+All %(platform)s builds now available
+
+%(ftpURL)s
 
 -buildbot

@@ -14,4 +14,5 @@ export MOZILLA_OFFICIAL=1
 #Use ccache
 ac_add_options --with-ccache=/opt/local/bin/ccache
 # Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j8"
+CONCURRENCY=$(( `sysctl hw.logicalcpu | awk {'print $2'}`  + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"

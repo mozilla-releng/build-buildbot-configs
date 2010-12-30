@@ -1,0 +1,6 @@
+%(releaseName)s: All unsigned %(platform)s builds now available
+All unsigned %(platform)s builds now available
+
+%(ftpURL)s
+
+-buildbot

@@ -66,4 +66,5 @@ if [ -f $topsrcdir/mozconfig-extra-macosx64 ] ; then
 fi
 
 # Enable parallel compiling
-mk_add_options MOZ_MAKE_FLAGS="-j8"
+CONCURRENCY=$(( `sysctl hw.logicalcpu | awk {'print $2'}`  + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"

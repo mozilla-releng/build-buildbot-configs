@@ -1,4 +1,4 @@
 %(releaseName)s: Updates available on betatest
-Updates are available on the betatest channel now.
+Updates to %(releaseName)s are available on the betatest channel now.
 
 -buildbot

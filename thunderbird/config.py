@@ -35,7 +35,7 @@ platforms = {
         'update_platform': 'Linux_x86-gcc3',
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
-        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,10]],
+        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
@@ -43,7 +43,7 @@ platforms = {
         'update_platform':  'Linux_x86_64-gcc3',
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5 ]],
+        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
@@ -327,6 +327,11 @@ for branch in sorted(build_configs.keys()):
             BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
     for platform in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
+
+for branch in ['comm-central-trunk']:
+  for platform in ['linux','linux64']:
+    BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
+    BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
 
 # ----------------
 
