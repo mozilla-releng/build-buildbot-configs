@@ -29,13 +29,21 @@ branch_configs = {
     },
 }
 
+linux_slaves    = [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]]
+linux64_slaves  = [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]]
+win32_slaves    = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11,12,13,14,15 ] ]
+macosx_slaves   = [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ]
+macosx64_slaves = [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
+
+
 platforms = {
     'linux': {
         'check_objdir': 'objdir-tb',
         'update_platform': 'Linux_x86-gcc3',
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
-        'slaves' : [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]],
+        'slaves' : linux_slaves,
+	'test-slaves': [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]] + linux_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
@@ -43,7 +51,8 @@ platforms = {
         'update_platform':  'Linux_x86_64-gcc3',
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]],
+        'slaves': linux64_slaves,
+        'test-slaves': [ 'momo-vm-fedora12-64-%02i' % x for x in [ 1,2,3,4 ]] + linux64_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
@@ -51,13 +60,15 @@ platforms = {
         'update_platform':  'WINNT_x86-msvc',
         'display_name':  'WINNT 5.2',
         'platform_objdir': 'objdir-tb',
-        'slaves': [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11,12,13,14,15 ] ],
+        'slaves': win32_slaves,
+        'test-slaves': win32_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa',
     },
     'macosx': {
         'update_platform':  'Darwin_Universal-gcc3',
         'display_name':  'MacOSX 10.5',
-        'slaves': [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ],
+        'slaves': macosx_slaves,
+        'test-slaves': macosx_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
         # Override default of macosx64 for trunk builds until we switch
         # (bug 599796/bug 558837)
@@ -66,7 +77,8 @@ platforms = {
     'macosx64': {
         'update_platform':  'Darwin_x86_64-gcc3',
         'display_name':  'MacOSX 10.6',
-        'slaves': [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ],
+        'slaves': macosx64_slaves,
+        'test-slaves': macosx64_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
     },
 }
