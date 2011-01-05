@@ -111,7 +111,7 @@ PLATFORM_VARS = {
                 'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
             },
             'enable_opt_unittests': True,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
@@ -144,7 +144,7 @@ PLATFORM_VARS = {
                 'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
             },
             'enable_opt_unittests': True,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {
@@ -172,7 +172,7 @@ PLATFORM_VARS = {
                 'MOZ_PKG_PLATFORM': 'mac',
             },
             'enable_opt_unittests': True,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
@@ -199,7 +199,7 @@ PLATFORM_VARS = {
                 'CHOWN_REVERT': '~/bin/chown_revert',
             },
             'enable_opt_unittests': True,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32': {
@@ -228,7 +228,7 @@ PLATFORM_VARS = {
             #    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
             },
             'enable_opt_unittests': True,
-            'enable_checktests': False,
+            'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux-debug': {
