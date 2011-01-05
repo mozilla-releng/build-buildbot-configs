@@ -95,6 +95,8 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'tbrdbld',
@@ -104,6 +106,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':0',
+            },
+            'unittest-env': {
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
             },
             'enable_opt_unittests': True,
             'enable_checktests': False,
@@ -122,6 +127,8 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'tbrdbld',
@@ -132,6 +139,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':0',
+            },
+            'unittest-env': {
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
             },
             'enable_opt_unittests': True,
             'enable_checktests': False,
@@ -149,6 +159,7 @@ PLATFORM_VARS = {
             'platform_objdir': "%s/ppc" % OBJDIR,
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'tbrdbld',
@@ -176,6 +187,7 @@ PLATFORM_VARS = {
             'platform_objdir': "%s/i386" % OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'tbrdbld',
@@ -203,6 +215,7 @@ PLATFORM_VARS = {
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
@@ -229,12 +242,16 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':0',
-                'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_UMASK': '002',
+            },
+            'unittest-env': {
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
             },
             'enable_unittests': True,
             'enable_checktests': False,
@@ -251,12 +268,16 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': False,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':0',
-                'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_UMASK': '002',
+            },
+            'unittest-env': {
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
             },
             'enable_unittests': False,
             'enable_checktests': False,
@@ -272,6 +293,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'platform_objdir': OBJDIR,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -290,6 +312,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'platform_objdir': OBJDIR,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -307,6 +330,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'platform_objdir': OBJDIR,
             'env': {
+                'DISABLE_LIGHTNING_INSTALL': '1',
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
