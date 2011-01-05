@@ -245,7 +245,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'xp': {
-                'opt_unittest_suites': [],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
                 'debug_unittest_suites': [],
             },
             'win7': {
