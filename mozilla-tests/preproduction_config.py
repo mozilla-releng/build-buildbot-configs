@@ -6,7 +6,7 @@ SLAVES = {
     'w764': ["t-r3-w764-%03i" % x for x in range(1,51)],
     'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,54)],
     'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,56)],
-    'tegra_android': ['tegra-%03i' % x for x in range(1,15)],
+    'tegra_android': ['tegra-%03i' % x for x in range(1,95)],
 }
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',

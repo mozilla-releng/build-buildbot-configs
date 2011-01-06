@@ -52,6 +52,7 @@ GLOBAL_VARS = {
     'geriatric_masters': [],
     'platforms': {
         'linux': {},
+        'linuxqt': {},
         'linux64': {},
         'win32': {},
         'macosx64': {},
@@ -326,6 +327,40 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+        },
+        'linuxqt': {
+            'base_name': 'Linux QT %(branch)s',
+            'mozconfig': 'linux/%(branch)s/qt',
+            'xr_mozconfig': 'linux/%(branch)s/xulrunner-qt',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'packageTests': True,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Linux_x86-gcc3',
+            'enable_ccache': True,
+            'enable_nightly': False,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': None #GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
             'base_name': 'Linux x86-64 %(branch)s',
@@ -765,6 +800,7 @@ BRANCHES['shadow-central']['l10nDatedDirs'] = False
 # need this or master.cfg will bail
 BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
+BRANCHES['shadow-central']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
@@ -966,6 +1002,7 @@ BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
 BRANCHES['tracemonkey']['start_hour'] = [3]
 BRANCHES['tracemonkey']['start_minute'] = [32]
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
+BRANCHES['tracemonkey']['platforms']['linuxqt']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
@@ -979,6 +1016,7 @@ BRANCHES['tracemonkey']['l10nDatedDirs'] = False
 BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_valgrind_checktests'] = True
 BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
 BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-tracemonkey'
@@ -1011,14 +1049,17 @@ BRANCHES['places']['enable_l10n_onchange'] = False
 # need this or the master.cfg will bail
 BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
+BRANCHES['places']['platforms']['linuxqt']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['linux64']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
 BRANCHES['places']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
+BRANCHES['places']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-places'
 BRANCHES['places']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-places'
 BRANCHES['places']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
 BRANCHES['places']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-places'
 BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['linux']['build_space'] = 6
+BRANCHES['places']['platforms']['linuxqt']['build_space'] = 6
 
 ######## electrolysis
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
@@ -1037,6 +1078,7 @@ BRANCHES['electrolysis']['enable_l10n_onchange'] = False
 BRANCHES['electrolysis']['l10nNightlyUpdate'] = False
 BRANCHES['electrolysis']['l10nDatedDirs'] = False
 BRANCHES['electrolysis']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
+BRANCHES['electrolysis']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-electrolysis'
 BRANCHES['electrolysis']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-electrolysis'
 BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-electrolysis'
@@ -1078,6 +1120,7 @@ BRANCHES['jaegermonkey']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
 BRANCHES['jaegermonkey']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['jaegermonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
+BRANCHES['jaegermonkey']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
@@ -1116,6 +1159,7 @@ BRANCHES['tryserver']['create_snippet'] = False
 BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['linuxqt']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
@@ -1125,6 +1169,7 @@ BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macos
 BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['tryserver']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
@@ -1161,6 +1206,7 @@ BRANCHES['maple']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
 BRANCHES['maple']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['maple']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
+BRANCHES['maple']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-maple'
 BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
 BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
 BRANCHES['maple']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-maple'
@@ -1186,6 +1232,7 @@ BRANCHES['cedar']['l10nDatedDirs'] = False
 BRANCHES['cedar']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['cedar']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
 BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-cedar'
+BRANCHES['cedar']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-cedar'
 BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
 BRANCHES['cedar']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-cedar'
 
@@ -1210,6 +1257,7 @@ BRANCHES['birch']['l10nDatedDirs'] = False
 BRANCHES['birch']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
+BRANCHES['birch']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-birch'
 BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
 
@@ -1218,10 +1266,14 @@ for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
                'tracemonkey', 'tryserver'):
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+    BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
     BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
     BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
     BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
+        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+    }
+    BRANCHES[branch]['platforms']['linuxqt']['unittest-env'] = {
         'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
     }
     BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {

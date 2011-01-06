@@ -61,6 +61,7 @@ GLOBAL_VARS = {
         ('production-master01.build.mozilla.org:9009', True, 5),
         ('staging-master.build.mozilla.org:9009', False, 1),
         ('talos-staging-master02.build.mozilla.org:9012', False, 1),
+        ('geriatric-master.build.mozilla.org:9989', False, 1),
     ],
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',

@@ -81,7 +81,7 @@ BRANCHES = {
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
-        'graph_server': 'graphs-stage.mozilla.org',
+        'graph_server': 'graphs.mozilla.org',
         'tree_stable_timer': None,
         'enable_try': True,
         'platforms': {
