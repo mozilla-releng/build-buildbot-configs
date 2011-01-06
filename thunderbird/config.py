@@ -43,7 +43,7 @@ platforms = {
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
         'slaves' : linux_slaves,
-	'test-slaves': [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]] + linux_slaves,
+	'test-slaves': [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]],
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
