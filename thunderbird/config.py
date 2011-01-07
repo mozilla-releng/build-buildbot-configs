@@ -30,7 +30,9 @@ branch_configs = {
 }
 
 linux_slaves    = [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]]
+linux_unittest_slaves = [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]]
 linux64_slaves  = [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]]
+linux64_unittest_slaves = [ 'momo-vm-fedora12-64-%02i' % x for x in [ 1,2,3,4 ]]
 win32_slaves    = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11,12,13,14,15 ] ]
 macosx_slaves   = [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ]
 macosx64_slaves = [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
@@ -43,7 +45,7 @@ platforms = {
         'display_name': 'Linux',
         'platform_objdir': 'objdir-tb',
         'slaves' : linux_slaves,
-	'test-slaves': [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]],
+	'test-slaves': linux_unittest_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'linux64': {
@@ -52,7 +54,7 @@ platforms = {
         'display_name':  'Linux x86-64',
         'platform_objdir': 'objdir-tb',
         'slaves': linux64_slaves,
-        'test-slaves': [ 'momo-vm-fedora12-64-%02i' % x for x in [ 1,2,3,4 ]] + linux64_slaves,
+        'test-slaves': linux64_unittest_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
     },
     'win32': {
@@ -353,7 +355,6 @@ CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
 CONFIG_REPO_PATH = 'build/buildbot-configs'
 COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
 CONFIG_SUBDIR = 'thunderbird'
-LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n-mozilla-1.9.1/%(locale)s'
 OBJDIR = 'objdir-tb'
 STAGE_USERNAME = 'tbirdbld'
 STAGE_SERVER = 'stage.mozilla.org'
