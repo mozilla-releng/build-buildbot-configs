@@ -240,7 +240,7 @@ for config_name in build_configs:
         if config['hg_branch'] in ['comm-central']:
             config['packageTests'] = True
 
-    if config_name in ['comm-central', 'comm-1.9.2', 'comm-central-trunk']:
+    if config_name in ['comm-central', 'comm-1.9.2' ]:
         #TODO - clean this up
         if not config['platforms'].has_key('linux64'):
             config['platforms']['linux64'] = {}
