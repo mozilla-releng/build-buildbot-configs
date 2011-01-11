@@ -232,6 +232,24 @@ mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_production_try_builder_master_bm02 = mozilla + MasterConfig(
+        "bm02-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_try_builder_master_bm01 = mozilla + MasterConfig(
+        "bm01-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
         "pm03-builder",
         local_links = [
@@ -421,6 +439,8 @@ masters_080 = [
         mozilla_production_builder_master_pm01,
         mozilla_production_builder_master_pm03,
         mozilla_production_try_builder_master_pm02,
+        mozilla_production_try_builder_master_bm01,
+        mozilla_production_try_builder_master_bm02,
         mozilla_production_builder_master_bm01,
         mozilla_production_builder_master_bm02,
 
