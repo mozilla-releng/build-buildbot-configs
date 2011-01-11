@@ -233,10 +233,12 @@ MOBILE_PLATFORM_VARS = {
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
         'generate_symbols': True,
+        'l10n_chunks': 6,
         'slaves': SLAVES['linux'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
         'env': {
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
             'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
@@ -280,6 +282,7 @@ MOBILE_PLATFORM_VARS = {
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
         'generate_symbols': True,
+        'l10n_chunks': 6,
         'slaves': SLAVES['win32'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_mobile_dep': False,
@@ -628,6 +631,8 @@ BRANCHES = {
         'mobile_platforms': {
             'android-r7': {},
             'android-r7-nothumb': {},
+            'linux': {},
+            'win32': {},
         }
     },
     'shadow-central': {
