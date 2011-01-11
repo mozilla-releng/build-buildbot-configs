@@ -67,3 +67,4 @@ releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 
+releaseConfig['skip_tag']            = True
