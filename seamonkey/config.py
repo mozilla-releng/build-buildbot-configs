@@ -468,6 +468,7 @@ BRANCHES['comm-1.9.1']['allLocalesFile'] = 'suite/locales/all-locales'
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
+BRANCHES['comm-1.9.1']['create_partial'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 # staging/production-dependent settings - all is production for us

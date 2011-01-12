@@ -689,7 +689,7 @@ for gloKey in gloConfig:
   
                 builder = {
                     'name': unittest_builder_name,
-                    'slavenames': pf['slaves'],
+                    'slavenames': pf['test-slaves'],
                     'builddir': '%s-unittest-%s-%s' % (platform, suites_name, gloKey),
                     'factory': release_packaged_tests_factory,
                     'category': 'release',
