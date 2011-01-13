@@ -9,7 +9,7 @@ c['status'] = [
 c['buildbotURL'] = 'http://buildbot-master02.build.mozilla.org:8013/'
 
 from buildbot import manhole
-c['manhole'] = manhole.PasswordManhole("tcp:1237:interface=127.0.0.1", "cltbld", "password")
+c['manhole'] = manhole.PasswordManhole("tcp:1238:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, TRY_SLAVES, PROJECTS
 ACTIVE_BRANCHES = ['tryserver']
