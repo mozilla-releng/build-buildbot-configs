@@ -29,7 +29,7 @@ branch_configs = {
     },
 }
 
-linux_slaves            = [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]]
+linux_slaves            = [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11,12]]
 linux_unittest_slaves   = [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]]
 linux64_slaves          = [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]]
 linux64_unittest_slaves = [ 'momo-vm-fedora12-64-%02i' % x for x in [ 1,2,3,4 ]]
