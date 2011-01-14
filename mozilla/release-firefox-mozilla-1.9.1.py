@@ -74,6 +74,6 @@ releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 # Release Notification configuration
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['PassRecipients']      = ['release-drivers@mozilla.com',]
+releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 
