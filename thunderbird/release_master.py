@@ -176,7 +176,7 @@ gloConfig = {
         'oldVersion'                 : '3.3a1',
         'oldAppVersion'              : '3.3a1',
         'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : '',
+        'oldBaseTag'                 : 'THUNDERBIRD_3_3a1',
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
