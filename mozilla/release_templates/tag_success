@@ -1,4 +1,4 @@
 %(releaseName)s: Tagging complete
-Tagging complete for %(releaseName)s (OK to re-open tree)
+Tagging complete for %(releaseName)s
 
 -buildbot
