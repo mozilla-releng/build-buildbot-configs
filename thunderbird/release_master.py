@@ -66,6 +66,7 @@ gloConfig = {
         'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
+        'binaryName'                 : 'thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -86,6 +87,7 @@ gloConfig = {
         #'oldAppVersion'              : oldVersion,
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_1_6',
+        'oldBinaryName'              : 'thunderbird',
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
@@ -158,6 +160,7 @@ gloConfig = {
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'brandName'                  : 'Miramar',
+        'binaryName'                 : 'miramar',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
         # 'Sometimes' we need the application version to be different from what we "call"
@@ -177,6 +180,7 @@ gloConfig = {
         'oldAppVersion'              : '3.3a1',
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_3a1',
+        'oldBinaryName'              : 'miramar',
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
@@ -281,6 +285,7 @@ for gloKey in gloConfig:
     relbranchPrefix            = gloConfig[gloKey]['relbranchPrefix']
     chatzillaCVSRoot           = gloConfig[gloKey]['chatzillaCVSRoot']
     brandName                  = gloConfig[gloKey]['brandName']
+    binaryName                 = gloConfig[gloKey]['binaryName']
     cvsroot                    = gloConfig[gloKey]['cvsroot']
     oldVersion                 = gloConfig[gloKey]['oldVersion']
     oldBuildNumber             = gloConfig[gloKey]['oldBuildNumber']
@@ -288,6 +293,7 @@ for gloKey in gloConfig:
     patcherConfig              = gloConfig[gloKey]['patcherConfig']
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
     oldBaseTag                 = gloConfig[gloKey]['oldBaseTag']
+    oldBinaryName              = gloConfig[gloKey]['oldBinaryName']
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
     useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
@@ -707,6 +713,7 @@ for gloKey in gloConfig:
         partner_repack_factory = PartnerRepackFactory(
             hgHost=branchConfig['hghost'],
             repoPath=sourceRepoPath,
+            mozRepoPath=mozillaRepoPath,
             buildToolsRepoPath=branchConfig['build_tools_repo_path'],
             productName=productName,
             version=version,
@@ -765,6 +772,7 @@ for gloKey in gloConfig:
         patcherConfig=patcherConfig,
         verifyConfigs=verifyConfigs,
         appName=appName,
+        binaryName=binaryName,
         productName=productName,
         brandName=brandName,
         version=version,
@@ -775,6 +783,7 @@ for gloKey in gloConfig:
         oldAppVersion=oldAppVersion,
         oldBaseTag=oldBaseTag,
         oldBuildNumber=oldBuildNumber,
+        oldBinaryName=oldBinaryName,
         ftpServer=ftpServer,
         bouncerServer=bouncerServer,
         stagingServer=stagingServer,
