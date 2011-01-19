@@ -39,6 +39,12 @@ td {
 .idle {
     background-color: #F3F3F3;
 }
+.building {
+    background-color: #FFFFF3;
+}
+.offline {
+    background-color: #FFF3F3;
+}
 
 /* LastBuild, BuildStep states */
 .success {
