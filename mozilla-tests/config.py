@@ -382,16 +382,17 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+# Disable jetpack until it is not perma-orange
+#BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
