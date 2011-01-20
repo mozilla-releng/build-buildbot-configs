@@ -29,12 +29,13 @@ branch_configs = {
     },
 }
 
-linux_slaves            = [ 'momo-vm-%02i' % x for x in [2,7,12]] + [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11]]
-linux_unittest_slaves   = [ 'momo-vm-fedora12-%02i' % x for x in [1,2,3,4]]
+linux_slaves            = [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11,12,13,14,15,16]]
+linux_unittest_slaves   = [ 'momo-vm-fedora12-%02i' % x for x in [2,3,4]]
 linux64_slaves          = [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6 ]]
-linux64_unittest_slaves = [ 'momo-vm-fedora12-64-%02i' % x for x in [ 1,2,3,4 ]]
-win32_slaves            = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11,12,13,14,15 ] ]
-macosx_slaves           = [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ]
+linux64_unittest_slaves = [ 'momo-vm-fedora12-64-%02i' % x for x in [ 2,3,4 ]]
+win32_slaves            = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11,12,13,14,15,17 ] ]
+# mini-07 needs a new drive
+macosx_slaves           = [ 'mini-%02i' % x for x in [ 3,4,5,6,8,9 ] ]
 macosx64_slaves         = [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
 
 

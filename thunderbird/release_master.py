@@ -66,6 +66,7 @@ gloConfig = {
         'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
+        'binaryName'                 : 'thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -86,6 +87,7 @@ gloConfig = {
         #'oldAppVersion'              : oldVersion,
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_1_6',
+        'oldBinaryName'              : 'thunderbird',
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
@@ -129,17 +131,17 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-central-trunk', # buildbot branch name
         'sourceRepoPath'             : 'comm-central',
-        'sourceRepoRevision'         : '21431d746abf',
+        'sourceRepoRevision'         : '4e0ccefb6459',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'mozilla-central',
-        'mozillaRepoRevision'        : 'da98fe199be0',
+        'mozillaRepoRevision'        : 'f24f049857a5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
         'mozillaRelbranchOverride'   : '', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
-        'inspectorRepoRevision'      : '2001a7394d4f',
+        'inspectorRepoRevision'      : '63d362f03ddb',
         'inspectorRelbranchOverride' : '',
         'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
         'buildToolsRepoRevision'        : '',
@@ -158,6 +160,7 @@ gloConfig = {
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'brandName'                  : 'Miramar',
+        'binaryName'                 : 'miramar',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
         # 'Sometimes' we need the application version to be different from what we "call"
@@ -165,23 +168,24 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.3a1',
+        'version'                    : '3.3a2',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '2.0.0.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_3a1',
+        'baseTag'                    : 'THUNDERBIRD_3_3a2',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.3a1',
         'oldAppVersion'              : '3.3a1',
         'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : '',
+        'oldBaseTag'                 : 'THUNDERBIRD_3_3a1',
+        'oldBinaryName'              : 'miramar',
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz20-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R12',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R13',
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -281,6 +285,7 @@ for gloKey in gloConfig:
     relbranchPrefix            = gloConfig[gloKey]['relbranchPrefix']
     chatzillaCVSRoot           = gloConfig[gloKey]['chatzillaCVSRoot']
     brandName                  = gloConfig[gloKey]['brandName']
+    binaryName                 = gloConfig[gloKey]['binaryName']
     cvsroot                    = gloConfig[gloKey]['cvsroot']
     oldVersion                 = gloConfig[gloKey]['oldVersion']
     oldBuildNumber             = gloConfig[gloKey]['oldBuildNumber']
@@ -288,6 +293,7 @@ for gloKey in gloConfig:
     patcherConfig              = gloConfig[gloKey]['patcherConfig']
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
     oldBaseTag                 = gloConfig[gloKey]['oldBaseTag']
+    oldBinaryName              = gloConfig[gloKey]['oldBinaryName']
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
     useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
@@ -707,6 +713,7 @@ for gloKey in gloConfig:
         partner_repack_factory = PartnerRepackFactory(
             hgHost=branchConfig['hghost'],
             repoPath=sourceRepoPath,
+            mozRepoPath=mozillaRepoPath,
             buildToolsRepoPath=branchConfig['build_tools_repo_path'],
             productName=productName,
             version=version,
@@ -765,6 +772,7 @@ for gloKey in gloConfig:
         patcherConfig=patcherConfig,
         verifyConfigs=verifyConfigs,
         appName=appName,
+        binaryName=binaryName,
         productName=productName,
         brandName=brandName,
         version=version,
@@ -775,6 +783,7 @@ for gloKey in gloConfig:
         oldAppVersion=oldAppVersion,
         oldBaseTag=oldBaseTag,
         oldBuildNumber=oldBuildNumber,
+        oldBinaryName=oldBinaryName,
         ftpServer=ftpServer,
         bouncerServer=bouncerServer,
         stagingServer=stagingServer,
