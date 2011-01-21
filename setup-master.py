@@ -232,6 +232,15 @@ mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_production_try_builder_master_bm01 = mozilla + MasterConfig(
+        "bm01-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 mozilla_production_try_builder_master_bm02 = mozilla + MasterConfig(
         "bm02-trybuilder",
         local_links = [
@@ -241,10 +250,10 @@ mozilla_production_try_builder_master_bm02 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm01 = mozilla + MasterConfig(
-        "bm01-trybuilder",
+mozilla_production_try_builder_master_bm03 = mozilla + MasterConfig(
+        "bm03-trybuilder",
         local_links = [
-            ('production_try_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
+            ('production_try_builder_master_bm03_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
@@ -358,15 +367,6 @@ mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
             ]
         )
 
-mozilla_production_tests_master_tm02 = mozilla_tests + MasterConfig(
-        "tm02-tests_master",
-        local_links = [
-            ('production_tests_master_tm02_localconfig.py', 'master_localconfig.py'),
-            ('production_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
-            ]
-        )
-
 mozilla_production_tests_master_bm01_1 = mozilla_tests + MasterConfig(
         "bm01_1-tests_master",
         local_links = [
@@ -441,6 +441,7 @@ masters_080 = [
         mozilla_production_try_builder_master_pm02,
         mozilla_production_try_builder_master_bm01,
         mozilla_production_try_builder_master_bm02,
+        mozilla_production_try_builder_master_bm03,
         mozilla_production_builder_master_bm01,
         mozilla_production_builder_master_bm02,
 
@@ -453,7 +454,6 @@ masters_080 = [
         mozilla_production_tests_scheduler_master,
         mozilla_production_tests_master_talos_master02,
         mozilla_production_tests_master_tm01,
-        mozilla_production_tests_master_tm02,
         mozilla_production_tests_master_bm01_1,
         mozilla_production_tests_master_bm01_2,
         mozilla_production_tests_master_bm02_1,
