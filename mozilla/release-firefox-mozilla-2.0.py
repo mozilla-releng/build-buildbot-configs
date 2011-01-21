@@ -4,7 +4,7 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['sourceRepoName']      = 'mozilla-central'
 releaseConfig['sourceRepoPath']      = releaseConfig['sourceRepoName']
-releaseConfig['sourceRepoRevision']  = 'badef0f336d2'
+releaseConfig['sourceRepoRevision']  = '16bd82195df8'
 releaseConfig['relbranchOverride']   = ''
 releaseConfig['l10nRepoPath']        = 'l10n-central'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
@@ -23,15 +23,15 @@ releaseConfig['appName']             = 'browser'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-releaseConfig['version']             = '4.0b9'
+releaseConfig['version']             = '4.0b10'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '2.0b9'
+releaseConfig['milestone']           = '2.0b10'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_4_0b9'
-releaseConfig['oldVersion']          = '4.0b8'
+releaseConfig['baseTag']             = 'FIREFOX_4_0b10'
+releaseConfig['oldVersion']          = '4.0b9'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b8'
+releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b9'
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
