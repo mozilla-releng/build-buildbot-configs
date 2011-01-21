@@ -385,13 +385,14 @@ for gloKey in gloConfig:
         schedulers.append(xulrunner_build_scheduler)
     
     if doPartnerRepacks:
-        partner_scheduler = Scheduler(
-            name='partner_repacks_%s' % gloKey,
-            treeStableTimer=0,
-            branch='post_signing_%s' % gloKey,
-            builderNames=['partner_repack_%s' % gloKey],
-        )
-        schedulers.append(partner_scheduler)
+        for platform in l10nPlatforms:
+            partner_scheduler = Scheduler(
+                name='partner_repacks_%s_%s' % (platform, gloKey),
+                treeStableTimer=0,
+                branch='post_signing_%s_%s' % (platform, gloKey),
+                builderNames=['partner_repack_%s_%s' % (platform, gloKey)],
+            )
+            schedulers.append(partner_scheduler)
     
     for platform in l10nPlatforms:
         l10n_verify_scheduler = Scheduler(
@@ -710,27 +711,29 @@ for gloKey in gloConfig:
     
     
     if doPartnerRepacks:
-        partner_repack_factory = PartnerRepackFactory(
-            hgHost=branchConfig['hghost'],
-            repoPath=sourceRepoPath,
-            mozRepoPath=mozillaRepoPath,
-            buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-            productName=productName,
-            version=version,
-            buildNumber=buildNumber,
-            partnersRepoPath=partnersRepoPath,
-            stagingServer=stagingServer,
-            stageUsername=branchConfig['stage_username'],
-            stageSshKey=branchConfig['stage_ssh_key'],    
-        )
-    
-        builders.append({
-            'name': 'partner_repack_%s' % gloKey,
-            'slavenames': branchConfig['platforms']['macosx']['slaves'],
-            'category': 'release',
-            'builddir': 'partner_repack_%s' % gloKey,
-            'factory': partner_repack_factory,
-        })
+        for platform in l10nPlatforms:
+            partner_repack_factory = PartnerRepackFactory(
+                hgHost=branchConfig['hghost'],
+                repoPath=sourceRepoPath,
+                mozRepoPath=mozillaRepoPath,
+                buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+                productName=productName,
+                version=version,
+                buildNumber=buildNumber,
+                partnersRepoPath=partnersRepoPath,
+                platformList=[platform], 
+                stagingServer=stagingServer,
+                stageUsername=branchConfig['stage_username'],
+                stageSshKey=branchConfig['stage_ssh_key'],    
+            )
+        
+            builders.append({
+                'name': 'partner_repack_%s_%s' % (platform, gloKey),
+                'slavenames': branchConfig['platforms']['macosx']['slaves'],
+                'category': 'release',
+                'builddir': 'partner_repack_%s_%s' % (platform, gloKey),
+                'factory': partner_repack_factory,
+            })
     
     for platform in l10nPlatforms:
         l10n_verification_factory = L10nVerifyFactory(
