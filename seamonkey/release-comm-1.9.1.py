@@ -3,11 +3,11 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-1.9.1' # buildbot branch name
 sourceRepoPath             = 'releases/comm-1.9.1'
-sourceRepoRevision         = 'ad5b9c3e12a0'
+sourceRepoRevision         = 'f096aee1e710'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = '54745ba055f0'
-mozillaRelbranchOverride   = 'GECKO19116_20101122_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = 'FIREFOX_3_5_17_RELEASE'
+mozillaRelbranchOverride   = 'GECKO19117_2011012114_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'f6c78804ebb4'
 inspectorRelbranchOverride = 'COMM_1_9_1_BRANCH'
@@ -34,15 +34,15 @@ appName                    = 'suite'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.0.11'
+version                    = '2.0.12'
 appVersion                 = version
-milestone                  = '1.9.1.16'
+milestone                  = '1.9.1.17'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_0_11'
-oldVersion                 = '2.0.10'
+baseTag                    = 'SEAMONKEY_2_0_12'
+oldVersion                 = '2.0.11'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_0_10'
+oldBaseTag                 = 'SEAMONKEY_2_0_11'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz191-seamonkey-branch-patcher2.cfg'
