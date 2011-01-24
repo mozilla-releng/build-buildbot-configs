@@ -50,32 +50,32 @@ change_source.append(FtpPoller(
 ))
 
 tag_scheduler = Scheduler(
-    name='tag',
+    name=builderPrefix('tag'),
     branch=sourceRepoPath,
     treeStableTimer=0,
-    builderNames=['tag'],
+    builderNames=[builderPrefix('tag')],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, branchConfig['hgurl'])
 )
 schedulers.append(tag_scheduler)
 source_scheduler = Dependent(
-    name='source',
+    name=builderPrefix('source'),
     upstream=tag_scheduler,
-    builderNames=['source']
+    builderNames=[builderPrefix('source')]
 )
 schedulers.append(source_scheduler)
 for platform in enUSPlatforms:
     build_scheduler = Dependent(
-        name='%s_build' % platform,
+        name=builderPrefix('%s_build' % platform),
         upstream=tag_scheduler,
-        builderNames=['%s_build' % platform]
+        builderNames=[builderPrefix('%s_build' % platform)]
     )
     schedulers.append(build_scheduler)
     if platform in l10nPlatforms:
         repack_scheduler = DependentL10n(
-            name='%s_repack' % platform,
+            name=builderPrefix('%s_repack' % platform),
             platform=platform,
             upstream=build_scheduler,
-            builderNames=['%s_repack' % platform],
+            builderNames=[builderPrefix('%s_repack' % platform)],
             branch=sourceRepoPath,
             baseTag='%s_RELEASE' % baseTag,
             localesFile='suite/locales/shipped-locales',
@@ -84,7 +84,7 @@ for platform in enUSPlatforms:
 
 for platform in l10nPlatforms:
     l10n_verify_scheduler = Scheduler(
-        name='%s_l10n_verification' % platform,
+        name=builderPrefix('%s_l10n_verification' % platform),
         treeStableTimer=0,
         branch='post_signing',
         builderNames=['%s_l10n_verification' % platform]
@@ -92,18 +92,18 @@ for platform in l10nPlatforms:
     schedulers.append(l10n_verify_scheduler)
 
 updates_scheduler = Scheduler(
-    name='updates',
+    name=builderPrefix('updates'),
     treeStableTimer=0,
     branch='post_signing',
-    builderNames=['updates']
+    builderNames=[builderPrefix('updates')]
 )
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
 for platform in sorted(verifyConfigs.keys()):
-    updateBuilderNames.append('%s_update_verify' % platform)
+    updateBuilderNames.append(builderPrefix('%s_update_verify' % platform))
 update_verify_scheduler = Dependent(
-    name='update_verify',
+    name=builderPrefix('update_verify'),
     upstream=updates_scheduler,
     builderNames=updateBuilderNames
 )
@@ -112,9 +112,9 @@ schedulers.append(update_verify_scheduler)
 if majorUpdateRepoPath:
     majorUpdateBuilderNames = []
     for platform in sorted(majorUpdateVerifyConfigs.keys()):
-        majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
+        majorUpdateBuilderNames.append(builderPrefix('%s_major_update_verify' % platform))
     major_update_verify_scheduler = Triggerable(
-        name='major_update_verify',
+        name=builderPrefix('major_update_verify'),
         builderNames=majorUpdateBuilderNames
     )
     schedulers.append(major_update_verify_scheduler)
@@ -124,10 +124,13 @@ for platform in unittestPlatforms:
         platform_test_builders = []
         base_name = branchConfig['platforms'][platform]['base_name']
         for suites_name, suites in branchConfig['unittest_suites']:
-            platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
+            platform_test_builders.extend(
+                    generateTestBuilderNames(
+                        builderPrefix('%s_test' % platform),
+                        suites_name, suites))
 
         s = Scheduler(
-         name='%s_release_unittest' % platform,
+         name=builderPrefix('%s_release_unittest' % platform),
          treeStableTimer=0,
          branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
          builderNames=platform_test_builders,
