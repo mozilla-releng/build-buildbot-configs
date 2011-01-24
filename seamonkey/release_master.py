@@ -130,9 +130,9 @@ for platform in unittestPlatforms:
                         suites_name, suites))
 
         s = Scheduler(
-         name=builderPrefix('%s_release_unittest' % platform),
+         name=builderPrefix('%s-opt-unittest' % platform),
          treeStableTimer=0,
-         branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+         branch=builderPrefix('%s-opt-unittest' % platform),
          builderNames=platform_test_builders,
         )
         schedulers.append(s)
