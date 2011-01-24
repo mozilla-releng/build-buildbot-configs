@@ -202,9 +202,9 @@ tag_factory = ReleaseTaggingFactory(
 )
 
 builders.append({
-    'name': 'tag',
+    'name': builderPrefix('tag'),
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release',
+    'category': 'release', # 'category': builderPrefix(''),
     'builddir': builderPrefix('tag'),
     'slavebuilddir': reallyShort(builderPrefix('tag')),
     'factory': tag_factory,
@@ -234,9 +234,9 @@ source_factory = CCSourceFactory(
 )
 
 builders.append({
-    'name': 'source',
+    'name': builderPrefix('source'),
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release',
+    'category': 'release', # 'category': builderPrefix(''),
     'builddir': builderPrefix('source'),
     'slavebuilddir': reallyShort(builderPrefix('source')),
     'factory': source_factory,
@@ -303,9 +303,9 @@ for platform in enUSPlatforms:
     )
 
     builders.append({
-        'name': '%s_build' % platform,
+        'name': builderPrefix('%s_build' % platform),
         'slavenames': pf['slaves'],
-        'category': 'release',
+        'category': 'release', # 'category': builderPrefix(''),
         'builddir': builderPrefix('%s_build' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform)),
         'factory': build_factory,
@@ -345,9 +345,9 @@ for platform in enUSPlatforms:
         )
 
         builders.append({
-            'name': '%s_repack' % platform,
+            'name': builderPrefix('%s_repack' % platform),
             'slavenames': branchConfig['l10n_slaves'][platform],
-            'category': 'release',
+            'category': 'release', # 'category': builderPrefix(''),
             'builddir': builderPrefix('%s_repack' % platform),
             'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform)),
             'factory': repack_factory,
@@ -364,10 +364,10 @@ for platform in enUSPlatforms:
                 suites.remove('mochitest-a11y')
 
             test_builders.extend(generateCCTestBuilder(
-                branchConfig, 'release', platform, "%s_test" % platform,
-                'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+                branchConfig, 'release', platform, builderPrefix("%s_test" % platform),
+                builderPrefix('%s-opt-unittest' % platform),
                 suites_name, suites, mochitestLeakThreshold,
-                crashtestLeakThreshold))
+                crashtestLeakThreshold, category=builderPrefix('')))
 
 for platform in l10nPlatforms:
     l10n_verification_factory = L10nVerifyFactory(
@@ -385,9 +385,9 @@ for platform in l10nPlatforms:
     )
 
     builders.append({
-        'name': '%s_l10n_verification' % platform,
+        'name': builderPrefix('%s_l10n_verification' % platform),
         'slavenames': branchConfig['platforms']['macosx']['slaves'],
-        'category': 'release',
+        'category': 'release', # 'category': builderPrefix(''),
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
         'factory': l10n_verification_factory,
@@ -436,9 +436,9 @@ updates_factory = ReleaseUpdatesFactory(
 )
 
 builders.append({
-    'name': 'updates',
+    'name': builderPrefix('updates'),
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release',
+    'category': 'release', # 'category': builderPrefix(''),
     'builddir': builderPrefix('updates'),
     'slavebuilddir': reallyShort(builderPrefix('updates')),
     'factory': updates_factory,
@@ -456,9 +456,9 @@ for platform in sorted(verifyConfigs.keys()):
     )
 
     builders.append({
-        'name': '%s_update_verify' % platform,
+        'name': builderPrefix('%s_update_verify' % platform),
         'slavenames': branchConfig['platforms'][platform]['slaves'],
-        'category': 'release',
+        'category': 'release', # 'category': builderPrefix(''),
         'builddir': builderPrefix('%s_update_verify' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_update_verify' % platform)),
         'factory': update_verify_factory,
@@ -474,9 +474,9 @@ final_verification_factory = ReleaseFinalVerification(
 )
 
 builders.append({
-    'name': 'final_verification',
+    'name': builderPrefix('final_verification'),
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release',
+    'category': 'release', # 'category': builderPrefix(''),
     'builddir': builderPrefix('final_verification'),
     'slavebuilddir': reallyShort(builderPrefix('final_verification')),
     'factory': final_verification_factory,
@@ -524,9 +524,9 @@ if majorUpdateRepoPath:
     )
 
     builders.append({
-        'name': 'major_update',
+        'name': builderPrefix('major_update'),
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
+        'category': 'release', # 'category': builderPrefix(''),
         'builddir': builderPrefix('major_update'),
         'slavebuilddir': reallyShort(builderPrefix('major_update')),
         'factory': major_update_factory,
@@ -542,9 +542,9 @@ if majorUpdateRepoPath:
         )
 
         builders.append({
-            'name': '%s_major_update_verify' % platform,
+            'name': builderPrefix('%s_major_update_verify' % platform),
             'slavenames': branchConfig['platforms'][platform]['slaves'],
-            'category': 'release',
+            'category': 'release', # 'category': builderPrefix(''),
             'builddir': builderPrefix('%s_major_update_verify' % platform),
             'slavebuilddir': reallyShort(builderPrefix('%s_major_update_verify' % platform)),
             'factory': major_update_verify_factory,
@@ -570,10 +570,10 @@ if majorUpdateRepoPath:
 #)
 
 #builders.append({
-#    'name': 'bouncer_submitter',
+#    'name': builderPrefix('bouncer_submitter'),
 #    'slavenames': branchConfig['platforms']['linux']['slaves'],
-#    'category': 'release',
-#    'builddir': 'bouncer_submitter',
+#    'category': 'release', # 'category': builderPrefix(''),
+#    'builddir': builderPrefix('bouncer_submitter'),
 #    'factory': bouncer_submitter_factory
 #})
 
