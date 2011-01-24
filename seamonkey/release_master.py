@@ -87,7 +87,7 @@ for platform in l10nPlatforms:
         name=builderPrefix('%s_l10n_verification' % platform),
         treeStableTimer=0,
         branch='post_signing',
-        builderNames=['%s_l10n_verification' % platform]
+        builderNames=[builderPrefix('%s_l10n_verification' % platform)]
     )
     schedulers.append(l10n_verify_scheduler)
 
