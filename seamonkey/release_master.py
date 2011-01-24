@@ -7,7 +7,7 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateCCTestBuilder
+  generateTestBuilderNames, generateCCTestBuilder, reallyShort
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -32,6 +32,12 @@ test_builders = []
 schedulers = []
 change_source = []
 status = []
+
+def builderPrefix(s, platform=None):
+    if platform:
+        return "release-%s-%s_%s" % (releaseConfig['sourceRepoName'], platform, s)
+    else:
+        return "release-%s-%s" % (releaseConfig['sourceRepoName'], s)
 
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
@@ -195,8 +201,11 @@ builders.append({
     'name': 'tag',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
-    'builddir': 'tag',
-    'factory': tag_factory
+    'builddir': builderPrefix('tag'),
+    'slavebuilddir': reallyShort(builderPrefix('tag')),
+    'factory': tag_factory,
+    'properties': {'builddir': builderPrefix('tag'),
+                   'slavebuilddir': reallyShort(builderPrefix('tag'))}
 })
 
 
@@ -224,8 +233,10 @@ builders.append({
     'name': 'source',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
-    'builddir': 'source',
-    'factory': source_factory
+    'builddir': builderPrefix('source'),
+    'slavebuilddir': reallyShort(builderPrefix('source')),
+    'factory': source_factory,
+    'properties': {'slavebuilddir': reallyShort(builderPrefix('source'))}
 })
 
 
@@ -291,8 +302,10 @@ for platform in enUSPlatforms:
         'name': '%s_build' % platform,
         'slavenames': pf['slaves'],
         'category': 'release',
-        'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'builddir': builderPrefix('%s_build' % platform),
+        'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform)),
+        'factory': build_factory,
+        'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform))}
     })
 
     if platform in l10nPlatforms:
@@ -331,8 +344,10 @@ for platform in enUSPlatforms:
             'name': '%s_repack' % platform,
             'slavenames': branchConfig['l10n_slaves'][platform],
             'category': 'release',
-            'builddir': '%s_repack' % platform,
-            'factory': repack_factory
+            'builddir': builderPrefix('%s_repack' % platform),
+            'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform)),
+            'factory': repack_factory,
+            'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform))}
         })
 
     if pf['enable_opt_unittests']:
@@ -369,8 +384,10 @@ for platform in l10nPlatforms:
         'name': '%s_l10n_verification' % platform,
         'slavenames': branchConfig['platforms']['macosx']['slaves'],
         'category': 'release',
-        'builddir': '%s_l10n_verification' % platform,
-        'factory': l10n_verification_factory
+        'builddir': builderPrefix('%s_l10n_verification' % platform),
+        'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
+        'factory': l10n_verification_factory,
+        'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform))}
     })
 
 
@@ -418,8 +435,10 @@ builders.append({
     'name': 'updates',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
-    'builddir': 'updates',
-    'factory': updates_factory
+    'builddir': builderPrefix('updates'),
+    'slavebuilddir': reallyShort(builderPrefix('updates')),
+    'factory': updates_factory,
+    'properties': {'slavebuilddir': reallyShort(builderPrefix('updates'))}
 })
 
 
@@ -436,8 +455,10 @@ for platform in sorted(verifyConfigs.keys()):
         'name': '%s_update_verify' % platform,
         'slavenames': branchConfig['platforms'][platform]['slaves'],
         'category': 'release',
-        'builddir': '%s_update_verify' % platform,
-        'factory': update_verify_factory
+        'builddir': builderPrefix('%s_update_verify' % platform),
+        'slavebuilddir': reallyShort(builderPrefix('%s_update_verify' % platform)),
+        'factory': update_verify_factory,
+        'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_update_verify' % platform))}
     })
 
 
@@ -452,8 +473,10 @@ builders.append({
     'name': 'final_verification',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
     'category': 'release',
-    'builddir': 'final_verification',
-    'factory': final_verification_factory
+    'builddir': builderPrefix('final_verification'),
+    'slavebuilddir': reallyShort(builderPrefix('final_verification')),
+    'factory': final_verification_factory,
+    'properties': {'slavebuilddir': reallyShort(builderPrefix('final_verification'))}
 })
 
 if majorUpdateRepoPath:
@@ -500,8 +523,10 @@ if majorUpdateRepoPath:
         'name': 'major_update',
         'slavenames': branchConfig['platforms']['linux']['slaves'],
         'category': 'release',
-        'builddir': 'major_update',
+        'builddir': builderPrefix('major_update'),
+        'slavebuilddir': reallyShort(builderPrefix('major_update')),
         'factory': major_update_factory,
+        'properties': {'slavebuilddir': reallyShort(builderPrefix('major_update'))}
     })
 
     for platform in sorted(majorUpdateVerifyConfigs.keys()):
@@ -516,8 +541,10 @@ if majorUpdateRepoPath:
             'name': '%s_major_update_verify' % platform,
             'slavenames': branchConfig['platforms'][platform]['slaves'],
             'category': 'release',
-            'builddir': '%s_major_update_verify' % platform,
+            'builddir': builderPrefix('%s_major_update_verify' % platform),
+            'slavebuilddir': reallyShort(builderPrefix('%s_major_update_verify' % platform)),
             'factory': major_update_verify_factory,
+            'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_major_update_verify' % platform))}
         })
 
 # XXX: SeaMonkey atm doesn't have permission to use this :(
