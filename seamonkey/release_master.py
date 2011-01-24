@@ -34,10 +34,11 @@ change_source = []
 status = []
 
 def builderPrefix(s, platform=None):
+    # sourceRepoName is in release_config and imported into global scope
     if platform:
-        return "release-%s-%s_%s" % (releaseConfig['sourceRepoName'], platform, s)
+        return "release-%s-%s_%s" % (sourceRepoName, platform, s)
     else:
-        return "release-%s-%s" % (releaseConfig['sourceRepoName'], s)
+        return "release-%s-%s" % (sourceRepoName, s)
 
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
