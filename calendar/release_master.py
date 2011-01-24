@@ -7,7 +7,8 @@ reload(buildbotcustom.misc)
 import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
-from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered
+from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
+  reallyShort
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   CCReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -24,6 +25,12 @@ from release_config import *
 # we import those so we don't have to duplicate them in release_config
 import config as nightly_config
 reload(nightly_config)
+
+def builderPrefix(s, platform=None):
+    if platform:
+        return "release-%s-%s_%s" % (releaseConfig['sourceRepoName'], platform, s)
+    else:
+        return "release-%s-%s" % (releaseConfig['sourceRepoName'], s)
 
 for v in ['stage_username','stage_ssh_key','stage_group','stage_base_path']:
     nightly_config.BRANCHES[sourceRepoName][v] = nightly_config.DEFAULTS[v]
@@ -178,9 +185,11 @@ tag_factory = CCReleaseTaggingFactory(
 builders.append({
     'name': 'tag',
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
+    'slavebuilddir': reallyShort(builderPrefix('tag')),
     'category': 'release',
-    'builddir': 'tag',
-    'factory': dummy_factory
+    'builddir': builderPrefix('tag'),
+    'factory': dummy_factory,
+    'properties': {'builddir': builderPrefix('tag'), 'slavebuilddir': reallyShort(builderPrefix('tag'))}
 })
 
 
@@ -207,8 +216,11 @@ builders.append({
     'name': 'source',
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
-    'builddir': 'source',
-    'factory': source_factory
+    'slavebuilddir': reallyShort(builderPrefix('source')),
+    'builddir': builderPrefix('source'),
+    'factory': source_factory,
+    'properties': { 'slavebuilddir':
+               reallyShort(builderPrefix('source'))}
 })
 
 
@@ -255,8 +267,11 @@ for platform in releasePlatforms:
         'name': '%s_build' % platform,
         'slavenames': pf['slaves'],
         'category': 'release',
-        'builddir': '%s_build' % platform,
-        'factory': build_factory
+        'builddir': builderPrefix('%s_build' % platform),
+        'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform)),
+        'factory': build_factory,
+        'properties': { 'slavebuilddir':
+                    reallyShort(builderPrefix('%s_build' % platform))}
     })
 
     repack_factory = CCReleaseRepackFactory(
@@ -290,8 +305,11 @@ for platform in releasePlatforms:
         'name': '%s_repack' % platform,
         'slavenames': pf['slaves'],
         'category': 'release',
-        'builddir': '%s_repack' % platform,
-        'factory': repack_factory
+        'builddir': builderPrefix('%s_repack' % platform),
+        'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform)),
+        'factory': repack_factory,
+        'properties': {'builddir': builderPrefix('%s_repack' % platform),
+                       'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform))}
     })
 
 
@@ -313,8 +331,11 @@ for platform in l10nPlatforms:
         'name': '%s_l10n_verification' % platform,
         'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
         'category': 'release',
-        'builddir': '%s_l10n_verification' % platform,
-        'factory': l10n_verification_factory
+        'builddir': builderPrefix('l10n_verification', platform),
+        'slavebuilddir': reallyShort(builderPrefix('l10n_verification', platform)),
+        'factory': l10n_verification_factory,
+        'properties': {'slavebuilddir':
+                reallyShort(builderPrefix('l10n_verification', platform))}
     })
 
 
@@ -356,7 +377,9 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'updates',
-    'factory': updates_factory
+    'slavebuilddir': reallyShort(builderPrefix('updates')),
+    'factory': updates_factory,
+    'properties': {'slavebuilddir': reallyShort(builderPrefix('updates'))}
 })
 
 
@@ -372,7 +395,10 @@ for platform in releasePlatforms:
         'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]['slaves'],
         'category': 'release',
         'builddir': '%s_update_verify' % platform,
-        'factory': update_verify_factory
+        'slavebuilddir': reallyShort(builderPrefix('%s_up_vrfy' % platform)),
+        'factory': update_verify_factory,
+        'properties': {'slavebuilddir':
+                reallyShort(builderPrefix('%s_up_vrfy' % platform))}
     })
 
 
@@ -387,5 +413,8 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'final_verification',
-    'factory': final_verification_factory
+    'slavebuilddir': reallyShort(builderPrefix('fnl_verf')),
+    'factory': final_verification_factory,
+    'properties': {'slavebuilddir':
+            reallyShort(builderPrefix('fnl_verf'))}
 })
