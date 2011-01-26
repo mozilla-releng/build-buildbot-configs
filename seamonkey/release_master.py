@@ -50,32 +50,32 @@ change_source.append(FtpPoller(
 ))
 
 tag_scheduler = Scheduler(
-    name=builderPrefix('tag'),
+    name='tag',
     branch=sourceRepoPath,
     treeStableTimer=0,
-    builderNames=[builderPrefix('tag')],
+    builderNames=['tag'],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, branchConfig['hgurl'])
 )
 schedulers.append(tag_scheduler)
 source_scheduler = Dependent(
-    name=builderPrefix('source'),
+    name='source',
     upstream=tag_scheduler,
-    builderNames=[builderPrefix('source')]
+    builderNames=['source']
 )
 schedulers.append(source_scheduler)
 for platform in enUSPlatforms:
     build_scheduler = Dependent(
-        name=builderPrefix('%s_build' % platform),
+        name='%s_build' % platform,
         upstream=tag_scheduler,
-        builderNames=[builderPrefix('%s_build' % platform)]
+        builderNames=['%s_build' % platform]
     )
     schedulers.append(build_scheduler)
     if platform in l10nPlatforms:
         repack_scheduler = DependentL10n(
-            name=builderPrefix('%s_repack' % platform),
+            name='%s_repack' % platform,
             platform=platform,
             upstream=build_scheduler,
-            builderNames=[builderPrefix('%s_repack' % platform)],
+            builderNames=['%s_repack' % platform],
             branch=sourceRepoPath,
             baseTag='%s_RELEASE' % baseTag,
             localesFile='suite/locales/shipped-locales',
@@ -84,26 +84,26 @@ for platform in enUSPlatforms:
 
 for platform in l10nPlatforms:
     l10n_verify_scheduler = Scheduler(
-        name=builderPrefix('%s_l10n_verification' % platform),
+        name='%s_l10n_verification' % platform,
         treeStableTimer=0,
         branch='post_signing',
-        builderNames=[builderPrefix('%s_l10n_verification' % platform)]
+        builderNames=['%s_l10n_verification' % platform]
     )
     schedulers.append(l10n_verify_scheduler)
 
 updates_scheduler = Scheduler(
-    name=builderPrefix('updates'),
+    name='updates',
     treeStableTimer=0,
     branch='post_signing',
-    builderNames=[builderPrefix('updates')]
+    builderNames=['updates']
 )
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
 for platform in sorted(verifyConfigs.keys()):
-    updateBuilderNames.append(builderPrefix('%s_update_verify' % platform))
+    updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
-    name=builderPrefix('update_verify'),
+    name='update_verify',
     upstream=updates_scheduler,
     builderNames=updateBuilderNames
 )
@@ -112,9 +112,9 @@ schedulers.append(update_verify_scheduler)
 if majorUpdateRepoPath:
     majorUpdateBuilderNames = []
     for platform in sorted(majorUpdateVerifyConfigs.keys()):
-        majorUpdateBuilderNames.append(builderPrefix('%s_major_update_verify' % platform))
+        majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
     major_update_verify_scheduler = Triggerable(
-        name=builderPrefix('major_update_verify'),
+        name='major_update_verify',
         builderNames=majorUpdateBuilderNames
     )
     schedulers.append(major_update_verify_scheduler)
@@ -124,15 +124,12 @@ for platform in unittestPlatforms:
         platform_test_builders = []
         base_name = branchConfig['platforms'][platform]['base_name']
         for suites_name, suites in branchConfig['unittest_suites']:
-            platform_test_builders.extend(
-                    generateTestBuilderNames(
-                        builderPrefix('%s_test' % platform),
-                        suites_name, suites))
+            platform_test_builders.extend(generateTestBuilderNames('%s_test' % platform, suites_name, suites))
 
         s = Scheduler(
-         name=builderPrefix('%s-opt-unittest' % platform),
+         name='%s_release_unittest' % platform,
          treeStableTimer=0,
-         branch=builderPrefix('%s-opt-unittest' % platform),
+         branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
          builderNames=platform_test_builders,
         )
         schedulers.append(s)
@@ -202,9 +199,9 @@ tag_factory = ReleaseTaggingFactory(
 )
 
 builders.append({
-    'name': builderPrefix('tag'),
+    'name': 'tag',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release', # 'category': builderPrefix(''),
+    'category': 'release',
     'builddir': builderPrefix('tag'),
     'slavebuilddir': reallyShort(builderPrefix('tag')),
     'factory': tag_factory,
@@ -234,9 +231,9 @@ source_factory = CCSourceFactory(
 )
 
 builders.append({
-    'name': builderPrefix('source'),
+    'name': 'source',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release', # 'category': builderPrefix(''),
+    'category': 'release',
     'builddir': builderPrefix('source'),
     'slavebuilddir': reallyShort(builderPrefix('source')),
     'factory': source_factory,
@@ -303,9 +300,9 @@ for platform in enUSPlatforms:
     )
 
     builders.append({
-        'name': builderPrefix('%s_build' % platform),
+        'name': '%s_build' % platform,
         'slavenames': pf['slaves'],
-        'category': 'release', # 'category': builderPrefix(''),
+        'category': 'release',
         'builddir': builderPrefix('%s_build' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform)),
         'factory': build_factory,
@@ -345,9 +342,9 @@ for platform in enUSPlatforms:
         )
 
         builders.append({
-            'name': builderPrefix('%s_repack' % platform),
+            'name': '%s_repack' % platform,
             'slavenames': branchConfig['l10n_slaves'][platform],
-            'category': 'release', # 'category': builderPrefix(''),
+            'category': 'release',
             'builddir': builderPrefix('%s_repack' % platform),
             'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform)),
             'factory': repack_factory,
@@ -364,10 +361,10 @@ for platform in enUSPlatforms:
                 suites.remove('mochitest-a11y')
 
             test_builders.extend(generateCCTestBuilder(
-                branchConfig, 'release', platform, builderPrefix("%s_test" % platform),
-                builderPrefix('%s-opt-unittest' % platform),
+                branchConfig, 'release', platform, "%s_test" % platform,
+                'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
                 suites_name, suites, mochitestLeakThreshold,
-                crashtestLeakThreshold, category=builderPrefix('')))
+                crashtestLeakThreshold))
 
 for platform in l10nPlatforms:
     l10n_verification_factory = L10nVerifyFactory(
@@ -385,9 +382,9 @@ for platform in l10nPlatforms:
     )
 
     builders.append({
-        'name': builderPrefix('%s_l10n_verification' % platform),
+        'name': '%s_l10n_verification' % platform,
         'slavenames': branchConfig['platforms']['macosx']['slaves'],
-        'category': 'release', # 'category': builderPrefix(''),
+        'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
         'factory': l10n_verification_factory,
@@ -436,9 +433,9 @@ updates_factory = ReleaseUpdatesFactory(
 )
 
 builders.append({
-    'name': builderPrefix('updates'),
+    'name': 'updates',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release', # 'category': builderPrefix(''),
+    'category': 'release',
     'builddir': builderPrefix('updates'),
     'slavebuilddir': reallyShort(builderPrefix('updates')),
     'factory': updates_factory,
@@ -456,9 +453,9 @@ for platform in sorted(verifyConfigs.keys()):
     )
 
     builders.append({
-        'name': builderPrefix('%s_update_verify' % platform),
+        'name': '%s_update_verify' % platform,
         'slavenames': branchConfig['platforms'][platform]['slaves'],
-        'category': 'release', # 'category': builderPrefix(''),
+        'category': 'release',
         'builddir': builderPrefix('%s_update_verify' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_update_verify' % platform)),
         'factory': update_verify_factory,
@@ -474,9 +471,9 @@ final_verification_factory = ReleaseFinalVerification(
 )
 
 builders.append({
-    'name': builderPrefix('final_verification'),
+    'name': 'final_verification',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
-    'category': 'release', # 'category': builderPrefix(''),
+    'category': 'release',
     'builddir': builderPrefix('final_verification'),
     'slavebuilddir': reallyShort(builderPrefix('final_verification')),
     'factory': final_verification_factory,
@@ -524,9 +521,9 @@ if majorUpdateRepoPath:
     )
 
     builders.append({
-        'name': builderPrefix('major_update'),
+        'name': 'major_update',
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release', # 'category': builderPrefix(''),
+        'category': 'release',
         'builddir': builderPrefix('major_update'),
         'slavebuilddir': reallyShort(builderPrefix('major_update')),
         'factory': major_update_factory,
@@ -542,9 +539,9 @@ if majorUpdateRepoPath:
         )
 
         builders.append({
-            'name': builderPrefix('%s_major_update_verify' % platform),
+            'name': '%s_major_update_verify' % platform,
             'slavenames': branchConfig['platforms'][platform]['slaves'],
-            'category': 'release', # 'category': builderPrefix(''),
+            'category': 'release',
             'builddir': builderPrefix('%s_major_update_verify' % platform),
             'slavebuilddir': reallyShort(builderPrefix('%s_major_update_verify' % platform)),
             'factory': major_update_verify_factory,
@@ -570,10 +567,10 @@ if majorUpdateRepoPath:
 #)
 
 #builders.append({
-#    'name': builderPrefix('bouncer_submitter'),
+#    'name': 'bouncer_submitter',
 #    'slavenames': branchConfig['platforms']['linux']['slaves'],
-#    'category': 'release', # 'category': builderPrefix(''),
-#    'builddir': builderPrefix('bouncer_submitter'),
+#    'category': 'release',
+#    'builddir': 'bouncer_submitter',
 #    'factory': bouncer_submitter_factory
 #})
 
