@@ -66,4 +66,3 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
-
