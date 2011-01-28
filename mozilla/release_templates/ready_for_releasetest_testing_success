@@ -1,0 +1,4 @@
+%(releaseName)s: ready for releasetest testing
+Mirrors are absorbed enough for releasetest testing of %(releaseName)s.
+
+-buildbot
