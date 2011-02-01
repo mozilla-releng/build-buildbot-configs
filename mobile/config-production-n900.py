@@ -36,10 +36,6 @@ SLAVES = {
 
 default_n900['slaves'] = SLAVES['n900']
 
-# Remove these to run tp4 in production
-del default_n900['talos_suites']['tp4']
-del default_n900['talos_suites']['tp4_nochrome']
-
 MASTER = {'name': 'production-mobile-master',
           'slave_port': 9010,
           'http_port': 8010,
