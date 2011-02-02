@@ -137,7 +137,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             nightly_scheduler=MultiNightlyL10n(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
-                hour=[1],
+                hour=[9], minute=[30],
                 builderNames=[builder],
                 localesFile=branch['multiLocalesFile'],
                 platform=l10nNightlyBuilders[builder]['platform'],
@@ -146,7 +146,7 @@ for name in sorted(MOBILE_BRANCHES.keys()):
             nightly_scheduler=Nightly(
                 name=builder,
                 branch=branch['mobile_repo_path'], # mobile_repo_path
-                hour=[1],
+                hour=[9], minute=[30],
                 builderNames=[builder],
             )
         m['schedulers'].append(nightly_scheduler)
