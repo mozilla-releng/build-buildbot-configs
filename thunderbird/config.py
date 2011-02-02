@@ -37,6 +37,7 @@ win32_slaves            = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,4,5,8,9,10,11
 # mini-07 needs a new drive
 macosx_slaves           = [ 'mini-%02i' % x for x in [ 3,4,5,6,8,9 ] ]
 macosx64_slaves         = [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
+macosx64_unittest_slaves = [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
 
 
 platforms = {
@@ -81,7 +82,7 @@ platforms = {
         'update_platform':  'Darwin_x86_64-gcc3',
         'display_name':  'MacOSX 10.6',
         'slaves': macosx64_slaves,
-        'test-slaves': macosx64_slaves,
+        'test-slaves': macosx64_unittest_slaves,
         'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
     },
 }
