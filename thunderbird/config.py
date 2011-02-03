@@ -223,6 +223,7 @@ for config_name in build_configs:
         config['env']['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
         config['env']['SYMBOL_SERVER_USER'] = 'tbirdbld'
         config['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        config['env']['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
 
     if config['builder_type'] == 'bloat':
         config['mozconfig'] = 'debug'

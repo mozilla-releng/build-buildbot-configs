@@ -51,6 +51,7 @@ GLOBAL_VARS = {
     'stage_ssh_key': 'ffxbld_dsa',
     'stage_ssh_xulrunner_key': 'xrbld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_ffx/',
+    'symbol_server_post_upload_cmd': '/usr/local/bin/post-symbol-upload.py',
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
@@ -122,6 +123,7 @@ GLOBAL_VARS = {
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
+SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 
 PLATFORM_VARS = {
         'linux': {
@@ -143,6 +145,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -172,6 +175,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'TINDERBOX_OUTPUT': '1',
@@ -201,6 +205,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -229,6 +234,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
                 'TINDERBOX_OUTPUT': '1',
@@ -261,6 +267,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',

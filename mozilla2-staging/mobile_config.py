@@ -29,6 +29,7 @@ DEFAULT_ENV = {
     'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_mob/',
+    'POST_SYMBOL_UPLOAD_CMD': '/usr/local/bin/post-symbol-upload.py',
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
     'TINDERBOX_OUTPUT': '1',
 }

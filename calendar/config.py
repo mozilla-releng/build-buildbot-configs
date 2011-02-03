@@ -18,6 +18,7 @@ MOZ_APP_NAME = 'sunbird'
 SYMBOL_SERVER_HOST = 'dm-symbolpush01.mozilla.org'
 SYMBOL_SERVER_USER = 'calbld'
 SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_sbrd/'
+SYMBOL_SERVER_POST_UPLOAD_CMD = '/usr/local/bin/post-symbol-upload.py'
 
 ORGANIZATION = 'community'
 
@@ -229,6 +230,7 @@ BRANCHES['comm-central-lightning']['platforms']['linux']['env'] = {'CVS_RSH': 's
     'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-central-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
@@ -238,6 +240,7 @@ BRANCHES['comm-central-lightning']['platforms']['win32']['env'] = {'CVS_RSH': 's
     'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': 'ssh',
@@ -248,6 +251,7 @@ BRANCHES['comm-central-lightning']['platforms']['macosx']['env'] = {'CVS_RSH': '
     'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
 }
 
