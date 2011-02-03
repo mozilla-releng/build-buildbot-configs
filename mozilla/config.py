@@ -1044,6 +1044,8 @@ BRANCHES['tracemonkey']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXT
 BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
+BRANCHES['tracemonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['tracemonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['tracemonkey']['create_snippet'] = True
 BRANCHES['tracemonkey']['create_partial'] = True
 BRANCHES['tracemonkey']['create_partial_l10n'] = False
@@ -1079,6 +1081,8 @@ BRANCHES['places']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] 
 BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['linux']['build_space'] = 6
 BRANCHES['places']['platforms']['linuxqt']['build_space'] = 6
+BRANCHES['places']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['places']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## electrolysis
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
@@ -1111,6 +1115,8 @@ BRANCHES['electrolysis']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_
 BRANCHES['electrolysis']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-e10s/nightly'
+BRANCHES['electrolysis']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['electrolysis']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['electrolysis']['create_snippet'] = True
 BRANCHES['electrolysis']['create_partial'] = True
 BRANCHES['electrolysis']['create_partial_l10n'] = False
@@ -1143,6 +1149,8 @@ BRANCHES['jaegermonkey']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILD
 BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
+BRANCHES['jaegermonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['jaegermonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## tryserver
 # Try-specific configs
@@ -1229,6 +1237,8 @@ BRANCHES['maple']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 
 BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
 BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
 BRANCHES['maple']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-maple'
+BRANCHES['maple']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['maple']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## cedar
 BRANCHES['cedar']['repo_path'] = 'projects/cedar'
@@ -1254,6 +1264,8 @@ BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 
 BRANCHES['cedar']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-cedar'
 BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
 BRANCHES['cedar']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-cedar'
+BRANCHES['cedar']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['cedar']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## birch
 BRANCHES['birch']['repo_path'] = 'projects/birch'
@@ -1279,6 +1291,8 @@ BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 
 BRANCHES['birch']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-birch'
 BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
 BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
+BRANCHES['birch']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['birch']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
