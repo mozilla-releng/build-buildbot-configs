@@ -1,6 +1,6 @@
 import os
 from buildbot.changes.pb import PBChangeSource
-from buildbot.scheduler import Scheduler, Dependent, Triggerable
+from buildbot.scheduler import Scheduler, Dependent, Triggerable, Nightly
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
@@ -15,7 +15,7 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
   L10nVerifyFactory, CCReleaseRepackFactory, UnittestPackagedBuildFactory, \
   PartnerRepackFactory, MajorUpdateFactory, XulrunnerReleaseBuildFactory, \
-  TuxedoEntrySubmitterFactory
+  TuxedoEntrySubmitterFactory, ScriptFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -88,6 +88,7 @@ gloConfig = {
         'oldBuildNumber'             : 3,
         'oldBaseTag'                 : 'THUNDERBIRD_3_1_7',
         'oldBinaryName'              : 'thunderbird',
+        'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
@@ -181,6 +182,7 @@ gloConfig = {
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_3a1',
         'oldBinaryName'              : 'miramar',
+        'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
@@ -244,7 +246,8 @@ all_test_builders = []
 schedulers = []
 change_source = []
 status = []
-    
+weeklyBuilders = []
+ 
 for gloKey in gloConfig:
 
     sourceRepoName             = gloConfig[gloKey]['sourceRepoName']
@@ -294,6 +297,7 @@ for gloKey in gloConfig:
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
     oldBaseTag                 = gloConfig[gloKey]['oldBaseTag']
     oldBinaryName              = gloConfig[gloKey]['oldBinaryName']
+    enableWeeklyBundle         = gloConfig[gloKey]['enable_weekly_bundle']
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
     useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
@@ -909,6 +913,49 @@ for gloKey in gloConfig:
                 'builddir': '%s_major_update_verify_%s' % (platform, gloKey),
                 'factory': major_update_verify_factory,
             })
+
+    if enableWeeklyBundle:
+        name = sourceRepoPath
+        weeklyBuilders.append('%s hg bundle' % name)
+        bundle_factory = ScriptFactory(
+            branchConfig['hgurl'] + branchConfig['build_tools_repo_path'],
+            'scripts/bundle/hg-bundle.sh',
+            interpreter='bash',
+            script_timeout=3600,
+            script_maxtime=3600,
+            extra_args=[
+                name,
+                sourceRepoPath,
+                branchConfig['stage_server'],
+                branchConfig['stage_username'],
+                branchConfig['stage_base_path'],
+                branchConfig['stage_ssh_key'],
+                ],
+        )
+        slaves = set()
+        # can bundle sources on any platform
+        for p in sorted(branchConfig['platforms'].keys()):
+            slaves.update(set(branchConfig['platforms'][p]['slaves']))
+        bundle_builder = {
+            'name': '%s hg bundle' % name,
+            'slavenames': list(slaves),
+            'builddir': '%s-bundle' % (name,),
+            'slavebuilddir': ('%s-bundle' % (name,)),
+            'factory': bundle_factory,
+            'category': name,
+            #'nextSlave': _nextSlowSlave,
+            'properties': {'slavebuilddir': ('%s-bundle' % (name,))}
+        }
+        builders.append(bundle_builder)
+
+    weekly_scheduler=Nightly(
+            name='weekly-%s' % gloKey,
+            branch=sourceRepoPath,
+            dayOfWeek=5, # Saturday
+            hour=[3], minute=[02],
+            builderNames=weeklyBuilders,
+            )
+    schedulers.append(weekly_scheduler)
     
     status.append(TinderboxMailNotifier(
         fromaddr="thunderbird2.buildbot@build.mozilla.org",
