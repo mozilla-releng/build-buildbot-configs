@@ -356,7 +356,6 @@ for platform in enUSPlatforms:
             baseWorkDir='%s-partner' % mobileBranchConfig['platforms'][platform]['base_workdir'],
             python='python2.5',
             packageDmg=False,
-            createRemoteStageDir=True
         )
         builders.append({
             'name': '%s_partner_repack' % platform,
