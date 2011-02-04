@@ -321,6 +321,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -355,6 +356,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'enable_nightly': False,
             'env': {
                 'DISPLAY': ':2',
@@ -387,6 +389,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',
+            'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -449,6 +452,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -493,7 +497,8 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 # Source server support, bug 506702
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -510,6 +515,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -537,6 +543,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'enable_ccache': False,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -583,6 +590,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -608,6 +616,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -746,8 +755,8 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-central']['start_hour'] = [9]
-BRANCHES['mozilla-central']['start_minute'] = [30]
+BRANCHES['mozilla-central']['start_hour'] = [3]
+BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable unit tests
@@ -801,8 +810,8 @@ BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/bu
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
-BRANCHES['shadow-central']['start_hour'] = [9]
-BRANCHES['shadow-central']['start_minute'] = [30]
+BRANCHES['shadow-central']['start_hour'] = [3]
+BRANCHES['shadow-central']['start_minute'] = [2]
 BRANCHES['shadow-central']['create_snippet'] = False
 BRANCHES['shadow-central']['enable_nightly'] = False
 # Enable XULRunner / SDK builds
@@ -827,8 +836,8 @@ BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BU
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
 BRANCHES['mozilla-2.0']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-2.0']['start_hour'] = [9]
-BRANCHES['mozilla-2.0']['start_minute'] = [30]
+BRANCHES['mozilla-2.0']['start_hour'] = [3]
+BRANCHES['mozilla-2.0']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-2.0']['enable_xulrunner'] = True
 # Enable unit tests
@@ -876,8 +885,8 @@ BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
-BRANCHES['mozilla-1.9.1']['start_hour'] = [9]
-BRANCHES['mozilla-1.9.1']['start_minute'] = [30]
+BRANCHES['mozilla-1.9.1']['start_hour'] = [3]
+BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
 BRANCHES['mozilla-1.9.1']['use_old_updater'] = True
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 7
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 7
@@ -951,8 +960,8 @@ BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
-BRANCHES['mozilla-1.9.2']['start_hour'] = [9]
-BRANCHES['mozilla-1.9.2']['start_minute'] = [30]
+BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
+BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
 BRANCHES['mozilla-1.9.2']['use_old_updater'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 8
@@ -1018,8 +1027,8 @@ BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = True
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
-BRANCHES['tracemonkey']['start_hour'] = [9]
-BRANCHES['tracemonkey']['start_minute'] = [30]
+BRANCHES['tracemonkey']['start_hour'] = [3]
+BRANCHES['tracemonkey']['start_minute'] = [32]
 BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linuxqt']['build_space'] = 7
 BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
@@ -1056,8 +1065,8 @@ BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fir
 
 ######## places
 BRANCHES['places']['repo_path'] = 'projects/places'
-BRANCHES['places']['start_hour'] = [9]
-BRANCHES['places']['start_minute'] = [30]
+BRANCHES['places']['start_hour'] = [4]
+BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
 BRANCHES['places']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
@@ -1086,8 +1095,8 @@ BRANCHES['places']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## electrolysis
 BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
-BRANCHES['electrolysis']['start_hour'] = [9]
-BRANCHES['electrolysis']['start_minute'] = [30]
+BRANCHES['electrolysis']['start_hour'] = [4]
+BRANCHES['electrolysis']['start_minute'] = [2]
 BRANCHES['electrolysis']['enable_nightly'] = False
 BRANCHES['electrolysis']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
@@ -1127,8 +1136,8 @@ BRANCHES['electrolysis']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fi
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['repo_path'] = 'projects/jaegermonkey'
-BRANCHES['jaegermonkey']['start_hour'] = [9]
-BRANCHES['jaegermonkey']['start_minute'] = [30]
+BRANCHES['jaegermonkey']['start_hour'] = [4]
+BRANCHES['jaegermonkey']['start_minute'] = [2]
 BRANCHES['jaegermonkey']['enable_nightly'] = False
 BRANCHES['jaegermonkey']['enable_mobile_nightly'] = False
 BRANCHES['jaegermonkey']['create_snippet'] = False
@@ -1166,8 +1175,8 @@ BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
 BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['start_hour'] = [9]
-BRANCHES['tryserver']['start_minute'] = [30]
+BRANCHES['tryserver']['start_hour'] = [3]
+BRANCHES['tryserver']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['tryserver']['enable_nightly'] = False
 BRANCHES['tryserver']['enable_mobile_nightly'] = False
@@ -1202,7 +1211,6 @@ BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-# Sending unittests to test masters
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
@@ -1215,8 +1223,8 @@ BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
 ######## maple
 BRANCHES['maple']['repo_path'] = 'projects/maple'
-BRANCHES['maple']['start_hour'] = [9]
-BRANCHES['maple']['start_minute'] = [30]
+BRANCHES['maple']['start_hour'] = [4]
+BRANCHES['maple']['start_minute'] = [2]
 BRANCHES['maple']['enable_nightly'] = False
 BRANCHES['maple']['enable_mobile_nightly'] = False
 BRANCHES['maple']['create_snippet'] = False
@@ -1242,8 +1250,8 @@ BRANCHES['maple']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## cedar
 BRANCHES['cedar']['repo_path'] = 'projects/cedar'
-BRANCHES['cedar']['start_hour'] = [9]
-BRANCHES['cedar']['start_minute'] = [30]
+BRANCHES['cedar']['start_hour'] = [4]
+BRANCHES['cedar']['start_minute'] = [2]
 BRANCHES['cedar']['enable_nightly'] = False
 BRANCHES['cedar']['enable_mobile_nightly'] = False
 BRANCHES['cedar']['create_snippet'] = False
@@ -1269,8 +1277,8 @@ BRANCHES['cedar']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## birch
 BRANCHES['birch']['repo_path'] = 'projects/birch'
-BRANCHES['birch']['start_hour'] = [9]
-BRANCHES['birch']['start_minute'] = [30]
+BRANCHES['birch']['start_hour'] = [4]
+BRANCHES['birch']['start_minute'] = [2]
 BRANCHES['birch']['enable_nightly'] = False
 BRANCHES['birch']['enable_mobile_nightly'] = False
 BRANCHES['birch']['create_snippet'] = False
