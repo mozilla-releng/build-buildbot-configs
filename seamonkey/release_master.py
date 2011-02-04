@@ -383,7 +383,7 @@ for platform in l10nPlatforms:
 
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        'slavenames': branchConfig['platforms']['macosx']['slaves'],
+        'slavenames': branchConfig['platforms']['macosx64']['slaves'],
         'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
