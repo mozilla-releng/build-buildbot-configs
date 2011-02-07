@@ -40,7 +40,7 @@ gloConfig = {
         'sourceRepoPath'             : 'releases/comm-1.9.2',
         'sourceRepoRevision'         : '3967c525ac7e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19214_20110123_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
         'mozillaRepoRevision'        : '77abb6fcd2b7',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
