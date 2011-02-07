@@ -12,6 +12,8 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS
+if PROJECTS.has_key('fuzzing'):
+    del PROJECTS['fuzzing']
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_PROJECTS = PROJECTS.keys()
 ACTIVE_RELEASE_BRANCHES = []
