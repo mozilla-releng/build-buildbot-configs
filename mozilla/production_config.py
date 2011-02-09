@@ -132,6 +132,7 @@ BRANCHES = {
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
+        'graph_branch': 'Tryserver',
         'mobile_tinderbox_tree': 'MozillaTry',
         'packaged_unittest_tinderbox_tree': 'MozillaTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
