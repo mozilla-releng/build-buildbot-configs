@@ -195,4 +195,9 @@ PROJECTS = {
         'idle_slaves': 3, # 3 slaves have to be idle before we start
         'tinderbox_tree': 'Firefox',
     },
+    'spidermonkey': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'TraceMonkey',
+    },
 }
