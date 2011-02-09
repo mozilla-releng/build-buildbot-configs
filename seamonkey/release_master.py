@@ -139,41 +139,52 @@ for platform in unittestPlatforms:
 # from the waterfall
 
 ##### Builders
-repositories = {
-    sourceRepoPath: {
+"""    sourceRepoPath: {
         'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
         'bumpFiles': [productVersionFile]
     },
+"""
+repositories = {
     mozillaRepoPath: {
         'revision': mozillaRepoRevision,
         'relbranchOverride': mozillaRelbranchOverride,
         'bumpFiles': []
     },
 }
-if inspectorRepoPath:
+"""if inspectorRepoPath:
     repositories[inspectorRepoPath] = {
         'revision': inspectorRepoRevision,
         'relbranchOverride': inspectorRelbranchOverride,
         'bumpFiles': []
     }
+"""
 if venkmanRepoPath:
     repositories[venkmanRepoPath] = {
         'revision': venkmanRepoRevision,
         'relbranchOverride': venkmanRelbranchOverride,
         'bumpFiles': []
     }
-if chatzillaRepoPath:
+"""if chatzillaRepoPath:
     repositories[chatzillaRepoPath] = {
         'revision': chatzillaRepoRevision,
         'relbranchOverride': chatzillaRelbranchOverride,
         'bumpFiles': []
     }
-
+"""
+skip_l10n_tags = ("be","cs","de","es-ES","fi","fr","it","lt","nb-NO")
 if len(l10nPlatforms) > 0:
     l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
                                       relbranchOverride)
-    repositories.update(l10n_repos)
+    for l10n_repo_key in l10n_repos.keys():
+      skip=False
+      for skipRepo in iter(skip_l10n_tags):
+        if ("%s/%s" % (l10nRepoPath, skipRepo)) == l10n_repo_key:
+          skip=True
+      if skip:
+        continue
+      repositories[l10n_repo_key] = l10n_repos[l10n_repo_key]
+    #repositories.update(l10n_repos)
 
 # dummy factory for TESTING purposes
 from buildbot.process.factory import BuildFactory
