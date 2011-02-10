@@ -63,7 +63,7 @@ default_platform['test_suites'] = {
     'mochitest4': {},
 #    'chrome':     {},
     'browser-chrome': {},
-    'reftest':    {},
+#bug632903    'reftest':    {},
     'crashtest':  {},
     'xpcshell':   {},
 }
@@ -89,9 +89,9 @@ default_platform['test_suites']['mochitest4']['known_fail_count'] = 0
 default_platform['test_suites']['browser-chrome']['test_type'] = 'browser-chrome'
 default_platform['test_suites']['browser-chrome']['timeout'] = 60*60
 default_platform['test_suites']['browser-chrome']['known_fail_count'] = 0
-default_platform['test_suites']['reftest']['test_type'] = 'reftest'
-default_platform['test_suites']['reftest']['timeout'] = 60*60
-default_platform['test_suites']['reftest']['known_fail_count'] = 310
+#default_platform['test_suites']['reftest']['test_type'] = 'reftest'
+#default_platform['test_suites']['reftest']['timeout'] = 60*60
+#default_platform['test_suites']['reftest']['known_fail_count'] = 310
 default_platform['test_suites']['crashtest']['test_type'] = 'crashtest'
 default_platform['test_suites']['crashtest']['timeout'] = 60*60
 default_platform['test_suites']['crashtest']['known_fail_count'] = 0
