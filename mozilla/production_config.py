@@ -132,6 +132,7 @@ BRANCHES = {
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
+        'graph_branch': 'Tryserver',
         'mobile_tinderbox_tree': 'MozillaTry',
         'packaged_unittest_tinderbox_tree': 'MozillaTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
@@ -194,5 +195,10 @@ PROJECTS = {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 3, # 3 slaves have to be idle before we start
         'tinderbox_tree': 'Firefox',
+    },
+    'spidermonkey': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'TraceMonkey',
     },
 }
