@@ -486,6 +486,7 @@ PLATFORM_VARS = {
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
@@ -612,6 +613,7 @@ PLATFORM_VARS = {
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
