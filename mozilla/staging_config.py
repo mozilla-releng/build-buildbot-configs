@@ -110,7 +110,7 @@ BRANCHES = {
         'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
         'hghost' : 'ssh://stage-ffxbld@hgpvt.mozilla.org',
         'stage_username': 'stage-ffxbld',
-    }
+    },
 }
 
 PLATFORM_VARS = {

@@ -34,7 +34,6 @@ TRY_SLAVES = {
     'macosx64':    TRY_MAC64,
 }
 
-
 # Local overrides for default values
 GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
@@ -156,22 +155,6 @@ BRANCHES = {
             }
         }
     },
-   'maple': {
-        'tinderbox_tree': 'Maple',
-        'mobile_tinderbox_tree': 'Maple',
-        'packaged_unittest_tinderbox_tree': 'Maple',
-    },
-    'cedar': {
-        'tinderbox_tree': 'Cedar',
-        'mobile_tinderbox_tree': 'Cedar',
-        'packaged_unittest_tinderbox_tree': 'Cedar',
-    },
-    'birch': {
-        'tinderbox_tree': 'Birch',
-        'mobile_tinderbox_tree': 'Birch',
-        'packaged_unittest_tinderbox_tree': 'Birch',
-    },
-
 }
 
 PLATFORM_VARS = {
