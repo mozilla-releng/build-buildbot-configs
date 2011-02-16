@@ -121,7 +121,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': 1,
             'build_space': 6,
             'upload_symbols': True,
-            'download_symbols': False,
+            'download_symbols': True,
             'packageTests': True,
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',

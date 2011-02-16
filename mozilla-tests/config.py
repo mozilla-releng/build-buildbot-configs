@@ -2,6 +2,10 @@ from copy import deepcopy
 
 from buildbot.steps.shell import WithProperties
 
+import project_branches
+reload(project_branches)
+from project_branches import PROJECT_BRANCHES
+
 import localconfig
 reload(localconfig)
 from localconfig import SLAVES, GLOBAL_VARS, GRAPH_CONFIG
@@ -56,9 +60,6 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'tryserver': {},
-    'maple': {},
-    'cedar': {},
-    'birch': {},
     'jaegermonkey': {},
     'addontester': {},
 }
@@ -299,6 +300,10 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
 }
+
+# Copy project branches into BRANCHES keys
+for key, value in PROJECT_BRANCHES.items():
+    BRANCHES[key] = value
 
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -599,81 +604,6 @@ BRANCHES['electrolysis']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['a11y_tests'] = (0, True, {}, NO_MAC)
 
-######## maple
-BRANCHES['maple']['branch_name'] = "Maple"
-BRANCHES['maple']['mobile_branch_name'] = "Maple"
-BRANCHES['maple']['build_branch'] = "Maple"
-BRANCHES['maple']['repo_path'] = "projects/maple"
-BRANCHES['maple']['talos_command'] = TALOS_CMD
-BRANCHES['maple']['fetch_symbols'] = True
-BRANCHES['maple']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['maple']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['maple']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['a11y_tests'] = (1, True, {}, NO_MAC)
-
-######## cedar
-BRANCHES['cedar']['branch_name'] = "Cedar"
-BRANCHES['cedar']['mobile_branch_name'] = "Cedar"
-BRANCHES['cedar']['build_branch'] = "Cedar"
-BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['talos_command'] = TALOS_CMD
-BRANCHES['cedar']['fetch_symbols'] = True
-BRANCHES['cedar']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['cedar']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['cedar']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['a11y_tests'] = (1, True, {}, NO_MAC)
-
-######## birch
-BRANCHES['birch']['branch_name'] = "Birch"
-BRANCHES['birch']['mobile_branch_name'] = "Birch"
-BRANCHES['birch']['build_branch'] = "Birch"
-BRANCHES['birch']['repo_path'] = "projects/birch"
-BRANCHES['birch']['talos_command'] = TALOS_CMD
-BRANCHES['birch']['fetch_symbols'] = True
-BRANCHES['birch']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['birch']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['birch']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['a11y_tests'] = (1, True, {}, NO_MAC)
-
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
 BRANCHES['jaegermonkey']['mobile_branch_name'] = "Jaegermonkey"
@@ -735,6 +665,33 @@ BRANCHES['tryserver']['platforms']['macosx64']['leopard']['opt_unittest_suites']
 BRANCHES['tryserver']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 # Disabling win7 until hung slave issue is fixed
 #BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+
+######## generic branch variables for project branches
+for branch in PROJECT_BRANCHES.keys():
+    if 'repo_path' not in BRANCHES[branch].keys():
+        BRANCHES[branch]['repo_path'] = 'projects/' + branch
+    BRANCHES[branch]['branch_name'] = branch.title()
+    BRANCHES[branch]['mobile_branch_name'] = branch.title()
+    BRANCHES[branch]['build_branch'] = branch.title()
+    BRANCHES[branch]['talos_command'] = TALOS_CMD
+    BRANCHES[branch]['fetch_symbols'] = True
+    BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
+    BRANCHES[branch]['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+    BRANCHES[branch]['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['a11y_tests'] = (1, True, {}, NO_MAC)
 
 if __name__ == "__main__":
     import sys, pprint, re

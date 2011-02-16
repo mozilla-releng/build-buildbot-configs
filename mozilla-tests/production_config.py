@@ -69,23 +69,10 @@ BRANCHES = {
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',
     },
-    'birch': {
-        'tinderbox_tree': 'Birch',
-        'mobile_tinderbox_tree': 'Birch',
-    },
-    'cedar': {
-        'tinderbox_tree': 'Cedar',
-        'mobile_tinderbox_tree': 'Cedar',
-    },
-    'maple': {
-        'tinderbox_tree': 'Maple',
-        'mobile_tinderbox_tree': 'Maple',
-    },
     'jaegermonkey': {
         'tinderbox_tree': 'Jaegermonkey',
         'mobile_tinderbox_tree': 'Jaegermonkey',
     },
-
 }
 
 PLATFORM_VARS = {

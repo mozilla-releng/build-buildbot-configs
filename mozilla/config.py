@@ -1,5 +1,9 @@
 from copy import deepcopy
 
+import project_branches
+reload(project_branches)
+from project_branches import PROJECT_BRANCHES
+
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
@@ -714,10 +718,11 @@ BRANCHES = {
             'android-r7': {},
         },
     },
-    'maple': {},
-    'cedar': {},
-    'birch': {},
 }
+
+# Copy project branches into BRANCHES keys
+for key, value in PROJECT_BRANCHES.items():
+    BRANCHES[key] = value
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -1242,91 +1247,46 @@ BRANCHES['tryserver']['mobile_platforms']['android-r7']['upload_symbols'] = Fals
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
-######## maple
-BRANCHES['maple']['repo_path'] = 'projects/maple'
-BRANCHES['maple']['start_hour'] = [4]
-BRANCHES['maple']['start_minute'] = [2]
-BRANCHES['maple']['enable_nightly'] = False
-BRANCHES['maple']['enable_mobile_nightly'] = False
-BRANCHES['maple']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['maple']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['maple']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['maple']['enable_mac_a11y'] = True
-BRANCHES['maple']['enable_shark'] = False
-# L10n configuration
-BRANCHES['maple']['enable_l10n'] = False
-BRANCHES['maple']['l10nNightlyUpdate'] = False
-BRANCHES['maple']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['maple']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['maple']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
-BRANCHES['maple']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-maple'
-BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
-BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
-BRANCHES['maple']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-maple'
-BRANCHES['maple']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['maple']['mobile_platforms']['win32']['l10n_chunks'] = None
-
-######## cedar
-BRANCHES['cedar']['repo_path'] = 'projects/cedar'
-BRANCHES['cedar']['start_hour'] = [4]
-BRANCHES['cedar']['start_minute'] = [2]
-BRANCHES['cedar']['enable_nightly'] = False
-BRANCHES['cedar']['enable_mobile_nightly'] = False
-BRANCHES['cedar']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['cedar']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['cedar']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['cedar']['enable_mac_a11y'] = True
-BRANCHES['cedar']['enable_shark'] = False
-# L10n configuration
-BRANCHES['cedar']['enable_l10n'] = False
-BRANCHES['cedar']['l10nNightlyUpdate'] = False
-BRANCHES['cedar']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['cedar']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['cedar']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
-BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-cedar'
-BRANCHES['cedar']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-cedar'
-BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
-BRANCHES['cedar']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-cedar'
-BRANCHES['cedar']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['cedar']['mobile_platforms']['win32']['l10n_chunks'] = None
-
-######## birch
-BRANCHES['birch']['repo_path'] = 'projects/birch'
-BRANCHES['birch']['start_hour'] = [4]
-BRANCHES['birch']['start_minute'] = [2]
-BRANCHES['birch']['enable_nightly'] = False
-BRANCHES['birch']['enable_mobile_nightly'] = False
-BRANCHES['birch']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['birch']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['birch']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['birch']['enable_mac_a11y'] = True
-BRANCHES['birch']['enable_shark'] = False
-# L10n configuration
-BRANCHES['birch']['enable_l10n'] = False
-BRANCHES['birch']['l10nNightlyUpdate'] = False
-BRANCHES['birch']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['birch']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
-BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
-BRANCHES['birch']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-birch'
-BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
-BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
-BRANCHES['birch']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['birch']['mobile_platforms']['win32']['l10n_chunks'] = None
+######## generic branch configs
+for branch in PROJECT_BRANCHES.keys():
+    # we need to check for an overriden repo path
+    if 'repo_path' not in BRANCHES[branch].keys():
+        BRANCHES[branch]['repo_path'] = 'projects/' + branch
+    BRANCHES[branch]['start_hour'] = [4]
+    BRANCHES[branch]['start_minute'] = [2]
+    BRANCHES[branch]['enable_nightly'] = False
+    BRANCHES[branch]['enable_mobile_nightly'] = False
+    BRANCHES[branch]['create_snippet'] = False
+    # Disable XULRunner / SDK builds
+    BRANCHES[branch]['enable_xulrunner'] = False
+    # Enable unit tests
+    BRANCHES[branch]['platforms']['linux64']['enable_checktests'] = True
+    BRANCHES[branch]['enable_mac_a11y'] = True
+    BRANCHES[branch]['enable_shark'] = False
+    # L10n configuration
+    BRANCHES[branch]['enable_l10n'] = False
+    BRANCHES[branch]['l10nNightlyUpdate'] = False
+    BRANCHES[branch]['l10nDatedDirs'] = False
+    # need this or the master.cfg will bail
+    BRANCHES[branch]['aus2_base_upload_dir'] = 'fake'
+    BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
+    BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
+    BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
+    BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
+    BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
+    # point to the generic project branch mozconfigs
+    for platform in BRANCHES[branch]['platforms']:
+        if platform.endswith('debug'):
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/debug'
+        else:
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/generic/nightly'
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
-               'tracemonkey', 'tryserver'):
+               'tracemonkey', 'tryserver', 'build-system', 'services-central'):
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
