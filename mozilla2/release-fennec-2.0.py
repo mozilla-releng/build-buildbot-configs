@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-central'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = 'c241c552de29'
+mozSourceRepoRevision  = 'ab0dc35174fb'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = 'da68f67cc6ad'
+mobileSourceRepoRevision  = '4fd59135031a'
 mozRelbranchOverride      = ''
 l10nRelbranchOverride     = ''
 mobileRelbranchOverride   = ''
@@ -24,15 +24,15 @@ enableMultiLocale   = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '4.0b4'
+version             = '4.0b5'
 appVersion          = version
-milestone           = '2.0b11pre'
+milestone           = '2.0b12pre'
 buildNumber         = 1
-baseTag             = 'FENNEC_4_0b4'
-oldVersion          = '4.0b3'
+baseTag             = 'FENNEC_4_0b5'
+oldVersion          = '4.0b4'
 oldAppVersion       = oldVersion
-oldBuildNumber      = 3
-oldBaseTag          = 'FENNEC_4_0b3'
+oldBuildNumber      = 1
+oldBaseTag          = 'FENNEC_4_0b4'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
 l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
