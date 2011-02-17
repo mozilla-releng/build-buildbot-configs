@@ -140,9 +140,6 @@ tag_factory = ReleaseTaggingFactory(
     hgSshKey=hgSshKey
 )
 
-tag_factory = BuildFactory()
-tag_factory.addStep(Dummy())
-
 builders.append({
     'name': 'mobile_tag',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
