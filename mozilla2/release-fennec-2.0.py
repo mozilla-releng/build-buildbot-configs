@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-central'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = '9693e30b9c9c'
+mozSourceRepoRevision  = '8a91ff54417a'
 mobileSourceRepoName      = 'mobile-browser'
 mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = 'd04d9e1d3cea'
+mobileSourceRepoRevision  = 'c1e058767216'
 mozRelbranchOverride      = 'GECKO20b12pre_20110216_RELBRANCH'
 l10nRelbranchOverride     = 'GECKO20b12pre_20110216_RELBRANCH'
 mobileRelbranchOverride   = 'GECKO20b12pre_20110216_RELBRANCH'
@@ -27,7 +27,7 @@ enableMultiLocale   = True
 version             = '4.0b5'
 appVersion          = version
 milestone           = '2.0b12pre'
-buildNumber         = 2
+buildNumber         = 3
 baseTag             = 'FENNEC_4_0b5'
 oldVersion          = '4.0b4'
 oldAppVersion       = oldVersion
