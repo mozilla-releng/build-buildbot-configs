@@ -1281,7 +1281,7 @@ for branch in PROJECT_BRANCHES.keys():
         if platform.endswith('debug'):
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/debug'
         elif platform.endswith('qt'):
-            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/qt'
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/generic/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/generic/nightly'
 
