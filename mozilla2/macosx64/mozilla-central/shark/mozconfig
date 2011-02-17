@@ -1,7 +1,10 @@
-# can't build 64bit Shark, https://developer.mozilla.org/en/Profiling_JavaScript_with_Shark
-ac_add_options --target=i686-apple-darwin10.2.0
+# Just like nightlies, but without tests, not on an update channel, and with
+# shark and dtrace enabled
+. $topsrcdir/build/macosx/universal/mozconfig
+
 ac_add_options --enable-application=browser
 ac_add_options --disable-tests
+ac_add_options --disable-install-strip
 
 export CFLAGS="-gdwarf-2"
 export CXXFLAGS="-gdwarf-2"
@@ -20,5 +23,6 @@ mk_add_options MOZ_MAKE_FLAGS="-j4"
 ac_add_options --enable-shark
 ac_add_options --enable-dtrace
 ac_add_options --enable-debugger-info-modules
-ac_add_options --disable-install-strip
+
+# Need this to prevent name conflicts with the normal nightly build packages
 export MOZ_PKG_SPECIAL="shark"
