@@ -1280,6 +1280,8 @@ for branch in PROJECT_BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms']:
         if platform.endswith('debug'):
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/debug'
+        elif platform.endswith('qt'):
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/generic/nightly'
 
