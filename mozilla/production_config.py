@@ -17,7 +17,7 @@ SLAVES = {
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \
                  ['moz2-linux-slave%02i' % x for x in range(47,51)]
 TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
-                 ['linux-ix-slave%02i' % x for x in range(3,12)]
+                 ['linux-ix-slave%02i' % x for x in range(6,12)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
