@@ -68,6 +68,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
     l10nNightlyBuilders = {}
     for platform in branch['platforms'].keys():
         base_name = branch['platforms'][platform]['base_name']
+        if branch['platforms'][platform].get('DISABLED', False):
+            continue
 
         # hack alert: no dep desktop builds
         if platform not in ['macosx-i686', 'win32-i686', 'android-r7']:
@@ -176,6 +178,8 @@ for name in sorted(MOBILE_BRANCHES.keys()):
 
     for platform in sorted(branch['platforms'].keys()):
         pf = branch['platforms'][platform]
+        if pf.get('DISABLED', False):
+            continue
 
         buildSpace = pf.get('build_space', mainConfig['default_build_space'])
         clobberTime = pf.get('clobber_time', mainConfig['default_clobber_time'])

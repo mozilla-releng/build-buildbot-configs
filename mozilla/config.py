@@ -268,6 +268,7 @@ MOBILE_PLATFORM_VARS = {
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
         'generate_symbols': True,
+        'l10n_chunks': 6,
         'slaves': SLAVES['macosx'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -682,6 +683,7 @@ BRANCHES = {
             'android-r7': {},
             'android-r7-nothumb': {},
             'linux': {},
+            'macosx': {},
             'win32': {},
         }
     },
@@ -1082,6 +1084,7 @@ BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_B
 BRANCHES['tracemonkey']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['tracemonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['tracemonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['tracemonkey']['create_snippet'] = True
 BRANCHES['tracemonkey']['create_partial'] = True
@@ -1119,6 +1122,7 @@ BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['linux']['build_space'] = 6
 BRANCHES['places']['platforms']['linuxqt']['build_space'] = 6
 BRANCHES['places']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['places']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['places']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## electrolysis
@@ -1153,6 +1157,7 @@ BRANCHES['electrolysis']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['electrolysis']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['electrolysis']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['electrolysis']['create_snippet'] = True
 BRANCHES['electrolysis']['create_partial'] = True
@@ -1187,6 +1192,7 @@ BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILD
 BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
 BRANCHES['jaegermonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['jaegermonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['jaegermonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## tryserver
@@ -1277,6 +1283,7 @@ for branch in PROJECT_BRANCHES.keys():
     BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
+    BRANCHES[branch]['mobile_platforms']['macosx']['l10n_chunks'] = None
     BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
     # point to the generic project branch mozconfigs
     for platform in BRANCHES[branch]['platforms']:
