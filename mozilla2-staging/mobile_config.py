@@ -61,6 +61,8 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
 }
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-trunk']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-browser/nightly'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo5-gtk']['sb_target'] = 'FREMANTLE_ARMEL'
