@@ -117,7 +117,7 @@ PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
 # the -o suffix if necessary
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
-        platform_config[slave_platform]['slaves'] = SLAVES[slave_platform.split('-')[0]]
+        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform.split('-')[0]])
 
 MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms']
 
@@ -290,13 +290,47 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'android': {
-            'builds_before_reboot':  1,
-            'enable_opt_unittests': False,
-            'enable_debug_unittests': False,
-            'download_symbols': False,
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'tegra_android': {
-                'opt_unittest_suites': [],
-                'debug_unittest_suites': [],
+                'opt_unittest_suites': [
+                    ('mochitest-1', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': [
+                             'content/smil/test', 'content/xml/document/test',
+                             'content/xul/document/test', 'content/xul/templates/tests',
+                             'content/xslt/tests/mochitest'
+                         ]
+                        },
+                    )),
+                    ('mochitest-2', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': [
+                             'dom/src/json/test', 'dom/src/jsurl/test',
+                             'dom/tests/mochitest/dom-level0', 'js/jsd/test',
+                             'js/src/xpconnect/tests/mochitest'
+                         ]
+                        },
+                    )),
+                    ('mochitest-3', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/dom-level1-core']
+                        },
+                    )),
+                    ('mochitest-4', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/dom-level2-core']
+                        },
+                    )),
+                    ('browser-chrome', (
+                        {'suite': 'mochitest-browser-chrome',
+                         'testPaths': ['mobile']
+                        },
+                    )),
+                    ('reftest', (
+                        {'suite': 'reftest-sanity'},
+                    )),
+                ]
             },
         },
 }

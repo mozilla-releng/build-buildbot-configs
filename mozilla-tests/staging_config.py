@@ -1,12 +1,12 @@
 SLAVES = {
-    'fedora': ["talos-r3-fed-%03i" % x for x in range(1,4)],
-    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (1,4)],
-    'xp': ["talos-r3-xp-%03i" % x for x in range(1,4)],
-    'win7': ["talos-r3-w7-%03i" % x for x in range(1,4)],
-    'w764': ["t-r3-w764-%03i" % x for x in range(1,4)],
-    'leopard': ["talos-r3-leopard-%03i" % x for x in range(1,4)],
-    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(1,4)],
-    'tegra_android': ['tegra-%03i' % x for x in range(1,4)],
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,4)]),
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,4)]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,4)]),
+    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,4)]),
+    'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,4)]),
+    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,4)]),
+    'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(1,4)]),
+    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,4)]),
 }
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
