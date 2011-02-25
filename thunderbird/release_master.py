@@ -438,19 +438,24 @@ for gloKey in gloConfig:
     for platform in unittestPlatforms:
 
         if unittestMasters:
-            platform_test_builders = []
-            base_name = branchConfig['platforms'][platform]['base_name']
-            #for suites_name, suites in branchConfig['unittest_suites']:
-            for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
-                #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
-                platform_test_builders.append('%s_unittest_%s_%s' % (platform, suites_name, gloKey))
-            s = Scheduler(
-             name='%s_release_unittest_%s' % (platform, gloKey),
-             treeStableTimer=0,
-             branch='release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey),
-             builderNames=platform_test_builders,
-            )
-            schedulers.append(s)
+            test_platforms = [platform]
+            if platform == 'macosx64':
+                test_platforms = ['macosx64', 'macosx']
+
+            for test_platform in test_platforms:
+                platform_test_builders = []
+                #for suites_name, suites in branchConfig['unittest_suites']:
+                for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
+                    #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
+                    platform_test_builders.append('%s_unittest_%s_%s' % (test_platform, suites_name, gloKey))
+
+                s = Scheduler(
+                    name='%s_release_unittest_%s_%s' % (test_platform, suites_name, gloKey),
+                    treeStableTimer=0,
+                    branch='release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey),
+                    builderNames=platform_test_builders,
+                    )
+                schedulers.append(s)
     
     # Purposely, there is not a Scheduler for ReleaseFinalVerification
     # This is a step run very shortly before release, and is triggered manually

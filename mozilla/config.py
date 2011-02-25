@@ -209,6 +209,7 @@ MOBILE_PLATFORM_VARS = {
         'multi_locale': True,
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
     },
     'android-r7-nothumb': {
         'base_name': 'Android R7 Thumbless %(branch)s',
