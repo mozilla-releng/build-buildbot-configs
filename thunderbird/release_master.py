@@ -682,30 +682,45 @@ for gloKey in gloConfig:
                 if platform.startswith('macosx') and 'mochitest-a11y' in suites:
                     suites = suites[:]
                     suites.remove('mochitest-a11y')
+
+                test_platforms = [platform]
+                # want to run opt-unittests on osx 10.5 and 10.6
+                if platform == 'macosx64':
+                    test_platforms = ['macosx64', 'macosx']
+                for test_platform in test_platforms:
+                    #XXX: This is making a funny assumption, really
+                    #XXX: Look for this unittest platform in the current branch/config
+                    #XXX: Otherwise, also look at the bloat config, hoping to find it there
+                    if branchConfig['platforms'].get(test_platform):
+                       tpf = branchConfig['platforms'][test_platform]
+                    elif nightly_config.BRANCHES['%s-bloat' % sourceRepoName]['platforms'].get(test_platform):
+                       tpf = nightly_config.BRANCHES['%s-bloat' % sourceRepoName]['platforms'][test_platform]
+                    else:
+                       raise "Can't find os settings for %s on branch %s" % (test_platform, sourceRepoName)
               
-                release_packaged_tests_factory = UnittestPackagedBuildFactory(
-                    platform=platform,
-                    test_suites=suites,
-                    productName=productName,
-                    hgHost=branchConfig['hghost'],
-                    repoPath=sourceRepoPath,
-                    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-                    buildSpace=1.0,
-                    downloadSymbols=True,
-                    buildsBeforeReboot=pf.get('builds_before_reboot', 0),
-                    env={},
-                )
-  
-                unittest_builder_name = '%s_unittest_%s_%s' % (platform, suites_name, gloKey)
-  
-                builder = {
-                    'name': unittest_builder_name,
-                    'slavenames': pf['test-slaves'],
-                    'builddir': '%s-unittest-%s-%s' % (platform, suites_name, gloKey),
-                    'factory': release_packaged_tests_factory,
-                    'category': 'release',
-                }
-                test_builders.append(builder)
+                    release_packaged_tests_factory = UnittestPackagedBuildFactory(
+                        platform=test_platform,
+                        test_suites=suites,
+                        productName=productName,
+                        hgHost=branchConfig['hghost'],
+                        repoPath=sourceRepoPath,
+                        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+                        buildSpace=1.0,
+                        downloadSymbols=True,
+                        buildsBeforeReboot=tpf.get('builds_before_reboot', 0),
+                        env={},
+                    )
+      
+                    unittest_builder_name = '%s_unittest_%s_%s' % (test_platform, suites_name, gloKey)
+      
+                    builder = {
+                        'name': unittest_builder_name,
+                        'slavenames': tpf['test-slaves'],
+                        'builddir': '%s-unittest-%s-%s' % (test_platform, suites_name, gloKey),
+                        'factory': release_packaged_tests_factory,
+                        'category': 'release',
+                    }
+                    test_builders.append(builder)
 
 #                test_builders.extend(generateTestBuilder(
 #                    branchConfig, 'release', platform, "%s_test" % platform,
