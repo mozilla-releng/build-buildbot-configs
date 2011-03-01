@@ -333,26 +333,14 @@ PLATFORM_UNITTEST_VARS = {
                     )),
                     ('reftest-1', (
                         {'suite': 'reftest-sanity',
-                         'totalChunks': 4,
+                         'totalChunks': 2,
                          'thisChunk': 1,
                         },
                     )),
                     ('reftest-2', (
                         {'suite': 'reftest-sanity',
-                         'totalChunks': 4,
+                         'totalChunks': 2,
                          'thisChunk': 2,
-                        },
-                    )),
-                    ('reftest-3', (
-                        {'suite': 'reftest-sanity',
-                         'totalChunks': 4,
-                         'thisChunk': 3,
-                        },
-                    )),
-                    ('reftest-4', (
-                        {'suite': 'reftest-sanity',
-                         'totalChunks': 4,
-                         'thisChunk': 4,
                         },
                     )),
                     ('crashtest', (
