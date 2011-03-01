@@ -1,5 +1,9 @@
 # Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
+    'graphics':{
+        'enable_unittests': False,
+        'enable_talos': False,
+        },
     'build-system': {},
     'services-central': {
         'repo_path': 'services/services-central',
