@@ -4,8 +4,8 @@ import defaults
 reload(defaults)
 from defaults import default_n900
 
-base_dep_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds'
-base_nightly_location = 'http://ftp.mozilla.org/pub/mozilla.org/mobile/nightly'
+base_dep_location = 'http://stage.mozilla.org/pub/mozilla.org/mobile/tinderbox-builds'
+base_nightly_location = 'http://stage.mozilla.org/pub/mozilla.org/mobile/nightly'
 
 def generate_platform(base_platform, build_branch, talos_branch,
                       nightly_multi=False, nightly_unit=False,
