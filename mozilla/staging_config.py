@@ -96,7 +96,8 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 }
             }
         }
@@ -109,7 +110,7 @@ BRANCHES = {
         'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
         'hghost' : 'ssh://stage-ffxbld@hgpvt.mozilla.org',
         'stage_username': 'stage-ffxbld',
-    }
+    },
 }
 
 PLATFORM_VARS = {
@@ -130,6 +131,11 @@ PROJECTS = {
         'tinderbox_tree': 'MozillaTest',
     },
     'valgrind': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'MozillaTest',
+    },
+    'spidermonkey': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',

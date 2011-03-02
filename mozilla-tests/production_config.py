@@ -1,15 +1,12 @@
 SLAVES = {
-    'fedora': ["talos-r3-fed-%03i" % x for x in range(3,10) + range(11,54)],
-    'fedora64' : ["talos-r3-fed64-%03i" % x for x in range (3,10) + range(11,56)],
-    'xp': ["talos-r3-xp-%03i" % x for x in range(4,10) + range(11,54)],
-    # disabled temporarily slaves 20 & 36 until bug XXXXXX is fixed
-    #'win7': ["talos-r3-w7-%03i" % x for x in range(4,10) + range(11,40) + range(41,54)],
-    'win7': ["talos-r3-w7-%03i" % x for x in range(4,10) + range(11,20) + \
-                                             range(21,36) + range(37,40) + range(41,54)],
-    'w764': ["t-r3-w764-%03i" % x for x in range(3,10) + range(11,51)],
-    'leopard': ["talos-r3-leopard-%03i" % x for x in range(3,10) + range(11,54)],
-    'snowleopard': ["talos-r3-snow-%03i" % x for x in range(3,10) + range(11,56)],
-    'tegra_android': ['tegra-%03i' % x for x in range(1,95)],
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,54)]),
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (3,10) + range(11,56)]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,54)]),
+    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,40) + range(41,54)]),
+    'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(3,10) + range(11,51)]),
+    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,54)]),
+    'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(3,10) + range(11,56)]),
+    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,95)]),
 }
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
@@ -72,23 +69,10 @@ BRANCHES = {
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',
     },
-    'birch': {
-        'tinderbox_tree': 'Birch',
-        'mobile_tinderbox_tree': 'Birch',
-    },
-    'cedar': {
-        'tinderbox_tree': 'Cedar',
-        'mobile_tinderbox_tree': 'Cedar',
-    },
-    'maple': {
-        'tinderbox_tree': 'Maple',
-        'mobile_tinderbox_tree': 'Maple',
-    },
     'jaegermonkey': {
         'tinderbox_tree': 'Jaegermonkey',
         'mobile_tinderbox_tree': 'Jaegermonkey',
     },
-
 }
 
 PLATFORM_VARS = {

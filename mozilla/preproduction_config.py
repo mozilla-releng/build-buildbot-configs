@@ -80,7 +80,9 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+
                 },
             },
         }
@@ -104,6 +106,11 @@ PROJECTS = {
         'tinderbox_tree': 'Releng-Preproduction',
     },
     'valgrind': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Releng-Preproduction',
+    },
+    'spidermonkey': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'Releng-Preproduction',

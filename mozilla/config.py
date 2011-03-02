@@ -1,5 +1,9 @@
 from copy import deepcopy
 
+import project_branches
+reload(project_branches)
+from project_branches import PROJECT_BRANCHES
+
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
@@ -205,6 +209,7 @@ MOBILE_PLATFORM_VARS = {
         'multi_locale': True,
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
     },
     'android-r7-nothumb': {
         'base_name': 'Android R7 Thumbless %(branch)s',
@@ -264,6 +269,7 @@ MOBILE_PLATFORM_VARS = {
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
         'generate_symbols': True,
+        'l10n_chunks': 6,
         'slaves': SLAVES['macosx'],
         'platform_objdir': MOBILE_OBJDIR,
         'enable_ccache': True,
@@ -321,6 +327,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -355,6 +362,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'enable_nightly': False,
             'env': {
                 'DISPLAY': ':2',
@@ -387,6 +395,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',
+            'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -420,6 +429,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
             'update_platform': 'Darwin_Universal-gcc3',
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
@@ -449,6 +459,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
             'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -482,6 +493,7 @@ PLATFORM_VARS = {
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
@@ -493,7 +505,8 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 # Source server support, bug 506702
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -510,6 +523,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -537,6 +551,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'enable_ccache': False,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -563,6 +578,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -583,6 +599,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -604,10 +621,12 @@ PLATFORM_VARS = {
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -630,7 +649,26 @@ PROJECTS = {
         'linux': {'env': PLATFORM_VARS['linux']['env']},
         'linux64': {'env': PLATFORM_VARS['linux64']['env']},
     },
+    'spidermonkey': {
+        'platforms': {
+            'linux':    ['nomethodjit', 'notracejit'],
+            'linux64':  ['nomethodjit', 'notracejit'],
+            'win32':    ['nomethodjit', 'notracejit'],
+            'macosx64': ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
+            'macosx':   ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
+        },
+        'env': {
+            'linux': PLATFORM_VARS['linux']['env'],
+            'linux64': PLATFORM_VARS['linux64']['env'],
+            'win32': PLATFORM_VARS['win32']['env'],
+            'macosx64': PLATFORM_VARS['macosx64']['env'],
+            'macosx': PLATFORM_VARS['macosx']['env'],
+        },
+        'hgurl': 'http://hg.mozilla.org',
+        'repo_path': 'tracemonkey',
+    },
 }
+
 for k, v in localconfig.PROJECTS.items():
     if k not in PROJECTS:
         PROJECTS[k] = {}
@@ -646,6 +684,7 @@ BRANCHES = {
             'android-r7': {},
             'android-r7-nothumb': {},
             'linux': {},
+            'macosx': {},
             'win32': {},
         }
     },
@@ -684,10 +723,11 @@ BRANCHES = {
             'android-r7': {},
         },
     },
-    'maple': {},
-    'cedar': {},
-    'birch': {},
 }
+
+# Copy project branches into BRANCHES keys
+for key, value in PROJECT_BRANCHES.items():
+    BRANCHES[key] = value
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -784,8 +824,8 @@ BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-bug631028'
-BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-bug631028'
+BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
@@ -1045,6 +1085,7 @@ BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_B
 BRANCHES['tracemonkey']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
 BRANCHES['tracemonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['tracemonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['tracemonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['tracemonkey']['create_snippet'] = True
 BRANCHES['tracemonkey']['create_partial'] = True
@@ -1082,6 +1123,7 @@ BRANCHES['places']['platforms']['linux64']['build_space'] = 6
 BRANCHES['places']['platforms']['linux']['build_space'] = 6
 BRANCHES['places']['platforms']['linuxqt']['build_space'] = 6
 BRANCHES['places']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['places']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['places']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## electrolysis
@@ -1116,6 +1158,7 @@ BRANCHES['electrolysis']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
 BRANCHES['electrolysis']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-e10s/nightly'
 BRANCHES['electrolysis']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['electrolysis']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['electrolysis']['mobile_platforms']['win32']['l10n_chunks'] = None
 BRANCHES['electrolysis']['create_snippet'] = True
 BRANCHES['electrolysis']['create_partial'] = True
@@ -1150,6 +1193,7 @@ BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILD
 BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
 BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
 BRANCHES['jaegermonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
+BRANCHES['jaegermonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
 BRANCHES['jaegermonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
 
 ######## tryserver
@@ -1202,7 +1246,6 @@ BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-# Sending unittests to test masters
 BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
@@ -1213,91 +1256,49 @@ BRANCHES['tryserver']['mobile_platforms']['android-r7']['upload_symbols'] = Fals
 BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
-######## maple
-BRANCHES['maple']['repo_path'] = 'projects/maple'
-BRANCHES['maple']['start_hour'] = [4]
-BRANCHES['maple']['start_minute'] = [2]
-BRANCHES['maple']['enable_nightly'] = False
-BRANCHES['maple']['enable_mobile_nightly'] = False
-BRANCHES['maple']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['maple']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['maple']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['maple']['enable_mac_a11y'] = True
-BRANCHES['maple']['enable_shark'] = False
-# L10n configuration
-BRANCHES['maple']['enable_l10n'] = False
-BRANCHES['maple']['l10nNightlyUpdate'] = False
-BRANCHES['maple']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['maple']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['maple']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
-BRANCHES['maple']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-maple'
-BRANCHES['maple']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-maple'
-BRANCHES['maple']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'maple'
-BRANCHES['maple']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-maple'
-BRANCHES['maple']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['maple']['mobile_platforms']['win32']['l10n_chunks'] = None
-
-######## cedar
-BRANCHES['cedar']['repo_path'] = 'projects/cedar'
-BRANCHES['cedar']['start_hour'] = [4]
-BRANCHES['cedar']['start_minute'] = [2]
-BRANCHES['cedar']['enable_nightly'] = False
-BRANCHES['cedar']['enable_mobile_nightly'] = False
-BRANCHES['cedar']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['cedar']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['cedar']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['cedar']['enable_mac_a11y'] = True
-BRANCHES['cedar']['enable_shark'] = False
-# L10n configuration
-BRANCHES['cedar']['enable_l10n'] = False
-BRANCHES['cedar']['l10nNightlyUpdate'] = False
-BRANCHES['cedar']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['cedar']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['cedar']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
-BRANCHES['cedar']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-cedar'
-BRANCHES['cedar']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-cedar'
-BRANCHES['cedar']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'cedar'
-BRANCHES['cedar']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-cedar'
-BRANCHES['cedar']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['cedar']['mobile_platforms']['win32']['l10n_chunks'] = None
-
-######## birch
-BRANCHES['birch']['repo_path'] = 'projects/birch'
-BRANCHES['birch']['start_hour'] = [4]
-BRANCHES['birch']['start_minute'] = [2]
-BRANCHES['birch']['enable_nightly'] = False
-BRANCHES['birch']['enable_mobile_nightly'] = False
-BRANCHES['birch']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['birch']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['birch']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['birch']['enable_mac_a11y'] = True
-BRANCHES['birch']['enable_shark'] = False
-# L10n configuration
-BRANCHES['birch']['enable_l10n'] = False
-BRANCHES['birch']['l10nNightlyUpdate'] = False
-BRANCHES['birch']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['birch']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['birch']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
-BRANCHES['birch']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-birch'
-BRANCHES['birch']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-birch'
-BRANCHES['birch']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'birch'
-BRANCHES['birch']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-birch'
-BRANCHES['birch']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['birch']['mobile_platforms']['win32']['l10n_chunks'] = None
+######## generic branch configs
+for branch in PROJECT_BRANCHES.keys():
+    # we need to check for an overriden repo path
+    if 'repo_path' not in BRANCHES[branch].keys():
+        BRANCHES[branch]['repo_path'] = 'projects/' + branch
+    BRANCHES[branch]['start_hour'] = [4]
+    BRANCHES[branch]['start_minute'] = [2]
+    BRANCHES[branch]['enable_nightly'] = False
+    BRANCHES[branch]['enable_mobile_nightly'] = False
+    BRANCHES[branch]['create_snippet'] = False
+    # Disable XULRunner / SDK builds
+    BRANCHES[branch]['enable_xulrunner'] = False
+    # Enable unit tests
+    BRANCHES[branch]['platforms']['linux64']['enable_checktests'] = True
+    BRANCHES[branch]['enable_mac_a11y'] = True
+    BRANCHES[branch]['enable_shark'] = False
+    # L10n configuration
+    BRANCHES[branch]['enable_l10n'] = False
+    BRANCHES[branch]['l10nNightlyUpdate'] = False
+    BRANCHES[branch]['l10nDatedDirs'] = False
+    # need this or the master.cfg will bail
+    BRANCHES[branch]['aus2_base_upload_dir'] = 'fake'
+    BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
+    BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
+    BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
+    BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
+    BRANCHES[branch]['mobile_platforms']['macosx']['l10n_chunks'] = None
+    BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
+    # point to the generic project branch mozconfigs
+    for platform in BRANCHES[branch]['platforms']:
+        if platform.endswith('debug'):
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/debug'
+        elif platform.endswith('qt'):
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/generic/qt'
+        else:
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/generic/nightly'
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
-               'tracemonkey', 'tryserver'):
+               'tracemonkey', 'tryserver', 'build-system', 'services-central'):
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'

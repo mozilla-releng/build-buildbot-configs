@@ -394,6 +394,8 @@ BRANCHES['comm-central-trunk']['start_minute'] = [30]
 BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-central-trunk'
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
 BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
+BRANCHES['comm-central-trunk']['enable_blocklist_update'] = True
+BRANCHES['comm-central-trunk']['blocklist_update_on_closed_tree'] = True
 # And code coverage
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration

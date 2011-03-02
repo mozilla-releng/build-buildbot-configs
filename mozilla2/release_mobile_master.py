@@ -273,7 +273,7 @@ for platform in enUSPlatforms:
             clobberTime=clobberTime,
             buildSpace=10,
             packageGlobList=pf.get('glob_list', ['embedding/android/*.apk',]),
-            createSnippet=True,
+            createSnippet=False,
             ausUser=ausUser,
             ausSshKey=ausSshKey,
             ausPreviousUploadDir=ausPreviousUploadDir,
@@ -356,7 +356,6 @@ for platform in enUSPlatforms:
             baseWorkDir='%s-partner' % mobileBranchConfig['platforms'][platform]['base_workdir'],
             python='python2.5',
             packageDmg=False,
-            createRemoteStageDir=True
         )
         builders.append({
             'name': '%s_partner_repack' % platform,

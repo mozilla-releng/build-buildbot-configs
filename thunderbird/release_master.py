@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : 'bfa3317ee313',
+        'sourceRepoRevision'         : '3967c525ac7e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19214_20110123_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '69bfc730b3e9',
+        'mozillaRepoRevision'        : 'a73120a6aa93',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -80,7 +80,7 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.14',
-        'buildNumber'                : 1,
+        'buildNumber'                : 3,
         'baseTag'                    : 'THUNDERBIRD_3_1_8',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.7',
@@ -438,19 +438,24 @@ for gloKey in gloConfig:
     for platform in unittestPlatforms:
 
         if unittestMasters:
-            platform_test_builders = []
-            base_name = branchConfig['platforms'][platform]['base_name']
-            #for suites_name, suites in branchConfig['unittest_suites']:
-            for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
-                #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
-                platform_test_builders.append('%s_unittest_%s_%s' % (platform, suites_name, gloKey))
-            s = Scheduler(
-             name='%s_release_unittest_%s' % (platform, gloKey),
-             treeStableTimer=0,
-             branch='release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey),
-             builderNames=platform_test_builders,
-            )
-            schedulers.append(s)
+            test_platforms = [platform]
+            if platform == 'macosx64':
+                test_platforms = ['macosx64', 'macosx']
+
+            for test_platform in test_platforms:
+                platform_test_builders = []
+                #for suites_name, suites in branchConfig['unittest_suites']:
+                for suites_name, suites in [('xpcshell', ['xpcshell']),('mozmill', ['mozmill'])]:
+                    #platform_test_builders.extend(generateTestBuilderNames('%s_test_%s' % (platform, gloKey), suites_name, suites))
+                    platform_test_builders.append('%s_unittest_%s_%s' % (test_platform, suites_name, gloKey))
+
+                s = Scheduler(
+                    name='%s_release_unittest_%s_%s' % (test_platform, suites_name, gloKey),
+                    treeStableTimer=0,
+                    branch='release-%s-%s-opt-unittest_%s' % (sourceRepoName, platform, gloKey),
+                    builderNames=platform_test_builders,
+                    )
+                schedulers.append(s)
     
     # Purposely, there is not a Scheduler for ReleaseFinalVerification
     # This is a step run very shortly before release, and is triggered manually
@@ -682,30 +687,45 @@ for gloKey in gloConfig:
                 if platform.startswith('macosx') and 'mochitest-a11y' in suites:
                     suites = suites[:]
                     suites.remove('mochitest-a11y')
+
+                test_platforms = [platform]
+                # want to run opt-unittests on osx 10.5 and 10.6
+                if platform == 'macosx64':
+                    test_platforms = ['macosx64', 'macosx']
+                for test_platform in test_platforms:
+                    #XXX: This is making a funny assumption, really
+                    #XXX: Look for this unittest platform in the current branch/config
+                    #XXX: Otherwise, also look at the bloat config, hoping to find it there
+                    if branchConfig['platforms'].get(test_platform):
+                       tpf = branchConfig['platforms'][test_platform]
+                    elif nightly_config.BRANCHES['%s-bloat' % sourceRepoName]['platforms'].get(test_platform):
+                       tpf = nightly_config.BRANCHES['%s-bloat' % sourceRepoName]['platforms'][test_platform]
+                    else:
+                       raise "Can't find os settings for %s on branch %s" % (test_platform, sourceRepoName)
               
-                release_packaged_tests_factory = UnittestPackagedBuildFactory(
-                    platform=platform,
-                    test_suites=suites,
-                    productName=productName,
-                    hgHost=branchConfig['hghost'],
-                    repoPath=sourceRepoPath,
-                    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-                    buildSpace=1.0,
-                    downloadSymbols=True,
-                    buildsBeforeReboot=pf.get('builds_before_reboot', 0),
-                    env={},
-                )
-  
-                unittest_builder_name = '%s_unittest_%s_%s' % (platform, suites_name, gloKey)
-  
-                builder = {
-                    'name': unittest_builder_name,
-                    'slavenames': pf['test-slaves'],
-                    'builddir': '%s-unittest-%s-%s' % (platform, suites_name, gloKey),
-                    'factory': release_packaged_tests_factory,
-                    'category': 'release',
-                }
-                test_builders.append(builder)
+                    release_packaged_tests_factory = UnittestPackagedBuildFactory(
+                        platform=test_platform,
+                        test_suites=suites,
+                        productName=productName,
+                        hgHost=branchConfig['hghost'],
+                        repoPath=sourceRepoPath,
+                        buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+                        buildSpace=1.0,
+                        downloadSymbols=True,
+                        buildsBeforeReboot=tpf.get('builds_before_reboot', 0),
+                        env={},
+                    )
+      
+                    unittest_builder_name = '%s_unittest_%s_%s' % (test_platform, suites_name, gloKey)
+      
+                    builder = {
+                        'name': unittest_builder_name,
+                        'slavenames': tpf['test-slaves'],
+                        'builddir': '%s-unittest-%s-%s' % (test_platform, suites_name, gloKey),
+                        'factory': release_packaged_tests_factory,
+                        'category': 'release',
+                    }
+                    test_builders.append(builder)
 
 #                test_builders.extend(generateTestBuilder(
 #                    branchConfig, 'release', platform, "%s_test" % platform,

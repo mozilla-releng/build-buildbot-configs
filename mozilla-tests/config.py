@@ -2,6 +2,10 @@ from copy import deepcopy
 
 from buildbot.steps.shell import WithProperties
 
+import project_branches
+reload(project_branches)
+from project_branches import PROJECT_BRANCHES
+
 import localconfig
 reload(localconfig)
 from localconfig import SLAVES, GLOBAL_VARS, GRAPH_CONFIG
@@ -44,6 +48,10 @@ SUITES = {
     'remote-tsvg': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
     'remote-tsspider': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
     'remote-tpan': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
+    'remote-tp4': GRAPH_CONFIG + ['--activeTests', 'tp4'],
+    'remote-tp4_nochrome': GRAPH_CONFIG + ['--activeTests', 'tp4', '--noChrome'],
+    'remote-twinopen': GRAPH_CONFIG + ['--activeTests', 'twinopen'],
+    'remote-tzoom': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
 }
 
 BRANCHES = {
@@ -56,9 +64,6 @@ BRANCHES = {
     'places': {},
     'electrolysis': {},
     'tryserver': {},
-    'maple': {},
-    'cedar': {},
-    'birch': {},
     'jaegermonkey': {},
     'addontester': {},
 }
@@ -116,7 +121,7 @@ PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
 # the -o suffix if necessary
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
-        platform_config[slave_platform]['slaves'] = SLAVES[slave_platform.split('-')[0]]
+        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform.split('-')[0]])
 
 MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms']
 
@@ -289,16 +294,66 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'android': {
-            'builds_before_reboot':  1,
-            'enable_opt_unittests': False,
-            'enable_debug_unittests': False,
-            'download_symbols': False,
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'tegra_android': {
-                'opt_unittest_suites': [],
-                'debug_unittest_suites': [],
+                'opt_unittest_suites': [
+                    ('mochitest-1', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': [
+                             'content/smil/test', 'content/xml/document/test',
+                             'content/xul/document/test', 'content/xul/templates/tests',
+                             'content/xslt/tests/mochitest'
+                         ]
+                        },
+                    )),
+                    ('mochitest-2', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': [
+                             'dom/src/json/test', 'dom/src/jsurl/test',
+                             'dom/tests/mochitest/dom-level0', 'js/jsd/test',
+                             'js/src/xpconnect/tests/mochitest'
+                         ]
+                        },
+                    )),
+                    ('mochitest-3', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/dom-level1-core']
+                        },
+                    )),
+                    ('mochitest-4', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/dom-level2-core']
+                        },
+                    )),
+                    ('browser-chrome', (
+                        {'suite': 'mochitest-browser-chrome',
+                         'testPaths': ['mobile']
+                        },
+                    )),
+                    ('reftest-1', (
+                        {'suite': 'reftest-sanity',
+                         'totalChunks': 2,
+                         'thisChunk': 1,
+                        },
+                    )),
+                    ('reftest-2', (
+                        {'suite': 'reftest-sanity',
+                         'totalChunks': 2,
+                         'thisChunk': 2,
+                        },
+                    )),
+                    ('crashtest', (
+                        {'suite': 'crashtest'},
+                    )),
+                ]
             },
         },
 }
+
+# Copy project branches into BRANCHES keys
+for key, value in PROJECT_BRANCHES.items():
+    BRANCHES[key] = value
 
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -375,10 +430,14 @@ BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['a11y_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-central']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-central']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-central']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-central']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tp4_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tp4_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tzoom_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
@@ -414,6 +473,10 @@ BRANCHES['shadow-central']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNE
 BRANCHES['shadow-central']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['shadow-central']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['shadow-central']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['shadow-central']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['shadow-central']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -439,6 +502,10 @@ BRANCHES['mozilla-2.0']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_O
 BRANCHES['mozilla-2.0']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-2.0']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-2.0']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-2.0']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-2.0']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -464,6 +531,10 @@ BRANCHES['mozilla-1.9.1']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC
 BRANCHES['mozilla-1.9.1']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.1']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.1']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.1']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.1']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -491,6 +562,10 @@ BRANCHES['mozilla-1.9.2']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC
 BRANCHES['mozilla-1.9.2']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.2']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.2']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-1.9.2']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -517,6 +592,10 @@ BRANCHES['addontester']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_O
 BRANCHES['addontester']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['addontester']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['addontester']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['addontester']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['addontester']['svg_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -542,6 +621,10 @@ BRANCHES['tracemonkey']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_O
 BRANCHES['tracemonkey']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tracemonkey']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tracemonkey']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tracemonkey']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -568,6 +651,10 @@ BRANCHES['places']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, 
 BRANCHES['places']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['places']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['places']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['places']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['places']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['places']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -593,86 +680,15 @@ BRANCHES['electrolysis']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_
 BRANCHES['electrolysis']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['electrolysis']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['electrolysis']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['electrolysis']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['electrolysis']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['electrolysis']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['electrolysis']['a11y_tests'] = (0, True, {}, NO_MAC)
-
-######## maple
-BRANCHES['maple']['branch_name'] = "Maple"
-BRANCHES['maple']['mobile_branch_name'] = "Maple"
-BRANCHES['maple']['build_branch'] = "Maple"
-BRANCHES['maple']['repo_path'] = "projects/maple"
-BRANCHES['maple']['talos_command'] = TALOS_CMD
-BRANCHES['maple']['fetch_symbols'] = True
-BRANCHES['maple']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['maple']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['maple']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['maple']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['maple']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['maple']['a11y_tests'] = (1, True, {}, NO_MAC)
-
-######## cedar
-BRANCHES['cedar']['branch_name'] = "Cedar"
-BRANCHES['cedar']['mobile_branch_name'] = "Cedar"
-BRANCHES['cedar']['build_branch'] = "Cedar"
-BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['talos_command'] = TALOS_CMD
-BRANCHES['cedar']['fetch_symbols'] = True
-BRANCHES['cedar']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['cedar']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['cedar']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['cedar']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['cedar']['a11y_tests'] = (1, True, {}, NO_MAC)
-
-######## birch
-BRANCHES['birch']['branch_name'] = "Birch"
-BRANCHES['birch']['mobile_branch_name'] = "Birch"
-BRANCHES['birch']['build_branch'] = "Birch"
-BRANCHES['birch']['repo_path'] = "projects/birch"
-BRANCHES['birch']['talos_command'] = TALOS_CMD
-BRANCHES['birch']['fetch_symbols'] = True
-BRANCHES['birch']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['birch']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['birch']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['birch']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['birch']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['birch']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## jaegermonkey
 BRANCHES['jaegermonkey']['branch_name'] = "Jaegermonkey"
@@ -693,6 +709,10 @@ BRANCHES['jaegermonkey']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_
 BRANCHES['jaegermonkey']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['jaegermonkey']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['jaegermonkey']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['jaegermonkey']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['jaegermonkey']['svg_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['jaegermonkey']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -717,6 +737,10 @@ BRANCHES['tryserver']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPT
 BRANCHES['tryserver']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
@@ -735,6 +759,45 @@ BRANCHES['tryserver']['platforms']['macosx64']['leopard']['opt_unittest_suites']
 BRANCHES['tryserver']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 # Disabling win7 until hung slave issue is fixed
 #BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+
+######## generic branch variables for project branches
+for branch in PROJECT_BRANCHES.keys():
+    if 'repo_path' not in BRANCHES[branch].keys():
+        BRANCHES[branch]['repo_path'] = 'projects/' + branch
+    BRANCHES[branch]['branch_name'] = branch.title()
+    BRANCHES[branch]['mobile_branch_name'] = branch.title()
+    BRANCHES[branch]['build_branch'] = branch.title()
+    BRANCHES[branch]['talos_command'] = TALOS_CMD
+    BRANCHES[branch]['fetch_symbols'] = True
+    BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
+    BRANCHES[branch]['enable_unittests'] = PROJECT_BRANCHES[branch].get('enable_unittests', True)
+    BRANCHES[branch]['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    BRANCHES[branch]['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+    # Check if Talos is enabled, if False, set 0 runs for all suites
+    if PROJECT_BRANCHES[branch].get('enable_talos') == False:
+        PROJECT_BRANCHES[branch]['talos_suites'] = {}
+        for suite in SUITES.keys():
+            PROJECT_BRANCHES[branch]['talos_suites'][suite]  = 0
+    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] otherwise, defaults below
+    talosConfig = PROJECT_BRANCHES[branch].get('talos_suites', {})
+    BRANCHES[branch]['chrome_tests'] = (talosConfig.get('chrome', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['nochrome_tests'] = (talosConfig.get('nochrome', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dromaeo_tests'] = (talosConfig.get('dromaeo', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dirty_tests'] = (talosConfig.get('dirty', 1), True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['tp4_tests'] = (talosConfig.get('tp4', 1), True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['cold_tests'] = (talosConfig.get('cold', 0), True, TALOS_DIRTY_OPTS, NO_WIN)
+    BRANCHES[branch]['svg_tests'] = (talosConfig.get('svg', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['v8_tests'] = (talosConfig.get('v8', 0), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['scroll_tests'] = (talosConfig.get('scroll', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['addon_tests'] = (talosConfig.get('addon', 0), False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['a11y_tests'] = (talosConfig.get('a11y', 1), True, {}, NO_MAC)
 
 if __name__ == "__main__":
     import sys, pprint, re

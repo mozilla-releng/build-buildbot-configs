@@ -17,7 +17,7 @@ SLAVES = {
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \
                  ['moz2-linux-slave%02i' % x for x in range(47,51)]
 TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
-                 ['linux-ix-slave%02i' % x for x in range(3,12)]
+                 ['linux-ix-slave%02i' % x for x in range(6,12)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
@@ -33,7 +33,6 @@ TRY_SLAVES = {
     'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
 }
-
 
 # Local overrides for default values
 GLOBAL_VARS = {
@@ -132,6 +131,7 @@ BRANCHES = {
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
+        'graph_branch': 'Tryserver',
         'mobile_tinderbox_tree': 'MozillaTry',
         'packaged_unittest_tinderbox_tree': 'MozillaTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
@@ -149,27 +149,12 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 }
             }
         }
     },
-   'maple': {
-        'tinderbox_tree': 'Maple',
-        'mobile_tinderbox_tree': 'Maple',
-        'packaged_unittest_tinderbox_tree': 'Maple',
-    },
-    'cedar': {
-        'tinderbox_tree': 'Cedar',
-        'mobile_tinderbox_tree': 'Cedar',
-        'packaged_unittest_tinderbox_tree': 'Cedar',
-    },
-    'birch': {
-        'tinderbox_tree': 'Birch',
-        'mobile_tinderbox_tree': 'Birch',
-        'packaged_unittest_tinderbox_tree': 'Birch',
-    },
-
 }
 
 PLATFORM_VARS = {
@@ -193,5 +178,10 @@ PROJECTS = {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 3, # 3 slaves have to be idle before we start
         'tinderbox_tree': 'Firefox',
+    },
+    'spidermonkey': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'TraceMonkey',
     },
 }
