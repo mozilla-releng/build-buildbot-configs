@@ -1,47 +1,85 @@
 releaseConfig = {}
 
-releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
-releaseConfig['sourceRepoName']      = 'mozilla-central'
-releaseConfig['sourceRepoClonePath'] = releaseConfig['sourceRepoName']
-releaseConfig['sourceRepoPath']      = 'users/stage-ffxbld/mozilla-central'
-releaseConfig['sourceRepoRevision']  = '51702867d932'
-releaseConfig['relbranchOverride']   = ''
-releaseConfig['l10nRepoClonePath']   = 'l10n-central'
-releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
-releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
-releaseConfig['mergeLocales']        = True
-releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
-    'users/stage-ffxbld/buildbot': 'production-0.8'
-}
-releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
+# Release Notification
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['releaseTemplates']    = 'release_templates'
+
+# Basic product configuration
+#  Names for the product/files
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
-# Sometimes we need the application version to be different from what we "call"
-# the build, eg public release candidates for a major release (3.1 RC1).
-# appVersion and oldAppVersion are optional definitions used in places that
-# don't care about what we call it. Eg, when version bumping we will bump to
-# appVersion, not version.
+releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
+releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
+#  Current version info
 releaseConfig['version']             = '4.0b12'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = '2.0b12'
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_4_0b12'
+#  Old version info
 releaseConfig['oldVersion']          = '4.0b11'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 3
 releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b11'
+#  Next (nightly) version info
+releaseConfig['nextAppVersion']      = '4.0b13pre'
+releaseConfig['nextMilestone']       = '2.0b13pre'
+#  Repository configuration, for tagging
+releaseConfig['sourceRepositories']  = {
+    'mozilla': {
+        'name': 'mozilla-central',
+        'clonePath': 'releases/mozilla-central',
+        'path': 'users/stage-ffxbld/mozilla-central',
+        'revision': '42e7f9088975',
+        'relbranch': None,
+        'bumpFiles': {
+            'browser/config/version.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
+    }
+}
+#  L10n repositories
+releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRepoClonePath']   = 'l10n-central'
+releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
+#  Support repositories
+releaseConfig['otherReposToTag']     = {
+    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
+    'users/stage-ffxbld/buildbot': 'production-0.8'
+}
+
+# Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
-releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['xulrunnerPlatforms']  = ()
+
+# L10n configuration
+releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
+releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
+releaseConfig['l10nChunks']          = 6
+releaseConfig['mergeLocales']        = True
+
+# Mercurial account
+releaseConfig['hgUsername']          = 'stage-ffxbld'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+
+# Update-specific configuration
+releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R13'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'staging-stage.build.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -57,13 +95,13 @@ releaseConfig['verifyConfigs']       = {
     'macosx64': 'moz20-firefox-mac64.cfg',
     'win32':  'moz20-firefox-win32.cfg'
 }
+
+# Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
+
+# Major update configuration
 releaseConfig['majorUpdateRepoPath'] = None
-# Tuxedo/Bouncer related
+# Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'
-# Release Notification configuration
-releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['PassRecipients']      = ['release@mozilla.com',]
-releaseConfig['releaseTemplates']    = 'release_templates'
