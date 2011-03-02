@@ -229,7 +229,10 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'fedora': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'opt_unittest_suites' : \
+                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
+                    [('reftest-ipc', ['reftest-ipc'])] + \
+                    [('crashtest-ipc', ['crashtest-ipc'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
                 'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
             },
