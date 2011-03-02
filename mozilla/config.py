@@ -831,7 +831,7 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/inc
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7-nothumb']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-nothumb'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
-BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = True
+BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -984,7 +984,7 @@ BRANCHES['mozilla-1.9.1']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['enable_blocklist_update'] = True
-BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = True
+BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -1054,7 +1054,7 @@ BRANCHES['mozilla-1.9.2']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
-BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = True
+BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = False
 
 ######## tracemonkey
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
