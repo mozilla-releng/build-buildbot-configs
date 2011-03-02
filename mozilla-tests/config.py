@@ -343,9 +343,6 @@ PLATFORM_UNITTEST_VARS = {
                          'thisChunk': 2,
                         },
                     )),
-                    ('crashtest', (
-                        {'suite': 'crashtest'},
-                    )),
                 ]
             },
         },
