@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '3967c525ac7e',
+        'sourceRepoRevision'         : '571419e89785',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : 'COMM19214_20110123_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : 'a73120a6aa93',
+        'mozillaRepoRevision'        : 'c2b88342ea2b',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -75,18 +75,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.8',
+        'version'                    : '3.1.9',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.14',
-        'buildNumber'                : 3,
-        'baseTag'                    : 'THUNDERBIRD_3_1_8',
+        'milestone'                  : '1.9.2.15',
+        'buildNumber'                : 1,
+        'baseTag'                    : 'THUNDERBIRD_3_1_9',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.7',
+        'oldVersion'                 : '3.1.8',
         #'oldAppVersion'              : oldVersion,
         'oldBuildNumber'             : 3,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_7',
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_8',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
