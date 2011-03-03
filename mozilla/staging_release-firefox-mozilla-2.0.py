@@ -29,7 +29,7 @@ releaseConfig['nextMilestone']       = '2.0b13pre'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-central',
-        'clonePath': 'releases/mozilla-central',
+        'clonePath': 'mozilla-central',
         'path': 'users/stage-ffxbld/mozilla-central',
         'revision': '42e7f9088975',
         'relbranch': None,
