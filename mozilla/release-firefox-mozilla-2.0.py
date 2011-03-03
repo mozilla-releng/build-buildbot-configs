@@ -12,25 +12,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '4.0b12'
-releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '2.0b12'
+releaseConfig['version']             = '4.0rc1'
+releaseConfig['appVersion']          = '4.0'
+releaseConfig['milestone']           = '2.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_4_0b12'
+releaseConfig['baseTag']             = 'FIREFOX_4_0rc1'
 #  Old version info
-releaseConfig['oldVersion']          = '4.0b11'
+releaseConfig['oldVersion']          = '4.0b12'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b11'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b12'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '4.0b13pre'
-releaseConfig['nextMilestone']       = '2.0b13pre'
+releaseConfig['nextAppVersion']      = '4.0pre'
+releaseConfig['nextMilestone']       = '2.0pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-central',
-        'path': 'mozilla-central',
-        'revision': '42e7f9088975',
+        'name': 'mozilla-2.0',
+        'path': 'releases/mozilla-2.0',
+        'revision': '290712e55ade',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'l10n-central'
+releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-2.0'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
@@ -61,7 +61,7 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
+releaseConfig['unittestPlatforms']   = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # L10n configuration
