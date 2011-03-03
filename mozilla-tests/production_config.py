@@ -55,8 +55,12 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Electrolysis',
     },
     'addontester': {
-        'tinderbox_tree': 'Firefox3.6',
-        'mobile_tinderbox_tree': 'Firefox3.6',
+        'tinderbox_tree': 'AddonTester',
+        'mobile_tinderbox_tree': 'AddonTester',
+    },
+    'addonbaselinetester': {
+        'tinderbox_tree': 'AddonTester',
+        'mobile_tinderbox_tree': 'AddonTester',
     },
     'tryserver': {
         'tinderbox_tree': 'MozillaTry',
