@@ -99,10 +99,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-1.9.2'
-releaseConfig['majorUpdateToVersion']   = '3.6.14'
+releaseConfig['majorUpdateToVersion']   = '3.6.15'
 releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
-releaseConfig['majorUpdateBuildNumber'] = 3
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_3_6_14'
+releaseConfig['majorUpdateBuildNumber'] = 1
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_3_6_15'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/3.6/details/index.html'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz191-branch-major-update-patcher2.cfg'
 releaseConfig['majorUpdateVerifyConfigs']    = {
