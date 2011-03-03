@@ -229,7 +229,10 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
             'fedora': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'opt_unittest_suites' : \
+                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
+                    [('reftest-ipc', ['reftest-ipc'])] + \
+                    [('crashtest-ipc', ['crashtest-ipc'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
                 'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
             },
@@ -331,8 +334,17 @@ PLATFORM_UNITTEST_VARS = {
                          'testPaths': ['mobile']
                         },
                     )),
-                    ('reftest', (
-                        {'suite': 'reftest-sanity'},
+                    ('reftest-1', (
+                        {'suite': 'reftest-sanity',
+                         'totalChunks': 2,
+                         'thisChunk': 1,
+                        },
+                    )),
+                    ('reftest-2', (
+                        {'suite': 'reftest-sanity',
+                         'totalChunks': 2,
+                         'thisChunk': 2,
+                        },
                     )),
                 ]
             },
@@ -758,12 +770,7 @@ for branch in PROJECT_BRANCHES.keys():
     BRANCHES[branch]['talos_command'] = TALOS_CMD
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
-    BRANCHES[branch]['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-    BRANCHES[branch]['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-    BRANCHES[branch]['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+    BRANCHES[branch]['enable_unittests'] = PROJECT_BRANCHES[branch].get('enable_unittests', True)
     BRANCHES[branch]['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
     BRANCHES[branch]['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
     BRANCHES[branch]['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
@@ -773,11 +780,24 @@ for branch in PROJECT_BRANCHES.keys():
     BRANCHES[branch]['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
     BRANCHES[branch]['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
     BRANCHES[branch]['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-    BRANCHES[branch]['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-    BRANCHES[branch]['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-    BRANCHES[branch]['a11y_tests'] = (1, True, {}, NO_MAC)
+    # Check if Talos is enabled, if False, set 0 runs for all suites
+    if PROJECT_BRANCHES[branch].get('enable_talos') == False:
+        PROJECT_BRANCHES[branch]['talos_suites'] = {}
+        for suite in SUITES.keys():
+            PROJECT_BRANCHES[branch]['talos_suites'][suite]  = 0
+    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] otherwise, defaults below
+    talosConfig = PROJECT_BRANCHES[branch].get('talos_suites', {})
+    BRANCHES[branch]['chrome_tests'] = (talosConfig.get('chrome', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['nochrome_tests'] = (talosConfig.get('nochrome', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dromaeo_tests'] = (talosConfig.get('dromaeo', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['dirty_tests'] = (talosConfig.get('dirty', 1), True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['tp4_tests'] = (talosConfig.get('tp4', 1), True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['cold_tests'] = (talosConfig.get('cold', 0), True, TALOS_DIRTY_OPTS, NO_WIN)
+    BRANCHES[branch]['svg_tests'] = (talosConfig.get('svg', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['v8_tests'] = (talosConfig.get('v8', 0), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['scroll_tests'] = (talosConfig.get('scroll', 1), True, {}, ALL_PLATFORMS)
+    BRANCHES[branch]['addon_tests'] = (talosConfig.get('addon', 0), False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+    BRANCHES[branch]['a11y_tests'] = (talosConfig.get('a11y', 1), True, {}, NO_MAC)
 
 if __name__ == "__main__":
     import sys, pprint, re
