@@ -62,7 +62,7 @@ releaseConfig['otherReposToTag']     = {
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['xulrunnerPlatforms']  = ()
+releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
