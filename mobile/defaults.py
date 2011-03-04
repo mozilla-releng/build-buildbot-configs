@@ -23,7 +23,7 @@ default_platform['talos_suites'] = {
     'tdhtml': {},
     'tsvg': {},
     'tsspider': {},
-    'tgfx': {},
+#    'tgfx': {},
 }
 default_platform['talos_suites']['tp4']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tp4']['timeout'] = 1.5*60*60
@@ -52,9 +52,9 @@ default_platform['talos_suites']['tsvg']['nochrome'] = True
 default_platform['talos_suites']['tsspider']['config_file'] = 'mobile.config'
 default_platform['talos_suites']['tsspider']['timeout'] = 60*60
 default_platform['talos_suites']['tsspider']['nochrome'] = True
-default_platform['talos_suites']['tgfx']['config_file'] = 'mobile.config'
-default_platform['talos_suites']['tgfx']['timeout'] = 60*60
-default_platform['talos_suites']['tgfx']['nochrome'] = True
+#default_platform['talos_suites']['tgfx']['config_file'] = 'mobile.config'
+#default_platform['talos_suites']['tgfx']['timeout'] = 60*60
+#default_platform['talos_suites']['tgfx']['nochrome'] = True
 
 default_platform['test_suites'] = {
     'mochitest1': {}, #Enabled for testing my factory/config changes.
