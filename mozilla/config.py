@@ -42,6 +42,8 @@ GLOBAL_VARS = {
     'graph_selector': '/server/collect.cgi',
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
+    'mozharness_repo_path': 'build/mozharness',
+    'mozharness_tag': 'default',
     'default_build_space': 5,
     'default_l10n_space': 3,
     'default_clobber_time': 24*7, # 1 week
@@ -120,6 +122,7 @@ MOBILE_PLATFORM_VARS = {
     'maemo5-gtk':{
         'base_name': 'Maemo 5 GTK %(branch)s',
         'mozconfig': 'mobile/maemo5-gtk/mobile-browser/nightly',
+        'mozharness_config': 'multi_locale/trunk_maemo5_gtk.json',
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
@@ -143,7 +146,7 @@ MOBILE_PLATFORM_VARS = {
                              'mobile/*.deb', 'dist/deb_name.txt'],
         'upload_platform': 'linux',
         'scratchbox_target': 'FREMANTLE_ARMEL',
-        'multi_locale': False,
+        'multi_locale': True,
         'l10n_repo_path': 'l10n-central',
         'compare_locales_tag': 'RELEASE_AUTOMATION',
         'l10n_tag': 'default',
@@ -152,6 +155,7 @@ MOBILE_PLATFORM_VARS = {
     'maemo5-qt':{
         'base_name': 'Maemo 5 QT %(branch)s',
         'mozconfig': 'mobile/maemo5-qt/mobile-browser/nightly',
+        'mozharness_config': 'multi_locale/trunk_maemo5_qt.json',
         'profiled_build': False,
         'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 6,
@@ -175,7 +179,7 @@ MOBILE_PLATFORM_VARS = {
                              'mobile/*.deb', 'dist/deb_name.txt'],
         'upload_platform': 'linux',
         'scratchbox_target': 'FREMANTLE_ARMEL',
-        'multi_locale': False,
+        'multi_locale': True,
         'l10n_repo_path': 'l10n-central',
         'compare_locales_tag': 'RELEASE_AUTOMATION',
         'l10n_tag': 'default',
