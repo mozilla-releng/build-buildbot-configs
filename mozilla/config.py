@@ -684,13 +684,6 @@ for k, v in localconfig.PROJECTS.items():
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
-        'mobile_platforms': {
-            'android-r7': {},
-            'android-r7-nothumb': {},
-            'linux': {},
-            'macosx': {},
-            'win32': {},
-        }
     },
     'shadow-central': {
         'mobile_platforms': {},
