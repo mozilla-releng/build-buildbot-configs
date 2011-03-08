@@ -115,6 +115,7 @@ PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
+PLATFORMS['android']['branch_extra'] = 'mobile-browser'
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
                                          'download_symbols': False,
                                         }
@@ -301,6 +302,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'android': {
             'is_remote': True,
+            'branch_extra': 'mobile-browser',
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'tegra_android': {
                 'opt_unittest_suites': [

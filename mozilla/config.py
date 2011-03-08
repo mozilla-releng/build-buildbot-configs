@@ -655,18 +655,18 @@ PROJECTS = {
     },
     'spidermonkey': {
         'platforms': {
-            'linux':    ['nomethodjit', 'notracejit'],
-            'linux64':  ['nomethodjit', 'notracejit'],
-            'win32':    ['nomethodjit', 'notracejit'],
-            'macosx64': ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
-            'macosx':   ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
+            'linux-debug':    ['nomethodjit', 'notracejit'],
+            'linux64-debug':  ['nomethodjit', 'notracejit'],
+            'win32-debug':    ['nomethodjit', 'notracejit'],
+            'macosx64-debug': ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
+            'macosx-debug':   ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
         },
         'env': {
-            'linux': PLATFORM_VARS['linux']['env'],
-            'linux64': PLATFORM_VARS['linux64']['env'],
-            'win32': PLATFORM_VARS['win32']['env'],
-            'macosx64': PLATFORM_VARS['macosx64']['env'],
-            'macosx': PLATFORM_VARS['macosx']['env'],
+            'linux-debug': PLATFORM_VARS['linux-debug']['env'],
+            'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
+            'win32-debug': PLATFORM_VARS['win32-debug']['env'],
+            'macosx64-debug': PLATFORM_VARS['macosx64-debug']['env'],
+            'macosx-debug': PLATFORM_VARS['macosx-debug']['env'],
         },
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'tracemonkey',
@@ -684,13 +684,6 @@ for k, v in localconfig.PROJECTS.items():
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
-        'mobile_platforms': {
-            'android-r7': {},
-            'android-r7-nothumb': {},
-            'linux': {},
-            'macosx': {},
-            'win32': {},
-        }
     },
     'shadow-central': {
         'mobile_platforms': {},
