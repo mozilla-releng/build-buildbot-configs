@@ -40,8 +40,6 @@ def prioritizeBuilders(botmaster, builders):
             req_priority = 0
             submitted_at = None
 
-        # Default priority is 2
-        priority = 2
         if builder.builder_status.category.startswith('release'):
             priority = 0
         elif builder.properties and builder.properties.has_key('branch'):
@@ -49,6 +47,8 @@ def prioritizeBuilders(botmaster, builders):
                 if branch in builder.properties['branch']:
                     priority = p
                     break
+        else:
+            priority = 2
 
         return priority, req_priority, submitted_at
     builders.sort(key=sortkey)
