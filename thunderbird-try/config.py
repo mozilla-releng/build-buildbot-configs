@@ -110,7 +110,7 @@ PLATFORM_VARS = {
             'unittest-env': {
                 'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
             },
-            'enable_opt_unittests': True,
+            'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -143,7 +143,7 @@ PLATFORM_VARS = {
             'unittest-env': {
                 'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib64',
             },
-            'enable_opt_unittests': True,
+            'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
@@ -253,7 +253,7 @@ PLATFORM_VARS = {
             'unittest-env': {
                 'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/lib',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },

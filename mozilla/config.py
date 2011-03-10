@@ -436,6 +436,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
@@ -585,6 +586,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
@@ -821,8 +823,8 @@ BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-bug638538'
-BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-bug638538'
+BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'

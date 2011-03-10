@@ -260,7 +260,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': True,
             'xp': {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites': [],
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
             'win7': {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
@@ -406,6 +406,37 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+### PROJECTS ###
+PROJECTS = {
+    'jetpack': {
+        'platforms': {
+            'w764': {'ext':'win64-x86_64.zip',}, 
+            'fedora64': {'ext':'linux-x86_64.tar.bz2',}, 
+            'fedora':{'ext':'linux-i686.tar.bz2'}, 
+            'leopard':{'ext':'.mac.dmg'}, 
+            'snowleopard':{'ext':'.mac.dmg'},   
+            'xp':{
+                'ext':'win32.zip',
+                'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                }, 
+            'win7':{
+                'ext':'win32.zip',
+                'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                }, 
+
+            },
+        'hgurl': 'http://hg.mozilla.org',
+        'repo_path': 'projects/addon-sdk',
+        'jetpack_tarball': 'archive/tip.tar.bz2',
+        'ftp_url': 'ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central/',
+    },
+}
+for k, v in localconfig.PROJECTS.items():
+    if k not in PROJECTS:
+        PROJECTS[k] = {}
+    for k1, v1 in v.items():
+        PROJECTS[k][k1] = v1
 
 ########
 # Entries in BRANCHES for tests should be a tuple of:
