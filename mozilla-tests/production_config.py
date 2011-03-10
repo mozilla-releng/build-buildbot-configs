@@ -32,7 +32,11 @@ BRANCHES = {
     },
     'mozilla-2.0': {
         'tinderbox_tree': 'Firefox4.0',
-        'mobile_tinderbox_tree': 'Mobile4.0',
+        'mobile_tinderbox_tree': 'Firefox4.0',
+    },
+    'mozilla-2.1': {
+        'tinderbox_tree': 'Mobile2.0',
+        'mobile_tinderbox_tree': 'Mobile2.0',
     },
     'mozilla-1.9.1': {
         'tinderbox_tree': 'Firefox3.5',
