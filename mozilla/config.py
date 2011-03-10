@@ -147,7 +147,6 @@ MOBILE_PLATFORM_VARS = {
         'upload_platform': 'linux',
         'scratchbox_target': 'FREMANTLE_ARMEL',
         'multi_locale': True,
-        'l10n_repo_path': 'l10n-central',
         'compare_locales_tag': 'RELEASE_AUTOMATION',
         'l10n_tag': 'default',
         'merge_locales': True,
@@ -180,7 +179,6 @@ MOBILE_PLATFORM_VARS = {
         'upload_platform': 'linux',
         'scratchbox_target': 'FREMANTLE_ARMEL',
         'multi_locale': True,
-        'l10n_repo_path': 'l10n-central',
         'compare_locales_tag': 'RELEASE_AUTOMATION',
         'l10n_tag': 'default',
         'merge_locales': True,
@@ -693,6 +691,9 @@ BRANCHES = {
     'mozilla-2.0': {
         'mobile_platforms': {},
     },
+    'mozilla-2.1': {
+        'platforms': {},
+    },
     'mozilla-1.9.1': {
         'platforms': {
             'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
@@ -910,6 +911,62 @@ BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
+
+######## mozilla-2.1
+BRANCHES['mozilla-2.1']['repo_path'] = 'releases/mozilla-2.1'
+BRANCHES['mozilla-2.1']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
+BRANCHES['mozilla-2.1']['mobile_repo_path'] = 'releases/mobile-2.0'
+BRANCHES['mozilla-2.1']['start_hour'] = [3]
+BRANCHES['mozilla-2.1']['start_minute'] = [2]
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-2.1']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['mozilla-2.1']['enable_mac_a11y'] = False
+BRANCHES['mozilla-2.1']['unittest_build_space'] = 6
+# And code coverage
+BRANCHES['mozilla-2.1']['enable_codecoverage'] = False
+BRANCHES['mozilla-2.1']['enable_blocklist_update'] = False
+BRANCHES['mozilla-2.1']['blocklist_update_on_closed_tree'] = False
+# L10n configuration
+BRANCHES['mozilla-2.1']['enable_l10n'] = True
+BRANCHES['mozilla-2.1']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-2.1']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-2.1']['l10n_platforms'] = ['linux' , 'linux64', 'win32',
+                                             'macosx64']
+BRANCHES['mozilla-2.1']['l10nDatedDirs'] = True
+BRANCHES['mozilla-2.1']['l10n_tree'] = 'fennec40x'
+#make sure it has an ending slash
+BRANCHES['mozilla-2.1']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-2.1-l10n/'
+BRANCHES['mozilla-2.1']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-2.1'
+BRANCHES['mozilla-2.1']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-2.1']['enable_multi_locale'] = True
+BRANCHES['mozilla-2.1']['upload_mobile_symbols'] = True
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['mozilla-2.1']['create_snippet'] = True
+# turn on in bug 594867
+BRANCHES['mozilla-2.1']['create_mobile_snippet'] = True
+BRANCHES['mozilla-2.1']['create_partial'] = True
+BRANCHES['mozilla-2.1']['create_partial_l10n'] = True
+BRANCHES['mozilla-2.1']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-2.1']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['mozilla-2.1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.1'
+BRANCHES['mozilla-2.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.1'
+BRANCHES['mozilla-2.1']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.1'
+BRANCHES['mozilla-2.1']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.1'
+BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7-nothumb']['mozconfig'] = 'mobile/android-nothumb/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mobile-2.0_maemo5_gtk.json'
+BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mobile-2.0_maemo5_qt.json'
+BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mobile-2.0_android.json'
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
