@@ -116,7 +116,7 @@ BRANCHES = {
             'n900-qt': generate_platform(default_n900,
                 build_branch='tracemonkey-maemo5-qt',
                 talos_branch='mobile-tracemonkey-qt',
-                nightly_unit=False, dep_unit=False,
+                nightly_unit=False, dep_unit=True,
                 nightly_talos=True, dep_talos=False),
         },
     },
