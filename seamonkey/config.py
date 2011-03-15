@@ -359,6 +359,7 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'comm-central-trunk': {},
+    'comm-2.0': {},
     'comm-1.9.1': {'platforms': {
             'linux': {},
             'linux64': {},
@@ -404,7 +405,7 @@ BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
-BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea21x'
+BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
 #make sure it has an ending slash
 BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-central-trunk-l10n/'
@@ -422,6 +423,47 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incomin
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
+
+######## comm-2.0
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-2.0']['repo_path'] = 'comm-central'
+BRANCHES['comm-2.0']['mozilla_repo_path'] = 'releases/mozilla-2.0'
+BRANCHES['comm-2.0']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
+BRANCHES['comm-2.0']['start_hour'] = [1]
+BRANCHES['comm-2.0']['start_minute'] = [0]
+BRANCHES['comm-2.0']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-2.0'
+BRANCHES['comm-2.0']['enable_mac_a11y'] = True
+BRANCHES['comm-2.0']['unittest_build_space'] = 6
+# We only need one c-c blocklist update.
+BRANCHES['comm-2.0']['enable_blocklist_update'] = False
+BRANCHES['comm-2.0']['blocklist_update_on_closed_tree'] = False
+# And code coverage
+BRANCHES['comm-2.0']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-2.0']['enable_l10n'] = True
+BRANCHES['comm-2.0']['enable_l10n_onchange'] = True
+BRANCHES['comm-2.0']['l10nNightlyUpdate'] = True
+BRANCHES['comm-2.0']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-2.0']['l10nDatedDirs'] = True
+BRANCHES['comm-2.0']['l10n_tree'] = 'sea21x'
+#make sure it has an ending slash
+BRANCHES['comm-2.0']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-2.0-l10n/'
+BRANCHES['comm-2.0']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-2.0'
+BRANCHES['comm-2.0']['allLocalesFile'] = 'suite/locales/all-locales'
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-2.0']['create_snippet'] = True
+BRANCHES['comm-2.0']['create_partial'] = True
+BRANCHES['comm-2.0']['create_partial_l10n'] = True
+BRANCHES['comm-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-2.0'
+BRANCHES['comm-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-2.0'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-2.0']['tinderbox_tree'] = 'SeaMonkey2.1'
+BRANCHES['comm-2.0']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.1'
 
 ######## comm-1.9.1
 # This is a path, relative to HGURL, where the repository is located

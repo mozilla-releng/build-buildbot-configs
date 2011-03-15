@@ -132,17 +132,17 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-central-trunk', # buildbot branch name
         'sourceRepoPath'             : 'comm-central',
-        'sourceRepoRevision'         : '4e0ccefb6459',
+        'sourceRepoRevision'         : '6fbe19ade0d5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'mozilla-central',
-        'mozillaRepoRevision'        : 'f24f049857a5',
+        'mozillaRepoRevision'        : '290712e55ade',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
         'mozillaRelbranchOverride'   : '', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
-        'inspectorRepoRevision'      : '63d362f03ddb',
+        'inspectorRepoRevision'      : '2c63a5a42aa1',
         'inspectorRelbranchOverride' : '',
         'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
         'buildToolsRepoRevision'        : '',
@@ -169,18 +169,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.3a2',
+        'version'                    : '3.3a3',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '2.0.0.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_3a2',
+        'baseTag'                    : 'THUNDERBIRD_3_3a3',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.3a1',
-        'oldAppVersion'              : '3.3a1',
+        'oldVersion'                 : '3.3a2',
+        'oldAppVersion'              : '3.3a2',
         'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_3a1',
+        'oldBaseTag'                 : 'THUNDERBIRD_3_3a2',
         'oldBinaryName'              : 'miramar',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
