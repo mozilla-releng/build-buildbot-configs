@@ -33,7 +33,7 @@ class MasterConfig:
                 dst = os.path.join(master_dir, os.path.basename(f))
                 if os.path.lexists(dst):
                     os.unlink(dst)
-                src = os.path.join("..", f)
+                src = os.path.abspath(f)
                 os.symlink(src, dst)
 
         for src, dst in self.local_links:
