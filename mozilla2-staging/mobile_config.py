@@ -59,6 +59,7 @@ MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'win32-i686': {},
     'android-r7': {},
 }
+MOBILE_BRANCHES['mobile-trunk']['platforms']['maemo5-gtk']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['linux-i686']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['win32-i686']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-trunk']['platforms']['macosx-i686']['DISABLED'] = True
