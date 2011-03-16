@@ -105,7 +105,7 @@ releaseConfig['majorUpdateAppVersion']  = '4.0'
 releaseConfig['majorUpdateBuildNumber'] = 1
 releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc1'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/4.0/details/'
-releaseConfig['majorUpdatePatcherConfig']    = 'moz191-branch-major-update-patcher2.cfg'
+releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
     'linux':  'moz192-firefox-linux-major.cfg',
