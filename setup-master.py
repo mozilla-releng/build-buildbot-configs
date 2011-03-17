@@ -23,9 +23,9 @@ class MasterConfig:
                 )
         return retval
 
-    def createMaster(self, master_dir):
+    def createMaster(self, master_dir, buildbot):
         null = open(os.devnull, "w")
-        subprocess.check_call(['buildbot', 'create-master', master_dir], stdout=null)
+        subprocess.check_call([buildbot, 'create-master', master_dir], stdout=null)
         if not os.path.exists(master_dir):
             os.makedirs(master_dir)
         for g in self.globs:
@@ -561,6 +561,7 @@ if __name__ == "__main__":
     parser.set_defaults(action=None)
     parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
     parser.add_option("-8", action="store_true", dest="buildbot080", default=False)
+    parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
 
     options, args = parser.parse_args()
 
@@ -587,4 +588,4 @@ if __name__ == "__main__":
         parser.error("Unknown master %s" % master_name)
 
     m = master_map[master_name]
-    m.createMaster(master_dir)
+    m.createMaster(master_dir, options.buildbot)
