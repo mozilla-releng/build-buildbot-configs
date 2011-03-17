@@ -6,7 +6,7 @@ c['status'] = [
         WebStatus(http_port=8011, allowForce=True)
 ]
 
-c['buildbotURL'] = 'http://buildbot-master2.build.scl1.mozilla.com:8011/'
+c['buildbotURL'] = 'http://buildbot-master4.build.mozilla.org:8011/'
 
 from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld", "password")

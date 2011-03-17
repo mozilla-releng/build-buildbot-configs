@@ -85,3 +85,10 @@ BRANCHES = {
 
 PLATFORM_VARS = {
 }
+
+PROJECTS = {
+    'jetpack': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'tinderbox_tree': 'Jetpack',
+    },
+}
