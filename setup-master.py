@@ -399,7 +399,7 @@ mozilla_production_tests_scheduler_master = mozilla_tests + MasterConfig(
         local_links = [
             ('production_tests_scheduler_master_pm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
+            ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
 
@@ -416,15 +416,6 @@ mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
         "tm01-tests_master",
         local_links = [
             ('production_tests_master_tm01_localconfig.py', 'master_localconfig.py'),
-            ('production_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
-            ]
-        )
-
-mozilla_production_tests_master_bm01_1 = mozilla_tests + MasterConfig(
-        "bm01_1-tests_master",
-        local_links = [
-            ('production_tests_master_bm01_1_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
@@ -541,7 +532,6 @@ masters_080 = [
         mozilla_production_tests_scheduler_master,
         mozilla_production_tests_master_talos_master02,
         mozilla_production_tests_master_tm01,
-        mozilla_production_tests_master_bm01_1,
         mozilla_production_tests_master_bm01_2,
         mozilla_production_tests_master_bm02_1,
         mozilla_production_tests_master_bm02_2,
