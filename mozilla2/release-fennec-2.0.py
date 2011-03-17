@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-2.1'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-2.1'
-mozSourceRepoRevision  = 'FILLMEIN'
+mozSourceRepoRevision  = 'e273946b74c8'
 mobileSourceRepoName      = 'mobile-2.0'
 mobileSourceRepoPath      = 'releases/mobile-2.0'
-mobileSourceRepoRevision  = 'FILLMEIN'
+mobileSourceRepoRevision  = '6b93fd7423c4'
 mozRelbranchOverride      = ''
 l10nRelbranchOverride     = ''
 mobileRelbranchOverride   = ''
@@ -24,8 +24,8 @@ enableMultiLocale   = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '4.0'
-appVersion          = version
+version             = '4.0rc1'
+appVersion          = '4.0'
 milestone           = '2.1'
 buildNumber         = 1
 baseTag             = 'FENNEC_4_0rc1'
@@ -46,6 +46,6 @@ base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates
 ausServerUrl        = 'http://aus2.mozilla.org'
 ausUser             = 'cltbld'
 ausSshKey           = 'cltbld_dsa'
-doPartnerRepacks    = False
+doPartnerRepacks    = True
 partnersRepoPath    = 'build/partner-repacks'
 partnerRepackPlatforms = ('maemo5-gtk',)
