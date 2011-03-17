@@ -393,6 +393,7 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {},
+    'mozilla-2.1': {},
     'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
                                       'linux64': {}, 'linux64-debug': {}, 
                                       'macosx': {}, 'macosx-debug': {}, 
