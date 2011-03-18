@@ -12,11 +12,11 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '4.0rc2'
-releaseConfig['appVersion']          = '4.0'
+releaseConfig['version']             = '4.0'
+releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = '2.0'
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_4_0rc2'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_4_0'
 #  Old version info
 releaseConfig['oldVersion']          = '4.0rc1'
 releaseConfig['oldAppVersion']       = '4.0'
@@ -30,7 +30,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-2.0',
         'path': 'releases/mozilla-2.0',
-        'revision': '6be9e31d01b4',
+        'revision': 'FIREFOX_4_0rc2_RELEASE',
         'relbranch': 'GECKO20_2011031715_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
