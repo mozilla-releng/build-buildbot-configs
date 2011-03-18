@@ -15,7 +15,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '4.0rc2'
 releaseConfig['appVersion']          = '4.0'
 releaseConfig['milestone']           = '2.0'
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'FIREFOX_4_0rc2'
 #  Old version info
 releaseConfig['oldVersion']          = '4.0rc1'
@@ -30,7 +30,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-2.0',
         'path': 'releases/mozilla-2.0',
-        'revision': '821cf4ad060e',
+        'revision': '6be9e31d01b4',
         'relbranch': 'GECKO20_2011031715_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
