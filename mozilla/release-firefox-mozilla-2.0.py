@@ -20,7 +20,7 @@ releaseConfig['baseTag']             = 'FIREFOX_4_0'
 #  Old version info
 releaseConfig['oldVersion']          = '4.0rc1'
 releaseConfig['oldAppVersion']       = '4.0'
-releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBuildNumber']      = 2
 releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc1'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '4.0pre'
