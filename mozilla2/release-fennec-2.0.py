@@ -1,19 +1,19 @@
 hgUsername          = 'ffxbld'
 hgSshKey            = '~cltbld/.ssh/ffxbld_dsa'
-mobileBranchNick    = 'mobile-trunk'
-mozSourceRepoName      = 'mozilla-central'
+mobileBranchNick    = 'mobile-2.0'
+mozSourceRepoName      = 'mozilla-2.1'
 # This parameter (and its l10n equivalent) is for staging only and necessary
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
-mozSourceRepoPath      = 'mozilla-central'
-mozSourceRepoRevision  = '8a91ff54417a'
-mobileSourceRepoName      = 'mobile-browser'
-mobileSourceRepoPath      = 'mobile-browser'
-mobileSourceRepoRevision  = 'c1e058767216'
-mozRelbranchOverride      = 'GECKO20b12pre_20110216_RELBRANCH'
-l10nRelbranchOverride     = 'GECKO20b12pre_20110216_RELBRANCH'
-mobileRelbranchOverride   = 'GECKO20b12pre_20110216_RELBRANCH'
-l10nRepoPath        = 'l10n-central'
+mozSourceRepoPath      = 'releases/mozilla-2.1'
+mozSourceRepoRevision  = 'a0181e3f66fe'
+mobileSourceRepoName      = 'mobile-2.0'
+mobileSourceRepoPath      = 'releases/mobile-2.0'
+mobileSourceRepoRevision  = '606c14460ded'
+mozRelbranchOverride      = 'GECKO21_20110317_RELBRANCH'
+l10nRelbranchOverride     = 'GECKO21_20110317_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO21_20110317_RELBRANCH'
+l10nRepoPath        = 'releases/l10n-mozilla-2.0'
 l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
 appName             = 'mobile'
@@ -24,15 +24,15 @@ enableMultiLocale   = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '4.0b5'
-appVersion          = version
-milestone           = '2.0b12pre'
+version             = '4.0rc1'
+appVersion          = '4.0'
+milestone           = '2.1'
 buildNumber         = 3
-baseTag             = 'FENNEC_4_0b5'
-oldVersion          = '4.0b4'
+baseTag             = 'FENNEC_4_0rc1'
+oldVersion          = '4.0b5'
 oldAppVersion       = oldVersion
-oldBuildNumber      = 1
-oldBaseTag          = 'FENNEC_4_0b4'
+oldBuildNumber      = 3
+oldBaseTag          = 'FENNEC_4_0b5'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
 l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
@@ -46,6 +46,6 @@ base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates
 ausServerUrl        = 'http://aus2.mozilla.org'
 ausUser             = 'cltbld'
 ausSshKey           = 'cltbld_dsa'
-doPartnerRepacks    = False
+doPartnerRepacks    = True
 partnersRepoPath    = 'build/partner-repacks'
 partnerRepackPlatforms = ('maemo5-gtk',)

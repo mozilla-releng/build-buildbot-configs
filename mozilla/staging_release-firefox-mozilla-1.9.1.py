@@ -100,18 +100,20 @@ releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
-releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-1.9.2'
-releaseConfig['majorUpdateToVersion']   = '3.6.14'
-releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
-releaseConfig['majorUpdateBuildNumber'] = 3
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_3_6_14'
-releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/3.6/details/index.html'
+releaseConfig['majorUpdateRepoPath'] = 'users/stage-ffxbld/mozilla-2.0'
+releaseConfig['majorUpdateToVersion']   = '4.0rc1'
+releaseConfig['majorUpdateAppVersion']  = '4.0'
+releaseConfig['majorUpdateBuildNumber'] = 1
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc1'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/4.0/details/'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz191-branch-major-update-patcher2.cfg'
+releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
     'linux':  'moz191-firefox-linux-major.cfg',
     'macosx': 'moz191-firefox-mac-major.cfg',
     'win32':  'moz191-firefox-win32-major.cfg'
 }
+releaseConfig['majorFakeMacInfoTxt'] = True
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'

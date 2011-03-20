@@ -37,3 +37,10 @@ BRANCHES = {
 
 PLATFORM_VARS = {
 }
+
+PROJECTS = {
+    'jetpack': {
+        'scripts_repo': 'http://hg.mozilla.org/users/lsblakk_mozilla.com/tools',
+        'tinderbox_tree': 'MozillaTest',
+    },
+}

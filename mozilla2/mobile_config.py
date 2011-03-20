@@ -22,6 +22,7 @@ MOBILE_SLAVES = {
 
 MOBILE_BRANCHES = {
     'mobile-trunk': {},
+    'mobile-2.0': {},
     'mobile-1.9.2': {},
 }
 
@@ -149,6 +150,109 @@ MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env'] = DEFAULT_LINU
 MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 MOBILE_BRANCHES['mobile-trunk']['platforms']['android-r7']['glob_list'] = ['embedding/android/*.apk']
 
+### mobile-2.0
+MOBILE_BRANCHES['mobile-2.0']['main_config'] = config.BRANCHES['mozilla-2.1']
+MOBILE_BRANCHES['mobile-2.0']['repo_path'] = 'releases/mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
+MOBILE_BRANCHES['mobile-2.0']['mobile_repo_path'] = 'releases/mobile-2.0'
+MOBILE_BRANCHES['mobile-2.0']['product_name'] = 'fennec'
+MOBILE_BRANCHES['mobile-2.0']['app_name'] = 'mobile'
+MOBILE_BRANCHES['mobile-2.0']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['download_base_url'] = 'http://stage.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-2.0']['stage_base_path'] = '/home/ftp/pub/mobile'
+MOBILE_BRANCHES['mobile-2.0']['mail_on_failure'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms'] = {
+    'maemo5-gtk': {},
+    'linux-i686': {},
+    'macosx-i686': {},
+    'win32-i686': {},
+    'android-r7': {},
+}
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-2.0']['l10n_platforms'] = {}
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-2.0/nightly'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['sb_target'] = 'FREMANTLE_ARMEL'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['mozconfig'] = 'mobile/linux-i686/mobile-2.0/nightly'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['mozconfig'] = 'mobile/macosx-i686/mobile-2.0/nightly'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['mozconfig'] = 'mobile/win32-i686/mobile-2.0/nightly'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-2.0/nightly'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['generate_symbols'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['generate_symbols'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['generate_symbols'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['generate_symbols'] = True
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['base_upload_dir'] = 'mozilla-2.1-maemo5-gtk'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['base_upload_dir'] = 'mozilla-2.1-linux'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['base_upload_dir'] = 'mozilla-2.1-macosx'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['base_upload_dir'] = 'mozilla-2.1-win32'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['base_name'] = 'Maemo 5 GTK mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['base_name'] = 'Linux Fennec Desktop mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['base_name'] = 'OS X Fennec Desktop mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['base_name'] = 'Win32 Fennec Desktop mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['base_name'] = 'Android mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['build_space'] = 5
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['build_space'] = 5
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['build_space'] = 5
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['builds_before_reboot'] = 1
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['base_workdir'] = '%s/build/mobile-2.0-maemo5-gtk' % SBOX_HOME
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['base_builddir'] = 'mobile-2.0-maemo5-gtk'
+# This base directory is for the individual locales repackaging; it is not for the multi-locale build
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['base_l10n_workdir'] = '%s/build/mobile-2.0-maemo5-gtk-l10n' % SBOX_HOME
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['base_builddir'] = 'linux-fennec-2.0'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['base_l10n_workdir'] = 'build/linux-fennec-2.0-l10n'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['base_builddir'] = 'macosx-fennec-2.0'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['base_l10n_workdir'] = 'build/macosx-fennec-2.0-l10n'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['base_workdir'] = '.'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['base_builddir'] = 'w32mob-2.0'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['base_l10n_workdir'] = 'w32mob-2.0-l10n'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['base_workdir'] = 'build'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['base_builddir'] = 'android-2.0'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['base_l10n_workdir'] = 'android-2.0-l10n'
+MOBILE_BRANCHES['mobile-2.0']['enable_l10n'] = True 
+MOBILE_BRANCHES['mobile-2.0']['enable_l10n_onchange'] = False 
+MOBILE_BRANCHES['mobile-2.0']['enable_multi_locale'] = True
+MOBILE_BRANCHES['mobile-2.0']['l10n_tree'] = 'fennec_2.0'
+MOBILE_BRANCHES['mobile-2.0']['l10n_platforms']['maemo5-gtk'] = 'linux'
+MOBILE_BRANCHES['mobile-2.0']['allLocalesFile'] = "locales/all-locales"
+MOBILE_BRANCHES['mobile-2.0']['multiLocalesFile'] = "locales/maemo-locales"
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['enUS_binaryURL'] = \
+    MOBILE_BRANCHES['mobile-2.0']['download_base_url'] + '/nightly/latest-mozilla-2.1-maemo5-gtk'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['enUS_binaryURL'] = \
+    MOBILE_BRANCHES['mobile-2.0']['download_base_url'] + '/nightly/latest-mozilla-2.1-linux'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['enUS_binaryURL'] = \
+    MOBILE_BRANCHES['mobile-2.0']['download_base_url'] + '/nightly/latest-mozilla-2.1-macosx'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['enUS_binaryURL'] = \
+    MOBILE_BRANCHES['mobile-2.0']['download_base_url'] + '/nightly/latest-mozilla-2.1-win32'
+MOBILE_BRANCHES['mobile-2.0']['tinderbox_tree'] = 'Mobile2.0'
+MOBILE_BRANCHES['mobile-2.0']['l10n_tinderbox_tree'] = 'Mozilla-l10n'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['slaves'] = MOBILE_SLAVES['maemo5-gtk']
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['slaves'] = MOBILE_SLAVES['linux-i686']
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['slaves'] = MOBILE_SLAVES['macosx-i686']
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['slaves'] = MOBILE_SLAVES['win32-i686']
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['slaves'] = MOBILE_SLAVES['android-r7']
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['env'] = DEFAULT_LINUX_ENV.copy()
+MOBILE_BRANCHES['mobile-2.0']['platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-2.1-maemo5-gtk'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['env'] = DEFAULT_LINUX_ENV.copy()
+MOBILE_BRANCHES['mobile-2.0']['platforms']['linux-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['env'] = DEFAULT_MACOSX_ENV.copy()
+MOBILE_BRANCHES['mobile-2.0']['platforms']['macosx-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['env'] = DEFAULT_WIN32_ENV.copy()
+MOBILE_BRANCHES['mobile-2.0']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['env'] = DEFAULT_LINUX_ENV.copy()
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-2.1'
+MOBILE_BRANCHES['mobile-2.0']['platforms']['android-r7']['glob_list'] = ['embedding/android/*.apk']
+
 ### mobile-1.9.2
 MOBILE_BRANCHES['mobile-1.9.2']['main_config'] = config.BRANCHES['mozilla-1.9.2']
 MOBILE_BRANCHES['mobile-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -257,6 +361,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['env']['MOZ_SYMBOLS_E
 
 #This is needed because we don't use the real branch name as the branch name.
 hacktionary = {'mobile-trunk': 'mozilla-central',
+               'mobile-2.0': 'mozilla-2.1',
                'mobile-1.9.2': 'mozilla-1.9.2',
               }
 

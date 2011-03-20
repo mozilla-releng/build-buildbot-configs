@@ -23,9 +23,9 @@ class MasterConfig:
                 )
         return retval
 
-    def createMaster(self, master_dir):
+    def createMaster(self, master_dir, buildbot):
         null = open(os.devnull, "w")
-        subprocess.check_call(['buildbot', 'create-master', master_dir], stdout=null)
+        subprocess.check_call([buildbot, 'create-master', master_dir], stdout=null)
         if not os.path.exists(master_dir):
             os.makedirs(master_dir)
         for g in self.globs:
@@ -33,7 +33,7 @@ class MasterConfig:
                 dst = os.path.join(master_dir, os.path.basename(f))
                 if os.path.lexists(dst):
                     os.unlink(dst)
-                src = os.path.join("..", f)
+                src = os.path.abspath(f)
                 os.symlink(src, dst)
 
         for src, dst in self.local_links:
@@ -259,6 +259,33 @@ mozilla_production_try_builder_master_bm03 = mozilla + MasterConfig(
             ]
         )
 
+mozilla_production_try_builder_master_bm04 = mozilla + MasterConfig(
+        "bm04-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_try_builder_master_bm05 = mozilla + MasterConfig(
+        "bm05-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_try_builder_master_bm06 = mozilla + MasterConfig(
+        "bm06-trybuilder",
+        local_links = [
+            ('production_try_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
 mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
         "pm03-builder",
         local_links = [
@@ -281,6 +308,33 @@ mozilla_production_builder_master_bm02 = mozilla + MasterConfig(
         "bm02-builder",
         local_links = [
             ('production_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_bm04 = mozilla + MasterConfig(
+        "bm04-builder",
+        local_links = [
+            ('production_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_bm05 = mozilla + MasterConfig(
+        "bm05-builder",
+        local_links = [
+            ('production_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_builder_master_bm06 = mozilla + MasterConfig(
+        "bm06-builder",
+        local_links = [
+            ('production_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
@@ -345,7 +399,7 @@ mozilla_production_tests_scheduler_master = mozilla_tests + MasterConfig(
         local_links = [
             ('production_tests_scheduler_master_pm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
+            ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
 
@@ -362,15 +416,6 @@ mozilla_production_tests_master_tm01 = mozilla_tests + MasterConfig(
         "tm01-tests_master",
         local_links = [
             ('production_tests_master_tm01_localconfig.py', 'master_localconfig.py'),
-            ('production_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
-            ]
-        )
-
-mozilla_production_tests_master_bm01_1 = mozilla_tests + MasterConfig(
-        "bm01_1-tests_master",
-        local_links = [
-            ('production_tests_master_bm01_1_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
@@ -398,6 +443,33 @@ mozilla_production_tests_master_bm02_2 = mozilla_tests + MasterConfig(
         "bm02_2-tests_master",
         local_links = [
             ('production_tests_master_bm02_2_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_bm04 = mozilla_tests + MasterConfig(
+        "bm04-tests_master",
+        local_links = [
+            ('production_tests_master_bm04_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_bm05 = mozilla_tests + MasterConfig(
+        "bm05-tests_master",
+        local_links = [
+            ('production_tests_master_bm05_localconfig.py', 'master_localconfig.py'),
+            ('production_config.py', 'localconfig.py'),
+            ('tests_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_production_tests_master_bm06 = mozilla_tests + MasterConfig(
+        "bm06-tests_master",
+        local_links = [
+            ('production_tests_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
@@ -442,8 +514,14 @@ masters_080 = [
         mozilla_production_try_builder_master_bm01,
         mozilla_production_try_builder_master_bm02,
         mozilla_production_try_builder_master_bm03,
+        mozilla_production_try_builder_master_bm04,
+        mozilla_production_try_builder_master_bm05,
+        mozilla_production_try_builder_master_bm06,
         mozilla_production_builder_master_bm01,
         mozilla_production_builder_master_bm02,
+        mozilla_production_builder_master_bm04,
+        mozilla_production_builder_master_bm05,
+        mozilla_production_builder_master_bm06,
 
         # Test masters
         mozilla_staging_tests_scheduler_master,
@@ -454,10 +532,12 @@ masters_080 = [
         mozilla_production_tests_scheduler_master,
         mozilla_production_tests_master_talos_master02,
         mozilla_production_tests_master_tm01,
-        mozilla_production_tests_master_bm01_1,
         mozilla_production_tests_master_bm01_2,
         mozilla_production_tests_master_bm02_1,
         mozilla_production_tests_master_bm02_2,
+        mozilla_production_tests_master_bm04,
+        mozilla_production_tests_master_bm05,
+        mozilla_production_tests_master_bm06,
 
         # Preproduction masters
         mozilla_preproduction_scheduler_master,
@@ -471,6 +551,7 @@ if __name__ == "__main__":
     parser.set_defaults(action=None)
     parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
     parser.add_option("-8", action="store_true", dest="buildbot080", default=False)
+    parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
 
     options, args = parser.parse_args()
 
@@ -497,4 +578,4 @@ if __name__ == "__main__":
         parser.error("Unknown master %s" % master_name)
 
     m = master_map[master_name]
-    m.createMaster(master_dir)
+    m.createMaster(master_dir, options.buildbot)

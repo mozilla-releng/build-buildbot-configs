@@ -1,0 +1,60 @@
+BASEDIR ?= $(shell pwd)
+VIRTUALENV ?= virtualenv
+PYTHON ?= /tools/python/bin/python
+PIP_PACKAGES_FILE ?= master-pip.txt
+HG ?= hg
+HG_HOST = http://hg.mozilla.org
+MASTER_NAME = $(error MASTER_NAME must be defined (see setup-master.py -8 -l for a list))
+DATABASE = tm-b01-master01.mozilla.org/buildbot
+MYSQL_CONFIG = $(HOME)/.$(MASTER_NAME)_update_from_files.conf
+CRONTAB = /etc/cron.d/$(MASTER_NAME)
+VIRTUALENV_PYTHON = $(BASEDIR)/bin/python
+PIP = $(BASEDIR)/bin/pip
+BUILDBOT = $(BASEDIR)/bin/buildbot
+USER = cltbld
+HOME = /home/$(USER)
+
+all: virtualenv deps install-buildbot master other-files done
+
+done:
+	@echo
+	@echo
+	@echo You probably want to update at least the following files to contain accurate passwords/descriptions:
+	@echo BuildSlaves.py, passwords.py, $(MYSQL_CONFIG)
+	@echo You should also run the "cron" target as root, with the same variables set.
+
+virtualenv:
+	$(VIRTUALENV) --distribute --no-site-packages -p $(PYTHON) $(BASEDIR)
+
+deps:
+	$(PIP) install -r $(PIP_PACKAGES_FILE)
+	
+# HACK ALERT: This only works when there's only one python version in "lib".
+# This is generally true when using virtualenvs.
+install-buildbot: SITE_PACKAGES = $(BASEDIR)/lib/$(shell ls $(BASEDIR)/lib/)/site-packages
+install-buildbot:
+	$(HG) clone -b production-0.8 $(HG_HOST)/build/buildbot $(BASEDIR)/buildbot
+	(cd $(BASEDIR)/buildbot/master; $(VIRTUALENV_PYTHON) setup.py develop install)
+	$(HG) clone -b production-0.8 $(HG_HOST)/build/buildbotcustom $(BASEDIR)/buildbotcustom
+	$(HG) clone -b production $(HG_HOST)/build/buildbot-configs $(BASEDIR)/buildbot-configs
+	$(HG) clone $(HG_HOST)/build/tools $(BASEDIR)/tools
+	# Get buildbotcustom and the build/tools library into PYTHONPATH
+	ln -s $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
+	echo "$(BASEDIR)/tools/lib/python" > $(SITE_PACKAGES)/build-tools-lib.pth
+
+master:
+	(cd $(BASEDIR)/buildbot-configs; $(VIRTUALENV_PYTHON) setup-master.py -8 -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME))
+
+other-files:
+	cp $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
+	echo "[DEFAULT]" > $(MYSQL_CONFIG)
+	echo "database = mysql://buildbot:password@$(DATABASE)" >> $(MYSQL_CONFIG)
+	echo "master = http://this-master:port" >> $(MYSQL_CONFIG)
+	echo "name = $(MASTER_NAME)" >> $(MYSQL_CONFIG)
+
+cron:
+	echo "MAILTO=release@mozilla.com" > $(CRONTAB)
+	echo "@hourly cltbld (source $(HOME)/.bash_profile && $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/watch_twistd.log -t .$(MASTER_NAME)-last-time.txt -n $(MASTER_NAME) -f cltbld@`hostname --fqdn` -e release@mozilla.com $(BASEDIR)/master)" >> $(CRONTAB)
+	echo "15 * * * * cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_cleanup 2>/dev/null && (source $(HOME)/.bash_profile && nice -n 19 $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/master_cleanup.py -t4 $(BASEDIR)/master ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_cleanup) >> cleanup.log 2>&1" >> $(CRONTAB)
+	echo "*/10 * * * *	cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_bbdb 2>/dev/null && (source $(HOME)/.bash_profile && cd $(BASEDIR)/master; time nice $(VIRTUALENV_PYTHON) $(BASEDIR)/buildbotcustom/bin/update_from_files.py -c $(MYSQL_CONFIG) . ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_bbdb ) >> update.log 2>&1" >> $(CRONTAB)
+	chmod 644 $(CRONTAB)

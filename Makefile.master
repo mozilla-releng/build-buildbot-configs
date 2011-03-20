@@ -1,0 +1,21 @@
+PWD=$(shell pwd)
+BUILDBOT=$(PWD)/bin/buildbot
+HG=/tools/python/bin/hg
+export PYTHONDONTWRITEBYTECODE=1
+
+start:
+	cd master && $(BUILDBOT) start $$PWD
+stop:
+	cd master && $(BUILDBOT) stop $$PWD
+restart:
+	cd master && $(BUILDBOT) restart $$PWD
+reconfig:
+	cd master && $(BUILDBOT) reconfig $$PWD
+checkconfig:
+	cd master && $(BUILDBOT) checkconfig
+update:
+	(cd buildbotcustom && $(HG) pull && $(HG) update -C)
+	(cd buildbot-configs && $(HG) pull && $(HG) update -C)
+	(cd tools && $(HG) pull && $(HG) update -C)
+version:
+	$(BUILDBOT) --version

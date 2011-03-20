@@ -87,13 +87,13 @@ GLOBAL_VARS = {
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
+    'enable_mobile_nightly': True,
+    'enable_mobile_dep': True,
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
     'enable_weekly_bundle': False,
 
-    'enable_mobile_nightly': True,
-    'enable_mobile_dep': True,
     'hash_type': 'sha512',
     'create_snippet': False,
     'create_partial': False,
@@ -845,6 +845,7 @@ BRANCHES['shadow-central']['start_hour'] = [3]
 BRANCHES['shadow-central']['start_minute'] = [2]
 BRANCHES['shadow-central']['create_snippet'] = False
 BRANCHES['shadow-central']['enable_nightly'] = False
+BRANCHES['shadow-central']['enable_mobile_nightly'] = False
 # Enable XULRunner / SDK builds
 BRANCHES['shadow-central']['enable_xulrunner'] = False
 # Disable codesighs for now until ability to upload/download from secure server exists bug 581106
@@ -1157,6 +1158,7 @@ BRANCHES['places']['start_hour'] = [4]
 BRANCHES['places']['start_minute'] = [2]
 BRANCHES['places']['create_snippet'] = False
 BRANCHES['places']['enable_nightly'] = False
+BRANCHES['places']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['places']['enable_xulrunner'] = False
 BRANCHES['places']['enable_mac_a11y'] = True

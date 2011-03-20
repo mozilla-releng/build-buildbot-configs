@@ -12,25 +12,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.15'
+releaseConfig['version']             = '3.6.16'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.15'
+releaseConfig['milestone']           = '1.9.2.16'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_3_6_15'
+releaseConfig['baseTag']             = 'FIREFOX_3_6_16'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.14'
+releaseConfig['oldVersion']          = '3.6.15'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_14'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_15'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.16pre'
-releaseConfig['nextMilestone']       = '1.9.2.16pre'
+releaseConfig['nextAppVersion']      = '3.6.17pre'
+releaseConfig['nextMilestone']       = '1.9.2.17pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': 'a50a49f952c0',
+        'revision': 'ab4f7fd95593',
         'relbranch': 'GECKO19214_2011012112_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -99,7 +99,20 @@ releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
+releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-2.0'
+releaseConfig['majorUpdateToVersion']   = '4.0rc2'
+releaseConfig['majorUpdateAppVersion']  = '4.0'
+releaseConfig['majorUpdateBuildNumber'] = 3
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc2'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/4.0/details/'
+releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
+releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
+releaseConfig['majorUpdateVerifyConfigs']    = {
+    'linux':  'moz192-firefox-linux-major.cfg',
+    'macosx': 'moz192-firefox-mac-major.cfg',
+    'win32':  'moz192-firefox-win32-major.cfg'
+}
+releaseConfig['majorFakeMacInfoTxt'] = True
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
