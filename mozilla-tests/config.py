@@ -359,8 +359,8 @@ PLATFORM_UNITTEST_VARS = {
 }
 
 # Copy project branches into BRANCHES keys
-for key, value in PROJECT_BRANCHES.items():
-    BRANCHES[key] = value
+for branch, branch_config in PROJECT_BRANCHES.items():
+    BRANCHES[branch] = deepcopy(branch_config)
 
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():

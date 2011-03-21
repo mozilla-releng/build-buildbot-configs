@@ -729,14 +729,20 @@ BRANCHES = {
 }
 
 # Copy project branches into BRANCHES keys
-for key, value in PROJECT_BRANCHES.items():
-    BRANCHES[key] = value
+for branch, branch_config in PROJECT_BRANCHES.items():
+    BRANCHES[branch] = deepcopy(branch_config)
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
         # Don't override platforms if it's set
         if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+            # Take out any talos-only platforms from 'platforms' in project_branches
+            if branch in PROJECT_BRANCHES.keys():
+                for platform in BRANCHES[branch]['platforms'].keys():
+                    is_test = BRANCHES[branch]['platforms'][platform].get('test_only_platform', False)
+                    if platform not in PLATFORM_VARS.keys() and is_test:
+                        del BRANCHES[branch]['platforms'][platform]
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
@@ -1322,18 +1328,23 @@ for branch in PROJECT_BRANCHES.keys():
     # we need to check for an overriden repo path
     if 'repo_path' not in BRANCHES[branch].keys():
         BRANCHES[branch]['repo_path'] = 'projects/' + branch
+    BRANCHES[branch]['enable_nightly'] =  PROJECT_BRANCHES[branch].get('enable_nightly', False)
+    BRANCHES[branch]['enable_mobile_nightly'] = PROJECT_BRANCHES[branch].get('enable_mobile_nightly', False)
+    BRANCHES[branch]['enable_mobile'] = PROJECT_BRANCHES[branch].get('enable_mobile', True)
+    if BRANCHES[branch]['enable_mobile']:
+        BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
+        BRANCHES[branch]['mobile_platforms']['macosx']['l10n_chunks'] = None
+        BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
     BRANCHES[branch]['start_hour'] = [4]
     BRANCHES[branch]['start_minute'] = [2]
-    BRANCHES[branch]['enable_nightly'] = False
-    BRANCHES[branch]['enable_mobile_nightly'] = False
-    BRANCHES[branch]['create_snippet'] = False
+    BRANCHES[branch]['create_snippet'] = PROJECT_BRANCHES[branch].get('create_snippet', False)
     # Disable XULRunner / SDK builds
-    BRANCHES[branch]['enable_xulrunner'] = False
+    BRANCHES[branch]['enable_xulrunner'] = PROJECT_BRANCHES[branch].get('enable_xulrunner', False)
     # Enable unit tests
     BRANCHES[branch]['platforms']['linux64']['enable_checktests'] = True
-    BRANCHES[branch]['enable_mac_a11y'] = True
-    BRANCHES[branch]['enable_shark'] = False
-    # L10n configuration
+    BRANCHES[branch]['enable_mac_a11y'] = PROJECT_BRANCHES[branch].get('enable_mac_a11y', True)
+    BRANCHES[branch]['enable_shark'] = PROJECT_BRANCHES[branch].get('enable_shark', False)
+    # L10n configuration is not set up for project_branches
     BRANCHES[branch]['enable_l10n'] = False
     BRANCHES[branch]['l10nNightlyUpdate'] = False
     BRANCHES[branch]['l10nDatedDirs'] = False
@@ -1344,9 +1355,6 @@ for branch in PROJECT_BRANCHES.keys():
     BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
-    BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
-    BRANCHES[branch]['mobile_platforms']['macosx']['l10n_chunks'] = None
-    BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
     # point to the generic project branch mozconfigs
     for platform in BRANCHES[branch]['platforms']:
         if platform.endswith('debug'):
