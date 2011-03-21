@@ -349,6 +349,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
         },
         'linuxqt': {
             'base_name': 'Linux QT %(branch)s',
@@ -418,6 +419,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
         },
         'macosx': {
             'base_name': 'OS X 10.5.2 %(branch)s',
@@ -514,6 +516,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
         },
         'linux-debug': {
             'base_name': 'Linux %(branch)s leak test',
