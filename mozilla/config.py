@@ -74,7 +74,6 @@ GLOBAL_VARS = {
         'maemo5-gtk': {},
         'maemo5-qt': {},
         'android-r7': {},
-        'android-r7-nothumb': {},
         'linux': {},
         'win32': {},
         'macosx': {},
@@ -212,32 +211,6 @@ MOBILE_PLATFORM_VARS = {
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
         'unittest_masters': GLOBAL_VARS['unittest_masters'],
-    },
-    'android-r7-nothumb': {
-        'base_name': 'Android R7 Thumbless %(branch)s',
-        'mozconfig': 'mobile/android-nothumb/mobile-browser/nightly',
-        'profiled_build': False,
-        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 6,
-        'generate_symbols': True,
-        'slaves': SLAVES['linux'],
-        'platform_objdir': MOBILE_OBJDIR,
-        'enable_ccache': True,
-        'enable_mobile_dep': False,
-        'env': {
-            'JAVA_HOME': '/tools/jdk6',
-            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'MOZ_OBJDIR': MOBILE_OBJDIR,
-            'CCACHE_DIR': '/builds/slave/ccache',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-        },
-        'package_globlist': ['embedding/android/*.apk'],
     },
     'linux': {
         'base_name': 'Linux Mobile Desktop %(branch)s',
@@ -838,7 +811,6 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['mobile_platforms']['android-r7-nothumb']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-nothumb'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 
@@ -970,7 +942,6 @@ BRANCHES['mozilla-2.1']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-2.0/nightly'
-BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7-nothumb']['mozconfig'] = 'mobile/android-nothumb/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-2.0/nightly'
