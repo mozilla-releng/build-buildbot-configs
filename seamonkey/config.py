@@ -258,6 +258,7 @@ PLATFORM_VARS = {
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
@@ -269,7 +270,8 @@ PLATFORM_VARS = {
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 # Source server support, bug 506702
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe'
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -344,10 +346,12 @@ PLATFORM_VARS = {
             'build_space': 8,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             },
             'enable_unittests': True,
             'enable_checktests': True,
