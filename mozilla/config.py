@@ -1338,7 +1338,8 @@ for branch in PROJECT_BRANCHES.keys():
 # Bug 578880, remove the following block after gcc-4.5 switch
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
-               'tracemonkey', 'tryserver', 'build-system', 'services-central'):
+               'tracemonkey', 'tryserver', 'build-system', 'services-central',
+               'devtools'):
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
