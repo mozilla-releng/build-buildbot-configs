@@ -6,7 +6,7 @@ sourceRepoPath             = 'releases/comm-1.9.1'
 sourceRepoRevision         = 'f096aee1e710'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-1.9.1'
-mozillaRepoRevision        = 'FIREFOX_3_5_17_RELEASE'
+mozillaRepoRevision        = 'FIREFOX_3_5_18_RELEASE'
 mozillaRelbranchOverride   = 'GECKO19117_2011012114_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'f6c78804ebb4'
@@ -34,15 +34,15 @@ appName                    = 'suite'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.0.12'
+version                    = '2.0.13'
 appVersion                 = version
-milestone                  = '1.9.1.17'
+milestone                  = '1.9.1.18'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_0_12'
-oldVersion                 = '2.0.11'
+baseTag                    = 'SEAMONKEY_2_0_13'
+oldVersion                 = '2.0.12'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_0_11'
+oldBaseTag                 = 'SEAMONKEY_2_0_12'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz191-seamonkey-branch-patcher2.cfg'

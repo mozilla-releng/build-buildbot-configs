@@ -11,6 +11,32 @@ PROJECT_BRANCHES = {
     'maple': {},
     'cedar': {},
     'birch': {},
+    'devtools':{
+        'enable_nightly': True,
+        # need both of these to turn off mobile completely because of key in generic config.py
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        'platforms': {
+            'linux': {},  'linuxqt': {},'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
+            'win32': {}, 'win32-debug': {},
+            'macosx64-debug': {
+                'slave_platforms': ['snowleopard'],
+            },
+            'macosx64': {
+                'slave_platforms': ['snowleopard'],
+            },
+            'macosx': {
+                'slave_platforms': [],
+            },
+            'android': {
+                    'test_only_platform': True,
+                    'tegra_android': {},
+                },
+            'win64': {
+                    'test_only_platform': True,
+                },
+        },
+    }
 }
 
 # Load up project branches' local values

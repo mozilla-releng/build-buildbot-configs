@@ -15,7 +15,7 @@ from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = ['places', 'electrolysis', 'tracemonkey', 'shadow-central',
     'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central',# 'mozilla-2.0',
     'maple', 'cedar', 'birch', 'build-system', 'jaegermonkey', 'services-central',
-    'graphics',# 'mozilla-2.1',
+    'graphics', 'devtools', # 'mozilla-2.1',
 ]
 ACTIVE_PROJECTS = PROJECTS.keys()
 ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.2', ]
