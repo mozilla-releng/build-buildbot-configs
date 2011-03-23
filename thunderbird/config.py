@@ -19,8 +19,8 @@ def key_copy(dfrom, dto, exceptions):
 
 
 branch_configs = {
-    'comm-central': {  # key is branch display name
-        'branch_name': '', # actual hg branch
+    'comm-2.0': {  # key is branch display name
+        'branch_name': 'comm-2.0', # buildbot branch
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'comm-1.9.2': {
@@ -88,19 +88,19 @@ platforms = {
 
 
 build_configs = {
-    'comm-central-trunk': {
+    'comm-2.0': {
         'aus': {
-            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-central',
+            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-2.0',
             'host': 'aus-staging.sj.mozillamessaging.com',
             'user': 'tbirdbld',
         },
-        'branch_config': 'comm-central',
+        'branch_config': 'comm-2.0',
         'builder_type': 'nightly',
         'factory': 'CCNightlyBuildFactory',
         'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
         'env': {},
         'hg_branch': 'comm-central',
-        'l10n_repo': 'l10n-central',
+        'l10n_repo': 'releases/l10n-mozilla-2.0',
         'l10n_tree': 'tb',
         'leak_threshold': {
             'linux': 970000,
@@ -108,19 +108,19 @@ build_configs = {
             'macosx64': 2500000,
             'win32': 110000,
         },
-        'milestone': 'comm-central',
-        'mozilla_central_branch':  'mozilla-central',
+        'milestone': 'comm-2.0',
+        'mozilla_central_branch':  'releases/mozilla-2.0',
         'period': 50400,
-        'tinderbox_tree': 'Thunderbird',
+        'tinderbox_tree': 'Miramar',
         'unittest_masters': [
            ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
          ],
     },
-    'comm-central-trunk-bloat': {
-        'branch_config':  'comm-central',
+    'comm-2.0-bloat': {
+        'branch_config':  'comm-2.0',
         'builder_type':  'bloat',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
+        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-2.0', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
             'DISPLAY': ':2',
@@ -132,9 +132,9 @@ build_configs = {
             'macosx': 3400000, #
             'win32': 1400000, #
         },
-        'mozilla_central_branch':  'mozilla-central',
+        'mozilla_central_branch':  'releases/mozilla-2.0',
         'period': 50400,
-        'tinderbox_tree': 'Thunderbird',
+        'tinderbox_tree': 'Miramar',
     },
     'comm-1.9.2': {
         'aus': {
@@ -218,7 +218,7 @@ for config_name in build_configs:
         config['env']['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
 
     #TODO - what is common about these configs?
-    if config_name in ['comm-central-trunk', 'comm-central-bloat', 'comm-central', 'comm-1.9.2', 'comm-1.9.2-bloat']:
+    if config_name in ['comm-2.0', 'comm-2.0-bloat', 'comm-1.9.2', 'comm-1.9.2-bloat']:
         config['env']['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
         config['env']['SYMBOL_SERVER_USER'] = 'tbirdbld'
         config['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
@@ -244,7 +244,7 @@ for config_name in build_configs:
         if config['hg_branch'] in ['comm-central']:
             config['packageTests'] = True
 
-    if config_name in ['comm-central', 'comm-1.9.2' ]:
+    if config_name in ['comm-1.9.2' ]:
         #TODO - clean this up
         if not config['platforms'].has_key('linux64'):
             config['platforms']['linux64'] = {}
@@ -264,7 +264,7 @@ for config_name in build_configs:
         if not config['builder_type'] == 'check':
             config['platforms'][platform]['profiled_build']  = False
 
-        if config_name in ['comm-central-trunk']:
+        if config_name in ['comm-2.0']:
             config['platforms'][platform]['enable_checktests'] = True
 
         if config['builder_type'] == 'bloat':
@@ -314,7 +314,7 @@ for config_name in build_configs:
         if platforms[platform].has_key('env'):
             key_copy(platforms[platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
         key_copy(build_configs[config_name]['platforms'][platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
-        if config_name not in ['comm-central-trunk-bloat', 'comm-1.9.2-unittest']: #TODO
+        if config_name not in ['comm-2.0-bloat', 'comm-1.9.2-unittest']: #TODO
             BRANCHES[config_name]['platforms'][platform]['env']['SYMBOL_SERVER_SSH_KEY'] = platforms[platform]['SYMBOL_SERVER_SSH_KEY']
 
 #TODO - make changes to avoid these last minute cleanups
@@ -323,12 +323,12 @@ for branch in ['comm-1.9.2-bloat', 'comm-1.9.2']:
     del BRANCHES[branch]['platforms']['linux64']
 
 # 32-64 universal switch for mac
-for branch in ['comm-central-trunk-bloat']:
+for branch in ['comm-2.0-bloat']:
     del BRANCHES[branch]['platforms']['macosx64']
-for branch in ['comm-central-trunk']:
+for branch in ['comm-2.0']:
     del BRANCHES[branch]['platforms']['macosx']
 
-for branch in ['comm-1.9.2', 'comm-central-trunk']:
+for branch in ['comm-1.9.2', 'comm-2.0']:
     del BRANCHES[branch]['builder_type']
 for branch in ['comm-1.9.2-unittest']:
     for platform in ['linux', 'linux64', 'macosx', 'win32']:
@@ -344,7 +344,7 @@ for branch in sorted(build_configs.keys()):
     for platform in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
 
-for branch in ['comm-central-trunk']:
+for branch in ['comm-2.0']:
   for platform in ['linux','linux64']:
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
@@ -416,6 +416,7 @@ DEFAULTS = {
       'dom-inspector':          'domi',
       'releases/mozilla-1.9.1': 'moz191',
       'releases/mozilla-1.9.2': 'moz192',
+      'releases/mozilla-2.0':   'moz20',
     }
 }
 
