@@ -28,5 +28,4 @@ buildbotcustom.misc.fastRegexes.extend([
     'xserve',
     ])
 ENABLE_RELEASES = True
-STAGING = False
 RESERVED_SLAVES = "reserved_slaves_pm01"
