@@ -25,9 +25,6 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'slave_platforms': ['snowleopard'],
             },
-            'macosx': {
-                'slave_platforms': [],
-            },
             'android': {
                     'test_only_platform': True,
                     'tegra_android': {},

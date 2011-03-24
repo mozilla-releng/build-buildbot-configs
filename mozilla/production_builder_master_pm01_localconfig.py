@@ -13,7 +13,7 @@ c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld",
 
 from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = ['places', 'electrolysis', 'tracemonkey', 'shadow-central',
-    'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central',# 'mozilla-2.0',
+    'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central', 'mozilla-2.0',
     'maple', 'cedar', 'birch', 'build-system', 'jaegermonkey', 'services-central',
     'graphics', 'devtools', # 'mozilla-2.1',
 ]
@@ -28,5 +28,4 @@ buildbotcustom.misc.fastRegexes.extend([
     'xserve',
     ])
 ENABLE_RELEASES = True
-STAGING = False
 RESERVED_SLAVES = "reserved_slaves_pm01"

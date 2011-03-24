@@ -74,7 +74,6 @@ GLOBAL_VARS = {
         'maemo5-gtk': {},
         'maemo5-qt': {},
         'android-r7': {},
-        'android-r7-nothumb': {},
         'linux': {},
         'win32': {},
         'macosx': {},
@@ -212,32 +211,6 @@ MOBILE_PLATFORM_VARS = {
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
         'unittest_masters': GLOBAL_VARS['unittest_masters'],
-    },
-    'android-r7-nothumb': {
-        'base_name': 'Android R7 Thumbless %(branch)s',
-        'mozconfig': 'mobile/android-nothumb/mobile-browser/nightly',
-        'profiled_build': False,
-        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 6,
-        'generate_symbols': True,
-        'slaves': SLAVES['linux'],
-        'platform_objdir': MOBILE_OBJDIR,
-        'enable_ccache': True,
-        'enable_mobile_dep': False,
-        'env': {
-            'JAVA_HOME': '/tools/jdk6',
-            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-            'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'MOZ_OBJDIR': MOBILE_OBJDIR,
-            'CCACHE_DIR': '/builds/slave/ccache',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-        },
-        'package_globlist': ['embedding/android/*.apk'],
     },
     'linux': {
         'base_name': 'Linux Mobile Desktop %(branch)s',
@@ -795,6 +768,7 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
@@ -804,7 +778,6 @@ BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
 ]
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
-BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['mozilla-central']['enable_codecoverage'] = True
@@ -838,7 +811,6 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['mobile_platforms']['android-r7-nothumb']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central-nothumb'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 
@@ -877,6 +849,7 @@ BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BU
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
 BRANCHES['mozilla-2.0']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-2.0']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-2.0']['start_hour'] = [3]
 BRANCHES['mozilla-2.0']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
@@ -926,6 +899,7 @@ BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['mozilla-2.1']['repo_path'] = 'releases/mozilla-2.1'
 BRANCHES['mozilla-2.1']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
 BRANCHES['mozilla-2.1']['mobile_repo_path'] = 'releases/mobile-2.0'
+BRANCHES['mozilla-2.1']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-2.1']['start_hour'] = [3]
 BRANCHES['mozilla-2.1']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
@@ -970,7 +944,6 @@ BRANCHES['mozilla-2.1']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-2.0/nightly'
-BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7-nothumb']['mozconfig'] = 'mobile/android-nothumb/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-2.0/nightly'
@@ -981,6 +954,7 @@ BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozharness_config'] =
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
+BRANCHES['mozilla-1.9.1']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
 BRANCHES['mozilla-1.9.1']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
@@ -1056,6 +1030,7 @@ BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
+BRANCHES['mozilla-1.9.2']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
 BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
 BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
@@ -1367,7 +1342,8 @@ for branch in PROJECT_BRANCHES.keys():
 # Bug 578880, remove the following block after gcc-4.5 switch
 for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
                'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
-               'tracemonkey', 'tryserver', 'build-system', 'services-central'):
+               'tracemonkey', 'tryserver', 'build-system', 'services-central',
+               'devtools'):
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'

@@ -156,56 +156,65 @@ mobile_staging = mobile + MasterConfig(
             ],
         )
 
-mozilla = MasterConfig(
+mozilla_base = MasterConfig(
         config_dir='mozilla',
-        globs=['*.py', '*.cfg', 'l10n-changesets*', 'release_templates'],
+        globs=['*config.py', '*localconfig.py', 'master_common.py',
+               'project_branches.py', '*.cfg', 'l10n-changesets*',
+               'release_templates'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('passwords.py.template', 'passwords.py'),
             ],
         )
 
-mozilla_staging_scheduler_master_sm01 = mozilla + MasterConfig(
+mozilla_production = mozilla_base + MasterConfig(
+    globs=['release-firefox-*.py'],
+    )
+
+mozilla_staging = mozilla_base + MasterConfig(
+    globs=['staging_release-firefox-*.py'],
+    local_links=[('staging_release-firefox-mozilla-%s.py' % v,
+                  'release-firefox-mozilla-%s.py' % v)
+                 for v in ['1.9.1', '1.9.2', '2.0', 'central']]
+    )
+
+mozilla_staging_scheduler_master_sm01 = mozilla_staging + MasterConfig(
         "staging-scheduler_master",
         local_links = [
             ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
-            ('release_config', 'release_config_sm01.py'),
             ]
         )
 
-mozilla_staging_builder_master_sm01 = mozilla + MasterConfig(
+mozilla_staging_builder_master_sm01 = mozilla_staging + MasterConfig(
         "staging-builder_master1",
         local_links = [
             ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
-            ('release_config_sm01.py', 'release_config.py'),
             ]
         )
 
-mozilla_staging_univeral_master_sm02 = mozilla + MasterConfig(
+mozilla_staging_univeral_master_sm02 = mozilla_staging + MasterConfig(
         "staging-builder_master2",
         local_links = [
             ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
-            ('release_config_sm02.py', 'release_config.py'),
             ]
         )
 
-mozilla_staging_univeral_master_sm03 = mozilla + MasterConfig(
+mozilla_staging_univeral_master_sm03 = mozilla_staging + MasterConfig(
         "staging-builder_master3",
         local_links = [
             ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
-            ('release_config_sm03.py', 'release_config.py'),
             ]
         )
 
-mozilla_production_scheduler_master = mozilla + MasterConfig(
+mozilla_production_scheduler_master = mozilla_production + MasterConfig(
         "pm01-scheduler",
         local_links = [
             ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
@@ -214,7 +223,7 @@ mozilla_production_scheduler_master = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
+mozilla_production_builder_master_pm01 = mozilla_production + MasterConfig(
         "pm01-builder",
         local_links = [
             ('production_builder_master_pm01_localconfig.py', 'master_localconfig.py'),
@@ -223,7 +232,7 @@ mozilla_production_builder_master_pm01 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_pm02 = mozilla_production + MasterConfig(
         "pm02-trybuilder",
         local_links = [
             ('production_try_builder_master_pm02_localconfig.py', 'master_localconfig.py'),
@@ -232,7 +241,7 @@ mozilla_production_try_builder_master_pm02 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm01 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm01 = mozilla_production + MasterConfig(
         "bm01-trybuilder",
         local_links = [
             ('production_try_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
@@ -241,7 +250,7 @@ mozilla_production_try_builder_master_bm01 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm02 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm02 = mozilla_production + MasterConfig(
         "bm02-trybuilder",
         local_links = [
             ('production_try_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
@@ -250,7 +259,7 @@ mozilla_production_try_builder_master_bm02 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm03 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm03 = mozilla_production + MasterConfig(
         "bm03-trybuilder",
         local_links = [
             ('production_try_builder_master_bm03_localconfig.py', 'master_localconfig.py'),
@@ -259,7 +268,7 @@ mozilla_production_try_builder_master_bm03 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm04 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm04 = mozilla_base + MasterConfig(
         "bm04-trybuilder",
         local_links = [
             ('production_try_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
@@ -268,7 +277,7 @@ mozilla_production_try_builder_master_bm04 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm05 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm05 = mozilla_base + MasterConfig(
         "bm05-trybuilder",
         local_links = [
             ('production_try_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
@@ -277,7 +286,7 @@ mozilla_production_try_builder_master_bm05 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_try_builder_master_bm06 = mozilla + MasterConfig(
+mozilla_production_try_builder_master_bm06 = mozilla_base + MasterConfig(
         "bm06-trybuilder",
         local_links = [
             ('production_try_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
@@ -286,7 +295,7 @@ mozilla_production_try_builder_master_bm06 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
+mozilla_production_builder_master_pm03 = mozilla_production + MasterConfig(
         "pm03-builder",
         local_links = [
             ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
@@ -295,7 +304,7 @@ mozilla_production_builder_master_pm03 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_bm01 = mozilla + MasterConfig(
+mozilla_production_builder_master_bm01 = mozilla_production + MasterConfig(
         "bm01-builder",
         local_links = [
             ('production_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
@@ -304,7 +313,7 @@ mozilla_production_builder_master_bm01 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_bm02 = mozilla + MasterConfig(
+mozilla_production_builder_master_bm02 = mozilla_production + MasterConfig(
         "bm02-builder",
         local_links = [
             ('production_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
@@ -313,7 +322,7 @@ mozilla_production_builder_master_bm02 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_bm04 = mozilla + MasterConfig(
+mozilla_production_builder_master_bm04 = mozilla_base + MasterConfig(
         "bm04-builder",
         local_links = [
             ('production_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
@@ -322,7 +331,7 @@ mozilla_production_builder_master_bm04 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_bm05 = mozilla + MasterConfig(
+mozilla_production_builder_master_bm05 = mozilla_base + MasterConfig(
         "bm05-builder",
         local_links = [
             ('production_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
@@ -331,7 +340,7 @@ mozilla_production_builder_master_bm05 = mozilla + MasterConfig(
             ]
         )
 
-mozilla_production_builder_master_bm06 = mozilla + MasterConfig(
+mozilla_production_builder_master_bm06 = mozilla_base + MasterConfig(
         "bm06-builder",
         local_links = [
             ('production_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
@@ -475,7 +484,7 @@ mozilla_production_tests_master_bm06 = mozilla_tests + MasterConfig(
             ]
         )
 
-mozilla_preproduction_scheduler_master = mozilla + MasterConfig(
+mozilla_preproduction_scheduler_master = mozilla_production + MasterConfig(
         "preprod-scheduler_master",
         local_links = [
             ('preproduction_scheduler_master_localconfig.py', 'master_localconfig.py'),
@@ -484,10 +493,19 @@ mozilla_preproduction_scheduler_master = mozilla + MasterConfig(
             ]
         )
 
-mozilla_preproduction_builder_master = mozilla + MasterConfig(
+mozilla_preproduction_builder_master = mozilla_production + MasterConfig(
         "preprod-builder",
         local_links = [
             ('preproduction_builder_master_localconfig.py', 'master_localconfig.py'),
+            ('preproduction_config.py', 'localconfig.py'),
+            ('builder_master.cfg', 'master.cfg'),
+            ]
+        )
+
+mozilla_preproduction_release_master = mozilla_production + MasterConfig(
+        "preprod-release-master",
+        local_links = [
+            ('preproduction_release_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
@@ -542,6 +560,7 @@ masters_080 = [
         # Preproduction masters
         mozilla_preproduction_scheduler_master,
         mozilla_preproduction_builder_master,
+        mozilla_preproduction_release_master,
     ]
 
 if __name__ == "__main__":
@@ -566,7 +585,8 @@ if __name__ == "__main__":
 
     if options.action == "list":
         for m in master_list:
-            print m.name
+            if m.name != 'preprod-release-master':
+                print m.name
         parser.exit()
 
     if len(args) < 1:
