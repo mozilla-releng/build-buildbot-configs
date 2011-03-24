@@ -4,6 +4,7 @@ PYTHON ?= /tools/python/bin/python
 PIP_PACKAGES_FILE ?= master-pip.txt
 HG ?= hg
 HG_HOST = http://hg.mozilla.org
+HG_DIR = build
 MASTER_NAME = $(error MASTER_NAME must be defined (see setup-master.py -8 -l for a list))
 DATABASE = tm-b01-master01.mozilla.org/buildbot
 MYSQL_CONFIG = $(HOME)/.$(MASTER_NAME)_update_from_files.conf
@@ -33,11 +34,11 @@ deps:
 # This is generally true when using virtualenvs.
 install-buildbot: SITE_PACKAGES = $(BASEDIR)/lib/$(shell ls $(BASEDIR)/lib/)/site-packages
 install-buildbot:
-	$(HG) clone -b production-0.8 $(HG_HOST)/build/buildbot $(BASEDIR)/buildbot
+	$(HG) clone -b production-0.8 $(HG_HOST)/$(HG_DIR)/buildbot $(BASEDIR)/buildbot
 	(cd $(BASEDIR)/buildbot/master; $(VIRTUALENV_PYTHON) setup.py develop install)
-	$(HG) clone -b production-0.8 $(HG_HOST)/build/buildbotcustom $(BASEDIR)/buildbotcustom
-	$(HG) clone -b production $(HG_HOST)/build/buildbot-configs $(BASEDIR)/buildbot-configs
-	$(HG) clone $(HG_HOST)/build/tools $(BASEDIR)/tools
+	$(HG) clone -b production-0.8 $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
+	$(HG) clone -b production $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
+	$(HG) clone $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
 	# Get buildbotcustom and the build/tools library into PYTHONPATH
 	ln -s $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
 	echo "$(BASEDIR)/tools/lib/python" > $(SITE_PACKAGES)/build-tools-lib.pth
