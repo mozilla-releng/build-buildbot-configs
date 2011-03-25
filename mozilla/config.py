@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import project_branches
 reload(project_branches)
-from project_branches import PROJECT_BRANCHES
+from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 import localconfig
 reload(localconfig)
@@ -656,7 +656,7 @@ for k, v in localconfig.PROJECTS.items():
         PROJECTS[k][k1] = v1
 
 
-# All branches that are to be built MUST be listed here, along with their
+# All branches (not in project_branches) that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
@@ -684,14 +684,6 @@ BRANCHES = {
         },
         'mobile_platforms': {},
     },
-    'tracemonkey': {
-    },
-    'places': {
-    },
-    'electrolysis': {
-    },
-    'jaegermonkey': {
-    },
     'tryserver': {
         'mobile_platforms': {
             'maemo5-gtk': {},
@@ -702,8 +694,8 @@ BRANCHES = {
 }
 
 # Copy project branches into BRANCHES keys
-for branch, branch_config in PROJECT_BRANCHES.items():
-    BRANCHES[branch] = deepcopy(branch_config)
+for branch in ACTIVE_PROJECT_BRANCHES:
+    BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -711,10 +703,9 @@ for branch in BRANCHES.keys():
         # Don't override platforms if it's set
         if key == 'platforms' and 'platforms' in BRANCHES[branch]:
             # Take out any talos-only platforms from 'platforms' in project_branches
-            if branch in PROJECT_BRANCHES.keys():
+            if branch in ACTIVE_PROJECT_BRANCHES:
                 for platform in BRANCHES[branch]['platforms'].keys():
-                    is_test = BRANCHES[branch]['platforms'][platform].get('test_only_platform', False)
-                    if platform not in PLATFORM_VARS.keys() and is_test:
+                    if BRANCHES[branch]['platforms'][platform].get('test_only_platform', False):
                         del BRANCHES[branch]['platforms'][platform]
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
@@ -1097,147 +1088,6 @@ BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
 BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = False
 
-######## tracemonkey
-BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
-BRANCHES['tracemonkey']['start_hour'] = [3]
-BRANCHES['tracemonkey']['start_minute'] = [32]
-BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
-BRANCHES['tracemonkey']['platforms']['linuxqt']['build_space'] = 7
-BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
-# Disable XULRunner / SDK builds
-BRANCHES['tracemonkey']['enable_xulrunner'] = False
-BRANCHES['tracemonkey']['enable_mac_a11y'] = True
-BRANCHES['tracemonkey']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['tracemonkey']['enable_l10n'] = False
-BRANCHES['tracemonkey']['enable_l10n_onchange'] = False
-BRANCHES['tracemonkey']['l10nNightlyUpdate'] = False
-BRANCHES['tracemonkey']['l10nDatedDirs'] = False
-BRANCHES['tracemonkey']['platforms']['linux-debug']['enable_valgrind_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['linux64-debug']['enable_valgrind_checktests'] = True
-BRANCHES['tracemonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-tracemonkey'
-BRANCHES['tracemonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-tracemonkey'
-BRANCHES['tracemonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-tracemonkey'
-BRANCHES['tracemonkey']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-gtk'
-BRANCHES['tracemonkey']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey-maemo5-qt'
-BRANCHES['tracemonkey']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'tracemonkey'
-BRANCHES['tracemonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['tracemonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
-BRANCHES['tracemonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
-BRANCHES['tracemonkey']['create_snippet'] = True
-BRANCHES['tracemonkey']['create_partial'] = True
-BRANCHES['tracemonkey']['create_partial_l10n'] = False
-BRANCHES['tracemonkey']['aus2_user'] = 'ffxbld'
-BRANCHES['tracemonkey']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['tracemonkey']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
-BRANCHES['tracemonkey']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/tracemonkey'
-
-######## places
-BRANCHES['places']['repo_path'] = 'projects/places'
-BRANCHES['places']['start_hour'] = [4]
-BRANCHES['places']['start_minute'] = [2]
-BRANCHES['places']['create_snippet'] = False
-BRANCHES['places']['enable_nightly'] = False
-BRANCHES['places']['enable_mobile_nightly'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['places']['enable_xulrunner'] = False
-BRANCHES['places']['enable_mac_a11y'] = True
-BRANCHES['places']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['places']['enable_l10n'] = False
-BRANCHES['places']['enable_l10n_onchange'] = False
-# need this or the master.cfg will bail
-BRANCHES['places']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['places']['platforms']['linux']['update_platform'] = 'fake'
-BRANCHES['places']['platforms']['linuxqt']['update_platform'] = 'fake'
-BRANCHES['places']['platforms']['linux64']['update_platform'] = 'fake'
-BRANCHES['places']['platforms']['win32']['update_platform'] = 'fake'
-BRANCHES['places']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
-BRANCHES['places']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-places'
-BRANCHES['places']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-places'
-BRANCHES['places']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'places'
-BRANCHES['places']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-places'
-BRANCHES['places']['platforms']['linux64']['build_space'] = 6
-BRANCHES['places']['platforms']['linux']['build_space'] = 6
-BRANCHES['places']['platforms']['linuxqt']['build_space'] = 6
-BRANCHES['places']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['places']['mobile_platforms']['macosx']['l10n_chunks'] = None
-BRANCHES['places']['mobile_platforms']['win32']['l10n_chunks'] = None
-
-######## electrolysis
-BRANCHES['electrolysis']['repo_path'] = 'projects/electrolysis'
-BRANCHES['electrolysis']['start_hour'] = [4]
-BRANCHES['electrolysis']['start_minute'] = [2]
-BRANCHES['electrolysis']['enable_nightly'] = False
-BRANCHES['electrolysis']['enable_mobile_nightly'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['electrolysis']['enable_xulrunner'] = False
-BRANCHES['electrolysis']['platforms']['win32']['profiled_build'] = False
-BRANCHES['electrolysis']['enable_mac_a11y'] = True
-BRANCHES['electrolysis']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['electrolysis']['enable_l10n'] = False
-BRANCHES['electrolysis']['enable_l10n_onchange'] = False
-BRANCHES['electrolysis']['l10nNightlyUpdate'] = False
-BRANCHES['electrolysis']['l10nDatedDirs'] = False
-BRANCHES['electrolysis']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-electrolysis'
-BRANCHES['electrolysis']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-electrolysis'
-BRANCHES['electrolysis']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-electrolysis'
-BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-gtk'
-BRANCHES['electrolysis']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-e10s/nightly'
-BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis-maemo5-qt'
-BRANCHES['electrolysis']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-e10s/nightly'
-BRANCHES['electrolysis']['mobile_platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-e10s/nightly'
-BRANCHES['electrolysis']['mobile_platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-e10s/nightly'
-BRANCHES['electrolysis']['mobile_platforms']['macosx']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'electrolysis'
-BRANCHES['electrolysis']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-e10s/nightly'
-BRANCHES['electrolysis']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['electrolysis']['mobile_platforms']['macosx']['l10n_chunks'] = None
-BRANCHES['electrolysis']['mobile_platforms']['win32']['l10n_chunks'] = None
-BRANCHES['electrolysis']['create_snippet'] = True
-BRANCHES['electrolysis']['create_partial'] = True
-BRANCHES['electrolysis']['create_partial_l10n'] = False
-BRANCHES['electrolysis']['aus2_user'] = 'ffxbld'
-BRANCHES['electrolysis']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['electrolysis']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
-BRANCHES['electrolysis']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/electrolysis'
-
-######## jaegermonkey
-BRANCHES['jaegermonkey']['repo_path'] = 'projects/jaegermonkey'
-BRANCHES['jaegermonkey']['start_hour'] = [4]
-BRANCHES['jaegermonkey']['start_minute'] = [2]
-BRANCHES['jaegermonkey']['enable_nightly'] = False
-BRANCHES['jaegermonkey']['enable_mobile_nightly'] = False
-BRANCHES['jaegermonkey']['create_snippet'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['jaegermonkey']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['jaegermonkey']['platforms']['linux64']['enable_checktests'] = True
-BRANCHES['jaegermonkey']['enable_mac_a11y'] = True
-BRANCHES['jaegermonkey']['enable_shark'] = False
-# L10n configuration
-BRANCHES['jaegermonkey']['enable_l10n'] = False
-BRANCHES['jaegermonkey']['l10nNightlyUpdate'] = False
-BRANCHES['jaegermonkey']['l10nDatedDirs'] = False
-# need this or the master.cfg will bail
-BRANCHES['jaegermonkey']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['jaegermonkey']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
-BRANCHES['jaegermonkey']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-jaegermonkey'
-BRANCHES['jaegermonkey']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-jaegermonkey'
-BRANCHES['jaegermonkey']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'jaegermonkey'
-BRANCHES['jaegermonkey']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-jaegermonkey'
-BRANCHES['jaegermonkey']['mobile_platforms']['linux']['l10n_chunks'] = None
-BRANCHES['jaegermonkey']['mobile_platforms']['macosx']['l10n_chunks'] = None
-BRANCHES['jaegermonkey']['mobile_platforms']['win32']['l10n_chunks'] = None
-
 ######## tryserver
 # Try-specific configs
 BRANCHES['tryserver']['stage_username'] = 'trybld'
@@ -1299,51 +1149,63 @@ BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = Fals
 BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
 ######## generic branch configs
-for branch in PROJECT_BRANCHES.keys():
-    # we need to check for an overriden repo path
-    if 'repo_path' not in BRANCHES[branch].keys():
-        BRANCHES[branch]['repo_path'] = 'projects/' + branch
-    BRANCHES[branch]['enable_nightly'] =  PROJECT_BRANCHES[branch].get('enable_nightly', False)
-    BRANCHES[branch]['enable_mobile_nightly'] = PROJECT_BRANCHES[branch].get('enable_mobile_nightly', False)
-    BRANCHES[branch]['enable_mobile'] = PROJECT_BRANCHES[branch].get('enable_mobile', True)
+for branch in ACTIVE_PROJECT_BRANCHES:
+    branchConfig = PROJECT_BRANCHES[branch]
+    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
+    BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_mobile_nightly'] = branchConfig.get('enable_mobile_nightly', False)
+    BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     if BRANCHES[branch]['enable_mobile']:
+        if branchConfig.get('mobile_platforms'):
+            for platform, platform_config in branchConfig['mobile_platforms'].items():
+                if platform in ('maemo5-gtk', 'maemo5-qt'):
+                    BRANCHES[branch]['mobile_platforms'][platform]['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch + '-' + platform
+                else:
+                    BRANCHES[branch]['mobile_platforms'][platform]['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+                for key, value in platform_config.items():
+                    BRANCHES[branch]['mobile_platforms'][platform][key] = deepcopy(value)
         BRANCHES[branch]['mobile_platforms']['linux']['l10n_chunks'] = None
         BRANCHES[branch]['mobile_platforms']['macosx']['l10n_chunks'] = None
         BRANCHES[branch]['mobile_platforms']['win32']['l10n_chunks'] = None
-    BRANCHES[branch]['start_hour'] = [4]
-    BRANCHES[branch]['start_minute'] = [2]
-    BRANCHES[branch]['create_snippet'] = PROJECT_BRANCHES[branch].get('create_snippet', False)
+    BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
+    BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # Disable XULRunner / SDK builds
-    BRANCHES[branch]['enable_xulrunner'] = PROJECT_BRANCHES[branch].get('enable_xulrunner', False)
+    BRANCHES[branch]['enable_xulrunner'] = branchConfig.get('enable_xulrunner', False)
     # Enable unit tests
     BRANCHES[branch]['platforms']['linux64']['enable_checktests'] = True
-    BRANCHES[branch]['enable_mac_a11y'] = PROJECT_BRANCHES[branch].get('enable_mac_a11y', True)
-    BRANCHES[branch]['enable_shark'] = PROJECT_BRANCHES[branch].get('enable_shark', False)
+    BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
+    BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)
+    BRANCHES[branch]['enable_shark'] = branchConfig.get('enable_shark', False)
     # L10n configuration is not set up for project_branches
-    BRANCHES[branch]['enable_l10n'] = False
-    BRANCHES[branch]['l10nNightlyUpdate'] = False
-    BRANCHES[branch]['l10nDatedDirs'] = False
-    # need this or the master.cfg will bail
-    BRANCHES[branch]['aus2_base_upload_dir'] = 'fake'
+    BRANCHES[branch]['enable_l10n'] = branchConfig.get('enable_l10n', False)
+    BRANCHES[branch]['l10nNightlyUpdate'] = branchConfig.get('l10nNightlyUpdate', False)
+    BRANCHES[branch]['l10nDatedDirs'] = branchConfig.get('l10nDatedDirs', False)
+    # nightly updates
+    BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
+    BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
+    BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
+    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', 'ffxbld')
+    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', 'ffxbld_dsa')
+    BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
+    BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Firefox/' + branch)
     BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
     BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
-    # point to the generic project branch mozconfigs
+    # point to the mozconfigs, default is generic
     for platform in BRANCHES[branch]['platforms']:
         if platform.endswith('debug'):
-            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/generic/debug'
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
         elif platform.endswith('qt'):
-            BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/generic/qt'
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'
         else:
-            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/generic/nightly'
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
 # Bug 578880, remove the following block after gcc-4.5 switch
-for branch in ('birch', 'cedar', 'electrolysis', 'jaegermonkey', 'maple',
-               'mozilla-2.0', 'mozilla-central', 'places', 'shadow-central',
-               'tracemonkey', 'tryserver', 'build-system', 'services-central',
-               'devtools'):
+branches = ['mozilla-2.0', 'mozilla-central', 'shadow-central', 'tryserver']
+branches.extend(ACTIVE_PROJECT_BRANCHES)
+for branch in branches:
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
