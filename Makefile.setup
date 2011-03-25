@@ -14,8 +14,11 @@ PIP = $(BASEDIR)/bin/pip
 BUILDBOT = $(BASEDIR)/bin/buildbot
 USER = cltbld
 HOME = /home/$(USER)
+BUILDBOT_BRANCH = production-0.8
+BUILDBOTCUSTOM_BRANCH = production-0.8
+BUILDBOTCONFIGS_BRANCH = production
 
-all: virtualenv deps install-buildbot master other-files done
+all: virtualenv deps install-buildbot master master-makefile other-files done
 
 done:
 	@echo
@@ -34,10 +37,10 @@ deps:
 # This is generally true when using virtualenvs.
 install-buildbot: SITE_PACKAGES = $(BASEDIR)/lib/$(shell ls $(BASEDIR)/lib/)/site-packages
 install-buildbot:
-	$(HG) clone -b production-0.8 $(HG_HOST)/$(HG_DIR)/buildbot $(BASEDIR)/buildbot
+	$(HG) clone -b $(BUILDBOT_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot $(BASEDIR)/buildbot
 	(cd $(BASEDIR)/buildbot/master; $(VIRTUALENV_PYTHON) setup.py develop install)
-	$(HG) clone -b production-0.8 $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
-	$(HG) clone -b production $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
+	$(HG) clone -b $(BUILDBOTCUSTOM_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
+	$(HG) clone -b $(BUILDBOTCONFIGS_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
 	$(HG) clone $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
 	# Get buildbotcustom and the build/tools library into PYTHONPATH
 	ln -s $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
@@ -46,8 +49,10 @@ install-buildbot:
 master:
 	(cd $(BASEDIR)/buildbot-configs; $(VIRTUALENV_PYTHON) setup-master.py -8 -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME))
 
-other-files:
+master-makefile:
 	cp $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
+
+other-files:
 	echo "[DEFAULT]" > $(MYSQL_CONFIG)
 	echo "database = mysql://buildbot:password@$(DATABASE)" >> $(MYSQL_CONFIG)
 	echo "master = http://this-master:port" >> $(MYSQL_CONFIG)
