@@ -306,7 +306,7 @@ for platform in l10nPlatforms:
         buildNumber=buildNumber,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
-        platform=platform,
+        #platform=platform,
     )
 
     builders.append({
