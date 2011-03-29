@@ -272,6 +272,11 @@ MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'macosx-i686': {},
     'win32-i686': {},
 }
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['maemo4']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['maemo5-gtk']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['linux-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['win32-i686']['DISABLED'] = True
+MOBILE_BRANCHES['mobile-1.9.2']['platforms']['macosx-i686']['DISABLED'] = True
 MOBILE_BRANCHES['mobile-1.9.2']['l10n_platforms'] = {}
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['maemo4']['mozconfig'] = 'mobile/maemo4/mobile-1.1/nightly'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms']['maemo4']['sb_target'] = 'CHINOOK-ARMEL-2007'

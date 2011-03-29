@@ -85,19 +85,6 @@ BRANCHES = {
                 nightly_talos=True, dep_talos=False),
         },
     },
-    'mozilla-1.9.2': {
-        'tinderbox_tree': 'MobileTest',
-        'graph_server': 'graphs-stage.mozilla.org',
-        'tree_stable_timer': 0,
-        'platforms': {
-            'n900-gtk': generate_platform(default_n900,
-                build_branch='mozilla-1.9.2-maemo5-gtk',
-                talos_branch='mobile-1.9.2',
-                nightly_multi=True,
-                nightly_unit=True, dep_unit=True,
-                nightly_talos=True, dep_talos=True),
-        },
-    },
 #    'tryserver': {
 #        'tinderbox_tree': 'MobileTest',
 #        'graph_server': 'graphs-stage.mozilla.org',
