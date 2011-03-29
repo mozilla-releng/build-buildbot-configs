@@ -11,12 +11,10 @@ c['buildbotURL'] = 'http://production-master01.build.mozilla.org:8010/'
 from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
 
-from config import BRANCHES, SLAVES, PROJECTS
-ACTIVE_BRANCHES = ['places', 'electrolysis', 'tracemonkey', 'shadow-central',
-    'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central', 'mozilla-2.0',
-    'maple', 'cedar', 'birch', 'build-system', 'jaegermonkey', 'services-central',
-    'graphics', 'devtools', # 'mozilla-2.1',
-]
+from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
+ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central', 
+        'mozilla-2.0', # 'mozilla-2.1',
+] + ACTIVE_PROJECT_BRANCHES
 ACTIVE_PROJECTS = PROJECTS.keys()
 ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.1', 'mozilla-2.0', ]
 

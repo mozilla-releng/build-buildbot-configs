@@ -120,6 +120,9 @@ releaseConfig['majorFakeMacInfoTxt'] = True
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'
+releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
+                                          'opensolaris-sparc',
+                                          'opensolaris-i386')
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = True

@@ -2,7 +2,7 @@ from copy import deepcopy
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,51) + range(53,62) ]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,4) + range(5,68)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,51) + range(52,61)]
@@ -13,7 +13,7 @@ WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)] + ['w32-ix-slave
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,24)] + ['moz2-linux-slave51']
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,6)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,20)] + ['moz2-darwin9-slave68']
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,11) + range(27,37) ]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,30)] + ['moz2-win32-slave60']
 TRY_SLAVES = {
     'linux':       TRY_LINUX,
