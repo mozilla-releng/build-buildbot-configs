@@ -48,6 +48,12 @@ class MasterConfig:
                 os.unlink(dst)
             shutil.copy(os.path.join(self.config_dir, src), dst)
 
+        # Remove leftover files
+        for f in "Makefile.sample", "master.cfg.sample":
+            dst = os.path.join(master_dir, f)
+            if os.path.exists(dst):
+                os.unlink(dst)
+
 mozilla2_staging = MasterConfig(
         config_dir='mozilla2-staging',
         globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
