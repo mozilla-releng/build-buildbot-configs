@@ -26,7 +26,7 @@ TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,27)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,37)]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,37)] + \
                  ['win32-slave%02i' % x for x in range(50,60)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(22,26)] + \
