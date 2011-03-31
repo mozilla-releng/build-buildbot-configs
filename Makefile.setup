@@ -31,7 +31,7 @@ virtualenv:
 	$(VIRTUALENV) --distribute --no-site-packages -p $(PYTHON) $(BASEDIR)
 
 deps:
-	$(PIP) install -r $(PIP_PACKAGES_FILE)
+	$(PIP) install $(PIP_FLAGS) -r $(PIP_PACKAGES_FILE)
 	
 # HACK ALERT: This only works when there's only one python version in "lib".
 # This is generally true when using virtualenvs.
@@ -60,7 +60,7 @@ other-files:
 
 cron:
 	echo "MAILTO=release@mozilla.com" > $(CRONTAB)
-	echo "@hourly cltbld (source $(HOME)/.bash_profile && $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/watch_twistd.log -t .$(MASTER_NAME)-last-time.txt -n $(MASTER_NAME) -f cltbld@`hostname --fqdn` -e release@mozilla.com $(BASEDIR)/master)" >> $(CRONTAB)
+	echo "@hourly cltbld (source $(HOME)/.bash_profile && $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/watch_twistd_log.py -t .$(MASTER_NAME)-last-time.txt -n $(MASTER_NAME) -f cltbld@`hostname --fqdn` -e release@mozilla.com $(BASEDIR)/master)" >> $(CRONTAB)
 	echo "15 * * * * cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_cleanup 2>/dev/null && (source $(HOME)/.bash_profile && nice -n 19 $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/master_cleanup.py -t4 $(BASEDIR)/master ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_cleanup) >> cleanup.log 2>&1" >> $(CRONTAB)
 	echo "*/10 * * * *	cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_bbdb 2>/dev/null && (source $(HOME)/.bash_profile && cd $(BASEDIR)/master; time nice $(VIRTUALENV_PYTHON) $(BASEDIR)/buildbotcustom/bin/update_from_files.py -c $(MYSQL_CONFIG) . ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_bbdb ) >> update.log 2>&1" >> $(CRONTAB)
 	chmod 644 $(CRONTAB)

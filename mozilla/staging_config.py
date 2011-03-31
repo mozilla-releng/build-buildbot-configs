@@ -5,9 +5,11 @@ WIN32_VMS      = ['win32-slave%02i' % x for x in range(1,61)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,26)] + ['w32-ix-slave%02i' % x for x in range(1,43)]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['linux-ix-slave%02i' % x for x in range(1,43)]
+LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)]
+LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,22)]
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     ['moz2-linux64-slave%02i' % x for x in range(1,13)],
+    'linux64':     LINUX64_VMS + LINUX64_IXS,
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
     'macosx64': MAC_SNOW_MINIS,
@@ -16,6 +18,7 @@ SLAVES = {
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
 TRY_LINUX_IXS  = []
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
+TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,27)]
 TRY_WIN32      = ['try-w32-slave%02i' % x for x in range (1,32)]
@@ -23,7 +26,7 @@ TRY_WIN32_IXS  = []
 
 TRY_SLAVES = SLAVES
 TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
-TRY_SLAVES['linux64'] += TRY_LINUX64
+TRY_SLAVES['linux64'] += TRY_LINUX64 + TRY_LINUX64_IXS
 TRY_SLAVES['macosx'] += TRY_MAC
 TRY_SLAVES['macosx64'] += TRY_MAC64
 TRY_SLAVES['win32'] += TRY_WIN32 + TRY_WIN32_IXS
