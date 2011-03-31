@@ -4,6 +4,7 @@ releaseConfig = {}
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
+releaseConfig['messagePrefix']       = '[release] '
 
 # Basic product configuration
 #  Names for the product/files
@@ -78,6 +79,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'moz192-branch-patcher2.cfg'
+releaseConfig['commitPatcherConfig'] = True
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R11_1'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage-old.mozilla.org'
@@ -104,7 +106,7 @@ releaseConfig['majorUpdateToVersion']   = '4.0rc2'
 releaseConfig['majorUpdateAppVersion']  = '4.0'
 releaseConfig['majorUpdateBuildNumber'] = 3
 releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc2'
-releaseConfig['majorUpdateReleaseNotesUrl']  = 'http://www.mozilla.com/%locale%/firefox/4.0/details/'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/4.0/details/'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
@@ -116,3 +118,9 @@ releaseConfig['majorFakeMacInfoTxt'] = True
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
+releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
+                                          'opensolaris-sparc',
+                                          'opensolaris-i386')
+
+# Misc configuration
+releaseConfig['enable_repo_setup'] = False

@@ -30,13 +30,15 @@ TRY_SLAVES['win32'] += TRY_WIN32 + TRY_WIN32_IXS
 
 
 GLOBAL_VARS = {
-    'config_repo_path': 'build/buildbot-configs',
+    'config_repo_path': 'users/prepr-ffxbld/buildbot-configs',
+    'buildbotcustom_repo_path': 'users/prepr-ffxbld/buildbotcustom',
+    'compare_locales_repo_path': 'users/prepr-ffxbld/compare-locales',
+    'build_tools_repo_path': 'users/prepr-ffxbld/tools',#TODO
     'stage_server': 'preproduction-stage.build.mozilla.org',
     'aus2_host': 'preproduction-stage.build.mozilla.org',
     'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',#TODO
-    'build_tools_repo_path': 'users/prepr-ffxbld/tools',#TODO
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php', #TODO
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,

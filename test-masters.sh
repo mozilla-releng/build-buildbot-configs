@@ -18,7 +18,11 @@
 #   Chris AtLee <catlee@mozilla.com>
 #
 set -e
-master_dir=master_dir
+if [ -n "$TEMP" ]; then
+    master_dir=$TEMP/master_dir
+else
+    master_dir=master_dir
+fi
 # $extra_args determines if you will iterate through the 0.8.x
 # based masters or the 0.7.x ones
 if [ "$1" = "-8" ]; then

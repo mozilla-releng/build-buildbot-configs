@@ -130,7 +130,7 @@ gloConfig = {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
         'relbranchPrefix'            : 'COMM',
-        'sourceRepoName'             : 'comm-central-trunk', # buildbot branch name
+        'sourceRepoName'             : 'comm-2.0', # buildbot branch name
         'sourceRepoPath'             : 'comm-central',
         'sourceRepoRevision'         : '6fbe19ade0d5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH

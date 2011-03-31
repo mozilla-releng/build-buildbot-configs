@@ -4,6 +4,7 @@ releaseConfig = {}
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
+releaseConfig['messagePrefix']       = '[release] '
 
 # Basic product configuration
 #  Names for the product/files
@@ -77,6 +78,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
+releaseConfig['commitPatcherConfig'] = True
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R13'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage-old.mozilla.org'
@@ -103,3 +105,9 @@ releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
+releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
+                                          'opensolaris-sparc',
+                                          'opensolaris-i386')
+
+# Misc configuration
+releaseConfig['enable_repo_setup'] = False
