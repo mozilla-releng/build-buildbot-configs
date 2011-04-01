@@ -456,7 +456,6 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            'test_pretty_names': True,
         },
         'win32': {
             'base_name': 'WINNT 5.2 %(branch)s',
@@ -886,8 +885,6 @@ BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
-# TODO: Remove this when bug 525438 lands on mozilla-2.0
-BRANCHES['mozilla-2.0']['platforms']['macosx64']['test_pretty_names'] = False
 
 ######## mozilla-2.1
 BRANCHES['mozilla-2.1']['repo_path'] = 'releases/mozilla-2.1'
