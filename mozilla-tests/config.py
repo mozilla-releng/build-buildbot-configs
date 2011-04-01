@@ -338,13 +338,13 @@ PLATFORM_UNITTEST_VARS = {
                         },
                     )),
                     ('reftest-1', (
-                        {'suite': 'reftest-sanity',
+                        {'suite': 'reftest',
                          'totalChunks': 2,
                          'thisChunk': 1,
                         },
                     )),
                     ('reftest-2', (
-                        {'suite': 'reftest-sanity',
+                        {'suite': 'reftest',
                          'totalChunks': 2,
                          'thisChunk': 2,
                         },
@@ -493,17 +493,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['mozilla-central']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-# Disabling win7 until hung slave issue is fixed
-#BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
@@ -748,17 +737,6 @@ BRANCHES['tryserver']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_
 BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
 BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
-BRANCHES['tryserver']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-# Disabling win7 until hung slave issue is fixed
-#BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## generic branch variables for project branches
 for branch in ACTIVE_PROJECT_BRANCHES:
