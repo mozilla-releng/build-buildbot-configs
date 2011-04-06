@@ -97,7 +97,7 @@ releaseConfig['verifyConfigs']       = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = True
+releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration

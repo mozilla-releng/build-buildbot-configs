@@ -99,7 +99,7 @@ releaseConfig['verifyConfigs']       = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
+releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
