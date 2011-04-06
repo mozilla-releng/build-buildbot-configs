@@ -1,7 +1,7 @@
 hgUsername                 = 'seabld'
 hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
-sourceRepoName             = 'comm-central-trunk' # buildbot branch name
+sourceRepoName             = 'comm-2.0' # buildbot branch name
 sourceRepoPath             = 'comm-central'
 sourceRepoRevision         = '4af4a784e99c'
 relbranchOverride          = ''
