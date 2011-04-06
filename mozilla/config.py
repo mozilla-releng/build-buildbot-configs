@@ -69,7 +69,6 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
     },
-    'mobile_repo_path': 'mobile-browser',
     'mobile_platforms': {
         'maemo5-gtk': {},
         'maemo5-qt': {},
