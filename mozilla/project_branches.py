@@ -140,6 +140,9 @@ PROJECT_BRANCHES = {
     },
     'jaegermonkey': {
         'enable_talos': False,
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
     },
 }
 
