@@ -3,6 +3,7 @@ releaseConfig = {}
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['AVVendorsRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
 
