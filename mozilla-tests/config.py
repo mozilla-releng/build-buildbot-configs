@@ -472,6 +472,7 @@ for k, v in localconfig.PROJECTS.items():
 ######## mozilla-central
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
+BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
@@ -604,6 +605,7 @@ BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 ######## mozilla-2.1
 BRANCHES['mozilla-2.1']['branch_name'] = "Mobile2.0"
 BRANCHES['mozilla-2.1']['mobile_branch_name'] = "Mobile2.0"
+BRANCHES['mozilla-2.1']['mobile_talos_branch'] = "mobile-2.0"
 BRANCHES['mozilla-2.1']['build_branch'] = "2.1"
 BRANCHES['mozilla-2.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-2.1']['fetch_symbols'] = True
