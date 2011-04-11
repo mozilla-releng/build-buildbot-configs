@@ -75,6 +75,13 @@ PROJECT_BRANCHES = {
                 'build_space': 6,
             },
         },
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        }
     },
     'services-central': {
         'repo_path': 'services/services-central',
@@ -121,7 +128,15 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
     'birch': {},
-    'cedar': {},
+    'cedar': {
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        }
+    },
     'holly': {},
     'larch': {},
     'maple': {},
