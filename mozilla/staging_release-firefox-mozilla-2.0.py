@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/mozilla-2.0',
         'path': 'users/stage-ffxbld/mozilla-2.0',
         'revision': '6be9e31d01b4',
-        'relbranch': 'GECKO20_2011031715_RELBRANCH,
+        'relbranch': 'GECKO20_2011031715_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
