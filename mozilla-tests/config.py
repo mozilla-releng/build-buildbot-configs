@@ -59,6 +59,7 @@ SUITES = {
 BRANCHES = {
     'mozilla-central': {},
     'shadow-central': {},
+    'mozilla-beta': {},
     'mozilla-2.0': {},
     'mozilla-2.1': {},
     'mozilla-1.9.2': {},
@@ -382,8 +383,8 @@ for branch in BRANCHES.keys():
         BRANCHES[branch][key] = deepcopy(value)
 
     for key, value in BRANCH_UNITTEST_VARS.items():
-        # Don't override platforms if it's set
-        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+        # Don't override platforms if it's set and locked
+        if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
@@ -411,6 +412,16 @@ for branch in BRANCHES.keys():
                         BRANCHES[branch]['platforms'][platform][key] = value
             else:
                 BRANCHES[branch][key] = deepcopy(value)
+ 
+    # Merge in any project branch config for platforms
+    if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
+        for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
+            if platform in PLATFORMS:
+                for key, value in platform_config.items():
+                    value = deepcopy(value)
+                    if isinstance(value, str):
+                        value = value % locals()
+                    BRANCHES[branch]['platforms'][platform][key] = value
 
     for platform, platform_config in localconfig.PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
@@ -461,6 +472,7 @@ for k, v in localconfig.PROJECTS.items():
 ######## mozilla-central
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
+BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-central']['fetch_symbols'] = True
@@ -493,6 +505,42 @@ BRANCHES['mozilla-central']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = True
+
+######## mozilla-beta
+BRANCHES['mozilla-beta']['branch_name'] = "Mozilla-Beta"
+BRANCHES['mozilla-beta']['mobile_branch_name'] = "Mozilla-Beta"
+BRANCHES['mozilla-beta']['build_branch'] = "1.9.2"
+BRANCHES['mozilla-beta']['talos_command'] = TALOS_CMD
+BRANCHES['mozilla-beta']['fetch_symbols'] = True
+BRANCHES['mozilla-beta']['fetch_release_symbols'] = False
+BRANCHES['mozilla-beta']['release_tests'] = 5
+BRANCHES['mozilla-beta']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['mozilla-beta']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tp4_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tp4_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tzoom_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['repo_path'] = "mozilla-beta"
+BRANCHES['mozilla-beta']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-beta']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-beta']['platforms']['android']['enable_opt_unittests'] = True
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
@@ -557,6 +605,7 @@ BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 ######## mozilla-2.1
 BRANCHES['mozilla-2.1']['branch_name'] = "Mobile2.0"
 BRANCHES['mozilla-2.1']['mobile_branch_name'] = "Mobile2.0"
+BRANCHES['mozilla-2.1']['mobile_talos_branch'] = "mobile-2.0"
 BRANCHES['mozilla-2.1']['build_branch'] = "2.1"
 BRANCHES['mozilla-2.1']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-2.1']['fetch_symbols'] = True
@@ -720,14 +769,14 @@ BRANCHES['tryserver']['dromaeo_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['dirty_tests'] = (1, False, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['cold_tests'] = (0, False, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['tryserver']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tp4_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tp4_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['tryserver']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)

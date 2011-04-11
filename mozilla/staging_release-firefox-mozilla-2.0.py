@@ -3,6 +3,7 @@ releaseConfig = {}
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['AVVendorsRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
 
@@ -13,27 +14,27 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '4.0b12'
-releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '2.0b12'
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_4_0b12'
+releaseConfig['version']             = '4.0rc2'
+releaseConfig['appVersion']          = '4.0'
+releaseConfig['milestone']           = '2.0'
+releaseConfig['buildNumber']         = 3
+releaseConfig['baseTag']             = 'FIREFOX_4_0rc2'
 #  Old version info
-releaseConfig['oldVersion']          = '4.0b11'
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_4_0b11'
+releaseConfig['oldVersion']          = '4.0rc1'
+releaseConfig['oldAppVersion']       = '4.0'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '4.0b13pre'
-releaseConfig['nextMilestone']       = '2.0b13pre'
+releaseConfig['nextAppVersion']      = '4.0pre'
+releaseConfig['nextMilestone']       = '2.0pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-central',
-        'clonePath': 'mozilla-central',
-        'path': 'users/stage-ffxbld/mozilla-central',
-        'revision': '42e7f9088975',
-        'relbranch': None,
+        'name': 'mozilla-2.0',
+        'clonePath': 'releases/mozilla-2.0',
+        'path': 'users/stage-ffxbld/mozilla-2.0',
+        'revision': '6be9e31d01b4',
+        'relbranch': 'GECKO20_2011031715_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -64,7 +65,7 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
+releaseConfig['unittestPlatforms']   = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # L10n configuration

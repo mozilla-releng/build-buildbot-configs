@@ -2,6 +2,7 @@ PWD=$(shell pwd)
 BUILDBOT=$(PWD)/bin/buildbot
 HG=/tools/python/bin/hg
 export PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH=""
 
 start:
 	cd master && $(BUILDBOT) start $$PWD
