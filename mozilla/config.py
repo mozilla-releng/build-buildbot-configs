@@ -105,7 +105,6 @@ GLOBAL_VARS = {
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
     'use_old_updater': False,
-
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
@@ -322,6 +321,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
+            'l10n_check_test': True,
         },
         'linuxqt': {
             'base_name': 'Linux QT %(branch)s',
@@ -392,6 +392,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
+            'l10n_check_test': True,
         },
         'macosx': {
             'base_name': 'OS X 10.5.2 %(branch)s',
@@ -455,6 +456,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
         },
         'win32': {
             'base_name': 'WINNT 5.2 %(branch)s',
@@ -489,6 +491,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
+            'l10n_check_test': True,
         },
         'linux-debug': {
             'base_name': 'Linux %(branch)s leak test',
@@ -884,6 +887,12 @@ BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/
 BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
 BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
+BRANCHES['mozilla-2.0']['platforms']['linux']['l10n_check_test'] = False
+BRANCHES['mozilla-2.0']['platforms']['linux64']['l10n_check_test'] = False
+BRANCHES['mozilla-2.0']['platforms']['macosx64']['l10n_check_test'] = False
+BRANCHES['mozilla-2.0']['platforms']['win32']['l10n_check_test'] = False
+# TODO: Remove this when bug 525438 lands on mozilla-2.0
+BRANCHES['mozilla-2.0']['platforms']['macosx64']['test_pretty_names'] = False
 
 ######## mozilla-2.1
 BRANCHES['mozilla-2.1']['repo_path'] = 'releases/mozilla-2.1'
@@ -1015,6 +1024,10 @@ BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefo
 BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['enable_blocklist_update'] = True
 BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['linux64']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['macosx']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.1']['platforms']['win32']['l10n_check_test'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -1086,6 +1099,10 @@ BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefo
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
 BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
 
 ######## tryserver
 # Try-specific configs
