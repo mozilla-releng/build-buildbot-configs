@@ -666,13 +666,17 @@ BRANCHES = {
     'shadow-central': {
         'mobile_platforms': {},
     },
+    'mozilla-beta': {
+    },
     'mozilla-2.0': {
         'mobile_platforms': {},
     },
     'mozilla-2.1': {
+        'lock_platforms': True,
         'platforms': {},
     },
     'mozilla-1.9.1': {
+        'lock_platforms': True,
         'platforms': {
             'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
             'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
@@ -680,6 +684,7 @@ BRANCHES = {
         'mobile_platforms': {},
     },
     'mozilla-1.9.2': {
+        'lock_platforms': True,
         'platforms': {
             'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
             'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
@@ -702,22 +707,26 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
-        # Don't override platforms if it's set
-        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
-            # Take out any talos-only platforms from 'platforms' in project_branches
-            if branch in ACTIVE_PROJECT_BRANCHES:
-                for platform in BRANCHES[branch]['platforms'].keys():
-                    if BRANCHES[branch]['platforms'][platform].get('test_only_platform', False):
-                        del BRANCHES[branch]['platforms'][platform]
+        # Don't override platforms if it's set and locked
+        if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
-        BRANCHES[branch][key] = deepcopy(value)
+        else:
+            BRANCHES[branch][key] = deepcopy(value)
 
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
-                value = deepcopy(value)
+                # put default platform set in all branches, but grab any project_branches.py overrides/additional keys
+                if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
+                    if platform in PROJECT_BRANCHES[branch]['platforms'].keys():
+                        if key in PROJECT_BRANCHES[branch]['platforms'][platform].keys():
+                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
+                        else:
+                            BRANCHES[branch]['platforms'][platform][key] = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
+                else:
+                    value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
@@ -755,6 +764,13 @@ for branch in BRANCHES.keys():
         if mobile_platform in BRANCHES[branch]['mobile_platforms']:
             BRANCHES[branch]['mobile_platforms'][mobile_platform] = deepcopy(mobile_platform_config)
 
+    # Check for project branch removing a platform from default platforms
+    if branch in ACTIVE_PROJECT_BRANCHES:
+        for key, value in PROJECT_BRANCHES[branch].items():
+            if key == 'platforms':
+                for platform, platform_config in value.items():
+                    if platform_config.get('dont_build'):
+                        del BRANCHES[branch]['platforms'][platform]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -838,6 +854,55 @@ BRANCHES['shadow-central']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUI
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
+
+######## mozilla-beta
+BRANCHES['mozilla-beta']['repo_path'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-beta']['start_hour'] = [3]
+BRANCHES['mozilla-beta']['start_minute'] = [2]
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-beta']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['mozilla-beta']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
+BRANCHES['mozilla-beta']['enable_mac_a11y'] = True
+BRANCHES['mozilla-beta']['unittest_build_space'] = 6
+# And code coverage
+BRANCHES['mozilla-beta']['enable_codecoverage'] = True
+# L10n configuration
+BRANCHES['mozilla-beta']['enable_l10n'] = True
+BRANCHES['mozilla-beta']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx64']
+BRANCHES['mozilla-beta']['l10nDatedDirs'] = True
+BRANCHES['mozilla-beta']['l10n_tree'] = 'fx37x'
+#make sure it has an ending slash
+BRANCHES['mozilla-beta']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-beta-l10n/'
+BRANCHES['mozilla-beta']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-beta'
+BRANCHES['mozilla-beta']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-beta']['enable_multi_locale'] = True
+BRANCHES['mozilla-beta']['upload_mobile_symbols'] = True
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['mozilla-beta']['create_snippet'] = True
+BRANCHES['mozilla-beta']['create_mobile_snippet'] = True
+BRANCHES['mozilla-beta']['create_partial'] = True
+BRANCHES['mozilla-beta']['create_partial_l10n'] = True
+BRANCHES['mozilla-beta']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-beta']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-beta'
+BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-beta'
+BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
+BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
+BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
+BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
