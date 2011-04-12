@@ -718,18 +718,22 @@ for branch in BRANCHES.keys():
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
-                # put default platform set in all branches, but grab any project_branches.py overrides/additional keys
+                # put default platform set in all branches, but grab any
+                # project_branches.py overrides/additional keys
                 if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
                     if platform in PROJECT_BRANCHES[branch]['platforms'].keys():
                         if key in PROJECT_BRANCHES[branch]['platforms'][platform].keys():
-                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
-                        else:
-                            BRANCHES[branch]['platforms'][platform][key] = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
+                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform][key])
                 else:
                     value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+            if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch] and \
+                    PROJECT_BRANCHES[branch]['platforms'].has_key(platform):
+                for key, value in PROJECT_BRANCHES[branch]['platforms'][platform].items():
+                    BRANCHES[branch]['platforms'][platform][key] = deepcopy(value)
 
     for mobile_platform, mobile_platform_config in MOBILE_PLATFORM_VARS.items():
         if mobile_platform in BRANCHES[branch]['mobile_platforms'].keys():
