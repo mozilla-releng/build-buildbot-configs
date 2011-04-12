@@ -718,18 +718,22 @@ for branch in BRANCHES.keys():
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
-                # put default platform set in all branches, but grab any project_branches.py overrides/additional keys
+                # put default platform set in all branches, but grab any
+                # project_branches.py overrides/additional keys
                 if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
                     if platform in PROJECT_BRANCHES[branch]['platforms'].keys():
                         if key in PROJECT_BRANCHES[branch]['platforms'][platform].keys():
-                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
-                        else:
-                            BRANCHES[branch]['platforms'][platform][key] = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform])
+                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform][key])
                 else:
                     value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+            if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch] and \
+                    PROJECT_BRANCHES[branch]['platforms'].has_key(platform):
+                for key, value in PROJECT_BRANCHES[branch]['platforms'][platform].items():
+                    BRANCHES[branch]['platforms'][platform][key] = deepcopy(value)
 
     for mobile_platform, mobile_platform_config in MOBILE_PLATFORM_VARS.items():
         if mobile_platform in BRANCHES[branch]['mobile_platforms'].keys():
@@ -1265,10 +1269,15 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
+    BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
     BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', 'ffxbld')
     BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', 'ffxbld_dsa')
     BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
     BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Firefox/' + branch)
+    #make sure it has an ending slash
+    BRANCHES[branch]['l10nUploadPath'] = \
+        '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/' 
+    BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
     BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
     BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch

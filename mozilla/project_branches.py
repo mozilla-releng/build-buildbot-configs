@@ -57,11 +57,20 @@ PROJECT_BRANCHES = {
     'mozilla-aurora': {
         'repo_path': 'mozilla-aurora',
         'mozconfig_dir': 'mozilla-aurora',
+        'aus2_base_upload_dir': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
+        'aus2_base_upload_dir_l10n': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
+        'aus2_mobile_base_upload_dir': '/opt/aus2/incoming/2/Fennec/mozilla-aurora-bug648066',
+        'aus2_mobile_base_upload_dir_l10n': '/opt/aus2/incoming/2/Fennec/mozilla-aurora-bug648066',
+        'create_snippet': True,
+        'create_partial': True,
+        'create_partial_l10n': True,
+        'create_mobile_snippet': True,
         'start_hour': [3],
         'start_minute': [32],
         'enable_nightly': True,
         'enable_mobile_nightly': True,
         'enable_shark': True,
+        'enUS_binaryURL':  '/nightly/latest-mozilla-aurora',
     },
     'places': {
         'platforms': {
