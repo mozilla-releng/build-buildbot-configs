@@ -350,18 +350,18 @@ PLATFORM_UNITTEST_VARS = {
                          'thisChunk': 2,
                         },
                     )),
-                    ('jsreftest-1', (
-                        {'suite': 'jsreftest',
-                         'totalChunks': 2,
-                         'thisChunk': 1,
-                        },
-                    )),
-                    ('jsreftest-2', (
-                        {'suite': 'jsreftest',
-                         'totalChunks': 2,
-                         'thisChunk': 2,
-                        },
-                    )),
+#                    ('jsreftest-1', (
+#                        {'suite': 'jsreftest',
+#                         'totalChunks': 2,
+#                         'thisChunk': 1,
+#                        },
+#                    )),
+#                    ('jsreftest-2', (
+#                        {'suite': 'jsreftest',
+#                         'totalChunks': 2,
+#                         'thisChunk': 2,
+#                        },
+#                    )),
                     ('crashtest', (
                         {'suite': 'crashtest'},
                     )),
