@@ -71,6 +71,13 @@ PROJECT_BRANCHES = {
         'enable_mobile_nightly': True,
         'enable_shark': True,
         'enUS_binaryURL':  '/nightly/latest-mozilla-aurora',
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        },
     },
     'places': {
         'platforms': {
