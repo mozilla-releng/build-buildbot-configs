@@ -1269,6 +1269,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
+    BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
     BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', 'ffxbld')
     BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', 'ffxbld_dsa')
     BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
