@@ -57,6 +57,8 @@ PROJECT_BRANCHES = {
     'mozilla-aurora': {
         'repo_path': 'mozilla-aurora',
         'mozconfig_dir': 'mozilla-aurora',
+        'aus2_base_upload_dir': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
+        'aus2_base_upload_dir_l10n': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
         'start_hour': [3],
         'start_minute': [32],
         'enable_nightly': True,
