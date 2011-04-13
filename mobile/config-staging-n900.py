@@ -38,7 +38,7 @@ default_n900['slaves'] = SLAVES['n900']
 default_n900['talos_tarball'] = 'http://10.250.48.136/maemo5/talos.tar.bz2'
 default_n900['pageloader_tarball'] = 'http://10.250.48.136/maemo5/pageloader.tar.bz2'
 default_n900['maemkit_tarball'] = 'http://10.250.48.136/maemo5/maemkit.tar.bz2'
-default_n900['tp4_tarball'] = 'http://10.250.48.136/maemo5/mobile_tp4.tar.bz2'
+default_n900['tp4_tarball'] = 'http://10.250.48.136/maemo5/tp4.tar.bz2'
 
 MASTER = {'name': 'staging-mobile-master',
           'slave_port': 9010,
