@@ -275,7 +275,7 @@ mozilla_production_try_builder_master_bm03 = mozilla_production + MasterConfig(
         )
 
 mozilla_production_try_builder_master_bm04 = mozilla_base + MasterConfig(
-        "bm04-trybuilder",
+        "bm04-try1",
         local_links = [
             ('production_try_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -293,7 +293,7 @@ mozilla_production_try_builder_master_bm05 = mozilla_base + MasterConfig(
         )
 
 mozilla_production_try_builder_master_bm06 = mozilla_base + MasterConfig(
-        "bm06-trybuilder",
+        "bm06-try1",
         local_links = [
             ('production_try_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -329,7 +329,7 @@ mozilla_production_builder_master_bm02 = mozilla_production + MasterConfig(
         )
 
 mozilla_production_builder_master_bm04 = mozilla_base + MasterConfig(
-        "bm04-builder",
+        "bm04-build1",
         local_links = [
             ('production_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -347,7 +347,7 @@ mozilla_production_builder_master_bm05 = mozilla_base + MasterConfig(
         )
 
 mozilla_production_builder_master_bm06 = mozilla_base + MasterConfig(
-        "bm06-builder",
+        "bm06-build1",
         local_links = [
             ('production_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -464,7 +464,7 @@ mozilla_production_tests_master_bm02_2 = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_master_bm04 = mozilla_tests + MasterConfig(
-        "bm04-tests_master",
+        "bm04-tests1",
         local_links = [
             ('production_tests_master_bm04_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
@@ -482,7 +482,7 @@ mozilla_production_tests_master_bm05 = mozilla_tests + MasterConfig(
         )
 
 mozilla_production_tests_master_bm06 = mozilla_tests + MasterConfig(
-        "bm06-tests_master",
+        "bm06-tests1",
         local_links = [
             ('production_tests_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
