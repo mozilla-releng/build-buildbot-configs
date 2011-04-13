@@ -633,15 +633,11 @@ PROJECTS = {
     },
     'spidermonkey': {
         'platforms': {
-            'linux':          ['warnaserr'],
-            'linux-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
-            'linux64':        ['warnaserr'],
-            'linux64-debug':  ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'linux-debug':    ['nomethodjit', 'notracejit'],
+            'linux64-debug':  ['nomethodjit', 'notracejit'],
             'win32-debug':    ['nomethodjit', 'notracejit'],
-            'macosx64':       ['warnaserr'],
-            'macosx64-debug': ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
-            'macosx':         ['warnaserr'],
-            'macosx-debug':   ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
+            'macosx64-debug': ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
+            'macosx-debug':   ['nomethodjit', 'notracejit', 'dtrace', 'shark'],
         },
         'env': {
             'linux-debug': PLATFORM_VARS['linux-debug']['env'],
