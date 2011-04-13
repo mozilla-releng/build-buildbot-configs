@@ -158,8 +158,11 @@ PROJECT_BRANCHES = {
     'maple': {},
 }
 
-# We want all for now, but can turn them off in here if necessary
+# All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
+# Turning off graphics - bug 649507
+for branch in ('graphics',):
+    ACTIVE_PROJECT_BRANCHES.remove(branch)
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():
