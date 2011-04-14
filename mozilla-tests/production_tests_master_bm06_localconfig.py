@@ -1,15 +1,15 @@
 c = BuildmasterConfig = {}
-c['slavePortnum'] = 9011
+c['slavePortnum'] = 9201
 
 from buildbot.status.html import WebStatus
 c['status'] = [
-        WebStatus(http_port=8011, allowForce=True)
+        WebStatus(http_port=8201, allowForce=True)
 ]
 
-c['buildbotURL'] = 'http://buildbot-master6.build.mozilla.org:8011/'
+c['buildbotURL'] = 'http://buildbot-master06.build.mozilla.org:8201/'
 
 from buildbot import manhole
-c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld", "password")
+c['manhole'] = manhole.PasswordManhole("tcp:7201:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, PLATFORMS, PROJECTS
 # Do everything!

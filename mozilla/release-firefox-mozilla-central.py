@@ -3,6 +3,7 @@ releaseConfig = {}
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
+releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
