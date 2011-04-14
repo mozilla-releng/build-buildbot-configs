@@ -80,7 +80,7 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.17',
-        'buildNumber'                : 2,
+        'buildNumber'                : 1,
         'baseTag'                    : 'THUNDERBIRD_3_1_10',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.9',
