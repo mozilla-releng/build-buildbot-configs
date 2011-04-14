@@ -60,6 +60,7 @@ BRANCHES = {
     'mozilla-central': {},
     'shadow-central': {},
     'mozilla-beta': {},
+    'mozilla-aurora': {},
     'mozilla-2.0': {},
     'mozilla-2.1': {},
     'mozilla-1.9.2': {},
@@ -509,7 +510,7 @@ BRANCHES['mozilla-central']['platforms']['android']['enable_opt_unittests'] = Tr
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['branch_name'] = "Mozilla-Beta"
 BRANCHES['mozilla-beta']['mobile_branch_name'] = "Mozilla-Beta"
-BRANCHES['mozilla-beta']['build_branch'] = "1.9.2"
+BRANCHES['mozilla-beta']['build_branch'] = "Mozilla-Beta"
 BRANCHES['mozilla-beta']['talos_command'] = TALOS_CMD
 BRANCHES['mozilla-beta']['fetch_symbols'] = True
 BRANCHES['mozilla-beta']['fetch_release_symbols'] = False
@@ -541,6 +542,42 @@ BRANCHES['mozilla-beta']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-beta']['platforms']['win64']['enable_opt_unittests'] = True
 BRANCHES['mozilla-beta']['platforms']['android']['enable_opt_unittests'] = True
+
+######## mozilla-aurora
+BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
+BRANCHES['mozilla-aurora']['mobile_branch_name'] = "Mozilla-Aurora"
+BRANCHES['mozilla-aurora']['build_branch'] = "Mozilla-Aurora"
+BRANCHES['mozilla-aurora']['talos_command'] = TALOS_CMD
+BRANCHES['mozilla-aurora']['fetch_symbols'] = True
+BRANCHES['mozilla-aurora']['fetch_release_symbols'] = False
+BRANCHES['mozilla-aurora']['release_tests'] = 5
+BRANCHES['mozilla-aurora']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['mozilla-aurora']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['mozilla-aurora']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-aurora']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tp4_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tp4_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tzoom_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['repo_path'] = "mozilla-aurora"
+BRANCHES['mozilla-aurora']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['mozilla-aurora']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-aurora']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-aurora']['platforms']['android']['enable_opt_unittests'] = True
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"

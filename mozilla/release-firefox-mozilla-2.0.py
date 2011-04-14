@@ -57,7 +57,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
-    'build/buildbot': 'production-0.8'
+    'build/buildbot': 'production-0.8',
+    'build/partner-repacks': 'default'
 }
 
 # Platform configuration
