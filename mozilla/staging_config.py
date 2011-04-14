@@ -12,7 +12,7 @@ SLAVES = {
     'linux64':     LINUX64_VMS + LINUX64_IXS,
     'win32':       WIN32_VMS + WIN32_IXS,
     'macosx':      MAC_MINIS + XSERVES,
-    'macosx64': MAC_SNOW_MINIS,
+    'macosx64':    MAC_SNOW_MINIS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]

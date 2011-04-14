@@ -57,10 +57,10 @@ PROJECT_BRANCHES = {
     'mozilla-aurora': {
         'repo_path': 'mozilla-aurora',
         'mozconfig_dir': 'mozilla-aurora',
-        'aus2_base_upload_dir': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
-        'aus2_base_upload_dir_l10n': '/opt/aus2/incoming/2/Firefox/mozilla-aurora-bug648066',
-        'aus2_mobile_base_upload_dir': '/opt/aus2/incoming/2/Fennec/mozilla-aurora-bug648066',
-        'aus2_mobile_base_upload_dir_l10n': '/opt/aus2/incoming/2/Fennec/mozilla-aurora-bug648066',
+        'aus2_base_upload_dir': '/opt/aus2/incoming/2/Firefox/mozilla-aurora',
+        'aus2_base_upload_dir_l10n': '/opt/aus2/incoming/2/Firefox/mozilla-aurora',
+        'aus2_mobile_base_upload_dir': '/opt/aus2/incoming/2/Fennec/mozilla-aurora',
+        'aus2_mobile_base_upload_dir_l10n': '/opt/aus2/incoming/2/Fennec/mozilla-aurora',
         'create_snippet': True,
         'create_partial': True,
         'create_partial_l10n': True,
@@ -158,8 +158,11 @@ PROJECT_BRANCHES = {
     'maple': {},
 }
 
-# We want all for now, but can turn them off in here if necessary
+# All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
+# Turning off graphics - bug 649507
+for branch in ('graphics',):
+    ACTIVE_PROJECT_BRANCHES.remove(branch)
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():

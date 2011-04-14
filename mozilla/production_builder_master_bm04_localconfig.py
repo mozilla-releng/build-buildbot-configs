@@ -1,15 +1,15 @@
 c = BuildmasterConfig = {}
-c['slavePortnum'] = 9010
+c['slavePortnum'] = 9001
 
 from buildbot.status.html import WebStatus
 c['status'] = [
-        WebStatus(http_port=8010, allowForce=True)
+        WebStatus(http_port=8001, allowForce=True)
 ]
 
-c['buildbotURL'] = 'http://buildbot-master4.build.mozilla.org:8010/'
+c['buildbotURL'] = 'http://buildbot-master04.build.mozilla.org:8001/'
 
 from buildbot import manhole
-c['manhole'] = manhole.PasswordManhole("tcp:1235:interface=127.0.0.1", "cltbld", "password")
+c['manhole'] = manhole.PasswordManhole("tcp:7001:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
 ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central',
