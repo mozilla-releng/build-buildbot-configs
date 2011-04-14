@@ -40,7 +40,7 @@ gloConfig = {
         'sourceRepoPath'             : 'releases/comm-1.9.2',
         'sourceRepoRevision'         : '8f80fb4514a0',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM19214_20110123_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
         'mozillaRepoRevision'        : 'dd0bc929f34c',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -80,7 +80,7 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.17',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'baseTag'                    : 'THUNDERBIRD_3_1_10',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.9',
