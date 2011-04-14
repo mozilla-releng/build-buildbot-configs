@@ -45,6 +45,7 @@ SUITES = {
     'addon': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown'],
     'addon-baseline': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown'],
     'a11y': GRAPH_CONFIG + ['--activeTests', 'a11y'],
+    'paint': GRAPH_CONFIG + ['--activeTests', 'ts_paint:tpaint', '--setPref', 'dom.send_after_paint_to_content=true'],
     'remote-ts': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
     'remote-tdhtml': GRAPH_CONFIG + ['--activeTests', 'tdhtml', '--noChrome'],
     'remote-tsvg': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
@@ -492,6 +493,7 @@ BRANCHES['mozilla-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-central']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-central']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
@@ -607,6 +609,7 @@ BRANCHES['shadow-central']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['shadow-central']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['shadow-central']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['shadow-central']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
 
 ######## mozilla-2.0
@@ -639,6 +642,7 @@ BRANCHES['mozilla-2.0']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-2.0']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.0']['repo_path'] = "mozilla-2.0"
 
 ######## mozilla-2.1
@@ -670,6 +674,7 @@ BRANCHES['mozilla-2.1']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.1']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-2.1']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-2.1']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-2.1']['repo_path'] = "mozilla-2.1"
 
 ######## mozilla-1.9.1
@@ -700,6 +705,7 @@ BRANCHES['mozilla-1.9.1']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFOR
 BRANCHES['mozilla-1.9.1']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.1']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.1']['enable_unittests'] = False
 
 ######## mozilla-1.9.2
@@ -732,6 +738,7 @@ BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFOR
 BRANCHES['mozilla-1.9.2']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.2']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 
 ######## addontester 
@@ -763,6 +770,7 @@ BRANCHES['addontester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS
 BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['addontester']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['enable_unittests'] = False
 ######## addonbaselinetester - tests against 1.9.2
 BRANCHES['addonbaselinetester']['branch_name'] = "AddonTester"
@@ -793,6 +801,7 @@ BRANCHES['addonbaselinetester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_P
 BRANCHES['addonbaselinetester']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['addon-baseline_tests'] = (1, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['addonbaselinetester']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['enable_unittests'] = False
 
 ######## tryserver
@@ -823,6 +832,7 @@ BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
+BRANCHES['tryserver']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['tryserver']['repo_path'] = "try"
 BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
