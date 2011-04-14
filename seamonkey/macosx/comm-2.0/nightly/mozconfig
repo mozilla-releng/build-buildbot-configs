@@ -3,6 +3,13 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
   # mozconfig.
   oldtopsrcdir=$topsrcdir
   export topsrcdir=$topsrcdir/mozilla
+else
+  # Big Hack that unsets CC / CXX so that mozconfig.common doesn't get
+  # mixed up with host/target CPUs when trying to work out how to do the
+  # universal build. When we redo the build system (bug 648979) this will
+  # go away.
+  unset CC
+  unset CXX
 fi
 
 mk_add_options MOZ_BUILD_PROJECTS="ppc i386"
