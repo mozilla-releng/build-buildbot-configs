@@ -1355,8 +1355,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
 # Bug 578880, remove the following block after gcc-4.5 switch
-branches = ['mozilla-2.0', 'mozilla-central', 'shadow-central', 'tryserver']
+branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
+for branch in ('mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-2.1'):
+    branches.remove(branch)
 for branch in branches:
     BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
     BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
