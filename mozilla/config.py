@@ -676,6 +676,8 @@ BRANCHES = {
     },
     'mozilla-beta': {
     },
+    'mozilla-aurora': {
+    },
     'mozilla-2.0': {
         'mobile_platforms': {},
     },
@@ -869,7 +871,7 @@ BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BU
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'mozilla-beta'
-BRANCHES['mozilla-beta']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
 BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
@@ -884,13 +886,13 @@ BRANCHES['mozilla-beta']['unittest_build_space'] = 6
 # And code coverage
 BRANCHES['mozilla-beta']['enable_codecoverage'] = True
 # L10n configuration
-BRANCHES['mozilla-beta']['enable_l10n'] = True
+BRANCHES['mozilla-beta']['enable_l10n'] = False
 BRANCHES['mozilla-beta']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64']
 BRANCHES['mozilla-beta']['l10nDatedDirs'] = True
-BRANCHES['mozilla-beta']['l10n_tree'] = 'fx37x'
+BRANCHES['mozilla-beta']['l10n_tree'] = 'fxbeta'
 #make sure it has an ending slash
 BRANCHES['mozilla-beta']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-beta-l10n/'
@@ -899,6 +901,9 @@ BRANCHES['mozilla-beta']['enUS_binaryURL'] = \
 BRANCHES['mozilla-beta']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-beta']['enable_multi_locale'] = True
 BRANCHES['mozilla-beta']['upload_mobile_symbols'] = True
+# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
+BRANCHES['mozilla-beta']['enable_nightly'] = False
+BRANCHES['mozilla-beta']['enable_mobile_nightly'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -915,6 +920,55 @@ BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomi
 BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
+
+######## mozilla-aurora
+BRANCHES['mozilla-aurora']['repo_path'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-aurora']['start_hour'] = [4]
+BRANCHES['mozilla-aurora']['start_minute'] = [20]
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['mozilla-aurora']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
+BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
+BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
+# And code coverage
+BRANCHES['mozilla-aurora']['enable_codecoverage'] = True
+# L10n configuration
+BRANCHES['mozilla-aurora']['enable_l10n'] = True
+BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
+BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx64']
+BRANCHES['mozilla-aurora']['l10nDatedDirs'] = True
+BRANCHES['mozilla-aurora']['l10n_tree'] = 'fxaurora'
+#make sure it has an ending slash
+BRANCHES['mozilla-aurora']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n/'
+BRANCHES['mozilla-aurora']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-aurora'
+BRANCHES['mozilla-aurora']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-aurora']['enable_multi_locale'] = True
+BRANCHES['mozilla-aurora']['upload_mobile_symbols'] = True
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['mozilla-aurora']['create_snippet'] = True
+BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
+BRANCHES['mozilla-aurora']['create_partial'] = True
+BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
+BRANCHES['mozilla-aurora']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-aurora']['aus2_ssh_key'] = 'ffxbld_dsa'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
+BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 
 ######## mozilla-2.0
 BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'

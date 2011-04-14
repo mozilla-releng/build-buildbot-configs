@@ -34,6 +34,10 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
     },
+    'mozilla-aurora': {
+        'tinderbox_tree': 'Mozilla-Aurora',
+        'mobile_tinderbox_tree': 'Mozilla-Aurora',
+    },
     'mozilla-2.0': {
         'tinderbox_tree': 'Firefox4.0',
         'mobile_tinderbox_tree': 'Firefox4.0',
