@@ -102,10 +102,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-2.0'
-releaseConfig['majorUpdateToVersion']   = '4.0rc2'
-releaseConfig['majorUpdateAppVersion']  = '4.0'
-releaseConfig['majorUpdateBuildNumber'] = 3
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc2'
+releaseConfig['majorUpdateToVersion']   = '4.0.1'
+releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
+releaseConfig['majorUpdateBuildNumber'] = 1
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0_1'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/4.0/details/'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz191-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
