@@ -161,7 +161,7 @@ build_configs = {
             'win32': 110000,
         },
         'milestone': 'comm-aurora',
-        'mozilla_central_branch':  'releases/mozilla-aurora',
+        'mozilla_central_branch':  'mozilla-aurora',
         'period': 50400,
         'tinderbox_tree': 'Miramar',
         'unittest_masters': [
@@ -172,7 +172,7 @@ build_configs = {
         'branch_config':  'comm-aurora',
         'builder_type':  'bloat',
         'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-aurora', '--hg-options=--verbose --time' ],
+        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/mozilla-aurora', '--hg-options=--verbose --time' ],
         'env': {
             'XPCOM_DEBUG_BREAK': 'stack',
             'DISPLAY': ':2',
@@ -184,7 +184,7 @@ build_configs = {
             'macosx': 3400000, #
             'win32': 1400000, #
         },
-        'mozilla_central_branch':  'releases/mozilla-aurora',
+        'mozilla_central_branch':  'mozilla-aurora',
         'period': 50400,
         'tinderbox_tree': 'Miramar',
     },
