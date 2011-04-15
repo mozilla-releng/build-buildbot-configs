@@ -1,6 +1,6 @@
 {
   "ar": {
-    "revision": "4d8ee4507c07",
+    "revision": "64b035638af7",
     "platforms": ["maemo"]
   },
   "be": {
@@ -28,7 +28,7 @@
     "platforms": ["maemo"]
   },
   "es-ES": {
-    "revision": "5d90dac74782",
+    "revision": "35461f5d74d3",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "et": {
@@ -40,11 +40,11 @@
     "platforms": ["maemo"]
   },
   "fi": {
-    "revision": "d75db5ed10a7",
+    "revision": "85509e52531e",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "fr": {
-    "revision": "d02a84317b42",
+    "revision": "def8381c7e4b",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "fy-NL": {
@@ -76,7 +76,7 @@
     "platforms": ["maemo"]
   },
   "nl": {
-    "revision": "9b2f644ccb38",
+    "revision": "6ed8a62e8017",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "pa-IN": {
@@ -96,7 +96,7 @@
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "ru": {
-    "revision": "f39ed585c7ae",
+    "revision": "3691ff6ba8f2",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "sk": {
