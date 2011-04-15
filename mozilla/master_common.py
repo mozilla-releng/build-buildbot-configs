@@ -1,3 +1,6 @@
+import time
+from twisted.python import log
+
 c = BuildmasterConfig = {}
 c['projectName'] = "Firefox"
 c['projectURL'] = "http://wiki.mozilla.org/Firefox"
@@ -27,18 +30,34 @@ BRANCH_PRIORITIES = {
 
 # Give the release builders priority over other builders
 def prioritizeBuilders(botmaster, builders):
+    s = time.time()
+    # Get the list pending builds, at most one per builder
+    db = botmaster.db
+    q = ("SELECT br.buildername, max(br.priority), min(br.submitted_at)"
+            " FROM buildrequests AS br"
+            " WHERE br.complete=0"
+            " AND (br.claimed_at<?"
+            "      OR (br.claimed_by_name=?"
+            "          AND br.claimed_by_incarnation!=?))"
+            " GROUP BY br.buildername ")
+    requests = db.runQueryNow(db.quoteq(q),
+            (time.time() - 3600, botmaster.master_name, botmaster.master_incarnation))
+
+    # Filter out requests we're not running builders for
+    allBuilderNames = set(builder.name for builder in builders)
+    requests = filter(lambda request: request[0] in allBuilderNames, requests)
+
+    # Turn into a dictionary keyed by buildername
+    requests = dict( (request[0], request) for request in requests )
+
+    # Remove builders we don't have requests for
+    builders = filter(lambda builder: builder.name in requests, builders)
+
+    # Our sorting function
     def sortkey(builder):
-        builds = builder.getBuildable(1)
-        if builds:
-            # The builder that gets sorted first, gets run first, but the build
-            # request priorities are in ascending order (higher priority gets
-            # run next), so flip the sign of the priority so that higher
-            # priorities sort to the front
-            req_priority = -builds[0].priority
-            submitted_at = builds[0].submittedAt
-        else:
-            req_priority = 0
-            submitted_at = None
+        request = requests[builder.name]
+        req_priority = request[1]
+        submitted_at = request[2]
 
         # Default priority is 2
         priority = 2
@@ -51,7 +70,9 @@ def prioritizeBuilders(botmaster, builders):
                     break
 
         return priority, req_priority, submitted_at
+
     builders.sort(key=sortkey)
+    log.msg("Sorted %i builders in %.2fs" % (len(builders), time.time() - s))
     return builders
 c['prioritizeBuilders'] = prioritizeBuilders
 
