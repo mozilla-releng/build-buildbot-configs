@@ -90,6 +90,12 @@ PROJECT_BRANCHES = {
             'remote-twinopen': 1,
         }
     },
+    'private-browsing': {
+        'enable_talos': False,
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        'enable_nightly': True,
+    },
     'services-central': {
         'repo_path': 'services/services-central',
     },
