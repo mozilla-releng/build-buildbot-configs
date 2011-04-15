@@ -1,6 +1,22 @@
 # Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
+    'accessibility': {
+        'enable_nightly': True,
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        # only want a11y so turn off the default set
+        'talos_suites': {
+            'dirty': 0,
+            'tp4': 0,
+            'chrome': 0,
+            'nochrome': 0,
+            'dromaeo': 0,
+            'svg': 0,
+            'scroll': 0,
+            'paint': 0,
+        },
+    },
     'build-system': {},
     'devtools':{
         'enable_nightly': True,
@@ -73,6 +89,12 @@ PROJECT_BRANCHES = {
             'remote-tsspider': 1,
             'remote-twinopen': 1,
         }
+    },
+    'private-browsing': {
+        'enable_talos': False,
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        'enable_nightly': True,
     },
     'services-central': {
         'repo_path': 'services/services-central',

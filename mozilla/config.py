@@ -60,7 +60,9 @@ GLOBAL_VARS = {
     'platforms': {
         'linux': {},
         'linuxqt': {},
+        'linux-rpm': {},
         'linux64': {},
+        'linux64-rpm': {},
         'win32': {},
         'macosx64': {},
         'linux-debug': {},
@@ -358,6 +360,52 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None #GLOBAL_VARS['talos_masters'],
         },
+        'linux-rpm': {
+            'base_name': 'Linux RPM %(branch)s',
+            'mozconfig': 'linux/%(branch)s/nightly-rpm',
+            'enable_nightly': False, # We will explicitly enable for m-c
+            'enable_dep': False,
+            'enable_xulrunner': False,
+            'stage_platform': 'linux-rpm',
+            'mc_patches': [],
+            'create_snippet': False,
+            'create_partial': False,
+            'test_pretty_names': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'packageTests': False, #Done in rpm spec file
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Linux_x86-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux-rpm',
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': [],
+            'unittest_masters': [],
+            'test_pretty_names': False,
+        },
         'linux64': {
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
@@ -393,6 +441,51 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
+        },
+        'linux64-rpm': {
+            'base_name': 'Linux RPM x86-64 %(branch)s',
+            'mozconfig': 'linux64/%(branch)s/nightly-rpm',
+            'enable_nightly': False, # We will explicitly enable for m-c
+            'enable_dep': False,
+            'enable_xulrunner': False,
+            'stage_platform': 'linux64-rpm',
+            'mc_patches': [],
+            'create_snippet': False,
+            'create_partial': False,
+            'test_pretty_names': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'packageTests': False, #Done in rpm spec file
+            'slaves': SLAVES['linux64'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Linux_x86_64-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-rpm',
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': [],
+            'unittest_masters': [],
+            'test_pretty_names': False,
         },
         'macosx': {
             'base_name': 'OS X 10.5.2 %(branch)s',
@@ -836,6 +929,8 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/inc
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1269,6 +1364,8 @@ BRANCHES['tryserver']['create_snippet'] = False
 BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['tryserver']['platforms']['linux-rpm']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['tryserver']['platforms']['linux64-rpm']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['tryserver']['platforms']['linuxqt']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']

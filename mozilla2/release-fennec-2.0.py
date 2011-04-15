@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-2.1'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-2.1'
-mozSourceRepoRevision  = 'a0181e3f66fe'
+mozSourceRepoRevision  = '0d759421479d'
 mobileSourceRepoName      = 'mobile-2.0'
 mobileSourceRepoPath      = 'releases/mobile-2.0'
-mobileSourceRepoRevision  = '606c14460ded'
-mozRelbranchOverride      = 'GECKO21_20110317_RELBRANCH'
-l10nRelbranchOverride     = 'GECKO21_20110317_RELBRANCH'
-mobileRelbranchOverride   = 'GECKO21_20110317_RELBRANCH'
+mobileSourceRepoRevision  = 'dd7c77c39aac'
+mozRelbranchOverride      = ''
+l10nRelbranchOverride     = ''
+mobileRelbranchOverride   = ''
 l10nRepoPath        = 'releases/l10n-mozilla-2.0'
 l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
@@ -24,15 +24,15 @@ enableMultiLocale   = True
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '4.0rc1'
-appVersion          = '4.0'
-milestone           = '2.1'
-buildNumber         = 3
-baseTag             = 'FENNEC_4_0rc1'
-oldVersion          = '4.0b5'
+version             = '4.0.1'
+appVersion          = '4.0.1'
+milestone           = '2.1.1'
+buildNumber         = 1
+baseTag             = 'FENNEC_4_0_1'
+oldVersion          = '4.0rc1'
 oldAppVersion       = oldVersion
 oldBuildNumber      = 3
-oldBaseTag          = 'FENNEC_4_0b5'
+oldBaseTag          = 'FENNEC_4_0rc1'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
 l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')

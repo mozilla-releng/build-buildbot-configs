@@ -4,4 +4,4 @@ Contact phone number: +1-650-903-0800
 Contact email address: release@mozilla.com
 Product information: %(productName)s %(version)s
 Product location:
-%(ftpURL)s
+%(buildsURL)s
