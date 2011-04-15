@@ -25,8 +25,8 @@ releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
 releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_16'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.17pre'
-releaseConfig['nextMilestone']       = '1.9.2.17pre'
+releaseConfig['nextAppVersion']      = '3.6.18pre'
+releaseConfig['nextMilestone']       = '1.9.2.18pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
