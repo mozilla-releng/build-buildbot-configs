@@ -1,6 +1,22 @@
 # Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
+    'accessibility': {
+        'enable_nightly': True,
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        # only want a11y so turn off the default set
+        'talos_suites': {
+            'dirty': 0,
+            'tp4': 0,
+            'chrome': 0,
+            'nochrome': 0,
+            'dromaeo': 0,
+            'svg': 0,
+            'scroll': 0,
+            'paint': 0,
+        },
+    },
     'build-system': {},
     'devtools':{
         'enable_nightly': True,
@@ -54,31 +70,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
     },
-    'mozilla-aurora': {
-        'repo_path': 'mozilla-aurora',
-        'mozconfig_dir': 'mozilla-aurora',
-        'aus2_base_upload_dir': '/opt/aus2/incoming/2/Firefox/mozilla-aurora',
-        'aus2_base_upload_dir_l10n': '/opt/aus2/incoming/2/Firefox/mozilla-aurora',
-        'aus2_mobile_base_upload_dir': '/opt/aus2/incoming/2/Fennec/mozilla-aurora',
-        'aus2_mobile_base_upload_dir_l10n': '/opt/aus2/incoming/2/Fennec/mozilla-aurora',
-        'create_snippet': True,
-        'create_partial': True,
-        'create_partial_l10n': True,
-        'create_mobile_snippet': True,
-        'start_hour': [3],
-        'start_minute': [32],
-        'enable_nightly': True,
-        'enable_mobile_nightly': True,
-        'enable_shark': True,
-        'enUS_binaryURL':  '/nightly/latest-mozilla-aurora',
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        },
-    },
     'places': {
         'platforms': {
             'linux64': {
@@ -98,6 +89,12 @@ PROJECT_BRANCHES = {
             'remote-tsspider': 1,
             'remote-twinopen': 1,
         }
+    },
+    'private-browsing': {
+        'enable_talos': False,
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        'enable_nightly': True,
     },
     'services-central': {
         'repo_path': 'services/services-central',

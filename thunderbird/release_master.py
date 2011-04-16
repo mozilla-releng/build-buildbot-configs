@@ -38,15 +38,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '571419e89785',
+        'sourceRepoRevision'         : '8f80fb4514a0',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM19214_20110123_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : 'c2b88342ea2b',
+        'mozillaRepoRevision'        : 'dd0bc929f34c',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO19214_2011012112_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO19217_2011041406_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : 'c1b38e365772',
         'inspectorRelbranchOverride' : 'COMM1929_20100910_RELBRANCH',
@@ -75,18 +75,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.9',
+        'version'                    : '3.1.10',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.15',
+        'milestone'                  : '1.9.2.17',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_1_9',
+        'baseTag'                    : 'THUNDERBIRD_3_1_10',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.8',
+        'oldVersion'                 : '3.1.9',
         #'oldAppVersion'              : oldVersion,
-        'oldBuildNumber'             : 3,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_8',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_9',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
@@ -130,7 +130,7 @@ gloConfig = {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
         'relbranchPrefix'            : 'COMM',
-        'sourceRepoName'             : 'comm-2.0', # buildbot branch name
+        'sourceRepoName'             : 'comm-aurora', # buildbot branch name
         'sourceRepoPath'             : 'comm-central',
         'sourceRepoRevision'         : '6fbe19ade0d5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH

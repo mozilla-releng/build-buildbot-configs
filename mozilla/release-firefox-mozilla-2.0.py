@@ -3,7 +3,7 @@ releaseConfig = {}
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
 releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
-releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.com',]
+releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
@@ -57,7 +57,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
-    'build/buildbot': 'production-0.8'
+    'build/buildbot': 'production-0.8',
+    'build/partner-repacks': 'default'
 }
 
 # Platform configuration
