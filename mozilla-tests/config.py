@@ -260,8 +260,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': True,
             'xp': {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : removeSuite('mochitest-browser-chrome', \
-                                          UNITTEST_SUITES['debug_unittest_suites'][:]), 
+                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
             'win7': {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
