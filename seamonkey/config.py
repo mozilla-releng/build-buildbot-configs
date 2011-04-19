@@ -431,7 +431,7 @@ BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
 ######## comm-2.0
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
-BRANCHES['comm-2.0']['repo_path'] = 'comm-central'
+BRANCHES['comm-2.0']['repo_path'] = 'releases/comm-2.0'
 BRANCHES['comm-2.0']['mozilla_repo_path'] = 'releases/mozilla-2.0'
 BRANCHES['comm-2.0']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
 BRANCHES['comm-2.0']['start_hour'] = [1]

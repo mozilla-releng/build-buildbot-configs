@@ -225,7 +225,8 @@ source_factory = CCSourceFactory(
     inspectorRepoPath=inspectorRepoPath,
     venkmanRepoPath=venkmanRepoPath,
     chatzillaRepoPath=chatzillaRepoPath,
-#    cvsroot=cvsroot,
+    # Disable cvsroot on comm-central/comm-2.0 builds
+    cvsroot=cvsroot,
     autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
     clobberURL=branchConfig['base_clobber_url'],
 )
@@ -270,7 +271,8 @@ for platform in enUSPlatforms:
         inspectorRepoPath=inspectorRepoPath,
         venkmanRepoPath=venkmanRepoPath,
         chatzillaRepoPath=chatzillaRepoPath,
-#        cvsroot=cvsroot,
+        # Disable cvsroot on comm-central/comm-2.0 builds
+        cvsroot=cvsroot,
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         configRepoPath=branchConfig['config_repo_path'],
         configSubDir=branchConfig['config_subdir'],
@@ -320,7 +322,8 @@ for platform in enUSPlatforms:
             inspectorRepoPath=inspectorRepoPath,
             venkmanRepoPath=venkmanRepoPath,
             chatzillaRepoPath=chatzillaRepoPath,
-#            cvsroot=cvsroot,
+            # Disable cvsroot on comm-central/comm-2.0 builds
+            cvsroot=cvsroot,
             l10nRepoPath=l10nRepoPath,
             mergeLocales=mergeLocales,
             stageServer=branchConfig['stage_server'],
@@ -383,7 +386,8 @@ for platform in l10nPlatforms:
 
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        'slavenames': branchConfig['platforms']['macosx64']['slaves'],
+        # comm-1.9.1 release needs macosx, others need macosx64
+        'slavenames': branchConfig['platforms']['macosx']['slaves'],
         'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),

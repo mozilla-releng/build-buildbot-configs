@@ -1013,6 +1013,9 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fi
 BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
 BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
 BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mozilla-beta_maemo5_gtk.json'
+BRANCHES['mozilla-beta']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mozilla-beta_maemo5_qt.json'
+BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mozilla-beta_android.json'
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 
@@ -1062,6 +1065,15 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mozilla-aurora_maemo5_gtk.json'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mozilla-aurora_maemo5_qt.json'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mozilla-aurora_android.json'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 
