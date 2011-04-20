@@ -290,7 +290,10 @@ for config_name in build_configs:
         config['package'] = True
         config['upload_stage'] = True
         config['codesighs'] = True
-        config['l10n'] = True
+        if config_name == 'comm-central':
+            config['l10n'] = False
+        else:
+            config['l10n'] = True
         config['l10n_nightly_updates'] = True
         config['create_snippet'] = True
         if config['hg_branch'] in ['comm-central']:
