@@ -48,7 +48,6 @@ GLOBAL_VARS = {
     # and sendchange retry count before give up
     'talos_masters': [
         ('staging-master.build.mozilla.org:9009', True, 1),
-        ('talos-staging-master02.build.mozilla.org:9012', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
