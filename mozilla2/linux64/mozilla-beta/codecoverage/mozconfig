@@ -1,0 +1,16 @@
+export CFLAGS="-fprofile-arcs -ftest-coverage"
+export CXXFLAGS="-fprofile-arcs -ftest-coverage"
+export LDFLAGS="-lgcov -static-libgcc"
+export EXTRA_DSO_LDFLAGS="-lgcov -static-libgcc"
+
+ac_add_options --enable-application=browser
+
+ac_add_options --enable-debug
+ac_add_options --enable-tests
+ac_add_options --disable-optimize
+ac_add_options --enable-chrome-format=flat
+
+mk_add_options MOZ_MAKE_FLAGS="-j3"
+
+# We're using GCC 4.2 which has a bug we can work around.
+export ac_cv_have_visibility_class_bug=yes

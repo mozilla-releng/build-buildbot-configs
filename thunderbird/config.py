@@ -4,402 +4,425 @@
 
 import types
 
-# Simple copy of a dictionary tree, with the ability to ignore certain keys.
-# Note: for simplicity, exceptions apply at all levels of the data structure
-def key_copy(dfrom, dto, exceptions):
-    for key in dfrom:
-        if key in exceptions:
-            continue
-        if not dto.has_key(key):
-            dto[key] = {}
-        if type(dfrom[key]) is types.DictType:
-            key_copy(dfrom[key], dto[key], exceptions)
+def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
+    bc = buildConfig
+    pc = platformConfig
+    if platformName == 'linux':
+        if isTest:
+            return ['momo-vm-fedora12-%02i' % x for x in range(2,5+1)]
         else:
-            dto[key] = dfrom[key]
+            return ['momo-vm-linux-%02i' % x for x in range(2,9+1) + range(11,16+1)]
+    elif platformName == 'linux64':
+        if isTest:
+            return ['momo-vm-fedora12-64-%02i' % x for x in range(2,5+1)]
+        else:
+            return ['momo-vm-linux64-%02i' % x for x in range(2,3+1) + range(5,10+1)]
+    elif platformName == 'macosx':
+        if isTest:
+            return ['mini-%02i' % x for x in range(3,9+1)]
+        else:
+            return ['mini-%02i' % x for x in range(3,9+1)]
+    elif platformName == 'macosx64':
+        if isTest:
+            return ['mini64-%02i' % x for x in [1] + range(3,6+1)]
+        else:
+            return ['momo-xserve-01'] + ['mini64-%02i' % x for x in [1] + range(3,6+1)]
+    elif platformName == 'win32':
+        if isTest:
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+        else:
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+    else:
+        raise Exception("Invalid platformName '%s'" % platformName)
 
+def makePlatformEnv(platformName, builderType, branchName, buildConfig, platformConfig):
+    rv = {}
+    bc = buildConfig
+    pc = platformConfig
+    if platformName == 'linux':
+        rv['CVS_RSH'] = 'ssh'
+        rv['DISPLAY'] = ':2'
+        if branchName == 'comm-1.9.2' and builderType == 'nightly':
+            pass
+        else:
+            if builderType == 'bloat':
+                rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+            else:
+                rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
+        rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
+        rv['MOZ_OBJDIR'] = 'objdir-tb'
+        rv['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
+        rv['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
+        rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        rv['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+        rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
+        if builderType != 'bloat':
+            rv['TINDERBOX_OUTPUT'] = '1'
+        if builderType == 'bloat':
+            rv['XPCOM_DEBUG_BREAK'] = 'stack'
+    elif platformName == 'linux64':
+        rv['CVS_RSH'] = 'ssh'
+        rv['DISPLAY'] = ':2'
+        if builderType == 'bloat':
+            rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+        else:
+            rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
+        rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
+        rv['MOZ_OBJDIR'] = 'objdir-tb'
+        rv['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
+        rv['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
+        rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        rv['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+        rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
+        if builderType != 'bloat':
+            rv['TINDERBOX_OUTPUT'] = '1'
+        if builderType == 'bloat':
+            rv['XPCOM_DEBUG_BREAK'] = 'stack'
+    elif platformName == 'macosx':
+        rv['CVS_RSH'] = 'ssh'
+        rv['DISPLAY'] = ':2'
+        rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
+        rv['MOZ_OBJDIR'] = 'objdir-tb'
+        rv['MOZ_PKG_PLATFORM'] = 'mac'
+        rv['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
+        rv['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
+        rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        rv['SYMBOL_SERVER_SSH_KEY'] = '/Users/cltbld/.ssh/tbirdbld_dsa'
+        rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
+        if builderType == 'bloat':
+            pass
+        else:
+            rv['TINDERBOX_OUTPUT'] = '1'
+        if builderType == 'bloat':
+            rv['XPCOM_DEBUG_BREAK'] = 'stack'
+    elif platformName == 'macosx64':
+        rv['CVS_RSH'] = 'ssh'
+        rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
+        rv['MOZ_OBJDIR'] = 'objdir-tb'
+        rv['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
+        rv['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
+        rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        rv['SYMBOL_SERVER_SSH_KEY'] = '/Users/cltbld/.ssh/tbirdbld_dsa'
+        rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
+        rv['TINDERBOX_OUTPUT'] = '1'
+    elif platformName == 'win32':
+        rv['CVS_RSH'] = 'ssh'
+        rv['DISPLAY'] = ':2'
+        rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
+        rv['MOZ_OBJDIR'] = 'objdir-tb'
+        rv['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
+        rv['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
+        rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        rv['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa'
+        rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
+        if builderType == 'bloat':
+            pass
+        else:
+            rv['TINDERBOX_OUTPUT'] = '1'
+        if builderType == 'bloat':
+            rv['XPCOM_DEBUG_BREAK'] = 'stack'
+    else:
+        raise Exception("Invalid platformName '%s'" % platformName)
+    return rv
 
-branch_configs = {
-    'comm-aurora': {  # key is branch display name
-        'branch_name': 'comm-aurora', # buildbot branch
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
-    },
-    'comm-central': {
-        'branch_name': 'comm-central',
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
-    },
-    'comm-1.9.2': {
-        'branch_name': 'comm-1.9.2',
-        'platforms': ['linux', 'linux64', 'macosx', 'win32'],
-    },
-}
+def makePlatformConfig(buildConfig, builderType, platformName, branchName):
+    bc = buildConfig
+    pc = {}
+    if platformName == 'linux':
+        pc['base_name'] = "Linux %s" % bc['branch_name']
+        pc['builds_before_reboot'] = 1
+        pc['check_objdir'] = 'objdir-tb'
+        pc['enable_ccache'] = True
+        if branchName == 'comm-1.9.2' or builderType == 'bloat':
+            pass
+        else:
+            pc['enable_checktests'] = True
+        if builderType == 'bloat':
+            pc['leak_threshold'] = 970000
+        if builderType != 'check':
+            pc['platform_objdir'] = 'objdir-tb'
+            pc['profiled_build'] = False
+            pc['update_platform'] = 'Linux_x86-gcc3'
+        if builderType != 'check':
+            pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
+        pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
+        pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['upload_symbols'] = False
+        else:
+            pc['upload_symbols'] = True
+    elif platformName == 'linux64':
+        pc['base_name'] = "Linux x86-64 %s" % bc['branch_name']
+        pc['builds_before_reboot'] = 1
+        pc['check_objdir'] = 'objdir-tb'
+        pc['enable_ccache'] = True
+        if builderType not in ['bloat', 'check']:
+            pc['enable_checktests'] = True
+        if builderType == 'bloat':
+            pc['leak_threshold'] = 1400000
+        if builderType != 'check':
+            pc['platform_objdir'] = 'objdir-tb'
+            pc['profiled_build'] = False
+            pc['update_platform'] = 'Linux_x86_64-gcc3'
+            pc['upload_symbols'] = False
+        if builderType != 'check':
+            pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
+        pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
+        pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['upload_symbols'] = False
+        else:
+            pc['upload_symbols'] = True
+    elif platformName == 'macosx':
+        pc['base_name'] = "MacOSX 10.5 %s" % bc['branch_name']
+        pc['builds_before_reboot'] = 1
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['check_objdir'] = 'objdir-tb'
+        else:
+            pc['check_objdir'] = 'objdir-tb/ppc'
+        pc['enable_ccache'] = True
+        if builderType == 'bloat':
+            if branchName == 'comm-1.9.2':
+                pc['leak_threshold'] = 2500000
+            else:
+                pc['leak_threshold'] = 3400000
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['platform_objdir'] = 'objdir-tb'
+        else:
+            pc['platform_objdir'] = 'objdir-tb/ppc'
+        if builderType != 'check':
+            pc['profiled_build'] = False
+            pc['update_platform'] = 'Darwin_Universal-gcc3'
+        if builderType != 'check':
+            pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
+        pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
+        pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['upload_symbols'] = False
+        else:
+            pc['upload_symbols'] = True
+    elif platformName == 'macosx64':
+        pc['base_name'] = "MacOSX 10.6 %s" % bc['branch_name']
+        pc['builds_before_reboot'] = 1
+        pc['check_objdir'] = 'objdir-tb/x86_64'
+        pc['enable_ccache'] = True
+        pc['enable_checktests'] = True
+        pc['platform_objdir'] = 'objdir-tb/i386'
+        pc['profiled_build'] = False
+        pc['update_platform'] = 'Darwin_x86_64-gcc3'
+        if builderType != 'check':
+            pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
+        pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
+        pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
+        pc['upload_symbols'] = True
+    elif platformName == 'win32':
+        pc['base_name'] = "WINNT 5.2 %s" % bc['branch_name']
+        pc['builds_before_reboot'] = 1
+        pc['check_objdir'] = 'objdir-tb'
+        if builderType in ['bloat', 'check']:
+            pass
+        else:
+            pc['codesighs'] = False
+        if (branchName == 'comm-1.9.2' or builderType == 'bloat'):
+            pass
+        else:
+            pc['enable_checktests'] = True
+        if builderType == 'bloat':
+            if branchName == 'comm-1.9.2':
+                pc['leak_threshold'] = 110000
+            else:
+                pc['leak_threshold'] = 1400000
+        if builderType != 'check':
+            pc['platform_objdir'] = 'objdir-tb'
+            pc['profiled_build'] = False
+        if builderType != 'check':
+            pc['update_platform'] = 'WINNT_x86-msvc'
+        if builderType != 'check':
+            pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
+        pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
+        pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
+        if builderType == 'check':
+            pass
+        elif builderType == 'bloat':
+            pc['upload_symbols'] = False
+        else:
+            pc['upload_symbols'] = True
+    else:
+        raise Exception("Invalid platformName '%s'" % platformName)
+    return pc
 
-linux_slaves            = [ 'momo-vm-linux-%02i' % x for x in [2,3,4,5,6,7,8,9,11,12,13,14,15,16]]
-linux_unittest_slaves   = [ 'momo-vm-fedora12-%02i' % x for x in [2,3,4,5]]
-linux64_slaves          = [ 'momo-vm-linux64-%02i' % x for x in [ 2,3,5,6,7,8,9,10 ]]
-linux64_unittest_slaves = [ 'momo-vm-fedora12-64-%02i' % x for x in [ 2,3,4,5 ]]
-win32_slaves            = [ 'momo-vm-win2k3-%02i' % x for x in [ 1,2,4,5,6,8,9,10,11,12,13,14,15,17 ] ]
-macosx_slaves           = [ 'mini-%02i' % x for x in [ 3,4,5,6,7,8,9 ] ]
-macosx64_slaves         = [ 'momo-xserve-01'] + [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
-macosx64_unittest_slaves = [ 'mini64-%02i' % x for x in [ 1,3,4,5,6 ] ]
+def makeAusConfig(branchName):
+    ac = {}
+    ac['base_upload_dir'] = '/opt/aus/build/0/Thunderbird/%s' % branchName
+    ac['host'] = 'aus-staging.sj.mozillamessaging.com'
+    ac['user'] = 'tbirdbld'
+    return ac
 
+def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
+    bc = {}
+    if builderType == 'nightly':
+        bc['branch_name'] = branchName
+        bc['client_py_extra_args'] = \
+            ['--skip-comm',
+             '--hg-options=--verbose --time',
+             '--skip-venkman',
+             '--skip-chatzilla']
+        bc['codesighs'] = True
+        bc['create_snippet'] = True
+        bc['factory'] = 'CCNightlyBuildFactory'
+        if branchName == 'comm-1.9.2':
+            bc['hg_branch'] = 'releases/comm-1.9.2'
+        else:
+            bc['hg_branch'] = 'comm-central'
+        if branchName == 'comm-central':
+            bc['l10n'] = False
+            bc['l10n_repo'] = 'l10n-central'
+        elif branchName == 'comm-1.9.2':
+            bc['l10n'] = True
+            bc['l10n_repo'] = 'releases/l10n-mozilla-1.9.2'
+        else:
+            bc['l10n'] = True
+            bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
+        bc['l10n_nightly_updates'] = True
+        if branchName == 'comm-1.9.2':
+            bc['l10n_tree'] = 'tb31x'
+        else:
+            bc['l10n_tree'] = 'tb'
+        bc['milestone'] = branchName
+        bc['mozconfig'] = 'nightly'
+        bc['mozilla_central_branch'] = mozillaCentralBranch
+        if branchName == 'comm-central':
+            bc['nightly'] = False
+        elif branchName == 'comm-1.9.2':
+            bc['nightly_hour'] = [0]
+        bc['package'] = True
+        if branchName == 'comm-1.9.2':
+            pass
+        else:
+            bc['packageTests'] = True
+        if branchName in ['comm-central', 'comm-1.9.2']:
+            pass
+        else:
+            bc['period'] = 50400
+        if branchName == 'comm-central':
+            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
+        elif branchName == 'comm-1.9.2':
+            bc['tinderbox_tree'] = 'Thunderbird3.1'
+        else:
+            bc['tinderbox_tree'] = 'Miramar'
+        bc['upload_stage'] = True
+        if branchName == 'comm-1.9.2':
+            pass
+        else:
+            bc['unittest_masters'] = [
+               ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
+              ]
+        bc['platforms'] = {}
+        for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
+            if platformName == 'macosx' and branchName != 'comm-1.9.2':
+                continue
+            if platformName in ['linux64', 'macosx64'] and branchName == 'comm-1.9.2':
+                continue
+            bc['platforms'][platformName] = makePlatformConfig(bc, builderType, platformName, branchName)
+        bc['aus'] = makeAusConfig(branchName)
+    elif builderType == 'bloat':
+        bc['branch_name'] = branchName
+        bc['builder_type'] = builderType
+        bc['client_py_args'] = \
+            ['--skip-comm',
+             '--hg-options=--verbose --time',
+             '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaRepo]
+        bc['client_py_extra_args'] = ['--skip-venkman', '--skip-chatzilla']
+        bc['codesighs'] = False
+        bc['create_snippet'] = False
+        bc['factory'] = 'CCNightlyBuildFactory'
+        if branchName == 'comm-1.9.2':
+            bc['hg_branch'] = 'releases/comm-1.9.2'
+        else:
+            bc['hg_branch'] = 'comm-central'
+        bc['l10n'] = False
+        bc['leak'] = True
+        bc['mozconfig'] = 'debug'
+        bc['mozilla_central_branch'] = mozillaCentralBranch
+        bc['nightly'] = False
+        bc['package'] = False
+        if branchName == 'comm-1.9.2':
+            pass
+        else:
+            bc['period'] = 50400
+        if branchName == 'comm-central':
+            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
+        elif branchName == 'comm-1.9.2':
+            bc['tinderbox_tree'] = 'Thunderbird3.1'
+        else:
+            bc['tinderbox_tree'] = 'Miramar'
+        bc['upload_stage'] = True
+        bc['platforms'] = {}
+        for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
+            if platformName == 'macosx' and \
+               (branchName != 'comm-1.9.2' and builderType != 'bloat'):
+                continue
+            if platformName == 'macosx64' and builderType == 'bloat':
+                continue
+            if platformName in ['linux64', 'macosx64'] and \
+               branchName == 'comm-1.9.2':
+                continue
+            bc['platforms'][platformName] = makePlatformConfig(bc, builderType, platformName, branchName)
+        bc['upload_stage'] = False
+    elif builderType == 'check':
+        bc['branch_name'] = branchName
+        bc['builder_type'] = builderType
+        bc['client_py_extra_args'] = \
+            ['--skip-comm',
+             '--hg-options=--verbose --time',
+             '--skip-venkman',
+             '--skip-chatzilla']
+        bc['factory'] = 'CCUnittestBuildFactory'
+        if branchName == 'comm-1.9.2':
+            bc['hg_branch'] = 'releases/comm-1.9.2'
+        else:
+            bc['hg_branch'] = 'comm-central'
+        bc['mozmill'] = True
+        bc['nightly'] = False
+        bc['mozilla_central_branch'] = mozillaCentralBranch
+        bc['tinderbox_tree'] = 'Thunderbird3.1'
+        if branchName == 'comm-1.9.2':
+            pass
+        else:
+            bc['unittest_masters'] = [
+               ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
+              ]
+        bc['platforms'] = {}
+        for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
+            if platformName == 'macosx' and branchName != 'comm-1.9.2':
+                continue
+            if platformName in ['linux64', 'macosx64'] and branchName == 'comm-1.9.2' and builderType != 'check':
+                continue
+            if platformName in ['macosx64'] and builderType == 'check':
+                continue
+            bc['platforms'][platformName] = makePlatformConfig(bc, builderType, platformName, branchName)
+    else:
+        raise Exception("Invalid builderType '%s'" % builderType)
+    return bc
 
-platforms = {
-    'linux': {
-        'check_objdir': 'objdir-tb',
-        'update_platform': 'Linux_x86-gcc3',
-        'display_name': 'Linux',
-        'platform_objdir': 'objdir-tb',
-        'slaves' : linux_slaves,
-	'test-slaves': linux_unittest_slaves,
-        'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
-    },
-    'linux64': {
-        'check_objdir': 'objdir-tb',
-        'update_platform':  'Linux_x86_64-gcc3',
-        'display_name':  'Linux x86-64',
-        'platform_objdir': 'objdir-tb',
-        'slaves': linux64_slaves,
-        'test-slaves': linux64_unittest_slaves,
-        'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/tbirdbld_dsa',
-    },
-    'win32': {
-        'check_objdir': 'objdir-tb',
-        'update_platform':  'WINNT_x86-msvc',
-        'display_name':  'WINNT 5.2',
-        'platform_objdir': 'objdir-tb',
-        'slaves': win32_slaves,
-        'test-slaves': win32_slaves,
-        'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa',
-    },
-    'macosx': {
-        'update_platform':  'Darwin_Universal-gcc3',
-        'display_name':  'MacOSX 10.5',
-        'slaves': macosx_slaves,
-        'test-slaves': macosx_slaves,
-        'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
-        # Override default of macosx64 for trunk builds until we switch
-        # (bug 599796/bug 558837)
-        'env': { 'MOZ_PKG_PLATFORM': 'mac' },
-    },
-    'macosx64': {
-        'update_platform':  'Darwin_x86_64-gcc3',
-        'display_name':  'MacOSX 10.6',
-        'slaves': macosx64_slaves,
-        'test-slaves': macosx64_unittest_slaves,
-        'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/tbirdbld_dsa',
-    },
-}
-
-
-build_configs = {
-    'comm-central': {
-        'aus': {
-            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-central',
-            'host': 'aus-staging.sj.mozillamessaging.com',
-            'user': 'tbirdbld',
-        },
-        'branch_config': 'comm-central',
-        'builder_type': 'nightly',
-        'nightly': False,
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'env': {},
-        'hg_branch': 'comm-central',
-        'l10n_repo': 'l10n-central',
-        'l10n_tree': 'tb',
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'macosx64': 2500000,
-            'win32': 110000,
-        },
-        'milestone': 'comm-central',
-        'mozilla_central_branch':  'mozilla-central',
-        'tinderbox_tree': 'ThunderbirdTrunk',
-        'unittest_masters': [
-           ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
-         ],
-    },
-    'comm-central-bloat': {
-        'branch_config':  'comm-central',
-        'builder_type':  'bloat',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/mozilla-central', '--hg-options=--verbose --time' ],
-        'env': {
-            'XPCOM_DEBUG_BREAK': 'stack',
-            'DISPLAY': ':2',
-        },
-        'hg_branch':  'comm-central',
-        'leak_threshold': {
-            'linux': 970000, #
-            'linux64': 1400000, #
-            'macosx': 3400000, #
-            'win32': 1400000, #
-        },
-        'mozilla_central_branch':  'mozilla-central',
-        'period': 50400,
-        'tinderbox_tree': 'ThunderbirdTrunk',
-    },
-    'comm-aurora': {
-        'aus': {
-            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-aurora',
-            'host': 'aus-staging.sj.mozillamessaging.com',
-            'user': 'tbirdbld',
-        },
-        'branch_config': 'comm-aurora',
-        'builder_type': 'nightly',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'env': {},
-        'hg_branch': 'comm-central',
-        'l10n_repo': 'releases/l10n/mozilla-aurora',
-        'l10n_tree': 'tb',
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'macosx64': 2500000,
-            'win32': 110000,
-        },
-        'milestone': 'comm-aurora',
-        'mozilla_central_branch':  'mozilla-aurora',
-        'period': 50400,
-        'tinderbox_tree': 'Miramar',
-        'unittest_masters': [
-           ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
-         ],
-    },
-    'comm-aurora-bloat': {
-        'branch_config':  'comm-aurora',
-        'builder_type':  'bloat',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--mozilla-repo=http://hg.mozilla.org/mozilla-aurora', '--hg-options=--verbose --time' ],
-        'env': {
-            'XPCOM_DEBUG_BREAK': 'stack',
-            'DISPLAY': ':2',
-        },
-        'hg_branch':  'comm-central',
-        'leak_threshold': {
-            'linux': 970000, #
-            'linux64': 1400000, #
-            'macosx': 3400000, #
-            'win32': 1400000, #
-        },
-        'mozilla_central_branch':  'mozilla-aurora',
-        'period': 50400,
-        'tinderbox_tree': 'Miramar',
-    },
-    'comm-1.9.2': {
-        'aus': {
-            'base_upload_dir': '/opt/aus/build/0/Thunderbird/comm-1.9.2', #
-            'host': 'aus-staging.sj.mozillamessaging.com',
-            'user': 'tbirdbld',
-        },
-        'branch_config':  'comm-1.9.2',
-        'builder_type': 'nightly',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time'],
-        'env': {},
-        'hg_branch':  'releases/comm-1.9.2', #
-        'l10n_repo': 'releases/l10n-mozilla-1.9.2', #
-        'l10n_tree': 'tb31x',
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'milestone': 'comm-1.9.2', #
-        'mozilla_central_branch':  'releases/mozilla-1.9.2', #
-        'nightly_hour': [0],
-        'tinderbox_tree': 'Thunderbird3.1',
-    },
-    'comm-1.9.2-bloat': {
-        'branch_config':  'comm-1.9.2',
-        'builder_type':  'bloat',
-        'factory': 'CCNightlyBuildFactory',
-        'client_py_args':  ['--skip-comm', '--hg-options=--verbose --time', '--mozilla-repo=http://hg.mozilla.org/releases/mozilla-1.9.2' ],
-        'env': {
-            'XPCOM_DEBUG_BREAK': 'stack',
-            'DISPLAY': ':2',
-        },
-        'hg_branch':  'releases/comm-1.9.2', #
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        #'milestone': 'comm-1.9.2', #
-        'mozilla_central_branch':  'releases/mozilla-1.9.2', #
-        'tinderbox_tree': 'Thunderbird3.1',
-    },
-    'comm-1.9.2-unittest': {
-        'branch_config':  'comm-1.9.2',
-        'builder_type': 'check',
-        'env': {},
-        'factory': 'CCUnittestBuildFactory',
-        'hg_branch':  'releases/comm-1.9.2', #
-        'client_py_extra_args':  ['--skip-comm', '--hg-options=--verbose --time' ],
-        'leak_threshold': {
-            'linux': 970000,
-            'macosx': 2500000,
-            'win32': 110000,
-        },
-        'mozilla_central_branch':  'releases/mozilla-1.9.2', #
-        'mozmill': True,
-        'nightly': False,
-        'tinderbox_tree': 'Thunderbird3.1',
-    },
-}
-
-# Update all configs using constants and conditionals
-for config_name in build_configs:
-    # init
-    config = build_configs[config_name]
-    branch_config = branch_configs[config['branch_config']]
-    branch = branch_config['branch_name']
-    config['platforms'] = {}
-    if not config.has_key('platforms'):
-        config['env'] = {}
-
-    if not config.has_key('client_py_extra_args'):
-        config['client_py_extra_args'] = []
-    config['client_py_extra_args'].extend(['--skip-venkman', '--skip-chatzilla'])
-
-    if config['builder_type'] != 'check':
-        config['env']['CVS_RSH'] = 'ssh'
-        config['env']['MOZ_OBJDIR'] = 'objdir-tb'
-        config['env']['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
-
-    #TODO - what is common about these configs?
-    if config_name in ['comm-aurora', 'comm-aurora-bloat', 'comm-central', 'comm-central-bloat', 'comm-1.9.2', 'comm-1.9.2-bloat']:
-        config['env']['SYMBOL_SERVER_HOST'] = 'dm-symbolpush01.mozilla.org'
-        config['env']['SYMBOL_SERVER_USER'] = 'tbirdbld'
-        config['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
-        config['env']['POST_SYMBOL_UPLOAD_CMD'] = '/usr/local/bin/post-symbol-upload.py'
-
-    if config['builder_type'] == 'bloat':
-        config['mozconfig'] = 'debug'
-        config['nightly'] = False
-        config['leak'] = True
-        config['package'] = False
-        config['upload_stage'] = False
-        config['codesighs'] = False
-        config['l10n'] = False
-        config['create_snippet'] = False
-    elif config['builder_type'] == 'nightly':
-        config['mozconfig'] = 'nightly'
-        config['package'] = True
-        config['upload_stage'] = True
-        config['codesighs'] = True
-        config['l10n'] = True
-        config['l10n_nightly_updates'] = True
-        config['create_snippet'] = True
-        if config['hg_branch'] in ['comm-central']:
-            config['packageTests'] = True
-
-    if config_name in ['comm-1.9.2' ]:
-        #TODO - clean this up
-        if not config['platforms'].has_key('linux64'):
-            config['platforms']['linux64'] = {}
-            config['platforms']['linux64']['l10n'] = {}
-        config['platforms']['linux64']['l10n'] = False
-
-    if config.get('codesighs') == True:
-        config['env']['TINDERBOX_OUTPUT'] = '1'
-
-    for platform in branch_config['platforms']:
-        if not config['platforms'].has_key(platform):
-            config['platforms'][platform] = {}
-        if not config['platforms'][platform].has_key('env'):
-            config['platforms'][platform]['env'] = {}
-
-        config['platforms'][platform]['base_name'] = '%s %s' % (platforms[platform]['display_name'], config['branch_config'])
-        if not config['builder_type'] == 'check':
-            config['platforms'][platform]['profiled_build']  = False
-
-        if config_name in ['comm-aurora', 'comm-central']:
-            config['platforms'][platform]['enable_checktests'] = True
-
-        if config['builder_type'] == 'bloat':
-            config['platforms'][platform]['upload_symbols'] = False
-            if platform.find('linux') == 0:
-                config['platforms'][platform]['env']['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
-            # Mac OS X hack
-            if platform.find('macos') == 0:
-                config['platforms'][platform]['platform_objdir'] = 'objdir-tb'
-                config['platforms'][platform]['check_objdir'] = 'objdir-tb'
-        elif config['builder_type'] == 'nightly':
-            config['platforms'][platform]['upload_symbols'] = True
-            # Mac OS X hack
-            if platform == 'macosx64':
-                config['platforms'][platform]['platform_objdir'] = 'objdir-tb/i386'
-                config['platforms'][platform]['check_objdir'] = 'objdir-tb/x86_64'
-            elif platform.find('macos') == 0:
-                config['platforms'][platform]['platform_objdir'] = 'objdir-tb/ppc'
-                config['platforms'][platform]['check_objdir'] = 'objdir-tb/ppc'
-
-# create final data structure
 BRANCHES = {}
-for config_name in build_configs:
-    BRANCHES[config_name] = {}
-    branch_config = branch_configs[build_configs[config_name]['branch_config']]
-    if branch_config['branch_name'] != '':
-        BRANCHES[config_name]['branch_name'] = branch_config['branch_name']
-    key_copy(build_configs[config_name], BRANCHES[config_name], [ 'branch_config', 'leak_threshold', 'env' ] )
-
-    for platform in branch_config['platforms']:
-        # for each platform's keys...
-        key_copy(build_configs[config_name]['platforms'][platform], BRANCHES[config_name]['platforms'][platform], [] )
-
-        if build_configs[config_name]['leak_threshold'].has_key(platform) \
-           and build_configs[config_name].has_key('builder_type') and build_configs[config_name]['builder_type'] == 'bloat':
-            BRANCHES[config_name]['platforms'][platform]['leak_threshold'] = build_configs[config_name]['leak_threshold'][platform]
-        key_copy(platforms[platform], BRANCHES[config_name]['platforms'][platform], ['display_name','SYMBOL_SERVER_SSH_KEY'] )
-
-        #Codesighs not supported on win32
-        if build_configs[config_name].get('codesighs') == True:
-            if platform == 'win32':
-                BRANCHES[config_name]['platforms']['win32']['codesighs'] = False
-
-        # set environment from various sources
-        BRANCHES[config_name]['platforms'][platform]['env'] = {}
-        key_copy(build_configs[config_name]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
-        if platforms[platform].has_key('env'):
-            key_copy(platforms[platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
-        key_copy(build_configs[config_name]['platforms'][platform]['env'], BRANCHES[config_name]['platforms'][platform]['env'], [] )
-        if config_name not in ['comm-aurora-bloat', 'comm-central-bloat', 'comm-1.9.2-unittest']: #TODO
-            BRANCHES[config_name]['platforms'][platform]['env']['SYMBOL_SERVER_SSH_KEY'] = platforms[platform]['SYMBOL_SERVER_SSH_KEY']
-
-#TODO - make changes to avoid these last minute cleanups
-
-for branch in ['comm-1.9.2-bloat', 'comm-1.9.2']:
-    del BRANCHES[branch]['platforms']['linux64']
-
-# 32-64 universal switch for mac
-for branch in ['comm-aurora-bloat', 'comm-central-bloat']:
-    del BRANCHES[branch]['platforms']['macosx64']
-for branch in ['comm-aurora', 'comm-central']:
-    del BRANCHES[branch]['platforms']['macosx']
-
-for branch in ['comm-1.9.2', 'comm-aurora', 'comm-central']:
-    del BRANCHES[branch]['builder_type']
-for branch in ['comm-1.9.2-unittest']:
-    for platform in ['linux', 'linux64', 'macosx', 'win32']:
-        for key in ['env', 'platform_objdir', 'update_platform']:
-            if BRANCHES[branch]['platforms'][platform].has_key(key):
-                del BRANCHES[branch]['platforms'][platform][key]
-
-for branch in sorted(build_configs.keys()):
-    for platform in ('linux','linux64','macosx', 'macosx64'):
-        if BRANCHES[branch]['platforms'].get(platform):
-            # Enable ccache statistics for linuxes and mac
-            BRANCHES[branch]['platforms'][platform]['enable_ccache'] = True
-    for platform in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms'][platform]['builds_before_reboot'] = 1
-
-for branch in ['comm-aurora', 'comm-central']:
-  for platform in ['linux','linux64']:
-    BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
-    BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
+BRANCHES['comm-aurora'] = makeBuildConfig('nightly', 'comm-aurora', 'mozilla-aurora', 'mozilla-aurora')
+BRANCHES['comm-aurora-bloat'] = makeBuildConfig('bloat', 'comm-aurora', 'mozilla-aurora', 'mozilla-aurora')
+BRANCHES['comm-central'] = makeBuildConfig('nightly', 'comm-central', 'mozilla-aurora', 'mozilla-central')
+BRANCHES['comm-central-bloat'] = makeBuildConfig('bloat', 'comm-central', 'mozilla-central', 'mozilla-central')
+BRANCHES['comm-1.9.2'] = makeBuildConfig('nightly', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
+BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig('bloat', 'comm-1.9.2', 'releases/mozilla-1.9.2', 'releases/mozilla-1.9.2')
+BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig('check', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
 
 # ----------------
 
@@ -486,6 +509,6 @@ if __name__ == "__main__":
     else:
         branches = BRANCHES.keys()
 
-    for branch in branches:
+    for branch in sorted(branches):
         print branch
         pprint.pprint(BRANCHES[branch])

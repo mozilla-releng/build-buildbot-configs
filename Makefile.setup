@@ -17,6 +17,7 @@ HOME = /home/$(USER)
 BUILDBOT_BRANCH = production-0.8
 BUILDBOTCUSTOM_BRANCH = production-0.8
 BUILDBOTCONFIGS_BRANCH = production
+INSTALL_BUILDBOT_SLAVE=
 
 all: virtualenv deps install-buildbot master master-makefile other-files done
 
@@ -39,6 +40,9 @@ install-buildbot: SITE_PACKAGES = $(BASEDIR)/lib/$(shell ls $(BASEDIR)/lib/)/sit
 install-buildbot:
 	$(HG) clone -b $(BUILDBOT_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot $(BASEDIR)/buildbot
 	(cd $(BASEDIR)/buildbot/master; $(VIRTUALENV_PYTHON) setup.py develop install)
+ifdef INSTALL_BUILDBOT_SLAVE
+	(cd $(BASEDIR)/buildbot/slave; $(VIRTUALENV_PYTHON) setup.py develop install)
+endif
 	$(HG) clone -b $(BUILDBOTCUSTOM_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
 	$(HG) clone -b $(BUILDBOTCONFIGS_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
 	$(HG) clone $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools

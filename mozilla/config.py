@@ -75,6 +75,7 @@ GLOBAL_VARS = {
         'maemo5-gtk': {},
         'maemo5-qt': {},
         'android-r7': {},
+        'android-debug': {},
         'linux': {},
         'win32': {},
         'macosx': {},
@@ -210,6 +211,30 @@ MOBILE_PLATFORM_VARS = {
         'multi_locale': True,
         'package_globlist': ['embedding/android/*.apk'],
         'talos_masters': GLOBAL_VARS['talos_masters'],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
+    },
+    'android-debug': {
+        'base_name': 'Android Debug %(branch)s',
+        'mozconfig': 'mobile/android/mobile-browser/debug',
+        'profiled_build': False,
+        'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 6,
+        'generate_symbols': False,
+        'slaves': SLAVES['linux'],
+        'platform_objdir': MOBILE_OBJDIR,
+        'enable_ccache': True,
+        'env': {
+            'JAVA_HOME': '/tools/jdk6',
+            'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            'MOZ_OBJDIR': MOBILE_OBJDIR,
+            'CCACHE_DIR': '/builds/slave/ccache',
+            'CCACHE_UMASK': '002',
+            'LC_ALL': 'C',
+        },
+        'multi_locale': False,
+        'enable_mobile_nightly': False,
+        'enable_mobile_dep': False,
+        'package_globlist': ['embedding/android/*.apk'],
         'unittest_masters': GLOBAL_VARS['unittest_masters'],
     },
     'linux': {
@@ -927,6 +952,7 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+BRANCHES['mozilla-central']['mobile_platforms']['android-debug']['enable_mobile_dep'] = True
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
@@ -1013,6 +1039,10 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fi
 BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
 BRANCHES['mozilla-beta']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-beta'
 BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mozilla-beta_maemo5_gtk.json'
+BRANCHES['mozilla-beta']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mozilla-beta_maemo5_qt.json'
+BRANCHES['mozilla-beta']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mozilla-beta_android.json'
+BRANCHES['mozilla-beta']['mobile_platforms']['android-debug']['enable_mobile_dep'] = True
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 
@@ -1062,6 +1092,17 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-debug']['mozconfig'] = 'mobile/android/mozilla-aurora/debug'
+BRANCHES['mozilla-aurora']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mozilla-aurora/nightly'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mozilla-aurora_maemo5_gtk.json'
+BRANCHES['mozilla-aurora']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mozilla-aurora_maemo5_qt.json'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mozilla-aurora_android.json'
+BRANCHES['mozilla-aurora']['mobile_platforms']['android-debug']['enable_mobile_dep'] = True
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 
@@ -1169,12 +1210,14 @@ BRANCHES['mozilla-2.1']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile/maemo5-gtk/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile/maemo5-qt/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile/android/mobile-2.0/nightly'
+BRANCHES['mozilla-2.1']['mobile_platforms']['android-debug']['mozconfig'] = 'mobile/android/mobile-2.0/debug'
 BRANCHES['mozilla-2.1']['mobile_platforms']['linux']['mozconfig'] = 'mobile/linux-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['macosx']['mozconfig'] = 'mobile/macosx-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['win32']['mozconfig'] = 'mobile/win32-i686/mobile-2.0/nightly'
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-gtk']['mozharness_config'] = 'multi_locale/mobile-2.0_maemo5_gtk.json'
 BRANCHES['mozilla-2.1']['mobile_platforms']['maemo5-qt']['mozharness_config'] = 'multi_locale/mobile-2.0_maemo5_qt.json'
 BRANCHES['mozilla-2.1']['mobile_platforms']['android-r7']['mozharness_config'] = 'multi_locale/mobile-2.0_android.json'
+BRANCHES['mozilla-2.1']['mobile_platforms']['android-debug']['enable_mobile_dep'] = True
 
 ######## mozilla-1.9.1
 BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
