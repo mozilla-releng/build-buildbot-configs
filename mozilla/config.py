@@ -261,6 +261,7 @@ MOBILE_PLATFORM_VARS = {
             'LC_ALL': 'C',
         },
         'package_globlist': ['-r', 'dist/*.tar.bz2', 'dist/*.zip'],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
     },
     'macosx': {
         'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',

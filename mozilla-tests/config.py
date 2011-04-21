@@ -198,9 +198,9 @@ UNITTEST_SUITES = {
         #                     'mochitest-ipcplugins']),
         ('mobile-mochitest-browser-chrome', ['mobile-mochitest-browser-chrome']),
         #('reftest', ['reftest']),
-        ('crashtest', ['crashtest']),
+        #('crashtest', ['crashtest']),
         #('xpcshell', ['xpcshell']),
-        ('jsreftest', ['jsreftest']),
+        #('jsreftest', ['jsreftest']),
     ],
 
 }
