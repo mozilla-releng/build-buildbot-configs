@@ -33,29 +33,29 @@ TRY_SLAVES['win32'] += TRY_WIN32 + TRY_WIN32_IXS
 
 
 GLOBAL_VARS = {
-    'config_repo_path': 'users/prepr-ffxbld/buildbot-configs',
-    'buildbotcustom_repo_path': 'users/prepr-ffxbld/buildbotcustom',
-    'compare_locales_repo_path': 'users/prepr-ffxbld/compare-locales',
-    'build_tools_repo_path': 'users/prepr-ffxbld/tools',#TODO
+    'config_repo_path': 'build/buildbot-configs',
+    'buildbotcustom_repo_path': 'build/buildbotcustom',
+    'compare_locales_repo_path': 'build/compare-locales',
+    'build_tools_repo_path': 'build/tools',
     'stage_server': 'preproduction-stage.build.mozilla.org',
     'aus2_host': 'preproduction-stage.build.mozilla.org',
     'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',#TODO
-    'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php', #TODO
+    'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-        ('preproduction-master.build.mozilla.org:9009', True, 1), #TODO
+        ('preproduction-master.build.mozilla.org:9009', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('preproduction-master.build.mozilla.org:9009', True, 1), #TODO
+        ('preproduction-master.build.mozilla.org:9009', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'Releng-Preproduction',
     'weekly_tinderbox_tree': 'Releng-Preproduction',
@@ -70,11 +70,11 @@ SYMBOL_SERVER_HOST = 'preproduction-stage.build.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {
-    'tryserver': {
+    'try': {
         'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,
-        'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

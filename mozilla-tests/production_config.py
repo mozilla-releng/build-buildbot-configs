@@ -74,13 +74,13 @@ BRANCHES = {
         'tinderbox_tree': 'AddonTester',
         'mobile_tinderbox_tree': 'AddonTester',
     },
-    'tryserver': {
-        'tinderbox_tree': 'MozillaTry',
-        'mobile_tinderbox_tree': 'MozillaTry',
+    'try': {
+        'tinderbox_tree': 'Try',
+        'mobile_tinderbox_tree': 'Try',
         'enable_mail_notifier': True,
         'notify_real_author': True,
         'enable_merging': False,
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',

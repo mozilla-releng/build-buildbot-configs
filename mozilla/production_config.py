@@ -150,16 +150,15 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Jaegermonkey',
         'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
     },
-    'tryserver': {
-        'tinderbox_tree': 'MozillaTry',
-        'graph_branch': 'Tryserver',
-        'mobile_tinderbox_tree': 'MozillaTry',
-        'packaged_unittest_tinderbox_tree': 'MozillaTry',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
-        'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+    'try': {
+        'tinderbox_tree': 'Try',
+        'mobile_tinderbox_tree': 'Try',
+        'packaged_unittest_tinderbox_tree': 'Try',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

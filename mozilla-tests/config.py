@@ -66,7 +66,7 @@ BRANCHES = {
     'mozilla-2.1': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
-    'tryserver': {},
+    'try': {},
     'addontester': {},
     'addonbaselinetester': {},
 }
@@ -827,48 +827,48 @@ BRANCHES['addonbaselinetester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['addonbaselinetester']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['enable_unittests'] = False
 
-######## tryserver
-BRANCHES['tryserver']['branch_name'] = "Tryserver"
-BRANCHES['tryserver']['mobile_branch_name'] = "Tryserver"
-BRANCHES['tryserver']['build_branch'] = "Tryserver"
-BRANCHES['tryserver']['talos_command'] = TALOS_CMD
-BRANCHES['tryserver']['fetch_symbols'] = True
-BRANCHES['tryserver']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['tryserver']['chrome_tests'] = (1, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['nochrome_tests'] = (1, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['dromaeo_tests'] = (1, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['dirty_tests'] = (1, False, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['tryserver']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['tryserver']['cold_tests'] = (0, False, TALOS_DIRTY_OPTS, NO_WIN)
-BRANCHES['tryserver']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tp4m_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tp4m_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['tryserver']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['tryserver']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['tryserver']['a11y_tests'] = (1, False, {}, NO_MAC)
-BRANCHES['tryserver']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tryserver']['repo_path'] = "try"
-BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
-BRANCHES['tryserver']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-BRANCHES['tryserver']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+######## try
+BRANCHES['try']['branch_name'] = "Try"
+BRANCHES['try']['mobile_branch_name'] = "Try"
+BRANCHES['try']['build_branch'] = "Try"
+BRANCHES['try']['talos_command'] = TALOS_CMD
+BRANCHES['try']['fetch_symbols'] = True
+BRANCHES['try']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['try']['chrome_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['nochrome_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['dromaeo_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['dirty_tests'] = (1, False, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['cold_tests'] = (0, False, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['try']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tp4m_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tp4m_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['try']['svg_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['v8_tests'] = (0, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['scroll_tests'] = (1, False, {}, ALL_PLATFORMS)
+BRANCHES['try']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['a11y_tests'] = (1, False, {}, NO_MAC)
+BRANCHES['try']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['try']['repo_path'] = "try"
+BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
+BRANCHES['try']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['linux64']['fedora64']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['macosx']['leopard-o']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 # Disabling win7 until hung slave issue is fixed
-#BRANCHES['tryserver']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+#BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## generic branch variables for project branches
 for branch in ACTIVE_PROJECT_BRANCHES:
