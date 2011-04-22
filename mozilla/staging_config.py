@@ -90,12 +90,12 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'tryserver': {
+    'try': {
         'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

@@ -23,7 +23,7 @@ BRANCH_PRIORITIES = {
     'mozilla-2.0': 1,
     'mozilla-1.9.2': 1,
     'mozilla-1.9.1': 1,
-    'tryserver': 3,
+    'try': 3,
     'addontester': 4,
     'addonbaselinetester': 4,
 }

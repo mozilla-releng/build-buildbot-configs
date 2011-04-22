@@ -70,11 +70,11 @@ SYMBOL_SERVER_HOST = 'preproduction-stage.build.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {
-    'tryserver': {
+    'try': {
         'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,
-        'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+        'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
