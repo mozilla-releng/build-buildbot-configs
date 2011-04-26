@@ -6,9 +6,9 @@ from buildbotcustom.env import MozillaEnvironments
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in range (1,2)]
-TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,2,11]]
-TRY_MAC64      = ['mini64-02']
+TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10]]
+TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,11]]
+TRY_MAC64      = ['mini64-%02i' % x for x in [2,7]]
 TRY_MAC        = ['mini-01','mini-10']
 TRY_WIN32      = ['momo-vm-win2k3-03', 'momo-vm-win2k3-16']
 
