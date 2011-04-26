@@ -56,6 +56,7 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [
                           ('momo-vm-03.sj.mozillamessaging.com:9015', False, 3),
+                          ('momo-vm-03.sj.mozillamessaging.com:9920', False, 3),
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
@@ -420,7 +421,7 @@ for platform in ['linux', 'linux64', 'win32', 'macosx', 'macosx64']:
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
- 
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
