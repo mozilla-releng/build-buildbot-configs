@@ -516,8 +516,9 @@ BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['debug_unitt
 BRANCHES['mozilla-central']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-# Disabling win7 until hung slave issue is fixed
-#BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['win32']['xp']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['branch_name'] = "Mozilla-Beta"
@@ -601,8 +602,9 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['debug_unitte
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-# Disabling win7 until hung slave issue is fixed
-#BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 ######## shadow-central
 BRANCHES['shadow-central']['branch_name'] = "Shadow-Central"
@@ -867,8 +869,9 @@ BRANCHES['try']['platforms']['macosx64']['snowleopard']['debug_unittest_suites']
 BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['try']['platforms']['macosx64']['leopard']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['try']['platforms']['win32']['xp']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-# Disabling win7 until hung slave issue is fixed
-#BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['try']['platforms']['android']['enable_opt_unittests'] = True
 
 ######## generic branch variables for project branches
