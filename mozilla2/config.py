@@ -604,8 +604,8 @@ BRANCHES['mozilla-1.9.2']['packaged_unittest_tinderbox_tree'] = 'Firefox3.6'
 BRANCHES['tracemonkey']['repo_path'] = 'tracemonkey'
 BRANCHES['tracemonkey']['start_hour'] = [3]
 BRANCHES['tracemonkey']['start_minute'] = [32]
-BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 7
-BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 7
+BRANCHES['tracemonkey']['platforms']['linux']['build_space'] = 8
+BRANCHES['tracemonkey']['platforms']['linux64']['build_space'] = 8
 # Disable XULRunner / SDK builds
 BRANCHES['tracemonkey']['enable_xulrunner'] = False
 BRANCHES['tracemonkey']['enable_mac_a11y'] = True

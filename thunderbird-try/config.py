@@ -6,10 +6,10 @@ from buildbotcustom.env import MozillaEnvironments
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in range (1,2)]
-TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,2,11]]
-TRY_MAC64      = ['mini64-02']
-TRY_MAC        = ['mini-01','mini-10']
+TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10]]
+TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,11]]
+TRY_MAC64      = ['mini64-%02i' % x for x in [2,7]]
+TRY_MAC        = ['mini-10']
 TRY_WIN32      = ['momo-vm-win2k3-03', 'momo-vm-win2k3-16']
 
 
@@ -56,6 +56,7 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [
                           ('momo-vm-03.sj.mozillamessaging.com:9015', False, 3),
+                          ('momo-vm-03.sj.mozillamessaging.com:9920', False, 3),
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
@@ -420,7 +421,7 @@ for platform in ['linux', 'linux64', 'win32', 'macosx', 'macosx64']:
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 #BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
- 
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
