@@ -16,7 +16,7 @@ ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-
         'mozilla-2.0', 'mozilla-2.1', 'mozilla-beta', 'mozilla-aurora',
 ] + ACTIVE_PROJECT_BRANCHES
 ACTIVE_PROJECTS = PROJECTS.keys()
-ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.2', ]
+ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.2', 'mozilla-beta']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
