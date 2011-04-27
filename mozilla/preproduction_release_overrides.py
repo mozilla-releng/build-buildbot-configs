@@ -10,3 +10,4 @@ releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'
 releaseConfig['enable_repo_setup']   = True
 releaseConfig['commitPatcherConfig'] = False # TODO: toggle when CVS mirror is live
 releaseConfig['messagePrefix']       = '[preprod-release] '
+releaseConfig['userRepoRoot']        = 'users/prepr-ffxbld'

@@ -28,6 +28,8 @@ releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc2'
 releaseConfig['nextAppVersion']      = '4.0.2pre'
 releaseConfig['nextMilestone']       = '2.0.2pre'
 #  Repository configuration, for tagging
+## Staging repository path
+releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-2.0',
