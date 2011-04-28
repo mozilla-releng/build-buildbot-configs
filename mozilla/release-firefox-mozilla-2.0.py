@@ -114,7 +114,6 @@ releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
     'linux':  'moz20-firefox-linux-major.cfg',
     'linux64':  'moz20-firefox-linux64-major.cfg',
-    'macosx': 'moz20-firefox-mac-major.cfg',
     'macosx64': 'moz20-firefox-mac64-major.cfg',
     'win32':  'moz20-firefox-win32-major.cfg'
 }
