@@ -407,6 +407,7 @@ BRANCHES['try']['enable_codecoverage'] = False
 BRANCHES['try']['enable_weekly_bundle'] = False
 BRANCHES['try']['enable_shark'] = False
 BRANCHES['try']['create_snippet'] = False
+BRANCHES['try']['mozconfig_branch'] = 'default'
 # need this or the master.cfg will bail
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 for platform in ['linux', 'linux64', 'win32', 'macosx', 'macosx64']:
