@@ -31,7 +31,7 @@ releaseConfig['nextMilestone']       = '5.0'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
-        'path': 'mozilla-beta',
+        'path': 'releases/mozilla-beta',
         'revision': 'a307c807cfab',
         'relbranch': None,
         'bumpFiles': {
