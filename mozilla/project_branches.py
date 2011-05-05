@@ -142,6 +142,8 @@ PROJECT_BRANCHES = {
     'alder': {},
     'birch': {},
     'cedar': {
+        # Share mozilla-central's setup as much as possible
+        'mozconfig_dir' : 'mozilla-central',
         'talos_suites': {
             'remote-ts': 1,
             'remote-tdhtml': 1,

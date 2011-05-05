@@ -3,12 +3,6 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
   # mozconfig.
   oldtopsrcdir=$topsrcdir
   export topsrcdir=$topsrcdir/mozilla
-fi
-
-. $topsrcdir/build/macosx/universal/mozconfig
-
-if test -n $oldtopsrcdir; then
-  export topsrcdir=$oldtopsrcdir
 else
   # Big Hack that unsets CC / CXX so that mozconfig.common doesn't get
   # mixed up with host/target CPUs when trying to work out how to do the
@@ -16,6 +10,12 @@ else
   # go away.
   unset CC
   unset CXX
+fi
+
+. $topsrcdir/build/macosx/universal/mozconfig
+
+if test -n $oldtopsrcdir; then
+  export topsrcdir=$oldtopsrcdir
 fi
 
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
