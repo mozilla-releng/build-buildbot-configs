@@ -17,7 +17,9 @@ PROJECT_BRANCHES = {
             'paint': 0,
         },
     },
-    'build-system': {},
+    'build-system': {
+        'enable_talos': False,
+    },
     'devtools':{
         'enable_nightly': True,
         # need both of these to turn off mobile completely because of key in generic config.py
