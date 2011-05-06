@@ -293,6 +293,16 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         else:
             bc['l10n'] = True
             bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
+            bc['mirror'] = {
+                'comm-central' : {
+                    'src': 'comm-central',
+                    'dst': 'releases/comm-miramar',
+                },
+                'mozilla-aurora' : {
+                    'src' : 'releases/mozilla-aurora',
+                    'dst' : 'releases/mozilla-miramar',
+                },
+            }
         bc['l10n_nightly_updates'] = True
         if branchName == 'comm-1.9.2':
             bc['l10n_tree'] = 'tb31x'
