@@ -261,6 +261,7 @@ MOBILE_PLATFORM_VARS = {
             'LC_ALL': 'C',
         },
         'package_globlist': ['-r', 'dist/*.tar.bz2', 'dist/*.zip'],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
     },
     'macosx': {
         'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',
@@ -819,7 +820,7 @@ BRANCHES = {
         },
         'mobile_platforms': {},
     },
-    'tryserver': {
+    'try': {
         'mobile_platforms': {
             'maemo5-gtk': {},
             'maemo5-qt': {},
@@ -991,7 +992,7 @@ BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILD
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
 
 ######## mozilla-beta
-BRANCHES['mozilla-beta']['repo_path'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
 BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-beta']['start_hour'] = [3]
@@ -1047,7 +1048,7 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 
 ######## mozilla-aurora
-BRANCHES['mozilla-aurora']['repo_path'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [4]
@@ -1373,67 +1374,67 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
 
-######## tryserver
+######## try
 # Try-specific configs
-BRANCHES['tryserver']['stage_username'] = 'trybld'
-BRANCHES['tryserver']['stage_username_mobile'] = 'trybld'
-BRANCHES['tryserver']['stage_ssh_key'] = 'trybld_dsa'
-BRANCHES['tryserver']['stage_ssh_mobile_key'] = 'trybld_dsa'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-builds'
-BRANCHES['tryserver']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/tryserver-builds'
-BRANCHES['tryserver']['enable_merging'] = False
-BRANCHES['tryserver']['enable_try'] = True
-BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['try']['stage_username'] = 'trybld'
+BRANCHES['try']['stage_username_mobile'] = 'trybld'
+BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
+BRANCHES['try']['stage_ssh_mobile_key'] = 'trybld_dsa'
+BRANCHES['try']['stage_base_path'] = '/home/ftp/pub/firefox/try-builds'
+BRANCHES['try']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/try-builds'
+BRANCHES['try']['enable_merging'] = False
+BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['repo_path'] = 'try'
-BRANCHES['tryserver']['start_hour'] = [3]
-BRANCHES['tryserver']['start_minute'] = [2]
+BRANCHES['try']['repo_path'] = 'try'
+BRANCHES['try']['start_hour'] = [3]
+BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds
-BRANCHES['tryserver']['enable_nightly'] = False
-BRANCHES['tryserver']['enable_mobile_nightly'] = False
+BRANCHES['try']['enable_nightly'] = False
+BRANCHES['try']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
-BRANCHES['tryserver']['enable_xulrunner'] = False
-BRANCHES['tryserver']['enable_mac_a11y'] = True
+BRANCHES['try']['enable_xulrunner'] = False
+BRANCHES['try']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
-BRANCHES['tryserver']['enable_l10n'] = False
-BRANCHES['tryserver']['enable_l10n_onchange'] = False
-BRANCHES['tryserver']['l10nNightlyUpdate'] = False
-BRANCHES['tryserver']['l10nDatedDirs'] = False
-BRANCHES['tryserver']['enable_codecoverage'] = False
-BRANCHES['tryserver']['enable_shark'] = False
-BRANCHES['tryserver']['create_snippet'] = False
+BRANCHES['try']['enable_l10n'] = False
+BRANCHES['try']['enable_l10n_onchange'] = False
+BRANCHES['try']['l10nNightlyUpdate'] = False
+BRANCHES['try']['l10nDatedDirs'] = False
+BRANCHES['try']['enable_codecoverage'] = False
+BRANCHES['try']['enable_shark'] = False
+BRANCHES['try']['create_snippet'] = False
 # need this or the master.cfg will bail
-BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['tryserver']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['tryserver']['platforms']['linux-rpm']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['platforms']['linux64-rpm']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['tryserver']['platforms']['linuxqt']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
-BRANCHES['tryserver']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
-BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
-BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-BRANCHES['tryserver']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
-BRANCHES['tryserver']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['linuxqt']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
-BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
-BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-BRANCHES['tryserver']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-tryserver/android'
-BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-tryserver/maemo5-gtk/'
-BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-tryserver/maemo5-qt'
-BRANCHES['tryserver']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['tryserver']['mobile_platforms']['android-r7']['upload_symbols'] = False
-BRANCHES['tryserver']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
-BRANCHES['tryserver']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
+BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try']['platforms']['linux-rpm']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['linux64-rpm']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try']['platforms']['linuxqt']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
+BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
+BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
+BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
+BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
+BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
+BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
+BRANCHES['try']['mobile_platforms']['android-r7']['mozconfig'] = 'mobile-try/android'
+BRANCHES['try']['mobile_platforms']['maemo5-gtk']['mozconfig'] = 'mobile-try/maemo5-gtk/'
+BRANCHES['try']['mobile_platforms']['maemo5-qt']['mozconfig'] = 'mobile-try/maemo5-qt'
+BRANCHES['try']['mobile_platforms']['android-r7']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['mobile_platforms']['maemo5-gtk']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['mobile_platforms']['maemo5-qt']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['mobile_platforms']['android-r7']['upload_symbols'] = False
+BRANCHES['try']['mobile_platforms']['maemo5-gtk']['upload_symbols'] = False
+BRANCHES['try']['mobile_platforms']['maemo5-qt']['upload_symbols'] = False
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:

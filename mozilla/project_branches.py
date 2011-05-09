@@ -17,7 +17,9 @@ PROJECT_BRANCHES = {
             'paint': 0,
         },
     },
-    'build-system': {},
+    'build-system': {
+        'enable_talos': False,
+    },
     'devtools':{
         'enable_nightly': True,
         # need both of these to turn off mobile completely because of key in generic config.py
@@ -142,6 +144,8 @@ PROJECT_BRANCHES = {
     'alder': {},
     'birch': {},
     'cedar': {
+        # Share mozilla-central's setup as much as possible
+        'mozconfig_dir' : 'mozilla-central',
         'talos_suites': {
             'remote-ts': 1,
             'remote-tdhtml': 1,

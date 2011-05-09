@@ -6,10 +6,10 @@ from buildbotcustom.env import MozillaEnvironments
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in range (1,2)]
-TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,2,11]]
-TRY_MAC64      = ['mini64-02']
-TRY_MAC        = ['mini-01','mini-10']
+TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10]]
+TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,11]]
+TRY_MAC64      = ['mini64-%02i' % x for x in [2,7]]
+TRY_MAC        = ['mini-10']
 TRY_WIN32      = ['momo-vm-win2k3-03', 'momo-vm-win2k3-16']
 
 
@@ -56,6 +56,7 @@ GLOBAL_VARS = {
     # and if a failure to notify the master should result in a warning
     'unittest_masters': [
                           ('momo-vm-03.sj.mozillamessaging.com:9015', False, 3),
+                          ('momo-vm-03.sj.mozillamessaging.com:9920', False, 3),
                         ],
     'unittest_suites': [
         ('mozmill', ['mozmill']),
@@ -344,7 +345,7 @@ PLATFORM_VARS = {
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
 BRANCHES = {
-    'tryserver': { 'platforms': { 'linux': {}, #'linux-debug': {},
+    'try': { 'platforms': { 'linux': {}, #'linux-debug': {},
                                   'win32': {}, #'win32-debug': {},
                                   'macosx': {},# 'macosx-debug': {},
                                   'macosx64': {},# 'macosx64-debug': {},
@@ -368,59 +369,61 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
 
-######## tryserver
+######## try
 # Try-specific configs 
-BRANCHES['tryserver']['stage_username'] = 'tbirdbld'
-BRANCHES['tryserver']['stage_ssh_key'] = 'tbirdbld_dsa'
-BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/thunderbird/tryserver-builds'
-BRANCHES['tryserver']['enable_merging'] = False
-BRANCHES['tryserver']['enable_try'] = True
-BRANCHES['tryserver']['repo_path'] = 'try-comm-central'
-BRANCHES['tryserver']['cc_try_factory' ] = True
-BRANCHES['tryserver']['run_client_py'] = True
-BRANCHES['tryserver']['alive_step'] = 'mailbloat'
-BRANCHES['tryserver']['enable_mail_notifier'] = True
-BRANCHES['tryserver']['notify_real_author'] = True
-BRANCHES['tryserver']['package_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/tryserver-builds'
-BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['try']['stage_username'] = 'tbirdbld'
+BRANCHES['try']['stage_ssh_key'] = 'tbirdbld_dsa'
+BRANCHES['try']['stage_base_path'] = '/home/ftp/pub/thunderbird/try-builds'
+BRANCHES['try']['enable_merging'] = False
+BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['repo_path'] = 'try-comm-central'
+BRANCHES['try']['cc_try_factory' ] = True
+BRANCHES['try']['run_client_py'] = True
+BRANCHES['try']['alive_step'] = 'mailbloat'
+BRANCHES['try']['enable_mail_notifier'] = True
+BRANCHES['try']['notify_real_author'] = True
+BRANCHES['try']['package_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds'
+BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['tryserver']['repo_path'] = 'try-comm-central'
-BRANCHES['tryserver']['start_hour'] = [3]
-BRANCHES['tryserver']['start_minute'] = [2]
+BRANCHES['try']['repo_path'] = 'try-comm-central'
+BRANCHES['try']['start_hour'] = [3]
+BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds
-BRANCHES['tryserver']['enable_nightly'] = False
+BRANCHES['try']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
-BRANCHES['tryserver']['enable_xulrunner'] = False
-BRANCHES['tryserver']['enable_mac_a11y'] = True
+BRANCHES['try']['enable_xulrunner'] = False
+BRANCHES['try']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
-#BRANCHES['tryserver']['unittest_masters'] = []
-BRANCHES['tryserver']['tinderbox_tree'] = 'ThunderbirdTry'
-BRANCHES['tryserver']['packaged_unittest_tinderbox_tree'] = 'ThunderbirdTry'
-BRANCHES['tryserver']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/tryserver-builds'
-BRANCHES['tryserver']['enable_l10n'] = False
-BRANCHES['tryserver']['enable_l10n_onchange'] = False
-BRANCHES['tryserver']['l10nNightlyUpdate'] = False
-BRANCHES['tryserver']['l10nDatedDirs'] = False
-BRANCHES['tryserver']['enable_codecoverage'] = False
-BRANCHES['tryserver']['enable_shark'] = False
-BRANCHES['tryserver']['create_snippet'] = False
+#BRANCHES['try']['unittest_masters'] = []
+BRANCHES['try']['tinderbox_tree'] = 'ThunderbirdTry'
+BRANCHES['try']['packaged_unittest_tinderbox_tree'] = 'ThunderbirdTry'
+BRANCHES['try']['download_base_url'] ='http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds'
+BRANCHES['try']['enable_l10n'] = False
+BRANCHES['try']['enable_l10n_onchange'] = False
+BRANCHES['try']['l10nNightlyUpdate'] = False
+BRANCHES['try']['l10nDatedDirs'] = False
+BRANCHES['try']['enable_codecoverage'] = False
+BRANCHES['try']['enable_weekly_bundle'] = False
+BRANCHES['try']['enable_shark'] = False
+BRANCHES['try']['create_snippet'] = False
+BRANCHES['try']['mozconfig_branch'] = 'default'
 # need this or the master.cfg will bail
-BRANCHES['tryserver']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 for platform in ['linux', 'linux64', 'win32', 'macosx', 'macosx64']:
-    BRANCHES['tryserver']['platforms'][platform]['slaves'] = TRY_SLAVES[platform]
-    BRANCHES['tryserver']['platforms'][platform]['upload_symbols'] = False
+    BRANCHES['try']['platforms'][platform]['slaves'] = TRY_SLAVES[platform]
+    BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 
-#BRANCHES['tryserver']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
-#BRANCHES['tryserver']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
-#BRANCHES['tryserver']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
-#BRANCHES['tryserver']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
-#BRANCHES['tryserver']['platforms']['linux-debug']['upload_symbols'] = False
-#BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'build.mozilla.org'
-#BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
-#BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
-#BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
- 
+#BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
+#BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+#BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+#BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
+#BRANCHES['try']['platforms']['linux-debug']['upload_symbols'] = False
+#BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'build.mozilla.org'
+#BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
+#BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
+#BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]

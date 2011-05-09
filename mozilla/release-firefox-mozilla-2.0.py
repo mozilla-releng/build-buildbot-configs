@@ -103,7 +103,21 @@ releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
+releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-2.0'
+releaseConfig['majorUpdateToVersion']   = '5.0b1'
+releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
+releaseConfig['majorUpdateBuildNumber'] = 1
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0b1'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/5.0/details/'
+releaseConfig['majorUpdatePatcherConfig']    = 'moz20-branch-major-update-patcher2.cfg'
+releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
+releaseConfig['majorUpdateVerifyConfigs']    = {
+    'linux':  'moz20-firefox-linux-major.cfg',
+    'linux64':  'moz20-firefox-linux64-major.cfg',
+    'macosx64': 'moz20-firefox-mac64-major.cfg',
+    'win32':  'moz20-firefox-win32-major.cfg'
+}
+releaseConfig['majorFakeMacInfoTxt'] = True
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'

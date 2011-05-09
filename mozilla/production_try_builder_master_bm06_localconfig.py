@@ -12,7 +12,7 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:7101:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, TRY_SLAVES, PROJECTS
-ACTIVE_BRANCHES = ['tryserver']
+ACTIVE_BRANCHES = ['try']
 ACTIVE_RELEASE_BRANCHES = []
 # Override with TRY_SLAVES
 SLAVES = TRY_SLAVES

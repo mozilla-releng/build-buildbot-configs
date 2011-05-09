@@ -22,10 +22,10 @@ GLOBAL_VARS = {
 }
 
 BRANCHES = {
-        'tryserver': {
+        'try': {
             'enable_mail_notifier': False, # Set to True when testing
             'email_override': [], # Set to your address when testing
-            'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds',
+            'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
             'package_dir': '%(who)s-%(got_revision)s',
             'stage_username': 'trybld',
             'stage_ssh_key': 'trybld_dsa',

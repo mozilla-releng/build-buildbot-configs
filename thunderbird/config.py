@@ -282,6 +282,8 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['factory'] = 'CCNightlyBuildFactory'
         if branchName == 'comm-1.9.2':
             bc['hg_branch'] = 'releases/comm-1.9.2'
+        elif branchName == 'comm-miramar':
+            bc['hg_branch'] = 'releases/comm-miramar'
         else:
             bc['hg_branch'] = 'comm-central'
         if branchName == 'comm-central':
@@ -293,6 +295,16 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         else:
             bc['l10n'] = True
             bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
+            bc['mirror'] = {
+                'comm-central' : {
+                    'src': 'comm-central',
+                    'dst': 'releases/comm-miramar',
+                },
+                'mozilla-aurora' : {
+                    'src' : 'releases/mozilla-aurora',
+                    'dst' : 'releases/mozilla-miramar',
+                },
+            }
         bc['l10n_nightly_updates'] = True
         if branchName == 'comm-1.9.2':
             bc['l10n_tree'] = 'tb31x'
@@ -348,6 +360,8 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['factory'] = 'CCNightlyBuildFactory'
         if branchName == 'comm-1.9.2':
             bc['hg_branch'] = 'releases/comm-1.9.2'
+        elif branchName == 'comm-miramar':
+            bc['hg_branch'] = 'releases/comm-miramar'
         else:
             bc['hg_branch'] = 'comm-central'
         bc['l10n'] = False
@@ -416,8 +430,11 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
     return bc
 
 BRANCHES = {}
-BRANCHES['comm-aurora'] = makeBuildConfig('nightly', 'comm-aurora', 'mozilla-aurora', 'mozilla-aurora')
-BRANCHES['comm-aurora-bloat'] = makeBuildConfig('bloat', 'comm-aurora', 'mozilla-aurora', 'mozilla-aurora')
+
+# makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch)
+BRANCHES['comm-aurora'] = makeBuildConfig('nightly', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
+BRANCHES['comm-aurora-bloat'] = makeBuildConfig('bloat', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
+
 BRANCHES['comm-central'] = makeBuildConfig('nightly', 'comm-central', 'mozilla-aurora', 'mozilla-central')
 BRANCHES['comm-central-bloat'] = makeBuildConfig('bloat', 'comm-central', 'mozilla-central', 'mozilla-central')
 BRANCHES['comm-1.9.2'] = makeBuildConfig('nightly', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')

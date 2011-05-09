@@ -1,4 +1,5 @@
 %(releaseName)s: Tagging failed
 Tagging failed for %(releaseName)s
 
+%(buildbot_url)s
 -buildbot

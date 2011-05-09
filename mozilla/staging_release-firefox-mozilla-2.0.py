@@ -14,27 +14,29 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '4.0rc2'
-releaseConfig['appVersion']          = '4.0'
-releaseConfig['milestone']           = '2.0'
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_4_0rc2'
+releaseConfig['version']             = '4.0.1'
+releaseConfig['appVersion']          = releaseConfig['version']
+releaseConfig['milestone']           = '2.0.1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_4_0_1'
 #  Old version info
-releaseConfig['oldVersion']          = '4.0rc1'
+releaseConfig['oldVersion']          = '4.0rc2'
 releaseConfig['oldAppVersion']       = '4.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc1'
+releaseConfig['oldBuildNumber']      = 3
+releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '4.0pre'
-releaseConfig['nextMilestone']       = '2.0pre'
+releaseConfig['nextAppVersion']      = '4.0.2pre'
+releaseConfig['nextMilestone']       = '2.0.2pre'
 #  Repository configuration, for tagging
+## Staging repository path
+releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-2.0',
         'clonePath': 'releases/mozilla-2.0',
         'path': 'users/stage-ffxbld/mozilla-2.0',
-        'revision': '6be9e31d01b4',
-        'relbranch': 'GECKO20_2011031715_RELBRANCH',
+        'revision': 'fdfd2af3498e',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -59,7 +61,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
-    'users/stage-ffxbld/buildbot': 'production-0.8'
+    'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/partner-repacks': 'default'
 }
 
 # Platform configuration
@@ -91,7 +94,7 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 0
+releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
     'linux':  'moz20-firefox-linux.cfg',
     'linux64':  'moz20-firefox-linux64.cfg',
