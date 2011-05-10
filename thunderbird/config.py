@@ -296,10 +296,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
             bc['l10n'] = True
             bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
             bc['mirror'] = {
-                'comm-central' : {
-                    'src': 'comm-central',
-                    'dst': 'releases/comm-miramar',
-                },
                 'mozilla-aurora' : {
                     'src' : 'releases/mozilla-aurora',
                     'dst' : 'releases/mozilla-miramar',
