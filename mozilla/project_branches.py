@@ -17,7 +17,9 @@ PROJECT_BRANCHES = {
             'paint': 0,
         },
     },
-    'build-system': {},
+    'build-system': {
+        'enable_talos': False,
+    },
     'devtools':{
         'enable_nightly': True,
         # need both of these to turn off mobile completely because of key in generic config.py
@@ -138,6 +140,34 @@ PROJECT_BRANCHES = {
             'v8': 1,
         }
     },
+    'ux': {
+        'branch_name': 'UX',
+        'mobile_branch_name': 'UX',
+        'build_branch': 'UX',
+        'tinderbox_tree': 'UX',
+        'mobile_tinderbox_tree': 'UX',
+        'packaged_unittest_tinderbox_tree': 'UX',
+        'enable_mobile': False,
+        'mobile_platforms': {},
+        'enable_nightly': True,
+        'platforms': {
+            'macosx-debug': {
+                'dont_build': True,
+            },
+            'macosx64-debug': {
+                'dont_build': True,
+            },
+            'linux-debug': {
+                'dont_build': True,
+            },
+            'linux64-debug': {
+                'dont_build': True,
+            },
+            'win32-debug': {
+                'dont_build': True,
+            },
+        },
+    },
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
     'birch': {},
@@ -165,6 +195,6 @@ for branch in ('graphics',):
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():
-    PROJECT_BRANCHES[branch]['tinderbox_tree'] = branch.title()
-    PROJECT_BRANCHES[branch]['mobile_tinderbox_tree'] = branch.title()
-    PROJECT_BRANCHES[branch]['packaged_unittest_tinderbox_tree'] = branch.title()
+    PROJECT_BRANCHES[branch]['tinderbox_tree'] = PROJECT_BRANCHES[branch].get('tinderbox_tree', branch.title())
+    PROJECT_BRANCHES[branch]['mobile_tinderbox_tree'] = PROJECT_BRANCHES[branch].get('mobile_tinderbox_tree', branch.title())
+    PROJECT_BRANCHES[branch]['packaged_unittest_tinderbox_tree'] = PROJECT_BRANCHES[branch].get('packaged_unittest_tinderbox_tree', branch.title())

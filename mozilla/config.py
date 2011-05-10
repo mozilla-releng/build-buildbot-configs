@@ -1481,11 +1481,16 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/' 
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
-    BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
-    BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
-    BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
+    if BRANCHES[branch]['platforms'].has_key('linux'):
+        BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    if BRANCHES[branch]['platforms'].has_key('linuxqt'):
+        BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
+    if BRANCHES[branch]['platforms'].has_key('linux64'):
+        BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
+    if BRANCHES[branch]['platforms'].has_key('win32'):
+        BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    if BRANCHES[branch]['platforms'].has_key('macosx64'):
+        BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # point to the mozconfigs, default is generic
     for platform in BRANCHES[branch]['platforms']:
         if platform.endswith('debug'):
@@ -1501,26 +1506,31 @@ branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in ('mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-2.1'):
     branches.remove(branch)
 for branch in branches:
-    BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-    BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-    BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
-    BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-    BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
-    BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
-        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-    }
-    BRANCHES[branch]['platforms']['linuxqt']['unittest-env'] = {
-        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-    }
-    BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
-        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-    }
-    BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
-        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-    }
-    BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
-        'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-    }
+    if BRANCHES[branch]['platforms'].has_key('linux'):
+        BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+        BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+        }
+    if BRANCHES[branch]['platforms'].has_key('linuxqt'):
+        BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+        BRANCHES[branch]['platforms']['linuxqt']['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+        }
+    if BRANCHES[branch]['platforms'].has_key('linux64'):
+        BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
+        BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+        }
+    if BRANCHES[branch]['platforms'].has_key('linux-debug'):
+        BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+        BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+        }
+    if BRANCHES[branch]['platforms'].has_key('linux64-debug'):
+        BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
+        BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
+            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+        }
 
 if __name__ == "__main__":
     import sys, pprint
