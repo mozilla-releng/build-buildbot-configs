@@ -313,7 +313,7 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['milestone'] = branchName
         bc['mozconfig'] = 'nightly'
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        if branchName == 'comm-1.9.2':
+        if branchName in ['comm-1.9.2','comm-miramar']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
         if branchName == 'comm-1.9.2':
