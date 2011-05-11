@@ -5,6 +5,7 @@ SLAVES = {
 BRANCHES = {
     "mozilla-central": {},
     "mozilla-2.1": {},
+    "mozilla-mobile-5.0": {},
 }
 BRANCHES["mozilla-central"]["script_repo_tag"] = 'default'
 BRANCHES["mozilla-central"]["nightly_config_file"] = "deb_repos/trunk_nightly.json"
@@ -19,3 +20,11 @@ BRANCHES["mozilla-2.1"]["enable_release"] = True
 BRANCHES["mozilla-2.1"]["release_config_file"] = "deb_repos/4.0_release.json"
 BRANCHES["mozilla-2.1"]["release_platforms"] = ["fremantle"]
 BRANCHES["mozilla-2.1"]["nightly_hour"] = 4
+
+BRANCHES["mozilla-mobile-5.0"]["script_repo_tag"] = 'default'
+BRANCHES["mozilla-mobile-5.0"]["nightly_config_file"] = "deb_repos/mozilla-beta_nightly.json"
+BRANCHES["mozilla-mobile-5.0"]["nightly_platforms"] = ["fremantle", "fremantle-qt"]
+BRANCHES["mozilla-mobile-5.0"]["enable_release"] = True
+BRANCHES["mozilla-mobile-5.0"]["release_config_file"] = "deb_repos/5.0_release.json"
+BRANCHES["mozilla-mobile-5.0"]["release_platforms"] = ["fremantle"]
+BRANCHES["mozilla-mobile-5.0"]["nightly_hour"] = 4

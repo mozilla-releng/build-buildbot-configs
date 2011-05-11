@@ -1,46 +1,56 @@
 hgUsername          = 'stage-ffxbld'
 hgSshKey            = '~cltbld/.ssh/ffxbld_dsa'
-mobileBranchNick    = 'mobile-1.9.2'
-mozSourceRepoName      = 'mozilla-1.9.2'
+mobileBranchNick    = 'mozilla-mobile-5.0'
+mozSourceRepoName      = 'mozilla-mobile-5.0'
 # This parameter (and its l10n equivalent) is for staging only and necessary
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
-mozSourceRepoClonePath = 'releases/mozilla-1.9.2'
-mozSourceRepoPath      = 'users/stage-ffxbld/mozilla-1.9.2'
+mozSourceRepoClonePath = 'releases/mozilla-mobile-5.0'
+mozSourceRepoPath      = 'users/stage-ffxbld/mozilla-mobile-5.0'
 mozSourceRepoRevision  = 'default'
-mobileSourceRepoName      = 'mobile-1.1'
-mobileSourceRepoClonePath = 'releases/mobile-1.1'
-mobileSourceRepoPath      = 'users/stage-ffxbld/mobile-1.1'
+mobileSourceRepoName      = 'mobile-5.0'
+mobileSourceRepoClonePath = 'releases/mobile-5.0'
+mobileSourceRepoPath      = 'users/stage-ffxbld/mobile-5.0'
 mobileSourceRepoRevision  = 'default'
 mozRelbranchOverride   = ''
 l10nRelbranchOverride   = ''
 mobileRelbranchOverride   = ''
-l10nRepoClonePath   = 'releases/l10n-mozilla-1.9.2'
+mozconfigDir              = 'mozilla-beta'
+l10nRepoClonePath   = 'releases/l10n/mozilla-beta'
 l10nRepoPath        = 'users/stage-ffxbld'
-l10nRevisionFile    = 'l10n-changesets_mobile-1.1.json'
+l10nRevisionFile    = 'l10n-changesets_mobile-5.0.json'
 productName         = 'fennec'
 appName             = 'mobile'
 mergeLocales        = True
 enableMultiLocale   = True
+androidMozharnessConfig = "multi_locale/staging_5.0_release_android.json"
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '1.1rc1'
-appVersion          = '1.1'
-milestone           = '1.9.2.5'
+version             = '5.0b1'
+appVersion          = version
+milestone           = '5.0'
 buildNumber         = 1
-baseTag             = 'FENNEC_1_1rc1'
-enUSPlatforms       = ('maemo4',)
-l10nPlatforms       = enUSPlatforms
+baseTag             = 'FENNEC_5_0b1'
+oldVersion          = '4.0.1'
+oldAppVersion       = oldVersion
+oldBuildNumber      = 1
+oldBaseTag          = 'FENNEC_4_0_1'
+enUSPlatforms       = ('maemo5-gtk', 'android-r7')
+l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
 l10nDesktopPlatforms = ()
 talosTestPlatforms  = ()
+ausBaseUploadDir    = '/opt/aus2/incoming/3/Fennec'
 ftpServer           = 'staging-stage.build.mozilla.org'
 stagingServer       = 'staging-stage.build.mozilla.org'
 stageBasePath       = '/home/ftp/pub/mobile/candidates'
 base_enUS_binaryURL = 'http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%d' % (ftpServer, version, buildNumber)
-doPartnerRepacks    = True
+ausServerUrl        = 'http://staging-stage.build.mozilla.org'
+ausUser             = 'cltbld'
+ausSshKey           = 'id_rsa'
+doPartnerRepacks    = False
 partnersRepoPath    = 'build/partner-repacks'
-partnerRepackPlatforms = ('maemo4',)
+partnerRepackPlatforms = ('maemo5-gtk',)

@@ -198,7 +198,7 @@ for platform in enUSPlatforms:
             multiLocale = mobileBranchConfig['enable_multi_locale']
         else:
             multiLocale = False
-        mozconfig = 'mobile/%s/%s/release' % (platform, mobileSourceRepoName)
+        mozconfig = 'mobile/%s/%s/release' % (platform, mozconfigDir)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         releaseBuildDir = pf['base_builddir'] + '-release'
         build_factory = MaemoReleaseBuildFactory(
@@ -235,7 +235,7 @@ for platform in enUSPlatforms:
             triggerBuilds=False,
         )
     elif platform.startswith('android'):
-        mozconfig = 'mobile/android/%s/release' % (mobileSourceRepoName)
+        mozconfig = 'mobile/android/%s/release' % (mozconfigDir)
         releaseWorkDir  = pf['base_workdir'] + '-release'
         previousCandidateDir='%s-candidates/build%s/%s' % (oldVersion,
                                                            oldBuildNumber,
@@ -288,7 +288,7 @@ for platform in enUSPlatforms:
             buildNumber=buildNumber,
             updatePlatform=updatePlatform,
             multiLocale=multiLocale,
-            mozharnessConfig="multi_locale/4.0_release_android.json",
+            mozharnessConfig=androidMozharnessConfig,
         )
 
     builders.append({

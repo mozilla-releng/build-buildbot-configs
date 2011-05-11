@@ -1,0 +1,126 @@
+{
+  "ar": {
+    "revision": "64b035638af7",
+    "platforms": ["maemo"]
+  },
+  "be": {
+    "revision": "ddc19f9c07d4",
+    "platforms": ["maemo"]
+  },
+  "ca": {
+    "revision": "fe0c455e97bd",
+    "platforms": ["maemo"]
+  },
+  "cs": {
+    "revision": "73a5c245ad92",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "da": {
+    "revision": "da9b1cb542b2",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "de": {
+    "revision": "3cc4fd83f20e",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "es-AR": {
+    "revision": "462a2e9e68bf",
+    "platforms": ["maemo"]
+  },
+  "es-ES": {
+    "revision": "35461f5d74d3",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "et": {
+    "revision": "b6531750bb95",
+    "platforms": ["maemo"]
+  },
+  "eu": {
+    "revision": "88b6eb99df12",
+    "platforms": ["maemo"]
+  },
+  "fi": {
+    "revision": "85509e52531e",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "fr": {
+    "revision": "def8381c7e4b",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "fy-NL": {
+    "revision": "c697d41c72a5",
+    "platforms": ["maemo"]
+  },
+  "gd": {
+    "revision": "32f5f23c2f51",
+    "platforms": ["maemo"]
+  },
+  "id": {
+    "revision": "ef433721ed9b",
+    "platforms": ["maemo"]
+  },
+  "it": {
+    "revision": "772655d620ed",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "ja": {
+    "revision": "ca26e42b6d6f",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "ko": {
+    "revision": "6a5062aeb98c",
+    "platforms": ["maemo"]
+  },
+  "lt": {
+    "revision": "87e6b3f0d6cd",
+    "platforms": ["maemo"]
+  },
+  "nl": {
+    "revision": "6ed8a62e8017",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "pa-IN": {
+    "revision": "54973dc1dbf2",
+    "platforms": ["maemo"]
+  },
+  "pl": {
+    "revision": "751d9d98ab88",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "pt-BR": {
+    "revision": "2b9037f9d280",
+    "platforms": ["maemo"]
+  },
+  "pt-PT": {
+    "revision": "541d88dfbcee",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "ru": {
+    "revision": "3691ff6ba8f2",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
+  "sk": {
+    "revision": "9383295be739",
+    "platforms": ["maemo"]
+  },
+  "sq": {
+    "revision": "d69a0ab00072",
+    "platforms": ["maemo"]
+  },
+  "th": {
+    "revision": "121f1d45a82e",
+    "platforms": ["maemo"]
+  },
+  "uk": {
+    "revision": "dc9793c4b0f8",
+    "platforms": ["maemo"]
+  },
+  "zh-CN": {
+    "revision": "31b32e38b0cd",
+    "platforms": ["maemo"]
+  },
+  "zh-TW": {
+    "revision": "246b89539819",
+    "platforms": ["maemo"]
+  }
+}
