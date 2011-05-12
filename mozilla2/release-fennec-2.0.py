@@ -13,12 +13,14 @@ mobileSourceRepoRevision  = 'dd7c77c39aac'
 mozRelbranchOverride      = ''
 l10nRelbranchOverride     = ''
 mobileRelbranchOverride   = ''
+mozconfigDir        = 'mobile-2.0'
 l10nRepoPath        = 'releases/l10n-mozilla-2.0'
 l10nRevisionFile    = 'l10n-changesets_mobile-2.0.json'
 productName         = 'fennec'
 appName             = 'mobile'
 mergeLocales        = True
 enableMultiLocale   = True
+androidMozharnessConfig = "multi_locale/4.0_release_android.json"
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that

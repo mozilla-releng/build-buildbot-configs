@@ -1,0 +1,38 @@
+{
+  "ar": {
+    "revision": "2df554748e6a",
+    "platforms": ["maemo", "android"]
+  },
+  "ca": {
+    "revision": "309bc859cd10",
+    "platforms": ["maemo", "android"]
+  },
+  "es-ES": {
+    "revision": "e920eebb2b7c",
+    "platforms": ["maemo", "android", "android-multilocale", "maemo-multilocale"]
+  },
+  "fr": {
+    "revision": "015bd4184093",
+    "platforms": ["maemo", "android", "android-multilocale", "maemo-multilocale"]
+  },
+  "fy-NL": {
+    "revision": "8034a6ab56eb",
+    "platforms": ["maemo", "android"]
+  },
+  "it": {
+    "revision": "daa5fef44051",
+    "platforms": ["maemo", "android", "android-multilocale", "maemo-multilocale"]
+  },
+  "ko": {
+    "revision": "a13d032e1d27",
+    "platforms": ["maemo", "android"]
+  },
+  "ru": {
+    "revision": "7a98abd3446a",
+    "platforms": ["maemo", "android", "android-multilocale", "maemo-multilocale"]
+  },
+  "zh-TW": {
+    "revision": "5ceb1fb86f7b",
+    "platforms": ["maemo", "android"]
+  }
+}

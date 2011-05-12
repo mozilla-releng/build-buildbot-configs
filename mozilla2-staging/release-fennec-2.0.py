@@ -12,6 +12,7 @@ mobileSourceRepoName      = 'mobile-2.0'
 mobileSourceRepoClonePath = 'releases/mobile-2.0'
 mobileSourceRepoPath      = 'users/stage-ffxbld/mobile-2.0'
 mobileSourceRepoRevision  = 'default'
+mozconfigDir              = 'mobile-2.0'
 mozRelbranchOverride   = ''
 l10nRelbranchOverride   = ''
 mobileRelbranchOverride   = ''
@@ -22,6 +23,7 @@ productName         = 'fennec'
 appName             = 'mobile'
 mergeLocales        = True
 enableMultiLocale   = True
+androidMozharnessConfig = "multi_locale/staging_4.0_release_android.json"
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that

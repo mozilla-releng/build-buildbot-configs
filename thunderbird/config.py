@@ -287,7 +287,7 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         else:
             bc['hg_branch'] = 'comm-central'
         if branchName == 'comm-central':
-            bc['l10n'] = False
+            bc['l10n'] = True
             bc['l10n_repo'] = 'l10n-central'
         elif branchName == 'comm-1.9.2':
             bc['l10n'] = True
@@ -296,10 +296,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
             bc['l10n'] = True
             bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
             bc['mirror'] = {
-                'comm-central' : {
-                    'src': 'comm-central',
-                    'dst': 'releases/comm-miramar',
-                },
                 'mozilla-aurora' : {
                     'src' : 'releases/mozilla-aurora',
                     'dst' : 'releases/mozilla-miramar',
@@ -313,9 +309,7 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['milestone'] = branchName
         bc['mozconfig'] = 'nightly'
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        if branchName == 'comm-central':
-            bc['nightly'] = False
-        elif branchName == 'comm-1.9.2':
+        if branchName in ['comm-1.9.2','comm-miramar']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
         if branchName == 'comm-1.9.2':
