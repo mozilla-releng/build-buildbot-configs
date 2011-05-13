@@ -129,3 +129,4 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = True
+releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"

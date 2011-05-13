@@ -41,7 +41,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',
-    'build_tools_repo_path': 'users/stage-ffxbld/tools',
+    'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
