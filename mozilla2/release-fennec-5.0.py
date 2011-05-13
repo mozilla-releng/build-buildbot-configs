@@ -6,13 +6,13 @@ mozSourceRepoName      = 'mozilla-mobile-5.0'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-mobile-5.0'
-mozSourceRepoRevision  = '118c549dd79d'
+mozSourceRepoRevision  = 'cca618b4594a'
 mobileSourceRepoName      = 'mobile-5.0'
 mobileSourceRepoPath      = 'releases/mobile-5.0'
-mobileSourceRepoRevision  = 'ca0f4a7f4413'
-mozRelbranchOverride      = ''
-l10nRelbranchOverride     = ''
-mobileRelbranchOverride   = ''
+mobileSourceRepoRevision  = '1ad394075948'
+mozRelbranchOverride      = 'GECKO50b1_20110512_RELBRANCH'
+l10nRelbranchOverride     = 'GECKO50b1_20110512_RELBRANCH'
+mobileRelbranchOverride   = 'GECKO50b1_20110512_RELBRANCH'
 mozconfigDir        = 'mozilla-beta'
 l10nRepoPath        = 'releases/l10n/mozilla-aurora'
 l10nRevisionFile    = 'l10n-changesets_mobile-5.0.json'
@@ -29,7 +29,7 @@ androidMozharnessConfig = "multi_locale/5.0_release_android.json"
 version             = '5.0b1'
 appVersion          = version
 milestone           = '5.0b1'
-buildNumber         = 1
+buildNumber         = 2
 baseTag             = 'FENNEC_5_0b1'
 oldVersion          = '4.0.1'
 oldAppVersion       = oldVersion
