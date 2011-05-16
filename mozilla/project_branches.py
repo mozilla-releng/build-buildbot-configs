@@ -149,7 +149,10 @@ PROJECT_BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'UX',
         'enable_mobile': False,
         'mobile_platforms': {},
+        'mozconfig_dir' : 'ux',
         'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
