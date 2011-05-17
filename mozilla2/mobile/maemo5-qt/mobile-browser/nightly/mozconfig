@@ -16,3 +16,5 @@ ac_add_options --with-maemo-version=5
 
 ac_add_options --prefix=/opt/mozilla
 ac_add_options --libdir=/opt/mozilla
+
+ac_add_options --with-branding=mobile/branding/nightly
