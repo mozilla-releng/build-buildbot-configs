@@ -173,7 +173,45 @@ PROJECT_BRANCHES = {
     },
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
-    'birch': {},
+    'birch': {
+        'platforms': {
+            'macosx': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+            },
+            'macosx-debug': {
+                'dont_build': True,
+            },
+            'macosx64': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+            },
+            'macosx64-debug': {
+                'dont_build': True,
+            },
+            'linux': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+            },
+            'linux-debug': {
+                'dont_build': True,
+            },
+            'linux64': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+            },
+            'linux64-debug': {
+                'dont_build': True,
+            },
+            'win32': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+            },
+            'win32-debug': {
+                'dont_build': True,
+            },
+        },
+    },
     'cedar': {
         # Share mozilla-central's setup as much as possible
         'mozconfig_dir' : 'mozilla-central',
