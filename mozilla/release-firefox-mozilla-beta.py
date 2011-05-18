@@ -14,16 +14,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '5.0b1'
+releaseConfig['version']             = '5.0b2'
 releaseConfig['appVersion']          = '5.0'
-releaseConfig['milestone']           = '5.0b1'
+releaseConfig['milestone']           = '5.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_5_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_5_0b2'
 #  Old version info
-releaseConfig['oldVersion']          = None
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = None
-releaseConfig['oldBaseTag']          = None
+releaseConfig['oldVersion']          = '5.0b1'
+releaseConfig['oldAppVersion']       = '5.0'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_5_0b1'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '5.0'
 releaseConfig['nextMilestone']       = '5.0'
@@ -32,7 +32,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'a307c807cfab',
+        'revision': '2b3275216413',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -63,11 +63,11 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
+releaseConfig['unittestPlatforms']   = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ()
+releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
@@ -78,7 +78,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
-releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R13'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
@@ -112,4 +112,3 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['skip_updates'] = True

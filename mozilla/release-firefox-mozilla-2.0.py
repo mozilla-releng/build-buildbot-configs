@@ -104,10 +104,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-2.0'
-releaseConfig['majorUpdateToVersion']   = '5.0b1'
-releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
+releaseConfig['majorUpdateToVersion']   = '5.0b2'
+releaseConfig['majorUpdateAppVersion']  = '5.0'
 releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0b1'
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0b2'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/5.0/details/'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz20-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
