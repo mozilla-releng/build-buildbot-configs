@@ -3,15 +3,20 @@
 
 Sets up mozilla buildbot master in master_dir."""
 
-import os, glob, shutil, subprocess
+import os, glob, shutil, subprocess, urllib
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 class MasterConfig:
-    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None):
+    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None, extras=None):
         self.name = name or None
         self.config_dir = config_dir
         self.globs = globs or []
         self.renames = renames or []
         self.local_links = local_links or []
+        self.extras = extras or []
 
     def __add__(self, o):
         retval = MasterConfig(
@@ -20,6 +25,7 @@ class MasterConfig:
                 globs = self.globs + o.globs,
                 renames = self.renames + o.renames,
                 local_links = self.local_links + o.local_links,
+                extras = self.extras + o.extras,
                 )
         return retval
 
@@ -48,11 +54,76 @@ class MasterConfig:
                 os.unlink(dst)
             shutil.copy(os.path.join(self.config_dir, src), dst)
 
+        for extra_filename, extra_data in self.extras:
+            f = open(os.path.join(master_dir, extra_filename), 'w').write(extra_data)
+
         # Remove leftover files
         for f in "Makefile.sample", "master.cfg.sample":
             dst = os.path.join(master_dir, f)
             if os.path.exists(dst):
                 os.unlink(dst)
+
+def load_masters_json(masters_json):
+    if 'http' in masters_json:
+        masters = json.load(urllib.urlopen(masters_json))
+    else:
+        masters = json.load(open(masters_json))
+
+    retval = []
+    for m in masters:
+        # Unsupported...for now!
+        if m['role'] in ('scheduler',):
+            continue
+
+        if m['environment'] == 'production':
+            environment_config = 'production_config.py'
+        elif m['environment'] == 'staging':
+            environment_config = 'staging_config.py'
+        elif m['environment'] == 'preproduction':
+            environment_config = 'preproduction_config.py'
+        c = MasterConfig(name=m['name'],
+                globs=[
+                    'config.py',
+                    environment_config,
+                    'master_common.py',
+                    'project_branches.py',
+                    ],
+                renames=[
+                    ('BuildSlaves.py.template', 'BuildSlaves.py'),
+                    ('passwords.py.template', 'passwords.py'),
+                    ],
+                local_links=[
+                    (environment_config, 'localconfig.py'),
+                    ],
+                extras=[
+                    ('master_config.json', json.dumps(m, indent=2)),
+                    ]
+                )
+
+        if m['role'] == 'build':
+            c.config_dir = 'mozilla'
+            c.globs.append('l10n-changesets*')
+            c.globs.append('release_templates')
+            c.globs.append('release-firefox*.py')
+            c.globs.append('builder_master.cfg')
+            c.globs.append('build_localconfig.py')
+            c.local_links.append(('builder_master.cfg', 'master.cfg'))
+            c.local_links.append(('build_localconfig.py', 'master_localconfig.py'))
+        elif m['role'] == 'try':
+            c.config_dir = 'mozilla'
+            c.local_links.append(('builder_master.cfg', 'master.cfg'))
+            c.local_links.append(('try_localconfig.py', 'master_localconfig.py'))
+            c.globs.append('builder_master.cfg')
+            c.globs.append('try_localconfig.py')
+        elif m['role'] == 'tests':
+            c.config_dir = 'mozilla-tests'
+            c.local_links.append(('tests_master.cfg', 'master.cfg'))
+            c.local_links.append(('tests_localconfig.py', 'master_localconfig.py'))
+            c.globs.append('tests_localconfig.py')
+            c.globs.append('tests_master.cfg')
+
+        retval.append(c)
+    return retval
 
 mozilla2_staging = MasterConfig(
         config_dir='mozilla2-staging',
@@ -508,15 +579,16 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
             ]
         )
 
-masters = [
+# Buildbot 0.7 masters
+masters_07 = [
         mozilla2_staging1, mozilla2_staging2,
         mozilla2_1, mozilla2_2, mozilla2_3,
         debsign_production, debsign_staging,
         mobile_production, mobile_staging,
         ]
 
-# Buildbot 0.8.0 masters
-masters_080 = [
+# Buildbot 0.8 masters
+masters_08 = [
         # Build Masters
         mozilla_staging_scheduler_master_sm01,
         mozilla_staging_builder_master_sm01,
@@ -563,17 +635,20 @@ if __name__ == "__main__":
     from optparse import OptionParser
 
     parser = OptionParser(__doc__)
-    parser.set_defaults(action=None)
+    parser.set_defaults(action=None, masters_json=None)
     parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
-    parser.add_option("-8", action="store_true", dest="buildbot080", default=False)
+    parser.add_option("-7", action="store_true", dest="buildbot07", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
+    parser.add_option("-j", "--masters-json", dest="masters_json")
 
     options, args = parser.parse_args()
 
-    if options.buildbot080:
-        master_list = masters_080
+    if options.masters_json:
+        master_list = load_masters_json(options.masters_json)
+    elif options.buildbot07:
+        master_list = masters_07
     else:
-        master_list = masters
+        master_list = masters_08
 
     # Make sure we don't have duplicate names
     master_map = dict((m.name, m) for m in master_list)
