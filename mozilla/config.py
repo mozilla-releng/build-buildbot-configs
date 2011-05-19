@@ -857,6 +857,8 @@ for branch in BRANCHES.keys():
                     value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
+                else:
+                    value = deepcopy(value)
                 BRANCHES[branch]['platforms'][platform][key] = value
 
             if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch] and \

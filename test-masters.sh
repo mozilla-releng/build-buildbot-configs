@@ -25,8 +25,12 @@ else
 fi
 # $extra_args determines if you will iterate through the 0.8.x
 # based masters or the 0.7.x ones
-if [ "$1" = "-8" ]; then
-    extra_args=-8
+if [ "$1" = "-7" ]; then
+    extra_args=-7
+
+# Any other arg will be treated as a json file to load
+elif [ -n "$1" ]; then
+    extra_args="-j $1"
 fi
 
 exit_code=0
