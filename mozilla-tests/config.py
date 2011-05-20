@@ -10,6 +10,12 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
+REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
+                         'mozilla-beta':    'org.mozilla.firefox_beta',
+                         'mozilla-aurora':  'org.mozilla.fennec_aurora',
+                         'mozilla-release': 'org.mozilla.firefox',
+                       }
+
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 TALOS_ADDON_CMD = ['python', 'run_tests.py', '--noisy', '--amo', WithProperties('%(configFile)s')]
@@ -28,9 +34,12 @@ TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
                                                             '--webServer', 'bm-remote.build.mozilla.org',
                                                             '--browserWait', '60',
                                                           ],
-                                               'exePath': 'org.mozilla.fennec',
+                                               'processName': REMOTE_PROCESS_NAMES,
                                              },
                            }
+
+UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
+                         }
 
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider'],
@@ -224,6 +233,20 @@ def removeSuite(suiteName, suiteList):
             suiteList[i] = (name, suites)
     return suiteList
 
+PLATFORM_UNITTEST_JSREFTEST = [ ('jsreftest-1', (
+                                  {'suite': 'jsreftest',
+                                            'totalChunks': 2,
+                                            'thisChunk': 1,
+                                  },
+                                 )),
+                                ('jsreftest-2', (
+                                  {'suite': 'jsreftest',
+                                            'totalChunks': 2,
+                                            'thisChunk': 2,
+                                  },
+                                 )),
+                              ]
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a 
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -304,6 +327,7 @@ PLATFORM_UNITTEST_VARS = {
             'is_remote': True,
             'branch_extra': 'mobile-browser',
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
+            'remote_extras': UNITTEST_REMOTE_EXTRAS,
             'tegra_android': {
                 'opt_unittest_suites': [
                     ('mochitest-1', (
@@ -351,18 +375,6 @@ PLATFORM_UNITTEST_VARS = {
                          'thisChunk': 2,
                         },
                     )),
-#                    ('jsreftest-1', (
-#                        {'suite': 'jsreftest',
-#                         'totalChunks': 2,
-#                         'thisChunk': 1,
-#                        },
-#                    )),
-#                    ('jsreftest-2', (
-#                        {'suite': 'jsreftest',
-#                         'totalChunks': 2,
-#                         'thisChunk': 2,
-#                        },
-#                    )),
                     ('crashtest', (
                         {'suite': 'crashtest'},
                     )),
@@ -520,6 +532,7 @@ BRANCHES['mozilla-central']['platforms']['win32']['xp']['opt_unittest_suites'] +
 BRANCHES['mozilla-central']['platforms']['win32']['xp']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+BRANCHES['mozilla-central']['platforms']['android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['branch_name'] = "Mozilla-Beta"
@@ -580,20 +593,20 @@ BRANCHES['mozilla-aurora']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLA
 BRANCHES['mozilla-aurora']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['a11y_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-aurora']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['remote-ts_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tdhtml_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tsvg_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tsspider_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tpan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tp4m_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tp4m_nochrome_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-twinopen_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-aurora']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tp4m_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tp4m_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-aurora']['remote-tzoom_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['platforms']['win32']['enable_opt_unittests'] = True
 BRANCHES['mozilla-aurora']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-aurora']['platforms']['win64']['enable_opt_unittests'] = True
-BRANCHES['mozilla-aurora']['platforms']['android']['enable_opt_unittests'] = False
+BRANCHES['mozilla-aurora']['platforms']['android']['enable_opt_unittests'] = True
 BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-aurora']['platforms']['linux64']['fedora64']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
