@@ -3,7 +3,7 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-2.0' # buildbot branch name
 sourceRepoPath             = 'releases/comm-2.0'
-sourceRepoRevision         = '4c1e17da32ec'
+sourceRepoRevision         = '5e4d1b9123df'
 relbranchOverride          = 'COMM201_20110508_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-2.0'
 mozillaRepoRevision        = 'ac9cf29de0d2'
@@ -34,15 +34,15 @@ appName                    = 'suite'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.1rc1'
+version                    = '2.1rc2'
 appVersion                 = '2.1'
 milestone                  = '2.0.1'
-buildNumber                = 2
-baseTag                    = 'SEAMONKEY_2_1rc1'
-oldVersion                 = '2.1b3'
-oldAppVersion              = oldVersion
-oldBuildNumber             = 3
-oldBaseTag                 = 'SEAMONKEY_2_1b3'
+buildNumber                = 1
+baseTag                    = 'SEAMONKEY_2_1rc2'
+oldVersion                 = '2.1rc1'
+oldAppVersion              = 2.1
+oldBuildNumber             = 2
+oldBaseTag                 = 'SEAMONKEY_2_1rc1'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
 patcherConfig              = 'moz20-seamonkey-branch-patcher2.cfg'
