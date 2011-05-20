@@ -100,6 +100,7 @@ PROJECT_BRANCHES = {
     },
     'services-central': {
         'repo_path': 'services/services-central',
+        'enable_weekly_bundle': True,
     },
     'tracemonkey': {
         'repo_path': 'tracemonkey',
