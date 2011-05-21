@@ -18,6 +18,7 @@ chatzillaRepoPath          = 'chatzilla' # leave empty if chatzilla is not to be
 chatzillaRepoRevision      = '210002e2b7e7'
 chatzillaRelbranchOverride = 'COMM201_20110508_RELBRANCH'
 l10nRepoPath               = 'releases/l10n-mozilla-2.0'
+l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-2.0'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'suite/config/version-20.txt'
