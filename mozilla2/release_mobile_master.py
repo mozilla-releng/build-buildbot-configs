@@ -12,7 +12,7 @@ from buildbotcustom.misc import get_locales_from_json, \
 from buildbotcustom.process.factory import ReleaseTaggingFactory, \
   MultiSourceFactory, MaemoReleaseBuildFactory, MaemoReleaseRepackFactory, \
   PartnerRepackFactory, ReleaseMobileDesktopBuildFactory, \
-  AndroidReleaseBuildFactory
+  AndroidReleaseBuildFactory, ScriptFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
 
 # this is where all of our important configuration is stored. build number,
@@ -43,6 +43,28 @@ status = []
 (l10n_repos, platform_locales) = get_locales_from_json(l10nRevisionFile,
                                                        l10nRepoPath,
                                                        l10nRelbranchOverride)
+
+change_source.append(FtpPoller(
+    branch='android_signature_verification',
+    ftpURLs=['http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%s/android-r7/en-US/' \
+            % (stagingServer, version, buildNumber)],
+    pollInterval = 60*10,
+    searchString='eabi-arm.apk'
+))
+change_source.append(FtpPoller(
+    branch='android_signature_verification',
+    ftpURLs=['http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%s/android-r7/multi/' \
+            % (stagingServer, version, buildNumber)],
+    pollInterval = 60*10,
+    searchString='eabi-arm.apk'
+))
+android_signature_verification_scheduler = Scheduler(
+    name='android_signature_verification_scheduler',
+    branch='android_signature_verification',
+    treeStableTimer=0,
+    builderNames=['android_signature_verification']
+)
+schedulers.append(android_signature_verification_scheduler)
 
 tag_scheduler = Scheduler(
     name='mobile_tag',
@@ -146,6 +168,21 @@ builders.append({
     'category': 'release',
     'builddir': 'mobile_tag',
     'factory': tag_factory
+})
+envJava = {}
+envJava['PATH'] = '/tools/jdk6/bin:%s' % envJava.get('PATH', '/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/cltbld/bin')
+signature_verification_factory = ScriptFactory(
+    scriptRepo=branchConfig['hgurl']+branchConfig['build_tools_repo_path'],
+    scriptName='--tools-dir=scripts/ --release --apk=%(who)sfennec-'+version+'.%(locale)s.eabi-arm.apk',
+    interpreter='./scripts/release/signing/verify-android-signature.sh',
+    env=envJava
+)
+builders.append({
+    'name': 'android_signature_verification',
+    'slavenames': branchConfig['platforms']['linux']['slaves'],
+    'category': 'release',
+    'builddir': 'rel_mob_android_verify_sig',
+    'factory': signature_verification_factory
 })
 
 sourceRepoConfig = [{

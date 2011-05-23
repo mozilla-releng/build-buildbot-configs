@@ -841,6 +841,9 @@ for branch in BRANCHES.keys():
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
+        # Don't override something that's set
+        elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
+            continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
 
