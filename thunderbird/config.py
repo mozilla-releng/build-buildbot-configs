@@ -29,9 +29,9 @@ def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
             return ['momo-xserve-01'] + ['mini64-%02i' % x for x in [1] + range(3,6+1)]
     elif platformName == 'win32':
         if isTest:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
         else:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
     else:
         raise Exception("Invalid platformName '%s'" % platformName)
 
