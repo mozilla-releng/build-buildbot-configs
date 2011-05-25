@@ -447,7 +447,7 @@ BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = True
 # And code coverage
 BRANCHES['comm-aurora']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = True
+BRANCHES['comm-aurora']['enable_l10n'] = False
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
@@ -488,7 +488,7 @@ BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = True
 # And code coverage
 BRANCHES['comm-beta']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['comm-beta']['enable_l10n'] = True
+BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
