@@ -29,9 +29,9 @@ def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
             return ['momo-xserve-01'] + ['mini64-%02i' % x for x in [1] + range(3,6+1)]
     elif platformName == 'win32':
         if isTest:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
         else:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
     else:
         raise Exception("Invalid platformName '%s'" % platformName)
 
@@ -268,8 +268,11 @@ def makeAusConfig(branchName):
     ac['user'] = 'tbirdbld'
     return ac
 
-def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
+def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
+                    mozillaRepo=None, mozillaCentralBranch=None, tinderboxTree=None):
     bc = {}
+    bc['hg_branch'] = hgBranch
+    bc['tinderbox_tree'] = tinderboxTree
     if builderType == 'nightly':
         bc['branch_name'] = branchName
         bc['client_py_extra_args'] = \
@@ -280,14 +283,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['codesighs'] = True
         bc['create_snippet'] = True
         bc['factory'] = 'CCNightlyBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        elif branchName == 'comm-miramar':
-            bc['hg_branch'] = 'releases/comm-miramar'
-        elif branchName == 'comm-aurora':
-            bc['hg_branch'] = 'releases/comm-aurora'
-        else:
-            bc['hg_branch'] = 'comm-central'
         if branchName == 'comm-central':
             bc['l10n'] = True
             bc['l10n_repo'] = 'l10n-central'
@@ -321,14 +316,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
             pass
         else:
             bc['period'] = 50400
-        if branchName == 'comm-central':
-            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
-        elif branchName == 'comm-1.9.2':
-            bc['tinderbox_tree'] = 'Thunderbird3.1'
-        elif branchName == 'comm-aurora':
-            bc['tinderbox_tree'] = 'Thunderbird-Aurora'
-        else:
-            bc['tinderbox_tree'] = 'Miramar'
         bc['upload_stage'] = True
         if branchName == 'comm-1.9.2':
             pass
@@ -355,14 +342,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['codesighs'] = False
         bc['create_snippet'] = False
         bc['factory'] = 'CCNightlyBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        elif branchName == 'comm-miramar':
-            bc['hg_branch'] = 'releases/comm-miramar'
-        elif branchName == 'comm-aurora':
-            bc['hg_branch'] = 'releases/comm-aurora'
-        else:
-            bc['hg_branch'] = 'comm-central'
         bc['l10n'] = False
         bc['leak'] = True
         bc['mozconfig'] = 'debug'
@@ -373,14 +352,6 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
             pass
         else:
             bc['period'] = 50400
-        if branchName == 'comm-central':
-            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
-        elif branchName == 'comm-1.9.2':
-            bc['tinderbox_tree'] = 'Thunderbird3.1'
-        elif branchName == 'comm-aurora':
-            bc['tinderbox_tree'] = 'Thunderbird-Aurora'
-        else:
-            bc['tinderbox_tree'] = 'Miramar'
         bc['upload_stage'] = True
         bc['platforms'] = {}
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
@@ -403,14 +374,9 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
              '--skip-venkman',
              '--skip-chatzilla']
         bc['factory'] = 'CCUnittestBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        else:
-            bc['hg_branch'] = 'comm-central'
         bc['mozmill'] = True
         bc['nightly'] = False
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        bc['tinderbox_tree'] = 'Thunderbird3.1'
         if branchName == 'comm-1.9.2':
             pass
         else:
@@ -432,18 +398,81 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
 
 BRANCHES = {}
 
-# makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch)
-BRANCHES['comm-miramar'] = makeBuildConfig('nightly', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
-BRANCHES['comm-miramar-bloat'] = makeBuildConfig('bloat', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
+BRANCHES['comm-miramar'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-miramar',
+                               hgBranch      = 'releases/comm-miramar',
+                               mozillaRepo   = 'releases/mozilla-miramar',
+                               mozillaCentralBranch = 'releases/mozilla-miramar',
+                               tinderboxTree = 'Miramar'
+                           )
+BRANCHES['comm-miramar-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-miramar',
+                               hgBranch      = 'releases/comm-miramar',
+                               mozillaRepo   = 'releases/mozilla-miramar',
+                               mozillaCentralBranch = 'releases/mozilla-miramar',
+                               tinderboxTree = 'Miramar'
+                           )
 
-BRANCHES['comm-aurora'] = makeBuildConfig('nightly', 'comm-aurora', 'releases/mozilla-aurora', 'releases/mozilla-aurora')
-BRANCHES['comm-aurora-bloat'] = makeBuildConfig('bloat', 'comm-aurora', 'releases/mozilla-aurora', 'releases/mozilla-aurora')
+BRANCHES['comm-aurora'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-aurora',
+                               hgBranch      = 'releases/comm-aurora',
+                               mozillaRepo   = 'releases/mozilla-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-aurora',
+                               tinderboxTree = 'Thunderbird-Aurora'
+                           )
+BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-aurora',
+                               hgBranch      = 'releases/comm-aurora',
+                               mozillaRepo   = 'releases/mozilla-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-aurora',
+                               tinderboxTree = 'Thunderbird-Aurora'
+                           )
 
-BRANCHES['comm-central'] = makeBuildConfig('nightly', 'comm-central', 'mozilla-aurora', 'mozilla-central')
-BRANCHES['comm-central-bloat'] = makeBuildConfig('bloat', 'comm-central', 'mozilla-central', 'mozilla-central')
-BRANCHES['comm-1.9.2'] = makeBuildConfig('nightly', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
-BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig('bloat', 'comm-1.9.2', 'releases/mozilla-1.9.2', 'releases/mozilla-1.9.2')
-BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig('check', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
+BRANCHES['comm-central'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-central',
+                               hgBranch      = 'comm-central',
+                               mozillaRepo   = 'mozilla-aurora',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTrunk'
+                           )
+BRANCHES['comm-central-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-central',
+                               hgBranch      = 'comm-central',
+                               mozillaRepo   = 'mozilla-central',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTrunk'
+                           )
+
+BRANCHES['comm-1.9.2'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaRepo   = 'mozilla-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1'
+                           )
+BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaRepo   = 'releases/mozilla-1.9.2',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1'
+                           )
+BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
+                               builderType   = 'check',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaRepo   = 'mozilla-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1'
+                           )
 
 # ----------------
 
