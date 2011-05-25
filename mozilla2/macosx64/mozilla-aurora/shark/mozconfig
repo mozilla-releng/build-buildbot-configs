@@ -24,5 +24,5 @@ ac_add_options --enable-shark
 ac_add_options --enable-dtrace
 ac_add_options --enable-debugger-info-modules
 
-# Need this to prevent name conflicts with the normal nightly build packages
+# Need this to prevent name conflicts with the normal aurora build packages
 export MOZ_PKG_SPECIAL="shark"
