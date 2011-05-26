@@ -46,7 +46,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
             pass
         else:
             if builderType == 'bloat':
-                rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+                rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib:objdir-tb/mozilla/dist/bin'
             else:
                 rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
         rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
@@ -64,7 +64,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['CVS_RSH'] = 'ssh'
         rv['DISPLAY'] = ':2'
         if builderType == 'bloat':
-            rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+            rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64:objdir-tb/mozilla/dist/bin'
         else:
             rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
         rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
