@@ -1,7 +1,9 @@
 af 166cdccf4f1b
+ak 91a95c755229
 ar 1ca1f7838a06
 ast b679665e2975
 be 736301901eff
+bn-BD 45824f4fa7d6
 bn-IN 3a022f400c07
 br 70db986f3db7
 bs e879c834117b
@@ -13,6 +15,7 @@ el 007260bcc3a8
 en-GB 14bd8d40f106
 en-ZA d3ec85484a3c
 eo a4b2cf869e3b
+es-AR 1716ed71c7d4
 es-CL d5598d5c330b
 es-ES e920eebb2b7c
 es-MX 1001fd9759d0
@@ -31,11 +34,15 @@ hi-IN 8fc555f05ddc
 hr 63397609371f
 hu 3cbe9102d4da
 hy-AM 1083e22ab285
+id 4a0195a2d41d
 is fa911387e0a1
 it daa5fef44051
+ja 238d57b85ad5
+ja-JP-mac d478c1a1bae4
 kk 0d98056467df
 kn 46ca4126860a
 ko a32aa36b87a7
+ku 4ac0cebc9d9b
 lg 3a7b7f80a0cf
 lt 52edbb257424
 lv 2d8f4913134b
@@ -43,7 +50,7 @@ mai cfccfd8fd5aa
 ml f4558bbbb865
 mr 1c36011d3f27
 nb-NO bd363581e878
-nl ccc25158b758
+nl 60f08a074d3c
 nso fc806441e665
 pa-IN 2a25868a2cc6
 pl 8a517d9ee99f
@@ -51,7 +58,7 @@ pt-BR 126cc6d774d4
 pt-PT 6f408e57d929
 rm 3d439bfbbe7c
 ro 46f933cff55c
-ru 3ac7c6da7f70
+ru a9b41a96a1f7
 si ec6462170565
 sk 47999ebeb687
 sl 8c38a2c44205
@@ -61,6 +68,7 @@ sv-SE e996597dd7a8
 te 66039ea49541
 tr 8cbeb54677fe
 uk f44b6a342609
+vi 0f3eb44ab829
 zh-CN 771e76ec0e5b
 zh-TW e2034eee62d9
 zu 32ba29287811

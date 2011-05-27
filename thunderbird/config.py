@@ -269,7 +269,7 @@ def makeAusConfig(branchName):
     return ac
 
 def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
-                    mozillaRepo=None, mozillaCentralBranch=None, tinderboxTree=None):
+                    mozillaCentralBranch=None, tinderboxTree=None):
     bc = {}
     bc['hg_branch'] = hgBranch
     bc['tinderbox_tree'] = tinderboxTree
@@ -343,7 +343,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['client_py_args'] = \
             ['--skip-comm',
              '--hg-options=--verbose --time',
-             '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaRepo]
+             '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaCentralBranch]
         bc['client_py_extra_args'] = ['--skip-venkman', '--skip-chatzilla']
         bc['codesighs'] = False
         bc['create_snippet'] = False
@@ -408,7 +408,6 @@ BRANCHES['comm-miramar'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-miramar',
                                hgBranch      = 'releases/comm-miramar',
-                               mozillaRepo   = 'releases/mozilla-miramar',
                                mozillaCentralBranch = 'releases/mozilla-miramar',
                                tinderboxTree = 'Miramar'
                            )
@@ -416,7 +415,6 @@ BRANCHES['comm-miramar-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
                                branchName    = 'comm-miramar',
                                hgBranch      = 'releases/comm-miramar',
-                               mozillaRepo   = 'releases/mozilla-miramar',
                                mozillaCentralBranch = 'releases/mozilla-miramar',
                                tinderboxTree = 'Miramar'
                            )
@@ -425,7 +423,6 @@ BRANCHES['comm-aurora'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-aurora',
                                hgBranch      = 'releases/comm-aurora',
-                               mozillaRepo   = 'releases/mozilla-aurora',
                                mozillaCentralBranch = 'releases/mozilla-aurora',
                                tinderboxTree = 'Thunderbird-Aurora'
                            )
@@ -433,7 +430,6 @@ BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
                                branchName    = 'comm-aurora',
                                hgBranch      = 'releases/comm-aurora',
-                               mozillaRepo   = 'releases/mozilla-aurora',
                                mozillaCentralBranch = 'releases/mozilla-aurora',
                                tinderboxTree = 'Thunderbird-Aurora'
                            )
@@ -442,7 +438,6 @@ BRANCHES['comm-central'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-central',
                                hgBranch      = 'comm-central',
-                               mozillaRepo   = 'releases/mozilla-aurora',
                                mozillaCentralBranch = 'mozilla-central',
                                tinderboxTree = 'ThunderbirdTrunk'
                            )
@@ -450,7 +445,6 @@ BRANCHES['comm-central-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
                                branchName    = 'comm-central',
                                hgBranch      = 'comm-central',
-                               mozillaRepo   = 'mozilla-central',
                                mozillaCentralBranch = 'mozilla-central',
                                tinderboxTree = 'ThunderbirdTrunk'
                            )
@@ -459,7 +453,6 @@ BRANCHES['comm-1.9.2'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-1.9.2',
                                hgBranch      = 'releases/comm-1.9.2',
-                               mozillaRepo   = 'releases/mozilla-aurora',
                                mozillaCentralBranch = 'releases/mozilla-1.9.2',
                                tinderboxTree = 'Thunderbird3.1'
                            )
@@ -467,7 +460,6 @@ BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
                                branchName    = 'comm-1.9.2',
                                hgBranch      = 'releases/comm-1.9.2',
-                               mozillaRepo   = 'releases/mozilla-1.9.2',
                                mozillaCentralBranch = 'releases/mozilla-1.9.2',
                                tinderboxTree = 'Thunderbird3.1'
                            )
@@ -475,7 +467,6 @@ BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
                                builderType   = 'check',
                                branchName    = 'comm-1.9.2',
                                hgBranch      = 'releases/comm-1.9.2',
-                               mozillaRepo   = 'releases/mozilla-aurora',
                                mozillaCentralBranch = 'releases/mozilla-1.9.2',
                                tinderboxTree = 'Thunderbird3.1'
                            )
