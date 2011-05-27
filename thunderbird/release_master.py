@@ -219,6 +219,9 @@ gloConfig = {
         'majorUpdatePatcherConfig' : '',
         'majorUpdateVerifyConfigs' : {'linux':  '',
                                     'linux64': '',
+                                    'macosx64': '',
+                                    'win32':  ''},
+    },
     '50': {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
@@ -314,7 +317,6 @@ gloConfig = {
                                     'linux64': '',
                                     'macosx64': '',
                                     'win32':  ''},
-
     },
 }
 
