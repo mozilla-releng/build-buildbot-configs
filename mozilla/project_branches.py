@@ -3,8 +3,7 @@ PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     'accessibility': {
         'enable_nightly': True,
-        'enable_mobile': False,
-        'mobile_platforms': {},
+        'enabled_products': ['firefox'],
         # only want a11y so turn off the default set
         'talos_suites': {
             'dirty': 0,
@@ -22,9 +21,7 @@ PROJECT_BRANCHES = {
     },
     'devtools':{
         'enable_nightly': True,
-        # need both of these to turn off mobile completely because of key in generic config.py
-        'enable_mobile': False,
-        'mobile_platforms': {},
+        'enabled_products': ['firefox'],
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
@@ -42,24 +39,6 @@ PROJECT_BRANCHES = {
     },
     'electrolysis': {
         'mozconfig_dir': 'electrolysis',
-        'mobile_platforms': {
-            'maemo5-gtk': {
-                'mozconfig': 'mobile/maemo5-gtk/mobile-e10s/nightly',
-            },
-            'maemo5-qt': {
-                'mozconfig': 'mobile/maemo5-qt/mobile-e10s/nightly',
-            },
-            'linux': {
-                'mozconfig': 'mobile/linux-i686/mobile-e10s/nightly',
-            },
-            'win32': {
-                'mozconfig': 'mobile/win32-i686/mobile-e10s/nightly',
-            },
-            'macosx': {
-                'mozconfig': 'mobile/macosx-i686/mobile-e10s/nightly',
-            },
-            'android-r7': {},
-        },
         'enable_talos': False,
     },
     'graphics':{
@@ -94,8 +73,7 @@ PROJECT_BRANCHES = {
     },
     'private-browsing': {
         'enable_talos': False,
-        'enable_mobile': False,
-        'mobile_platforms': {},
+        'enabled_products': ['firefox'],
         'enable_nightly': True,
     },
     'services-central': {
@@ -111,7 +89,6 @@ PROJECT_BRANCHES = {
         'start_hour': [3],
         'start_minute': [32],
         'enable_nightly': True,
-        'enable_mobile_nightly': True,
         'enable_shark': True,
         'platforms': {
             'linux64': {
@@ -148,8 +125,8 @@ PROJECT_BRANCHES = {
         'tinderbox_tree': 'UX',
         'mobile_tinderbox_tree': 'UX',
         'packaged_unittest_tinderbox_tree': 'UX',
+        'enabled_products': ['firefox'],
         'enable_mobile': False,
-        'mobile_platforms': {},
         'mozconfig_dir' : 'ux',
         'enable_nightly': True,
         'create_snippet': True,
