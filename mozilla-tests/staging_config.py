@@ -1,6 +1,6 @@
 SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,4)]),
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,4)]),
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,11)]),
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,11)]),
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,4)]),
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,4)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,4)]),
@@ -40,7 +40,7 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     'jetpack': {
-        'scripts_repo': 'http://hg.mozilla.org/users/lsblakk_mozilla.com/tools',
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'tinderbox_tree': 'MozillaTest',
     },
 }
