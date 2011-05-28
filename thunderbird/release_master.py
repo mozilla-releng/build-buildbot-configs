@@ -228,7 +228,7 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-miramar', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-miramar',
-        'sourceRepoRevision'         : '0b6440d62dbc',
+        'sourceRepoRevision'         : '7ca67675ba71',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : 'COMM50_20110527_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-miramar',
