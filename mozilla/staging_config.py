@@ -54,7 +54,6 @@ GLOBAL_VARS = {
     # and sendchange retry count before give up
     'unittest_masters': [
         ('staging-master.build.mozilla.org:9009', True, 1),
-        ('talos-staging-master02.build.mozilla.org:9012', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',
