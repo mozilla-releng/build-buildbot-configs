@@ -14,16 +14,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '5.0b1'
+releaseConfig['version']             = '5.0b3'
 releaseConfig['appVersion']          = '5.0'
-releaseConfig['milestone']           = '5.0b1'
+releaseConfig['milestone']           = '5.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_5_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_5_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = None
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = None
-releaseConfig['oldBaseTag']          = None
+releaseConfig['oldVersion']          = '5.0b2'
+releaseConfig['oldAppVersion']       = '5.0'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_5_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '5.0'
 releaseConfig['nextMilestone']       = '5.0'
@@ -33,9 +33,9 @@ releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
-        'clonePath': 'mozilla-beta',
+        'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'FILLMEIN',
+        'revision': '23d449276096',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'l10n-central'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories
@@ -67,7 +67,7 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
+releaseConfig['unittestPlatforms']   = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # L10n configuration
@@ -82,7 +82,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R14'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
