@@ -32,3 +32,6 @@ fi
 if [ -f $topsrcdir/mozconfig-extra-linux64 ] ; then
   . $topsrcdir/mozconfig-extra-linux64
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

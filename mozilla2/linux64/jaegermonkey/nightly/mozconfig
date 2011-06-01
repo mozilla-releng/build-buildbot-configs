@@ -25,3 +25,6 @@ mk_add_options PROFILE_GEN_SCRIPT=@TOPSRCDIR@/build/profile_pageloader.pl
 
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

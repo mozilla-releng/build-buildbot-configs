@@ -39,13 +39,14 @@ PROJECT_BRANCHES = {
     },
     'electrolysis': {
         'mozconfig_dir': 'electrolysis',
-        'enable_talos': False,
+        'enable_talos': True,
     },
     'graphics':{
         'enable_unittests': False,
         'enable_talos': False,
     },
     'jaegermonkey': {
+        'mozconfig_dir': 'jaegermonkey',
         'enable_talos': False,
         'enable_nightly': True,
         'create_snippet': True,
@@ -97,7 +98,7 @@ PROJECT_BRANCHES = {
             'linux': {
                 'build_space': 7,
             },
-            'linuxqt': { 
+            'linuxqt': {
                 'build_space': 7,
             },
             'linux-debug': {
@@ -106,7 +107,10 @@ PROJECT_BRANCHES = {
             'linux64-debug': {
                 'enable_valgrind_checktests': True,
             },
-        }, 
+            'linux-android': {
+                'enable_opt_unittests': True,
+            },
+        },
         'create_snippet': True,
         'create_partial': True,
         'talos_suites': {
