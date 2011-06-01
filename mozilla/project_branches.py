@@ -98,7 +98,7 @@ PROJECT_BRANCHES = {
             'linux': {
                 'build_space': 7,
             },
-            'linuxqt': { 
+            'linuxqt': {
                 'build_space': 7,
             },
             'linux-debug': {
@@ -107,7 +107,10 @@ PROJECT_BRANCHES = {
             'linux64-debug': {
                 'enable_valgrind_checktests': True,
             },
-        }, 
+            'linux-android': {
+                'enable_opt_unittests': True,
+            },
+        },
         'create_snippet': True,
         'create_partial': True,
         'talos_suites': {
