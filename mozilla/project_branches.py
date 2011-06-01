@@ -39,7 +39,7 @@ PROJECT_BRANCHES = {
     },
     'electrolysis': {
         'mozconfig_dir': 'electrolysis',
-        'enable_talos': False,
+        'enable_talos': True,
     },
     'graphics':{
         'enable_unittests': False,
