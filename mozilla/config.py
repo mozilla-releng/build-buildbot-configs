@@ -1281,6 +1281,8 @@ BRANCHES['mozilla-central']['l10nUploadPath'] = \
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-central']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-central' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-central']['enable_multi_locale'] = True
 BRANCHES['mozilla-central']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
@@ -1362,6 +1364,8 @@ BRANCHES['mozilla-beta']['l10nUploadPath'] = \
 BRANCHES['mozilla-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-beta'
 BRANCHES['mozilla-beta']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-beta']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-beta' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-beta']['enable_multi_locale'] = True
 BRANCHES['mozilla-beta']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
@@ -1414,6 +1418,8 @@ BRANCHES['mozilla-aurora']['l10nUploadPath'] = \
 BRANCHES['mozilla-aurora']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-aurora'
 BRANCHES['mozilla-aurora']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-aurora']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-aurora' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-aurora']['enable_multi_locale'] = True
 BRANCHES['mozilla-aurora']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
@@ -1465,6 +1471,8 @@ BRANCHES['mozilla-2.0']['l10nUploadPath'] = \
 BRANCHES['mozilla-2.0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-2.0'
 BRANCHES['mozilla-2.0']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-2.0']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-2.0' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-2.0']['enable_multi_locale'] = True
 BRANCHES['mozilla-2.0']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
@@ -1611,6 +1619,8 @@ BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
 BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.1'
 BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-1.9.1']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-1.9.1' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-1.9.1']['create_snippet'] = True
 BRANCHES['mozilla-1.9.1']['create_partial'] = True
 BRANCHES['mozilla-1.9.1']['create_partial_l10n'] = False
@@ -1686,6 +1696,8 @@ BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
 BRANCHES['mozilla-1.9.2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-1.9.2']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/default/mozilla/l10n/all-locales.mozilla-1.9.2' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-1.9.2']['create_snippet'] = True
 BRANCHES['mozilla-1.9.2']['create_partial'] = True
 BRANCHES['mozilla-1.9.2']['create_partial_l10n'] = True
