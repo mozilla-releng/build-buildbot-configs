@@ -1833,7 +1833,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     for platform in BRANCHES[branch]['platforms']:
         if platform.endswith('debug') and 'linux-android' not in platform:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
-        elif platform.endswith('qt'):
+        elif platform.endswith('qt') and 'maemo' not in platform:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
