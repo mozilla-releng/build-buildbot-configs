@@ -96,38 +96,45 @@ PLATFORMS = {
 PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['stage_product'] = 'firefox'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
+PLATFORMS['macosx64']['stage_product'] = 'firefox'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
+PLATFORMS['win32']['stage_product'] = 'firefox'
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
                               'download_symbols': False,
                              }
+PLATFORMS['win64']['stage_product'] = 'firefox'
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
+PLATFORMS['linux']['stage_product'] = 'firefox'
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
+PLATFORMS['linux64']['stage_product'] = 'firefox'
 
 PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['linux-android']['env_name'] = 'android-perf'
 PLATFORMS['linux-android']['is_mobile'] = True
-PLATFORMS['linux-android']['branch_extra'] = 'mobile-browser'
 PLATFORMS['linux-android']['tegra_android'] = {'name': "Android Tegra 250",
                                          'download_symbols': False,
                                         }
+PLATFORMS['linux-android']['stage_product'] = 'mobile'
+PLATFORMS['linux-android']['stage_platform'] = 'android'
 
 
 # Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
@@ -325,7 +332,6 @@ PLATFORM_UNITTEST_VARS = {
         },
         'linux-android': {
             'is_remote': True,
-            'branch_extra': 'mobile-browser',
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'remote_extras': UNITTEST_REMOTE_EXTRAS,
             'tegra_android': {
