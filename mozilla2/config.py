@@ -169,6 +169,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
             'env': {
                 'DISPLAY': ':2',
                 'MOZ_OBJDIR': OBJDIR,
@@ -313,7 +314,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'enable_ccache': False,
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',

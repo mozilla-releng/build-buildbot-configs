@@ -14,3 +14,6 @@ export CXXFLAGS="-gdwarf-2"
 export MOZ_DEBUG_SYMBOLS=1
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

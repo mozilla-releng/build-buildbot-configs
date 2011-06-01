@@ -1,3 +1,7 @@
+# Don't use ccache here
+CC=/tools/gcc/bin/gcc
+CXX=/tools/gcc/bin/g++
+
 export CFLAGS="-fprofile-arcs -ftest-coverage"
 export CXXFLAGS="-fprofile-arcs -ftest-coverage"
 export LDFLAGS="-lgcov -static-libgcc"

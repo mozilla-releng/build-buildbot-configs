@@ -450,6 +450,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
             'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
@@ -665,7 +666,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
-            'enable_ccache': False,
+            'enable_ccache': True,
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
