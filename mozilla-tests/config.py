@@ -457,8 +457,8 @@ PROJECTS = {
             'w764': {'ext':'win64-x86_64.zip',}, 
             'fedora64': {'ext':'linux-x86_64.tar.bz2',}, 
             'fedora':{'ext':'linux-i686.tar.bz2'}, 
-            'leopard':{'ext':'.mac.dmg'}, 
-            'snowleopard':{'ext':'.mac.dmg'},   
+            'leopard':{'ext':'mac.dmg'}, 
+            'snowleopard':{'ext':'mac.dmg'},   
             'xp':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
