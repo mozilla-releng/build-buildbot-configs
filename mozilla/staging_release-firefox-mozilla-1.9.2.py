@@ -68,8 +68,12 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'win32', 'macosx')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+
+# Unittests
+releaseConfig['enableUnittests'] = True
+# this variable adds unit tests on the builders
+releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
