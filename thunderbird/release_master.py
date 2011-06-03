@@ -93,7 +93,7 @@ gloConfig = {
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R13',
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -122,7 +122,7 @@ gloConfig = {
         'majorUpdateReleaseNotesUrl' : 'http://www.mozillamessaging.com/%locale%/thunderbird/5.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
-                                    'macosx64': 'moz20-thunderbird-mac64-major.cfg',
+                                    'macosx': 'moz20-thunderbird-mac64-major.cfg',
                                     'win32':  'moz20-thunderbird-win32-major.cfg'},
     },
     '33': {
