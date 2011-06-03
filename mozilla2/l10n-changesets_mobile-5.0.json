@@ -59,6 +59,10 @@
     "revision": "52edbb257424",
     "platforms": ["maemo"]
   },
+  "nl": {
+    "revision": "60f08a074d3c",
+    "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
+  },
   "pa-IN": {
     "revision": "109c730731a1",
     "platforms": ["maemo"]
@@ -72,7 +76,7 @@
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "ru": {
-    "revision": "a9b41a96a1f7",
+    "revision": "1dff5b9c8df8",
     "platforms": ["maemo", "android-multilocale", "maemo-multilocale"]
   },
   "sk": {
