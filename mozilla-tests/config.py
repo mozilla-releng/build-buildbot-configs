@@ -941,6 +941,11 @@ for branch in ACTIVE_PROJECT_BRANCHES:
                 else:
                     BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), True, {}, ALL_PLATFORMS)
 
+# This is here rather than in project_branches.py, because enabling it there
+# will enable old-style, on-buildslave opt unittests due to the same file
+# existing in both mozilla/ and mozilla-tests/.
+BRANCHES['tracemonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
+
 if __name__ == "__main__":
     import sys, pprint, re
 

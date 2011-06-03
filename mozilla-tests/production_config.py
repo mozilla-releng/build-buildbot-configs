@@ -23,7 +23,7 @@ GLOBAL_VARS = {
 BRANCHES = {
     'mozilla-central': {
         'tinderbox_tree': 'Firefox',
-        'mobile_tinderbox_tree': 'Mobile',
+        'mobile_tinderbox_tree': 'Firefox',
     },
     'shadow-central': {
         'tinderbox_tree': 'Shadow-Central',
