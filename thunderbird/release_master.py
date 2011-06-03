@@ -113,18 +113,17 @@ gloConfig = {
         
         # 'Version' numbers we are updating _TO_
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
-        'majorUpdateRepoPath'    : '',
-        'majorUpdateSourceRepoPath' : '',
-        'majorUpdateToVersion'   : '',
-        'majorUpdateAppVersion'  : '',
-        'majorUpdateBuildNumber' : '',
-        'majorUpdateBaseTag'     : '',
-        'majorUpdateReleaseNotesUrl' : '',
-        'majorUpdatePatcherConfig' : '',
-        'majorUpdateVerifyConfigs' : {'linux':  '',
-                                    'macosx': '',
-                                    'win32':  ''},
-
+        'majorUpdateRepoPath'    : 'releases/mozilla-miramar',
+        'majorUpdateSourceRepoPath' : 'releases/comm-miramar',
+        'majorUpdateToVersion'   : '5.0b1',
+        #'majorUpdateAppVersion'  : majorUpdateToVersion,
+        'majorUpdateBuildNumber' : 2,
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_5_0b1',
+        'majorUpdateReleaseNotesUrl' : 'http://www.mozillamessaging.com/%locale%/thunderbird/5.0/details/index.html',
+        'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
+        'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
+                                    'macosx64': 'moz20-thunderbird-mac64-major.cfg',
+                                    'win32':  'moz20-thunderbird-win32-major.cfg'},
     },
     '33': {
         'hgUsername'                 : 'tbirdbld',
