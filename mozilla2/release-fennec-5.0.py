@@ -6,10 +6,10 @@ mozSourceRepoName      = 'mozilla-mobile-5.0'
 # because the repo_setup builder needs to know where to clone repositories from.
 # It is not used for anything else.
 mozSourceRepoPath      = 'releases/mozilla-mobile-5.0'
-mozSourceRepoRevision  = 'e4f88d15aa2a'
+mozSourceRepoRevision  = '904a8244feef'
 mobileSourceRepoName      = 'mobile-5.0'
 mobileSourceRepoPath      = 'releases/mobile-5.0'
-mobileSourceRepoRevision  = '5ae416dcebfa'
+mobileSourceRepoRevision  = '33e9810a1fd9'
 mozRelbranchOverride      = ''
 l10nRelbranchOverride     = ''
 mobileRelbranchOverride   = ''
@@ -26,15 +26,15 @@ androidMozharnessConfig = "multi_locale/5.0_release_android.json"
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version             = '5.0b3'
+version             = '5.0b4'
 appVersion          = '5.0'
 milestone           = '5.0'
 buildNumber         = 1
-baseTag             = 'FENNEC_5_0b3'
-oldVersion          = '5.0b2'
+baseTag             = 'FENNEC_5_0b4'
+oldVersion          = '5.0b3'
 oldAppVersion       = oldVersion
 oldBuildNumber      = 1
-oldBaseTag          = 'FENNEC_5_0b2'
+oldBaseTag          = 'FENNEC_5_0b3'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
 l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
