@@ -219,7 +219,7 @@ gloConfig = {
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
                                     'linux64': 'moz20-thunderbird-linux64-major.cfg',
-                                    'macosx': 'moz20-thunderbird-mac-major.cfg',
+                                    'macosx64': 'moz20-thunderbird-mac64-major.cfg',
                                     'win32':  'moz20-thunderbird-win32-major.cfg'},
     },
     '50': {
