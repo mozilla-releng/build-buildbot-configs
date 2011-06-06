@@ -52,6 +52,11 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
     },
+    'mozilla-inbound': {
+        'repo_path': 'integration/mozilla-inbound',
+        'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': True,
+    },
     'places': {
         'platforms': {
             'linux64': {
