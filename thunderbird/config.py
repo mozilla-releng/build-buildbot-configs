@@ -89,9 +89,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
         rv['SYMBOL_SERVER_SSH_KEY'] = '/Users/cltbld/.ssh/tbirdbld_dsa'
         rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
-        if builderType == 'bloat':
-            pass
-        else:
+        if builderType != 'bloat':
             rv['TINDERBOX_OUTPUT'] = '1'
         if builderType == 'bloat':
             rv['XPCOM_DEBUG_BREAK'] = 'stack'
@@ -115,9 +113,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
         rv['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa'
         rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
-        if builderType == 'bloat':
-            pass
-        else:
+        if builderType != 'bloat':
             rv['TINDERBOX_OUTPUT'] = '1'
         if builderType == 'bloat':
             rv['XPCOM_DEBUG_BREAK'] = 'stack'
@@ -201,7 +197,6 @@ def makePlatformConfig(buildConfig, builderType, platformName, branchName):
         if builderType != 'check':
             pc['profiled_build'] = False
             pc['update_platform'] = 'Darwin_Universal-gcc3'
-        if builderType != 'check':
             pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
         pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
         pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
@@ -308,18 +303,11 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         if branchName in ['comm-1.9.2','comm-miramar']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
-        if branchName == 'comm-1.9.2':
-            pass
-        else:
-            bc['packageTests'] = True
-        if branchName in ['comm-central', 'comm-1.9.2']:
-            pass
-        else:
+        if branchName not in ['comm-central', 'comm-1.9.2']:
             bc['period'] = 50400
         bc['upload_stage'] = True
-        if branchName == 'comm-1.9.2':
-            pass
-        else:
+        if branchName != 'comm-1.9.2':
+            bc['packageTests'] = True
             bc['unittest_masters'] = [
                ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
               ]
@@ -355,10 +343,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['upload_stage'] = True
         bc['platforms'] = {}
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
-            if platformName == 'macosx' and \
-               (branchName != 'comm-1.9.2' and builderType != 'bloat'):
-                continue
-            if platformName == 'macosx64' and builderType == 'bloat':
+            if platformName == 'macosx64':
                 continue
             if platformName in ['linux64', 'macosx64'] and \
                branchName == 'comm-1.9.2':
@@ -387,9 +372,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
             if platformName == 'macosx' and branchName != 'comm-1.9.2':
                 continue
-            if platformName in ['linux64', 'macosx64'] and branchName == 'comm-1.9.2' and builderType != 'check':
-                continue
-            if platformName in ['macosx64'] and builderType == 'check':
+            if platformName in ['macosx64']:
                 continue
             bc['platforms'][platformName] = makePlatformConfig(bc, builderType, platformName, branchName)
     else:
