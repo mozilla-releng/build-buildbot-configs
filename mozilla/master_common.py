@@ -17,15 +17,23 @@ c['builders'] = []
 c['schedulers'] = []
 c['change_source'] = []
 
-# Builders from these branches are given higher priority.
+# Builders from these branches are given custom priority, default is 2 for unlisted branches
 BRANCH_PRIORITIES = {
     'mozilla-central': 1,
+    'mozilla-aurora': 1,
+    'mozilla-beta': 0,
     'mozilla-2.0': 1,
     'mozilla-1.9.2': 1,
     'mozilla-1.9.1': 1,
     'try': 3,
     'addontester': 4,
     'addonbaselinetester': 4,
+    'alder': 4,
+    'birch': 4,
+    'cedar': 4,
+    'holly': 4,
+    'larch': 4,
+    'maple': 4,
 }
 
 # Give the release builders priority over other builders
