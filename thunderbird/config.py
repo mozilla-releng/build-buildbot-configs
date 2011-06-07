@@ -343,7 +343,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['upload_stage'] = True
         bc['platforms'] = {}
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
-            if platformName == 'macosx64':
+            if platformName == 'macosx64' and bc['hg_branch'] != 'comm-central':
                 continue
             if platformName in ['linux64', 'macosx64'] and \
                branchName == 'comm-1.9.2':
