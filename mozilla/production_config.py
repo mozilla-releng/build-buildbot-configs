@@ -9,7 +9,7 @@ LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,10)
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1] + range(6,10) + [11,20,26] + range(30,50)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,22)] + ['w32-ix-slave%02i' % x for x in range(22,43)] + \
-                 ['w32-ix-slave%02i' % x for x in range(1,5)] # added for bug 638309
+                 ['w32-ix-slave%02i' % x for x in range(1,5)] + ['w32-ix-slave%02i' % x for x in range(7,9)] # added for bug 638309 and 661758
 SLAVES = {
     'linux':       LINUX_VMS + LINUX_IXS,
     'linux64':     LINUX64_VMS + LINUX64_IXS,

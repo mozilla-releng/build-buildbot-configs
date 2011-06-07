@@ -22,6 +22,7 @@ BRANCHES["mozilla-2.1"]["release_platforms"] = ["fremantle"]
 BRANCHES["mozilla-2.1"]["nightly_hour"] = 9
 
 BRANCHES["mozilla-mobile-5.0"]["script_repo_tag"] = "default"
+BRANCHES["mozilla-mobile-5.0"]["enable_nightly"] = False
 BRANCHES["mozilla-mobile-5.0"]["nightly_config_file"] = "deb_repos/staging_mozilla-beta_nightly.json"
 BRANCHES["mozilla-mobile-5.0"]["nightly_platforms"] = ["fremantle", "fremantle-qt"]
 BRANCHES["mozilla-mobile-5.0"]["enable_release"] = True
