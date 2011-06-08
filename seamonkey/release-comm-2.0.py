@@ -3,10 +3,10 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-2.0' # buildbot branch name
 sourceRepoPath             = 'releases/comm-2.0'
-sourceRepoRevision         = 'da40077f427b'
+sourceRepoRevision         = 'f9a93495e68c'
 relbranchOverride          = 'COMM201_20110508_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-2.0'
-mozillaRepoRevision        = '558b50f17b7c'
+mozillaRepoRevision        = 'ff616f6ced18'
 mozillaRelbranchOverride   = 'COMM20_053111_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '0bb7db177214'
@@ -35,15 +35,15 @@ appName                    = 'suite'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.1rc2'
+version                    = '2.1'
 appVersion                 = '2.1'
 milestone                  = '2.0.1'
-buildNumber                = 2
-baseTag                    = 'SEAMONKEY_2_1rc2'
-oldVersion                 = '2.1rc1'
+buildNumber                = 1
+baseTag                    = 'SEAMONKEY_2_1'
+oldVersion                 = '2.1rc2'
 oldAppVersion              = 2.1
 oldBuildNumber             = 2
-oldBaseTag                 = 'SEAMONKEY_2_1rc1'
+oldBaseTag                 = 'SEAMONKEY_2_1rc2'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
 patcherConfig              = 'moz20-seamonkey-branch-patcher2.cfg'
@@ -58,7 +58,7 @@ bouncerServer              = 'download.mozilla.org'
 ausServerUrl               = 'https://aus2-community.mozilla.org'
 testOlderPartials          = False
 releaseNotesUrl            = None
-useBetaChannel             = 0
+useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz20-seamonkey-linux.cfg',
                               'macosx64': 'moz20-seamonkey-mac.cfg',
                               'win32':  'moz20-seamonkey-win32.cfg'}
