@@ -3,7 +3,7 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-2.0' # buildbot branch name
 sourceRepoPath             = 'releases/comm-2.0'
-sourceRepoRevision         = 'f9a93495e68c'
+sourceRepoRevision         = '1e53b6fcfb1d'
 relbranchOverride          = 'COMM201_20110508_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-2.0'
 mozillaRepoRevision        = 'ff616f6ced18'
@@ -21,7 +21,8 @@ l10nRepoPath               = 'releases/l10n-mozilla-2.0'
 l10nRelbranchOverride      = 'default'
 l10nRevisionFile           = 'l10n-changesets-comm-2.0'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-productVersionFile         = 'suite/config/version-20.txt'
+#productVersionFile         = 'suite/config/version-20.txt'
+productVersionFile         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,

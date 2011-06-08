@@ -138,12 +138,17 @@ for platform in unittestPlatforms:
 # This is a step run very shortly before release, and is triggered manually
 # from the waterfall
 
+if productVersionFile:
+  bumpFiles = [productVersionFile]
+else:
+  bumpFiles = []
+
 ##### Builders
 repositories = {
     sourceRepoPath: {
         'revision': sourceRepoRevision,
         'relbranchOverride': relbranchOverride,
-        'bumpFiles': [productVersionFile]
+        'bumpFiles': bumpFiles
     },
     mozillaRepoPath: {
         'revision': mozillaRepoRevision,
