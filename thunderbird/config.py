@@ -209,7 +209,10 @@ def makePlatformConfig(buildConfig, builderType, platformName, branchName):
     elif platformName == 'macosx64':
         pc['base_name'] = "MacOSX 10.6 %s" % bc['branch_name']
         pc['builds_before_reboot'] = 1
-        pc['check_objdir'] = 'objdir-tb/x86_64'
+        if builderType == 'bloat':
+            pc['check_objdir'] = 'objdir-tb'
+        else:
+            pc['check_objdir'] = 'objdir-tb/x86_64'
         pc['enable_ccache'] = True
         pc['enable_checktests'] = True
         if builderType == 'bloat':
