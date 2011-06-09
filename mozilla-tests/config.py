@@ -340,7 +340,6 @@ PLATFORM_UNITTEST_VARS = {
                         {'suite': 'mochitest-plain',
                          'testPaths': [
                              'content/smil/test', 'content/xml/document/test',
-                             'content/xul/document/test', 'content/xul/templates/tests',
                              'content/xslt/tests/mochitest'
                          ]
                         },
