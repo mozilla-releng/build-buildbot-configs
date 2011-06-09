@@ -56,6 +56,13 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        }
     },
     'places': {
         'platforms': {
@@ -196,17 +203,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'cedar': {
-        # Share mozilla-central's setup as much as possible
-        'mozconfig_dir' : 'mozilla-central',
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        }
-    },
+    'cedar': {},
     'holly': {},
     'larch': {},
     'maple': {},
