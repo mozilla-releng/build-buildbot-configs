@@ -5,7 +5,7 @@ from buildbot import manhole
 master_config = json.load(open('master_config.json'))
 
 c = BuildmasterConfig = {}
-c['slavePortnum'] = master_config.get('pb_port', 0)
+c['slavePortnum'] = master_config.get('pb_port', None)
 c['status'] = []
 
 if 'http_port' in master_config:
@@ -21,5 +21,8 @@ if 'ssh_port' in master_config:
 from config import BRANCHES, PLATFORMS, PROJECTS
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
-ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
+if 'limit_platforms' in master_config:
+    ACTIVE_PLATFORMS = dict((p,None) for p in master_config['limit_platforms'])
+else:
+    ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()

@@ -5,7 +5,7 @@ from buildbot import manhole
 master_config = json.load(open('master_config.json'))
 
 c = BuildmasterConfig = {}
-c['slavePortnum'] = master_config.get('pb_port', 0)
+c['slavePortnum'] = master_config.get('pb_port', None)
 c['status'] = []
 
 if 'http_port' in master_config:
