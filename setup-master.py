@@ -96,7 +96,7 @@ def load_masters_json(masters_json):
                     (environment_config, 'localconfig.py'),
                     ],
                 extras=[
-                    ('master_config.json', json.dumps(m, indent=2)),
+                    ('master_config.json', json.dumps(m, indent=2, sort_keys=True)),
                     ]
                 )
 
