@@ -61,7 +61,11 @@ PROJECT_BRANCHES = {
             'remote-tdhtml': 1,
             'remote-tsvg': 1,
             'remote-tsspider': 1,
+            'remote-tpan': 1,
+            'remote-tp4m': 1,
+            'remote-tp4m_nochrome': 1,
             'remote-twinopen': 1,
+            'remote-tzoom': 1,
         }
     },
     'places': {
@@ -128,6 +132,10 @@ PROJECT_BRANCHES = {
             'remote-tsvg': 1,
             'remote-tsspider': 1,
             'remote-tpan': 1,
+            'remote-tp4m': 1,
+            'remote-tp4m_nochrome': 1,
+            'remote-twinopen': 1,
+            'remote-tzoom': 1,
             'v8': 1,
         }
     },
