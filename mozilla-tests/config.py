@@ -340,7 +340,6 @@ PLATFORM_UNITTEST_VARS = {
                         {'suite': 'mochitest-plain',
                          'testPaths': [
                              'content/smil/test', 'content/xml/document/test',
-                             'content/xul/document/test', 'content/xul/templates/tests',
                              'content/xslt/tests/mochitest'
                          ]
                         },
@@ -946,6 +945,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # existing in both mozilla/ and mozilla-tests/.
 BRANCHES['tracemonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['mozilla-inbound']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['mozilla-inbound']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 if __name__ == "__main__":
     import sys, pprint, re

@@ -63,7 +63,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-3.1',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
-        'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
         'binaryName'                 : 'thunderbird',
@@ -156,7 +156,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-3.3',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
-        'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'brandName'                  : 'Miramar',
@@ -252,7 +252,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-5.0',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
-        'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-50.txt',
         'productName'                : 'thunderbird',
         'binaryName'                 : 'thunderbird',
