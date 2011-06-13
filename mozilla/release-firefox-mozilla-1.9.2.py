@@ -14,26 +14,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.17'
+releaseConfig['version']             = '3.6.18'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.17'
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_3_6_17'
+releaseConfig['milestone']           = '1.9.2.18'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_3_6_18'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.16'
+releaseConfig['oldVersion']          = '3.6.17'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_16'
+releaseConfig['oldBuildNumber']      = 3
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_17'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.18pre'
-releaseConfig['nextMilestone']       = '1.9.2.18pre'
+releaseConfig['nextAppVersion']      = '3.6.19pre'
+releaseConfig['nextMilestone']       = '1.9.2.19pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': 'fab6db5c327d',
-        'relbranch': 'GECKO19217_2011041406_RELBRANCH',
+        'revision': 'b55ede4eaf22',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
