@@ -160,6 +160,32 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_pla
 
 ANDROID = PLATFORMS['linux-android']['slave_platforms']
 
+DEFAULT_TALOS_VALUES = {
+    'chrome':               (True, {}, ALL_PLATFORMS),
+    'nochrome':             (True, {}, ALL_PLATFORMS),
+    'dirty':                (True, TALOS_DIRTY_OPTS, ALL_PLATFORMS),
+    'tp4':                  (True, TALOS_TP4_OPTS, ALL_PLATFORMS),
+    'tp':                   (True, TALOS_TP_OPTS, ALL_PLATFORMS),
+    'cold':                 (True, TALOS_DIRTY_OPTS, NO_WIN),
+    'v8':                   (True, {}, ALL_PLATFORMS),
+    'svg':                  (True, {}, ALL_PLATFORMS),
+    'scroll':               (True, {}, ALL_PLATFORMS),
+    'dromaeo':              (True, {}, ALL_PLATFORMS),
+    'addon':                (False, TALOS_ADDON_OPTS, ALL_PLATFORMS),
+    'addon-baseline':       (False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS),
+    'a11y':                 (True, {}, NO_MAC),
+    'paint':                (True, {}, ALL_PLATFORMS),
+    'remote-ts':            (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tdhtml':        (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tsvg':          (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tsspider':      (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tpan':          (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tp4m':          (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tp4m_nochrome': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-twinopen':      (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    'remote-tzoom':         (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+}
+
 # these three are for mozilla-1.9.1 and mozilla-1.9.2
 OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
@@ -242,6 +268,77 @@ def removeSuite(suiteName, suiteList):
             suites.remove(suiteName)
             suiteList[i] = (name, suites)
     return suiteList
+
+def addSuite(suiteGroupName, newSuiteName, suiteList):
+    # In UNITTEST_SUITES we have opt, debug and mobile unit tests keys.
+    # Each one of these have a list of tuples of test suites.
+    #     e.g. suiteGroup = ('reftest', ['reftest])
+    newSuiteList = []
+    added = False
+    for tuple in suiteList:
+        name, suites = tuple
+        if suiteGroupName == name:
+            suites.append(newSuiteName)
+            added = True
+        newSuiteList.append((name, suites))
+
+    if not added:
+        newSuiteList.append((name, suites))
+
+    return newSuiteList
+
+def loadDefaultValues(BRANCHES, branch, branchConfig):
+    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch) 
+    BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
+    BRANCHES[branch]['mobile_branch_name'] = branchConfig.get('mobile_branch_name', branch.title())
+    BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
+    BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
+    BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
+    BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
+    BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
+
+def loadCustomTalosSuites(BRANCHES, DEFAULT_TALOS_VALUES, SUITES, branch, branchConfig):
+    # Check if Talos is enabled, if False, set 0 runs for all suites
+    if branchConfig.get('enable_talos') == False:
+        branchConfig['talos_suites'] = {}
+        for suite in SUITES.keys():
+            branchConfig['talos_suites'][suite]  = 0
+
+    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] otherwise, defaults below
+    if branchConfig.get('talos_suites'):
+        talosConfig = branchConfig['talos_suites']
+    else:
+        # This is the default and will make all talosConfig.get(key,0) calls
+        # to default to 0 a.k.a. disabled suite
+        talosConfig = {}
+
+    for suite in SUITES.keys():
+        if suite in ('tp', 'v8', 'addon', 'addon-baseline', 'cold') or suite.startswith('remote-'):
+            # Suites that are normally turned off by default
+            BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), ) + DEFAULT_TALOS_VALUES[suite]
+        else:
+            # Suites that are normally turned on by default
+            BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), ) + DEFAULT_TALOS_VALUES[suite]
+
+def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
+    # If you want a project branch to have a different set of unit tests you can
+    # do the following:
+    #  - add a key called "add_test_suites"
+    #  - add a tuple for each test suite with the following format:
+    #      ('OS_nick', 'platform', 'opt|debug', 'new or existing group', 'suite name')
+    #      e.g. ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'a11y')
+    #
+    # Old way of adding suites but still the same format
+    #    BRANCHES['mozilla-central']['platforms']['win32']['win7']['debug_unittest_suites'] \
+    #        += [('jetpack', ['jetpack'])]
+    #
+    for suiteToAdd in branchConfig.get('add_test_suites', []):
+        type = 'opt_unittest_suites' if suiteToAdd[2] == 'opt' else 'debug_unittest_suites'
+        # 'debug_unittest_suites' or 'opt_unittest_suites' is a list of tuple
+        # addSuite() modifies that list and returns a new one with the added suite
+        BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type] = \
+            addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
+                      suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
 PLATFORM_UNITTEST_JSREFTEST = [ ('jsreftest-1', (
                                   {'suite': 'jsreftest',
@@ -947,50 +1044,11 @@ BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jet
 BRANCHES['try']['platforms']['linux-android']['enable_opt_unittests'] = True
 
 ######## generic branch variables for project branches
-for branch in ACTIVE_PROJECT_BRANCHES:
-    branchConfig = PROJECT_BRANCHES[branch]
-    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch) 
-    BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
-    BRANCHES[branch]['mobile_branch_name'] = branchConfig.get('mobile_branch_name', branch.title())
-    BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
-    BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
-    BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
-    BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
-    BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
-    # Check if Talos is enabled, if False, set 0 runs for all suites
-    if branchConfig.get('enable_talos') == False:
-        branchConfig['talos_suites'] = {}
-        for suite in SUITES.keys():
-            branchConfig['talos_suites'][suite]  = 0
-    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] otherwise, defaults below
-    if branchConfig.get('talos_suites'):
-        talosConfig = branchConfig['talos_suites']
-    else:
-        talosConfig = {}
-    for suite in SUITES.keys():
-        if suite.startswith('remote-'):
-            BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-        else:
-            # 0 runs by default
-            if suite in ('v8', 'addon', 'addon-baseline', 'cold'):
-                if suite == 'cold':
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-                elif suite == 'addon':
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-                elif suite == 'addon-baseline':
-                     BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
-                else:
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), True, {}, ALL_PLATFORMS)
-            else:
-                # default is 1 run
-                if suite == 'dirty':
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-                elif suite == 'tp4':
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-                elif suite == 'a11y':
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), True, {}, NO_MAC)
-                else:
-                    BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), True, {}, ALL_PLATFORMS)
+for projectBranch in ACTIVE_PROJECT_BRANCHES:
+    branchConfig = PROJECT_BRANCHES[projectBranch]
+    loadDefaultValues(BRANCHES, projectBranch, branchConfig)
+    loadCustomTalosSuites(BRANCHES, DEFAULT_TALOS_VALUES, SUITES, projectBranch, branchConfig)
+    loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
 
 # This is here rather than in project_branches.py, because enabling it there
 # will enable old-style, on-buildslave opt unittests due to the same file
