@@ -30,6 +30,10 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Shadow-Central',
         'stage_server': 'dm-pvtbuild01.mozilla.org',
     },
+    'mozilla-release': {
+        'tinderbox_tree': 'Mozilla-Release',
+        'mobile_tinderbox_tree': 'Mozilla-Release',
+    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',

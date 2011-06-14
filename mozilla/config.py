@@ -1115,6 +1115,8 @@ BRANCHES = {
     },
     'shadow-central': {
     },
+    'mozilla-release': {
+    },
     'mozilla-beta': {
     },
     'mozilla-aurora': {
@@ -1335,6 +1337,43 @@ BRANCHES['shadow-central']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUI
 BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
+
+######## mozilla-release
+BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
+BRANCHES['mozilla-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-release']['start_hour'] = [3]
+BRANCHES['mozilla-release']['start_minute'] = [2]
+# Enable XULRunner / SDK builds
+BRANCHES['mozilla-release']['enable_xulrunner'] = True
+# Enable unit tests
+BRANCHES['mozilla-release']['geriatric_masters'] = [
+    ('10.250.48.137:9989', False),
+]
+BRANCHES['mozilla-release']['enable_mac_a11y'] = True
+# And code coverage
+BRANCHES['mozilla-release']['enable_codecoverage'] = True
+# L10n configuration
+BRANCHES['mozilla-release']['enable_l10n'] = False
+BRANCHES['mozilla-release']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-release']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx64']
+BRANCHES['mozilla-release']['l10nDatedDirs'] = True
+BRANCHES['mozilla-release']['l10n_tree'] = 'fxrel'
+BRANCHES['mozilla-release']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-release'
+BRANCHES['mozilla-release']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-release']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-release' % (GLOBAL_VARS['hgurl'])
+BRANCHES['mozilla-release']['enable_multi_locale'] = True
+BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
+# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
+BRANCHES['mozilla-release']['enable_nightly'] = False
+BRANCHES['mozilla-release']['enable_mobile_nightly'] = False
+BRANCHES['mozilla-release']['enable_blocklist_update'] = True
+BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'

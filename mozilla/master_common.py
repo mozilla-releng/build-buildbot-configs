@@ -22,6 +22,7 @@ BRANCH_PRIORITIES = {
     'mozilla-central': 1,
     'mozilla-aurora': 1,
     'mozilla-beta': 0,
+    'mozilla-release': 0,
     'mozilla-2.0': 1,
     'mozilla-1.9.2': 1,
     'mozilla-1.9.1': 1,

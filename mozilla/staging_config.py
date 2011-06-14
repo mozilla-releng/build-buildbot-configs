@@ -73,6 +73,10 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
+    'mozilla-release': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
     'mozilla-beta': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,

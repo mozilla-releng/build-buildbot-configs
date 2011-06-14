@@ -115,6 +115,11 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Mobile2.0',
         'packaged_unittest_tinderbox_tree': 'Mobile2.0',
     },
+    'mozilla-release': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-Release',
+        'tinderbox_tree': 'Mozilla-Release',
+        'mobile_tinderbox_tree': 'Mozilla-Release',
+    },
     'mozilla-beta': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',
         'tinderbox_tree': 'Mozilla-Beta',
