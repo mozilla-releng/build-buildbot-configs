@@ -71,6 +71,7 @@ SUITES = {
 BRANCHES = {
     'mozilla-central': {},
     'shadow-central': {},
+    'mozilla-release': {},
     'mozilla-beta': {},
     'mozilla-aurora': {},
     'mozilla-2.0': {},
@@ -541,6 +542,43 @@ BRANCHES['mozilla-central']['platforms']['win32']['xp']['debug_unittest_suites']
 BRANCHES['mozilla-central']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['mozilla-central']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+
+######## mozilla-release
+BRANCHES['mozilla-release']['branch_name'] = "Mozilla-Release"
+BRANCHES['mozilla-release']['mobile_branch_name'] = "Mozilla-Release"
+BRANCHES['mozilla-release']['build_branch'] = "Mozilla-Release"
+BRANCHES['mozilla-release']['talos_command'] = TALOS_CMD
+BRANCHES['mozilla-release']['fetch_symbols'] = True
+BRANCHES['mozilla-release']['fetch_release_symbols'] = False
+BRANCHES['mozilla-release']['release_tests'] = 5
+BRANCHES['mozilla-release']['support_url_base'] = 'http://build.mozilla.org/talos'
+BRANCHES['mozilla-release']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, NO_WIN)
+BRANCHES['mozilla-release']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['a11y_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['paint_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tdhtml_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tsspider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tpan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tp4m_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tp4m_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-twinopen_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tzoom_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
+BRANCHES['mozilla-release']['platforms']['win32']['enable_opt_unittests'] = True
+BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-release']['platforms']['win64']['enable_opt_unittests'] = True
+BRANCHES['mozilla-release']['platforms']['linux-android']['enable_opt_unittests'] = True
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['branch_name'] = "Mozilla-Beta"
