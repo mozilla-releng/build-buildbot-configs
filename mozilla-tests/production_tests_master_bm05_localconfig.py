@@ -14,5 +14,5 @@ c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld",
 from config import BRANCHES, PLATFORMS, PROJECTS
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
-ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
+ACTIVE_PLATFORMS = {'macosx': None, 'macosx64': None, 'linux': None, 'linux64': None}
 ACTIVE_PROJECTS = PROJECTS.keys()
