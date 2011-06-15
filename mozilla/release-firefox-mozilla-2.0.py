@@ -58,7 +58,6 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
-    'build/partner-repacks': 'default'
 }
 
 # Platform configuration
@@ -102,7 +101,7 @@ releaseConfig['verifyConfigs']       = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = True
+releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration

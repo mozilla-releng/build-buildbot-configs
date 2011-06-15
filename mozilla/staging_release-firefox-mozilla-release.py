@@ -14,28 +14,28 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '4.0.1'
-releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '2.0.1'
+releaseConfig['version']             = '5.0'
+releaseConfig['appVersion']          = '5.0'
+releaseConfig['milestone']           = '5.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_4_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_5_0'
 #  Old version info
-releaseConfig['oldVersion']          = '4.0rc2'
-releaseConfig['oldAppVersion']       = '4.0'
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_4_0rc2'
+releaseConfig['oldVersion']          = '4.0.1'
+releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_4_0_1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '4.0.2pre'
-releaseConfig['nextMilestone']       = '2.0.2pre'
+releaseConfig['nextAppVersion']      = '5.0'
+releaseConfig['nextMilestone']       = '5.0'
 #  Repository configuration, for tagging
 ## Staging repository path
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-2.0',
-        'clonePath': 'releases/mozilla-2.0',
-        'path': 'users/stage-ffxbld/mozilla-2.0',
-        'revision': 'fdfd2af3498e',
+        'name': 'mozilla-release',
+        'clonePath': 'releases/mozilla-release',
+        'path': 'users/stage-ffxbld/mozilla-release',
+        'revision': 'abcdef1234567',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -55,19 +55,20 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'l10n-central'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/partner-repacks': 'default',
 }
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
@@ -85,7 +86,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
-releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R14'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
@@ -98,14 +99,14 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
-    'linux':  'moz20-firefox-linux.cfg',
-    'linux64':  'moz20-firefox-linux64.cfg',
-    'macosx64': 'moz20-firefox-mac64.cfg',
-    'win32':  'moz20-firefox-win32.cfg'
+    'linux':  'mozRelease-firefox-linux.cfg',
+    'linux64':  'mozRelease-firefox-linux64.cfg',
+    'macosx64': 'mozRelease-firefox-mac64.cfg',
+    'win32':  'mozRelease-firefox-win32.cfg'
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
+releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
