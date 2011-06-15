@@ -30,14 +30,14 @@ androidMozharnessConfig = "multi_locale/staging_6.0_release_android.json"
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version             = '6.0b1'
-appVersion          = version
+appVersion          = '6.0'
 milestone           = '6.0'
 buildNumber         = 1
 baseTag             = 'FENNEC_6_0b1'
-oldVersion          = '4.0.1'
+oldVersion          = '5.0b6'
 oldAppVersion       = oldVersion
 oldBuildNumber      = 1
-oldBaseTag          = 'FENNEC_4_0_1'
+oldBaseTag          = 'FENNEC_5_0b6'
 enUSPlatforms       = ('maemo5-gtk', 'android-r7')
 l10nPlatforms       = ('maemo5-gtk',)
 enUSDesktopPlatforms = ('linux-i686', 'macosx-i686', 'win32-i686')
