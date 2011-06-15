@@ -1,4 +1,5 @@
 # Options for client.mk.
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 mk_add_options AUTOCONF=autoconf213
 
 # Global options
