@@ -8,6 +8,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'dirty': 0,
             'tp4': 0,
+            'tp': 0,
             'chrome': 0,
             'nochrome': 0,
             'dromaeo': 0,
