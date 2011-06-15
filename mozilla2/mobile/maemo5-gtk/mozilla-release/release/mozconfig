@@ -1,4 +1,5 @@
 mk_add_options MOZ_MAKE_FLAGS=-j4
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir
 
 ac_add_options --enable-application=mobile
 ac_add_options --with-arm-kuser
@@ -10,4 +11,6 @@ ac_add_options --libdir=/opt/mozilla
 
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 export MOZILLA_OFFICIAL=1
+
 ac_add_options --enable-official-branding
+ac_add_options --with-branding=mobile/branding/official
