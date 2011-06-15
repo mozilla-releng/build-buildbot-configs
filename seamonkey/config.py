@@ -438,18 +438,18 @@ BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
 BRANCHES['comm-aurora']['mozilla_repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['comm-aurora']['enable_nightly'] = False
-BRANCHES['comm-aurora']['start_hour'] = [0]
+BRANCHES['comm-aurora']['enable_nightly'] = True
+BRANCHES['comm-aurora']['start_hour'] = [1]
 BRANCHES['comm-aurora']['start_minute'] = [30]
 BRANCHES['comm-aurora']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-aurora'
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
-BRANCHES['comm-aurora']['enable_blocklist_update'] = False # for now
+BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = True
 # And code coverage
 BRANCHES['comm-aurora']['enable_codecoverage'] = False
 # L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = False
+BRANCHES['comm-aurora']['enable_l10n'] = True
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
