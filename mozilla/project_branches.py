@@ -8,6 +8,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'dirty': 0,
             'tp4': 0,
+            'tp': 0,
             'chrome': 0,
             'nochrome': 0,
             'dromaeo': 0,
@@ -176,45 +177,7 @@ PROJECT_BRANCHES = {
     },
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
-    'birch': {
-        'platforms': {
-            'macosx': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-            },
-            'macosx-debug': {
-                'dont_build': True,
-            },
-            'macosx64': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-            },
-            'macosx64-debug': {
-                'dont_build': True,
-            },
-            'linux': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-            },
-            'linux-debug': {
-                'dont_build': True,
-            },
-            'linux64': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-            },
-            'linux64-debug': {
-                'dont_build': True,
-            },
-            'win32': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-            },
-            'win32-debug': {
-                'dont_build': True,
-            },
-        },
-    },
+    'birch': {},
     'cedar': {},
     'holly': {},
     'larch': {},
