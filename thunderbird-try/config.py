@@ -6,7 +6,7 @@ from buildbotcustom.env import MozillaEnvironments
 
 # This is only used within this file so it doesn't need to be part of the
 # big dict
-TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10,17]]
+TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10,17,18]]
 TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,11]]
 TRY_MAC64      = ['mini64-%02i' % x for x in [2,7]]
 TRY_MAC        = ['mini-10']
