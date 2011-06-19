@@ -18,7 +18,7 @@ chatzillaRepoPath          = 'chatzilla' # leave empty if chatzilla is not to be
 chatzillaRepoRevision      = '5a0e370d6cf4'
 chatzillaRelbranchOverride = ''
 l10nRepoPath               = 'releases/l10n/mozilla-beta'
-l10nRelbranchOverride      = 'default'
+l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-beta'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 #productVersionFile         = 'suite/config/version-20.txt'
@@ -48,7 +48,7 @@ oldBaseTag                 = 'SEAMONKEY_2_1'
 oldRepoPath                = 'releases/comm-2.0'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
-patcherConfig              = 'moz20-seamonkey-branch-patcher2.cfg'
+patcherConfig              = 'mozBeta-seamonkey-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R13'
 binaryName                 = brandName
 oldBinaryName              = binaryName
@@ -61,9 +61,9 @@ ausServerUrl               = 'https://aus2-community.mozilla.org'
 testOlderPartials          = False
 releaseNotesUrl            = None
 useBetaChannel             = 0
-verifyConfigs              = {'linux':  'moz20-seamonkey-linux.cfg',
-                              'macosx64': 'moz20-seamonkey-mac.cfg',
-                              'win32':  'moz20-seamonkey-win32.cfg'}
+verifyConfigs              = {'linux':  'mozBeta-seamonkey-linux.cfg',
+                              'macosx64': 'mozBeta-seamonkey-mac64.cfg',
+                              'win32':  'mozBeta-seamonkey-win32.cfg'}
 majorUpdateRepoPath        = None
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #tuxedoConfig        = 'seamonkey-tuxedo.ini'

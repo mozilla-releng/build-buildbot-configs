@@ -209,8 +209,7 @@ builders.append({
     'category': 'release',
     'builddir': builderPrefix('tag'),
     'slavebuilddir': reallyShort(builderPrefix('tag')),
-    'factory': dummy_factory,
-#    'factory': tag_factory,
+    'factory': tag_factory,
     'properties': {'builddir': builderPrefix('tag'),
                    'slavebuilddir': reallyShort(builderPrefix('tag'))}
 })
