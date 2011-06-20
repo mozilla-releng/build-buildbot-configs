@@ -1344,8 +1344,7 @@ BRANCHES['mozilla-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-release']['enable_xulrunner'] = True
+BRANCHES['mozilla-release']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['mozilla-release']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1371,7 +1370,7 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_mobile_nightly'] = False
-BRANCHES['mozilla-release']['enable_blocklist_update'] = True
+BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 
