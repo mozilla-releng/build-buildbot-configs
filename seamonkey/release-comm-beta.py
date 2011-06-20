@@ -37,6 +37,7 @@ appName                    = 'suite'
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version                    = '2.2b1'
+usePrettyLongVer           = False
 appVersion                 = '2.2'
 milestone                  = '5.0'
 buildNumber                = 1
