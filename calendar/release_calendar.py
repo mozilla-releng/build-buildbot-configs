@@ -1,20 +1,20 @@
 hgUsername                 = 'calbld'
 hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
-sourceRepoName             = 'comm-1.9.2-lightning' # buildbot branch name
-sourceRepoPath             = 'releases/comm-1.9.2'
-sourceRepoRevision         = 'a300b5de20be'
+sourceRepoName             = 'comm-miramar-lightning' # buildbot branch name
+sourceRepoPath             = 'releases/comm-miramar'
+sourceRepoRevision         = '653d6c77512a'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM1924_20100525_RELBRANCH'
-mozillaRepoPath            = 'releases/mozilla-1.9.2'
+relbranchOverride          = 'COMM50_20110620_RELBRANCH'
+mozillaRepoPath            = 'releases/mozilla-miramar'
 mozillaRepoRevision        = '9dcd813b2fc8'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM1924_20100514_RELBRANCH'
-inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
-inspectorRepoRevision      = 'c1b38e365772'
-inspectorRelbranchOverride = 'COMM1924_20100519_RELBRANCH'
+mozillaRelbranchOverride   = 'COMM50_20110620_RELBRANCH'
+inspectorRepoPath          = '' # leave empty if inspector is not to be tagged
+inspectorRepoRevision      = ''
+inspectorRelbranchOverride = ''
 buildToolsRepoPath            = '' # leave empty if buildTools is not to be tagged
 buildToolsRepoRevision        = ''
 buildToolsRelbranchOverride   = ''
@@ -23,11 +23,11 @@ venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
-l10nRepoPath               = 'releases/l10n-mozilla-1.9.2'
+l10nRepoPath               = 'releases/l10n-miramar'
 l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-productVersionFile         = 'calendar/sunbird/config/version-192.txt'
+productVersionFile         = 'calendar/sunbird/config/version.txt'
 productName                = 'sunbird'
 brandName                  = 'Sunbird'
 appName                    = 'calendar'
@@ -38,16 +38,16 @@ projectName                = 'sunbird'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '1.0b2'
-appVersion                 = '1.0b2'
+version                    = '1.0b4'
+appVersion                 = '1.0b4'
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '1.9.2.4'
-buildNumber                = 2
-baseTag                    = 'CALENDAR_1_0b2'
+milestone                  = '5.0'
+buildNumber                = 1
+baseTag                    = 'CALENDAR_1_0b4'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '1.0b1'
+oldVersion                 = '1.0b2'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 7
+oldBuildNumber             = 2
 oldBaseTag                 = ''
 releasePlatforms           = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
