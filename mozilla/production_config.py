@@ -56,17 +56,14 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-        ('production-master01.build.mozilla.org:9009', True, 5),
+        ('buildbot-master10.build.mozilla.org:9301', True, 5),
         ('talos-master.mozilla.org:9010', True, 5),
-        ('staging-master.build.mozilla.org:9009', False, 1),
-        ('talos-staging-master02.build.mozilla.org:9012', False, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('production-master01.build.mozilla.org:9009', True, 5),
-        ('staging-master.build.mozilla.org:9009', False, 1),
+        ('buildbot-master10.build.mozilla.org:9301', True, 5),
         ('geriatric-master.build.mozilla.org:9989', False, 1),
     ],
     'xulrunner_tinderbox_tree': 'XULRunner',
