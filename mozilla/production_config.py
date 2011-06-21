@@ -110,11 +110,6 @@ BRANCHES = {
         'tinderbox_tree': 'Firefox4.0',
         'packaged_unittest_tinderbox_tree': 'Firefox4.0',
     },
-    'mozilla-2.1': {
-        'tinderbox_tree': 'Mobile2.0',
-        'mobile_tinderbox_tree': 'Mobile2.0',
-        'packaged_unittest_tinderbox_tree': 'Mobile2.0',
-    },
     'mozilla-release': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Release',
         'tinderbox_tree': 'Mozilla-Release',
