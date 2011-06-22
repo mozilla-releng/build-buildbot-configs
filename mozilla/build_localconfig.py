@@ -24,7 +24,6 @@ ACTIVE_BRANCHES.extend([
     'mozilla-1.9.1',
     'mozilla-1.9.2',
     'mozilla-2.0',
-    'mozilla-2.1',
     'mozilla-central',
     'shadow-central',
     ])
