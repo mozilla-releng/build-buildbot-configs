@@ -44,7 +44,7 @@ UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
 
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider'],
-    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider', '--noChrome'],
+    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome'],
     'dirty': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_min:ts_places_generated_med:ts_places_generated_max'],
     'tp': GRAPH_CONFIG + ['--activeTests', 'tp4:tp5'],
     'tp4': GRAPH_CONFIG + ['--activeTests', 'tp4'],
