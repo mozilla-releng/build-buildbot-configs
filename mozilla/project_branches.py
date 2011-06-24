@@ -50,6 +50,7 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
+        'enabled_products': ['firefox'],
         'talos_suites': {
             'remote-ts': 1,
             'remote-tdhtml': 1,
