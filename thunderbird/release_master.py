@@ -760,7 +760,7 @@ for gloKey in gloConfig:
                 configRepoPath=nightly_config.CONFIG_REPO_PATH,
                 configSubDir=nightly_config.CONFIG_SUBDIR,
                 mozconfig=mozconfig,
-                platform=platform + '-release',
+                platform=platform,
                 buildRevision='%s_RELEASE' % baseTag,
                 version=version,
                 buildNumber=buildNumber,
