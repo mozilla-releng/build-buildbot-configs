@@ -227,9 +227,9 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-miramar', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-miramar',
-        'sourceRepoRevision'         : 'f63399fa83e5',
+        'sourceRepoRevision'         : 'ff1d573c6629',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM50_20110620_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-miramar',
         'mozillaRepoRevision'        : '3fb6ad7c725e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -264,18 +264,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '5.0b2',
+        'version'                    : '5.0',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '5.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_5_0b2',
+        'baseTag'                    : 'THUNDERBIRD_5_0',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '5.0b1',
-        'oldAppVersion'              : '5.0b1',
-        'oldBuildNumber'             : 2,
-        'oldBaseTag'                 : 'THUNDERBIRD_5_0b1',
+        'oldVersion'                 : '5.0b2',
+        'oldAppVersion'              : '5.0b2',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_5_0b2',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
