@@ -119,7 +119,7 @@ gloConfig = {
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 2,
         'majorUpdateBaseTag'     : 'THUNDERBIRD_5_0b1',
-        'majorUpdateReleaseNotesUrl' : 'http://www.mozillamessaging.com/%locale%/thunderbird/5.0/details/index.html',
+        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/5.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
                                     'macosx': 'moz20-thunderbird-mac64-major.cfg',
