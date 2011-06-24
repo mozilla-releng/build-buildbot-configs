@@ -46,6 +46,18 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'electrolysis',
         'enable_talos': True,
     },
+    'fx-team': {
+        'repo_path': 'integration/fx-team',
+        'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': True,
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        }
+    },
     'graphics':{
         'enable_unittests': False,
         'enable_talos': False,
