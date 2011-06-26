@@ -6,9 +6,8 @@ SLAVES = {
              ['cb-sea-linux-tbox'],
     'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]],
     'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2,3]] +
-             ['cn-sea-qm-win2k3-%02i' % x for x in [1]],
-#			 # -tbox is acting up, disable for now.
-#             ['cb-sea-win32-tbox'],
+             ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
+             ['cb-sea-win32-tbox'],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
     'macosx64': ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]],
 }
