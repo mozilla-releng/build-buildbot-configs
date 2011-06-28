@@ -280,7 +280,10 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
         bc['enable_blocklist_update'] = True
-        bc['blocklist_update_on_closed_tree'] = False
+        if branchName in ['comm-central', 'comm-1.9.2']:
+            bc['blocklist_update_on_closed_tree'] = True
+        else:
+            bc['blocklist_update_on_closed_tree'] = False
         bc['hg_ssh_key'] = '/home/cltbld/.ssh/tbirdbld_dsa'
         bc['hg_username'] = 'tbirdbld'
         # end Blocklist settings
