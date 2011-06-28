@@ -917,8 +917,7 @@ BRANCHES = {
     'mozilla-aurora': {
     },
     'mozilla-2.0': {
-        # platforms now has mobile platforms and fennec4 is EOL
-        # 'lock_platforms': True,
+        'lock_platforms': True,
         'platforms': {
             'linux': {},
             'linuxqt': {},
