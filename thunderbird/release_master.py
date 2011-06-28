@@ -93,7 +93,7 @@ gloConfig = {
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R13',
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -115,11 +115,11 @@ gloConfig = {
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : 'releases/mozilla-miramar',
         'majorUpdateSourceRepoPath' : 'releases/comm-miramar',
-        'majorUpdateToVersion'   : '5.0b1',
+        'majorUpdateToVersion'   : '5.0',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
-        'majorUpdateBuildNumber' : 2,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_5_0b1',
-        'majorUpdateReleaseNotesUrl' : 'http://www.mozillamessaging.com/%locale%/thunderbird/5.0/details/index.html',
+        'majorUpdateBuildNumber' : 1,
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_5_0',
+        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/5.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
                                     'macosx': 'moz20-thunderbird-mac64-major.cfg',
@@ -227,9 +227,9 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-miramar', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-miramar',
-        'sourceRepoRevision'         : 'f63399fa83e5',
+        'sourceRepoRevision'         : 'ff1d573c6629',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM50_20110620_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-miramar',
         'mozillaRepoRevision'        : '3fb6ad7c725e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -264,18 +264,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '5.0b2',
+        'version'                    : '5.0',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '5.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_5_0b2',
+        'baseTag'                    : 'THUNDERBIRD_5_0',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '5.0b1',
-        'oldAppVersion'              : '5.0b1',
-        'oldBuildNumber'             : 2,
-        'oldBaseTag'                 : 'THUNDERBIRD_5_0b1',
+        'oldVersion'                 : '5.0b2',
+        'oldAppVersion'              : '5.0b2',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_5_0b2',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
@@ -760,7 +760,7 @@ for gloKey in gloConfig:
                 configRepoPath=nightly_config.CONFIG_REPO_PATH,
                 configSubDir=nightly_config.CONFIG_SUBDIR,
                 mozconfig=mozconfig,
-                platform=platform + '-release',
+                platform=platform,
                 buildRevision='%s_RELEASE' % baseTag,
                 version=version,
                 buildNumber=buildNumber,

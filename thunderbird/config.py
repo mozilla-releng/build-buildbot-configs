@@ -304,6 +304,8 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['milestone'] = branchName
         bc['mozconfig'] = 'nightly'
         bc['mozilla_central_branch'] = mozillaCentralBranch
+        if branchName in ['comm-miramar']:
+            bc['nightly'] = False
         if branchName in ['comm-1.9.2','comm-miramar']:
             bc['nightly_hour'] = [0]
         bc['package'] = True

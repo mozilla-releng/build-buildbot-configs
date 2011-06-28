@@ -44,7 +44,7 @@ UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
 
 SUITES = {
     'chrome': GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider'],
-    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:twinopen:tsspider', '--noChrome'],
+    'nochrome': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome'],
     'dirty': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_min:ts_places_generated_med:ts_places_generated_max'],
     'tp': GRAPH_CONFIG + ['--activeTests', 'tp4:tp5'],
     'tp4': GRAPH_CONFIG + ['--activeTests', 'tp4'],
@@ -1042,6 +1042,7 @@ BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] += [('jetpa
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 BRANCHES['try']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['try']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
