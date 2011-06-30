@@ -22,7 +22,7 @@ TALOS_ADDON_CMD = ['python', 'run_tests.py', '--noisy', '--amo', WithProperties(
 
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
-TALOS_TP_OPTS = {'plugins': 'zips/plugins.zip', 'pagesets': ['zips/tp4.zip', 'zips/tp5.zip']}
+TALOS_TP_OPTS = {'plugins': 'zips/plugins.zip', 'pagesets': ['zips/tp5.zip']}
 TALOS_TP4_OPTS = {'plugins': 'zips/plugins.zip', 'pagesets': ['zips/tp4.zip',]}
 
 TALOS_ADDON_OPTS = {'addonTester' : True, 'releaseTester' : True, 'plugins': 'zips/plugins.zip'}
@@ -1007,7 +1007,7 @@ BRANCHES['try']['chrome_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['try']['nochrome_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['try']['dromaeo_tests'] = (1, False, {}, ALL_PLATFORMS)
 BRANCHES['try']['dirty_tests'] = (1, False, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['try']['tp4_tests'] = (0, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['tp_tests'] = (1, False, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['cold_tests'] = (0, False, TALOS_DIRTY_OPTS, NO_WIN)
 BRANCHES['try']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
@@ -1056,9 +1056,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # existing in both mozilla/ and mozilla-tests/.
 BRANCHES['tracemonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['tracemonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
-#turn on tp4/tp5 combo pack on tracemonkey only
-BRANCHES['tracemonkey']['tp4_tests'] = (0, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['tp_tests'] = (1, False, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
