@@ -19,6 +19,7 @@ chatzillaRepoRevision      = 'f5fd1b073bf8'
 chatzillaRelbranchOverride = 'COMM_1_9_1_BRANCH'
 l10nRepoPath               = 'releases/l10n-mozilla-1.9.1'
 l10nRevisionFile           = 'l10n-changesets'
+l10nRelbranchOverride      = 'COMM_1_9_1_BRANCH'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'suite/config/version-191.txt'
 # mergeLocales allows missing localized strings to be filled in by their en-US
@@ -35,6 +36,7 @@ appName                    = 'suite'
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version                    = '2.0.14'
+usePrettyLongVer           = True
 appVersion                 = version
 milestone                  = '1.9.1.19'
 buildNumber                = 2
@@ -43,6 +45,7 @@ oldVersion                 = '2.0.13'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
 oldBaseTag                 = 'SEAMONKEY_2_0_13'
+oldRepoPath                = 'releases/comm-1.9.1'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx')
 l10nPlatforms              = ('linux', 'win32', 'macosx')
 patcherConfig              = 'moz191-seamonkey-branch-patcher2.cfg'
@@ -61,7 +64,19 @@ useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz191-seamonkey-linux.cfg',
                               'macosx': 'moz191-seamonkey-mac.cfg',
                               'win32':  'moz191-seamonkey-win32.cfg'}
-majorUpdateRepoPath        = None
+majorUpdateRepoPath        = 'releases/mozilla-beta'
+majorPatcherToolsTag       = 'UPDATE_PACKAGING_R11_1_MU'
+majorUpdateSourceRepoPath  = 'releases/comm-beta'
+majorUpdatePatcherConfig  = 'moz191-seamonkey-branch-major-patcher2.cfg'
+majorUpdateVerifyConfigs   = {'linux':  'moz191-seamonkey-linux-major.cfg',
+                              'macosx': 'moz191-seamonkey-mac-major.cfg',
+                              'win32':  'moz191-seamonkey-win32-major.cfg'}
+majorUpdateToVersion       = '2.2b2'
+majorUpdateAppVersion      = '2.2'
+majorUpdateBaseTag         = 'SEAMONKEY_2_2b2'
+majorUpdateBuildNumber     = 2
+majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/index.html'
+
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #tuxedoConfig        = 'seamonkey-tuxedo.ini'
 #tuxedoServerUrl     = 'https://bounceradmin.mozilla.com/api/'
