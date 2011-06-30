@@ -296,7 +296,7 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 0,
+        'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
                                         'linux64' : 'moz20-thunderbird-linux64.cfg',
                                         'macosx64': 'moz20-thunderbird-mac64.cfg',
