@@ -1,4 +1,4 @@
-from buildbot.scheduler import Scheduler, Dependent
+from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
@@ -390,17 +390,19 @@ for platform in l10nPlatforms:
         platform=platform,
     )
 
+    verifySlavePlat = 'macosx64'
+    if sourceRepoName == 'comm-1.9.1':
+       verifySlavePlat = 'macosx'
+
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        # comm-1.9.1 release needs macosx, others need macosx64
-        'slavenames': branchConfig['platforms']['macosx64']['slaves'],
+        'slavenames': branchConfig['platforms'][verifySlavePlat]['slaves'],
         'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
         'factory': l10n_verification_factory,
         'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform))}
     })
-
 
 updates_factory = ReleaseUpdatesFactory(
     hgHost=branchConfig['hghost'],
@@ -492,17 +494,18 @@ builders.append({
 
 if majorUpdateRepoPath:
     # Not attached to any Scheduler
-    # XXX: probably needs work to run for CC
     major_update_factory = MajorUpdateFactory(
         hgHost=branchConfig['hghost'],
-        repoPath=majorUpdateRepoPath,
+        repoPath=majorUpdateSourceRepoPath,
+        mozRepoPath=majorUpdateRepoPath,
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         cvsroot=cvsroot,
-        patcherToolsTag=patcherToolsTag,
+        patcherToolsTag=majorPatcherToolsTag,
         patcherConfig=majorUpdatePatcherConfig,
         verifyConfigs=majorUpdateVerifyConfigs,
         appName=appName,
         productName=productName,
+        brandName=brandName,
         version=majorUpdateToVersion,
         appVersion=majorUpdateAppVersion,
         baseTag=majorUpdateBaseTag,
@@ -524,7 +527,7 @@ if majorUpdateRepoPath:
         hgSshKey=hgSshKey,
         hgUsername=hgUsername,
         clobberURL=branchConfig['base_clobber_url'],
-        oldRepoPath=sourceRepoPath,
+        oldRepoPath=oldRepoPath,
         triggerSchedulers=['major_update_verify'],
         releaseNotesUrl=majorUpdateReleaseNotesUrl,
         testOlderPartials=testOlderPartials
