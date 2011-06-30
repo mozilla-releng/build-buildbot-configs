@@ -12,7 +12,7 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:7001:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
-ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.1', 'mozilla-1.9.2', 'mozilla-central',
+ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.2', 'mozilla-central',
         'mozilla-2.0', 'mozilla-beta', 'mozilla-aurora', 'mozilla-release',
 ] + ACTIVE_PROJECT_BRANCHES
 ACTIVE_PROJECTS = PROJECTS.keys()

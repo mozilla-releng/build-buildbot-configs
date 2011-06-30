@@ -25,7 +25,6 @@ BRANCH_PRIORITIES = {
     'mozilla-release': 0,
     'mozilla-2.0': 1,
     'mozilla-1.9.2': 1,
-    'mozilla-1.9.1': 1,
     'try': 3,
     'addontester': 4,
     'addonbaselinetester': 4,

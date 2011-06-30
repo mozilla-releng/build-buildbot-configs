@@ -9,7 +9,8 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateTestBuilder, _nextFastSlave
+  generateTestBuilderNames, generateTestBuilder, _nextFastSlave, \
+  generateBlocklistBuilder
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -295,7 +296,7 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 0,
+        'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
                                         'linux64' : 'moz20-thunderbird-linux64.cfg',
                                         'macosx64': 'moz20-thunderbird-mac64.cfg',
@@ -693,6 +694,12 @@ for gloKey in gloConfig:
             packageTests = False
             unittestMasters = None
             unittestBranch = None
+
+        if branchConfig.get('enable_blocklist_update', False):
+            if platform == 'linux':
+                weeklyBuilders.append('%s blocklist update' % pf['base_name'])
+                blocklistBuilder = generateBlocklistBuilder(branchConfig, sourceRepoName, platform, pf['base_name'], pf['slaves'])
+                builders.append(blocklistBuilder)
 
         build_factory = CCReleaseBuildFactory(
             env=pf['env'],

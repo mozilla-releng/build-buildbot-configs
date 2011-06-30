@@ -276,6 +276,17 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
     bc['tinderbox_tree'] = tinderboxTree
     if builderType == 'nightly':
         bc['branch_name'] = branchName
+        # Blocklist settings
+        bc['repo_path'] = bc['hg_branch'] # alias
+        bc['product_name'] = 'thunderbird'
+        bc['enable_blocklist_update'] = True
+        if branchName in ['comm-central', 'comm-1.9.2']:
+            bc['blocklist_update_on_closed_tree'] = True
+        else:
+            bc['blocklist_update_on_closed_tree'] = False
+        bc['hg_ssh_key'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+        bc['hg_username'] = 'tbirdbld'
+        # end Blocklist settings
         bc['client_py_extra_args'] = \
             ['--skip-comm',
              '--hg-options=--verbose --time',
