@@ -63,7 +63,6 @@ testOlderPartials          = False
 releaseNotesUrl            = None
 useBetaChannel             = 0
 verifyConfigs              = {'linux':  'mozBeta-seamonkey-linux.cfg',
-                              'linux64': 'mozBeta-seamonkey-linux64.cfg',
                               'macosx64': 'mozBeta-seamonkey-mac64.cfg',
                               'win32':  'mozBeta-seamonkey-win32.cfg'}
 majorUpdateRepoPath        = None
