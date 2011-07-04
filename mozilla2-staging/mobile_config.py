@@ -28,7 +28,7 @@ MOBILE_BRANCHES = {
 }
 
 DEFAULT_ENV = {
-    'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+    'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
     'SYMBOL_SERVER_USER': 'ffxbld',
     'SYMBOL_SERVER_PATH': '/mnt/netapp/breakpad/symbols_mob/',
     'POST_SYMBOL_UPLOAD_CMD': '/usr/local/bin/post-symbol-upload.py',
@@ -52,7 +52,7 @@ MOBILE_BRANCHES['mobile-trunk']['mobile_repo_path'] = 'mobile-browser'
 MOBILE_BRANCHES['mobile-trunk']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-trunk']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-trunk']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-central'
-MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-trunk']['download_base_url'] = 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-trunk']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-trunk']['platforms'] = {
     'maemo5-gtk': {},
@@ -158,7 +158,7 @@ MOBILE_BRANCHES['mozilla-mobile-5.0']['mobile_repo_path'] = 'releases/mobile-5.0
 MOBILE_BRANCHES['mozilla-mobile-5.0']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mozilla-mobile-5.0']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mozilla-mobile-5.0']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-mobile-5.0'
-MOBILE_BRANCHES['mozilla-mobile-5.0']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mozilla-mobile-5.0']['download_base_url'] = 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mozilla-mobile-5.0']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mozilla-mobile-5.0']['platforms'] = {
     'maemo5-gtk': {},
@@ -264,7 +264,7 @@ MOBILE_BRANCHES['mobile-2.0']['mobile_repo_path'] = 'releases/mobile-2.0'
 MOBILE_BRANCHES['mobile-2.0']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-2.0']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-2.0']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-2.1'
-MOBILE_BRANCHES['mobile-2.0']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-2.0']['download_base_url'] = 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-2.0']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-2.0']['platforms'] = {
     'maemo5-gtk': {},
@@ -370,7 +370,7 @@ MOBILE_BRANCHES['mobile-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
 MOBILE_BRANCHES['mobile-1.9.2']['product_name'] = 'fennec'
 MOBILE_BRANCHES['mobile-1.9.2']['app_name'] = 'mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/build/0/{a23983c0-fd0e-11dc-95ff-0800200c9a66}/mozilla-1.9.2'
-MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile'
+MOBILE_BRANCHES['mobile-1.9.2']['download_base_url'] = 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['stage_base_path'] = '/home/ftp/pub/mobile'
 MOBILE_BRANCHES['mobile-1.9.2']['platforms'] = {
     'maemo4': {},
