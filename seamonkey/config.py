@@ -367,6 +367,7 @@ BRANCHES = {
     'comm-2.0': {},
     'comm-aurora': {},
     'comm-beta': {},
+    'comm-release': {},
     'comm-1.9.1': {'platforms': {
             'linux': {},
             'linux64': {},
@@ -512,6 +513,47 @@ BRANCHES['comm-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMo
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-beta']['tinderbox_tree'] = 'SeaMonkey-Beta'
 BRANCHES['comm-beta']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Beta'
+
+######## comm-release
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
+BRANCHES['comm-release']['mozilla_repo_path'] = 'releases/mozilla-release'
+BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-release']['enable_nightly'] = False
+BRANCHES['comm-release']['start_hour'] = [0]
+BRANCHES['comm-release']['start_minute'] = [30]
+BRANCHES['comm-release']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-release'
+BRANCHES['comm-release']['enable_mac_a11y'] = True
+BRANCHES['comm-release']['unittest_build_space'] = 6
+BRANCHES['comm-release']['enable_blocklist_update'] = False # for now
+BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = True
+# And code coverage
+BRANCHES['comm-release']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-release']['enable_l10n'] = False
+BRANCHES['comm-release']['enable_l10n_onchange'] = True
+BRANCHES['comm-release']['l10nNightlyUpdate'] = True
+BRANCHES['comm-release']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-release']['l10nDatedDirs'] = True
+BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
+#make sure it has an ending slash
+BRANCHES['comm-release']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-release-l10n/'
+BRANCHES['comm-release']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-release'
+BRANCHES['comm-release']['allLocalesFile'] = 'suite/locales/all-locales'
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-release']['create_snippet'] = True
+BRANCHES['comm-release']['create_partial'] = True
+BRANCHES['comm-release']['create_partial_l10n'] = True
+BRANCHES['comm-release']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
+BRANCHES['comm-release']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-release']['tinderbox_tree'] = 'SeaMonkey-Release'
+BRANCHES['comm-release']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Release'
 
 ######## comm-2.0
 # This is a path, relative to HGURL, where the repository is located
