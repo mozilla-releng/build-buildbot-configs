@@ -29,6 +29,8 @@ ACTIVE_BRANCHES.extend([
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
+if 'release_branches' in master_config:
+    ACTIVE_RELEASE_BRANCHES.extend(master_config['release_branches'])
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
