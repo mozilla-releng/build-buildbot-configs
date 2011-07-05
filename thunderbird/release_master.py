@@ -320,6 +320,104 @@ gloConfig = {
                                     'macosx64': '',
                                     'win32':  ''},
     },
+    '60': {
+        'hgUsername'                 : 'tbirdbld',
+        'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
+        'relbranchPrefix'            : 'COMM',
+        'sourceRepoName'             : 'comm-beta', # buildbot branch name
+        'sourceRepoPath'             : 'releases/comm-beta',
+        'sourceRepoRevision'         : 'ff1d573c6629',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        'relbranchOverride'          : '',
+        'mozillaRepoPath'            : 'releases/mozilla-miramar',
+        'mozillaRepoRevision'        : '3fb6ad7c725e',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        # 'You' typically want to set this to the gecko relbranch if doing a release off
+        # 'a' specific gecko version.
+        'mozillaRelbranchOverride'   : 'GECKO50_2011061416_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
+        'inspectorRelbranchOverride' : '',
+        'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
+        'buildToolsRepoRevision'        : '',
+        #buildToolsRepoRevision        : '479375734669'
+        'buildToolsRelbranchOverride'   : '',
+        'venkmanRepoPath'            : '', # leave empty if venkman is not to be tagged
+        'venkmanRepoRevision'        : '',
+        'venkmanRelbranchOverride'   : '',
+        'chatzillaCVSRoot'           : '',
+        'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
+        'l10nRepoPath'               : 'releases/l10n-mozilla-beta',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-6.0',
+        'toolsRepoPath'              : 'build/tools',
+        'buildToolsRepoPath'	   : '',
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'productVersionFile'         : 'mail/config/version-60.txt',
+        'productName'                : 'thunderbird',
+        'binaryName'                 : 'thunderbird',
+        'brandName'                  : 'Thunderbird',
+        'appName'                    : APP_NAME,
+        'ftpName'                    : APP_NAME,
+        # 'Sometimes' we need the application version to be different from what we "call"
+        # 'the' build, eg public release candidates for a major release (3.1 RC1).
+        # 'appVersion' and oldAppVersion are optional definitions used in places that
+        # 'don''t care about what we call it. Eg, when version bumping we will bump to
+        # 'appVersion', not version.
+        'version'                    : '6.0',
+        #'appVersion'                 : version,
+        #XXX: 'Not' entirely certain if/where this is used.
+        # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
+        'milestone'                  : '6.0',
+        'buildNumber'                : 1,
+        'baseTag'                    : 'THUNDERBIRD_6_0',
+        # 'The' old version is the revision from which we should generate update snippets.
+        'oldVersion'                 : '5.0b2',
+        'oldAppVersion'              : '5.0b2',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_5_0b2',
+        'oldBinaryName'              : 'thunderbird',
+        'enable_weekly_bundle'       : True,
+        'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
+        #'l10nPlatforms'              : (),
+        'xulrunnerPlatforms'         : (),
+        'patcherConfig'              : 'moz20-thunderbird-branch-patcher2.cfg',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R14',
+        'ftpServer'                  : 'ftp.mozilla.org',
+        'stagingServer'              : 'stage-old.mozilla.org',
+        'bouncerServer'              : 'download.mozilla.org',
+        'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
+        'ausUser'                    : 'tbirdbld',
+        'ausSshKey'                  : 'tbirdbld_dsa',
+        'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
+        'testOlderPartials'          : False,
+        'doPartnerRepacks'           : False,
+        'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
+        # All of the beta and (if applicable) release channel information
+        # is dependent on the useBetaChannel flag
+        'useBetaChannel'             : 1,
+        'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
+                                        'linux64' : 'moz20-thunderbird-linux64.cfg',
+                                        'macosx64': 'moz20-thunderbird-mac64.cfg',
+                                        'win32'   : 'moz20-thunderbird-win32.cfg'},
+        'packageTests'               : True,
+        #XXX: Should really be obtained from config.py, but this will do for now.
+        'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
+
+        # 'Version' numbers we are updating _TO_
+        # 'N'/A for Thunderbird 3.x (until the next major version is released)
+        'majorUpdateRepoPath'    : '',
+        'majorUpdateSourceRepoPath' : '',
+        'majorUpdateToVersion'   : '',
+        'majorUpdateAppVersion'  : '',
+        'majorUpdateBuildNumber' : '',
+        'majorUpdateBaseTag'     : '',
+        'majorUpdateReleaseNotesUrl' : '',
+        'majorUpdatePatcherConfig' : '',
+        'majorUpdateVerifyConfigs' : {'linux':  '',
+                                    'linux64': '',
+                                    'macosx64': '',
+                                    'win32':  ''},
+    },
 }
 
 # copy variables that are just aliases

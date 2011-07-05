@@ -398,6 +398,21 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
 
 BRANCHES = {}
 
+BRANCHES['comm-beta'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-beta',
+                               hgBranch      = 'releases/comm-beta',
+                               mozillaCentralBranch = 'releases/mozilla-beta',
+                               tinderboxTree = 'Thunderbird-Beta'
+                           )
+BRANCHES['comm-beta-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-beta',
+                               hgBranch      = 'releases/comm-beta',
+                               mozillaCentralBranch = 'releases/mozilla-beta',
+                               tinderboxTree = 'Thunderbird-Beta'
+                           )
+
 BRANCHES['comm-miramar'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-miramar',
