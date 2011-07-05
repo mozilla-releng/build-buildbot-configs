@@ -319,7 +319,7 @@ gloConfig = {
                                     'macosx64': '',
                                     'win32':  ''},
     },
-    '60': {
+    'beta': {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
         'relbranchPrefix'            : 'COMM',
@@ -347,11 +347,11 @@ gloConfig = {
         'chatzillaCVSRoot'           : '',
         'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
         'l10nRepoPath'               : 'releases/l10n-mozilla-beta',
-        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-6.0',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-beta',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
-        'productVersionFile'         : 'mail/config/version-60.txt',
+        'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'binaryName'                 : 'thunderbird',
         'brandName'                  : 'Thunderbird',
