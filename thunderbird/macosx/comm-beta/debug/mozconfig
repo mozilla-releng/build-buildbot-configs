@@ -1,0 +1,22 @@
+ac_add_options --enable-application=mail
+ac_add_options --enable-debug
+ac_add_options --disable-optimize
+ac_add_options --enable-tests
+
+ac_add_options --enable-trace-malloc
+
+CC=gcc-4.2
+CXX=g++-4.2
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gdwarf-2"
+
+#Use ccache
+ac_add_options --with-ccache=/opt/local/bin/ccache
+# Enable parallel compiling
+CONCURRENCY=$(( `sysctl hw.logicalcpu | awk {'print $2'}`  + 2 ))
+mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
