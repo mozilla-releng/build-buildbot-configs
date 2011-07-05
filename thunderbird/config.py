@@ -4,6 +4,75 @@
 
 import types
 
+HGURL = 'http://hg.mozilla.org/'
+HGHOST = 'hg.mozilla.org'
+CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_PATH = 'build/buildbot-configs'
+COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
+CONFIG_SUBDIR = 'thunderbird'
+OBJDIR = 'objdir-tb'
+STAGE_USERNAME = 'tbirdbld'
+STAGE_SERVER = 'stage.mozilla.org'
+STAGE_GROUP = 'thunderbird'
+STAGE_SSH_KEY = 'tbirdbld_dsa'
+
+AUS2_USER = 'tbirdbld'
+AUS2_SSH_KEY = 'tbirdbld_dsa'
+AUS2_HOST = 'momo-build-adm-01.sj.mozillamessaging.com'
+
+DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
+PRODUCT = 'mail'
+MOZ_APP_NAME = 'thunderbird'
+
+DEFAULTS = {
+    'factory':                'build',
+    'hgurl':                  HGURL,
+    'branch_name':            'comm-central',
+    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
+    'mozilla_central_branch': 'releases/mozilla-1.9.1',
+    'add_poll_branches':      [ 'dom-inspector','users/gozer_mozillamessaging.com/test' ],
+    'period':                 60 * 60 * 8,
+    'nightly_hour':          [3],
+    'nightly_minute':        [0],
+    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
+    'builder_type':           "build",
+    'tinderbox_tree':         "ThunderbirdTest",
+    'codesighs':               False,
+    'mozmill':                 False,
+    'product_name':           'Thunderbird',
+    'brand_name':             'Shredder',
+    'app_name':			'thunderbird',
+    'build_space':             10,
+    'l10n_nightly_updates':    False,
+
+    'create_partial':          False,
+    'create_snippet':          False,
+
+    'stage_username':		STAGE_USERNAME,
+    'stage_server':		STAGE_SERVER,
+    'stage_group':		STAGE_GROUP,
+    'stage_ssh_key':		STAGE_SSH_KEY,
+    'enable_checktests':        False,
+    'exec_xpcshell_suites':     True,
+
+    'graph_server':		'graphs.mozilla.org',
+    'graph_selector':           '/server/collect.cgi',
+
+    # Unit Test
+    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
+
+    'build_tools_repo': "build/tools",
+    'hg_rev_shortnames': {
+      'mozilla-central':        'moz',
+      'comm-central':           'cc',
+      'dom-inspector':          'domi',
+      'releases/mozilla-1.9.1': 'moz191',
+      'releases/mozilla-1.9.2': 'moz192',
+      'releases/mozilla-aurora':'mozaurora',
+    }
+}
+
+
 def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
     bc = buildConfig
     pc = platformConfig
@@ -286,6 +355,8 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
             bc['blocklist_update_on_closed_tree'] = False
         bc['hg_ssh_key'] = '/home/cltbld/.ssh/tbirdbld_dsa'
         bc['hg_username'] = 'tbirdbld'
+        bc['hgurl'] = DEFAULTS['hgurl']
+        bc['build_tools_repo_path'] = DEFAULTS['build_tools_repo']
         # end Blocklist settings
         bc['client_py_extra_args'] = \
             ['--skip-comm',
@@ -481,75 +552,6 @@ BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
                            )
 
 # ----------------
-
-HGURL = 'http://hg.mozilla.org/'
-HGHOST = 'hg.mozilla.org'
-CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
-CONFIG_REPO_PATH = 'build/buildbot-configs'
-COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
-CONFIG_SUBDIR = 'thunderbird'
-OBJDIR = 'objdir-tb'
-STAGE_USERNAME = 'tbirdbld'
-STAGE_SERVER = 'stage.mozilla.org'
-STAGE_GROUP = 'thunderbird'
-STAGE_SSH_KEY = 'tbirdbld_dsa'
-
-AUS2_USER = 'tbirdbld'
-AUS2_SSH_KEY = 'tbirdbld_dsa'
-AUS2_HOST = 'momo-build-adm-01.sj.mozillamessaging.com'
-
-DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
-PRODUCT = 'mail'
-MOZ_APP_NAME = 'thunderbird'
-
-
-DEFAULTS = {
-    'factory':                'build',
-    'hgurl':                  HGURL,
-    'branch_name':            'comm-central',
-    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
-    'mozilla_central_branch': 'releases/mozilla-1.9.1',
-    'add_poll_branches':      [ 'dom-inspector','users/gozer_mozillamessaging.com/test' ],
-    'period':                 60 * 60 * 8,
-    'nightly_hour':          [3],
-    'nightly_minute':        [0],
-    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
-    'builder_type':           "build",
-    'tinderbox_tree':         "ThunderbirdTest",
-    'codesighs':               False,
-    'mozmill':                 False,
-    'product_name':           'Thunderbird',
-    'brand_name':             'Shredder',
-    'app_name':			'thunderbird',
-    'build_space':             10,
-    'l10n_nightly_updates':    False,
-
-    'create_partial':          False,
-    'create_snippet':          False,
-
-    'stage_username':		STAGE_USERNAME,
-    'stage_server':		STAGE_SERVER,
-    'stage_group':		STAGE_GROUP,
-    'stage_ssh_key':		STAGE_SSH_KEY,
-    'enable_checktests':        False,
-    'exec_xpcshell_suites':     True,
-
-    'graph_server':		'graphs.mozilla.org',
-    'graph_selector':           '/server/collect.cgi',
-
-    # Unit Test
-    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
-
-    'build_tools_repo': "build/tools",
-    'hg_rev_shortnames': {
-      'mozilla-central':        'moz',
-      'comm-central':           'cc',
-      'dom-inspector':          'domi',
-      'releases/mozilla-1.9.1': 'moz191',
-      'releases/mozilla-1.9.2': 'moz192',
-      'releases/mozilla-aurora':'mozaurora',
-    }
-}
 
 
 # Release automation expect to find these
