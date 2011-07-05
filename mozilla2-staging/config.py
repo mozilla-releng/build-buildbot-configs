@@ -44,7 +44,7 @@ GLOBAL_VARS = {
     'objdir_unittests': 'objdir',
     'stage_username': 'ffxbld',
     'stage_username_xulrunner': 'xrbld',
-    'stage_server': 'staging-stage.build.mozilla.org',
+    'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
     'stage_base_path': '/home/ftp/pub/firefox',
     'stage_base_path_xulrunner': '/home/ftp/pub/xulrunner',
     'stage_group': None,
@@ -55,8 +55,8 @@ GLOBAL_VARS = {
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
-    'aus2_host': 'staging-stage.build.mozilla.org',
-    'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
+    'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
+    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'graph_server': 'graphs-stage.mozilla.org',
     'graph_selector': '/server/collect.cgi',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
@@ -142,7 +142,7 @@ PLATFORM_VARS = {
             'env': {
                 'DISPLAY': ':2',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -172,7 +172,7 @@ PLATFORM_VARS = {
             'env': {
                 'DISPLAY': ':2',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -202,7 +202,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -231,7 +231,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -264,7 +264,7 @@ PLATFORM_VARS = {
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'staging-stage.build.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -708,7 +708,7 @@ BRANCHES['tryserver']['stage_base_path'] = '/home/ftp/pub/firefox/tryserver-buil
 BRANCHES['tryserver']['enable_merging'] = False
 BRANCHES['tryserver']['enable_try'] = True
 BRANCHES['tryserver']['enable_mail_notifier'] = False
-BRANCHES['tryserver']['package_url'] ='http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/tryserver-builds'
+BRANCHES['tryserver']['package_url'] ='http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox/tryserver-builds'
 BRANCHES['tryserver']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['tryserver']['tinderbox_url'] = 'http://tinderbox.mozilla.org/showbuilds.cgi?tree=MozillaTest'
 # This is a path, relative to HGURL, where the repository is located
@@ -750,7 +750,7 @@ BRANCHES['tryserver']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['tryserver']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'staging-stage.build.mozilla.org'
+BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_HOST'] = 'dev-stage01.build.sjc1.mozilla.com'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['tryserver']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'

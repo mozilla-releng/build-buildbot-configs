@@ -36,10 +36,10 @@ GLOBAL_VARS = {
     'staging': True,
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'stage_server': 'staging-stage.build.mozilla.org',
-    'aus2_host': 'staging-stage.build.mozilla.org',
-    'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
+    'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
+    'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
+    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
@@ -65,7 +65,7 @@ GLOBAL_VARS = {
 }
 
 BUILDS_BEFORE_REBOOT = 5
-SYMBOL_SERVER_HOST = 'staging-stage.build.mozilla.org'
+SYMBOL_SERVER_HOST = 'dev-stage01.build.sjc1.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
@@ -94,11 +94,11 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'try': {
-        'download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox',
-        'mobile_download_base_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/mobile',
+        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
+        'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://staging-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

@@ -2,6 +2,7 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     'accessibility': {
+        'mozconfig_dir': 'accessibility',
         'enable_nightly': True,
         'enabled_products': ['firefox'],
         # only want a11y so turn off the default set
