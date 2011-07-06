@@ -3,13 +3,13 @@ from copy import deepcopy
 # This is only used within this file so it doesn't need to be part of the
 # big dict
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,30) + range(40,55)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [2,5,6,7] + range(9,27) + range(29,68)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(9,29) + range(29,68)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,17) + range(18,51)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,13)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,24)] + ['linux-ix-slave%02i' % x for x in range(11,18)]
+LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,24)] + ['linux-ix-slave%02i' % x for x in range(11,38)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1,2] + range(5,21) + range(22,60)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,26)] + ['w32-ix-slave%02i' % x for x in range(21,26)]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,26)] + ['w32-ix-slave%02i' % x for x in range(1,26)]
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,6)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,40)]
@@ -396,6 +396,7 @@ BRANCHES = {
     'mozilla-central': {},
     'mozilla-2.1': {},
     'mozilla-mobile-5.0': {},
+    'mozilla-mobile-6.0': {},
     'mozilla-1.9.1': { 'platforms': { 'linux': {}, 'linux-debug': {}, 
                                       'linux64': {}, 'linux64-debug': {}, 
                                       'macosx': {}, 'macosx-debug': {}, 
