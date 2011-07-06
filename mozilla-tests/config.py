@@ -1025,6 +1025,8 @@ BRANCHES['tracemonkey']['platforms']['linux-android']['enable_opt_unittests'] = 
 BRANCHES['tracemonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['electrolysis']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['electrolysis']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 if __name__ == "__main__":
     import sys, pprint, re
