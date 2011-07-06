@@ -1,1 +1,1 @@
-release-fennec-5.0.py
+release-fennec-6.0.py
