@@ -195,7 +195,13 @@ PROJECT_BRANCHES = {
     'cedar': {},
     'holly': {},
     'larch': {},
-    'maple': {},
+    # customizations while booked for bcp47 project as per bug 667734
+    'maple': {
+        'enable_talos': False,
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+    },
 }
 
 # All is the default
