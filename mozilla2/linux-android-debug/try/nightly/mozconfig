@@ -19,3 +19,10 @@ export JAVA_HOME=/tools/jdk6
 export MOZILLA_OFFICIAL=1
 
 ac_add_options --with-branding=mobile/branding/nightly
+
+if [ -f $topsrcdir/mozconfig-extra ] ; then
+  . $topsrcdir/mozconfig-extra
+fi
+if [ -f $topsrcdir/mozconfig-extra-linux-android-debug ] ; then
+  . $topsrcdir/mozconfig-extra-linux-android-debug
+fi
