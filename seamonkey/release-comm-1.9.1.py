@@ -73,7 +73,7 @@ majorUpdateVerifyConfigs   = {'linux':  'moz191-seamonkey-linux-major.cfg',
                               'win32':  'moz191-seamonkey-win32-major.cfg'}
 majorUpdateToVersion       = '2.2'
 majorUpdateAppVersion      = '2.2'
-majorUpdateBaseTag         = 'SEAMONKEY_2_2_RELEASE'
+majorUpdateBaseTag         = 'SEAMONKEY_2_2'
 majorUpdateBuildNumber     = 2
 majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/2.2/en-US/index.html'
 
