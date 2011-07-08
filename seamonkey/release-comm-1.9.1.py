@@ -64,18 +64,18 @@ useBetaChannel             = 1
 verifyConfigs              = {'linux':  'moz191-seamonkey-linux.cfg',
                               'macosx': 'moz191-seamonkey-mac.cfg',
                               'win32':  'moz191-seamonkey-win32.cfg'}
-majorUpdateRepoPath        = 'releases/mozilla-beta'
+majorUpdateRepoPath        = 'releases/mozilla-release'
 majorPatcherToolsTag       = 'UPDATE_PACKAGING_R11_1_MU'
-majorUpdateSourceRepoPath  = 'releases/comm-beta'
+majorUpdateSourceRepoPath  = 'releases/comm-release'
 majorUpdatePatcherConfig  = 'moz191-seamonkey-branch-major-patcher2.cfg'
 majorUpdateVerifyConfigs   = {'linux':  'moz191-seamonkey-linux-major.cfg',
                               'macosx': 'moz191-seamonkey-mac-major.cfg',
                               'win32':  'moz191-seamonkey-win32-major.cfg'}
-majorUpdateToVersion       = '2.2b2'
+majorUpdateToVersion       = '2.2'
 majorUpdateAppVersion      = '2.2'
-majorUpdateBaseTag         = 'SEAMONKEY_2_2b2'
+majorUpdateBaseTag         = 'SEAMONKEY_2_2_RELEASE'
 majorUpdateBuildNumber     = 2
-majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/index.html'
+majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/2.2/en-US/index.html'
 
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #tuxedoConfig        = 'seamonkey-tuxedo.ini'
