@@ -14,25 +14,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.18'
+releaseConfig['version']             = '3.6.19'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.18'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_3_6_18'
+releaseConfig['milestone']           = '1.9.2.19'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_3_6_19'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.17'
+releaseConfig['oldVersion']          = '3.6.18'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_17'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_18'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.19pre'
-releaseConfig['nextMilestone']       = '1.9.2.19pre'
+releaseConfig['nextAppVersion']      = '3.6.20pre'
+releaseConfig['nextMilestone']       = '1.9.2.20pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': 'e44db3a28fea',
+        'revision': '0a1993a0c859',
         'relbranch': 'GECKO19218_2011061302_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRelbranch']       = 'GECKO19218_2011061302_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
@@ -66,7 +66,7 @@ releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = True
 # this variable adds unit tests on the builders
 releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
 
@@ -105,12 +105,12 @@ releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
-releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-2.0'
-releaseConfig['majorUpdateToVersion']   = '4.0.1'
+releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-release'
+releaseConfig['majorUpdateToVersion']   = '5.0.1'
 releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
 releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0_1'
-releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/4.0/details/'
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0_1'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/5.0/details/'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
