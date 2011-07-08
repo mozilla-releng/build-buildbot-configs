@@ -75,6 +75,7 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
+        'enable_weekly_bundle': True,
         'talos_suites': {
             'remote-ts': 1,
             'remote-tdhtml': 1,
