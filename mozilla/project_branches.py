@@ -110,7 +110,7 @@ PROJECT_BRANCHES = {
     'private-browsing': {
         'enable_talos': False,
         'enabled_products': ['firefox'],
-        'enable_nightly': True,
+        'enable_nightly': False,
     },
     'services-central': {
         'repo_path': 'services/services-central',
