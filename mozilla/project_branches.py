@@ -66,7 +66,6 @@ PROJECT_BRANCHES = {
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
-        'enable_talos': False,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
