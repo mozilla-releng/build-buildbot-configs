@@ -3,6 +3,7 @@ SlavePasswords = {
         'try-linux': 'pass',
         'linux64': 'pass',
         'win32': 'pass',
+        'win64': 'pass',
         'try-win32': 'pass',
         'macosx': 'pass',
         'macosx64': 'pass',
