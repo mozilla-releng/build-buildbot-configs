@@ -1,4 +1,5 @@
 # Global options
+mk_add_options MOZ_MAKE_FLAGS=-j4
 ac_add_options --disable-debug
 ac_add_options --enable-optimize
 
@@ -19,3 +20,10 @@ export JAVA_HOME=/tools/jdk6
 export MOZILLA_OFFICIAL=1
 
 ac_add_options --with-branding=mobile/branding/nightly
+
+if [ -f $topsrcdir/mozconfig-extra ] ; then
+  . $topsrcdir/mozconfig-extra
+fi
+if [ -f $topsrcdir/mozconfig-extra-linux-android ] ; then
+  . $topsrcdir/mozconfig-extra-linux-android
+fi

@@ -66,7 +66,6 @@ PROJECT_BRANCHES = {
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
-        'enable_talos': False,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
@@ -75,6 +74,7 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
+        'enable_weekly_bundle': True,
         'talos_suites': {
             'remote-ts': 1,
             'remote-tdhtml': 1,
@@ -110,7 +110,7 @@ PROJECT_BRANCHES = {
     'private-browsing': {
         'enable_talos': False,
         'enabled_products': ['firefox'],
-        'enable_nightly': True,
+        'enable_nightly': False,
     },
     'services-central': {
         'repo_path': 'services/services-central',
@@ -195,7 +195,13 @@ PROJECT_BRANCHES = {
     'cedar': {},
     'holly': {},
     'larch': {},
-    'maple': {},
+    # customizations while booked for bcp47 project as per bug 667734
+    'maple': {
+        'enable_talos': False,
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+    },
 }
 
 # All is the default

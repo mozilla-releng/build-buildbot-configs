@@ -9,10 +9,3 @@ ac_add_options --enable-stdcxx-compat
 
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 export MOZILLA_OFFICIAL=1
-
-if [ -f $topsrcdir/mozconfig-extra ] ; then
-  . $topsrcdir/mozconfig-extra
-fi
-if [ -f $topsrcdir/mozconfig-extra-linux-mobile ] ; then
-  . $topsrcdir/mozconfig-extra-linux-mobile
-fi

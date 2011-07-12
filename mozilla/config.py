@@ -1022,6 +1022,44 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+# XXX remove once we have Windows 64-bit as a platform for every branch
+BRANCHES['mozilla-central']['platforms']['win64'] = {
+    'base_name': 'WINNT 6.1 x86-64 mozilla-central',
+    'mozconfig': 'win64/mozilla-central/nightly',
+    # XXX we cannot build xulrunner on Win64 -- see bug 575912
+    'enable_xulrunner': False,
+    'profiled_build': True,
+    'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+    'build_space': 12,
+    'upload_symbols': True,
+    'packageTests': True,
+    'slaves': SLAVES['win64'],
+    'platform_objdir': OBJDIR,
+    'stage_product': 'firefox',
+    'mochitest_leak_threshold': 484,
+    'crashtest_leak_threshold': 484,
+    'update_platform': 'WINNT_x86_64-msvc',
+    'enable_shared_checkouts': True,
+    'env': {
+        'CVS_RSH': 'ssh',
+        'MOZ_OBJDIR': OBJDIR,
+        'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+        'SYMBOL_SERVER_USER': 'ffxbld',
+        'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+        'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+        'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
+        'TINDERBOX_OUTPUT': '1',
+        'MOZ_CRASHREPORTER_NO_REPORT': '1',
+        'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
+        'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+    },
+    'enable_opt_unittests': False,
+    'enable_checktests': True,
+    'talos_masters': GLOBAL_VARS['talos_masters'],
+    'test_pretty_names': True,
+    'l10n_check_test': True,
+}
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository

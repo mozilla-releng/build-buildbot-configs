@@ -15,3 +15,10 @@ ac_add_options --with-maemo-version=5
 
 ac_add_options --prefix=/opt/mozilla
 ac_add_options --libdir=/opt/mozilla
+
+if [ -f $topsrcdir/mozconfig-extra ] ; then
+  . $topsrcdir/mozconfig-extra
+fi
+if [ -f $topsrcdir/mozconfig-extra-linux-maemo5-qt ] ; then
+  . $topsrcdir/mozconfig-extra-linux-maemo5-qt
+fi
