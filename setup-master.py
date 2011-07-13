@@ -105,6 +105,7 @@ def load_masters_json(masters_json):
             c.globs.append('l10n-changesets*')
             c.globs.append('release_templates')
             c.globs.append('release-firefox*.py')
+            c.globs.append('release-fennec*.py')
             c.globs.append('builder_master.cfg')
             c.globs.append('build_localconfig.py')
             c.local_links.append(('builder_master.cfg', 'master.cfg'))
@@ -245,14 +246,18 @@ mozilla_base = MasterConfig(
         )
 
 mozilla_production = mozilla_base + MasterConfig(
-    globs=['release-firefox-*.py'],
+    globs=['release-firefox-*.py', 'release-fennec-*.py'],
     )
 
 mozilla_staging = mozilla_base + MasterConfig(
-    globs=['staging_release-firefox-*.py'],
+    globs=['staging_release-*-*.py'],
     local_links=[('staging_release-firefox-mozilla-%s.py' % v,
                   'release-firefox-mozilla-%s.py' % v)
-                 for v in ['1.9.1', '1.9.2', '2.0', 'central', 'beta']]
+                 for v in ['1.9.1', '1.9.2', '2.0', 'central', 'beta',
+                           'release']] + \
+                [('staging_release-fennec-mozilla-%s.py' % v,
+                  'release-fennec-mozilla-%s.py' % v)
+                 for v in ['beta', 'release']]
     )
 
 mozilla_staging_scheduler_master_sm01 = mozilla_staging + MasterConfig(

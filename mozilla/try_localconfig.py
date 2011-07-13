@@ -21,6 +21,7 @@ if 'ssh_port' in master_config:
 from config import BRANCHES, TRY_SLAVES
 ACTIVE_BRANCHES = ['try']
 ACTIVE_RELEASE_BRANCHES = []
+ACTIVE_MOBILE_RELEASE_BRANCHES = []
 ACTIVE_PROJECTS = []
 
 # Override with TRY_SLAVES

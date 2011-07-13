@@ -32,8 +32,10 @@ ACTIVE_BRANCHES.extend([
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
+ACTIVE_MOBILE_RELEASE_BRANCHES = []
 if 'release_branches' in master_config:
     ACTIVE_RELEASE_BRANCHES.extend(master_config['release_branches'])
+    ACTIVE_MOBILE_RELEASE_BRANCHES.extend(master_config['release_branches'])
     ENABLE_RELEASES = True
 else:
     ENABLE_RELEASES = False
