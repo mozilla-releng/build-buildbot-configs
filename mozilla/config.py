@@ -590,6 +590,7 @@ PLATFORM_VARS = {
             'android_signing': True,
             'post_upload_include_platform': True,
             'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
         },
         'linux-android-debug': {
             'base_name': 'Android Debug %(branch)s',
@@ -677,6 +678,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'multi_locale': True,
+            'multi_locale_script': 'scripts/maemo_multi_locale_build.py',
         },
         'linux-maemo5-qt': {
             'base_name': 'Maemo 5 QT %(branch)s',

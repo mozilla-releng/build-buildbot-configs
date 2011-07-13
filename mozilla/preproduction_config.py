@@ -9,12 +9,17 @@ LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['lin
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,22)]
 SLAVES = {
-    'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     LINUX64_VMS + LINUX64_IXS,
-    'win32':       WIN32_VMS + WIN32_IXS,
-    'win64':       WIN64_IXS,
-    'macosx':      MAC_MINIS + XSERVES,
-    'macosx64':    MAC_SNOW_MINIS,
+    'linux':            LINUX_VMS + LINUX_IXS,
+    'linux64':          LINUX64_VMS + LINUX64_IXS,
+    'win32':            WIN32_VMS + WIN32_IXS,
+    'win64':            WIN64_IXS,
+    'macosx':           MAC_MINIS + XSERVES,
+    'macosx64':         MAC_SNOW_MINIS,
+    'linux-android':    LINUX_VMS + LINUX_IXS,
+    'linux-maemo5-gtk': LINUX_VMS + LINUX_IXS,
+    'linux-mobile':     LINUX_VMS + LINUX_IXS,
+    'macosx-mobile':    MAC_MINIS + XSERVES,
+    'win32-mobile':     WIN32_VMS + WIN32_IXS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,26)]

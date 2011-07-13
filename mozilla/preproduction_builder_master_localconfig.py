@@ -15,6 +15,7 @@ from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = [b for b in BRANCHES.keys() if b != 'mozilla-1.9.1']
 ACTIVE_PROJECTS = [p for p in PROJECTS.keys() if p != 'fuzzing']
 ACTIVE_RELEASE_BRANCHES = []
+ACTIVE_MOBILE_RELEASE_BRANCHES = []
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg

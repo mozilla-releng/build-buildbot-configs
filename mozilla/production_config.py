@@ -13,12 +13,17 @@ WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,22)] + ['w32-ix-slave
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (10,12,17,19,20,21,22,23,24)]
 
 SLAVES = {
-    'linux':       LINUX_VMS + LINUX_IXS,
-    'linux64':     LINUX64_VMS + LINUX64_IXS,
-    'win32':       WIN32_VMS + WIN32_IXS,
-    'win64':       WIN64_IXS,
-    'macosx':      MAC_MINIS + XSERVES,
-    'macosx64':    MAC_SNOW_MINIS,
+    'linux':            LINUX_VMS + LINUX_IXS,
+    'linux64':          LINUX64_VMS + LINUX64_IXS,
+    'win32':            WIN32_VMS + WIN32_IXS,
+    'win64':            WIN64_IXS,
+    'macosx':           MAC_MINIS + XSERVES,
+    'macosx64':         MAC_SNOW_MINIS,
+    'linux-android':    LINUX_VMS + LINUX_IXS,
+    'linux-maemo5-gtk': LINUX_VMS + LINUX_IXS,
+    'linux-mobile':     LINUX_VMS + LINUX_IXS,
+    'macosx-mobile':    MAC_MINIS + XSERVES,
+    'win32-mobile':     WIN32_VMS + WIN32_IXS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \
