@@ -32,7 +32,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'FIXME',
+        'revision': 'bb311256b95b',
         'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {
