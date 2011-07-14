@@ -346,7 +346,7 @@ gloConfig = {
         'venkmanRelbranchOverride'   : '',
         'chatzillaCVSRoot'           : '',
         'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
-        'l10nRepoPath'               : 'releases/l10n-mozilla-beta',
+        'l10nRepoPath'               : 'releases/l10n/mozilla-beta',
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-beta',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
