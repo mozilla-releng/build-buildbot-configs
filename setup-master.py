@@ -472,7 +472,7 @@ mozilla_staging_ateam_master1 = mozilla_tests + MasterConfig(
         local_links = [
             ('staging_ateam_master01_localconfig.py', 'master_localconfig.py'),
             ('staging_ateam_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
             ]
         )
 
