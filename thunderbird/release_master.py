@@ -325,15 +325,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
-        'sourceRepoRevision'         : 'ff1d573c6629',
+        'sourceRepoRevision'         : '89a759cf4de4',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
-        'mozillaRepoPath'            : 'releases/mozilla-miramar',
-        'mozillaRepoRevision'        : '3fb6ad7c725e',
+        'mozillaRepoPath'            : 'releases/mozilla-beta',
+        'mozillaRepoRevision'        : 'ea7034005498',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO50_2011061416_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO60_2011071316_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -346,7 +346,7 @@ gloConfig = {
         'venkmanRelbranchOverride'   : '',
         'chatzillaCVSRoot'           : '',
         'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
-        'l10nRepoPath'               : 'releases/l10n-mozilla-beta',
+        'l10nRepoPath'               : 'releases/l10n/mozilla-beta',
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-beta',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
@@ -362,18 +362,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '6.0',
-        #'appVersion'                 : version,
+        'version'                    : '6.0b1',
+        'appVersion'                 : '6.0', # no 'b1' suffix for betas
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '6.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_6_0',
+        'baseTag'                    : 'THUNDERBIRD_6_0b1',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '5.0b2',
-        'oldAppVersion'              : '5.0b2',
+        'oldVersion'                 : '5.0',
+        'oldAppVersion'              : '5.0',
         'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : 'THUNDERBIRD_5_0b2',
+        'oldBaseTag'                 : 'THUNDERBIRD_5_0',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
@@ -393,7 +393,7 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 1,
+        'useBetaChannel'             : 0,
         'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
                                         'linux64' : 'moz20-thunderbird-linux64.cfg',
                                         'macosx64': 'moz20-thunderbird-mac64.cfg',
