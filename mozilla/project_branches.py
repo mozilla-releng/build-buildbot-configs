@@ -64,6 +64,11 @@ PROJECT_BRANCHES = {
         'enable_unittests': False,
         'enable_talos': False,
     },
+    'ionmonkey': {
+        'mozconfig_dir': 'mozilla-central',
+        'enable_talos' : False,
+    
+    },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
         'enable_nightly': True,
