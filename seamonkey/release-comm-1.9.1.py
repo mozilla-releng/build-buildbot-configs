@@ -75,7 +75,7 @@ majorUpdateToVersion       = '2.2'
 majorUpdateAppVersion      = '2.2'
 majorUpdateBaseTag         = 'SEAMONKEY_2_2'
 majorUpdateBuildNumber     = 2
-majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/2.2/en-US/index.html'
+majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/2.2/%locale%/index.html'
 
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #tuxedoConfig        = 'seamonkey-tuxedo.ini'
