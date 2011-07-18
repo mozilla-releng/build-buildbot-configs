@@ -373,6 +373,7 @@ gloConfig = {
         'oldVersion'                 : '5.0',
         'oldAppVersion'              : '5.0',
         'oldBuildNumber'             : 1,
+        'oldRepoPath'                : 'releases/comm-miramar',
         'oldBaseTag'                 : 'THUNDERBIRD_5_0',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
@@ -489,6 +490,7 @@ for gloKey in gloConfig:
     patcherToolsTag            = gloConfig[gloKey]['patcherToolsTag']
     patcherConfig              = gloConfig[gloKey]['patcherConfig']
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
+    oldRepoPath                = gloConfig[gloKey].get('oldRepoPath', sourceRepoPath)
     oldBaseTag                 = gloConfig[gloKey]['oldBaseTag']
     oldBinaryName              = gloConfig[gloKey]['oldBinaryName']
     enableWeeklyBundle         = gloConfig[gloKey]['enable_weekly_bundle']
@@ -1018,7 +1020,7 @@ for gloKey in gloConfig:
         hgSshKey=hgSshKey,
         hgUsername=hgUsername,
         clobberURL=branchConfig['base_clobber_url'],
-        oldRepoPath=sourceRepoPath,
+        oldRepoPath=oldRepoPath,
         releaseNotesUrl=releaseNotesUrl,
         testOlderPartials=testOlderPartials,
     )
@@ -1098,7 +1100,7 @@ for gloKey in gloConfig:
             hgSshKey=hgSshKey,
             hgUsername=hgUsername,
             clobberURL=branchConfig['base_clobber_url'],
-            oldRepoPath=sourceRepoPath,
+            oldRepoPath=oldRepoPath,
             triggerSchedulers=['major_update_verify_%s' % gloKey],
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
             testOlderPartials=testOlderPartials
