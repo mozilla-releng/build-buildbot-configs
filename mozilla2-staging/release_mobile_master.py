@@ -53,14 +53,14 @@ change_source.append(FtpPoller(
     ftpURLs=['http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%s/android-r7/en-US/' \
             % (stagingServer, version, buildNumber)],
     pollInterval = 60*10,
-    searchString='arm.apk'
+    searchString='eabi-arm.apk'
 ))
 change_source.append(FtpPoller(
     branch='android_signature_verification',
     ftpURLs=['http://%s/pub/mozilla.org/mobile/candidates/%s-candidates/build%s/android-r7/multi/' \
             % (stagingServer, version, buildNumber)],
     pollInterval = 60*10,
-    searchString='arm.apk'
+    searchString='eabi-arm.apk'
 ))
 android_signature_verification_scheduler = Scheduler(
     name='android_signature_verification_scheduler',
