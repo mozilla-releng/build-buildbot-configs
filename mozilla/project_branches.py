@@ -67,13 +67,19 @@ PROJECT_BRANCHES = {
     'ionmonkey': {
         'mozconfig_dir': 'mozilla-central',
         'enable_talos' : False,
-    
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        },
     },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
@@ -120,6 +126,13 @@ PROJECT_BRANCHES = {
     'services-central': {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
+        'talos_suites': {
+            'remote-ts': 1,
+            'remote-tdhtml': 1,
+            'remote-tsvg': 1,
+            'remote-tsspider': 1,
+            'remote-twinopen': 1,
+        },
     },
     'tracemonkey': {
         'repo_path': 'tracemonkey',
