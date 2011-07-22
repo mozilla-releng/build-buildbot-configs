@@ -1027,6 +1027,14 @@ BRANCHES['mozilla-inbound']['platforms']['linux-android']['enable_opt_unittests'
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['electrolysis']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['electrolysis']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['fx-team']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['fx-team']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['ionmonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['ionmonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['jaegermonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['jaegermonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+BRANCHES['services-central']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['services-central']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 if __name__ == "__main__":
     import sys, pprint, re
