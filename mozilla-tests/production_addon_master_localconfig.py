@@ -16,5 +16,5 @@ from config import BRANCHES, PLATFORMS, PROJECTS
 ACTIVE_BRANCHES = BRANCHES.keys()
 # I changed my mind; do only trunk
 ACTIVE_BRANCHES = ['addontester', 'addonbaselinetester']
-ACTIVE_PROJECTS = PROJECTS.keys()
+ACTIVE_PROJECTS = [] #PROJECTS.keys()
 ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
