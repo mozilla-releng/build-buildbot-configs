@@ -159,6 +159,8 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_pla
 
 ANDROID = PLATFORMS['linux-android']['slave_platforms']
 
+ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
+
 DEFAULT_TALOS_VALUES = {
     'chrome':               (True, {}, ALL_PLATFORMS),
     'nochrome':             (True, {}, ALL_PLATFORMS),
@@ -170,8 +172,8 @@ DEFAULT_TALOS_VALUES = {
     'svg':                  (True, {}, ALL_PLATFORMS),
     'scroll':               (True, {}, ALL_PLATFORMS),
     'dromaeo':              (True, {}, ALL_PLATFORMS),
-    'addon':                (False, TALOS_ADDON_OPTS, ALL_PLATFORMS),
-    'addon-baseline':       (False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS),
+    'addon':                (False, TALOS_ADDON_OPTS, ADDON_TESTER_PLATFORMS),
+    'addon-baseline':       (False, TALOS_BASELINE_ADDON_OPTS, ADDON_TESTER_PLATFORMS),
     'a11y':                 (True, {}, NO_MAC),
     'paint':                (True, {}, ALL_PLATFORMS),
     'remote-ts':            (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
@@ -193,6 +195,8 @@ OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
 OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms']
 
 OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
+
+OLD_BRANCH_ADDON_TESTER_PLATFORMS = ['win7'] + ['fedora'] + ['snowleopard']
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -925,8 +929,8 @@ BRANCHES['addontester']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_FENNEC_OP
 BRANCHES['addontester']['svg_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['addontester']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
+BRANCHES['addontester']['addon-baseline_tests'] = (0, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
 BRANCHES['addontester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['addontester']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['enable_unittests'] = False
@@ -957,8 +961,8 @@ BRANCHES['addonbaselinetester']['remote-tzoom_tests'] = (0, True, TALOS_REMOTE_F
 BRANCHES['addonbaselinetester']['svg_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['v8_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['scroll_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['addonbaselinetester']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['addonbaselinetester']['addon-baseline_tests'] = (1, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['addonbaselinetester']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
+BRANCHES['addonbaselinetester']['addon-baseline_tests'] = (1, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
 BRANCHES['addonbaselinetester']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['addonbaselinetester']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addonbaselinetester']['enable_unittests'] = False
