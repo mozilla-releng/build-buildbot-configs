@@ -918,21 +918,6 @@ BRANCHES = {
     },
     'mozilla-aurora': {
     },
-    'mozilla-2.0': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linuxqt': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'mozilla-1.9.1': {
         'lock_platforms': True,
         'platforms': {
@@ -1289,62 +1274,6 @@ BRANCHES['mozilla-aurora']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXT
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 
-######## mozilla-2.0
-BRANCHES['mozilla-2.0']['repo_path'] = 'releases/mozilla-2.0'
-BRANCHES['mozilla-2.0']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['mozilla-2.0']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-2.0']['start_hour'] = [3]
-BRANCHES['mozilla-2.0']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-2.0']['enable_xulrunner'] = True
-# Enable unit tests
-BRANCHES['mozilla-2.0']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
-BRANCHES['mozilla-2.0']['enable_mac_a11y'] = True
-BRANCHES['mozilla-2.0']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['mozilla-2.0']['enable_codecoverage'] = False
-BRANCHES['mozilla-2.0']['enable_blocklist_update'] = False
-BRANCHES['mozilla-2.0']['blocklist_update_on_closed_tree'] = False
-# L10n configuration
-BRANCHES['mozilla-2.0']['enable_l10n'] = True
-BRANCHES['mozilla-2.0']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-2.0']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-2.0']['l10n_platforms'] = ['linux' , 'linux64', 'win32',
-                                             'macosx64']
-BRANCHES['mozilla-2.0']['l10nDatedDirs'] = True
-BRANCHES['mozilla-2.0']['l10n_tree'] = 'fx40x'
-#make sure it has an ending slash
-BRANCHES['mozilla-2.0']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-2.0-l10n/'
-BRANCHES['mozilla-2.0']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-2.0'
-BRANCHES['mozilla-2.0']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-2.0']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-2.0' % (GLOBAL_VARS['hgurl'])
-BRANCHES['mozilla-2.0']['enable_multi_locale'] = True
-BRANCHES['mozilla-2.0']['upload_mobile_symbols'] = True
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['mozilla-2.0']['create_snippet'] = True
-# turn on in bug 594867
-BRANCHES['mozilla-2.0']['create_mobile_snippet'] = False
-BRANCHES['mozilla-2.0']['create_partial'] = True
-BRANCHES['mozilla-2.0']['create_partial_l10n'] = True
-BRANCHES['mozilla-2.0']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-2.0']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
-BRANCHES['mozilla-2.0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-2.0'
-BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
-BRANCHES['mozilla-2.0']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-2.0'
-BRANCHES['mozilla-2.0']['platforms']['linux']['l10n_check_test'] = False
-BRANCHES['mozilla-2.0']['platforms']['linux64']['l10n_check_test'] = False
-BRANCHES['mozilla-2.0']['platforms']['macosx64']['l10n_check_test'] = False
-BRANCHES['mozilla-2.0']['platforms']['win32']['l10n_check_test'] = False
-# TODO: Remove this when bug 525438 lands on mozilla-2.0
-BRANCHES['mozilla-2.0']['platforms']['macosx64']['test_pretty_names'] = False
 
 ######## mozilla-1.9.1
 # mozilla-1.9.1 can be removed once we're no longer refreshing MUs from 3.5.18,

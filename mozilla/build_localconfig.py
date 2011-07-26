@@ -22,7 +22,6 @@ from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
 ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
 ACTIVE_BRANCHES.extend([
     'mozilla-1.9.2',
-    'mozilla-2.0',
     'mozilla-central',
     'shadow-central',
     'mozilla-beta',
