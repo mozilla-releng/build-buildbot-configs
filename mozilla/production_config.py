@@ -30,7 +30,7 @@ TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] +
 TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
                  ['linux-ix-slave%02i' % x for x in range(7,12)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
-TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
+TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48)]
 TRY_MAC.remove('try-mac-slave35') # Bug 650297
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
@@ -109,10 +109,6 @@ BRANCHES = {
         'tinderbox_tree': 'Firefox3.6',
         'packaged_unittest_tinderbox_tree': 'Firefox3.6',
         'mobile_tinderbox_tree': 'Mobile1.1',
-    },
-    'mozilla-2.0': {
-        'tinderbox_tree': 'Firefox4.0',
-        'packaged_unittest_tinderbox_tree': 'Firefox4.0',
     },
     'mozilla-release': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Release',

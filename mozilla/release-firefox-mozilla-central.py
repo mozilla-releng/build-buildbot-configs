@@ -53,7 +53,7 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'l10n-central'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-2.0'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-central'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',

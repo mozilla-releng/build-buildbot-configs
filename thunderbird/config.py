@@ -98,9 +98,9 @@ def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
             return ['momo-xserve-01'] + ['mini64-%02i' % x for x in [1] + range(3,6+1)]
     elif platformName == 'win32':
         if isTest:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6,7] + range(8,15+1) + range(17,19+1)]
         else:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + range(17,19+1)]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6,7] + range(8,15+1) + range(17,19+1)]
     else:
         raise Exception("Invalid platformName '%s'" % platformName)
 
@@ -339,7 +339,7 @@ def makeAusConfig(branchName):
     return ac
 
 def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
-                    mozillaCentralBranch=None, tinderboxTree=None,
+                    mozillaCentralBranch=None, tinderboxTree=None, allLocalesFile=None,
                     wantNightly=None, wantL10n=None, l10nRepo=None):
     bc = {}
     bc['hg_branch'] = hgBranch
@@ -354,6 +354,8 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
             bc['l10n'] = wantL10n
             bc['l10n_repo'] = l10nRepo
         bc['branch_name'] = branchName
+        bc['allLocalesFile'] = \
+            '%s/build/buildbot-configs/raw-file/default/thunderbird/l10n/%s' % (HGURL, allLocalesFile)
         # Blocklist settings
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
@@ -470,6 +472,7 @@ BRANCHES['comm-beta'] = makeBuildConfig(
                                hgBranch      = 'releases/comm-beta',
                                mozillaCentralBranch = 'releases/mozilla-beta',
                                tinderboxTree = 'Thunderbird-Beta',
+                               allLocalesFile = 'all-locales.comm-beta',
                                wantNightly   = False,
                                wantL10n      = False
                            )
@@ -487,6 +490,7 @@ BRANCHES['comm-miramar'] = makeBuildConfig(
                                hgBranch      = 'releases/comm-miramar',
                                mozillaCentralBranch = 'releases/mozilla-miramar',
                                tinderboxTree = 'Miramar',
+                               allLocalesFile = 'all-locales.comm-miramar',
                                wantNightly   = False,
                            )
 BRANCHES['comm-miramar-bloat'] = makeBuildConfig(
@@ -503,6 +507,7 @@ BRANCHES['comm-aurora'] = makeBuildConfig(
                                hgBranch      = 'releases/comm-aurora',
                                mozillaCentralBranch = 'releases/mozilla-aurora',
                                tinderboxTree = 'Thunderbird-Aurora',
+                               allLocalesFile = 'all-locales.comm-aurora',
                                wantL10n      = True,
                                l10nRepo      = 'releases/l10n/mozilla-aurora'
                            )
@@ -520,6 +525,7 @@ BRANCHES['comm-central'] = makeBuildConfig(
                                hgBranch      = 'comm-central',
                                mozillaCentralBranch = 'mozilla-central',
                                tinderboxTree = 'ThunderbirdTrunk',
+                               allLocalesFile = 'all-locales.comm-central',
                                wantL10n      = True,
                                l10nRepo      = 'l10n-central'
                            )
@@ -537,6 +543,7 @@ BRANCHES['comm-1.9.2'] = makeBuildConfig(
                                hgBranch      = 'releases/comm-1.9.2',
                                mozillaCentralBranch = 'releases/mozilla-1.9.2',
                                tinderboxTree = 'Thunderbird3.1',
+                               allLocalesFile = 'all-locales.comm-1.9.2',
                                wantL10n      = True,
                                l10nRepo      = 'releases/l10n-mozilla-1.9.2'
                            )

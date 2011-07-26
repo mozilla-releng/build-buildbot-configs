@@ -110,7 +110,7 @@ releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
-releaseConfig['majorUpdateRepoPath'] = 'users/stage-ffxbld/mozilla-2.0'
+releaseConfig['majorUpdateRepoPath'] = 'users/stage-ffxbld/mozilla-release'
 releaseConfig['majorUpdateToVersion']   = '4.0rc1'
 releaseConfig['majorUpdateAppVersion']  = '4.0'
 releaseConfig['majorUpdateBuildNumber'] = 1

@@ -15,10 +15,10 @@ import config
 reload(config)
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
 ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.2', 'mozilla-central',
-        'mozilla-2.0', 'mozilla-beta', 'mozilla-aurora', 'mozilla-release',
+        'mozilla-beta', 'mozilla-aurora', 'mozilla-release',
 ] + ACTIVE_PROJECT_BRANCHES
 ACTIVE_PROJECTS = PROJECTS.keys()
-ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.1', 'mozilla-2.0', 'mozilla-release',]
+ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.1', 'mozilla-release',]
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 
 # Set up our fast slaves
