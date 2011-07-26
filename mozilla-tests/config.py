@@ -1039,6 +1039,9 @@ BRANCHES['jaegermonkey']['platforms']['linux-android']['enable_opt_unittests'] =
 BRANCHES['jaegermonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['services-central']['platforms']['linux-android']['enable_opt_unittests'] = True
 BRANCHES['services-central']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
+for b in ('accessibility', 'build-system', 'private-browsing', 'alder', 'birch', 'cedar', 'holly', 'larch', 'maple'):
+    BRANCHES[b]['platforms']['linux-android']['enable_opt_unittests'] = True
+    BRANCHES[b]['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 if __name__ == "__main__":
     import sys, pprint, re
