@@ -1,19 +1,18 @@
 from twisted.trial import unittest
-from twisted.python import log
 
 import production_config as prod
 import staging_config as stag
 
 class SlaveCheck(unittest.TestCase):
-    def test_Win32_Prod_Try(self):
-        self.assertEqual(set(prod.WIN32_IXS) & set(prod.TRY_WIN32_IXS), set([]))
 
-    def test_Win64_Prod_Try(self):
-        self.assertEqual(set(prod.WIN64_IXS) & set(prod.TRY_WIN64_IXS), set([]))
+    def test_all_prod_vs_try(self):
+        prod_slaves = [x for k, s in prod.SLAVES.iteritems() for x in s]
+        try_slaves = [x for k, s in prod.TRY_SLAVES.iteritems() for x in s]
+        self.assertEqual(set(prod_slaves) & set(try_slaves), set([]))
 
-    def test_Linux32_Prod_Try(self):
-        self.assertEqual(set(prod.LINUX_IXS) & set(prod.TRY_LINUX_IXS), set([]))
-
-    def test_Linux64_Prod_Try(self):
-        self.assertEqual(set(prod.LINUX64_IXS) & set(prod.TRY_LINUX64_IXS), set([]))
-
+    def test_prod_is_subset_of_stag(self):
+        prod_slaves = [x for k, s in prod.SLAVES.iteritems() for x in s] + \
+            [x for k, s in prod.TRY_SLAVES.iteritems() for x in s]
+        stag_slaves = [x for k, s in stag.SLAVES.iteritems() for x in s] + \
+            [x for k, s in stag.TRY_SLAVES.iteritems() for x in s]
+        self.assertTrue(set(prod_slaves) <= set(stag_slaves))
