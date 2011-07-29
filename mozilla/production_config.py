@@ -1,6 +1,6 @@
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,10) + range(15,30) + range(40,57)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in [1,2,5,6,7] + range(9,10) + range(11,27) + range(29,68) + range(69,73)]
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,8,9,10,11,12,15,16,17,18,19,20,21,22,23,24]]
+XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,10) + range(11,17) + range(18,47)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
                  ['linux-ix-slave%02i' % x for x in range(12,43)] + \
@@ -8,7 +8,7 @@ LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,10) + range(11,13)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1] + range(6,10) + [11,20,26] + range(30,50)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,13)] + ['w32-ix-slave%02i' % x for x in range(1,2) + range(25,43)]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,12)] + ['w32-ix-slave%02i' % x for x in range(1,2) + range(25,43)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (10,12,17,19,20,21,22,23,24)]
 
 SLAVES = {
@@ -40,6 +40,7 @@ TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,37)] + \
                  ['win32-slave%02i' % x for x in range(50,60)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(12,19) + range(22,26)] + \
                  ['w32-ix-slave%02i' % x for x in range(2,25)]
+TRY_WIN64_IXS  = []
 TRY_SLAVES = {
     'linux':       TRY_LINUX + TRY_LINUX_IXS,
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
