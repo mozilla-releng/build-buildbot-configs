@@ -543,6 +543,38 @@ PLATFORM_UNITTEST_VARS = {
                          'testPaths': ['dom/tests/mochitest/dom-level2-core']
                         },
                     )),
+                    ('mochitest-5', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/ajax/mochikit',
+                                       'dom/tests/mochitest/ajax/scriptaculous',
+                                       'dom/tests/mochitest/ajax/jquery'],
+                        },
+                    )),
+                    ('mochitest-6', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['dom/tests/mochitest/dom-level2-html'],
+                        },
+                    )),
+                    ('mochitest-7', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['Harness_sanity',
+                                       'editor/composer/test',
+                                       'intl/uconv/tests',
+                                       'dom/tests/mochitest/orientation',
+                                       'dom/tests/mochitest/storageevent'],
+                        },
+                    )),
+                    ('mochitest-8', (
+                        {'suite': 'mochitest-plain',
+                         'testPaths': ['layout/xul/test',
+                                       'modules/libjar/test/mochitest',
+                                       'layout/inspector/tests',
+                                       'toolkit/xre/test',
+                                       'toolkit/components/microformats/tests',
+                                       'MochiKit-1.4.2/tests',
+                                       'parser/htmlparser/tests/mochitest'],
+                       },
+                    )),
                     ('browser-chrome', (
                         {'suite': 'mochitest-browser-chrome',
                          'testPaths': ['mobile']

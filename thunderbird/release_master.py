@@ -373,7 +373,7 @@ gloConfig = {
         'oldVersion'                 : '6.0b1',
         'oldAppVersion'              : '6.0',
         'oldBuildNumber'             : 1,
-        'oldRepoPath'                : 'releases/comm-miramar',
+        'oldRepoPath'                : 'releases/comm-beta',
         'oldBaseTag'                 : 'THUNDERBIRD_6_0b1',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
