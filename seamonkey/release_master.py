@@ -203,6 +203,9 @@ tag_factory = ReleaseTaggingFactory(
     clobberURL=branchConfig['base_clobber_url'],
 )
 
+if skip_tag:
+  tag_factory = dummy_factory
+
 builders.append({
     'name': 'tag',
     'slavenames': branchConfig['platforms']['linux']['slaves'],
