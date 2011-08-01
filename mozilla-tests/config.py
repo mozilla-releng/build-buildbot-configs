@@ -420,20 +420,6 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
             addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
                       suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
-PLATFORM_UNITTEST_JSREFTEST = [ ('jsreftest-1', (
-                                  {'suite': 'jsreftest',
-                                            'totalChunks': 2,
-                                            'thisChunk': 1,
-                                  },
-                                 )),
-                                ('jsreftest-2', (
-                                  {'suite': 'jsreftest',
-                                            'totalChunks': 2,
-                                            'thisChunk': 2,
-                                  },
-                                 )),
-                              ]
-
 # You must define opt_unittest_suites when enable_opt_unittests is True for a 
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -595,6 +581,18 @@ PLATFORM_UNITTEST_VARS = {
                     ('crashtest', (
                         {'suite': 'crashtest'},
                     )),
+                    ('jsreftest-1', (
+                        {'suite': 'jsreftest',
+                         'totalChunks': 2,
+                         'thisChunk': 1,
+                        },
+                    )),
+                    ('jsreftest-2', (
+                        {'suite': 'jsreftest',
+                         'totalChunks': 2,
+                         'thisChunk': 2,
+                        },
+                    )),
                 ]
             },
         },
@@ -730,7 +728,6 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('reftest-no-accel', ['opengl-no-accel'])]
 BRANCHES['mozilla-central']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
@@ -866,7 +863,6 @@ BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('reftest-no-accel', ['opengl-no-accel'])]
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 BRANCHES['try']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['try']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
@@ -897,22 +893,14 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # will enable old-style, on-buildslave opt unittests due to the same file
 # existing in both mozilla/ and mozilla-tests/.
 BRANCHES['tracemonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['tracemonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['mozilla-inbound']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['mozilla-inbound']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['electrolysis']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['electrolysis']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['fx-team']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['fx-team']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['ionmonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['ionmonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['jaegermonkey']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['jaegermonkey']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 BRANCHES['services-central']['platforms']['linux-android']['enable_opt_unittests'] = True
-BRANCHES['services-central']['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 for b in ('accessibility', 'build-system', 'private-browsing', 'alder', 'birch', 'cedar', 'holly', 'larch', 'maple'):
     BRANCHES[b]['platforms']['linux-android']['enable_opt_unittests'] = True
-    BRANCHES[b]['platforms']['linux-android']['tegra_android']['opt_unittest_suites'] += PLATFORM_UNITTEST_JSREFTEST
 
 if __name__ == "__main__":
     import sys, pprint, re
