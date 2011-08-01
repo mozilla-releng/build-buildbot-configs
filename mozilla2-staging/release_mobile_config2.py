@@ -1,1 +1,0 @@
-release-fennec-6.0.py

@@ -1,9 +1,0 @@
-SlavePasswords = {
-        'linux': 'pass',
-        'linux64': 'pass',
-        'win32': 'pass',
-        'macosx': 'pass',
-        'macosx64': 'pass',
-        }
-tuxedoUsername = 'user'
-tuxedoPassword = 'passwd'
