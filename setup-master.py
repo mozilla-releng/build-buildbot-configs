@@ -126,69 +126,6 @@ def load_masters_json(masters_json):
         retval.append(c)
     return retval
 
-mozilla2_staging = MasterConfig(
-        config_dir='mozilla2-staging',
-        globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ],
-        local_links=[],
-        )
-
-mozilla2_staging1 = mozilla2_staging + MasterConfig(
-        "staging-moz2_master",
-        local_links=[
-            ('master1.cfg', 'master.cfg'),
-            ('release_config1.py', 'release_config.py'),
-            ('release_mobile_config1.py', 'release_mobile_config.py'),
-            ],
-        )
-
-mozilla2_staging2 = mozilla2_staging + MasterConfig(
-        "staging-moz2_master2",
-        local_links=[
-            ('master2.cfg', 'master.cfg'),
-            ('release_config2.py', 'release_config.py'),
-            ('release_mobile_config2.py', 'release_mobile_config.py'),
-            ],
-        )
-
-mozilla2 = MasterConfig(
-        config_dir='mozilla2',
-        globs=['*.py', '*.cfg', '*.ini', 'l10n-changesets*'],
-        renames=[
-            ('BuildSlaves.py.template', 'BuildSlaves.py'),
-            ],
-        local_links=[],
-        )
-
-mozilla2_1 = mozilla2 + MasterConfig(
-        "pm-moz2_master",
-        local_links=[
-            ('master1.cfg', 'master.cfg'),
-            ('release_config1.py', 'release_config.py'),
-            ('release_mobile_config1.py', 'release_mobile_config.py'),
-            ],
-        )
-
-mozilla2_2 = mozilla2 + MasterConfig(
-        "pm02-moz2_master",
-        local_links=[
-            ('master2.cfg', 'master.cfg'),
-            ('release_config2.py', 'release_config.py'),
-            ('release_mobile_config2.py', 'release_mobile_config.py'),
-            ],
-        )
-
-mozilla2_3 = mozilla2 + MasterConfig(
-        "pm-2-moz2_master",
-        local_links=[
-            ('master3.cfg', 'master.cfg'),
-            ('release_config3.py', 'release_config.py'),
-            ('release_mobile_config3.py', 'release_mobile_config.py'),
-            ],
-        )
-
 debsign = MasterConfig(
         config_dir='debsign',
         globs=['*.py', '*.cfg'],
@@ -622,8 +559,6 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
 
 # Buildbot 0.7 masters
 masters_07 = [
-        mozilla2_staging1, mozilla2_staging2,
-        mozilla2_1, mozilla2_2, mozilla2_3,
         debsign_production, debsign_staging,
         mobile_production, mobile_staging,
         ]
