@@ -86,17 +86,6 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'enable_weekly_bundle': True,
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-tpan': 1,
-            'remote-tp4m': 1,
-            'remote-tp4m_nochrome': 1,
-            'remote-twinopen': 1,
-            'remote-tzoom': 1,
-        }
     },
     'places': {
         'platforms': {
@@ -110,13 +99,6 @@ PROJECT_BRANCHES = {
                 'build_space': 6,
             },
         },
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        }
     },
     'private-browsing': {
         'enable_talos': False,
@@ -126,13 +108,6 @@ PROJECT_BRANCHES = {
     'services-central': {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        },
     },
     'tracemonkey': {
         'repo_path': 'tracemonkey',
@@ -164,15 +139,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-tpan': 1,
-            'remote-tp4m': 1,
-            'remote-tp4m_nochrome': 1,
-            'remote-twinopen': 1,
-            'remote-tzoom': 1,
             'v8': 1,
         }
     },
@@ -208,46 +174,11 @@ PROJECT_BRANCHES = {
         },
     },
     #####  TWIGS aka RENTABLE BRANCHES
-    'alder': { 'talos_suites': {
-                                'remote-ts': 1,
-                                'remote-tdhtml': 1,
-                                'remote-tsvg': 1,
-                                'remote-tsspider': 1,
-                                'remote-twinopen': 1,
-                               },
-    },
-    'birch': { 'talos_suites': {
-                                'remote-ts': 1,
-                                'remote-tdhtml': 1,
-                                'remote-tsvg': 1,
-                                'remote-tsspider': 1,
-                                'remote-twinopen': 1,
-                               },
-    },
-    'cedar': { 'talos_suites': {
-                                'remote-ts': 1,
-                                'remote-tdhtml': 1,
-                                'remote-tsvg': 1,
-                                'remote-tsspider': 1,
-                                'remote-twinopen': 1,
-                               },
-    },
-    'holly': { 'talos_suites': {
-                                'remote-ts': 1,
-                                'remote-tdhtml': 1,
-                                'remote-tsvg': 1,
-                                'remote-tsspider': 1,
-                                'remote-twinopen': 1,
-                               },
-    },
-    'larch': { 'talos_suites': {
-                                'remote-ts': 1,
-                                'remote-tdhtml': 1,
-                                'remote-tsvg': 1,
-                                'remote-tsspider': 1,
-                                'remote-twinopen': 1,
-                               },
-    },
+    'alder': {},
+    'birch': {},
+    'cedar': {},
+    'holly': {},
+    'larch': {},
     # customizations while booked for bcp47 project as per bug 667734
     'maple': {
         'enable_talos': False,
