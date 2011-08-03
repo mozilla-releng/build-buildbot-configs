@@ -14,26 +14,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.19'
+releaseConfig['version']             = '3.6.20'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.19'
+releaseConfig['milestone']           = '1.9.2.20'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_3_6_19'
+releaseConfig['baseTag']             = 'FIREFOX_3_6_20'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.18'
+releaseConfig['oldVersion']          = '3.6.19'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 2
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_18'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_19'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.20pre'
-releaseConfig['nextMilestone']       = '1.9.2.20pre'
+releaseConfig['nextAppVersion']      = '3.6.21pre'
+releaseConfig['nextMilestone']       = '1.9.2.21pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': '0a1993a0c859',
-        'relbranch': 'GECKO19218_2011061302_RELBRANCH',
+        'revision': '48b6fb82a960',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = 'GECKO19218_2011061302_RELBRANCH'
+releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
