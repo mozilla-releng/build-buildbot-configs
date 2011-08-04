@@ -205,47 +205,47 @@ SUITES = {
         'options': (True, {}, ALL_PLATFORMS),
     },
     'remote-ts': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tdhtml': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsvg': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsspider': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tpan': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tp4m': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tp4m_nochrome': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-twinopen': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'twinopen'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tzoom': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
         'options': (True, TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
@@ -711,11 +711,6 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
     loadTalosSuites(BRANCHES, SUITES, branch)
 
-# Let's load mobile talos jobs for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release', ):
-    for suite in SUITES.keys():
-        if suite.startswith('remote-'):
-            BRANCHES[branch][suite + '_tests'] = (1,) + SUITES[suite]['options']
 
 # The following are exceptions to the defaults
 
