@@ -3,11 +3,11 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '1f6601981d32'
+sourceRepoRevision         = 'adc74b509b14'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
-mozillaRepoRevision        = 'FIREFOX_6_0b4_BUILD1'
-mozillaRelbranchOverride   = 'GECKO60_2011072907_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = 'f327eb465d32'
+mozillaRelbranchOverride   = 'SEAMONKEY_2_3b3_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'DOMI_2_0_10_RELEASE'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -31,22 +31,22 @@ mergeLocales               = True
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'
-skip_tag                   =  True
+skip_tag                   =  False
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.3b2'
+version                    = '2.3b3'
 usePrettyLongVer           = False
 appVersion                 = '2.3'
 milestone                  = '6.0'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_3b2'
-oldVersion                 = '2.3b1'
+baseTag                    = 'SEAMONKEY_2_3b3'
+oldVersion                 = '2.3b2'
 oldAppVersion              = 2.3
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_3b1'
+oldBaseTag                 = 'SEAMONKEY_2_3b2'
 oldRepoPath                = 'releases/comm-beta'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
