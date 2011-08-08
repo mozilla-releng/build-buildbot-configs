@@ -86,6 +86,17 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'enable_weekly_bundle': True,
+        'platforms': {
+            'linux64': {
+                'build_space': 7,
+            },
+            'linux': {
+                'build_space': 7,
+            },
+            'linuxqt': {
+                'build_space': 7,
+            },
+        },
     },
     'places': {
         'platforms': {
@@ -95,7 +106,7 @@ PROJECT_BRANCHES = {
             'linux': {
                 'build_space': 6,
             },
-            'linuxqt': { 
+            'linuxqt': {
                 'build_space': 6,
             },
         },
