@@ -894,7 +894,7 @@ PROJECTS = {
             'macosx-debug': PLATFORM_VARS['macosx-debug']['env'],
         },
         'hgurl': 'http://hg.mozilla.org',
-        'repo_path': 'tracemonkey',
+        'repo_path': 'integration/mozilla-inbound',
     },
 }
 
