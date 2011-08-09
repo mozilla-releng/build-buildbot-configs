@@ -97,6 +97,9 @@ PROJECT_BRANCHES = {
                 'build_space': 7,
             },
         },
+        'talos_suites': {
+            'v8': 1,
+        }
     },
     'places': {
         'platforms': {
