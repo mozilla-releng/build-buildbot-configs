@@ -17,6 +17,7 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
+    'stackwalk_cgi': 'http://stackwalker.pvt.build.mozilla.org/stackwalk.cgi',
 }
 
 # Local branch overrides
@@ -45,6 +46,7 @@ BRANCHES = {
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'mobile_tinderbox_tree': 'Mobile1.1',
+        'stackwalk_cgi': None,
     },
     'tracemonkey': {
         'tinderbox_tree': 'TraceMonkey',
