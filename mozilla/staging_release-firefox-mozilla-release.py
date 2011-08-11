@@ -14,19 +14,19 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '5.0.1'
-releaseConfig['appVersion']          = '5.0'
-releaseConfig['milestone']           = '5.0'
+releaseConfig['version']             = '6.0'
+releaseConfig['appVersion']          = '6.0'
+releaseConfig['milestone']           = '6.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_5_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_6_0'
 #  Old version info
-releaseConfig['oldVersion']          = '5.0'
+releaseConfig['oldVersion']          = '5.0.1'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_5_0'
+releaseConfig['oldBaseTag']          = 'FIREFOX_5_0_1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '5.0'
-releaseConfig['nextMilestone']       = '5.0'
+releaseConfig['nextAppVersion']      = '6.0'
+releaseConfig['nextMilestone']       = '6.0'
 #  Repository configuration, for tagging
 ## Staging repository path
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'

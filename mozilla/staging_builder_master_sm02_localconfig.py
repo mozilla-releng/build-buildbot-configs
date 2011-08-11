@@ -22,7 +22,8 @@ ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
 # No need to reload, this is reloaded by builder_master.cfg
 import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
-    '-ix-',
+    'linux-ix-',
+    'linux64-ix-',
     'xserve',
     ])
 ENABLE_RELEASES = True
