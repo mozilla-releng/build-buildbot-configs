@@ -1,122 +1,130 @@
 {
   "ar": {
-    "revision": "843cf67cdb62",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "947b8fcb5b3b",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "be": {
-    "revision": "736301901eff",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "c447be0dce3b",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "ca": {
-    "revision": "309bc859cd10",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "3a9aeea072df",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "cs": {
     "revision": "ef6cc0788dc3",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "da": {
     "revision": "a3209c5df728",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "de": {
-    "revision": "9b40f68c7242",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "1dcc423e8bbf",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "es-AR": {
-    "revision": "2d837e955079",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "47179b6870a1",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "es-ES": {
-    "revision": "e920eebb2b7c",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "73b16e588386",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "et": {
     "revision": "9b4801db9bd0",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "eu": {
     "revision": "845c3b4e59f4",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "fi": {
     "revision": "1f41e0baab56",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "fr": {
-    "revision": "b39fa6092c85",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "5503d1f6b2a2",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "fy-NL": {
     "revision": "ebae520dde15",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "gd": {
-    "revision": "b41a2f85f8e5",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "dfa7383493df",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "gl": {
     "revision": "b335a4de7bc9",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "id": {
+    "revision": "019bbd239f4e",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "it": {
     "revision": "4bc10a03d73d",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "ja": {
     "revision": "7e524e16cee1",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "ko": {
-    "revision": "fefc644791e5",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "02bcacb2b1f9",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "lt": {
-    "revision": "718ca0a9f9e5",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "50fec893da6e",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "nb-NO": {
-    "revision": "d9cf09572b10",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "98624b7968aa",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "nl": {
-    "revision": "8981443e305b",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "b04dda780024",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "pa-IN": {
     "revision": "644b3ff9b894",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "pl": {
+    "revision": "846d6cd8474b",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "pt-BR": {
     "revision": "ef14987c1456",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "pt-PT": {
     "revision": "914c628e88f8",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "ru": {
-    "revision": "4fdde4bf2149",
-    "platforms": ["maemo", "linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+    "revision": "f7ca44f9c4ab",
+    "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "sk": {
-    "revision": "d22237e20ff2",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "18bec9ee11df",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "sq": {
     "revision": "a4e305593340",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "uk": {
     "revision": "9ad629906365",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "zh-CN": {
     "revision": "fd1f256a863b",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
-    "revision": "940ff7953ec0",
-    "platforms": ["maemo", "linux", "macosx", "win32"]
+    "revision": "2ca175538940",
+    "platforms": ["linux", "macosx", "win32"]
   }
 }
