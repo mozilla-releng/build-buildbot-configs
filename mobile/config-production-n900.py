@@ -39,7 +39,7 @@ default_n900['slaves'] = SLAVES['n900']
 MASTER = {'name': 'production-mobile-master',
           'slave_port': 9010,
           'http_port': 8010,
-          'admin_emails': ['jhford@mozilla.com', 'aki@mozilla.com'],
+          'admin_emails': [],
 }
 
 BRANCHES = {
@@ -126,7 +126,7 @@ BRANCHES = {
     },
 }
 
-for i in ('browser-chrome', 'crashtest', 'reftest', 'xpcshell'):
+for i in ('browser-chrome', 'reftest'):
     if BRANCHES.has_key('tryserver'):
         if BRANCHES['tryserver']['platforms']['n900-gtk']['test_suites'].has_key(i):
             del BRANCHES['tryserver']['platforms']['n900-gtk']['test_suites'][i]

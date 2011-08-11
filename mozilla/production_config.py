@@ -203,6 +203,6 @@ PROJECTS = {
     'spidermonkey': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'tinderbox_tree': 'TraceMonkey',
+        'tinderbox_tree': 'Mozilla-Inbound',
     },
 }
