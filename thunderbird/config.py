@@ -476,6 +476,13 @@ BRANCHES['comm-beta'] = makeBuildConfig(
                                wantNightly   = False,
                                wantL10n      = False
                            )
+BRANCHES['comm-beta-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-beta',
+                               hgBranch      = 'releases/comm-beta',
+                               mozillaCentralBranch = 'releases/mozilla-beta',
+                               tinderboxTree = 'Thunderbird-Beta'
+                           )
 BRANCHES['comm-release'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-release',
@@ -486,14 +493,13 @@ BRANCHES['comm-release'] = makeBuildConfig(
                                wantNightly   = False,
                                wantL10n      = False
                            )
-BRANCHES['comm-beta-bloat'] = makeBuildConfig(
+BRANCHES['comm-release-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
-                               branchName    = 'comm-beta',
-                               hgBranch      = 'releases/comm-beta',
-                               mozillaCentralBranch = 'releases/mozilla-beta',
-                               tinderboxTree = 'Thunderbird-Beta'
+                               branchName    = 'comm-release',
+                               hgBranch      = 'releases/comm-release',
+                               mozillaCentralBranch = 'releases/mozilla-release',
+                               tinderboxTree = 'Thunderbird-Release'
                            )
-
 BRANCHES['comm-miramar'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-miramar',
