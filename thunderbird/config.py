@@ -359,7 +359,10 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         # Blocklist settings
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
-        bc['enable_blocklist_update'] = True
+        if branchName in ['comm-release']:
+            bc['enable_blocklist_update'] = False
+        else:
+            bc['enable_blocklist_update'] = True
         if branchName in ['comm-central', 'comm-1.9.2']:
             bc['blocklist_update_on_closed_tree'] = True
         else:
