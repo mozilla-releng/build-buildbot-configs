@@ -129,6 +129,8 @@ NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_pl
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms']
 
+MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
+
 ANDROID = PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
@@ -136,8 +138,18 @@ ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 SUITES = {
     'chrome': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts:tdhtml:twinopen:tsspider'],
-        'options': (True, {}, ALL_PLATFORMS),
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:tsspider'],
+        'options': (True, {}, NO_MAC),
+    },
+    'chrome_mac': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider'],
+        'options': (True, {}, MAC_ONLY),
+    },
+    'chrome_twinopen': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:twinopen:tsspider'],
+        'options': (True, {}, NO_MAC),
     },
     'nochrome': {
         'enable_by_default': True,
@@ -174,11 +186,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
         'options': (True, {}, ALL_PLATFORMS),
     },
-    'scroll': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
-        'options': (True, {}, ALL_PLATFORMS),
-    },
     'dromaeo': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
@@ -193,11 +200,6 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
         'options': (False, TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS),
-    },
-    'a11y': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'a11y'],
-        'options': (True, {}, NO_MAC),
     },
     'paint': {
         'enable_by_default': True,
@@ -259,6 +261,8 @@ OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
 OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms']
 
 OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
+
+OLD_BRANCH_MAC_ONLY = PLATFORMS['macosx']['slave_platforms'] 
 
 OLD_BRANCH_ADDON_TESTER_PLATFORMS = ['win7'] + ['fedora'] + ['snowleopard']
 
@@ -746,7 +750,9 @@ BRANCHES['shadow-central']['repo_path'] = "shadow-central"
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['mobile_branch_name'] = "Mobile1.1"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-1.9.2']['chrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['chrome_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.2']['chrome_twinopen_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.2']['chrome_mac_tests'] = (1, True, {}, OLD_BRANCH_MAC_ONLY)
 BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
