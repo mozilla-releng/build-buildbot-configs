@@ -19,8 +19,6 @@ GLOBAL_VARS = {
     'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
-    'stackwalk_cgi': 'http://stackwalker.pvt.build.mozilla.org/stackwalk.cgi',
-
 }
 
 BRANCHES = {
