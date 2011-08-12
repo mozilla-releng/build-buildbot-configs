@@ -93,7 +93,7 @@ gloConfig = {
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R14',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -328,15 +328,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
-        'sourceRepoRevision'         : 'f7d3f0828c66',
+        'sourceRepoRevision'         : '6950b43feb91',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM60_20110812_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-release',
-        'mozillaRepoRevision'        : 'b961763def47',
+        'mozillaRepoRevision'        : '218ed8178b1e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO60_2011080402_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO60_2011081114_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -370,16 +370,16 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '6.0',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'baseTag'                    : 'THUNDERBIRD_6_0',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '6.0b3',
-        'oldAppVersion'              : '6.0',
+        'oldVersion'                 : '5.0',
+        'oldAppVersion'              : '5.0',
         'oldBuildNumber'             : 1,
-        'oldRepoPath'                : 'releases/comm-release',
-        'oldBaseTag'                 : 'THUNDERBIRD_6_0b3',
+        'oldRepoPath'                : 'releases/comm-miramar',
+        'oldBaseTag'                 : 'THUNDERBIRD_5_0',
         'oldBinaryName'              : 'thunderbird',
-        'enable_weekly_bundle'       : True,
+        'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
