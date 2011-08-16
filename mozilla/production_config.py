@@ -152,6 +152,7 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
     },
     'try': {
+        'disable_tinderbox_mail': True,
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
         'packaged_unittest_tinderbox_tree': 'Try',
