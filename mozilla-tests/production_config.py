@@ -17,7 +17,6 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
-    'stackwalk_cgi': 'http://stackwalker.pvt.build.mozilla.org/stackwalk.cgi',
 }
 
 # Local branch overrides
@@ -69,6 +68,7 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'AddonTester',
     },
     'try': {
+        'disable_tinderbox_mail': True,
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
         'enable_mail_notifier': True,

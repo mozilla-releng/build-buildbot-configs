@@ -5,16 +5,17 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'accessibility',
         'enable_nightly': True,
         'enabled_products': ['firefox'],
-        # only want a11y so turn off the default set
+        # only want a11y which is run within the "chrome" suite
+        # turn other suites off
         'talos_suites': {
             'dirty': 0,
             'tp4': 0,
             'tp': 0,
-            'chrome': 0,
+            'chrome_twinopen': 0,
+            'chrome_mac': 0,
             'nochrome': 0,
             'dromaeo': 0,
             'svg': 0,
-            'scroll': 0,
             'paint': 0,
         },
         'add_test_suites': [

@@ -9,7 +9,7 @@ LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,10)
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_VMS      = ['win32-slave%02i' % x for x in [1] + range(6,10) + [11,20,26] + range(30,50)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16)] + ['w32-ix-slave%02i' % x for x in range(1,2) + range(25,43)]
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (10,12,17,19,20,21,22,23,24)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,43)]
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
@@ -152,6 +152,7 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
     },
     'try': {
+        'disable_tinderbox_mail': True,
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
         'packaged_unittest_tinderbox_tree': 'Try',
