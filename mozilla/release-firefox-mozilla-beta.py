@@ -14,25 +14,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '6.0b5'
-releaseConfig['appVersion']          = '6.0'
-releaseConfig['milestone']           = '6.0'
+releaseConfig['version']             = '7.0b1'
+releaseConfig['appVersion']          = '7.0'
+releaseConfig['milestone']           = '7.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_6_0b5'
+releaseConfig['baseTag']             = 'FIREFOX_7_0b1'
 #  Old version info
-releaseConfig['oldVersion']          = '6.0b4'
+releaseConfig['oldVersion']          = '6.0b5'
 releaseConfig['oldAppVersion']       = '6.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_6_0b4'
+releaseConfig['oldBaseTag']          = 'FIREFOX_6_0b5'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '6.0'
-releaseConfig['nextMilestone']       = '6.0'
+releaseConfig['nextAppVersion']      = '7.0'
+releaseConfig['nextMilestone']       = '7.0'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'a1e3e6a625ce',
+        'revision': '8786e3e49240',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
