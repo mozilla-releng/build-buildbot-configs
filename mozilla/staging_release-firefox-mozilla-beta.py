@@ -1,5 +1,6 @@
 releaseConfig = {}
 releaseConfig['skip_repo_setup']       = True
+releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
