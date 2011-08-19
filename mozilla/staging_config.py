@@ -50,6 +50,7 @@ GLOBAL_VARS = {
     'graph_server': 'graphs-stage.mozilla.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
+    'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
@@ -138,6 +139,7 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     'fuzzing': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'stage-ffxbld@dm-pvtbuild01.mozilla.org',
@@ -146,16 +148,19 @@ PROJECTS = {
         'idle_slaves': 0,
     },
     'nanojit': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
     'valgrind': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
     'spidermonkey': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',

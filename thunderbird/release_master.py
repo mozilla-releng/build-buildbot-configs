@@ -229,15 +229,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
-        'sourceRepoRevision'         : 'f7d3f0828c66',
+        'sourceRepoRevision'         : '2f199a87bf45',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : 'b961763def47',
+        'mozillaRepoRevision'        : '00f56713eab6',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO60_2011080402_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO70_2011081615_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -266,19 +266,19 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '6.0b3',
-        'appVersion'                 : '6.0', # no 'b1' suffix for betas
+        'version'                    : '7.0b1',
+        'appVersion'                 : '7.0', # no 'b1' suffix for betas
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '6.0',
+        'milestone'                  : '7.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_6_0b3',
+        'baseTag'                    : 'THUNDERBIRD_7_0b1',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '6.0b2',
+        'oldVersion'                 : '6.0b3',
         'oldAppVersion'              : '6.0',
         'oldBuildNumber'             : 1,
         'oldRepoPath'                : 'releases/comm-beta',
-        'oldBaseTag'                 : 'THUNDERBIRD_6_0b2',
+        'oldBaseTag'                 : 'THUNDERBIRD_6_0b3',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
