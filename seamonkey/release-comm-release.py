@@ -3,7 +3,7 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-release' # buildbot branch name
 sourceRepoPath             = 'releases/comm-release'
-sourceRepoRevision         = '5b6c91beb556'
+sourceRepoRevision         = 'e058afbc7361'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-release'
 mozillaRepoRevision        = '504b6b4cace0'
@@ -21,8 +21,8 @@ l10nRepoPath               = 'releases/l10n/mozilla-release'
 l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-release'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-#productVersionFile         = 'suite/config/version-20.txt'
-productVersionFile         = ''
+productVersionFile         = 'suite/config/version.txt'
+#productVersionFile         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,
@@ -37,16 +37,16 @@ skip_tag                   =  False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.3'
+version                    = '2.3.1'
 usePrettyLongVer           = False
-appVersion                 = '2.3'
+appVersion                 = '2.3.1'
 milestone                  = '6.0'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_3'
-oldVersion                 = '2.2'
-oldAppVersion              = 2.2
-oldBuildNumber             = 2
-oldBaseTag                 = 'SEAMONKEY_2_2'
+baseTag                    = 'SEAMONKEY_2_3_1'
+oldVersion                 = '2.3'
+oldAppVersion              = 2.3
+oldBuildNumber             = 1
+oldBaseTag                 = 'SEAMONKEY_2_3'
 oldRepoPath                = 'releases/comm-release'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
