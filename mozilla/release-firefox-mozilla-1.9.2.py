@@ -106,11 +106,11 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-release'
-releaseConfig['majorUpdateToVersion']   = '5.0.1'
+releaseConfig['majorUpdateToVersion']   = '6.0'
 releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
 releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0_1'
-releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/5.0/details/'
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_6_0'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%LOCALE%/firefox/latest/details/from-3.6.html'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
