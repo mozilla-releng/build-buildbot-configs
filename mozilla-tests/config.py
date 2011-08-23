@@ -125,6 +125,8 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['win64']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
 
+WIN7_ONLY = ['win7']
+
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms']
@@ -205,6 +207,11 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint:tpaint', '--setPref', 'dom.send_after_paint_to_content=true'],
         'options': (True, {}, ALL_PLATFORMS),
+    },
+    'xperf': {
+        'enable_by_default': False,
+        'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', 'c:/perftools/xperf.exe'],
+        'options': (True, {}, WIN7_ONLY),
     },
     'remote-ts': {
         'enable_by_default': True,
@@ -727,6 +734,7 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('reftest-no-accel', ['opengl-no-accel'])]
 BRANCHES['mozilla-central']['platforms']['linux-android']['enable_opt_unittests'] = True
+BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
