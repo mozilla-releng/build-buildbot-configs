@@ -18,6 +18,11 @@ PROJECT_BRANCHES = {
             'svg': 0,
             'paint': 0,
         },
+        'platforms': {
+            'win64': {
+                'dont_build': True,
+            },
+        },
         'add_test_suites': [
             ('macosx64', 'snowleopard', 'opt', 'mochitest-other', 'mochitest-a11y'),
             ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'mochitest-a11y'),
@@ -41,6 +46,9 @@ PROJECT_BRANCHES = {
             },
             'linux-android': {
                 'tegra_android': {},
+            },
+            'win64': {
+                'dont_build': True,
             },
         },
     },
@@ -81,6 +89,11 @@ PROJECT_BRANCHES = {
             'remote-tsspider': 1,
             'remote-twinopen': 1,
         },
+        'platforms': {
+            'win64': {
+                'dont_build': True,
+            },
+        },
     },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
@@ -96,6 +109,9 @@ PROJECT_BRANCHES = {
             },
             'linuxqt': {
                 'build_space': 7,
+            },
+            'win64': {
+                'dont_build': True,
             },
         },
         'talos_suites': {
@@ -150,6 +166,9 @@ PROJECT_BRANCHES = {
             'linux64-debug': {
                 'enable_valgrind_checktests': True,
             },
+            'win64': {
+                'dont_build': True,
+            },
         },
         'create_snippet': True,
         'create_partial': True,
@@ -184,6 +203,9 @@ PROJECT_BRANCHES = {
                 'dont_build': True,
             },
             'win32-debug': {
+                'dont_build': True,
+            },
+            'win64': {
                 'dont_build': True,
             },
         },
