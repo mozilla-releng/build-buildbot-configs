@@ -63,6 +63,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-3.1',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : False,
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
@@ -156,6 +157,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-5.0',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-50.txt',
         'productName'                : 'thunderbird',
@@ -254,6 +256,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-beta',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
@@ -353,6 +356,7 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-release',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
@@ -515,6 +519,7 @@ for gloKey in gloConfig:
     partnersRepoPath           = gloConfig[gloKey]['partnersRepoPath']
     packageTests               = gloConfig[gloKey]['packageTests']
     unittestMasters            = gloConfig[gloKey]['unittestMasters']
+    mergeLocales               = gloConfig[gloKey]['mergeLocales']
 
     branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
@@ -868,6 +873,7 @@ for gloKey in gloConfig:
                 version=version,
                 buildNumber=buildNumber,
                 clobberURL=branchConfig['base_clobber_url'],
+                mergeLocales=mergeLocales,
             )
 
             builders.append({
