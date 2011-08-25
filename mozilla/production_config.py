@@ -36,15 +36,13 @@ TRY_MAC.remove('try-mac-slave35') # Bug 650297
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,32)] + \
                  ['moz2-darwin10-slave%02i' % x for x in range(11,15)]
-TRY_WIN32      = ['try-w32-slave%02i' % x for x in range(1,5) + range(6,37)] + \
-                 ['win32-slave%02i' % x for x in range(50,60)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)] + \
                  ['w32-ix-slave%02i' % x for x in range(2,25)]
 TRY_WIN64_IXS  = []
 TRY_SLAVES = {
     'linux':       TRY_LINUX + TRY_LINUX_IXS,
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
-    'win32':       TRY_WIN32 + TRY_WIN32_IXS,
+    'win32':       TRY_WIN32_IXS,
     'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
 }

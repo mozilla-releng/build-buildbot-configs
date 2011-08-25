@@ -45,6 +45,8 @@ PROJECT_BRANCHES = {
                 'slave_platforms': ['snowleopard'],
             },
             'linux-android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
                 'tegra_android': {},
             },
             'win64': {
