@@ -7,7 +7,7 @@ from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 import localconfig
 reload(localconfig)
 from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
-                        LINUX_IXS, WIN32_VMS, WIN32_IXS, SLAVES, \
+                        LINUX_IXS, WIN32_IXS, SLAVES, \
                         TRY_SLAVES
 
 GLOBAL_VARS = {

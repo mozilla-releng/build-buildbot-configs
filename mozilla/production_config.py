@@ -7,14 +7,13 @@ LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
                  ['linux-ix-slave%02i' % x for x in (1,2,6)] # added for bug 638309
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,7) + range(8,10) + range(11,13)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
-WIN32_VMS      = ['win32-slave%02i' % x for x in [1] + range(6,10) + [11,20,26] + range(30,50)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16)] + ['w32-ix-slave%02i' % x for x in range(1,2) + range(25,43)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,43)]
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
     'linux64':          LINUX64_VMS + LINUX64_IXS,
-    'win32':            WIN32_VMS + WIN32_IXS,
+    'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
     'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
@@ -22,7 +21,7 @@ SLAVES = {
     'linux-maemo5-gtk': LINUX_VMS + LINUX_IXS,
     'linux-mobile':     LINUX_VMS + LINUX_IXS,
     'macosx-mobile':    MAC_MINIS + XSERVES,
-    'win32-mobile':     WIN32_VMS + WIN32_IXS,
+    'win32-mobile':     WIN32_IXS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \
