@@ -210,7 +210,7 @@ SUITES = {
     },
     'xperf': {
         'enable_by_default': False,
-        'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', 'c:/perftools/xperf.exe'],
+        'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"'],
         'options': (True, {}, WIN7_ONLY),
     },
     'remote-ts': {
