@@ -29,7 +29,7 @@ PROJECT_BRANCHES = {
         ]
     },
     'build-system': {
-        'enable_talos': False,
+        'enable_talos': True,
     },
     'devtools':{
         'enable_nightly': True,
