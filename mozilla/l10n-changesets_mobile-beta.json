@@ -1,50 +1,110 @@
 {
+  "af": {
+    "revision": "3d29fa262ebc",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ak": {
+    "revision": "96c5d8e27148",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "ar": {
-    "revision": "d91486ab36d6",
+    "revision": "0b2496104022",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ast": {
+    "revision": "d08e5f781c42",
     "platforms": ["linux", "macosx", "win32"]
   },
   "be": {
     "revision": "a30a17a738b9",
     "platforms": ["linux", "macosx", "win32"]
   },
+  "bg": {
+    "revision": "e88241245ae7",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "bn-BD": {
+    "revision": "d51849b5a7f4",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "bn-IN": {
+    "revision": "12ec945213d5",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "br": {
+    "revision": "951cd9e9b82c",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "bs": {
+    "revision": "a24ef9f0171a",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "ca": {
-    "revision": "0c14d5e0512c",
+    "revision": "7800b21abbee",
     "platforms": ["linux", "macosx", "win32"]
   },
   "cs": {
     "revision": "ed4054b915cf",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
+  "cy": {
+    "revision": "2598caf03819",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "da": {
     "revision": "a3209c5df728",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "de": {
-    "revision": "1dcc423e8bbf",
+    "revision": "80b2107805af",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "el": {
-    "revision": "a3201c390bda",
+    "revision": "3fafaf4ad964",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "en-GB": {
+    "revision": "0f13aa1d3481",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "en-ZA": {
+    "revision": "d3ec85484a3c",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "eo": {
+    "revision": "cdc2b623a613",
     "platforms": ["linux", "macosx", "win32"]
   },
   "es-AR": {
-    "revision": "77c7eebecefa",
+    "revision": "fc700f4da954",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "es-CL": {
+    "revision": "cf4dc5e38048",
     "platforms": ["linux", "macosx", "win32"]
   },
   "es-ES": {
-    "revision": "1790017cf1d0",
+    "revision": "13cbcc260ae3",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
+  "es-MX": {
+    "revision": "0b8258d13867",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "et": {
-    "revision": "b7ac48108d04",
+    "revision": "434a4281c55a",
     "platforms": ["linux", "macosx", "win32"]
   },
   "eu": {
-    "revision": "6d00b6e55cb3",
+    "revision": "67191bbba350",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "fa": {
+    "revision": "45455a1593c4",
     "platforms": ["linux", "macosx", "win32"]
   },
   "fi": {
-    "revision": "ad1d6b430b4a",
+    "revision": "e63d3ac79053",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "fr": {
@@ -52,23 +112,51 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "fy-NL": {
-    "revision": "f52ef82759fb",
+    "revision": "43deffc8361b",
     "platforms": ["linux", "macosx", "win32"]
   },
   "ga-IE": {
-    "revision": "342519a88130",
+    "revision": "2ac20115341c",
     "platforms": ["linux", "macosx", "win32"]
   },
   "gd": {
-    "revision": "cd97ea4739be",
+    "revision": "9e34f81d4024",
     "platforms": ["linux", "macosx", "win32"]
   },
   "gl": {
-    "revision": "b335a4de7bc9",
+    "revision": "05e16604fe42",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "gu-IN": {
+    "revision": "035017692fdc",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "he": {
+    "revision": "f4abed024c63",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "hi-IN": {
+    "revision": "7094c49eaa95",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "hr": {
+    "revision": "c0f797a3f190",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "hu": {
+    "revision": "fa0ef67cb7c8",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "hy-AM": {
+    "revision": "d444772e589d",
     "platforms": ["linux", "macosx", "win32"]
   },
   "id": {
-    "revision": "6318eeecf950",
+    "revision": "eedcedd7b97f",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "is": {
+    "revision": "8770482f1325",
     "platforms": ["linux", "macosx", "win32"]
   },
   "it": {
@@ -76,63 +164,179 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "ja": {
-    "revision": "d494288ef5e8",
+    "revision": "6fc70c361906",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+  },
+  "ja-JP-mac": {
+    "revision": "591c79f38753",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "kk": {
+    "revision": "a9f99f0e1ab5",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "kn": {
+    "revision": "376894a79f49",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "ko": {
     "revision": "11ca69697166",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ku": {
+    "revision": "661c8de1dad2",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "lg": {
+    "revision": "7db398208124",
     "platforms": ["linux", "macosx", "win32"]
   },
   "lt": {
     "revision": "f591490f4046",
     "platforms": ["linux", "macosx", "win32"]
   },
+  "lv": {
+    "revision": "cc3f68d77539",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "mai": {
+    "revision": "940b7218fc28",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "mk": {
+    "revision": "a907515574f7",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ml": {
+    "revision": "f4558bbbb865",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "mn": {
+    "revision": "937dd0d06aa0",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "mr": {
+    "revision": "3e2dc794a6af",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "nb-NO": {
-    "revision": "98624b7968aa",
+    "revision": "585700c0ca1e",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "nl": {
     "revision": "8f42d008cbfc",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
+  "nn-NO": {
+    "revision": "9df5d3d248c4",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "nso": {
+    "revision": "1a18441cd5fb",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "or": {
+    "revision": "53cbbabd4f05",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "pa-IN": {
-    "revision": "644b3ff9b894",
+    "revision": "7c31e55480de",
     "platforms": ["linux", "macosx", "win32"]
   },
   "pl": {
-    "revision": "bfa5d85de4da",
+    "revision": "f940382d92d5",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
   "pt-BR": {
-    "revision": "663014aa18c6",
+    "revision": "db5939f20830",
     "platforms": ["linux", "macosx", "win32"]
   },
   "pt-PT": {
-    "revision": "8d04bb00828b",
+    "revision": "29b4397d3179",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
   },
+  "rm": {
+    "revision": "247be67ac2ee",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ro": {
+    "revision": "6eae23bf0720",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "ru": {
-    "revision": "2ad98192a6f7",
+    "revision": "73e9abf18b03",
     "platforms": ["linux", "macosx", "win32", "android-multilocale", "maemo-multilocale"]
+  },
+  "si": {
+    "revision": "35365a993c49",
+    "platforms": ["linux", "macosx", "win32"]
   },
   "sk": {
     "revision": "f00105af6e59",
     "platforms": ["linux", "macosx", "win32"]
   },
+  "sl": {
+    "revision": "051cdfc6f8f8",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "son": {
+    "revision": "0ae0cdd47c9a",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "sq": {
-    "revision": "a4e305593340",
+    "revision": "9706b39b0403",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "sr": {
+    "revision": "16c856a2c61f",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "sv-SE": {
+    "revision": "f197c6c4bb5c",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "sw": {
+    "revision": "64e6885c0420",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ta": {
+    "revision": "4474ddf4d0b3",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "ta-LK": {
+    "revision": "7798abf04622",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "te": {
+    "revision": "82775c0a45f7",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "th": {
+    "revision": "a303b7098231",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "tr": {
+    "revision": "d94e239bb2d4",
     "platforms": ["linux", "macosx", "win32"]
   },
   "uk": {
     "revision": "8941fc7d43d4",
     "platforms": ["linux", "macosx", "win32"]
   },
+  "vi": {
+    "revision": "b322bfce7d6c",
+    "platforms": ["linux", "macosx", "win32"]
+  },
   "zh-CN": {
-    "revision": "c96ed5e46228",
+    "revision": "ea668b687fa0",
     "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
     "revision": "8ffce08c2e4e",
+    "platforms": ["linux", "macosx", "win32"]
+  },
+  "zu": {
+    "revision": "c67f3761c1f9",
     "platforms": ["linux", "macosx", "win32"]
   }
 }
