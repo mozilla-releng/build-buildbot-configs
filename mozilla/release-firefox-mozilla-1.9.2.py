@@ -14,26 +14,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.20'
+releaseConfig['version']             = '3.6.21'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.20'
+releaseConfig['milestone']           = '1.9.2.21'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_3_6_20'
+releaseConfig['baseTag']             = 'FIREFOX_3_6_21'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.19'
+releaseConfig['oldVersion']          = '3.6.20'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_19'
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_20'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.21pre'
-releaseConfig['nextMilestone']       = '1.9.2.21pre'
+releaseConfig['nextAppVersion']      = '3.6.22pre'
+releaseConfig['nextMilestone']       = '1.9.2.22pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': '48b6fb82a960',
-        'relbranch': None,
+        'revision': '064d4408b160',
+        'relbranch': 'GECKO19220_2011080310_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRelbranch']       = 'GECKO19220_2011080310_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
@@ -106,10 +106,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-release'
-releaseConfig['majorUpdateToVersion']   = '6.0'
+releaseConfig['majorUpdateToVersion']   = '5.0.1'
 releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
 releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_6_0'
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_5_0_1'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/latest/details/from-3.6.html'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
