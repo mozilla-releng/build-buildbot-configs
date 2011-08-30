@@ -142,42 +142,6 @@ PROJECT_BRANCHES = {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
     },
-    'tracemonkey': {
-        'repo_path': 'tracemonkey',
-        'mozconfig_dir': 'tracemonkey',
-        'branch_name': 'TraceMonkey',
-        'mobile_branch_name': 'TraceMonkey',
-        'build_branch': 'TraceMonkey',
-        'start_hour': [3],
-        'start_minute': [32],
-        'enable_nightly': True,
-        'enable_shark': True,
-        'platforms': {
-            'linux64': {
-                'build_space': 7,
-            },
-            'linux': {
-                'build_space': 7,
-            },
-            'linuxqt': {
-                'build_space': 7,
-            },
-            'linux-debug': {
-                'enable_valgrind_checktests': True,
-            },
-            'linux64-debug': {
-                'enable_valgrind_checktests': True,
-            },
-            'win64': {
-                'dont_build': True,
-            },
-        },
-        'create_snippet': True,
-        'create_partial': True,
-        'talos_suites': {
-            'v8': 1,
-        }
-    },
     'ux': {
         'branch_name': 'UX',
         'mobile_branch_name': 'UX',

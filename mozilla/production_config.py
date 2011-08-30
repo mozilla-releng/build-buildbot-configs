@@ -124,11 +124,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Aurora',
         'mobile_tinderbox_tree': 'Mozilla-Aurora',
     },
-    'tracemonkey': {
-        'tinderbox_tree': 'TraceMonkey',
-        'mobile_tinderbox_tree': 'TraceMonkey',
-        'packaged_unittest_tinderbox_tree': 'TraceMonkey',
-    },
     'places': {
         'tinderbox_tree': 'Places',
         'mobile_tinderbox_tree': 'Places',

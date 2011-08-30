@@ -50,10 +50,6 @@ BRANCHES = {
         'tinderbox_tree': 'Firefox3.6',
         'mobile_tinderbox_tree': 'Mobile1.1',
     },
-    'tracemonkey': {
-        'tinderbox_tree': 'TraceMonkey',
-        'mobile_tinderbox_tree': 'TraceMonkey',
-    },
     'places': {
         'tinderbox_tree': 'Places',
         'mobile_tinderbox_tree': 'Places',

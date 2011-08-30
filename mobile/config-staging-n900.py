@@ -75,23 +75,6 @@ BRANCHES = {
 #            'n900-gtk': try_platform(default_n900, 'mobile-try')
 #        },
 #    },
-#    'tracemonkey': {
-#        'tinderbox_tree': 'MobileTest',
-#        'graph_server': 'graphs-stage.mozilla.org',
-#        'tree_stable_timer': 0,
-#        'platforms': {
-#            'n900-gtk': generate_platform(default_n900,
-#                build_branch='tracemonkey-maemo5-gtk',
-#                talos_branch='mobile-tracemonkey',
-#                nightly_unit=True, dep_unit=False,
-#                nightly_talos=True, dep_talos=True),
-#            'n900-qt': generate_platform(default_n900,
-#                build_branch='tracemonkey-maemo5-qt',
-#                talos_branch='mobile-tracemonkey-qt',
-#                nightly_unit=False, dep_unit=False,
-#                nightly_talos=True, dep_talos=False),
-#        },
-#    },
 #    'electrolysis': {
 #        'tinderbox_tree': 'MobileTest',
 #        'graph_server': 'graphs-stage.mozilla.org',
