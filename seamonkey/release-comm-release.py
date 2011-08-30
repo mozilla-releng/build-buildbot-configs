@@ -3,10 +3,10 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'COMM'
 sourceRepoName             = 'comm-release' # buildbot branch name
 sourceRepoPath             = 'releases/comm-release'
-sourceRepoRevision         = 'e058afbc7361'
-relbranchOverride          = ''
+sourceRepoRevision         = '22450ee15399'
+relbranchOverride          = 'COMM60_20110820_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-release'
-mozillaRepoRevision        = '504b6b4cace0'
+mozillaRepoRevision        = 'TBD' # !!!! LAND CHEMSPILL PATCH ON RELBRANCH !!!!
 mozillaRelbranchOverride   = 'SEAMONKEY_2_3_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'DOMI_2_0_10_RELEASE'
@@ -37,16 +37,16 @@ skip_tag                   =  False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.3.1'
+version                    = '2.3.2'
 usePrettyLongVer           = False
-appVersion                 = '2.3.1'
-milestone                  = '6.0'
+appVersion                 = '2.3.2'
+milestone                  = '6.0.1'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_3_1'
-oldVersion                 = '2.3'
-oldAppVersion              = 2.3
+baseTag                    = 'SEAMONKEY_2_3_2'
+oldVersion                 = '2.3.1'
+oldAppVersion              = 2.3.1
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_3'
+oldBaseTag                 = 'SEAMONKEY_2_3_1'
 oldRepoPath                = 'releases/comm-release'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
