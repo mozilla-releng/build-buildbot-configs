@@ -905,6 +905,7 @@ PROJECTS = {
         'job_interval': 24*3600, # Once a day
         'linux': {'env': PLATFORM_VARS['linux']['env']},
         'linux64': {'env': PLATFORM_VARS['linux64']['env']},
+        'repo_path': 'mozilla-central',
     },
     'spidermonkey': {
         'platforms': {
