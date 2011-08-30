@@ -21,8 +21,8 @@ l10nRepoPath               = 'releases/l10n/mozilla-release'
 l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-release'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-productVersionFile         = 'suite/config/version.txt'
-#productVersionFile         = ''
+#productVersionFile         = 'suite/config/version.txt'
+productVersionFile         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,
