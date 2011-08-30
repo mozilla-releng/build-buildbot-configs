@@ -1,6 +1,6 @@
 hgUsername                 = 'seabld'
 hgSshKey                   = '~seabld/.ssh/seabld_dsa'
-relbranchPrefix            = 'COMM'
+relbranchPrefix            = 'SEA_COMM'
 sourceRepoName             = 'comm-release' # buildbot branch name
 sourceRepoPath             = 'releases/comm-release'
 sourceRepoRevision         = '22450ee15399'
