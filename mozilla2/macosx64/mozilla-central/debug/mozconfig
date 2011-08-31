@@ -1,4 +1,6 @@
-ac_add_options --disable-optimize
+
+# needed because of bug 680277
+ac_add_options --enable-profiling
 ac_add_options --enable-debug
 ac_add_options --enable-libxul
 
