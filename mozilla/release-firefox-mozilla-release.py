@@ -14,25 +14,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '6.0.1'
-releaseConfig['appVersion']          = '6.0.1'
-releaseConfig['milestone']           = '6.0.1'
+releaseConfig['version']             = '6.0.2'
+releaseConfig['appVersion']          = '6.0.2'
+releaseConfig['milestone']           = '6.0.2'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_6_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_6_0_2'
 #  Old version info
-releaseConfig['oldVersion']          = '6.0'
+releaseConfig['oldVersion']          = '6.0.1'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_6_0'
+releaseConfig['oldBaseTag']          = 'FIREFOX_6_0_1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '6.0.1'
-releaseConfig['nextMilestone']       = '6.0.1'
+releaseConfig['nextAppVersion']      = '6.0.2'
+releaseConfig['nextMilestone']       = '6.0.2'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '791d19e33b2a',
+        'revision': '80716c319d2a',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -93,7 +93,7 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 1
+releaseConfig['useBetaChannel']      = 0
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
     'linux64':  'mozRelease-firefox-linux64.cfg',
