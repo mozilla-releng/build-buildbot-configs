@@ -65,6 +65,10 @@ ac_add_options --enable-debug-symbols="-gdwarf-2"
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
+# Run client.py
+mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hg-options='--time --verbose'"
+mk_add_options ALWAYS_RUN_CLIENT_PY=1
+
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi

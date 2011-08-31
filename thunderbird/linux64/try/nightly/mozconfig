@@ -37,6 +37,10 @@ mk_add_options PROFILE_GEN_SCRIPT=@TOPSRCDIR@/build/profile_pageloader.pl
 CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
 mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
 
+# Run client.py
+mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hg-options='--time --verbose'"
+mk_add_options ALWAYS_RUN_CLIENT_PY=1
+
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi
