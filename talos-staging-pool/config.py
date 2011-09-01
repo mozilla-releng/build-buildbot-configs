@@ -45,7 +45,6 @@ BRANCHES = {
     'mozilla-2.0': {},
     'mozilla-1.9.2': {},
     'mozilla-1.9.1': {},
-    'tracemonkey': {},
     'places': {},
     'electrolysis': {},
     'tryserver': {},
@@ -423,26 +422,6 @@ BRANCHES['addontester']['v8_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['scroll_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
 BRANCHES['addontester']['a11y_tests'] = (0, True, {}, NO_MAC)
-
-######## tracemonkey
-BRANCHES['tracemonkey']['branch_name'] = "TraceMonkey"
-BRANCHES['tracemonkey']['build_branch'] = "TraceMonkey"
-BRANCHES['tracemonkey']['tinderbox_tree'] = "MozillaTest"
-BRANCHES['tracemonkey']['repo_path'] = "tracemonkey"
-BRANCHES['tracemonkey']['talos_command'] = TALOS_CMD
-BRANCHES['tracemonkey']['fetch_symbols'] = True
-BRANCHES['tracemonkey']['support_url_base'] = 'http://build.mozilla.org/talos'
-BRANCHES['tracemonkey']['chrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['cold_tests'] = (0, True, {}, NO_WIN)
-BRANCHES['tracemonkey']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['v8_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['scroll_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['addon_tests'] = (0, False, TALOS_ADDON_OPTS, ALL_PLATFORMS)
-BRANCHES['tracemonkey']['a11y_tests'] = (1, True, {}, NO_MAC)
 
 ######## places
 BRANCHES['places']['branch_name'] = "Places"

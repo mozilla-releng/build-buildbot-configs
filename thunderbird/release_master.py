@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '92da70e0e300',
+        'sourceRepoRevision'         : '3963221bcfdf',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19220_20110804_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : 'fec2e8213a9d',
+        'mozillaRepoRevision'        : 'ffe5c11b4bf2',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -76,18 +76,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.12',
+        'version'                    : '3.1.14',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.20',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_1_12',
+        'baseTag'                    : 'THUNDERBIRD_3_1_14',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.11',
+        'oldVersion'                 : '3.1.13',
         #'oldAppVersion'              : oldVersion,
-        'oldBuildNumber'             : 2,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_11',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_13',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
@@ -231,15 +231,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
-        'sourceRepoRevision'         : '2f199a87bf45',
+        'sourceRepoRevision'         : 'b1112e39c4b1',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : '00f56713eab6',
+        'mozillaRepoRevision'        : 'b5e046b12fa5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO70_2011081615_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO70_2011083111_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -269,19 +269,19 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '7.0b1',
+        'version'                    : '7.0b2',
         'appVersion'                 : '7.0', # no 'b1' suffix for betas
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '7.0',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_7_0b1',
+        'baseTag'                    : 'THUNDERBIRD_7_0b2',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '6.0b3',
-        'oldAppVersion'              : '6.0',
+        'oldVersion'                 : '7.0b1',
+        'oldAppVersion'              : '7.0',
         'oldBuildNumber'             : 1,
         'oldRepoPath'                : 'releases/comm-beta',
-        'oldBaseTag'                 : 'THUNDERBIRD_6_0b3',
+        'oldBaseTag'                 : 'THUNDERBIRD_7_0b1',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
@@ -331,15 +331,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
-        'sourceRepoRevision'         : '6950b43feb91',
+        'sourceRepoRevision'         : '32e35ce70be7',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM60_20110812_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-release',
-        'mozillaRepoRevision'        : '218ed8178b1e',
+        'mozillaRepoRevision'        : '344ad0250728',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO60_2011081114_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO602_2011083109_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -369,19 +369,19 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '6.0',
-        'appVersion'                 : '6.0', # no 'b1' suffix for betas
+        'version'                    : '6.0.2',
+        'appVersion'                 : '6.0.2', # no 'b1' suffix for betas
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '6.0',
-        'buildNumber'                : 2,
-        'baseTag'                    : 'THUNDERBIRD_6_0',
+        'milestone'                  : '6.0.2',
+        'buildNumber'                : 1,
+        'baseTag'                    : 'THUNDERBIRD_6_0_2',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '5.0',
-        'oldAppVersion'              : '5.0',
+        'oldVersion'                 : '6.0.1',
+        'oldAppVersion'              : '6.0.1',
         'oldBuildNumber'             : 1,
-        'oldRepoPath'                : 'releases/comm-miramar',
-        'oldBaseTag'                 : 'THUNDERBIRD_5_0',
+        'oldRepoPath'                : 'releases/comm-release',
+        'oldBaseTag'                 : 'THUNDERBIRD_6_0_1',
         'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
