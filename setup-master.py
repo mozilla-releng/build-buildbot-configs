@@ -190,8 +190,7 @@ mozilla_staging = mozilla_base + MasterConfig(
     globs=['staging_release-*-*.py'],
     local_links=[('staging_release-firefox-mozilla-%s.py' % v,
                   'release-firefox-mozilla-%s.py' % v)
-                 for v in ['1.9.2', 'central', 'beta',
-                           'release']] + \
+                 for v in ['1.9.2', 'beta', 'release']] + \
                 [('staging_release-fennec-mozilla-%s.py' % v,
                   'release-fennec-mozilla-%s.py' % v)
                  for v in ['beta', 'release']]
