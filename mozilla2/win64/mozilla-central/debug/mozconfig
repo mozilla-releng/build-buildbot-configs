@@ -3,9 +3,7 @@ ac_add_options --host=x86_64-pc-mingw32
 
 ac_add_options --enable-application=browser
 ac_add_options --enable-jemalloc
-
-# needed because of bug 680277
-ac_add_options --enable-profiling
+ac_add_options --disable-optimize
 ac_add_options --enable-debug
 ac_add_options --enable-libxul
 ac_add_options --enable-trace-malloc
