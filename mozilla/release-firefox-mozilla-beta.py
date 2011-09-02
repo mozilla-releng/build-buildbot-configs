@@ -17,7 +17,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '7.0b4'
 releaseConfig['appVersion']          = '7.0'
 releaseConfig['milestone']           = '7.0'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_7_0b4'
 #  Old version info
 releaseConfig['oldVersion']          = '7.0b3'
@@ -32,8 +32,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '6791db28b82f',
-        'relbranch': None,
+        'revision': 'ff20a21364bb',
+        'relbranch': 'GECKO70_2011083111_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
