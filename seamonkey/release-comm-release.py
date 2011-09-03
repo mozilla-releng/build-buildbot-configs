@@ -3,11 +3,11 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'SEA_COMM'
 sourceRepoName             = 'comm-release' # buildbot branch name
 sourceRepoPath             = 'releases/comm-release'
-sourceRepoRevision         = '22450ee15399'
+sourceRepoRevision         = '8ca0f604e932'
 relbranchOverride          = 'COMM60_20110820_RELBRANCH'
 mozillaRepoPath            = 'releases/mozilla-release'
-mozillaRepoRevision        = '6176fcd0daf8'
-mozillaRelbranchOverride   = 'SEAMONKEY_2_3_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = '7a4871571868'
+mozillaRelbranchOverride   = 'SEAMONKEY_2_3_3_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'DOMI_2_0_10_RELEASE'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -21,8 +21,8 @@ l10nRepoPath               = 'releases/l10n/mozilla-release'
 l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-release'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-#productVersionFile         = 'suite/config/version.txt'
-productVersionFile         = ''
+productVersionFile         = 'suite/config/version.txt'
+#productVersionFile         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,
@@ -31,22 +31,22 @@ mergeLocales               = True
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'
-skip_tag                   = True
+skip_tag                   = False
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.3.2'
+version                    = '2.3.3'
 usePrettyLongVer           = False
-appVersion                 = '2.3.2'
-milestone                  = '6.0.1'
+appVersion                 = '2.3.3'
+milestone                  = '6.0.2'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_3_2'
-oldVersion                 = '2.3.1'
-oldAppVersion              = '2.3.1'
+baseTag                    = 'SEAMONKEY_2_3_3'
+oldVersion                 = '2.3.2'
+oldAppVersion              = '2.3.1' # Because of Version mistake last time
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_3_1'
+oldBaseTag                 = 'SEAMONKEY_2_3_2'
 oldRepoPath                = 'releases/comm-release'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
