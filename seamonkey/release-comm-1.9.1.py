@@ -72,9 +72,9 @@ majorUpdatePatcherConfig  = 'moz191-seamonkey-branch-major-patcher2.cfg'
 majorUpdateVerifyConfigs   = {'linux':  'moz191-seamonkey-linux-major.cfg',
                               'macosx': 'moz191-seamonkey-mac-major.cfg',
                               'win32':  'moz191-seamonkey-win32-major.cfg'}
-majorUpdateToVersion       = '2.3.1'
-majorUpdateAppVersion      = '2.3.1'
-majorUpdateBaseTag         = 'SEAMONKEY_2_3_1'
+majorUpdateToVersion       = '2.3.3'
+majorUpdateAppVersion      = '2.3.3'
+majorUpdateBaseTag         = 'SEAMONKEY_2_3_3'
 majorUpdateBuildNumber     = 1
 majorUpdateReleaseNotesUrl = 'https://www.mozilla.org/start/unsupported/%locale%/index.html'
 
