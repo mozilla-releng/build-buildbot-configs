@@ -10,5 +10,5 @@ ac_add_options --disable-installer
 ac_add_options --disable-tests
 
 . $topsrcdir/configs/mozilla2/win32/include/vista-sdk-mozconfig
-. $topsrcdir/configs/mozilla2/win32/include/choose-make-flags
+mk_add_options MOZ_MAKE_FLAGS=-j1
 

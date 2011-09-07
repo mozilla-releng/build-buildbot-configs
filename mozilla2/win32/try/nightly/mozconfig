@@ -14,7 +14,7 @@ export MOZ_DEBUG_SYMBOLS=1
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
 
-. $topsrcdir/configs/mozilla2/win32/include/choose-make-flags
+mk_add_options MOZ_MAKE_FLAGS=-j1
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi
