@@ -445,6 +445,7 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : \
                     UNITTEST_SUITES['opt_unittest_suites'][:] + \
                     [('reftest-ipc', ['reftest-ipc'])] + \
+                    [('reftest-no-accel', ['opengl-no-accel'])] + \
                     [('crashtest-ipc', ['crashtest-ipc'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
                 'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
@@ -754,7 +755,6 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-central']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('reftest-no-accel', ['opengl-no-accel'])]
 BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
@@ -804,7 +804,6 @@ BRANCHES['addonbaselinetester']['enable_unittests'] = False
 
 ######## try
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
-BRANCHES['try']['platforms']['linux']['fedora']['opt_unittest_suites'] += [('reftest-no-accel', ['opengl-no-accel'])]
 BRANCHES['try']['platforms']['linux-android']['enable_debug_unittests'] = True
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
