@@ -1,5 +1,7 @@
 %(releaseName)s: failed at %(stage)s on %(platform)s
 %(stage)s failed for %(releaseName)s on %(platform)s
 
+Status: %(job_status_repr)s
+
 %(buildbot_url)s
 -buildbot
