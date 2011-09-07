@@ -311,7 +311,7 @@ for platform in l10nPlatforms:
 
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
+        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx64']['slaves'],
         'category': 'release',
         'builddir': '%s_l10n_verification' % platform,
         'factory': l10n_verification_factory

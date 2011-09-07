@@ -1,12 +1,12 @@
 hgUsername                 = 'calbld'
 hgSshKey                   = '~calbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'COMM'
-sourceRepoName             = 'comm-miramar-lightning' # buildbot branch name
-sourceRepoPath             = 'releases/comm-miramar'
+sourceRepoName             = 'comm-aurora-lightning' # buildbot branch name
+sourceRepoPath             = 'releases/comm-aurora'
 sourceRepoRevision         = '653d6c77512a'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = 'COMM50_20110620_RELBRANCH'
-mozillaRepoPath            = 'releases/mozilla-miramar'
+mozillaRepoPath            = 'releases/mozilla-aurora'
 mozillaRepoRevision        = '9dcd813b2fc8'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
@@ -23,7 +23,7 @@ venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
-l10nRepoPath               = 'releases/l10n-miramar'
+l10nRepoPath               = 'releases/l10n/mozilla-aurora'
 l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
@@ -49,7 +49,7 @@ oldVersion                 = '1.0b2'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 2
 oldBaseTag                 = ''
-releasePlatforms           = ('linux', 'win32', 'macosx')
+releasePlatforms           = ()
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R11'
 ftpServer                  = 'ftp.mozilla.org'
