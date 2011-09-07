@@ -63,7 +63,6 @@ GLOBAL_VARS = {
     # and sendchange retry count before give up
     'talos_masters': [
         ('buildbot-master10.build.mozilla.org:9301', True, 5),
-        ('talos-master.mozilla.org:9010', True, 5),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
@@ -173,6 +172,9 @@ BRANCHES = {
 }
 
 PLATFORM_VARS = {
+    'macosx': {
+        'talos_masters': GLOBAL_VARS['talos_masters'] + [('talos-master.mozilla.org:9010', True, 5)]
+    }
 }
 
 PROJECTS = {
