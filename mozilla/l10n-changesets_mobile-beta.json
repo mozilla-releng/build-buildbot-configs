@@ -28,7 +28,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "es-AR": {
-    "revision": "77c7eebecefa",
+    "revision": "62f87d2952f4",
     "platforms": ["linux", "macosx", "win32"]
   },
   "es-ES": {
