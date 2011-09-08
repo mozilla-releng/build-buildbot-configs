@@ -27,3 +27,5 @@ buildbotcustom.misc.fastRegexes.extend([
     ])
 ENABLE_RELEASES = True
 RESERVED_SLAVES = None
+
+QUEUEDIR = "/dev/shm/queue"

@@ -18,3 +18,5 @@ ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_BRANCHES = ['addontester', 'addonbaselinetester']
 ACTIVE_PROJECTS = [] #PROJECTS.keys()
 ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
+
+QUEUEDIR = "/dev/shm/queue"

@@ -10,3 +10,5 @@ if 'ssh_port' in master_config:
     c['manhole'] = manhole.PasswordManhole(
             "tcp:%(ssh_port)i:interface=127.0.0.1" % master_config,
             "cltbld", "password")
+
+QUEUEDIR = "/dev/shm/queue"
