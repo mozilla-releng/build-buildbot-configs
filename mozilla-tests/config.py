@@ -8,7 +8,7 @@ from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 import localconfig
 reload(localconfig)
-from localconfig import SLAVES, GLOBAL_VARS, GRAPH_CONFIG
+from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
 REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-beta':    'org.mozilla.firefox_beta',
@@ -116,6 +116,10 @@ PLATFORMS['linux-android']['stage_platform'] = 'android'
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform.split('-')[0]])
+        if slave_platform in TRY_SLAVES:
+            platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform.split('-')[0]])
+        else:
+            platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 MOBILE_PLATFORMS = PLATFORMS['linux-android']['slave_platforms']
 
