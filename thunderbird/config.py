@@ -388,7 +388,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['milestone'] = branchName
         bc['mozconfig'] = 'nightly'
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        if branchName in ['comm-1.9.2','comm-miramar']:
+        if branchName in ['comm-1.9.2']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
         if branchName not in ['comm-central', 'comm-1.9.2']:
@@ -503,23 +503,6 @@ BRANCHES['comm-release-bloat'] = makeBuildConfig(
                                mozillaCentralBranch = 'releases/mozilla-release',
                                tinderboxTree = 'Thunderbird-Release'
                            )
-BRANCHES['comm-miramar'] = makeBuildConfig(
-                               builderType   = 'nightly',
-                               branchName    = 'comm-miramar',
-                               hgBranch      = 'releases/comm-miramar',
-                               mozillaCentralBranch = 'releases/mozilla-miramar',
-                               tinderboxTree = 'Miramar',
-                               allLocalesFile = 'all-locales.comm-miramar',
-                               wantNightly   = False,
-                           )
-BRANCHES['comm-miramar-bloat'] = makeBuildConfig(
-                               builderType   = 'bloat',
-                               branchName    = 'comm-miramar',
-                               hgBranch      = 'releases/comm-miramar',
-                               mozillaCentralBranch = 'releases/mozilla-miramar',
-                               tinderboxTree = 'Miramar'
-                           )
-
 BRANCHES['comm-aurora'] = makeBuildConfig(
                                builderType   = 'nightly',
                                branchName    = 'comm-aurora',
