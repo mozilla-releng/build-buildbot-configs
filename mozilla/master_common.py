@@ -82,23 +82,3 @@ def prioritizeBuilders(botmaster, builders):
     log.msg("Sorted %i builders in %.2fs" % (len(builders), time.time() - s))
     return builders
 c['prioritizeBuilders'] = prioritizeBuilders
-
-import passwords
-reload(passwords)
-if hasattr(passwords, 'PULSE_PASSWORD'):
-    # Send pulse messages
-    import re
-    import buildbotcustom.status.pulse
-    reload(buildbotcustom.status.pulse)
-    from buildbotcustom.status.pulse import PulseStatus
-    from mozillapulse.publishers import GenericPublisher
-    from mozillapulse.config import PulseConfiguration
-    c['status'].append(PulseStatus(
-        GenericPublisher(PulseConfiguration(
-            user=passwords.PULSE_USERNAME,
-            password=passwords.PULSE_PASSWORD,
-            ),
-            exchange=passwords.PULSE_EXCHANGE),
-        ignoreBuilders=[re.compile('.*shadow-central.*'), re.compile('fuzzer-.*')],
-        send_logs=False,
-        ))

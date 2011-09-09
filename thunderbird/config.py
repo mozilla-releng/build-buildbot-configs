@@ -359,7 +359,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         # Blocklist settings
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
-        if branchName in ['comm-release']:
+        if branchName in ['comm-release', 'comm-central-tested']:
             bc['enable_blocklist_update'] = False
         else:
             bc['enable_blocklist_update'] = True
@@ -377,10 +377,15 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
              '--hg-options=--verbose --time',
              '--skip-venkman',
              '--skip-chatzilla']
+        if 'comm-central-tested' in branchName:
+            bc['client_py_extra_args'] += ['--known-good']
         bc['codesighs'] = True
         bc['create_snippet'] = True
         bc['factory'] = 'CCNightlyBuildFactory'
-        bc['l10n_nightly_updates'] = True
+        if branchName in ['comm-central-tested']:
+            bc['l10n_nightly_updates'] = False
+        else:
+            bc['l10n_nightly_updates'] = True
         if branchName == 'comm-1.9.2':
             bc['l10n_tree'] = 'tb31x'
         else:
@@ -391,7 +396,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         if branchName in ['comm-1.9.2']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
-        if branchName not in ['comm-central', 'comm-1.9.2']:
+        if branchName not in ['comm-central', 'comm-central-tested', 'comm-1.9.2']:
             bc['period'] = 50400
         bc['upload_stage'] = True
         if branchName != 'comm-1.9.2':
@@ -415,6 +420,8 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
              '--hg-options=--verbose --time',
              '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaCentralBranch]
         bc['client_py_extra_args'] = ['--skip-venkman', '--skip-chatzilla']
+        if 'comm-central-tested' in branchName:
+            bc['client_py_extra_args'] += ['--known-good']
         bc['codesighs'] = False
         bc['create_snippet'] = False
         bc['factory'] = 'CCNightlyBuildFactory'
@@ -431,7 +438,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         bc['upload_stage'] = True
         bc['platforms'] = {}
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
-            if platformName == 'macosx64' and bc['hg_branch'] != 'comm-central':
+            if platformName == 'macosx64' and bc['hg_branch'] not in ['comm-central', 'comm-central-tested']:
                 continue
             if platformName in ['linux64', 'macosx64'] and \
                branchName == 'comm-1.9.2':
@@ -537,6 +544,24 @@ BRANCHES['comm-central-bloat'] = makeBuildConfig(
                                hgBranch      = 'comm-central',
                                mozillaCentralBranch = 'mozilla-central',
                                tinderboxTree = 'ThunderbirdTrunk'
+                           )
+
+BRANCHES['comm-central-tested'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-central-tested',
+                               hgBranch      = 'comm-central',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTested',
+                               wantNightly   = False,
+                               wantL10n      = False
+                           )
+BRANCHES['comm-central-tested-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-central-tested',
+                               hgBranch      = 'comm-central',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTested',
+                               wantL10n      = False
                            )
 
 BRANCHES['comm-1.9.2'] = makeBuildConfig(

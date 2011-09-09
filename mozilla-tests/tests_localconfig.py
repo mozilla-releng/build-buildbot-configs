@@ -26,3 +26,5 @@ if 'limit_platforms' in master_config:
 else:
     ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
+
+QUEUEDIR = "/dev/shm/queue"

@@ -16,3 +16,5 @@ from config import BRANCHES, PROJECTS
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_PLATFORMS = {'linux64': None, 'win64': None, 'macosx64': None, 'linux-android': None}
 ACTIVE_PROJECTS = PROJECTS.keys()
+
+QUEUEDIR = "/dev/shm/queue"
