@@ -126,7 +126,6 @@ MOBILE_PLATFORMS = PLATFORMS['linux-android']['slave_platforms']
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['win64']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
 
 WIN7_ONLY = ['win7']
@@ -484,7 +483,7 @@ PLATFORM_UNITTEST_VARS = {
         'win64': {
             'builds_before_reboot': 1,
             'download_symbols': False,
-            'enable_opt_unittests': True,
+            'enable_opt_unittests': False,
             # We can't yet run unit tests on debug builds - see bug 562459
             'enable_debug_unittests': False,
             'w764': {
@@ -759,6 +758,19 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
+# Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
+# XXX hacking warning - this code could get out of date easily
+BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
+for suite in SUITES.keys():
+    options = SUITES[suite]['options']
+    if options[1] == ALL_PLATFORMS:
+        options = (options[0], ALL_PLATFORMS + PLATFORMS['win64']['slave_platforms'])
+    if not SUITES[suite]['enable_by_default']:
+        # Suites that are turned off by default
+        BRANCHES['mozilla-central'][suite + '_tests'] = (0, True) + options
+    else:
+        # Suites that are turned on by default
+        BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
