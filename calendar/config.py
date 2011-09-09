@@ -111,7 +111,8 @@ BRANCHES['comm-beta']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-beta']['period'] = 60 * 60 * 10
 BRANCHES['comm-beta']['nightly_hour'] = [0]
 BRANCHES['comm-beta']['nightly'] = False
-BRANCHES['comm-beta']['package'] = True
+# Lightning doesn't need to package Thunderbird
+BRANCHES['comm-beta']['package'] = False
 BRANCHES['comm-beta']['upload_stage'] = True
 BRANCHES['comm-beta']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
@@ -232,7 +233,8 @@ BRANCHES['comm-aurora']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', 
 BRANCHES['comm-aurora']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-aurora']['period'] = 60 * 60 * 10
 BRANCHES['comm-aurora']['nightly_hour'] = [0]
-BRANCHES['comm-aurora']['package'] = True
+# Lightning doesn't need to package Thunderbird
+BRANCHES['comm-aurora']['package'] = False
 BRANCHES['comm-aurora']['upload_stage'] = True
 BRANCHES['comm-aurora']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
@@ -353,7 +355,8 @@ BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla',
 BRANCHES['comm-central']['mozconfig'] = 'mozconfig-lightning'
 # Period for comm-central disabled in master.cfg
 BRANCHES['comm-central']['period'] = 60 * 60 * 10
-BRANCHES['comm-central']['package'] = True
+# Lightning doesn't need to package Thunderbird
+BRANCHES['comm-central']['package'] = False
 BRANCHES['comm-central']['upload_stage'] = True
 BRANCHES['comm-central']['upload_complete_mar'] = False
 #Might be better off per-platform instead of per-branch here.
