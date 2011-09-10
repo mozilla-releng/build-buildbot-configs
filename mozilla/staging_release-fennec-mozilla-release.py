@@ -105,10 +105,20 @@ releaseConfig['partnerRepackPlatforms'] = ('linux-maemo5-gtk',)
 releaseConfig['enable_repo_setup']       = False
 
 releaseConfig['mozharness_config'] = {
-    'linux-android':
-    'multi_locale/staging_release_mozilla-release_linux-android.json',
-    'linux-maemo5-gtk':
-    'multi_locale/staging_release_mozilla-release_linux-maemo5-gtk.json',
+    'platforms': {
+        'linux-android':
+            'multi_locale/staging_release_mozilla-release_linux-android.json',
+        'linux-maemo5-gtk':
+            'multi_locale/staging_release_mozilla-release_linux-maemo5-gtk.json',
+    },
+    'multilocaleOptions': [
+        '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
+        '--user-repo-override=users/stage-ffxbld',
+        '--only-pull-build-source',
+        '--only-pull-locale-source',
+        '--only-add-locales',
+        '--only-package-multi',
+    ]
 }
 releaseConfig['usePrettyNames']           = False
 releaseConfig['disableBouncerEntries']    = True

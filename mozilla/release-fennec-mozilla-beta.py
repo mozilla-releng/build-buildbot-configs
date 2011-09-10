@@ -110,8 +110,17 @@ releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
 releaseConfig['mozharness_config'] = {
-    'linux-android':
-    'multi_locale/release_mozilla-beta_linux-android.json',
-    'linux-maemo5-gtk':
-    'multi_locale/release_mozilla-beta_linux-maemo5-gtk.json',
+    'platforms': {
+        'linux-android':
+            'multi_locale/release_mozilla-beta_linux-android.json',
+        'linux-maemo5-gtk':
+            'multi_locale/release_mozilla-beta_linux-maemo5-gtk.json',
+    },
+    'multilocaleOptions': [
+        '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
+        '--only-pull-build-source',
+        '--only-pull-locale-source',
+        '--only-add-locales',
+        '--only-package-multi',
+    ]
 }
