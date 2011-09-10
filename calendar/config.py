@@ -24,7 +24,7 @@ ORGANIZATION = 'community'
 
 BUILDERS = {
     'linux': {
-        'community': [ 'cb-sb-linux-tbox' ],
+        'community': [ 'cb-sb-linux-tbox', 'momo-vm-cal-linux-01' ],
     },
     'linux64': {
         'momo': ['momo-vm-cal-linux64-01'],
