@@ -60,5 +60,6 @@ useBetaChannel             = 1
 #l10nPlatforms              = ('linux', 'win32', 'macosx')
 l10nPlatforms              = ()
 verifyConfigs              = {'linux':  'moz19-calendar-linux.cfg',
-                              'macosx': 'moz19-calendar-mac.cfg',
+                              'linux64': 'moz19-calendar-linux.cfg',
+                              'macosx64': 'moz19-calendar-mac.cfg',
                               'win32':  'moz19-calendar-win32.cfg'}

@@ -51,7 +51,8 @@ class BaseExtensionRepackFactory(BaseRepackFactory):
                          '--nightly-dir=%s/nightly' % self.extensionName,
                          '--buildid %(buildid)s',
                          '--release-to-latest',
-                         '--release-to-dated']
+                         '--release-to-dated',
+                         '--no-shortdir']
 
         self.postUploadCmd = WithProperties(' '.join(postUploadCmd))
         
