@@ -49,7 +49,7 @@ DEFAULTS = {
     'stage_base_path':        '/home/ftp/pub/mozilla.org/calendar',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
     'l10n_repo':              'releases/l10n/mozilla-aurora',
-    'add_poll_branches':      [ 'dom-inspector' ],
+    'add_poll_branches':      [ ],
     'period':                 60 * 60 * 8,
     'nightly_hour':           [3],
     'nightly_minute':         [0],

@@ -1,4 +1,5 @@
 ac_add_options --enable-application=mail
+ac_add_options --enable-calendar
 ac_add_options --enable-update-channel=nightly
 ac_add_options --enable-update-packaging
 ac_add_options --disable-debug
@@ -13,3 +14,4 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+

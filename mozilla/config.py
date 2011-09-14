@@ -157,7 +157,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux/%(branch)s/qt',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/qt',
             'xr_mozconfig': 'linux/%(branch)s/xulrunner-qt',
-            'src_xulrunner_mozconfig': 'browser/config/mozconfigs/linux32/xulrunner-qt',
+            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux32/xulrunner-qt',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 6,
