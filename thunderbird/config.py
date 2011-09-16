@@ -40,7 +40,7 @@ DEFAULTS = {
     'codesighs':               False,
     'mozmill':                 False,
     'product_name':           'Thunderbird',
-    'brand_name':             'Shredder',
+    'brand_name':             'Daily',
     'app_name':			'thunderbird',
     'build_space':             10,
     'l10n_nightly_updates':    False,

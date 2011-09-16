@@ -132,7 +132,9 @@ WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
-NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms'] + PLATFORMS['win32']['slave_platforms'] + PLATFORMS['win64']['slave_platforms']
+NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
+         PLATFORMS['linux64']['slave_platforms'] + \
+         PLATFORMS['win32']['slave_platforms']
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
@@ -765,6 +767,8 @@ for suite in SUITES.keys():
     options = SUITES[suite]['options']
     if options[1] == ALL_PLATFORMS:
         options = (options[0], ALL_PLATFORMS + PLATFORMS['win64']['slave_platforms'])
+    if options[1] == NO_MAC:
+        options = (options[0], NO_MAC + PLATFORMS['win64']['slave_platforms'])
     if not SUITES[suite]['enable_by_default']:
         # Suites that are turned off by default
         BRANCHES['mozilla-central'][suite + '_tests'] = (0, True) + options
@@ -820,6 +824,7 @@ BRANCHES['addonbaselinetester']['enable_unittests'] = False
 
 ######## try
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['platforms']['linux-android']['enable_debug_unittests'] = True
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
