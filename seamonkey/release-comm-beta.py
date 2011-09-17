@@ -3,11 +3,11 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'SEA_COMM'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = 'fe74f461b4b8'
+sourceRepoRevision         = 'b7ed5fe0f2b7'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
-mozillaRepoRevision        = 'FIREFOX_7_0b5_BUILD1'
-mozillaRelbranchOverride   = 'GECKO70_2011090812_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = 'FIREFOX_7_0b6_BUILD1'
+mozillaRelbranchOverride   = 'GECKO70_2011091608_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'DOMI_2_0_10_RELEASE'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -31,22 +31,22 @@ mergeLocales               = True
 productName                = 'seamonkey'
 brandName                  = 'SeaMonkey'
 appName                    = 'suite'
-skip_tag                   =  True
+skip_tag                   =  False
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.4b2'
+version                    = '2.4b3'
 usePrettyLongVer           = False
 appVersion                 = '2.4'
 milestone                  = '7.0'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_4b2'
-oldVersion                 = '2.4b1'
+baseTag                    = 'SEAMONKEY_2_4b3'
+oldVersion                 = '2.4b2'
 oldAppVersion              = '2.4'
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_4b1'
+oldBaseTag                 = 'SEAMONKEY_2_4b2'
 oldRepoPath                = 'releases/comm-beta'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
