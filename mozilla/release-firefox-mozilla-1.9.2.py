@@ -14,26 +14,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.22'
+releaseConfig['version']             = '3.6.23'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.22'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_3_6_22'
+releaseConfig['milestone']           = '1.9.2.23'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_3_6_23'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.21'
+releaseConfig['oldVersion']          = '3.6.22'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_21'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_22'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.23pre'
-releaseConfig['nextMilestone']       = '1.9.2.23pre'
+releaseConfig['nextAppVersion']      = '3.6.24pre'
+releaseConfig['nextMilestone']       = '1.9.2.24pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': '463dbdc80866',
-        'relbranch': 'GECKO19220_2011080310_RELBRANCH',
+        'revision': '398ffaf81015',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = 'GECKO19220_2011080310_RELBRANCH'
+releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
