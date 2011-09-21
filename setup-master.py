@@ -617,17 +617,19 @@ if __name__ == "__main__":
     parser.set_defaults(action=None, masters_json=None)
     parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
     parser.add_option("-7", action="store_true", dest="buildbot07", default=False)
+    parser.add_option("-8", action="store_true", dest="buildbot08", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
-    parser.add_option("-j", "--masters-json", dest="masters_json")
+    parser.add_option("-j", "--masters-json", dest="masters_json", \
+        default="http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
 
     options, args = parser.parse_args()
 
-    if options.masters_json:
-        master_list = load_masters_json(options.masters_json)
+    if options.buildbot08:
+        master_list = masters_08
     elif options.buildbot07:
         master_list = masters_07
     else:
-        master_list = masters_08
+        master_list = load_masters_json(options.masters_json)
 
     # Make sure we don't have duplicate names
     master_map = dict((m.name, m) for m in master_list)

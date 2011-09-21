@@ -22,7 +22,7 @@ INSTALL_BUILDBOT_SLAVE=
 ifdef MASTERS_JSON
 SETUP_MASTER=setup-master.py -j $(MASTERS_JSON)
 else
-SETUP_MASTER=setup-master.py
+SETUP_MASTER=setup-master.py -8
 endif
 
 all: virtualenv deps install-buildbot master master-makefile other-files done
