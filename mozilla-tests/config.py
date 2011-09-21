@@ -185,7 +185,7 @@ SUITES = {
     },
     'v8': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'v8', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'v8'],
         'options': ({}, ALL_PLATFORMS),
     },
     'svg': {
@@ -288,11 +288,6 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
-    },
-    'old_v8': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'v8'],
-        'options': ({}, ALL_PLATFORMS),
     },
 }
 
