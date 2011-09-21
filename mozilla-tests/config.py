@@ -25,8 +25,8 @@ TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxD
 TALOS_TP_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
 TALOS_TP4_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp4.zip']}
 
-TALOS_ADDON_OPTS = {'addonTester' : True, 'releaseTester' : True, 'plugins': 'zips/plugins.zip'}
-TALOS_BASELINE_ADDON_OPTS = {'releaseTester' : True, 'plugins': 'zips/plugins.zip'}
+TALOS_ADDON_OPTS = {'addonTester' : True, 'releaseTester' : True}
+TALOS_BASELINE_ADDON_OPTS = {'releaseTester' : True}
 
 TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
                              'remoteTests':  True,
