@@ -78,7 +78,8 @@ for platform in releasePlatforms:
 
     )
     schedulers.append(build_scheduler)
-    schedulers.append(repack_scheduler)
+    # No repack schedulers for now, everything is done in the en-US builder.
+    # schedulers.append(repack_scheduler)
 
 for platform in l10nPlatforms:
     l10n_verify_scheduler = Scheduler(
@@ -242,7 +243,7 @@ for platform in releasePlatforms:
         stageBasePath=nightly_config.BRANCHES[sourceRepoName]['stage_base_path'],
         codesighs=False,
         uploadPackages=True,
-        uploadSymbols=False,
+        uploadSymbols=True,
         createSnippet=False,
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
@@ -290,13 +291,14 @@ for platform in releasePlatforms:
         clobberURL=nightly_config.DEFAULTS['clobber_url']
     )
 
-    builders.append({
-        'name': '%s_repack' % platform,
-        'slavenames': pf['slaves'],
-        'category': 'release',
-        'builddir': '%s_repack' % platform,
-        'factory': repack_factory
-    })
+    # Don't want repack builders at this time.
+    #builders.append({
+    #    'name': '%s_repack' % platform,
+    #    'slavenames': pf['slaves'],
+    #    'category': 'release',
+    #    'builddir': '%s_repack' % platform,
+    #    'factory': repack_factory
+    #})
 
 
 for platform in l10nPlatforms:

@@ -24,7 +24,7 @@ ORGANIZATION = 'community'
 
 BUILDERS = {
     'linux': {
-        'community': [ 'cb-sb-linux-tbox', 'momo-vm-cal-linux-01' ],
+        'community': [ 'momo-vm-cal-linux-01' ],
     },
     'linux64': {
         'momo': ['momo-vm-cal-linux64-01'],
@@ -158,10 +158,10 @@ BRANCHES['comm-beta']['platforms']['linux64']['update_platform'] = 'Linux_x86_64
 BRANCHES['comm-beta']['platforms']['macosx64']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-beta']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-beta']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-beta']['platforms']['linux64']['upload_symbols'] = True
-BRANCHES['comm-beta']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['comm-beta']['platforms']['macosx64']['upload_symbols'] = False
+BRANCHES['comm-beta']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['comm-beta']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-beta']['tinderbox_tree'] = 'Calendar1.0'
 BRANCHES['comm-beta']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
@@ -183,7 +183,7 @@ BRANCHES['comm-beta']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-beta']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -280,10 +280,10 @@ BRANCHES['comm-aurora']['platforms']['linux64']['update_platform'] = 'Linux_x86_
 BRANCHES['comm-aurora']['platforms']['macosx64']['update_platform'] = 'Darwin_Universal-gcc3'
 # If True, 'make buildsymbols' and 'make uploadsymbols' will be run
 # SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-aurora']['platforms']['linux']['upload_symbols'] = False
+BRANCHES['comm-aurora']['platforms']['linux']['upload_symbols'] = True
 BRANCHES['comm-aurora']['platforms']['linux64']['upload_symbols'] = True
-BRANCHES['comm-aurora']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['comm-aurora']['platforms']['macosx64']['upload_symbols'] = False
+BRANCHES['comm-aurora']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['comm-aurora']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-aurora']['tinderbox_tree'] = 'Calendar1.0'
 BRANCHES['comm-aurora']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-aurora']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
@@ -305,7 +305,7 @@ BRANCHES['comm-aurora']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -428,7 +428,7 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/home/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
