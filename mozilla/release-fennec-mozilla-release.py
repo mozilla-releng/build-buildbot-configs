@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
         'revision': 'e5566280b79d',
-        'relbranch': '',
+        'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {
                 'version': releaseConfig['appVersion'],
