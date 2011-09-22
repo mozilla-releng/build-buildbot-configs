@@ -14,26 +14,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '6.0.2'
-releaseConfig['appVersion']          = '6.0.2'
-releaseConfig['milestone']           = '6.0.2'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_6_0_2'
+releaseConfig['version']             = '7.0'
+releaseConfig['appVersion']          = '7.0'
+releaseConfig['milestone']           = '7.0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_7_0'
 #  Old version info
-releaseConfig['oldVersion']          = '6.0.1'
+releaseConfig['oldVersion']          = '6.0.2'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_6_0_1'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FIREFOX_6_0_2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '6.0.2'
-releaseConfig['nextMilestone']       = '6.0.2'
+releaseConfig['nextAppVersion']      = '7.0'
+releaseConfig['nextMilestone']       = '7.0'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '5b6c2f8ff6da',
-        'relbranch': 'GECKO602_2011083109_RELBRANCH',
+        'revision': 'e5566280b79d',
+        'relbranch': '',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -93,7 +93,7 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 0
+releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
     'linux64':  'mozRelease-firefox-linux64.cfg',
