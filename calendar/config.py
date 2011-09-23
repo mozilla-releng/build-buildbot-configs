@@ -88,9 +88,133 @@ DEFAULTS = {
 
 # All branches that are to be built MUST be listed here.
 BRANCHES = {
+    'comm-release': {},
     'comm-beta': {},
     'comm-aurora': {},
     'comm-central': {},
+}
+
+######## lightning-release
+# All platforms being built for this branch MUST be listed here.
+BRANCHES['comm-release']['platforms'] = {
+    'linux': {},
+    'linux64': {},
+    'win32': {},
+    'macosx64': {},
+}
+
+BRANCHES['comm-release']['mozilla_central_branch'] = 'releases/mozilla-release'
+BRANCHES['comm-release']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
+BRANCHES['comm-release']['branch_name'] = 'comm-release'
+BRANCHES['comm-release']['hg_branch'] = 'releases/comm-release'
+BRANCHES['comm-release']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-release']
+BRANCHES['comm-release']['mozconfig'] = 'mozconfig-lightning'
+BRANCHES['comm-release']['period'] = 60 * 60 * 10
+BRANCHES['comm-release']['nightly_hour'] = [0]
+BRANCHES['comm-release']['nightly'] = False
+# Lightning doesn't need to package Thunderbird
+BRANCHES['comm-release']['package'] = False
+BRANCHES['comm-release']['upload_stage'] = True
+BRANCHES['comm-release']['upload_complete_mar'] = False
+#Might be better off per-platform instead of per-branch here.
+BRANCHES['comm-release']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
+BRANCHES['comm-release']['stage_username'] = 'calbld'
+BRANCHES['comm-release']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
+BRANCHES['comm-release']['stage_group'] = 'calendar'
+BRANCHES['comm-release']['stage_ssh_key'] = 'calbld_dsa'
+BRANCHES['comm-release']['codesighs'] = False
+BRANCHES['comm-release']['l10n'] = False
+BRANCHES['comm-release']['l10n_tree'] = 'calendar10x'
+BRANCHES['comm-release']['l10n_repo'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-release']['irc_nick'] = 'calbuild'
+BRANCHES['comm-release']['irc_channels'] = [ 'maildev', 'calendar' ]
+BRANCHES['comm-release']['extensions'] = {
+    'lightning': {
+        'subdir': "calendar/lightning",
+        'download_base_url': DOWNLOAD_BASE_URL + 'lightning',
+        'l10n': True
+    }
+}
+
+BRANCHES['comm-release']['platforms']['linux']['base_name'] = 'Linux comm-release lightning'
+BRANCHES['comm-release']['platforms']['linux64']['base_name'] = 'Linux x86_64 comm-release lightning'
+BRANCHES['comm-release']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-release lightning'
+BRANCHES['comm-release']['platforms']['macosx64']['base_name'] = 'MacOSX 10.6 comm-release lightning'
+BRANCHES['comm-release']['platforms']['linux']['profiled_build'] = False
+BRANCHES['comm-release']['platforms']['linux64']['profiled_build'] = False
+BRANCHES['comm-release']['platforms']['win32']['profiled_build'] = False
+BRANCHES['comm-release']['platforms']['macosx64']['profiled_build'] = False
+BRANCHES['comm-release']['platforms']['linux']['milestone'] = "comm-release/linux-xpi"
+BRANCHES['comm-release']['platforms']['linux64']['milestone'] = "comm-release/linux64-xpi"
+BRANCHES['comm-release']['platforms']['win32']['milestone'] = "comm-release/win32-xpi"
+BRANCHES['comm-release']['platforms']['macosx64']['milestone'] = "comm-release/macosx-xpi"
+BRANCHES['comm-release']['platforms']['macosx64']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-release']['create_snippet'] = False
+BRANCHES['comm-release']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+BRANCHES['comm-release']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+BRANCHES['comm-release']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
+BRANCHES['comm-release']['platforms']['macosx64']['update_platform'] = 'Darwin_Universal-gcc3'
+# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+# SYMBOL_SERVER_* variables are setup in the environment section below
+BRANCHES['comm-release']['platforms']['linux']['upload_symbols'] = True
+BRANCHES['comm-release']['platforms']['linux64']['upload_symbols'] = True
+BRANCHES['comm-release']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['comm-release']['platforms']['macosx64']['upload_symbols'] = True
+BRANCHES['comm-release']['tinderbox_tree'] = 'Calendar-Release'
+BRANCHES['comm-release']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
+BRANCHES['comm-release']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
+BRANCHES['comm-release']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
+BRANCHES['comm-release']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
+
+# This is used in a bunch of places where something needs to be run from
+# the objdir. This is necessary because of universal builds on Mac
+# creating subdirectories inside of the objdir.
+BRANCHES['comm-release']['platforms']['linux']['platform_objdir'] = OBJDIR
+BRANCHES['comm-release']['platforms']['linux64']['platform_objdir'] = OBJDIR
+BRANCHES['comm-release']['platforms']['win32']['platform_objdir'] = OBJDIR
+BRANCHES['comm-release']['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
+BRANCHES['comm-release']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+}
+BRANCHES['comm-release']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+}
+BRANCHES['comm-release']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+}
+BRANCHES['comm-release']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
+    'MOZ_OBJDIR': OBJDIR,
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'DISABLE_LIGHTNING_INSTALL': '1',
+    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+    'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
 }
 
 ######## lightning-beta
