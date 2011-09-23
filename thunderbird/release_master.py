@@ -232,15 +232,16 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
-        'sourceRepoRevision'         : 'f8ac8bba00ed',
+        'oldRepoPath'                : 'releases/comm-release',
+        'sourceRepoRevision'         : 'fbc1a9b3e5e5',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM602_20110831_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-release',
-        'mozillaRepoRevision'        : '5b6c2f8ff6da',
+        'mozillaRepoRevision'        : '273977a2c0ea',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO602_2011083109_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO70_2011092208_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -262,6 +263,7 @@ gloConfig = {
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'binaryName'                 : 'thunderbird',
+        'oldBinaryName'              : 'thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -270,20 +272,17 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '6.0.2',
-        'appVersion'                 : '6.0.2', # no 'b1' suffix for betas
+        'version'                    : '7.0',
+        'oldVersion'                 : '6.0.2',
+        'appVersion'                 : '7.0', # no 'b1' suffix for betas
+        'oldAppVersion'              : '6.0.2',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 2,
+        'baseTag'                    : 'THUNDERBIRD_7_0',
+        'oldBaseTag'                 : 'THUNDERBIRD_6_0_2',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '6.0.2',
-        'buildNumber'                : 2,
-        'baseTag'                    : 'THUNDERBIRD_6_0_2',
-        # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '6.0.1',
-        'oldAppVersion'              : '6.0.1',
-        'oldBuildNumber'             : 1,
-        'oldRepoPath'                : 'releases/comm-release',
-        'oldBaseTag'                 : 'THUNDERBIRD_6_0_1',
-        'oldBinaryName'              : 'thunderbird',
+        'milestone'                  : '7.0',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),
