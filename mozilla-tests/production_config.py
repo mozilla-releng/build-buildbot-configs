@@ -18,6 +18,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
     '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {
+    'disable_tinderbox_mail': True,
     'build_tools_repo_path': 'build/tools',
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
@@ -69,7 +70,6 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'AddonTester',
     },
     'try': {
-        'disable_tinderbox_mail': True,
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
         'enable_mail_notifier': True,

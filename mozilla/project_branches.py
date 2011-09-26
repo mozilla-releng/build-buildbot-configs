@@ -68,6 +68,7 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'ionmonkey': {
+        'disable_tinderbox_mail': False,
         'mozconfig_dir': 'mozilla-central',
         'enable_talos' : False,
     },
