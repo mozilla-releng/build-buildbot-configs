@@ -67,7 +67,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('linux-maemo5-gtk', 'linux-android',
+releaseConfig['enUSPlatforms']        = ('linux-android',
                                          'linux-mobile', 'macosx-mobile',
                                          'win32-mobile')
 releaseConfig['signedPlatforms']      = ('linux-android',)
@@ -96,7 +96,7 @@ releaseConfig['ausSshKey']           = 'cltbld_dsa'
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
 releaseConfig['partnersRepoPath']       = 'build/partner-repacks'
-releaseConfig['partnerRepackPlatforms'] = ('linux-maemo5-gtk',)
+releaseConfig['partnerRepackPlatforms'] = ()
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
@@ -114,8 +114,6 @@ releaseConfig['mozharness_config'] = {
     'platforms': {
         'linux-android':
             'multi_locale/release_mozilla-beta_linux-android.json',
-        'linux-maemo5-gtk':
-            'multi_locale/release_mozilla-beta_linux-maemo5-gtk.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
