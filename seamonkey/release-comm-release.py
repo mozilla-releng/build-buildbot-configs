@@ -6,8 +6,8 @@ sourceRepoPath             = 'releases/comm-release'
 sourceRepoRevision         = 'fbc1a9b3e5e5'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-release'
-mozillaRepoRevision        = 'FIREFOX_7_0_BUILD2'
-mozillaRelbranchOverride   = 'GECKO70_2011092208_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = 'FIREFOX_7_0_1_BUILD1'
+mozillaRelbranchOverride   = 'GECKO701_2011092812_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'DOMI_2_0_10_RELEASE'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -37,16 +37,16 @@ skip_tag                   = False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.4'
+version                    = '2.4.1'
 usePrettyLongVer           = False
-appVersion                 = '2.4'
-milestone                  = '7.0'
+appVersion                 = '2.4.1'
+milestone                  = '7.0.1'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_4'
-oldVersion                 = '2.3.3'
-oldAppVersion              = '2.3.3'
+baseTag                    = 'SEAMONKEY_2_4_1'
+oldVersion                 = '2.4'
+oldAppVersion              = '2.4'
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_3_3'
+oldBaseTag                 = 'SEAMONKEY_2_4'
 oldRepoPath                = 'releases/comm-release'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
