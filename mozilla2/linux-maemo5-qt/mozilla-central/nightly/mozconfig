@@ -3,7 +3,6 @@
 mk_add_options MOZ_MAKE_FLAGS=-j4
 
 #ac_add_options --enable-debug
-#ac_add_options --disable-optimize
 
 # Nightlies only since this has a cost in performance
 ac_add_options --enable-js-diagnostics
