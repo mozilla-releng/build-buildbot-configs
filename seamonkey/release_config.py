@@ -1,1 +1,1 @@
-release-comm-release.py
+release-comm-beta.py
