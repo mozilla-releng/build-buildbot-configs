@@ -29,11 +29,11 @@ l10nRevisionUrl            = 'http://hg.mozilla.org/build/buildbot-configs/raw-f
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'calendar/sunbird/config/version.txt'
-productName                = 'lightning'
-brandName                  = 'Lightning'
+productName                = 'sunbird'
+brandName                  = 'Sunbird'
 appName                    = 'calendar'
-ftpName			   = 'calendar/lightning'
-projectName                = 'lightning'
+ftpName			   = 'calendar/sunbird'
+projectName                = 'sunbird'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
