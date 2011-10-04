@@ -75,6 +75,9 @@ GLOBAL_VARS = {
         'win32-mobile': {},
         'macosx-mobile': {},
     },
+    'enable_pgo': False,
+    'pgo_platforms': ('linux', 'linux64', 'win32'),
+    'periodic_pgo_interval': 4, # in hours
     'product_name': 'firefox', # Not valid for mobile builds
     'app_name': 'browser',     # Not valid for mobile builds
     'brand_name': 'Minefield', # Not valid for mobile builds
@@ -126,6 +129,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -167,6 +171,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'linuxqt',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -251,6 +256,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -339,6 +345,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'macosx',
             'update_platform': 'Darwin_Universal-gcc3',
             'enable_shared_checkouts': True,
             'enable_shark': True,
@@ -375,6 +382,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
             'enable_shark': True,
@@ -403,7 +411,7 @@ PLATFORM_VARS = {
             'mozconfig': 'win32/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/win32/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/win32/xulrunner',
-            'profiled_build': True,
+            'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
             'upload_symbols': True,
@@ -412,6 +420,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'win32',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
@@ -449,6 +458,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86_64-msvc',
@@ -485,6 +495,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'linux-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
             'env': {
@@ -515,6 +526,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
             'env': {
@@ -545,6 +557,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
             'enable_shark': True,
             'env': {
@@ -570,6 +583,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
             'enable_shark': True,
             'env': {
@@ -595,6 +609,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -1081,6 +1096,8 @@ BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
+# Enable PGO Builds on this branch
+BRANCHES['mozilla-central']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1205,6 +1222,8 @@ BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-beta']['enable_xulrunner'] = True
+# Enable PGO Builds on this branch
+BRANCHES['mozilla-beta']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['mozilla-beta']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1250,6 +1269,8 @@ BRANCHES['mozilla-aurora']['start_hour'] = [4]
 BRANCHES['mozilla-aurora']['start_minute'] = [20]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
+# Enable PGO Builds on this branch
+BRANCHES['mozilla-aurora']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['mozilla-aurora']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),

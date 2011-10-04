@@ -90,6 +90,9 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'enable_weekly_bundle': True,
+        'enable_pgo': True,
+        'add_pgo_builders': True,
+        'pgo_platforms': ['linux', 'linux64', 'win32'],
         'platforms': {
             'linux64': {
                 'build_space': 7,
