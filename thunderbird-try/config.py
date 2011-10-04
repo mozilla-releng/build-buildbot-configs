@@ -8,8 +8,8 @@ from buildbotcustom.env import MozillaEnvironments
 # big dict
 TRY_LINUX      = ['momo-vm-linux-%02i' % x for x in [1,10,17,18]]
 TRY_LINUX64    = ['momo-vm-linux64-%02i' % x for x in [1,11]]
-TRY_MAC64      = ['mini64-%02i' % x for x in [2,7]]
-TRY_MAC        = ['mini-10']
+TRY_MAC64      = ['tb2-darwin10-slave%02i'  % x for x in [71]]
+TRY_MAC        = ['tb2-darwin9-slave%02i'  % x for x in [72]]
 TRY_WIN32      = ['momo-vm-win2k3-03', 'momo-vm-win2k3-16']
 
 
