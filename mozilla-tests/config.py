@@ -72,10 +72,12 @@ PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 
-PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard']
+PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
+                                            'snowleopard-r4']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
+PLATFORMS['macosx64']['snowleopard-r4'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
@@ -111,13 +113,13 @@ PLATFORMS['linux-android']['stage_product'] = 'mobile'
 PLATFORMS['linux-android']['stage_platform'] = 'android'
 
 
-# Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
-# the -o suffix if necessary
+# Lets be explicit instead of magical.  leopard-o should be a second
+# entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
-        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform.split('-')[0]])
+        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
         if slave_platform in TRY_SLAVES:
-            platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform.split('-')[0]])
+            platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform])
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
@@ -537,6 +539,10 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : [],
             },
             'snowleopard': {
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            },
+            'snowleopard-r4': {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },

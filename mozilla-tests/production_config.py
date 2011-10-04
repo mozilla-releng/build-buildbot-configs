@@ -9,8 +9,11 @@ SLAVES = {
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,60)]),
     'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(3,10) + range(11,60)]),
+    'snowleopard-r4': dict([("talos-r4-snow-%03i" % x, {}) for x in range(3,10) + range(11,160)]),
     'tegra_android': TEGRAS,
 }
+
+SLAVES['leopard-o'] = SLAVES['leopard']
 
 TRY_SLAVES = {'tegra_android': TRY_TEGRAS}
 

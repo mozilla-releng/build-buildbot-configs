@@ -6,8 +6,11 @@ SLAVES = {
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,4)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,4)]),
     'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(1,4)]),
+    'snowleopard-r4': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,160)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,4)]),
 }
+
+SLAVES['leopard-o'] = SLAVES['leopard']
 
 TRY_SLAVES = {}
 
