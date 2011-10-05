@@ -13,6 +13,7 @@ PROJECT_BRANCHES = {
             'tp': 0,
             'chrome_twinopen': 0,
             'chrome_mac': 0,
+            'chrome': 0,
             'nochrome': 0,
             'dromaeo': 0,
             'svg': 0,

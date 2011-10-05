@@ -146,12 +146,12 @@ ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
 SUITES = {
     'chrome': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:tsspider', '--mozAfterPaint'],
         'options': ({}, NO_MAC),
     },
     'chrome_mac': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider', '--mozAfterPaint'],
         'options': ({}, MAC_ONLY),
     },
@@ -161,7 +161,7 @@ SUITES = {
         'options': ({}, NO_MAC),
     },
     'nochrome': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome', '--mozAfterPaint'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -171,7 +171,7 @@ SUITES = {
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
     'tp': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
@@ -267,12 +267,12 @@ SUITES = {
     },
     # These old suites will be remove once the newer ones are enabled by default everywhere
     'old_chrome': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:tsspider'],
         'options': ({}, NO_MAC),
     },
     'old_chrome_mac': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider'],
         'options': ({}, MAC_ONLY),
     },
@@ -282,12 +282,12 @@ SUITES = {
         'options': ({}, NO_MAC),
     },
     'old_nochrome': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome'],
         'options': ({}, ALL_PLATFORMS),
     },
     'old_tp': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
@@ -812,18 +812,21 @@ for suite in SUITES.keys():
 BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
-# These are the newer suites that use --mozAfterPaint; they will be gone once they become the default
-BRANCHES['mozilla-central']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-central']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-central']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-
 ######## mozilla-release
 #BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 #BRANCHES['mozilla-release']['platforms']['linux-android']['enable_opt_unittests'] = True
 #BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-release']['add_pgo_builders'] = True
 BRANCHES['mozilla-release']['pgo_platforms'] = ['linux', 'linux64', 'win32']
+# Don't run the mozafterconfig on the mozilla-release branch
+BRANCHES['mozilla-release']['chrome_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['chrome_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['old_chrome_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['old_chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-beta
 #BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -831,6 +834,14 @@ BRANCHES['mozilla-release']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 #BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-beta']['add_pgo_builders'] = True
 BRANCHES['mozilla-beta']['pgo_platforms'] = ['linux', 'linux64', 'win32']
+BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['old_chrome_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['old_chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-aurora
 #BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -847,13 +858,18 @@ BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['mobile_branch_name'] = "Mobile1.1"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-1.9.2']['old_chrome_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['old_chrome_twinopen_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['old_chrome_mac_tests'] = (1, True, {}, OLD_BRANCH_MAC_ONLY)
+BRANCHES['mozilla-1.9.2']['old_chrome_twinopen_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['old_nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['chrome_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.2']['chrome_twinopen_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+BRANCHES['mozilla-1.9.2']['chrome_mac_tests'] = (0, True, {}, OLD_BRANCH_MAC_ONLY)
+BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['old_tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
