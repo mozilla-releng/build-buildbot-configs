@@ -447,6 +447,7 @@ PLATFORM_VARS = {
         },
         'win64': {
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
+            'src_mozconfig': 'browser/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
             # XXX we cannot build xulrunner on Win64 -- see bug 575912
             'enable_xulrunner': False,
