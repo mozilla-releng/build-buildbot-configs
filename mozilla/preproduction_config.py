@@ -121,7 +121,12 @@ PROJECTS = {
         'idle_slaves': 0,
         'tinderbox_tree': 'Releng-Preproduction',
     },
-    'spidermonkey': {
+    'spidermonkey_mozilla-inbound': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Releng-Preproduction',
+    },
+    'spidermonkey_ionmonkey': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'Releng-Preproduction',
