@@ -783,6 +783,7 @@ for branch in BRANCHES.keys():
         BRANCHES[branch]['platforms']['linux']['enable_mobile_unittests'] = True
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
     loadTalosSuites(BRANCHES, SUITES, branch)
+    BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
 
 # The following are exceptions to the defaults
 
@@ -793,7 +794,6 @@ BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['add_pgo_builders'] = True
-BRANCHES['mozilla-central']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 # Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
 # XXX hacking warning - this code could get out of date easily
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
@@ -817,7 +817,6 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 #BRANCHES['mozilla-release']['platforms']['linux-android']['enable_opt_unittests'] = True
 #BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-release']['add_pgo_builders'] = True
-BRANCHES['mozilla-release']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 # Don't run the mozafterconfig on the mozilla-release branch
 BRANCHES['mozilla-release']['chrome_tests'] = (0, True, {}, NO_MAC)
 BRANCHES['mozilla-release']['chrome_mac_tests'] = (0, True, {}, MAC_ONLY)
@@ -833,7 +832,6 @@ BRANCHES['mozilla-release']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 #BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_opt_unittests'] = True
 #BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-beta']['add_pgo_builders'] = True
-BRANCHES['mozilla-beta']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
@@ -848,7 +846,6 @@ BRANCHES['mozilla-beta']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 #BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_opt_unittests'] = True
 #BRANCHES['mozilla-aurora']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-aurora']['add_pgo_builders'] = True
-BRANCHES['mozilla-aurora']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"

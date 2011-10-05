@@ -1580,6 +1580,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile_nightly'] = branchConfig.get('enable_mobile_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
+    BRANCHES[branch]['enable_pgo'] = branchConfig.get('enable_pgo', False)
     if BRANCHES[branch]['enable_mobile']:
         if branchConfig.get('mobile_platforms'):
             for platform, platform_config in branchConfig['mobile_platforms'].items():
