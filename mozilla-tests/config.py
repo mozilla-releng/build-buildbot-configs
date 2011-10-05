@@ -72,10 +72,12 @@ PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 
-PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard']
+PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
+                                            'snowleopard-r4']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
+PLATFORMS['macosx64']['snowleopard-r4'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
@@ -111,13 +113,13 @@ PLATFORMS['linux-android']['stage_product'] = 'mobile'
 PLATFORMS['linux-android']['stage_platform'] = 'android'
 
 
-# Copy the slave names into PLATFORMS[platform][slave_platform], trimming off
-# the -o suffix if necessary
+# Lets be explicit instead of magical.  leopard-o should be a second
+# entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
-        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform.split('-')[0]])
+        platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
         if slave_platform in TRY_SLAVES:
-            platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform.split('-')[0]])
+            platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform])
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
@@ -540,6 +542,10 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
+            'snowleopard-r4': {
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            },
         },
         'linux-android': {
             'is_remote': True,
@@ -786,6 +792,8 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
+BRANCHES['mozilla-central']['add_pgo_builders'] = True
+BRANCHES['mozilla-central']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 # Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
 # XXX hacking warning - this code could get out of date easily
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
@@ -809,6 +817,27 @@ BRANCHES['mozilla-central']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-central']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-central']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+
+######## mozilla-release
+#BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
+#BRANCHES['mozilla-release']['platforms']['linux-android']['enable_opt_unittests'] = True
+#BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-release']['add_pgo_builders'] = True
+BRANCHES['mozilla-release']['pgo_platforms'] = ['linux', 'linux64', 'win32']
+
+######## mozilla-beta
+#BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
+#BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_opt_unittests'] = True
+#BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-beta']['add_pgo_builders'] = True
+BRANCHES['mozilla-beta']['pgo_platforms'] = ['linux', 'linux64', 'win32']
+
+######## mozilla-aurora
+#BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
+#BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_opt_unittests'] = True
+#BRANCHES['mozilla-aurora']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-aurora']['add_pgo_builders'] = True
+BRANCHES['mozilla-aurora']['pgo_platforms'] = ['linux', 'linux64', 'win32']
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
