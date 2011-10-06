@@ -199,10 +199,15 @@ PROJECTS = {
         'tinderbox_tree': 'Firefox',
         'disable_tinderbox_mail': False,
     },
-    'spidermonkey': {
+    'spidermonkey_mozilla-inbound': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'Mozilla-Inbound',
         'disable_tinderbox_mail': False,
+    },
+    'spidermonkey_ionmonkey': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Ionmonkey',
     },
 }

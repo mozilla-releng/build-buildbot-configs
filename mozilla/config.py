@@ -946,7 +946,7 @@ PROJECTS = {
         'linux64': {'env': PLATFORM_VARS['linux64']['env']},
         'repo_path': 'mozilla-central',
     },
-    'spidermonkey': {
+    'spidermonkey_mozilla-inbound': {
         'platforms': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
@@ -971,8 +971,26 @@ PROJECTS = {
             'macosx': PLATFORM_VARS['macosx']['env'],
             'macosx-debug': PLATFORM_VARS['macosx-debug']['env'],
         },
-        'hgurl': 'http://hg.mozilla.org',
+        'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
+    },
+    'spidermonkey_ionmonkey': {
+        'platforms': {
+            'linux':          ['warnaserr'],
+            'linux64':        ['warnaserr'],
+            'win32':          ['warnaserr'],
+            'macosx64':       ['warnaserr'],
+            'macosx':         ['warnaserr'],
+        },
+        'env': {
+            'linux': PLATFORM_VARS['linux']['env'],
+            'linux64': PLATFORM_VARS['linux64']['env'],
+            'win32': PLATFORM_VARS['win32']['env'],
+            'macosx64': PLATFORM_VARS['macosx64']['env'],
+            'macosx': PLATFORM_VARS['macosx']['env'],
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'projects/ionmonkey',
     },
 }
 
@@ -1562,6 +1580,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile_nightly'] = branchConfig.get('enable_mobile_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
+    BRANCHES[branch]['enable_pgo'] = branchConfig.get('enable_pgo', False)
     if BRANCHES[branch]['enable_mobile']:
         if branchConfig.get('mobile_platforms'):
             for platform, platform_config in branchConfig['mobile_platforms'].items():
