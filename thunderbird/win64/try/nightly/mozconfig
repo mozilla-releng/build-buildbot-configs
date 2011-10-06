@@ -16,7 +16,7 @@ export MOZILLA_OFFICIAL=1
 export MOZ_DEBUG_SYMBOLS=1
 
 # Run client.py
-mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hg-options='--time --verbose'"
+mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hgtool=../tools/buildfarm/utils/hgtool.py --hg-options='--time --verbose'"
 mk_add_options ALWAYS_RUN_CLIENT_PY=1
 
 if [ -f $topsrcdir/mozconfig-extra ] ; then
