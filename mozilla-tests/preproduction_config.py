@@ -1,13 +1,16 @@
 SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,54)]),
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,56)]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,54)]),
-    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,40) + range(41,54)]),
-    'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,51)]),
-    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,54)]),
-    'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(1,56)]),
-    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,95)]),
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,11)]),
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,11)]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,4)]),
+    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,4)]),
+    'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,4)]),
+    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,4)]),
+    'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(1,4)]),
+    'snowleopard-r4': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,160)]),
+    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,4)]),
 }
+
+SLAVES['leopard-o'] = SLAVES['leopard']
 
 TRY_SLAVES = {}
 
