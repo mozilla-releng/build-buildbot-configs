@@ -1171,7 +1171,6 @@ BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['linux-android-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 
 ######## shadow-central
@@ -1186,6 +1185,7 @@ BRANCHES['shadow-central']['start_hour'] = [3]
 BRANCHES['shadow-central']['start_minute'] = [2]
 BRANCHES['shadow-central']['create_snippet'] = False
 BRANCHES['shadow-central']['enable_nightly'] = False
+BRANCHES['shadow-central']['enable_mobile_nightly'] = False
 # Enable XULRunner / SDK builds
 BRANCHES['shadow-central']['enable_xulrunner'] = False
 # Enable unit tests
@@ -1236,6 +1236,7 @@ BRANCHES['mozilla-release']['enable_multi_locale'] = True
 BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-release']['enable_nightly'] = False
+BRANCHES['mozilla-release']['enable_mobile_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
@@ -1280,6 +1281,7 @@ BRANCHES['mozilla-beta']['enable_multi_locale'] = True
 BRANCHES['mozilla-beta']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-beta']['enable_nightly'] = False
+BRANCHES['mozilla-beta']['enable_mobile_nightly'] = False
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -1523,6 +1525,7 @@ BRANCHES['try']['start_hour'] = [3]
 BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
+BRANCHES['try']['enable_mobile_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['try']['enable_xulrunner'] = False
 BRANCHES['try']['enable_mac_a11y'] = True
@@ -1585,6 +1588,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_mobile_nightly'] = branchConfig.get('enable_mobile_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['enable_pgo'] = branchConfig.get('enable_pgo', False)
     if BRANCHES[branch]['enable_mobile']:
