@@ -117,7 +117,6 @@ releaseConfig['mozharness_config'] = {
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
-        '--only-pull-build-source',
         '--only-pull-locale-source',
         '--only-add-locales',
         '--only-package-multi',
