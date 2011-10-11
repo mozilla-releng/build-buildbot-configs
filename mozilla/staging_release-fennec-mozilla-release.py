@@ -114,7 +114,6 @@ releaseConfig['mozharness_config'] = {
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
         '--user-repo-override=users/stage-ffxbld',
-        '--only-pull-build-source',
         '--only-pull-locale-source',
         '--only-add-locales',
         '--only-package-multi',

@@ -12,3 +12,4 @@ releaseConfig['commitPatcherConfig'] = False # TODO: toggle when CVS mirror is l
 releaseConfig['messagePrefix']       = '[preprod-release] '
 releaseConfig['userRepoRoot']        = 'users/prepr-ffxbld'
 releaseConfig['ftpServer']           = 'preproduction-stage.build.mozilla.org'
+releaseConfig['disableBouncerEntries']    = True
