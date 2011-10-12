@@ -132,6 +132,7 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
+        'oldRepoPath'                : 'releases/comm-beta',
         'sourceRepoRevision'         : '3f18b245fd12',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
@@ -162,6 +163,7 @@ gloConfig = {
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
         'binaryName'                 : 'thunderbird',
+        'oldBinaryName'              : 'thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -171,19 +173,17 @@ gloConfig = {
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
         'version'                    : '8.0b1',
+        'oldVersion'                 : '7.0b3',
         'appVersion'                 : '8.0', # no 'b1' suffix for betas
+        'oldAppVersion'              : '7.0',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 1,
+        'baseTag'                    : 'THUNDERBIRD_8_0b1',
+        'oldBaseTag'                 : 'THUNDERBIRD_7_0b3',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '8.0',
-        'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_8_0b1',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '7.0b3',
-        'oldAppVersion'              : '7.0',
-        'oldBuildNumber'             : 1,
-        'oldRepoPath'                : 'releases/comm-beta',
-        'oldBaseTag'                 : 'THUNDERBIRD_7_0b3',
-        'oldBinaryName'              : 'thunderbird',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),
