@@ -32,7 +32,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "es-ES": {
-    "revision": "7a1a36ed15b5",
+    "revision": "e4bd7d4bf91a",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "et": {
@@ -80,7 +80,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "ko": {
-    "revision": "11ca69697166",
+    "revision": "dda528d8e0a4",
     "platforms": ["linux", "macosx", "win32"]
   },
   "lt": {
@@ -132,7 +132,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
-    "revision": "a252ecb5a098",
+    "revision": "566c152a4924",
     "platforms": ["linux", "macosx", "win32"]
   }
 }

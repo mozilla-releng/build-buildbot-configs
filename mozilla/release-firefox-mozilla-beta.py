@@ -15,16 +15,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '8.0b2'
+releaseConfig['version']             = '8.0b3'
 releaseConfig['appVersion']          = '8.0'
 releaseConfig['milestone']           = '8.0'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_8_0b2'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_8_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '8.0b1'
+releaseConfig['oldVersion']          = '8.0b2'
 releaseConfig['oldAppVersion']       = '8.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_8_0b1'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FIREFOX_8_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '8.0'
 releaseConfig['nextMilestone']       = '8.0'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '0e269b0cf409',
-        'relbranch': 'GECKO80_2011100518_RELBRANCH',
+        'revision': '890a66b91702',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = 'GECKO80_2011100518_RELBRANCH'
+releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories
@@ -68,7 +68,7 @@ releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
@@ -88,7 +88,7 @@ releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R14'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage-old.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus2.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
