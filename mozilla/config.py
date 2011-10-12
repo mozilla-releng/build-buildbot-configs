@@ -77,7 +77,7 @@ GLOBAL_VARS = {
     },
     'enable_pgo': False,
     'pgo_platforms': ('linux', 'linux64', 'win32'),
-    'periodic_pgo_interval': 4, # in hours
+    'periodic_pgo_interval': 6, # in hours
     'product_name': 'firefox', # Not valid for mobile builds
     'app_name': 'browser',     # Not valid for mobile builds
     'brand_name': 'Minefield', # Not valid for mobile builds
