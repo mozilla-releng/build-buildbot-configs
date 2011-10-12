@@ -15,16 +15,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '8.0b2'
+releaseConfig['version']             = '8.0b3'
 releaseConfig['appVersion']          = '8.0'
 releaseConfig['milestone']           = '8.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_8_0b2'
+releaseConfig['baseTag']             = 'FENNEC_8_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '8.0b1'
+releaseConfig['oldVersion']          = '8.0b2'
 releaseConfig['oldAppVersion']       = '8.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_8_0b1'
+releaseConfig['oldBaseTag']          = 'FENNEC_8_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '8.0'
 releaseConfig['nextMilestone']       = '8.0'
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '0e269b0cf409',
+        'revision': '890a66b91702',
         'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {
@@ -89,7 +89,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 # Update-specific configuration
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus2.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 
