@@ -3,10 +3,10 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'SEA_COMM'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '64b31b32d199'
+sourceRepoRevision         = '062b443d5a8e'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
-mozillaRepoRevision        = 'FIREFOX_8_0b2_BUILD1'
+mozillaRepoRevision        = 'FIREFOX_8_0b3_BUILD1'
 mozillaRelbranchOverride   = 'GECKO80_2011100518_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'b075d299d443'
@@ -37,16 +37,16 @@ skip_tag                   =  False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.5b2'
+version                    = '2.5b3'
 usePrettyLongVer           = False
 appVersion                 = '2.5'
 milestone                  = '8.0'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_5b2'
-oldVersion                 = '2.5b1'
+baseTag                    = 'SEAMONKEY_2_5b3'
+oldVersion                 = '2.5b2'
 oldAppVersion              = '2.5'
-oldBuildNumber             = 2
-oldBaseTag                 = 'SEAMONKEY_2_5b1'
+oldBuildNumber             = 1
+oldBaseTag                 = 'SEAMONKEY_2_5b2'
 oldRepoPath                = 'releases/comm-beta'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
