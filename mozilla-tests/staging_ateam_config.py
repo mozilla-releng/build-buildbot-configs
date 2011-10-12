@@ -9,8 +9,6 @@ SLAVES = {
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,4)]),
 }
 
-TRY_SLAVES = {}
-
 GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
     '--resultsLink', '/server/collect.cgi']
 
