@@ -87,6 +87,8 @@ GLOBAL_VARS = {
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
+    'enable_valgrind': True,
+    'valgrind_platforms': ('linux', 'linux64'),
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
@@ -939,13 +941,6 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
-    'valgrind': {
-        'platforms': ['linux', 'linux64'],
-        'job_interval': 24*3600, # Once a day
-        'linux': {'env': PLATFORM_VARS['linux']['env']},
-        'linux64': {'env': PLATFORM_VARS['linux64']['env']},
-        'repo_path': 'mozilla-central',
-    },
     'spidermonkey_mozilla-inbound': {
         'platforms': {
             'linux':          ['warnaserr'],
@@ -1203,6 +1198,7 @@ BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUI
 BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
 BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
 BRANCHES['shadow-central']['platforms']['win64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'win64-shadow-central'
+BRANCHES['shadow-central']['enable_valgrind'] = False
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
@@ -1240,6 +1236,7 @@ BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 del BRANCHES['mozilla-release']['platforms']['win64']
+BRANCHES['mozilla-release']['enable_valgrind'] = False
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1287,6 +1284,7 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-beta']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
 del BRANCHES['mozilla-beta']['platforms']['win64']
+BRANCHES['mozilla-beta']['enable_valgrind'] = False
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1343,6 +1341,7 @@ BRANCHES['mozilla-aurora']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXT
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
+BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 
 ######## mozilla-1.9.1
 # mozilla-1.9.1 can be removed once we're no longer refreshing MUs from 3.5.18,
@@ -1426,6 +1425,7 @@ BRANCHES['mozilla-1.9.1']['platforms']['linux']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['linux64']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['macosx']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.1']['platforms']['win32']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.1']['enable_valgrind'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -1504,6 +1504,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
+BRANCHES['mozilla-1.9.2']['enable_valgrind'] = False
 
 ######## try
 # Try-specific configs
@@ -1647,6 +1648,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
+    BRANCHES[branch]['enable_valgrind'] = False
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
