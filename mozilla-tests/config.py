@@ -567,8 +567,7 @@ PLATFORM_UNITTEST_VARS = {
                         {'suite': 'mochitest-plain',
                          'testPaths': [
                              'dom/src/json/test', 'dom/src/jsurl/test',
-                             'dom/tests/mochitest/dom-level0', 'js/jsd/test',
-                             'js/src/xpconnect/tests/mochitest'
+                             'dom/tests/mochitest/dom-level0', 'js'
                          ]
                         },
                     )),
