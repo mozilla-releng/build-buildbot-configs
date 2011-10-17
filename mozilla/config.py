@@ -1602,7 +1602,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     # Disable XULRunner / SDK builds
     BRANCHES[branch]['enable_xulrunner'] = branchConfig.get('enable_xulrunner', False)
     # Enable unit tests
-    BRANCHES[branch]['platforms']['linux64']['enable_checktests'] = True
     BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
     BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)
     BRANCHES[branch]['enable_shark'] = branchConfig.get('enable_shark', False)
