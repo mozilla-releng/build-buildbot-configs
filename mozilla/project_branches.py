@@ -168,7 +168,16 @@ PROJECT_BRANCHES = {
         'enable_unittests': False,
         'enable_talos': False,
     },
-    'birch': {},
+    # customizations while booked for native mobile UI project
+    'birch': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'lock_platforms': True,
+        'platforms': {
+            'linux-android': {},
+        },
+    },
     'cedar': {},
     'holly': {},
     'larch': {},
