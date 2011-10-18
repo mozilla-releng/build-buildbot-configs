@@ -464,7 +464,7 @@ PLATFORM_VARS = {
             'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
-            'update_platform': 'WINNT_x86_64-msvc',
+            'update_platform': 'WINNT_x86_64-msvc.disabled_bug695161',
             'enable_shared_checkouts': True,
             'env': {
                 'CVS_RSH': 'ssh',
