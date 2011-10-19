@@ -133,15 +133,15 @@ gloConfig = {
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
         'oldRepoPath'                : 'releases/comm-beta',
-        'sourceRepoRevision'         : '6ae3394e74d0',
+        'sourceRepoRevision'         : '6b638748ad35',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM80_20111018_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : 'f09e09f27623',
+        'mozillaRepoRevision'        : '99b96ecf659a',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : '', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM80_20111018_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -176,7 +176,7 @@ gloConfig = {
         'oldVersion'                 : '8.0b2',
         'appVersion'                 : '8.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '8.0',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'oldBuildNumber'             : 1,
         'baseTag'                    : 'THUNDERBIRD_8_0b3',
         'oldBaseTag'                 : 'THUNDERBIRD_8_0b2',
