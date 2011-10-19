@@ -812,9 +812,6 @@ BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittest
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
-#BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
-#BRANCHES['mozilla-release']['platforms']['linux-android']['enable_opt_unittests'] = True
-#BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-release']['add_pgo_builders'] = True
 # Don't run the mozafterconfig on the mozilla-release branch
 BRANCHES['mozilla-release']['chrome_tests'] = (0, True, {}, NO_MAC)
@@ -827,23 +824,9 @@ BRANCHES['mozilla-release']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-beta
-#BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
-#BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_opt_unittests'] = True
-#BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-beta']['add_pgo_builders'] = True
-BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['old_chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['old_chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-aurora
-#BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
-#BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_opt_unittests'] = True
-#BRANCHES['mozilla-aurora']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-aurora']['add_pgo_builders'] = True
 
 ######## shadow-central
