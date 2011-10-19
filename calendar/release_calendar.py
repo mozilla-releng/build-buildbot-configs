@@ -1,17 +1,17 @@
 hgUsername                 = 'calbld'
 hgSshKey                   = '~cltbld/.ssh/calbld_dsa'
-relbranchPrefix            = 'COMM'
+relbranchPrefix            = 'CAL'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '6b638748ad35'
+sourceRepoRevision         = '514c86dc50f4'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = 'COMM80_20111018_RELBRANCH'
+relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
 mozillaRepoRevision        = '99b96ecf659a'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = 'COMM80_20111018_RELBRANCH'
+mozillaRelbranchOverride   = ''
 inspectorRepoPath          = '' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = ''
 inspectorRelbranchOverride = ''
@@ -42,7 +42,7 @@ projectName                = 'sunbird'
 version                    = '1.0rc2'
 appVersion                 = '1.0rc2'
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '7.0'
+milestone                  = '8.0'
 buildNumber                = 1
 baseTag                    = 'CALENDAR_1_0rc2'
 # The old version is the revision from which we should generate update snippets.
