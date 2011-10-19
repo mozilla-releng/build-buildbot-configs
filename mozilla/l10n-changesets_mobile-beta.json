@@ -48,7 +48,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "fr": {
-    "revision": "adb67cc54b46",
+    "revision": "eba8078f1542",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "fy-NL": {
@@ -132,7 +132,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
-    "revision": "566c152a4924",
+    "revision": "3d496b248a2a",
     "platforms": ["linux", "macosx", "win32"]
   }
 }
