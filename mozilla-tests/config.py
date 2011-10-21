@@ -646,23 +646,7 @@ PLATFORM_UNITTEST_VARS = {
                         },
                     )),
                 ],
-                'debug_unittest_suites': [
-                    ('reftest-1', (
-                        {'suite': 'reftest',
-                         'totalChunks': 2,
-                         'thisChunk': 1,
-                        },
-                    )),
-                    ('reftest-2', (
-                        {'suite': 'reftest',
-                         'totalChunks': 2,
-                         'thisChunk': 2,
-                        },
-                    )),
-                    ('crashtest', (
-                        {'suite': 'crashtest'},
-                    )),
-                ]
+                'debug_unittest_suites': [],
             },
         },
 }
