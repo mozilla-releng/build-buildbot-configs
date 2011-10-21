@@ -464,7 +464,7 @@ PLATFORM_VARS = {
             'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
-            'update_platform': 'WINNT_x86_64-msvc.disabled_bug695161',
+            'update_platform': 'WINNT_x86_64-msvc',
             'enable_shared_checkouts': True,
             'env': {
                 'CVS_RSH': 'ssh',
@@ -1619,6 +1619,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', 'ffxbld_dsa')
     BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
     BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Firefox/' + branch)
+    BRANCHES[branch]['aus2_mobile_base_upload_dir'] = branchConfig.get('aus2_mobile_base_upload_dir', '/opt/aus2/incoming/2/Fennec/' + branch)
+    BRANCHES[branch]['aus2_mobile_base_upload_dir_l10n'] = branchConfig.get('aus2_mobile_base_upload_dir_l10n', '/opt/aus2/incoming/2/Fennec/' + branch)
     #make sure it has an ending slash
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/' 

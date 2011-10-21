@@ -124,3 +124,4 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
+releaseConfig['enableAutomaticPushToMirrors'] = True
