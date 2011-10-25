@@ -64,6 +64,7 @@ releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
+    'build/mozharness': 'default',
 }
 
 # Platform configuration

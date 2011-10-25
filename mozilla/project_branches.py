@@ -168,6 +168,13 @@ PROJECT_BRANCHES = {
         'enable_unittests': False,
         'enable_talos': False,
     },
+    # customizations for updater.exe changes (bug 307181)
+    'ash': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'enable_talos': False,
+    },
     # customizations while booked for native mobile UI project
     'birch': {
         'enable_nightly': True,
@@ -179,6 +186,18 @@ PROJECT_BRANCHES = {
         },
     },
     'cedar': {},
+    # customizations for windows update service changes (bug 481815)
+    'elm': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'lock_platforms': True,
+        'platforms': {
+            'win32': {},
+            'win32-debug': {},
+        },
+        'enable_talos': False,
+    },
     'holly': {},
     'larch': {},
     # customizations while booked for bcp47 project as per bug 667734
@@ -188,6 +207,14 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
     },
+    # customizations for integration work for bugs 481815 and 307181
+    'oak': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'enable_talos': False,
+    },
+    'pine': {},
 }
 
 # All is the default

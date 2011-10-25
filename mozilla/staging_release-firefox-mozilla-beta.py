@@ -63,7 +63,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
-    'users/stage-ffxbld/buildbot': 'production-0.8'
+    'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/mozharness': 'default',
 }
 
 # Platform configuration
