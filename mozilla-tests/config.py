@@ -798,10 +798,6 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 ######## mozilla-release
 BRANCHES['mozilla-release']['add_pgo_builders'] = True
 # Don't run the mozafterconfig on the mozilla-release branch
-BRANCHES['mozilla-release']['chrome_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['old_chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-release']['old_chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-release']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
