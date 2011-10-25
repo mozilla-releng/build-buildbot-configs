@@ -28,11 +28,15 @@ BRANCH_PRIORITIES = {
     'addontester': 4,
     'addonbaselinetester': 4,
     'alder': 4,
+    'ash': 4,
     'birch': 4,
     'cedar': 4,
+    'elm': 4,
     'holly': 4,
     'larch': 4,
     'maple': 4,
+    'oak': 4,
+    'pine': 4,
 }
 
 # Give the release builders priority over other builders
