@@ -43,10 +43,10 @@ UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
                          }
 
 BRANCHES = {
-    'mozilla-central':     { 'release_branch': True },
+    'mozilla-central':     {},
     'mozilla-release':     { 'release_branch': True },
     'mozilla-beta':        { 'release_branch': True },
-    'mozilla-aurora':      { 'release_branch': True },
+    'mozilla-aurora':      {},
     'mozilla-1.9.2':       { 'release_branch': True },
     'shadow-central':      {},
     'try':                 { 'coallesce_jobs': False},
