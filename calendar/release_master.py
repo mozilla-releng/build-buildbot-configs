@@ -236,6 +236,7 @@ for platform in releasePlatforms:
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
         l10nRevisionFile=l10nRevisionFile,
+        l10nRepoPath=l10nRepoPath,
         buildRevision='%s_RELEASE' % baseTag,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.BRANCHES[sourceRepoName]['stage_username'],
