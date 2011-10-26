@@ -235,7 +235,7 @@ for platform in releasePlatforms:
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
-        l10nRevisionFile=l10nRevisionUrl,
+        l10nRevisionFile=l10nRevisionFile,
         buildRevision='%s_RELEASE' % baseTag,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.BRANCHES[sourceRepoName]['stage_username'],
