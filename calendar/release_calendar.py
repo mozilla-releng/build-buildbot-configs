@@ -25,15 +25,14 @@ chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
 l10nRepoPath               = 'releases/l10n-miramar'
 l10nRevisionFile           = 'l10n-calendar-changesets'
-l10nRevisionUrl            = 'http://hg.mozilla.org/build/buildbot-configs/raw-file/CALENDAR_1_0b7_RELEASE/calendar/l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'calendar/sunbird/config/version.txt'
-productName                = 'sunbird'
-brandName                  = 'Sunbird'
+productName                = 'lightning'
+brandName                  = 'Lightning'
 appName                    = 'calendar'
-ftpName			   = 'calendar/sunbird'
-projectName                = 'sunbird'
+ftpName			   = 'calendar/lightning'
+projectName                = 'lightning'
 # Sometimes we need the application version to be different from what we "call"
 # the build, eg public release candidates for a major release (3.1 RC1).
 # appVersion and oldAppVersion are optional definitions used in places that
@@ -43,7 +42,7 @@ version                    = '1.0rc2'
 appVersion                 = '1.0rc2'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '8.0'
-buildNumber                = 2
+buildNumber                = 3
 baseTag                    = 'CALENDAR_1_0rc2'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '1.0rc1'

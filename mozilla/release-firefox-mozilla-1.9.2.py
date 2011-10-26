@@ -100,6 +100,7 @@ releaseConfig['verifyConfigs']       = {
     'macosx': 'moz192-firefox-mac.cfg',
     'win32':  'moz192-firefox-win32.cfg'
 }
+releaseConfig['snippetSchema']       = 1
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -120,6 +121,8 @@ releaseConfig['majorUpdateVerifyConfigs']    = {
     'win32':  'moz192-firefox-win32-major.cfg'
 }
 releaseConfig['majorFakeMacInfoTxt'] = True
+releaseConfig['majorSnippetSchema']  = 1
+
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
