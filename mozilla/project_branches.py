@@ -179,6 +179,7 @@ PROJECT_BRANCHES = {
     'birch': {
         'enable_nightly': True,
         'create_snippet': True,
+        'create_mobile_snippet': True,
         'create_partial': True,
         'lock_platforms': True,
         'platforms': {
