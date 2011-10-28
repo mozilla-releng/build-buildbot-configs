@@ -715,26 +715,29 @@ for branch in BRANCHES.keys():
 ### PROJECTS ###
 PROJECTS = {
     'jetpack': {
+        'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
         'platforms': {
-            'w764': {'ext':'win64-x86_64.zip',}, 
-            'fedora64': {'ext':'linux-x86_64.tar.bz2',}, 
-            'fedora':{'ext':'linux-i686.tar.bz2'}, 
-            'leopard':{'ext':'mac.dmg'}, 
-            'snowleopard':{'ext':'mac.dmg'},   
+            'w764': {'ext':'win64-x86_64.zip', 'debug':True}, 
+            'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True}, 
+            'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True}, 
+            'leopard':{'ext':'(mac|mac64).dmg', 'debug':True}, 
+            'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},   
             'xp':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                'debug':True,
                 }, 
             'win7':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                }, 
-
+                'debug':True,
+                },
             },
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
         'jetpack_tarball': 'archive/tip.tar.bz2',
         'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central',
+        'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
     },
 }
 for k, v in localconfig.PROJECTS.items():
