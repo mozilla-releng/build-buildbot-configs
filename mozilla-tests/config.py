@@ -637,7 +637,7 @@ PLATFORM_UNITTEST_VARS = {
                         },
                     )),
                     ('crashtest-2', (
-                        {'suite': 'crashtest'
+                        {'suite': 'crashtest',
                          'totalChunks': 2,
                          'thisChunk': 2,
                         },
