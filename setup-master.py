@@ -3,7 +3,7 @@
 
 Sets up mozilla buildbot master in master_dir."""
 
-import os, glob, shutil, subprocess, urllib
+import os, glob, shutil, subprocess, urllib, tempfile
 try:
     import simplejson as json
 except ImportError:
@@ -32,6 +32,7 @@ class MasterConfig:
     def createMaster(self, master_dir, buildbot):
         null = open(os.devnull, "w")
         subprocess.check_call([buildbot, 'create-master', master_dir], stdout=null)
+        null.close()
         if not os.path.exists(master_dir):
             os.makedirs(master_dir)
         for g in self.globs:
@@ -63,7 +64,48 @@ class MasterConfig:
             if os.path.exists(dst):
                 os.unlink(dst)
 
-def load_masters_json(masters_json):
+
+
+    def testMaster(self, buildbot, universal=False):
+        print "TEST-INFO starting %s" % self.name
+        test_output_dir = os.environ.get('TEMP', 'test-output')
+        if not os.path.isdir(test_output_dir):
+            os.mkdir(test_output_dir)
+        test_dir = tempfile.mkdtemp(prefix='%s-'%self.name, dir=os.path.join(os.getcwd(), test_output_dir))
+        test_log_filename = test_dir+'.log'
+        test_log = open(test_log_filename, 'w')
+        print "TEST-INFO creating master"
+        try:
+            self.createMaster(test_dir, buildbot)
+            print "TEST-INFO created master"
+        except (OSError, subprocess.CalledProcessError):
+            print "TEST-FAIL %s failed to be created" % self.name
+            return (300, None, None)
+        null = open(os.devnull, "w")
+        rc = subprocess.call([buildbot, 'checkconfig'],
+                             cwd=test_dir, stdout=test_log, stderr=subprocess.STDOUT)
+        test_log.close()
+        log = open(test_log_filename)
+        log_size = os.path.getsize(test_log_filename)
+        # We expect that the reconfig done message is before the last K of output
+        if log_size > 1024:
+            log.seek(log_size - 1024)
+        log_tail = log.readlines()
+        if 'Config file is good!' in [x.strip() for x in log_tail] and rc == 0:
+            print "TEST-PASS checkconfig OK for %s" % self.name
+            shutil.rmtree(test_dir)
+            os.remove(test_log_filename)
+            return (0, None, None)
+        else:
+            if rc == 0:
+                print "TEST-FAIL checkconfig returned 0 for %s but didn't print 'Config file is good!'" % \
+                        self.name
+            else:
+                print "TEST-FAIL %s failed to run checkconfig" % self.name
+            return (rc, test_log_filename, test_dir)
+
+
+def load_masters_json(masters_json, role=None, universal=False):
     if 'http' in masters_json:
         masters = json.load(urllib.urlopen(masters_json))
     else:
@@ -74,6 +116,10 @@ def load_masters_json(masters_json):
         # Unsupported...for now!
         if m['role'] in ('scheduler',):
             continue
+
+        # Sometimes we only want masters of a specific role to be loaded
+        if role and m['role'] != role:
+                continue
 
         if m['environment'] == 'production':
             environment_config = 'production_config.py'
@@ -100,28 +146,39 @@ def load_masters_json(masters_json):
                     ]
                 )
 
+        if universal:
+            c.name += '-universal'
+            mastercfg = 'universal_master_sqlite.cfg'
+        else:
+            if m['role'] == 'tests':
+                mastercfg = 'tests_master.cfg'
+            elif m['role'] == 'build' or m['role'] == 'try':
+                mastercfg = 'builder_master.cfg'
+            else:
+                raise AssertionError("What is a %s role?" % m['role'])
+
         if m['role'] == 'build':
             c.config_dir = 'mozilla'
             c.globs.append('l10n-changesets*')
             c.globs.append('release_templates')
             c.globs.append('release-firefox*.py')
             c.globs.append('release-fennec*.py')
-            c.globs.append('builder_master.cfg')
+            c.globs.append(mastercfg)
             c.globs.append('build_localconfig.py')
-            c.local_links.append(('builder_master.cfg', 'master.cfg'))
+            c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(('build_localconfig.py', 'master_localconfig.py'))
         elif m['role'] == 'try':
             c.config_dir = 'mozilla'
-            c.local_links.append(('builder_master.cfg', 'master.cfg'))
+            c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(('try_localconfig.py', 'master_localconfig.py'))
-            c.globs.append('builder_master.cfg')
+            c.globs.append(mastercfg)
             c.globs.append('try_localconfig.py')
         elif m['role'] == 'tests':
             c.config_dir = 'mozilla-tests'
-            c.local_links.append(('tests_master.cfg', 'master.cfg'))
+            c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(('tests_localconfig.py', 'master_localconfig.py'))
             c.globs.append('tests_localconfig.py')
-            c.globs.append('tests_master.cfg')
+            c.globs.append(mastercfg)
 
         retval.append(c)
     return retval
@@ -610,17 +667,27 @@ masters_08 = [
         mozilla_preproduction_release_master,
     ]
 
+def filter_masters(master_list):
+    rv = []
+    for master in master_list:
+        if master.name != 'preprod-release-master':
+            rv.append(master)
+    return master_list
+
 if __name__ == "__main__":
     from optparse import OptionParser
 
     parser = OptionParser(__doc__)
     parser.set_defaults(action=None, masters_json=None)
-    parser.add_option("-l", "--list", action="store_const", dest="action", const="list")
+    parser.add_option("-l", "--list", action="store_true", dest="list")
+    parser.add_option("-t", "--test", action="store_true", dest="test")
     parser.add_option("-7", action="store_true", dest="buildbot07", default=False)
     parser.add_option("-8", action="store_true", dest="buildbot08", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
     parser.add_option("-j", "--masters-json", dest="masters_json", \
         default="http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
+    parser.add_option("-R", "--role", dest="role", default=None)
+    parser.add_option("-u", "--universal", dest="universal", action="store_true")
 
     options, args = parser.parse_args()
 
@@ -629,25 +696,42 @@ if __name__ == "__main__":
     elif options.buildbot07:
         master_list = masters_07
     else:
-        master_list = load_masters_json(options.masters_json)
+        master_list = load_masters_json(options.masters_json, role=options.role)
+        if options.test:
+            master_list.extend(load_masters_json(options.masters_json, role=options.role, universal=True))
 
     # Make sure we don't have duplicate names
     master_map = dict((m.name, m) for m in master_list)
     assert len(master_map.values()) == len(master_list), "Duplicate master names"
+    assert len(master_list) > 0, "No masters specified. Bad role?"
 
-    if options.action == "list":
-        for m in master_list:
-            if m.name != 'preprod-release-master':
-                print m.name
+    if options.list:
+        for m in filter_masters(master_list):
+            print m.name
+    elif options.test:
+        failing_masters = []
+        # Test the masters, once normally and onces as a universal master
+        for m in filter_masters(master_list):
+            rc, log, dir = m.testMaster(options.buildbot)
+            if rc != 0:
+                failing_masters.append((m.name, log, dir))
+        # Print a summary including a list of useful output
+        print "TEST-SUMMARY: %s tested, %s failed" % (len(master_list), len(failing_masters))
+        for rc, log, dir in failing_masters:
+            def s(n):
+                if n is not None:
+                    return n[len(os.getcwd())+1:]
+            print " -%s, log: '%s', dir: '%s'" % (rc, s(log), s(dir))
+        if len(failing_masters) > 0:
+            exit(1)
+    elif len(args) == 2:
+        master_dir, master_name = args[:2]
+
+        if master_name not in master_map:
+            parser.error("Unknown master %s" % master_name)
+
+        m = master_map[master_name]
+        m.createMaster(master_dir, options.buildbot)
+    else:
+        parser.print_usage()
         parser.exit()
-
-    if len(args) < 1:
-        parser.error("You need at least 2 arguments")
-
-    master_dir, master_name = args[:2]
-
-    if master_name not in master_map:
-        parser.error("Unknown master %s" % master_name)
-
-    m = master_map[master_name]
-    m.createMaster(master_dir, options.buildbot)
