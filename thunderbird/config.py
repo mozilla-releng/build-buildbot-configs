@@ -30,7 +30,7 @@ DEFAULTS = {
     'branch_name':            'comm-central',
     'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
     'mozilla_central_branch': 'releases/mozilla-1.9.1',
-    'add_poll_branches':      [ 'dom-inspector','users/gozer_mozillamessaging.com/test' ],
+    'add_poll_branches':      [ 'dom-inspector'],
     'period':                 60 * 60 * 8,
     'nightly_hour':          [3],
     'nightly_minute':        [0],
