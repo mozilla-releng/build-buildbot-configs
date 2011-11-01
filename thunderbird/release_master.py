@@ -95,6 +95,7 @@ gloConfig = {
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1_MU',
+        'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -189,7 +190,8 @@ gloConfig = {
         #'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'mozBeta-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R14',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -288,7 +290,8 @@ gloConfig = {
         #'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'mozRelease-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R14',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage-old.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
@@ -420,6 +423,7 @@ for gloKey in gloConfig:
     packageTests               = gloConfig[gloKey]['packageTests']
     unittestMasters            = gloConfig[gloKey]['unittestMasters']
     mergeLocales               = gloConfig[gloKey]['mergeLocales']
+    snippetSchema              = gloConfig[gloKey]['snippetSchema']
 
     branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
@@ -932,6 +936,7 @@ for gloKey in gloConfig:
         oldRepoPath=oldRepoPath,
         releaseNotesUrl=releaseNotesUrl,
         testOlderPartials=testOlderPartials,
+        schema=snippetSchema,
     )
     
     builders.append({
@@ -1012,7 +1017,8 @@ for gloKey in gloConfig:
             oldRepoPath=oldRepoPath,
             triggerSchedulers=['major_update_verify_%s' % gloKey],
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
-            testOlderPartials=testOlderPartials
+            testOlderPartials=testOlderPartials,
+            schema=snippetSchema,
         )
         
         builders.append({
