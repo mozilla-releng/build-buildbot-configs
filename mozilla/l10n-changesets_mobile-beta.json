@@ -20,7 +20,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "de": {
-    "revision": "e93d3ac6a988",
+    "revision": "275dd00cbf95",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "el": {
@@ -132,7 +132,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
-    "revision": "3d496b248a2a",
+    "revision": "85347b91295a",
     "platforms": ["linux", "macosx", "win32"]
   }
 }

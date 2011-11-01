@@ -15,16 +15,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '8.0b5'
+releaseConfig['version']             = '8.0b6'
 releaseConfig['appVersion']          = '8.0'
 releaseConfig['milestone']           = '8.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_8_0b5'
+releaseConfig['baseTag']             = 'FIREFOX_8_0b6'
 #  Old version info
-releaseConfig['oldVersion']          = '8.0b4'
+releaseConfig['oldVersion']          = '8.0b5'
 releaseConfig['oldAppVersion']       = '8.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_8_0b4'
+releaseConfig['oldBaseTag']          = 'FIREFOX_8_0b5'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '8.0'
 releaseConfig['nextMilestone']       = '8.0'
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'fc2bb0c7af44',
+        'revision': '402afd561056',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
