@@ -102,6 +102,7 @@ class MasterConfig:
                         self.name
             else:
                 print "TEST-FAIL %s failed to run checkconfig" % self.name
+            print "TEST-INFO log is in %s" % test_log_filename
             return (rc, test_log_filename, test_dir)
 
 

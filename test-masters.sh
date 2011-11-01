@@ -35,6 +35,11 @@ fi
 
 exit_code=0
 
+# Also test the simpler masters
+for master_name in simple-talos; do
+    echo -n "${master_name}... "
+    (cd $master_name; buildbot checkconfig > /dev/null && echo OK)
+done
 # It will iterate through list of masters and checkconfig for each one of them
 for master_name in $(python setup-master.py $extra_args --list); do
     rm -rf $master_dir

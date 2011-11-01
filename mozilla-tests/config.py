@@ -167,7 +167,7 @@ SUITES = {
     },
     'dirty': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_min:ts_places_generated_med:ts_places_generated_max'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
     'tp': {
@@ -815,11 +815,6 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['add_pgo_builders'] = True
-# Don't run the mozafterconfig on the mozilla-release branch
-BRANCHES['mozilla-release']['old_chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['old_chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['old_nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['old_tp_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['add_pgo_builders'] = True
