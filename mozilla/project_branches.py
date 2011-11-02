@@ -194,7 +194,11 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'lock_platforms': True,
         'platforms': {
-            'win32': {},
+            'win32': {
+                'env': {
+                    'MOZ_SIGNED_UPDATER_EXE': 'https://build.mozilla.org/signed-binaries/updater.exe',
+                }
+            },
             'win32-debug': {},
         },
         'enable_talos': False,
@@ -214,6 +218,13 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'enable_talos': False,
+        'platforms': {
+            'win32': {
+                'env': {
+                    'MOZ_SIGNED_UPDATER_EXE': 'https://build.mozilla.org/signed-binraies/updater.exe',
+                }
+            }
+        }
     },
     'pine': {},
 }

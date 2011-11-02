@@ -1076,8 +1076,12 @@ for branch in BRANCHES.keys():
             if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch] and \
                     PROJECT_BRANCHES[branch]['platforms'].has_key(platform):
                 for key, value in PROJECT_BRANCHES[branch]['platforms'][platform].items():
-                    BRANCHES[branch]['platforms'][platform][key] = deepcopy(value)
-
+                    if key == 'env':
+                        value = deepcopy(PLATFORM_VARS[platform]['env'])
+                        value.update(PROJECT_BRANCHES[branch]['platforms'][platform][key])
+                    else:
+                        value = deepcopy(value)
+                    BRANCHES[branch]['platforms'][platform][key] = value
     # Copy in local config
     if branch in localconfig.BRANCHES:
         for key, value in localconfig.BRANCHES[branch].items():
