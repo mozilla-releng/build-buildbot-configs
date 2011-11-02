@@ -75,7 +75,7 @@ GLOBAL_VARS = {
         'win32-mobile': {},
         'macosx-mobile': {},
     },
-    'enable_pgo': False,
+    'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32'),
     'periodic_pgo_interval': 6, # in hours
     'product_name': 'firefox', # Not valid for mobile builds
@@ -1126,7 +1126,7 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
-BRANCHES['mozilla-central']['enable_pgo'] = True
+BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 # Enable unit tests
 BRANCHES['mozilla-central']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1254,7 +1254,7 @@ BRANCHES['mozilla-beta']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-beta']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
-BRANCHES['mozilla-beta']['enable_pgo'] = True
+BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-beta']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1301,7 +1301,7 @@ BRANCHES['mozilla-aurora']['start_minute'] = [20]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
-BRANCHES['mozilla-aurora']['enable_pgo'] = True
+BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-aurora']['geriatric_masters'] = [
     ('10.250.48.137:9989', False),
@@ -1593,7 +1593,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
-    BRANCHES[branch]['enable_pgo'] = branchConfig.get('enable_pgo', False)
+    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
     if BRANCHES[branch]['enable_mobile']:
         if branchConfig.get('mobile_platforms'):
             for platform, platform_config in branchConfig['mobile_platforms'].items():

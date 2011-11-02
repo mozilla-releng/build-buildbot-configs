@@ -408,6 +408,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
+    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
     coallesceJobs = branchConfig.get('coallesce_jobs', True)
@@ -789,6 +790,7 @@ for branch in BRANCHES.keys():
         BRANCHES[branch]['platforms']['linux']['enable_mobile_unittests'] = True
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
     loadTalosSuites(BRANCHES, SUITES, branch)
+    BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
 
 # The following are exceptions to the defaults
@@ -799,7 +801,7 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-central']['add_pgo_builders'] = True
+BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 # Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
 # XXX hacking warning - this code could get out of date easily
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
@@ -819,13 +821,13 @@ BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittest
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
-BRANCHES['mozilla-release']['add_pgo_builders'] = True
+BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ######## mozilla-beta
-BRANCHES['mozilla-beta']['add_pgo_builders'] = True
+BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 ######## mozilla-aurora
-BRANCHES['mozilla-aurora']['add_pgo_builders'] = True
+BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
