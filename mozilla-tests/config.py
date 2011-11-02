@@ -751,7 +751,6 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
         'jetpack_tarball': 'archive/tip.tar.bz2',
-        'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central',
         'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
     },
 }
