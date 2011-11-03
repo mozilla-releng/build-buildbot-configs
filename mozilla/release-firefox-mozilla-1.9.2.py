@@ -18,7 +18,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '3.6.24'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = '1.9.2.24'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_3_6_24'
 #  Old version info
 releaseConfig['oldVersion']          = '3.6.23'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': 'b5d60f395ce5',
-        'relbranch': None,
+        'revision': '7239e49f6d37',
+        'relbranch': 'GECKO19224_2011103116_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRelbranch']       = 'GECKO19224_2011103116_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n-mozilla-1.9.2'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
