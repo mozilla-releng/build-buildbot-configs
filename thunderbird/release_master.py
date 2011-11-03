@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : 'e934a6ddfdad',
+        'sourceRepoRevision'         : 'ac9410746100',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19224_20111101_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '10763253c915',
+        'mozillaRepoRevision'        : '7239e49f6d37',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -81,7 +81,7 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.24',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'baseTag'                    : 'THUNDERBIRD_3_1_16',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.15',
@@ -104,7 +104,7 @@ gloConfig = {
         'ausSshKey'                  : 'tbirdbld_dsa',
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'testOlderPartials'          : False,
-        'doPartnerRepacks'           : True,
+        'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
