@@ -18,7 +18,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '8.0b6'
 releaseConfig['appVersion']          = '8.0'
 releaseConfig['milestone']           = '8.0'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_8_0b6'
 #  Old version info
 releaseConfig['oldVersion']          = '8.0b5'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '402afd561056',
-        'relbranch': None,
+        'revision': 'a1022c1524af',
+        'relbranch': 'GECKO80_2011103118_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRelbranch']       = 'GECKO80_2011103118_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories

@@ -18,7 +18,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '8.0b6'
 releaseConfig['appVersion']          = '8.0'
 releaseConfig['milestone']           = '8.0'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_8_0b6'
 #  Old version info
 releaseConfig['oldVersion']          = '8.0b5'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '402afd561056',
-        'relbranch': None,
+        'revision': 'd17877e2b391',
+        'relbranch': 'MOBILE80_2011103117_RELBRANCH',
         'bumpFiles': {
             'mobile/confvars.sh': {
                 'version': releaseConfig['appVersion'],
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None
+releaseConfig['l10nRelbranch']       = 'MOBILE80_2011103117_RELBRANCH'
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
 releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
