@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : 'e934a6ddfdad',
+        'sourceRepoRevision'         : 'ac9410746100',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19224_20111101_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '10763253c915',
+        'mozillaRepoRevision'        : '7239e49f6d37',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -67,7 +67,7 @@ gloConfig = {
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
-        'binaryName'                 : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -81,14 +81,14 @@ gloConfig = {
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '1.9.2.24',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'baseTag'                    : 'THUNDERBIRD_3_1_16',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.15',
         #'oldAppVersion'              : oldVersion,
         'oldBuildNumber'             : 1,
         'oldBaseTag'                 : 'THUNDERBIRD_3_1_15',
-        'oldBinaryName'              : 'thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
@@ -104,7 +104,7 @@ gloConfig = {
         'ausSshKey'                  : 'tbirdbld_dsa',
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'testOlderPartials'          : False,
-        'doPartnerRepacks'           : True,
+        'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
@@ -134,15 +134,15 @@ gloConfig = {
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
         'oldRepoPath'                : 'releases/comm-beta',
-        'sourceRepoRevision'         : '2d6c6de72c8b',
+        'sourceRepoRevision'         : 'e8606afddbea',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : '317fabbef86b',
+        'mozillaRepoRevision'        : 'a1022c1524af',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO80_2011102619_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO80_2011103118_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -163,8 +163,8 @@ gloConfig = {
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
-        'binaryName'                 : 'thunderbird',
-        'oldBinaryName'              : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -173,14 +173,14 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '8.0b4',
-        'oldVersion'                 : '8.0b3',
+        'version'                    : '8.0b5',
+        'oldVersion'                 : '8.0b4',
         'appVersion'                 : '8.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '8.0',
         'buildNumber'                : 1,
         'oldBuildNumber'             : 2,
-        'baseTag'                    : 'THUNDERBIRD_8_0b4',
-        'oldBaseTag'                 : 'THUNDERBIRD_8_0b3',
+        'baseTag'                    : 'THUNDERBIRD_8_0b5',
+        'oldBaseTag'                 : 'THUNDERBIRD_8_0b4',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '8.0',
@@ -264,8 +264,8 @@ gloConfig = {
         'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
-        'binaryName'                 : 'thunderbird',
-        'oldBinaryName'              : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,

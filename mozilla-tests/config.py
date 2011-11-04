@@ -73,11 +73,12 @@ PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'snowleopard-r4']
+                                            'snowleopard-r4', 'lion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
 PLATFORMS['macosx64']['snowleopard-r4'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
+PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
@@ -407,6 +408,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
+    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
     coallesceJobs = branchConfig.get('coallesce_jobs', True)
@@ -543,6 +545,10 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
             'snowleopard-r4': {
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            },
+            'lion': {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
@@ -736,7 +742,8 @@ PROJECTS = {
             'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True}, 
             'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True}, 
             'leopard':{'ext':'(mac|mac64).dmg', 'debug':True}, 
-            'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},   
+            'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
+            'lion':{'ext':'(mac|mac64).dmg', 'debug':True},
             'xp':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
@@ -751,7 +758,6 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
         'jetpack_tarball': 'archive/tip.tar.bz2',
-        'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central',
         'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
     },
 }
@@ -784,6 +790,7 @@ for branch in BRANCHES.keys():
         BRANCHES[branch]['platforms']['linux']['enable_mobile_unittests'] = True
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
     loadTalosSuites(BRANCHES, SUITES, branch)
+    BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
 
 # The following are exceptions to the defaults
@@ -794,7 +801,7 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-central']['add_pgo_builders'] = True
+BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 # Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
 # XXX hacking warning - this code could get out of date easily
 BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
@@ -814,13 +821,13 @@ BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittest
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
-BRANCHES['mozilla-release']['add_pgo_builders'] = True
+BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ######## mozilla-beta
-BRANCHES['mozilla-beta']['add_pgo_builders'] = True
+BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 ######## mozilla-aurora
-BRANCHES['mozilla-aurora']['add_pgo_builders'] = True
+BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
