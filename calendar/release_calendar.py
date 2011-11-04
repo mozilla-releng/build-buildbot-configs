@@ -28,6 +28,8 @@ l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'calendar/sunbird/config/version.txt'
+# version-bump.pl needs an app name, which we have to hack a bit for Lightning.
+productBumpName            = 'calendar/sunbird'
 productName                = 'lightning'
 brandName                  = 'Lightning'
 appName                    = 'calendar'
