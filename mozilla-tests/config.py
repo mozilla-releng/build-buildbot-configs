@@ -207,11 +207,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
         'options': (TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS),
     },
-    'paint': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint:tpaint', '--setPref', 'dom.send_after_paint_to_content=true'],
-        'options': ({}, ALL_PLATFORMS),
-    },
     'xperf': {
         'enable_by_default': False,
         'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"'],
@@ -845,7 +840,6 @@ BRANCHES['mozilla-1.9.2']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['paint_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 
 ######## addontester 
