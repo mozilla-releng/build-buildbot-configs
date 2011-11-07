@@ -103,6 +103,9 @@ PROJECT_BRANCHES = {
             'linuxqt': {
                 'build_space': 7,
             },
+            'macosx64-debug': {
+                'enable_leaktests': True,
+            },
         },
         'talos_suites': {
             'v8': 1,
