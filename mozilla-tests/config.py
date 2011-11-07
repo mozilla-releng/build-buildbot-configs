@@ -148,18 +148,14 @@ ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 SUITES = {
     'chrome': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:tsspider', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts_paint:tpaint:tdhtml:tsspider', '--mozAfterPaint'],
         'options': ({}, NO_MAC),
     },
+    # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts_paint:tpaint:tdhtml:tsspider', '--mozAfterPaint'],
         'options': ({}, MAC_ONLY),
-    },
-    'chrome_twinopen': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:twinopen:tsspider', '--mozAfterPaint'],
-        'options': ({}, NO_MAC),
     },
     'nochrome': {
         'enable_by_default': True,
@@ -266,21 +262,18 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
-    # These old suites will be remove once the newer ones are enabled by default everywhere
+    # These old suites are only for 1.9.2 and do not use --mozAfterPaint 
+    # chrome VS old_chrome is:
+    # 1) without --mozAfterPaint, 2) use ts instead tpaint and 3) use twinopen instead of tpaint
     'old_chrome': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:tsspider'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:twinopen:tsspider'],
         'options': ({}, NO_MAC),
     },
     'old_chrome_mac': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider'],
         'options': ({}, MAC_ONLY),
-    },
-    'old_chrome_twinopen': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:twinopen:tsspider'],
-        'options': ({}, NO_MAC),
     },
     'old_nochrome': {
         'enable_by_default': False,
@@ -836,12 +829,11 @@ BRANCHES['shadow-central']['repo_path'] = "shadow-central"
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
 BRANCHES['mozilla-1.9.2']['mobile_branch_name'] = "Mobile1.1"
 BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-1.9.2']['old_chrome_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
+# Let's enable the old suites without mozAfterPaint and enable what we use in m-c
+BRANCHES['mozilla-1.9.2']['old_chrome_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['old_chrome_mac_tests'] = (1, True, {}, OLD_BRANCH_MAC_ONLY)
-BRANCHES['mozilla-1.9.2']['old_chrome_twinopen_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['old_nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['chrome_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['chrome_twinopen_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['chrome_mac_tests'] = (0, True, {}, OLD_BRANCH_MAC_ONLY)
 BRANCHES['mozilla-1.9.2']['nochrome_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
