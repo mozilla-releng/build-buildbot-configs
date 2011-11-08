@@ -104,7 +104,7 @@ PROJECT_BRANCHES = {
                 'build_space': 7,
             },
             'macosx64-debug': {
-                'enable_leaktests': True,
+                'enable_leaktests': False,
             },
         },
         'talos_suites': {
