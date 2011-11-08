@@ -6,7 +6,7 @@ ac_add_options --disable-debug
 ac_add_options --enable-tests
 ac_add_options --enable-codesighs
 
-# Nightlies only since this has a cost in performance
+# Mozilla-Central nightlies only since this has a cost in performance
 ac_add_options --enable-js-diagnostics
 
 CC=/tools/gcc-4.5/bin/gcc
