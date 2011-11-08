@@ -1173,7 +1173,7 @@ BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux-android-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = False
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1579,7 +1579,7 @@ BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['macosx64-debug']['enable_leaktests'] = True
+BRANCHES['try']['platforms']['macosx64-debug']['enable_leaktests'] = False
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
