@@ -7,7 +7,7 @@ ac_add_options --enable-tests
 ac_add_options --enable-codesighs
 ac_add_options --disable-install-strip
 
-# Nightlies only since this has a cost in performance
+# Mozilla-Central nightlies only since this has a cost in performance
 ac_add_options --enable-js-diagnostics
 
 export CFLAGS="-gdwarf-2"
@@ -21,4 +21,6 @@ ac_add_options --enable-debug-symbols="-gdwarf-2"
 export MOZILLA_OFFICIAL=1
 
 export MOZ_TELEMETRY_REPORTING=1
+
+# Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"

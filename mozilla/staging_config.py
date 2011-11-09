@@ -68,6 +68,8 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
+    'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
+    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
 }
 
 BUILDS_BEFORE_REBOOT = 5

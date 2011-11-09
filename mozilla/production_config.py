@@ -1,5 +1,5 @@
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,10) + range(15,30) + range(40,57)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73) if x not in (3,4,5,8,10,20,27,28,40,59,68)]
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,56) if x not in (3,4,5,8,10,20,27,28,40)]
 XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,21,22]]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,10) + range(11,17) + range(18,47)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
@@ -75,6 +75,8 @@ GLOBAL_VARS = {
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
+    'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
+    'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/firefox/bundles'],
 }
 
 BUILDS_BEFORE_REBOOT = 1
