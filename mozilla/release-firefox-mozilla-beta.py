@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     }
 }
 #  L10n repositories
-releaseConfig['l10nRelbranch']       = None,
+releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories
