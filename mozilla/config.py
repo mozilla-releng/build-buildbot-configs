@@ -847,6 +847,7 @@ PLATFORM_VARS = {
             'stage_platform': "linux",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
+            'enable_dep': False,
         },
         'win32-mobile': {
             'base_name': 'WINNT 5.2 Mobile Desktop %(branch)s',
@@ -890,6 +891,7 @@ PLATFORM_VARS = {
             'stage_platform': "win32",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
+            'enable_dep': False,
         },
         'macosx-mobile': {
             'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',
@@ -935,6 +937,7 @@ PLATFORM_VARS = {
             'stage_platform': "macosx",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
+            'enable_dep': False,
         },
 }
 
