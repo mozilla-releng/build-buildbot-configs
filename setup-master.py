@@ -126,7 +126,7 @@ class MasterConfig:
                         self.name)
             else:
                 self.log.error("TEST-FAIL %s failed to run checkconfig" % self.name)
-                self.log.info('log for "%s" is %s"' (self.name, test_log_filename))
+                self.log.info('log for "%s" is "%s"' % (self.name, test_log_filename))
             return (rc, test_log_filename, test_dir)
 
 
