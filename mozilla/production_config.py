@@ -18,7 +18,6 @@ SLAVES = {
     'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
     'linux-android':    LINUX_VMS + LINUX_IXS,
-    'linux-maemo5-gtk': LINUX_VMS + LINUX_IXS,
     'linux-mobile':     LINUX_VMS + LINUX_IXS,
     'macosx-mobile':    MAC_MINIS + XSERVES,
     'win32-mobile':     WIN32_IXS,
