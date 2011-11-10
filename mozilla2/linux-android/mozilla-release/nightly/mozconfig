@@ -7,11 +7,13 @@ ac_add_options --enable-optimize
 ac_add_options --enable-application=mobile
 
 # Android
-ac_add_options --target=arm-android-eabi
+ac_add_options --target=arm-linux-androideabi
 ac_add_options --with-endian=little
-ac_add_options --with-android-ndk="/tools/android-ndk"
+ac_add_options --with-android-ndk="/tools/android-ndk-r5c"
 ac_add_options --with-android-sdk="/tools/android-sdk/platforms/android-8"
 ac_add_options --with-android-tools="/tools/android-sdk/tools"
+ac_add_options --with-android-toolchain=/tools/android-ndk-r5c/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86
+ac_add_options --with-android-platform=/tools/android-ndk-r5c/platforms/android-5/arch-arm
 ac_add_options --with-system-zlib
 ac_add_options --enable-updater
 ac_add_options --enable-update-channel=nightly
