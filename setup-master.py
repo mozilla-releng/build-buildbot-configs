@@ -3,20 +3,28 @@
 
 Sets up mozilla buildbot master in master_dir."""
 
-import os, glob, shutil, subprocess, urllib, tempfile
+import os
+import glob
+import shutil
+import subprocess
+import urllib
+import tempfile
+import sys
+import logging
 try:
     import simplejson as json
 except ImportError:
     import json
 
 class MasterConfig:
-    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None, extras=None):
+    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None, extras=None, log=None):
         self.name = name or None
         self.config_dir = config_dir
         self.globs = globs or []
         self.renames = renames or []
         self.local_links = local_links or []
         self.extras = extras or []
+        self.log = log or None
 
     def __add__(self, o):
         retval = MasterConfig(
@@ -29,33 +37,50 @@ class MasterConfig:
                 )
         return retval
 
-    def createMaster(self, master_dir, buildbot):
-        null = open(os.devnull, "w")
-        subprocess.check_call([buildbot, 'create-master', master_dir], stdout=null)
-        null.close()
+    def createMaster(self, master_dir, buildbot, logfile=None):
+        # The following is needed to maintain exisitng behaviour
+        # of printing stderr of buildbot
+        if logfile:
+            self.log.debug('opening "%s" for buildbot create master stdout and stderr' % logfile)
+            s_out = open(logfile, 'w+')
+            s_err = subprocess.STDOUT
+        else:
+            s_out = open(os.devnull, 'w+')
+            s_err = sys.stderr
+        subprocess.check_call([buildbot, 'create-master', master_dir],
+                              stdout=s_out, stderr=s_err)
+        s_out.close()
         if not os.path.exists(master_dir):
+            self.log.debug('mkdir -p %s' % master_dir)
             os.makedirs(master_dir)
         for g in self.globs:
             for f in glob.glob(os.path.join(self.config_dir, g)):
                 dst = os.path.join(master_dir, os.path.basename(f))
                 if os.path.lexists(dst):
+                    self.log.debug('rm -f %s' % dst)
                     os.unlink(dst)
                 src = os.path.abspath(f)
+                self.log.debug('ln -s %s %s' % (src,dst))
                 os.symlink(src, dst)
 
         for src, dst in self.local_links:
             dst = os.path.join(master_dir, dst)
             if os.path.lexists(dst):
+                self.log.debug('rm -f %s' % dst)
                 os.unlink(dst)
+            self.log.debug('ln -s %s %s' % (src,dst))
             os.symlink(src, dst)
 
         for src, dst in self.renames:
             dst = os.path.join(master_dir, dst)
             if os.path.lexists(dst):
+                self.log.debug('rm -f %s' % dst)
                 os.unlink(dst)
+            self.log.debug('cp %s %s' % (os.path.join(self.config_dir, src),dst))
             shutil.copy(os.path.join(self.config_dir, src), dst)
 
         for extra_filename, extra_data in self.extras:
+            self.log.debug('writing %s to %s' % (extra_data.replace('\n', '\\n'), extra_filename))
             f = open(os.path.join(master_dir, extra_filename), 'w').write(extra_data)
 
         # Remove leftover files
@@ -67,21 +92,20 @@ class MasterConfig:
 
 
     def testMaster(self, buildbot, universal=False):
-        print "TEST-INFO starting %s" % self.name
         test_output_dir = os.environ.get('TEMP', 'test-output')
         if not os.path.isdir(test_output_dir):
             os.mkdir(test_output_dir)
         test_dir = tempfile.mkdtemp(prefix='%s-'%self.name, dir=os.path.join(os.getcwd(), test_output_dir))
-        test_log_filename = test_dir+'.log'
+        test_log_filename = test_dir+'-checkconfig.log'
+        create_log_filename = test_dir+'-create-master.log'
         test_log = open(test_log_filename, 'w')
-        print "TEST-INFO creating master"
+        self.log.info('creating "%s" master' % self.name)
         try:
-            self.createMaster(test_dir, buildbot)
-            print "TEST-INFO created master"
+            self.createMaster(test_dir, buildbot, logfile=create_log_filename)
+            self.log.info('created  "%s" master, running checkconfig' % self.name)
         except (OSError, subprocess.CalledProcessError):
-            print "TEST-FAIL %s failed to be created" % self.name
-            return (300, None, None)
-        null = open(os.devnull, "w")
+            self.log.error('TEST-FAIL failed to create "%s"' % self.name)
+            return (300, create_log_filename, None)
         rc = subprocess.call([buildbot, 'checkconfig'],
                              cwd=test_dir, stdout=test_log, stderr=subprocess.STDOUT)
         test_log.close()
@@ -92,21 +116,21 @@ class MasterConfig:
             log.seek(log_size - 1024)
         log_tail = log.readlines()
         if 'Config file is good!' in [x.strip() for x in log_tail] and rc == 0:
-            print "TEST-PASS checkconfig OK for %s" % self.name
+            self.log.info("TEST-PASS checkconfig OK for %s" % self.name)
             shutil.rmtree(test_dir)
             os.remove(test_log_filename)
             return (0, None, None)
         else:
             if rc == 0:
-                print "TEST-FAIL checkconfig returned 0 for %s but didn't print 'Config file is good!'" % \
-                        self.name
+                self.log.warn('checkconfig returned 0 for %s but didn\'t print "Config file is good!"' % \
+                        self.name)
             else:
-                print "TEST-FAIL %s failed to run checkconfig" % self.name
-            print "TEST-INFO log is in %s" % test_log_filename
+                self.log.error("TEST-FAIL %s failed to run checkconfig" % self.name)
+                self.log.info('log for "%s" is %s"' (self.name, test_log_filename))
             return (rc, test_log_filename, test_dir)
 
 
-def load_masters_json(masters_json, role=None, universal=False):
+def load_masters_json(masters_json, role=None, universal=False, log=None):
     if 'http' in masters_json:
         masters = json.load(urllib.urlopen(masters_json))
     else:
@@ -144,7 +168,8 @@ def load_masters_json(masters_json, role=None, universal=False):
                     ],
                 extras=[
                     ('master_config.json', json.dumps(m, indent=2, sort_keys=True)),
-                    ]
+                    ],
+                log=log
                 )
 
         if universal:
@@ -676,6 +701,8 @@ def filter_masters(master_list):
     return master_list
 
 if __name__ == "__main__":
+
+
     from optparse import OptionParser
 
     parser = OptionParser(__doc__)
@@ -689,17 +716,44 @@ if __name__ == "__main__":
         default="http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
     parser.add_option("-R", "--role", dest="role", default=None)
     parser.add_option("-u", "--universal", dest="universal", action="store_true")
+    parser.add_option("-q", "--quiet", dest="quiet", action="store_true")
+    parser.add_option("-d", "--debug", dest="debug", action="store_true")
 
     options, args = parser.parse_args()
 
-    if options.buildbot08:
-        master_list = masters_08
-    elif options.buildbot07:
-        master_list = masters_07
+    if options.debug:
+        loglvl = logging.DEBUG
+    elif options.quiet:
+        loglvl = logging.ERROR
     else:
-        master_list = load_masters_json(options.masters_json, role=options.role)
+        loglvl = logging.INFO
+
+    log = logging.getLogger('setup-master')
+    log.setLevel(logging.DEBUG)
+    ch = logging.StreamHandler()
+    ch.setLevel(loglvl)
+    cf = logging.Formatter('%(levelname)-5s - %(message)s')
+    ch.setFormatter(cf)
+    log.addHandler(ch)
+
+    if options.buildbot08:
+        log.debug('using -8')
+        master_list = masters_08
+        for m in master_list:
+            m.log = log
+    elif options.buildbot07:
+        log.debug('using -7')
+        master_list = masters_07
+        for m in master_list:
+            m.log = log
+    else:
+        log.debug('using master json file from "%s"' % options.masters_json)
+        if options.role:
+            log.info('filtering by "%s" roles' % options.role)
+        master_list = load_masters_json(options.masters_json, role=options.role, log=log, universal=options.universal)
         if options.test:
-            master_list.extend(load_masters_json(options.masters_json, role=options.role, universal=True))
+            log.debug('adding universal builders because we are testing')
+            master_list.extend(load_masters_json(options.masters_json, role=options.role, universal=not options.universal,log=log))
 
     # Make sure we don't have duplicate names
     master_map = dict((m.name, m) for m in master_list)
@@ -713,23 +767,25 @@ if __name__ == "__main__":
         failing_masters = []
         # Test the masters, once normally and onces as a universal master
         for m in filter_masters(master_list):
-            rc, log, dir = m.testMaster(options.buildbot)
+            rc, logfile, dir = m.testMaster(options.buildbot)
             if rc != 0:
-                failing_masters.append((m.name, log, dir))
+                failing_masters.append((m.name, logfile, dir))
         # Print a summary including a list of useful output
-        print "TEST-SUMMARY: %s tested, %s failed" % (len(master_list), len(failing_masters))
-        for rc, log, dir in failing_masters:
+        log.info("TEST-SUMMARY: %s tested, %s failed" % (len(master_list), len(failing_masters)))
+        for rc, logfile, dir in failing_masters:
             def s(n):
                 if n is not None:
                     return n[len(os.getcwd())+1:]
-            print " -%s, log: '%s', dir: '%s'" % (rc, s(log), s(dir))
-        if len(failing_masters) > 0:
-            exit(1)
+            log.info("FAILED-MASTER %s, log: '%s', dir: '%s'" % (rc, s(logfile), s(dir)))
+        exit(len(failing_masters))
     elif len(args) == 2:
         master_dir, master_name = args[:2]
 
+        if options.universal:
+            master_name = master_name + '-universal'
+
         if master_name not in master_map:
-            parser.error("Unknown master %s" % master_name)
+            log.error("Unknown master %s" % master_name)
 
         m = master_map[master_name]
         m.createMaster(master_dir, options.buildbot)
