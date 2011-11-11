@@ -187,6 +187,9 @@ PROJECT_BRANCHES = {
         'platforms': {
             'linux-android': {},
         },
+        'talos_suites': {
+            'remote-tp4m': 0,
+        },
     },
     'cedar': {},
     # customizations for windows update service changes (bug 481815)
