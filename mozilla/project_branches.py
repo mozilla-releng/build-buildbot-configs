@@ -180,6 +180,10 @@ PROJECT_BRANCHES = {
     # customizations while booked for native mobile UI project
     'birch': {
         'enable_nightly': True,
+        'enable_multi_locale': True,
+        'enable_l10n': True,
+        'enable_l10n_onchange': False,
+        'l10n_repo_path': 'l10n-central',
         'create_snippet': True,
         'create_mobile_snippet': True,
         'create_partial': True,
@@ -187,6 +191,7 @@ PROJECT_BRANCHES = {
         'platforms': {
             'linux-android': {},
         },
+        'l10n_platforms': [],
         'talos_suites': {
             'remote-tp4m': 0,
         },
