@@ -438,6 +438,7 @@ PLATFORM_VARS = {
                 # Source server support, bug 506702
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -618,6 +619,7 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -791,6 +793,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
             },
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
