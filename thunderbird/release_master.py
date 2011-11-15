@@ -695,6 +695,7 @@ for gloKey in gloConfig:
         # shorthand
         pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
         mozconfig = '%s/%s/release' % (platform, sourceRepoName)
+        l10nmozconfig = '%s/%s/l10n' % (platform, sourceRepoName)
 
         if platform in unittestPlatforms:
             packageTests = True
@@ -771,7 +772,7 @@ for gloKey in gloConfig:
                 buildSpace=5,
                 configRepoPath=nightly_config.CONFIG_REPO_PATH,
                 configSubDir=nightly_config.CONFIG_SUBDIR,
-                mozconfig=mozconfig,
+                mozconfig=l10nmozconfig,
                 platform=platform,
                 buildRevision='%s_RELEASE' % baseTag,
                 version=version,
