@@ -858,7 +858,7 @@ PROJECTS = {
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
     },
     'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32', 'arm'],
+        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
