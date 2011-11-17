@@ -9,6 +9,8 @@ SlavePasswords = {
         'macosx64': 'pass',
         'try-macosx': 'pass',
         'linux-android': 'pass',
+        'android': 'pass',
+        'android-xul': 'pass',
         'linux-mobile': 'pass',
         'macosx-mobile': 'pass',
         'win32-mobile': 'pass',

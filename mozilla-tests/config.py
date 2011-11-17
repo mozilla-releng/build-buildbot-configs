@@ -62,6 +62,8 @@ PLATFORMS = {
     'win64': {},
     'linux': {},
     'linux64' : {},
+    'android': {},
+    'android-xul': {},
     'linux-android': {},
 }
 
@@ -73,11 +75,10 @@ PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'snowleopard-r4', 'lion']
+                                            'lion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
-PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev3 MacOSX Snow Leopard 10.6.2"}
-PLATFORMS['macosx64']['snowleopard-r4'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
+PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 
@@ -104,15 +105,30 @@ PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 
-PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android']
+PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android-o']
 PLATFORMS['linux-android']['env_name'] = 'android-perf'
 PLATFORMS['linux-android']['is_mobile'] = True
-PLATFORMS['linux-android']['tegra_android'] = {'name': "Android Tegra 250",
+PLATFORMS['linux-android']['tegra_android-o'] = {'name': "Android Tegra 250",
                                          'download_symbols': False,
                                         }
-PLATFORMS['linux-android']['stage_product'] = 'mobile'
 PLATFORMS['linux-android']['stage_platform'] = 'android'
+PLATFORMS['linux-android']['stage_product'] = 'mobile'
 
+PLATFORMS['android']['slave_platforms'] = ['tegra_android']
+PLATFORMS['android']['env_name'] = 'android-perf'
+PLATFORMS['android']['is_mobile'] = True
+PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
+                                         'download_symbols': False,
+                                        }
+PLATFORMS['android']['stage_product'] = 'mobile'
+
+PLATFORMS['android-xul']['slave_platforms'] = ['tegra_android-xul']
+PLATFORMS['android-xul']['env_name'] = 'android-perf'
+PLATFORMS['android-xul']['is_mobile'] = True
+PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250",
+                                         'download_symbols': False,
+                                        }
+PLATFORMS['android-xul']['stage_product'] = 'mobile'
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -124,7 +140,9 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-MOBILE_PLATFORMS = PLATFORMS['linux-android']['slave_platforms']
+MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
+                   PLATFORMS['android-xul']['slave_platforms'] + \
+                   PLATFORMS['linux-android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -141,7 +159,14 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
-ANDROID = PLATFORMS['linux-android']['slave_platforms']
+ANDROID = PLATFORMS['android']['slave_platforms'] + \
+          PLATFORMS['android-xul']['slave_platforms'] + \
+          PLATFORMS['linux-android']['slave_platforms']
+
+ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
+
+ANDROID_XUL = PLATFORMS['android-xul']['slave_platforms'] + \
+              PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -164,7 +189,7 @@ SUITES = {
     },
     'dirty': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
     'tp': {
@@ -235,12 +260,12 @@ SUITES = {
     'remote-tpan': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-tp4m': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
@@ -255,7 +280,7 @@ SUITES = {
     'remote-tzoom': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     # These old suites are only for 1.9.2 and do not use --mozAfterPaint 
     # chrome VS old_chrome is:
@@ -305,6 +330,8 @@ BRANCH_UNITTEST_VARS = {
         'macosx64': {},
         'win32': {},
         'win64': {},
+        'android': {},
+        'android-xul': {},
         'linux-android': {},
     },
 }
@@ -456,6 +483,123 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
             addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
                       suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
+ANDROID_UNITTEST_DICT = {
+    'opt_unittest_suites': [
+        ('mochitest-1', (
+            {'suite': 'mochitest-plain',
+             'testPaths': [
+                 'content/smil/test', 'content/xml/document/test',
+                 'content/xslt/tests/mochitest'
+             ]
+            },
+        )),
+        ('mochitest-2', (
+            {'suite': 'mochitest-plain',
+             'testPaths': [
+                 'dom/src/json/test', 'dom/src/jsurl/test',
+                 'dom/tests/mochitest/dom-level0', 'js'
+             ]
+            },
+        )),
+        ('mochitest-3', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['dom/tests/mochitest/dom-level1-core']
+            },
+        )),
+        ('mochitest-4', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['dom/tests/mochitest/dom-level2-core']
+            },
+        )),
+        ('mochitest-5', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['dom/tests/mochitest/ajax/mochikit',
+                           'dom/tests/mochitest/ajax/scriptaculous',
+                           'dom/tests/mochitest/ajax/jquery'],
+            },
+        )),
+        ('mochitest-6', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['dom/tests/mochitest/dom-level2-html'],
+            },
+        )),
+        ('mochitest-7', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['Harness_sanity',
+                           'editor/composer/test',
+                           'intl/uconv/tests',
+                           'dom/tests/mochitest/orientation',
+                           'dom/tests/mochitest/storageevent'],
+            },
+        )),
+        ('mochitest-8', (
+            {'suite': 'mochitest-plain',
+             'testPaths': ['layout/xul/test',
+                           'modules/libjar/test/mochitest',
+                           'layout/inspector/tests',
+                           'toolkit/xre/test',
+                           'toolkit/components/microformats/tests',
+                           'MochiKit-1.4.2/tests',
+                           'parser/htmlparser/tests/mochitest'],
+           },
+        )),
+        ('browser-chrome', (
+            {'suite': 'mochitest-browser-chrome',
+             'testPaths': ['mobile']
+            },
+        )),
+        ('reftest-1', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 1,
+            },
+        )),
+        ('reftest-2', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 2,
+            },
+        )),
+        ('reftest-3', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 3,
+            },
+        )),
+        ('crashtest-1', (
+            {'suite': 'crashtest',
+             'totalChunks': 2,
+             'thisChunk': 1,
+            },
+        )),
+        ('crashtest-2', (
+            {'suite': 'crashtest',
+             'totalChunks': 2,
+             'thisChunk': 2,
+            },
+        )),
+        ('jsreftest-1', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 1,
+            },
+        )),
+        ('jsreftest-2', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 2,
+            },
+        )),
+        ('jsreftest-3', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 3,
+            },
+        )),
+    ],
+    'debug_unittest_suites': [],
+}
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a 
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -532,14 +676,26 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
-            'snowleopard-r4': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
             'lion': {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
+        },
+        'android': {
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': False,
+            'remote_extras': UNITTEST_REMOTE_EXTRAS,
+            'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
+        },
+        'android-xul': {
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': False,
+            'remote_extras': UNITTEST_REMOTE_EXTRAS,
+            'tegra_android-xul': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'linux-android': {
             'is_remote': True,
@@ -547,116 +703,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': False,
             'remote_extras': UNITTEST_REMOTE_EXTRAS,
-            'tegra_android': {
-                'opt_unittest_suites': [
-                    ('mochitest-1', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': [
-                             'content/smil/test', 'content/xml/document/test',
-                             'content/xslt/tests/mochitest'
-                         ]
-                        },
-                    )),
-                    ('mochitest-2', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': [
-                             'dom/src/json/test', 'dom/src/jsurl/test',
-                             'dom/tests/mochitest/dom-level0', 'js'
-                         ]
-                        },
-                    )),
-                    ('mochitest-3', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['dom/tests/mochitest/dom-level1-core']
-                        },
-                    )),
-                    ('mochitest-4', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['dom/tests/mochitest/dom-level2-core']
-                        },
-                    )),
-                    ('mochitest-5', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['dom/tests/mochitest/ajax/mochikit',
-                                       'dom/tests/mochitest/ajax/scriptaculous',
-                                       'dom/tests/mochitest/ajax/jquery'],
-                        },
-                    )),
-                    ('mochitest-6', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['dom/tests/mochitest/dom-level2-html'],
-                        },
-                    )),
-                    ('mochitest-7', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['Harness_sanity',
-                                       'editor/composer/test',
-                                       'intl/uconv/tests',
-                                       'dom/tests/mochitest/orientation',
-                                       'dom/tests/mochitest/storageevent'],
-                        },
-                    )),
-                    ('mochitest-8', (
-                        {'suite': 'mochitest-plain',
-                         'testPaths': ['layout/xul/test',
-                                       'modules/libjar/test/mochitest',
-                                       'layout/inspector/tests',
-                                       'toolkit/xre/test',
-                                       'toolkit/components/microformats/tests',
-                                       'MochiKit-1.4.2/tests',
-                                       'parser/htmlparser/tests/mochitest'],
-                       },
-                    )),
-                    ('browser-chrome', (
-                        {'suite': 'mochitest-browser-chrome',
-                         'testPaths': ['mobile']
-                        },
-                    )),
-                    ('reftest-1', (
-                        {'suite': 'reftest',
-                         'totalChunks': 2,
-                         'thisChunk': 1,
-                        },
-                    )),
-                    ('reftest-2', (
-                        {'suite': 'reftest',
-                         'totalChunks': 2,
-                         'thisChunk': 2,
-                        },
-                    )),
-                    ('crashtest-1', (
-                        {'suite': 'crashtest',
-                         'totalChunks': 2,
-                         'thisChunk': 1,
-                        },
-                    )),
-                    ('crashtest-2', (
-                        {'suite': 'crashtest',
-                         'totalChunks': 2,
-                         'thisChunk': 2,
-                        },
-                    )),
-                    ('jsreftest-1', (
-                        {'suite': 'jsreftest',
-                         'totalChunks': 3,
-                         'thisChunk': 1,
-                        },
-                    )),
-                    ('jsreftest-2', (
-                        {'suite': 'jsreftest',
-                         'totalChunks': 3,
-                         'thisChunk': 2,
-                        },
-                    )),
-                    ('jsreftest-3', (
-                        {'suite': 'jsreftest',
-                         'totalChunks': 3,
-                         'thisChunk': 3,
-                        },
-                    )),
-                ],
-                'debug_unittest_suites': [],
-            },
+            'tegra_android-o': deepcopy(ANDROID_UNITTEST_DICT),
         },
 }
 
@@ -805,7 +852,7 @@ for suite in SUITES.keys():
     else:
         # Suites that are turned on by default
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
-BRANCHES['mozilla-central']['platforms']['linux-android']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## mozilla-release
@@ -867,13 +914,13 @@ BRANCHES['addonbaselinetester']['enable_unittests'] = False
 ######## try
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
-BRANCHES['try']['platforms']['linux-android']['enable_debug_unittests'] = True
+BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
     for pf in PLATFORMS:
-        if pf in ('linux-android', ):
+        if 'android' in pf:
             continue
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
             # These two mac excpetions are because we have been adding debug jetpack to macosx/leopard-o
@@ -894,6 +941,25 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
     loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
+
+#-------------------------------------------------------------------------
+# Remove a branch from this tuple when we merge Firefox 11.0 into it.
+#-------------------------------------------------------------------------
+LINUX_ANDROID_BRANCHES = ('mozilla-aurora', 'mozilla-beta', 'mozilla-release')
+#-------------------------------------------------------------------------
+# Delete the following when 11.0 is released.
+#-------------------------------------------------------------------------
+for branch in BRANCHES.keys():
+    if branch in LINUX_ANDROID_BRANCHES:
+        for p in ('android', 'android-xul'):
+            if p in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][p]
+    else:
+        if 'linux-android' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['linux-android']
+#-------------------------------------------------------------------------
+# End 11.0 hacks.
+#-------------------------------------------------------------------------
 
 if __name__ == "__main__":
     import sys, pprint, re

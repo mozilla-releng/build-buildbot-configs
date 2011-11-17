@@ -5,13 +5,14 @@ SLAVES = {
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,65)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,60)]),
-    'snowleopard': dict([("talos-r3-snow-%03i" % x, {}) for x in range(3,10) + range(11,60)]),
-    'snowleopard-r4': dict([("talos-r4-snow-%03i" % x, {}) for x in range(3,10) + range(11,81)]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(3,10) + range(11,60)]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(3,10) + range(11,81)]),
-    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,154)]),
+    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(31,178)]),
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
+SLAVES['tegra_android-xul'] = SLAVES['tegra_android']
+SLAVES['tegra_android-o'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 

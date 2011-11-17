@@ -93,9 +93,9 @@ def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
             return ['tb2-darwin9-slave%02i' % x for x in [55,56,57,58,65,67,70]]
     elif platformName == 'macosx64':
         if isTest:
-            return [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]]
+            return [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]] + ['mini64-%02i' % x for x in [1]]
         else:
-            return ['momo-xserve-01'] + [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]]
+            return ['momo-xserve-01'] + [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]] + ['mini64-%02i' % x for x in [1]]
     elif platformName == 'win32':
         if isTest:
             return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6,7] + range(8,15+1) + range(17,19+1)]

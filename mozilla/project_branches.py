@@ -40,7 +40,7 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'slave_platforms': ['snowleopard'],
             },
-            'linux-android': {
+            'android': {
                 'enable_opt_unittests': False,
                 'enable_debug_unittests': False,
                 'tegra_android': {},
@@ -180,7 +180,7 @@ PROJECT_BRANCHES = {
     # customizations while booked for native mobile UI project
     'birch': {
         'enable_nightly': True,
-        'enable_multi_locale': True,
+        'enable_multi_locale': False,
         'enable_l10n': True,
         'enable_l10n_onchange': False,
         'l10n_repo_path': 'l10n-central',
@@ -189,7 +189,7 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'lock_platforms': True,
         'platforms': {
-            'linux-android': {},
+            'android': {},
         },
         'l10n_platforms': [],
         'talos_suites': {
