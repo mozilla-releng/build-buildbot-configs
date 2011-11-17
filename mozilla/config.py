@@ -67,6 +67,9 @@ GLOBAL_VARS = {
         'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
+        'android': {},
+        'android-debug': {},
+        'android-xul': {},
         'linux-android': {},
         'linux-android-debug': {},
         'linux-mobile': {},
@@ -625,10 +628,150 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
+        'android': {
+            'base_name': 'Android %(branch)s',
+            'mozconfig': 'android/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android/nightly',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'create_partial': False,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+        },
+        'android-xul': {
+            'base_name': 'Android XUL %(branch)s',
+            'mozconfig': 'android-xul/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/xul/config/mozconfigs/android/nightly',
+            'mobile_dir': 'mobile/xul',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'create_partial': False,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-xul",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+        },
+        'android-debug': {
+            'base_name': 'Android Debug %(branch)s',
+            'mozconfig': 'android-debug/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android/debug',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'enable_leaktests': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-debug",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+        },
         'linux-android': {
             'base_name': 'Android %(branch)s',
             'mozconfig': 'linux-android/%(branch)s/nightly',
             'src_mozconfig': 'mobile/config/mozconfigs/android/nightly',
+            'enable_nightly': False,
+            'enable_dep': False,
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -674,6 +817,8 @@ PLATFORM_VARS = {
             'base_name': 'Android Debug %(branch)s',
             'mozconfig': 'linux-android-debug/%(branch)s/nightly',
             'src_mozconfig': 'mobile/config/mozconfigs/android/debug',
+            'enable_nightly': False,
+            'enable_dep': False,
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -718,7 +863,8 @@ PLATFORM_VARS = {
         'linux-mobile': {
             'base_name': 'Linux Mobile Desktop %(branch)s',
             'mozconfig': 'linux-mobile/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/config/mozconfigs/linux-desktop/nightly',
+            'src_mozconfig': 'mobile/xul/config/mozconfigs/linux-desktop/nightly',
+            'mobile_dir': 'mobile/xul',
             'profiled_build': False,
             'enable_xulrunner': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -763,7 +909,8 @@ PLATFORM_VARS = {
         'win32-mobile': {
             'base_name': 'WINNT 5.2 Mobile Desktop %(branch)s',
             'mozconfig': 'win32-mobile/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/config/mozconfigs/win32-desktop/nightly',
+            'src_mozconfig': 'mobile/xul/config/mozconfigs/win32-desktop/nightly',
+            'mobile_dir': 'mobile/xul',
             'profiled_build': False,
             'enable_xulrunner': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -808,7 +955,8 @@ PLATFORM_VARS = {
         'macosx-mobile': {
             'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',
             'mozconfig': 'macosx-mobile/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/config/mozconfigs/macosx-desktop/nightly',
+            'src_mozconfig': 'mobile/xul/config/mozconfigs/macosx-desktop/nightly',
+            'mobile_dir': 'mobile/xul',
             'profiled_build': False,
             'enable_xulrunner': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -1091,9 +1239,11 @@ BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['linux-android-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = False
+del BRANCHES['mozilla-central']['platforms']['linux-android']
+del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1160,9 +1310,31 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
+#-------------------------------------------------------------------------
+# Delete the below lines when 11.0 merges into release
+#-------------------------------------------------------------------------
+del BRANCHES['mozilla-release']['platforms']['android']
+del BRANCHES['mozilla-release']['platforms']['android-debug']
+del BRANCHES['mozilla-release']['platforms']['android-xul']
+BRANCHES['mozilla-release']['platforms']['linux-android']['enable_dep'] = True
+BRANCHES['mozilla-release']['platforms']['linux-android-debug']['enable_dep'] = True
+BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
+BRANCHES['mozilla-release']['platforms']['linux-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/linux-desktop/nightly'
+BRANCHES['mozilla-release']['platforms']['linux-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-release']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/macosx-desktop/nightly'
+BRANCHES['mozilla-release']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-release']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
+BRANCHES['mozilla-release']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+#-------------------------------------------------------------------------
+# Uncomment the below lines when 11.0 merges into release
+#-------------------------------------------------------------------------
+#BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
+#BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
+#-------------------------------------------------------------------------
+# End 11.0
+#-------------------------------------------------------------------------
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1208,9 +1380,31 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-beta']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
+#-------------------------------------------------------------------------
+# Delete the below lines when 11.0 merges into beta
+#-------------------------------------------------------------------------
+del BRANCHES['mozilla-beta']['platforms']['android']
+del BRANCHES['mozilla-beta']['platforms']['android-debug']
+del BRANCHES['mozilla-beta']['platforms']['android-xul']
+BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['linux-android-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['platforms']['linux-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/linux-desktop/nightly'
+BRANCHES['mozilla-beta']['platforms']['linux-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/macosx-desktop/nightly'
+BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-beta']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
+BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+#-------------------------------------------------------------------------
+# Uncomment the below lines when 11.0 merges into beta
+#-------------------------------------------------------------------------
+#BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+#BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+#-------------------------------------------------------------------------
+# End 11.0
+#-------------------------------------------------------------------------
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1263,11 +1457,35 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firef
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
-BRANCHES['mozilla-aurora']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
+#-------------------------------------------------------------------------
+# Delete the below lines when 11.0 merges into aurora
+#-------------------------------------------------------------------------
+del BRANCHES['mozilla-aurora']['platforms']['android']
+del BRANCHES['mozilla-aurora']['platforms']['android-debug']
+del BRANCHES['mozilla-aurora']['platforms']['android-xul']
+BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_dep'] = True
+BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']['enable_dep'] = True
+BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['platforms']['linux-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/linux-desktop/nightly'
+BRANCHES['mozilla-aurora']['platforms']['linux-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/macosx-desktop/nightly'
+BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
+BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+#-------------------------------------------------------------------------
+# Uncomment the below lines when 11.0 merges into beta
+#-------------------------------------------------------------------------
+#BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+#BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+#-------------------------------------------------------------------------
+# End 11.0 deletion
+#-------------------------------------------------------------------------
 
 ######## mozilla-1.9.1
 # mozilla-1.9.1 can be removed once we're no longer refreshing MUs from 3.5.18,
@@ -1476,8 +1694,9 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
-BRANCHES['try']['platforms']['linux-android']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try']['platforms']['linux-android-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux-mobile']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['win32-mobile']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['try']['platforms']['macosx-mobile']['slaves'] = TRY_SLAVES['macosx']
@@ -1485,8 +1704,9 @@ BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['linux-android']['upload_symbols'] = False
-BRANCHES['try']['platforms']['linux-android-debug']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux-mobile']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32-mobile']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx-mobile']['upload_symbols'] = False
@@ -1549,6 +1769,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if BRANCHES[branch]['platforms'].has_key('linux-mobile'):
         BRANCHES[branch]['platforms']['linux-mobile']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux-mobile-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android'):
+        BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android-xul'):
+        BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux-android'):
         BRANCHES[branch]['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('linuxqt'):
@@ -1563,7 +1787,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # point to the mozconfigs, default is generic
     for platform in BRANCHES[branch]['platforms']:
-        if platform.endswith('debug') and 'linux-android' not in platform:
+        if platform.endswith('debug') and 'android' not in platform:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
         elif platform.endswith('qt'):
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'

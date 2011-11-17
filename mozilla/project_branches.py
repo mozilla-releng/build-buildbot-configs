@@ -40,7 +40,7 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'slave_platforms': ['snowleopard'],
             },
-            'linux-android': {
+            'android': {
                 'enable_opt_unittests': False,
                 'enable_debug_unittests': False,
                 'tegra_android': {},
@@ -189,7 +189,7 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'lock_platforms': True,
         'platforms': {
-            'linux-android': {},
+            'android': {},
         },
         'l10n_platforms': [],
         'talos_suites': {
