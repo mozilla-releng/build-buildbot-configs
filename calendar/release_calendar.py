@@ -3,7 +3,7 @@ hgSshKey                   = '~cltbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'CAL'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '8813bde5f416'
+sourceRepoRevision         = 'baaec1696e1b'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
@@ -44,7 +44,7 @@ version                    = '1.1b1'
 appVersion                 = '1.1b1'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '8.0'
-buildNumber                = 1
+buildNumber                = 2
 baseTag                    = 'CALENDAR_1_1b1'
 # The old version is the revision from which we should generate update snippets.
 oldVersion                 = '1.0'
