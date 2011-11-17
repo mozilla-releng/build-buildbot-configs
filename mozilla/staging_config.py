@@ -112,7 +112,7 @@ BRANCHES = {
         'platforms': {
             'win32': {
                 'env': {
-                    'SYMBOL_SERVER_HOST': 'build.mozilla.org',
+                    'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
                     'CVS_RSH': 'ssh',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
