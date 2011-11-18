@@ -192,6 +192,14 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
+    # Responsiveness requires patches to be on all branches, so off by default and on for m-c only
+    # We currently have a linux failure under investigation
+    # OSX will work on m-c, m-a as of Nov 2011
+    'tp_responsiveness': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint', '--responsiveness'],
+        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
+    },
     'tp': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint'],
@@ -854,6 +862,8 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
+BRANCHES['mozilla-central']['tp_responsiveness'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['tp'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
