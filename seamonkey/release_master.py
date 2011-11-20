@@ -254,6 +254,7 @@ for platform in enUSPlatforms:
     # shorthand
     pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, sourceRepoName)
+    l10nmozconfig = '%s/%s/release-l10n' % (platform, sourceRepoName)
     if platform in talosTestPlatforms:
         talosMasters = branchConfig['talos_masters']
     else:
@@ -343,7 +344,7 @@ for platform in enUSPlatforms:
             buildSpace=2,
             configRepoPath=branchConfig['config_repo_path'],
             configSubDir=branchConfig['config_subdir'],
-            mozconfig=mozconfig,
+            mozconfig=l10nmozconfig,
             platform=platform + '-release',
             buildRevision='%s_RELEASE' % baseTag,
             version=version,
