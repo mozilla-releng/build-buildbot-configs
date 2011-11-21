@@ -2,7 +2,7 @@ MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,10) + \
                  range(15,30) + range(40,57) if x not in (52,)] # bug683792
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,27) + range(38,55) \
                  if x not in (3,4,5,8,10,20,40)] # bug629763
-XSERVES        = ['bm-xserve%02i' % x for x in [6,7,9,11,12,15,16,17,18,19,22]] # bug700705
+XSERVES        = ['bm-xserve%02i' % x for x in [7,9,11,12,15,16,17,18,19,22]] # bug700705
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,47) \
                  if x not in (10,17)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
@@ -11,7 +11,7 @@ LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13) \
                  if x not in (7,10)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20]] + \
-                 ['w32-ix-slave%02i' % x for x in range(1,2) + range(24,43)]
+                 ['w32-ix-slave%02i' % x for x in range(24,43)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,25)]
 
 SLAVES = {
@@ -36,7 +36,7 @@ TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
 TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48) \
-                 if x not in (11,35,) and x not in range(20,30)] # Bug 650297 & bug 700705
+                 if x not in (11,16,35,) and x not in range(20,30)] # Bug 650297 & bug 700705
 TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,32)] + \
                  ['moz2-darwin10-slave%02i' % x for x in range(11,15)]

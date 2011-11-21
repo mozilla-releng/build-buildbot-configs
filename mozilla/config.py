@@ -67,7 +67,7 @@ GLOBAL_VARS = {
         'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
-        'android': {},
+        #'android': {},
         'android-debug': {},
         'android-xul': {},
         'linux-android': {},
@@ -77,7 +77,7 @@ GLOBAL_VARS = {
         'macosx-mobile': {},
     },
     'pgo_strategy': None,
-    'pgo_platforms': ('linux', 'linux64', 'win32'),
+    'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
     'periodic_pgo_interval': 6, # in hours
     'product_name': 'firefox', # Not valid for mobile builds
     'app_name': 'browser',     # Not valid for mobile builds
@@ -1239,7 +1239,7 @@ BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+#BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = False
 del BRANCHES['mozilla-central']['platforms']['linux-android']
@@ -1315,7 +1315,7 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 #-------------------------------------------------------------------------
 # Delete the below lines when 11.0 merges into release
 #-------------------------------------------------------------------------
-del BRANCHES['mozilla-release']['platforms']['android']
+#del BRANCHES['mozilla-release']['platforms']['android']
 del BRANCHES['mozilla-release']['platforms']['android-debug']
 del BRANCHES['mozilla-release']['platforms']['android-xul']
 BRANCHES['mozilla-release']['platforms']['linux-android']['enable_dep'] = True
@@ -1385,7 +1385,7 @@ BRANCHES['mozilla-beta']['enable_valgrind'] = False
 #-------------------------------------------------------------------------
 # Delete the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
-del BRANCHES['mozilla-beta']['platforms']['android']
+#del BRANCHES['mozilla-beta']['platforms']['android']
 del BRANCHES['mozilla-beta']['platforms']['android-debug']
 del BRANCHES['mozilla-beta']['platforms']['android-xul']
 BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_dep'] = True
@@ -1464,7 +1464,7 @@ BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 #-------------------------------------------------------------------------
 # Delete the below lines when 11.0 merges into aurora
 #-------------------------------------------------------------------------
-del BRANCHES['mozilla-aurora']['platforms']['android']
+#del BRANCHES['mozilla-aurora']['platforms']['android']
 del BRANCHES['mozilla-aurora']['platforms']['android-debug']
 del BRANCHES['mozilla-aurora']['platforms']['android-xul']
 BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_dep'] = True
@@ -1694,7 +1694,7 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
-BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
+#BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux-mobile']['slaves'] = TRY_SLAVES['linux']
@@ -1704,7 +1704,7 @@ BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android']['upload_symbols'] = False
+#BRANCHES['try']['platforms']['android']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux-mobile']['upload_symbols'] = False
