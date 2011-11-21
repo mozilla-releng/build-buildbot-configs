@@ -205,10 +205,10 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 0,
-        'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
-                                        'linux64' : 'moz20-thunderbird-linux64.cfg',
-                                        'macosx64': 'moz20-thunderbird-mac64.cfg',
-                                        'win32'   : 'moz20-thunderbird-win32.cfg'},
+        'verifyConfigs'              : {'linux'   : 'mozBeta-thunderbird-linux.cfg',
+                                        'linux64' : 'mozBeta-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozBeta-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozBeta-thunderbird-win32.cfg'},
         'packageTests'               : True,
         #XXX: Should really be obtained from config.py, but this will do for now.
         'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
@@ -305,10 +305,10 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 1,
-        'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
-                                        'linux64' : 'moz20-thunderbird-linux64.cfg',
-                                        'macosx64': 'moz20-thunderbird-mac64.cfg',
-                                        'win32'   : 'moz20-thunderbird-win32.cfg'},
+        'verifyConfigs'              : {'linux'   : 'mozRelease-thunderbird-linux.cfg',
+                                        'linux64' : 'mozRelease-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozRelease-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozRelease-thunderbird-win32.cfg'},
         'packageTests'               : True,
         #XXX: Should really be obtained from config.py, but this will do for now.
         'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
