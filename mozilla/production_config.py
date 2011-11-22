@@ -11,7 +11,7 @@ LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13) \
                  if x not in (7,10)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20]] + \
-                 ['w32-ix-slave%02i' % x for x in range(24,43)]
+                 ['w32-ix-slave%02i' % x for x in range(24,45)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,25)]
 
 SLAVES = {
