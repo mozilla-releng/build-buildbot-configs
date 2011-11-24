@@ -435,19 +435,29 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
     coallesceJobs = branchConfig.get('coallesce_jobs', True)
+    BRANCHES[branch]['suites'] = deepcopy(SUITES)
     # Check if Talos is enabled, if False, set 0 runs for all suites
     if branchConfig.get('enable_talos') == False:
         branchConfig['talos_suites'] = {}
         for suite in SUITES.keys():
             branchConfig['talos_suites'][suite]  = 0
 
-    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] otherwise, defaults below
+    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] 
+    # This is the default and will make all talosConfig.get(key,0) calls
+    # to default to 0 a.k.a. disabled suite
+    talosConfig = {}
     if branchConfig.get('talos_suites'):
-        talosConfig = branchConfig['talos_suites']
-    else:
-        # This is the default and will make all talosConfig.get(key,0) calls
-        # to default to 0 a.k.a. disabled suite
-        talosConfig = {}
+        for suite, settings in branchConfig['talos_suites'].items():
+            # Normally the setting is just 0 or 1 for talosConfig to enable/disable a test
+            # If there's a list, value[0] is the enabling flag and [1] is a dict of customization
+            if isinstance(settings, list):
+                talosConfig[suite] = settings[0]
+                # append anything new in 'suites' for a talos_suite
+                for key, value in settings[1].items():
+                    if suite in SUITES.keys():
+                        BRANCHES[branch]['suites'][suite][key] += value
+            else:
+                talosConfig[suite] = settings
 
     for suite in SUITES.keys():
         if not SUITES[suite]['enable_by_default']:
@@ -862,8 +872,8 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp_responsiveness'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['tp'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['tp_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'

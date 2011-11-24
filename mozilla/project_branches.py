@@ -141,7 +141,6 @@ PROJECT_BRANCHES = {
         'mobile_tinderbox_tree': 'UX',
         'packaged_unittest_tinderbox_tree': 'UX',
         'enabled_products': ['firefox'],
-        'enable_mobile': False,
         'mozconfig_dir' : 'ux',
         'enable_nightly': True,
         'create_snippet': True,
@@ -236,7 +235,30 @@ PROJECT_BRANCHES = {
             }
         }
     },
-    'pine': {},
+    'pine': {
+        'enable_unittests': False,
+        'enabled_products': ['firefox'],
+        'talos_suites': {
+            'tp': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'chrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'chrome_mac': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'nochrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'dirty': 0,
+            'svg': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'dromaeo': 0,
+            # hate that remote talos still show up when mobile product is not being requested
+            # but that's not part of the bug i'm doing this for, so leaving for now
+            'remote-ts': 0,
+            'remote-tdhtml': 0,
+            'remote-tsvg': 0,
+            'remote-tsspider': 0,
+            'remote-tpan': 0,
+            'remote-tp4m': 0,
+            'remote-tp4m_nochrome': 0,
+            'remote-twinopen': 0,
+            'remote-tzoom': 0,
+        },
+    },
 }
 
 # All is the default
