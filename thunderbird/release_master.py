@@ -176,7 +176,7 @@ gloConfig = {
         'version'                    : '9.0b2',
         'oldVersion'                 : '9.0b1',
         'appVersion'                 : '9.0', # no 'b1' suffix for betas
-        'oldAppVersion'              : '8.0',
+        'oldAppVersion'              : '9.0',
         'buildNumber'                : 1,
         'oldBuildNumber'             : 2,
         'baseTag'                    : 'THUNDERBIRD_9_0b2',
