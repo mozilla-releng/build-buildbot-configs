@@ -18,7 +18,7 @@ ACTIVE_BRANCHES = ['shadow-central', 'mozilla-1.9.2', 'mozilla-central',
         'mozilla-beta', 'mozilla-aurora', 'mozilla-release',
 ] + ACTIVE_PROJECT_BRANCHES
 ACTIVE_PROJECTS = PROJECTS.keys()
-ACTIVE_RELEASE_BRANCHES = ['mozilla-1.9.1', 'mozilla-release',]
+ACTIVE_RELEASE_BRANCHES = ['mozilla-release',]
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 
 # Set up our fast slaves

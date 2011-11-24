@@ -106,11 +106,6 @@ BRANCHES = {
         'stage_base_path' : '/mnt/pvt_builds',
         'stage_log_base_url': 'https://dm-pvtbuild01.mozilla.org',
     },
-    'mozilla-1.9.1': {
-        'packaged_unittest_tinderbox_tree': 'Firefox3.5',
-        'tinderbox_tree': 'Firefox3.5',
-        'mobile_tinderbox_tree': 'MobileTest',
-    },
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'packaged_unittest_tinderbox_tree': 'Firefox3.6',
