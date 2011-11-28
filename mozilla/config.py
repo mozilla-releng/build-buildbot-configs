@@ -1603,7 +1603,9 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
-#BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
+# Delete this line when Android native goes live
+BRANCHES['try']['platforms']['android'] = deepcopy(PLATFORM_VARS['android'])
+BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux-mobile']['slaves'] = TRY_SLAVES['linux']
