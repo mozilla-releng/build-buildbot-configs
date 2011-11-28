@@ -1088,13 +1088,6 @@ BRANCHES = {
     },
     'mozilla-aurora': {
     },
-    'mozilla-1.9.1': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
-            'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
-        },
-    },
     'mozilla-1.9.2': {
         'lock_platforms': True,
         'platforms': {
@@ -1487,90 +1480,6 @@ BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 # End 11.0 deletion
 #-------------------------------------------------------------------------
 
-######## mozilla-1.9.1
-# mozilla-1.9.1 can be removed once we're no longer refreshing MUs from 3.5.18,
-# or bug 662298 is fixed.
-BRANCHES['mozilla-1.9.1']['repo_path'] = 'releases/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-1.9.1']['brand_name'] = 'Shiretoko'
-BRANCHES['mozilla-1.9.1']['start_hour'] = [3]
-BRANCHES['mozilla-1.9.1']['start_minute'] = [2]
-BRANCHES['mozilla-1.9.1']['use_old_updater'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['build_space'] = 7
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['build_space'] = 7
-BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['build_space'] = 3
-BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['build_space'] = 4
-BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['build_space'] = 3
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-1.9.1']['enable_xulrunner'] = True
-# Enable unit tests
-BRANCHES['mozilla-1.9.1']['unittest_suites'] = [
-    ('mochitests', ['mochitest-plain']),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-]
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux-debug']['packageTests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64-debug']['packageTests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx-debug']['packageTests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32-debug']['packageTests'] = False
-BRANCHES['mozilla-1.9.1']['enable_mac_a11y'] = False
-BRANCHES['mozilla-1.9.1']['unittest_build_space'] = 5
-# L10n configuration
-BRANCHES['mozilla-1.9.1']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.1']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
-BRANCHES['mozilla-1.9.1']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-1.9.1']['l10nDatedDirs'] = False
-BRANCHES['mozilla-1.9.1']['l10n_tree'] = 'fx35x'
-BRANCHES['mozilla-1.9.1']['l10n_modules'] =  [
-    'browser', 'extensions/reporter',
-    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
-    'security/manager',
-    ]
-#make sure it has an ending slash
-BRANCHES['mozilla-1.9.1']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.1-l10n/'
-BRANCHES['mozilla-1.9.1']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-1.9.1']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-1.9.1' % (GLOBAL_VARS['hgurl'])
-BRANCHES['mozilla-1.9.1']['create_snippet'] = True
-BRANCHES['mozilla-1.9.1']['create_partial'] = True
-BRANCHES['mozilla-1.9.1']['create_partial_l10n'] = False
-BRANCHES['mozilla-1.9.1']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-1.9.1']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.1'
-BRANCHES['mozilla-1.9.1']['enable_blocklist_update'] = True
-BRANCHES['mozilla-1.9.1']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['linux64']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['macosx']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.1']['platforms']['win32']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.1']['enable_valgrind'] = False
-
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
@@ -1694,7 +1603,9 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
 BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
-#BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
+# Delete this line when Android native goes live
+BRANCHES['try']['platforms']['android'] = deepcopy(PLATFORM_VARS['android'])
+BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux-mobile']['slaves'] = TRY_SLAVES['linux']
@@ -1798,7 +1709,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in ('mozilla-1.9.1', 'mozilla-1.9.2',):
+for branch in ('mozilla-1.9.2',):
     branches.remove(branch)
 for branch in branches:
     if BRANCHES[branch]['platforms'].has_key('linux'):
