@@ -88,7 +88,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "nb-NO": {
-    "revision": "6a99005b649d",
+    "revision": "030ea9bd72a7",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "nl": {
