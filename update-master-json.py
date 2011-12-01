@@ -11,8 +11,8 @@ if len(sys.argv) == 3:
     cwd = os.getcwd()
     if os.path.exists(all_masters_json):
         masters = json.load(open(all_masters_json))
+        found = False
         for master in masters:
-            found = False
             if master['hostname'] == hostname and master['basedir'] == cwd and master['enabled']:
                 found = True
                 tmp = json.dumps(master, indent=2, sort_keys=True)
@@ -23,7 +23,6 @@ if len(sys.argv) == 3:
                     f.close()
                 else:
                     print "no changes to master_config.json"
-                break
         if not found:
             print 'master not found in %s' % sys.argv[1]
             sys.exit(1)
