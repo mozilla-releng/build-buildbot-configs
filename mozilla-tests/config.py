@@ -272,12 +272,12 @@ SUITES = {
     },
     'remote-tp4m': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--rss'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-twinopen': {
