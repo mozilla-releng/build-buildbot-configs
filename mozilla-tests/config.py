@@ -108,26 +108,20 @@ PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android-o']
 PLATFORMS['linux-android']['env_name'] = 'android-perf'
 PLATFORMS['linux-android']['is_mobile'] = True
-PLATFORMS['linux-android']['tegra_android-o'] = {'name': "Android Tegra 250",
-                                         'download_symbols': False,
-                                        }
+PLATFORMS['linux-android']['tegra_android-o'] = {'name': "Android Tegra 250"}
 PLATFORMS['linux-android']['stage_platform'] = 'android'
 PLATFORMS['linux-android']['stage_product'] = 'mobile'
 
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250",
-                                         'download_symbols': False,
-                                        }
+PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['stage_product'] = 'mobile'
 
 PLATFORMS['android-xul']['slave_platforms'] = ['tegra_android-xul']
 PLATFORMS['android-xul']['env_name'] = 'android-perf'
 PLATFORMS['android-xul']['is_mobile'] = True
-PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250",
-                                         'download_symbols': False,
-                                        }
+PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250"}
 PLATFORMS['android-xul']['stage_product'] = 'mobile'
 
 # Lets be explicit instead of magical.  leopard-o should be a second
