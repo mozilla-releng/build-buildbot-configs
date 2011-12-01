@@ -186,6 +186,7 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_mobile_snippet': True,
         'create_partial': True,
+        'fetch_symbols': True,
         'lock_platforms': True,
         'platforms': {
             'android': {},
