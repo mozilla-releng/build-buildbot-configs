@@ -151,6 +151,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -279,6 +280,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -448,6 +450,13 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'win64': {
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
@@ -627,6 +636,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'android': {
             'base_name': 'Android %(branch)s',
@@ -1237,6 +1248,8 @@ BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTR
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = False
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
+# Uncomment when we're ready for nightly signing on this branch
+#BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1471,6 +1484,8 @@ BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['src_mozconfig'] = 'mob
 BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+# Uncomment when we're ready for nightly signing on this branch
+#BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 #-------------------------------------------------------------------------
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
@@ -1558,6 +1573,22 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['enable_valgrind'] = False
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux64']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['macosx']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['win32']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['nightly_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['dep_signing_servers'] = None
 
 ######## try
 # Try-specific configs
@@ -1696,14 +1727,23 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['win64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'win64-' + branch
     if BRANCHES[branch]['platforms'].has_key('macosx64'):
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
-    # point to the mozconfigs, default is generic
+    # Platform-specific defaults/interpretation
     for platform in BRANCHES[branch]['platforms']:
+        # point to the mozconfigs, default is generic
         if platform.endswith('debug') and 'android' not in platform:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
         elif platform.endswith('qt'):
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
+        # Project branches should be allowed to override the signing servers.
+        # If a branch does not set dep_signing_servers, it should be set to the global default.
+        BRANCHES[branch]['platforms'][platform]['dep_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('dep_signing_servers',
+                                                                         PLATFORM_VARS[platform].get('dep_signing_servers'))
+        # If a branch does not set nightly_signing_servers, it should be set to its dep signing server,
+        # which may have already been set to the global default.
+        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
+                                                                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
     BRANCHES[branch]['enable_valgrind'] = False
 
 # Bug 578880, remove the following block after gcc-4.5 switch

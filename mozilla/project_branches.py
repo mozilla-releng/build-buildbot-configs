@@ -205,11 +205,11 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'win32': {
-                'env': {
-                    'MOCO_SIGNED_UPDATER_EXE': 'http://runtime-binaries.pvt.build.mozilla.org/updater.exe',
-                }
+                'nightly_signing_servers': 'nightly-signing',
             },
-            'win32-debug': {},
+            'win32-debug': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
         },
         'enable_talos': False,
     },
@@ -230,11 +230,12 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
         'platforms': {
             'win32': {
-                'env': {
-                    'MOCO_SIGNED_UPDATER_EXE': 'http://runtime-binaries.pvt.build.mozilla.org/updater.exe',
-                }
-            }
-        }
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win32-debug': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
     },
     'pine': {
         'enable_unittests': False,
