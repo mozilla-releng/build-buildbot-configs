@@ -455,8 +455,8 @@ PLATFORM_VARS = {
             # random new branches to accidentally use nightly-signing, which signs
             # with valid keys. Any branch that needs to be signed with these keys
             # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
+            #'nightly_signing_servers': 'dep-signing',
+            #'dep_signing_servers': 'dep-signing',
         },
         'win64': {
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
@@ -636,8 +636,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
+            #'nightly_signing_servers': 'dep-signing',
+            #'dep_signing_servers': 'dep-signing',
         },
         'android': {
             'base_name': 'Android %(branch)s',
