@@ -1245,7 +1245,7 @@ BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 #BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = False
+BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
 # Uncomment when we're ready for nightly signing on this branch
@@ -1657,7 +1657,7 @@ BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['macosx64-debug']['enable_leaktests'] = False
+BRANCHES['try']['platforms']['macosx64-debug']['enable_leaktests'] = True
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
