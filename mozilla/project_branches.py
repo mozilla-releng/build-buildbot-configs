@@ -104,7 +104,7 @@ PROJECT_BRANCHES = {
                 'build_space': 7,
             },
             'macosx64-debug': {
-                'enable_leaktests': False,
+                'enable_leaktests': True,
             },
         },
         'talos_suites': {
@@ -205,11 +205,13 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'win32': {
-                'env': {
-                    'MOCO_SIGNED_UPDATER_EXE': 'http://runtime-binaries.pvt.build.mozilla.org/updater.exe',
-                }
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
             },
-            'win32-debug': {},
+            'win32-debug': {
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
         },
         'enable_talos': False,
     },
@@ -230,11 +232,14 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
         'platforms': {
             'win32': {
-                'env': {
-                    'MOCO_SIGNED_UPDATER_EXE': 'http://runtime-binaries.pvt.build.mozilla.org/updater.exe',
-                }
-            }
-        }
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
+            'win32-debug': {
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
+        },
     },
     'pine': {
         'enable_unittests': False,
