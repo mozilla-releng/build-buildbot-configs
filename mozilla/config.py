@@ -1248,8 +1248,12 @@ BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTR
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
-# Uncomment when we're ready for nightly signing on this branch
-#BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['win32']['dep_signing_servers'] = 'dep-signing'
+BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['win32-debug']['dep_signing_servers'] = 'dep-signing'
+BRANCHES['mozilla-central']['platforms']['win32-debug']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['win64']['dep_signing_servers'] = 'dep-signing'
+BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## shadow-central
 # custom settings for shadow-central repo
