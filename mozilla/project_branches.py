@@ -212,6 +212,10 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
                 'dep_signing_servers': 'dep-signing',
             },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
         },
         'enable_talos': False,
     },
