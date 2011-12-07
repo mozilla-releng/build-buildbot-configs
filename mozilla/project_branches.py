@@ -106,6 +106,14 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {
                 'enable_leaktests': True,
             },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
+            'win32-debug': {
+                'nightly_signing_servers': 'nightly-signing',
+                'dep_signing_servers': 'dep-signing',
+            },
         },
         'talos_suites': {
             'v8': 1,
