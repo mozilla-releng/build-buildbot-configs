@@ -80,7 +80,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "ko": {
-    "revision": "dda528d8e0a4",
+    "revision": "1b2ebfb7a7c8",
     "platforms": ["linux", "macosx", "win32"]
   },
   "lt": {
