@@ -135,7 +135,6 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
-                   PLATFORMS['android-xul']['slave_platforms'] + \
                    PLATFORMS['linux-android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
@@ -154,13 +153,11 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 ANDROID = PLATFORMS['android']['slave_platforms'] + \
-          PLATFORMS['android-xul']['slave_platforms'] + \
           PLATFORMS['linux-android']['slave_platforms']
 
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
 
-ANDROID_XUL = PLATFORMS['android-xul']['slave_platforms'] + \
-              PLATFORMS['linux-android']['slave_platforms']
+ANDROID_XUL = PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
