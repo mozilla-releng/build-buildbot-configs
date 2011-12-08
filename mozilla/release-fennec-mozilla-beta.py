@@ -2,11 +2,8 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['mozilla_release@oduinn.com',]
-releaseConfig['PassRecipients']      = ['mozilla_release_drivers@oduinn.com',]
-# uncomment when mail.m.c is back up
-#releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-#releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
