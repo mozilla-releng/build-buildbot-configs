@@ -1224,7 +1224,7 @@ BRANCHES['mozilla-central']['enUS_binaryURL'] = \
 BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-central' % (GLOBAL_VARS['hgurl'])
-BRANCHES['mozilla-central']['enable_multi_locale'] = False
+BRANCHES['mozilla-central']['enable_multi_locale'] = True
 BRANCHES['mozilla-central']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
