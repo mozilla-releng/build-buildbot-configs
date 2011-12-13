@@ -2,8 +2,8 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['release@mozilla.com', 'aki@escapewindow.com', 'john@oduinn.com']
-releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org', 'aki@escapewindow.com', 'john@oduinn.com']
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
@@ -15,16 +15,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '9.0b5'
+releaseConfig['version']             = '9.0b6'
 releaseConfig['appVersion']          = '9.0'
 releaseConfig['milestone']           = '9.0'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FENNEC_9_0b5'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FENNEC_9_0b6'
 #  Old version info
-releaseConfig['oldVersion']          = '9.0b4'
+releaseConfig['oldVersion']          = '9.0b5'
 releaseConfig['oldAppVersion']       = '9.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_9_0b4'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FENNEC_9_0b5'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '9.0'
 releaseConfig['nextMilestone']       = '9.0'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': "938d0e6afa57",
-        'relbranch': "MOBILE90_2011120622_RELBRANCH",
+        'revision': 'd2f1a400e430',
+        'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {
                 'version': releaseConfig['appVersion'],

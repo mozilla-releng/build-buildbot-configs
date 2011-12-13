@@ -20,7 +20,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "de": {
-    "revision": "275dd00cbf95",
+    "revision": "0315e5aca648",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "el": {
@@ -48,7 +48,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "fr": {
-    "revision": "b91b1db464f9",
+    "revision": "4f553e6f0e30",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "fy-NL": {
