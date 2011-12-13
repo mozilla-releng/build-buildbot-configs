@@ -1253,8 +1253,6 @@ BRANCHES['mozilla-central']['platforms']['win32']['dep_signing_servers'] = 'dep-
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32-debug']['dep_signing_servers'] = 'dep-signing'
 BRANCHES['mozilla-central']['platforms']['win32-debug']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['win64']['dep_signing_servers'] = 'dep-signing'
-BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## shadow-central
 # custom settings for shadow-central repo
