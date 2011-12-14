@@ -93,6 +93,7 @@ PROJECT_BRANCHES = {
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'pgo_platforms': ['linux', 'linux64', 'win32'],
+        'periodic_pgo_interval': 3,
         'platforms': {
             'linux64': {
                 'build_space': 7,
