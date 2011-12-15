@@ -1678,6 +1678,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
     if BRANCHES[branch]['enable_mobile']:
         if branchConfig.get('mobile_platforms'):
             for platform, platform_config in branchConfig['mobile_platforms'].items():
