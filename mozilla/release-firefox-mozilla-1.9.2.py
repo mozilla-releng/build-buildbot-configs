@@ -94,7 +94,8 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = True
-releaseConfig['useBetaChannel']      = 1
+releaseConfig['useBetaChannel']      = True
+releaseConfig['useBetaChannelForRelease'] = True
 releaseConfig['verifyConfigs']       = {
     'linux':  'moz192-firefox-linux.cfg',
     'macosx': 'moz192-firefox-mac.cfg',

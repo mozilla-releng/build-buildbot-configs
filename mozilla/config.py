@@ -444,6 +444,7 @@ PLATFORM_VARS = {
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -490,6 +491,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -632,6 +634,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -953,6 +956,7 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
                 'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
@@ -1674,6 +1678,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
     if BRANCHES[branch]['enable_mobile']:
         if branchConfig.get('mobile_platforms'):
             for platform, platform_config in branchConfig['mobile_platforms'].items():
