@@ -10,8 +10,8 @@ ac_add_options --enable-application=mobile
 ac_add_options --target=arm-android-eabi
 ac_add_options --with-endian=little
 ac_add_options --with-android-ndk="/tools/android-ndk"
-ac_add_options --with-android-sdk="/tools/android-sdk/platforms/android-8"
-ac_add_options --with-android-tools="/tools/android-sdk/tools"
+ac_add_options --with-android-sdk="/tools/android-sdk-r13/platforms/android-13"
+ac_add_options --with-android-tools="/tools/android-sdk-r13/tools"
 ac_add_options --with-system-zlib
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 
