@@ -455,8 +455,8 @@ PLATFORM_VARS = {
             # random new branches to accidentally use nightly-signing, which signs
             # with valid keys. Any branch that needs to be signed with these keys
             # must be overridden explicitly.
-            #'nightly_signing_servers': 'dep-signing',
-            #'dep_signing_servers': 'dep-signing',
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'win64': {
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
@@ -636,8 +636,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            #'nightly_signing_servers': 'dep-signing',
-            #'dep_signing_servers': 'dep-signing',
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'android': {
             'base_name': 'Android %(branch)s',
@@ -1249,10 +1249,7 @@ BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTR
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
-BRANCHES['mozilla-central']['platforms']['win32']['dep_signing_servers'] = 'dep-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['win32-debug']['dep_signing_servers'] = 'dep-signing'
-BRANCHES['mozilla-central']['platforms']['win32-debug']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1487,8 +1484,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['src_mozconfig'] = 'mob
 BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
-# Uncomment when we're ready for nightly signing on this branch
-#BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 #-------------------------------------------------------------------------
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
@@ -1497,6 +1492,8 @@ BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 #-------------------------------------------------------------------------
 # End 11.0 deletion
 #-------------------------------------------------------------------------
+# aurora nightlies should use our nightly signing server
+BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
