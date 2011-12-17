@@ -231,7 +231,7 @@ gloConfig = {
     'release': {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
-        'relbranchPrefix'            : 'COMM',
+        'relbranchPrefix'            : 'TB_COMM',
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
