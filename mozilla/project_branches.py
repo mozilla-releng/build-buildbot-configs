@@ -109,11 +109,6 @@ PROJECT_BRANCHES = {
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
-            },
-            'win32-debug': {
-                'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
             },
         },
         'talos_suites': {
@@ -215,16 +210,11 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
-            },
-            'win32-debug': {
-                'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
             },
             'win64': {
                 'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
             },
+            'win32-debug': {},
         },
         'enable_talos': False,
     },
@@ -246,11 +236,6 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
-            },
-            'win32-debug': {
-                'nightly_signing_servers': 'nightly-signing',
-                'dep_signing_servers': 'dep-signing',
             },
         },
     },
