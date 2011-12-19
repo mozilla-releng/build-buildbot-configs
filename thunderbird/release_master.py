@@ -235,9 +235,9 @@ gloConfig = {
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
-        'sourceRepoRevision'         : 'ce786430465f',
+        'sourceRepoRevision'         : '2f9b903311a6',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'TB_COMM90_20111217_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-release',
         'mozillaRepoRevision'        : '34852484d0ae',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -278,7 +278,7 @@ gloConfig = {
         'oldVersion'                 : '8.0',
         'appVersion'                 : '9.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '8.0',
-        'buildNumber'                : 1,
+        'buildNumber'                : 2,
         'oldBuildNumber'             : 1,
         'baseTag'                    : 'THUNDERBIRD_9_0',
         'oldBaseTag'                 : 'THUNDERBIRD_8_0',
