@@ -15,26 +15,26 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '6.0'
-releaseConfig['appVersion']          = '6.0'
-releaseConfig['milestone']           = '6.0'
+releaseConfig['version']             = '9.0'
+releaseConfig['appVersion']          = releaseConfig['version']
+releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_6_0'
+releaseConfig['baseTag']             = 'FENNEC_9_0'
 #  Old version info
-releaseConfig['oldVersion']          = '5.0'
+releaseConfig['oldVersion']          = '8.0'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_5_0'
+releaseConfig['oldBaseTag']          = 'FENNEC_8_0'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '6.0'
-releaseConfig['nextMilestone']       = '6.0'
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'clonePath': 'releases/mozilla-release',
         'path': 'users/stage-ffxbld/mozilla-release',
-        'revision': 'FIXME',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {

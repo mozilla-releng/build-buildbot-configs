@@ -117,11 +117,11 @@ gloConfig = {
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : 'releases/mozilla-release',
         'majorUpdateSourceRepoPath' : 'releases/comm-release',
-        'majorUpdateToVersion'   : '8.0',
+        'majorUpdateToVersion'   : '9.0',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_8_0',
-        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/8.0/details/index.html',
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_9_0',
+        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/9.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
                                     'macosx': 'moz20-thunderbird-mac64-major.cfg',
@@ -231,19 +231,19 @@ gloConfig = {
     'release': {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
-        'relbranchPrefix'            : 'COMM',
+        'relbranchPrefix'            : 'TB_COMM',
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
-        'sourceRepoRevision'         : '727595a78622',
+        'sourceRepoRevision'         : '2f9b903311a6',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'TB_COMM90_20111217_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-release',
-        'mozillaRepoRevision'        : 'd03b51a9b2bd',
+        'mozillaRepoRevision'        : '34852484d0ae',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO80_2011110416_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO90_2011121613_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -274,17 +274,17 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '8.0',
-        'oldVersion'                 : '7.0.1',
-        'appVersion'                 : '8.0', # no 'b1' suffix for betas
-        'oldAppVersion'              : '7.0.1',
-        'buildNumber'                : 1,
+        'version'                    : '9.0',
+        'oldVersion'                 : '8.0',
+        'appVersion'                 : '9.0', # no 'b1' suffix for betas
+        'oldAppVersion'              : '8.0',
+        'buildNumber'                : 2,
         'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_8_0',
-        'oldBaseTag'                 : 'THUNDERBIRD_7_0_1',
+        'baseTag'                    : 'THUNDERBIRD_9_0',
+        'oldBaseTag'                 : 'THUNDERBIRD_8_0',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '8.0',
+        'milestone'                  : '9.0',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),
