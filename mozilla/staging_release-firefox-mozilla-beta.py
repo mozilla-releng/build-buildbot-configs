@@ -16,19 +16,19 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '6.0b1'
-releaseConfig['appVersion']          = '6.0'
-releaseConfig['milestone']           = '6.0'
+releaseConfig['version']             = '9.0b6'
+releaseConfig['appVersion']          = '9.0'
+releaseConfig['milestone']           = '9.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_6_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_9_0b6'
 #  Old version info
-releaseConfig['oldVersion']          = '5.0b6'
-releaseConfig['oldAppVersion']       = '5.0'
+releaseConfig['oldVersion']          = '9.0b5'
+releaseConfig['oldAppVersion']       = '9.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_5_0b6'
+releaseConfig['oldBaseTag']          = 'FIREFOX_9_0b5'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '6.0'
-releaseConfig['nextMilestone']       = '6.0'
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['appVersion']
 #  Repository configuration, for tagging
 ## Staging repository path
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
@@ -37,7 +37,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-beta',
         'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'FIXME',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -70,7 +70,7 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['xulrunnerPlatforms']  = ()
+releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
@@ -79,7 +79,7 @@ releaseConfig['enableUnittests'] = True
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
-releaseConfig['l10nChunks']          = 6
+releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 
 # Mercurial account
