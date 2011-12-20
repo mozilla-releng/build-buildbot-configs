@@ -99,7 +99,7 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
-    'graph_server': 'graphs.mozilla.org',
+    'graph_server': 'graphs-old.mozilla.org',
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
 #    'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://cb-seamonkey-linuxmaster-01.mozilla.org/index.php',
