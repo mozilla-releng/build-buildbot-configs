@@ -1250,6 +1250,7 @@ BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] =
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## shadow-central
 # custom settings for shadow-central repo
@@ -1484,6 +1485,7 @@ BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['src_mozconfig'] = 'mob
 BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
 BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 #-------------------------------------------------------------------------
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
