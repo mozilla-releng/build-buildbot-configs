@@ -107,6 +107,7 @@ gloConfig = {
         'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : True,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
                                       'macosx': 'moz192-thunderbird-mac.cfg',
                                       'win32':  'moz192-thunderbird-win32.cfg'},
@@ -205,6 +206,7 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 0,
+        'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozBeta-thunderbird-linux.cfg',
                                         'linux64' : 'mozBeta-thunderbird-linux64.cfg',
                                         'macosx64': 'mozBeta-thunderbird-mac64.cfg',
@@ -305,6 +307,7 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozRelease-thunderbird-linux.cfg',
                                         'linux64' : 'mozRelease-thunderbird-linux64.cfg',
                                         'macosx64': 'mozRelease-thunderbird-mac64.cfg',
@@ -407,6 +410,7 @@ for gloKey in gloConfig:
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
     useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
+    useBetaChannelForRelease   = gloConfig[gloKey]['useBetaChannelForRelease']
     ausServerUrl               = gloConfig[gloKey]['ausServerUrl']
     releaseNotesUrl            = gloConfig[gloKey]['releaseNotesUrl']
     testOlderPartials          = gloConfig[gloKey]['testOlderPartials']
@@ -938,6 +942,7 @@ for gloKey in gloConfig:
         releaseNotesUrl=releaseNotesUrl,
         testOlderPartials=testOlderPartials,
         schema=snippetSchema,
+        useBetaChannelForRelease=useBetaChannelForRelease,
     )
     
     builders.append({
@@ -1020,6 +1025,7 @@ for gloKey in gloConfig:
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
             testOlderPartials=testOlderPartials,
             schema=snippetSchema,
+            useBetaChannelForRelease=useBetaChannelForRelease,
         )
         
         builders.append({
