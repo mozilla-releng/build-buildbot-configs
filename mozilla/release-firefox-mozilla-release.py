@@ -102,6 +102,18 @@ releaseConfig['verifyConfigs']       = {
     'macosx64': 'mozRelease-firefox-mac64.cfg',
     'win32':  'mozRelease-firefox-win32.cfg'
 }
+releaseConfig['mozconfigs']          = {
+    'linux': 'browser/config/mozconfigs/linux/release',
+    'linux64': 'browser/config/mozconfigs/linux64/release',
+    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
+    'win32': 'browser/config/mozconfigs/win32/release',
+}
+releaseConfig['xulrunner_mozconfigs']          = {
+    'linux': 'xulrunner/config/mozconfigs/linux/release',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
+    'win32': 'xulrunner/config/mozconfigs/win32/release',
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True

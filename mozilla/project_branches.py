@@ -128,10 +128,10 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'private-browsing': {
-        'enable_talos': False,
+    'profiling': {
+        'enable_talos': True,
         'enabled_products': ['firefox'],
-        'enable_nightly': False,
+        'enable_nightly': True,
     },
     'services-central': {
         'repo_path': 'services/services-central',

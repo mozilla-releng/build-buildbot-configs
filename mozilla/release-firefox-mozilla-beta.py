@@ -15,25 +15,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '9.0b6'
-releaseConfig['appVersion']          = '9.0'
-releaseConfig['milestone']           = '9.0'
+releaseConfig['version']             = '10.0b1'
+releaseConfig['appVersion']          = '10.0'
+releaseConfig['milestone']           = '10.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_9_0b6'
+releaseConfig['baseTag']             = 'FIREFOX_10_0b1'
 #  Old version info
-releaseConfig['oldVersion']          = '9.0b5'
+releaseConfig['oldVersion']          = '9.0b6'
 releaseConfig['oldAppVersion']       = '9.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_9_0b5'
+releaseConfig['oldBaseTag']          = 'FIREFOX_9_0b6'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '9.0'
-releaseConfig['nextMilestone']       = '9.0'
+releaseConfig['nextAppVersion']      = '10.0'
+releaseConfig['nextMilestone']       = '10.0'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'd2f1a400e430',
+        'revision': '3e2a4142ebb9',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -100,6 +100,18 @@ releaseConfig['verifyConfigs']       = {
     'linux64':  'mozBeta-firefox-linux64.cfg',
     'macosx64': 'mozBeta-firefox-mac64.cfg',
     'win32':  'mozBeta-firefox-win32.cfg'
+}
+releaseConfig['mozconfigs']          = {
+    'linux': 'browser/config/mozconfigs/linux/release',
+    'linux64': 'browser/config/mozconfigs/linux64/release',
+    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
+    'win32': 'browser/config/mozconfigs/win32/release',
+}
+releaseConfig['xulrunner_mozconfigs']          = {
+    'linux': 'xulrunner/config/mozconfigs/linux/release',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
+    'win32': 'xulrunner/config/mozconfigs/win32/release',
 }
 
 # Partner repack configuration
