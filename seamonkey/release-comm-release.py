@@ -6,8 +6,8 @@ sourceRepoPath             = 'releases/comm-release'
 sourceRepoRevision         = 'ce786430465f'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-release'
-mozillaRepoRevision        = 'FIREFOX_9_0_BUILD1'
-mozillaRelbranchOverride   = 'GECKO90_2011121613_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = 'FIREFOX_9_0_1_BUILD1'
+mozillaRelbranchOverride   = 'GECKO901_2011122016_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = 'b075d299d443'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -21,8 +21,8 @@ l10nRepoPath               = 'releases/l10n/mozilla-release'
 l10nRelbranchOverride      = ''
 l10nRevisionFile           = 'l10n-changesets-comm-release'
 cvsroot                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-#productVersionFile         = 'suite/config/version.txt'
-productVersionFile         = ''
+productVersionFile         = 'suite/config/version.txt'
+#productVersionFile         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,
@@ -37,16 +37,16 @@ skip_tag                   = False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.6'
+version                    = '2.6.1'
 usePrettyLongVer           = False
-appVersion                 = '2.6'
-milestone                  = '9.0'
+appVersion                 = '2.6.1'
+milestone                  = '9.0.1'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_6'
-oldVersion                 = '2.5'
-oldAppVersion              = '2.5'
+baseTag                    = 'SEAMONKEY_2_6_1'
+oldVersion                 = '2.6'
+oldAppVersion              = '2.6'
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_5'
+oldBaseTag                 = 'SEAMONKEY_2_6'
 oldRepoPath                = 'releases/comm-release'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
