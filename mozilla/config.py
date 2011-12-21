@@ -624,7 +624,7 @@ PLATFORM_VARS = {
             'brand_name': 'Minefield',
             'base_name': 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
-            'enable_leaktests': False,
+            'enable_leaktests': True,
             'src_mozconfig': 'browser/config/mozconfigs/macosx64/debug',
             'packageTests': True,
             'profiled_build': False,
@@ -1309,7 +1309,6 @@ BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
-BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -1388,6 +1387,7 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 del BRANCHES['mozilla-release']['platforms']['android']
 del BRANCHES['mozilla-release']['platforms']['android-debug']
 del BRANCHES['mozilla-release']['platforms']['android-xul']
+BRANCHES['mozilla-release']['platforms']['macosx64-debug']['enable_leaktests'] = False 
 BRANCHES['mozilla-release']['platforms']['linux-android']['enable_dep'] = True
 BRANCHES['mozilla-release']['platforms']['linux-android-debug']['enable_dep'] = True
 BRANCHES['mozilla-release']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
@@ -1460,6 +1460,7 @@ BRANCHES['mozilla-beta']['enable_valgrind'] = False
 del BRANCHES['mozilla-beta']['platforms']['android']
 del BRANCHES['mozilla-beta']['platforms']['android-debug']
 del BRANCHES['mozilla-beta']['platforms']['android-xul']
+BRANCHES['mozilla-beta']['platforms']['macosx64-debug']['enable_leaktests'] = False 
 BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['linux-android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
@@ -1637,6 +1638,7 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['nightly_signing_servers'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['dep_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['nightly_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['dep_signing_servers'] = None
+BRANCHES['mozilla-1.9.2']['platforms']['macosx64-debug']['enable_leaktests'] = False 
 
 ######## try
 # Try-specific configs
@@ -1703,7 +1705,6 @@ BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['macosx64-debug']['enable_leaktests'] = True
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
