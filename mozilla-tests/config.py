@@ -420,6 +420,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
     BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
+    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
@@ -868,9 +869,11 @@ BRANCHES['mozilla-central']['tp_responsiveness_tests'] = (1, True, TALOS_TP_OPTS
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-release']['talos_from_source_code'] = False
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-beta']['talos_from_source_code'] = False
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
@@ -899,6 +902,7 @@ BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
+BRANCHES['mozilla-1.9.2']['talos_from_source_code'] = False
 
 ######## addontester 
 BRANCHES['addontester']['branch_name'] = "AddonTester"
@@ -956,7 +960,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 #-------------------------------------------------------------------------
 # Remove a branch from this tuple when we merge Firefox 11.0 into it.
 #-------------------------------------------------------------------------
-LINUX_ANDROID_BRANCHES = ('mozilla-aurora', 'mozilla-beta', 'mozilla-release')
+LINUX_ANDROID_BRANCHES = ('mozilla-beta', 'mozilla-release')
 #-------------------------------------------------------------------------
 # Delete the following when 11.0 is released.
 #-------------------------------------------------------------------------

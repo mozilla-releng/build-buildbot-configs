@@ -107,6 +107,7 @@ gloConfig = {
         'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : True,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
                                       'macosx': 'moz192-thunderbird-mac.cfg',
                                       'win32':  'moz192-thunderbird-win32.cfg'},
@@ -205,6 +206,7 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 0,
+        'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozBeta-thunderbird-linux.cfg',
                                         'linux64' : 'mozBeta-thunderbird-linux64.cfg',
                                         'macosx64': 'mozBeta-thunderbird-mac64.cfg',
@@ -235,7 +237,7 @@ gloConfig = {
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
-        'sourceRepoRevision'         : '2f9b903311a6',
+        'sourceRepoRevision'         : 'df55e2ad2983',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : 'TB_COMM90_20111217_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-release',
@@ -278,7 +280,7 @@ gloConfig = {
         'oldVersion'                 : '8.0',
         'appVersion'                 : '9.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '8.0',
-        'buildNumber'                : 2,
+        'buildNumber'                : 3,
         'oldBuildNumber'             : 1,
         'baseTag'                    : 'THUNDERBIRD_9_0',
         'oldBaseTag'                 : 'THUNDERBIRD_8_0',
@@ -305,6 +307,7 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozRelease-thunderbird-linux.cfg',
                                         'linux64' : 'mozRelease-thunderbird-linux64.cfg',
                                         'macosx64': 'mozRelease-thunderbird-mac64.cfg',
@@ -407,6 +410,7 @@ for gloKey in gloConfig:
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
     useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
+    useBetaChannelForRelease   = gloConfig[gloKey]['useBetaChannelForRelease']
     ausServerUrl               = gloConfig[gloKey]['ausServerUrl']
     releaseNotesUrl            = gloConfig[gloKey]['releaseNotesUrl']
     testOlderPartials          = gloConfig[gloKey]['testOlderPartials']
@@ -938,6 +942,7 @@ for gloKey in gloConfig:
         releaseNotesUrl=releaseNotesUrl,
         testOlderPartials=testOlderPartials,
         schema=snippetSchema,
+        useBetaChannelForRelease=useBetaChannelForRelease,
     )
     
     builders.append({
@@ -1020,6 +1025,7 @@ for gloKey in gloConfig:
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
             testOlderPartials=testOlderPartials,
             schema=snippetSchema,
+            useBetaChannelForRelease=useBetaChannelForRelease,
         )
         
         builders.append({
