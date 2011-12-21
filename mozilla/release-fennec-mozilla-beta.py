@@ -99,6 +99,14 @@ releaseConfig['doPartnerRepacks']       = False
 releaseConfig['partnersRepoPath']       = 'build/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
+# mozconfigs
+releaseConfig['mozconfigs']          = {
+    'linux-android': 'mobile/config/mozconfigs/android/release',
+    'linux-mobile': 'mobile/config/mozconfigs/linux-desktop/release',
+    'macosx-mobile': 'mobile/config/mozconfigs/macosx-desktop/release',
+    'win32-mobile': 'mobile/config/mozconfigs/win32-desktop/release',
+}
+
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
