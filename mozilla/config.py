@@ -1468,34 +1468,13 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
-#-------------------------------------------------------------------------
-# Delete the below lines when 11.0 merges into aurora
-#-------------------------------------------------------------------------
-del BRANCHES['mozilla-aurora']['platforms']['android']
-del BRANCHES['mozilla-aurora']['platforms']['android-debug']
-del BRANCHES['mozilla-aurora']['platforms']['android-xul']
-BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_dep'] = True
-BRANCHES['mozilla-aurora']['platforms']['linux-android']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']['enable_dep'] = True
-BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
-BRANCHES['mozilla-aurora']['platforms']['linux-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/linux-desktop/nightly'
-BRANCHES['mozilla-aurora']['platforms']['linux-mobile']['mobile_dir'] = 'mobile'
-BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/macosx-desktop/nightly'
-BRANCHES['mozilla-aurora']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
-BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
-BRANCHES['mozilla-aurora']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
-BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-#-------------------------------------------------------------------------
-# Uncomment the below lines when 11.0 merges into beta
-#-------------------------------------------------------------------------
-#BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
-#BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
-#-------------------------------------------------------------------------
-# End 11.0 deletion
-#-------------------------------------------------------------------------
+del BRANCHES['mozilla-aurora']['platforms']['linux-android']
+del BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']
+BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
