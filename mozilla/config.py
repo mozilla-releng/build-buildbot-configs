@@ -694,7 +694,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 6,
-            'upload_symbols': False,
+            'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
             'enable_codesighs': False,
@@ -1245,7 +1245,7 @@ BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
+BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['enable_leaktests'] = True
 del BRANCHES['mozilla-central']['platforms']['linux-android']
 del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
@@ -1338,7 +1338,9 @@ BRANCHES['mozilla-release']['platforms']['win32-mobile']['mobile_dir'] = 'mobile
 # Uncomment the below lines when 11.0 merges into release
 #-------------------------------------------------------------------------
 #BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
-#BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
+#BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
+#del BRANCHES['mozilla-release']['platforms']['linux-android']
+#del BRANCHES['mozilla-release']['platforms']['linux-android-debug']
 #-------------------------------------------------------------------------
 # End 11.0
 #-------------------------------------------------------------------------
@@ -1408,7 +1410,9 @@ BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
 #BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
-#BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+#BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
+#del BRANCHES['mozilla-beta']['platforms']['linux-android']
+#del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
 #-------------------------------------------------------------------------
 # End 11.0
 #-------------------------------------------------------------------------
@@ -1471,7 +1475,7 @@ BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 del BRANCHES['mozilla-aurora']['platforms']['linux-android']
 del BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']
 BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
-BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
+BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-aurora'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
