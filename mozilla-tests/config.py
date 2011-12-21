@@ -614,6 +614,9 @@ ANDROID_UNITTEST_DICT = {
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
         'linux': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
@@ -629,6 +632,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'linux64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
@@ -639,6 +645,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win32': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -655,6 +664,9 @@ PLATFORM_UNITTEST_VARS = {
             }
         },
         'win64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'download_symbols': False,
             'enable_opt_unittests': False,
@@ -666,6 +678,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'macosx': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
@@ -675,6 +690,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'macosx64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
@@ -692,6 +710,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'android': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
@@ -700,6 +721,9 @@ PLATFORM_UNITTEST_VARS = {
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'android-xul': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
@@ -708,6 +732,9 @@ PLATFORM_UNITTEST_VARS = {
             'tegra_android-xul': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'linux-android': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,

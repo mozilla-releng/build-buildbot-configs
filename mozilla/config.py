@@ -79,9 +79,6 @@ GLOBAL_VARS = {
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
     'periodic_pgo_interval': 6, # in hours
-    'product_name': 'firefox', # Not valid for mobile builds
-    'app_name': 'browser',     # Not valid for mobile builds
-    'brand_name': 'Minefield', # Not valid for mobile builds
     'enable_shark': True,
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
@@ -119,6 +116,9 @@ SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 PLATFORM_VARS = {
         'linux': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/nightly',
@@ -161,6 +161,9 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
         },
         'linuxqt': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux QT %(branch)s',
             'mozconfig': 'linux/%(branch)s/qt',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/qt',
@@ -200,6 +203,9 @@ PLATFORM_VARS = {
             'talos_masters': None #GLOBAL_VARS['talos_masters'],
         },
         'linux-rpm': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux RPM %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly-rpm',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/rpm',
@@ -247,6 +253,9 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'linux64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/nightly',
@@ -290,6 +299,9 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
         },
         'linux64-rpm': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux RPM x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly-rpm',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/rpm',
@@ -336,6 +348,9 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'macosx': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'OS X 10.5.2 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/nightly',
@@ -373,6 +388,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'OS X 10.6.2 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/nightly',
@@ -412,6 +430,9 @@ PLATFORM_VARS = {
             'test_pretty_names': True,
         },
         'win32': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/win32/nightly',
@@ -459,6 +480,9 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
         },
         'win64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'browser/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
@@ -498,6 +522,9 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
         },
         'linux-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux %(branch)s leak test',
             'mozconfig': 'linux/%(branch)s/debug',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/debug',
@@ -529,6 +556,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s leak test',
             'mozconfig': 'linux64/%(branch)s/debug',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/debug',
@@ -560,6 +590,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'OS X 10.5.2 %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
             'src_mozconfig': 'browser/config/mozconfigs/macosx32/debug',
@@ -586,6 +619,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
             'enable_leaktests': False,
@@ -613,6 +649,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
             'src_mozconfig': 'browser/config/mozconfigs/win32/debug',
@@ -640,6 +679,9 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
         },
         'android': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Android %(branch)s',
             'mozconfig': 'android/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android/nightly',
@@ -686,6 +728,9 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
         },
         'android-xul': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Android XUL %(branch)s',
             'mozconfig': 'android-xul/%(branch)s/nightly',
             'src_mozconfig': 'mobile/xul/config/mozconfigs/android/nightly',
@@ -733,6 +778,9 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
         },
         'android-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Android Debug %(branch)s',
             'mozconfig': 'android-debug/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android/debug',
@@ -779,6 +827,9 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
         },
         'linux-android': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Android %(branch)s',
             'mozconfig': 'linux-android/%(branch)s/nightly',
             'src_mozconfig': 'mobile/config/mozconfigs/android/nightly',
@@ -826,6 +877,9 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
         },
         'linux-android-debug': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Android Debug %(branch)s',
             'mozconfig': 'linux-android-debug/%(branch)s/nightly',
             'src_mozconfig': 'mobile/config/mozconfigs/android/debug',
@@ -873,6 +927,9 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
         },
         'linux-mobile': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'Linux Mobile Desktop %(branch)s',
             'mozconfig': 'linux-mobile/%(branch)s/nightly',
             'src_mozconfig': 'mobile/xul/config/mozconfigs/linux-desktop/nightly',
@@ -919,6 +976,9 @@ PLATFORM_VARS = {
             'enable_dep': False,
         },
         'win32-mobile': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'WINNT 5.2 Mobile Desktop %(branch)s',
             'mozconfig': 'win32-mobile/%(branch)s/nightly',
             'src_mozconfig': 'mobile/xul/config/mozconfigs/win32-desktop/nightly',
@@ -965,6 +1025,9 @@ PLATFORM_VARS = {
             'enable_dep': False,
         },
         'macosx-mobile': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'base_name': 'OS X 10.5.2 Mobile Desktop %(branch)s',
             'mozconfig': 'macosx-mobile/%(branch)s/nightly',
             'src_mozconfig': 'mobile/xul/config/mozconfigs/macosx-desktop/nightly',
@@ -1650,6 +1713,9 @@ for platform in BRANCHES['try']['platforms'].keys():
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
+    BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
+    BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
+    BRANCHES[branch]['brand_name']   = branchConfig.get('brand_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
