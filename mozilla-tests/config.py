@@ -423,7 +423,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
     BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
-    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', False)
+    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
@@ -859,6 +859,7 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['talos_command'] = TALOS_CMD
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['fetch_release_symbols'] = False
+    BRANCHES[branch]['talos_from_source_code'] = True
     if BRANCHES[branch].has_key('release_branch'):
         BRANCHES[branch]['release_tests'] = 5
         BRANCHES[branch]['repo_path'] = "releases/%s" % branch
