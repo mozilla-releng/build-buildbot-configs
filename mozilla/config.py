@@ -1638,7 +1638,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['nightly_signing_servers'
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['dep_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['nightly_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['macosx64-debug']['enable_leaktests'] = False 
 
 ######## try
 # Try-specific configs
