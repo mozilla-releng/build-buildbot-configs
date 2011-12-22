@@ -14,3 +14,5 @@ export MOZ_DEBUG_SYMBOLS=1
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
+
+export WIN32_REDIST_DIR=/d/msvs8/VC/redist/x86/Microsoft.VC80.CRT
