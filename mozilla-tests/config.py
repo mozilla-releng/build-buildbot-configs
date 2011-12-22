@@ -135,6 +135,7 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
+                   PLATFORMS['android-xul']['slave_platforms'] + \
                    PLATFORMS['linux-android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
@@ -153,11 +154,13 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 ANDROID = PLATFORMS['android']['slave_platforms'] + \
+          PLATFORMS['android-xul']['slave_platforms'] + \
           PLATFORMS['linux-android']['slave_platforms']
 
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
 
-ANDROID_XUL = PLATFORMS['linux-android']['slave_platforms']
+ANDROID_XUL = PLATFORMS['android-xul']['slave_platforms'] + \
+              PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -420,7 +423,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
     BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
-    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', False)
+    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
@@ -614,6 +617,9 @@ ANDROID_UNITTEST_DICT = {
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
         'linux': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
@@ -629,6 +635,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'linux64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'unittest-env' : {'DISPLAY': ':0'},
             'enable_opt_unittests': True,
@@ -639,6 +648,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win32': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -655,6 +667,9 @@ PLATFORM_UNITTEST_VARS = {
             }
         },
         'win64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'download_symbols': False,
             'enable_opt_unittests': False,
@@ -666,6 +681,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'macosx': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
@@ -675,6 +693,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'macosx64': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'builds_before_reboot': 1,
             'enable_opt_unittests': True,
             'enable_debug_unittests': True,
@@ -692,6 +713,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'android': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
@@ -700,6 +724,9 @@ PLATFORM_UNITTEST_VARS = {
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'android-xul': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
@@ -708,6 +735,9 @@ PLATFORM_UNITTEST_VARS = {
             'tegra_android-xul': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'linux-android': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
             'is_remote': True,
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
@@ -829,6 +859,7 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['talos_command'] = TALOS_CMD
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['fetch_release_symbols'] = False
+    BRANCHES[branch]['talos_from_source_code'] = True
     if BRANCHES[branch].has_key('release_branch'):
         BRANCHES[branch]['release_tests'] = 5
         BRANCHES[branch]['repo_path'] = "releases/%s" % branch
