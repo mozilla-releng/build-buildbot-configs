@@ -276,14 +276,14 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '9.0',
-        'oldVersion'                 : '8.0',
-        'appVersion'                 : '9.0', # no 'b1' suffix for betas
-        'oldAppVersion'              : '8.0',
-        'buildNumber'                : 3,
-        'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_9_0',
-        'oldBaseTag'                 : 'THUNDERBIRD_8_0',
+        'version'                    : '9.0.1',
+        'oldVersion'                 : '9.0',
+        'appVersion'                 : '9.0.1', # no 'b1' suffix for betas
+        'oldAppVersion'              : '9.0',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 3,
+        'baseTag'                    : 'THUNDERBIRD_9_0_1',
+        'oldBaseTag'                 : 'THUNDERBIRD_9_0',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '9.0',
