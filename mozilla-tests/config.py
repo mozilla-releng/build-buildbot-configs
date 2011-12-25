@@ -823,7 +823,9 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
             'win7': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'opt_unittest_suites' : \
+                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
+                    [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
@@ -1165,7 +1167,6 @@ BRANCHES['addonbaselinetester']['enable_unittests'] = False
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
-BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
