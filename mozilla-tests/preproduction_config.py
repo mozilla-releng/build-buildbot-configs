@@ -7,7 +7,7 @@ SLAVES = {
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,67)]),
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,86)]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,86)]),
-    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,286)]),
+    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,287)]),
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
