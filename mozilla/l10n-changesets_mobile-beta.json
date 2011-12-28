@@ -112,7 +112,7 @@
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "ru": {
-    "revision": "5f4e3af77b7e",
+    "revision": "7e11aea4f932",
     "platforms": ["linux", "macosx", "win32", "android-multilocale"]
   },
   "sk": {
@@ -132,7 +132,7 @@
     "platforms": ["linux", "macosx", "win32"]
   },
   "zh-TW": {
-    "revision": "dc88ddfd88be",
+    "revision": "e41f711ff4ac",
     "platforms": ["linux", "macosx", "win32"]
   }
 }
