@@ -1,12 +1,12 @@
 hgUsername                 = 'calbld'
 hgSshKey                   = '~cltbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'CAL'
-sourceRepoName             = 'comm-beta' # buildbot branch name
-sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '0bec7dab15d4'
+sourceRepoName             = 'comm-release' # buildbot branch name
+sourceRepoPath             = 'releases/comm-release'
+sourceRepoRevision         = 'd6f17beb0a32'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
-mozillaRepoPath            = 'releases/mozilla-beta'
+mozillaRepoPath            = 'releases/mozilla-release'
 mozillaRepoRevision        = '745b004fad4a'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
@@ -23,7 +23,7 @@ venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
-l10nRepoPath               = 'releases/l10n/mozilla-beta'
+l10nRepoPath               = 'releases/l10n/mozilla-release'
 l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
@@ -40,14 +40,14 @@ projectName                = 'lightning'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '1.1'
-appVersion                 = '1.1'
+version                    = '1.1.1'
+appVersion                 = '1.1.1'
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '9.0'
 buildNumber                = 1
-baseTag                    = 'CALENDAR_1_1'
+baseTag                    = 'CALENDAR_1_1_1'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '1.1b1'
+oldVersion                 = '1.1'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
 oldBaseTag                 = ''
