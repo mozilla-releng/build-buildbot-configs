@@ -175,13 +175,7 @@ PROJECT_BRANCHES = {
         'enable_unittests': False,
         'enable_talos': False,
     },
-    # customizations for updater.exe changes (bug 307181)
-    'ash': {
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'enable_talos': False,
-    },
+    'ash': {},
     # customizations while booked for native mobile UI project
     'birch': {
         'enable_nightly': True,
