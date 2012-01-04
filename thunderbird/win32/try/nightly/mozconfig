@@ -25,6 +25,8 @@ export MOZILLA_OFFICIAL=1
 mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hgtool=../tools/buildfarm/utils/hgtool.py --hg-options='--time --verbose'"
 mk_add_options ALWAYS_RUN_CLIENT_PY=1
 
+export WIN32_REDIST_DIR=/d/msvs8/VC/redist/x86/Microsoft.VC80.CRT
+
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi

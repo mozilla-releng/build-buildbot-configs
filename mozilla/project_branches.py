@@ -132,6 +132,8 @@ PROJECT_BRANCHES = {
         'enable_talos': True,
         'enabled_products': ['firefox'],
         'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
     },
     'services-central': {
         'repo_path': 'services/services-central',
