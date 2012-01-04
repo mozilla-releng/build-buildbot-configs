@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'aa49b359456f',
+        'revision': '5a9562481681',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -108,10 +108,10 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
-    'linux': 'xulrunner/config/mozconfigs/linux32/release',
-    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
-    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
-    'win32': 'xulrunner/config/mozconfigs/win32/release',
+    'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
+    'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 
 # Partner repack configuration
