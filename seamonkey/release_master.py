@@ -446,7 +446,7 @@ updates_factory = ReleaseUpdatesFactory(
     binaryName=binaryName,
     oldBinaryName=oldBinaryName,
     testOlderPartials=testOlderPartials,
-    schema=snippetSchema or 1, # Bug 682805
+    schema=globals().get("snippetSchema", 1), # Bug 682805
 )
 
 builders.append({
@@ -535,7 +535,8 @@ if majorUpdateRepoPath:
         oldRepoPath=oldRepoPath,
         triggerSchedulers=['major_update_verify'],
         releaseNotesUrl=majorUpdateReleaseNotesUrl,
-        testOlderPartials=testOlderPartials
+        testOlderPartials=testOlderPartials,
+        schema=globals().get("majorSnippetSchema", 1), # Bug 682805
     )
 
     builders.append({
