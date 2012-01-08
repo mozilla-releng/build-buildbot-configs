@@ -445,7 +445,8 @@ updates_factory = ReleaseUpdatesFactory(
     releaseNotesUrl=releaseNotesUrl,
     binaryName=binaryName,
     oldBinaryName=oldBinaryName,
-    testOlderPartials=testOlderPartials
+    testOlderPartials=testOlderPartials,
+    schema=snippetSchema or 1, # Bug 682805
 )
 
 builders.append({
