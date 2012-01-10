@@ -176,26 +176,7 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'ash': {},
-    # customizations while booked for native mobile UI project
-    'birch': {
-        'enable_nightly': True,
-        'enable_multi_locale': False,
-        'enable_l10n': True,
-        'enable_l10n_onchange': False,
-        'l10n_repo_path': 'l10n-central',
-        'create_snippet': True,
-        'create_mobile_snippet': True,
-        'create_partial': True,
-        'fetch_symbols': True,
-        'lock_platforms': True,
-        'platforms': {
-            'android': {},
-        },
-        'l10n_platforms': [],
-        'talos_suites': {
-            'remote-tp4m': 0,
-        },
-    },
+    'birch': {},
     'cedar': {},
     # customizations for windows update service changes (bug 481815)
     'elm': {
