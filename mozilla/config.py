@@ -1416,7 +1416,7 @@ BRANCHES['mozilla-beta']['update_channel'] = 'beta'
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
-BRANCHES['mozilla-beta']['enable_xulrunner'] = True
+BRANCHES['mozilla-beta']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
