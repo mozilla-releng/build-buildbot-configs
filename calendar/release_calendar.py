@@ -3,11 +3,11 @@ hgSshKey                   = '~cltbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'CAL'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '91cd07df9685'
+sourceRepoRevision         = '773ba927dc43'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
-mozillaRepoRevision        = '582a82656e0c'
+mozillaRepoRevision        = '9938fa805155'
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -40,14 +40,14 @@ projectName                = 'lightning'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '1.2b1'
+version                    = '1.2b2'
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
 milestone                  = '10.0'
 buildNumber                = 1
-baseTag                    = 'CALENDAR_1_2b1'
+baseTag                    = 'CALENDAR_1_2b2'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '1.1.1'
+oldVersion                 = '1.2b1'
 oldAppVersion              = oldVersion
 oldBuildNumber             = 1
 oldBaseTag                 = ''
