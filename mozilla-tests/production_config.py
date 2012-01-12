@@ -1,14 +1,16 @@
 SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,77)]),
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (3,10) + range(11,72)]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,76)]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,76) \
+          if x not 45]), # bug 661377
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,80)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
-    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,67)]),
+    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,67) \
+          if x not 7]), # bug 655437
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(3,10) + range(11,86)]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(3,10) + range(11,86)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(31,287) \
-    if x not in range(122,129) + [131,137,143,147,161]]), # bug 701766
+          if x not in range(122,129) + [131,137,143,147,161]]), # bug 701766
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
