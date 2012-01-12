@@ -41,6 +41,8 @@ TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
 
 UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
                          }
+ANDROID_UNITTEST_REMOTE_EXTRAS = deepcopy(UNITTEST_REMOTE_EXTRAS)
+ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
@@ -720,7 +722,7 @@ PLATFORM_UNITTEST_VARS = {
             'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.zip',
             'enable_opt_unittests': True,
             'enable_debug_unittests': False,
-            'remote_extras': UNITTEST_REMOTE_EXTRAS,
+            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'android-xul': {
