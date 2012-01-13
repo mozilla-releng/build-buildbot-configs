@@ -118,10 +118,10 @@ gloConfig = {
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : 'releases/mozilla-release',
         'majorUpdateSourceRepoPath' : 'releases/comm-release',
-        'majorUpdateToVersion'   : '9.0',
+        'majorUpdateToVersion'   : '9.0.1',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
-        'majorUpdateBuildNumber' : 3,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_9_0',
+        'majorUpdateBuildNumber' : 1,
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_9_0_1',
         'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/9.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
@@ -135,15 +135,15 @@ gloConfig = {
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
         'oldRepoPath'                : 'releases/comm-beta',
-        'sourceRepoRevision'         : 'd51753596dcd',
+        'sourceRepoRevision'         : 'fabf6e73f3b6',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : 'c130e43aa4b5',
+        'mozillaRepoRevision'        : '9938fa805155',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO100_2011122113_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'GECKO100_2012011108_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -174,14 +174,14 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '10.0b1',
-        'oldVersion'                 : '9.0b5',
+        'version'                    : '10.0b3',
+        'oldVersion'                 : '10.0b2',
         'appVersion'                 : '10.0', # no 'b1' suffix for betas
-        'oldAppVersion'              : '9.0',
+        'oldAppVersion'              : '10.0',
         'buildNumber'                : 1,
         'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_10_0b1',
-        'oldBaseTag'                 : 'THUNDERBIRD_9_0b5',
+        'baseTag'                    : 'THUNDERBIRD_10_0b3',
+        'oldBaseTag'                 : 'THUNDERBIRD_10_0b2',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '10.0',

@@ -61,7 +61,7 @@ releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-1.9.2'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_0_8_2',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default'
 }
