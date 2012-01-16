@@ -601,7 +601,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 10,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'macosx-debug',
@@ -1485,14 +1485,6 @@ BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 # End 11.0
 #-------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into beta
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
-
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
@@ -1555,13 +1547,6 @@ BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into aurora 
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
@@ -1580,8 +1565,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
-# We build 10.5 leak builds on 10.5 while newer branches do it on 10.6 machines
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
 # Enable unit tests
