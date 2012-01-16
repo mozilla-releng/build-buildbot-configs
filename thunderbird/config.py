@@ -340,10 +340,11 @@ def makeAusConfig(branchName):
 
 def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
                     mozillaCentralBranch=None, tinderboxTree=None, allLocalesFile=None,
-                    wantNightly=None, wantL10n=None, l10nRepo=None):
+                    wantNightly=None, wantL10n=None, l10nRepo=None, enableWeeklyBundle=False):
     bc = {}
     bc['hg_branch'] = hgBranch
     bc['tinderbox_tree'] = tinderboxTree
+    bc['enable_weekly_bundle'] = enableWeeklyBundle
     if builderType == 'nightly':
         if wantNightly != None:
             bc['nightly'] = wantNightly
@@ -518,7 +519,8 @@ BRANCHES['comm-aurora'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird-Aurora',
                                allLocalesFile = 'all-locales.comm-aurora',
                                wantL10n      = True,
-                               l10nRepo      = 'releases/l10n/mozilla-aurora'
+                               l10nRepo      = 'releases/l10n/mozilla-aurora',
+                               enableWeeklyBundle = True,
                            )
 BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -536,7 +538,8 @@ BRANCHES['comm-central'] = makeBuildConfig(
                                tinderboxTree = 'ThunderbirdTrunk',
                                allLocalesFile = 'all-locales.comm-central',
                                wantL10n      = True,
-                               l10nRepo      = 'l10n-central'
+                               l10nRepo      = 'l10n-central',
+                               enableWeeklyBundle = True,
                            )
 BRANCHES['comm-central-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
