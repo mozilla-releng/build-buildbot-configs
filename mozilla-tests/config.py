@@ -498,7 +498,7 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
             addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
                       suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
-ANDROID_UNITTEST_DICT = {
+ANDROID_XUL_UNITTEST_DICT = {
     'opt_unittest_suites': [
         ('mochitest-1', (
             {'suite': 'mochitest-plain',
@@ -556,6 +556,120 @@ ANDROID_UNITTEST_DICT = {
                            'toolkit/components/microformats/tests',
                            'MochiKit-1.4.2/tests',
                            'parser/htmlparser/tests/mochitest'],
+           },
+        )),
+        ('browser-chrome', (
+            {'suite': 'mochitest-browser-chrome',
+             'testPaths': ['mobile']
+            },
+        )),
+        ('reftest-1', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 1,
+            },
+        )),
+        ('reftest-2', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 2,
+            },
+        )),
+        ('reftest-3', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 3,
+            },
+        )),
+        ('crashtest-1', (
+            {'suite': 'crashtest',
+             'totalChunks': 2,
+             'thisChunk': 1,
+            },
+        )),
+        ('crashtest-2', (
+            {'suite': 'crashtest',
+             'totalChunks': 2,
+             'thisChunk': 2,
+            },
+        )),
+        ('jsreftest-1', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 1,
+            },
+        )),
+        ('jsreftest-2', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 2,
+            },
+        )),
+        ('jsreftest-3', (
+            {'suite': 'jsreftest',
+             'totalChunks': 3,
+             'thisChunk': 3,
+            },
+        )),
+    ],
+    'debug_unittest_suites': [],
+}
+ANDROID_UNITTEST_DICT = {
+    'opt_unittest_suites': [
+        ('mochitest-1', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 1,
+            },
+        )),
+        ('mochitest-2', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 2,
+            },
+        )),
+        ('mochitest-3', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 3,
+            },
+        )),
+        ('mochitest-4', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 4,
+            },
+        )),
+        ('mochitest-5', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 5,
+            },
+        )),
+        ('mochitest-6', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 6,
+            },
+        )),
+        ('mochitest-7', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 7,
+            },
+        )),
+        ('mochitest-8', (
+            {'suite': 'mochitest-plain',
+             'testManifest': 'android.json',
+             'totalChunks': 8,
+             'thisChunk': 8,
            },
         )),
         ('browser-chrome', (
@@ -734,7 +848,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': False,
             'remote_extras': UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-xul': deepcopy(ANDROID_UNITTEST_DICT),
+            'tegra_android-xul': deepcopy(ANDROID_XUL_UNITTEST_DICT),
         },
         'linux-android': {
             'product_name': 'fennec',
@@ -745,7 +859,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': False,
             'remote_extras': UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-o': deepcopy(ANDROID_UNITTEST_DICT),
+            'tegra_android-o': deepcopy(ANDROID_XUL_UNITTEST_DICT),
         },
 }
 
