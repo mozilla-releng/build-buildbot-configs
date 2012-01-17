@@ -16,6 +16,8 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-release': 'org.mozilla.firefox',
                        }
 
+MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
+
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 TALOS_ADDON_CMD = ['python', 'run_tests.py', '--noisy', '--amo', WithProperties('%(configFile)s')]
@@ -75,6 +77,7 @@ PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
+PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
                                             'lion']
@@ -83,12 +86,14 @@ PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
+PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
+PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
@@ -96,16 +101,19 @@ PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
                               'download_symbols': False,
                              }
 PLATFORMS['win64']['stage_product'] = 'firefox'
+PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['stage_product'] = 'firefox'
+PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
+PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android-o']
 PLATFORMS['linux-android']['env_name'] = 'android-perf'
@@ -113,18 +121,21 @@ PLATFORMS['linux-android']['is_mobile'] = True
 PLATFORMS['linux-android']['tegra_android-o'] = {'name': "Android Tegra 250"}
 PLATFORMS['linux-android']['stage_platform'] = 'android'
 PLATFORMS['linux-android']['stage_product'] = 'mobile'
+PLATFORMS['linux-android']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['stage_product'] = 'mobile'
+PLATFORMS['android']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['android-xul']['slave_platforms'] = ['tegra_android-xul']
 PLATFORMS['android-xul']['env_name'] = 'android-perf'
 PLATFORMS['android-xul']['is_mobile'] = True
 PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250"}
 PLATFORMS['android-xul']['stage_product'] = 'mobile'
+PLATFORMS['android-xul']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -378,7 +389,6 @@ UNITTEST_SUITES = {
         #('xpcshell', ['xpcshell']),
         #('jsreftest', ['jsreftest']),
     ],
-
 }
 
 def removeSuite(suiteName, suiteList):
@@ -1085,9 +1095,9 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
         if 'android' in pf:
             continue
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            # These two mac excpetions are because we have been adding debug jetpack to macosx/leopard-o
+            # These two mac exceptions are because we have been adding debug jetpack to macosx/leopard-o
             # and opt jetpack to macosx64/leopard. This probably was not correct but that's how it came about
-            # XXX clean this mess in the next refactoring patch 
+            # XXX clean this mess in the next refactoring patch
             if pf == "macosx" and slave_pf == "leopard-o":
                 BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
                 continue
@@ -1096,6 +1106,29 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
                 continue
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+
+# Let's load peptest for the following branches:
+for branch in ('try',  ):
+    for pf in PLATFORMS:
+        if 'android' in pf:
+            continue
+        hg_bin = 'hg'
+        if pf.startswith("win"):
+            hg_bin = 'c:\\mozilla-build\\hg\\hg'
+        for slave_pf in PLATFORMS[pf]['slave_platforms']:
+            config_file = "peptest/prod_config.py"
+            if pf == "macosx" and slave_pf == "leopard-o":
+                continue
+            if pf.startswith("win"):
+                config_file = "peptest/%s_config.py" % slave_pf
+            BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('peptest', {'suite': 'peptest',
+                'mozharness_repo': MOZHARNESS_REPO,
+                'script_path': 'scripts/peptest.py',
+                'extra_args': [
+                    "--cfg", config_file
+                ],
+                'hg_bin': hg_bin,
+            })]
 
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
