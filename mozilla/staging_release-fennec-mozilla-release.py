@@ -138,3 +138,5 @@ releaseConfig['disablePushToMirrors']     = True
 # Staging config
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['skip_release_download'] = True
+releaseConfig['enableSigningAtBuildTime'] = False
+releaseConfig['enablePartialMarsAtBuildTime'] = False

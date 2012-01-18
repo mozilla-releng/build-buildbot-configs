@@ -130,3 +130,5 @@ releaseConfig['mozharness_config'] = {
         '--only-package-multi',
     ]
 }
+releaseConfig['enableSigningAtBuildTime'] = False
+releaseConfig['enablePartialMarsAtBuildTime'] = False
