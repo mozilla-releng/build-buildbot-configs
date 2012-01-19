@@ -3,7 +3,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
 
@@ -74,6 +74,7 @@ releaseConfig['otherReposToTag']     = {
 releaseConfig['enUSPlatforms']        = ('linux-android',
                                          'linux-mobile', 'macosx-mobile',
                                          'win32-mobile')
+releaseConfig['notifyPlatforms']        = ('linux-android',)
 releaseConfig['signedPlatforms']      = ('linux-android',)
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()

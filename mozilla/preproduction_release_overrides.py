@@ -1,4 +1,4 @@
-releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients']      = ['release@mozilla.com',]
 releaseConfig['l10nRepoPath']        = 'users/prepr-ffxbld'
 releaseConfig['l10nChunks']          = 2
 releaseConfig['hgUsername']          = 'prepr-ffxbld'

@@ -3,7 +3,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients'] = ['release@mozilla.com',]
 releaseConfig['AVVendorsRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
@@ -68,6 +68,7 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'win32', 'macosx')
+releaseConfig['notifyPlatforms']     = ('linux', 'win32', 'macosx')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
