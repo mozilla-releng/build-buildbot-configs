@@ -67,9 +67,6 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
     },
-    'product_name': 'seamonkey',
-    'app_name': 'suite',
-    'brand_name': 'SeaMonkey',
     'enable_shark': False,
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
@@ -122,6 +119,9 @@ SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 
 PLATFORM_VARS = {
         'linux': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'mozconfig_dep': 'linux/%(branch)s/dep',
@@ -152,6 +152,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux64': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
             'mozconfig_dep': 'linux64/%(branch)s/dep',
@@ -184,6 +187,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
             'mozconfig_dep': 'macosx/%(branch)s/dep',
@@ -215,6 +221,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'mozconfig_dep': 'macosx64/%(branch)s/dep',
@@ -245,6 +254,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
             'mozconfig_dep': 'win32/%(branch)s/dep',
@@ -279,6 +291,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'linux-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s leak test',
             'mozconfig_dep': 'linux/%(branch)s/debug',
             'profiled_build': False,
@@ -301,6 +316,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s leak test',
             'mozconfig_dep': 'macosx/%(branch)s/debug',
             'profiled_build': False,
@@ -320,6 +338,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s leak test',
             'mozconfig_dep': 'macosx64/%(branch)s/debug',
             'profiled_build': False,
@@ -339,6 +360,9 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'win32-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig_dep': 'win32/%(branch)s/debug',
             'profiled_build': False,
