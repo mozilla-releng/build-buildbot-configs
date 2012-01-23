@@ -237,6 +237,40 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
         'options': ({}, ALL_PLATFORMS),
     },
+    # New set of test that report numbers differently (https://wiki.mozilla.org/Auto-tools/Projects/Signal_From_Noise)
+    # tp5 -> tpr instead of tp5.2.  This is osx only and we will consider switching linux and windows ot this as well.
+    'tpr_responsiveness': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': (TALOS_TP_OPTS, MAC_ONLY),
+    },
+    'v8.2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'v8.2', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    'svg.2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg.2:tsvg_opacity.2', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    'chrome.2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': ({}, NO_MAC),
+    },
+    # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
+    'chrome_mac.2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': ({}, MAC_ONLY),
+    },
+    'nochrome.2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml.2:tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    # Special case talos tests
     'addon': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
@@ -252,6 +286,7 @@ SUITES = {
         'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"'],
         'options': ({}, WIN7_ONLY),
     },
+    # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
@@ -1023,6 +1058,12 @@ BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = 
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 BRANCHES['mozilla-central']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['tp_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+# Signal From Noise side by side staging
+BRANCHES['mozilla-central']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, MAC_ONLY)
+BRANCHES['mozilla-central']['chrome.2_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-central']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-central']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['svg.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'

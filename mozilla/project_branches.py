@@ -55,14 +55,8 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
-        'enabled_products': ['firefox'],
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        }
+        'pgo_strategy': 'periodic',
+        'pgo_platforms': ['linux', 'linux64', 'win32'],
     },
     'graphics':{
         'enable_unittests': False,
