@@ -256,13 +256,13 @@ SUITES = {
     },
     'chrome.2': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, NO_MAC),
     },
     # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac.2': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, MAC_ONLY),
     },
     'nochrome.2': {
