@@ -33,6 +33,7 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'macosx': {
                 'slave_platforms': [],
@@ -131,18 +132,23 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'macosx64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'win32-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
         },
     },
@@ -165,18 +171,23 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'macosx64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'win32-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
         },
     },
