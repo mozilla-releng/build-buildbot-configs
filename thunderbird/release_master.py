@@ -116,8 +116,8 @@ gloConfig = {
         
         # 'Version' numbers we are updating _TO_
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
-        'majorUpdateRepoPath'    : 'releases/mozilla-release',
-        'majorUpdateSourceRepoPath' : 'releases/comm-release',
+        'majorUpdateRepoPath'    : 'releases/mozilla-beta',
+        'majorUpdateSourceRepoPath' : 'releases/comm-beta',
         'majorUpdateToVersion'   : '10.0b4',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
