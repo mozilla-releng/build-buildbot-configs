@@ -128,6 +128,23 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
+        'platforms': {
+            'macosx-debug': {
+                'dont_build': True,
+            },
+            'macosx64-debug': {
+                'dont_build': True,
+            },
+            'linux-debug': {
+                'dont_build': True,
+            },
+            'linux64-debug': {
+                'dont_build': True,
+            },
+            'win32-debug': {
+                'dont_build': True,
+            },
+        },
     },
     'services-central': {
         'repo_path': 'services/services-central',
