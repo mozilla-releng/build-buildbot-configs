@@ -3,11 +3,11 @@ hgSshKey                   = '~seabld/.ssh/seabld_dsa'
 relbranchPrefix            = 'SEA_COMM'
 sourceRepoName             = 'comm-beta' # buildbot branch name
 sourceRepoPath             = 'releases/comm-beta'
-sourceRepoRevision         = '258499d66bf4'
+sourceRepoRevision         = '8044e1ef0c20'
 relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-beta'
-mozillaRepoRevision        = 'FIREFOX_10_0b5_BUILD1'
-mozillaRelbranchOverride   = 'GECKO100_2012011807_RELBRANCH' # put Gecko relbranch here that we base upon
+mozillaRepoRevision        = '87215b657b0c'
+mozillaRelbranchOverride   = 'COMM100_2012012414_RELBRANCH' # put Gecko relbranch here that we base upon
 inspectorRepoPath          = 'dom-inspector' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = '589ef9b749f5'
 inspectorRelbranchOverride = 'DOMI_2_0_10'
@@ -37,15 +37,15 @@ skip_tag                   =  False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '2.7b4'
+version                    = '2.7b5'
 appVersion                 = '2.7'
 milestone                  = '10.0'
 buildNumber                = 1
-baseTag                    = 'SEAMONKEY_2_7b4'
-oldVersion                 = '2.7b3'
+baseTag                    = 'SEAMONKEY_2_7b5'
+oldVersion                 = '2.7b4'
 oldAppVersion              = '2.7'
 oldBuildNumber             = 1
-oldBaseTag                 = 'SEAMONKEY_2_7b3'
+oldBaseTag                 = 'SEAMONKEY_2_7b4'
 oldRepoPath                = 'releases/comm-beta'
 enUSPlatforms              = ('linux', 'linux64', 'win32', 'macosx64')
 l10nPlatforms              = ('linux', 'win32', 'macosx64')
