@@ -37,7 +37,6 @@ skip_tag                   = False
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
 version                    = '2.0.14'
-usePrettyLongVer           = True
 appVersion                 = version
 milestone                  = '1.9.1.19'
 buildNumber                = 2

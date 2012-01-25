@@ -348,7 +348,6 @@ for platform in enUSPlatforms:
             platform=platform + '-release',
             buildRevision='%s_RELEASE' % baseTag,
             version=version,
-            usePrettyLongVer=usePrettyLongVer,
             buildNumber=buildNumber,
             tree='release',
             clobberURL=branchConfig['base_clobber_url'],
