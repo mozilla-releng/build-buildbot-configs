@@ -1559,13 +1559,6 @@ BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into aurora 
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
