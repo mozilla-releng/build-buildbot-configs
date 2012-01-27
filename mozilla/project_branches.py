@@ -27,27 +27,28 @@ PROJECT_BRANCHES = {
     'build-system': {
         'enable_talos': True,
     },
-    'devtools':{
-        'enable_nightly': True,
-        'enabled_products': ['firefox'],
-        'platforms': {
-            'macosx-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'macosx': {
-                'slave_platforms': [],
-            },
-            'macosx64': {
-                'slave_platforms': ['snowleopard'],
-            },
-            'android': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'tegra_android': {},
-            },
-        },
-    },
+    # DISABLED because of builder limit problems - bug 721854
+#    'devtools':{
+#        'enable_nightly': True,
+#        'enabled_products': ['firefox'],
+#        'platforms': {
+#            'macosx-debug': {
+#                'dont_build': True,
+#                'enable_debug_unittests': False,
+#            },
+#            'macosx': {
+#                'slave_platforms': [],
+#            },
+#            'macosx64': {
+#                'slave_platforms': ['snowleopard'],
+#            },
+#            'android': {
+#                'enable_opt_unittests': False,
+#                'enable_debug_unittests': False,
+#                'tegra_android': {},
+#            },
+#        },
+#    },
     # DISABLED because of builder limit problems - bug 721854
     #'electrolysis': {
     #    'mozconfig_dir': 'electrolysis',
@@ -111,19 +112,20 @@ PROJECT_BRANCHES = {
             'v8': 1,
         }
     },
-    'places': {
-        'platforms': {
-            'linux64': {
-                'build_space': 6,
-            },
-            'linux': {
-                'build_space': 6,
-            },
-            'linuxqt': {
-                'build_space': 6,
-            },
-        },
-    },
+    # DISABLED because of builder limit problems - bug 721854
+#    'places': {
+#        'platforms': {
+#            'linux64': {
+#                'build_space': 6,
+#            },
+#            'linux': {
+#                'build_space': 6,
+#            },
+#            'linuxqt': {
+#                'build_space': 6,
+#            },
+#        },
+#    },
     'profiling': {
         'enable_talos': True,
         'enabled_products': ['firefox'],
