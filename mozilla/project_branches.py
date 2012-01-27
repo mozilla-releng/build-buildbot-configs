@@ -150,6 +150,12 @@ PROJECT_BRANCHES = {
                 'dont_build': True,
                 'enable_debug_unittests': False,
             },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
         },
     },
     'services-central': {
