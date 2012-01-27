@@ -1171,6 +1171,19 @@ BRANCHES = {
     },
     'mozilla-aurora': {
     },
+    'mozilla-esr10': {
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'mozilla-1.9.2': {
         'lock_platforms': True,
         'platforms': {
@@ -1478,6 +1491,7 @@ BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobil
 BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
 BRANCHES['mozilla-beta']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
 BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 #-------------------------------------------------------------------------
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
@@ -1487,14 +1501,6 @@ BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 #del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
 #-------------------------------------------------------------------------
 # End 11.0
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into beta
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
 #-------------------------------------------------------------------------
 
 ######## mozilla-aurora
@@ -1559,13 +1565,36 @@ BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into aurora 
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
+
+######## mozilla-esr10
+BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
+BRANCHES['mozilla-esr10']['update_channel'] = 'esr'
+BRANCHES['mozilla-esr10']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr10']['enable_weekly_bundle'] = False
+BRANCHES['mozilla-esr10']['start_hour'] = [3]
+BRANCHES['mozilla-esr10']['start_minute'] = [2]
+BRANCHES['mozilla-esr10']['enable_xulrunner'] = False
+BRANCHES['mozilla-esr10']['enable_mac_a11y'] = True
+# L10n configuration
+BRANCHES['mozilla-esr10']['enable_l10n'] = False
+BRANCHES['mozilla-esr10']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-esr10']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr10']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                 'macosx64']
+BRANCHES['mozilla-esr10']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr10']['l10n_tree'] = 'fxesr10'
+BRANCHES['mozilla-esr10']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr10'
+BRANCHES['mozilla-esr10']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-esr10']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-esr10' % (GLOBAL_VARS['hgurl'])
+# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
+BRANCHES['mozilla-esr10']['enable_nightly'] = False
+BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
+BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
+del BRANCHES['mozilla-esr10']['platforms']['win64']
+BRANCHES['mozilla-esr10']['enable_valgrind'] = False
+BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_leaktests'] = False
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'

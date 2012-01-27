@@ -33,6 +33,7 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'macosx': {
                 'slave_platforms': [],
@@ -128,6 +129,34 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
+        'platforms': {
+            'macosx-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'macosx64-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'linux-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'linux64-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'win32-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
     },
     'services-central': {
         'repo_path': 'services/services-central',
@@ -148,18 +177,23 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'macosx64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'linux64-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
             'win32-debug': {
                 'dont_build': True,
+                'enable_debug_unittests': False,
             },
         },
     },

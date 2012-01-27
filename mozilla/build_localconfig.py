@@ -27,6 +27,7 @@ ACTIVE_BRANCHES.extend([
     'mozilla-beta',
     'mozilla-aurora',
     'mozilla-release',
+    'mozilla-esr10',
     ])
 ACTIVE_PROJECTS = PROJECTS.keys()
 
