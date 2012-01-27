@@ -1491,6 +1491,7 @@ BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobil
 BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
 BRANCHES['mozilla-beta']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
 BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
 #-------------------------------------------------------------------------
 # Uncomment the below lines when 11.0 merges into beta
 #-------------------------------------------------------------------------
@@ -1500,14 +1501,6 @@ BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
 #del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
 #-------------------------------------------------------------------------
 # End 11.0
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into beta
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
 #-------------------------------------------------------------------------
 
 ######## mozilla-aurora
