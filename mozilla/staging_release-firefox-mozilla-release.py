@@ -109,13 +109,13 @@ releaseConfig['verifyConfigs']       = {
     'win32':  'mozRelease-firefox-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
-    'linux': 'browser/config/mozconfigs/linux/release',
+    'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
-    'linux': 'xulrunner/config/mozconfigs/linux/release',
+    'linux': 'xulrunner/config/mozconfigs/linux32/release',
     'linux64': 'xulrunner/config/mozconfigs/linux64/release',
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
     'win32': 'xulrunner/config/mozconfigs/win32/release',

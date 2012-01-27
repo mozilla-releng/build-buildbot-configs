@@ -45,6 +45,10 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Release',
         'mobile_tinderbox_tree': 'Mozilla-Release',
     },
+    'mozilla-esr10': {
+        'tinderbox_tree': 'Mozilla-Esr10',
+        'mobile_tinderbox_tree': 'Mozilla-Esr10',
+    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',

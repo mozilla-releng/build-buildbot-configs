@@ -51,6 +51,7 @@ BRANCHES = {
     'mozilla-release':     { 'release_branch': True },
     'mozilla-beta':        { 'release_branch': True },
     'mozilla-aurora':      {},
+    'mozilla-esr10':       { 'release_branch': True },
     'mozilla-1.9.2':       { 'release_branch': True },
     'shadow-central':      {},
     'try':                 { 'coallesce_jobs': False},
@@ -1075,6 +1076,10 @@ BRANCHES['mozilla-beta']['talos_from_source_code'] = False
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+
+######## mozilla-esr10
+BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
