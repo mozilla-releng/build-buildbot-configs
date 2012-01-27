@@ -48,10 +48,11 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'electrolysis': {
-        'mozconfig_dir': 'electrolysis',
-        'enable_talos': True,
-    },
+    # DISABLED because of builder limit problems - bug 721854
+    #'electrolysis': {
+    #    'mozconfig_dir': 'electrolysis',
+    #    'enable_talos': True,
+    #},
     'fx-team': {
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
