@@ -38,11 +38,11 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '9f430d79c34f',
+        'sourceRepoRevision'         : 'f5beaae70a86',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19225_20120124_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '982f9c134751',
+        'mozillaRepoRevision'        : '18ac94cc350c',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
@@ -80,8 +80,8 @@ gloConfig = {
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.25',
-        'buildNumber'                : 1,
+        'milestone'                  : '1.9.2.26',
+        'buildNumber'                : 2,
         'baseTag'                    : 'THUNDERBIRD_3_1_18',
         # 'The' old version is the revision from which we should generate update snippets.
         'oldVersion'                 : '3.1.17',
