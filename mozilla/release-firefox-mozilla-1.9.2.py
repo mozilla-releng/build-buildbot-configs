@@ -18,7 +18,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '3.6.26'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = '1.9.2.26'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_3_6_26'
 #  Old version info
 releaseConfig['oldVersion']          = '3.6.25'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': '173bc943fe0d',
-        'relbranch': None,
+        'revision': '18ac94cc350c',
+        'relbranch': 'GECKO19226_2012012406_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
