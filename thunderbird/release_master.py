@@ -237,7 +237,7 @@ gloConfig = {
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
-        'sourceRepoRevision'         : 'b66154e57494 ',
+        'sourceRepoRevision'         : 'b66154e57494',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-release',
