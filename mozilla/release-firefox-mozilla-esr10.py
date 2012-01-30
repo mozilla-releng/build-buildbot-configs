@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': 'FILLMEOUT',
+        'revision': 'acddb6b6a01c',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
