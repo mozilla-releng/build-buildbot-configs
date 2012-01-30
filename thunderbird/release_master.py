@@ -331,6 +331,107 @@ gloConfig = {
                                     'macosx64': '',
                                     'win32':  ''},
     },
+    'esr10': {
+        'hgUsername'                 : 'tbirdbld',
+        'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
+        'relbranchPrefix'            : 'TB_COMM',
+        'sourceRepoName'             : 'comm-esr10', # buildbot branch name
+        'sourceRepoPath'             : 'releases/comm-esr10',
+        'oldRepoPath'                : 'releases/comm-release',
+        'sourceRepoRevision'         : '1543f0810fc5',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        'relbranchOverride'          : '',
+        'mozillaRepoPath'            : 'releases/mozilla-esr10',
+        'mozillaRepoRevision'        : '178e6368fb04',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        # 'You' typically want to set this to the gecko relbranch if doing a release off
+        # 'a' specific gecko version.
+        'mozillaRelbranchOverride'   : 'COMM100_2012013012_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
+        'inspectorRelbranchOverride' : '',
+        'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
+        'buildToolsRepoRevision'        : '',
+        #buildToolsRepoRevision        : '479375734669'
+        'buildToolsRelbranchOverride'   : '',
+        'venkmanRepoPath'            : '', # leave empty if venkman is not to be tagged
+        'venkmanRepoRevision'        : '',
+        'venkmanRelbranchOverride'   : '',
+        'chatzillaCVSRoot'           : '',
+        'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
+        'l10nRepoPath'               : 'releases/l10n/mozilla-release',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-esr10',
+        'toolsRepoPath'              : 'build/tools',
+        'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'productVersionFile'         : 'mail/config/version.txt',
+        'productName'                : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
+        'brandName'                  : 'Thunderbird',
+        'appName'                    : APP_NAME,
+        'ftpName'                    : APP_NAME,
+        # 'Sometimes' we need the application version to be different from what we "call"
+        # 'the' build, eg public release candidates for a major release (3.1 RC1).
+        # 'appVersion' and oldAppVersion are optional definitions used in places that
+        # 'don''t care about what we call it. Eg, when version bumping we will bump to
+        # 'appVersion', not version.
+        'version'                    : '10.0esr',
+        'oldVersion'                 : '9.0.1',
+        'appVersion'                 : '10.0', # no 'b1' suffix for betas
+        'oldAppVersion'              : '9.0.1',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 1,
+        'baseTag'                    : 'THUNDERBIRD_10_0esr',
+        'oldBaseTag'                 : 'THUNDERBIRD_9_0_1',
+        #XXX: 'Not' entirely certain if/where this is used.
+        # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
+        'milestone'                  : '10.0',
+        'enable_weekly_bundle'       : False,
+        'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
+        #'l10nPlatforms'              : (),
+        'xulrunnerPlatforms'         : (),
+        'patcherConfig'              : 'mozEsr10-thunderbird-branch-patcher2.cfg',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
+        'ftpServer'                  : 'ftp.mozilla.org',
+        'stagingServer'              : 'stage-old.mozilla.org',
+        'bouncerServer'              : 'download.mozilla.org',
+        'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
+        'ausUser'                    : 'tbirdbld',
+        'ausSshKey'                  : 'tbirdbld_dsa',
+        'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
+        'testOlderPartials'          : False,
+        'doPartnerRepacks'           : False,
+        'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
+        # All of the beta and (if applicable) release channel information
+        # is dependent on the useBetaChannel flag
+        'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : False,
+        'verifyConfigs'              : {#'linux'   : 'mozRelease-thunderbird-linux.cfg',
+                                        #'linux64' : 'mozRelease-thunderbird-linux64.cfg',
+                                        #'macosx64': 'mozRelease-thunderbird-mac64.cfg',
+                                        },#'win32'   : 'mozRelease-thunderbird-win32.cfg'},
+        'packageTests'               : True,
+        #XXX: Should really be obtained from config.py, but this will do for now.
+        'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
+
+        # 'Version' numbers we are updating _TO_
+        # 'N'/A for Thunderbird 3.x (until the next major version is released)
+        'majorUpdateRepoPath'    : '',
+        'majorUpdateSourceRepoPath' : '',
+        'majorUpdateToVersion'   : '',
+        'majorUpdateAppVersion'  : '',
+        'majorUpdateBuildNumber' : '',
+        'majorUpdateBaseTag'     : '',
+        'majorUpdateReleaseNotesUrl' : '',
+        'majorUpdatePatcherConfig' : '',
+        'majorUpdateVerifyConfigs' : {'linux':  '',
+                                    'linux64': '',
+                                    'macosx64': '',
+                                    'win32':  ''},
+    },
 }
 
 # copy variables that are just aliases
