@@ -27,4 +27,4 @@ else:
     ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
 
-QUEUEDIR = "/dev/shm/queue"
+QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
