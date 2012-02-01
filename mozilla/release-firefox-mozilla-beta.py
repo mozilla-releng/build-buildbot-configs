@@ -15,19 +15,19 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0b6'
-releaseConfig['appVersion']          = '10.0'
-releaseConfig['milestone']           = '10.0'
+releaseConfig['version']             = '11.0b1'
+releaseConfig['appVersion']          = '11.0'
+releaseConfig['milestone']           = '11.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0b6'
+releaseConfig['baseTag']             = 'FIREFOX_11_0b1'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0b5'
+releaseConfig['oldVersion']          = '10.0b6'
 releaseConfig['oldAppVersion']       = '10.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0b5'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0b6'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0'
-releaseConfig['nextMilestone']       = '10.0'
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
@@ -64,7 +64,7 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
