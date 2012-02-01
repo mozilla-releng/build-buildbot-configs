@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '3a99d7ff459c',
+        'revision': 'ee7378639638',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -86,7 +86,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -133,5 +133,3 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False
