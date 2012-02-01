@@ -1475,33 +1475,15 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
-#-------------------------------------------------------------------------
-# Delete the below lines when 11.0 merges into beta
-#-------------------------------------------------------------------------
-del BRANCHES['mozilla-beta']['platforms']['android']
-del BRANCHES['mozilla-beta']['platforms']['android-debug']
-del BRANCHES['mozilla-beta']['platforms']['android-xul']
 BRANCHES['mozilla-beta']['platforms']['macosx64-debug']['enable_leaktests'] = False 
-BRANCHES['mozilla-beta']['platforms']['linux-android']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['linux-android-debug']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
-BRANCHES['mozilla-beta']['platforms']['linux-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/linux-desktop/nightly'
-BRANCHES['mozilla-beta']['platforms']['linux-mobile']['mobile_dir'] = 'mobile'
-BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/macosx-desktop/nightly'
-BRANCHES['mozilla-beta']['platforms']['macosx-mobile']['mobile_dir'] = 'mobile'
-BRANCHES['mozilla-beta']['platforms']['win32-mobile']['src_mozconfig'] = 'mobile/config/mozconfigs/win32-desktop/nightly'
-BRANCHES['mozilla-beta']['platforms']['win32-mobile']['mobile_dir'] = 'mobile'
+del BRANCHES['mozilla-beta']['platforms']['linux-android']
+del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
+BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
+BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
+BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# Uncomment the below lines when 11.0 merges into beta
-#-------------------------------------------------------------------------
-#BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
-#BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
-#del BRANCHES['mozilla-beta']['platforms']['linux-android']
-#del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
-#-------------------------------------------------------------------------
-# End 11.0
-#-------------------------------------------------------------------------
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'

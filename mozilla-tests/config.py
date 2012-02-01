@@ -1188,7 +1188,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 #-------------------------------------------------------------------------
 # Remove a branch from this tuple when we merge Firefox 11.0 into it.
 #-------------------------------------------------------------------------
-LINUX_ANDROID_BRANCHES = ('mozilla-beta', 'mozilla-release')
+LINUX_ANDROID_BRANCHES = ('mozilla-release')
 #-------------------------------------------------------------------------
 # Delete the following when 11.0 is released.
 #-------------------------------------------------------------------------
