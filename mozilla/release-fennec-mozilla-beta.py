@@ -33,10 +33,14 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '3a99d7ff459c',
+        'revision': 'ee7378639638',
         'relbranch': None,
         'bumpFiles': {
-            'mobile/confvars.sh': {
+            'mobile/android/confvars.sh': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'mobile/xul/confvars.sh': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -69,14 +73,14 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
-releaseConfig['notifyPlatforms']       = ('android',)
+releaseConfig['notifyPlatforms']      = ('android',)
 releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
+releaseConfig['l10nPlatforms']       = ()
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -118,9 +122,9 @@ releaseConfig['disablePushToMirrors']     = True
 releaseConfig['mozharness_config'] = {
     'platforms': {
         'android':
-            'multi_locale/staging_release_mozilla-beta_android.json',
+            'multi_locale/release_mozilla-beta_android.json',
         'android-xul':
-            'multi_locale/staging_release_mozilla-beta_android-xul.json',
+            'multi_locale/release_mozilla-beta_android-xul.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
