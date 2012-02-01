@@ -51,4 +51,5 @@ buildbotcustom.misc.fastRegexes.extend([
     ])
 RESERVED_SLAVES = "reserved_slaves_%(name)s" % master_config
 
-QUEUEDIR = "/dev/shm/queue"
+QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
+

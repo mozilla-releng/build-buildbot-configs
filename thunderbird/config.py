@@ -360,7 +360,7 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         # Blocklist settings
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
-        if branchName in ['comm-release', 'comm-central-tested']:
+        if branchName in ['comm-release', 'comm-central-tested', 'comm-esr10']:
             bc['enable_blocklist_update'] = False
         else:
             bc['enable_blocklist_update'] = True
@@ -510,6 +510,23 @@ BRANCHES['comm-release-bloat'] = makeBuildConfig(
                                hgBranch      = 'releases/comm-release',
                                mozillaCentralBranch = 'releases/mozilla-release',
                                tinderboxTree = 'Thunderbird-Release'
+                           )
+BRANCHES['comm-esr10'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-esr10',
+                               hgBranch      = 'releases/comm-esr10',
+                               mozillaCentralBranch = 'releases/mozilla-esr10',
+                               tinderboxTree = 'Thunderbird-Esr10',
+                               allLocalesFile = 'all-locales.comm-esr10',
+                               wantNightly   = False,
+                               wantL10n      = False
+                           )
+BRANCHES['comm-esr10-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-esr10',
+                               hgBranch      = 'releases/comm-esr10',
+                               mozillaCentralBranch = 'releases/mozilla-esr10',
+                               tinderboxTree = 'Thunderbird-Esr10'
                            )
 BRANCHES['comm-aurora'] = makeBuildConfig(
                                builderType   = 'nightly',
