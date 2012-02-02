@@ -1068,11 +1068,9 @@ BRANCHES['mozilla-central']['svg.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-release']['talos_from_source_code'] = False
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-beta']['talos_from_source_code'] = False
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
@@ -1202,6 +1200,14 @@ for branch in BRANCHES.keys():
             del BRANCHES[branch]['platforms']['linux-android']
 #-------------------------------------------------------------------------
 # End 11.0 hacks.
+#-------------------------------------------------------------------------
+#-------------------------------------------------------------------------
+# Delete the following when 12.0 moves to beta and then again to release
+#-------------------------------------------------------------------------
+BRANCHES['mozilla-beta']['talos_from_source_code'] = False
+BRANCHES['mozilla-release']['talos_from_source_code'] = False
+#-------------------------------------------------------------------------
+# End 12.0 hacks.
 #-------------------------------------------------------------------------
 
 if __name__ == "__main__":
