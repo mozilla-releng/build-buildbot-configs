@@ -1465,9 +1465,6 @@ BRANCHES['mozilla-beta']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-beta']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-beta' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-beta']['enable_multi_locale'] = True
-# TODO: remove the following 2 lines when we ship android with locales
-BRANCHES['mozilla-beta']['platforms']['android']['multi_locale'] = False
-BRANCHES['mozilla-beta']['platforms']['android-xul']['multi_locale'] = False
 BRANCHES['mozilla-beta']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-beta']['enable_nightly'] = False
