@@ -309,7 +309,7 @@ SUITES = {
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tpan': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },

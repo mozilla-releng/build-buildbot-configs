@@ -727,8 +727,6 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'android_signing': True,
             'post_upload_include_platform': True,
-            'multi_locale': True,
-            'multi_locale_script': 'scripts/multil10n.py',
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
         },
@@ -781,8 +779,6 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
-            'is_mobile_l10n': True,
-            'l10n_chunks': 5,
         },
         'android-debug': {
             'product_name': 'firefox',
