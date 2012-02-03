@@ -1,13 +1,28 @@
+### This needs to be filled in ###
+
+branchSuffix               = 'beta'
+
+sourceRepoRevision         = 'd7db4d04b6c4'
+mozillaRepoRevision        = 'THUNDERBIRD_11_0b1_RELEASE'
+
+milestone                  = '11.0'
+
+version                    = '1.3b1'
+buildNumber                = 1
+
+oldVersion                 = '1.2.1'
+oldBuildNumber             = 1
+
+### Nothing else needs to be changed ###
+
 hgUsername                 = 'calbld'
 hgSshKey                   = '~cltbld/.ssh/calbld_dsa'
 relbranchPrefix            = 'CAL'
-sourceRepoName             = 'comm-release' # buildbot branch name
-sourceRepoPath             = 'releases/comm-release'
-sourceRepoRevision         = 'eeecf7cd201b'
+sourceRepoName             = 'comm-' + branchSuffix # buildbot branch name
+sourceRepoPath             = 'releases/' + sourceRepoName
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 relbranchOverride          = ''
-mozillaRepoPath            = 'releases/mozilla-release'
-mozillaRepoRevision        = '9a4a472c23b3'
+mozillaRepoPath            = 'releases/mozilla-' + branchSuffix
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
@@ -23,7 +38,7 @@ venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
-l10nRepoPath               = 'releases/l10n/mozilla-release'
+l10nRepoPath               = 'releases/l10n/mozilla-' + branchSuffix
 l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
@@ -40,17 +55,12 @@ projectName                = 'lightning'
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-version                    = '1.2.1'
+baseTag                    = 'CALENDAR_' + version.replace(".", "_")
 appVersion                 = version
 #XXX: Not entirely certain if/where this is used.
-milestone                  = '10.0'
-buildNumber                = 1
-baseTag                    = 'CALENDAR_1_2_1'
 # The old version is the revision from which we should generate update snippets.
-oldVersion                 = '1.2'
 oldAppVersion              = oldVersion
-oldBuildNumber             = 1
-oldBaseTag                 = ''
+oldBaseTag                 = 'CALENDAR_' + oldVersion.replace(".", "_")
 releasePlatforms           = ('linux', 'linux64', 'win32', 'macosx64')
 patcherConfig              = 'moz19-calendar-branch-patcher2.cfg'
 patcherToolsTag            = 'UPDATE_PACKAGING_R14'

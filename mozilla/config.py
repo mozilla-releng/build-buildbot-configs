@@ -1168,6 +1168,7 @@ BRANCHES = {
     'mozilla-aurora': {
     },
     'mozilla-esr10': {
+        'lock_platforms': True,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -1528,8 +1529,8 @@ BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
 BRANCHES['mozilla-aurora']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-aurora']['aus2_ssh_key'] = 'ffxbld_dsa'
 # use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
@@ -1553,6 +1554,7 @@ BRANCHES['mozilla-esr10']['start_hour'] = [3]
 BRANCHES['mozilla-esr10']['start_minute'] = [2]
 BRANCHES['mozilla-esr10']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr10']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 # L10n configuration
 BRANCHES['mozilla-esr10']['enable_l10n'] = False
 BRANCHES['mozilla-esr10']['enable_l10n_onchange'] = False
@@ -1570,7 +1572,6 @@ BRANCHES['mozilla-esr10']['localesURL'] = \
 BRANCHES['mozilla-esr10']['enable_nightly'] = False
 BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
-del BRANCHES['mozilla-esr10']['platforms']['win64']
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_leaktests'] = False
 
