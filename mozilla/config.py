@@ -1168,6 +1168,7 @@ BRANCHES = {
     'mozilla-aurora': {
     },
     'mozilla-esr10': {
+        'lock_platforms': True,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -1570,7 +1571,6 @@ BRANCHES['mozilla-esr10']['localesURL'] = \
 BRANCHES['mozilla-esr10']['enable_nightly'] = False
 BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
-del BRANCHES['mozilla-esr10']['platforms']['win64']
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_leaktests'] = False
 
