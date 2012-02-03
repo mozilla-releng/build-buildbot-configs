@@ -1554,6 +1554,7 @@ BRANCHES['mozilla-esr10']['start_hour'] = [3]
 BRANCHES['mozilla-esr10']['start_minute'] = [2]
 BRANCHES['mozilla-esr10']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr10']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 # L10n configuration
 BRANCHES['mozilla-esr10']['enable_l10n'] = False
 BRANCHES['mozilla-esr10']['enable_l10n_onchange'] = False
