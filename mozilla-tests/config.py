@@ -783,6 +783,10 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 3,
             },
         )),
+        ('robocop', (
+            {'suite': 'mochitest-robocop',
+            },
+        )),
     ],
     'debug_unittest_suites': [],
 }
