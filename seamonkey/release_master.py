@@ -7,7 +7,7 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateCCTestBuilder, reallyShort
+  generateTestBuilderNames, reallyShort
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -372,7 +372,7 @@ for platform in enUSPlatforms:
                 suites = suites[:]
                 suites.remove('mochitest-a11y')
 
-            test_builders.extend(generateCCTestBuilder(
+            test_builders.extend(generateTestBuilder(
                 branchConfig, 'release', platform, "%s_test" % platform,
                 'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
                 suites_name, suites, mochitestLeakThreshold,
