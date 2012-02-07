@@ -68,11 +68,15 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
     },
+    'pgo_strategy': None,
+    'pgo_platforms': list(),
     'enable_shark': False,
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
+    'enable_valgrind': False,
+    'enable_xulrunner': False,
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
@@ -111,6 +115,8 @@ GLOBAL_VARS = {
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
     'tinderbox_tree': 'MozillaTest',
+    'pgo_strategy': None,
+    'enabled_products': ['seamonkey'],
 }
 
 # shorthand, because these are used often
@@ -134,6 +140,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -151,6 +158,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -167,6 +175,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'env': {
@@ -186,6 +195,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx': {
             'product_name': 'seamonkey',
@@ -202,6 +212,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
+            'stage_platform': 'macosx',
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -220,6 +231,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -236,6 +248,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
+            'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -253,6 +266,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'win32': {
             'product_name': 'seamonkey',
@@ -271,6 +285,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
+            'stage_platform': 'win32',
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
             'env': {
@@ -290,6 +305,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'linux-debug': {
             'product_name': 'seamonkey',
@@ -303,6 +319,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
@@ -315,6 +332,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx-debug': {
             'product_name': 'seamonkey',
@@ -328,6 +346,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'macosx-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -337,6 +356,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
@@ -350,6 +370,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'macosx64-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -359,6 +380,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'win32-debug': {
             'product_name': 'seamonkey',
@@ -373,6 +395,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'enable_shared_checkouts': True,
+            'stage_platform': 'win32-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -382,6 +405,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
 }
 
@@ -445,6 +469,8 @@ BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
 BRANCHES['comm-central-trunk']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central-trunk'
 BRANCHES['comm-central-trunk']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-central-trunk']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -486,6 +512,8 @@ BRANCHES['comm-aurora']['l10nUploadPath'] = \
 BRANCHES['comm-aurora']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
 BRANCHES['comm-aurora']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-aurora']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -527,6 +555,8 @@ BRANCHES['comm-beta']['l10nUploadPath'] = \
 BRANCHES['comm-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-beta'
 BRANCHES['comm-beta']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-beta']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -568,6 +598,8 @@ BRANCHES['comm-release']['l10nUploadPath'] = \
 BRANCHES['comm-release']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-release'
 BRANCHES['comm-release']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-release']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -610,6 +642,8 @@ BRANCHES['comm-2.0']['l10nUploadPath'] = \
 BRANCHES['comm-2.0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-2.0'
 BRANCHES['comm-2.0']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-2.0']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-2.0' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -672,6 +706,8 @@ BRANCHES['comm-1.9.1']['l10nUploadPath'] = \
 BRANCHES['comm-1.9.1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-1.9.1'
 BRANCHES['comm-1.9.1']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-1.9.1']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-1.9.1' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
