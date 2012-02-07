@@ -95,7 +95,6 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 0
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-firefox-linux.cfg',
     'linux64':  'mozBeta-firefox-linux64.cfg',
