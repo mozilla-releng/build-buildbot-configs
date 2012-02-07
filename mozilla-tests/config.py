@@ -629,14 +629,20 @@ ANDROID_XUL_UNITTEST_DICT = {
         )),
         ('crashtest-1', (
             {'suite': 'crashtest',
-             'totalChunks': 2,
+             'totalChunks': 3,
              'thisChunk': 1,
             },
         )),
         ('crashtest-2', (
             {'suite': 'crashtest',
-             'totalChunks': 2,
+             'totalChunks': 3,
              'thisChunk': 2,
+            },
+        )),
+        ('crashtest-3', (
+            {'suite': 'crashtest',
+             'totalChunks': 3,
+             'thisChunk': 3,
             },
         )),
         ('jsreftest-1', (
@@ -743,14 +749,20 @@ ANDROID_UNITTEST_DICT = {
         )),
         ('crashtest-1', (
             {'suite': 'crashtest',
-             'totalChunks': 2,
+             'totalChunks': 3,
              'thisChunk': 1,
             },
         )),
         ('crashtest-2', (
             {'suite': 'crashtest',
-             'totalChunks': 2,
+             'totalChunks': 3,
              'thisChunk': 2,
+            },
+        )),
+        ('crashtest-3', (
+            {'suite': 'crashtest',
+             'totalChunks': 3,
+             'thisChunk': 3,
             },
         )),
         ('jsreftest-1', (
@@ -769,6 +781,10 @@ ANDROID_UNITTEST_DICT = {
             {'suite': 'jsreftest',
              'totalChunks': 3,
              'thisChunk': 3,
+            },
+        )),
+        ('robocop', (
+            {'suite': 'mochitest-robocop',
             },
         )),
     ],
