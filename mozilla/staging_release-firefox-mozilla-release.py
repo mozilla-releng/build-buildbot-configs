@@ -97,11 +97,11 @@ releaseConfig['ftpServer']           = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['ausHost']             = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
     'linux64':  'mozRelease-firefox-linux64.cfg',

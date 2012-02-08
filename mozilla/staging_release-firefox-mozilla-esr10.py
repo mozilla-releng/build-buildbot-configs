@@ -16,16 +16,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0esr'
-releaseConfig['appVersion']          = '10.0'
-releaseConfig['milestone']           = '10.0'
+releaseConfig['version']             = '10.0.1esr'
+releaseConfig['appVersion']          = '10.0.1'
+releaseConfig['milestone']           = '10.0.1'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_1esr'
 #  Old version info
-releaseConfig['oldVersion']          = '9.0.1'
+releaseConfig['oldVersion']          = '10.0esr'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_9_0_1'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0esr'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -36,7 +36,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'clonePath': 'releases/mozilla-esr10',
-        'path': 'users/stage-ffxbld/mozilla-esr10',
+        'path': 'users/bhearsum_mozilla.com/mozilla-esr10',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -58,13 +58,13 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
+releaseConfig['l10nRepoPath']        = 'users/bhearsum_mozilla.com'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr10'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
-    'users/stage-ffxbld/buildbot': 'production-0.8',
-    'users/stage-ffxbld/partner-repacks': 'default',
+    'users/bhearsum_mozilla.com/compare-locales': 'RELEASE_AUTOMATION',
+    'users/bhearsum_mozilla.com/buildbot': 'production-0.8',
+    'users/bhearsum_mozilla.com/partner-repacks': 'default',
 }
 
 # Platform configuration
@@ -88,7 +88,7 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
+releaseConfig['cvsroot']             = 'dev-stage01.build.mozilla.org:/builds/cvsmirrors/bhearsum/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
@@ -96,11 +96,11 @@ releaseConfig['ftpServer']           = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['ausHost']             = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr10-firefox-linux.cfg',
     'linux64':  'mozEsr10-firefox-linux64.cfg',

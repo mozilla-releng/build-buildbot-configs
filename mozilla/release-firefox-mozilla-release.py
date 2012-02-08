@@ -92,11 +92,11 @@ releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 1
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
     'linux64':  'mozRelease-firefox-linux64.cfg',

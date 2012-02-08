@@ -91,11 +91,11 @@ releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus2.mozilla.org'
+releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = True
-releaseConfig['useBetaChannel']      = True
 releaseConfig['useBetaChannelForRelease'] = True
 releaseConfig['verifyConfigs']       = {
     'linux':  'moz192-firefox-linux.cfg',
@@ -103,6 +103,7 @@ releaseConfig['verifyConfigs']       = {
     'win32':  'moz192-firefox-win32.cfg'
 }
 releaseConfig['snippetSchema']       = 1
+releaseConfig['releaseChannel']      = 'release'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
