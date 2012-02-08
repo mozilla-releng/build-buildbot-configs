@@ -340,11 +340,14 @@ def makeAusConfig(branchName):
 
 def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
                     mozillaCentralBranch=None, tinderboxTree=None, allLocalesFile=None,
-                    wantNightly=None, wantL10n=None, l10nRepo=None, enableWeeklyBundle=False):
+                    wantNightly=None, wantL10n=None, l10nRepo=None, enableWeeklyBundle=False,
+                    updateChannel=None):
     bc = {}
     bc['hg_branch'] = hgBranch
     bc['tinderbox_tree'] = tinderboxTree
     bc['enable_weekly_bundle'] = enableWeeklyBundle
+    if updateChannel is not None:
+        bc['update_channel'] = updateChannel
     if builderType == 'nightly':
         if wantNightly != None:
             bc['nightly'] = wantNightly
@@ -485,7 +488,8 @@ BRANCHES['comm-beta'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird-Beta',
                                allLocalesFile = 'all-locales.comm-beta',
                                wantNightly   = False,
-                               wantL10n      = False
+                               wantL10n      = False,
+                               updateChannel = 'beta',
                            )
 BRANCHES['comm-beta-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -502,7 +506,8 @@ BRANCHES['comm-release'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird-Release',
                                allLocalesFile = 'all-locales.comm-release',
                                wantNightly   = False,
-                               wantL10n      = False
+                               wantL10n      = False,
+                               updateChannel = 'release',
                            )
 BRANCHES['comm-release-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -519,7 +524,8 @@ BRANCHES['comm-esr10'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird-Esr10',
                                allLocalesFile = 'all-locales.comm-esr10',
                                wantNightly   = False,
-                               wantL10n      = False
+                               wantL10n      = False,
+                               updateChannel = 'esr',
                            )
 BRANCHES['comm-esr10-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -538,6 +544,7 @@ BRANCHES['comm-aurora'] = makeBuildConfig(
                                wantL10n      = True,
                                l10nRepo      = 'releases/l10n/mozilla-aurora',
                                enableWeeklyBundle = True,
+                               updateChannel = 'aurora',
                            )
 BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -557,6 +564,7 @@ BRANCHES['comm-central'] = makeBuildConfig(
                                wantL10n      = True,
                                l10nRepo      = 'l10n-central',
                                enableWeeklyBundle = True,
+                               updateChannel = 'nightly',
                            )
 BRANCHES['comm-central-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',
@@ -592,7 +600,8 @@ BRANCHES['comm-1.9.2'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird3.1',
                                allLocalesFile = 'all-locales.comm-1.9.2',
                                wantL10n      = True,
-                               l10nRepo      = 'releases/l10n-mozilla-1.9.2'
+                               l10nRepo      = 'releases/l10n-mozilla-1.9.2',
+                               updateChannel = 'nightly',
                            )
 BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
                                builderType   = 'bloat',

@@ -97,7 +97,7 @@ gloConfig = {
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
@@ -106,7 +106,6 @@ gloConfig = {
         'testOlderPartials'          : False,
         'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
-        'useBetaChannel'             : 1,
         'useBetaChannelForRelease'   : True,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
                                       'macosx': 'moz192-thunderbird-mac.cfg',
@@ -194,7 +193,7 @@ gloConfig = {
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
@@ -205,7 +204,6 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 0,
         'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozBeta-thunderbird-linux.cfg',
                                         'linux64' : 'mozBeta-thunderbird-linux64.cfg',
@@ -295,7 +293,7 @@ gloConfig = {
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
@@ -306,7 +304,6 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 1,
         'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {'linux'   : 'mozRelease-thunderbird-linux.cfg',
                                         'linux64' : 'mozRelease-thunderbird-linux64.cfg',
@@ -336,6 +333,7 @@ gloConfig = {
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
         'relbranchPrefix'            : 'TB_COMM',
         'sourceRepoName'             : 'comm-esr10', # buildbot branch name
+        'releaseChannel'             : 'esr',
         'sourceRepoPath'             : 'releases/comm-esr10',
         'oldRepoPath'                : 'releases/comm-release',
         'sourceRepoRevision'         : '6e0db5c95022',
@@ -396,7 +394,7 @@ gloConfig = {
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
@@ -407,7 +405,6 @@ gloConfig = {
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
-        'useBetaChannel'             : 1,
         'useBetaChannelForRelease'   : False,
         'verifyConfigs'              : {#'linux'   : 'mozRelease-thunderbird-linux.cfg',
                                         #'linux64' : 'mozRelease-thunderbird-linux64.cfg',
@@ -460,6 +457,7 @@ weeklyBuilders = []
 for gloKey in gloConfig:
 
     sourceRepoName             = gloConfig[gloKey]['sourceRepoName']
+    releaseChannel             = gloConfig[gloKey].get('releaseChannel', 'release')
     toolsRepoPath              = gloConfig[gloKey]['toolsRepoPath']
     stagingServer              = gloConfig[gloKey]['stagingServer']
     productName                = gloConfig[gloKey]['productName']
@@ -510,7 +508,6 @@ for gloKey in gloConfig:
     enableWeeklyBundle         = gloConfig[gloKey]['enable_weekly_bundle']
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
-    useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
     useBetaChannelForRelease   = gloConfig[gloKey]['useBetaChannelForRelease']
     ausServerUrl               = gloConfig[gloKey]['ausServerUrl']
     releaseNotesUrl            = gloConfig[gloKey]['releaseNotesUrl']
@@ -1029,7 +1026,6 @@ for gloKey in gloConfig:
         ftpServer=ftpServer,
         bouncerServer=bouncerServer,
         stagingServer=stagingServer,
-        useBetaChannel=useBetaChannel,
         stageUsername=branchConfig['stage_username'],
         stageSshKey=branchConfig['stage_ssh_key'],
         ausUser=nightly_config.AUS2_USER,
@@ -1044,6 +1040,7 @@ for gloKey in gloConfig:
         testOlderPartials=testOlderPartials,
         schema=snippetSchema,
         useBetaChannelForRelease=useBetaChannelForRelease,
+        releaseChannel=releaseChannel,
     )
     
     builders.append({
@@ -1111,7 +1108,6 @@ for gloKey in gloConfig:
             ftpServer=ftpServer,
             bouncerServer=bouncerServer,
             stagingServer=stagingServer,
-            useBetaChannel=useBetaChannel,
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],
             ausUser=ausUser,
