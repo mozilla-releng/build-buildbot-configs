@@ -35,7 +35,7 @@ GLOBAL_VARS = {
     'hg_username': 'ffxbld',
     'hg_ssh_key': '~cltbld/.ssh/ffxbld_dsa',
     'graph_selector': '/server/collect.cgi',
-    'compare_locales_repo_path': 'users/bhearsum_mozilla.com/compare-locales',
+    'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'mozharness_repo_path': 'build/mozharness',
     'mozharness_tag': 'default',
