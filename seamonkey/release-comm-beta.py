@@ -5,11 +5,11 @@ releaseConfig['hgSshKey']                   = '~seabld/.ssh/seabld_dsa'
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = '8be2f6643b0f'
+releaseConfig['sourceRepoRevision']         = '458dad0ffd8f'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = '8a133b6bd909'
-releaseConfig['mozillaRelbranchOverride']   = 'COMM110_2012020102_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = '700391b27db1'
+releaseConfig['mozillaRelbranchOverride']   = 'COMM110_2012020802_RELBRANCH' # put Gecko relbranch here that we base upon
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = '589ef9b749f5'
 releaseConfig['inspectorRelbranchOverride'] = 'DOMI_2_0_10'
@@ -39,15 +39,15 @@ releaseConfig['skip_tag']                   = False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-releaseConfig['version']                    = '2.8b1'
+releaseConfig['version']                    = '2.8b2'
 releaseConfig['appVersion']                 = '2.8'
 releaseConfig['milestone']                  = '11.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_8b1'
-releaseConfig['oldVersion']                 = '2.7b5'
-releaseConfig['oldAppVersion']              = '2.7'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_8b2'
+releaseConfig['oldVersion']                 = '2.8b1'
+releaseConfig['oldAppVersion']              = '2.8'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_7b5'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_8b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 releaseConfig['enUSPlatforms']              = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['l10nPlatforms']              = ('linux', 'win32', 'macosx64')
