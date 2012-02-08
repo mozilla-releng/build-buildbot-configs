@@ -77,7 +77,7 @@ for platform in releaseConfig['enUSPlatforms']:
             platform=platform,
             upstream=build_scheduler,
             builderNames=['%s_repack' % platform],
-            branch=sourceRepoPath,
+            branch=releaseConfig['sourceRepoPath'],
             baseTag='%s_RELEASE' % baseTag,
             localesFile='suite/locales/shipped-locales',
         )
