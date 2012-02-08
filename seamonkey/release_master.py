@@ -78,7 +78,7 @@ for platform in releaseConfig['enUSPlatforms']:
             upstream=build_scheduler,
             builderNames=['%s_repack' % platform],
             branch=releaseConfig['sourceRepoPath'],
-            baseTag='%s_RELEASE' % baseTag,
+            baseTag='%s_RELEASE' % releaseConfig['baseTag'],
             localesFile='suite/locales/shipped-locales',
         )
         schedulers.append(repack_scheduler)
