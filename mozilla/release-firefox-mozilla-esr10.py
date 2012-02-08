@@ -15,16 +15,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0esr'
-releaseConfig['appVersion']          = '10.0'
-releaseConfig['milestone']           = '10.0'
+releaseConfig['version']             = '10.0.1esr'
+releaseConfig['appVersion']          = '10.0.1'
+releaseConfig['milestone']           = '10.0.1'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_1esr'
 #  Old version info
-releaseConfig['oldVersion']          = '9.0.1'
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
+releaseConfig['oldVersion']          = '10.0esr'
+releaseConfig['oldAppVersion']       = '10.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_9_0_1'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '66745590c474',
+        'revision': '7d38a883abb8',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
