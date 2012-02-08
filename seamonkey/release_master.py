@@ -101,7 +101,7 @@ updates_scheduler = Scheduler(
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
-for platform in sorted(verifyConfigs.keys()):
+for platform in sorted(releaseConfig['verifyConfigs'].keys()):
     updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
@@ -110,9 +110,9 @@ update_verify_scheduler = Dependent(
 )
 schedulers.append(update_verify_scheduler)
 
-if majorUpdateRepoPath:
+if releaseConfig['majorUpdateRepoPath']:
     majorUpdateBuilderNames = []
-    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+    for platform in sorted(releaseConfig['majorUpdateVerifyConfigs'].keys()):
         majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
     major_update_verify_scheduler = Triggerable(
         name='major_update_verify',
@@ -120,7 +120,7 @@ if majorUpdateRepoPath:
     )
     schedulers.append(major_update_verify_scheduler)
 
-for platform in unittestPlatforms:
+for platform in releaseConfig['unittestPlatforms']:
     if branchConfig['platforms'][platform]['enable_opt_unittests']:
         platform_test_builders = []
         base_name = branchConfig['platforms'][platform]['base_name']
@@ -395,7 +395,7 @@ for platform in releaseConfig['l10nPlatforms']:
     )
 
     verifySlavePlat = 'macosx64'
-    if sourceRepoName == 'comm-1.9.1':
+    if releaseConfig['sourceRepoName'] == 'comm-1.9.1':
        verifySlavePlat = 'macosx'
 
     builders.append({
