@@ -5,11 +5,11 @@ releaseConfig['hgSshKey']                   = '~seabld/.ssh/seabld_dsa'
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = 'b66154e57494'
+releaseConfig['sourceRepoRevision']         = 'd77cf4ea22b6'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = '3851ce93e81f'
-releaseConfig['mozillaRelbranchOverride']   = 'COMM100_2012012905_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = '66fc651438e7'
+releaseConfig['mozillaRelbranchOverride']   = 'COMM1001_2012020809_RELBRANCH' # put Gecko relbranch here that we base upon
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = '589ef9b749f5'
 releaseConfig['inspectorRelbranchOverride'] = 'DOMI_2_0_10'
@@ -23,8 +23,8 @@ releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRelbranchOverride']      = ''
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 releaseConfig['cvsroot']                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
-#releaseConfig['productVersionFile']        = 'suite/config/version.txt'
-releaseConfig['productVersionFile']         = ''
+releaseConfig['productVersionFile']         = 'suite/config/version.txt'
+#releaseConfig['productVersionFile']         = ''
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
 # should be False for releases *EXCEPT* alphas and early betas. If in doubt,
@@ -39,15 +39,15 @@ releaseConfig['skip_tag']                   = False
 # appVersion and oldAppVersion are optional definitions used in places that
 # don't care about what we call it. Eg, when version bumping we will bump to
 # appVersion, not version.
-releaseConfig['version']                    = '2.7'
-releaseConfig['appVersion']                 = '2.7'
-releaseConfig['milestone']                  = '10.0'
+releaseConfig['version']                    = '2.7.1'
+releaseConfig['appVersion']                 = '2.7.1'
+releaseConfig['milestone']                  = '10.0.1'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_7'
-releaseConfig['oldVersion']                 = '2.6.1'
-releaseConfig['oldAppVersion']              = '2.6.1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_7_1'
+releaseConfig['oldVersion']                 = '2.7'
+releaseConfig['oldAppVersion']              = '2.7'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_6_1'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_7'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 releaseConfig['enUSPlatforms']              = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['l10nPlatforms']              = ('linux', 'win32', 'macosx64')
