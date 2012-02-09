@@ -335,7 +335,7 @@ gloConfig = {
         'sourceRepoName'             : 'comm-esr10', # buildbot branch name
         'releaseChannel'             : 'esr',
         'sourceRepoPath'             : 'releases/comm-esr10',
-        'oldRepoPath'                : 'releases/comm-release',
+        'oldRepoPath'                : 'releases/comm-esr10',
         'sourceRepoRevision'         : '6e0db5c95022',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
