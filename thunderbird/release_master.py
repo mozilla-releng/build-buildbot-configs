@@ -117,10 +117,10 @@ gloConfig = {
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : 'releases/mozilla-release',
         'majorUpdateSourceRepoPath' : 'releases/comm-release',
-        'majorUpdateToVersion'   : '10.0',
+        'majorUpdateToVersion'   : '10.0.1',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_10_0',
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_10_0_1',
         'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/10.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
