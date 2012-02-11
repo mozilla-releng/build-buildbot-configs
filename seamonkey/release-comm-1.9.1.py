@@ -62,7 +62,6 @@ releaseConfig['bouncerServer']              = 'download.mozilla.org'
 releaseConfig['ausServerUrl']               = 'https://aus2-community.mozilla.org'
 releaseConfig['testOlderPartials']          = True
 releaseConfig['releaseNotesUrl']            = None
-releaseConfig['useBetaChannel']             = 1
 releaseConfig['verifyConfigs']              = {'linux':  'moz191-seamonkey-linux.cfg',
                                                'macosx': 'moz191-seamonkey-mac.cfg',
                                                'win32':  'moz191-seamonkey-win32.cfg'}
@@ -82,3 +81,5 @@ releaseConfig['majorUpdateReleaseNotesUrl'] = 'https://www.mozilla.org/start/uns
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #releaseConfig['tuxedoConfig']              = 'seamonkey-tuxedo.ini'
 #releaseConfig['tuxedoServerUrl']           = 'https://bounceradmin.mozilla.com/api/'
+releaseConfig['releaseChannel']             = 'release'
+releaseConfig['useBetaChannelForRelease']   = True

@@ -431,7 +431,6 @@ updates_factory = ReleaseUpdatesFactory(
     ftpServer=releaseConfig['ftpServer'],
     bouncerServer=releaseConfig['bouncerServer'],
     stagingServer=releaseConfig['stagingServer'],
-    useBetaChannel=releaseConfig['useBetaChannel'],
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
     ausUser=branchConfig['aus2_user'],
@@ -440,6 +439,7 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=releaseConfig['ausServerUrl'],
     hgSshKey=releaseConfig['hgSshKey'],
     hgUsername=releaseConfig['hgUsername'],
+    releaseChannel=releaseConfig['releaseChannel'],
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=releaseConfig['oldRepoPath'],
     releaseNotesUrl=releaseConfig['releaseNotesUrl'],
@@ -447,6 +447,7 @@ updates_factory = ReleaseUpdatesFactory(
     oldBinaryName=releaseConfig['oldBinaryName'],
     testOlderPartials=releaseConfig['testOlderPartials'],
     schema=releaseConfig.get("snippetSchema", 1), # Bug 682805
+    useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
 )
 
 builders.append({
@@ -522,7 +523,6 @@ if releaseConfig['majorUpdateRepoPath']:
         ftpServer=releaseConfig['ftpServer'],
         bouncerServer=releaseConfig['bouncerServer'],
         stagingServer=releaseConfig['stagingServer'],
-        useBetaChannel=releaseConfig['useBetaChannel'],
         stageUsername=branchConfig['stage_username'],
         stageSshKey=branchConfig['stage_ssh_key'],
         ausUser=branchConfig['aus2_user'],
@@ -531,12 +531,14 @@ if releaseConfig['majorUpdateRepoPath']:
         ausServerUrl=releaseConfig['ausServerUrl'],
         hgSshKey=releaseConfig['hgSshKey'],
         hgUsername=releaseConfig['hgUsername'],
+        releaseChannel=releaseConfig['releaseChannel'],
         clobberURL=branchConfig['base_clobber_url'],
         oldRepoPath=releaseConfig['oldRepoPath'],
         triggerSchedulers=['major_update_verify'],
         releaseNotesUrl=releaseConfig['majorUpdateReleaseNotesUrl'],
         testOlderPartials=releaseConfig['testOlderPartials'],
         schema=releaseConfig.get("majorSnippetSchema", 1), # Bug 682805
+        useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
     )
 
     builders.append({
