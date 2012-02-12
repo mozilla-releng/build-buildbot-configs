@@ -346,7 +346,7 @@ for platform in releaseConfig['enUSPlatforms']:
             configRepoPath=branchConfig['config_repo_path'],
             configSubDir=branchConfig['config_subdir'],
             mozconfig=l10nmozconfig,
-            platform=platform + '-release',
+            platform=platform,
             buildRevision='%s_RELEASE' % releaseConfig['baseTag'],
             version=releaseConfig['version'],
             buildNumber=releaseConfig['buildNumber'],
