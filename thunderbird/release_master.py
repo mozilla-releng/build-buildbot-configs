@@ -406,10 +406,10 @@ gloConfig = {
         # All of the beta and (if applicable) release channel information
         # is dependent on the useBetaChannel flag
         'useBetaChannelForRelease'   : False,
-        'verifyConfigs'              : {#'linux'   : 'mozRelease-thunderbird-linux.cfg',
-                                        #'linux64' : 'mozRelease-thunderbird-linux64.cfg',
-                                        #'macosx64': 'mozRelease-thunderbird-mac64.cfg',
-                                        },#'win32'   : 'mozRelease-thunderbird-win32.cfg'},
+        'verifyConfigs'              : {'linux'   : 'mozEsr10-thunderbird-linux.cfg',
+                                        'linux64' : 'mozEsr10-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozEsr10-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozEsr10-thunderbird-win32.cfg'},
         'packageTests'               : True,
         #XXX: Should really be obtained from config.py, but this will do for now.
         'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
