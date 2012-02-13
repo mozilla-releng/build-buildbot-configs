@@ -1211,9 +1211,7 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 # Let's load peptest for the following branches:
-# Disabling peptest for bug 719504.
-# for branch in ('try',  ):
-for branch in ():
+for branch in ('try',  ):
     for pf in PLATFORMS:
         if 'android' in pf:
             continue
@@ -1232,6 +1230,10 @@ for branch in ():
                 'extra_args': [
                     "--cfg", config_file
                 ],
+                'reboot_command': [PLATFORMS[pf]['mozharness_python'],
+                                   'build/tools/buildfarm/maintenance/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt',
+                                   '-n', '1', '-z'],
                 'hg_bin': hg_bin,
             })]
 
