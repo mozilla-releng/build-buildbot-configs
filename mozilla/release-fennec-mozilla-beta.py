@@ -15,16 +15,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '11.0b2'
+releaseConfig['version']             = '11.0b3'
 releaseConfig['appVersion']          = '11.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_11_0b2'
+releaseConfig['baseTag']             = 'FENNEC_11_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '11.0b1'
+releaseConfig['oldVersion']          = '11.0b2'
 releaseConfig['oldAppVersion']       = '11.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_11_0b1'
+releaseConfig['oldBaseTag']          = 'FENNEC_11_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'c0feb8e404a0',
+        'revision': '805226ae6764',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
@@ -72,8 +72,8 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
-releaseConfig['notifyPlatforms']      = ('android',)
+releaseConfig['enUSPlatforms']        = ('android-xul',)
+releaseConfig['notifyPlatforms']      = ('android-xul',)
 releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
