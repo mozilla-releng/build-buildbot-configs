@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.7.1'
-releaseConfig['appVersion']                 = '2.7.1'
-releaseConfig['milestone']                  = '10.0.1'
+releaseConfig['version']                    = '2.7.2'
+releaseConfig['appVersion']                 = '2.7.2'
+releaseConfig['milestone']                  = '10.0.2'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_7_1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_7_2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.7'
-releaseConfig['oldAppVersion']              = '2.7'
+releaseConfig['oldVersion']                 = '2.7.1'
+releaseConfig['oldAppVersion']              = '2.7.1'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_7'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_7_1'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
@@ -34,8 +34,8 @@ releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = '66fc651438e7'
-releaseConfig['mozillaRelbranchOverride']   = 'COMM1001_2012020809_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'e21c506e2bef'
+releaseConfig['mozillaRelbranchOverride']   = 'COMM1002_2012021601_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = '589ef9b749f5'
