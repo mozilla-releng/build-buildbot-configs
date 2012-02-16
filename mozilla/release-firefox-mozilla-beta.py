@@ -18,7 +18,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '11.0b3'
 releaseConfig['appVersion']          = '11.0'
 releaseConfig['milestone']           = '11.0'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_11_0b3'
 #  Old version info
 releaseConfig['oldVersion']          = '11.0b2'
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '805226ae6764',
+        'revision': 'f21c6aa0f8c2',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
