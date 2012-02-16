@@ -15,16 +15,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0.1esr'
-releaseConfig['appVersion']          = '10.0.1'
-releaseConfig['milestone']           = '10.0.1'
+releaseConfig['version']             = '10.0.2esr'
+releaseConfig['appVersion']          = '10.0.2'
+releaseConfig['milestone']           = '10.0.2'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_1esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_2esr'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0esr'
-releaseConfig['oldAppVersion']       = '10.0'
+releaseConfig['oldVersion']          = '10.0.1esr'
+releaseConfig['oldAppVersion']       = '10.0.1'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0esr'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0_1esr'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '7d38a883abb8',
-        'relbranch': None,
+        'revision': 'cc9013d9ffc1',
+        'relbranch': 'GECKO1001_2012020805_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
