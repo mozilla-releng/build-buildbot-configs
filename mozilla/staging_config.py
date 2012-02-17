@@ -40,14 +40,14 @@ TRY_SLAVES['win32'] += TRY_WIN32_IXS
 
 GLOBAL_VARS = {
     'staging': True,
-    'config_repo_path': 'users/bhearsum_mozilla.com/buildbot-configs',
-    'buildbotcustom_repo_path': 'users/bhearsum_mozilla.com/buildbotcustom',
+    'config_repo_path': 'build/buildbot-configs',
+    'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs-stage.mozilla.org',
-    'build_tools_repo_path': 'users/bhearsum_mozilla.com/tools',
+    'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
