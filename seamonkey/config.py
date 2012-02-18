@@ -28,7 +28,7 @@ GLOBAL_VARS = {
     'objdir': 'objdir',
     'objdir_unittests': 'objdir',
     'stage_username': 'seabld',
-    'stage_base_path': '/home/ftp/pub/seamonkey',
+    'stage_base_path': '/home/ftp/pub',
     'stage_group': 'seamonkey',
     'stage_ssh_key': 'seabld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_sea/',
