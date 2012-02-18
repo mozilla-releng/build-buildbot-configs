@@ -293,7 +293,7 @@ for platform in releaseConfig['enUSPlatforms']:
         stageUsername=branchConfig['stage_username'],
         stageGroup=branchConfig['stage_group'],
         stageSshKey=branchConfig['stage_ssh_key'],
-        stageBasePath='%s/%s' % (config['stage_base_path'],
+        stageBasePath='%s/%s' % (branchConfig['stage_base_path'],
                                  pf['stage_product']),
         codesighs=False,
         uploadPackages=True,
