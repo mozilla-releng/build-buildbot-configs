@@ -51,7 +51,8 @@ class BaseExtensionRepackFactory(BaseRepackFactory):
                          '--nightly-dir=%s/nightly' % self.extensionName,
                          '--buildid %(buildid)s',
                          '--release-to-latest',
-                         '--release-to-dated']
+                         '--release-to-dated',
+                         '--no-shortdir']
 
         self.postUploadCmd = WithProperties(' '.join(postUploadCmd))
         
@@ -137,6 +138,8 @@ class CCBaseExtensionRepackFactory(BaseExtensionRepackFactory, CCBaseRepackFacto
     # appName needs to be calendar, but we want to build mail+calendar in the
     # Lightning case. Adding this appends another --enable-application, which is
     # taken since its the later argument.
+    # We must also add --enable-calendar as we're currently not getting the mozconfigs
+    # for repacks (which probably is the right, quicker thing to do as well).
     extraConfigureArgs = ['--enable-application=mail']
 
     def __init__(self, platform, extensionName, extensionPath, enUSBinaryURL, objdir='',

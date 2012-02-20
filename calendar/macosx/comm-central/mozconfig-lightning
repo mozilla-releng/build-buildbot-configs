@@ -40,6 +40,7 @@ export MOZILLA_OFFICIAL=1
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gdwarf-2"
 
 # Don't try and install lightning - we just need to have it built for it to
 # be uploaded

@@ -1,0 +1,16 @@
+ac_add_options --target=x86_64-pc-mingw32
+ac_add_options --host=x86_64-pc-mingw32
+
+ac_add_options --enable-application=mail
+ac_add_options --enable-update-channel=aurora
+ac_add_options --enable-update-packaging
+ac_add_options --disable-debug
+ac_add_options --enable-optimize
+ac_add_options --enable-jemalloc
+ac_add_options --enable-debug-symbols
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# For NSS Symbols
+export MOZ_DEBUG_SYMBOLS=1

@@ -38,18 +38,18 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : '8f80fb4514a0',
+        'sourceRepoRevision'         : 'b5b24fee5623',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
+        'relbranchOverride'          : 'COMM19225_20120124_RELBRANCH',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : 'dd0bc929f34c',
+        'mozillaRepoRevision'        : '73ffd608342e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO19217_2011041406_RELBRANCH', # put Gecko relbranch here that we base upon
-        'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
-        'inspectorRepoRevision'      : 'c1b38e365772',
-        'inspectorRelbranchOverride' : 'COMM1929_20100910_RELBRANCH',
+        'mozillaRelbranchOverride'   : 'GECKO19227_2012021601_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
+        'inspectorRelbranchOverride' : '',
         'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
         'buildToolsRepoRevision'        : '',
         #buildToolsRepoRevision        : '479375734669'
@@ -63,10 +63,11 @@ gloConfig = {
         'l10nRevisionFile'           : 'l10n-thunderbird-changesets-3.1',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
-        'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'mergeLocales'               : False,
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version-192.txt',
         'productName'                : 'thunderbird',
-        'binaryName'                 : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
         'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
@@ -75,36 +76,37 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.10',
+        'version'                    : '3.1.19',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.17',
+        'milestone'                  : '1.9.2.27',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_1_10',
+        'baseTag'                    : 'THUNDERBIRD_3_1_19',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.9',
+        'oldVersion'                 : '3.1.18',
         #'oldAppVersion'              : oldVersion,
-        'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_9',
-        'oldBinaryName'              : 'thunderbird',
+        'oldBuildNumber'             : 2,
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_18',
+        'oldBinaryName'              : 'Thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
         'unittestPlatforms'          : (),
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
+        'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
         'ausSshKey'                  : 'tbirdbld_dsa',
         'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
         'testOlderPartials'          : False,
-        'doPartnerRepacks'           : True,
+        'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
-        'useBetaChannel'             : 1,
+        'useBetaChannelForRelease'   : True,
         'verifyConfigs'              : {'linux':  'moz192-thunderbird-linux.cfg',
                                       'macosx': 'moz192-thunderbird-mac.cfg',
                                       'win32':  'moz192-thunderbird-win32.cfg'},
@@ -113,36 +115,36 @@ gloConfig = {
         
         # 'Version' numbers we are updating _TO_
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
-        'majorUpdateRepoPath'    : '',
-        'majorUpdateSourceRepoPath' : '',
-        'majorUpdateToVersion'   : '',
-        'majorUpdateAppVersion'  : '',
-        'majorUpdateBuildNumber' : '',
-        'majorUpdateBaseTag'     : '',
-        'majorUpdateReleaseNotesUrl' : '',
-        'majorUpdatePatcherConfig' : '',
-        'majorUpdateVerifyConfigs' : {'linux':  '',
-                                    'macosx': '',
-                                    'win32':  ''},
-
+        'majorUpdateRepoPath'    : 'releases/mozilla-release',
+        'majorUpdateSourceRepoPath' : 'releases/comm-release',
+        'majorUpdateToVersion'   : '10.0.2',
+        #'majorUpdateAppVersion'  : majorUpdateToVersion,
+        'majorUpdateBuildNumber' : 1,
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_10_0_2',
+        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/10.0/details/index.html',
+        'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
+        'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
+                                    'macosx': 'moz20-thunderbird-mac64-major.cfg',
+                                    'win32':  'moz20-thunderbird-win32-major.cfg'},
     },
-    '33': {
+    'beta': {
         'hgUsername'                 : 'tbirdbld',
         'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
         'relbranchPrefix'            : 'COMM',
-        'sourceRepoName'             : 'comm-aurora', # buildbot branch name
-        'sourceRepoPath'             : 'comm-central',
-        'sourceRepoRevision'         : '6fbe19ade0d5',
+        'sourceRepoName'             : 'comm-beta', # buildbot branch name
+        'sourceRepoPath'             : 'releases/comm-beta',
+        'oldRepoPath'                : 'releases/comm-beta',
+        'sourceRepoRevision'         : 'f3400b6e0c7e',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : '',
-        'mozillaRepoPath'            : 'mozilla-central',
-        'mozillaRepoRevision'        : '290712e55ade',
+        'relbranchOverride'          : 'COMM110_20120214_RELBRANCH',
+        'mozillaRepoPath'            : 'releases/mozilla-beta',
+        'mozillaRepoRevision'        : '8e5bd133093c',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : '', # put Gecko relbranch here that we base upon
-        'inspectorRepoPath'          : 'dom-inspector', # leave empty if inspector is not to be tagged
-        'inspectorRepoRevision'      : '2c63a5a42aa1',
+        'mozillaRelbranchOverride'   : 'COMM110_2012021603_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
         'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
         'buildToolsRepoRevision'        : '',
@@ -153,15 +155,17 @@ gloConfig = {
         'venkmanRelbranchOverride'   : '',
         'chatzillaCVSRoot'           : '',
         'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
-        'l10nRepoPath'               : 'l10n-central',
-        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-3.3',
+        'l10nRepoPath'               : 'releases/l10n/mozilla-beta',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-beta',
         'toolsRepoPath'              : 'build/tools',
         'buildToolsRepoPath'	   : '',
-        'cvsroot'                    : ':ext:cltbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'mergeLocales'               : True,
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
         'productVersionFile'         : 'mail/config/version.txt',
         'productName'                : 'thunderbird',
-        'brandName'                  : 'Miramar',
-        'binaryName'                 : 'miramar',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
+        'brandName'                  : 'Thunderbird',
         'appName'                    : APP_NAME,
         'ftpName'                    : APP_NAME,
         # 'Sometimes' we need the application version to be different from what we "call"
@@ -169,27 +173,27 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.3a3',
-        #'appVersion'                 : version,
+        'version'                    : '11.0b2',
+        'oldVersion'                 : '11.0b1',
+        'appVersion'                 : '11.0', # no 'b1' suffix for betas
+        'oldAppVersion'              : '11.0',
+        'buildNumber'                : 2,
+        'oldBuildNumber'             : 2,
+        'baseTag'                    : 'THUNDERBIRD_11_0b2',
+        'oldBaseTag'                 : 'THUNDERBIRD_11_0b1',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '2.0.0.0',
-        'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_3a3',
+        'milestone'                  : '11.0',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.3a2',
-        'oldAppVersion'              : '3.3a2',
-        'oldBuildNumber'             : 1,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_3a2',
-        'oldBinaryName'              : 'miramar',
         'enable_weekly_bundle'       : True,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
-        'l10nPlatforms'              : (),
+        #'l10nPlatforms'              : (),
         'xulrunnerPlatforms'         : (),
-        'patcherConfig'              : 'moz20-thunderbird-branch-patcher2.cfg',
-        'patcherToolsTag'            : 'UPDATE_PACKAGING_R13',
+        'patcherConfig'              : 'mozBeta-thunderbird-branch-patcher2.cfg',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
-        'stagingServer'              : 'stage-old.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
         'bouncerServer'              : 'download.mozilla.org',
         'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
         'ausUser'                    : 'tbirdbld',
@@ -198,11 +202,13 @@ gloConfig = {
         'testOlderPartials'          : False,
         'doPartnerRepacks'           : False,
         'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
-        'useBetaChannel'             : 0,
-        'verifyConfigs'              : {'linux'   : 'moz20-thunderbird-linux.cfg',
-                                        'linux64' : 'moz20-thunderbird-linux64.cfg',
-                                        'macosx64': 'moz20-thunderbird-mac64.cfg',
-                                        'win32'   : 'moz20-thunderbird-win32.cfg'},
+        # All of the beta and (if applicable) release channel information
+        # is dependent on the useBetaChannel flag
+        'useBetaChannelForRelease'   : False,
+        'verifyConfigs'              : {'linux'   : 'mozBeta-thunderbird-linux.cfg',
+                                        'linux64' : 'mozBeta-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozBeta-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozBeta-thunderbird-win32.cfg'},
         'packageTests'               : True,
         #XXX: Should really be obtained from config.py, but this will do for now.
         'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
@@ -221,7 +227,207 @@ gloConfig = {
                                     'linux64': '',
                                     'macosx64': '',
                                     'win32':  ''},
+    },
+    'release': {
+        'hgUsername'                 : 'tbirdbld',
+        'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
+        'relbranchPrefix'            : 'TB_COMM',
+        'sourceRepoName'             : 'comm-release', # buildbot branch name
+        'sourceRepoPath'             : 'releases/comm-release',
+        'oldRepoPath'                : 'releases/comm-release',
+        'sourceRepoRevision'         : 'd77cf4ea22b6',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        'relbranchOverride'          : '',
+        'mozillaRepoPath'            : 'releases/mozilla-release',
+        'mozillaRepoRevision'        : 'e21c506e2bef',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        # 'You' typically want to set this to the gecko relbranch if doing a release off
+        # 'a' specific gecko version.
+        'mozillaRelbranchOverride'   : 'COMM1002_2012021601_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
+        'inspectorRelbranchOverride' : '',
+        'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
+        'buildToolsRepoRevision'        : '',
+        #buildToolsRepoRevision        : '479375734669'
+        'buildToolsRelbranchOverride'   : '',
+        'venkmanRepoPath'            : '', # leave empty if venkman is not to be tagged
+        'venkmanRepoRevision'        : '',
+        'venkmanRelbranchOverride'   : '',
+        'chatzillaCVSRoot'           : '',
+        'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
+        'l10nRepoPath'               : 'releases/l10n/mozilla-release',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-release',
+        'toolsRepoPath'              : 'build/tools',
+        'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'productVersionFile'         : 'mail/config/version.txt',
+        'productName'                : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
+        'brandName'                  : 'Thunderbird',
+        'appName'                    : APP_NAME,
+        'ftpName'                    : APP_NAME,
+        # 'Sometimes' we need the application version to be different from what we "call"
+        # 'the' build, eg public release candidates for a major release (3.1 RC1).
+        # 'appVersion' and oldAppVersion are optional definitions used in places that
+        # 'don''t care about what we call it. Eg, when version bumping we will bump to
+        # 'appVersion', not version.
+        'version'                    : '10.0.2',
+        'oldVersion'                 : '10.0.1',
+        'appVersion'                 : '10.0.2', # no 'b1' suffix for betas
+        'oldAppVersion'              : '10.0.1',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 1,
+        'baseTag'                    : 'THUNDERBIRD_10_0_2',
+        'oldBaseTag'                 : 'THUNDERBIRD_10_0_1',
+        #XXX: 'Not' entirely certain if/where this is used.
+        # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
+        'milestone'                  : '10.0.2',
+        'enable_weekly_bundle'       : False,
+        'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
+        #'l10nPlatforms'              : (),
+        'xulrunnerPlatforms'         : (),
+        'patcherConfig'              : 'mozRelease-thunderbird-branch-patcher2.cfg',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
+        'ftpServer'                  : 'ftp.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
+        'bouncerServer'              : 'download.mozilla.org',
+        'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
+        'ausUser'                    : 'tbirdbld',
+        'ausSshKey'                  : 'tbirdbld_dsa',
+        'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
+        'testOlderPartials'          : False,
+        'doPartnerRepacks'           : False,
+        'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
+        # All of the beta and (if applicable) release channel information
+        # is dependent on the useBetaChannel flag
+        'useBetaChannelForRelease'   : False,
+        'verifyConfigs'              : {'linux'   : 'mozRelease-thunderbird-linux.cfg',
+                                        'linux64' : 'mozRelease-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozRelease-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozRelease-thunderbird-win32.cfg'},
+        'packageTests'               : True,
+        #XXX: Should really be obtained from config.py, but this will do for now.
+        'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
 
+        # 'Version' numbers we are updating _TO_
+        # 'N'/A for Thunderbird 3.x (until the next major version is released)
+        'majorUpdateRepoPath'    : '',
+        'majorUpdateSourceRepoPath' : '',
+        'majorUpdateToVersion'   : '',
+        'majorUpdateAppVersion'  : '',
+        'majorUpdateBuildNumber' : '',
+        'majorUpdateBaseTag'     : '',
+        'majorUpdateReleaseNotesUrl' : '',
+        'majorUpdatePatcherConfig' : '',
+        'majorUpdateVerifyConfigs' : {'linux':  '',
+                                    'linux64': '',
+                                    'macosx64': '',
+                                    'win32':  ''},
+    },
+    'esr10': {
+        'hgUsername'                 : 'tbirdbld',
+        'hgSshKey'                   : '~cltbld/.ssh/tbirdbld_dsa',
+        'relbranchPrefix'            : 'TB_COMM',
+        'sourceRepoName'             : 'comm-esr10', # buildbot branch name
+        'releaseChannel'             : 'esr',
+        'sourceRepoPath'             : 'releases/comm-esr10',
+        'oldRepoPath'                : 'releases/comm-esr10',
+        'sourceRepoRevision'         : 'cd2de17badb9',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        'relbranchOverride'          : 'TB_COMM100_20120208_RELBRANCH',
+        'mozillaRepoPath'            : 'releases/mozilla-esr10',
+        'mozillaRepoRevision'        : '9b1d4c3f34e9',
+        # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
+        # 'You' typically want to set this to the gecko relbranch if doing a release off
+        # 'a' specific gecko version.
+        'mozillaRelbranchOverride'   : 'COMM1002_2012021610_RELBRANCH', # put Gecko relbranch here that we base upon
+        'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
+        'inspectorRepoRevision'      : '',
+        'inspectorRelbranchOverride' : '',
+        'buildToolsRepoPath'            : '', # leave empty if buildTools is not to be tagged
+        'buildToolsRepoRevision'        : '',
+        #buildToolsRepoRevision        : '479375734669'
+        'buildToolsRelbranchOverride'   : '',
+        'venkmanRepoPath'            : '', # leave empty if venkman is not to be tagged
+        'venkmanRepoRevision'        : '',
+        'venkmanRelbranchOverride'   : '',
+        'chatzillaCVSRoot'           : '',
+        'chatzillaTimestamp'         : '', # leave empty if chatzilla is not to be tagged
+        'l10nRepoPath'               : 'releases/l10n/mozilla-release',
+        'l10nRevisionFile'           : 'l10n-thunderbird-changesets-esr10',
+        'toolsRepoPath'              : 'build/tools',
+        'buildToolsRepoPath'	   : '',
+        'mergeLocales'               : True,
+        'cvsroot'                    : ':ext:tbirdbld@cvs.mozilla.org:/cvsroot', # for patcher, etc.
+        'productVersionFile'         : 'mail/config/version.txt',
+        'productName'                : 'thunderbird',
+        'binaryName'                 : 'Thunderbird',
+        'oldBinaryName'              : 'Thunderbird',
+        'brandName'                  : 'Thunderbird',
+        'appName'                    : APP_NAME,
+        'ftpName'                    : APP_NAME,
+        # 'Sometimes' we need the application version to be different from what we "call"
+        # 'the' build, eg public release candidates for a major release (3.1 RC1).
+        # 'appVersion' and oldAppVersion are optional definitions used in places that
+        # 'don''t care about what we call it. Eg, when version bumping we will bump to
+        # 'appVersion', not version.
+        'version'                    : '10.0.2esr',
+        'oldVersion'                 : '10.0.1esr',
+        'appVersion'                 : '10.0.2', # no 'b1' suffix for betas
+        'oldAppVersion'              : '10.0.1',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 1,
+        'baseTag'                    : 'THUNDERBIRD_10_0_2esr',
+        'oldBaseTag'                 : 'THUNDERBIRD_10_0_1esr',
+        #XXX: 'Not' entirely certain if/where this is used.
+        # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
+        'milestone'                  : '10.0.2',
+        'enable_weekly_bundle'       : False,
+        'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
+        #'l10nPlatforms'              : (),
+        'xulrunnerPlatforms'         : (),
+        'patcherConfig'              : 'mozEsr10-thunderbird-branch-patcher2.cfg',
+        'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'snippetSchema'              : 1,
+        'ftpServer'                  : 'ftp.mozilla.org',
+        'stagingServer'              : 'stage.mozilla.org',
+        'bouncerServer'              : 'download.mozilla.org',
+        'releaseNotesUrl'            : 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%',
+        'ausUser'                    : 'tbirdbld',
+        'ausSshKey'                  : 'tbirdbld_dsa',
+        'ausServerUrl'               : 'https://aus2.mozillamessaging.com',
+        'testOlderPartials'          : False,
+        'doPartnerRepacks'           : False,
+        'partnersRepoPath'           : 'users/bugzilla_standard8.plus.com/tb-partner-repacks',
+        # All of the beta and (if applicable) release channel information
+        # is dependent on the useBetaChannel flag
+        'useBetaChannelForRelease'   : False,
+        'verifyConfigs'              : {'linux'   : 'mozEsr10-thunderbird-linux.cfg',
+                                        'linux64' : 'mozEsr10-thunderbird-linux64.cfg',
+                                        'macosx64': 'mozEsr10-thunderbird-mac64.cfg',
+                                        'win32'   : 'mozEsr10-thunderbird-win32.cfg'},
+        'packageTests'               : True,
+        #XXX: Should really be obtained from config.py, but this will do for now.
+        'unittestMasters'            : [ ('momo-vm-03.sj.mozillamessaging.com:9010',False,3), ],
+
+        # 'Version' numbers we are updating _TO_
+        # 'N'/A for Thunderbird 3.x (until the next major version is released)
+        'majorUpdateRepoPath'    : '',
+        'majorUpdateSourceRepoPath' : '',
+        'majorUpdateToVersion'   : '',
+        'majorUpdateAppVersion'  : '',
+        'majorUpdateBuildNumber' : '',
+        'majorUpdateBaseTag'     : '',
+        'majorUpdateReleaseNotesUrl' : '',
+        'majorUpdatePatcherConfig' : '',
+        'majorUpdateVerifyConfigs' : {'linux':  '',
+                                    'linux64': '',
+                                    'macosx64': '',
+                                    'win32':  ''},
     },
 }
 
@@ -251,6 +457,7 @@ weeklyBuilders = []
 for gloKey in gloConfig:
 
     sourceRepoName             = gloConfig[gloKey]['sourceRepoName']
+    releaseChannel             = gloConfig[gloKey].get('releaseChannel', 'release')
     toolsRepoPath              = gloConfig[gloKey]['toolsRepoPath']
     stagingServer              = gloConfig[gloKey]['stagingServer']
     productName                = gloConfig[gloKey]['productName']
@@ -295,12 +502,13 @@ for gloKey in gloConfig:
     patcherToolsTag            = gloConfig[gloKey]['patcherToolsTag']
     patcherConfig              = gloConfig[gloKey]['patcherConfig']
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
+    oldRepoPath                = gloConfig[gloKey].get('oldRepoPath', sourceRepoPath)
     oldBaseTag                 = gloConfig[gloKey]['oldBaseTag']
     oldBinaryName              = gloConfig[gloKey]['oldBinaryName']
     enableWeeklyBundle         = gloConfig[gloKey]['enable_weekly_bundle']
     ftpServer                  = gloConfig[gloKey]['ftpServer']
     bouncerServer              = gloConfig[gloKey]['bouncerServer']
-    useBetaChannel             = gloConfig[gloKey]['useBetaChannel']
+    useBetaChannelForRelease   = gloConfig[gloKey]['useBetaChannelForRelease']
     ausServerUrl               = gloConfig[gloKey]['ausServerUrl']
     releaseNotesUrl            = gloConfig[gloKey]['releaseNotesUrl']
     testOlderPartials          = gloConfig[gloKey]['testOlderPartials']
@@ -316,6 +524,8 @@ for gloKey in gloConfig:
     partnersRepoPath           = gloConfig[gloKey]['partnersRepoPath']
     packageTests               = gloConfig[gloKey]['packageTests']
     unittestMasters            = gloConfig[gloKey]['unittestMasters']
+    mergeLocales               = gloConfig[gloKey]['mergeLocales']
+    snippetSchema              = gloConfig[gloKey]['snippetSchema']
 
     branchConfig = nightly_config.BRANCHES[sourceRepoName]
 
@@ -587,6 +797,7 @@ for gloKey in gloConfig:
         # shorthand
         pf = nightly_config.BRANCHES[sourceRepoName]['platforms'][platform]
         mozconfig = '%s/%s/release' % (platform, sourceRepoName)
+        l10nmozconfig = '%s/%s/l10n' % (platform, sourceRepoName)
 
         if platform in unittestPlatforms:
             packageTests = True
@@ -663,12 +874,13 @@ for gloKey in gloConfig:
                 buildSpace=5,
                 configRepoPath=nightly_config.CONFIG_REPO_PATH,
                 configSubDir=nightly_config.CONFIG_SUBDIR,
-                mozconfig=mozconfig,
-                platform=platform + '-release',
+                mozconfig=l10nmozconfig,
+                platform=platform,
                 buildRevision='%s_RELEASE' % baseTag,
                 version=version,
                 buildNumber=buildNumber,
                 clobberURL=branchConfig['base_clobber_url'],
+                mergeLocales=mergeLocales,
             )
 
             builders.append({
@@ -814,7 +1026,6 @@ for gloKey in gloConfig:
         ftpServer=ftpServer,
         bouncerServer=bouncerServer,
         stagingServer=stagingServer,
-        useBetaChannel=useBetaChannel,
         stageUsername=branchConfig['stage_username'],
         stageSshKey=branchConfig['stage_ssh_key'],
         ausUser=nightly_config.AUS2_USER,
@@ -824,9 +1035,12 @@ for gloKey in gloConfig:
         hgSshKey=hgSshKey,
         hgUsername=hgUsername,
         clobberURL=branchConfig['base_clobber_url'],
-        oldRepoPath=sourceRepoPath,
+        oldRepoPath=oldRepoPath,
         releaseNotesUrl=releaseNotesUrl,
         testOlderPartials=testOlderPartials,
+        schema=snippetSchema,
+        useBetaChannelForRelease=useBetaChannelForRelease,
+        releaseChannel=releaseChannel,
     )
     
     builders.append({
@@ -894,7 +1108,6 @@ for gloKey in gloConfig:
             ftpServer=ftpServer,
             bouncerServer=bouncerServer,
             stagingServer=stagingServer,
-            useBetaChannel=useBetaChannel,
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],
             ausUser=ausUser,
@@ -904,10 +1117,12 @@ for gloKey in gloConfig:
             hgSshKey=hgSshKey,
             hgUsername=hgUsername,
             clobberURL=branchConfig['base_clobber_url'],
-            oldRepoPath=sourceRepoPath,
+            oldRepoPath=oldRepoPath,
             triggerSchedulers=['major_update_verify_%s' % gloKey],
             releaseNotesUrl=majorUpdateReleaseNotesUrl,
-            testOlderPartials=testOlderPartials
+            testOlderPartials=testOlderPartials,
+            schema=snippetSchema,
+            useBetaChannelForRelease=useBetaChannelForRelease,
         )
         
         builders.append({

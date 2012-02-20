@@ -1,8 +1,9 @@
 releaseConfig = {}
+releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['PassRecipients']      = ['release-drivers@mozilla.org',]
+releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com','Callek@gmail.com']
+releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
 releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
@@ -14,25 +15,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '5.0b1'
-releaseConfig['appVersion']          = '5.0'
-releaseConfig['milestone']           = '5.0b1'
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_5_0b1'
+releaseConfig['version']             = '11.0b3'
+releaseConfig['appVersion']          = '11.0'
+releaseConfig['milestone']           = '11.0'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FIREFOX_11_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = None
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = None
-releaseConfig['oldBaseTag']          = None
+releaseConfig['oldVersion']          = '11.0b2'
+releaseConfig['oldAppVersion']       = '11.0'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_11_0b2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '5.0'
-releaseConfig['nextMilestone']       = '5.0'
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'a307c807cfab',
+        'revision': 'f21c6aa0f8c2',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -57,17 +58,22 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
-    'build/buildbot': 'production-0.8'
+    'build/buildbot': 'production-0.8',
+    'build/mozharness': 'default',
 }
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
-releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
-releaseConfig['xulrunnerPlatforms']  = ()
+releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+
+# Unittests
+releaseConfig['unittestPlatforms']   = ()
+releaseConfig['enableUnittests']     = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ()
+releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
@@ -78,23 +84,35 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
-releaseConfig['patcherConfig']       = 'moz20-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R13'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
-releaseConfig['stagingServer']       = 'stage-old.mozilla.org'
+releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus2.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['useBetaChannel']      = 0
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-firefox-linux.cfg',
     'linux64':  'mozBeta-firefox-linux64.cfg',
     'macosx64': 'mozBeta-firefox-mac64.cfg',
     'win32':  'mozBeta-firefox-win32.cfg'
+}
+releaseConfig['mozconfigs']          = {
+    'linux': 'browser/config/mozconfigs/linux32/release',
+    'linux64': 'browser/config/mozconfigs/linux64/release',
+    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
+    'win32': 'browser/config/mozconfigs/win32/release',
+}
+releaseConfig['xulrunner_mozconfigs']          = {
+    'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
+    'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 
 # Partner repack configuration
@@ -109,7 +127,9 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
+releaseConfig['releaseUptake']       = 3
+releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['skip_updates'] = True
+releaseConfig['enableAutomaticPushToMirrors'] = True

@@ -1,5 +1,7 @@
 %(releaseName)s: build step failed on %(platform)s
 %(platform)s build step failed for %(releaseName)s
 
+Status: %(job_status_repr)s
+
 %(buildbot_url)s
 -buildbot

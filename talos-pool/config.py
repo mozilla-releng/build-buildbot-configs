@@ -1,6 +1,6 @@
 from buildbot.steps.shell import WithProperties
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
+GRAPH_CONFIG = ['--resultsServer', 'graphs-old.mozilla.org',
     '--resultsLink', '/server/collect.cgi']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]

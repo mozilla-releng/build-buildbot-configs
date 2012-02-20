@@ -20,8 +20,7 @@ export MOZ_DEBUG_SYMBOLS=1
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 
 # PGO
-mk_add_options MOZ_PGO=1
-mk_add_options PROFILE_GEN_SCRIPT='$(PYTHON) @MOZ_OBJDIR@/_profile/pgo/profileserver.py'
+mk_add_options PROFILE_GEN_SCRIPT='$(PYTHON) @MOZ_OBJDIR@/_profile/pgo/profileserver.py 10'
 
 # Needed to enable breakpad in application.ini
 export MOZILLA_OFFICIAL=1
@@ -29,11 +28,12 @@ export MOZILLA_OFFICIAL=1
 # Enable parallel compiling
 mk_add_options MOZ_MAKE_FLAGS="-j4"
 
-# We're using GCC 4.2 which has a bug we can work around.
-export ac_cv_have_visibility_class_bug=yes
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi
 if [ -f $topsrcdir/mozconfig-extra-linux64 ] ; then
   . $topsrcdir/mozconfig-extra-linux64
 fi
+
+#Use ccache
+ac_add_options --with-ccache=/usr/bin/ccache

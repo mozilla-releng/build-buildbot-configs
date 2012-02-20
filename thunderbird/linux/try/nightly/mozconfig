@@ -1,7 +1,9 @@
 # mozconfig.common only exists in mozilla-central
 if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig.common" || test -e "$topsrcdir/build/macosx/universal/mozconfig.common"; then
-  CC=/tools/gcc-4.3.3/bin/gcc
-  CXX=/tools/gcc-4.3.3/bin/g++
+  CC=/tools/gcc-4.5/bin/gcc
+  CXX=/tools/gcc-4.5/bin/g++
+  # Avoid dependency on libstdc++ 4.5
+  ac_add_options --enable-stdcxx-compat
 
   export CFLAGS="-gdwarf-2"
   export CXXFLAGS="-gdwarf-2"
@@ -42,6 +44,11 @@ mk_add_options PROFILE_GEN_SCRIPT=@TOPSRCDIR@/build/profile_pageloader.pl
 # Enable parallel compiling
 CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
 mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
+
+# Run client.py
+mk_add_options CLIENT_PY_ARGS="--skip-comm --tinderbox-print --apply-patches --hgtool=../tools/buildfarm/utils/hgtool.py --hg-options='--time --verbose'"
+mk_add_options ALWAYS_RUN_CLIENT_PY=1
+
 if [ -f $topsrcdir/mozconfig-extra ] ; then
   . $topsrcdir/mozconfig-extra
 fi

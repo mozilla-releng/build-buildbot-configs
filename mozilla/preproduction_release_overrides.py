@@ -1,4 +1,4 @@
-releaseConfig['PassRecipients']      = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients']      = ['release@mozilla.com',]
 releaseConfig['l10nRepoPath']        = 'users/prepr-ffxbld'
 releaseConfig['l10nChunks']          = 2
 releaseConfig['hgUsername']          = 'prepr-ffxbld'
@@ -12,3 +12,6 @@ releaseConfig['commitPatcherConfig'] = False # TODO: toggle when CVS mirror is l
 releaseConfig['messagePrefix']       = '[preprod-release] '
 releaseConfig['userRepoRoot']        = 'users/prepr-ffxbld'
 releaseConfig['ftpServer']           = 'preproduction-stage.build.mozilla.org'
+releaseConfig['disableBouncerEntries']    = True
+releaseConfig['enableSigningAtBuildTime'] = False
+releaseConfig['enablePartialMarsAtBuildTime'] = False

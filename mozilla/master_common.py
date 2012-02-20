@@ -17,15 +17,26 @@ c['builders'] = []
 c['schedulers'] = []
 c['change_source'] = []
 
-# Builders from these branches are given higher priority.
+# Builders from these branches are given custom priority, default is 2 for unlisted branches
 BRANCH_PRIORITIES = {
     'mozilla-central': 1,
-    'mozilla-2.0': 1,
+    'mozilla-aurora': 1,
+    'mozilla-beta': 0,
+    'mozilla-release': 0,
     'mozilla-1.9.2': 1,
-    'mozilla-1.9.1': 1,
     'try': 3,
     'addontester': 4,
     'addonbaselinetester': 4,
+    'alder': 4,
+    'ash': 4,
+    'birch': 4,
+    'cedar': 4,
+    'elm': 4,
+    'holly': 4,
+    'larch': 4,
+    'maple': 4,
+    'oak': 4,
+    'pine': 4,
 }
 
 # Give the release builders priority over other builders
@@ -75,23 +86,3 @@ def prioritizeBuilders(botmaster, builders):
     log.msg("Sorted %i builders in %.2fs" % (len(builders), time.time() - s))
     return builders
 c['prioritizeBuilders'] = prioritizeBuilders
-
-import passwords
-reload(passwords)
-if hasattr(passwords, 'PULSE_PASSWORD'):
-    # Send pulse messages
-    import re
-    import buildbotcustom.status.pulse
-    reload(buildbotcustom.status.pulse)
-    from buildbotcustom.status.pulse import PulseStatus
-    from mozillapulse.publishers import GenericPublisher
-    from mozillapulse.config import PulseConfiguration
-    c['status'].append(PulseStatus(
-        GenericPublisher(PulseConfiguration(
-            user=passwords.PULSE_USERNAME,
-            password=passwords.PULSE_PASSWORD,
-            ),
-            exchange=passwords.PULSE_EXCHANGE),
-        ignoreBuilders=[re.compile('.*shadow-central.*'), re.compile('fuzzer-.*')],
-        send_logs=False,
-        ))

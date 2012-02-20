@@ -1,0 +1,14 @@
+diff -r 29e165d72867 mozilla-tests/config.py
+--- a/mozilla-tests/config.py	Wed Mar 30 15:12:33 2011 -0700
++++ b/mozilla-tests/config.py	Wed Mar 30 15:21:29 2011 -0700
+@@ -42,8 +42,8 @@
+     'svg': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
+     'scroll': GRAPH_CONFIG + ['--activeTests', 'tscroll'],
+     'dromaeo': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
+-    'addon': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown'],
+-    'addon-baseline': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown'],
++    'addon': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
++    'addon-baseline': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
+     'a11y': GRAPH_CONFIG + ['--activeTests', 'a11y'],
+     'remote-ts': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
+     'remote-tdhtml': GRAPH_CONFIG + ['--activeTests', 'tdhtml', '--noChrome'],

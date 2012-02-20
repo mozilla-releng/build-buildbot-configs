@@ -18,3 +18,5 @@ from config import BRANCHES, PLATFORMS, PROJECTS
 ACTIVE_BRANCHES = ['mozilla-central']
 ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
+
+QUEUEDIR = "/dev/shm/queue"

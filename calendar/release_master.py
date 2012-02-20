@@ -78,7 +78,8 @@ for platform in releasePlatforms:
 
     )
     schedulers.append(build_scheduler)
-    schedulers.append(repack_scheduler)
+    # No repack schedulers for now, everything is done in the en-US builder.
+    # schedulers.append(repack_scheduler)
 
 for platform in l10nPlatforms:
     l10n_verify_scheduler = Scheduler(
@@ -162,7 +163,7 @@ tag_factory = CCReleaseTaggingFactory(
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     repositories=repositories,
     productName=productName,
-    appName=ftpName,
+    appName=productBumpName,
     version=version,
     appVersion=appVersion,
     milestone=milestone,
@@ -172,7 +173,8 @@ tag_factory = CCReleaseTaggingFactory(
     hgSshKey=hgSshKey,
     relbranchPrefix=relbranchPrefix,
     chatzillaTimestamp=chatzillaTimestamp,
-    cvsroot=chatzillaCVSRoot
+    cvsroot=chatzillaCVSRoot,
+    clobberURL=nightly_config.DEFAULTS['clobber_url']
 )
 
 builders.append({
@@ -180,7 +182,7 @@ builders.append({
     'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['linux']['slaves'],
     'category': 'release',
     'builddir': 'tag',
-    'factory': dummy_factory
+    'factory': tag_factory
 })
 
 
@@ -200,7 +202,8 @@ source_factory = CCSourceFactory(
     inspectorRepoPath=inspectorRepoPath,
     venkmanRepoPath=venkmanRepoPath,
     cvsroot=chatzillaCVSRoot,
-    autoconfDirs=['.', 'mozilla', 'mozilla/js/src']
+    autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
+    clobberURL=nightly_config.DEFAULTS['clobber_url']
 )
 
 builders.append({
@@ -232,6 +235,8 @@ for platform in releasePlatforms:
         configSubDir=nightly_config.CONFIG_SUBDIR,
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
+        l10nRevisionFile=l10nRevisionFile,
+        l10nRepoPath=l10nRepoPath,
         buildRevision='%s_RELEASE' % baseTag,
         stageServer=nightly_config.STAGE_SERVER,
         stageUsername=nightly_config.BRANCHES[sourceRepoName]['stage_username'],
@@ -240,7 +245,7 @@ for platform in releasePlatforms:
         stageBasePath=nightly_config.BRANCHES[sourceRepoName]['stage_base_path'],
         codesighs=False,
         uploadPackages=True,
-        uploadSymbols=False,
+        uploadSymbols=True,
         createSnippet=False,
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
@@ -248,7 +253,8 @@ for platform in releasePlatforms:
         productName=productName,
         ftpName=ftpName,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        clobberURL=nightly_config.DEFAULTS['clobber_url']
     )
 
     builders.append({
@@ -283,16 +289,18 @@ for platform in releasePlatforms:
         platform=platform + '-release',
         buildRevision='%s_RELEASE' % baseTag,
         version=version,
-        buildNumber=buildNumber
+        buildNumber=buildNumber,
+        clobberURL=nightly_config.DEFAULTS['clobber_url']
     )
 
-    builders.append({
-        'name': '%s_repack' % platform,
-        'slavenames': pf['slaves'],
-        'category': 'release',
-        'builddir': '%s_repack' % platform,
-        'factory': repack_factory
-    })
+    # Don't want repack builders at this time.
+    #builders.append({
+    #    'name': '%s_repack' % platform,
+    #    'slavenames': pf['slaves'],
+    #    'category': 'release',
+    #    'builddir': '%s_repack' % platform,
+    #    'factory': repack_factory
+    #})
 
 
 for platform in l10nPlatforms:
@@ -306,12 +314,13 @@ for platform in l10nPlatforms:
         buildNumber=buildNumber,
         oldVersion=oldVersion,
         oldBuildNumber=oldBuildNumber,
+        clobberURL=nightly_config.DEFAULTS['clobber_url']
         #platform=platform,
     )
 
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx']['slaves'],
+        'slavenames': nightly_config.BRANCHES[sourceRepoName]['platforms']['macosx64']['slaves'],
         'category': 'release',
         'builddir': '%s_l10n_verification' % platform,
         'factory': l10n_verification_factory
@@ -349,7 +358,7 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=ausServerUrl,
     hgSshKey=hgSshKey,
     hgUsername=hgUsername,
-)
+    clobberURL=nightly_config.DEFAULTS['clobber_url'])
 
 builders.append({
     'name': 'updates',
@@ -380,6 +389,7 @@ final_verification_factory = ReleaseFinalVerification(
     hgHost=nightly_config.HGHOST,
     buildToolsRepoPath=toolsRepoPath, # nightly_config.BUILD_TOOLS_REPO_PATH,
     verifyConfigs=verifyConfigs,
+    clobberURL=nightly_config.DEFAULTS['clobber_url']
 )
 
 builders.append({

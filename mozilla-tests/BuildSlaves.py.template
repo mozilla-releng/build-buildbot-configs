@@ -5,11 +5,15 @@ SlavePasswords = {
     "fedora64": "pass",
     "tiger": "pass",
     "leopard": "pass",
+    "leopard-o": "pass",
     "snowleopard": "pass",
+    "lion": "pass",
     "xp": "pass",
     "win7": "pass",
     "w764": "pass",
     "vista": "pass",
     "tegra_android": "pass",
+    "tegra_android-xul": "pass",
+    "tegra_android-o": "pass",
 }
 

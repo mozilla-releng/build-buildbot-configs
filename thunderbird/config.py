@@ -4,6 +4,75 @@
 
 import types
 
+HGURL = 'http://hg.mozilla.org/'
+HGHOST = 'hg.mozilla.org'
+CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_PATH = 'build/buildbot-configs'
+COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
+CONFIG_SUBDIR = 'thunderbird'
+OBJDIR = 'objdir-tb'
+STAGE_USERNAME = 'tbirdbld'
+STAGE_SERVER = 'stage.mozilla.org'
+STAGE_GROUP = 'thunderbird'
+STAGE_SSH_KEY = 'tbirdbld_dsa'
+
+AUS2_USER = 'tbirdbld'
+AUS2_SSH_KEY = 'tbirdbld_dsa'
+AUS2_HOST = 'momo-build-adm-01.sj.mozillamessaging.com'
+
+DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
+PRODUCT = 'mail'
+MOZ_APP_NAME = 'thunderbird'
+
+DEFAULTS = {
+    'factory':                'build',
+    'hgurl':                  HGURL,
+    'branch_name':            'comm-central',
+    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
+    'mozilla_central_branch': 'releases/mozilla-1.9.1',
+    'add_poll_branches':      [],
+    'period':                 60 * 60 * 8,
+    'nightly_hour':          [3],
+    'nightly_minute':        [0],
+    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
+    'builder_type':           "build",
+    'tinderbox_tree':         "ThunderbirdTest",
+    'codesighs':               False,
+    'mozmill':                 False,
+    'product_name':           'Thunderbird',
+    'brand_name':             'Daily',
+    'app_name':			'thunderbird',
+    'build_space':             10,
+    'l10n_nightly_updates':    False,
+
+    'create_partial':          False,
+    'create_snippet':          False,
+
+    'stage_username':		STAGE_USERNAME,
+    'stage_server':		STAGE_SERVER,
+    'stage_group':		STAGE_GROUP,
+    'stage_ssh_key':		STAGE_SSH_KEY,
+    'enable_checktests':        False,
+    'exec_xpcshell_suites':     True,
+
+    'graph_server':		'graphs.mozilla.org',
+    'graph_selector':           '/server/collect.cgi',
+
+    # Unit Test
+    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
+
+    'build_tools_repo': "build/tools",
+    'hg_rev_shortnames': {
+      'mozilla-central':        'moz',
+      'comm-central':           'cc',
+      'dom-inspector':          'domi',
+      'releases/mozilla-1.9.1': 'moz191',
+      'releases/mozilla-1.9.2': 'moz192',
+      'releases/mozilla-aurora':'mozaurora',
+    }
+}
+
+
 def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
     bc = buildConfig
     pc = platformConfig
@@ -19,19 +88,19 @@ def makeSlaveList(platformName, isTest, buildConfig, platformConfig):
             return ['momo-vm-linux64-%02i' % x for x in range(2,3+1) + range(5,10+1)]
     elif platformName == 'macosx':
         if isTest:
-            return ['mini-%02i' % x for x in range(3,9+1)]
+            return ['tb2-darwin9-slave%02i' % x for x in [55,56,57,58,65,67,70]]
         else:
-            return ['mini-%02i' % x for x in range(3,9+1)]
+            return ['tb2-darwin9-slave%02i' % x for x in [55,56,57,58,65,67,70]]
     elif platformName == 'macosx64':
         if isTest:
-            return ['mini64-%02i' % x for x in [1] + range(3,6+1)]
+            return [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]] + ['mini64-%02i' % x for x in [1]]
         else:
-            return ['momo-xserve-01'] + ['mini64-%02i' % x for x in [1] + range(3,6+1)]
+            return ['momo-xserve-01'] + [ 'tb2-darwin10-slave%02i'  % x for x in [60,61,62,63,66,69]] + ['mini64-%02i' % x for x in [1]]
     elif platformName == 'win32':
         if isTest:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6,7] + range(8,15+1) + range(17,19+1)]
         else:
-            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6] + range(8,15+1) + [17]]
+            return ['momo-vm-win2k3-%02i' % x for x in [1,2,4,5,6,7] + range(8,15+1) + range(17,19+1)]
     else:
         raise Exception("Invalid platformName '%s'" % platformName)
 
@@ -46,7 +115,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
             pass
         else:
             if builderType == 'bloat':
-                rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+                rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib:objdir-tb/mozilla/dist/bin'
             else:
                 rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib'
         rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
@@ -64,7 +133,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['CVS_RSH'] = 'ssh'
         rv['DISPLAY'] = ':2'
         if builderType == 'bloat':
-            rv['LD_LIBRARY_PATH'] = 'objdir-tb/mozilla/dist/bin'
+            rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64:objdir-tb/mozilla/dist/bin'
         else:
             rv['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/lib64'
         rv['MOZ_CRASHREPORTER_NO_REPORT'] = '1'
@@ -89,9 +158,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
         rv['SYMBOL_SERVER_SSH_KEY'] = '/Users/cltbld/.ssh/tbirdbld_dsa'
         rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
-        if builderType == 'bloat':
-            pass
-        else:
+        if builderType != 'bloat':
             rv['TINDERBOX_OUTPUT'] = '1'
         if builderType == 'bloat':
             rv['XPCOM_DEBUG_BREAK'] = 'stack'
@@ -115,9 +182,7 @@ def makePlatformEnv(platformName, builderType, branchName, buildConfig, platform
         rv['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
         rv['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa'
         rv['SYMBOL_SERVER_USER'] = 'tbirdbld'
-        if builderType == 'bloat':
-            pass
-        else:
+        if builderType != 'bloat':
             rv['TINDERBOX_OUTPUT'] = '1'
         if builderType == 'bloat':
             rv['XPCOM_DEBUG_BREAK'] = 'stack'
@@ -201,7 +266,6 @@ def makePlatformConfig(buildConfig, builderType, platformName, branchName):
         if builderType != 'check':
             pc['profiled_build'] = False
             pc['update_platform'] = 'Darwin_Universal-gcc3'
-        if builderType != 'check':
             pc['env'] = makePlatformEnv(platformName, builderType, branchName, buildConfig, pc)
         pc['slaves'] = makeSlaveList(platformName, False, buildConfig, pc)
         pc['test-slaves'] = makeSlaveList(platformName, True, buildConfig, pc)
@@ -214,10 +278,16 @@ def makePlatformConfig(buildConfig, builderType, platformName, branchName):
     elif platformName == 'macosx64':
         pc['base_name'] = "MacOSX 10.6 %s" % bc['branch_name']
         pc['builds_before_reboot'] = 1
-        pc['check_objdir'] = 'objdir-tb/x86_64'
+        if builderType == 'bloat':
+            pc['check_objdir'] = 'objdir-tb'
+        else:
+            pc['check_objdir'] = 'objdir-tb/x86_64'
         pc['enable_ccache'] = True
         pc['enable_checktests'] = True
-        pc['platform_objdir'] = 'objdir-tb/i386'
+        if builderType == 'bloat':
+            pc['platform_objdir'] = 'objdir-tb'
+        else:
+            pc['platform_objdir'] = 'objdir-tb/i386'
         pc['profiled_build'] = False
         pc['update_platform'] = 'Darwin_x86_64-gcc3'
         if builderType != 'check':
@@ -268,44 +338,58 @@ def makeAusConfig(branchName):
     ac['user'] = 'tbirdbld'
     return ac
 
-def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
+def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
+                    mozillaCentralBranch=None, tinderboxTree=None, allLocalesFile=None,
+                    wantNightly=None, wantL10n=None, l10nRepo=None, enableWeeklyBundle=False,
+                    updateChannel=None):
     bc = {}
+    bc['hg_branch'] = hgBranch
+    bc['tinderbox_tree'] = tinderboxTree
+    bc['enable_weekly_bundle'] = enableWeeklyBundle
+    if updateChannel is not None:
+        bc['update_channel'] = updateChannel
     if builderType == 'nightly':
+        if wantNightly != None:
+            bc['nightly'] = wantNightly
+        if wantL10n == None:
+            bc['l10n'] = True
+            bc['l10n_repo'] = 'releases/l10n-miramar'
+        else:
+            bc['l10n'] = wantL10n
+            bc['l10n_repo'] = l10nRepo
         bc['branch_name'] = branchName
+        bc['allLocalesFile'] = \
+            '%s/build/buildbot-configs/raw-file/default/thunderbird/l10n/%s' % (HGURL, allLocalesFile)
+        # Blocklist settings
+        bc['repo_path'] = bc['hg_branch'] # alias
+        bc['product_name'] = 'thunderbird'
+        if branchName in ['comm-release', 'comm-central-tested', 'comm-esr10']:
+            bc['enable_blocklist_update'] = False
+        else:
+            bc['enable_blocklist_update'] = True
+        if branchName in ['comm-central', 'comm-1.9.2']:
+            bc['blocklist_update_on_closed_tree'] = True
+        else:
+            bc['blocklist_update_on_closed_tree'] = False
+        bc['hg_ssh_key'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+        bc['hg_username'] = 'tbirdbld'
+        bc['hgurl'] = DEFAULTS['hgurl']
+        bc['build_tools_repo_path'] = DEFAULTS['build_tools_repo']
+        # end Blocklist settings
         bc['client_py_extra_args'] = \
             ['--skip-comm',
              '--hg-options=--verbose --time',
              '--skip-venkman',
              '--skip-chatzilla']
+        if 'comm-central-tested' in branchName:
+            bc['client_py_extra_args'] += ['--known-good']
         bc['codesighs'] = True
         bc['create_snippet'] = True
         bc['factory'] = 'CCNightlyBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        elif branchName == 'comm-miramar':
-            bc['hg_branch'] = 'releases/comm-miramar'
+        if branchName in ['comm-central-tested']:
+            bc['l10n_nightly_updates'] = False
         else:
-            bc['hg_branch'] = 'comm-central'
-        if branchName == 'comm-central':
-            bc['l10n'] = False
-            bc['l10n_repo'] = 'l10n-central'
-        elif branchName == 'comm-1.9.2':
-            bc['l10n'] = True
-            bc['l10n_repo'] = 'releases/l10n-mozilla-1.9.2'
-        else:
-            bc['l10n'] = True
-            bc['l10n_repo'] = 'releases/l10n/mozilla-aurora'
-            bc['mirror'] = {
-                'comm-central' : {
-                    'src': 'comm-central',
-                    'dst': 'releases/comm-miramar',
-                },
-                'mozilla-aurora' : {
-                    'src' : 'releases/mozilla-aurora',
-                    'dst' : 'releases/mozilla-miramar',
-                },
-            }
-        bc['l10n_nightly_updates'] = True
+            bc['l10n_nightly_updates'] = True
         if branchName == 'comm-1.9.2':
             bc['l10n_tree'] = 'tb31x'
         else:
@@ -313,29 +397,14 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['milestone'] = branchName
         bc['mozconfig'] = 'nightly'
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        if branchName == 'comm-central':
-            bc['nightly'] = False
-        elif branchName == 'comm-1.9.2':
+        if branchName in ['comm-1.9.2']:
             bc['nightly_hour'] = [0]
         bc['package'] = True
-        if branchName == 'comm-1.9.2':
-            pass
-        else:
-            bc['packageTests'] = True
-        if branchName in ['comm-central', 'comm-1.9.2']:
-            pass
-        else:
+        if branchName not in ['comm-central', 'comm-central-tested', 'comm-1.9.2']:
             bc['period'] = 50400
-        if branchName == 'comm-central':
-            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
-        elif branchName == 'comm-1.9.2':
-            bc['tinderbox_tree'] = 'Thunderbird3.1'
-        else:
-            bc['tinderbox_tree'] = 'Miramar'
         bc['upload_stage'] = True
-        if branchName == 'comm-1.9.2':
-            pass
-        else:
+        if branchName != 'comm-1.9.2':
+            bc['packageTests'] = True
             bc['unittest_masters'] = [
                ('momo-vm-03.sj.mozillamessaging.com:9010',False,3),
               ]
@@ -353,17 +422,13 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         bc['client_py_args'] = \
             ['--skip-comm',
              '--hg-options=--verbose --time',
-             '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaRepo]
+             '--mozilla-repo=http://hg.mozilla.org/%s' % mozillaCentralBranch]
         bc['client_py_extra_args'] = ['--skip-venkman', '--skip-chatzilla']
+        if 'comm-central-tested' in branchName:
+            bc['client_py_extra_args'] += ['--known-good']
         bc['codesighs'] = False
         bc['create_snippet'] = False
         bc['factory'] = 'CCNightlyBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        elif branchName == 'comm-miramar':
-            bc['hg_branch'] = 'releases/comm-miramar'
-        else:
-            bc['hg_branch'] = 'comm-central'
         bc['l10n'] = False
         bc['leak'] = True
         bc['mozconfig'] = 'debug'
@@ -374,19 +439,10 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
             pass
         else:
             bc['period'] = 50400
-        if branchName == 'comm-central':
-            bc['tinderbox_tree'] = 'ThunderbirdTrunk'
-        elif branchName == 'comm-1.9.2':
-            bc['tinderbox_tree'] = 'Thunderbird3.1'
-        else:
-            bc['tinderbox_tree'] = 'Miramar'
         bc['upload_stage'] = True
         bc['platforms'] = {}
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
-            if platformName == 'macosx' and \
-               (branchName != 'comm-1.9.2' and builderType != 'bloat'):
-                continue
-            if platformName == 'macosx64' and builderType == 'bloat':
+            if platformName == 'macosx64' and bc['hg_branch'] not in ['comm-central', 'comm-central-tested']:
                 continue
             if platformName in ['linux64', 'macosx64'] and \
                branchName == 'comm-1.9.2':
@@ -402,14 +458,9 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
              '--skip-venkman',
              '--skip-chatzilla']
         bc['factory'] = 'CCUnittestBuildFactory'
-        if branchName == 'comm-1.9.2':
-            bc['hg_branch'] = 'releases/comm-1.9.2'
-        else:
-            bc['hg_branch'] = 'comm-central'
         bc['mozmill'] = True
         bc['nightly'] = False
         bc['mozilla_central_branch'] = mozillaCentralBranch
-        bc['tinderbox_tree'] = 'Thunderbird3.1'
         if branchName == 'comm-1.9.2':
             pass
         else:
@@ -420,9 +471,7 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
         for platformName in ['linux', 'linux64', 'macosx', 'macosx64', 'win32']:
             if platformName == 'macosx' and branchName != 'comm-1.9.2':
                 continue
-            if platformName in ['linux64', 'macosx64'] and branchName == 'comm-1.9.2' and builderType != 'check':
-                continue
-            if platformName in ['macosx64'] and builderType == 'check':
+            if platformName in ['macosx64']:
                 continue
             bc['platforms'][platformName] = makePlatformConfig(bc, builderType, platformName, branchName)
     else:
@@ -431,86 +480,148 @@ def makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch):
 
 BRANCHES = {}
 
-# makeBuildConfig(builderType, branchName, mozillaRepo, mozillaCentralBranch)
-BRANCHES['comm-aurora'] = makeBuildConfig('nightly', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
-BRANCHES['comm-aurora-bloat'] = makeBuildConfig('bloat', 'comm-miramar', 'releases/mozilla-miramar', 'releases/mozilla-miramar')
+BRANCHES['comm-beta'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-beta',
+                               hgBranch      = 'releases/comm-beta',
+                               mozillaCentralBranch = 'releases/mozilla-beta',
+                               tinderboxTree = 'Thunderbird-Beta',
+                               allLocalesFile = 'all-locales.comm-beta',
+                               wantNightly   = False,
+                               wantL10n      = False,
+                               updateChannel = 'beta',
+                           )
+BRANCHES['comm-beta-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-beta',
+                               hgBranch      = 'releases/comm-beta',
+                               mozillaCentralBranch = 'releases/mozilla-beta',
+                               tinderboxTree = 'Thunderbird-Beta'
+                           )
+BRANCHES['comm-release'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-release',
+                               hgBranch      = 'releases/comm-release',
+                               mozillaCentralBranch = 'releases/mozilla-release',
+                               tinderboxTree = 'Thunderbird-Release',
+                               allLocalesFile = 'all-locales.comm-release',
+                               wantNightly   = False,
+                               wantL10n      = False,
+                               updateChannel = 'release',
+                           )
+BRANCHES['comm-release-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-release',
+                               hgBranch      = 'releases/comm-release',
+                               mozillaCentralBranch = 'releases/mozilla-release',
+                               tinderboxTree = 'Thunderbird-Release'
+                           )
+BRANCHES['comm-esr10'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-esr10',
+                               hgBranch      = 'releases/comm-esr10',
+                               mozillaCentralBranch = 'releases/mozilla-esr10',
+                               tinderboxTree = 'Thunderbird-Esr10',
+                               allLocalesFile = 'all-locales.comm-esr10',
+                               wantNightly   = False,
+                               wantL10n      = False,
+                               updateChannel = 'esr',
+                           )
+BRANCHES['comm-esr10-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-esr10',
+                               hgBranch      = 'releases/comm-esr10',
+                               mozillaCentralBranch = 'releases/mozilla-esr10',
+                               tinderboxTree = 'Thunderbird-Esr10'
+                           )
+BRANCHES['comm-aurora'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-aurora',
+                               hgBranch      = 'releases/comm-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-aurora',
+                               tinderboxTree = 'Thunderbird-Aurora',
+                               allLocalesFile = 'all-locales.comm-aurora',
+                               wantL10n      = True,
+                               l10nRepo      = 'releases/l10n/mozilla-aurora',
+                               enableWeeklyBundle = True,
+                               updateChannel = 'aurora',
+                           )
+BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-aurora',
+                               hgBranch      = 'releases/comm-aurora',
+                               mozillaCentralBranch = 'releases/mozilla-aurora',
+                               tinderboxTree = 'Thunderbird-Aurora'
+                           )
 
-BRANCHES['comm-central'] = makeBuildConfig('nightly', 'comm-central', 'mozilla-aurora', 'mozilla-central')
-BRANCHES['comm-central-bloat'] = makeBuildConfig('bloat', 'comm-central', 'mozilla-central', 'mozilla-central')
-BRANCHES['comm-1.9.2'] = makeBuildConfig('nightly', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
-BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig('bloat', 'comm-1.9.2', 'releases/mozilla-1.9.2', 'releases/mozilla-1.9.2')
-BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig('check', 'comm-1.9.2', 'mozilla-aurora', 'releases/mozilla-1.9.2')
+BRANCHES['comm-central'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-central',
+                               hgBranch      = 'comm-central',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTrunk',
+                               allLocalesFile = 'all-locales.comm-central',
+                               wantL10n      = True,
+                               l10nRepo      = 'l10n-central',
+                               enableWeeklyBundle = True,
+                               updateChannel = 'nightly',
+                           )
+BRANCHES['comm-central-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-central',
+                               hgBranch      = 'comm-central',
+                               mozillaCentralBranch = 'mozilla-central',
+                               tinderboxTree = 'ThunderbirdTrunk'
+                           )
+
+# Disable for now
+#BRANCHES['comm-central-tested'] = makeBuildConfig(
+#                               builderType   = 'nightly',
+#                               branchName    = 'comm-central-tested',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTested',
+#                               wantNightly   = False,
+#                               wantL10n      = False
+#                           )
+
+# Disable for now
+#BRANCHES['comm-central-tested-bloat'] = makeBuildConfig(
+#                               builderType   = 'bloat',
+#                               branchName    = 'comm-central-tested',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTested',
+#                               wantL10n      = False
+#                           )
+
+BRANCHES['comm-1.9.2'] = makeBuildConfig(
+                               builderType   = 'nightly',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1',
+                               allLocalesFile = 'all-locales.comm-1.9.2',
+                               wantL10n      = True,
+                               l10nRepo      = 'releases/l10n-mozilla-1.9.2',
+                               updateChannel = 'nightly',
+                           )
+BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
+                               builderType   = 'bloat',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1'
+                           )
+BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
+                               builderType   = 'check',
+                               branchName    = 'comm-1.9.2',
+                               hgBranch      = 'releases/comm-1.9.2',
+                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+                               tinderboxTree = 'Thunderbird3.1'
+                           )
 
 # ----------------
-
-HGURL = 'http://hg.mozilla.org/'
-HGHOST = 'hg.mozilla.org'
-CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
-CONFIG_REPO_PATH = 'build/buildbot-configs'
-COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
-CONFIG_SUBDIR = 'thunderbird'
-OBJDIR = 'objdir-tb'
-STAGE_USERNAME = 'tbirdbld'
-STAGE_SERVER = 'stage.mozilla.org'
-STAGE_GROUP = 'thunderbird'
-STAGE_SSH_KEY = 'tbirdbld_dsa'
-
-AUS2_USER = 'tbirdbld'
-AUS2_SSH_KEY = 'tbirdbld_dsa'
-AUS2_HOST = 'momo-build-adm-01.sj.mozillamessaging.com'
-
-DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
-PRODUCT = 'mail'
-MOZ_APP_NAME = 'thunderbird'
-
-
-DEFAULTS = {
-    'factory':                'build',
-    'hgurl':                  HGURL,
-    'branch_name':            'comm-central',
-    'stage_base_path':        '/home/ftp/pub/mozilla.org/thunderbird',
-    'mozilla_central_branch': 'releases/mozilla-1.9.1',
-    'add_poll_branches':      [ 'dom-inspector','users/gozer_mozillamessaging.com/test' ],
-    'period':                 60 * 60 * 8,
-    'nightly_hour':          [3],
-    'nightly_minute':        [0],
-    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
-    'builder_type':           "build",
-    'tinderbox_tree':         "ThunderbirdTest",
-    'codesighs':               False,
-    'mozmill':                 False,
-    'product_name':           'Thunderbird',
-    'brand_name':             'Shredder',
-    'app_name':			'thunderbird',
-    'build_space':             10,
-    'l10n_nightly_updates':    False,
-
-    'create_partial':          False,
-    'create_snippet':          False,
-
-    'stage_username':		STAGE_USERNAME,
-    'stage_server':		STAGE_SERVER,
-    'stage_group':		STAGE_GROUP,
-    'stage_ssh_key':		STAGE_SSH_KEY,
-    'enable_checktests':        False,
-    'exec_xpcshell_suites':     True,
-
-    'graph_server':		'graphs.mozilla.org',
-    'graph_selector':           '/server/collect.cgi',
-
-    # Unit Test
-    'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
-
-    'build_tools_repo': "build/tools",
-    'hg_rev_shortnames': {
-      'mozilla-central':        'moz',
-      'comm-central':           'cc',
-      'dom-inspector':          'domi',
-      'releases/mozilla-1.9.1': 'moz191',
-      'releases/mozilla-1.9.2': 'moz192',
-      'releases/mozilla-aurora':'mozaurora',
-    }
-}
 
 
 # Release automation expect to find these
