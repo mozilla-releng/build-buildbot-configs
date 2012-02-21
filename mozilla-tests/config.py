@@ -726,11 +726,6 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 8,
            },
         )),
-        ('browser-chrome', (
-            {'suite': 'mochitest-browser-chrome',
-             'testPaths': ['mobile']
-            },
-        )),
         ('reftest-1', (
             {'suite': 'reftest',
              'totalChunks': 3,
