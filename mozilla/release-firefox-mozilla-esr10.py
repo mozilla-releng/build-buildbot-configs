@@ -110,6 +110,7 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
 }
+releaseConfig['releaseChannel']      = 'esr'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

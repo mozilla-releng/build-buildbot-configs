@@ -1547,11 +1547,11 @@ BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
-BRANCHES['mozilla-esr10']['update_channel'] = 'esr'
+BRANCHES['mozilla-esr10']['update_channel'] = 'nightly-esr10'
 BRANCHES['mozilla-esr10']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-esr10']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-esr10']['start_hour'] = [3]
-BRANCHES['mozilla-esr10']['start_minute'] = [2]
+BRANCHES['mozilla-esr10']['start_minute'] = [45]
 BRANCHES['mozilla-esr10']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr10']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
@@ -1569,7 +1569,14 @@ BRANCHES['mozilla-esr10']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-esr10']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-esr10' % (GLOBAL_VARS['hgurl'])
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
-BRANCHES['mozilla-esr10']['enable_nightly'] = False
+BRANCHES['mozilla-esr10']['enable_nightly'] = True
+BRANCHES['mozilla-esr10']['create_snippet'] = True
+BRANCHES['mozilla-esr10']['create_partial'] = True
+BRANCHES['mozilla-esr10']['aus2_user'] = 'ffxbld'
+BRANCHES['mozilla-esr10']['aus2_ssh_key'] = 'ffxbld_dsa'
+# use mozilla-esr10-test when disabling updates for merges
+BRANCHES['mozilla-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
+BRANCHES['mozilla-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
 BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
