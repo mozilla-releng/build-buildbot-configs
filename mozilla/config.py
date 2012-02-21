@@ -1573,14 +1573,6 @@ BRANCHES['mozilla-esr10']['enable_nightly'] = False
 BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into esr 
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_leaktests'] = False
-BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
