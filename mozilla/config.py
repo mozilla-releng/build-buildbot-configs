@@ -746,11 +746,10 @@ PLATFORM_VARS = {
             'download_symbols': False,
             'packageTests': True,
             'enable_codesighs': False,
-            'create_snippet': False,
             'create_partial': False,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3',
+            'update_platform': 'Android_arm-eabi-gcc3-xul',
             'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',

@@ -1,4 +1,4 @@
-from buildbot.scheduler import Scheduler, Dependent
+from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
 import buildbotcustom.l10n
@@ -7,7 +7,7 @@ import buildbotcustom.process.factory
 
 from buildbotcustom.l10n import DependentL10n
 from buildbotcustom.misc import get_l10n_repositories, isHgPollerTriggered, \
-  generateTestBuilderNames, generateCCTestBuilder, reallyShort
+  generateTestBuilderNames, reallyShort
 from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   ReleaseTaggingFactory, CCSourceFactory, CCReleaseBuildFactory, \
   ReleaseUpdatesFactory, UpdateVerifyFactory, ReleaseFinalVerification, \
@@ -25,7 +25,7 @@ from release_config import *
 # we import those so we don't have to duplicate them in release_config
 import config as nightly_config
 
-branchConfig = nightly_config.BRANCHES[sourceRepoName]
+branchConfig = nightly_config.BRANCHES[releaseConfig['sourceRepoName']]
 
 builders = []
 test_builders = []
@@ -36,22 +36,23 @@ status = []
 def builderPrefix(s, platform=None):
     # sourceRepoName is in release_config and imported into global scope
     if platform:
-        return "release-%s-%s_%s" % (sourceRepoName, platform, s)
+        return "release-%s-%s_%s" % (releaseConfig['sourceRepoName'], platform, s)
     else:
-        return "release-%s-%s" % (sourceRepoName, s)
+        return "release-%s-%s" % (releaseConfig['sourceRepoName'], s)
 
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
     branch="post_signing",
     ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
-             % (stagingServer, productName, version, buildNumber)],
+             % (releaseConfig['stagingServer'], releaseConfig['productName'],
+                releaseConfig['version'], releaseConfig['buildNumber'])],
     pollInterval= 60*10,
     searchString='win32_signing_build'
 ))
 
 tag_scheduler = Scheduler(
     name='tag',
-    branch=sourceRepoPath,
+    branch=releaseConfig['sourceRepoPath'],
     treeStableTimer=0,
     builderNames=['tag'],
     fileIsImportant=lambda c: not isHgPollerTriggered(c, branchConfig['hgurl'])
@@ -63,26 +64,26 @@ source_scheduler = Dependent(
     builderNames=['source']
 )
 schedulers.append(source_scheduler)
-for platform in enUSPlatforms:
+for platform in releaseConfig['enUSPlatforms']:
     build_scheduler = Dependent(
         name='%s_build' % platform,
         upstream=tag_scheduler,
         builderNames=['%s_build' % platform]
     )
     schedulers.append(build_scheduler)
-    if platform in l10nPlatforms:
+    if platform in releaseConfig['l10nPlatforms']:
         repack_scheduler = DependentL10n(
             name='%s_repack' % platform,
             platform=platform,
             upstream=build_scheduler,
             builderNames=['%s_repack' % platform],
-            branch=sourceRepoPath,
-            baseTag='%s_RELEASE' % baseTag,
+            branch=releaseConfig['sourceRepoPath'],
+            baseTag='%s_RELEASE' % releaseConfig['baseTag'],
             localesFile='suite/locales/shipped-locales',
         )
         schedulers.append(repack_scheduler)
 
-for platform in l10nPlatforms:
+for platform in releaseConfig['l10nPlatforms']:
     l10n_verify_scheduler = Scheduler(
         name='%s_l10n_verification' % platform,
         treeStableTimer=0,
@@ -100,7 +101,7 @@ updates_scheduler = Scheduler(
 schedulers.append(updates_scheduler)
 
 updateBuilderNames = []
-for platform in sorted(verifyConfigs.keys()):
+for platform in sorted(releaseConfig['verifyConfigs'].keys()):
     updateBuilderNames.append('%s_update_verify' % platform)
 update_verify_scheduler = Dependent(
     name='update_verify',
@@ -109,9 +110,9 @@ update_verify_scheduler = Dependent(
 )
 schedulers.append(update_verify_scheduler)
 
-if majorUpdateRepoPath:
+if releaseConfig['majorUpdateRepoPath']:
     majorUpdateBuilderNames = []
-    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+    for platform in sorted(releaseConfig['majorUpdateVerifyConfigs'].keys()):
         majorUpdateBuilderNames.append('%s_major_update_verify' % platform)
     major_update_verify_scheduler = Triggerable(
         name='major_update_verify',
@@ -119,7 +120,7 @@ if majorUpdateRepoPath:
     )
     schedulers.append(major_update_verify_scheduler)
 
-for platform in unittestPlatforms:
+for platform in releaseConfig['unittestPlatforms']:
     if branchConfig['platforms'][platform]['enable_opt_unittests']:
         platform_test_builders = []
         base_name = branchConfig['platforms'][platform]['base_name']
@@ -129,7 +130,7 @@ for platform in unittestPlatforms:
         s = Scheduler(
          name='%s_release_unittest' % platform,
          treeStableTimer=0,
-         branch='release-%s-%s-opt-unittest' % (sourceRepoName, platform),
+         branch='release-%s-%s-opt-unittest' % (releaseConfig['sourceRepoName'], platform),
          builderNames=platform_test_builders,
         )
         schedulers.append(s)
@@ -138,41 +139,46 @@ for platform in unittestPlatforms:
 # This is a step run very shortly before release, and is triggered manually
 # from the waterfall
 
+if releaseConfig['productVersionFile']:
+  bumpFiles = [releaseConfig['productVersionFile']]
+else:
+  bumpFiles = []
+
 ##### Builders
 repositories = {
-    sourceRepoPath: {
-        'revision': sourceRepoRevision,
-        'relbranchOverride': relbranchOverride,
-        'bumpFiles': [productVersionFile]
+    releaseConfig['sourceRepoPath']: {
+        'revision': releaseConfig['sourceRepoRevision'],
+        'relbranchOverride': releaseConfig['relbranchOverride'],
+        'bumpFiles': bumpFiles
     },
-    mozillaRepoPath: {
-        'revision': mozillaRepoRevision,
-        'relbranchOverride': mozillaRelbranchOverride,
+    releaseConfig['mozillaRepoPath']: {
+        'revision': releaseConfig['mozillaRepoRevision'],
+        'relbranchOverride': releaseConfig['mozillaRelbranchOverride'],
         'bumpFiles': []
     },
 }
-if inspectorRepoPath:
-    repositories[inspectorRepoPath] = {
-        'revision': inspectorRepoRevision,
-        'relbranchOverride': inspectorRelbranchOverride,
+if releaseConfig['inspectorRepoPath']:
+    repositories[releaseConfig['inspectorRepoPath']] = {
+        'revision': releaseConfig['inspectorRepoRevision'],
+        'relbranchOverride': releaseConfig['inspectorRelbranchOverride'],
         'bumpFiles': []
     }
-if venkmanRepoPath:
-    repositories[venkmanRepoPath] = {
-        'revision': venkmanRepoRevision,
-        'relbranchOverride': venkmanRelbranchOverride,
+if releaseConfig['venkmanRepoPath']:
+    repositories[releaseConfig['venkmanRepoPath']] = {
+        'revision': releaseConfig['venkmanRepoRevision'],
+        'relbranchOverride': releaseConfig['venkmanRelbranchOverride'],
         'bumpFiles': []
     }
-if chatzillaRepoPath:
-    repositories[chatzillaRepoPath] = {
-        'revision': chatzillaRepoRevision,
-        'relbranchOverride': chatzillaRelbranchOverride,
+if releaseConfig['chatzillaRepoPath']:
+    repositories[releaseConfig['chatzillaRepoPath']] = {
+        'revision': releaseConfig['chatzillaRepoRevision'],
+        'relbranchOverride': releaseConfig['chatzillaRelbranchOverride'],
         'bumpFiles': []
     }
 
-if len(l10nPlatforms) > 0:
-    l10n_repos = get_l10n_repositories(l10nRevisionFile, l10nRepoPath,
-                                      relbranchOverride)
+if len(releaseConfig['l10nPlatforms']) > 0:
+    l10n_repos = get_l10n_repositories(releaseConfig['l10nRevisionFile'], releaseConfig['l10nRepoPath'],
+                                      releaseConfig['l10nRelbranchOverride'])
     repositories.update(l10n_repos)
 
 # dummy factory for TESTING purposes
@@ -185,18 +191,21 @@ tag_factory = ReleaseTaggingFactory(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
     repositories=repositories,
-    productName=productName,
-    appName=appName,
-    version=version,
-    appVersion=appVersion,
-    milestone=milestone,
-    baseTag=baseTag,
-    buildNumber=buildNumber,
-    hgUsername=hgUsername,
-    hgSshKey=hgSshKey,
-    relbranchPrefix=relbranchPrefix,
+    productName=releaseConfig['productName'],
+    appName=releaseConfig['appName'],
+    version=releaseConfig['version'],
+    appVersion=releaseConfig['appVersion'],
+    milestone=releaseConfig['milestone'],
+    baseTag=releaseConfig['baseTag'],
+    buildNumber=releaseConfig['buildNumber'],
+    hgUsername=releaseConfig['hgUsername'],
+    hgSshKey=releaseConfig['hgSshKey'],
+    relbranchPrefix=releaseConfig['relbranchPrefix'],
     clobberURL=branchConfig['base_clobber_url'],
 )
+
+if releaseConfig['skip_tag']:
+  tag_factory = dummy_factory
 
 builders.append({
     'name': 'tag',
@@ -213,20 +222,20 @@ builders.append({
 source_factory = CCSourceFactory(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-    repoPath=sourceRepoPath,
-    productName=productName,
-    version=version,
-    baseTag=baseTag,
+    repoPath=releaseConfig['sourceRepoPath'],
+    productName=releaseConfig['productName'],
+    version=releaseConfig['version'],
+    baseTag=releaseConfig['baseTag'],
     stagingServer=branchConfig['stage_server'],
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
-    buildNumber=buildNumber,
-    mozRepoPath=mozillaRepoPath,
-    inspectorRepoPath=inspectorRepoPath,
-    venkmanRepoPath=venkmanRepoPath,
-    chatzillaRepoPath=chatzillaRepoPath,
+    buildNumber=releaseConfig['buildNumber'],
+    mozRepoPath=releaseConfig['mozillaRepoPath'],
+    inspectorRepoPath=releaseConfig['inspectorRepoPath'],
+    venkmanRepoPath=releaseConfig['venkmanRepoPath'],
+    chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
     # Disable cvsroot on comm-central/comm-2.0 builds
-    #cvsroot=cvsroot,
+    #cvsroot=releaseConfig['cvsroot'],
     autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
     clobberURL=branchConfig['base_clobber_url'],
 )
@@ -242,20 +251,20 @@ builders.append({
 })
 
 
-for platform in enUSPlatforms:
+for platform in releaseConfig['enUSPlatforms']:
     # shorthand
     pf = branchConfig['platforms'][platform]
-    mozconfig = '%s/%s/release' % (platform, sourceRepoName)
-    l10nmozconfig = '%s/%s/release-l10n' % (platform, sourceRepoName)
-    if platform in talosTestPlatforms:
+    mozconfig = '%s/%s/release' % (platform, releaseConfig['sourceRepoName'])
+    l10nmozconfig = '%s/%s/release-l10n' % (platform, releaseConfig['sourceRepoName'])
+    if platform in releaseConfig['talosTestPlatforms']:
         talosMasters = branchConfig['talos_masters']
     else:
         talosMasters = None
 
-    if platform in unittestPlatforms:
+    if platform in releaseConfig['unittestPlatforms']:
         packageTests = True
         unittestMasters = branchConfig['unittest_masters']
-        unittestBranch = 'release-%s-%s-opt-unittest' % (sourceRepoName,
+        unittestBranch = 'release-%s-%s-opt-unittest' % (releaseConfig['sourceRepoName'],
                                                          platform)
     else:
         packageTests = False
@@ -267,24 +276,25 @@ for platform in enUSPlatforms:
         objdir=pf['platform_objdir'],
         platform=platform,
         hgHost=branchConfig['hghost'],
-        repoPath=sourceRepoPath,
-        mozRepoPath=mozillaRepoPath,
-        inspectorRepoPath=inspectorRepoPath,
-        venkmanRepoPath=venkmanRepoPath,
-        chatzillaRepoPath=chatzillaRepoPath,
+        repoPath=releaseConfig['sourceRepoPath'],
+        mozRepoPath=releaseConfig['mozillaRepoPath'],
+        inspectorRepoPath=releaseConfig['inspectorRepoPath'],
+        venkmanRepoPath=releaseConfig['venkmanRepoPath'],
+        chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
         # Disable cvsroot on comm-central/comm-2.0 builds
-        #cvsroot=cvsroot,
+        #cvsroot=releaseConfig['cvsroot'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         configRepoPath=branchConfig['config_repo_path'],
         configSubDir=branchConfig['config_subdir'],
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
-        buildRevision='%s_RELEASE' % baseTag,
+        buildRevision='%s_RELEASE' % releaseConfig['baseTag'],
         stageServer=branchConfig['stage_server'],
         stageUsername=branchConfig['stage_username'],
         stageGroup=branchConfig['stage_group'],
         stageSshKey=branchConfig['stage_ssh_key'],
-        stageBasePath=branchConfig['stage_base_path'],
+        stageBasePath='%s/%s' % (branchConfig['stage_base_path'],
+                                 pf['stage_product']),
         codesighs=False,
         uploadPackages=True,
         uploadSymbols=True,
@@ -292,9 +302,9 @@ for platform in enUSPlatforms:
         doCleanup=True, # this will clean-up the mac build dirs, but not delete
                         # the entire thing
         buildSpace=10,
-        productName=productName,
-        version=version,
-        buildNumber=buildNumber,
+        productName=releaseConfig['productName'],
+        version=releaseConfig['version'],
+        buildNumber=releaseConfig['buildNumber'],
         talosMasters=talosMasters,
         packageTests=packageTests,
         unittestMasters=unittestMasters,
@@ -312,21 +322,21 @@ for platform in enUSPlatforms:
         'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform))}
     })
 
-    if platform in l10nPlatforms:
+    if platform in releaseConfig['l10nPlatforms']:
         repack_factory = CCReleaseRepackFactory(
             hgHost=branchConfig['hghost'],
-            project=productName,
-            appName=appName,
-            brandName=brandName,
-            repoPath=sourceRepoPath,
-            mozRepoPath=mozillaRepoPath,
-            inspectorRepoPath=inspectorRepoPath,
-            venkmanRepoPath=venkmanRepoPath,
-            chatzillaRepoPath=chatzillaRepoPath,
+            project=releaseConfig['productName'],
+            appName=releaseConfig['appName'],
+            brandName=releaseConfig['brandName'],
+            repoPath=releaseConfig['sourceRepoPath'],
+            mozRepoPath=releaseConfig['mozillaRepoPath'],
+            inspectorRepoPath=releaseConfig['inspectorRepoPath'],
+            venkmanRepoPath=releaseConfig['venkmanRepoPath'],
+            chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
             # Disable cvsroot on comm-central/comm-2.0 builds
             #cvsroot=cvsroot,
-            l10nRepoPath=l10nRepoPath,
-            mergeLocales=mergeLocales,
+            l10nRepoPath=releaseConfig['l10nRepoPath'],
+            mergeLocales=releaseConfig['mergeLocales'],
             stageServer=branchConfig['stage_server'],
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],
@@ -337,10 +347,10 @@ for platform in enUSPlatforms:
             configRepoPath=branchConfig['config_repo_path'],
             configSubDir=branchConfig['config_subdir'],
             mozconfig=l10nmozconfig,
-            platform=platform + '-release',
-            buildRevision='%s_RELEASE' % baseTag,
-            version=version,
-            buildNumber=buildNumber,
+            platform=platform,
+            buildRevision='%s_RELEASE' % releaseConfig['baseTag'],
+            version=releaseConfig['version'],
+            buildNumber=releaseConfig['buildNumber'],
             tree='release',
             clobberURL=branchConfig['base_clobber_url'],
         )
@@ -364,31 +374,34 @@ for platform in enUSPlatforms:
                 suites = suites[:]
                 suites.remove('mochitest-a11y')
 
-            test_builders.extend(generateCCTestBuilder(
+            test_builders.extend(generateTestBuilder(
                 branchConfig, 'release', platform, "%s_test" % platform,
                 'release-%s-%s-opt-unittest' % (sourceRepoName, platform),
                 suites_name, suites, mochitestLeakThreshold,
                 crashtestLeakThreshold))
 
-for platform in l10nPlatforms:
+for platform in releaseConfig['l10nPlatforms']:
     l10n_verification_factory = L10nVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        cvsroot=cvsroot,
-        stagingServer=stagingServer,
-        productName=productName,
-        version=version,
-        buildNumber=buildNumber,
-        oldVersion=oldVersion,
-        oldBuildNumber=oldBuildNumber,
+        cvsroot=releaseConfig['cvsroot'],
+        stagingServer=releaseConfig['stagingServer'],
+        productName=releaseConfig['productName'],
+        version=releaseConfig['version'],
+        buildNumber=releaseConfig['buildNumber'],
+        oldVersion=releaseConfig['oldVersion'],
+        oldBuildNumber=releaseConfig['oldBuildNumber'],
         clobberURL=branchConfig['base_clobber_url'],
         platform=platform,
     )
 
+    verifySlavePlat = 'macosx64'
+    if releaseConfig['sourceRepoName'] == 'comm-1.9.1':
+       verifySlavePlat = 'macosx'
+
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        # comm-1.9.1 release needs macosx, others need macosx64
-        'slavenames': branchConfig['platforms']['macosx64']['slaves'],
+        'slavenames': branchConfig['platforms'][verifySlavePlat]['slaves'],
         'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
@@ -396,45 +409,46 @@ for platform in l10nPlatforms:
         'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform))}
     })
 
-
 updates_factory = ReleaseUpdatesFactory(
     hgHost=branchConfig['hghost'],
-    repoPath=sourceRepoPath,
-    mozRepoPath=mozillaRepoPath,
+    repoPath=releaseConfig['sourceRepoPath'],
+    mozRepoPath=releaseConfig['mozillaRepoPath'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-    cvsroot=cvsroot,
-    patcherToolsTag=patcherToolsTag,
-    patcherConfig=patcherConfig,
-    verifyConfigs=verifyConfigs,
-    appName=appName,
-    productName=productName,
-    brandName=brandName,
-    version=version,
-    appVersion=appVersion,
-    baseTag=baseTag,
-    buildNumber=buildNumber,
-    oldVersion=oldVersion,
-    oldAppVersion=oldAppVersion,
-    oldBaseTag=oldBaseTag,
-    oldBuildNumber=oldBuildNumber,
-    ftpServer=ftpServer,
-    bouncerServer=bouncerServer,
-    stagingServer=stagingServer,
-    useBetaChannel=useBetaChannel,
+    cvsroot=releaseConfig['cvsroot'],
+    patcherToolsTag=releaseConfig['patcherToolsTag'],
+    patcherConfig=releaseConfig['patcherConfig'],
+    verifyConfigs=releaseConfig['verifyConfigs'],
+    appName=releaseConfig['appName'],
+    productName=releaseConfig['productName'],
+    brandName=releaseConfig['brandName'],
+    version=releaseConfig['version'],
+    appVersion=releaseConfig['appVersion'],
+    baseTag=releaseConfig['baseTag'],
+    buildNumber=releaseConfig['buildNumber'],
+    oldVersion=releaseConfig['oldVersion'],
+    oldAppVersion=releaseConfig['oldAppVersion'],
+    oldBaseTag=releaseConfig['oldBaseTag'],
+    oldBuildNumber=releaseConfig['oldBuildNumber'],
+    ftpServer=releaseConfig['ftpServer'],
+    bouncerServer=releaseConfig['bouncerServer'],
+    stagingServer=releaseConfig['stagingServer'],
     stageUsername=branchConfig['stage_username'],
     stageSshKey=branchConfig['stage_ssh_key'],
     ausUser=branchConfig['aus2_user'],
     ausSshKey=branchConfig['aus2_ssh_key'],
     ausHost=branchConfig['aus2_host'],
-    ausServerUrl=ausServerUrl,
-    hgSshKey=hgSshKey,
-    hgUsername=hgUsername,
+    ausServerUrl=releaseConfig['ausServerUrl'],
+    hgSshKey=releaseConfig['hgSshKey'],
+    hgUsername=releaseConfig['hgUsername'],
+    releaseChannel=releaseConfig['releaseChannel'],
     clobberURL=branchConfig['base_clobber_url'],
-    oldRepoPath=sourceRepoPath,
-    releaseNotesUrl=releaseNotesUrl,
-    binaryName=binaryName,
-    oldBinaryName=oldBinaryName,
-    testOlderPartials=testOlderPartials
+    oldRepoPath=releaseConfig['oldRepoPath'],
+    releaseNotesUrl=releaseConfig['releaseNotesUrl'],
+    binaryName=releaseConfig['binaryName'],
+    oldBinaryName=releaseConfig['oldBinaryName'],
+    testOlderPartials=releaseConfig['testOlderPartials'],
+    schema=releaseConfig.get("snippetSchema", 1), # Bug 682805
+    useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
 )
 
 builders.append({
@@ -448,11 +462,11 @@ builders.append({
 })
 
 
-for platform in sorted(verifyConfigs.keys()):
+for platform in sorted(releaseConfig['verifyConfigs'].keys()):
     update_verify_factory = UpdateVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        verifyConfig=verifyConfigs[platform],
+        verifyConfig=releaseConfig['verifyConfigs'][platform],
         clobberURL=branchConfig['base_clobber_url'],
         useOldUpdater=branchConfig.get('use_old_updater', False),
     )
@@ -471,7 +485,7 @@ for platform in sorted(verifyConfigs.keys()):
 final_verification_factory = ReleaseFinalVerification(
     hgHost=branchConfig['hghost'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-    verifyConfigs=verifyConfigs,
+    verifyConfigs=releaseConfig['verifyConfigs'],
     clobberURL=branchConfig['base_clobber_url'],
 )
 
@@ -485,44 +499,47 @@ builders.append({
     'properties': {'slavebuilddir': reallyShort(builderPrefix('final_verification'))}
 })
 
-if majorUpdateRepoPath:
+if releaseConfig['majorUpdateRepoPath']:
     # Not attached to any Scheduler
-    # XXX: probably needs work to run for CC
     major_update_factory = MajorUpdateFactory(
         hgHost=branchConfig['hghost'],
-        repoPath=majorUpdateRepoPath,
+        repoPath=releaseConfig['majorUpdateSourceRepoPath'],
+        mozRepoPath=releaseConfig['majorUpdateRepoPath'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        cvsroot=cvsroot,
-        patcherToolsTag=patcherToolsTag,
-        patcherConfig=majorUpdatePatcherConfig,
-        verifyConfigs=majorUpdateVerifyConfigs,
-        appName=appName,
-        productName=productName,
-        version=majorUpdateToVersion,
-        appVersion=majorUpdateAppVersion,
-        baseTag=majorUpdateBaseTag,
-        buildNumber=majorUpdateBuildNumber,
-        oldVersion=version,
-        oldAppVersion=appVersion,
-        oldBaseTag=baseTag,
-        oldBuildNumber=buildNumber,
-        ftpServer=ftpServer,
-        bouncerServer=bouncerServer,
-        stagingServer=stagingServer,
-        useBetaChannel=useBetaChannel,
+        cvsroot=releaseConfig['cvsroot'],
+        patcherToolsTag=releaseConfig['majorPatcherToolsTag'],
+        patcherConfig=releaseConfig['majorUpdatePatcherConfig'],
+        verifyConfigs=releaseConfig['majorUpdateVerifyConfigs'],
+        appName=releaseConfig['appName'],
+        productName=releaseConfig['productName'],
+        brandName=releaseConfig['brandName'],
+        version=releaseConfig['majorUpdateToVersion'],
+        appVersion=releaseConfig['majorUpdateAppVersion'],
+        baseTag=releaseConfig['majorUpdateBaseTag'],
+        buildNumber=releaseConfig['majorUpdateBuildNumber'],
+        oldVersion=releaseConfig['version'],
+        oldAppVersion=releaseConfig['appVersion'],
+        oldBaseTag=releaseConfig['baseTag'],
+        oldBuildNumber=releaseConfig['buildNumber'],
+        ftpServer=releaseConfig['ftpServer'],
+        bouncerServer=releaseConfig['bouncerServer'],
+        stagingServer=releaseConfig['stagingServer'],
         stageUsername=branchConfig['stage_username'],
         stageSshKey=branchConfig['stage_ssh_key'],
         ausUser=branchConfig['aus2_user'],
         ausSshKey=branchConfig['aus2_ssh_key'],
         ausHost=branchConfig['aus2_host'],
-        ausServerUrl=ausServerUrl,
-        hgSshKey=hgSshKey,
-        hgUsername=hgUsername,
+        ausServerUrl=releaseConfig['ausServerUrl'],
+        hgSshKey=releaseConfig['hgSshKey'],
+        hgUsername=releaseConfig['hgUsername'],
+        releaseChannel=releaseConfig['releaseChannel'],
         clobberURL=branchConfig['base_clobber_url'],
-        oldRepoPath=sourceRepoPath,
+        oldRepoPath=releaseConfig['oldRepoPath'],
         triggerSchedulers=['major_update_verify'],
-        releaseNotesUrl=majorUpdateReleaseNotesUrl,
-        testOlderPartials=testOlderPartials
+        releaseNotesUrl=releaseConfig['majorUpdateReleaseNotesUrl'],
+        testOlderPartials=releaseConfig['testOlderPartials'],
+        schema=releaseConfig.get("majorSnippetSchema", 1), # Bug 682805
+        useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
     )
 
     builders.append({
@@ -535,11 +552,11 @@ if majorUpdateRepoPath:
         'properties': {'slavebuilddir': reallyShort(builderPrefix('major_update'))}
     })
 
-    for platform in sorted(majorUpdateVerifyConfigs.keys()):
+    for platform in sorted(releaseConfig['majorUpdateVerifyConfigs'].keys()):
         major_update_verify_factory = UpdateVerifyFactory(
             hgHost=branchConfig['hghost'],
             buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-            verifyConfig=majorUpdateVerifyConfigs[platform],
+            verifyConfig=releaseConfig['majorUpdateVerifyConfigs'][platform],
             clobberURL=branchConfig['base_clobber_url'],
         )
 
@@ -555,18 +572,18 @@ if majorUpdateRepoPath:
 
 # XXX: SeaMonkey atm doesn't have permission to use this :(
 #bouncer_submitter_factory = TuxedoEntrySubmitterFactory(
-#    baseTag=baseTag,
-#    appName=appName,
-#    config=tuxedoConfig,
-#    productName=productName,
-#    version=version,
-#    milestone=milestone,
-#    tuxedoServerUrl=tuxedoServerUrl,
-#    enUSPlatforms=enUSPlatforms,
-#    l10nPlatforms=l10nPlatforms,
-#    oldVersion=oldVersion,
+#    baseTag=releaseConfig['baseTag'],
+#    appName=releaseConfig['appName'],
+#    config=releaseConfig['tuxedoConfig'],
+#    productName=releaseConfig['productName'],
+#    version=releaseConfig['version'],
+#    milestone=releaseConfig['milestone'],
+#    tuxedoServerUrl=releaseConfig['tuxedoServerUrl'],
+#    enUSPlatforms=releaseConfig['enUSPlatforms'],
+#    l10nPlatforms=releaseConfig['l10nPlatforms'],
+#    oldVersion=releaseConfig['oldVersion'],
 #    hgHost=branchConfig['hghost'],
-#    repoPath=sourceRepoPath,
+#    repoPath=releaseConfig['sourceRepoPath'],
 #    buildToolsRepoPath=branchConfig['build_tools_repo_path'],
 #    credentialsFile=os.path.join(os.getcwd(), "BuildSlaves.py"),
 #)

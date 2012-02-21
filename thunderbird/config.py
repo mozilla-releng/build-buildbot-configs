@@ -574,23 +574,26 @@ BRANCHES['comm-central-bloat'] = makeBuildConfig(
                                tinderboxTree = 'ThunderbirdTrunk'
                            )
 
-BRANCHES['comm-central-tested'] = makeBuildConfig(
-                               builderType   = 'nightly',
-                               branchName    = 'comm-central-tested',
-                               hgBranch      = 'comm-central',
-                               mozillaCentralBranch = 'mozilla-central',
-                               tinderboxTree = 'ThunderbirdTested',
-                               wantNightly   = False,
-                               wantL10n      = False
-                           )
-BRANCHES['comm-central-tested-bloat'] = makeBuildConfig(
-                               builderType   = 'bloat',
-                               branchName    = 'comm-central-tested',
-                               hgBranch      = 'comm-central',
-                               mozillaCentralBranch = 'mozilla-central',
-                               tinderboxTree = 'ThunderbirdTested',
-                               wantL10n      = False
-                           )
+# Disable for now
+#BRANCHES['comm-central-tested'] = makeBuildConfig(
+#                               builderType   = 'nightly',
+#                               branchName    = 'comm-central-tested',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTested',
+#                               wantNightly   = False,
+#                               wantL10n      = False
+#                           )
+
+# Disable for now
+#BRANCHES['comm-central-tested-bloat'] = makeBuildConfig(
+#                               builderType   = 'bloat',
+#                               branchName    = 'comm-central-tested',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTested',
+#                               wantL10n      = False
+#                           )
 
 BRANCHES['comm-1.9.2'] = makeBuildConfig(
                                builderType   = 'nightly',

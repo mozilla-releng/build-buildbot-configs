@@ -7,7 +7,8 @@ SLAVES = {
     'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]],
     'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
-             ['cb-sea-win32-tbox'],
+             ['cb-sea-win32-tbox'] +
+             ['sea-win32-%02i' % x for x in [2,3,4]], #iX machines
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
     'macosx64': ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]],
 }
@@ -27,7 +28,7 @@ GLOBAL_VARS = {
     'objdir': 'objdir',
     'objdir_unittests': 'objdir',
     'stage_username': 'seabld',
-    'stage_base_path': '/home/ftp/pub/seamonkey',
+    'stage_base_path': '/home/ftp/pub',
     'stage_group': 'seamonkey',
     'stage_ssh_key': 'seabld_dsa',
     'symbol_server_path': '/mnt/netapp/breakpad/symbols_sea/',
@@ -67,14 +68,15 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
     },
-    'product_name': 'seamonkey',
-    'app_name': 'suite',
-    'brand_name': 'SeaMonkey',
+    'pgo_strategy': None,
+    'pgo_platforms': list(),
     'enable_shark': False,
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
+    'enable_valgrind': False,
+    'enable_xulrunner': False,
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
@@ -99,8 +101,9 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
-    'graph_server': 'graphs.mozilla.org',
-    'build_tools_repo_path': 'build/tools',
+    'graph_server': 'graphs-old.mozilla.org',
+    'build_tools_repo_path': 'users/Callek_gmail.com/tools',
+#    'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://cb-seamonkey-linuxmaster-01.mozilla.org/index.php',
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning
@@ -112,6 +115,8 @@ GLOBAL_VARS = {
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
     'tinderbox_tree': 'MozillaTest',
+    'pgo_strategy': None,
+    'enabled_products': ['seamonkey'],
 }
 
 # shorthand, because these are used often
@@ -121,6 +126,9 @@ SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 
 PLATFORM_VARS = {
         'linux': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'mozconfig_dep': 'linux/%(branch)s/dep',
@@ -132,6 +140,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -149,19 +158,24 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'linux64': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
             'mozconfig_dep': 'linux64/%(branch)s/dep',
             'profiled_build': False,
             'builds_before_reboot': None,
             'build_space': 6,
-            'upload_symbols': False,
-            'download_symbols': False,
+            'upload_symbols': True,
+            'download_symbols': True,
             'packageTests': True,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'env': {
@@ -181,8 +195,12 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
             'mozconfig_dep': 'macosx/%(branch)s/dep',
@@ -194,6 +212,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
+            'stage_platform': 'macosx',
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -212,8 +231,12 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx64': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'mozconfig_dep': 'macosx64/%(branch)s/dep',
@@ -225,6 +248,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
+            'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -242,8 +266,12 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'win32': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
             'mozconfig_dep': 'win32/%(branch)s/dep',
@@ -257,6 +285,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
+            'stage_platform': 'win32',
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
             'env': {
@@ -276,8 +305,12 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'linux-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s leak test',
             'mozconfig_dep': 'linux/%(branch)s/debug',
             'profiled_build': False,
@@ -286,6 +319,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'linux-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
@@ -298,8 +332,12 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s leak test',
             'mozconfig_dep': 'macosx/%(branch)s/debug',
             'profiled_build': False,
@@ -308,6 +346,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'macosx-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -317,8 +356,12 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'macosx64-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s leak test',
             'mozconfig_dep': 'macosx64/%(branch)s/debug',
             'profiled_build': False,
@@ -327,6 +370,7 @@ PLATFORM_VARS = {
             'build_space': 5,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
+            'stage_platform': 'macosx64-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -336,8 +380,12 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
         'win32-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s leak test',
             'mozconfig_dep': 'win32/%(branch)s/debug',
             'profiled_build': False,
@@ -347,6 +395,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'enable_shared_checkouts': True,
+            'stage_platform': 'win32-debug',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -356,6 +405,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
         },
 }
 
@@ -364,6 +414,9 @@ PLATFORM_VARS = {
 BRANCHES = {
     'comm-central-trunk': {},
     'comm-2.0': {},
+    'comm-aurora': {},
+    'comm-beta': {},
+    'comm-release': {},
     'comm-1.9.1': {'platforms': {
             'linux': {},
             'linux64': {},
@@ -416,6 +469,8 @@ BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
 BRANCHES['comm-central-trunk']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central-trunk'
 BRANCHES['comm-central-trunk']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-central-trunk']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -428,12 +483,142 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incomin
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
 
+######## comm-aurora
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
+BRANCHES['comm-aurora']['mozilla_repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
+BRANCHES['comm-aurora']['enable_nightly'] = True
+BRANCHES['comm-aurora']['start_hour'] = [1]
+BRANCHES['comm-aurora']['start_minute'] = [30]
+BRANCHES['comm-aurora']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-aurora'
+BRANCHES['comm-aurora']['enable_mac_a11y'] = True
+BRANCHES['comm-aurora']['unittest_build_space'] = 6
+BRANCHES['comm-aurora']['enable_blocklist_update'] = True
+BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = True
+# And code coverage
+BRANCHES['comm-aurora']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-aurora']['enable_l10n'] = True
+BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
+BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
+BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-aurora']['l10nDatedDirs'] = True
+BRANCHES['comm-aurora']['l10n_tree'] = 'sea_aurora'
+#make sure it has an ending slash
+BRANCHES['comm-aurora']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-aurora-l10n/'
+BRANCHES['comm-aurora']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
+BRANCHES['comm-aurora']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-aurora']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-aurora']['create_snippet'] = True
+BRANCHES['comm-aurora']['create_partial'] = True
+BRANCHES['comm-aurora']['create_partial_l10n'] = True
+BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
+BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-aurora']['tinderbox_tree'] = 'SeaMonkey-Aurora'
+BRANCHES['comm-aurora']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Aurora'
+
+######## comm-beta
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-beta']['repo_path'] = 'releases/comm-beta'
+BRANCHES['comm-beta']['mozilla_repo_path'] = 'releases/mozilla-beta'
+BRANCHES['comm-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
+BRANCHES['comm-beta']['enable_nightly'] = False
+BRANCHES['comm-beta']['start_hour'] = [0]
+BRANCHES['comm-beta']['start_minute'] = [30]
+BRANCHES['comm-beta']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-beta'
+BRANCHES['comm-beta']['enable_mac_a11y'] = True
+BRANCHES['comm-beta']['unittest_build_space'] = 6
+BRANCHES['comm-beta']['enable_blocklist_update'] = False # for now
+BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = True
+# And code coverage
+BRANCHES['comm-beta']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-beta']['enable_l10n'] = False
+BRANCHES['comm-beta']['enable_l10n_onchange'] = True
+BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
+BRANCHES['comm-beta']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-beta']['l10nDatedDirs'] = True
+BRANCHES['comm-beta']['l10n_tree'] = 'sea_beta'
+#make sure it has an ending slash
+BRANCHES['comm-beta']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-beta-l10n/'
+BRANCHES['comm-beta']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-beta'
+BRANCHES['comm-beta']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-beta']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-beta']['create_snippet'] = True
+BRANCHES['comm-beta']['create_partial'] = True
+BRANCHES['comm-beta']['create_partial_l10n'] = True
+BRANCHES['comm-beta']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-beta'
+BRANCHES['comm-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-beta'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-beta']['tinderbox_tree'] = 'SeaMonkey-Beta'
+BRANCHES['comm-beta']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Beta'
+
+######## comm-release
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
+BRANCHES['comm-release']['mozilla_repo_path'] = 'releases/mozilla-release'
+BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-release']['enable_nightly'] = False
+BRANCHES['comm-release']['start_hour'] = [0]
+BRANCHES['comm-release']['start_minute'] = [30]
+BRANCHES['comm-release']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-release'
+BRANCHES['comm-release']['enable_mac_a11y'] = True
+BRANCHES['comm-release']['unittest_build_space'] = 6
+BRANCHES['comm-release']['enable_blocklist_update'] = False # for now
+BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = True
+# And code coverage
+BRANCHES['comm-release']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-release']['enable_l10n'] = False
+BRANCHES['comm-release']['enable_l10n_onchange'] = True
+BRANCHES['comm-release']['l10nNightlyUpdate'] = True
+BRANCHES['comm-release']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-release']['l10nDatedDirs'] = True
+BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
+#make sure it has an ending slash
+BRANCHES['comm-release']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-release-l10n/'
+BRANCHES['comm-release']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-release'
+BRANCHES['comm-release']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-release']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-release']['create_snippet'] = True
+BRANCHES['comm-release']['create_partial'] = True
+BRANCHES['comm-release']['create_partial_l10n'] = True
+BRANCHES['comm-release']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
+BRANCHES['comm-release']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-release']['tinderbox_tree'] = 'SeaMonkey-Release'
+BRANCHES['comm-release']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Release'
+
 ######## comm-2.0
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['comm-2.0']['repo_path'] = 'releases/comm-2.0'
 BRANCHES['comm-2.0']['mozilla_repo_path'] = 'releases/mozilla-2.0'
 BRANCHES['comm-2.0']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
+BRANCHES['comm-2.0']['enable_nightly'] = False
 BRANCHES['comm-2.0']['start_hour'] = [1]
 BRANCHES['comm-2.0']['start_minute'] = [0]
 BRANCHES['comm-2.0']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-2.0'
@@ -446,7 +631,7 @@ BRANCHES['comm-2.0']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-2.0']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-2.0']['enable_l10n'] = True
-BRANCHES['comm-2.0']['enable_l10n_onchange'] = True
+BRANCHES['comm-2.0']['enable_l10n_onchange'] = False
 BRANCHES['comm-2.0']['l10nNightlyUpdate'] = True
 BRANCHES['comm-2.0']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
 BRANCHES['comm-2.0']['l10nDatedDirs'] = True
@@ -457,6 +642,8 @@ BRANCHES['comm-2.0']['l10nUploadPath'] = \
 BRANCHES['comm-2.0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-2.0'
 BRANCHES['comm-2.0']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-2.0']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-2.0' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
@@ -475,6 +662,7 @@ BRANCHES['comm-2.0']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey2.1'
 BRANCHES['comm-1.9.1']['repo_path'] = 'releases/comm-1.9.1'
 BRANCHES['comm-1.9.1']['mozilla_repo_path'] = 'releases/mozilla-1.9.1'
 BRANCHES['comm-1.9.1']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.1'
+BRANCHES['comm-1.9.1']['enable_nightly'] = False
 BRANCHES['comm-1.9.1']['start_hour'] = [0]
 BRANCHES['comm-1.9.1']['start_minute'] = [0]
 BRANCHES['comm-1.9.1']['use_old_updater'] = True
@@ -507,7 +695,7 @@ BRANCHES['comm-1.9.1']['unittest_build_space'] = 6
 BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-1.9.1']['enable_l10n'] = True
-BRANCHES['comm-1.9.1']['enable_l10n_onchange'] = True
+BRANCHES['comm-1.9.1']['enable_l10n_onchange'] = False
 BRANCHES['comm-1.9.1']['l10nNightlyUpdate'] = False
 BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
 BRANCHES['comm-1.9.1']['l10nDatedDirs'] = False
@@ -518,6 +706,8 @@ BRANCHES['comm-1.9.1']['l10nUploadPath'] = \
 BRANCHES['comm-1.9.1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-1.9.1'
 BRANCHES['comm-1.9.1']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-1.9.1']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-1.9.1' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
