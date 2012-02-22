@@ -234,26 +234,6 @@ debsign_staging = debsign + MasterConfig(
             ],
         )
 
-mobile = MasterConfig(
-        config_dir='mobile',
-        globs=['*.py', '*.cfg'],
-        local_links=[],
-        )
-
-mobile_production = mobile + MasterConfig(
-        "production-mobile",
-        local_links=[
-            ('config-production.py', 'config.py'),
-            ],
-        )
-
-mobile_staging = mobile + MasterConfig(
-        "staging-mobile",
-        local_links=[
-            ('config-staging.py', 'config.py'),
-            ],
-        )
-
 mozilla_base = MasterConfig(
         config_dir='mozilla',
         globs=['*config.py', '*localconfig.py', 'master_common.py',
@@ -639,12 +619,6 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
             ]
         )
 
-# Buildbot 0.7 masters
-masters_07 = [
-        debsign_production, debsign_staging,
-        mobile_production, mobile_staging,
-        ]
-
 # Buildbot 0.8 masters
 masters_08 = [
         # Build Masters
@@ -709,7 +683,6 @@ if __name__ == "__main__":
     parser.set_defaults(action=None, masters_json=None)
     parser.add_option("-l", "--list", action="store_true", dest="list")
     parser.add_option("-t", "--test", action="store_true", dest="test")
-    parser.add_option("-7", action="store_true", dest="buildbot07", default=False)
     parser.add_option("-8", action="store_true", dest="buildbot08", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
     parser.add_option("-j", "--masters-json", dest="masters_json", \
@@ -739,11 +712,6 @@ if __name__ == "__main__":
     if options.buildbot08:
         log.debug('using -8')
         master_list = masters_08
-        for m in master_list:
-            m.log = log
-    elif options.buildbot07:
-        log.debug('using -7')
-        master_list = masters_07
         for m in master_list:
             m.log = log
     else:
