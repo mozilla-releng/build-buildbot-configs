@@ -69,8 +69,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('linux-android', 'linux-mobile', 'macosx-mobile',
-                                         'win32-mobile')
+releaseConfig['enUSPlatforms']        = ('linux-android',)
 releaseConfig['notifyPlatforms']      = ('linux-android',)
 releaseConfig['signedPlatforms']      = ('linux-android',)
 releaseConfig['unittestPlatforms']    = ()
@@ -103,9 +102,6 @@ releaseConfig['partnerRepackPlatforms'] = ()
 # mozconfigs
 releaseConfig['mozconfigs']          = {
     'linux-android': 'mobile/config/mozconfigs/android/release',
-    'linux-mobile': 'mobile/config/mozconfigs/linux-desktop/release',
-    'macosx-mobile': 'mobile/config/mozconfigs/macosx-desktop/release',
-    'win32-mobile': 'mobile/config/mozconfigs/win32-desktop/release',
 }
 
 # Misc configuration
