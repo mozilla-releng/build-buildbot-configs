@@ -11,9 +11,6 @@ SlavePasswords = {
         'linux-android': 'pass',
         'android': 'pass',
         'android-xul': 'pass',
-        'linux-mobile': 'pass',
-        'macosx-mobile': 'pass',
-        'win32-mobile': 'pass',
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'
