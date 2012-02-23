@@ -24,9 +24,6 @@ SLAVES = {
     'linux-android':    LINUX_VMS + LINUX_IXS,
     'android':          LINUX_VMS + LINUX_IXS,
     'android-xul':      LINUX_VMS + LINUX_IXS,
-    'linux-mobile':     LINUX_VMS + LINUX_IXS,
-    'macosx-mobile':    MAC_MINIS + XSERVES,
-    'win32-mobile':     WIN32_IXS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \

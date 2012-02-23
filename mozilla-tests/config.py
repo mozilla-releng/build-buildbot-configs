@@ -200,14 +200,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
-    # Responsiveness requires patches to be on all branches, so off by default and on for m-c only
-    # We currently have a linux failure under investigation
-    # OSX will work on m-c, m-a as of Nov 2011, enabling on all but release, beta and 1.9.2 branch, mac uses tp5r
-    'tp_responsiveness': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint', '--responsiveness'],
-        'options': (TALOS_TP_OPTS, NO_MAC),
-    },
     'tp': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint'],
@@ -244,13 +236,7 @@ SUITES = {
     'tpr_responsiveness': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': (TALOS_TP_OPTS, MAC_ONLY),
-    },
-    # This allows for windows and linux in sxs staging.  If this works, we can make a single tpr_responsiveness suite
-    'tpr_responsiveness_other': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': (TALOS_TP_OPTS, NO_MAC),
+        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
     'v8.2': {
         'enable_by_default': False,
@@ -259,13 +245,13 @@ SUITES = {
     },
     'chrome.2': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, NO_MAC),
     },
     # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac.2': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, MAC_ONLY),
     },
     'nochrome.2': {
@@ -726,11 +712,6 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 8,
            },
         )),
-        ('browser-chrome', (
-            {'suite': 'mochitest-browser-chrome',
-             'testPaths': ['mobile']
-            },
-        )),
         ('reftest-1', (
             {'suite': 'reftest',
              'totalChunks': 3,
@@ -842,7 +823,9 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
             'win7': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
+                'opt_unittest_suites' : \
+                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
+                    [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
@@ -1076,8 +1059,6 @@ for suite in SUITES.keys():
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 BRANCHES['mozilla-central']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-#side by side staging for RSS collection on linux and windows
-BRANCHES['mozilla-central']['tpr_responsiveness_other_tests'] = (1, True, TALOS_TP_OPTS, NO_MAC)
 
 
 ######## mozilla-release
@@ -1086,8 +1067,7 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 ###########
 # When Firefox 12 is on mozilla-release we can remove these on/off switches
 ###########
-BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, MAC_ONLY)
-BRANCHES['mozilla-release']['tp_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, NO_MAC)
+BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['chrome.2_tests'] = (0, True, {}, NO_MAC)
 BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
@@ -1106,8 +1086,7 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ###########
 # When Firefox 12 is on mozilla-beta we can remove these on/off switches
 ###########
-BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, MAC_ONLY)
-BRANCHES['mozilla-beta']['tp_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, NO_MAC)
+BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['chrome.2_tests'] = (0, True, {}, NO_MAC)
 BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
@@ -1126,8 +1105,7 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
-BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, MAC_ONLY)
-BRANCHES['mozilla-esr10']['tp_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, NO_MAC)
+BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome.2_tests'] = (0, True, {}, NO_MAC)
 BRANCHES['mozilla-esr10']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
@@ -1155,8 +1133,7 @@ BRANCHES['mozilla-1.9.2']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANC
 BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['old_tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tp_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_MAC_ONLY)
+BRANCHES['mozilla-1.9.2']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
 BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
 BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
@@ -1190,7 +1167,6 @@ BRANCHES['addonbaselinetester']['enable_unittests'] = False
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
-BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] += [('reftest-no-accel', ['reftest-no-d2d-d3d'])]
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
