@@ -57,7 +57,7 @@ releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr10'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION',
+    'build/compare-locales': 'RELEASE_0_8_2',
     'build/buildbot': 'production-0.8',
     'build/partner-repacks': 'default',
     'build/mozharness': 'default',

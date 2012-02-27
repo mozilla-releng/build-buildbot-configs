@@ -3,9 +3,9 @@ releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['bhearsum@mozilla.com',]
-releaseConfig['ImportantRecipients'] = ['bhearsum@mozilla.com',]
-releaseConfig['AVVendorsRecipients'] = ['bhearsum@mozilla.com',]
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients'] = ['release@mozilla.com',]
+releaseConfig['AVVendorsRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
 
@@ -31,12 +31,12 @@ releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 ## Staging repository path
-releaseConfig['userRepoRoot'] = 'users/bhearsum_mozilla.com'
+releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'clonePath': 'releases/mozilla-esr10',
-        'path': 'users/bhearsum_mozilla.com/mozilla-esr10',
+        'path': 'users/stage-ffxbld/mozilla-esr10',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -58,13 +58,13 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRepoPath']        = 'users/bhearsum_mozilla.com'
+releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr10'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/bhearsum_mozilla.com/compare-locales': 'RELEASE_AUTOMATION',
-    'users/bhearsum_mozilla.com/buildbot': 'production-0.8',
-    'users/bhearsum_mozilla.com/partner-repacks': 'default',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_0_8_2',
+    'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/partner-repacks': 'default',
 }
 
 # Platform configuration
@@ -88,7 +88,7 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = 'dev-stage01.build.mozilla.org:/builds/cvsmirrors/bhearsum/cvsroot'
+releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
 releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
@@ -130,6 +130,6 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['build_tools_repo_path'] = "users/bhearsum_mozilla.com/tools"
+releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
