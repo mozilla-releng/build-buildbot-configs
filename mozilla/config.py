@@ -70,8 +70,6 @@ GLOBAL_VARS = {
         'android': {},
         'android-debug': {},
         'android-xul': {},
-        'linux-android': {},
-        'linux-android-debug': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
@@ -825,108 +823,6 @@ PLATFORM_VARS = {
             'android_signing': True,
             'post_upload_include_platform': True,
         },
-        # TODO remove all traces of linux-android when we build
-        # Android native releases off mozilla-release).
-        'linux-android': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Android %(branch)s',
-            'mozconfig': 'linux-android/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/config/mozconfigs/android/nightly',
-            'enable_nightly': False,
-            'enable_dep': False,
-            'enable_xulrunner': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': True,
-            'download_symbols': False,
-            'packageTests': True,
-            'enable_codesighs': False,
-            'create_partial': False,
-            'slaves': SLAVES['linux'],
-            'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3',
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'JAVA_HOME': '/tools/jdk6',
-                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-            },
-            'enable_opt_unittests': False,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android",
-            'stage_product': 'mobile',
-            'android_signing': True,
-            'post_upload_include_platform': True,
-            'multi_locale': True,
-            'multi_locale_script': 'scripts/multil10n.py',
-        },
-        'linux-android-debug': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Android Debug %(branch)s',
-            'mozconfig': 'linux-android-debug/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/config/mozconfigs/android/debug',
-            'enable_nightly': False,
-            'enable_dep': False,
-            'enable_xulrunner': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': True,
-            'download_symbols': False,
-            'packageTests': True,
-            'enable_codesighs': False,
-            'enable_leaktests': False,
-            'create_snippet': False,
-            'create_partial': False,
-            'slaves': SLAVES['linux'],
-            'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3',
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'JAVA_HOME': '/tools/jdk6',
-                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-            },
-            'enable_opt_unittests': False,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-debug",
-            'stage_product': 'mobile',
-            'android_signing': True,
-            'post_upload_include_platform': True,
-        },
 }
 
 PROJECTS = {
@@ -1176,8 +1072,6 @@ BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
-del BRANCHES['mozilla-central']['platforms']['linux-android']
-del BRANCHES['mozilla-central']['platforms']['linux-android-debug']
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
@@ -1250,8 +1144,6 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
-del BRANCHES['mozilla-release']['platforms']['linux-android']
-del BRANCHES['mozilla-release']['platforms']['linux-android-debug']
 #-------------------------------------------------------------------------
 # Delete the below lines when 12.0 merges into release
 #-------------------------------------------------------------------------
@@ -1307,8 +1199,6 @@ BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['macosx64-debug']['enable_leaktests'] = False 
-del BRANCHES['mozilla-beta']['platforms']['linux-android']
-del BRANCHES['mozilla-beta']['platforms']['linux-android-debug']
 BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
 BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
@@ -1371,8 +1261,6 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
-del BRANCHES['mozilla-aurora']['platforms']['linux-android']
-del BRANCHES['mozilla-aurora']['platforms']['linux-android-debug']
 BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
 BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-aurora'
 # aurora nightlies should use our nightly signing server
@@ -1685,8 +1573,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-xul'):
         BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
-    if BRANCHES[branch]['platforms'].has_key('linux-android'):
-        BRANCHES[branch]['platforms']['linux-android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('linuxqt'):
         BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
