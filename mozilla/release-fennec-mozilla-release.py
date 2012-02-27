@@ -69,15 +69,15 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
-releaseConfig['notifyPlatforms']      = ('android', 'android-xul')
-releaseConfig['signedPlatforms']      = ('android', 'android-xul')
+releaseConfig['enUSPlatforms']        = ('linux-android',)
+releaseConfig['notifyPlatforms']      = ('linux-android',)
+releaseConfig['signedPlatforms']      = ('linux-android',)
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ('android',)
+releaseConfig['l10nPlatforms']       = ()
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -101,8 +101,7 @@ releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs
 releaseConfig['mozconfigs']          = {
-    'android': 'mobile/android/config/mozconfigs/android/release',
-    'android-xul': 'mobile/xul/config/mozconfigs/android/release',
+    'linux-android': 'mobile/config/mozconfigs/android/release',
 }
 
 # Misc configuration
@@ -119,8 +118,8 @@ releaseConfig['disablePushToMirrors']     = True
 
 releaseConfig['mozharness_config'] = {
     'platforms': {
-        'android-xul':
-            'multi_locale/release_mozilla-release_android-xul.json',
+        'linux-android':
+            'multi_locale/release_mozilla-release_linux-android.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
