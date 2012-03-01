@@ -60,7 +60,8 @@ BRANCHES = {
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'mobile_tinderbox_tree': 'Mobile1.1',
-        'stackwalk_cgi': None,
+        'download_symbols': True,
+        'download_symbols_ondemand': False,
     },
     'places': {
         'tinderbox_tree': 'Places',
