@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-beta',
         'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'default:',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
