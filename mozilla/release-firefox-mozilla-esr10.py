@@ -15,26 +15,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0.2esr'
-releaseConfig['appVersion']          = '10.0.2'
-releaseConfig['milestone']           = '10.0.2'
+releaseConfig['version']             = '10.0.3esr'
+releaseConfig['appVersion']          = '10.0.3'
+releaseConfig['milestone']           = '10.0.3'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_2esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_3esr'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.1esr'
-releaseConfig['oldAppVersion']       = '10.0.1'
+releaseConfig['oldVersion']          = '10.0.2esr'
+releaseConfig['oldAppVersion']       = '10.0.2'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0_1esr'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0_2esr'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = '10.0.4esrpre'
+releaseConfig['nextMilestone']       = '10.0.4esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': 'cc9013d9ffc1',
-        'relbranch': 'GECKO1001_2012020805_RELBRANCH',
+        'revision': 'cdc9bf49ac24',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -87,7 +87,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage-old.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -129,5 +129,3 @@ releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False
