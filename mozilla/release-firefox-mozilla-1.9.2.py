@@ -103,7 +103,6 @@ releaseConfig['verifyConfigs']       = {
     'win32':  'moz192-firefox-win32.cfg'
 }
 releaseConfig['snippetSchema']       = 1
-releaseConfig['releaseChannel']      = 'release'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
