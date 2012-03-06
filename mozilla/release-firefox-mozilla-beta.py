@@ -114,6 +114,7 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
+releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
