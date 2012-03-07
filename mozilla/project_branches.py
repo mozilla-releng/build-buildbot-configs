@@ -60,7 +60,6 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
-        'pgo_platforms': ['linux', 'linux64', 'win32'],
     },
     'graphics':{
         'enable_unittests': False,
@@ -90,7 +89,6 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
-        'pgo_platforms': ['linux', 'linux64', 'win32'],
         'periodic_pgo_interval': 3,
         'platforms': {
             'linux64': {
@@ -166,7 +164,6 @@ PROJECT_BRANCHES = {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
-        'pgo_platforms': ['linux', 'linux64', 'win32'],
     },
     'ux': {
         'branch_name': 'UX',
