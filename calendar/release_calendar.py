@@ -1,18 +1,20 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'beta'
+branchSuffix               = 'release'
 
-sourceRepoRevision         = '3efacbd036e0'
-mozillaRepoRevision        = 'THUNDERBIRD_11_0b4_RELEASE'
+sourceRepoRevision         = 'c916856be190'
+mozillaRepoRevision        = 'THUNDERBIRD_10_0_2_RELEASE'
 
-milestone                  = '11.0'
+milestone                  = '10.0'
 
-version                    = '1.3b3'
+version                    = '1.2.2'
 buildNumber                = 1
 
-oldVersion                 = '1.3b2'
+oldVersion                 = '1.2.1'
 oldBuildNumber             = 1
 
+relbranchOverride          = 'CAL100_20120201_RELBRANCH'
+mozillaRelbranchOverride   = 'COMM1002_2012021601_RELBRANCH'
 ### Nothing else needs to be changed ###
 
 hgUsername                 = 'calbld'
@@ -21,12 +23,10 @@ relbranchPrefix            = 'CAL'
 sourceRepoName             = 'comm-' + branchSuffix # buildbot branch name
 sourceRepoPath             = 'releases/' + sourceRepoName
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-relbranchOverride          = ''
 mozillaRepoPath            = 'releases/mozilla-' + branchSuffix
 # If blank, automation will create its own branch based on COMM_<date>_RELBRANCH
 # You typically want to set this to the gecko relbranch if doing a release off
 # a specific gecko version.
-mozillaRelbranchOverride   = ''
 inspectorRepoPath          = '' # leave empty if inspector is not to be tagged
 inspectorRepoRevision      = ''
 inspectorRelbranchOverride = ''
