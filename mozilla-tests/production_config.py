@@ -19,7 +19,7 @@ SLAVES['tegra_android-o'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
+GRAPH_CONFIG = ['--resultsServer', 'graphs-old.mozilla.org',
     '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {

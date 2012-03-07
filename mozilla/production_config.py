@@ -57,7 +57,7 @@ GLOBAL_VARS = {
     'aus2_host': 'aus2-staging.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
-    'graph_server': 'graphs.mozilla.org',
+    'graph_server': 'graphs-old.mozilla.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/clobberer/index.php',
     'disable_tinderbox_mail': True,
