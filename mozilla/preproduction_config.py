@@ -44,7 +44,7 @@ GLOBAL_VARS = {
     'aus2_host': 'preproduction-stage.build.mozilla.org',
     'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
-    'graph_server': 'graphs-stage.mozilla.org',#TODO
+    'graph_server': 'graphs.allizom.org',#TODO
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
