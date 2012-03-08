@@ -2,7 +2,7 @@ from copy import deepcopy
 
 from buildbot.steps.shell import WithProperties
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
+GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
     '--resultsLink', '/server/collect.cgi']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]

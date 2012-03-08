@@ -38,15 +38,15 @@ gloConfig = {
         'relbranchPrefix'            : 'COMM',
         'sourceRepoName'             : 'comm-1.9.2', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-1.9.2',
-        'sourceRepoRevision'         : 'b5b24fee5623',
+        'sourceRepoRevision'         : '124fa207d699',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM19225_20120124_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-1.9.2',
-        'mozillaRepoRevision'        : '73ffd608342e',
+        'mozillaRepoRevision'        : '85a0f57dd157',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'GECKO19227_2012021601_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM19228_2012030612_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -76,18 +76,18 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '3.1.19',
+        'version'                    : '3.1.20',
         #'appVersion'                 : version,
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '1.9.2.27',
+        'milestone'                  : '1.9.2.28',
         'buildNumber'                : 1,
-        'baseTag'                    : 'THUNDERBIRD_3_1_19',
+        'baseTag'                    : 'THUNDERBIRD_3_1_20',
         # 'The' old version is the revision from which we should generate update snippets.
-        'oldVersion'                 : '3.1.18',
+        'oldVersion'                 : '3.1.19',
         #'oldAppVersion'              : oldVersion,
-        'oldBuildNumber'             : 2,
-        'oldBaseTag'                 : 'THUNDERBIRD_3_1_18',
+        'oldBuildNumber'             : 1,
+        'oldBaseTag'                 : 'THUNDERBIRD_3_1_19',
         'oldBinaryName'              : 'Thunderbird',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'win32', 'macosx'),
@@ -134,15 +134,15 @@ gloConfig = {
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
         'oldRepoPath'                : 'releases/comm-beta',
-        'sourceRepoRevision'         : '45d5ebb045fe',
+        'sourceRepoRevision'         : 'c188d94b4df1',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : '432b5385d14c',
+        'mozillaRepoRevision'        : '07d1ca85de54',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'COMM110_2012022905_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM110_2012030704_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -173,14 +173,14 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '11.0b4',
-        'oldVersion'                 : '11.0b3',
+        'version'                    : '11.0b5',
+        'oldVersion'                 : '11.0b4',
         'appVersion'                 : '11.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '11.0',
         'buildNumber'                : 1,
         'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_11_0b4',
-        'oldBaseTag'                 : 'THUNDERBIRD_11_0b3',
+        'baseTag'                    : 'THUNDERBIRD_11_0b5',
+        'oldBaseTag'                 : 'THUNDERBIRD_11_0b4',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '11.0',
@@ -336,15 +336,15 @@ gloConfig = {
         'releaseChannel'             : 'esr',
         'sourceRepoPath'             : 'releases/comm-esr10',
         'oldRepoPath'                : 'releases/comm-esr10',
-        'sourceRepoRevision'         : 'cd2de17badb9',
+        'sourceRepoRevision'         : 'f0e5d995d302',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'TB_COMM100_20120208_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-esr10',
-        'mozillaRepoRevision'        : '9b1d4c3f34e9',
+        'mozillaRepoRevision'        : 'b7f233ffae4b',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'COMM1002_2012021610_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM1003_2012030601_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -375,17 +375,17 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '10.0.2esr',
-        'oldVersion'                 : '10.0.1esr',
-        'appVersion'                 : '10.0.2', # no 'b1' suffix for betas
-        'oldAppVersion'              : '10.0.1',
+        'version'                    : '10.0.3esr',
+        'oldVersion'                 : '10.0.2esr',
+        'appVersion'                 : '10.0.3', # no 'b1' suffix for betas
+        'oldAppVersion'              : '10.0.2',
         'buildNumber'                : 1,
         'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_10_0_2esr',
-        'oldBaseTag'                 : 'THUNDERBIRD_10_0_1esr',
+        'baseTag'                    : 'THUNDERBIRD_10_0_3esr',
+        'oldBaseTag'                 : 'THUNDERBIRD_10_0_2esr',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '10.0.2',
+        'milestone'                  : '10.0.3',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),

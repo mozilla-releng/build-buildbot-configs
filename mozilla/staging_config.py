@@ -43,7 +43,7 @@ GLOBAL_VARS = {
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
-    'graph_server': 'graphs-stage.mozilla.org',
+    'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'disable_tinderbox_mail': True,
