@@ -18,7 +18,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '10.0.3esr'
 releaseConfig['appVersion']          = '10.0.3'
 releaseConfig['milestone']           = '10.0.3'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_10_0_3esr'
 #  Old version info
 releaseConfig['oldVersion']          = '10.0.2esr'
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '039e4d5bb2ce',
+        'revision': 'a3a55f56836d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
