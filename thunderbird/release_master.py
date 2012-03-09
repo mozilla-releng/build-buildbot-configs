@@ -134,15 +134,15 @@ gloConfig = {
         'sourceRepoName'             : 'comm-beta', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-beta',
         'oldRepoPath'                : 'releases/comm-beta',
-        'sourceRepoRevision'         : 'c79197dcbc30',
+        'sourceRepoRevision'         : 'e2eba41d5d80',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'COMM110_20120307_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-beta',
-        'mozillaRepoRevision'        : '07d1ca85de54',
+        'mozillaRepoRevision'        : '7c1525a92228',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
         # 'You' typically want to set this to the gecko relbranch if doing a release off
         # 'a' specific gecko version.
-        'mozillaRelbranchOverride'   : 'COMM110_2012030704_RELBRANCH', # put Gecko relbranch here that we base upon
+        'mozillaRelbranchOverride'   : 'COMM110_2012030905_RELBRANCH', # put Gecko relbranch here that we base upon
         'inspectorRepoPath'          : '', #'dom-inspector', # leave empty if inspector is not to be tagged
         'inspectorRepoRevision'      : '',
         'inspectorRelbranchOverride' : '',
@@ -173,14 +173,14 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '11.0b5',
-        'oldVersion'                 : '11.0b4',
+        'version'                    : '11.0b6',
+        'oldVersion'                 : '11.0b5',
         'appVersion'                 : '11.0', # no 'b1' suffix for betas
         'oldAppVersion'              : '11.0',
-        'buildNumber'                : 2,
-        'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_11_0b5',
-        'oldBaseTag'                 : 'THUNDERBIRD_11_0b4',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 2,
+        'baseTag'                    : 'THUNDERBIRD_11_0b6',
+        'oldBaseTag'                 : 'THUNDERBIRD_11_0b5',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
         'milestone'                  : '11.0',
