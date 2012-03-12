@@ -1,20 +1,20 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'release'
+branchSuffix               = 'beta'
 
-sourceRepoRevision         = '7c9ce63b318f'
-mozillaRepoRevision        = 'THUNDERBIRD_10_0_2_RELEASE'
+sourceRepoRevision         = 'e2eba41d5d80'
+mozillaRepoRevision        = 'THUNDERBIRD_11_0b5_RELEASE'
 
-milestone                  = '10.0'
+milestone                  = '11.0'
 
-version                    = '1.2.2'
+version                    = '1.3'
 buildNumber                = 1
 
-oldVersion                 = '1.2.1'
+oldVersion                 = '1.2.2'
 oldBuildNumber             = 1
 
-relbranchOverride          = 'CAL100_20120201_RELBRANCH'
-mozillaRelbranchOverride   = 'COMM1002_2012021601_RELBRANCH'
+relbranchOverride          = ''
+mozillaRelbranchOverride   = ''
 ### Nothing else needs to be changed ###
 
 hgUsername                 = 'calbld'
