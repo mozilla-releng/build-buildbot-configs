@@ -127,7 +127,6 @@ PROJECT_BRANCHES = {
 #    },
     'profiling': {
         'enable_talos': True,
-        'enabled_products': ['firefox'],
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
