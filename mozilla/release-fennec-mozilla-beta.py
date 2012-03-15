@@ -107,6 +107,7 @@ releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
     'android-xul': 'mobile/xul/config/mozconfigs/android/release',
 }
+releaseConfig['releaseChannel']      = 'beta'
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
