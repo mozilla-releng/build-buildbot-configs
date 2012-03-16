@@ -274,6 +274,8 @@ PROJECT_BRANCHES = {
             'remote-tp4m_nochrome': 0,
             'remote-twinopen': 0,
             'remote-tzoom': 0,
+            'remote-trobocop': 1,
+            'remote-trobocheck': 1,
         },
     },
 }
