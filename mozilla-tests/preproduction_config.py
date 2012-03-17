@@ -5,8 +5,8 @@ SLAVES = {
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,80)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,67)]),
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85)]),
-    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,85)]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,81) + range(82,86)]),
+    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,83) + [84,85]]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,289)]),
 }
 
@@ -16,7 +16,7 @@ SLAVES['tegra_android-o'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs-stage.mozilla.org',
+GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
     '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {

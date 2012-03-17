@@ -43,7 +43,7 @@ GLOBAL_VARS = {
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
-    'graph_server': 'graphs-stage.mozilla.org',
+    'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'disable_tinderbox_mail': True,
@@ -51,13 +51,13 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-        ('dev-master01.build.scl1.mozilla.com:9009', True, 1),
+#        ('dev-master01.build.scl1.mozilla.com:9009', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('staging-master.build.mozilla.org:9009', True, 1),
+#        ('staging-master.build.mozilla.org:9009', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',

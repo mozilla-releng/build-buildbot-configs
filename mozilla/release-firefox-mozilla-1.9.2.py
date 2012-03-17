@@ -15,25 +15,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.27'
+releaseConfig['version']             = '3.6.28'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.27'
+releaseConfig['milestone']           = '1.9.2.28'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_3_6_27'
+releaseConfig['baseTag']             = 'FIREFOX_3_6_28'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.26'
+releaseConfig['oldVersion']          = '3.6.27'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 2
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_26'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_27'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.28pre'
-releaseConfig['nextMilestone']       = '1.9.2.28pre'
+releaseConfig['nextAppVersion']      = '3.6.29pre'
+releaseConfig['nextMilestone']       = '1.9.2.29pre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-1.9.2',
         'path': 'releases/mozilla-1.9.2',
-        'revision': 'fd6d19a5ae84',
+        'revision': 'f66f339fd046',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -103,7 +103,6 @@ releaseConfig['verifyConfigs']       = {
     'win32':  'moz192-firefox-win32.cfg'
 }
 releaseConfig['snippetSchema']       = 1
-releaseConfig['releaseChannel']      = 'release'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -111,10 +110,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'releases/mozilla-release'
-releaseConfig['majorUpdateToVersion']   = '10.0.2'
+releaseConfig['majorUpdateToVersion']   = '11.0'
 releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
-releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_10_0_2'
+releaseConfig['majorUpdateBuildNumber'] = 2
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_11_0'
 releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.org/%locale%/firefox/latest/details/from-3.6.html'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'

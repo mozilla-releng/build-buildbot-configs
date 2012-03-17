@@ -14,6 +14,7 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-beta':    'org.mozilla.firefox_beta',
                          'mozilla-aurora':  'org.mozilla.fennec_aurora',
                          'mozilla-release': 'org.mozilla.firefox',
+                         'mozilla-esr10':   'org.mozilla.firefox',
                        }
 
 MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
@@ -300,6 +301,16 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
+    },
+    'remote-trobocop': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+    },
+    'remote-trobocheck': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'trobocheck', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-tp4m': {
         'enable_by_default': True,
@@ -1221,12 +1232,10 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
 
 #-------------------------------------------------------------------------
-# Remove a branch from this tuple when we merge Firefox 11.0 into it.
+# Delete all references to linux-android when Android native ships off
+# mozilla-release.
 #-------------------------------------------------------------------------
-LINUX_ANDROID_BRANCHES = ('mozilla-release',)
-#-------------------------------------------------------------------------
-# Delete the following when 11.0 is released.
-#-------------------------------------------------------------------------
+LINUX_ANDROID_BRANCHES = ('mozilla-esr10',)
 for branch in BRANCHES.keys():
     if branch in LINUX_ANDROID_BRANCHES:
         for p in ('android', 'android-xul'):
@@ -1236,7 +1245,7 @@ for branch in BRANCHES.keys():
         if 'linux-android' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux-android']
 #-------------------------------------------------------------------------
-# End 11.0 hacks.
+# End Android native hacks.
 #-------------------------------------------------------------------------
 #-------------------------------------------------------------------------
 # Delete the following when 12.0 moves to beta and then again to release

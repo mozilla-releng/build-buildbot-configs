@@ -15,25 +15,25 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0.2'
+releaseConfig['version']             = '11.0'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = releaseConfig['version']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_2'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FIREFOX_11_0'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.1'
+releaseConfig['oldVersion']          = '10.0.2'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0_1'
+releaseConfig['oldBaseTag']          = 'FIREFOX_10_0_2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['version']
-releaseConfig['nextMilestone']       = releaseConfig['version']
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'bd611a3115b0',
+        'revision': '398407cca90c',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -65,7 +65,7 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
@@ -87,7 +87,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -110,10 +110,10 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
-    'linux': 'xulrunner/config/mozconfigs/linux32/release',
-    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
-    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
-    'win32': 'xulrunner/config/mozconfigs/win32/release',
+    'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
+    'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 
 # Partner repack configuration
@@ -131,5 +131,3 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False

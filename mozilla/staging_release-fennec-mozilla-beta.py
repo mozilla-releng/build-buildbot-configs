@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-beta',
         'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'default:',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
@@ -110,6 +110,7 @@ releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
     'android-xul': 'mobile/xul/config/mozconfigs/android/release',
 }
+releaseConfig['releaseChannel']      = 'beta'
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False

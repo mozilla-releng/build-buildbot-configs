@@ -34,7 +34,7 @@ BRANCH_PRIORITIES = {
     'elm': 4,
     'holly': 4,
     'larch': 4,
-    'maple': 4,
+    'maple': 2,
     'oak': 4,
     'pine': 4,
 }

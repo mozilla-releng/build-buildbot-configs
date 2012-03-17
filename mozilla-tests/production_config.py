@@ -7,10 +7,10 @@ SLAVES = {
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,67) \
           if x not in [7]]), # bug 655437
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(3,10) + range(11,85)]),
-    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(3,10) + range(11,85)]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(4,10) + range(11,81) + [82,84]]),
+    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(4,10) + range(11,83) + [84,85]]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(31,289) \
-          if x not in range(122,129) + [131,137,143,147,161]]), # bug 701766
+          if x not in range(122,129) + [131,137,143,147,161,178,180,184,185,186,193,197,226,239,241]]), # bug 701766 & 731339
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
@@ -19,7 +19,7 @@ SLAVES['tegra_android-o'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
-GRAPH_CONFIG = ['--resultsServer', 'graphs-old.mozilla.org',
+GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
     '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {
@@ -60,7 +60,8 @@ BRANCHES = {
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'mobile_tinderbox_tree': 'Mobile1.1',
-        'stackwalk_cgi': None,
+        'download_symbols': True,
+        'download_symbols_ondemand': False,
     },
     'places': {
         'tinderbox_tree': 'Places',

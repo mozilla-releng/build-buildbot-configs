@@ -26,6 +26,7 @@ PROJECT_BRANCHES = {
     },
     'build-system': {
         'enable_talos': True,
+        'pgo_strategy': 'per-checkin',
     },
     # DISABLED because of builder limit problems - bug 721854
 #    'devtools':{
@@ -59,7 +60,6 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
-        'pgo_platforms': ['linux', 'linux64', 'win32'],
     },
     'graphics':{
         'enable_unittests': False,
@@ -89,7 +89,6 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
-        'pgo_platforms': ['linux', 'linux64', 'win32'],
         'periodic_pgo_interval': 3,
         'platforms': {
             'linux64': {
@@ -128,7 +127,6 @@ PROJECT_BRANCHES = {
 #    },
     'profiling': {
         'enable_talos': True,
-        'enabled_products': ['firefox'],
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
@@ -164,6 +162,7 @@ PROJECT_BRANCHES = {
     'services-central': {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
+        'pgo_strategy': 'periodic',
     },
     'ux': {
         'branch_name': 'UX',
@@ -230,10 +229,16 @@ PROJECT_BRANCHES = {
     'larch': {},
     # customizations while booked for bcp47 project as per bug 667734
     'maple': {
-        'enable_talos': False,
+        'enable_talos': True,
         'enable_nightly': True,
         'create_snippet': True,
+        'create_mobile_snippet': True,
         'create_partial': True,
+        'platforms': {
+            'win64': {
+                'dont_build': True,
+            },
+        },
     },
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
@@ -269,6 +274,8 @@ PROJECT_BRANCHES = {
             'remote-tp4m_nochrome': 0,
             'remote-twinopen': 0,
             'remote-tzoom': 0,
+            'remote-trobocop': 1,
+            'remote-trobocheck': 1,
         },
     },
 }
