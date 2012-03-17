@@ -479,6 +479,7 @@ BRANCHES['comm-central-trunk']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-trunk']['create_snippet'] = True
+BRANCHES['comm-central-trunk']['update_channel'] = 'nightly'
 BRANCHES['comm-central-trunk']['create_partial'] = True
 BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
@@ -522,6 +523,7 @@ BRANCHES['comm-aurora']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-aurora']['create_snippet'] = True
+BRANCHES['comm-aurora']['update_channel'] = 'aurora'
 BRANCHES['comm-aurora']['create_partial'] = True
 BRANCHES['comm-aurora']['create_partial_l10n'] = True
 BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
@@ -565,6 +567,7 @@ BRANCHES['comm-beta']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-beta']['create_snippet'] = True
+BRANCHES['comm-beta']['update_channel'] = 'beta'
 BRANCHES['comm-beta']['create_partial'] = True
 BRANCHES['comm-beta']['create_partial_l10n'] = True
 BRANCHES['comm-beta']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-beta'
@@ -608,6 +611,7 @@ BRANCHES['comm-release']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-release']['create_snippet'] = True
+BRANCHES['comm-release']['update_channel'] = 'release'
 BRANCHES['comm-release']['create_partial'] = True
 BRANCHES['comm-release']['create_partial_l10n'] = True
 BRANCHES['comm-release']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
@@ -652,6 +656,7 @@ BRANCHES['comm-2.0']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-2.0']['create_snippet'] = True
+BRANCHES['comm-2.0']['update_channel'] = 'nightly'
 BRANCHES['comm-2.0']['create_partial'] = True
 BRANCHES['comm-2.0']['create_partial_l10n'] = True
 BRANCHES['comm-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-2.0'
@@ -716,6 +721,7 @@ BRANCHES['comm-1.9.1']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
+BRANCHES['comm-1.9.1']['update_channel'] = 'nightly'
 BRANCHES['comm-1.9.1']['create_partial'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
