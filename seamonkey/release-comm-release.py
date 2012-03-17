@@ -86,6 +86,12 @@ releaseConfig['verifyConfigs']              = {
     'macosx64': 'mozRelease-seamonkey-mac64.cfg',
     'win32': 'mozRelease-seamonkey-win32.cfg'
 }
+releaseConfig['mozconfigs']                 = {
+    'linux': 'suite/config/mozconfigs/linux32/release',
+    'linux64': 'suite/config/mozconfigs/linux64/release',
+    'macosx64': 'suite/config/mozconfigs/macosx-universal/release',
+    'win32': 'suite/config/mozconfigs/win32/release',
+}
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath']        = None
