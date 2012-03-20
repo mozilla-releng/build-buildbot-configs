@@ -8,7 +8,6 @@ HG_DIR = build
 MASTER_NAME = $(error MASTER_NAME must be defined (see setup-master.py -l for a list))
 DATABASE = tm-b01-master01.mozilla.org/buildbot
 MYSQL_CONFIG = $(HOME)/.$(MASTER_NAME)_update_from_files.conf
-CRONTAB = /etc/cron.d/$(MASTER_NAME)
 VIRTUALENV_PYTHON = $(BASEDIR)/bin/python
 PIP = $(BASEDIR)/bin/pip
 BUILDBOT = $(BASEDIR)/bin/buildbot
@@ -32,7 +31,6 @@ done:
 	@echo
 	@echo You probably want to update at least the following files to contain accurate passwords/descriptions:
 	@echo BuildSlaves.py, passwords.py, $(MYSQL_CONFIG)
-	@echo You should also run the "cron" target as root, with the same variables set.
 
 virtualenv:
 	$(VIRTUALENV) --distribute --no-site-packages -p $(PYTHON) $(BASEDIR)
@@ -67,11 +65,3 @@ other-files:
 	echo "database = mysql://buildbot:password@$(DATABASE)" >> $(MYSQL_CONFIG)
 	echo "master = http://this-master:port" >> $(MYSQL_CONFIG)
 	echo "name = $(MASTER_NAME)" >> $(MYSQL_CONFIG)
-
-cron:
-	echo "MAILTO=release@mozilla.com" > $(CRONTAB)
-	echo "@hourly cltbld (source $(HOME)/.bash_profile && $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/watch_twistd_log.py -t .$(MASTER_NAME)-last-time.txt -n $(MASTER_NAME) -f cltbld@`hostname --fqdn` -e release@mozilla.com $(BASEDIR)/master)" >> $(CRONTAB)
-	echo "15 * * * * cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_cleanup 2>/dev/null && (source $(HOME)/.bash_profile && nice -n 19 $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/master_cleanup.py -t4 $(BASEDIR)/master ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_cleanup) >> cleanup.log 2>&1" >> $(CRONTAB)
-	echo "*/2 * * * *	cltbld lockfile -20 -r 3 $(HOME)/lockfile.bbdb 2>/dev/null && (source $(HOME)/.bash_profile && cd $(BASEDIR)/master; time nice $(VIRTUALENV_PYTHON) $(BASEDIR)/buildbotcustom/bin/update_from_files.py -c $(MYSQL_CONFIG) . ; rm -f $(HOME)/lockfile.bbdb ) >> update.log 2>&1" >> $(CRONTAB)
-	echo "@hourly cltbld find $(HOME) -name lockfile.bbdb -mmin +360 -delete" >> $(CRONTAB)
-	chmod 644 $(CRONTAB)

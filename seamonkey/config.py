@@ -131,7 +131,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
-            'mozconfig_dep': 'linux/%(branch)s/dep',
+            'src_mozconfig': 'suite/config/mozconfigs/linux32/nightly',
             'profiled_build': False,
             'builds_before_reboot': None,
             'build_space': 8,
@@ -166,7 +166,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
-            'mozconfig_dep': 'linux64/%(branch)s/dep',
+            'src_mozconfig': 'suite/config/mozconfigs/linux64/nightly',
             'profiled_build': False,
             'builds_before_reboot': None,
             'build_space': 6,
@@ -203,7 +203,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
-            'mozconfig_dep': 'macosx/%(branch)s/dep',
+            'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
             'profiled_build': False,
             'builds_before_reboot': None,
             'build_space': 8,
@@ -239,7 +239,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
-            'mozconfig_dep': 'macosx64/%(branch)s/dep',
+            'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
             'profiled_build': False,
             'builds_before_reboot': None,
             'build_space': 8,
@@ -274,7 +274,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
-            'mozconfig_dep': 'win32/%(branch)s/dep',
+            'src_mozconfig': 'suite/config/mozconfigs/win32/nightly',
             'profiled_build': False,
             'builds_before_reboot': 25,
             'build_space': 9,
@@ -312,7 +312,8 @@ PLATFORM_VARS = {
             'app_name': 'suite',
             'brand_name': 'SeaMonkey',
             'base_name': 'Linux %(branch)s leak test',
-            'mozconfig_dep': 'linux/%(branch)s/debug',
+            'mozconfig': 'linux/%(branch)s/debug',
+            'src_mozconfig': 'suite/config/mozconfigs/linux32/debug',
             'profiled_build': False,
             'builds_before_reboot': None,
             'download_symbols': True,
@@ -339,7 +340,8 @@ PLATFORM_VARS = {
             'app_name': 'suite',
             'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.5 %(branch)s leak test',
-            'mozconfig_dep': 'macosx/%(branch)s/debug',
+            'mozconfig': 'macosx/%(branch)s/debug',
+            'src_mozconfig': 'suite/config/mozconfigs/macosx32/debug',
             'profiled_build': False,
             'builds_before_reboot': None,
             'download_symbols': True,
@@ -363,7 +365,8 @@ PLATFORM_VARS = {
             'app_name': 'suite',
             'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s leak test',
-            'mozconfig_dep': 'macosx64/%(branch)s/debug',
+            'mozconfig': 'macosx64/%(branch)s/debug',
+            'src_mozconfig': 'suite/config/mozconfigs/macosx64/debug',
             'profiled_build': False,
             'builds_before_reboot': None,
             'download_symbols': True,
@@ -387,7 +390,8 @@ PLATFORM_VARS = {
             'app_name': 'suite',
             'brand_name': 'SeaMonkey',
             'base_name': 'WINNT 5.2 %(branch)s leak test',
-            'mozconfig_dep': 'win32/%(branch)s/debug',
+            'mozconfig': 'win32/%(branch)s/debug',
+            'src_mozconfig': 'suite/config/mozconfigs/win32/debug',
             'profiled_build': False,
             'builds_before_reboot': 25,
             'download_symbols': True,
@@ -475,6 +479,7 @@ BRANCHES['comm-central-trunk']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central-trunk']['create_snippet'] = True
+BRANCHES['comm-central-trunk']['update_channel'] = 'nightly'
 BRANCHES['comm-central-trunk']['create_partial'] = True
 BRANCHES['comm-central-trunk']['create_partial_l10n'] = True
 BRANCHES['comm-central-trunk']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-central-trunk'
@@ -518,6 +523,7 @@ BRANCHES['comm-aurora']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-aurora']['create_snippet'] = True
+BRANCHES['comm-aurora']['update_channel'] = 'aurora'
 BRANCHES['comm-aurora']['create_partial'] = True
 BRANCHES['comm-aurora']['create_partial_l10n'] = True
 BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
@@ -561,6 +567,7 @@ BRANCHES['comm-beta']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-beta']['create_snippet'] = True
+BRANCHES['comm-beta']['update_channel'] = 'beta'
 BRANCHES['comm-beta']['create_partial'] = True
 BRANCHES['comm-beta']['create_partial_l10n'] = True
 BRANCHES['comm-beta']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-beta'
@@ -604,6 +611,7 @@ BRANCHES['comm-release']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-release']['create_snippet'] = True
+BRANCHES['comm-release']['update_channel'] = 'release'
 BRANCHES['comm-release']['create_partial'] = True
 BRANCHES['comm-release']['create_partial_l10n'] = True
 BRANCHES['comm-release']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-release'
@@ -648,6 +656,7 @@ BRANCHES['comm-2.0']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-2.0']['create_snippet'] = True
+BRANCHES['comm-2.0']['update_channel'] = 'nightly'
 BRANCHES['comm-2.0']['create_partial'] = True
 BRANCHES['comm-2.0']['create_partial_l10n'] = True
 BRANCHES['comm-2.0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-2.0'
@@ -712,6 +721,7 @@ BRANCHES['comm-1.9.1']['localesURL'] = \
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-1.9.1']['create_snippet'] = True
+BRANCHES['comm-1.9.1']['update_channel'] = 'nightly'
 BRANCHES['comm-1.9.1']['create_partial'] = True
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'
 BRANCHES['comm-1.9.1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/SeaMonkey/comm-1.9.1'

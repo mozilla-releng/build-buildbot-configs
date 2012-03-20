@@ -305,12 +305,12 @@ SUITES = {
     'remote-trobocop': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-trobocheck': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobocheck', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-tp4m': {
         'enable_by_default': True,

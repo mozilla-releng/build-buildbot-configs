@@ -271,8 +271,12 @@ for platform in releaseConfig['enUSPlatforms']:
         unittestMasters = None
         unittestBranch = None
 
+    platform_env = pf['env'].copy()
+    if 'update_channel' in branchConfig:
+        platform_env['MOZ_UPDATE_CHANNEL'] = branchConfig['update_channel']
+
     build_factory = CCReleaseBuildFactory(
-        env=pf['env'],
+        env=platform_env,
         objdir=pf['platform_objdir'],
         platform=platform,
         hgHost=branchConfig['hghost'],
@@ -288,6 +292,7 @@ for platform in releaseConfig['enUSPlatforms']:
         configSubDir=branchConfig['config_subdir'],
         profiledBuild=pf['profiled_build'],
         mozconfig=mozconfig,
+        srcMozconfig=releaseConfig.get('mozconfigs', {}).get(platform),
         buildRevision='%s_RELEASE' % releaseConfig['baseTag'],
         stageServer=branchConfig['stage_server'],
         stageUsername=branchConfig['stage_username'],
@@ -408,7 +413,8 @@ for platform in releaseConfig['l10nPlatforms']:
         'factory': l10n_verification_factory,
         'properties': {'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform))}
     })
-
+    
+releaseChannel = releaseConfig.get('releaseChannel', branchConfig['update_channel'])
 updates_factory = ReleaseUpdatesFactory(
     hgHost=branchConfig['hghost'],
     repoPath=releaseConfig['sourceRepoPath'],
@@ -440,7 +446,7 @@ updates_factory = ReleaseUpdatesFactory(
     ausServerUrl=releaseConfig['ausServerUrl'],
     hgSshKey=releaseConfig['hgSshKey'],
     hgUsername=releaseConfig['hgUsername'],
-    releaseChannel=releaseConfig['releaseChannel'],
+    releaseChannel=releaseChannel,
     clobberURL=branchConfig['base_clobber_url'],
     oldRepoPath=releaseConfig['oldRepoPath'],
     releaseNotesUrl=releaseConfig['releaseNotesUrl'],
