@@ -1,6 +1,9 @@
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 
+# temporary hack for 12.0b2 build1
+releaseConfig['skip_tag'] = 1
+
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com','Callek@gmail.com']
 releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
