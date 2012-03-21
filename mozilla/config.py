@@ -1198,7 +1198,6 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
-BRANCHES['mozilla-beta']['platforms']['macosx64-debug']['enable_leaktests'] = False 
 BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
 BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True

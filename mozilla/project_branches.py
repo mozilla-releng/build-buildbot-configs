@@ -254,7 +254,7 @@ PROJECT_BRANCHES = {
     },
     'pine': {
         'enable_unittests': False,
-        'enabled_products': ['firefox'],
+        'enabled_products': ['firefox', 'mobile'],
         'talos_suites': {
             'tp': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
             'chrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
@@ -263,17 +263,6 @@ PROJECT_BRANCHES = {
             'dirty': 0,
             'svg': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
             'dromaeo': 0,
-            # hate that remote talos still show up when mobile product is not being requested
-            # but that's not part of the bug i'm doing this for, so leaving for now
-            'remote-ts': 0,
-            'remote-tdhtml': 0,
-            'remote-tsvg': 0,
-            'remote-tsspider': 0,
-            'remote-tpan': 0,
-            'remote-tp4m': 0,
-            'remote-tp4m_nochrome': 0,
-            'remote-twinopen': 0,
-            'remote-tzoom': 0,
             'remote-trobocop': 1,
             'remote-trobocheck': 1,
         },
