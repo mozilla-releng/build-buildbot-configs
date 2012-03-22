@@ -1069,8 +1069,7 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-
+BRANCHES['mozilla-central']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
@@ -1090,25 +1089,8 @@ BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 # End Firefox 12 mozilla-release requirements
 ###########
 
-
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-
-###########
-# When Firefox 12 is on mozilla-beta we can remove these on/off switches
-###########
-BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chrome.2_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-###########
-# End Firefox 12 mozilla-beta requirements
-###########
-
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
