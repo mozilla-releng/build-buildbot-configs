@@ -736,7 +736,7 @@ for gloKey in gloConfig:
     builders.append({
         'name': 'tag_%s' % gloKey,
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
+        'category': 'release-%s' % gloKey,
         'builddir': 'tag_%s' % gloKey,
         'factory': tag_factory,
     })
@@ -764,7 +764,7 @@ for gloKey in gloConfig:
     builders.append({
         'name': 'source_%s' % gloKey,
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
+        'category': 'release-%s' % gloKey,
         'builddir': 'source_%s' % gloKey,
         'factory': source_factory,
     })
@@ -788,7 +788,7 @@ for gloKey in gloConfig:
         builders.append({
            'name': 'xulrunner_source_%s' % gloKey,
            'slavenames': branchConfig['platforms']['linux']['slaves'],
-           'category': 'release',
+           'category': 'release-%s' % gloKey,
            'builddir': 'xulrunner_source_%s' % gloKey,
            'factory': xulrunner_source_factory
         })
@@ -849,7 +849,7 @@ for gloKey in gloConfig:
         builders.append({
             'name': '%s_build_%s' % (platform, gloKey),
             'slavenames': pf['slaves'],
-            'category': 'release',
+            'category': 'release-%s' % gloKey,
             'builddir': '%s_build_%s' % (platform, gloKey),
             'factory': build_factory,
         })
@@ -886,7 +886,7 @@ for gloKey in gloConfig:
             builders.append({
                 'name': '%s_repack_%s' % (platform, gloKey),
                 'slavenames': pf['slaves'],
-                'category': 'release',
+                'category': 'release-%s' % gloKey,
                 'builddir': '%s_repack_%s' % (platform, gloKey),
                 'factory': repack_factory,
             })
@@ -935,7 +935,7 @@ for gloKey in gloConfig:
                         'slavenames': tpf['test-slaves'],
                         'builddir': '%s-unittest-%s-%s' % (test_platform, suites_name, gloKey),
                         'factory': release_packaged_tests_factory,
-                        'category': 'release',
+                        'category': 'release-%s' % gloKey,
                     }
                     test_builders.append(builder)
 
@@ -966,7 +966,7 @@ for gloKey in gloConfig:
             builders.append({
                 'name': 'partner_repack_%s_%s' % (platform, gloKey),
                 'slavenames': branchConfig['platforms']['macosx']['slaves'],
-                'category': 'release',
+                'category': 'release-%s' % gloKey,
                 'builddir': 'partner_repack_%s_%s' % (platform, gloKey),
                 'factory': partner_repack_factory,
             })
@@ -995,7 +995,7 @@ for gloKey in gloConfig:
         builders.append({
             'name': '%s_l10n_verification_%s' % (platform, gloKey),
             'slavenames': l10n_verification_slaves,
-            'category': 'release',
+            'category': 'release-%s' % gloKey,
             'builddir': '%s_l10n_verification_%s' % (platform, gloKey),
             'factory': l10n_verification_factory,
         })
@@ -1046,7 +1046,7 @@ for gloKey in gloConfig:
     builders.append({
         'name': 'updates_%s' % gloKey,
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
+        'category': 'release-%s' % gloKey,
         'builddir': 'updates_%s' % gloKey,
         'factory': updates_factory,
     })
@@ -1063,7 +1063,7 @@ for gloKey in gloConfig:
         builders.append({
             'name': '%s_update_verify_%s' % (platform, gloKey),
             'slavenames': branchConfig['platforms'][platform]['slaves'],
-            'category': 'release',
+            'category': 'release-%s' % gloKey,
             'builddir': '%s_update_verify_%s' % (platform, gloKey),
             'factory': update_verify_factory,
         })
@@ -1079,7 +1079,7 @@ for gloKey in gloConfig:
     builders.append({
         'name': 'final_verification_%s' % gloKey,
         'slavenames': branchConfig['platforms']['linux']['slaves'],
-        'category': 'release',
+        'category': 'release-%s' % gloKey,
         'builddir': 'final_verification_%s' % gloKey,
         'factory': final_verification_factory,
     })
@@ -1128,7 +1128,7 @@ for gloKey in gloConfig:
         builders.append({
             'name': 'major_update_%s' % gloKey,
             'slavenames': branchConfig['platforms']['linux']['slaves'],
-            'category': 'release',
+            'category': 'release-%s' % gloKey,
             'builddir': 'major_update_%s' % gloKey,
             'factory': major_update_factory,
         })
@@ -1144,7 +1144,7 @@ for gloKey in gloConfig:
             builders.append({
                 'name': '%s_major_update_verify_%s' % (platform, gloKey),
                 'slavenames': branchConfig['platforms'][platform]['slaves'],
-                'category': 'release',
+                'category': 'release-%s' % gloKey,
                 'builddir': '%s_major_update_verify_%s' % (platform, gloKey),
                 'factory': major_update_verify_factory,
             })
