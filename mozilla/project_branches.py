@@ -254,8 +254,18 @@ PROJECT_BRANCHES = {
     },
     'pine': {
         'enable_unittests': False,
-        'enable_talos': False,
-        'enabled_products': ['firefox'],
+        'enabled_products': ['firefox', 'mobile'],
+        'talos_suites': {
+            'tp': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'chrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'chrome_mac': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'nochrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'dirty': 0,
+            'svg': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
+            'dromaeo': 0,
+            'remote-trobocop': 1,
+            'remote-trobocheck': 1,
+        },
     },
 }
 
