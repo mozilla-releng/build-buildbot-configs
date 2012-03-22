@@ -1180,7 +1180,7 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 # Let's load peptest for the following branches:
-for branch in ('try',  ):
+for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             continue
