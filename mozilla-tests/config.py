@@ -276,6 +276,12 @@ SUITES = {
         'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"'],
         'options': ({}, WIN7_ONLY),
     },
+    # Next iteration of tp/tp5/tp5r.  Will be running side by side on m-c, then turned on for m-c/m-i.
+    'tprow': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5row', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median', '--sampleConfig', 'sample.2.config'],
+        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
+    },
     # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
