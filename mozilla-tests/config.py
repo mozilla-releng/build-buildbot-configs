@@ -1081,7 +1081,7 @@ BRANCHES['mozilla-central']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFO
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ###########
-# When Firefox 12 is on mozilla-release we can remove these on/off switches
+# When Firefox 13 is on mozilla-release we can remove these on/off switches
 ###########
 BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
@@ -1092,11 +1092,26 @@ BRANCHES['mozilla-release']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-release']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 ###########
-# End Firefox 12 mozilla-release requirements
+# End Firefox 13 mozilla-release requirements
 ###########
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
+
+###########
+# When Firefox 13 is on mozilla-beta we can remove these on/off switches
+###########
+BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['chrome.2_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+###########
+# End Firefox 13 mozilla-beta requirements
+###########
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
