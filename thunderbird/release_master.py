@@ -235,9 +235,9 @@ gloConfig = {
         'sourceRepoName'             : 'comm-release', # buildbot branch name
         'sourceRepoPath'             : 'releases/comm-release',
         'oldRepoPath'                : 'releases/comm-release',
-        'sourceRepoRevision'         : '6ccee99d387c',
+        'sourceRepoRevision'         : '832c448e5d0a',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
-        'relbranchOverride'          : 'TB_COMM110_20120309_RELBRANCH',
+        'relbranchOverride'          : '',
         'mozillaRepoPath'            : 'releases/mozilla-release',
         'mozillaRepoRevision'        : '75b17db9b6e9',
         # 'If' blank, automation will create its own branch based on COMM_<date>_RELBRANCH
@@ -274,17 +274,17 @@ gloConfig = {
         # 'appVersion' and oldAppVersion are optional definitions used in places that
         # 'don''t care about what we call it. Eg, when version bumping we will bump to
         # 'appVersion', not version.
-        'version'                    : '11.0',
-        'oldVersion'                 : '10.0.2',
-        'appVersion'                 : '11.0', # no 'b1' suffix for betas
-        'oldAppVersion'              : '10.0.2',
-        'buildNumber'                : 2,
-        'oldBuildNumber'             : 1,
-        'baseTag'                    : 'THUNDERBIRD_11_0',
-        'oldBaseTag'                 : 'THUNDERBIRD_10_0_2',
+        'version'                    : '11.0.1',
+        'oldVersion'                 : '11.0',
+        'appVersion'                 : '11.0.1', # no 'b1' suffix for betas
+        'oldAppVersion'              : '11.0',
+        'buildNumber'                : 1,
+        'oldBuildNumber'             : 2,
+        'baseTag'                    : 'THUNDERBIRD_11_0_1',
+        'oldBaseTag'                 : 'THUNDERBIRD_11_0',
         #XXX: 'Not' entirely certain if/where this is used.
         # 'Derived' from mozillaRelbranchOverride. eg: COMM19211_20101004_RELBRANCH == 1.9.2.11
-        'milestone'                  : '11.0',
+        'milestone'                  : '11.0.1',
         'enable_weekly_bundle'       : False,
         'enUSPlatforms'              : ('linux', 'linux64', 'win32', 'macosx64'),
         #'l10nPlatforms'              : (),
