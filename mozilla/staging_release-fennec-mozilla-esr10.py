@@ -109,7 +109,7 @@ releaseConfig['mozconfigs']          = {
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
-releaseConfig['mozharness_config'] = {
+releaseConfig['multilocale_config'] = {
     'platforms': {
         'linux-android':
             'multi_locale/staging_release_mozilla-release_linux-android.json',

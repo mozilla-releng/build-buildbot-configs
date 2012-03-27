@@ -37,7 +37,11 @@ releaseConfig['sourceRepositories']  = {
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
-            'mobile/confvars.sh': {
+            'mobile/xul/confvars.sh': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'mobile/android/confvars.sh': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -99,7 +103,16 @@ releaseConfig['ausSshKey']           = 'cltbld_dsa'
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = True
 releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
-releaseConfig['partnerRepackPlatforms'] = ()
+releaseConfig['partnerRepackPlatforms'] = ('android',)
+releaseConfig['partnerRepackConfig'] = {
+    'use_mozharness': True,
+    'platforms': {
+        'android': {
+            'script': 'scripts/mobile_partner_repack.py',
+            'config_file': 'partner_repacks/staging_release_mozilla-release_android.py',
+         },
+    },
+}
 
 # mozconfigs
 releaseConfig['mozconfigs']          = {
@@ -110,7 +123,7 @@ releaseConfig['mozconfigs']          = {
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
-releaseConfig['mozharness_config'] = {
+releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
             'multi_locale/staging_release_mozilla-release_android-xul.json',
