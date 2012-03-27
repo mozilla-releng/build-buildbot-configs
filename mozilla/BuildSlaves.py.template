@@ -11,6 +11,9 @@ SlavePasswords = {
         'linux-android': 'pass',
         'android': 'pass',
         'android-xul': 'pass',
+        'mock': 'pass'
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'
+balrog_username = 'user'
+balrog_password = 'passwd'

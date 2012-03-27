@@ -32,6 +32,7 @@ GLOBAL_VARS = {
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
+    'balrog_credentials_file': 'BuildSlaves.py',
     'hg_username': 'ffxbld',
     'hg_ssh_key': '~cltbld/.ssh/ffxbld_dsa',
     'graph_selector': '/server/collect.cgi',
@@ -70,6 +71,7 @@ GLOBAL_VARS = {
         'android': {},
         'android-debug': {},
         'android-xul': {},
+        'b2g': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
@@ -79,7 +81,7 @@ GLOBAL_VARS = {
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
-    'enabled_products': ['firefox', 'mobile'],
+    'enabled_products': ['firefox', 'mobile', 'b2g'],
     'enable_valgrind': True,
     'valgrind_platforms': ('linux', 'linux64'),
 
@@ -97,8 +99,6 @@ GLOBAL_VARS = {
             'security/manager',
             'sync/services',
             ],
-    'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
-    'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
     'use_old_updater': False,
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
@@ -154,6 +154,61 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
+        },
+        'b2g': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'brand_name': 'b2g',
+            'base_name': 'b2g fedora16-i386 %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/linux32/debug',
+            'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 10,
+            'enable_uploads': False,
+            'update_platform': None,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'enable_xulrunner': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': 'obj-b2g',
+            'stage_product': 'b2g',
+            'enable_codesighs': False,
+            'enable_packaging': True,
+            'uploadPackages': False,
+            'packageTests': False,
+            'stage_platform': 'b2g-fedora16',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'GONK_PRODUCT': 'generic',
+                'TOOLCHAIN_HOST': 'linux-x86',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
+            'enable_build_analysis': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            # MOCK SPECIFIC OPTIONS BELOW
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-i386',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static'],
+            'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/releng.manifest',
         },
         'linuxqt': {
             'product_name': 'firefox',
@@ -1500,6 +1555,7 @@ BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64'
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['b2g']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
