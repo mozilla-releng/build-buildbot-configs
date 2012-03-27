@@ -32,6 +32,7 @@ GLOBAL_VARS = {
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
+    'balrog_credentials_file': 'BuildSlaves.py',
     'hg_username': 'ffxbld',
     'hg_ssh_key': '~cltbld/.ssh/ffxbld_dsa',
     'graph_selector': '/server/collect.cgi',

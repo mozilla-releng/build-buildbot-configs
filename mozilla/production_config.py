@@ -63,6 +63,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs.mozilla.org',
+    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/clobberer/index.php',
     'disable_tinderbox_mail': True,

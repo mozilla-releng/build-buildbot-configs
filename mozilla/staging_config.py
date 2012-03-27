@@ -48,6 +48,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
+    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'disable_tinderbox_mail': True,
