@@ -308,7 +308,7 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
-    'remote-trobopan': {
+    'remote-trobocop': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
@@ -1076,12 +1076,6 @@ for suite in SUITES.keys():
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 BRANCHES['mozilla-central']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-central']['trobocheck_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-
-######## mozilla-inbound
-BRANCHES['mozilla-inbound']['trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-inbound']['trobocheck_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
