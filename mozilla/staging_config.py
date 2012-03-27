@@ -8,7 +8,7 @@ LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['lin
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,42)]
 
-MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1,42)]
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1,43)]
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
