@@ -7,6 +7,8 @@ LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['linux-ix-slave%02i' % x for x in range(1,43)]
 LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,42)]
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1,42)]
+
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
     'linux64':          LINUX64_VMS + LINUX64_IXS,
@@ -17,6 +19,7 @@ SLAVES = {
     'linux-android':    LINUX_VMS + LINUX_IXS,
     'android':          LINUX_VMS + LINUX_IXS,
     'android-xul':      LINUX_VMS + LINUX_IXS,
+    'mock':             MOCK_DL120G7
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,31)]

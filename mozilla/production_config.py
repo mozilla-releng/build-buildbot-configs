@@ -13,6 +13,7 @@ LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20, 26]] + \
                  ['w32-ix-slave%02i' % x for x in range(24,45)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,25)]
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
@@ -24,6 +25,7 @@ SLAVES = {
     'linux-android':    LINUX_VMS + LINUX_IXS,
     'android':          LINUX_VMS + LINUX_IXS,
     'android-xul':      LINUX_VMS + LINUX_IXS,
+    'mock':             MOCK_DL120G7
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range(1,5) + range(6,31)] + \
@@ -40,6 +42,8 @@ TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,32)] + \
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)] + \
                  ['w32-ix-slave%02i' % x for x in range(2,24)]
 TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,43)]
+TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)]
+
 TRY_SLAVES = {
     'linux':       TRY_LINUX + TRY_LINUX_IXS,
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
@@ -47,6 +51,7 @@ TRY_SLAVES = {
     'win64':       TRY_WIN64_IXS,
     'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
+    'mock':        TRY_MOCK_DL120G7,
 }
 
 # Local overrides for default values
