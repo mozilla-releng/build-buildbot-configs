@@ -285,7 +285,7 @@ SUITES = {
     # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tdhtml': {
@@ -315,7 +315,7 @@ SUITES = {
     },
     'remote-trobocheck': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'trobocheck', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheckerboard', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-tp4m': {
