@@ -115,7 +115,7 @@ releaseConfig['releaseChannel']      = 'beta'
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
-releaseConfig['mozharness_config'] = {
+releaseConfig['multilocale_config'] = {
     'platforms': {
         'android':
             'multi_locale/staging_release_mozilla-beta_android.json',

@@ -116,7 +116,7 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
-releaseConfig['mozharness_config'] = {
+releaseConfig['multilocale_config'] = {
     'platforms': {
         'linux-android':
             'multi_locale/release_mozilla-release_linux-android.json',

@@ -36,7 +36,11 @@ releaseConfig['sourceRepositories']  = {
         'revision': 'bd611a3115b0',
         'relbranch': None,
         'bumpFiles': {
-            'mobile/confvars.sh': {
+            'mobile/xul/confvars.sh': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'mobile/android/confvars.sh': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -98,6 +102,16 @@ releaseConfig['ausSshKey']           = 'cltbld_dsa'
 releaseConfig['doPartnerRepacks']       = True
 releaseConfig['partnersRepoPath']       = 'build/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
+releaseConfig['partnerRepackConfig'] = {
+    'use_mozharness': True,
+    'platforms': {
+        'android': {
+            'script': 'scripts/mobile_partner_repack.py',
+            'config_file': 'partner_repacks/release_mozilla-release_android.py',
+         },
+    },
+}
+
 
 # mozconfigs
 releaseConfig['mozconfigs']          = {
@@ -117,7 +131,7 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
-releaseConfig['mozharness_config'] = {
+releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
             'multi_locale/release_mozilla-release_android-xul.json',
