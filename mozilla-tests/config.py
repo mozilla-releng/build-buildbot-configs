@@ -285,7 +285,7 @@ SUITES = {
     # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--noChrome'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tdhtml': {
