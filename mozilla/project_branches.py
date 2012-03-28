@@ -61,6 +61,7 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
     },
+    # Turning off graphics - bug 649507
     #'graphics':{
     #    'enable_unittests': False,
     #    'enable_talos': False,
@@ -258,9 +259,6 @@ PROJECT_BRANCHES = {
 
 # All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
-# Turning off graphics - bug 649507
-for branch in ('graphics',):
-    ACTIVE_PROJECT_BRANCHES.remove(branch)
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():
