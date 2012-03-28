@@ -90,8 +90,17 @@ class MasterConfig:
                 os.unlink(dst)
 
 
+    def logFile(self, filename):
+        self.log.info("starting to print log file '%s'" % filename)
+        f = open(filename)
+        data = f.readline()
+        while data != '':
+            self.log.info(data.rstrip('\n'))
+            data = f.readline()
+        f.close()
+        self.log.info("finished printing log file '%s'" % filename)
 
-    def testMaster(self, buildbot, universal=False):
+    def testMaster(self, buildbot, universal=False, error_logs=False):
         test_output_dir = os.environ.get('TEMP', 'test-output')
         if not os.path.isdir(test_output_dir):
             os.mkdir(test_output_dir)
@@ -105,6 +114,8 @@ class MasterConfig:
             self.log.info('created  "%s" master, running checkconfig' % self.name)
         except (OSError, subprocess.CalledProcessError):
             self.log.error('TEST-FAIL failed to create "%s"' % self.name)
+            if error_logs:
+                self.logFile(create_log_filename)
             return (300, create_log_filename, None)
         rc = subprocess.call([buildbot, 'checkconfig'],
                              cwd=test_dir, stdout=test_log, stderr=subprocess.STDOUT)
@@ -121,6 +132,8 @@ class MasterConfig:
             os.remove(test_log_filename)
             return (0, None, None)
         else:
+            if error_logs:
+                self.logFile(test_log_filename)
             if rc == 0:
                 self.log.warn('checkconfig returned 0 for %s but didn\'t print "Config file is good!"' % \
                         self.name)
@@ -690,6 +703,7 @@ if __name__ == "__main__":
     parser.add_option("-R", "--role", dest="role", default=None)
     parser.add_option("-u", "--universal", dest="universal", action="store_true")
     parser.add_option("-q", "--quiet", dest="quiet", action="store_true")
+    parser.add_option("-e", "--error-logs", dest="error_logs", action="store_true")
     parser.add_option("-d", "--debug", dest="debug", action="store_true")
 
     options, args = parser.parse_args()
@@ -735,7 +749,7 @@ if __name__ == "__main__":
         failing_masters = []
         # Test the masters, once normally and onces as a universal master
         for m in filter_masters(master_list):
-            rc, logfile, dir = m.testMaster(options.buildbot)
+            rc, logfile, dir = m.testMaster(options.buildbot, error_logs=options.error_logs)
             if rc != 0:
                 failing_masters.append((m.name, logfile, dir))
         # Print a summary including a list of useful output
