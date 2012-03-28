@@ -61,28 +61,29 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
     },
-    'graphics':{
-        'enable_unittests': False,
-        'enable_talos': False,
-    },
+    # Turning off graphics - bug 649507
+    #'graphics':{
+    #    'enable_unittests': False,
+    #    'enable_talos': False,
+    #},
     'ionmonkey': {
         'disable_tinderbox_mail': False,
         'mozconfig_dir': 'mozilla-central',
         'enable_talos' : False,
     },
-    'jaegermonkey': {
-        'mozconfig_dir': 'jaegermonkey',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        },
-    },
+    #'jaegermonkey': {
+    #    'mozconfig_dir': 'jaegermonkey',
+    #    'enable_nightly': True,
+    #    'create_snippet': True,
+    #    'create_partial': True,
+    #    'talos_suites': {
+    #        'remote-ts': 1,
+    #        'remote-tdhtml': 1,
+    #        'remote-tsvg': 1,
+    #        'remote-tsspider': 1,
+    #        'remote-twinopen': 1,
+    #    },
+    #},
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
@@ -252,18 +253,12 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'pine': {
-        'enable_unittests': False,
-        'enable_talos': False,
-        'enabled_products': ['firefox'],
-    },
+    #'pine': {
+    #},
 }
 
 # All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
-# Turning off graphics - bug 649507
-for branch in ('graphics',):
-    ACTIVE_PROJECT_BRANCHES.remove(branch)
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():

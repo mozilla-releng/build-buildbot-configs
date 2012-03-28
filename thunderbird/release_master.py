@@ -95,6 +95,7 @@ gloConfig = {
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'moz192-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R11_1',
+        'patcherToolsTagMU'          : 'UPDATE_PACKAGING_R11_1_MU',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage.mozilla.org',
@@ -117,11 +118,11 @@ gloConfig = {
         # 'N'/A for Thunderbird 3.x (until the next major version is released)
         'majorUpdateRepoPath'    : 'releases/mozilla-release',
         'majorUpdateSourceRepoPath' : 'releases/comm-release',
-        'majorUpdateToVersion'   : '10.0.2',
+        'majorUpdateToVersion'   : '11.0.1',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_10_0_2',
-        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/10.0/details/index.html',
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_11_0_1',
+        'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/11.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
                                     'macosx': 'moz20-thunderbird-mac64-major.cfg',
@@ -191,6 +192,7 @@ gloConfig = {
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'mozBeta-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'patcherToolsTagMU'          : 'UPDATE_PACKAGING_R11_1_MU',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage.mozilla.org',
@@ -291,6 +293,7 @@ gloConfig = {
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'mozRelease-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'patcherToolsTagMU'          : 'UPDATE_PACKAGING_R11_1_MU',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage.mozilla.org',
@@ -392,6 +395,7 @@ gloConfig = {
         'xulrunnerPlatforms'         : (),
         'patcherConfig'              : 'mozEsr10-thunderbird-branch-patcher2.cfg',
         'patcherToolsTag'            : 'UPDATE_PACKAGING_R15',
+        'patcherToolsTagMU'          : 'UPDATE_PACKAGING_R11_1_MU',
         'snippetSchema'              : 1,
         'ftpServer'                  : 'ftp.mozilla.org',
         'stagingServer'              : 'stage.mozilla.org',
@@ -500,6 +504,7 @@ for gloKey in gloConfig:
     oldVersion                 = gloConfig[gloKey]['oldVersion']
     oldBuildNumber             = gloConfig[gloKey]['oldBuildNumber']
     patcherToolsTag            = gloConfig[gloKey]['patcherToolsTag']
+    patcherToolsTagMU          = gloConfig[gloKey]['patcherToolsTagMU']
     patcherConfig              = gloConfig[gloKey]['patcherConfig']
     oldAppVersion              = gloConfig[gloKey]['oldAppVersion']
     oldRepoPath                = gloConfig[gloKey].get('oldRepoPath', sourceRepoPath)
@@ -1092,7 +1097,7 @@ for gloKey in gloConfig:
             mozRepoPath=majorUpdateRepoPath,
             buildToolsRepoPath=branchConfig['build_tools_repo_path'],
             cvsroot=cvsroot,
-            patcherToolsTag=patcherToolsTag,
+            patcherToolsTag=patcherToolsTagMU,
             patcherConfig=majorUpdatePatcherConfig,
             verifyConfigs=majorUpdateVerifyConfigs,
             appName=ftpName,

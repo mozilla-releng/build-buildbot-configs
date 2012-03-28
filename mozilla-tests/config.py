@@ -285,7 +285,7 @@ SUITES = {
     # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noChrome'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tdhtml': {
@@ -309,13 +309,13 @@ SUITES = {
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-trobopan': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-trobocheck': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'trobocheck', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheckerboard', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-tp4m': {
@@ -1076,37 +1076,24 @@ for suite in SUITES.keys():
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 BRANCHES['mozilla-central']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['remote-trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-central']['remote-trobocheck_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 
-######## mozilla-inbound
-BRANCHES['mozilla-inbound']['remote-trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-inbound']['remote-trobocheck_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-
-######## mozilla-release
+# pgo-strategy
+BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
-###########
-# When Firefox 13 is on mozilla-release we can remove these on/off switches
-###########
-BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chrome.2_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-###########
-# End Firefox 13 mozilla-release requirements
-###########
+#### MERGE DAY - EXCEPTIONS
+# When Firefox 14 is on mozilla-aurora we can remove these on/off switches
+BRANCHES['mozilla-aurora']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-aurora']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+# When Firefox 14 is on mozilla-beta we can remove these on/off switches
+BRANCHES['mozilla-beta']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-beta']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+# When Firefox 14 is on mozilla-release we can remove these on/off switches
+BRANCHES['mozilla-release']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-release']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 
-######## mozilla-beta
-BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-
-###########
 # When Firefox 13 is on mozilla-beta we can remove these on/off switches
-###########
 BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['chrome.2_tests'] = (0, True, {}, NO_MAC)
@@ -1115,12 +1102,16 @@ BRANCHES['mozilla-beta']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-###########
-# End Firefox 13 mozilla-beta requirements
-###########
-
-######## mozilla-aurora
-BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+# When Firefox 13 is on mozilla-release we can remove these on/off switches
+BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['chrome.2_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['chrome_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+#### END OF MERGE DAY - EXCEPTIONS
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
@@ -1160,6 +1151,8 @@ BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFOR
 BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
 BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['talos_from_source_code'] = False
+BRANCHES['mozilla-1.9.2']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-1.9.2']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 
 ######## addontester 
 BRANCHES['addontester']['branch_name'] = "AddonTester"
