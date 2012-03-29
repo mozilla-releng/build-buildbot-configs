@@ -16,16 +16,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '11.0b1'
-releaseConfig['appVersion']          = '11.0'
-releaseConfig['milestone']           = '11.0'
+releaseConfig['version']             = '12.0b3'
+releaseConfig['appVersion']          = '12.0'
+releaseConfig['milestone']           = '12.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_11_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_12_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0b6'
-releaseConfig['oldAppVersion']       = '10.0'
+releaseConfig['oldVersion']          = '12.0b2'
+releaseConfig['oldAppVersion']       = '12.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0b6'
+releaseConfig['oldBaseTag']          = 'FIREFOX_12_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -69,13 +69,13 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
@@ -114,10 +114,10 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
-    'linux': 'xulrunner/config/mozconfigs/linux32/release',
-    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
-    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
-    'win32': 'xulrunner/config/mozconfigs/win32/release',
+    'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
+    'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
+    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
+    'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 releaseConfig['releaseChannel']      = 'beta'
 

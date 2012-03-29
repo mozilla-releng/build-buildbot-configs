@@ -15,19 +15,19 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '3.6.15'
+releaseConfig['version']             = '3.6.28'
 releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = '1.9.2.15'
+releaseConfig['milestone']           = '1.9.2.28'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_3_6_15'
+releaseConfig['baseTag']             = 'FIREFOX_3_6_28'
 #  Old version info
-releaseConfig['oldVersion']          = '3.6.14'
+releaseConfig['oldVersion']          = '3.6.27'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_14'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FIREFOX_3_6_27'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '3.6.16pre'
-releaseConfig['nextMilestone']       = '1.9.2.16pre'
+releaseConfig['nextAppVersion']      = '3.6.29pre'
+releaseConfig['nextMilestone']       = '1.9.2.29pre'
 #  Repository configuration, for tagging
 ## Staging repository path
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
@@ -73,7 +73,7 @@ releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = True
 # this variable adds unit tests on the builders
 releaseConfig['unittestPlatforms']   = releaseConfig['enUSPlatforms']
 
@@ -115,11 +115,11 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = 'users/stage-ffxbld/mozilla-release'
-releaseConfig['majorUpdateToVersion']   = '4.0rc1'
-releaseConfig['majorUpdateAppVersion']  = '4.0'
-releaseConfig['majorUpdateBuildNumber'] = 1
-releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_4_0rc1'
-releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.com/%locale%/firefox/4.0/details/'
+releaseConfig['majorUpdateToVersion']   = '11.0'
+releaseConfig['majorUpdateAppVersion']  = releaseConfig['majorUpdateToVersion']
+releaseConfig['majorUpdateBuildNumber'] = 2
+releaseConfig['majorUpdateBaseTag']     = 'FIREFOX_11_0'
+releaseConfig['majorUpdateReleaseNotesUrl']  = 'https://www.mozilla.org/%locale%/firefox/latest/details/from-3.6.html'
 releaseConfig['majorUpdatePatcherConfig']    = 'moz192-branch-major-update-patcher2.cfg'
 releaseConfig['majorPatcherToolsTag']        = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateVerifyConfigs']    = {
