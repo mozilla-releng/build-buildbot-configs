@@ -235,7 +235,7 @@ SUITES = {
     # tp5 -> tpr instead of tp5.2.  This is osx only and we will consider switching linux and windows ot this as well.
     # all these tests should be default on m-c/m-i/m-a and project branches.  Off for beta/release/1.9.2
     'tpr_responsiveness': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
@@ -276,9 +276,8 @@ SUITES = {
         'suites': ['--activeTests', 'ts_paint:tpaint', '--sampleConfig', 'xperf.config', '--setPref', 'dom.send_after_paint_to_content=true', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"'],
         'options': ({}, WIN7_ONLY),
     },
-    # Next iteration of tp/tp5/tp5r.  Will be running side by side on m-c, then turned on for m-c/m-i.
     'tprow': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5row', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median', '--sampleConfig', 'sample.2.config'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
@@ -1075,7 +1074,6 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
-BRANCHES['mozilla-central']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 # pgo-strategy
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
@@ -1086,12 +1084,18 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 # When Firefox 14 is on mozilla-aurora we can remove these on/off switches
 BRANCHES['mozilla-aurora']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-aurora']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-aurora']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 # When Firefox 14 is on mozilla-beta we can remove these on/off switches
 BRANCHES['mozilla-beta']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-beta']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-beta']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 # When Firefox 14 is on mozilla-release we can remove these on/off switches
 BRANCHES['mozilla-release']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-release']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-release']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 # When Firefox 13 is on mozilla-beta we can remove these on/off switches
 BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
@@ -1124,6 +1128,8 @@ BRANCHES['mozilla-esr10']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## shadow-central
 BRANCHES['shadow-central']['repo_path'] = "shadow-central"
@@ -1153,6 +1159,8 @@ BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['talos_from_source_code'] = False
 BRANCHES['mozilla-1.9.2']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-1.9.2']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['mozilla-1.9.2']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-1.9.2']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## addontester 
 BRANCHES['addontester']['branch_name'] = "AddonTester"
