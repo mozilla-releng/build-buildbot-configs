@@ -15,16 +15,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '11.0b1'
-releaseConfig['appVersion']          = '11.0'
+releaseConfig['version']             = '12.0b3'
+releaseConfig['appVersion']          = '12.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_11_0b1'
+releaseConfig['baseTag']             = 'FENNEC_12_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0b6'
-releaseConfig['oldAppVersion']       = '10.0'
+releaseConfig['oldVersion']          = '12.0b2'
+releaseConfig['oldAppVersion']       = '12.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0b6'
+releaseConfig['oldBaseTag']          = 'FENNEC_12_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -75,8 +75,8 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
-releaseConfig['notifyPlatforms']       = ('android',)
+releaseConfig['enUSPlatforms']        = ('android-xul',)
+releaseConfig['notifyPlatforms']      = ('android-xul',)
 releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
@@ -115,6 +115,15 @@ releaseConfig['releaseChannel']      = 'beta'
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
+# Fennec specific
+releaseConfig['usePrettyNames']           = False
+releaseConfig['disableBouncerEntries']    = True
+releaseConfig['disableStandaloneRepacks'] = True
+releaseConfig['disableL10nVerification']  = True
+releaseConfig['disablePermissionCheck']   = True
+releaseConfig['disableVirusCheck']        = True
+releaseConfig['disablePushToMirrors']     = True
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'android':
@@ -130,14 +139,6 @@ releaseConfig['multilocale_config'] = {
         '--only-package-multi',
     ]
 }
-releaseConfig['usePrettyNames']           = False
-releaseConfig['disableBouncerEntries']    = True
-releaseConfig['disableStandaloneRepacks'] = True
-releaseConfig['disableL10nVerification']  = True
-releaseConfig['disablePermissionCheck']   = True
-releaseConfig['disableVirusCheck']        = True
-releaseConfig['disablePushToMirrors']     = True
-
 
 # Staging config
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"

@@ -15,19 +15,19 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '9.0'
+releaseConfig['version']             = '10.0.2'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_9_0'
+releaseConfig['baseTag']             = 'FENNEC_10_0_2'
 #  Old version info
-releaseConfig['oldVersion']          = '8.0'
+releaseConfig['oldVersion']          = '10.0.1'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_8_0'
+releaseConfig['oldBaseTag']          = 'FENNEC_10_0_1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = releaseConfig['version']
+releaseConfig['nextMilestone']       = releaseConfig['version']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
@@ -65,7 +65,7 @@ releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-release.json'
-releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
+releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
@@ -123,6 +123,15 @@ releaseConfig['mozconfigs']          = {
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
+# Fennec specific
+releaseConfig['usePrettyNames']           = False
+releaseConfig['disableBouncerEntries']    = True
+releaseConfig['disableStandaloneRepacks'] = True
+releaseConfig['disableL10nVerification']  = True
+releaseConfig['disablePermissionCheck']   = True
+releaseConfig['disableVirusCheck']        = True
+releaseConfig['disablePushToMirrors']     = True
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
@@ -136,14 +145,6 @@ releaseConfig['multilocale_config'] = {
         '--only-package-multi',
     ]
 }
-releaseConfig['usePrettyNames']           = False
-releaseConfig['disableBouncerEntries']    = True
-releaseConfig['disableStandaloneRepacks'] = True
-releaseConfig['disableL10nVerification']  = True
-releaseConfig['disablePermissionCheck']   = True
-releaseConfig['disableVirusCheck']        = True
-releaseConfig['disablePushToMirrors']     = True
-
 
 # Staging config
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
