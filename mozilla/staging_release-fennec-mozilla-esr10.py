@@ -26,8 +26,8 @@ releaseConfig['oldAppVersion']       = '10.0.2'
 releaseConfig['oldBuildNumber']      = 1
 releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2esr'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = '10.0.4esrpre'
+releaseConfig['nextMilestone']       = '10.0.4esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
@@ -61,7 +61,7 @@ releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-esr10.json'
-releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
+releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_0_8_2',
@@ -109,6 +109,15 @@ releaseConfig['mozconfigs']          = {
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
+# Fennec specific
+releaseConfig['usePrettyNames']           = False
+releaseConfig['disableBouncerEntries']    = True
+releaseConfig['disableStandaloneRepacks'] = True
+releaseConfig['disableL10nVerification']  = True
+releaseConfig['disablePermissionCheck']   = True
+releaseConfig['disableVirusCheck']        = True
+releaseConfig['disablePushToMirrors']     = True
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'linux-android':
@@ -122,14 +131,6 @@ releaseConfig['multilocale_config'] = {
         '--only-package-multi',
     ]
 }
-releaseConfig['usePrettyNames']           = False
-releaseConfig['disableBouncerEntries']    = True
-releaseConfig['disableStandaloneRepacks'] = True
-releaseConfig['disableL10nVerification']  = True
-releaseConfig['disablePermissionCheck']   = True
-releaseConfig['disableVirusCheck']        = True
-releaseConfig['disablePushToMirrors']     = True
-
 
 # Staging config
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
