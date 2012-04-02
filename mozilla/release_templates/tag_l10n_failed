@@ -1,0 +1,7 @@
+%(releaseName)s: L10n Repo tagging failed
+L10n Repo tagging failed for %(releaseName)s
+
+Status: %(job_status_repr)s
+
+%(buildbot_url)s
+-buildbot
