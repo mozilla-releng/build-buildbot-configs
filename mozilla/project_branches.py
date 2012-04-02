@@ -227,11 +227,7 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'holly': {},
-    'larch': {
-        'talos_suites': {
-            'tpr_responsiveness': 1,
-        }
-    },
+    'larch': {},
     # customizations while booked for bcp47 project as per bug 667734
     'maple': {
         'enable_talos': True,
