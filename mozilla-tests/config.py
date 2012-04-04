@@ -330,7 +330,7 @@ SUITES = {
     'remote-twinopen': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'twinopen'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-tzoom': {
         'enable_by_default': True,
