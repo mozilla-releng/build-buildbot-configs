@@ -26,14 +26,14 @@ releaseConfig['oldAppVersion']       = '12.0'
 releaseConfig['oldBuildNumber']      = 1
 releaseConfig['oldBaseTag']          = 'FENNEC_12_0b2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = '13.0a2'
+releaseConfig['nextMilestone']       = '13.0a2'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
-        'name': 'mozilla-beta',
-        'clonePath': 'releases/mozilla-beta',
-        'path': 'users/stage-ffxbld/mozilla-beta',
+        'name': 'mozilla-aurora',
+        'clonePath': 'releases/mozilla-aurora',
+        'path': 'users/stage-ffxbld/mozilla-aurora',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -62,9 +62,9 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-beta'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-aurora'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-aurora.json'
 releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
@@ -75,15 +75,15 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android-xul',)
-releaseConfig['notifyPlatforms']      = ('android-xul',)
+releaseConfig['enUSPlatforms']        = ('android-xul', 'android')
+releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ()
+releaseConfig['l10nPlatforms']       = ('android',)
 releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -127,16 +127,16 @@ releaseConfig['disablePushToMirrors']     = True
 releaseConfig['single_locale_options'] = {
     'android': [
         '--cfg',
-        'single_locale/staging_release_mozilla-beta_android.py',
-        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        'single_locale/staging_release_mozilla-aurora_android.py',
         '--user-repo-override', 'users/stage-ffxbld',
+        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
     ],
 }
 
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
-            'multi_locale/staging_release_mozilla-beta_android-xul.json',
+            'multi_locale/staging_release_mozilla-aurora_android-xul.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],

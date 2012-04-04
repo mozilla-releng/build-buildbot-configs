@@ -2,10 +2,10 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['release@mozilla.com',]
-releaseConfig['ImportantRecipients'] = ['release@mozilla.com',]
+releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com','Callek@gmail.com']
+releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
-releaseConfig['messagePrefix']       = '[staging-release] '
+releaseConfig['messagePrefix']       = '[release] '
 
 # Basic product configuration
 #  Names for the product/files
@@ -15,26 +15,25 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '12.0b3'
+releaseConfig['version']             = '12.0b4'
 releaseConfig['appVersion']          = '12.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_12_0b3'
+releaseConfig['baseTag']             = 'FENNEC_12_0b4'
 #  Old version info
-releaseConfig['oldVersion']          = '12.0b2'
+releaseConfig['oldVersion']          = '12.0b3'
 releaseConfig['oldAppVersion']       = '12.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_12_0b2'
+releaseConfig['oldBaseTag']          = 'FENNEC_12_0b3'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = '13.0a2'
+releaseConfig['nextMilestone']       = '13.0a2'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
-        'name': 'mozilla-beta',
-        'clonePath': 'releases/mozilla-beta',
-        'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'default',
+        'name': 'mozilla-aurora',
+        'path': 'releases/mozilla-aurora',
+        'revision': 'e4ed83ba6eb9',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
@@ -62,47 +61,45 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
-releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
+releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-aurora'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-aurora.json'
+releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
-    'users/stage-ffxbld/buildbot': 'production-0.8',
-    'users/stage-ffxbld/partner-repacks': 'default',
-    'users/stage-ffxbld/mozharness': 'default',
+    'build/compare-locales': 'RELEASE_AUTOMATION',
+    'build/buildbot': 'production-0.8',
+    'build/mozharness': 'default',
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android-xul',)
-releaseConfig['notifyPlatforms']      = ('android-xul',)
+releaseConfig['enUSPlatforms']        = ('android-xul', 'android')
+releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ()
-releaseConfig['l10nChunks']          = 2
+releaseConfig['l10nPlatforms']       = ('android',)
+releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
 
 # Mercurial account
-releaseConfig['hgUsername']          = 'stage-ffxbld'
+releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['ftpServer']           = 'dev-stage01.build.sjc1.mozilla.com'
-releaseConfig['stagingServer']       = 'dev-stage01.build.sjc1.mozilla.com'
-releaseConfig['ausServerUrl']        = 'http://dev-stage01.build.sjc1.mozilla.com'
-releaseConfig['ausHost']             = 'dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['ftpServer']           = 'ftp.mozilla.org'
+releaseConfig['stagingServer']       = 'stage.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
 releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
-releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
+releaseConfig['partnersRepoPath']       = 'build/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs
@@ -127,28 +124,22 @@ releaseConfig['disablePushToMirrors']     = True
 releaseConfig['single_locale_options'] = {
     'android': [
         '--cfg',
-        'single_locale/staging_release_mozilla-beta_android.py',
+        'single_locale/release_mozilla-aurora_android.py',
         '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
-        '--user-repo-override', 'users/stage-ffxbld',
     ],
 }
 
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
-            'multi_locale/staging_release_mozilla-beta_android-xul.json',
+            'multi_locale/release_mozilla-aurora_android-xul.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
-        '--user-repo-override=users/stage-ffxbld',
         '--only-pull-locale-source',
         '--only-add-locales',
         '--only-package-multi',
     ]
 }
-
-# Staging config
-releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
-releaseConfig['skip_release_download'] = True
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False

@@ -121,10 +121,16 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
+releaseConfig['single_locale_options'] = {
+    'android': [
+        '--cfg',
+        'single_locale/release_mozilla-beta_android.py',
+        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+    ],
+}
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'android':
-            'multi_locale/release_mozilla-beta_android.json',
         'android-xul':
             'multi_locale/release_mozilla-beta_android-xul.json',
     },
