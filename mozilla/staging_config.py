@@ -1,3 +1,5 @@
+MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)] + \
+                 ['bld-lion-r5-%03d' % x for x in range(1,81)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,30) + range(40,57)]
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73) if x not in (4,5,20,40,59)]
 XSERVES        = ['bm-xserve%02i' % x for x in range(6,13) + range(15,25)]
@@ -17,6 +19,7 @@ SLAVES = {
     'win64':            WIN64_IXS,
     'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
+    'macosx64-lion':    MAC_LION_MINIS,
     'linux-android':    LINUX_VMS + LINUX_IXS,
     'android':          LINUX_VMS + LINUX_IXS,
     'android-xul':      LINUX_VMS + LINUX_IXS,
@@ -56,13 +59,13 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-#        ('dev-master01.build.scl1.mozilla.com:9009', True, 1),
+        ('dev-master01.build.scl1.mozilla.com:9060', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-#        ('staging-master.build.mozilla.org:9009', True, 1),
+        ('dev-master01.build.scl1.mozilla.com:9060', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',

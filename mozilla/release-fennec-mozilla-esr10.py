@@ -22,7 +22,7 @@ releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FENNEC_10_0_3esr'
 #  Old version info
 releaseConfig['oldVersion']          = '10.0.2esr'
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
+releaseConfig['oldAppVersion']       = '10.0.2'
 releaseConfig['oldBuildNumber']      = 1
 releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2esr'
 #  Next (nightly) version info

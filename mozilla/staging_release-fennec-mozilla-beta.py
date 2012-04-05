@@ -83,7 +83,7 @@ releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
+releaseConfig['l10nPlatforms']       = ()
 releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -124,10 +124,17 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
+releaseConfig['single_locale_options'] = {
+    'android': [
+        '--cfg',
+        'single_locale/staging_release_mozilla-beta_android.py',
+        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        '--user-repo-override', 'users/stage-ffxbld',
+    ],
+}
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'android':
-            'multi_locale/staging_release_mozilla-beta_android.json',
         'android-xul':
             'multi_locale/staging_release_mozilla-beta_android-xul.json',
     },

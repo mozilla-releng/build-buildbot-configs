@@ -330,7 +330,7 @@ SUITES = {
     'remote-twinopen': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'twinopen'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
     'remote-tzoom': {
         'enable_by_default': True,
@@ -1074,8 +1074,6 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
-# XXX this was added to allow important landing on Mar. 30th from the Larch branch
-BRANCHES['mozilla-central']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 # pgo-strategy
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'

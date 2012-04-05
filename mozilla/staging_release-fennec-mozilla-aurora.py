@@ -15,29 +15,33 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '10.0.3esr'
-releaseConfig['appVersion']          = '10.0.3'
-releaseConfig['milestone']           = '10.0.3'
+releaseConfig['version']             = '12.0b3'
+releaseConfig['appVersion']          = '12.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_10_0_3esr'
+releaseConfig['baseTag']             = 'FENNEC_12_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.2esr'
-releaseConfig['oldAppVersion']       = '10.0.2'
+releaseConfig['oldVersion']          = '12.0b2'
+releaseConfig['oldAppVersion']       = '12.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2esr'
+releaseConfig['oldBaseTag']          = 'FENNEC_12_0b2'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.4esrpre'
-releaseConfig['nextMilestone']       = '10.0.4esrpre'
+releaseConfig['nextAppVersion']      = '13.0a2'
+releaseConfig['nextMilestone']       = '13.0a2'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
-        'name': 'mozilla-esr10',
-        'clonePath': 'releases/mozilla-esr10',
-        'path': 'users/stage-ffxbld/mozilla-esr10',
+        'name': 'mozilla-aurora',
+        'clonePath': 'releases/mozilla-aurora',
+        'path': 'users/stage-ffxbld/mozilla-aurora',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
-            'mobile/confvars.sh': {
+            'mobile/android/confvars.sh': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'mobile/xul/confvars.sh': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -58,28 +62,28 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-aurora'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-esr10.json'
-releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-aurora.json'
+releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_0_8_2',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default',
     'users/stage-ffxbld/mozharness': 'default',
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('linux-android',)
-releaseConfig['notifyPlatforms']      = ('linux-android',)
-releaseConfig['signedPlatforms']      = ('linux-android',)
+releaseConfig['enUSPlatforms']        = ('android-xul', 'android')
+releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
+releaseConfig['signedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ()
+releaseConfig['l10nPlatforms']       = ('android',)
 releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -97,14 +101,16 @@ releaseConfig['ausUser']             = 'cltbld'
 releaseConfig['ausSshKey']           = 'cltbld_dsa'
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']       = True
+releaseConfig['doPartnerRepacks']       = False
 releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs
 releaseConfig['mozconfigs']          = {
-    'linux-android': 'mobile/config/mozconfigs/android/release',
+    'android': 'mobile/android/config/mozconfigs/android/release',
+    'android-xul': 'mobile/xul/config/mozconfigs/android/release',
 }
+releaseConfig['releaseChannel']      = 'beta'
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
@@ -118,10 +124,19 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 
+releaseConfig['single_locale_options'] = {
+    'android': [
+        '--cfg',
+        'single_locale/staging_release_mozilla-aurora_android.py',
+        '--user-repo-override', 'users/stage-ffxbld',
+        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+    ],
+}
+
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'linux-android':
-            'multi_locale/staging_release_mozilla-release_linux-android.json',
+        'android-xul':
+            'multi_locale/staging_release_mozilla-aurora_android-xul.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
