@@ -1,3 +1,4 @@
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,81)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,10) + \
                  range(15,30) + range(40,57) if x not in (52,)] # bug683792
 MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,27) + range(38,55) \
@@ -22,6 +23,7 @@ SLAVES = {
     'win64':            WIN64_IXS,
     'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
+    'macosx64-lion':    MAC_LION_MINIS,
     'linux-android':    LINUX_VMS + LINUX_IXS,
     'android':          LINUX_VMS + LINUX_IXS,
     'android-xul':      LINUX_VMS + LINUX_IXS,
@@ -43,6 +45,7 @@ TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)] 
                  ['w32-ix-slave%02i' % x for x in range(2,24)]
 TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,43)]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)]
+TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(1,41)]
 
 TRY_SLAVES = {
     'linux':       TRY_LINUX + TRY_LINUX_IXS,
@@ -51,6 +54,7 @@ TRY_SLAVES = {
     'win64':       TRY_WIN64_IXS,
     'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
+    'macosx64-lion': TRY_LION,
     'mock':        TRY_MOCK_DL120G7,
 }
 
