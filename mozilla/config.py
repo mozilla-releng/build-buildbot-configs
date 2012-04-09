@@ -478,6 +478,13 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32': {
             'product_name': 'firefox',
@@ -669,6 +676,13 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'macosx64-debug': {
             'product_name': 'firefox',
@@ -699,6 +713,13 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32-debug': {
             'product_name': 'firefox',
@@ -959,8 +980,6 @@ for k, v in localconfig.PROJECTS.items():
 BRANCHES = {
     'mozilla-central': {
     },
-    'shadow-central': {
-    },
     'mozilla-release': {
     },
     'mozilla-beta': {
@@ -1128,38 +1147,10 @@ BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-
-######## shadow-central
-# custom settings for shadow-central repo
-BRANCHES['shadow-central']['hgurl'] = 'https://hgpvt.mozilla.org/'
-# have to use complete config repo path so it doesn't look to https://hgpvt.mozilla.org
-BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/buildbot-configs'
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
-BRANCHES['shadow-central']['start_hour'] = [3]
-BRANCHES['shadow-central']['start_minute'] = [2]
-BRANCHES['shadow-central']['create_snippet'] = False
-BRANCHES['shadow-central']['enable_nightly'] = False
-# Enable XULRunner / SDK builds
-BRANCHES['shadow-central']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['shadow-central']['enable_mac_a11y'] = True
-BRANCHES['shadow-central']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['shadow-central']['enable_l10n'] = False
-BRANCHES['shadow-central']['l10nNightlyUpdate'] = False
-BRANCHES['shadow-central']['l10nDatedDirs'] = False
-# need this or master.cfg will bail
-BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
-BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
-BRANCHES['shadow-central']['platforms']['win64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'win64-shadow-central'
-BRANCHES['shadow-central']['enable_valgrind'] = False
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
@@ -1318,6 +1309,9 @@ BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUI
 BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-aurora'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-esr10
