@@ -103,13 +103,6 @@ PROJECT_BRANCHES = {
             },
             'macosx64-debug': {
                 'enable_leaktests': True,
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx-debug': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
@@ -142,15 +135,10 @@ PROJECT_BRANCHES = {
             'macosx-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
-                'nightly_signing_servers': 'mac-nightly-signing',
             },
             'macosx64-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
             },
             'linux-debug': {
                 'dont_build': True,
