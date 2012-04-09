@@ -54,7 +54,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-esr10':       { 'release_branch': True },
     'mozilla-1.9.2':       { 'release_branch': True },
-    'shadow-central':      {},
     'try':                 { 'coallesce_jobs': False},
     'addontester':         {},
     'addonbaselinetester': {},
@@ -1130,9 +1129,6 @@ BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-
-######## shadow-central
-BRANCHES['shadow-central']['repo_path'] = "shadow-central"
 
 ######## mozilla-1.9.2
 BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"

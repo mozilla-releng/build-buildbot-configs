@@ -23,7 +23,6 @@ ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
 ACTIVE_BRANCHES.extend([
     'mozilla-1.9.2',
     'mozilla-central',
-    'shadow-central',
     'mozilla-beta',
     'mozilla-aurora',
     'mozilla-release',

@@ -959,8 +959,6 @@ for k, v in localconfig.PROJECTS.items():
 BRANCHES = {
     'mozilla-central': {
     },
-    'shadow-central': {
-    },
     'mozilla-release': {
     },
     'mozilla-beta': {
@@ -1129,37 +1127,6 @@ BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BU
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-
-######## shadow-central
-# custom settings for shadow-central repo
-BRANCHES['shadow-central']['hgurl'] = 'https://hgpvt.mozilla.org/'
-# have to use complete config repo path so it doesn't look to https://hgpvt.mozilla.org
-BRANCHES['shadow-central']['config_repo_path'] = 'http://hg.mozilla.org/build/buildbot-configs'
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['shadow-central']['repo_path'] = 'shadow-central'
-BRANCHES['shadow-central']['start_hour'] = [3]
-BRANCHES['shadow-central']['start_minute'] = [2]
-BRANCHES['shadow-central']['create_snippet'] = False
-BRANCHES['shadow-central']['enable_nightly'] = False
-# Enable XULRunner / SDK builds
-BRANCHES['shadow-central']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['shadow-central']['enable_mac_a11y'] = True
-BRANCHES['shadow-central']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['shadow-central']['enable_l10n'] = False
-BRANCHES['shadow-central']['l10nNightlyUpdate'] = False
-BRANCHES['shadow-central']['l10nDatedDirs'] = False
-# need this or master.cfg will bail
-BRANCHES['shadow-central']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['shadow-central']['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-shadow-central'
-BRANCHES['shadow-central']['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'shadow-central'
-BRANCHES['shadow-central']['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-shadow-central'
-BRANCHES['shadow-central']['platforms']['win64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'win64-shadow-central'
-BRANCHES['shadow-central']['enable_valgrind'] = False
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'

@@ -102,17 +102,6 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Mobile',
         'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
     },
-    'shadow-central': {
-        'packaged_unittest_tinderbox_tree': 'Shadow-Central',
-        'tinderbox_tree': 'Shadow-Central',
-        'mobile_tinderbox_tree': 'Shadow-Central',
-        'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
-        'build_tools_repo_path' : 'http://hg.mozilla.org/build/tools',
-        'stage_server' : 'dm-pvtbuild01.mozilla.org',
-        'hghost' : 'ssh://ffxbld@hgpvt.mozilla.org',
-        'stage_base_path' : '/mnt/pvt_builds',
-        'stage_log_base_url': 'https://dm-pvtbuild01.mozilla.org',
-    },
     'mozilla-1.9.2': {
         'tinderbox_tree': 'Firefox3.6',
         'packaged_unittest_tinderbox_tree': 'Firefox3.6',
