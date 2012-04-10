@@ -1115,10 +1115,10 @@ BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
 BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-test'
-BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central-test'
-BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central-test'
-BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central-test'
+BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
+BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
+BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
@@ -1656,7 +1656,7 @@ for branch in branches:
         }
 
 # Bug 720027, do macosx64 builds on Lion slaves where appropriate
-lion_branches = ['mozilla-central', 'build-system']#'try',] + ACTIVE_PROJECT_BRANCHES[:]
+lion_branches = ['mozilla-central', 'try',] + ACTIVE_PROJECT_BRANCHES[:]
 # Each line starts with a branch.  When Firefox 14 hits that branch, uncomment
 # line and remove the branch name.  i.e. s/^# \w*: //
 # aurora: lion_branches += 'mozilla-aurora'
