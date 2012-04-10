@@ -38,4 +38,4 @@ buildbotcustom.misc.fastRegexes.extend([
 ENABLE_RELEASES = False
 RESERVED_SLAVES = None
 
-QUEUEDIR = "/dev/shm/queue"
+QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
