@@ -478,6 +478,13 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32': {
             'product_name': 'firefox',
@@ -669,6 +676,13 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'macosx64-debug': {
             'product_name': 'firefox',
@@ -699,6 +713,13 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32-debug': {
             'product_name': 'firefox',
@@ -881,9 +902,10 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
-    },
+    ### Disabled for move
+    #'fuzzing': {
+        #'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+    #},
     'nanojit': {
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
         'hgurl': 'http://hg.mozilla.org',
@@ -1126,6 +1148,9 @@ BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
 BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-release
@@ -1285,6 +1310,9 @@ BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUI
 BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-aurora'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-esr10
@@ -1687,6 +1715,7 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_DIR'] = '/builds/ccache'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
+                BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
 
 

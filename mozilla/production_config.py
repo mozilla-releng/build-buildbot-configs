@@ -183,15 +183,16 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    'fuzzing': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
-        'fuzzing_remote_host': 'ffxbld@dm-pvtbuild01.mozilla.org',
-        # Path needs extra leading slash due to optparse expansion on Win32
-        'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
-        'idle_slaves': 3,
-        'disable_tinderbox_mail': False,
-    },
+    ### Disabled for move
+    #'fuzzing': {
+        #'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        #'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
+        #'fuzzing_remote_host': 'ffxbld@dm-pvtbuild01.mozilla.org',
+        ## Path needs extra leading slash due to optparse expansion on Win32
+        #'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
+        #'idle_slaves': 3,
+        #'disable_tinderbox_mail': False,
+    #},
     'nanojit': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 3,
