@@ -1687,6 +1687,7 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_DIR'] = '/builds/ccache'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
+                BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
 
 
