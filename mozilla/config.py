@@ -881,9 +881,10 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
-    },
+    ### Disabled for move
+    #'fuzzing': {
+        #'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+    #},
     'nanojit': {
         'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
         'hgurl': 'http://hg.mozilla.org',
