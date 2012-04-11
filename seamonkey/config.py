@@ -144,7 +144,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -180,7 +180,7 @@ PLATFORM_VARS = {
             'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -216,7 +216,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_Universal-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
@@ -252,7 +252,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_x86_64-gcc3',
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
@@ -291,7 +291,7 @@ PLATFORM_VARS = {
             'env': {
                 'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'dm-symbolpush01.mozilla.org',
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
