@@ -44,7 +44,7 @@ releaseConfig['venkmanRepoRevision']        = 'VENKMAN_RELEASE_0_9_89'
 releaseConfig['venkmanRelbranchOverride']   = ''
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
-releaseConfig['chatzillaRepoRevision']      = 'CHATZILLA_0_9_88_2'
+releaseConfig['chatzillaRepoRevision']      = 'CHATZILLA_0_9_88_2_RELEASE'
 releaseConfig['chatzillaRelbranchOverride'] = ''
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
