@@ -34,7 +34,7 @@ BUILDERS = {
 #            'community': [ 'cb-xserve03' ],
 #        },
         '10.6': {
-            'momo':      [ 'mini64-cal-01' ],
+            'momo':      [ 'tb2-darwin10-slave64' ],
         }
     },
     'win32': {
