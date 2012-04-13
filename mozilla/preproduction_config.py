@@ -48,6 +48,8 @@ GLOBAL_VARS = {
     'build_tools_repo_path': 'build/tools',
     'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'aus2_host': 'preproduction-stage.srv.releng.scl3.mozilla.com',
+    'aus2_user': 'cltbld',
+    'aus2_ssh_key': 'cltbld_dsa',
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',#TODO
