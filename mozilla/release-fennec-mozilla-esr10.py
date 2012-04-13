@@ -89,10 +89,10 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 # Update-specific configuration
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus2.mozilla.org'
-releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
-releaseConfig['ausUser']             = 'cltbld'
-releaseConfig['ausSshKey']           = 'cltbld_dsa'
+releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausUser']             = 'ffxbld'
+releaseConfig['ausSshKey']           = 'auspush'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = True

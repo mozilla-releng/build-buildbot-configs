@@ -48,6 +48,8 @@ GLOBAL_VARS = {
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
+    'aus2_user': 'cltbld',
+    'aus2_ssh_key': 'cltbld_dsa',
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
