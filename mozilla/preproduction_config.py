@@ -42,9 +42,9 @@ TRY_SLAVES['win32'] += TRY_WIN32_IXS
 
 
 GLOBAL_VARS = {
+    'staging': True,
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'compare_locales_repo_path': 'build/compare-locales',
     'build_tools_repo_path': 'build/tools',
     'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'aus2_host': 'preproduction-stage.srv.releng.scl3.mozilla.com',
@@ -60,20 +60,23 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-        ('preproduction-master.build.mozilla.org:9009', True, 1),
+        ('preproduction-master.srv.releng.scl3.mozilla.com:9008', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('preproduction-master.build.mozilla.org:9009', True, 1),
+        ('preproduction-master.srv.releng.scl3.mozilla.com:9008', True, 1),
         ],
-    'xulrunner_tinderbox_tree': 'Releng-Preproduction',
-    'weekly_tinderbox_tree': 'Releng-Preproduction',
-    'l10n_tinderbox_tree': 'Releng-Preproduction',
-    'packaged_unittest_tinderbox_tree': 'Releng-Preproduction',
-    'tinderbox_tree': 'Releng-Preproduction',
-    'mobile_tinderbox_tree': 'Releng-Preproduction',
+    'xulrunner_tinderbox_tree': 'MozillaTest',
+    'weekly_tinderbox_tree': 'MozillaTest',
+    'l10n_tinderbox_tree': 'MozillaStaging',
+    'packaged_unittest_tinderbox_tree': 'MozillaTest',
+    'tinderbox_tree': 'MozillaTest',
+    'mobile_tinderbox_tree': 'MobileTest',
+    'hg_username': 'stage-ffxbld',
+    'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
+    'base_bundle_urls': ['http://preproduction-master.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/bundles'],
 }
 
 BUILDS_BEFORE_REBOOT = 1
@@ -81,7 +84,32 @@ SYMBOL_SERVER_HOST = 'preproduction-stage.srv.releng.scl3.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
+    'mozilla-central': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-release': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-beta': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-aurora': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-esr10': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-1.9.2': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
     'try': {
+        'email_override': [], # Set to your address when testing
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,
@@ -90,7 +118,7 @@ BRANCHES = {
         'platforms': {
             'win32': {
                 'env': {
-                    'SYMBOL_SERVER_HOST': 'build.mozilla.org', # TODO
+                    'SYMBOL_SERVER_HOST': 'preproduction-stage.srv.releng.scl3.mozilla.com',
                     'CVS_RSH': 'ssh',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
@@ -110,25 +138,30 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     #'fuzzing': {
+    #    'disable_tinderbox_mail': True,
     #    'scripts_repo': 'http://hg.mozilla.org/build/tools',
     #    'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-    #    'fuzzing_remote_host': 'ffxbld@dev-stage01.build.sjc1.mozilla.com',
-    #    'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
+    #    'fuzzing_remote_host': 'ffxbld@preproduction-stage.srv.releng.scl3.mozilla.com',
+    #    # Path needs extra leading slash due to optparse expansion on Win32
+    #    'fuzzing_base_dir': '/pub/mozilla.org/firefox/tinderbox-builds/fuzzing/',
     #    'idle_slaves': 0,
     #},
     'nanojit': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'tinderbox_tree': 'Releng-Preproduction',
+        'tinderbox_tree': 'MozillaTest',
     },
     'spidermonkey_mozilla-inbound': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'tinderbox_tree': 'Releng-Preproduction',
+        'tinderbox_tree': 'MozillaTest',
     },
     'spidermonkey_ionmonkey': {
+        'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'tinderbox_tree': 'Releng-Preproduction',
+        'tinderbox_tree': 'MozillaTest',
     },
 }
