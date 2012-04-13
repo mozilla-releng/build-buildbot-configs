@@ -24,7 +24,7 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'build_tools_repo_path': 'users/prepr-ffxbld/tools',
-    'stage_server': 'preproduction-stage.build.mozilla.org',
+    'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
 }
@@ -33,7 +33,7 @@ BRANCHES = {
         'try': {
             'enable_mail_notifier': False, # Set to True when testing
             'email_override': [], # Set to your address when testing
-            'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
+            'package_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/try-builds',
             'package_dir': '%(who)s-%(got_revision)s',
             'stage_username': 'trybld',
             'stage_ssh_key': 'trybld_dsa',

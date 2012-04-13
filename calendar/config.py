@@ -15,7 +15,7 @@ AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
 DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/'
 PRODUCT = 'calendar'
 MOZ_APP_NAME = 'calendar'
-SYMBOL_SERVER_HOST = 'dm-symbolpush01.mozilla.org'
+SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
 SYMBOL_SERVER_USER = 'calbld'
 SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_sbrd/'
 SYMBOL_SERVER_POST_UPLOAD_CMD = '/usr/local/bin/post-symbol-upload.py'
@@ -34,7 +34,7 @@ BUILDERS = {
 #            'community': [ 'cb-xserve03' ],
 #        },
         '10.6': {
-            'momo':      [ 'mini64-cal-01' ],
+            'momo':      [ 'tb2-darwin10-slave64' ],
         }
     },
     'win32': {

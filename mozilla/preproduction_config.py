@@ -46,10 +46,10 @@ GLOBAL_VARS = {
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'compare_locales_repo_path': 'build/compare-locales',
     'build_tools_repo_path': 'build/tools',
-    'stage_server': 'preproduction-stage.build.mozilla.org',
-    'aus2_host': 'preproduction-stage.build.mozilla.org',
-    'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
+    'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
+    'aus2_host': 'preproduction-stage.srv.releng.scl3.mozilla.com',
+    'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',#TODO
     'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
@@ -77,15 +77,15 @@ GLOBAL_VARS = {
 }
 
 BUILDS_BEFORE_REBOOT = 1
-SYMBOL_SERVER_HOST = 'preproduction-stage.build.mozilla.org'
+SYMBOL_SERVER_HOST = 'preproduction-stage.srv.releng.scl3.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
     'try': {
-        'download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox',
-        'mobile_download_base_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/mobile',
+        'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
+        'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,
-        'package_url': 'http://preproduction-stage.build.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
@@ -109,13 +109,13 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    'fuzzing': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-        'fuzzing_remote_host': 'ffxbld@dev-stage01.build.sjc1.mozilla.com',
-        'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
-        'idle_slaves': 0,
-    },
+    #'fuzzing': {
+    #    'scripts_repo': 'http://hg.mozilla.org/build/tools',
+    #    'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
+    #    'fuzzing_remote_host': 'ffxbld@dev-stage01.build.sjc1.mozilla.com',
+    #    'fuzzing_base_dir': '/mnt/eql/builds/firefox/pvt-builds/fuzzing/',
+    #    'idle_slaves': 0,
+    #},
     'nanojit': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,

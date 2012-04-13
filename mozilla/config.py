@@ -30,8 +30,6 @@ GLOBAL_VARS = {
     'symbol_server_post_upload_cmd': '/usr/local/bin/post-symbol-upload.py',
     'symbol_server_mobile_path': '/mnt/netapp/breakpad/symbols_mob/',
     'symbol_server_xulrunner_path': '/mnt/netapp/breakpad/symbols_xr/',
-    'aus2_user': 'cltbld',
-    'aus2_ssh_key': 'cltbld_dsa',
     'balrog_credentials_file': 'BuildSlaves.py',
     'hg_username': 'ffxbld',
     'hg_ssh_key': '~cltbld/.ssh/ffxbld_dsa',
@@ -1135,8 +1133,6 @@ BRANCHES['mozilla-central']['update_channel'] = 'nightly'
 BRANCHES['mozilla-central']['create_mobile_snippet'] = True
 BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
-BRANCHES['mozilla-central']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-central']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
@@ -1295,8 +1291,6 @@ BRANCHES['mozilla-aurora']['update_channel'] = 'aurora'
 BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
 BRANCHES['mozilla-aurora']['create_partial'] = True
 BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
-BRANCHES['mozilla-aurora']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-aurora']['aus2_ssh_key'] = 'ffxbld_dsa'
 # use mozilla-aurora-test when disabling updates for merges
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
@@ -1343,8 +1337,6 @@ BRANCHES['mozilla-esr10']['localesURL'] = \
 BRANCHES['mozilla-esr10']['enable_nightly'] = True
 BRANCHES['mozilla-esr10']['create_snippet'] = True
 BRANCHES['mozilla-esr10']['create_partial'] = True
-BRANCHES['mozilla-esr10']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-esr10']['aus2_ssh_key'] = 'ffxbld_dsa'
 # use mozilla-esr10-test when disabling updates for merges
 BRANCHES['mozilla-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
 BRANCHES['mozilla-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
@@ -1475,8 +1467,6 @@ BRANCHES['mozilla-1.9.2']['create_snippet'] = True
 BRANCHES['mozilla-1.9.2']['update_channel'] = 'nightly'
 BRANCHES['mozilla-1.9.2']['create_partial'] = True
 BRANCHES['mozilla-1.9.2']['create_partial_l10n'] = True
-BRANCHES['mozilla-1.9.2']['aus2_user'] = 'ffxbld'
-BRANCHES['mozilla-1.9.2']['aus2_ssh_key'] = 'ffxbld_dsa'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
 BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
@@ -1606,8 +1596,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
     BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
-    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', 'ffxbld')
-    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', 'ffxbld_dsa')
+    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', GLOBAL_VARS['aus2_user'])
+    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', GLOBAL_VARS['aus2_ssh_key'])
     BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
     BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Firefox/' + branch)
     BRANCHES[branch]['aus2_mobile_base_upload_dir'] = branchConfig.get('aus2_mobile_base_upload_dir', '/opt/aus2/incoming/2/Fennec/' + branch)
