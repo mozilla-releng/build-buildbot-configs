@@ -168,7 +168,9 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
         c = MasterConfig(name=m['name'],
                 globs=[
                     'config.py',
+                    'thunderbird_config.py',
                     environment_config,
+                    'thunderbird_' + environment_config,
                     'master_common.py',
                     'project_branches.py',
                     ],
@@ -178,6 +180,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
                     ],
                 local_links=[
                     (environment_config, 'localconfig.py'),
+                    ('thunderbird_' + environment_config, 'thunderbird_localconfig.py'),
                     ],
                 extras=[
                     ('master_config.json', json.dumps(m, indent=2, sort_keys=True)),
@@ -277,6 +280,7 @@ mozilla_staging_scheduler_master_sm01 = mozilla_staging + MasterConfig(
         local_links = [
             ('staging_scheduler_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
@@ -286,6 +290,7 @@ mozilla_staging_builder_master_sm01 = mozilla_staging + MasterConfig(
         local_links = [
             ('staging_builder_master_sm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -295,6 +300,7 @@ mozilla_staging_univeral_master_sm02 = mozilla_staging + MasterConfig(
         local_links = [
             ('staging_builder_master_sm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
             ]
         )
@@ -304,6 +310,7 @@ mozilla_staging_univeral_master_sm03 = mozilla_staging + MasterConfig(
         local_links = [
             ('staging_builder_master_sm03_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
             ]
         )
@@ -313,6 +320,7 @@ mozilla_production_scheduler_master = mozilla_production + MasterConfig(
         local_links = [
             ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
@@ -322,6 +330,7 @@ mozilla_production_builder_master_pm01 = mozilla_production + MasterConfig(
         local_links = [
             ('production_builder_master_pm01_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -331,6 +340,7 @@ mozilla_production_try_builder_master_pm02 = mozilla_production + MasterConfig(
         local_links = [
             ('production_try_builder_master_pm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -340,6 +350,7 @@ mozilla_production_try_builder_master_bm01 = mozilla_production + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -349,6 +360,7 @@ mozilla_production_try_builder_master_bm02 = mozilla_production + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -358,6 +370,7 @@ mozilla_production_try_builder_master_bm03 = mozilla_production + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm03_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -367,6 +380,7 @@ mozilla_production_try_builder_master_bm04 = mozilla_base + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -376,6 +390,7 @@ mozilla_production_try_builder_master_bm05 = mozilla_base + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -385,6 +400,7 @@ mozilla_production_try_builder_master_bm06 = mozilla_base + MasterConfig(
         local_links = [
             ('production_try_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -394,6 +410,7 @@ mozilla_production_builder_master_pm03 = mozilla_production + MasterConfig(
         local_links = [
             ('production_builder_master_pm03_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -403,6 +420,7 @@ mozilla_production_builder_master_bm01 = mozilla_production + MasterConfig(
         local_links = [
             ('production_builder_master_bm01_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -412,6 +430,7 @@ mozilla_production_builder_master_bm02 = mozilla_production + MasterConfig(
         local_links = [
             ('production_builder_master_bm02_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -421,6 +440,7 @@ mozilla_production_builder_master_bm04 = mozilla_base + MasterConfig(
         local_links = [
             ('production_builder_master_bm04_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -430,6 +450,7 @@ mozilla_production_builder_master_bm05 = mozilla_base + MasterConfig(
         local_links = [
             ('production_builder_master_bm05_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -439,6 +460,7 @@ mozilla_production_builder_master_bm06 = mozilla_base + MasterConfig(
         local_links = [
             ('production_builder_master_bm06_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
+            ('production_thunderbird_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -458,6 +480,7 @@ mozilla_staging_tests_scheduler_master = mozilla_tests + MasterConfig(
             ('staging_tests_scheduler_master.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ]
         )
 
@@ -467,6 +490,7 @@ mozilla_staging_tests_master1 = mozilla_tests + MasterConfig(
             ('staging_tests_master_stm01_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ]
         )
 
@@ -476,6 +500,7 @@ mozilla_staging_tests_master2 = mozilla_tests + MasterConfig(
             ('staging_tests_master_stm02_localconfig.py', 'master_localconfig.py'),
             ('staging_config.py', 'localconfig.py'),
             ('universal_master_sqlite.cfg', 'master.cfg'),
+            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
             ]
         )
 

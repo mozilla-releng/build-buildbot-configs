@@ -20,6 +20,7 @@ if 'ssh_port' in master_config:
 
 from config import BRANCHES, TRY_SLAVES
 ACTIVE_BRANCHES = ['try']
+ACTIVE_THUNDERBIRD_BRANCHES = ['try-comm-central']
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 ACTIVE_PROJECTS = []

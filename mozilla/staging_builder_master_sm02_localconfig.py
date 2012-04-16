@@ -12,10 +12,12 @@ from buildbot import manhole
 c['manhole'] = manhole.PasswordManhole("tcp:1236:interface=127.0.0.1", "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS
+from thunderbird_config import BRANCHES as THUNDERBIRD_BRANCHES
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_PROJECTS = PROJECTS.keys()
 ACTIVE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
 ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
+ACTIVE_THUNDERBIRD_BRANCHES = THUNDERBIRD_BRANCHES.keys()
 
 
 # Set up our fast slaves
