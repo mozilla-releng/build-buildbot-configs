@@ -37,33 +37,35 @@ PLATFORMS = {
     'linux64' : {},                                                                                
 }
 
+builder_prefix = "TB "
+
 # work around path length problem bug 599795
 # leopard-o == leopard-old
 PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx']['leopard-o'] = {'name': builder_prefix + "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
                                             'lion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
-PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
-PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
+PLATFORMS['macosx64']['leopard'] = {'name': builder_prefix + "Rev3 MacOSX Leopard 10.5.8"}
+PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
+PLATFORMS['macosx64']['lion'] = {'name': builder_prefix + "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
-PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
+PLATFORMS['win32']['xp'] = {'name': builder_prefix + "Rev3 WINNT 5.1"}
+PLATFORMS['win32']['win7'] = {'name': builder_prefix + "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
-PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
+PLATFORMS['win64']['w764'] = {'name': builder_prefix + "Rev3 WINNT 6.1 x64",
                               'download_symbols': False,
                              }
 PLATFORMS['win64']['stage_product'] = 'thunderbird'
@@ -71,13 +73,13 @@ PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python25/python', '
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
-PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
+PLATFORMS['linux']['fedora'] = {'name': builder_prefix + "Rev3 Fedora 12"}
 PLATFORMS['linux']['stage_product'] = 'thunderbird'
 PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
-PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
+PLATFORMS['linux64']['fedora64'] = {'name': builder_prefix + "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'thunderbird'
 PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
