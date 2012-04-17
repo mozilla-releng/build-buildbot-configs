@@ -224,7 +224,41 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'ash': {},
-    'birch': {},
+    'birch': {
+        'repo_path': 'projects/birch',
+        'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': True,
+        'enable_weekly_bundle': True,
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'platforms': {
+            'linux64': {
+                'build_space': 7,
+            },
+            'linux': {
+                'build_space': 7,
+            },
+            'linuxqt': {
+                'build_space': 7,
+            },
+            'macosx64-debug': {
+                'enable_leaktests': True,
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx-debug': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
+        'talos_suites': {
+            'v8': 1,
+        }
+    },
     'cedar': {},
     # customizations for windows update service changes (bug 481815)
     'elm': {
