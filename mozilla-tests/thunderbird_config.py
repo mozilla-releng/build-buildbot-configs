@@ -201,7 +201,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
-    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['pgo_strategy'] = None
 
 def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
     # If you want a project branch to have a different set of unit tests you can
@@ -405,7 +405,7 @@ for branch in BRANCHES.keys():
         BRANCHES[branch]['release_tests'] = 5
         BRANCHES[branch]['repo_path'] = "releases/%s" % branch
     BRANCHES[branch]['pgo_strategy'] = None
-    BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
+    BRANCHES[branch]['pgo_platforms'] = []
 
 # The following are exceptions to the defaults
 
@@ -413,7 +413,7 @@ for branch in BRANCHES.keys():
 BRANCHES['comm-central']['branch_name'] = "Thunderbird"
 BRANCHES['comm-central']['repo_path'] = "comm-central"
 #BRANCHES['comm-central']['build_branch'] = "1.9.2"
-BRANCHES['comm-central']['pgo_strategy'] = 'periodic'
+BRANCHES['comm-central']['pgo_strategy'] = None
 # Let's add win64 tests only for comm-central until we have enough capacity - see bug 667024
 # XXX hacking warning - this code could get out of date easily
 BRANCHES['comm-central']['platforms']['win64']['enable_opt_unittests'] = True
@@ -432,16 +432,16 @@ for suite in SUITES.keys():
 BRANCHES['comm-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## comm-release
-BRANCHES['comm-release']['pgo_strategy'] = 'per-checkin'
+BRANCHES['comm-release']['pgo_strategy'] = None
 
 ######## comm-beta
-BRANCHES['comm-beta']['pgo_strategy'] = 'per-checkin'
+BRANCHES['comm-beta']['pgo_strategy'] = None
 
 ######## comm-aurora
-BRANCHES['comm-aurora']['pgo_strategy'] = 'per-checkin'
+BRANCHES['comm-aurora']['pgo_strategy'] = None
 
 ######## comm-esr10
-BRANCHES['comm-esr10']['pgo_strategy'] = 'per-checkin'
+BRANCHES['comm-esr10']['pgo_strategy'] = None
 
 if __name__ == "__main__":
     import sys, pprint, re
