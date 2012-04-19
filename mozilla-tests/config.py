@@ -316,6 +316,16 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheckerboard', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
+    'remote-troboprovider': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+    },
+    'remote-trobocheck2': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+    },
     'remote-tp4m': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--rss'],

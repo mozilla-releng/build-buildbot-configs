@@ -1,4 +1,4 @@
 #!/bin/bash
 # This script has been rewritten in setup_master.py using
 # the -t option.  We use that now
-./setup_master.py -t
+./setup-master.py -t "$@"
