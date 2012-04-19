@@ -15,7 +15,8 @@ from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = []
 ACTIVE_PROJECTS = []
 ACTIVE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release', 'mozilla-esr10']
-ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
+ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release',
+                                  'mozilla-esr10']
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
