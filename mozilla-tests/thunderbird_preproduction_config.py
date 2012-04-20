@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from staging_config import GLOBAL_VARS, SLAVES, TRY_SLAVES
+from preproduction_config import GLOBAL_VARS, SLAVES, TRY_SLAVES
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 

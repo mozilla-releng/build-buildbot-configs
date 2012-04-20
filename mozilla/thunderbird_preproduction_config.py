@@ -1,4 +1,4 @@
-from staging_config import \
+from preproduction_config import \
     MAC_SNOW_MINIS, MAC_MINIS, XSERVES, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
     LINUX_IXS, LINUX64_VMS, LINUX64_IXS
 
