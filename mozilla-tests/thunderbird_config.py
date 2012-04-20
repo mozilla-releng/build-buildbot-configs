@@ -28,13 +28,13 @@ BRANCHES = {
     },
 }
 
-PLATFORMS = {                                                                                      
-    'macosx': {},                                                                                  
-    'macosx64': {},                                                                                
-    'win32': {},                                                                                   
-    'win64': {},                                                                                   
-    'linux': {},                                                                                   
-    'linux64' : {},                                                                                
+PLATFORMS = {
+    'macosx': {},
+    'macosx64': {},
+    'win32': {},
+    'win64': {},
+    'linux': {},
+    'linux64' : {},
 }
 
 builder_prefix = "TB "
@@ -129,7 +129,7 @@ OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux'][
 
 OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
 
-OLD_BRANCH_MAC_ONLY = PLATFORMS['macosx']['slave_platforms'] 
+OLD_BRANCH_MAC_ONLY = PLATFORMS['macosx']['slave_platforms']
 
 OLD_BRANCH_ADDON_TESTER_PLATFORMS = ['win7'] + ['fedora'] + ['snowleopard']
 
@@ -196,7 +196,7 @@ def addSuite(suiteGroupName, newSuiteName, suiteList):
     return newSuiteList
 
 def loadDefaultValues(BRANCHES, branch, branchConfig):
-    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch) 
+    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
@@ -226,7 +226,7 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
 ANDROID_XUL_UNITTEST_DICT = {}
 ANDROID_UNITTEST_DICT = {}
 
-# You must define opt_unittest_suites when enable_opt_unittests is True for a 
+# You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
         'linux': {
@@ -367,7 +367,7 @@ for branch in BRANCHES.keys():
                         BRANCHES[branch]['platforms'][platform][key] = value
             else:
                 BRANCHES[branch][key] = deepcopy(value)
- 
+
     # Merge in any project branch config for platforms
 #    if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
 #        for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
