@@ -13,5 +13,3 @@ releaseConfig['messagePrefix']       = '[preprod-release] '
 releaseConfig['userRepoRoot']        = 'users/prepr-ffxbld'
 releaseConfig['ftpServer']           = 'preproduction-stage.srv.releng.scl3.mozilla.com'
 releaseConfig['disableBouncerEntries']    = True
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False

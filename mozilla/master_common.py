@@ -20,11 +20,16 @@ c['change_source'] = []
 # Builders from these branches are given custom priority, default is 2 for unlisted branches
 BRANCH_PRIORITIES = {
     'mozilla-central': 1,
+    'comm-central': 1,
     'mozilla-aurora': 1,
+    'comm-aurora': 1,
     'mozilla-beta': 0,
+    'comm-beta': 0,
     'mozilla-release': 0,
+    'comm-release': 0,
     'mozilla-1.9.2': 1,
     'try': 3,
+    'try-comm-central': 3,
     'addontester': 4,
     'addonbaselinetester': 4,
     'alder': 4,

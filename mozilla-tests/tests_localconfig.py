@@ -19,12 +19,16 @@ if 'ssh_port' in master_config:
             "cltbld", "password")
 
 from config import BRANCHES, PLATFORMS, PROJECTS
+import thunderbird_config
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
+ACTIVE_THUNDERBIRD_BRANCHES = thunderbird_config.BRANCHES.keys()
 if 'limit_platforms' in master_config:
     ACTIVE_PLATFORMS = dict((p,None) for p in master_config['limit_platforms'])
+    ACTIVE_THUNDERBIRD_PLATFORMS = dict((p,None) for p in master_config['limit_platforms'])
 else:
     ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
+    ACTIVE_THUNDERBIRD_PLATFORMS = dict((k,None) for k in THUNDERBIRD_PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")

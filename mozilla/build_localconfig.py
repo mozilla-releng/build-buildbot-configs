@@ -28,6 +28,13 @@ ACTIVE_BRANCHES.extend([
     'mozilla-release',
     'mozilla-esr10',
     ])
+ACTIVE_THUNDERBIRD_BRANCHES = [
+    'comm-central',
+    'comm-beta',
+    'comm-aurora',
+    'comm-release',
+    'comm-esr10',
+]
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
