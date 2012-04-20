@@ -1,6 +1,7 @@
 from buildbot.util import json
 from buildbot.status.html import WebStatus
 from buildbot import manhole
+from thunderbird_config import PLATFORMS as THUNDERBIRD_PLATFORMS
 
 master_config = json.load(open('master_config.json'))
 
