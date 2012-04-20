@@ -20,7 +20,7 @@ GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
 # etc.
 GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
 
-PLATFORM_VARS['linux']['product_name'] = 'thunderbird'
+PLATFORM_VARS['linux']['product_name'] = 'thunderbird-test'
 PLATFORM_VARS['linux']['app_name'] = 'mailnews'
 # etc.
 # You can probably do something like this if you really wanted to:
@@ -39,9 +39,7 @@ GLOBAL_VARS.update({
     'stage_username': 'tbirdbld',
     'stage_group': None,
     'stage_ssh_key': 'tbirdbld_dsa',
-    'symbol_server_path': '/mnt/netapp/breakpad/symbols_tbrd/',
-    'aus2_user': 'cltbld',
-    'aus2_ssh_key': 'cltbld_dsa',
+    'symbol_server_path': '/mnt/netapp/breakpad/symbols_tbrd-test/',
     'hg_username': 'tbirdbld',
     'hg_ssh_key': '~cltbld/.ssh/tbirdbld_dsa',
     'unittest_suites': [
@@ -65,14 +63,14 @@ GLOBAL_VARS.update({
     'pgo_platforms': ('linux', 'linux64', 'win32'),
     'pgo_strategy': None,
     'periodic_pgo_interval': 6, # in hours
-    'product_name': 'thunderbird', # Not valid for mobile builds
+    'product_name': 'thunderbird-test', # Not valid for mobile builds
     'app_name': 'mail',     # Not valid for mobile builds
     'brand_name': 'Daily', # Not valid for mobile builds
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
-    'enabled_products': ['thunderbird'],
+    'enabled_products': ['thunderbird-test'],
     'enable_valgrind': True,
     'valgrind_platforms': ('linux', 'linux64'),
 
@@ -104,12 +102,11 @@ GLOBAL_VARS.update({
 OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
-SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 builder_prefix = "TB "
 
 PLATFORM_VARS = {
         'linux': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
@@ -125,7 +122,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
@@ -154,7 +151,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linuxqt': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux QT %(branch)s',
             'mozconfig': 'linux/%(branch)s/qt',
@@ -171,7 +168,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'linuxqt',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
@@ -197,7 +194,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'linux-rpm': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux RPM %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly-rpm',
@@ -219,7 +216,7 @@ PLATFORM_VARS = {
             'packageTests': False, #Done in rpm spec file
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -248,7 +245,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'linux64': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
@@ -264,7 +261,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
@@ -294,7 +291,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linux64-rpm': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux RPM x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly-rpm',
@@ -316,7 +313,7 @@ PLATFORM_VARS = {
             'packageTests': False, #Done in rpm spec file
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_shared_checkouts': True,
             'env': {
@@ -344,7 +341,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'macosx': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s',
             'mozconfig': 'macosx/%(branch)s/nightly',
@@ -361,7 +358,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['macosx'],
             'platform_objdir': "%s/ppc" % OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx',
             'update_platform': 'Darwin_Universal-gcc3',
             'enable_shared_checkouts': True,
@@ -385,7 +382,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'macosx64': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
@@ -402,7 +399,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
@@ -429,7 +426,7 @@ PLATFORM_VARS = {
             'test_pretty_names': True,
         },
         'win32': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
@@ -445,7 +442,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'win32',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -472,7 +469,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'win64': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'mail/config/mozconfigs/win64/nightly',
@@ -488,7 +485,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -515,7 +512,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linux-debug': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s leak test',
             'mozconfig': 'linux/%(branch)s/debug',
@@ -529,7 +526,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'linux-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -550,7 +547,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'linux64-debug': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s leak test',
             'mozconfig': 'linux64/%(branch)s/debug',
@@ -564,7 +561,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -585,7 +582,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'macosx-debug': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
@@ -599,7 +596,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
             'enable_shark': True,
@@ -615,7 +612,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'macosx64-debug': {
-            'product_name': 'thunderbird',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
@@ -629,7 +626,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
             'enable_shark': True,
@@ -646,7 +643,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'win32-debug': {
-            'product_name': 'firefox',
+            'product_name': 'thunderbird-test',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
@@ -660,7 +657,7 @@ PLATFORM_VARS = {
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
+            'stage_product': 'thunderbird-test',
             'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
             'env': {
@@ -793,28 +790,22 @@ BRANCHES['comm-central']['l10nDatedDirs'] = True
 BRANCHES['comm-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
 BRANCHES['comm-central']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-central-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-central-l10n/'
 BRANCHES['comm-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central'
 BRANCHES['comm-central']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-central']['enable_multi_locale'] = True
-BRANCHES['comm-central']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['update_channel'] = 'nightly'
-BRANCHES['comm-central']['create_mobile_snippet'] = True
 BRANCHES['comm-central']['create_partial'] = True
 BRANCHES['comm-central']['create_partial_l10n'] = True
-BRANCHES['comm-central']['aus2_user'] = 'tbirdbld'
-BRANCHES['comm-central']['aus2_ssh_key'] = 'tbirdbld_dsa'
-BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/comm-central'
-BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Thunderbird/comm-central'
-BRANCHES['comm-central']['aus2_mobile_base_upload_dir'] = None
-BRANCHES['comm-central']['aus2_mobile_base_upload_dir_l10n'] = None
+BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
+BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['blocklist_update_on_closed_tree'] = False
 
@@ -847,7 +838,6 @@ BRANCHES['comm-release']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-release']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-release']['enable_multi_locale'] = True
-BRANCHES['comm-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-release']['enable_nightly'] = False
 BRANCHES['comm-release']['enable_blocklist_update'] = False
@@ -883,15 +873,11 @@ BRANCHES['comm-esr10']['localesURL'] = \
 BRANCHES['comm-esr10']['enable_nightly'] = True
 BRANCHES['comm-esr10']['create_snippet'] = True
 BRANCHES['comm-esr10']['create_partial'] = True
-BRANCHES['comm-esr10']['aus2_user'] = 'tbirdbld'
-BRANCHES['comm-esr10']['aus2_ssh_key'] = 'tbirdbld_dsa'
-# use comm-esr10-test when disabling updates for merges
 BRANCHES['comm-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr10'
 BRANCHES['comm-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr10'
 BRANCHES['comm-esr10']['enable_blocklist_update'] = False
 BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr10']['enable_valgrind'] = False
-BRANCHES['comm-esr10']['upload_mobile_symbols'] = True
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -926,14 +912,13 @@ BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'fxbeta'
 #make sure it has an ending slash
 BRANCHES['comm-beta']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-beta-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-beta-l10n/'
 BRANCHES['comm-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-beta'
 BRANCHES['comm-beta']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-beta']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-beta']['enable_multi_locale'] = True
-BRANCHES['comm-beta']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-beta']['enable_nightly'] = False
 # If True, a complete update snippet for this branch will be generated and
@@ -976,29 +961,23 @@ BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'fxaurora'
 #make sure it has an ending slash
 BRANCHES['comm-aurora']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-aurora-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-aurora-l10n/'
 BRANCHES['comm-aurora']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
 BRANCHES['comm-aurora']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-aurora']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-aurora']['enable_multi_locale'] = True
-BRANCHES['comm-aurora']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-aurora']['create_snippet'] = True
 BRANCHES['comm-aurora']['update_channel'] = 'aurora'
-BRANCHES['comm-aurora']['create_mobile_snippet'] = True
 BRANCHES['comm-aurora']['create_partial'] = True
 BRANCHES['comm-aurora']['create_partial_l10n'] = True
-BRANCHES['comm-aurora']['aus2_user'] = 'tbirdbld'
-BRANCHES['comm-aurora']['aus2_ssh_key'] = 'tbirdbld_dsa'
 # use comm-aurora-test when disabling updates for merges
-BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/build/0/Thunderbird/comm-aurora'
-BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/build/0/Thunderbird/comm-aurora'
-BRANCHES['comm-aurora']['aus2_mobile_base_upload_dir'] = None
-BRANCHES['comm-aurora']['aus2_mobile_base_upload_dir_l10n'] = None
+BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
+BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-aurora']['platforms']['win64']
@@ -1007,11 +986,8 @@ BRANCHES['comm-aurora']['enable_valgrind'] = False
 ######## try
 # Try-specific configs
 BRANCHES['try-comm-central']['stage_username'] = 'trybld'
-BRANCHES['try-comm-central']['stage_username_mobile'] = 'trybld'
 BRANCHES['try-comm-central']['stage_ssh_key'] = 'trybld_dsa'
-BRANCHES['try-comm-central']['stage_ssh_mobile_key'] = 'trybld_dsa'
-BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird/try-builds'
-BRANCHES['try-comm-central']['stage_base_path_mobile'] = '/home/ftp/pub/thunderbird/try-builds'
+BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird-test/try-builds'
 BRANCHES['try-comm-central']['enable_merging'] = False
 BRANCHES['try-comm-central']['enable_try'] = True
 BRANCHES['try-comm-central']['package_dir'] ='%(who)s-%(got_revision)s'
@@ -1054,7 +1030,7 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 for platform in BRANCHES['try-comm-central']['platforms'].keys():
-    BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird'
+    BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird-test'
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

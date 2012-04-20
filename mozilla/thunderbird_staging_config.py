@@ -33,9 +33,10 @@ GLOBAL_VARS = {
     'config_repo_path': 'users/john.hopkins_mozillamessaging.com/buildbot-configs-stage',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
+    'aus2_user': 'cltbld',
+    'aus2_ssh_key': 'cltbld_dsa',
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
-    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird',
-    'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
+    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test',
     'graph_server': None, #XXX reenable once graph server has Thunderbird entries
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
@@ -52,10 +53,9 @@ GLOBAL_VARS = {
     'l10n_tinderbox_tree': 'MozillaStaging',
     'packaged_unittest_tinderbox_tree': 'MozillaTest',
     'tinderbox_tree': 'MozillaTest',
-    'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-tbirdbld',
     'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
-    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
+    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird-test/bundles'],
 }
 
 BUILDS_BEFORE_REBOOT = 5
@@ -84,11 +84,10 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'try-comm-central': {
-        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird',
-        'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
+        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird/try-builds',
+        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
