@@ -1226,7 +1226,7 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
             if pf == "macosx" and slave_pf == "leopard-o":
                 continue
             if pf.startswith("win"):
-                config_file = "peptest/%s_config.py" % slave_pf
+                config_file = "peptest/windows_config.py"
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('peptest', {'suite': 'peptest',
                 'mozharness_repo': MOZHARNESS_REPO,
                 'script_path': 'scripts/peptest.py',
