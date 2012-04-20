@@ -545,6 +545,7 @@ mozilla_preproduction_tests_scheduler_master = mozilla_tests + MasterConfig(
         local_links = [
             ('preproduction_tests_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
+            ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
         )
@@ -554,6 +555,7 @@ mozilla_preproduction_tests_master = mozilla_tests + MasterConfig(
         local_links = [
             ('preproduction_tests_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
+            ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
         )
@@ -635,6 +637,7 @@ mozilla_preproduction_scheduler_master = mozilla_production + MasterConfig(
         local_links = [
             ('preproduction_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
+            ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
@@ -644,6 +647,7 @@ mozilla_preproduction_builder_master = mozilla_production + MasterConfig(
         local_links = [
             ('preproduction_builder_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
+            ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -653,6 +657,7 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
         local_links = [
             ('preproduction_release_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
+            ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
