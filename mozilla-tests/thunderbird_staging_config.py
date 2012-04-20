@@ -5,7 +5,7 @@ from staging_config import GLOBAL_VARS, SLAVES, TRY_SLAVES
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
 GLOBAL_VARS['disable_tinderbox_mail'] = True
-GLOBAL_VARS['tinderbox_tree'] = 'ThunderbirdTest'
+GLOBAL_VARS['tinderbox_tree'] = 'MozillaTest'
 GLOBAL_VARS['stage_username'] = 'tbirdbld'
 GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
 

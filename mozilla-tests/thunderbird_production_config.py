@@ -13,22 +13,22 @@ GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
 # Local branch overrides
 BRANCHES = {
     'comm-central': {
-        'tinderbox_tree': 'ThunderbirdTrunk',
+        'tinderbox_tree': 'MozillaTest',
     },
     'comm-release': {
-        'tinderbox_tree': 'Thunderbird-Release',
+        'tinderbox_tree': 'MozillaTest',
     },
     'comm-esr10': {
-        'tinderbox_tree': 'Thunderbird-Esr10',
+        'tinderbox_tree': 'MozillaTest',
     },
     'comm-beta': {
-        'tinderbox_tree': 'Thunderbird-Beta',
+        'tinderbox_tree': 'MozillaTest',
     },
     'comm-aurora': {
-        'tinderbox_tree': 'Thunderbird-Aurora',
+        'tinderbox_tree': 'MozillaTest',
     },
     'try-comm-central': {
-        'tinderbox_tree': 'ThunderbirdTry',
+        'tinderbox_tree': 'MozillaTest',
         'enable_mail_notifier': True,
         'notify_real_author': True,
         'enable_merging': False,
