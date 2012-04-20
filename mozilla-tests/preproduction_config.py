@@ -23,7 +23,7 @@ GLOBAL_VARS = {
     'disable_tinderbox_mail': True,
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
-    'build_tools_repo_path': 'users/prepr-ffxbld/tools',
+    'build_tools_repo_path': 'build/tools',
     'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
