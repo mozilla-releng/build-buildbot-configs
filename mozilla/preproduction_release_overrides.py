@@ -1,6 +1,5 @@
 releaseConfig['ImportantRecipients']      = ['release@mozilla.com',]
 releaseConfig['l10nRepoPath']        = 'users/prepr-ffxbld'
-releaseConfig['l10nChunks']          = 2
 releaseConfig['hgUsername']          = 'prepr-ffxbld'
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['stagingServer']       = 'preproduction-stage.srv.releng.scl3.mozilla.com'
