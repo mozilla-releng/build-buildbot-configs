@@ -14,6 +14,7 @@ c['manhole'] = manhole.PasswordManhole("tcp:1245:interface=127.0.0.1", "cltbld",
 from config import BRANCHES, SLAVES, PROJECTS
 ACTIVE_BRANCHES = []
 ACTIVE_PROJECTS = []
+ACTIVE_THUNDERBIRD_BRANCHES = []
 ACTIVE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release', 'mozilla-esr10']
 ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release',
                                   'mozilla-esr10']
