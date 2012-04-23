@@ -1,3 +1,4 @@
+releaseConfig['AllRecipients']      = ['release@mozilla.com',]
 releaseConfig['ImportantRecipients']      = ['release@mozilla.com',]
 releaseConfig['l10nRepoPath']        = 'users/prepr-ffxbld'
 releaseConfig['hgUsername']          = 'prepr-ffxbld'
