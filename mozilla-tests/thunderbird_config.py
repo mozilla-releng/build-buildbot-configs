@@ -429,7 +429,6 @@ for suite in SUITES.keys():
     else:
         # Suites that are turned on by default
         BRANCHES['comm-central'][suite + '_tests'] = (1, True) + options
-BRANCHES['comm-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 ######## comm-release
 BRANCHES['comm-release']['pgo_strategy'] = None
