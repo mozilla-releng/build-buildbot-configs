@@ -617,7 +617,7 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
             'run_alive_tests': False,
-            'src_mozconfig': 'mail/config/mozconfigs/macosx-universal/debug',
+            'src_mozconfig': 'mail/config/mozconfigs/macosx64/debug',
             'packageTests': True,
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
