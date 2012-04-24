@@ -613,14 +613,14 @@ BRANCHES['comm-1.9.2'] = makeBuildConfig(
 #                               hgBranch      = 'releases/comm-1.9.2',
 #                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
 #                               tinderboxTree = 'Thunderbird3.1'
-                           )
+#                           )
 #BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
 #                               builderType   = 'check',
 #                               branchName    = 'comm-1.9.2',
 #                               hgBranch      = 'releases/comm-1.9.2',
 #                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
 #                               tinderboxTree = 'Thunderbird3.1'
-                           )
+#                           )
 
 # ----------------
 
