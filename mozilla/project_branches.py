@@ -94,9 +94,11 @@ PROJECT_BRANCHES = {
         'platforms': {
             'linux64': {
                 'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
                 'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linuxqt': {
                 'build_space': 7,
@@ -152,6 +154,12 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'linux-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
@@ -203,6 +211,12 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'linux-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
@@ -234,9 +248,11 @@ PROJECT_BRANCHES = {
         'platforms': {
             'linux64': {
                 'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
                 'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linuxqt': {
                 'build_space': 7,
@@ -299,6 +315,12 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'enable_talos': False,
         'platforms': {
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
