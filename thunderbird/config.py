@@ -363,11 +363,11 @@ def makeBuildConfig(builderType=None, branchName=None, hgBranch=None,
         # Blocklist settings
         bc['repo_path'] = bc['hg_branch'] # alias
         bc['product_name'] = 'thunderbird'
-        if branchName in ['comm-release', 'comm-central-tested', 'comm-esr10']:
+        if branchName in ['comm-release', 'comm-central-tested', 'comm-esr10', 'comm-1.9.2']:
             bc['enable_blocklist_update'] = False
         else:
             bc['enable_blocklist_update'] = True
-        if branchName in ['comm-central', 'comm-1.9.2']:
+        if branchName in ['comm-central']:
             bc['blocklist_update_on_closed_tree'] = True
         else:
             bc['blocklist_update_on_closed_tree'] = False
@@ -602,24 +602,25 @@ BRANCHES['comm-1.9.2'] = makeBuildConfig(
                                mozillaCentralBranch = 'releases/mozilla-1.9.2',
                                tinderboxTree = 'Thunderbird3.1',
                                allLocalesFile = 'all-locales.comm-1.9.2',
-                               wantL10n      = True,
+                               wantL10n      = False,
+                               wantNightly   = False,
                                l10nRepo      = 'releases/l10n-mozilla-1.9.2',
                                updateChannel = 'nightly',
                            )
-BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
-                               builderType   = 'bloat',
-                               branchName    = 'comm-1.9.2',
-                               hgBranch      = 'releases/comm-1.9.2',
-                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
-                               tinderboxTree = 'Thunderbird3.1'
-                           )
-BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
-                               builderType   = 'check',
-                               branchName    = 'comm-1.9.2',
-                               hgBranch      = 'releases/comm-1.9.2',
-                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
-                               tinderboxTree = 'Thunderbird3.1'
-                           )
+#BRANCHES['comm-1.9.2-bloat'] = makeBuildConfig(
+#                               builderType   = 'bloat',
+#                               branchName    = 'comm-1.9.2',
+#                               hgBranch      = 'releases/comm-1.9.2',
+#                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+#                               tinderboxTree = 'Thunderbird3.1'
+#                           )
+#BRANCHES['comm-1.9.2-unittest'] = makeBuildConfig(
+#                               builderType   = 'check',
+#                               branchName    = 'comm-1.9.2',
+#                               hgBranch      = 'releases/comm-1.9.2',
+#                               mozillaCentralBranch = 'releases/mozilla-1.9.2',
+#                               tinderboxTree = 'Thunderbird3.1'
+#                           )
 
 # ----------------
 
