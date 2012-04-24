@@ -1179,13 +1179,6 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
-#-------------------------------------------------------------------------
-# Delete the below lines when 12.0 merges into release
-#-------------------------------------------------------------------------
-BRANCHES['mozilla-release']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-#-------------------------------------------------------------------------
-# End 12.0
-#-------------------------------------------------------------------------
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1669,7 +1662,7 @@ for branch in branches:
 lion_branches = ['mozilla-central', 'try',] + ACTIVE_PROJECT_BRANCHES[:]
 # Each line starts with a branch.  When Firefox 14 hits that branch, uncomment
 # line and remove the branch name.  i.e. s/^# \w*: //
-# aurora: lion_branches += 'mozilla-aurora'
+lion_branches += 'mozilla-aurora'
 # beta: lion_branches += 'mozilla-beta'
 # release: lion_branches += 'mozilla-release'
 # XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
