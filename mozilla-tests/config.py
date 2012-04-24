@@ -1090,11 +1090,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 #### MERGE DAY - EXCEPTIONS
-# When Firefox 14 is on mozilla-aurora we can remove these on/off switches
-BRANCHES['mozilla-aurora']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-aurora']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-aurora']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 # When Firefox 14 is on mozilla-beta we can remove these on/off switches
 BRANCHES['mozilla-beta']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-beta']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
@@ -1106,15 +1101,6 @@ BRANCHES['mozilla-release']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_
 BRANCHES['mozilla-release']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
-# When Firefox 13 is on mozilla-beta we can remove these on/off switches
-BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chrome.2_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 # When Firefox 13 is on mozilla-release we can remove these on/off switches
 BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
