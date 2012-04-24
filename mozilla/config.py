@@ -1670,9 +1670,9 @@ for branch in branches:
 lion_branches = ['mozilla-central', 'try',] + ACTIVE_PROJECT_BRANCHES[:]
 # Each line starts with a branch.  When Firefox 14 hits that branch, uncomment
 # line and remove the branch name.  i.e. s/^# \w*: //
-lion_branches += 'mozilla-aurora'
-# beta: lion_branches += 'mozilla-beta'
-# release: lion_branches += 'mozilla-release'
+lion_branches += ['mozilla-aurora']
+# beta: lion_branches += ['mozilla-beta']
+# release: lion_branches += ['mozilla-release']
 # XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
