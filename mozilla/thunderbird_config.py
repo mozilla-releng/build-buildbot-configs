@@ -362,7 +362,7 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx',
             'update_platform': 'Darwin_Universal-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -403,7 +403,7 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -599,7 +599,7 @@ PLATFORM_VARS = {
             'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -629,7 +629,7 @@ PLATFORM_VARS = {
             'stage_product': 'thunderbird-test',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
