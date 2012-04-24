@@ -985,7 +985,7 @@ BRANCHES['comm-aurora']['enable_valgrind'] = False
 
 ######## try
 # Try-specific configs
-BRANCHES['try-comm-central']['stage_username'] = 'trybld'
+BRANCHES['try-comm-central']['stage_username'] = 'tbirdtry'
 BRANCHES['try-comm-central']['stage_ssh_key'] = 'trybld_dsa'
 BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird-test/try-builds'
 BRANCHES['try-comm-central']['enable_merging'] = False
