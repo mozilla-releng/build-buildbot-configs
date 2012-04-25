@@ -138,15 +138,15 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    #'fuzzing': {
-    #    'disable_tinderbox_mail': True,
-    #    'scripts_repo': 'http://hg.mozilla.org/build/tools',
-    #    'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-    #    'fuzzing_remote_host': 'stage-ffxbld@dm-pvtbuild01.mozilla.org',
-    #    # Path needs extra leading slash due to optparse expansion on Win32
-    #    'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
-    #    'idle_slaves': 0,
-    #},
+    'fuzzing': {
+        'disable_tinderbox_mail': True,
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
+        'fuzzing_remote_host': 'stage-ffxbld@dm-pvtbuild01.mozilla.org',
+        # Path needs extra leading slash due to optparse expansion on Win32
+        'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
+        'idle_slaves': 0,
+    },
     'nanojit': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
