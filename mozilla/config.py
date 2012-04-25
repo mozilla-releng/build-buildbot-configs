@@ -1184,6 +1184,7 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
+BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1236,6 +1237,7 @@ BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_B
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
+BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1300,6 +1302,7 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_serve
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
+BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
