@@ -53,7 +53,8 @@ GLOBAL_VARS = {
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',#TODO
-    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    # XXX: should point at aus4-admin-dev once production is pointing elsewhere
+    #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
