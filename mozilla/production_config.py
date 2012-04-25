@@ -162,7 +162,7 @@ BRANCHES = {
         'platforms': {
             'win32': {
                 'env': {
-                    'SYMBOL_SERVER_HOST': 'build.mozilla.org',
+                    'SYMBOL_SERVER_HOST': 'relengweb1.scl3.mozilla.com',
                     'CVS_RSH': 'ssh',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
@@ -185,16 +185,15 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    ### Disabled for move
-    #'fuzzing': {
-        #'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        #'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
-        #'fuzzing_remote_host': 'ffxbld@dm-pvtbuild01.mozilla.org',
-        ## Path needs extra leading slash due to optparse expansion on Win32
-        #'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
-        #'idle_slaves': 3,
-        #'disable_tinderbox_mail': False,
-    #},
+    'fuzzing': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
+        'fuzzing_remote_host': 'ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
+        # Path needs extra leading slash due to optparse expansion on Win32
+        'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
+        'idle_slaves': 3,
+        'disable_tinderbox_mail': False,
+    },
     'nanojit': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 3,

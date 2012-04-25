@@ -53,7 +53,8 @@ GLOBAL_VARS = {
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',#TODO
-    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    # XXX: should point at aus4-admin-dev once production is pointing elsewhere
+    #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
@@ -139,15 +140,15 @@ PLATFORM_VARS = {
 }
 
 PROJECTS = {
-    #'fuzzing': {
-    #    'disable_tinderbox_mail': True,
-    #    'scripts_repo': 'http://hg.mozilla.org/build/tools',
-    #    'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-    #    'fuzzing_remote_host': 'ffxbld@preproduction-stage.srv.releng.scl3.mozilla.com',
-    #    # Path needs extra leading slash due to optparse expansion on Win32
-    #    'fuzzing_base_dir': '/pub/mozilla.org/firefox/tinderbox-builds/fuzzing/',
-    #    'idle_slaves': 0,
-    #},
+    'fuzzing': {
+        'disable_tinderbox_mail': True,
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
+        'fuzzing_remote_host': 'ffxbld@preproduction-stage.srv.releng.scl3.mozilla.com',
+        # Path needs extra leading slash due to optparse expansion on Win32
+        'fuzzing_base_dir': '/pub/mozilla.org/firefox/tinderbox-builds/fuzzing/',
+        'idle_slaves': 0,
+    },
     'nanojit': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
