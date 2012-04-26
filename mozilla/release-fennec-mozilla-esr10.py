@@ -119,7 +119,7 @@ releaseConfig['disablePushToMirrors']     = True
 releaseConfig['multilocale_config'] = {
     'platforms': {
         'linux-android':
-            'multi_locale/release_mozilla-release_linux-android.json',
+            'multi_locale/release_mozilla-esr10_linux-android.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
