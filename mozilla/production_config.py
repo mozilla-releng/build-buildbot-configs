@@ -162,7 +162,7 @@ BRANCHES = {
         'platforms': {
             'win32': {
                 'env': {
-                    'SYMBOL_SERVER_HOST': 'relengweb1.scl3.mozilla.com',
+                    'SYMBOL_SERVER_HOST': 'relengweb1.dmz.scl3.mozilla.com',
                     'CVS_RSH': 'ssh',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
