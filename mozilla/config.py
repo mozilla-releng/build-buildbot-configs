@@ -902,6 +902,15 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
         },
 }
+# Additional fixups for lion
+PLATFORM_VARS["macosx64-lion"] = deepcopy(PLATFORM_VARS["macosx64"])
+PLATFORM_VARS["macosx64-lion-debug"] = deepcopy(PLATFORM_VARS["macosx64-debug"])
+PLATFORM_VARS["macosx64-lion"]["base_name"] = 'OS X 10.7 %(branch)s'
+PLATFORM_VARS["macosx64-lion-debug"]["base_name"] = 'OS X 10.7 64-bit %(branch)s leak test'
+PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
+PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
+PLATFORM_VARS["macosx64-lion"]["enable_shark"] = False
+PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
 
 PROJECTS = {
     'fuzzing': {
@@ -920,8 +929,8 @@ PROJECTS = {
             'linux64-debug':  ['nomethodjit', 'notracejit', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
-            'macosx64':       ['warnaserr'],
-            'macosx64-debug': ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
+            'macosx64-lion':           ['warnaserr'],
+            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
@@ -930,8 +939,8 @@ PROJECTS = {
             'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
             'win32': PLATFORM_VARS['win32']['env'],
             'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64': PLATFORM_VARS['macosx64']['env'],
-            'macosx64-debug': PLATFORM_VARS['macosx64-debug']['env'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
@@ -944,8 +953,8 @@ PROJECTS = {
             'linux64-debug':  ['nomethodjit', 'notracejit', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
-            'macosx64':       ['warnaserr'],
-            'macosx64-debug': ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
+            'macosx64-lion':           ['warnaserr'],
+            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
@@ -954,8 +963,8 @@ PROJECTS = {
             'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
             'win32': PLATFORM_VARS['win32']['env'],
             'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64': PLATFORM_VARS['macosx64']['env'],
-            'macosx64-debug': PLATFORM_VARS['macosx64-debug']['env'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
