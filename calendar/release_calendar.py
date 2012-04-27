@@ -2,15 +2,15 @@
 
 branchSuffix               = 'beta'
 
-sourceRepoRevision         = '73d7397358a5'
-mozillaRepoRevision        = 'THUNDERBIRD_12_0b4_RELEASE'
+sourceRepoRevision         = '55d2cd85cf85'
+mozillaRepoRevision        = 'THUNDERBIRD_13_0b1_RELEASE'
 
-milestone                  = '12.0'
+milestone                  = '13.0'
 
-version                    = '1.4'
+version                    = '1.5b1'
 buildNumber                = 1
 
-oldVersion                 = '1.4b3'
+oldVersion                 = '1.4'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
