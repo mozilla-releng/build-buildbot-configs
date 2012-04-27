@@ -18,7 +18,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '13.0b1'
 releaseConfig['appVersion']          = '13.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_13_0b1'
 #  Old version info
 releaseConfig['oldVersion']          = '12.0b6'
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'e60ca2e387a8',
+        'revision': '11e015ed342e',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
