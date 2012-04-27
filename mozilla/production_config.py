@@ -1,6 +1,9 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,81)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(5,10) + \
                  range(15,30) + range(40,57) if x not in (52,)] # bug683792
+MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,27) + range(38,55) \
+                 if x not in (3,4,5,8,10,20,40)] # bug629763
+XSERVES        = ['bm-xserve%02i' % x for x in [7,9,11,12,15,16,17,18,19,22]] # bug700705
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in [1,2] + range(5,47) \
                  if x not in (10,17)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
@@ -18,7 +21,7 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx':           []
+    'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'linux-android':    LINUX_VMS + LINUX_IXS,
@@ -33,6 +36,9 @@ TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
                  ['linux-ix-slave%02i' % x for x in range(7,12)]
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range(1,11)]
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
+TRY_MAC        = ['try-mac-slave%02i' % x for x in range(1,5) + range(6,48) \
+                 if x not in (11,16,35,) and x not in range(20,30)] # Bug 650297 & bug 700705
+TRY_XSERVES    = ['bm-xserve%02i' % x for x in [8,10,20,23,24]]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(1,32)] + \
                  ['moz2-darwin10-slave%02i' % x for x in range(11,15)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)] + \
@@ -46,6 +52,7 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
     'win32':       TRY_WIN32_IXS,
     'win64':       TRY_WIN64_IXS,
+    'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
     'macosx64-lion': TRY_LION,
     'mock':        TRY_MOCK_DL120G7,
@@ -171,7 +178,11 @@ BRANCHES = {
     },
 }
 
-PLATFORM_VARS = {}
+PLATFORM_VARS = {
+    'macosx': {
+        'talos_masters': GLOBAL_VARS['talos_masters'] + [('talos-master.mozilla.org:9010', True, 5)]
+    }
+}
 
 PROJECTS = {
     'fuzzing': {

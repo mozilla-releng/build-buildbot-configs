@@ -7,7 +7,7 @@ import thunderbird_localconfig
 reload(thunderbird_localconfig)
 
 # Can't reload this one because it gets reloaded in another file
-from localconfig import MAC_SNOW_MINIS, LINUX_VMS, \
+from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
                         LINUX_IXS, WIN32_IXS, SLAVES, \
                         TRY_SLAVES
 
@@ -55,6 +55,7 @@ GLOBAL_VARS.update({
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
+        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
     },
@@ -341,6 +342,47 @@ PLATFORM_VARS = {
             'unittest_masters': [],
             'test_pretty_names': False,
         },
+        'macosx': {
+            'product_name': 'thunderbird-test',
+            'app_name': 'mail',
+            'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s',
+            'mozconfig': 'macosx/%(branch)s/nightly',
+            'run_alive_tests': False,
+            'src_mozconfig': 'mail/config/mozconfigs/macosx-universal/nightly',
+            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
+            'src_shark_mozconfig': 'mail/config/mozconfigs/macosx-universal/shark',
+            'profiled_build': False,
+            'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
+            'leak_target': 'mailbloat',
+            'build_space': 10,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'packageTests': True,
+            'slaves': SLAVES['macosx'],
+            'platform_objdir': "%s/ppc" % OBJDIR,
+            'stage_product': 'thunderbird-test',
+            'stage_platform': 'macosx',
+            'update_platform': 'Darwin_Universal-gcc3',
+            'enable_shared_checkouts': True,
+            'enable_shark': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'tbirdbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbirdbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': None,
+        },
         'macosx64': {
             'product_name': 'thunderbird-test',
             'app_name': 'mail',
@@ -541,6 +583,36 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
         },
+        'macosx-debug': {
+            'product_name': 'thunderbird-test',
+            'app_name': 'mail',
+            'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s leak test',
+            'mozconfig': 'macosx/%(branch)s/debug',
+            'run_alive_tests': False,
+            'src_mozconfig': 'mail/config/mozconfigs/macosx32/debug',
+            'profiled_build': False,
+            'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': True,
+            'packageTests': True,
+            'leak_target': 'mailbloat',
+            'build_space': 10,
+            'slaves': SLAVES['macosx'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'thunderbird-test',
+            'stage_platform': 'macosx-debug',
+            'enable_shared_checkouts': True,
+            'enable_shark': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
+            },
+            'enable_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': None,
+        },
         'macosx64-debug': {
             'product_name': 'thunderbird-test',
             'app_name': 'mail',
@@ -623,6 +695,7 @@ BRANCHES = {
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
+            'macosx-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
         },
@@ -714,7 +787,7 @@ BRANCHES['comm-central']['enable_l10n'] = True
 BRANCHES['comm-central']['enable_l10n_onchange'] = True
 BRANCHES['comm-central']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                              'macosx64']
+                                                 'macosx64']
 BRANCHES['comm-central']['l10nDatedDirs'] = True
 BRANCHES['comm-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
@@ -758,7 +831,7 @@ BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = True
 BRANCHES['comm-release']['l10nNightlyUpdate'] = False
 BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                              'macosx64']
+                                                 'macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
 BRANCHES['comm-release']['l10n_tree'] = 'fxrel'
 BRANCHES['comm-release']['enUS_binaryURL'] = \
@@ -789,7 +862,7 @@ BRANCHES['comm-esr10']['enable_l10n'] = False
 BRANCHES['comm-esr10']['enable_l10n_onchange'] = False
 BRANCHES['comm-esr10']['l10nNightlyUpdate'] = False
 BRANCHES['comm-esr10']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                            'macosx64']
+                                                 'macosx64']
 BRANCHES['comm-esr10']['l10nDatedDirs'] = True
 BRANCHES['comm-esr10']['l10n_tree'] = 'fxesr10'
 BRANCHES['comm-esr10']['enable_multi_locale'] = True
@@ -836,7 +909,7 @@ BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = False
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                           'macosx64']
+                                                 'macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'fxbeta'
 #make sure it has an ending slash
@@ -885,7 +958,7 @@ BRANCHES['comm-aurora']['enable_l10n'] = True
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                             'macosx64']
+                                                 'macosx64']
 BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'fxaurora'
 #make sure it has an ending slash
@@ -948,6 +1021,7 @@ BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['ma
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
