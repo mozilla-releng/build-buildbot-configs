@@ -30,7 +30,7 @@ releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
-    'mozilla': {
+    'comm': {
         'name': 'comm-release',
         'path': 'releases/comm-release',
         'revision': '832c448e5d0a',
@@ -41,12 +41,32 @@ releaseConfig['sourceRepositories']  = {
                 'nextVersion': releaseConfig['nextAppVersion']
             },
         }
+    },
+    'mozilla': {
+        'name': 'mozilla-release',
+        'path': 'releases/mozilla-release',
+        'revision': '5bcfa0da3be9',
+        'relbranch': None,
+        'bumpFiles': {
+            'browser/config/version.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
     }
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-thunderbird-changesets-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-release'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
@@ -101,7 +121,6 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['xulrunner_mozconfigs']          = {}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True

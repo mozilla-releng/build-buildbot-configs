@@ -205,6 +205,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
             c.globs.append('release_templates')
             c.globs.append('release-firefox*.py')
             c.globs.append('release-fennec*.py')
+            c.globs.append('release-thunderbird*.py')
             c.globs.append(mastercfg)
             c.globs.append('build_localconfig.py')
             c.local_links.append((mastercfg, 'master.cfg'))
@@ -262,7 +263,7 @@ mozilla_base = MasterConfig(
         )
 
 mozilla_production = mozilla_base + MasterConfig(
-    globs=['release-firefox-*.py', 'release-fennec-*.py'],
+    globs=['release-firefox-*.py', 'release-fennec-*.py', 'release-thunderbird-*.py'],
     )
 
 mozilla_staging = mozilla_base + MasterConfig(
@@ -272,6 +273,9 @@ mozilla_staging = mozilla_base + MasterConfig(
                  for v in ['1.9.2', 'beta', 'release']] + \
                 [('staging_release-fennec-mozilla-%s.py' % v,
                   'release-fennec-mozilla-%s.py' % v)
+                 for v in ['beta', 'release']] + \
+                [('staging_release-thunderbird-comm-%s.py' % v,
+                  'release-thunderbird-comm-%s.py' % v)
                  for v in ['beta', 'release']]
     )
 
