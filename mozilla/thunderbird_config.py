@@ -978,8 +978,8 @@ BRANCHES['comm-aurora']['update_channel'] = 'aurora'
 BRANCHES['comm-aurora']['create_partial'] = True
 BRANCHES['comm-aurora']['create_partial_l10n'] = True
 # use comm-aurora-test when disabling updates for merges
-BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
-BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
+BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora-test'
+BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora-test'
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-aurora']['platforms']['win64']
