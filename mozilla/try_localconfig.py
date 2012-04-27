@@ -35,6 +35,7 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
+    'xserve',
     ])
 ENABLE_RELEASES = False
 RESERVED_SLAVES = None
