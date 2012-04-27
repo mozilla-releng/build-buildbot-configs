@@ -1,12 +1,13 @@
 releaseConfig = {}
+releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com','Callek@gmail.com']
-releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
-releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.org',]
+releaseConfig['AllRecipients']       = ['release@mozilla.com',]
+releaseConfig['ImportantRecipients'] = ['release@mozilla.com',]
+releaseConfig['AVVendorsRecipients'] = ['release@mozilla.com',]
 releaseConfig['releaseTemplates']    = 'release_templates'
-releaseConfig['messagePrefix']       = '[release] '
+releaseConfig['messagePrefix']       = '[staging-release] '
 
 # Basic product configuration
 #  Names for the product/files
@@ -15,25 +16,28 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '12.0b4'
-releaseConfig['appVersion']          = '12.0'
-releaseConfig['milestone']           = '12.0'
+releaseConfig['version']             = '9.0'
+releaseConfig['appVersion']          = releaseConfig['version']
+releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_12_0b4'
+releaseConfig['baseTag']             = 'THUNDERBIRD_9_0'
 #  Old version info
-releaseConfig['oldVersion']          = '12.0b3'
-releaseConfig['oldAppVersion']       = '12.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_12_0b3'
+releaseConfig['oldVersion']          = '8.0.1'
+releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'THUNDERBIRD_8_0_1'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
+## Staging repository path
+releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-beta',
-        'path': 'releases/comm-beta',
-        'revision': 'fa4685b8588e',
+        'name': 'comm-release',
+        'clonePath': 'releases/comm-release',
+        'path': 'users/stage-ffxbld/comm-release',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -43,9 +47,10 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-beta',
-        'path': 'releases/mozilla-beta',
-        'revision': '3182caa7f19a',
+        'name': 'mozilla-release',
+        'clonePath': 'releases/mozilla-release',
+        'path': 'users/stage-ffxbld/mozilla-release',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -65,54 +70,56 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-beta'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-release'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION',
-    'build/buildbot': 'production-0.8',
-    'build/mozharness': 'default',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
+    'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/partner-repacks': 'default',
+    'users/stage-ffxbld/mozharness': 'default',
 }
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
+releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests']     = True
+releaseConfig['enableUnittests'] = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
-releaseConfig['l10nChunks']          = 6
+releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 
 # Mercurial account
-releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
+releaseConfig['hgUsername']          = 'stage-ffxbld'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
-releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
-releaseConfig['ftpServer']           = 'ftp.mozilla.org'
-releaseConfig['stagingServer']       = 'stage.mozilla.org'
+releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
+releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
+releaseConfig['commitPatcherConfig'] = False
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['ftpServer']           = 'dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['stagingServer']       = 'dev-stage01.build.sjc1.mozilla.com'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
-releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
-releaseConfig['ausUser']             = 'tbirdbld'
-releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
-releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
+releaseConfig['ausServerUrl']        = 'http://dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['ausHost']             = 'dev-stage01.build.sjc1.mozilla.com'
+releaseConfig['ausUser']             = 'cltbld'
+releaseConfig['ausSshKey']           = 'cltbld_dsa'
+releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['verifyConfigs']       = {
-    'linux':  'mozBeta-thunderbird-linux.cfg',
-    'linux64':  'mozBeta-thunderbird-linux64.cfg',
-    'macosx64': 'mozBeta-thunderbird-mac64.cfg',
-    'win32':  'mozBeta-thunderbird-win32.cfg'
+    'linux':  'mozRelease-thunderbird-linux.cfg',
+    'linux64':  'mozRelease-thunderbird-linux64.cfg',
+    'macosx64': 'mozRelease-thunderbird-mac64.cfg',
+    'win32':  'mozRelease-thunderbird-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/release',
@@ -120,23 +127,22 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
+releaseConfig['doPartnerRepacks']    = True
+releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'thunderbird-tuxedo.ini'
-releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
+releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
-releaseConfig['releaseUptake']       = 3
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
+releaseConfig['enableSigningAtBuildTime'] = False
+releaseConfig['enablePartialMarsAtBuildTime'] = False

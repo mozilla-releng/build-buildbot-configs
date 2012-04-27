@@ -22,6 +22,7 @@ from config import BRANCHES, TRY_SLAVES
 ACTIVE_BRANCHES = ['try']
 ACTIVE_THUNDERBIRD_BRANCHES = ['try-comm-central']
 ACTIVE_RELEASE_BRANCHES = []
+ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 ACTIVE_PROJECTS = []
 
@@ -34,7 +35,6 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
-    'xserve',
     ])
 ENABLE_RELEASES = False
 RESERVED_SLAVES = None

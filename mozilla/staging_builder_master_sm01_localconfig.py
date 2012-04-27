@@ -24,7 +24,6 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
-    'xserve',
     ])
 ENABLE_RELEASES = True
 RESERVED_SLAVES = "reserved_slaves_sm01"

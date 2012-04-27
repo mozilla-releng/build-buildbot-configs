@@ -16,6 +16,7 @@ from thunderbird_config import BRANCHES as THUNDERBIRD_BRANCHES
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_PROJECTS = PROJECTS.keys()
 ACTIVE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
+ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = ['comm-beta', 'comm-release']
 ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release']
 ACTIVE_THUNDERBIRD_BRANCHES = THUNDERBIRD_BRANCHES.keys()
 
@@ -26,7 +27,6 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
-    'xserve',
     ])
 ENABLE_RELEASES = True
 RESERVED_SLAVES = "reserved_slaves_sm02"

@@ -38,6 +38,7 @@ ACTIVE_THUNDERBIRD_BRANCHES = [
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
+ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 ENABLE_RELEASES = False
 if 'release_branches' in master_config:
@@ -53,7 +54,6 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
-    'xserve',
     ])
 RESERVED_SLAVES = "reserved_slaves_%(name)s" % master_config
 
