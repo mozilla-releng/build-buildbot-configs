@@ -18,7 +18,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '10.0.4esr'
 releaseConfig['appVersion']          = '10.0.4'
 releaseConfig['milestone']           = '10.0.4'
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_10_0_4esr'
 #  Old version info
 releaseConfig['oldVersion']          = '10.0.3esr'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '26d65ee6bcde',
-        'relbranch': None,
+        'revision': '40e314f258c4',
+        'relbranch': 'MOBILE1004_2012042014_RELBRANCH',
         'bumpFiles': {
             'mobile/confvars.sh': {
                 'version': releaseConfig['appVersion'],
