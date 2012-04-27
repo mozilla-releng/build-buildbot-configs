@@ -37,7 +37,7 @@ GLOBAL_VARS = {
     'aus2_ssh_key': 'cltbld_dsa',
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
     'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test',
-    'graph_server': None, #XXX reenable once graph server has Thunderbird entries
+    'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
     'disable_tinderbox_mail': True,

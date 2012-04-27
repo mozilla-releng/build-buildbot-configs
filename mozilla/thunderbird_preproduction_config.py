@@ -37,7 +37,7 @@ GLOBAL_VARS = {
     'aus2_ssh_key': 'cltbld_dsa',
     'aus2_host': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird-test',
-    'graph_server': None, #XXX reenable once graph server has Thunderbird entries
+    'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
     'pollInterval': 6*60*60,
