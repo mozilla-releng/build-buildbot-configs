@@ -930,7 +930,7 @@ PROJECTS = {
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
+            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
@@ -954,7 +954,7 @@ PROJECTS = {
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'shark', 'warnaserrdebug'],
+            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
