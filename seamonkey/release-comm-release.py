@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.9'
-releaseConfig['appVersion']                 = '2.9'
+releaseConfig['version']                    = '2.9.1'
+releaseConfig['appVersion']                 = '2.9.1'
 releaseConfig['milestone']                  = '12.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_9'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_9_1'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.8'
-releaseConfig['oldAppVersion']              = '2.8'
+releaseConfig['oldVersion']                 = '2.9'
+releaseConfig['oldAppVersion']              = '2.9'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_8'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_9'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
@@ -28,10 +28,10 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '37620e34f3a4'
+releaseConfig['sourceRepoRevision']         = 'c475bdfedc35'
 releaseConfig['relbranchOverride']          = ''
-#releaseConfig['productVersionFile']         = 'suite/config/version.txt'
-releaseConfig['productVersionFile']         = ''
+releaseConfig['productVersionFile']         = 'suite/config/version.txt'
+#releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
 releaseConfig['mozillaRepoRevision']        = 'FIREFOX_12_0_BUILD1'
