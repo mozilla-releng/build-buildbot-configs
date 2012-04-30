@@ -121,7 +121,7 @@ gloConfig = {
         'majorUpdateToVersion'   : '12.0.1',
         #'majorUpdateAppVersion'  : majorUpdateToVersion,
         'majorUpdateBuildNumber' : 1,
-        'majorUpdateBaseTag'     : 'THUNDERBIRD_12_0.1',
+        'majorUpdateBaseTag'     : 'THUNDERBIRD_12_0_1',
         'majorUpdateReleaseNotesUrl' : 'https://www.mozilla.org/%locale%/thunderbird/12.0/details/index.html',
         'majorUpdatePatcherConfig' : 'moz20-thunderbird-branch-major-update-patcher2.cfg',
         'majorUpdateVerifyConfigs' : {'linux':  'moz20-thunderbird-linux-major.cfg',
