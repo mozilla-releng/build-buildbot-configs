@@ -34,7 +34,7 @@ BRANCH_PRIORITIES = {
     'addonbaselinetester': 4,
     'alder': 4,
     'ash': 4,
-    'birch': 2,
+    'birch': 4,
     'cedar': 4,
     'elm': 4,
     'holly': 4,
