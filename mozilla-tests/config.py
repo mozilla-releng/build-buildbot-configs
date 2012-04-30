@@ -1183,7 +1183,7 @@ BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 
 # Let's load jetpack for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'try',  ):
+for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             continue

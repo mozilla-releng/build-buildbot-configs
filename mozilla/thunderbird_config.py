@@ -797,7 +797,7 @@ BRANCHES['comm-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central'
 BRANCHES['comm-central']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-central']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-central']['enable_multi_locale'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
@@ -838,7 +838,7 @@ BRANCHES['comm-release']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-release'
 BRANCHES['comm-release']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-release']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-release']['enable_multi_locale'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-release']['enable_nightly'] = False
@@ -868,7 +868,7 @@ BRANCHES['comm-esr10']['l10n_tree'] = 'fxesr10'
 BRANCHES['comm-esr10']['enable_multi_locale'] = True
 BRANCHES['comm-esr10']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr10'
-BRANCHES['comm-esr10']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['comm-esr10']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-esr10']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr10' % (GLOBAL_VARS['hgurl'])
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
@@ -919,7 +919,7 @@ BRANCHES['comm-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-beta'
 BRANCHES['comm-beta']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-beta']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-beta']['enable_multi_locale'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-beta']['enable_nightly'] = False
@@ -968,7 +968,7 @@ BRANCHES['comm-aurora']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
 BRANCHES['comm-aurora']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-aurora']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/thunderbird/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-aurora']['enable_multi_locale'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
