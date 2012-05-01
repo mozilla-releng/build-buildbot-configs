@@ -15,25 +15,25 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '12.0b4'
-releaseConfig['appVersion']          = '12.0'
+releaseConfig['version']             = '14.0b1'
+releaseConfig['appVersion']          = '14.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_12_0b4'
+releaseConfig['baseTag']             = 'FENNEC_14_0b1'
 #  Old version info
-releaseConfig['oldVersion']          = '12.0b3'
-releaseConfig['oldAppVersion']       = '12.0'
+releaseConfig['oldVersion']          = '13.0b1'
+releaseConfig['oldAppVersion']       = '13.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_12_0b3'
+releaseConfig['oldBaseTag']          = 'FENNEC_13_0b1'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '13.0a2'
-releaseConfig['nextMilestone']       = '13.0a2'
+releaseConfig['nextAppVersion']      = '14.0a2'
+releaseConfig['nextMilestone']       = '14.0a2'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-aurora',
         'path': 'releases/mozilla-aurora',
-        'revision': 'e4ed83ba6eb9',
+        'revision': '58c351982d75',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {

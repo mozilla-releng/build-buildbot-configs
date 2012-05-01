@@ -1,1 +1,26 @@
-{}
+{
+  "fr": {
+    "revision": "f2be789f2cf3",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "it": {
+    "revision": "e96c2e044217",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "nl": {
+    "revision": "e21673ec9054",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pa-IN": {
+    "revision": "32821698c141",
+    "platforms": ["android"]
+  },
+  "ru": {
+    "revision": "d00be0b90a88",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "zh-TW": {
+    "revision": "92585f1e3d4e",
+    "platforms": ["android"]
+  }
+}
