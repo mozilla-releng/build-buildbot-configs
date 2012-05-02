@@ -1,8 +1,6 @@
 MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)] + \
                  ['bld-lion-r5-%03d' % x for x in range(1,81)]
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(2,30) + range(40,57)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73) if x not in (4,5,20,40,59)]
-XSERVES        = ['bm-xserve%02i' % x for x in range(6,13) + range(15,25)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in [2] + range(40,57) if x not in (51,52,)] # bug683792
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,27)] + ['w32-ix-slave%02i' % x for x in range(1,45)]
 WIN64_IXS      = ['mw64-ix-slave01'] + ['w64-ix-slave%02i' % x for x in range(1,43)]
 LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
@@ -17,7 +15,7 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx':           MAC_MINIS + XSERVES,
+    'macosx':           [],
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'linux-android':    LINUX_VMS + LINUX_IXS,
@@ -30,14 +28,12 @@ TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,31)]
 TRY_LINUX_IXS  = []
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
-TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,32)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (27,32)]
 TRY_WIN32_IXS  = []
 
 TRY_SLAVES = SLAVES
 TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
 TRY_SLAVES['linux64'] += TRY_LINUX64 + TRY_LINUX64_IXS
-TRY_SLAVES['macosx'] += TRY_MAC
 TRY_SLAVES['macosx64'] += TRY_MAC64
 TRY_SLAVES['win32'] += TRY_WIN32_IXS
 

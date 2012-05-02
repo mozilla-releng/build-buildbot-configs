@@ -1,5 +1,5 @@
 from staging_config import \
-    MAC_LION_MINIS, MAC_SNOW_MINIS, MAC_MINIS, XSERVES, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
+    MAC_LION_MINIS, MAC_SNOW_MINIS, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
     LINUX_IXS, LINUX64_VMS, LINUX64_IXS
     
 SLAVES = {
@@ -7,7 +7,7 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx':           MAC_MINIS + XSERVES,
+    'macosx':           [],
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
 }
@@ -16,14 +16,12 @@ TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,31)]
 TRY_LINUX_IXS  = []
 TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
-TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,32)]
+TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (27,32)]
 TRY_WIN32_IXS  = []
 
 TRY_SLAVES = SLAVES
 TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
 TRY_SLAVES['linux64'] += TRY_LINUX64 + TRY_LINUX64_IXS
-TRY_SLAVES['macosx'] += TRY_MAC
 TRY_SLAVES['macosx64'] += TRY_MAC64
 TRY_SLAVES['win32'] += TRY_WIN32_IXS
 

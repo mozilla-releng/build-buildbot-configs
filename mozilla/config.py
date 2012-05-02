@@ -6,7 +6,7 @@ from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 import localconfig
 reload(localconfig)
-from localconfig import MAC_SNOW_MINIS, MAC_MINIS, XSERVES, LINUX_VMS, \
+from localconfig import MAC_LION_MINIS, MAC_SNOW_MINIS, LINUX_VMS, \
                         LINUX_IXS, WIN32_IXS, SLAVES, \
                         TRY_SLAVES
 
@@ -398,46 +398,6 @@ PLATFORM_VARS = {
             'talos_masters': [],
             'unittest_masters': [],
             'test_pretty_names': False,
-        },
-        'macosx': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'OS X 10.5.2 %(branch)s',
-            'mozconfig': 'macosx/%(branch)s/nightly',
-            'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/nightly',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
-            'src_shark_mozconfig': 'browser/config/mozconfigs/macosx-universal/shark',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 10,
-            'upload_symbols': True,
-            'download_symbols': True,
-            'packageTests': True,
-            'slaves': SLAVES['macosx'],
-            'platform_objdir': "%s/ppc" % OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'macosx',
-            'update_platform': 'Darwin_Universal-gcc3',
-            'enable_shared_checkouts': True,
-            'enable_shark': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CHOWN_ROOT': '~/bin/chown_root',
-                'CHOWN_REVERT': '~/bin/chown_revert',
-                'LC_ALL': 'C',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -917,10 +877,10 @@ PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win32'],
     },
     'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx', 'macosx64', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win32'],
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
@@ -980,7 +940,6 @@ for k, v in localconfig.PROJECTS.items():
     for k1, v1 in v.items():
         PROJECTS[k][k1] = v1
 
-
 # All branches (not in project_branches) that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
 BRANCHES = {
@@ -1010,7 +969,7 @@ BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
-            'macosx': {}, 'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
+            'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
         },
     },
     'try': {
@@ -1417,7 +1376,6 @@ BRANCHES['mozilla-1.9.2']['use_old_updater'] = True
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 8
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['build_space'] = 7
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['build_space'] = 3
 BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
@@ -1440,8 +1398,6 @@ BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_unittests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_checktests'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_unittests'] = True
@@ -1453,7 +1409,7 @@ BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
 # L10n configuration
 BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
 BRANCHES['mozilla-1.9.2']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32',]
 BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
@@ -1480,15 +1436,12 @@ BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
 BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
 BRANCHES['mozilla-1.9.2']['enable_valgrind'] = False
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['nightly_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['linux']['dep_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['nightly_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['linux64']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['macosx']['dep_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['nightly_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['win32']['dep_signing_servers'] = None
 BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['nightly_signing_servers'] = None
@@ -1713,9 +1666,8 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
                 BRANCHES[b]['platforms'][p]['enable_shark'] = False
-
-
-
+                
+        
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
