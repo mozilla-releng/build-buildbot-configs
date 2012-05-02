@@ -77,10 +77,10 @@ BRANCHES = {
     'try-comm-central': {
         'tinderbox_tree': 'MozillaTest',
         'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/try-builds',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/try-builds',
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

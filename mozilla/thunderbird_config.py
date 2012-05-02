@@ -989,7 +989,7 @@ BRANCHES['comm-aurora']['enable_valgrind'] = False
 # Try-specific configs
 BRANCHES['try-comm-central']['stage_username'] = 'tbirdtry'
 BRANCHES['try-comm-central']['stage_ssh_key'] = 'trybld_dsa'
-BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird-test/try-builds'
+BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird/try-builds'
 BRANCHES['try-comm-central']['enable_merging'] = False
 BRANCHES['try-comm-central']['enable_try'] = True
 BRANCHES['try-comm-central']['package_dir'] ='%(who)s-%(got_revision)s'
@@ -1038,6 +1038,19 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 for platform in BRANCHES['try-comm-central']['platforms'].keys():
     BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird-test'
+
+# MAKE THUNDERBIRD TRY LIVE
+BRANCHES['try-comm-central']['product_name'] = 'thunderbird'
+BRANCHES['try-comm-central']['symbol_server_path'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+for plat in BRANCHES['try-comm-central']['platforms']:
+    BRANCHES['try-comm-central']['platforms'][plat]['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+    BRANCHES['try-comm-central']['platforms'][plat]['product_name'] = 'thunderbird'
+    BRANCHES['try-comm-central']['platforms'][plat]['stage_product'] = 'thunderbird'
+
+BRANCHES['try-comm-central']['product_name'] = 'thunderbird'
+BRANCHES['try-comm-central']['enabled_products'] = ['thunderbird']
+
+# END MAKE THUNDERBIRD TRY LIVE
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

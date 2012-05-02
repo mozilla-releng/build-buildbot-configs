@@ -85,10 +85,10 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'try-comm-central': {
-        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test',
+        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test/try-builds',
+        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
