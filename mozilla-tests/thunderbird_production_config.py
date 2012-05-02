@@ -33,7 +33,7 @@ BRANCHES = {
         'notify_real_author': True,
         'enable_merging': False,
         'slave_key': 'try_slaves',
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/try-builds',
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'tbirdbld',
         'stage_ssh_key': 'tbirdbld_dsa',

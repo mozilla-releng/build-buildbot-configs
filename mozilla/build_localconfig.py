@@ -54,7 +54,6 @@ import buildbotcustom.misc
 buildbotcustom.misc.fastRegexes.extend([
     'linux-ix-',
     'linux64-ix-',
-    'xserve',
     ])
 RESERVED_SLAVES = "reserved_slaves_%(name)s" % master_config
 

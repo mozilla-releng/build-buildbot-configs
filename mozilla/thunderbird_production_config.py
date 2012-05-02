@@ -1,11 +1,11 @@
 from copy import deepcopy
 
 from production_config import \
-    GLOBAL_VARS, MAC_LION_MINIS, MAC_SNOW_MINIS, MAC_MINIS, XSERVES, \
+    GLOBAL_VARS, MAC_LION_MINIS, MAC_SNOW_MINIS, \
     LINUX_VMS, LINUX_IXS, LINUX64_VMS, LINUX64_IXS, WIN32_IXS, WIN64_IXS, \
     WIN64_IXS, MOCK_DL120G7, \
-    TRY_LINUX, TRY_LINUX_IXS, TRY_LINUX64, TRY_LINUX64_IXS, TRY_MAC, \
-    TRY_XSERVES, TRY_MAC64, TRY_WIN32_IXS, TRY_WIN64_IXS, TRY_MOCK_DL120G7, \
+    TRY_LINUX, TRY_LINUX_IXS, TRY_LINUX64, TRY_LINUX64_IXS, \
+    TRY_MAC64, TRY_WIN32_IXS, TRY_WIN64_IXS, TRY_MOCK_DL120G7, \
     TRY_LION, \
     BUILDS_BEFORE_REBOOT, SYMBOL_SERVER_HOST
 
@@ -16,7 +16,6 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7
@@ -27,7 +26,6 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
     'win32':       TRY_WIN32_IXS,
     'win64':       TRY_WIN64_IXS,
-    'macosx':      TRY_MAC + TRY_XSERVES,
     'macosx64':    TRY_MAC64,
     'macosx64-lion': TRY_LION,
     'mock':        TRY_MOCK_DL120G7,
@@ -77,10 +75,10 @@ BRANCHES = {
     'try-comm-central': {
         'tinderbox_tree': 'MozillaTest',
         'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/try-builds',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/try-builds',
+        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

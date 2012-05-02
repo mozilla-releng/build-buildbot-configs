@@ -26,6 +26,9 @@ BRANCHES = {
     },
     'comm-esr10': {
     },
+    'try-comm-central': {
+      'coallesce_jobs': False
+    },
 }
 
 PLATFORMS = {
@@ -441,6 +444,15 @@ BRANCHES['comm-aurora']['pgo_strategy'] = None
 
 ######## comm-esr10
 BRANCHES['comm-esr10']['pgo_strategy'] = None
+
+
+# MAKE THUNDERBIRD TRY LIVE
+for plat in BRANCHES['try-comm-central']['platforms']:
+    if 'stage_product' in BRANCHES['try-comm-central']['platforms'][plat]:
+        BRANCHES['try-comm-central']['platforms'][plat]['stage_product'] = 'thunderbird'
+    BRANCHES['try-comm-central']['platforms'][plat]['product_name'] = 'thunderbird'
+
+# END MAKE THUNDERBIRD TRY LIVE
 
 if __name__ == "__main__":
     import sys, pprint, re
