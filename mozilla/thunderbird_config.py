@@ -1027,10 +1027,15 @@ BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = True
+BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
+BRANCHES['try-comm-central']['platforms']['linux']['enable_codesighs'] = False
+BRANCHES['try-comm-central']['platforms']['linux64']['enable_codesighs'] = False
+BRANCHES['try-comm-central']['platforms']['macosx64']['enable_codesighs'] = False
+BRANCHES['try-comm-central']['platforms']['win32']['enable_codesighs'] = False
+BRANCHES['try-comm-central']['platforms']['win64']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 for platform in BRANCHES['try-comm-central']['platforms'].keys():
     BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird-test'
 

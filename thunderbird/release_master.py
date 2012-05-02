@@ -1011,6 +1011,7 @@ for gloKey in gloConfig:
         repoPath=sourceRepoPath,
         mozRepoPath=mozillaRepoPath,
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
+        buildSpace=30,
         cvsroot=cvsroot,
         patcherToolsTag=patcherToolsTag,
         patcherConfig=patcherConfig,

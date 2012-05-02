@@ -10,7 +10,7 @@
 
   // Product, branch configuration for ssh
   // Use "*" for default configuration
-  "ssh_info" {
+  "ssh_info": {
       "*": {
           "*": {
             "user": "cltbld",
