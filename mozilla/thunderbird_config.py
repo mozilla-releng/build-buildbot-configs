@@ -1093,8 +1093,12 @@ lion_names = {
 for b in BRANCHES.keys():
     if b in lion_branches:
         for p in ('macosx64', 'macosx64-debug', 'macosx-debug'):
+            if b == 'try-comm-central':
+                slave_list = TRY_SLAVES['macosx64-lion']
+            else:
+                slave_list = SLAVES['macosx64-lion']
             if BRANCHES[b]['platforms'].has_key(p):
-                BRANCHES[b]['platforms'][p]['slaves'] = SLAVES['macosx64-lion']
+                BRANCHES[b]['platforms'][p]['slaves'] = slave_list
                 BRANCHES[b]['platforms'][p]['l10n_slaves_key'] = 'macosx64-lion'
                 BRANCHES[b]['platforms'][p]['base_name'] = lion_names[p] % {'branch': b}
 
