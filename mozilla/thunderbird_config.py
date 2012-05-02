@@ -1100,8 +1100,8 @@ lion_branches += ['comm-aurora']
 # This is a mapping of platform key to lion specific base_name formatters
 lion_names = {
     'macosx64': 'OS X 10.7 %(branch)s',
-    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s',
-    'macosx-debug': 'OS X 10.7 32-bit %(branch)s',
+    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s leak test',
+    'macosx-debug': 'OS X 10.7 32-bit %(branch)s leak test',
 }
 for b in BRANCHES.keys():
     if b in lion_branches:
@@ -1114,6 +1114,11 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['slaves'] = slave_list
                 BRANCHES[b]['platforms'][p]['l10n_slaves_key'] = 'macosx64-lion'
                 BRANCHES[b]['platforms'][p]['base_name'] = lion_names[p] % {'branch': b}
+                BRANCHES[b]['platforms'][p]['enable_ccache'] = True
+                BRANCHES[b]['platforms'][p]['env']['CCACHE_DIR'] = '/builds/ccache'
+                BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
+                BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
+                BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
 
 if __name__ == "__main__":
