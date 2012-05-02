@@ -1,5 +1,5 @@
 from preproduction_config import \
-    MAC_SNOW_MINIS, MAC_MINIS, XSERVES, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
+    MAC_LION_MINIS, MAC_SNOW_MINIS, MAC_MINIS, XSERVES, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
     LINUX_IXS, LINUX64_VMS, LINUX64_IXS
 
 SLAVES = {
@@ -9,6 +9,7 @@ SLAVES = {
     'win64':            WIN64_IXS,
     'macosx':           MAC_MINIS + XSERVES,
     'macosx64':         MAC_SNOW_MINIS,
+    'macosx64-lion':    MAC_LION_MINIS,
 }
 
 TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,31)]

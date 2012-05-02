@@ -1073,6 +1073,36 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
+# Bug 720027 / Bug 748628, do macosx64 builds on Lion slaves where appropriate
+lion_branches = ['comm-central', 'try-comm-central',]
+# Each line starts with a branch.  When Thunderbird 14 hits that branch, uncomment
+# line and remove the branch name.  i.e. s/^# \w*: //
+lion_branches += ['comm-aurora']
+# beta: lion_branches += ['mozilla-beta']
+# release: lion_branches += ['mozilla-release']
+# XXX When Thunderbird 14 is on mozilla-release, we will only have the old macosx64 machines
+# on esr10.  At that point, we should change the defaults to reflect the lion slave
+# list and base_name, setting the esr10 slavelist and base_names appropriately
+
+# This is a mapping of platform key to lion specific base_name formatters
+lion_names = {
+    'macosx64': 'OS X 10.7 %(branch)s',
+    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s',
+    'macosx-debug': 'OS X 10.7 32-bit %(branch)s',
+}
+for b in BRANCHES.keys():
+    if b in lion_branches:
+        for p in ('macosx64', 'macosx64-debug', 'macosx-debug'):
+            if b == 'try-comm-central':
+                slave_list = TRY_SLAVES['macosx64-lion']
+            else:
+                slave_list = SLAVES['macosx64-lion']
+            if BRANCHES[b]['platforms'].has_key(p):
+                BRANCHES[b]['platforms'][p]['slaves'] = slave_list
+                BRANCHES[b]['platforms'][p]['l10n_slaves_key'] = 'macosx64-lion'
+                BRANCHES[b]['platforms'][p]['base_name'] = lion_names[p] % {'branch': b}
+
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]
