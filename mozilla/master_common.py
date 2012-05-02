@@ -19,6 +19,7 @@ c['change_source'] = []
 
 # Builders from these branches are given custom priority, default is 2 for unlisted branches
 BRANCH_PRIORITIES = {
+    'mozilla-inbound': 0,
     'mozilla-central': 1,
     'comm-central': 1,
     'mozilla-aurora': 1,
