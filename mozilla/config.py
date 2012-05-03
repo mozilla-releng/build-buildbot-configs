@@ -92,10 +92,15 @@ GLOBAL_VARS = {
     'create_partial': False,
     'create_partial_l10n': False,
     'l10n_modules': [
-            'browser', 'extensions/reporter',
-            'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
+            'browser',
+            'dom',
+            'extensions/reporter',
+            'extensions/spellcheck',
+            'netwerk',
+            'other-licenses/branding/firefox',
             'security/manager',
-            'sync/services',
+            'services/sync',
+            'toolkit',
             ],
     'use_old_updater': False,
 }

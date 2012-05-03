@@ -55,6 +55,7 @@ GLOBAL_VARS.update({
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
+        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
     },
@@ -541,6 +542,36 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
         },
+        'macosx-debug': {
+            'product_name': 'thunderbird-test',
+            'app_name': 'mail',
+            'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s leak test',
+            'mozconfig': 'macosx/%(branch)s/debug',
+            'run_alive_tests': False,
+            'src_mozconfig': 'mail/config/mozconfigs/macosx32/debug',
+            'profiled_build': False,
+            'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': True,
+            'packageTests': True,
+            'leak_target': 'mailbloat',
+            'build_space': 10,
+            'slaves': SLAVES['macosx'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'thunderbird-test',
+            'stage_platform': 'macosx-debug',
+            'enable_shared_checkouts': True,
+            'enable_shark': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'LC_ALL': 'C',
+            },
+            'enable_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': None,
+        },
         'macosx64-debug': {
             'product_name': 'thunderbird-test',
             'app_name': 'mail',
@@ -623,6 +654,7 @@ BRANCHES = {
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
+            'macosx-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
         },
@@ -948,11 +980,13 @@ BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['ma
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = True
+# Disabled due to issues, see bug 751559
+BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['enable_codesighs'] = False
@@ -1025,9 +1059,9 @@ lion_branches += ['comm-aurora']
 
 # This is a mapping of platform key to lion specific base_name formatters
 lion_names = {
-    'macosx64': 'OS X 10.7 %(branch)s',
-    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s leak test',
-    'macosx-debug': 'OS X 10.7 32-bit %(branch)s leak test',
+    'macosx64': builder_prefix + 'OS X 10.7 %(branch)s',
+    'macosx64-debug': builder_prefix + 'OS X 10.7 64-bit %(branch)s leak test',
+    'macosx-debug': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
 }
 for b in BRANCHES.keys():
     if b in lion_branches:
