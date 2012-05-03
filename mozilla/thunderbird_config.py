@@ -1058,9 +1058,9 @@ lion_branches += ['comm-aurora']
 
 # This is a mapping of platform key to lion specific base_name formatters
 lion_names = {
-    'macosx64': 'OS X 10.7 %(branch)s',
-    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s leak test',
-    'macosx-debug': 'OS X 10.7 32-bit %(branch)s leak test',
+    'macosx64': builder_prefix + 'OS X 10.7 %(branch)s',
+    'macosx64-debug': builder_prefix + 'OS X 10.7 64-bit %(branch)s leak test',
+    'macosx-debug': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
 }
 for b in BRANCHES.keys():
     if b in lion_branches:
