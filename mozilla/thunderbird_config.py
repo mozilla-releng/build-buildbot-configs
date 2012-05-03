@@ -985,7 +985,8 @@ BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAV
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = True
+# Disabled due to issues, see bug 751559
+BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['enable_codesighs'] = False
