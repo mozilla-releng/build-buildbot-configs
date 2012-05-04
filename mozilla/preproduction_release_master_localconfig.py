@@ -16,6 +16,7 @@ ACTIVE_BRANCHES = []
 ACTIVE_PROJECTS = []
 ACTIVE_THUNDERBIRD_BRANCHES = []
 ACTIVE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release', 'mozilla-esr10']
+ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = ['comm-beta', 'comm-release', 'comm-esr10']
 ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta', 'mozilla-release',
                                   'mozilla-esr10']
 
