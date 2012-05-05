@@ -54,8 +54,10 @@ GLOBAL_VARS['aus2_host'] = 'aus3-staging.mozilla.org'
 # Local branch overrides
 BRANCHES = {
     'comm-central': {
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'tinderbox_tree': 'MozillaTest',
+        'packaged_unittest_tinderbox_tree': 'ThunderbirdTrunk',
+        'tinderbox_tree': 'ThunderbirdTrunk',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
+        'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-release': {
         'packaged_unittest_tinderbox_tree': 'MozillaTest',
@@ -74,8 +76,8 @@ BRANCHES = {
         'tinderbox_tree': 'MozillaTest',
     },
     'try-comm-central': {
-        'tinderbox_tree': 'MozillaTest',
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'ThunderbirdTry',
+        'packaged_unittest_tinderbox_tree': 'ThunderbirdTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,

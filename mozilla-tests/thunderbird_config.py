@@ -446,13 +446,14 @@ BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-esr10']['pgo_strategy'] = None
 
 
-# MAKE THUNDERBIRD TRY LIVE
-for plat in BRANCHES['try-comm-central']['platforms']:
-    if 'stage_product' in BRANCHES['try-comm-central']['platforms'][plat]:
-        BRANCHES['try-comm-central']['platforms'][plat]['stage_product'] = 'thunderbird'
-    BRANCHES['try-comm-central']['platforms'][plat]['product_name'] = 'thunderbird'
+# MAKE COMM-CENTRAL & TRY LIVE
+for branch in ['try-comm-central', 'comm-central']:
+    for plat in BRANCHES[branch]['platforms']:
+        if 'stage_product' in BRANCHES[branch]['platforms'][plat]:
+            BRANCHES[branch]['platforms'][plat]['stage_product'] = 'thunderbird'
+        BRANCHES[branch]['platforms'][plat]['product_name'] = 'thunderbird'
 
-# END MAKE THUNDERBIRD TRY LIVE
+# END MAKE COMM-CENTRAL & TRY LIVE
 
 if __name__ == "__main__":
     import sys, pprint, re
