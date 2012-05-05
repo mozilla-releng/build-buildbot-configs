@@ -554,25 +554,25 @@ BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
                                tinderboxTree = 'Thunderbird-Aurora'
                            )
 
-BRANCHES['comm-central'] = makeBuildConfig(
-                               builderType   = 'nightly',
-                               branchName    = 'comm-central',
-                               hgBranch      = 'comm-central',
-                               mozillaCentralBranch = 'mozilla-central',
-                               tinderboxTree = 'ThunderbirdTrunk',
-                               allLocalesFile = 'all-locales.comm-central',
-                               wantL10n      = True,
-                               l10nRepo      = 'l10n-central',
-                               enableWeeklyBundle = True,
-                               updateChannel = 'nightly',
-                           )
-BRANCHES['comm-central-bloat'] = makeBuildConfig(
-                               builderType   = 'bloat',
-                               branchName    = 'comm-central',
-                               hgBranch      = 'comm-central',
-                               mozillaCentralBranch = 'mozilla-central',
-                               tinderboxTree = 'ThunderbirdTrunk'
-                           )
+#BRANCHES['comm-central'] = makeBuildConfig(
+#                               builderType   = 'nightly',
+#                               branchName    = 'comm-central',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTrunk',
+#                               allLocalesFile = 'all-locales.comm-central',
+#                               wantL10n      = True,
+#                               l10nRepo      = 'l10n-central',
+#                               enableWeeklyBundle = True,
+#                               updateChannel = 'nightly',
+#                           )
+#BRANCHES['comm-central-bloat'] = makeBuildConfig(
+#                               builderType   = 'bloat',
+#                               branchName    = 'comm-central',
+#                               hgBranch      = 'comm-central',
+#                               mozillaCentralBranch = 'mozilla-central',
+#                               tinderboxTree = 'ThunderbirdTrunk'
+#                           )
 
 # Disable for now
 #BRANCHES['comm-central-tested'] = makeBuildConfig(
