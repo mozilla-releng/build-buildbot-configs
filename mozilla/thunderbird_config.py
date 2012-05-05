@@ -734,9 +734,6 @@ BRANCHES['comm-central']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-central']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-central']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
 # And code coverage
@@ -751,7 +748,7 @@ BRANCHES['comm-central']['l10nDatedDirs'] = True
 BRANCHES['comm-central']['l10n_tree'] = 'fx37x'
 #make sure it has an ending slash
 BRANCHES['comm-central']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-central-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-central-l10n/'
 BRANCHES['comm-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central'
 BRANCHES['comm-central']['allLocalesFile'] = 'mail/locales/all-locales'
@@ -765,8 +762,8 @@ BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['update_channel'] = 'nightly'
 BRANCHES['comm-central']['create_partial'] = True
 BRANCHES['comm-central']['create_partial_l10n'] = True
-BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
-BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
+BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
+BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['blocklist_update_on_closed_tree'] = False
 
@@ -779,9 +776,6 @@ BRANCHES['comm-release']['start_hour'] = [3]
 BRANCHES['comm-release']['start_minute'] = [2]
 BRANCHES['comm-release']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['comm-release']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-release']['enable_mac_a11y'] = True
 # And code coverage
 BRANCHES['comm-release']['enable_codecoverage'] = False
@@ -856,9 +850,6 @@ BRANCHES['comm-beta']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-beta']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-beta']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
 # And code coverage
@@ -905,9 +896,6 @@ BRANCHES['comm-aurora']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-aurora']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-aurora']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # And code coverage
@@ -999,18 +987,17 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY
 for platform in BRANCHES['try-comm-central']['platforms'].keys():
     BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird-test'
 
-# MAKE THUNDERBIRD TRY LIVE
-BRANCHES['try-comm-central']['product_name'] = 'thunderbird'
-BRANCHES['try-comm-central']['symbol_server_path'] = '/mnt/netapp/breakpad/symbols_tbrd/'
-for plat in BRANCHES['try-comm-central']['platforms']:
-    BRANCHES['try-comm-central']['platforms'][plat]['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
-    BRANCHES['try-comm-central']['platforms'][plat]['product_name'] = 'thunderbird'
-    BRANCHES['try-comm-central']['platforms'][plat]['stage_product'] = 'thunderbird'
+# MAKE COMM-CENTRAL & TRY LIVE
+for branch in ['try-comm-central', 'comm-central']: 
+    BRANCHES[branch]['product_name'] = 'thunderbird'
+    BRANCHES[branch]['enabled_products'] = ['thunderbird']
+    BRANCHES[branch]['symbol_server_path'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+    for plat in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms'][plat]['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
+        BRANCHES[branch]['platforms'][plat]['product_name'] = 'thunderbird'
+        BRANCHES[branch]['platforms'][plat]['stage_product'] = 'thunderbird'
 
-BRANCHES['try-comm-central']['product_name'] = 'thunderbird'
-BRANCHES['try-comm-central']['enabled_products'] = ['thunderbird']
-
-# END MAKE THUNDERBIRD TRY LIVE
+# END MAKE COMM-CENTRAL & TRY LIVE
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

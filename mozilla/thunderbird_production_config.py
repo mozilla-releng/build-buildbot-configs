@@ -39,8 +39,7 @@ GLOBAL_VARS['talos_masters'] = []
 # if a failure to notify the master should result in a warning,
 # and sendchange retry count before give up
 GLOBAL_VARS['unittest_masters'] = [
-    ('buildbot-master10.build.mozilla.org:9301', True, 5),
-    ('geriatric-master.build.mozilla.org:9989', False, 1),
+    ('buildbot-master36.build.mozilla.org:9301', True, 5),
 ]
 GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
 GLOBAL_VARS['weekly_tinderbox_tree'] = 'MozillaTest'
@@ -54,8 +53,10 @@ GLOBAL_VARS['aus2_host'] = 'aus3-staging.mozilla.org'
 # Local branch overrides
 BRANCHES = {
     'comm-central': {
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'tinderbox_tree': 'MozillaTest',
+        'packaged_unittest_tinderbox_tree': 'ThunderbirdTrunk',
+        'tinderbox_tree': 'ThunderbirdTrunk',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
+        'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-release': {
         'packaged_unittest_tinderbox_tree': 'MozillaTest',
@@ -74,8 +75,8 @@ BRANCHES = {
         'tinderbox_tree': 'MozillaTest',
     },
     'try-comm-central': {
-        'tinderbox_tree': 'MozillaTest',
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'ThunderbirdTry',
+        'packaged_unittest_tinderbox_tree': 'ThunderbirdTry',
         'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
