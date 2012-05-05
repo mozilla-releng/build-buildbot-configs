@@ -1071,9 +1071,6 @@ BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 # Enable unit tests
-BRANCHES['mozilla-central']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # And code coverage
@@ -1131,9 +1128,6 @@ BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
 BRANCHES['mozilla-release']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['mozilla-release']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['mozilla-release']['enable_mac_a11y'] = True
 # And code coverage
 BRANCHES['mozilla-release']['enable_codecoverage'] = True
@@ -1174,9 +1168,6 @@ BRANCHES['mozilla-beta']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
-BRANCHES['mozilla-beta']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['mozilla-beta']['enable_mac_a11y'] = True
 BRANCHES['mozilla-beta']['unittest_build_space'] = 6
 # And code coverage
@@ -1226,9 +1217,6 @@ BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
-BRANCHES['mozilla-aurora']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
 BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
 # And code coverage

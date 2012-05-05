@@ -734,9 +734,6 @@ BRANCHES['comm-central']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-central']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-central']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
 # And code coverage
@@ -779,9 +776,6 @@ BRANCHES['comm-release']['start_hour'] = [3]
 BRANCHES['comm-release']['start_minute'] = [2]
 BRANCHES['comm-release']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['comm-release']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-release']['enable_mac_a11y'] = True
 # And code coverage
 BRANCHES['comm-release']['enable_codecoverage'] = False
@@ -856,9 +850,6 @@ BRANCHES['comm-beta']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-beta']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-beta']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
 # And code coverage
@@ -905,9 +896,6 @@ BRANCHES['comm-aurora']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['comm-aurora']['enable_pgo'] = True
 # Enable unit tests
-BRANCHES['comm-aurora']['geriatric_masters'] = [
-    ('10.250.48.137:9989', False),
-]
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # And code coverage
