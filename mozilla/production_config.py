@@ -202,3 +202,24 @@ PROJECTS = {
         'tinderbox_tree': 'Ionmonkey',
     },
 }
+
+if __name__ == "__main__":
+    import sys, pprint
+    args = sys.argv[1:]
+
+    # print build slave details
+    host_info = {
+        'production': SLAVES,
+        'try': TRY_SLAVES,
+    }
+
+    if len(args) > 0:
+        list_names = args
+    else:
+        list_names = host_info.keys()
+
+    for list_name in list_names:
+        for host_platform in host_info[list_name]:
+            for host_name in host_info[list_name][host_platform]:
+                print("%s,%s,%s" % (list_name, host_platform, host_name))
+
