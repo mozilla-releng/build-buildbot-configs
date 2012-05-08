@@ -7,7 +7,7 @@ LINUX64_VMS    = ['bld-centos5-64-vmw-%03i' % x for x in range(1, 7)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20, 26]] + \
                  ['w32-ix-slave%02i' % x for x in range(24,45)]
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [2] + range(6,25)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,25)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
 
 SLAVES = {
