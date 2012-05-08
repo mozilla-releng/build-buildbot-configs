@@ -1,5 +1,5 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,81)]
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in [2] + range(40,57) if x not in (51,52,)] # bug683792
+MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(40,57) if x not in (51,52,)] # bug683792
 LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,23)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
                  ['linux-ix-slave%02i' % x for x in [1,2,6] + range(12,43)]
