@@ -767,6 +767,8 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
         },
         'android-xul': {
             'product_name': 'firefox',
@@ -1656,8 +1658,8 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
                 BRANCHES[b]['platforms'][p]['enable_shark'] = False
-                
-        
+
+
 if __name__ == "__main__":
     import sys, pprint
     args = sys.argv[1:]

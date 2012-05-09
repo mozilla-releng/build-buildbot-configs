@@ -133,6 +133,8 @@ releaseConfig['multilocale_config'] = {
     'platforms': {
         'android-xul':
             'multi_locale/release_mozilla-beta_android-xul.json',
+        'android':
+            'multi_locale/release_mozilla-beta_android.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
