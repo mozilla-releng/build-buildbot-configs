@@ -73,6 +73,8 @@ BRANCHES = {
     'comm-aurora': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird-Aurora',
         'tinderbox_tree': 'Thunderbird-Aurora',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
+        'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'try-comm-central': {
         'tinderbox_tree': 'Try-Comm-Central',
