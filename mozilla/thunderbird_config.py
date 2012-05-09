@@ -750,7 +750,7 @@ BRANCHES['comm-central']['l10n_tree'] = 'tbcentral'
 BRANCHES['comm-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-central-l10n/'
 BRANCHES['comm-central']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central'
+    BRANCHES['comm-central']['download_base_url'] + '/nightly/latest-comm-central'
 BRANCHES['comm-central']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
@@ -910,9 +910,9 @@ BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'tbaurora'
 #make sure it has an ending slash
 BRANCHES['comm-aurora']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-aurora-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-aurora-l10n/'
 BRANCHES['comm-aurora']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
+    BRANCHES['comm-aurora']['download_base_url'] + '/nightly/latest-comm-aurora'
 BRANCHES['comm-aurora']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-aurora']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
@@ -984,8 +984,6 @@ BRANCHES['try-comm-central']['platforms']['win64']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-for platform in BRANCHES['try-comm-central']['platforms'].keys():
-    BRANCHES['try-comm-central']['platforms'][platform]['stage_product'] = 'thunderbird-test'
 
 # MAKE COMM-CENTRAL & TRY LIVE
 for branch in ['try-comm-central', 'comm-central', 'comm-aurora']: 

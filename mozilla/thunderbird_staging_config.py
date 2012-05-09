@@ -79,6 +79,8 @@ BRANCHES = {
     'comm-aurora': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
+        'download_base_url': 'http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird',
+        'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-esr10': {
         'enable_blocklist_update': False,
