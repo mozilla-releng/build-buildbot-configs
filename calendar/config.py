@@ -38,7 +38,7 @@ BUILDERS = {
         }
     },
     'win32': {
-        'community': [ 'cb-sb-win32-tbox' ],
+        'community': [ 'cal-vm-win32-tbox' ],
     },
 }
 
