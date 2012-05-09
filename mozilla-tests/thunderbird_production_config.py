@@ -25,7 +25,7 @@ BRANCHES = {
         'tinderbox_tree': 'MozillaTest',
     },
     'comm-aurora': {
-        'tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'Thunderbird-Aurora',
     },
     'try-comm-central': {
         'tinderbox_tree': 'Try-Comm-Central',
