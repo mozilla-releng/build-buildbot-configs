@@ -534,25 +534,25 @@ BRANCHES['comm-esr10-bloat'] = makeBuildConfig(
                                mozillaCentralBranch = 'releases/mozilla-esr10',
                                tinderboxTree = 'Thunderbird-Esr10'
                            )
-BRANCHES['comm-aurora'] = makeBuildConfig(
-                               builderType   = 'nightly',
-                               branchName    = 'comm-aurora',
-                               hgBranch      = 'releases/comm-aurora',
-                               mozillaCentralBranch = 'releases/mozilla-aurora',
-                               tinderboxTree = 'Thunderbird-Aurora',
-                               allLocalesFile = 'all-locales.comm-aurora',
-                               wantL10n      = True,
-                               l10nRepo      = 'releases/l10n/mozilla-aurora',
-                               enableWeeklyBundle = True,
-                               updateChannel = 'aurora',
-                           )
-BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
-                               builderType   = 'bloat',
-                               branchName    = 'comm-aurora',
-                               hgBranch      = 'releases/comm-aurora',
-                               mozillaCentralBranch = 'releases/mozilla-aurora',
-                               tinderboxTree = 'Thunderbird-Aurora'
-                           )
+#BRANCHES['comm-aurora'] = makeBuildConfig(
+#                               builderType   = 'nightly',
+#                               branchName    = 'comm-aurora',
+#                               hgBranch      = 'releases/comm-aurora',
+#                               mozillaCentralBranch = 'releases/mozilla-aurora',
+#                               tinderboxTree = 'Thunderbird-Aurora',
+#                               allLocalesFile = 'all-locales.comm-aurora',
+#                               wantL10n      = True,
+#                               l10nRepo      = 'releases/l10n/mozilla-aurora',
+#                               enableWeeklyBundle = True,
+#                               updateChannel = 'aurora',
+#                           )
+#BRANCHES['comm-aurora-bloat'] = makeBuildConfig(
+#                               builderType   = 'bloat',
+#                               branchName    = 'comm-aurora',
+#                               hgBranch      = 'releases/comm-aurora',
+#                               mozillaCentralBranch = 'releases/mozilla-aurora',
+#                               tinderboxTree = 'Thunderbird-Aurora'
+#                           )
 
 #BRANCHES['comm-central'] = makeBuildConfig(
 #                               builderType   = 'nightly',

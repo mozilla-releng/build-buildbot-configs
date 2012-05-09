@@ -640,12 +640,13 @@ ANDROID_XUL_UNITTEST_DICT = {
              'thisChunk': 3,
             },
         )),
-        ('crashtest-1', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 1,
-            },
-        )),
+        # disabled for constant timeouts, bug 728119
+        # ('crashtest-1', (
+        #     {'suite': 'crashtest',
+        #      'totalChunks': 3,
+        #      'thisChunk': 1,
+        #     },
+        # )),
         ('crashtest-2', (
             {'suite': 'crashtest',
              'totalChunks': 3,
@@ -755,12 +756,13 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 3,
             },
         )),
-        ('crashtest-1', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 1,
-            },
-        )),
+        # disabled for constant timeouts, bug 728119
+        # ('crashtest-1', (
+        #     {'suite': 'crashtest',
+        #      'totalChunks': 3,
+        #      'thisChunk': 1,
+        #     },
+        # )),
         ('crashtest-2', (
             {'suite': 'crashtest',
              'totalChunks': 3,

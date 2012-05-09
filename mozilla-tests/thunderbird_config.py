@@ -447,7 +447,7 @@ BRANCHES['comm-esr10']['pgo_strategy'] = None
 
 
 # MAKE COMM-CENTRAL & TRY LIVE
-for branch in ['try-comm-central', 'comm-central']:
+for branch in ['try-comm-central', 'comm-central', 'comm-aurora']:
     for plat in BRANCHES[branch]['platforms']:
         if 'stage_product' in BRANCHES[branch]['platforms'][plat]:
             BRANCHES[branch]['platforms'][plat]['stage_product'] = 'thunderbird'
