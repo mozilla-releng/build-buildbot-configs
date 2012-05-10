@@ -35,7 +35,7 @@ GLOBAL_VARS = {
     'aus2_user': 'cltbld',
     'aus2_ssh_key': 'cltbld_dsa',
     'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
-    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird-test',
+    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird',
     'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
@@ -47,14 +47,14 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
         ],
-    'xulrunner_tinderbox_tree': 'MozillaTest',
-    'weekly_tinderbox_tree': 'MozillaTest',
+    'xulrunner_tinderbox_tree': 'ThunderbirdTest',
+    'weekly_tinderbox_tree': 'ThunderbirdTest',
     'l10n_tinderbox_tree': 'MozillaStaging',
-    'packaged_unittest_tinderbox_tree': 'MozillaTest',
-    'tinderbox_tree': 'MozillaTest',
+    'packaged_unittest_tinderbox_tree': 'ThunderbirdTest',
+    'tinderbox_tree': 'ThunderbirdTest',
     'hg_username': 'stage-tbirdbld',
     'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
-    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird-test/bundles'],
+    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
 }
 
 BUILDS_BEFORE_REBOOT = 5
@@ -65,8 +65,6 @@ BRANCHES = {
     'comm-central': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
-        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird',
-        'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-release': {
         'enable_blocklist_update': False,
@@ -79,8 +77,6 @@ BRANCHES = {
     'comm-aurora': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
-        'download_base_url': 'http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird',
-        'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-esr10': {
         'enable_blocklist_update': False,

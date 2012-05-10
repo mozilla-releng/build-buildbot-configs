@@ -20,15 +20,6 @@ GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
 # etc.
 GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
 
-PLATFORM_VARS['linux']['product_name'] = 'thunderbird-test'
-PLATFORM_VARS['linux']['app_name'] = 'mailnews'
-# etc.
-# You can probably do something like this if you really wanted to:
-# for p in PLATFORM_VARS:
-#     PLATFORM_VARS[p]['product_name'] = 'thunderbird'
-#     # etc.
-
-
 GLOBAL_VARS.update({
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
@@ -39,7 +30,7 @@ GLOBAL_VARS.update({
     'stage_username': 'tbirdbld',
     'stage_group': None,
     'stage_ssh_key': 'tbirdbld_dsa',
-    'symbol_server_path': '/mnt/netapp/breakpad/symbols_tbrd-test/',
+    'symbol_server_path': '/mnt/netapp/breakpad/symbols_tbrd/',
     'hg_username': 'tbirdbld',
     'hg_ssh_key': '~cltbld/.ssh/tbirdbld_dsa',
     'unittest_suites': [
@@ -63,14 +54,14 @@ GLOBAL_VARS.update({
     'pgo_platforms': ('linux', 'linux64', 'win32'),
     'pgo_strategy': None,
     'periodic_pgo_interval': 6, # in hours
-    'product_name': 'thunderbird-test', # Not valid for mobile builds
+    'product_name': 'thunderbird', # Not valid for mobile builds
     'app_name': 'mail',     # Not valid for mobile builds
     'brand_name': 'Daily', # Not valid for mobile builds
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
-    'enabled_products': ['thunderbird-test'],
+    'enabled_products': ['thunderbird'],
     'enable_valgrind': True,
     'valgrind_platforms': ('linux', 'linux64'),
 
@@ -106,7 +97,7 @@ builder_prefix = "TB "
 
 PLATFORM_VARS = {
         'linux': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
@@ -122,7 +113,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
@@ -152,7 +143,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linuxqt': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux QT %(branch)s',
             'mozconfig': 'linux/%(branch)s/qt',
@@ -169,7 +160,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'linuxqt',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
@@ -195,7 +186,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'linux-rpm': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux RPM %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly-rpm',
@@ -217,7 +208,7 @@ PLATFORM_VARS = {
             'packageTests': False, #Done in rpm spec file
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -246,7 +237,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'linux64': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
@@ -262,7 +253,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
@@ -293,7 +284,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linux64-rpm': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux RPM x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly-rpm',
@@ -315,7 +306,7 @@ PLATFORM_VARS = {
             'packageTests': False, #Done in rpm spec file
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_shared_checkouts': True,
             'env': {
@@ -343,7 +334,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
         },
         'macosx64': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
@@ -360,7 +351,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': "%s/i386" % OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
@@ -387,7 +378,7 @@ PLATFORM_VARS = {
             'test_pretty_names': True,
         },
         'win32': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
@@ -403,7 +394,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'win32',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -430,7 +421,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'win64': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'mail/config/mozconfigs/win64/nightly',
@@ -446,7 +437,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -473,7 +464,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
         },
         'linux-debug': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s leak test',
             'mozconfig': 'linux/%(branch)s/debug',
@@ -487,7 +478,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'linux-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -508,7 +499,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'linux64-debug': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s leak test',
             'mozconfig': 'linux64/%(branch)s/debug',
@@ -522,7 +513,7 @@ PLATFORM_VARS = {
             'build_space': 7,
             'slaves': SLAVES['linux64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -543,7 +534,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'macosx-debug': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
@@ -557,7 +548,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
             'enable_shark': False,
@@ -573,7 +564,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'macosx64-debug': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
@@ -587,7 +578,7 @@ PLATFORM_VARS = {
             'build_space': 10,
             'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
             'enable_shark': False,
@@ -604,7 +595,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
         },
         'win32-debug': {
-            'product_name': 'thunderbird-test',
+            'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s leak test',
             'mozconfig': 'win32/%(branch)s/debug',
@@ -618,7 +609,7 @@ PLATFORM_VARS = {
             'build_space': 9,
             'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird-test',
+            'stage_product': 'thunderbird',
             'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
             'env': {
@@ -750,7 +741,7 @@ BRANCHES['comm-central']['l10n_tree'] = 'tbcentral'
 BRANCHES['comm-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-central-l10n/'
 BRANCHES['comm-central']['enUS_binaryURL'] = \
-    BRANCHES['comm-central']['download_base_url'] + '/nightly/latest-comm-central'
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central'
 BRANCHES['comm-central']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
@@ -864,7 +855,7 @@ BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'tbbeta'
 #make sure it has an ending slash
 BRANCHES['comm-beta']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird-test/nightly/latest-comm-beta-l10n/'
+    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-beta-l10n/'
 BRANCHES['comm-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-beta'
 BRANCHES['comm-beta']['allLocalesFile'] = 'mail/locales/all-locales'
@@ -912,7 +903,7 @@ BRANCHES['comm-aurora']['l10n_tree'] = 'tbaurora'
 BRANCHES['comm-aurora']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-aurora-l10n/'
 BRANCHES['comm-aurora']['enUS_binaryURL'] = \
-    BRANCHES['comm-aurora']['download_base_url'] + '/nightly/latest-comm-aurora'
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
 BRANCHES['comm-aurora']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-aurora']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
@@ -984,18 +975,6 @@ BRANCHES['try-comm-central']['platforms']['win64']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-
-# MAKE COMM-CENTRAL & TRY LIVE
-for branch in ['try-comm-central', 'comm-central', 'comm-aurora']: 
-    BRANCHES[branch]['product_name'] = 'thunderbird'
-    BRANCHES[branch]['enabled_products'] = ['thunderbird']
-    BRANCHES[branch]['symbol_server_path'] = '/mnt/netapp/breakpad/symbols_tbrd/'
-    for plat in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms'][plat]['env']['SYMBOL_SERVER_PATH'] = '/mnt/netapp/breakpad/symbols_tbrd/'
-        BRANCHES[branch]['platforms'][plat]['product_name'] = 'thunderbird'
-        BRANCHES[branch]['platforms'][plat]['stage_product'] = 'thunderbird'
-
-# END MAKE COMM-CENTRAL & TRY LIVE
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

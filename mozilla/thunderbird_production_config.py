@@ -33,7 +33,7 @@ TRY_SLAVES = {
 }
 
 # Local overrides for default values
-GLOBAL_VARS['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test'
+GLOBAL_VARS['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 GLOBAL_VARS['talos_masters'] = []
 # List of unittest masters to notify of new builds to test,
 # if a failure to notify the master should result in a warning,
@@ -42,10 +42,10 @@ GLOBAL_VARS['unittest_masters'] = [
     ('buildbot-master36.build.mozilla.org:9301', True, 5),
 ]
 GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
-GLOBAL_VARS['weekly_tinderbox_tree'] = 'MozillaTest'
+GLOBAL_VARS['weekly_tinderbox_tree'] = 'Thunderbird'
 GLOBAL_VARS['l10n_tinderbox_tree'] = 'MozillaTest'
 GLOBAL_VARS['base_mirror_urls'] = ['http://hg.build.scl1.mozilla.com']
-GLOBAL_VARS['base_bundle_urls'] = ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird-test/bundles']
+GLOBAL_VARS['base_bundle_urls'] = ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles']
 GLOBAL_VARS['aus2_user'] = 'tbirdbld'
 GLOBAL_VARS['aus2_ssh_key'] = 'auspush'
 GLOBAL_VARS['aus2_host'] = 'aus3-staging.mozilla.org'
@@ -55,26 +55,22 @@ BRANCHES = {
     'comm-central': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird',
         'tinderbox_tree': 'Thunderbird',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
-        'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'comm-release': {
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'tinderbox_tree': 'MozillaTest',
+        'packaged_unittest_tinderbox_tree': 'Thunderbird-Release',
+        'tinderbox_tree': 'Thunderbird-Release',
     },
     'comm-esr10': {
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'tinderbox_tree': 'MozillaTest',
+        'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr10',
+        'tinderbox_tree': 'Thunderbird-Esr10',
     },
     'comm-beta': {
-        'packaged_unittest_tinderbox_tree': 'MozillaTest',
-        'tinderbox_tree': 'MozillaTest',
+        'packaged_unittest_tinderbox_tree': 'Thunderbird-Beta',
+        'tinderbox_tree': 'Thunderbird-Beta',
     },
     'comm-aurora': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird-Aurora',
         'tinderbox_tree': 'Thunderbird-Aurora',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
-        'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
     },
     'try-comm-central': {
         'tinderbox_tree': 'Try-Comm-Central',
