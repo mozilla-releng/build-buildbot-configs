@@ -11,6 +11,10 @@
     "revision": "6e690c461b12",
     "platforms": ["android"]
   },
+  "es-ES": {
+    "revision": "8e257588ee7e",
+    "platforms": ["android", "android-multilocale"]
+  },
   "fr": {
     "revision": "f2be789f2cf3",
     "platforms": ["android", "android-multilocale"]
@@ -28,7 +32,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
-    "revision": "2c8e9453b4bf",
+    "revision": "a3b82d087596",
     "platforms": ["android", "android-multilocale"]
   },
   "nl": {
