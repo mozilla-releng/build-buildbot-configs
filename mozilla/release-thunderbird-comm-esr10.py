@@ -3,7 +3,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com',]
-releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
+releaseConfig['ImportantRecipients'] = ['thunderbird-drivers@mozilla.org',]
 releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.org',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
