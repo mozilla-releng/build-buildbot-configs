@@ -44,6 +44,9 @@ ENABLE_RELEASES = False
 if 'release_branches' in master_config:
     ACTIVE_RELEASE_BRANCHES.extend(master_config['release_branches'])
     ENABLE_RELEASES = True
+if 'thunderbird_release_branches' in master_config:
+    ACTIVE_THUNDERBIRD_RELEASE_BRANCHES.extend(master_config['thunderbird_release_branches'])
+    ENABLE_RELEASES = True
 if 'mobile_release_branches' in master_config:
     ACTIVE_MOBILE_RELEASE_BRANCHES.extend(master_config['mobile_release_branches'])
     ENABLE_RELEASES = True

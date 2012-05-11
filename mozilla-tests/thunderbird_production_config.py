@@ -16,13 +16,13 @@ BRANCHES = {
         'tinderbox_tree': 'Thunderbird',
     },
     'comm-release': {
-        'tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'Thunderbird-Release',
     },
     'comm-esr10': {
-        'tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'Thunderbird-Esr10',
     },
     'comm-beta': {
-        'tinderbox_tree': 'MozillaTest',
+        'tinderbox_tree': 'Thunderbird-Beta',
     },
     'comm-aurora': {
         'tinderbox_tree': 'Thunderbird-Aurora',

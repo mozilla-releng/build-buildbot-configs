@@ -126,7 +126,6 @@ releaseConfig['enable_repo_setup']       = False
 releaseConfig['usePrettyNames']           = False
 releaseConfig['disableBouncerEntries']    = True
 releaseConfig['disableStandaloneRepacks'] = True
-releaseConfig['disableL10nVerification']  = True
 releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
