@@ -11,7 +11,7 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['version']                    = '2.10b1'
 releaseConfig['appVersion']                 = '2.10'
 releaseConfig['milestone']                  = '13.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_10b1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.9b4'
@@ -26,8 +26,8 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = 'b4e8ce60d23f'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = '0f14f44ffa71'
+releaseConfig['relbranchOverride']          = 'default'
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
@@ -41,14 +41,14 @@ releaseConfig['inspectorRelbranchOverride'] = 'DOMI_2_0_10'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = 'venkman' # leave empty if venkman is not to be tagged
 releaseConfig['venkmanRepoRevision']        = 'VENKMAN_RELEASE_0_9_89'
-releaseConfig['venkmanRelbranchOverride']   = ''
+releaseConfig['venkmanRelbranchOverride']   = 'SEA_COMM130_20120510_RELBRANCH'
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
 releaseConfig['chatzillaRepoRevision']      = 'CHATZILLA_0_9_88_2_RELEASE'
-releaseConfig['chatzillaRelbranchOverride'] = ''
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM130_20120510_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'default'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-beta'
 #  Support repositories
 #   not used yet
@@ -75,7 +75,7 @@ releaseConfig['patcherToolsTag']            = 'UPDATE_PACKAGING_R14'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['ftpServer']                  = 'ftp.mozilla.org'
-releaseConfig['stagingServer']              = 'stage-old.mozilla.org'
+releaseConfig['stagingServer']              = 'stage.mozilla.org'
 releaseConfig['bouncerServer']              = 'download.mozilla.org'
 releaseConfig['ausServerUrl']               = 'https://aus2-community.mozilla.org'
 releaseConfig['testOlderPartials']          = False
