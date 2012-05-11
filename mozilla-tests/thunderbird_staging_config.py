@@ -13,7 +13,7 @@ BRANCHES = {
     'try-comm-central': {
             'enable_mail_notifier': False, # Set to True when testing
             'email_override': [], # Set to your address when testing
-            'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/thunderbird/try-builds',
+            'package_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/try-builds',
             'package_dir': '%(who)s-%(got_revision)s',
             'stage_username': 'tbirdbld',
             'stage_ssh_key': 'tbirdbld_dsa',
