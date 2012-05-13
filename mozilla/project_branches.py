@@ -258,7 +258,7 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'holly': {},
-    'larch': {},
+    # 'larch': {},
     # customizations while booked for bcp47 project as per bug 667734
     'maple': {
         'enable_talos': True,
@@ -290,8 +290,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    #'pine': {
-    #},
+    'pine': {},
 }
 
 # All is the default
