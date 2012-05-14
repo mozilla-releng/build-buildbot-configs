@@ -12,6 +12,7 @@ releaseConfig['messagePrefix']       = '[release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
+releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
@@ -129,7 +130,7 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoConfig']        = 'thunderbird-tuxedo.ini'
+releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
@@ -137,3 +138,4 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
+releaseConfig['enableSigningAtBuildTime'] = False
