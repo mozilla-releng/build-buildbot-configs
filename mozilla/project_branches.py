@@ -27,6 +27,11 @@ PROJECT_BRANCHES = {
     'build-system': {
         'enable_talos': True,
         'pgo_strategy': 'per-checkin',
+        'platforms': {
+            'win32': {
+                'pgo_platform': 'win64',
+            },
+        },
     },
     # DISABLED because of builder limit problems - bug 721854
 #    'devtools':{
