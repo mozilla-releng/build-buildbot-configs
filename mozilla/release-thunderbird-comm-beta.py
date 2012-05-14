@@ -116,7 +116,7 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Major update configuration
 releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoConfig']        = 'thunderbird-tuxedo.ini'
+releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
