@@ -13,6 +13,7 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
+releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
