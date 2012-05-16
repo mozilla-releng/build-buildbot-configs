@@ -212,7 +212,6 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-f16-i386',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
-            'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/releng.manifest',
         },
         'linuxqt': {
@@ -255,7 +254,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
-            'talos_masters': None #GLOBAL_VARS['talos_masters'],
+            'talos_masters': None, #GLOBAL_VARS['talos_masters'],
         },
         'linux-rpm': {
             'product_name': 'firefox',
@@ -1505,6 +1504,20 @@ BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
+# enable tooltool
+BRANCHES['try']['platforms']['linux']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['try']['platforms']['linuxqt']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['try']['platforms']['linux-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['try']['platforms']['linux64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['try']['platforms']['linux64-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['try']['platforms']['macosx64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
+BRANCHES['try']['platforms']['linux-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['try']['platforms']['linux64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['try']['platforms']['macosx-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx32/releng.manifest'
+BRANCHES['try']['platforms']['macosx64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
+BRANCHES['try']['platforms']['android']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
+BRANCHES['try']['platforms']['android-debug']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
+BRANCHES['try']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/android-xul/config/tooltool-manifests/android/releng.manifest'
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(

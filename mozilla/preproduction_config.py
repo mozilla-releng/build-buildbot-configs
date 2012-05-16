@@ -76,6 +76,7 @@ GLOBAL_VARS = {
     'hg_username': 'stage-ffxbld',
     'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com', 'http://hg.build.scl1.mozilla.com'],
     'base_bundle_urls': ['http://preproduction-master.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/bundles'],
+    'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
 }
 
 BUILDS_BEFORE_REBOOT = 1
