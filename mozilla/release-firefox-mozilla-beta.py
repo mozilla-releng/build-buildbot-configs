@@ -20,7 +20,7 @@ releaseConfig['version']             = '13.0b4'
 releaseConfig['appVersion']          = '13.0'
 releaseConfig['milestone']           = '13.0'
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_13_0_b4'
+releaseConfig['baseTag']             = 'FIREFOX_13_0b4'
 #  Old version info
 releaseConfig['oldVersion']          = '13.0b3'
 releaseConfig['oldAppVersion']       = '13.0'
