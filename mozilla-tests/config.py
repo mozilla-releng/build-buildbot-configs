@@ -1237,8 +1237,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
 
 #-------------------------------------------------------------------------
-# Delete all references to linux-android when Android native ships off
-# mozilla-release.
+# Delete all references to linux-android when mozilla-esr10 is retired.
 #-------------------------------------------------------------------------
 LINUX_ANDROID_BRANCHES = ('mozilla-esr10',)
 for branch in BRANCHES.keys():
