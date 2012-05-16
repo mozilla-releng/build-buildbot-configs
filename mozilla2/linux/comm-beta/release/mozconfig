@@ -26,5 +26,6 @@ CONCURRENCY=$(( `grep processor /proc/cpuinfo | wc -l` + 2 ))
 mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
 
 # Run client.py
-mk_add_options CLIENT_PY_ARGS="--hg-options='--verbose --time' --hgtool=../scripts/buildfarm/utils/hgtool.py --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
+# don't use hgtool here, as the source tarball builders don't clone the scripts repo.
+mk_add_options CLIENT_PY_ARGS="--hg-options='--verbose --time' --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
 mk_add_options ALWAYS_RUN_CLIENT_PY=1
