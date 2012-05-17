@@ -203,9 +203,27 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
             c.config_dir = 'mozilla'
             c.globs.append('l10n-changesets*')
             c.globs.append('release_templates')
-            c.globs.append('release-firefox*.py')
-            c.globs.append('release-fennec*.py')
-            c.globs.append('release-thunderbird*.py')
+            if m['environment'] == 'staging':
+                c.globs.append('staging_release-*-*.py')
+                # release-*.py -> staging_release-*.py symlinks
+                c.local_links.extend(
+                    [('staging_release-firefox-mozilla-%s.py' % v,
+                      'release-firefox-mozilla-%s.py' % v)
+                      for v in ['beta', 'release', 'esr10']
+                    ] +
+                    [('staging_release-fennec-mozilla-%s.py' % v,
+                      'release-fennec-mozilla-%s.py' % v)
+                      for v in ['beta', 'release']
+                    ] +
+                    [('staging_release-thunderbird-comm-%s.py' % v,
+                      'release-thunderbird-comm-%s.py' % v)
+                        for v in ['beta', 'release', 'esr10']
+                    ]
+                )
+            else:
+                c.globs.append('release-firefox*.py')
+                c.globs.append('release-fennec*.py')
+                c.globs.append('release-thunderbird*.py')
             c.globs.append(mastercfg)
             c.globs.append('build_localconfig.py')
             c.local_links.append((mastercfg, 'master.cfg'))
@@ -226,31 +244,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
         retval.append(c)
     return retval
 
-debsign = MasterConfig(
-        config_dir='debsign',
-        globs=['*.py', '*.cfg'],
-        renames=[
-            ('passwords.py.template', 'passwords.py'),
-        ],
-        local_links=[],
-        )
-
-debsign_production = debsign + MasterConfig(
-        "production-debsign",
-        local_links=[
-            ('master-production.cfg', 'master.cfg'),
-            ('config-production.py', 'config.py'),
-            ],
-        )
-
-debsign_staging = debsign + MasterConfig(
-        "staging-debsign",
-        local_links=[
-            ('master-staging.cfg', 'master.cfg'),
-            ('config-staging.py', 'config.py'),
-            ],
-        )
-
 mozilla_base = MasterConfig(
         config_dir='mozilla',
         globs=['*config.py', '*localconfig.py', 'master_common.py',
@@ -264,19 +257,6 @@ mozilla_base = MasterConfig(
 
 mozilla_production = mozilla_base + MasterConfig(
     globs=['release-firefox-*.py', 'release-fennec-*.py', 'release-thunderbird-*.py'],
-    )
-
-mozilla_staging = mozilla_base + MasterConfig(
-    globs=['staging_release-*-*.py'],
-    local_links=[('staging_release-firefox-mozilla-%s.py' % v,
-                  'release-firefox-mozilla-%s.py' % v)
-                 for v in ['1.9.2', 'beta', 'release']] + \
-                [('staging_release-fennec-mozilla-%s.py' % v,
-                  'release-fennec-mozilla-%s.py' % v)
-                 for v in ['beta', 'release']] + \
-                [('staging_release-thunderbird-comm-%s.py' % v,
-                  'release-thunderbird-comm-%s.py' % v)
-                 for v in ['beta', 'release']]
     )
 
 mozilla_production_scheduler_master = mozilla_production + MasterConfig(
@@ -296,16 +276,6 @@ mozilla_tests = MasterConfig(
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('passwords.py.template', 'passwords.py'),
             ],
-        )
-
-mozilla_staging_tests_scheduler_master = mozilla_tests + MasterConfig(
-        "staging-tests_scheduler",
-        local_links = [
-            ('staging_tests_scheduler_master.py', 'master_localconfig.py'),
-            ('staging_config.py', 'localconfig.py'),
-            ('tests_master.cfg', 'master.cfg'),
-            ('thunderbird_staging_config.py', 'thunderbird_localconfig.py'),
-            ]
         )
 
 mozilla_staging_ateam_master1 = mozilla_tests + MasterConfig(
@@ -422,11 +392,7 @@ masters_08 = [
     ]
 
 def filter_masters(master_list):
-    rv = []
-    for master in master_list:
-        if master.name != 'preprod-release-master':
-            rv.append(master)
-    return master_list
+    return [m for m in master_list if m != 'preprod-release-master']
 
 if __name__ == "__main__":
 
