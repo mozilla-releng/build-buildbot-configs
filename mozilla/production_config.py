@@ -78,6 +78,7 @@ GLOBAL_VARS = {
     'l10n_tinderbox_tree': 'Mozilla-l10n',
     'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com', 'http://hg.build.scl1.mozilla.com'],
     'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/firefox/bundles'],
+    'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
 }
 
 BUILDS_BEFORE_REBOOT = 1
