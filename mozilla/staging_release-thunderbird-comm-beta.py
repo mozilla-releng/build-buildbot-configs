@@ -148,5 +148,5 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['enableSigningAtBuildTime'] = True
+releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
