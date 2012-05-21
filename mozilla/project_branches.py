@@ -79,6 +79,7 @@ PROJECT_BRANCHES = {
     'ionmonkey': {
         'disable_tinderbox_mail': False,
         'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': True,
         'enable_talos' : False,
     },
     #'jaegermonkey': {
