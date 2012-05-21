@@ -62,7 +62,7 @@ GLOBAL_VARS.update({
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
     'enabled_products': ['thunderbird'],
-    'enable_valgrind': True,
+    'enable_valgrind': False,
     'valgrind_platforms': ('linux', 'linux64'),
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users

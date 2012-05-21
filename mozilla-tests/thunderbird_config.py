@@ -274,9 +274,7 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
             'win7': {
-                'opt_unittest_suites' : \
-                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
-                    [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
+                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
