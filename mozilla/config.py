@@ -971,13 +971,6 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
-    'mozilla-1.9.2': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {}, 'linux-debug': {}, 'linux64': {}, 'linux64-debug': {},
-            'macosx-debug': {}, 'win32': {}, 'win32-debug': {},
-        },
-    },
     'try': {
     },
 }
@@ -1359,95 +1352,6 @@ BRANCHES['mozilla-esr10']['platforms']['linux-android'] = {
     'multi_locale_script': 'scripts/multil10n.py',
 }
 
-######## mozilla-1.9.2
-BRANCHES['mozilla-1.9.2']['repo_path'] = 'releases/mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['mobile_repo_path'] = 'releases/mobile-1.1'
-BRANCHES['mozilla-1.9.2']['l10n_repo_path'] = 'releases/l10n-mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-1.9.2']['brand_name'] = 'Namoroka'
-BRANCHES['mozilla-1.9.2']['start_hour'] = [3]
-BRANCHES['mozilla-1.9.2']['start_minute'] = [32]
-BRANCHES['mozilla-1.9.2']['use_old_updater'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['build_space'] = 8
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['build_space'] = 8
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['build_space'] = 8
-BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['build_space'] = 3
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['build_space'] = 3
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['build_space'] = 4
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['build_space'] = 3
-# We build 10.5 leak builds on 10.5 while newer branches do it on 10.6 machines
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx']
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-1.9.2']['enable_xulrunner'] = True
-# Enable unit tests
-BRANCHES['mozilla-1.9.2']['unittest_suites'] = [
-    ('mochitests', ['mochitest-plain']),
-    ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-        'mochitest-a11y']),
-    ('reftest', ['reftest']),
-    ('crashtest', ['crashtest']),
-    ('xpcshell', ['xpcshell']),
-]
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_unittests'] = True
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['enable_checktests'] = False
-BRANCHES['mozilla-1.9.2']['enable_mac_a11y'] = False
-BRANCHES['mozilla-1.9.2']['unittest_build_space'] = 5
-# L10n configuration
-BRANCHES['mozilla-1.9.2']['enable_l10n'] = True
-BRANCHES['mozilla-1.9.2']['enable_l10n_onchange'] = True
-BRANCHES['mozilla-1.9.2']['l10n_platforms'] = ['linux','win32',]
-BRANCHES['mozilla-1.9.2']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-1.9.2']['l10nDatedDirs'] = True
-BRANCHES['mozilla-1.9.2']['l10n_tree'] = 'fx36x'
-BRANCHES['mozilla-1.9.2']['l10n_modules'] =  [
-    'browser', 'extensions/reporter',
-    'other-licenses/branding/firefox', 'netwerk', 'dom', 'toolkit',
-    'security/manager',
-    ]
-#make sure it has an ending slash
-BRANCHES['mozilla-1.9.2']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-1.9.2-l10n/'
-BRANCHES['mozilla-1.9.2']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-1.9.2']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-1.9.2' % (GLOBAL_VARS['hgurl'])
-BRANCHES['mozilla-1.9.2']['create_snippet'] = True
-BRANCHES['mozilla-1.9.2']['update_channel'] = 'nightly'
-BRANCHES['mozilla-1.9.2']['create_partial'] = True
-BRANCHES['mozilla-1.9.2']['create_partial_l10n'] = True
-BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-1.9.2'
-BRANCHES['mozilla-1.9.2']['enable_blocklist_update'] = True
-BRANCHES['mozilla-1.9.2']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['l10n_check_test'] = False
-BRANCHES['mozilla-1.9.2']['enable_valgrind'] = False
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux64']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['win32']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux-debug']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['linux64-debug']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['macosx-debug']['dep_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['nightly_signing_servers'] = None
-BRANCHES['mozilla-1.9.2']['platforms']['win32-debug']['dep_signing_servers'] = None
-
 ######## try
 # Try-specific configs
 BRANCHES['try']['stage_username'] = 'trybld'
@@ -1613,8 +1517,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in ('mozilla-1.9.2',):
-    branches.remove(branch)
 for branch in branches:
     if BRANCHES[branch]['platforms'].has_key('linux'):
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'

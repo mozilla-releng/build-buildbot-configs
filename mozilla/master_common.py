@@ -27,7 +27,6 @@ BRANCH_PRIORITIES = {
     'comm-beta': 0,
     'mozilla-release': 0,
     'comm-release': 0,
-    'mozilla-1.9.2': 1,
     'try': 3,
     'try-comm-central': 3,
     'addontester': 4,

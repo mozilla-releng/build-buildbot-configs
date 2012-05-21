@@ -53,7 +53,6 @@ BRANCHES = {
     'mozilla-beta':        { 'release_branch': True },
     'mozilla-aurora':      {},
     'mozilla-esr10':       { 'release_branch': True },
-    'mozilla-1.9.2':       { 'release_branch': True },
     'try':                 { 'coallesce_jobs': False},
     'addontester':         {},
     'addonbaselinetester': {},
@@ -232,7 +231,7 @@ SUITES = {
     },
     # New set of test that report numbers differently (https://wiki.mozilla.org/Auto-tools/Projects/Signal_From_Noise)
     # tp5 -> tpr instead of tp5.2.  This is osx only and we will consider switching linux and windows ot this as well.
-    # all these tests should be default on m-c/m-i/m-a and project branches.  Off for beta/release/1.9.2
+    # all these tests should be default on m-c/m-i/m-a and project branches.
     'tpr_responsiveness': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
@@ -351,43 +350,7 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
-    # These old suites are only for 1.9.2 and do not use --mozAfterPaint 
-    # chrome VS old_chrome is:
-    # 1) without --mozAfterPaint, 2) use ts instead tpaint and 3) use twinopen instead of tpaint
-    'old_chrome': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts:tdhtml:twinopen:tsspider'],
-        'options': ({}, NO_MAC),
-    },
-    'old_chrome_mac': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts:tdhtml:twinopen:tsspider'],
-        'options': ({}, MAC_ONLY),
-    },
-    'old_nochrome': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'old_tp': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5'],
-        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
-    },
 }
-
-# these three are for mozilla-1.9.2
-OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-                PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
-
-OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms']
-
-OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
-
-OLD_BRANCH_MAC_ONLY = PLATFORMS['macosx']['slave_platforms'] 
-
-OLD_BRANCH_ADDON_TESTER_PLATFORMS = ['win7'] + ['fedora'] + ['snowleopard']
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -1133,34 +1096,6 @@ BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
-######## mozilla-1.9.2
-BRANCHES['mozilla-1.9.2']['branch_name'] = "Firefox3.6"
-BRANCHES['mozilla-1.9.2']['mobile_branch_name'] = "Mobile1.1"
-BRANCHES['mozilla-1.9.2']['build_branch'] = "1.9.2"
-# Let's enable the old suites without mozAfterPaint and enable what we use in m-c
-BRANCHES['mozilla-1.9.2']['old_chrome_tests'] = (1, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['old_chrome_mac_tests'] = (1, True, {}, OLD_BRANCH_MAC_ONLY)
-BRANCHES['mozilla-1.9.2']['old_nochrome_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['chrome.2_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['chrome_mac.2_tests'] = (0, True, {}, OLD_BRANCH_MAC_ONLY)
-BRANCHES['mozilla-1.9.2']['nochrome.2_tests'] = (0, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['dromaeo_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['dirty_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tp4_tests'] = (1, True, TALOS_TP4_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['old_tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tp_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['cold_tests'] = (0, True, TALOS_DIRTY_OPTS, OLD_BRANCH_NO_WIN)
-BRANCHES['mozilla-1.9.2']['svg_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['scroll_tests'] = (1, True, {}, OLD_BRANCH_ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['a11y_tests'] = (0, True, {}, OLD_BRANCH_NO_MAC)
-BRANCHES['mozilla-1.9.2']['enable_unittests'] = False
-BRANCHES['mozilla-1.9.2']['talos_from_source_code'] = False
-BRANCHES['mozilla-1.9.2']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-1.9.2']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-1.9.2']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-1.9.2']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-
 ######## addontester 
 BRANCHES['addontester']['branch_name'] = "AddonTester"
 BRANCHES['addontester']['mobile_branch_name'] = "AddonTester"
@@ -1169,19 +1104,8 @@ BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
 BRANCHES['addontester']['fetch_symbols'] = False
 for suite in SUITES.keys():
     BRANCHES['addontester'][suite + '_tests'] = (0, True, {}, [])
-BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
+BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, [])
 BRANCHES['addontester']['enable_unittests'] = False
-
-######## addonbaselinetester - tests against 1.9.2
-BRANCHES['addonbaselinetester']['branch_name'] = "AddonTester"
-BRANCHES['addonbaselinetester']['mobile_branch_name'] = "AddonTester"
-BRANCHES['addonbaselinetester']['build_branch'] = "N/A"
-BRANCHES['addonbaselinetester']['talos_command'] = TALOS_ADDON_CMD
-BRANCHES['addonbaselinetester']['fetch_symbols'] = False
-for suite in SUITES.keys():
-    BRANCHES['addonbaselinetester'][suite + '_tests'] = (0, True, {}, [])
-BRANCHES['addonbaselinetester']['addon-baseline_tests'] = (1, False, TALOS_BASELINE_ADDON_OPTS, OLD_BRANCH_ADDON_TESTER_PLATFORMS)
-BRANCHES['addonbaselinetester']['enable_unittests'] = False
 
 ######## try
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
