@@ -11,13 +11,13 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['version']                    = '2.10b2'
 releaseConfig['appVersion']                 = '2.10'
 releaseConfig['milestone']                  = '13.0'
-releaseConfig['buildNumber']                = 2
+releaseConfig['buildNumber']                = 1
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_10b2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.10b2'
+releaseConfig['oldVersion']                 = '2.10b1'
 releaseConfig['oldAppVersion']              = '2.10'
-releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_10b2'
+releaseConfig['oldBuildNumber']             = 2
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_10b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
