@@ -16,16 +16,16 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '13.0b2'
+releaseConfig['version']             = '13.0b3'
 releaseConfig['appVersion']          = '13.0'
-releaseConfig['milestone']           = '13.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_13_0b2'
+releaseConfig['baseTag']             = 'THUNDERBIRD_13_0b3'
 #  Old version info
-releaseConfig['oldVersion']          = '13.0b1'
+releaseConfig['oldVersion']          = '13.0b2'
 releaseConfig['oldAppVersion']       = '13.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_13_0b1'
+releaseConfig['oldBaseTag']          = 'THUNDERBIRD_13_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'b4e8ce60d23f',
+        'revision': '7599f7180908',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -46,8 +46,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'f40f8e40bae8',
-        'relbranch': 'GECKO130_2012050817_RELBRANCH',
+        'revision': '8072115a9e89',
+        'relbranch': None,
         'bumpFiles': {},
     }
 }
