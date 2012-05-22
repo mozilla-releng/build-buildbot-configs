@@ -19,6 +19,7 @@ SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
 SYMBOL_SERVER_USER = 'calbld'
 SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_sbrd/'
 SYMBOL_SERVER_POST_UPLOAD_CMD = '/usr/local/bin/post-symbol-upload.py'
+LIGHTNING_UPDATE_LOCATION = 'https://calendar.mozilla.org/upload.php'
 
 ORGANIZATION = 'community'
 
@@ -430,6 +431,7 @@ BRANCHES['comm-aurora']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -439,6 +441,7 @@ BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-aurora']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -449,6 +452,7 @@ BRANCHES['comm-aurora']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -460,6 +464,7 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 
 ######## lightning-trunk
@@ -553,6 +558,7 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -562,6 +568,7 @@ BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -572,6 +579,7 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -583,6 +591,7 @@ BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 
 # Release automation expect to find these
