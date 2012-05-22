@@ -92,11 +92,6 @@ BRANCHES = {
         'mobile_tinderbox_tree': 'Mobile',
         'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
     },
-    'mozilla-1.9.2': {
-        'tinderbox_tree': 'Firefox3.6',
-        'packaged_unittest_tinderbox_tree': 'Firefox3.6',
-        'mobile_tinderbox_tree': 'Mobile1.1',
-    },
     'mozilla-release': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Release',
         'tinderbox_tree': 'Mozilla-Release',

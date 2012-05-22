@@ -27,7 +27,6 @@ BRANCH_PRIORITIES = {
     'comm-beta': 0,
     'mozilla-release': 0,
     'comm-release': 0,
-    'mozilla-1.9.2': 1,
     'try': 3,
     'try-comm-central': 3,
     'addontester': 4,
@@ -40,7 +39,7 @@ BRANCH_PRIORITIES = {
     'holly': 4,
     'larch': 4,
     'maple': 4,
-    'oak': 1, # Priority bumped up temporarily in bug 756463
+    'oak': 4,
     'pine': 4,
 }
 
