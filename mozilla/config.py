@@ -1425,7 +1425,7 @@ BRANCHES['try']['platforms']['macosx-debug']['tooltool_manifest_src'] = 'browser
 BRANCHES['try']['platforms']['macosx64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
 BRANCHES['try']['platforms']['android']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
 BRANCHES['try']['platforms']['android-debug']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
-BRANCHES['try']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/android-xul/config/tooltool-manifests/android/releng.manifest'
+BRANCHES['try']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/xul/config/tooltool-manifests/android/releng.manifest'
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
