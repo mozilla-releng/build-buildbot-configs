@@ -800,7 +800,6 @@ BRANCHES['comm-esr10']['start_hour'] = [3]
 BRANCHES['comm-esr10']['start_minute'] = [45]
 BRANCHES['comm-esr10']['enable_xulrunner'] = False
 BRANCHES['comm-esr10']['enable_mac_a11y'] = True
-BRANCHES['comm-esr10']['pgo_strategy'] = 'per-checkin'
 # L10n configuration
 BRANCHES['comm-esr10']['enable_l10n'] = False
 BRANCHES['comm-esr10']['enable_l10n_onchange'] = False
