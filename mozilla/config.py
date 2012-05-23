@@ -892,13 +892,13 @@ PROJECTS = {
     'spidermonkey_mozilla-inbound': {
         'platforms': {
             'linux':          ['warnaserr'],
-            'linux-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'linux-debug':    ['nomethodjit', 'warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'linux64-debug':  ['nomethodjit', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
-            'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'win32-debug':    ['nomethodjit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'warnaserrdebug'],
+            'macosx64-lion-debug':     ['nomethodjit', 'dtrace', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
@@ -916,13 +916,13 @@ PROJECTS = {
     'spidermonkey_ionmonkey': {
         'platforms': {
             'linux':          ['warnaserr'],
-            'linux-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'linux-debug':    ['nomethodjit', 'warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'linux64-debug':  ['nomethodjit', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
-            'win32-debug':    ['nomethodjit', 'notracejit', 'warnaserrdebug'],
+            'win32-debug':    ['nomethodjit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['nomethodjit', 'notracejit', 'dtrace', 'warnaserrdebug'],
+            'macosx64-lion-debug':     ['nomethodjit', 'dtrace', 'warnaserrdebug'],
         },
         'env': {
             'linux': PLATFORM_VARS['linux']['env'],
