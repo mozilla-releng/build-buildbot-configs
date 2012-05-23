@@ -546,7 +546,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'leak_target': 'mailbloat',
             'build_space': 10,
-            'slaves': SLAVES['macosx'],
+            'slaves': SLAVES['macosx64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx-debug',
