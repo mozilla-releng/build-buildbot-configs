@@ -489,7 +489,6 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                 'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
-                'PYTHON26': 'd:/mozilla-build/python27/python.exe',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
