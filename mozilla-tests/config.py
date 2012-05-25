@@ -326,7 +326,7 @@ SUITES = {
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-trobocheck3': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck3', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
@@ -1111,6 +1111,7 @@ BRANCHES['addontester']['enable_unittests'] = False
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['tpr_responsiveness_tests'] = (1, False, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
+BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 
 # Let's load jetpack for the following branches:
