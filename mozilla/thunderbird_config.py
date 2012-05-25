@@ -141,6 +141,8 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'test_pretty_names': True,
             'l10n_check_test': False,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'linuxqt': {
             'product_name': 'thunderbird',
@@ -282,6 +284,8 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'test_pretty_names': True,
             'l10n_check_test': False,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'linux64-rpm': {
             'product_name': 'thunderbird',
@@ -419,6 +423,8 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'test_pretty_names': True,
             'l10n_check_test': False,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
         'win64': {
             'product_name': 'thunderbird',
@@ -621,6 +627,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
         },
 }
 
@@ -753,10 +761,13 @@ BRANCHES['comm-central']['create_snippet'] = True
 BRANCHES['comm-central']['update_channel'] = 'nightly'
 BRANCHES['comm-central']['create_partial'] = True
 BRANCHES['comm-central']['create_partial_l10n'] = True
-BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
-BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
+BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
+BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central-test'
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## comm-release
 BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
@@ -921,6 +932,9 @@ BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-aurora']['platforms']['win64']
 BRANCHES['comm-aurora']['enable_valgrind'] = False
+BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## try
 # Try-specific configs
