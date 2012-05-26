@@ -19,7 +19,7 @@ SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
 SYMBOL_SERVER_USER = 'calbld'
 SYMBOL_SERVER_PATH = '/mnt/netapp/breakpad/symbols_sbrd/'
 SYMBOL_SERVER_POST_UPLOAD_CMD = '/usr/local/bin/post-symbol-upload.py'
-LIGHTNING_UPDATE_LOCATION = 'https://calendar.mozilla.org/upload.php'
+LIGHTNING_UPDATE_LOCATION = 'https://calendar.mozilla.org/update.php'
 
 ORGANIZATION = 'community'
 
