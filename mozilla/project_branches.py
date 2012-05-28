@@ -33,28 +33,27 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # DISABLED because of builder limit problems - bug 721854
-#    'devtools':{
-#        'enable_nightly': True,
-#        'enabled_products': ['firefox'],
-#        'platforms': {
-#            'macosx-debug': {
-#                'dont_build': True,
-#                'enable_debug_unittests': False,
-#            },
-#            'macosx': {
-#                'slave_platforms': [],
-#            },
-#            'macosx64': {
-#                'slave_platforms': ['snowleopard'],
-#            },
-#            'android': {
-#                'enable_opt_unittests': False,
-#                'enable_debug_unittests': False,
-#                'tegra_android': {},
-#            },
-#        },
-#    },
+    'devtools':{
+        'enable_nightly': True,
+        'enabled_products': ['firefox'],
+        'platforms': {
+            'macosx-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
+            'macosx': {
+                'slave_platforms': [],
+            },
+            'macosx64': {
+                'slave_platforms': ['snowleopard', 'lion'],
+            },
+            'android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'tegra_android': {},
+            },
+        },
+    },
     # DISABLED because of builder limit problems - bug 721854
     #'electrolysis': {
     #    'mozconfig_dir': 'electrolysis',
@@ -82,19 +81,12 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'enable_talos' : False,
     },
-    #'jaegermonkey': {
-    #    'mozconfig_dir': 'jaegermonkey',
-    #    'enable_nightly': True,
-    #    'create_snippet': True,
-    #    'create_partial': True,
-    #    'talos_suites': {
-    #        'remote-ts': 1,
-    #        'remote-tdhtml': 1,
-    #        'remote-tsvg': 1,
-    #        'remote-tsspider': 1,
-    #        'remote-twinopen': 1,
-    #    },
-    #},
+    'jaegermonkey': {
+        'mozconfig_dir': 'jaegermonkey',
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+    },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
@@ -190,6 +182,10 @@ PROJECT_BRANCHES = {
             'win64': {
                 'nightly_signing_servers': 'nightly-signing',
             },
+            'android-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
         },
     },
     'services-central': {
@@ -275,7 +271,7 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'holly': {},
-    # 'larch': {},
+    'larch': {},
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
     'oak': {

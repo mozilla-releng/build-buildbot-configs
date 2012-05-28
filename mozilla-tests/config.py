@@ -1113,6 +1113,7 @@ BRANCHES['try']['tpr_responsiveness_tests'] = (1, False, TALOS_TP_OPTS, ALL_PLAT
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
+BRANCHES['try']['pgo_strategy'] = 'try'
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', ):
