@@ -190,6 +190,10 @@ PROJECT_BRANCHES = {
             'win64': {
                 'nightly_signing_servers': 'nightly-signing',
             },
+            'android-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
+            },
         },
     },
     'services-central': {
