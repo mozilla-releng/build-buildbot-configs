@@ -72,8 +72,8 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']        = ('linux-android',)
-releaseConfig['notifyPlatforms']      = ('linux-android',)
-releaseConfig['signedPlatforms']      = ('linux-android',)
+releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
+releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
@@ -136,3 +136,4 @@ releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['skip_release_download'] = True
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
+releaseConfig['autoGenerateChecksums'] = False

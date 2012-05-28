@@ -74,8 +74,8 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
-releaseConfig['notifyPlatforms']      = ('android', 'android-xul')
-releaseConfig['signedPlatforms']      = ('android', 'android-xul')
+releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
+releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
@@ -154,3 +154,4 @@ releaseConfig['multilocale_config'] = {
 }
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
+releaseConfig['autoGenerateChecksums'] = False
