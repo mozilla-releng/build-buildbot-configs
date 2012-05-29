@@ -503,6 +503,62 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
         },
+        'win32-metro': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'WINNT 6.1 metro %(branch)s',
+            'mozconfig': 'win32-metro/%(branch)s/nightly',
+            'src_mozconfig': 'browser/config/mozconfigs/win32-metro/nightly',
+            'enable_xulrunner': False,
+            'enable_nightly': False,
+            'profiled_build': True,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 12,
+            'upload_symbols': False,
+            'packageTests': False,
+            'slaves': SLAVES['win64-metro'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'win32-metro',
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+            'enable_shared_checkouts': True,
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
+            'l10n_check_test': True,
+            'env': {
+                "HG_SHARE_BASE_DIR": 'e:/builds/hg-shared',
+                "MOZ_TOOLS": 'C:\\mozilla-build\\moztools',
+                "MOZ_OBJDIR": 'obj-firefox',
+                "MOZ_CRASHREPORTER_NO_REPORT": '1',
+                "PDBSTR_PATH": '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
+                "TINDERBOX_OUTPUT": '1',
+                "VS110COMNTOOLS": 'C:\\Tools\\msvs11\\Common7\\Tools\\',
+                "WINDOWSSDKDIR": 'C:\\Program Files (x86)\\Windows Kits\\8.0\\',
+                "PATH": \
+                    'C:\\mozilla-build\\wget;' + \
+                    'C:\\mozilla-build\\7zip;' + \
+                    'C:\\mozilla-build\\blat261\\full;' + \
+                    'C:\\mozilla-build\\python;' + \
+                    'C:\\mozilla-build\\upx203w;' + \
+                    'C:\\mozilla-build\\info-zip;' + \
+                    'C:\\mozilla-build\\nsis-2.22;' + \
+                    'C:\\mozilla-build\\nsis-2.33u;' + \
+                    'C:\\mozilla-build\\hg;' + \
+                    'C:\\mozilla-build\\python\\Scripts;' + \
+                    'C:\\mozilla-build\\moztools\\bin;' + \
+                    'C:\\mozilla-build\\yasm;' + \
+                    'C:\\mozilla-build\\msys\\bin;' + \
+                    'C:\\mozilla-build\\msys\\local\\bin;' + \
+                    'C:\\mozilla-build\\buildbotve\\scripts;'
+                    'C:\\Windows\\System32;' + \
+                    'C:\\Windows;' + \
+                    'C:\\Windows\\System32\\Wbem;',
+            }
+        },
         'win64': {
             'product_name': 'firefox',
             'app_name': 'browser',

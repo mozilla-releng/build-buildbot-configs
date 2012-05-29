@@ -53,20 +53,7 @@ releaseConfig['sourceRepositories']  = {
         'path': 'users/stage-ffxbld/mozilla-beta',
         'revision': 'THUNDERBIRD_12_0b5_RELEASE',
         'relbranch': None,
-        'bumpFiles': {
-            'browser/config/version.txt': {
-                'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
-            },
-            'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-        }
+        'bumpFiles': {},
     }
 }
 #  L10n repositories
