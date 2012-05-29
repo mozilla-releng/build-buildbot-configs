@@ -380,6 +380,8 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'test_pretty_names': True,
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32': {
             'product_name': 'thunderbird',
@@ -568,6 +570,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'macosx64-debug': {
             'product_name': 'thunderbird',
@@ -599,6 +603,8 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
         },
         'win32-debug': {
             'product_name': 'thunderbird',
@@ -768,6 +774,9 @@ BRANCHES['comm-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['comm-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## comm-release
 BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
@@ -935,6 +944,9 @@ BRANCHES['comm-aurora']['enable_valgrind'] = False
 BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['comm-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## try
 # Try-specific configs
