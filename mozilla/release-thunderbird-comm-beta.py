@@ -19,16 +19,16 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '13.0b3'
+releaseConfig['version']             = '13.0b4'
 releaseConfig['appVersion']          = '13.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_13_0b3'
+releaseConfig['baseTag']             = 'THUNDERBIRD_13_0b4'
 #  Old version info
-releaseConfig['oldVersion']          = '13.0b2'
+releaseConfig['oldVersion']          = '13.0b3'
 releaseConfig['oldAppVersion']       = '13.0'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_13_0b2'
+releaseConfig['oldBaseTag']          = 'THUNDERBIRD_13_0b3'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -37,7 +37,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '7599f7180908',
+        'revision': 'c2e021ccbd53',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -49,8 +49,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '8072115a9e89',
-        'relbranch': None,
+        'revision': '5dd4dde1d4eb',
+        'relbranch': 'GECKO130_2012052815_RELBRANCH',
         'bumpFiles': {},
     }
 }
@@ -89,7 +89,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -131,5 +131,3 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False
