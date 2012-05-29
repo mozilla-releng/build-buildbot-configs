@@ -267,6 +267,7 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'win32-debug': {},
+            'win32-metro': {},
         },
         'enable_talos': False,
     },
