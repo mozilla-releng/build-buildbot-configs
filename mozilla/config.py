@@ -466,8 +466,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'slaves': SLAVES['win64'],
-            'l10n_slaves_key': 'win64',
+            'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32',
@@ -482,12 +481,13 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
+                # Source server support, bug 506702
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                 'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
@@ -755,7 +755,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 9,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32-debug',
@@ -765,7 +765,7 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
                 'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
@@ -935,33 +935,6 @@ PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion"]["enable_shark"] = False
 PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
-
-# begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
-WIN32_ENV = {
-    'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    # Source server support, bug 506702
-    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
-    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-    'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
-    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
-}
-WIN32_DEBUG_ENV = {
-    'MOZ_OBJDIR': OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-    'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
-    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
-}
-# end delete
 
 PROJECTS = {
     'fuzzing': {
@@ -1231,13 +1204,6 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-# Delete these five lines when Firefox 15 merges in
-BRANCHES['mozilla-release']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-release']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-release']['platforms']['win32']['l10n_slaves_key'] = 'win32'
-BRANCHES['mozilla-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-release']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1288,13 +1254,6 @@ BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-# Delete these five lines when Firefox 15 merges in
-BRANCHES['mozilla-beta']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-beta']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-beta']['platforms']['win32']['l10n_slaves_key'] = 'win32'
-BRANCHES['mozilla-beta']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-beta']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1357,13 +1316,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] =
 BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-# Delete these five lines when Firefox 15 merges in
-BRANCHES['mozilla-aurora']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-aurora']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-aurora']['platforms']['win32']['l10n_slaves_key'] = 'win32'
-BRANCHES['mozilla-aurora']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-aurora']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
@@ -1400,13 +1352,6 @@ BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['upload_mobile_symbols'] = True
-# Delete these five lines for esr17
-BRANCHES['mozilla-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-esr10']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-esr10']['platforms']['win32']['l10n_slaves_key'] = 'win32'
-BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 # TODO remove all traces of linux-android when we build
 # Android native releases off mozilla-release).
 BRANCHES['mozilla-esr10']['platforms']['linux-android'] = {
