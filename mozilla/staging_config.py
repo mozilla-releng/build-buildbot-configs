@@ -46,8 +46,8 @@ GLOBAL_VARS = {
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_host': 'dev-stage01.srv.releng.scl3.mozilla.com',
-    'aus2_user': 'cltbld',
-    'aus2_ssh_key': 'cltbld_dsa',
+    'aus2_user': 'ffxbld',
+    'aus2_ssh_key': 'ffxbld_dsa',
     'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
@@ -60,13 +60,11 @@ GLOBAL_VARS = {
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-        ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',
