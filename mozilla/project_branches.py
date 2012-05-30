@@ -64,11 +64,6 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
-        'platforms': {
-            'win32': {
-                'pgo_platform': 'win64',
-            },
-        },
     },
     # Turning off graphics - bug 649507
     #'graphics':{
@@ -118,7 +113,6 @@ PROJECT_BRANCHES = {
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'pgo_platform': 'win64',
             },
         },
         'talos_suites': {
@@ -192,11 +186,6 @@ PROJECT_BRANCHES = {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
-        'platforms': {
-            'win32': {
-                'pgo_platform': 'win64',
-            },
-        },
     },
     'ux': {
         'branch_name': 'UX',
