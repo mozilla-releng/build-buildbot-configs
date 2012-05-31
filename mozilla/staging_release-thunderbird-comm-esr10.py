@@ -92,7 +92,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-thunderbird-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -132,5 +132,3 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False
