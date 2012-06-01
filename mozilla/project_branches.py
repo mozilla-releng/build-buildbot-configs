@@ -25,7 +25,6 @@ PROJECT_BRANCHES = {
         ]
     },
     'build-system': {
-        'enable_talos': True,
         'pgo_strategy': 'per-checkin',
         'platforms': {
             'win32': {
@@ -134,7 +133,7 @@ PROJECT_BRANCHES = {
 #        },
 #    },
     'profiling': {
-        'enable_talos': True,
+        'enable_talos': False,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
