@@ -1,4 +1,4 @@
-ac_add_options --with-l10n-base=`pwd`/../../mozilla-esr10
+ac_add_options --with-l10n-base=`pwd`/../../mozilla-release
 ac_add_options --enable-application=mail
 ac_add_options --enable-official-branding
 ac_add_options --enable-update-channel=esr
