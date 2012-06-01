@@ -15,26 +15,26 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '10.0.4esr'
-releaseConfig['appVersion']          = '10.0.4'
-releaseConfig['milestone']           = '10.0.4'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FENNEC_10_0_4esr'
+releaseConfig['version']             = '10.0.5esr'
+releaseConfig['appVersion']          = '10.0.5'
+releaseConfig['milestone']           = '10.0.5'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FENNEC_10_0_5esr'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.3esr'
-releaseConfig['oldAppVersion']       = '10.0.3'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0_3esr'
+releaseConfig['oldVersion']          = '10.0.4esr'
+releaseConfig['oldAppVersion']       = '10.0.4'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FENNEC_10_0_4esr'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.5esrpre'
-releaseConfig['nextMilestone']       = '10.0.5esrpre'
+releaseConfig['nextAppVersion']      = '10.0.6esrpre'
+releaseConfig['nextMilestone']       = '10.0.6esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '40e314f258c4',
-        'relbranch': 'MOBILE1004_2012042014_RELBRANCH',
+        'revision': '6cf09fa77444',
+        'relbranch': None,
         'bumpFiles': {
             'mobile/confvars.sh': {
                 'version': releaseConfig['appVersion'],
