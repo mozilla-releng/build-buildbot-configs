@@ -1202,6 +1202,8 @@ BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
 BRANCHES['mozilla-release']['enable_xulrunner'] = False
+# Enable PGO Builds on this branch
+BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-release']['enable_mac_a11y'] = True
 # And code coverage
