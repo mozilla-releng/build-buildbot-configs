@@ -15,16 +15,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '14.0b4'
+releaseConfig['version']             = '14.0b5'
 releaseConfig['appVersion']          = '14.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_14_0b4'
+releaseConfig['baseTag']             = 'FENNEC_14_0b5'
 #  Old version info
-releaseConfig['oldVersion']          = '14.0b3'
+releaseConfig['oldVersion']          = '14.0b4'
 releaseConfig['oldAppVersion']       = '14.0'
-releaseConfig['oldBuildNumber']      = 2
-releaseConfig['oldBaseTag']          = 'FENNEC_14_0b3'
+releaseConfig['oldBuildNumber']      = 1
+releaseConfig['oldBaseTag']          = 'FENNEC_14_0b4'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '14.0a2'
 releaseConfig['nextMilestone']       = '14.0a2'
@@ -33,8 +33,8 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-aurora',
         'path': 'releases/mozilla-aurora',
-        'revision': '89176b6d643c',
-        'relbranch': None,
+        'revision': '3dbfe52b2649',
+        'relbranch': 'MOBILE140_2012053010_RELBRANCH',
         'bumpFiles': {
             'mobile/android/confvars.sh': {
                 'version': releaseConfig['appVersion'],

@@ -3,6 +3,10 @@
     "revision": "36fe5854756b",
     "platforms": ["android"]
   },
+  "da": {
+    "revision": "6104b018b80e",
+    "platforms": ["android", "android-multilocale"]
+  },
   "de": {
     "revision": "ab4ac44c354e",
     "platforms": ["android", "android-multilocale"]
@@ -13,6 +17,10 @@
   },
   "es-ES": {
     "revision": "1ad470c9e5f5",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "fi": {
+    "revision": "e3bba5946630",
     "platforms": ["android", "android-multilocale"]
   },
   "fr": {
