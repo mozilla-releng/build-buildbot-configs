@@ -234,10 +234,7 @@ PROJECT_BRANCHES = {
     },
     #####  TWIGS aka RENTABLE BRANCHES
     # customizations while booked for bug 687570 - WebRTC project
-    'alder': {
-        'enable_unittests': False,
-        'enable_talos': False,
-    },
+    'alder': {},
     'ash': {},
     'birch': {},
     'cedar': {},
