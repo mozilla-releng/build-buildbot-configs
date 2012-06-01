@@ -22,7 +22,7 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '10.0.5esr'
 releaseConfig['appVersion']          = '10.0.5'
 releaseConfig['milestone']           = '10.0.5'
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_5esr'
 #  Old version info
 releaseConfig['oldVersion']          = '10.0.4esr'
@@ -37,7 +37,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr10',
         'path': 'releases/comm-esr10',
-        'revision': '48677c4f453a',
+        'revision': '939269a86b88',
         'relbranch': 'GECKO1005_2012053119_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
