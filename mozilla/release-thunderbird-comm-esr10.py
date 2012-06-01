@@ -19,25 +19,25 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0.3esr'
-releaseConfig['appVersion']          = '10.0.3'
-releaseConfig['milestone']           = '10.0.3'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_3esr'
+releaseConfig['version']             = '10.0.5esr'
+releaseConfig['appVersion']          = '10.0.5'
+releaseConfig['milestone']           = '10.0.5'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_5esr'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.2esr'
-releaseConfig['oldAppVersion']       = '10.0.2'
+releaseConfig['oldVersion']          = '10.0.4esr'
+releaseConfig['oldAppVersion']       = '10.0.4'
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_10_0_2esr'
+releaseConfig['oldBaseTag']          = 'THUNDERBIRD_10_0_4esr'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.4esrpre'
-releaseConfig['nextMilestone']       = '10.0.4esrpre'
+releaseConfig['nextAppVersion']      = '10.0.6esrpre'
+releaseConfig['nextMilestone']       = '10.0.6esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr10',
         'path': 'releases/comm-esr10',
-        'revision': 'f0e5d995d302',
+        'revision': '570c22432c13',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -49,8 +49,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '26d65ee6bcde',
-        'relbranch': None,
+        'revision': '5713c92407dd',
+        'relbranch': 'GECKO1005_2012053118_RELBRANCH',
         'bumpFiles': {},
     }
 }
