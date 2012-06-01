@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': FILLMEOUT,
+        'revision': '7ebf7352c959',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
