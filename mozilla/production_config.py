@@ -151,7 +151,7 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                     'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                     'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                     'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
