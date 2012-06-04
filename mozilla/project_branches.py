@@ -19,6 +19,10 @@ PROJECT_BRANCHES = {
             'svg': 0,
             'paint': 0,
         },
+        'add_test_suites': [
+            ('macosx64', 'snowleopard', 'opt', 'mochitest-other', 'mochitest-a11y'),
+            ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'mochitest-a11y'),
+        ]
     },
     'build-system': {
         'pgo_strategy': 'per-checkin',
