@@ -1035,13 +1035,12 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-# Bug 720027 / Bug 748628, do macosx64 builds on Lion slaves where appropriate
+# MERGE DAY Bug 720027 / Bug 748628, do macosx64 builds on Lion slaves where appropriate
 lion_branches = ['comm-central', 'try-comm-central',]
-# Each line starts with a branch.  When Thunderbird 14 hits that branch, uncomment
-# line and remove the branch name.  i.e. s/^# \w*: //
+# When Thunderbird 14 hits that branch, uncomment line
 lion_branches += ['comm-aurora']
-# beta: lion_branches += ['mozilla-beta']
-# release: lion_branches += ['mozilla-release']
+lion_branches += ['mozilla-beta']
+# lion_branches += ['mozilla-release']
 # XXX When Thunderbird 14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
