@@ -1232,7 +1232,7 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
 BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-# Delete these four lines when Firefox 15 merges in
+# MERGE DAY Delete these four lines when Firefox 15 merges in
 BRANCHES['mozilla-release']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-release']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['mozilla-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -1288,7 +1288,7 @@ BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-# Delete these four lines when Firefox 15 merges in
+# MERGE DAY Delete these four lines when Firefox 15 merges in
 BRANCHES['mozilla-beta']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-beta']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['mozilla-beta']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -1356,12 +1356,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] =
 BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-# Delete these four lines when Firefox 15 merges in
-BRANCHES['mozilla-aurora']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-aurora']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-aurora']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-aurora']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
@@ -1653,10 +1647,11 @@ for branch in branches:
 
 # Bug 720027, do macosx64 builds on Lion slaves where appropriate
 lion_branches = ['mozilla-central', 'try',] + ACTIVE_PROJECT_BRANCHES[:]
+# MERGE DAY
 # Each line starts with a branch.  When Firefox 14 hits that branch, uncomment
 # line and remove the branch name.  i.e. s/^# \w*: //
 lion_branches += ['mozilla-aurora']
-# beta: lion_branches += ['mozilla-beta']
+lion_branches += ['mozilla-beta']
 # release: lion_branches += ['mozilla-release']
 # XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave

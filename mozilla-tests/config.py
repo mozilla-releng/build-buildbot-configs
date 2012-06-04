@@ -1060,26 +1060,12 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 #### MERGE DAY - EXCEPTIONS
-# When Firefox 14 is on mozilla-beta we can remove these on/off switches
-BRANCHES['mozilla-beta']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-beta']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
-BRANCHES['mozilla-beta']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 # When Firefox 14 is on mozilla-release we can remove these on/off switches
 BRANCHES['mozilla-release']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-release']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-release']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
-# When Firefox 13 is on mozilla-release we can remove these on/off switches
-BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chrome.2_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 #### END OF MERGE DAY - EXCEPTIONS
 
 ######## mozilla-esr10
