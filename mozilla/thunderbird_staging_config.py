@@ -1,30 +1,4 @@
-from staging_config import \
-    MAC_LION_MINIS, MAC_SNOW_MINIS, WIN32_IXS, WIN64_IXS, LINUX_VMS, \
-    LINUX_IXS, LINUX64_VMS, LINUX64_IXS
-    
-SLAVES = {
-    'linux':            LINUX_VMS + LINUX_IXS,
-    'linux64':          LINUX64_VMS + LINUX64_IXS,
-    'win32':            WIN32_IXS,
-    'win64':            WIN64_IXS,
-    'macosx':           [],
-    'macosx64':         MAC_SNOW_MINIS,
-    'macosx64-lion':    MAC_LION_MINIS,
-}
-
-TRY_LINUX      = []
-TRY_LINUX_IXS  = []
-TRY_LINUX64    = []
-TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (27,32)]
-TRY_WIN32_IXS  = []
-
-TRY_SLAVES = SLAVES
-TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
-TRY_SLAVES['linux64'] += TRY_LINUX64 + TRY_LINUX64_IXS
-TRY_SLAVES['macosx64'] += TRY_MAC64
-TRY_SLAVES['win32'] += TRY_WIN32_IXS
-
+from staging_config import SLAVES
 
 GLOBAL_VARS = {
     'staging': True,
