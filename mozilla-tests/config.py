@@ -26,6 +26,7 @@ TALOS_ADDON_CMD = ['python', 'run_tests.py', '--noisy', '--amo', WithProperties(
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
 TALOS_TP_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
+TALOS_TP_NEW_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
 TALOS_TP4_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp4.zip']}
 
 TALOS_ADDON_OPTS = {'addonTester' : True, 'releaseTester' : True}
@@ -278,6 +279,36 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5row', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median', '--sampleConfig', 'sample.2.config'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
+    },
+    'tpn': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
+    },
+    'chromer': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    'nochromer': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    'other_mac': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, MAC_ONLY),
+    },
+    'other': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, NO_MAC),
+    },
+    'svgr': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_PLATFORMS),
     },
     # Mobile specific talos tests
     'remote-ts': {
@@ -1053,6 +1084,15 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
+
+# Side by side staging on m-c only
+BRANCHES['mozilla-central']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['other_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-central']['other_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-central']['nochromer_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['svgr_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+
 
 # pgo-strategy
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
