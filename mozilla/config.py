@@ -934,6 +934,8 @@ PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion"]["enable_shark"] = False
 PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
+PLATFORM_VARS["macosx64-lion"]["env"]["PATH"] = '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin'
+PLATFORM_VARS["macosx64-lion-debug"]["env"]["PATH"] = '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin'
 
 # begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
 WIN32_ENV = {
