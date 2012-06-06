@@ -1,16 +1,16 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'beta'
+branchSuffix               = 'release'
 
-sourceRepoRevision         = 'ce2e916d9feb'
-mozillaRepoRevision        = 'THUNDERBIRD_13_0b1_RELEASE'
+sourceRepoRevision         = '75d3140a0856'
+mozillaRepoRevision        = 'THUNDERBIRD_13_0_RELEASE'
 
 milestone                  = '13.0'
 
-version                    = '1.5b2'
+version                    = '1.5'
 buildNumber                = 1
 
-oldVersion                 = '1.5b1'
+oldVersion                 = '1.5b2'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
