@@ -979,7 +979,7 @@ PROJECTS = {
             'linux':          ['warnaserr'],
             'linux-debug':    ['nomethodjit', 'warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['nomethodjit', 'warnaserrdebug'],
+            'linux64-debug':  ['nomethodjit', 'rootanalysis', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],
