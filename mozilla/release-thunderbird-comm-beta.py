@@ -22,8 +22,8 @@ releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['version']             = '14.0b1'
 releaseConfig['appVersion']          = '14.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_14.0b1'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'THUNDERBIRD_14_0b1'
 #  Old version info
 releaseConfig['oldVersion']          = '13.0b4'
 releaseConfig['oldAppVersion']       = '13.0'
