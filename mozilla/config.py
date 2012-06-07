@@ -439,6 +439,7 @@ PLATFORM_VARS = {
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -693,6 +694,7 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -730,6 +732,7 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -934,8 +937,6 @@ PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion"]["enable_shark"] = False
 PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
-PLATFORM_VARS["macosx64-lion"]["env"]["PATH"] = '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin'
-PLATFORM_VARS["macosx64-lion-debug"]["env"]["PATH"] = '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin'
 
 # begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
 WIN32_ENV = {
@@ -978,7 +979,7 @@ PROJECTS = {
             'linux':          ['warnaserr'],
             'linux-debug':    ['nomethodjit', 'warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['nomethodjit', 'warnaserrdebug'],
+            'linux64-debug':  ['nomethodjit', 'rootanalysis', 'warnaserrdebug'],
             'win32':          ['warnaserr'],
             'win32-debug':    ['nomethodjit', 'warnaserrdebug'],
             'macosx64-lion':           ['warnaserr'],

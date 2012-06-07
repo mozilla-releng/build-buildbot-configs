@@ -70,10 +70,12 @@ PROJECT_BRANCHES = {
     #    'enable_talos': False,
     #},
     'ionmonkey': {
-        'disable_tinderbox_mail': False,
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
-        'enable_talos' : False,
+        'pgo_strategy': 'periodic',
+        'talos_suites': {
+            'v8': 1,
+        },
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
