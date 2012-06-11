@@ -124,6 +124,7 @@ GLOBAL_VARS = {
 OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
+BUILDS_BEFORE_REBOOT = 1
 
 PLATFORM_VARS = {
         'linux': {
@@ -134,7 +135,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux/%(branch)s/nightly',
             'src_mozconfig': 'suite/config/mozconfigs/linux32/nightly',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
@@ -169,7 +170,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux64/%(branch)s/nightly',
             'src_mozconfig': 'suite/config/mozconfigs/linux64/nightly',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 6,
             'upload_symbols': True,
             'download_symbols': True,
@@ -206,7 +207,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx/%(branch)s/nightly',
             'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
@@ -242,7 +243,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
@@ -277,7 +278,7 @@ PLATFORM_VARS = {
             'mozconfig': 'win32/%(branch)s/nightly',
             'src_mozconfig': 'suite/config/mozconfigs/win32/nightly',
             'profiled_build': False,
-            'builds_before_reboot': 25,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 9,
             'upload_symbols': True,
             'download_symbols': True,
@@ -316,7 +317,7 @@ PLATFORM_VARS = {
             'mozconfig': 'linux/%(branch)s/debug',
             'src_mozconfig': 'suite/config/mozconfigs/linux32/debug',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 7,
             'slaves': SLAVES['linux'],
@@ -344,7 +345,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx/%(branch)s/debug',
             'src_mozconfig': 'suite/config/mozconfigs/macosx32/debug',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 5,
             'slaves': SLAVES['macosx'],
@@ -369,7 +370,7 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx64/%(branch)s/debug',
             'src_mozconfig': 'suite/config/mozconfigs/macosx64/debug',
             'profiled_build': False,
-            'builds_before_reboot': None,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 5,
             'slaves': SLAVES['macosx64'],
@@ -394,7 +395,7 @@ PLATFORM_VARS = {
             'mozconfig': 'win32/%(branch)s/debug',
             'src_mozconfig': 'suite/config/mozconfigs/win32/debug',
             'profiled_build': False,
-            'builds_before_reboot': 25,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 8,
             'slaves': SLAVES['win32'],
