@@ -36,6 +36,7 @@ BUILDERS = {
 #        },
         '10.6': {
             'momo':      [ 'tb2-darwin10-slave64' ],
+            'sea':       [ 'sea-loaner-osx' ],
         }
     },
     'win32': {
@@ -168,7 +169,7 @@ BRANCHES['comm-release']['tinderbox_tree'] = 'Calendar-Release'
 BRANCHES['comm-release']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-release']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-release']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-release']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
+BRANCHES['comm-release']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['sea']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -291,7 +292,7 @@ BRANCHES['comm-beta']['tinderbox_tree'] = 'Calendar-Beta'
 BRANCHES['comm-beta']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-beta']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-beta']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
+BRANCHES['comm-beta']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['sea']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac

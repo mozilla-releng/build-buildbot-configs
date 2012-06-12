@@ -2,19 +2,25 @@
 
 branchSuffix               = 'release'
 
-sourceRepoRevision         = '75d3140a0856'
+sourceRepoRevision         = '517b1c938497'
 mozillaRepoRevision        = 'THUNDERBIRD_13_0_RELEASE'
 
 milestone                  = '13.0'
 
-version                    = '1.5'
+version                    = '1.5.1'
 buildNumber                = 1
 
-oldVersion                 = '1.5b2'
+oldVersion                 = '1.5'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
 mozillaRelbranchOverride   = ''
+
+# XXX temporary!
+#l10nRepoPath               = 'releases/l10n/mozilla-' + branchSuffix
+l10nRepoPath               = 'releases/l10n/mozilla-beta'
+
+
 ### Nothing else needs to be changed ###
 
 hgUsername                 = 'calbld'
@@ -38,7 +44,6 @@ venkmanRepoRevision        = ''
 venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
-l10nRepoPath               = 'releases/l10n/mozilla-' + branchSuffix
 l10nRevisionFile           = 'l10n-calendar-changesets'
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
