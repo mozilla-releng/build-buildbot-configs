@@ -2,7 +2,7 @@
 
 branchSuffix               = 'release'
 
-sourceRepoRevision         = '517b1c938497'
+sourceRepoRevision         = '7e2b09db42ad'
 mozillaRepoRevision        = 'THUNDERBIRD_13_0_RELEASE'
 
 milestone                  = '13.0'
