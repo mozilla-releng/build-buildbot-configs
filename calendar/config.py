@@ -216,10 +216,13 @@ BRANCHES['comm-release']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    #'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+
+    # Temporary
+    'SYMBOL_SERVER_SSH_KEY': '/Users/seabld/.ssh/calbld_dsa',
 }
 
 ######## lightning-beta
@@ -342,10 +345,13 @@ BRANCHES['comm-beta']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    #'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+
+    # Temporary
+    'SYMBOL_SERVER_SSH_KEY': '/Users/seabld/.ssh/calbld_dsa',
 }
 
 ######## lightning-aurora
