@@ -41,6 +41,7 @@ BUILDERS = {
     },
     'win32': {
         'community': [ 'cal-vm-win32-tbox' ],
+        'community-new': ['cal-vm-win32-1' ],
     },
 }
 
@@ -555,7 +556,7 @@ BRANCHES['comm-central']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-central']['tinderbox_tree'] = 'CalendarTrunk'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-central']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
-BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
+BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
 BRANCHES['comm-central']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
 
 # This is used in a bunch of places where something needs to be run from
