@@ -1,25 +1,20 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'release'
+branchSuffix               = 'beta'
 
-sourceRepoRevision         = '7e2b09db42ad'
-mozillaRepoRevision        = 'THUNDERBIRD_13_0_RELEASE'
+sourceRepoRevision         = '3f639cd91b93'
+mozillaRepoRevision        = 'THUNDERBIRD_14_0b2_RELEASE'
 
-milestone                  = '13.0'
+milestone                  = '14.0'
 
-version                    = '1.5.1'
+version                    = '1.6b1'
 buildNumber                = 1
 
-oldVersion                 = '1.5'
+oldVersion                 = '1.5.1'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
 mozillaRelbranchOverride   = ''
-
-# XXX temporary!
-#l10nRepoPath               = 'releases/l10n/mozilla-' + branchSuffix
-l10nRepoPath               = 'releases/l10n/mozilla-beta'
-
 
 ### Nothing else needs to be changed ###
 
@@ -45,6 +40,7 @@ venkmanRelbranchOverride   = ''
 chatzillaCVSRoot           = ''
 chatzillaTimestamp         = '' # leave empty if chatzilla is not to be tagged
 l10nRevisionFile           = 'l10n-calendar-changesets'
+l10nRepoPath               = 'releases/l10n/mozilla-' + branchSuffix
 toolsRepoPath              = 'build/tools'
 cvsroot                    = ':ext:calbld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 productVersionFile         = 'calendar/sunbird/config/version.txt'
