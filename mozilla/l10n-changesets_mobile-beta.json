@@ -53,7 +53,7 @@
   },
   "ko": {
     "revision": "44d428270df1",
-    "platforms": ["android"]
+    "platforms": ["android", "android-multilocale"]
   },
   "lt": {
     "revision": "712197dd6aca",
@@ -73,7 +73,7 @@
   },
   "pt-BR": {
     "revision": "83654ab1d29b",
-    "platforms": ["android"]
+    "platforms": ["android", "android-multilocale"]
   },
   "ru": {
     "revision": "c90679fe69da",
