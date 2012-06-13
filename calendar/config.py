@@ -217,6 +217,9 @@ BRANCHES['comm-release']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+
+    # See bug 758694
+    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
 
 ######## lightning-beta
@@ -340,6 +343,9 @@ BRANCHES['comm-beta']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+
+    # See bug 758694
+    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
 
 ######## lightning-aurora
@@ -466,6 +472,9 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # See bug 758694
+    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
 
 ######## lightning-trunk
@@ -593,6 +602,9 @@ BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # See bug 758694
+    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
 
 # Release automation expect to find these
