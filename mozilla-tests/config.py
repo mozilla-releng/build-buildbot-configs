@@ -1167,6 +1167,13 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
         hg_bin = 'hg'
         if pf.startswith("win"):
             hg_bin = 'c:\\mozilla-build\\hg\\hg'
+        if isinstance(PLATFORMS[pf]['mozharness_python'], list):
+            reboot_command = PLATFORMS[pf]['mozharness_python']
+        else:
+            reboot_command = [PLATFORMS[pf]['mozharness_python']]
+        reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
+                               '-f', '../reboot_count.txt',
+                               '-n', '1', '-z'])
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
             config_file = "peptest/prod_config.py"
             if pf == "macosx" and slave_pf == "leopard-o":
@@ -1179,10 +1186,7 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
                 'extra_args': [
                     "--cfg", config_file
                 ],
-                'reboot_command': [PLATFORMS[pf]['mozharness_python'],
-                                   'build/tools/buildfarm/maintenance/count_and_reboot.py',
-                                   '-f', '../reboot_count.txt',
-                                   '-n', '1', '-z'],
+                'reboot_command': reboot_command,
                 'hg_bin': hg_bin,
             })]
 
