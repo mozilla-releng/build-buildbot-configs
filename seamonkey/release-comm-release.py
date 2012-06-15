@@ -11,9 +11,9 @@ releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']                    = '2.10.1'
-releaseConfig['appVersion']                 = '2.10'
-releaseConfig['milestone']                  = '13.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['appVersion']                 = '2.10.1'
+releaseConfig['milestone']                  = '13.0.1'
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_10_1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.10'
@@ -28,8 +28,8 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '678cc53d0d42'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = 'e0b2cb0b8bf8'
+releaseConfig['relbranchOverride']          = 'SEA_COMM130_20120614_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
@@ -39,18 +39,18 @@ releaseConfig['mozillaRelbranchOverride']   = 'GECKO1301_2012061411_RELBRANCH' #
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'DOMI_2_0_11_RELEASE'
-releaseConfig['inspectorRelbranchOverride'] = ''
+releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM130_20120614_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = 'venkman' # leave empty if venkman is not to be tagged
 releaseConfig['venkmanRepoRevision']        = 'VENKMAN_RELEASE_0_9_89'
-releaseConfig['venkmanRelbranchOverride']   = ''
+releaseConfig['venkmanRelbranchOverride']   = 'SEA_COMM130_20120614_RELBRANCH'
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
 releaseConfig['chatzillaRepoRevision']      = 'CHATZILLA_0_9_88_2_RELEASE'
-releaseConfig['chatzillaRelbranchOverride'] = ''
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM130_20120614_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM130_20120614_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 #  Support repositories
 #   not used yet
