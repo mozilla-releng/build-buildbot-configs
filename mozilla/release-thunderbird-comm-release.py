@@ -4,7 +4,7 @@ releaseConfig['base_clobber_url'] = 'http://build.mozilla.org/clobberer/always_c
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['release@mozilla.com',
-                                        'akeybl@mozilla.com',
+                                        'release-mgmt@mozilla.com',
                                         'Callek@gmail.com',
                                         'mbanner@mozilla.com']
 releaseConfig['ImportantRecipients'] = ['thunderbird-drivers@mozilla.org',]
