@@ -2,7 +2,7 @@ SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,18) + range(19,77)]),
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (3,10) + range(11,35) + range(36,72)]),
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,76) \
-          if x not in [45]]), # bug 661377
+          if x not in [45, 59]]), # bug 661377, bug 753357
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,80)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,67) \
