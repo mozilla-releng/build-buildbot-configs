@@ -136,9 +136,6 @@ PROJECT_BRANCHES = {
 #    },
     'profiling': {
         'enable_talos': False,
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
         'platforms': {
             'macosx-debug': {
                 'dont_build': True,

@@ -127,6 +127,7 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
 
+releaseConfig['releaseUptake']       = 30000
 releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
