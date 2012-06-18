@@ -221,7 +221,7 @@ SUITES = {
         'options': ({}, ALL_PLATFORMS),
     },
     'svg': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -244,18 +244,18 @@ SUITES = {
         'options': ({}, ALL_PLATFORMS),
     },
     'chrome.2': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, NO_MAC),
     },
     # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac.2': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, MAC_ONLY),
     },
     'nochrome.2': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml.2:tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -276,37 +276,37 @@ SUITES = {
         'options': ({}, WIN7_ONLY),
     },
     'tprow': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5row', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median', '--sampleConfig', 'sample.2.config'],
         'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
     'tpn': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
     },
     'chromer': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
     'nochromer': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
     'other_mac': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, MAC_ONLY),
     },
     'other': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_MAC),
     },
     'svgr': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -1100,6 +1100,48 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 #### MERGE DAY - EXCEPTIONS
+# When Firefox 16 is on mozilla-aurora we can remove these
+BRANCHES['mozilla-aurora']['chrome.2_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-aurora']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-aurora']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['other_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-aurora']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-aurora']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+# end Firefox16/aurora
+
+# Firefox 16/beta
+BRANCHES['mozilla-beta']['chrome.2_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['other_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-beta']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+# end Firefox 16/beta
+
+# Firefox 16/release
+BRANCHES['mozilla-release']['chrome.2_tests'] = (1, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['other_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-release']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+# end Firefox 16/release
+
 # When Firefox 14 is on mozilla-release we can remove these on/off switches
 BRANCHES['mozilla-release']['remote-trobopan_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['mozilla-release']['remote-trobocheck_tests'] = (0, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
@@ -1111,16 +1153,17 @@ BRANCHES['mozilla-release']['tpr_responsiveness_tests'] = (1, True, TALOS_TP_OPT
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
-BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['tpn_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['svgr_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, NO_MAC)
+BRANCHES['mozilla-esr10']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-esr10']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['chrome.2_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-esr10']['chrome_mac.2_tests'] = (0, True, {}, MAC_ONLY)
-BRANCHES['mozilla-esr10']['nochrome.2_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['tprow_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['tpr_responsiveness_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 
 ######## addontester 
 BRANCHES['addontester']['branch_name'] = "AddonTester"
