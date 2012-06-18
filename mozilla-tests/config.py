@@ -1168,7 +1168,7 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
         if pf.startswith("win"):
             hg_bin = 'c:\\mozilla-build\\hg\\hg'
         if isinstance(PLATFORMS[pf]['mozharness_python'], list):
-            reboot_command = PLATFORMS[pf]['mozharness_python']
+            reboot_command = PLATFORMS[pf]['mozharness_python'][:]
         else:
             reboot_command = [PLATFORMS[pf]['mozharness_python']]
         reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',

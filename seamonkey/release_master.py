@@ -605,7 +605,7 @@ if releaseConfig['majorUpdateRepoPath']:
 status.append(TinderboxMailNotifier(
     fromaddr="comm.buildbot@build.mozilla.org",
     tree=branchConfig["tinderbox_tree"] + "-Release",
-    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    extraRecipients=["<tinderbox-daemon@tinderbox.mozilla.org>",],
     relayhost="mail.build.mozilla.org",
     builders=[b['name'] for b in builders],
     logCompression="bzip2")
@@ -614,7 +614,7 @@ status.append(TinderboxMailNotifier(
 status.append(TinderboxMailNotifier(
     fromaddr="comm.buildbot@build.mozilla.org",
     tree=branchConfig["tinderbox_tree"] + "-Release",
-    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
+    extraRecipients=["<tinderbox-daemon@tinderbox.mozilla.org>",],
     relayhost="mail.build.mozilla.org",
     builders=[b['name'] for b in test_builders],
     logCompression="bzip2",

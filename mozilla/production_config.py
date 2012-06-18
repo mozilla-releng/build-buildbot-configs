@@ -90,7 +90,7 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Firefox',
         'tinderbox_tree': 'Firefox',
         'mobile_tinderbox_tree': 'Mobile',
-        'mobile_build_failure_emails': ['mobile-build-failures@mozilla.org'],
+        'mobile_build_failure_emails': ['<mobile-build-failures@mozilla.org>'],
     },
     'mozilla-release': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Release',
