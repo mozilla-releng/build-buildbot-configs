@@ -419,6 +419,7 @@ PLATFORM_VARS = {
                 # Source server support, bug 506702
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -464,6 +465,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -630,6 +632,7 @@ PLATFORM_VARS = {
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -1082,7 +1085,5 @@ if __name__ == "__main__":
     for branch in branches:
         print branch
         pprint.pprint(BRANCHES[branch])
-
-    pprint.pprint(PROJECTS)
 
 # need to do things to copy platform/global stuff into BRANCHES here, like config.py does
