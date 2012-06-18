@@ -4,9 +4,12 @@
 
 ./setup-master.py -t "$@"
 
-cd mozilla
-exit=0
-for f in test/*.py; do
+for dir in mozilla mozilla-tests; do
+  cd $dir
+  exit=0
+  for f in test/*.py; do
     trial $f || exit=1
+  done
+  cd ..
 done
 exit $exit

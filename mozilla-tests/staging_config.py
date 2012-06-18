@@ -1,7 +1,7 @@
 SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,77)]),
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,72)]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,76)]) \
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,76) \
           if x not in [45, 59]]), # bug 661377, bug 753357
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,80)]),
     'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
