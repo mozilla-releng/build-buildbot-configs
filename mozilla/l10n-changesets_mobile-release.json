@@ -1,138 +1,102 @@
 {
-  "ar": {
-    "revision": "ac0bd266d34c",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "be": {
-    "revision": "3c26421a6d3b",
-    "platforms": ["linux", "macosx", "win32"]
-  },
   "ca": {
-    "revision": "c04a9c125d26",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "36fe5854756b",
+    "platforms": ["android"]
   },
   "cs": {
-    "revision": "08e84567cac8",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "5d0004a0bddc",
+    "platforms": ["android", "android-multilocale"]
   },
   "da": {
-    "revision": "521faaad9598",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "6104b018b80e",
+    "platforms": ["android", "android-multilocale"]
   },
   "de": {
-    "revision": "3c0043e58fb1",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
-  },
-  "el": {
-    "revision": "25c5f7604bb2",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "579b69278a01",
+    "platforms": ["android", "android-multilocale"]
   },
   "es-AR": {
-    "revision": "1be14d7ddc24",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "8022d2ddd517",
+    "platforms": ["android"]
   },
   "es-ES": {
-    "revision": "692a47b4e5ae",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
-  },
-  "et": {
-    "revision": "5377cfcd642a",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "eu": {
-    "revision": "c821a1a04dad",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "1ad470c9e5f5",
+    "platforms": ["android", "android-multilocale"]
   },
   "fi": {
-    "revision": "828b45f8dc5f",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "3f76f99ad5dd",
+    "platforms": ["android", "android-multilocale"]
   },
   "fr": {
-    "revision": "f9ce0c3fcb54",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "fa05bb5afe80",
+    "platforms": ["android", "android-multilocale"]
   },
   "fy-NL": {
-    "revision": "717a8d300894",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "e83c766593da",
+    "platforms": ["android"]
   },
   "ga-IE": {
-    "revision": "12853fd8f31c",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "gd": {
-    "revision": "74d84f142a74",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "b611f1be732c",
+    "platforms": ["android"]
   },
   "gl": {
-    "revision": "3170a87a0c52",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "id": {
-    "revision": "f199ee7aa0d1",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "f7545f8fbcd2",
+    "platforms": ["android"]
   },
   "it": {
-    "revision": "18fc67bc6d5f",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "741c6117af14",
+    "platforms": ["android", "android-multilocale"]
   },
   "ja": {
-    "revision": "d934a1cb121d",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "30c5024259b3",
+    "platforms": ["android", "android-multilocale"]
   },
   "ko": {
-    "revision": "1b2ebfb7a7c8",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "44d428270df1",
+    "platforms": ["android", "android-multilocale"]
   },
   "lt": {
-    "revision": "2152fef6290b",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "nb-NO": {
-    "revision": "529e6200dcd1",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "712197dd6aca",
+    "platforms": ["android"]
   },
   "nl": {
-    "revision": "7623f27d0951",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "089dad835df5",
+    "platforms": ["android", "android-multilocale"]
   },
   "pa-IN": {
-    "revision": "1579a219f210",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "02355bd021f8",
+    "platforms": ["android"]
   },
   "pl": {
-    "revision": "3d81f36da6d0",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "e421b323b90f",
+    "platforms": ["android", "android-multilocale"]
   },
   "pt-BR": {
-    "revision": "9ddff0121734",
-    "platforms": ["linux", "macosx", "win32"]
-  },
-  "pt-PT": {
-    "revision": "f74419b0ef17",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "b137e0ff19b3",
+    "platforms": ["android", "android-multilocale"]
   },
   "ru": {
-    "revision": "7e11aea4f932",
-    "platforms": ["linux", "macosx", "win32", "android-multilocale"]
+    "revision": "c90679fe69da",
+    "platforms": ["android", "android-multilocale"]
   },
   "sk": {
-    "revision": "2fabcfe3a7f7",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "ec2a150db9c0",
+    "platforms": ["android"]
   },
-  "sq": {
-    "revision": "304a415f242e",
-    "platforms": ["linux", "macosx", "win32"]
+  "sl": {
+    "revision": "0fe66d92533b",
+    "platforms": ["android"]
   },
   "uk": {
-    "revision": "ff6403e57652",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "299feb1b9f89",
+    "platforms": ["android"]
   },
   "zh-CN": {
-    "revision": "515314b6e4c2",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "f1e4ee079c3c",
+    "platforms": ["android"]
   },
   "zh-TW": {
-    "revision": "e41f711ff4ac",
-    "platforms": ["linux", "macosx", "win32"]
+    "revision": "b7b05bac2d54",
+    "platforms": ["android"]
   }
 }
