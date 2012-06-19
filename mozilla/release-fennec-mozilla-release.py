@@ -16,26 +16,26 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '10.0.2'
+releaseConfig['version']             = '14.0'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_10_0_2'
+releaseConfig['baseTag']             = 'FENNEC_14_0'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.1'
+releaseConfig['oldVersion']          = '10.0.2'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0_1'
+releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
-        'name': 'mozilla-release',
-        'path': 'releases/mozilla-release',
-        'revision': 'bd611a3115b0',
-        'relbranch': None,
+        'name': 'mozilla-beta',
+        'path': 'releases/mozilla-beta',
+        'revision': '1f1eb085571a',
+        'relbranch': 'MOBILE140_2012061216_RELBRANCH',
         'bumpFiles': {
             'mobile/xul/confvars.sh': {
                 'version': releaseConfig['appVersion'],
@@ -62,7 +62,7 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-release.json'
 releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 #  Support repositories
