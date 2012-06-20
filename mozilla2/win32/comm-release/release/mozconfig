@@ -13,5 +13,5 @@ export MOZILLA_OFFICIAL=1
 
 # Run client.py
 # don't use hgtool here, as the source tarball builders don't clone the scripts repo.
-mk_add_options CLIENT_PY_ARGS="--hg-options='--time' --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
+mk_add_options CLIENT_PY_ARGS="--hg-options='--time' --hgtool=../tools/buildfarm/utils/hgtool.py --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
 mk_add_options ALWAYS_RUN_CLIENT_PY=1

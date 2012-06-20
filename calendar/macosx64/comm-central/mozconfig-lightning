@@ -45,7 +45,7 @@ export MOZILLA_OFFICIAL=1
 DISABLE_LIGHTNING_INSTALL=1
 
 #Use ccache
-ac_add_options --with-ccache=/opt/local/bin/ccache
+#ac_add_options --with-ccache=/opt/local/bin/ccache
 # Enable parallel compiling
 CONCURRENCY=$(( `sysctl hw.logicalcpu | awk {'print $2'}`  + 2 ))
 mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
