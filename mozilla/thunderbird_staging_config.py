@@ -2,8 +2,7 @@ from staging_config import SLAVES
 
 GLOBAL_VARS = {
     'staging': True,
-    #XXX 'config_repo_path': 'build/buildbot-configs',
-    'config_repo_path': 'users/john.hopkins_mozillamessaging.com/buildbot-configs-stage',
+    'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_user': 'cltbld',
