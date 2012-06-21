@@ -59,6 +59,10 @@
     "revision": "712197dd6aca",
     "platforms": ["android"]
   },
+  "nb-NO": {
+    "revision": "5dcdf8af5263",
+    "platforms": ["android", "android-multilocale"]
+  },
   "nl": {
     "revision": "089dad835df5",
     "platforms": ["android", "android-multilocale"]
@@ -73,6 +77,10 @@
   },
   "pt-BR": {
     "revision": "b137e0ff19b3",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pt-PT": {
+    "revision": "078bd2d4187d",
     "platforms": ["android", "android-multilocale"]
   },
   "ru": {
