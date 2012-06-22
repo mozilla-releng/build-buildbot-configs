@@ -34,6 +34,10 @@ ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-release',
     'comm-esr10',
 ]
+ACTIVE_B2G_BRANCHES = [
+    'mozilla-central',
+    'mozilla-inbound',
+]
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
