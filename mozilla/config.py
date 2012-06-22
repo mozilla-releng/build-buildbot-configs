@@ -841,6 +841,8 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'packageTests': True,
             'enable_codesighs': False,
+            'enable_xulrunner': False,
+            'enable_nightly': False,
             'create_snippet': False,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
