@@ -169,8 +169,10 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
                 globs=[
                     'config.py',
                     'thunderbird_config.py',
+                    'b2g_config.py',
                     environment_config,
                     'thunderbird_' + environment_config,
+                    'b2g_' + environment_config,
                     'master_common.py',
                     'project_branches.py',
                     ],
@@ -181,6 +183,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
                 local_links=[
                     (environment_config, 'localconfig.py'),
                     ('thunderbird_' + environment_config, 'thunderbird_localconfig.py'),
+                    ('b2g_' + environment_config, 'b2g_localconfig.py'),
                     ],
                 extras=[
                     ('master_config.json', json.dumps(m, indent=2, sort_keys=True)),
@@ -265,6 +268,7 @@ mozilla_production_scheduler_master = mozilla_production + MasterConfig(
             ('production_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('production_config.py', 'localconfig.py'),
             ('thunderbird_production_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_production_config.py', 'b2g_localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
@@ -320,6 +324,7 @@ mozilla_preproduction_tests_scheduler_master = mozilla_tests + MasterConfig(
             ('preproduction_tests_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
         )
@@ -330,6 +335,7 @@ mozilla_preproduction_tests_master = mozilla_tests + MasterConfig(
             ('preproduction_tests_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
             ('tests_master.cfg', 'master.cfg'),
             ]
         )
@@ -349,6 +355,7 @@ mozilla_preproduction_scheduler_master = mozilla_production + MasterConfig(
             ('preproduction_scheduler_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
             ('scheduler_master.cfg', 'master.cfg'),
             ]
         )
@@ -359,6 +366,7 @@ mozilla_preproduction_builder_master = mozilla_production + MasterConfig(
             ('preproduction_builder_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
@@ -369,6 +377,7 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
             ('preproduction_release_master_localconfig.py', 'master_localconfig.py'),
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
+            ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
             ('builder_master.cfg', 'master.cfg'),
             ]
         )
