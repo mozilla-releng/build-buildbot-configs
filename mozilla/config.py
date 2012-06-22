@@ -841,6 +841,8 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'packageTests': True,
             'enable_codesighs': False,
+            'enable_xulrunner': False,
+            'enable_nightly': False,
             'create_snippet': False,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
@@ -1556,6 +1558,7 @@ BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
@@ -1706,6 +1709,10 @@ lion_branches += ['mozilla-beta']
 # XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
+
+# MERGE DAY delete a branch from this list when FF16 merges in
+for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
+    del BRANCHES[b]['platforms']['android-armv6']
 
 # This is a mapping of platform key to lion specific base_name formatters
 lion_names = {
