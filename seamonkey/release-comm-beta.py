@@ -16,7 +16,7 @@ releaseConfig['baseTag']                    = 'SEAMONKEY_2_11b3'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.11b2'
 releaseConfig['oldAppVersion']              = '2.11'
-releaseConfig['oldBuildNumber']             = 2
+releaseConfig['oldBuildNumber']             = 1
 releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_11b2'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
