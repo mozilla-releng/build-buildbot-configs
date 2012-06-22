@@ -1556,6 +1556,7 @@ BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
