@@ -72,6 +72,8 @@ PROJECT_BRANCHES = {
     'ionmonkey': {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
         'pgo_strategy': 'periodic',
         'talos_suites': {
             'v8': 1,
