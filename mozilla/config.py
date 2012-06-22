@@ -537,7 +537,7 @@ PLATFORM_VARS = {
                 "MOZ_CRASHREPORTER_NO_REPORT": '1',
                 "PDBSTR_PATH": '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 "TINDERBOX_OUTPUT": '1',
-                "VS110COMNTOOLS": 'C:\\Tools\\msvs11\\Common7\\Tools\\',
+                "VS110COMNTOOLS": 'C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\Tools\\',
                 "WINDOWSSDKDIR": 'C:\\Program Files (x86)\\Windows Kits\\8.0\\',
                 "PATH": \
                     'C:\\mozilla-build\\wget;' + \
