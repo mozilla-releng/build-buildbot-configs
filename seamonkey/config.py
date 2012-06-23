@@ -5,9 +5,7 @@ SLAVES = {
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
              ['cb-sea-linux-tbox'],
     'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]],
-    'win32': ['cb-seamonkey-win32-%02i' % x for x in [1,2,3]] +
-             ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
-             ['cb-sea-win32-tbox'] +
+    'win32': ['cn-sea-qm-win2k3-%02i' % x for x in [1]] +
              ['sea-win32-%02i' % x for x in [2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
@@ -489,6 +487,11 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incomin
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
+BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = ['sea-vm-win32-01',
+                                                                  'sea-vm-win32-02',
+                                                                  'sea-vm-win32-03',
+                                                                  'sea-vm-win32-04',
+                                                                  'sea-win32-02']
 
 ######## comm-aurora
 # This is a path, relative to HGURL, where the repository is located
