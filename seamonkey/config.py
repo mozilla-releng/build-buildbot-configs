@@ -487,11 +487,14 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incomin
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
-BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = ['sea-vm-win32-01',
-                                                                  'sea-vm-win32-02',
-                                                                  'sea-vm-win32-03',
-                                                                  'sea-vm-win32-04',
-                                                                  'sea-win32-02']
+BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = ['sea-vm-win32-1',
+                                                                  'sea-vm-win32-2',
+                                                                  'sea-vm-win32-3',
+                                                                  'sea-vm-win32-4',
+                                                                  'sea-win32-01',
+                                                                  'sea-win32-02',
+                                                                  'sea-win32-03',
+                                                                  'sea-win32-04']
 
 ######## comm-aurora
 # This is a path, relative to HGURL, where the repository is located
