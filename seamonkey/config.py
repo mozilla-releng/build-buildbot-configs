@@ -495,6 +495,14 @@ BRANCHES['comm-central-trunk']['platforms']['win32']['slaves'] = ['sea-vm-win32-
                                                                   'sea-win32-02',
                                                                   'sea-win32-03',
                                                                   'sea-win32-04']
+BRANCHES['comm-central-trunk']['platforms']['win32-debug']['slaves'] = ['sea-vm-win32-1',
+                                                                        'sea-vm-win32-2',
+                                                                        'sea-vm-win32-3',
+                                                                        'sea-vm-win32-4',
+                                                                        'sea-win32-01',
+                                                                        'sea-win32-02',
+                                                                        'sea-win32-03',
+                                                                        'sea-win32-04']
 
 ######## comm-aurora
 # This is a path, relative to HGURL, where the repository is located
