@@ -81,6 +81,9 @@ DEFAULTS = {
     'hg_rev_shortnames': {
       'mozilla-central':        'moz',
       'comm-central':           'cc',
+      'comm-aurora':            'ca',
+      'comm-beta':              'cb',
+      'comm-release':           'cr',
       'dom-inspector':          'domi',
       'releases/mozilla-1.9.1': 'moz191',
       'releases/mozilla-1.9.2': 'moz192',
