@@ -174,6 +174,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
                     'thunderbird_' + environment_config,
                     'b2g_' + environment_config,
                     'master_common.py',
+                    'b2g_project_branches.py',
                     'project_branches.py',
                     ],
                 renames=[
@@ -250,8 +251,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None):
 mozilla_base = MasterConfig(
         config_dir='mozilla',
         globs=['*config.py', '*localconfig.py', 'master_common.py',
-               'project_branches.py', '*.cfg', 'l10n-changesets*',
-               'release_templates'],
+               'b2g_project_branches.py', 'project_branches.py', '*.cfg',
+               'l10n-changesets*', 'release_templates'],
         renames=[
             ('BuildSlaves.py.template', 'BuildSlaves.py'),
             ('passwords.py.template', 'passwords.py'),
