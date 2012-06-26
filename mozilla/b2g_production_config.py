@@ -15,14 +15,7 @@ TRY_SLAVES = {
 
 # Local branch overrides
 BRANCHES = {
-    'mozilla-central': {
-        'tinderbox_tree': 'Firefox',
-    },
-    'mozilla-inbound': {
-        'tinderbox_tree': 'Mozilla-Inbound',
-    },
     'try': {
-        'tinderbox_tree': 'Try',
         'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/b2g/try-builds',
     },
 }

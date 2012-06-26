@@ -19,6 +19,7 @@ if 'ssh_port' in master_config:
             "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
+from b2g_config import ACTIVE_PROJECT_BRANCHES as ACTIVE_B2G_PROJECT_BRANCHES
 ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
 ACTIVE_BRANCHES.extend([
     'mozilla-central',
@@ -26,7 +27,7 @@ ACTIVE_BRANCHES.extend([
     'mozilla-aurora',
     'mozilla-release',
     'mozilla-esr10',
-    ])
+])
 ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-central',
     'comm-beta',
@@ -34,10 +35,10 @@ ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-release',
     'comm-esr10',
 ]
-ACTIVE_B2G_BRANCHES = [
+ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
+ACTIVE_B2G_BRANCHES.extend([
     'mozilla-central',
-    'mozilla-inbound',
-]
+])
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
