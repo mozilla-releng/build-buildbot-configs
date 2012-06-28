@@ -227,7 +227,7 @@ SUITES = {
     },
     'dromaeo': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_basics:dromaeo_v8:dromaeo_sunspider:dromaeo_jslib:dromaeo_css:dromaeo_dom'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom'],
         'options': ({}, ALL_PLATFORMS),
     },
     # New set of test that report numbers differently (https://wiki.mozilla.org/Auto-tools/Projects/Signal_From_Noise)
@@ -287,12 +287,12 @@ SUITES = {
     },
     'chromer': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
     'nochromer': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tsspiderr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
     'other_mac': {
@@ -327,7 +327,7 @@ SUITES = {
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsspider': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
@@ -357,7 +357,7 @@ SUITES = {
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
     'remote-trobocheck3': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck3', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
