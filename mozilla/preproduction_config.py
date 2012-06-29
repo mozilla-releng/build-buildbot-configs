@@ -1,44 +1,4 @@
-MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)] + \
-                 ['bld-lion-r5-%03d' % x for x in range(1,81)]
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in [2] + range(40,57) if x not in (51,52,)] # bug683792
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,27)]
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(4,22) + range(23,40) + [41] + range(43,85)]
-WIN64_METRO    = ['w64-ix-slave%02i' % x for x in [22,40,42]]
-LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,23)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['linux-ix-slave%02i' % x for x in range(1,43)]
-LINUX64_VMS    = ['bld-centos5-64-vmw-%03i' % x for x in range(1, 7)]
-LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,42)]
-MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1,43)]
-
-SLAVES = {
-    'linux':            LINUX_VMS + LINUX_IXS,
-    'linux64':          LINUX64_VMS + LINUX64_IXS,
-    'win32':            WIN32_IXS,
-    'win64':            WIN64_IXS,
-    'win64-metro':      WIN64_METRO,
-    'macosx':           [],
-    'macosx64':         MAC_SNOW_MINIS,
-    'macosx64-lion':    MAC_LION_MINIS,
-    'linux-android':    LINUX_VMS + LINUX_IXS,
-    'android':          LINUX_VMS + LINUX_IXS,
-    'android-xul':      LINUX_VMS + LINUX_IXS,
-    'mock':             MOCK_DL120G7
-}
-
-TRY_LINUX      = ['bld-centos5-32-vmw-%03i' % x for x in range(23,40)]
-TRY_LINUX_IXS  = []
-TRY_LINUX64    = ['bld-centos5-64-vmw-%03i' % x for x in range(7, 12)]
-TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (27,32)]
-TRY_WIN32_IXS  = []
-TRY_WIN64_IXS  = []
-
-TRY_SLAVES = SLAVES
-TRY_SLAVES['linux']    += TRY_LINUX + TRY_LINUX_IXS
-TRY_SLAVES['linux64']  += TRY_LINUX64 + TRY_LINUX64_IXS
-TRY_SLAVES['macosx64'] += TRY_MAC64
-TRY_SLAVES['win32']    += TRY_WIN32_IXS
-TRY_SLAVES['win64']    += TRY_WIN64_IXS
+from staging_config import SLAVES, TRY_SLAVES
 
 GLOBAL_VARS = {
     'staging': True,

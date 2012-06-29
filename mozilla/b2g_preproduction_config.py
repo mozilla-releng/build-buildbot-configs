@@ -1,17 +1,13 @@
 from copy import deepcopy
+import preproduction_config as ppc
 
-from preproduction_config import GLOBAL_VARS, MOCK_DL120G7, TRY_MOCK_DL120G7, \
-    BUILDS_BEFORE_REBOOT
-
-GLOBAL_VARS = deepcopy(GLOBAL_VARS)
+GLOBAL_VARS = deepcopy(ppc.GLOBAL_VARS)
 
 SLAVES = {
-    'mock': MOCK_DL120G7
+    'mock': ppc.SLAVES['mock'] + ppc.TRY_SLAVES['mock']
 }
 
-TRY_SLAVES = {
-    'mock': TRY_MOCK_DL120G7,
-}
+TRY_SLAVES = SLAVES.copy()
 
 # Local branch overrides
 BRANCHES = {
@@ -23,3 +19,4 @@ BRANCHES = {
 PLATFORM_VARS = {}
 
 PROJECTS = {}
+BUILDS_BEFORE_REBOOT = ppc.BUILDS_BEFORE_REBOOT

@@ -1,16 +1,14 @@
 from copy import deepcopy
+import production_config as pc
 
-from production_config import GLOBAL_VARS, MOCK_DL120G7, TRY_MOCK_DL120G7, \
-    BUILDS_BEFORE_REBOOT
-
-GLOBAL_VARS = deepcopy(GLOBAL_VARS)
+GLOBAL_VARS = deepcopy(pc.GLOBAL_VARS)
 
 SLAVES = {
-    'mock': MOCK_DL120G7
+    'mock': pc.SLAVES['mock']
 }
 
 TRY_SLAVES = {
-    'mock': TRY_MOCK_DL120G7,
+    'mock': pc.TRY_SLAVES['mock']
 }
 
 # Local branch overrides
@@ -23,3 +21,4 @@ BRANCHES = {
 PLATFORM_VARS = {}
 
 PROJECTS = {}
+BUILDS_BEFORE_REBOOT = pc.BUILDS_BEFORE_REBOOT
