@@ -19,6 +19,7 @@ ACTIVE_PROJECTS = [p for p in PROJECTS.keys() if p != 'fuzzing']
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
+ACTIVE_B2G_BRANCHES = []
 
 # Set up our fast slaves
 # No need to reload, this is reloaded by builder_master.cfg
