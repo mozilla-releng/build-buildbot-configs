@@ -1,37 +1,32 @@
 import production_config as pc
 
-MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)] + \
-                 pc.MAC_LION_MINIS + pc.TRY_LION
-MAC_SNOW_MINIS = ['moz2-darwin10-slave02'] + pc.MAC_SNOW_MINIS
-LINUX_VMS      = pc.LINUX_VMS
+MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)]
+MAC_SNOW_MINIS = ['moz2-darwin10-slave02']
 LINUX_IXS      = ['mv-moz2-linux-ix-slave01'] + \
-                 ['linux-ix-slave%02i' % x for x in (3,4,5)] + \
-                 pc.LINUX_IXS + pc.TRY_LINUX_IXS
-LINUX64_VMS    = pc.LINUX64_VMS
-LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)] + \
-                 pc.LINUX64_IXS + pc.TRY_LINUX64_IXS
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)] + \
-                 pc.WIN32_IXS + pc.TRY_WIN32_IXS
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)] + \
-                 pc.WIN64_IXS + pc.TRY_WIN64_IXS
-WIN64_METRO    = pc.WIN64_METRO
-MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)] + \
-                 pc.MOCK_DL120G7 + pc.TRY_MOCK_DL120G7
+                 ['linux-ix-slave%02i' % x for x in (3,4,5)]
+LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 
 SLAVES = {
-    'linux':            LINUX_VMS + LINUX_IXS,
-    'linux64':          LINUX64_VMS + LINUX64_IXS,
+    'linux':            LINUX_IXS,
+    'linux64':          LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'win64-metro':      WIN64_METRO,
-    'macosx':           [],
-    'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
-    'linux-android':    LINUX_VMS + LINUX_IXS,
-    'android':          LINUX_VMS + LINUX_IXS,
-    'android-xul':      LINUX_VMS + LINUX_IXS,
+    'linux-android':    LINUX_IXS,
+    'android':          LINUX_IXS,
+    'android-xul':      LINUX_IXS,
     'mock':             MOCK_DL120G7
 }
+
+for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
+    if p not in SLAVES:
+        SLAVES[p] = list(slaves)
+    else:
+        SLAVES[p].extend(slaves)
+
 
 TRY_SLAVES = SLAVES.copy()
 
