@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from config import GLOBAL_VARS, PLATFORM_VARS
+from config import GLOBAL_VARS, PLATFORM_VARS, SLAVES, TRY_SLAVES
 
 import b2g_project_branches
 reload(b2g_project_branches)
@@ -9,8 +9,6 @@ from b2g_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 # Note that b2g_localconfig.py is symlinked to one of: {production,staging,preproduction}_b2g_config.py
 import b2g_localconfig
 reload(b2g_localconfig)
-
-from b2g_localconfig import SLAVES, TRY_SLAVES
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
@@ -21,12 +19,17 @@ GLOBAL_VARS.update({
     'platforms': {
         'gb_armv7a_gecko': {},
         'gb_armv7a_gecko-debug': {},
+        'linux32_gecko': {},
+        'macosx64_gecko': {},
+        'win32_gecko': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
     'enable_xulrunner': False,
     'enabled_products': ['b2g'],
     'product_prefix': 'b2g',
+    'unittest_suites': [],
+    'unittest_masters': [],
 })
 
 # shorthand, because these are used often
@@ -39,7 +42,6 @@ PLATFORM_VARS = {
         'gb_armv7a_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'brand_name': 'b2g',
             'base_name': builder_prefix + '%(platform)s %(branch)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/gb_armv7a_gecko/nightly',
@@ -88,7 +90,6 @@ PLATFORM_VARS = {
         'gb_armv7a_gecko-debug': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'brand_name': 'b2g',
             'base_name': builder_prefix + '%(platform)s %(branch)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/gb_armv7a_gecko/debug',
@@ -135,6 +136,140 @@ PLATFORM_VARS = {
                               'glibc-static', 'libstdc++-static'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/releng.manifest',
         },
+        'linux32_gecko': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': False,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'b2g',
+            'stage_platform': 'linux32_gecko',
+            'update_platform': 'Linux_x86-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'enable_build_analysis': True,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-i386',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static', 'gtk2-devel',
+                              'libnotify-devel', 'yasm', 'alsa-lib-devel',
+                              'libcurl-devel', 'wireless-tools-devel',
+                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
+                              'imake', 'ccache'],
+        },
+        'macosx64_gecko': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'slaves': SLAVES['macosx64-lion'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'b2g',
+            'stage_platform': 'macosx',
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
+            'enable_shark': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'test_pretty_names': False,
+        },
+        'win32_gecko': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/win32_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 5,
+            'upload_symbols': False,
+            'packageTests': True,
+            'create_snippet': False,
+            'create_partial': False,
+            'slaves': SLAVES['win64'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'b2g',
+            'stage_platform': 'win32',
+            'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
+            'env': {
+                'CVS_RSH': 'ssh',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+        },
 }
 
 
@@ -156,8 +291,6 @@ for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
-            continue
-        elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
         # Don't override something that's set
         elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:

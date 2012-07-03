@@ -7,9 +7,7 @@ import thunderbird_localconfig
 reload(thunderbird_localconfig)
 
 # Can't reload this one because it gets reloaded in another file
-from localconfig import MAC_SNOW_MINIS, LINUX_VMS, \
-                        LINUX_IXS, WIN32_IXS, SLAVES, \
-                        TRY_SLAVES
+from localconfig import SLAVES, TRY_SLAVES
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)

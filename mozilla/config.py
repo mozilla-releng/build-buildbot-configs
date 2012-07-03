@@ -6,9 +6,7 @@ from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 import localconfig
 reload(localconfig)
-from localconfig import MAC_LION_MINIS, MAC_SNOW_MINIS, LINUX_VMS, \
-                        LINUX_IXS, WIN32_IXS, SLAVES, \
-                        TRY_SLAVES
+from localconfig import SLAVES, TRY_SLAVES
 
 GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
@@ -412,6 +410,7 @@ PLATFORM_VARS = {
             'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
+            'enable_installer': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
@@ -462,6 +461,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
             'upload_symbols': False,
+            'enable_installer': True,
             'packageTests': False,
             'slaves': SLAVES['win64-metro'],
             'platform_objdir': OBJDIR,
@@ -518,6 +518,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
             'upload_symbols': True,
+            'enable_installer': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
@@ -701,6 +702,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
+            'enable_installer': True,
             'packageTests': True,
             'build_space': 9,
             'slaves': SLAVES['win64'],
