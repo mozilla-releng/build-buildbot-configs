@@ -1,13 +1,10 @@
 from copy import deepcopy
 import preproduction_config as ppc
 
+from preproduction_config import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
+    SYMBOL_SERVER_HOST
+
 GLOBAL_VARS = deepcopy(ppc.GLOBAL_VARS)
-
-SLAVES = {
-    'mock': ppc.SLAVES['mock'] + ppc.TRY_SLAVES['mock']
-}
-
-TRY_SLAVES = SLAVES.copy()
 
 # Local branch overrides
 BRANCHES = {

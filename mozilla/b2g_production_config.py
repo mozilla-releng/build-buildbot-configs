@@ -1,15 +1,10 @@
 from copy import deepcopy
 import production_config as pc
 
+from production_config import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
+    SYMBOL_SERVER_HOST
+
 GLOBAL_VARS = deepcopy(pc.GLOBAL_VARS)
-
-SLAVES = {
-    'mock': pc.SLAVES['mock']
-}
-
-TRY_SLAVES = {
-    'mock': pc.TRY_SLAVES['mock']
-}
 
 # Local branch overrides
 BRANCHES = {

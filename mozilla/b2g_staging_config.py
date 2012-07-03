@@ -1,13 +1,10 @@
 from copy import deepcopy
 import staging_config as sc
 
+from staging_config import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
+    SYMBOL_SERVER_HOST
+
 GLOBAL_VARS = deepcopy(sc.GLOBAL_VARS)
-
-SLAVES = {
-    'mock': sc.SLAVES['mock'] + sc.TRY_SLAVES['mock']
-}
-
-TRY_SLAVES = SLAVES.copy()
 
 # Local branch overrides
 BRANCHES = {
