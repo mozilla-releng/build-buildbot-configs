@@ -24,7 +24,7 @@ releaseConfig['baseTag']             = 'FENNEC_14_0b11'
 #  Old version info
 releaseConfig['oldVersion']          = '14.0b10'
 releaseConfig['oldAppVersion']       = '14.0'
-releaseConfig['oldBuildNumber']      = 4
+releaseConfig['oldBuildNumber']      = 2 
 releaseConfig['oldBaseTag']          = 'FENNEC_14_0b10'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
