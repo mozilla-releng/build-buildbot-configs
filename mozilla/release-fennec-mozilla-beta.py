@@ -19,7 +19,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '14.0b11'
 releaseConfig['appVersion']          = '14.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 1 
 releaseConfig['baseTag']             = 'FENNEC_14_0b11'
 #  Old version info
 releaseConfig['oldVersion']          = '14.0b10'
