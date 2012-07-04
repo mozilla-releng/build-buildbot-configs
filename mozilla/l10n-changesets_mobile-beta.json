@@ -68,7 +68,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "pa-IN": {
-    "revision": "02355bd021f8",
+    "revision": "4afbb88e0ccf",
     "platforms": ["android"]
   },
   "pl": {
@@ -92,7 +92,7 @@
     "platforms": ["android"]
   },
   "sl": {
-    "revision": "0fe66d92533b",
+    "revision": "07442918d3aa",
     "platforms": ["android"]
   },
   "uk": {
