@@ -32,8 +32,8 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mobile': {
-        'name': 'mozilla-beta',
-        'path': 'releases/mozilla-beta',
+        'name': 'mozilla-release',
+        'path': 'releases/mozilla-release',
         'revision': 'd1452658046f',
         'relbranch': None,
         'bumpFiles': {
