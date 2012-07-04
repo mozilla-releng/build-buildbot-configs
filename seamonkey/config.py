@@ -4,7 +4,8 @@ SLAVES = {
     'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
              ['cb-sea-linux-tbox'],
-    'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]],
+    'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]] +
+               ['sea-vm-linux64-%i' % x for x in [1]],
     'win32': ['sea-win32-%02i' % x for x in [1,2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
