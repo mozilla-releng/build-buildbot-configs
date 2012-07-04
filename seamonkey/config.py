@@ -3,6 +3,7 @@ from copy import deepcopy
 SLAVES = {
     'linux': ['cb-seamonkey-linux-%02i' % x for x in [1,2,3]] +
              ['cn-sea-qm-centos5-%02i' % x for x in [1]] +
+             ['sea-vm-linux32-%i' % x for x in [1,2]] +
              ['cb-sea-linux-tbox'],
     'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]] +
                ['sea-vm-linux64-%i' % x for x in [1]],
