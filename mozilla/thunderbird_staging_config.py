@@ -26,7 +26,7 @@ GLOBAL_VARS = {
     'packaged_unittest_tinderbox_tree': 'ThunderbirdTest',
     'tinderbox_tree': 'ThunderbirdTest',
     'hg_username': 'stage-tbirdbld',
-    'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
+    'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com'],
     'base_bundle_urls': ['http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/bundles'],
 }
 
