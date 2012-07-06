@@ -425,18 +425,6 @@ UNITTEST_SUITES = {
         # Disabled in bug 630551
         #('mozmill-all', ['mozmill']),
     ],
-    'mobile_unittest_suites': [
-        # The disabled test suites are only disabled until we can get
-        # to 100% green
-        #('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-        #('mochitest-other', ['mochitest-chrome', 'mochitest-a11y',
-        #                     'mochitest-ipcplugins']),
-        ('mobile-mochitest-browser-chrome', ['mobile-mochitest-browser-chrome']),
-        #('reftest', ['reftest']),
-        #('crashtest', ['crashtest']),
-        #('xpcshell', ['xpcshell']),
-        #('jsreftest', ['jsreftest']),
-    ],
 }
 
 def removeSuite(suiteName, suiteList):
@@ -615,11 +603,6 @@ ANDROID_XUL_UNITTEST_DICT = {
                            'MochiKit-1.4.2/tests',
                            'parser/htmlparser/tests/mochitest'],
            },
-        )),
-        ('browser-chrome', (
-            {'suite': 'mochitest-browser-chrome',
-             'testPaths': ['mobile']
-            },
         )),
         ('reftest-1', (
             {'suite': 'reftest',
@@ -818,7 +801,6 @@ PLATFORM_UNITTEST_VARS = {
                     [('reftest-no-accel', ['opengl-no-accel'])] + \
                     [('crashtest-ipc', ['crashtest-ipc'])],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-                'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
             },
         },
         'linux64': {
