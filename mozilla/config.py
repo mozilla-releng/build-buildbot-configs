@@ -73,7 +73,6 @@ GLOBAL_VARS = {
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
     'periodic_pgo_interval': 6, # in hours
     'enable_shark': True,
-    'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
@@ -1149,8 +1148,6 @@ BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['mozilla-central']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
@@ -1205,8 +1202,6 @@ BRANCHES['mozilla-release']['enable_xulrunner'] = False
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-release']['enable_mac_a11y'] = True
-# And code coverage
-BRANCHES['mozilla-release']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-release']['enable_l10n'] = False
 BRANCHES['mozilla-release']['enable_l10n_onchange'] = True
@@ -1250,8 +1245,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-beta']['enable_mac_a11y'] = True
 BRANCHES['mozilla-beta']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['mozilla-beta']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-beta']['enable_l10n'] = False
 BRANCHES['mozilla-beta']['enable_l10n_onchange'] = True
@@ -1303,8 +1296,6 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
 BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
 BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['mozilla-aurora']['enable_codecoverage'] = True
 # L10n configuration
 BRANCHES['mozilla-aurora']['enable_l10n'] = True
 BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = True
@@ -1472,7 +1463,6 @@ BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
-BRANCHES['try']['enable_codecoverage'] = False
 BRANCHES['try']['enable_shark'] = False
 BRANCHES['try']['create_snippet'] = False
 # need this or the master.cfg will bail

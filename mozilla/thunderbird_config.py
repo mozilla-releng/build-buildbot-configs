@@ -55,7 +55,6 @@ GLOBAL_VARS.update({
     'product_name': 'thunderbird', # Not valid for mobile builds
     'app_name': 'mail',     # Not valid for mobile builds
     'brand_name': 'Daily', # Not valid for mobile builds
-    'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'enable_nightly': True,
@@ -746,8 +745,6 @@ BRANCHES['comm-central']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['comm-central']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-central']['enable_l10n'] = True
 BRANCHES['comm-central']['enable_l10n_onchange'] = True
@@ -793,8 +790,6 @@ BRANCHES['comm-release']['start_minute'] = [2]
 BRANCHES['comm-release']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-release']['enable_mac_a11y'] = True
-# And code coverage
-BRANCHES['comm-release']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = True
@@ -867,8 +862,6 @@ BRANCHES['comm-beta']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['comm-beta']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
@@ -913,8 +906,6 @@ BRANCHES['comm-aurora']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
-# And code coverage
-BRANCHES['comm-aurora']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-aurora']['enable_l10n'] = True
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
@@ -976,7 +967,6 @@ BRANCHES['try-comm-central']['enable_l10n'] = False
 BRANCHES['try-comm-central']['enable_l10n_onchange'] = False
 BRANCHES['try-comm-central']['l10nNightlyUpdate'] = False
 BRANCHES['try-comm-central']['l10nDatedDirs'] = False
-BRANCHES['try-comm-central']['enable_codecoverage'] = False
 BRANCHES['try-comm-central']['enable_shark'] = False
 BRANCHES['try-comm-central']['create_snippet'] = False
 # need this or the master.cfg will bail
