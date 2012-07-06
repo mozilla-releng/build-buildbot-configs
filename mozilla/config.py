@@ -789,11 +789,9 @@ PLATFORM_VARS = {
             'packageTests': True,
             'enable_codesighs': False,
             'enable_xulrunner': False,
-            'enable_nightly': False,
-            'create_snippet': False,
             'slaves': SLAVES['linux'],
             'platform_objdir': OBJDIR,
-            'update_platform': 'Android_armv6-eabi-gcc3',
+            'update_platform': 'Android_arm-eabi-gcc3-armv6',
             'enable_shared_checkouts': True,
             'env': {
                 'DISPLAY': ':2',
@@ -1131,6 +1129,11 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+    if branch in ('mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
+        BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+        BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-%s' % branch
+        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-%s' % branch
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -1182,8 +1185,6 @@ BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-central'
-BRANCHES['mozilla-central']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-central'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -1227,8 +1228,6 @@ BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
-BRANCHES['mozilla-release']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-release'
-BRANCHES['mozilla-release']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-release'
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 # MERGE DAY Delete these four lines when Firefox 15 merges in
 BRANCHES['mozilla-release']['platforms']['win32']['slaves'] = SLAVES['win32']
@@ -1280,8 +1279,6 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
-BRANCHES['mozilla-beta']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-beta'
-BRANCHES['mozilla-beta']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-beta'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
@@ -1343,8 +1340,6 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
-BRANCHES['mozilla-aurora']['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'mozilla-aurora'
-BRANCHES['mozilla-aurora']['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-mozilla-aurora'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -1585,6 +1580,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-xul'):
         BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android-armv6'):
+        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('linuxqt'):
         BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
