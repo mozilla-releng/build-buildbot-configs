@@ -295,15 +295,10 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
-    'other_mac': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, MAC_ONLY),
-    },
     'other': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_MAC),
+        'options': ({}, ALL_PLATFORMS),
     },
     'svgr': {
         'enable_by_default': True,
@@ -1087,8 +1082,7 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 # Side by side staging on m-c only
 BRANCHES['mozilla-central']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['other_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-central']['other_mac_tests'] = (1, True, {}, MAC_ONLY)
+BRANCHES['mozilla-central']['other_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['nochromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['svgr_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
@@ -1107,8 +1101,7 @@ BRANCHES['mozilla-aurora']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['other_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-aurora']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-aurora']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
@@ -1121,8 +1114,7 @@ BRANCHES['mozilla-beta']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['other_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-beta']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
@@ -1135,8 +1127,7 @@ BRANCHES['mozilla-release']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['other_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-release']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
@@ -1155,8 +1146,7 @@ BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
 BRANCHES['mozilla-esr10']['tpn_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['svgr_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, NO_MAC)
-BRANCHES['mozilla-esr10']['other_mac_tests'] = (0, True, {}, MAC_ONLY)
+BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
