@@ -396,7 +396,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'enable_installer': True,
             'packageTests': True,
-            'slaves': SLAVES['win32'],
+            'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32',
@@ -411,11 +411,10 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'tbirdbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/tbirdbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                # Source server support, bug 506702
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
             },
@@ -622,7 +621,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'leak_target': 'mailbloat',
             'build_space': 9,
-            'slaves': SLAVES['win32'],
+            'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32-debug',
@@ -725,6 +724,31 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
 
+# begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
+WIN32_ENV = {
+                'CVS_RSH': 'ssh',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'tbirdbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                # Source server support, bug 506702
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
+}
+
+WIN32_DEBUG_ENV = {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
+}
+# end delete
 
 ######## comm-central
 # This is a path, relative to HGURL, where the repository is located
@@ -811,6 +835,13 @@ BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
 
+# Delete these four lines when Thunderbird 15 merges in
+BRANCHES['comm-release']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['comm-release']['platforms']['win32']['env'] = WIN32_ENV
+BRANCHES['comm-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['comm-release']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+# End delete
+
 ######## comm-esr10
 BRANCHES['comm-esr10']['repo_path'] = 'releases/comm-esr10'
 BRANCHES['comm-esr10']['update_channel'] = 'nightly-esr10'
@@ -843,6 +874,13 @@ BRANCHES['comm-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thun
 BRANCHES['comm-esr10']['enable_blocklist_update'] = False
 BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr10']['enable_valgrind'] = False
+
+# Delete these four lines for esr17
+BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
+BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['comm-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+# End delete
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -888,6 +926,13 @@ BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
+
+# Delete these four lines when Thunderbird 15 merges in
+BRANCHES['comm-beta']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['comm-beta']['platforms']['win32']['env'] = WIN32_ENV
+BRANCHES['comm-beta']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['comm-beta']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+# End delete
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -944,6 +989,13 @@ BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'
 BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 
+# Delete these four lines when Thunderbird 15 merges in
+BRANCHES['comm-aurora']['platforms']['win32']['slaves'] = SLAVES['win32']
+BRANCHES['comm-aurora']['platforms']['win32']['env'] = WIN32_ENV
+BRANCHES['comm-aurora']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
+BRANCHES['comm-aurora']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+# End delete
+
 ######## try
 # Try-specific configs
 BRANCHES['try-comm-central']['stage_username'] = 'tbirdtry'
@@ -973,12 +1025,12 @@ BRANCHES['try-comm-central']['create_snippet'] = False
 BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win32']
+BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
