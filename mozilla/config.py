@@ -461,7 +461,6 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
             'upload_symbols': False,
-            'packageTests': True,
             'enable_installer': True,
             'packageTests': False,
             'slaves': SLAVES['win64-metro'],
