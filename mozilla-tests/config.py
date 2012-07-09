@@ -197,7 +197,7 @@ SUITES = {
     },
     'dirty': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
     'tp': {
@@ -305,6 +305,12 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
+    'dirtypaint': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
+        'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
+    },
+
     # Mobile specific talos tests
     'remote-ts': {
         'enable_by_default': True,
@@ -1086,6 +1092,7 @@ BRANCHES['mozilla-central']['other_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['nochromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['svgr_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-central']['dirtypaint_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 
 
 # pgo-strategy
