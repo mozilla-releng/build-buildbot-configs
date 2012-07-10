@@ -74,7 +74,6 @@ GLOBAL_VARS = {
     'app_name': 'mail',
     'brand_name': 'Shredder',
     'tinderbox_tree': 'ThunderbirdTry',
-    'enable_codecoverage': False,
 #    'hash_type': 'sha512',
 }
 
@@ -403,7 +402,6 @@ BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
-BRANCHES['try']['enable_codecoverage'] = False
 BRANCHES['try']['enable_weekly_bundle'] = False
 BRANCHES['try']['enable_shark'] = False
 BRANCHES['try']['create_snippet'] = False
