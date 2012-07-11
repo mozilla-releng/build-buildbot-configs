@@ -615,11 +615,12 @@ ANDROID_XUL_UNITTEST_DICT = {
                            'parser/htmlparser/tests/mochitest'],
            },
         )),
-        ('browser-chrome', (
-            {'suite': 'mochitest-browser-chrome',
-             'testPaths': ['mobile']
-            },
-        )),
+# Disable browser-chrome for android-xul; bug 771421
+#        ('browser-chrome', (
+#            {'suite': 'mochitest-browser-chrome',
+#             'testPaths': ['mobile']
+#            },
+#        )),
         ('reftest-1', (
             {'suite': 'reftest',
              'totalChunks': 3,
