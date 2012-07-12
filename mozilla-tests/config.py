@@ -168,13 +168,11 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 ANDROID = PLATFORMS['android']['slave_platforms'] + \
-          PLATFORMS['android-xul']['slave_platforms'] + \
           PLATFORMS['linux-android']['slave_platforms']
 
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
 
-ANDROID_XUL = PLATFORMS['android-xul']['slave_platforms'] + \
-              PLATFORMS['linux-android']['slave_platforms']
+ANDROID_XUL = PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -617,11 +615,12 @@ ANDROID_XUL_UNITTEST_DICT = {
                            'parser/htmlparser/tests/mochitest'],
            },
         )),
-        ('browser-chrome', (
-            {'suite': 'mochitest-browser-chrome',
-             'testPaths': ['mobile']
-            },
-        )),
+# Disable browser-chrome for android-xul; bug 771421
+#        ('browser-chrome', (
+#            {'suite': 'mochitest-browser-chrome',
+#             'testPaths': ['mobile']
+#            },
+#        )),
         ('reftest-1', (
             {'suite': 'reftest',
              'totalChunks': 3,

@@ -463,7 +463,6 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'enable_installer': True,
-            'packageTests': False,
             'slaves': SLAVES['win64-metro'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
