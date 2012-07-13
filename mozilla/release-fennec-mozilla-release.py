@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 228ba1a111fc,
+        'revision': '228ba1a111fc',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
