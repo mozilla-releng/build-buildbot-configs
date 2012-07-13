@@ -1087,7 +1087,7 @@ lion_branches = ['comm-central', 'try-comm-central',]
 # When Thunderbird 14 hits that branch, uncomment line
 lion_branches += ['comm-aurora']
 lion_branches += ['comm-beta']
-# lion_branches += ['comm-release']
+lion_branches += ['comm-release']
 # XXX When Thunderbird 14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
