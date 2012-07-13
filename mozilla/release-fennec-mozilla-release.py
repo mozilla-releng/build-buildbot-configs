@@ -16,16 +16,16 @@ releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '14.0'
+releaseConfig['version']             = '14.0.1'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = releaseConfig['version']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FENNEC_14_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FENNEC_14_0_1'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.2'
+releaseConfig['oldVersion']          = '14.0'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2'
+releaseConfig['oldBuildNumber']      = 2
+releaseConfig['oldBaseTag']          = 'FENNEC_14_0'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -34,13 +34,9 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '35a98282d2a6',
-        'relbranch': 'MOBILE140_2012061216_RELBRANCH',
+        'revision': 228ba1a111fc,
+        'relbranch': None,
         'bumpFiles': {
-            'mobile/xul/confvars.sh': {
-                'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
-            },
             'mobile/android/confvars.sh': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
@@ -74,7 +70,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-xul')
+releaseConfig['enUSPlatforms']        = ('android',)
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
@@ -141,8 +137,6 @@ releaseConfig['single_locale_options'] = {
 
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'android-xul':
-            'multi_locale/release_mozilla-release_android-xul.json',
         'android':
             'multi_locale/release_mozilla-release_android.json',
     },
