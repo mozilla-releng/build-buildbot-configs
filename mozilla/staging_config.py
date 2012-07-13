@@ -1,6 +1,6 @@
 import production_config as pc
 
-MAC_LION_MINIS = ['r5-mini-%03d' % x for x in range(1,7)]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(89,95)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave02']
 LINUX_IXS      = ['mv-moz2-linux-ix-slave01'] + \
                  ['linux-ix-slave%02i' % x for x in (3,4,5)]
