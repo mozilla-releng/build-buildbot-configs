@@ -20,26 +20,26 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
 releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '10.0.5esr'
-releaseConfig['appVersion']          = '10.0.5'
-releaseConfig['milestone']           = '10.0.5'
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_5esr'
+releaseConfig['version']             = '10.0.6esr'
+releaseConfig['appVersion']          = '10.0.6'
+releaseConfig['milestone']           = '10.0.6'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_6esr'
 #  Old version info
-releaseConfig['oldVersion']          = '10.0.4esr'
-releaseConfig['oldAppVersion']       = '10.0.4'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_10_0_4esr'
+releaseConfig['oldVersion']          = '10.0.5esr'
+releaseConfig['oldAppVersion']       = '10.0.5'
+releaseConfig['oldBuildNumber']      = 3
+releaseConfig['oldBaseTag']          = 'THUNDERBIRD_10_0_5esr'
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.6esrpre'
-releaseConfig['nextMilestone']       = '10.0.6esrpre'
+releaseConfig['nextAppVersion']      = '10.0.7esrpre'
+releaseConfig['nextMilestone']       = '10.0.7esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr10',
         'path': 'releases/comm-esr10',
-        'revision': '939269a86b88',
-        'relbranch': 'GECKO1005_2012053119_RELBRANCH',
+        'revision': '43c151dd9879',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -50,8 +50,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '5713c92407dd',
-        'relbranch': 'GECKO1005_2012053118_RELBRANCH',
+        'revision': '5be573d1665f',
+        'relbranch': 'GECKO1006_2012071312_RELBRANCH',
         'bumpFiles': {},
     }
 }
