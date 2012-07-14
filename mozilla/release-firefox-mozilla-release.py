@@ -22,10 +22,10 @@ releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_14_0_1'
 #  Old version info
-releaseConfig['oldVersion']          = '13.0.2'
+releaseConfig['oldVersion']          = '13.0.1'
 releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
 releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_13_0_2'
+releaseConfig['oldBaseTag']          = 'FIREFOX_13_0_1'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
