@@ -1282,12 +1282,6 @@ BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-# MERGE DAY Delete these four lines when Firefox 15 merges in
-BRANCHES['mozilla-beta']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-beta']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-beta']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-beta']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1650,7 +1644,7 @@ lion_branches += ['mozilla-release']
 # list and base_name, setting the esr10 slavelist and base_names appropriately
 
 # MERGE DAY delete a branch from this list when FF16 merges in
-for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
+for b in ('mozilla-beta', 'mozilla-release',):
     del BRANCHES[b]['platforms']['android-armv6']
 
 # This is a mapping of platform key to lion specific base_name formatters

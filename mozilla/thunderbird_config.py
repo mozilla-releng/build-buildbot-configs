@@ -835,7 +835,7 @@ BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
 
-# Delete these four lines when Thunderbird 15 merges in
+# MERGE day - Delete these four lines when Thunderbird 15 merges in
 BRANCHES['comm-release']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-release']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['comm-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -875,7 +875,7 @@ BRANCHES['comm-esr10']['enable_blocklist_update'] = False
 BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr10']['enable_valgrind'] = False
 
-# Delete these four lines for esr17
+# MERGE DAY - Delete these four lines for esr17
 BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -926,13 +926,6 @@ BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
-
-# Delete these four lines when Thunderbird 15 merges in
-BRANCHES['comm-beta']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-beta']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['comm-beta']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['comm-beta']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -988,13 +981,6 @@ BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nigh
 BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
-
-# Delete these four lines when Thunderbird 15 merges in
-BRANCHES['comm-aurora']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-aurora']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['comm-aurora']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['comm-aurora']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## try
 # Try-specific configs
