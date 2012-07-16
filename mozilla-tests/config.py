@@ -308,6 +308,12 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
+    #run in staging for a week to get a baseline of numbers, then merge in with the dromaeo suite
+    'jstests': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'sunspider:kraken:v8_7', '--mozAfterPaint'],
+        'options': ({}, ALL_PLATFORMS),
+    },
 
     # Mobile specific talos tests
     'remote-ts': {
@@ -1092,7 +1098,7 @@ BRANCHES['mozilla-central']['nochromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['svgr_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-central']['dirtypaint_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-
+BRANCHES['mozilla-central']['jstests_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 # pgo-strategy
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
