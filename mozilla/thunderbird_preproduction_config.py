@@ -11,7 +11,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
     'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
-    'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
+    'base_clobber_url': 'http://clobberer-preproduction.pvt.build.mozilla.org/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
     'disable_tinderbox_mail': True,

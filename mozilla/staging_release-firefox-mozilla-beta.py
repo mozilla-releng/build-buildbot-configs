@@ -1,7 +1,7 @@
 releaseConfig = {}
 releaseConfig['skip_repo_setup']       = True
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'http://build.mozilla.org/stage-clobberer/always_clobber.php'
+releaseConfig['base_clobber_url'] = 'http://clobberer-stage.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',]

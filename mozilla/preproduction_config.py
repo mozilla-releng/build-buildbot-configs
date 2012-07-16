@@ -14,7 +14,7 @@ GLOBAL_VARS = {
     'graph_server': 'graphs.allizom.org',#TODO
     # XXX: should point at aus4-admin-dev once production is pointing elsewhere
     #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
-    'base_clobber_url': 'http://build.mozilla.org/preproduction-clobberer/index.php',
+    'base_clobber_url': 'http://clobberer-preproduction.pvt.build.mozilla.org/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
     'disable_tinderbox_mail': True,
