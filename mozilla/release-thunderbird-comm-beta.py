@@ -38,7 +38,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'c3489d5b7b65',
+        'revision': '3040a56de881',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
