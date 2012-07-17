@@ -1195,6 +1195,20 @@ BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_serv
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
+# enable tooltool
+BRANCHES['mozilla-central']['platforms']['linux']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linuxqt']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linux-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linux64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linux64-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['macosx64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linux-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['linux64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['macosx-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx32/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['macosx64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['android']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['android-debug']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
+BRANCHES['mozilla-central']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/xul/config/tooltool-manifests/android/releng.manifest'
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
