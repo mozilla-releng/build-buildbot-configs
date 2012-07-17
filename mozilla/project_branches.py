@@ -88,7 +88,7 @@ PROJECT_BRANCHES = {
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
+        'enable_nightly': False,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
