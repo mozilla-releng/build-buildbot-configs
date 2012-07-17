@@ -88,7 +88,7 @@ PROJECT_BRANCHES = {
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
+        'enable_nightly': False,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
@@ -96,26 +96,58 @@ PROJECT_BRANCHES = {
             'linux64': {
                 'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/linux64/releng.manifest',
+            },
+            'linux64-debug': {
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/linux64/releng.manifest',
             },
             'linux': {
                 'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/linux32/releng.manifest',
+            },
+            'linux-debug': {
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/linux32/releng.manifest',
             },
             'linuxqt': {
                 'build_space': 7,
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/linux32/releng.manifest',
             },
             'macosx64-debug': {
                 'enable_leaktests': True,
                 'nightly_signing_servers': 'mac-nightly-signing',
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/macosx64/releng.manifest',
             },
             'macosx-debug': {
                 'nightly_signing_servers': 'mac-nightly-signing',
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/macosx32/releng.manifest',
             },
             'macosx64': {
                 'nightly_signing_servers': 'mac-nightly-signing',
+                'tooltool_manifest_src':
+                  'browser/config/tooltool-manifests/macosx64/releng.manifest',
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
+            },
+            'android': {
+                'tooltool_manifest_src':
+                  'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            },
+            'android-debug': {
+                'tooltool_manifest_src':
+                  'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            },
+            'android-xul': {
+                'tooltool_manifest_src':
+                  'mobile/xul/config/tooltool-manifests/android/releng.manifest',
             },
         },
         'talos_suites': {
