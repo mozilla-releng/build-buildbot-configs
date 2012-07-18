@@ -915,7 +915,7 @@ PROJECTS = {
         'repo_path': 'projects/nanojit-central',
     },
     'spidermonkey_mozilla-inbound': {
-        'platforms': {
+        'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
@@ -923,21 +923,21 @@ PROJECTS = {
             'macosx64-lion':           ['warnaserr'],
             'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
         },
-        'env': {
-            'linux': PLATFORM_VARS['linux']['env'],
-            'linux-debug': PLATFORM_VARS['linux-debug']['env'],
-            'linux64': PLATFORM_VARS['linux64']['env'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
-            'win32': PLATFORM_VARS['win32']['env'],
-            'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
+        'platforms': {
+            'linux': PLATFORM_VARS['linux'],
+            'linux-debug': PLATFORM_VARS['linux-debug'],
+            'linux64': PLATFORM_VARS['linux64'],
+            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+            'win32': PLATFORM_VARS['win32'],
+            'win32-debug': PLATFORM_VARS['win32-debug'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
     },
     'spidermonkey_ionmonkey': {
-        'platforms': {
+        'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
@@ -945,15 +945,15 @@ PROJECTS = {
             'macosx64-lion':           ['warnaserr'],
             'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
         },
-        'env': {
-            'linux': PLATFORM_VARS['linux']['env'],
-            'linux-debug': PLATFORM_VARS['linux-debug']['env'],
-            'linux64': PLATFORM_VARS['linux64']['env'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
-            'win32': PLATFORM_VARS['win32']['env'],
-            'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
+        'platforms': {
+            'linux': PLATFORM_VARS['linux'],
+            'linux-debug': PLATFORM_VARS['linux-debug'],
+            'linux64': PLATFORM_VARS['linux64'],
+            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+            'win32': PLATFORM_VARS['win32'],
+            'win32-debug': PLATFORM_VARS['win32-debug'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
