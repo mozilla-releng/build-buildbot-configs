@@ -156,6 +156,7 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest'
         },
         'linuxqt': {
             'product_name': 'firefox',
@@ -198,6 +199,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': None, #GLOBAL_VARS['talos_masters'],
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
         },
         'linux-rpm': {
             'product_name': 'firefox',
@@ -248,6 +250,7 @@ PLATFORM_VARS = {
             'talos_masters': [],
             'unittest_masters': [],
             'test_pretty_names': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
         },
         'linux64': {
             'product_name': 'firefox',
@@ -296,6 +299,7 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
         },
         'linux64-rpm': {
             'product_name': 'firefox',
@@ -345,6 +349,7 @@ PLATFORM_VARS = {
             'talos_masters': [],
             'unittest_masters': [],
             'test_pretty_names': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -395,6 +400,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
         },
         'win32': {
             'product_name': 'firefox',
@@ -587,6 +593,7 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
         },
         'linux64-debug': {
             'product_name': 'firefox',
@@ -621,6 +628,7 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
         },
         'macosx-debug': {
             'product_name': 'firefox',
@@ -658,6 +666,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx32/releng.manifest',
         },
         'macosx64-debug': {
             'product_name': 'firefox',
@@ -696,6 +705,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
         },
         'win32-debug': {
             'product_name': 'firefox',
@@ -780,6 +790,7 @@ PLATFORM_VARS = {
             'l10n_chunks': 5,
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-armv6': {
             'product_name': 'firefox',
@@ -825,6 +836,7 @@ PLATFORM_VARS = {
             'android_signing': True,
             'post_upload_include_platform': True,
             'is_mobile_l10n': False,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
         },
         'android-xul': {
             'product_name': 'firefox',
@@ -875,6 +887,7 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
+            'tooltool_manifest_src': 'mobile/xul/config/tooltool-manifests/android/releng.manifest',
         },
         'android-debug': {
             'product_name': 'firefox',
@@ -924,6 +937,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'android_signing': True,
             'post_upload_include_platform': True,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
 }
 # Additional fixups for lion
@@ -1195,20 +1209,6 @@ BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_serv
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
-# enable tooltool
-BRANCHES['mozilla-central']['platforms']['linux']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linuxqt']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linux-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linux64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linux64-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['macosx64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linux-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['linux64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx32/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['macosx64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['android']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['android-debug']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
-BRANCHES['mozilla-central']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/xul/config/tooltool-manifests/android/releng.manifest'
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
@@ -1511,20 +1511,6 @@ BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
-# enable tooltool
-BRANCHES['try']['platforms']['linux']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['try']['platforms']['linuxqt']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['try']['platforms']['linux-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['try']['platforms']['linux64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['try']['platforms']['linux64-rpm']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['try']['platforms']['macosx64']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
-BRANCHES['try']['platforms']['linux-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux32/releng.manifest'
-BRANCHES['try']['platforms']['linux64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/linux64/releng.manifest'
-BRANCHES['try']['platforms']['macosx-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx32/releng.manifest'
-BRANCHES['try']['platforms']['macosx64-debug']['tooltool_manifest_src'] = 'browser/config/tooltool-manifests/macosx64/releng.manifest'
-BRANCHES['try']['platforms']['android']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
-BRANCHES['try']['platforms']['android-debug']['tooltool_manifest_src'] = 'mobile/android/config/tooltool-manifests/android/releng.manifest'
-BRANCHES['try']['platforms']['android-xul']['tooltool_manifest_src'] = 'mobile/xul/config/tooltool-manifests/android/releng.manifest'
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
