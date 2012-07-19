@@ -58,7 +58,7 @@ master:
 	(cd $(BASEDIR)/buildbot-configs; $(VIRTUALENV_PYTHON) $(SETUP_MASTER) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME))
 
 master-makefile:
-	cp $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
+	ln -sf $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
 
 other-files:
 	echo "[DEFAULT]" > $(MYSQL_CONFIG)
