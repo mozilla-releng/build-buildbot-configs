@@ -24,7 +24,6 @@ PROJECT_BRANCHES = {
     },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
-        'enable_nightly': True,
     },
     # Disabled because of builder limit problems - bug 721854
     #'places': {},
