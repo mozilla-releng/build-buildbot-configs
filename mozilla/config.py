@@ -1643,7 +1643,7 @@ lion_branches += ['mozilla-release']
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
 
-# MERGE DAY delete a branch from this list when FF17 merges in
+# MERGE DAY delete a branch from this list when FF15 merges in
 for b in ('mozilla-release',):
     del BRANCHES[b]['platforms']['android-armv6']
 
