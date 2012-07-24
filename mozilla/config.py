@@ -61,7 +61,6 @@ GLOBAL_VARS = {
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
-        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
@@ -1071,6 +1070,35 @@ BRANCHES = {
     },
 }
 
+# MERGE day - when FF17 moves into such branch remove it from the list
+# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try') 
+for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try',):
+    # We keep adding 'macosx-debug' to these branches
+    BRANCHES[branch] = {
+        'lock_platforms': True,
+        'platforms': {
+            'android': {},
+            'android-debug': {},
+            'android-xul': {},
+            'android-armv6': {},
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64': {},
+        }
+    }
+    if branch == 'try':
+        BRANCHES[branch]['platforms']['linux-rpm'] = {}
+        BRANCHES[branch]['platforms']['linux64-rpm'] = {}
+    if branch in ('try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
+        BRANCHES[branch]['platforms']['linuxqt'] = {}
+
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
@@ -1207,7 +1235,6 @@ BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] =
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['mozilla-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-release
