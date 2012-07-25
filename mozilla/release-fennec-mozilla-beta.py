@@ -20,7 +20,7 @@ releaseConfig['version']             = '15.0b2'
 releaseConfig['appVersion']          = '15.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_15_0b1'
+releaseConfig['baseTag']             = 'FENNEC_15_0b2'
 #  Old version info
 releaseConfig['oldVersion']          = '15.0b1'
 releaseConfig['oldAppVersion']       = '15.0'
