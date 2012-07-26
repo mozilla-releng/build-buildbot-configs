@@ -94,9 +94,6 @@ PROJECT_BRANCHES = {
                 'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
             },
-            'linuxqt': {
-                'build_space': 7,
-            },
             'macosx64-debug': {
                 'enable_leaktests': True,
                 'nightly_signing_servers': 'mac-nightly-signing',
@@ -119,9 +116,6 @@ PROJECT_BRANCHES = {
 #                'build_space': 6,
 #            },
 #            'linux': {
-#                'build_space': 6,
-#            },
-#            'linuxqt': {
 #                'build_space': 6,
 #            },
 #        },
