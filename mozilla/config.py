@@ -52,10 +52,7 @@ GLOBAL_VARS = {
     'geriatric_masters': [],
     'platforms': {
         'linux': {},
-        'linuxqt': {},
-        'linux-rpm': {},
         'linux64': {},
-        'linux64-rpm': {},
         'win32': {},
         'win64': {},
         'macosx64': {},
@@ -157,100 +154,6 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest'
         },
-        'linuxqt': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Linux QT %(branch)s',
-            'mozconfig': 'linux/%(branch)s/qt',
-            'src_mozconfig': 'browser/config/mozconfigs/linux32/qt',
-            'xr_mozconfig': 'linux/%(branch)s/xulrunner-qt',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux32/xulrunner-qt',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': True,
-            'download_symbols': True,
-            'packageTests': True,
-            'slaves': SLAVES['linux'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'linuxqt',
-            'update_platform': 'Linux_x86-gcc3',
-            'enable_ccache': True,
-            'enable_shared_checkouts': True,
-            'enable_nightly': False,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': None, #GLOBAL_VARS['talos_masters'],
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
-        },
-        'linux-rpm': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Linux RPM %(branch)s',
-            'mozconfig': 'linux/%(branch)s/nightly-rpm',
-            'src_mozconfig': 'browser/config/mozconfigs/linux32/rpm',
-            'enable_nightly': False, # We will explicitly enable for m-c
-            'enable_dep': False,
-            'enable_xulrunner': False,
-            'stage_platform': 'linux-rpm',
-            'mc_patches': [],
-            'create_snippet': False,
-            'create_partial': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': False,
-            'download_symbols': False,
-            'packageTests': False, #Done in rpm spec file
-            'slaves': SLAVES['linux'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'update_platform': 'Linux_x86-gcc3',
-            'enable_ccache': True,
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux-rpm',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': [],
-            'unittest_masters': [],
-            'test_pretty_names': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
-        },
         'linux64': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -298,56 +201,6 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-        },
-        'linux64-rpm': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Linux RPM x86-64 %(branch)s',
-            'mozconfig': 'linux64/%(branch)s/nightly-rpm',
-            'src_mozconfig': 'browser/config/mozconfigs/linux64/rpm',
-            'enable_nightly': False, # We will explicitly enable for m-c
-            'enable_dep': False,
-            'enable_xulrunner': False,
-            'stage_platform': 'linux64-rpm',
-            'mc_patches': [],
-            'create_snippet': False,
-            'create_partial': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': False,
-            'download_symbols': False,
-            'packageTests': False, #Done in rpm spec file
-            'slaves': SLAVES['linux64'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'update_platform': 'Linux_x86_64-gcc3',
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-rpm',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': [],
-            'unittest_masters': [],
-            'test_pretty_names': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
         },
         'macosx64': {
@@ -1093,11 +946,6 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try',):
             'win64': {},
         }
     }
-    if branch == 'try':
-        BRANCHES[branch]['platforms']['linux-rpm'] = {}
-        BRANCHES[branch]['platforms']['linux64-rpm'] = {}
-    if branch in ('try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
-        BRANCHES[branch]['platforms']['linuxqt'] = {}
 
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
@@ -1228,8 +1076,6 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-central']['platforms']['linux-rpm']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['linux64-rpm']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -1510,9 +1356,6 @@ BRANCHES['try']['create_snippet'] = False
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['try']['platforms']['linux-rpm']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try']['platforms']['linux64-rpm']['slaves'] = TRY_SLAVES['linux64']
-BRANCHES['try']['platforms']['linuxqt']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
@@ -1527,7 +1370,6 @@ BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['linuxqt']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
@@ -1599,8 +1441,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-armv6'):
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
-    if BRANCHES[branch]['platforms'].has_key('linuxqt'):
-        BRANCHES[branch]['platforms']['linuxqt']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linuxqt-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if BRANCHES[branch]['platforms'].has_key('win32'):
@@ -1614,8 +1454,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         # point to the mozconfigs, default is generic
         if platform.endswith('debug') and 'android' not in platform:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
-        elif platform.endswith('qt'):
-            BRANCHES[branch]['platforms'][platform]['mozconfig'] = 'linux/' + branchConfig.get('mozconfig_dir', 'generic') + '/qt'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
         # Project branches should be allowed to override the signing servers.
@@ -1635,11 +1473,6 @@ for branch in branches:
     if BRANCHES[branch]['platforms'].has_key('linux'):
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
         BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-    if BRANCHES[branch]['platforms'].has_key('linuxqt'):
-        BRANCHES[branch]['platforms']['linuxqt']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-        BRANCHES[branch]['platforms']['linuxqt']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
         }
     if BRANCHES[branch]['platforms'].has_key('linux64'):
