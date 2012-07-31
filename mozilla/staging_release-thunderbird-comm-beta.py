@@ -39,7 +39,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'comm-beta',
         'clonePath': 'releases/comm-beta',
         'path': 'users/stage-ffxbld/comm-beta',
-        'revision': 'THUNDERBIRD_12_0b5_RELEASE',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-beta',
         'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
-        'revision': 'THUNDERBIRD_12_0b5_RELEASE',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {},
     }
@@ -93,7 +93,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
 releaseConfig['commitPatcherConfig'] = False
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R15'
+releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -136,5 +136,3 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['enableSigningAtBuildTime'] = False
-releaseConfig['enablePartialMarsAtBuildTime'] = False
