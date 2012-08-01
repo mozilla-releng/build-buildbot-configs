@@ -17,6 +17,8 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 GLOBAL_VARS.update({
     'platforms': {
+        'ics_armv7a_gecko': {},
+        'ics_armv7a_gecko-debug': {},
         'gb_armv7a_gecko': {},
         'gb_armv7a_gecko-debug': {},
         'linux32_gecko': {},
@@ -39,6 +41,103 @@ SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 builder_prefix = "B2G "
 
 PLATFORM_VARS = {
+        'ics_armv7a_gecko': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/nightly',
+            'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
+            'profiled_build': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 10,
+            'update_platform': None,
+            'upload_symbols': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'enable_xulrunner': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': 'obj-b2g',
+            'stage_product': 'b2g',
+            'enable_codesighs': False,
+            'enable_packaging': True,
+            'uploadPackages': False,
+            'packageTests': False,
+            'stage_platform': 'ics_armv7a_gecko',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'GONK_PRODUCT': 'generic',
+                'TOOLCHAIN_HOST': 'linux-x86',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
+            'enable_build_analysis': False,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            # MOCK SPECIFIC OPTIONS BELOW
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-i386',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
+        },
+        'ics_armv7a_gecko-debug': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/gb_armv7a_gecko/debug',
+            'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
+            'profiled_build': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 10,
+            'update_platform': None,
+            'upload_symbols': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': 'obj-b2g',
+            'stage_product': 'b2g',
+            'enable_codesighs': False,
+            'enable_packaging': True,
+            'uploadPackages': False,
+            'packageTests': False,
+            'stage_platform': 'ics_armv7a_gecko-debug',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'GONK_PRODUCT': 'generic',
+                'TOOLCHAIN_HOST': 'linux-x86',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': False,
+            'enable_build_analysis': False,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            # MOCK SPECIFIC OPTIONS BELOW
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-i386',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
+        },
         'gb_armv7a_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
@@ -376,6 +475,8 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
+BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['gb_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['gb_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 
