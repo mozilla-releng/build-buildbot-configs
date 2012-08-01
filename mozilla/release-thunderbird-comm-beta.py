@@ -4,7 +4,6 @@ releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/alwa
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
-                                        '<release-mgmt@mozilla.com>',
                                         '<Callek@gmail.com>',
                                         '<mbanner@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
