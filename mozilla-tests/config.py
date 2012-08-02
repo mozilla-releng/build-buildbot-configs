@@ -29,7 +29,6 @@ TALOS_TP_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/fla
 TALOS_TP_NEW_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
 TALOS_TP4_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp4.zip']}
 
-TALOS_ADDON_OPTS = {'addonTester' : True, 'releaseTester' : True}
 TALOS_BASELINE_ADDON_OPTS = {'releaseTester' : True}
 
 TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
@@ -55,8 +54,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-esr10':       { 'release_branch': True },
     'try':                 { 'coallesce_jobs': False},
-    'addontester':         {},
-    'addonbaselinetester': {},
 }
 
 # Talos
@@ -256,17 +253,6 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml.2:tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, ALL_PLATFORMS),
-    },
-    # Special case talos tests
-    'addon': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
-        'options': (TALOS_ADDON_OPTS, ALL_PLATFORMS),
-    },
-    'addon-baseline': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--noShutdown', '--sampleConfig', 'addon.config'],
-        'options': (TALOS_BASELINE_ADDON_OPTS, ALL_PLATFORMS),
     },
     'xperf': {
         'enable_by_default': False,
@@ -1142,17 +1128,6 @@ BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-
-######## addontester 
-BRANCHES['addontester']['branch_name'] = "AddonTester"
-BRANCHES['addontester']['mobile_branch_name'] = "AddonTester"
-BRANCHES['addontester']['build_branch'] = "N/A"
-BRANCHES['addontester']['talos_command'] = TALOS_ADDON_CMD
-BRANCHES['addontester']['fetch_symbols'] = False
-for suite in SUITES.keys():
-    BRANCHES['addontester'][suite + '_tests'] = (0, True, {}, [])
-BRANCHES['addontester']['addon_tests'] = (1, False, TALOS_ADDON_OPTS, [])
-BRANCHES['addontester']['enable_unittests'] = False
 
 ######## try
 BRANCHES['try']['tp4_tests'] = (1, False, TALOS_TP4_OPTS, ALL_PLATFORMS)
