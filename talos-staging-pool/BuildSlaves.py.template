@@ -1,9 +1,0 @@
-SlavePasswords = {
-        'fedora64': 'pass',
-        'fedora': 'pass',
-        'leopard': 'pass',
-        'snowleopard': 'pass',
-        'xp': 'pass',
-        'win7': 'pass',
-        'w764': 'pass',
-        }
