@@ -219,14 +219,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom'],
         'options': ({}, ALL_PLATFORMS),
     },
-    # New set of test that report numbers differently (https://wiki.mozilla.org/Auto-tools/Projects/Signal_From_Noise)
-    # tp5 -> tpr instead of tp5.2.  This is osx only and we will consider switching linux and windows ot this as well.
-    # all these tests should be default on m-c/m-i/m-a and project branches.
-    'tpr_responsiveness': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5r', '--mozAfterPaint', '--responsiveness', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
-    },
     'v8.2': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'v8.2', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
@@ -1124,7 +1116,6 @@ BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## try
-BRANCHES['try']['tpr_responsiveness_tests'] = (1, False, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
 BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
