@@ -211,7 +211,14 @@ PROJECT_BRANCHES = {
     # customizations while booked for bug 687570 - WebRTC project
     'alder': {},
     'ash': {},
-    'birch': {},
+    # customizations for building OS X only (testing gcc OS X builds still work)
+    'birch': {
+        'lock_platforms': True,
+        'platforms': {
+            'macosx64': {},
+            'macosx64-debug': {},
+        },
+    },
     'cedar': {},
     # customizations for windows update service changes (bug 481815)
     'elm': {
