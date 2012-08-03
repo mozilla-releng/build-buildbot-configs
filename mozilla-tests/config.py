@@ -1193,6 +1193,16 @@ for branch in BRANCHES.keys():
 # End Android native hacks.
 #-------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------
+# MERGE day - disable leopard tests for FF17 onwards
+#-------------------------------------------------------------------------
+for branch in ['mozilla-central', 'try'] + ACTIVE_PROJECT_BRANCHES:
+    if 'macosx' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx']
+#-------------------------------------------------------------------------
+# End disable leopard tests for FF17 onwards
+#-------------------------------------------------------------------------
+
 if __name__ == "__main__":
     import sys, pprint, re
 
