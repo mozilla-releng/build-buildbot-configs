@@ -94,7 +94,7 @@ PLATFORM_VARS = {
             'app_name': 'b2g',
             'base_name': builder_prefix + '%(platform)s %(branch)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
-            'src_mozconfig': 'b2g/config/mozconfigs/gb_armv7a_gecko/debug',
+            'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/debug',
             'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
             'profiled_build': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
