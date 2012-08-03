@@ -9,11 +9,14 @@ SLAVES = {
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,81) + range(82,85) + [86]]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,83) + [84]]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,289)]),
+    'panda_android': dict([("panda-%03i" % x, {}) for x in range(1,31)]),
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
 SLAVES['tegra_android-xul'] = SLAVES['tegra_android']
 SLAVES['tegra_android-o'] = SLAVES['tegra_android']
+
+SLAVES['panda_android-armv6'] = SLAVES['panda_android']
 
 TRY_SLAVES = {}
 
