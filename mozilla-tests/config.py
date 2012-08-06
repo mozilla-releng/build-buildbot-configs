@@ -201,7 +201,7 @@ SUITES = {
         'options': ({}, ALL_PLATFORMS),
     },
     'dirty': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
@@ -226,7 +226,7 @@ SUITES = {
         'options': ({}, ALL_PLATFORMS),
     },
     'dromaeo': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -287,14 +287,13 @@ SUITES = {
         'options': ({}, ALL_PLATFORMS),
     },
     'dirtypaint': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
         'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
     },
-    #run in staging for a week to get a baseline of numbers, then merge in with the dromaeo suite
-    'jstests': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'sunspider:kraken:v8_7', '--mozAfterPaint'],
+    'dromaeojs': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:sunspider:kraken:v8_7'],
         'options': ({}, ALL_PLATFORMS),
     },
 
@@ -1087,8 +1086,6 @@ BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = 
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, {}, WIN7_ONLY)
 
 # Side by side staging on m-c only
-BRANCHES['mozilla-central']['dirtypaint_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-central']['jstests_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 # pgo-strategy
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
@@ -1122,7 +1119,25 @@ BRANCHES['mozilla-release']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 # end Firefox 16/release
+
+# Firefox 17/release
+BRANCHES['mozilla-aurora']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+
+BRANCHES['mozilla-beta']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+
+BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+# end Firefox 17/release
 #### END OF MERGE DAY - EXCEPTIONS
+
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
@@ -1137,6 +1152,10 @@ BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
