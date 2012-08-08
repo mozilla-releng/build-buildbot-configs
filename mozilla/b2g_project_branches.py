@@ -32,12 +32,13 @@ PROJECT_BRANCHES = {
     'services-central': {
         'repo_path': 'services/services-central'
     },
-    'ux': {
-        'branch_name': 'UX',
-        'mobile_branch_name': 'UX',
-        'build_branch': 'UX',
-        'enable_nightly': True,
-    },
+    # B2G builds not required on the UX branch
+    #'ux': {
+    #    'branch_name': 'UX',
+    #    'mobile_branch_name': 'UX',
+    #    'build_branch': 'UX',
+    #    'enable_nightly': True,
+    #},
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
     'ash': {},
