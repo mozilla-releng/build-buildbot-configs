@@ -4,7 +4,7 @@
     "platforms": ["android"]
   },
   "cs": {
-    "revision": "d0551fb8b09c",
+    "revision": "9caef02df392",
     "platforms": ["android", "android-multilocale"]
   },
   "da": {
