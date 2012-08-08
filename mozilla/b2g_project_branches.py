@@ -40,7 +40,8 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
     'ash': {},
-    'birch': {},
+    # Only need to build on OS X (testing gcc OS X builds still work)
+    #'birch': {},
     'cedar': {},
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
