@@ -27,7 +27,8 @@ PROJECT_BRANCHES = {
     },
     # Disabled because of builder limit problems - bug 721854
     #'places': {},
-    'profiling': {},
+    # B2G builds not required on the profiling branch
+    #'profiling': {},
     'services-central': {
         'repo_path': 'services/services-central'
     },
