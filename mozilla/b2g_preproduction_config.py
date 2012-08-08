@@ -1,10 +1,10 @@
 from copy import deepcopy
-import preproduction_config as ppc
+import localconfig
 
-from preproduction_config import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
+from localconfig import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
     SYMBOL_SERVER_HOST
 
-GLOBAL_VARS = deepcopy(ppc.GLOBAL_VARS)
+GLOBAL_VARS = deepcopy(localconfig.GLOBAL_VARS)
 
 # Local branch overrides
 BRANCHES = {
@@ -16,4 +16,4 @@ BRANCHES = {
 PLATFORM_VARS = {}
 
 PROJECTS = {}
-BUILDS_BEFORE_REBOOT = ppc.BUILDS_BEFORE_REBOOT
+BUILDS_BEFORE_REBOOT = localconfig.BUILDS_BEFORE_REBOOT
