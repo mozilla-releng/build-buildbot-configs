@@ -66,7 +66,6 @@ PLATFORMS = {
     'android': {},
     'android-xul': {},
     'linux-android': {},
-    'android-armv6': {},
 }
 
 # work around path length problem bug 599795
@@ -135,13 +134,6 @@ PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250"
 PLATFORMS['android-xul']['stage_product'] = 'mobile'
 PLATFORMS['android-xul']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['panda_android-armv6']
-PLATFORMS['android-armv6']['env_name'] = 'android-perf'
-PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['panda_android-armv6'] = {'name': "Android Panda"}
-PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_python'] = '/tools/buildbot/bin/python'
-
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
@@ -154,8 +146,7 @@ for platform, platform_config in PLATFORMS.items():
 
 MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
                    PLATFORMS['android-xul']['slave_platforms'] + \
-                   PLATFORMS['linux-android']['slave_platforms'] + \
-                   PLATFORMS['android-armv6']['slave_platforms']
+                   PLATFORMS['linux-android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -178,8 +169,6 @@ ANDROID = PLATFORMS['android']['slave_platforms'] + \
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
 
 ANDROID_XUL = PLATFORMS['linux-android']['slave_platforms']
-
-ANDROID_ARMV6 = PLATFORMS['android-armv6']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -383,7 +372,6 @@ BRANCH_UNITTEST_VARS = {
         'android': {},
         'android-xul': {},
         'linux-android': {},
-        'android-armv6': {},
     },
 }
 
@@ -923,17 +911,6 @@ PLATFORM_UNITTEST_VARS = {
             'remote_extras': UNITTEST_REMOTE_EXTRAS,
             'tegra_android-o': deepcopy(ANDROID_XUL_UNITTEST_DICT),
         },
-        'android-armv6': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-            'panda_android-armv6': deepcopy(ANDROID_UNITTEST_DICT),
-        },
 }
 
 # Copy project branches into BRANCHES keys
@@ -1225,7 +1202,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 LINUX_ANDROID_BRANCHES = ('mozilla-esr10',)
 for branch in BRANCHES.keys():
     if branch in LINUX_ANDROID_BRANCHES:
-        for p in ('android', 'android-xul', 'android-armv6'):
+        for p in ('android', 'android-xul'):
             if p in BRANCHES[branch]['platforms']:
                 del BRANCHES[branch]['platforms'][p]
     else:
