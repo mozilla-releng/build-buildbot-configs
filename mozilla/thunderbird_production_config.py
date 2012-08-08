@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from production_config import \
+from localconfig import \
     GLOBAL_VARS, MAC_LION_MINIS, MAC_SNOW_MINIS, \
     LINUX_VMS, LINUX_IXS, LINUX64_VMS, LINUX64_IXS, WIN32_IXS, WIN64_IXS, \
     WIN64_IXS, MOCK_DL120G7, \

@@ -1,4 +1,4 @@
-from preproduction_config import SLAVES
+from localconfig import SLAVES
 
 GLOBAL_VARS = {
     'staging': True,

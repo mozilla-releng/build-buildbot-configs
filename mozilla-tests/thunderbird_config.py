@@ -443,6 +443,15 @@ BRANCHES['comm-aurora']['pgo_strategy'] = None
 ######## comm-esr10
 BRANCHES['comm-esr10']['pgo_strategy'] = None
 
+#-------------------------------------------------------------------------
+# MERGE day - disable leopard tests for TB17 onwards
+#-------------------------------------------------------------------------
+for branch in ['comm-central', 'try-comm-central']:
+    del BRANCHES[branch]['platforms']['macosx']
+#-------------------------------------------------------------------------
+# End disable leopard tests for TB17 onwards
+#-------------------------------------------------------------------------
+
 if __name__ == "__main__":
     import sys, pprint, re
 

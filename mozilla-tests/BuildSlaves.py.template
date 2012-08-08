@@ -15,5 +15,7 @@ SlavePasswords = {
     "tegra_android": "pass",
     "tegra_android-xul": "pass",
     "tegra_android-o": "pass",
+    "panda_android": "pass",
+    "panda_android-armv6": "pass",
 }
 
