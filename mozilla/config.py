@@ -61,6 +61,7 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
+        'android-armv6': {},
         'android-debug': {},
         'android-xul': {},
     },
@@ -643,6 +644,52 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
+        'android-armv6': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'base_name': 'Android Armv6 %(branch)s',
+            'mozconfig': 'android-armv6/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-armv6/nightly',
+            'mobile_dir': 'mobile/android',
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'enable_xulrunner': False,
+            'slaves': SLAVES['linux'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3-armv6',
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-armv6",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': False,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
+        },
         'android-xul': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -891,6 +938,7 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try',):
             'android': {},
             'android-debug': {},
             'android-xul': {},
+            'android-armv6': {},
             'linux': {},
             'linux64': {},
             'win32': {},
@@ -984,6 +1032,7 @@ for branch in BRANCHES.keys():
     if branch in ('mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
         BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-%s' % branch
+        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-%s' % branch
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -1321,12 +1370,14 @@ BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['linux']
+BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
@@ -1393,6 +1444,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-xul'):
         BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android-armv6'):
+        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if BRANCHES[branch]['platforms'].has_key('win32'):
@@ -1454,6 +1507,10 @@ lion_branches += ['mozilla-release']
 # XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
+
+# MERGE DAY delete a branch from this list when FF15 merges in
+for b in ('mozilla-release',):
+    del BRANCHES[b]['platforms']['android-armv6']
 
 # This is a mapping of platform key to lion specific base_name formatters
 lion_names = {
