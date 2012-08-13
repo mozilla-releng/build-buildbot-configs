@@ -37,7 +37,7 @@ PROJECT_BRANCHES = {
         'enabled_products': ['firefox'],
         'platforms': {
             'macosx64': {
-                'slave_platforms': ['snowleopard', 'lion'],
+                'slave_platforms': ['snowleopard', 'lion', 'mountainlion'],
             },
             'android': {
                 'enable_opt_unittests': False,
