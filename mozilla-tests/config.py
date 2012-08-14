@@ -258,7 +258,7 @@ SUITES = {
     },
     'chromer': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
     'nochromer': {
