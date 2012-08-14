@@ -16,16 +16,11 @@ GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
 BRANCH_UNITTEST_VARS
 
 BRANCHES = {
-    'comm-central': {
-    },
-    'comm-release': {
-    },
-    'comm-beta': {
-    },
-    'comm-aurora': {
-    },
-    'comm-esr10': {
-    },
+    'comm-central': {},
+    'comm-release': { 'release_branch': True },
+    'comm-beta':    { 'release_branch': True },
+    'comm-aurora':  { 'release_branch': True },
+    'comm-esr10':   { 'release_branch': True },
     'try-comm-central': {
       'coallesce_jobs': False
     },
