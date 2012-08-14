@@ -48,8 +48,7 @@ GLOBAL_VARS.update({
         'macosx64-debug': {},
         'win32-debug': {},
     },
-    'enable_pgo': False,
-    'pgo_platforms': ('linux', 'linux64', 'win32'),
+    'pgo_platforms': list(),
     'pgo_strategy': None,
     'periodic_pgo_interval': 6, # in hours
     'product_name': 'thunderbird', # Not valid for mobile builds
@@ -627,8 +626,6 @@ BRANCHES['comm-central']['start_hour'] = [3]
 BRANCHES['comm-central']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['comm-central']['enable_xulrunner'] = False
-# Enable PGO Builds on this branch
-BRANCHES['comm-central']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
@@ -758,8 +755,6 @@ BRANCHES['comm-beta']['start_hour'] = [3]
 BRANCHES['comm-beta']['start_minute'] = [2]
 # Enable XULRunner / SDK builds
 BRANCHES['comm-beta']['enable_xulrunner'] = False
-# Enable PGO Builds on this branch
-BRANCHES['comm-beta']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
@@ -802,8 +797,6 @@ BRANCHES['comm-aurora']['start_hour'] = [4]
 BRANCHES['comm-aurora']['start_minute'] = [20]
 # Enable XULRunner / SDK builds
 BRANCHES['comm-aurora']['enable_xulrunner'] = False
-# Enable PGO Builds on this branch
-BRANCHES['comm-aurora']['enable_pgo'] = True
 # Enable unit tests
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
