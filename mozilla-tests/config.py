@@ -50,7 +50,7 @@ BRANCHES = {
     'mozilla-central':     {},
     'mozilla-release':     { 'release_branch': True },
     'mozilla-beta':        { 'release_branch': True },
-    'mozilla-aurora':      { 'release_branch': True },
+    'mozilla-aurora':      {},
     'mozilla-esr10':       { 'release_branch': True },
     'try':                 { 'coallesce_jobs': False},
 }
