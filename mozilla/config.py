@@ -608,10 +608,14 @@ PLATFORM_VARS = {
             'packageTests': True,
             'enable_codesighs': False,
             'create_partial': False,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Android_arm-eabi-gcc3',
+            'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr"],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -619,7 +623,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -657,10 +661,14 @@ PLATFORM_VARS = {
             'packageTests': True,
             'enable_codesighs': False,
             'enable_xulrunner': False,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Android_arm-eabi-gcc3-armv6',
+            'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", "bc"],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -668,7 +676,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -677,7 +685,7 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
                 'JAVA_HOME': '/tools/jdk6',
-                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
                 'PYTHON26': '/tools/python-2.6.5/bin/python',
             },
             'enable_opt_unittests': False,
@@ -760,10 +768,14 @@ PLATFORM_VARS = {
             'enable_leaktests': False,
             'create_snippet': False,
             'create_partial': False,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Android_arm-eabi-gcc3',
+            'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', 'mpfr'],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -771,7 +783,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -780,7 +792,7 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
                 'JAVA_HOME': '/tools/jdk6',
-                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
             },
             'enable_opt_unittests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -1535,6 +1547,19 @@ for b in BRANCHES.keys():
                 BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
                 BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
+# MERGE DAY
+# When Firefox 17 merges into these branches, they can be removed from the list
+# NB. mozharness configs will also need updating
+for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
+    for p in ('android', 'android-debug', 'android-armv6'):
+        if p not in BRANCHES[b]['platforms']:
+            continue
+        BRANCHES[b]['platforms'][p]['slaves'] = SLAVES['linux']
+        BRANCHES[b]['platforms'][p]['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+        BRANCHES[b]['platforms'][p]['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+        del BRANCHES[b]['platforms'][p]['use_mock']
+        del BRANCHES[b]['platforms'][p]['mock_target']
+        del BRANCHES[b]['platforms'][p]['mock_packages']
 
 if __name__ == "__main__":
     import sys, pprint
