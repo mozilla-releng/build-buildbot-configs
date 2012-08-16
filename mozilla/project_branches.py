@@ -37,7 +37,7 @@ PROJECT_BRANCHES = {
         'enabled_products': ['firefox'],
         'platforms': {
             'macosx64': {
-                'slave_platforms': ['snowleopard', 'lion', 'mountainlion'],
+                'slave_platforms': ['snowleopard', 'lion'],
             },
             'android': {
                 'enable_opt_unittests': False,
@@ -211,7 +211,28 @@ PROJECT_BRANCHES = {
     },
     #####  TWIGS aka RENTABLE BRANCHES
     # customizations while booked for bug 687570 - WebRTC project
-    'alder': {},
+    'alder': {
+        'platforms': {
+            'android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+            'android-xul': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+            'linux-android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+        },
+    },
     'ash': {},
     # customizations for building OS X only (testing gcc OS X builds still work)
     'birch': {

@@ -77,12 +77,11 @@ PLATFORMS['macosx']['stage_product'] = 'firefox'
 PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'lion', 'mountainlion']
+                                            'lion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
-PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
@@ -878,10 +877,6 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
-             'mountainlion': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
         },
         'android': {
             'product_name': 'fennec',
@@ -990,7 +985,6 @@ PROJECTS = {
             'leopard':{'ext':'(mac|mac64).dmg', 'debug':True}, 
             'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
             'lion':{'ext':'(mac|mac64).dmg', 'debug':True},
-            'mountainlion':{'ext':'(mac|mac64).dmg', 'debug':True},
             'xp':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
