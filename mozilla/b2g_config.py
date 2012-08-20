@@ -287,6 +287,7 @@ PLATFORM_VARS = {
                               'libX11-devel', 'libXt-devel','mesa-libGL-devel',
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                               'imake', 'ccache'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
         },
         'macosx64_gecko': {
             'product_name': 'b2g',
@@ -327,6 +328,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'test_pretty_names': False,
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
         },
         'win32_gecko': {
             'product_name': 'b2g',
