@@ -351,7 +351,6 @@ PLATFORM_VARS = {
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
             'env': {
-                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'ffxbld',

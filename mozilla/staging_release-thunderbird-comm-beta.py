@@ -15,19 +15,19 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']             = '12.0b5'
 releaseConfig['appVersion']          = '12.0'
 releaseConfig['milestone']           = '12.0'
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'THUNDERBIRD_12_0b5'
-#  Old version info
-releaseConfig['oldVersion']          = '12.0b4'
-releaseConfig['oldAppVersion']       = '12.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_12_0b4'
+releaseConfig['partialUpdates']      = {
+    '12.0b4': {
+        'appVersion': '12.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_12_0b4',
+    }
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -90,12 +90,10 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:stgbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = False
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
@@ -121,8 +119,6 @@ releaseConfig['releaseChannel']      = 'beta'
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
-# Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'

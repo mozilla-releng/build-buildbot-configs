@@ -104,7 +104,6 @@ BRANCHES = {
             'win32': {
                 'env': {
                     'SYMBOL_SERVER_HOST': 'dev-stage01.srv.releng.scl3.mozilla.com',
-                    'CVS_RSH': 'ssh',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',

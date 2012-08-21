@@ -14,19 +14,19 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']             = '10.0.1esr'
 releaseConfig['appVersion']          = '10.0.1'
 releaseConfig['milestone']           = '10.0.1'
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_10_0_1esr'
-#  Old version info
-releaseConfig['oldVersion']          = '10.0esr'
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_10_0esr'
+releaseConfig['partialUpdates']      = {
+    '10.0esr': {
+        'appVersion': '10.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_10_0esr',
+    }
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -89,12 +89,10 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = False
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
@@ -120,8 +118,6 @@ releaseConfig['releaseChannel']      = 'esr'
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
-# Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://tuxedo.stage.mozilla.com/api/'
