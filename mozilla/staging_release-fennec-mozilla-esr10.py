@@ -12,8 +12,6 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'fennec'
 releaseConfig['appName']             = 'mobile'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
 releaseConfig['version']             = '10.0.3esr'
@@ -21,11 +19,6 @@ releaseConfig['appVersion']          = '10.0.3'
 releaseConfig['milestone']           = '10.0.3'
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FENNEC_10_0_3esr'
-#  Old version info
-releaseConfig['oldVersion']          = '10.0.2esr'
-releaseConfig['oldAppVersion']       = '10.0.2'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FENNEC_10_0_2esr'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '10.0.4esrpre'
 releaseConfig['nextMilestone']       = '10.0.4esrpre'

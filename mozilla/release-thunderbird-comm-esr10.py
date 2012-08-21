@@ -16,19 +16,19 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']             = '10.0.6esr'
 releaseConfig['appVersion']          = '10.0.6'
 releaseConfig['milestone']           = '10.0.6'
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_6esr'
-#  Old version info
-releaseConfig['oldVersion']          = '10.0.5esr'
-releaseConfig['oldAppVersion']       = '10.0.5'
-releaseConfig['oldBuildNumber']      = 3
-releaseConfig['oldBaseTag']          = 'THUNDERBIRD_10_0_5esr'
+releaseConfig['partialUpdates']      = {
+    '10.0.5esr': {
+        'appVersion': '10.0.5',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_10_0_5esr',
+    }
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '10.0.7esrpre'
 releaseConfig['nextMilestone']       = '10.0.7esrpre'
@@ -87,10 +87,7 @@ releaseConfig['hgUsername']          = 'tbirdbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozEsr10-thunderbird-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -119,8 +116,6 @@ releaseConfig['releaseChannel']      = 'esr'
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
-# Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'

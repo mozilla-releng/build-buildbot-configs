@@ -13,19 +13,18 @@ releaseConfig['messagePrefix']       = '[release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']             = '14.0.1'
 releaseConfig['appVersion']          = releaseConfig['version']
 releaseConfig['milestone']           = releaseConfig['version']
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_14_0_1'
-#  Old version info
-releaseConfig['oldVersion']          = '13.0.1'
-releaseConfig['oldAppVersion']       = releaseConfig['oldVersion']
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_13_0_1'
+releaseConfig['partialUpdates']      = {
+    '13.0.1': {
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_13_0_1',
+    }
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -85,10 +84,7 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -121,8 +117,6 @@ releaseConfig['xulrunner_mozconfigs']          = {
 releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
-# Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'

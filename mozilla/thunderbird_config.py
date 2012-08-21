@@ -263,7 +263,6 @@ PLATFORM_VARS = {
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
             'env': {
-                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -309,7 +308,6 @@ PLATFORM_VARS = {
             'update_platform': 'WINNT_x86_64-msvc',
             'enable_shared_checkouts': True,
             'env': {
-                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'tbirdbld',
@@ -588,7 +586,6 @@ for branch in BRANCHES.keys():
 
 # begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
 WIN32_ENV = {
-                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
                 'SYMBOL_SERVER_USER': 'tbirdbld',
