@@ -48,7 +48,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
-    "revision": "4892b428e2cc",
+    "revision": "22de89d48112",
     "platforms": ["android", "android-multilocale"]
   },
   "ko": {
@@ -96,7 +96,7 @@
     "platforms": ["android"]
   },
   "uk": {
-    "revision": "299feb1b9f89",
+    "revision": "e54754531f14",
     "platforms": ["android"]
   },
   "zh-CN": {
