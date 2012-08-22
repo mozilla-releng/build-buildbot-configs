@@ -1,21 +1,32 @@
-SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(1,77)]),
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,72)]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,76) \
-          if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
-    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,80)]),
-    'w764': dict([("t-r3-w764-%03i" % x, {}) for x in range(1,6)]),
-    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(1,67)]),
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,81) + range(82,85) + [86]]),
-    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,83) + [84]]),
-    'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,371)]),
+from copy import deepcopy
+import production_config as pc
+
+STAGING_SLAVES = {
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in [1, 2, 10]]),
+    'fedora64': dict([("talos-r3-fed64-%03i" % x, {}) for x in [1, 2, 10]]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in [1, 2, 10]]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'tegra_android': dict(
+        [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(10,30)]
+    ),
 }
 
-SLAVES['leopard-o'] = SLAVES['leopard']
-SLAVES['tegra_android-xul'] = SLAVES['tegra_android']
-SLAVES['tegra_android-o'] = SLAVES['tegra_android']
+STAGING_SLAVES['leopard-o'] = STAGING_SLAVES['leopard']
+STAGING_SLAVES['tegra_android-xul'] = STAGING_SLAVES['tegra_android']
+STAGING_SLAVES['tegra_android-o'] = STAGING_SLAVES['tegra_android']
 
-TRY_SLAVES = {}
+SLAVES = deepcopy(STAGING_SLAVES)
+
+for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
+    if p not in SLAVES:
+        SLAVES[p] = deepcopy(slaves)
+    else:
+        SLAVES[p] = SLAVES[p].items() + slaves.items()
+
+TRY_SLAVES = deepcopy(SLAVES)
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
     '--resultsLink', '/server/collect.cgi']
