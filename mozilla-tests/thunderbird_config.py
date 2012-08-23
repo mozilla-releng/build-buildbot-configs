@@ -430,12 +430,15 @@ for suite in SUITES.keys():
 
 ######## comm-release
 BRANCHES['comm-release']['pgo_strategy'] = None
+BRANCHES['comm-release']['repo_path'] = "releases/comm-release"
 
 ######## comm-beta
 BRANCHES['comm-beta']['pgo_strategy'] = None
+BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
+BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 
 ######## comm-esr10
 BRANCHES['comm-esr10']['pgo_strategy'] = None
