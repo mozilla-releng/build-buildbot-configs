@@ -48,10 +48,10 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
-    'mozilla-release':     { 'release_branch': True },
-    'mozilla-beta':        { 'release_branch': True },
+    'mozilla-release':     {},
+    'mozilla-beta':        {},
     'mozilla-aurora':      {},
-    'mozilla-esr10':       { 'release_branch': True },
+    'mozilla-esr10':       {},
     'try':                 { 'coallesce_jobs': False},
 }
 
@@ -1026,10 +1026,6 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['fetch_release_symbols'] = False
     BRANCHES[branch]['talos_from_source_code'] = True
-    if BRANCHES[branch].has_key('release_branch'):
-        BRANCHES[branch]['release_tests'] = 5
-        BRANCHES[branch]['repo_path'] = "releases/%s" % branch
-        BRANCHES[branch]['platforms']['linux']['enable_mobile_unittests'] = True
     BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
     loadTalosSuites(BRANCHES, SUITES, branch)
     BRANCHES[branch]['pgo_strategy'] = None
@@ -1115,6 +1111,18 @@ BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLA
 # end Firefox 17/release
 #### END OF MERGE DAY - EXCEPTIONS
 
+######### mozilla-release
+BRANCHES['mozilla-release']['release_tests'] = 5
+BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
+BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
+
+######### mozilla-beta
+BRANCHES['mozilla-beta']['release_tests'] = 5
+BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
+BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
+
+######### mozilla-aurora
+BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
@@ -1133,6 +1141,9 @@ BRANCHES['mozilla-esr10']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_
 BRANCHES['mozilla-esr10']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['release_tests'] = 5
+BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
+BRANCHES['mozilla-esr10']['platforms']['linux']['enable_mobile_unittests'] = True
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)

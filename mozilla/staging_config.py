@@ -1,3 +1,4 @@
+from copy import deepcopy
 import production_config as pc
 
 MAC_SNOW_MINIS = ['moz2-darwin10-slave02']
@@ -8,7 +9,7 @@ WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 
-SLAVES = {
+STAGING_SLAVES = {
     'linux':            LINUX_IXS,
     'linux64':          LINUX64_IXS,
     'win32':            WIN32_IXS,
@@ -19,6 +20,8 @@ SLAVES = {
     'mock':             MOCK_DL120G7
 }
 
+SLAVES = deepcopy(STAGING_SLAVES)
+
 for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
     if p not in SLAVES:
         SLAVES[p] = list(slaves)
@@ -26,7 +29,7 @@ for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
         SLAVES[p].extend(slaves)
 
 
-TRY_SLAVES = SLAVES.copy()
+TRY_SLAVES = deepcopy(SLAVES)
 
 GLOBAL_VARS = {
     'staging': True,
