@@ -402,9 +402,6 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['enable_unittests'] = True
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['fetch_release_symbols'] = False
-    if BRANCHES[branch].has_key('release_branch'):
-        BRANCHES[branch]['release_tests'] = 5
-        BRANCHES[branch]['repo_path'] = "releases/%s" % branch
     BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = []
 
