@@ -692,13 +692,6 @@ BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
 
-# MERGE day - Delete these four lines when Thunderbird 15 merges in
-BRANCHES['comm-release']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-release']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['comm-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['comm-release']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
-
 ######## comm-esr10
 BRANCHES['comm-esr10']['repo_path'] = 'releases/comm-esr10'
 BRANCHES['comm-esr10']['update_channel'] = 'nightly-esr10'
