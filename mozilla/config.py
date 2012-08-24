@@ -1131,12 +1131,6 @@ BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-# MERGE DAY Delete these four lines when Firefox 15 merges in
-BRANCHES['mozilla-release']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-release']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-release']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-release']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-# End delete
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1517,7 +1511,7 @@ lion_branches += ['mozilla-release']
 # on esr10.  At that point, we should change the defaults to reflect the lion slave
 # list and base_name, setting the esr10 slavelist and base_names appropriately
 
-# MERGE DAY delete a branch from this list when FF15 merges in
+# MERGE DAY delete a branch from this list when FF16 merges in
 for b in ('mozilla-release',):
     del BRANCHES[b]['platforms']['android-armv6']
 
