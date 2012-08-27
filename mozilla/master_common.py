@@ -41,7 +41,7 @@ BRANCH_PRIORITIES = {
     'holly': 4,
     'larch': 4,
     'maple': 4,
-    'oak': 1, # Priority bumped up temporarily in bug 756463
+    'oak': 4,
     'pine': 4,
 }
 
