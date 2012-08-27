@@ -64,8 +64,6 @@ PLATFORMS = {
     'linux': {},
     'linux64' : {},
     'android': {},
-    'android-xul': {},
-    'linux-android': {},
 }
 
 # work around path length problem bug 599795
@@ -112,27 +110,12 @@ PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-PLATFORMS['linux-android']['slave_platforms'] = ['tegra_android-o']
-PLATFORMS['linux-android']['env_name'] = 'android-perf'
-PLATFORMS['linux-android']['is_mobile'] = True
-PLATFORMS['linux-android']['tegra_android-o'] = {'name': "Android Tegra 250"}
-PLATFORMS['linux-android']['stage_platform'] = 'android'
-PLATFORMS['linux-android']['stage_product'] = 'mobile'
-PLATFORMS['linux-android']['mozharness_python'] = '/tools/buildbot/bin/python'
-
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_python'] = '/tools/buildbot/bin/python'
-
-PLATFORMS['android-xul']['slave_platforms'] = ['tegra_android-xul']
-PLATFORMS['android-xul']['env_name'] = 'android-perf'
-PLATFORMS['android-xul']['is_mobile'] = True
-PLATFORMS['android-xul']['tegra_android-xul'] = {'name': "Android XUL Tegra 250"}
-PLATFORMS['android-xul']['stage_product'] = 'mobile'
-PLATFORMS['android-xul']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -144,9 +127,7 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
-                   PLATFORMS['android-xul']['slave_platforms'] + \
-                   PLATFORMS['linux-android']['slave_platforms']
+MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -163,12 +144,9 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
-ANDROID = PLATFORMS['android']['slave_platforms'] + \
-          PLATFORMS['linux-android']['slave_platforms']
+ANDROID = PLATFORMS['android']['slave_platforms']
 
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
-
-ANDROID_XUL = PLATFORMS['linux-android']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -307,11 +285,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
-    'remote-tpan': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tpan', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
-    },
     'remote-trobopan': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
@@ -337,25 +310,10 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck3', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
     },
-    'remote-tp4m': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--rss'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
-    },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-twinopen': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'twinopen'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
-    },
-    'remote-tzoom': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tzoom'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_XUL),
     },
 }
 
@@ -370,8 +328,6 @@ BRANCH_UNITTEST_VARS = {
         'win32': {},
         'win64': {},
         'android': {},
-        'android-xul': {},
-        'linux-android': {},
     },
 }
 
@@ -532,130 +488,6 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
             addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
                       suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
-ANDROID_XUL_UNITTEST_DICT = {
-    'opt_unittest_suites': [
-        ('mochitest-1', (
-            {'suite': 'mochitest-plain',
-             'testPaths': [
-                 'content/smil/test', 'content/xml/document/test',
-                 'content/xslt/tests/mochitest'
-             ]
-            },
-        )),
-        ('mochitest-2', (
-            {'suite': 'mochitest-plain',
-             'testPaths': [
-                 'dom/src/json/test', 'dom/src/jsurl/test',
-                 'dom/tests/mochitest/dom-level0', 'js'
-             ]
-            },
-        )),
-        ('mochitest-3', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['dom/tests/mochitest/dom-level1-core']
-            },
-        )),
-        ('mochitest-4', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['dom/tests/mochitest/dom-level2-core']
-            },
-        )),
-        ('mochitest-5', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['dom/tests/mochitest/ajax/mochikit',
-                           'dom/tests/mochitest/ajax/scriptaculous',
-                           'dom/tests/mochitest/ajax/jquery'],
-            },
-        )),
-        ('mochitest-6', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['dom/tests/mochitest/dom-level2-html'],
-            },
-        )),
-        ('mochitest-7', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['Harness_sanity',
-                           'editor/composer/test',
-                           'intl/uconv/tests',
-                           'dom/tests/mochitest/orientation',
-                           'dom/tests/mochitest/storageevent'],
-            },
-        )),
-        ('mochitest-8', (
-            {'suite': 'mochitest-plain',
-             'testPaths': ['layout/xul/test',
-                           'modules/libjar/test/mochitest',
-                           'layout/inspector/tests',
-                           'toolkit/xre/test',
-                           'toolkit/components/microformats/tests',
-                           'MochiKit-1.4.2/tests',
-                           'parser/htmlparser/tests/mochitest'],
-           },
-        )),
-# Disable browser-chrome for android-xul; bug 771421
-#        ('browser-chrome', (
-#            {'suite': 'mochitest-browser-chrome',
-#             'testPaths': ['mobile']
-#            },
-#        )),
-        ('reftest-1', (
-            {'suite': 'reftest',
-             'totalChunks': 3,
-             'thisChunk': 1,
-            },
-        )),
-        ('reftest-2', (
-            {'suite': 'reftest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-            },
-        )),
-        ('reftest-3', (
-            {'suite': 'reftest',
-             'totalChunks': 3,
-             'thisChunk': 3,
-            },
-        )),
-        # disabled for constant timeouts, bug 728119
-        # ('crashtest-1', (
-        #     {'suite': 'crashtest',
-        #      'totalChunks': 3,
-        #      'thisChunk': 1,
-        #     },
-        # )),
-        ('crashtest-2', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-            },
-        )),
-        ('crashtest-3', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 3,
-            },
-        )),
-        ('jsreftest-1', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 1,
-            },
-        )),
-        ('jsreftest-2', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-            },
-        )),
-        ('jsreftest-3', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 3,
-            },
-        )),
-    ],
-    'debug_unittest_suites': [],
-}
 ANDROID_UNITTEST_DICT = {
     'opt_unittest_suites': [
         ('mochitest-1', (
@@ -888,28 +720,6 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
-        },
-        'android-xul': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-xul': deepcopy(ANDROID_XUL_UNITTEST_DICT),
-        },
-        'linux-android': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-o': deepcopy(ANDROID_XUL_UNITTEST_DICT),
         },
 }
 
@@ -1206,22 +1016,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
     loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
-
-#-------------------------------------------------------------------------
-# Delete all references to linux-android when mozilla-esr10 is retired.
-#-------------------------------------------------------------------------
-LINUX_ANDROID_BRANCHES = ('mozilla-esr10',)
-for branch in BRANCHES.keys():
-    if branch in LINUX_ANDROID_BRANCHES:
-        for p in ('android', 'android-xul'):
-            if p in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][p]
-    else:
-        if 'linux-android' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux-android']
-#-------------------------------------------------------------------------
-# End Android native hacks.
-#-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for FF17 onwards

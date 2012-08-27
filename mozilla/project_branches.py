@@ -219,18 +219,6 @@ PROJECT_BRANCHES = {
                 'enable_talos': False,
                 'tegra_android': {},
             },
-            'android-xul': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
-            'linux-android': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
         },
     },
     'ash': {},

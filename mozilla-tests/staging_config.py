@@ -15,8 +15,6 @@ STAGING_SLAVES = {
 }
 
 STAGING_SLAVES['leopard-o'] = STAGING_SLAVES['leopard']
-STAGING_SLAVES['tegra_android-xul'] = STAGING_SLAVES['tegra_android']
-STAGING_SLAVES['tegra_android-o'] = STAGING_SLAVES['tegra_android']
 
 SLAVES = deepcopy(STAGING_SLAVES)
 

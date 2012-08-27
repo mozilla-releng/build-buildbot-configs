@@ -17,8 +17,6 @@ SLAVES = {
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
-SLAVES['tegra_android-xul'] = SLAVES['tegra_android']
-SLAVES['tegra_android-o'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
