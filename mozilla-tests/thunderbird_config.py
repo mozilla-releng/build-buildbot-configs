@@ -447,7 +447,11 @@ BRANCHES['comm-esr10']['pgo_strategy'] = None
 # MERGE day - disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
 for branch in ['comm-central', 'try-comm-central']:
-    del BRANCHES[branch]['platforms']['macosx']
+    if 'macosx' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx']
+    if 'macosx64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx64']['leopard']
+        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion']
 #-------------------------------------------------------------------------
 # End disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
