@@ -51,7 +51,17 @@ BRANCHES = {
     'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-aurora':      {},
-    'mozilla-esr10':       {},
+    'mozilla-esr10':       {
+        'platforms': {
+            'macosx': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux': {},
+            'linux64' : {},
+        },
+        'lock_platforms': True,
+    },
     'try':                 { 'coallesce_jobs': False},
 }
 
