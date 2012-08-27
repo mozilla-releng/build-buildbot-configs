@@ -13,7 +13,5 @@ SlavePasswords = {
     "w764": "pass",
     "vista": "pass",
     "tegra_android": "pass",
-    "tegra_android-xul": "pass",
-    "tegra_android-o": "pass",
 }
 

@@ -63,7 +63,6 @@ GLOBAL_VARS = {
         'android': {},
         'android-armv6': {},
         'android-debug': {},
-        'android-xul': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
@@ -696,57 +695,6 @@ PLATFORM_VARS = {
             'is_mobile_l10n': False,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
         },
-        'android-xul': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Android XUL %(branch)s',
-            'mozconfig': 'android-xul/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/xul/config/mozconfigs/android/nightly',
-            'mobile_dir': 'mobile/xul',
-            'enable_xulrunner': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
-            'upload_symbols': True,
-            'download_symbols': False,
-            'packageTests': True,
-            'enable_codesighs': False,
-            'create_partial': False,
-            'slaves': SLAVES['linux'],
-            'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3-xul',
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'JAVA_HOME': '/tools/jdk6',
-                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
-            },
-            'enable_opt_unittests': False,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-xul",
-            'stage_product': 'mobile',
-            'android_signing': True,
-            'post_upload_include_platform': True,
-            'multi_locale': True,
-            'multi_locale_script': 'scripts/multil10n.py',
-            'tooltool_manifest_src': 'mobile/xul/config/tooltool-manifests/android/releng.manifest',
-        },
         'android-debug': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -946,7 +894,6 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try',):
         'platforms': {
             'android': {},
             'android-debug': {},
-            'android-xul': {},
             'android-armv6': {},
             'linux': {},
             'linux64': {},
@@ -1040,7 +987,6 @@ for branch in BRANCHES.keys():
 
     if branch in ('mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-        BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-%s' % branch
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-%s' % branch
 
 ######## mozilla-central
@@ -1175,7 +1121,6 @@ del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-xul']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-aurora
@@ -1277,59 +1222,6 @@ BRANCHES['mozilla-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
 # End delete
-# TODO remove all traces of linux-android when we build
-# Android native releases off mozilla-release).
-BRANCHES['mozilla-esr10']['platforms']['linux-android'] = {
-    'product_name': 'firefox',
-    'app_name': 'browser',
-    'brand_name': 'Minefield',
-    'base_name': 'Android mozilla-esr10',
-    'mozconfig': 'linux-android/mozilla-esr10/nightly',
-    'src_mozconfig': 'mobile/config/mozconfigs/android/nightly',
-    'enable_nightly': True,
-    'enable_dep': True,
-    'enable_xulrunner': False,
-    'profiled_build': False,
-    'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-    'build_space': 6,
-    'upload_symbols': True,
-    'download_symbols': False,
-    'packageTests': True,
-    'enable_codesighs': False,
-    'create_partial': False,
-    'slaves': SLAVES['linux'],
-    'platform_objdir': OBJDIR,
-    'update_platform': 'Android_arm-eabi-gcc3',
-    'enable_shared_checkouts': True,
-    'env': {
-        'DISPLAY': ':2',
-        'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        'MOZ_OBJDIR': OBJDIR,
-        'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-        'SYMBOL_SERVER_USER': 'ffxbld',
-        'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-        'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-        'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-        'TINDERBOX_OUTPUT': '1',
-        'MOZ_CRASHREPORTER_NO_REPORT': '1',
-        'CCACHE_DIR': '/builds/ccache',
-        'MOZ_SYMBOLS_EXTRA_BUILDID': 'android-mozilla-esr10',
-        'CCACHE_COMPRESS': '1',
-        'CCACHE_UMASK': '002',
-        'LC_ALL': 'C',
-        'JAVA_HOME': '/tools/jdk6',
-        'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-    },
-    'enable_opt_unittests': False,
-    'talos_masters': GLOBAL_VARS['talos_masters'],
-    'unittest_masters': GLOBAL_VARS['unittest_masters'],
-    'stage_platform': "android",
-    'stage_product': 'mobile',
-    'android_signing': True,
-    'post_upload_include_platform': True,
-    'multi_locale': True,
-    'multi_locale_script': 'scripts/multil10n.py',
-}
 
 ######## try
 # Try-specific configs
@@ -1375,13 +1267,11 @@ BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64'
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-xul']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android-xul']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
@@ -1445,8 +1335,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if BRANCHES[branch]['platforms'].has_key('android'):
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
-    if BRANCHES[branch]['platforms'].has_key('android-xul'):
-        BRANCHES[branch]['platforms']['android-xul']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-xul-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-armv6'):
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):

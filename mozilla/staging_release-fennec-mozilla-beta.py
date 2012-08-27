@@ -35,10 +35,6 @@ releaseConfig['sourceRepositories']  = {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
-            'mobile/xul/confvars.sh': {
-                'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
-            },
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
@@ -69,7 +65,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android-xul',)
+releaseConfig['enUSPlatforms']        = ('android',)
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
@@ -102,7 +98,6 @@ releaseConfig['partnerRepackPlatforms'] = ()
 # mozconfigs
 releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
-    'android-xul': 'mobile/xul/config/mozconfigs/android/release',
 }
 releaseConfig['releaseChannel']      = 'beta'
 
@@ -128,8 +123,6 @@ releaseConfig['single_locale_options'] = {
 
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'android-xul':
-            'multi_locale/staging_release_mozilla-beta_android-xul.json',
         'android':
             'multi_locale/staging_release_mozilla-beta_android.json',
     },
