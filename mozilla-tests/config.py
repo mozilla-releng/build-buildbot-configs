@@ -1229,6 +1229,10 @@ for branch in BRANCHES.keys():
 for branch in ['mozilla-central', 'try'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
+    if 'macosx64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx64']['leopard']
+        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion']
+
 #-------------------------------------------------------------------------
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
