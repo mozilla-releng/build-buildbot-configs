@@ -302,6 +302,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'enable_pymake': True,
         },
         'win32-metro': {
             'product_name': 'firefox',
@@ -331,6 +332,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
+            'enable_pymake': True,
             'env': {
                 "HG_SHARE_BASE_DIR": 'e:/builds/hg-shared',
                 "MOZ_TOOLS": 'C:\\mozilla-build\\moztools',
@@ -408,6 +410,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
+            'enable_pymake': True,
         },
         'linux-debug': {
             'product_name': 'firefox',
@@ -587,6 +590,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'enable_pymake': True,
         },
         'android': {
             'product_name': 'firefox',
@@ -1434,6 +1438,11 @@ for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
         del BRANCHES[b]['platforms'][p]['use_mock']
         del BRANCHES[b]['platforms'][p]['mock_target']
         del BRANCHES[b]['platforms'][p]['mock_packages']
+    # Disable pymake
+    for p in ('win32', 'win32-debug', 'win32-metro', 'win64'):
+        if p not in BRANCHES[b]['platforms']:
+            continue
+        BRANCHES[b]['platforms'][p]['enable_pymake'] = False
 
 if __name__ == "__main__":
     import sys, pprint
