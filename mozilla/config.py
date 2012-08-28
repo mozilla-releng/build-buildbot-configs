@@ -658,6 +658,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'enable_codesighs': False,
             'enable_xulrunner': False,
+            'profiled_build': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'update_platform': 'Android_arm-eabi-gcc3-armv6',
