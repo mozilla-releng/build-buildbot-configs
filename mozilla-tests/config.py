@@ -982,37 +982,6 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', ):
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
-# Let's load peptest for the following branches:
-for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
-    for pf in PLATFORMS:
-        if 'android' in pf:
-            continue
-        hg_bin = 'hg'
-        if pf.startswith("win"):
-            hg_bin = 'c:\\mozilla-build\\hg\\hg'
-        if isinstance(PLATFORMS[pf]['mozharness_python'], list):
-            reboot_command = PLATFORMS[pf]['mozharness_python'][:]
-        else:
-            reboot_command = [PLATFORMS[pf]['mozharness_python']]
-        reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
-                               '-f', '../reboot_count.txt',
-                               '-n', '1', '-z'])
-        for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            config_file = "peptest/prod_config.py"
-            if pf == "macosx" and slave_pf == "leopard-o":
-                continue
-            if pf.startswith("win"):
-                config_file = "peptest/windows_config.py"
-            BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('peptest', {'suite': 'peptest',
-                'mozharness_repo': MOZHARNESS_REPO,
-                'script_path': 'scripts/peptest.py',
-                'extra_args': [
-                    "--cfg", config_file
-                ],
-                'reboot_command': reboot_command,
-                'hg_bin': hg_bin,
-            })]
-
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
