@@ -58,6 +58,7 @@ GLOBAL_VARS = {
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
+        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
@@ -886,29 +887,6 @@ BRANCHES = {
     },
 }
 
-# MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try')
-for branch in ('mozilla-beta', 'mozilla-release'):
-    # We keep adding 'macosx-debug' to these branches
-    BRANCHES[branch] = {
-        'lock_platforms': True,
-        'platforms': {
-            'android': {},
-            'android-debug': {},
-            'android-armv6': {},
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64': {},
-        }
-    }
-
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
@@ -1282,6 +1260,12 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
+# MERGE day - when FF17 moves into such branch remove it from the list
+# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try')
+for branch in BRANCHES:
+    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10',) and \
+        'macosx-debug' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx-debug']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
