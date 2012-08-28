@@ -659,7 +659,6 @@ BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'n
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['comm-central']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## comm-release
 BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
@@ -826,7 +825,6 @@ BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'ni
 BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['comm-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## try
 # Try-specific configs
@@ -879,6 +877,12 @@ BRANCHES['try-comm-central']['platforms']['win64']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
+
+# MERGE day - when FF17 moves into such branch remove it from the list
+# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try') 
+for branch in BRANCHES:
+    if branch not in ('comm-beta', 'comm-release', 'comm-esr10',):
+        del BRANCHES[branch]['platforms']['macosx-debug']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
