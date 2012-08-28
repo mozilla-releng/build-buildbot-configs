@@ -887,8 +887,8 @@ BRANCHES = {
 }
 
 # MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try') 
-for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try',):
+# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try')
+for branch in ('mozilla-beta', 'mozilla-release'):
     # We keep adding 'macosx-debug' to these branches
     BRANCHES[branch] = {
         'lock_platforms': True,
@@ -1178,7 +1178,6 @@ BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['macosx-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
@@ -1263,7 +1262,6 @@ BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
@@ -1330,7 +1328,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['aus2_mobile_base_upload_dir_l10n'] = branchConfig.get('aus2_mobile_base_upload_dir_l10n', '/opt/aus2/incoming/2/Fennec/' + branch)
     #make sure it has an ending slash
     BRANCHES[branch]['l10nUploadPath'] = \
-        '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/' 
+        '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/'
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
     if BRANCHES[branch]['platforms'].has_key('linux'):
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
@@ -1430,7 +1428,7 @@ for b in BRANCHES.keys():
 # MERGE DAY
 # When Firefox 17 merges into these branches, they can be removed from the list
 # NB. mozharness configs will also need updating
-for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
+for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
     for p in ('android', 'android-debug', 'android-armv6'):
         if p not in BRANCHES[b]['platforms']:
             continue

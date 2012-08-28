@@ -420,7 +420,7 @@ def addSuite(suiteGroupName, newSuiteName, suiteList):
     return newSuiteList
 
 def loadDefaultValues(BRANCHES, branch, branchConfig):
-    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch) 
+    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
     BRANCHES[branch]['mobile_branch_name'] = branchConfig.get('mobile_branch_name', branch.title())
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
@@ -440,7 +440,7 @@ def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
         for suite in SUITES.keys():
             branchConfig['talos_suites'][suite]  = 0
 
-    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites'] 
+    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites']
     # This is the default and will make all talosConfig.get(key,0) calls
     # to default to 0 a.k.a. disabled suite
     talosConfig = {}
@@ -620,7 +620,7 @@ ANDROID_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
-# You must define opt_unittest_suites when enable_opt_unittests is True for a 
+# You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
         'linux': {
@@ -780,7 +780,7 @@ for branch in BRANCHES.keys():
                         BRANCHES[branch]['platforms'][platform][key] = value
             else:
                 BRANCHES[branch][key] = deepcopy(value)
- 
+
     # Merge in any project branch config for platforms
     if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
         for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
@@ -804,10 +804,10 @@ PROJECTS = {
     'jetpack': {
         'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
         'platforms': {
-            'w764': {'ext':'win64-x86_64.zip', 'debug':True}, 
-            'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True}, 
-            'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True}, 
-            'leopard':{'ext':'(mac|mac64).dmg', 'debug':True}, 
+            'w764': {'ext':'win64-x86_64.zip', 'debug':True},
+            'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True},
+            'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True},
+            'leopard':{'ext':'(mac|mac64).dmg', 'debug':True},
             'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
             'lion':{'ext':'(mac|mac64).dmg', 'debug':True},
             'mountainlion':{'ext':'(mac|mac64).dmg', 'debug':True},
@@ -815,7 +815,7 @@ PROJECTS = {
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug':True,
-                }, 
+                },
             'win7':{
                 'ext':'win32.zip',
                 'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
@@ -892,20 +892,7 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 #### MERGE DAY - EXCEPTIONS
-# When Firefox 16 is on mozilla-beta we can remove these
-# Firefox 16/beta
-BRANCHES['mozilla-beta']['chrome.2_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-beta']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-beta']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-# end Firefox 16/beta
-
+# When Firefox 16 is on mozilla-release we can remove these
 # Firefox 16/release
 BRANCHES['mozilla-release']['chrome.2_tests'] = (1, True, {}, NO_MAC)
 BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
@@ -1036,7 +1023,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
-for branch in ['mozilla-central', 'try'] + ACTIVE_PROJECT_BRANCHES:
+for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
