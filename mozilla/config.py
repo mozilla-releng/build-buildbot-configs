@@ -303,7 +303,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'enable_pymake': True,
+            'enable_pymake': False,
         },
         'win32-metro': {
             'product_name': 'firefox',
@@ -333,7 +333,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
-            'enable_pymake': True,
+            'enable_pymake': False,
             'env': {
                 "HG_SHARE_BASE_DIR": 'e:/builds/hg-shared',
                 "MOZ_TOOLS": 'C:\\mozilla-build\\moztools',
@@ -411,7 +411,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
-            'enable_pymake': True,
+            'enable_pymake': False,
         },
         'linux-debug': {
             'product_name': 'firefox',
@@ -591,7 +591,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'enable_pymake': True,
+            'enable_pymake': False,
         },
         'android': {
             'product_name': 'firefox',
