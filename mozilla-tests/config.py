@@ -957,6 +957,8 @@ BRANCHES['mozilla-esr10']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['release_tests'] = 5
 BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
 BRANCHES['mozilla-esr10']['platforms']['linux']['enable_mobile_unittests'] = True
+del BRANCHES['mozilla-esr10']['platforms']['macosx64']['mountainlion']
+BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopard', 'snowleopard', 'lion']
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, {}, WIN7_ONLY)
