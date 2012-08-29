@@ -289,7 +289,7 @@ PLATFORM_VARS = {
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -355,6 +355,7 @@ PLATFORM_VARS = {
                     'C:\\mozilla-build\\python;' + \
                     'C:\\mozilla-build\\upx203w;' + \
                     'C:\\mozilla-build\\info-zip;' + \
+                    'C:\\mozilla-build\\nsis-2.46u;' + \
                     'C:\\mozilla-build\\nsis-2.22;' + \
                     'C:\\mozilla-build\\nsis-2.33u;' + \
                     'C:\\mozilla-build\\hg;' + \
@@ -584,7 +585,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
             'enable_checktests': True,
