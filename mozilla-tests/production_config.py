@@ -1,5 +1,5 @@
 SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,18) + range(19,77)]),
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,18) + range(19,59) + range(60,77)]),
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (3,10) + range(11,35) + range(36,72)]),
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,96) \
           if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
