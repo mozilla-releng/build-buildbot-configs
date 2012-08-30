@@ -207,7 +207,7 @@ PLATFORM_VARS = {
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'OS X 10.6.2 %(branch)s',
+            'base_name': 'OS X 10.7 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
@@ -218,13 +218,13 @@ PLATFORM_VARS = {
             'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': "%s/i386" % OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -240,6 +240,9 @@ PLATFORM_VARS = {
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -253,6 +256,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
         },
         'win32': {
             'product_name': 'firefox',
@@ -270,6 +274,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
+            'l10n_slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32',
@@ -488,7 +493,7 @@ PLATFORM_VARS = {
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'OS X 10.5.2 %(branch)s leak test',
+            'base_name': 'OS X 10.7 32-bit %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
             'src_mozconfig': 'browser/config/mozconfigs/macosx32/debug',
             'profiled_build': False,
@@ -496,12 +501,13 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 10,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -509,6 +515,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -526,7 +535,7 @@ PLATFORM_VARS = {
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'OS X 10.6.2 %(branch)s leak test',
+            'base_name': 'OS X 10.7 64-bit %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
             'enable_leaktests': True,
             'src_mozconfig': 'browser/config/mozconfigs/macosx64/debug',
@@ -535,12 +544,12 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 10,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': True,
+            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -548,6 +557,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -560,6 +572,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
         },
         'win32-debug': {
             'product_name': 'firefox',
@@ -1195,11 +1208,23 @@ BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['upload_mobile_symbols'] = True
-# Delete these four lines for esr17
+# Delete these lines for esr17
 BRANCHES['mozilla-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+BRANCHES['mozilla-esr10']['platforms']['macosx64']['base_name'] = 'OS X 10.6.2 mozilla-esr10'
+BRANCHES['mozilla-esr10']['platforms']['macosx64']['slaves'] = SLAVES['macosx64']
+BRANCHES['mozilla-esr10']['platforms']['macosx64']['enable_shark'] = True
+BRANCHES['mozilla-esr10']['platforms']['macosx64']['enable_ccache'] = False
+BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-esr10 leak test'
+BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx64']
+BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_shark'] = True
+BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
+BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['base_name'] = 'OS X 10.6.2 mozilla-esr10 leak test'
+BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
+BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_shark'] = True
+BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
 
 ######## try
@@ -1237,11 +1262,11 @@ BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
@@ -1371,44 +1396,9 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-# Bug 720027, do macosx64 builds on Lion slaves where appropriate
-lion_branches = ['mozilla-central', 'try',] + ACTIVE_PROJECT_BRANCHES[:]
-# MERGE DAY
-# Each line starts with a branch.  When Firefox 14 hits that branch, uncomment
-# line and remove the branch name.  i.e. s/^# \w*: //
-lion_branches += ['mozilla-aurora']
-lion_branches += ['mozilla-beta']
-lion_branches += ['mozilla-release']
-# XXX When FF14 is on mozilla-release, we will only have the old macosx64 machines
-# on esr10.  At that point, we should change the defaults to reflect the lion slave
-# list and base_name, setting the esr10 slavelist and base_names appropriately
-
 # MERGE DAY delete a branch from this list when FF16 merges in
 for b in ('mozilla-release',):
     del BRANCHES[b]['platforms']['android-armv6']
-
-# This is a mapping of platform key to lion specific base_name formatters
-lion_names = {
-    'macosx64': 'OS X 10.7 %(branch)s',
-    'macosx64-debug': 'OS X 10.7 64-bit %(branch)s leak test',
-    'macosx-debug': 'OS X 10.7 32-bit %(branch)s leak test',
-}
-for b in BRANCHES.keys():
-    if b in lion_branches:
-        for p in ('macosx64', 'macosx64-debug', 'macosx-debug'):
-            if b == 'try':
-                slave_list = TRY_SLAVES['macosx64-lion']
-            else:
-                slave_list = SLAVES['macosx64-lion']
-            if BRANCHES[b]['platforms'].has_key(p):
-                BRANCHES[b]['platforms'][p]['slaves'] = slave_list
-                BRANCHES[b]['platforms'][p]['l10n_slaves_key'] = 'macosx64-lion'
-                BRANCHES[b]['platforms'][p]['base_name'] = lion_names[p] % {'branch': b}
-                BRANCHES[b]['platforms'][p]['enable_ccache'] = True
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_DIR'] = '/builds/ccache'
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
-                BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
 # MERGE DAY
 # When Firefox 17 merges into these branches, they can be removed from the list
