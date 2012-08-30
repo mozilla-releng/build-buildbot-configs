@@ -194,7 +194,7 @@ PLATFORM_VARS = {
         'macosx64': {
             'product_name': 'thunderbird',
             'app_name': 'mail',
-            'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s',
+            'base_name': builder_prefix + 'OS X 10.7 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'run_alive_tests': False,
             'src_mozconfig': 'mail/config/mozconfigs/macosx-universal/nightly',
@@ -207,7 +207,7 @@ PLATFORM_VARS = {
             'build_space': 12,
             'upload_symbols': True,
             'download_symbols': True,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': "%s/i386" % OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx64',
@@ -229,6 +229,9 @@ PLATFORM_VARS = {
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -237,6 +240,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
         },
         'win32': {
             'product_name': 'thunderbird',
@@ -255,6 +259,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
+            'l10n_slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32',
@@ -402,7 +407,7 @@ PLATFORM_VARS = {
         'macosx-debug': {
             'product_name': 'thunderbird',
             'app_name': 'mail',
-            'base_name': builder_prefix + 'OS X 10.5.2 %(branch)s leak test',
+            'base_name': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
             'mozconfig': 'macosx/%(branch)s/debug',
             'run_alive_tests': False,
             'src_mozconfig': 'mail/config/mozconfigs/macosx32/debug',
@@ -412,12 +417,13 @@ PLATFORM_VARS = {
             'packageTests': True,
             'leak_target': 'mailbloat',
             'build_space': 10,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
             'enable_shark': False,
+            'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -425,6 +431,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -436,7 +445,7 @@ PLATFORM_VARS = {
         'macosx64-debug': {
             'product_name': 'thunderbird',
             'app_name': 'mail',
-            'base_name': builder_prefix + 'OS X 10.6.2 %(branch)s leak test',
+            'base_name': builder_prefix + 'OS X 10.7 64-bit %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
             'run_alive_tests': False,
             'src_mozconfig': 'mail/config/mozconfigs/macosx64/debug',
@@ -446,7 +455,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'leak_target': 'mailbloat',
             'build_space': 10,
-            'slaves': SLAVES['macosx64'],
+            'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx64-debug',
@@ -459,6 +468,9 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -466,6 +478,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'mac-dep-signing',
             'dep_signing_servers': 'mac-dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
         },
         'win32-debug': {
             'product_name': 'thunderbird',
@@ -530,9 +543,6 @@ BRANCHES = {
     'try-comm-central': {
     },
 }
-
-for branch in BRANCHES:
-    BRANCHES[branch]['l10n_slaves'] = SLAVES
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -729,6 +739,16 @@ BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
 BRANCHES['comm-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
+
+BRANCHES['comm-esr10']['platforms']['macosx64']['base_name'] = builder_prefix + 'OS X 10.6.2 comm-esr10'
+BRANCHES['comm-esr10']['platforms']['macosx64']['slaves'] = SLAVES['macosx64']
+BRANCHES['comm-esr10']['platforms']['macosx64']['enable_ccache'] = False
+BRANCHES['comm-esr10']['platforms']['macosx-debug']['base_name'] = builder_prefix + 'OS X 10.5.2 comm-esr10 leak test'
+BRANCHES['comm-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx64']
+BRANCHES['comm-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
+BRANCHES['comm-esr10']['platforms']['macosx64-debug']['base_name'] = builder_prefix + 'OS X 10.6.2 comm-esr10 leak test'
+BRANCHES['comm-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
+BRANCHES['comm-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
 
 ######## comm-beta
@@ -857,12 +877,12 @@ BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['linux
 BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
 BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
-BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64']
+BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
@@ -912,39 +932,6 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
-
-# MERGE DAY Bug 720027 / Bug 748628, do macosx64 builds on Lion slaves where appropriate
-lion_branches = ['comm-central', 'try-comm-central',]
-# When Thunderbird 14 hits that branch, uncomment line
-lion_branches += ['comm-aurora']
-lion_branches += ['comm-beta']
-lion_branches += ['comm-release']
-# XXX When Thunderbird 14 is on mozilla-release, we will only have the old macosx64 machines
-# on esr10.  At that point, we should change the defaults to reflect the lion slave
-# list and base_name, setting the esr10 slavelist and base_names appropriately
-
-# This is a mapping of platform key to lion specific base_name formatters
-lion_names = {
-    'macosx64': builder_prefix + 'OS X 10.7 %(branch)s',
-    'macosx64-debug': builder_prefix + 'OS X 10.7 64-bit %(branch)s leak test',
-    'macosx-debug': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
-}
-for b in BRANCHES.keys():
-    if b in lion_branches:
-        for p in ('macosx64', 'macosx64-debug', 'macosx-debug'):
-            if b == 'try-comm-central':
-                slave_list = TRY_SLAVES['macosx64-lion']
-            else:
-                slave_list = SLAVES['macosx64-lion']
-            if BRANCHES[b]['platforms'].has_key(p):
-                BRANCHES[b]['platforms'][p]['slaves'] = slave_list
-                BRANCHES[b]['platforms'][p]['l10n_slaves_key'] = 'macosx64-lion'
-                BRANCHES[b]['platforms'][p]['base_name'] = lion_names[p] % {'branch': b}
-                BRANCHES[b]['platforms'][p]['enable_ccache'] = True
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_DIR'] = '/builds/ccache'
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_COMPRESS'] = '1'
-                BRANCHES[b]['platforms'][p]['env']['CCACHE_UMASK'] = '002'
-                BRANCHES[b]['platforms'][p]['enable_shark'] = False
 
 
 if __name__ == "__main__":
