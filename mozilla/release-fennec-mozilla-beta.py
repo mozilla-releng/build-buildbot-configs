@@ -121,6 +121,8 @@ releaseConfig['multilocale_config'] = {
     'platforms': {
         'android':
             'multi_locale/release_mozilla-beta_android.json',
+        'android-armv6':
+            'multi_locale/release_mozilla-beta_android-armv6.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
