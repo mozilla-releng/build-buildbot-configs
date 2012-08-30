@@ -713,6 +713,8 @@ PLATFORM_VARS = {
             'android_signing': True,
             'post_upload_include_platform': True,
             'is_mobile_l10n': False,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
         },
         'android-debug': {
