@@ -443,6 +443,9 @@ BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 ######## comm-esr10
 BRANCHES['comm-esr10']['pgo_strategy'] = None
 
+######## try
+BRANCHES['try-comm-central']['enable_try'] = True
+
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
