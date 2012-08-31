@@ -245,7 +245,7 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
     },
     'chromer': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
@@ -272,6 +272,11 @@ SUITES = {
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:sunspider:kraken:v8_7'],
+        'options': ({}, ALL_PLATFORMS),
+    },
+    'chromez': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
 
@@ -899,7 +904,7 @@ BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
 BRANCHES['mozilla-release']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -907,11 +912,16 @@ BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLAT
 # end Firefox 16/release
 
 # Firefox 17/release
+BRANCHES['mozilla-beta']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
 
+
+BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
@@ -939,7 +949,7 @@ BRANCHES['mozilla-esr10']['tpn_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['svgr_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['chromer_tests'] = (0, True, {}, ALL_PLATFORMS)
+BRANCHES['mozilla-esr10']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
