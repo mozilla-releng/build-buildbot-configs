@@ -935,16 +935,16 @@ for branch in branches:
 
 
 if __name__ == "__main__":
-    import sys, pprint
+    import sys
+    import pprint
     args = sys.argv[1:]
 
     if len(args) > 0:
-        branches = args
+        items = dict([(b, BRANCHES[b]) for b in args])
     else:
-        branches = BRANCHES.keys()
+        items = BRANCHES
 
-    for branch in branches:
-        print branch
-        pprint.pprint(BRANCHES[branch])
-
-# need to do things to copy platform/global stuff into BRANCHES here, like config.py does
+    for k, v in items.iteritems():
+        out = pprint.pformat(v)
+        for l in out.splitlines():
+             print '%s: %s' % (k, l)

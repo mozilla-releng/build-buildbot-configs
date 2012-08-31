@@ -1424,16 +1424,16 @@ for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False        
 
 if __name__ == "__main__":
-    import sys, pprint
+    import sys
+    import pprint
     args = sys.argv[1:]
 
     if len(args) > 0:
-        branches = args
+        items = dict([(b, BRANCHES[b]) for b in args])
     else:
-        branches = BRANCHES.keys()
+        items = dict(BRANCHES.items() + PROJECTS.items())
 
-    for branch in branches:
-        print branch
-        pprint.pprint(BRANCHES[branch])
-
-    pprint.pprint(PROJECTS)
+    for k, v in items.iteritems():
+        out = pprint.pformat(v)
+        for l in out.splitlines():
+             print '%s: %s' % (k, l)
