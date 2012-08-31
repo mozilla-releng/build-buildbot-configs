@@ -907,11 +907,6 @@ BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLAT
 # end Firefox 16/release
 
 # Firefox 17/release
-BRANCHES['mozilla-aurora']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-
 BRANCHES['mozilla-beta']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
