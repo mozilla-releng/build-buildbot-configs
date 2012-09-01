@@ -23,7 +23,7 @@ for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
     if p not in SLAVES:
         SLAVES[p] = deepcopy(slaves)
     else:
-        SLAVES[p] = SLAVES[p].items() + slaves.items()
+        SLAVES[p] = dict(SLAVES[p].items() + slaves.items())
 
 TRY_SLAVES = deepcopy(SLAVES)
 
