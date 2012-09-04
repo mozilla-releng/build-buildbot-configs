@@ -108,9 +108,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
-        'talos_suites': {
-            'v8': 1,
-        }
     },
     # DISABLED because of builder limit problems - bug 721854
 #    'places': {
