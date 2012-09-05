@@ -191,6 +191,9 @@ BRANCHES['comm-release']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-release']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -200,6 +203,9 @@ BRANCHES['comm-release']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-release']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -320,6 +326,9 @@ BRANCHES['comm-beta']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-beta']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -329,6 +338,9 @@ BRANCHES['comm-beta']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-beta']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -449,6 +461,9 @@ BRANCHES['comm-aurora']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -459,6 +474,9 @@ BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-aurora']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -579,6 +597,9 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -589,6 +610,9 @@ BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
