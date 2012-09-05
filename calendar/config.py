@@ -57,7 +57,7 @@ DEFAULTS = {
     'nightly_hour':           [3],
     'nightly_minute':         [0],
     'irc':                    True,
-    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
+    'clobber_url':            "https://calendar-master.mozillalabs.com/clobberer/",
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
     'codesighs':              False,
@@ -76,7 +76,6 @@ DEFAULTS = {
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
 
-    'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
     'build_tools_repo': "build/tools",
     'hg_rev_shortnames': {
       'mozilla-central':        'moz',
