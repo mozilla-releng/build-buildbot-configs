@@ -30,9 +30,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'pgo_platform': 'win64',
             },
-            'win64': {
-                'enable_pymake': True,
-            },
         },
     },
     'devtools':{
