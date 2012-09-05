@@ -23,7 +23,7 @@ releaseConfig['partialUpdates']      = {
     '15.0': {
         'buildNumber': 1,
         'baseTag': 'FIREFOX_15_0',
-    }
+    },
     '14.0.1': {
         'buildNumber': 1,
         'baseTag': 'FIREFOX_14_0_1',
