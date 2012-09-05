@@ -417,7 +417,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
-            'enable_pymake': False,
+            'enable_pymake': True,
         },
         'linux-debug': {
             'product_name': 'firefox',

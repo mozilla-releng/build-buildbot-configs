@@ -31,12 +31,12 @@ BUILDERS = {
         'momo': ['momo-vm-cal-linux64-01'],
     },
     'macosx': {
-#        '10.5': {
-#            'community': [ 'cb-xserve03' ],
-#        },
         '10.6': {
             'momo':      [ 'tb2-darwin10-slave64' ],
             'sea':       [ 'sea-loaner-osx' ],
+        },
+        '10.7': {
+            'community':      [ 'cal-mini-osx64-1' ],
         }
     },
     'win32': {
@@ -57,7 +57,7 @@ DEFAULTS = {
     'nightly_hour':           [3],
     'nightly_minute':         [0],
     'irc':                    True,
-    'clobber_url':            "http://build.mozillamessaging.com/clobberer/",
+    'clobber_url':            "https://calendar-master.mozillalabs.com/clobberer/",
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
     'codesighs':              False,
@@ -76,7 +76,6 @@ DEFAULTS = {
     # Unit Test
     'client_py_args':       ['--skip-comm', '--skip-chatzilla', '--skip-venkman', '--hg-options=--verbose --time'],
 
-    'clobber_url':  "http://build.mozillamessaging.com/clobberer/",
     'build_tools_repo': "build/tools",
     'hg_rev_shortnames': {
       'mozilla-central':        'moz',
@@ -172,8 +171,8 @@ BRANCHES['comm-release']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-release']['tinderbox_tree'] = 'Calendar-Release'
 BRANCHES['comm-release']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-release']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
-BRANCHES['comm-release']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-release']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
+BRANCHES['comm-release']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
+BRANCHES['comm-release']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -191,6 +190,9 @@ BRANCHES['comm-release']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-release']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -200,6 +202,9 @@ BRANCHES['comm-release']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-release']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -209,7 +214,7 @@ BRANCHES['comm-release']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-release']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -220,13 +225,10 @@ BRANCHES['comm-release']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    #'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-
-    # Temporary
-    'SYMBOL_SERVER_SSH_KEY': '/Users/seabld/.ssh/calbld_dsa',
 }
 
 ######## lightning-beta
@@ -301,8 +303,8 @@ BRANCHES['comm-beta']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-beta']['tinderbox_tree'] = 'Calendar-Beta'
 BRANCHES['comm-beta']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
-BRANCHES['comm-beta']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-beta']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['momo']
+BRANCHES['comm-beta']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
+BRANCHES['comm-beta']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -320,6 +322,9 @@ BRANCHES['comm-beta']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-beta']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -329,6 +334,9 @@ BRANCHES['comm-beta']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-beta']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -338,7 +346,7 @@ BRANCHES['comm-beta']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltlbld/.ssh/calbld_dsa',
 }
 BRANCHES['comm-beta']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -349,13 +357,10 @@ BRANCHES['comm-beta']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    #'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-
-    # Temporary
-    'SYMBOL_SERVER_SSH_KEY': '/Users/seabld/.ssh/calbld_dsa',
 }
 
 ######## lightning-aurora
@@ -429,8 +434,8 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['upload_symbols'] = True
 BRANCHES['comm-aurora']['tinderbox_tree'] = 'Calendar-Aurora'
 BRANCHES['comm-aurora']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-aurora']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
-BRANCHES['comm-aurora']['platforms']['win32']['slaves'] = BUILDERS['win32']['community']
-BRANCHES['comm-aurora']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['sea']
+BRANCHES['comm-aurora']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
+BRANCHES['comm-aurora']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -449,6 +454,9 @@ BRANCHES['comm-aurora']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -459,6 +467,9 @@ BRANCHES['comm-aurora']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-aurora']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -468,7 +479,7 @@ BRANCHES['comm-aurora']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
@@ -480,13 +491,12 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
-
 ######## lightning-trunk
 # All platforms being built for this branch MUST be listed here.
 BRANCHES['comm-central']['platforms'] = {
@@ -560,7 +570,7 @@ BRANCHES['comm-central']['tinderbox_tree'] = 'CalendarTrunk'
 BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
 BRANCHES['comm-central']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
 BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
-BRANCHES['comm-central']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.6']['sea']
+BRANCHES['comm-central']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
 
 # This is used in a bunch of places where something needs to be run from
 # the objdir. This is necessary because of universal builds on Mac
@@ -579,6 +589,9 @@ BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
 }
 BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -589,6 +602,9 @@ BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+
+    # Bug 779192
+    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
 }
 BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'MOZ_OBJDIR': OBJDIR,
@@ -598,7 +614,7 @@ BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/calbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 }
 BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
@@ -610,13 +626,12 @@ BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
     'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
     'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
     'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/Users/cltbld/.ssh/calbld_dsa',
+    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
     'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
 
     # See bug 758694
     'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
 }
-
 # Release automation expect to find these
 STAGE_BASE_PATH=DEFAULTS['stage_base_path']
 COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'

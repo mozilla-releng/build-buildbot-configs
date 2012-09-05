@@ -30,9 +30,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'pgo_platform': 'win64',
             },
-            'win64': {
-                'enable_pymake': True,
-            },
         },
     },
     'devtools':{
@@ -71,9 +68,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-        'talos_suites': {
-            'v8': 1,
-        },
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
@@ -108,9 +102,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
-        'talos_suites': {
-            'v8': 1,
-        }
     },
     # DISABLED because of builder limit problems - bug 721854
 #    'places': {
