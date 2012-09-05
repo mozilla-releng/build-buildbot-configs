@@ -71,9 +71,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-        'talos_suites': {
-            'v8': 1,
-        },
     },
     'jaegermonkey': {
         'mozconfig_dir': 'jaegermonkey',
