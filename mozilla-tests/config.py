@@ -888,7 +888,6 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-inbound']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 # Side by side staging on m-c only
 
