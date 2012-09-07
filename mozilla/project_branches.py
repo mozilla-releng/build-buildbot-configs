@@ -82,6 +82,9 @@ PROJECT_BRANCHES = {
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'platforms': {
             'linux64': {
                 'build_space': 7,
