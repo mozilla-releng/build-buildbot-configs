@@ -11,9 +11,9 @@ releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
 releaseConfig['version']                    = '2.12.1'
-releaseConfig['appVersion']                 = '2.12'
-releaseConfig['milestone']                  = '15.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['appVersion']                 = '2.12.1'
+releaseConfig['milestone']                  = '15.0.1'
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_12_1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.12'
@@ -28,8 +28,8 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '3bccb752ab1c'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = '378bed8d856f'
+releaseConfig['relbranchOverride']          = 'SEA_COMM150_20120907_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
@@ -50,7 +50,7 @@ releaseConfig['chatzillaRepoRevision']      = 'e25c0b12b768'
 releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_12_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM150_20120907_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 #  Support repositories
 #   not used yet
