@@ -193,11 +193,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_cold:ts_cold_generated_min:ts_cold_generated_med:ts_cold_generated_max'],
         'options': (TALOS_DIRTY_OPTS, NO_WIN),
     },
-    'v8': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'v8'],
-        'options': ({}, ALL_PLATFORMS),
-    },
     'svg': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
@@ -206,11 +201,6 @@ SUITES = {
     'dromaeo': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'v8.2': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'v8.2', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, ALL_PLATFORMS),
     },
     'chrome.2': {
