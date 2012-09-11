@@ -44,6 +44,11 @@ PROJECT_BRANCHES = {
                 'enable_debug_unittests': False,
                 'tegra_android': {},
             },
+            'android-armv6': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'tegra_android': {},
+            },
         },
     },
     # DISABLED because of builder limit problems - bug 721854
@@ -211,6 +216,12 @@ PROJECT_BRANCHES = {
     'alder': {
         'platforms': {
             'android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+            'android-armv6': {
                 'enable_opt_unittests': False,
                 'enable_debug_unittests': False,
                 'enable_talos': False,

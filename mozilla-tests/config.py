@@ -74,6 +74,7 @@ PLATFORMS = {
     'linux': {},
     'linux64' : {},
     'android': {},
+    'android-armv6': {},
 }
 
 # work around path length problem bug 599795
@@ -128,6 +129,14 @@ PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_python'] = '/tools/buildbot/bin/python'
 
+PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
+PLATFORMS['android-armv6']['env_name'] = 'android-perf'
+PLATFORMS['android-armv6']['is_mobile'] = True
+PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegra 250"}
+PLATFORMS['android-armv6']['stage_product'] = 'mobile'
+PLATFORMS['android-armv6']['mozharness_python'] = '/tools/buildbot/bin/python'
+
+
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
@@ -138,7 +147,8 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms']
+MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
+                   PLATFORMS['android-armv6']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -158,6 +168,8 @@ MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 ANDROID = PLATFORMS['android']['slave_platforms']
 
 ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
+
+ANDROID_ARMV6 = PLATFORMS['android-armv6']['slave_platforms']
 
 ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
@@ -334,6 +346,7 @@ BRANCH_UNITTEST_VARS = {
         'win32': {},
         'win64': {},
         'android': {},
+        'android-armv6': {},
     },
 }
 
@@ -615,6 +628,31 @@ ANDROID_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
+
+ANDROID_ARMV6_UNITTEST_DICT = {
+    'opt_unittest_suites': [
+        ('reftest-1', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 1,
+            },
+        )),
+        ('reftest-2', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 2,
+            },
+        )),
+        ('reftest-3', (
+            {'suite': 'reftest',
+             'totalChunks': 3,
+             'thisChunk': 3,
+            },
+        )),
+    ],
+    'debug_unittest_suites': [],
+}
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -730,6 +768,17 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
+        },
+        'android-armv6': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': False,
+            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+            'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
         },
 }
 
@@ -1000,6 +1049,18 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRAN
 #-------------------------------------------------------------------------
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------
+# MERGE day - only enable android-armv6 tests for FF18 onwards
+#-------------------------------------------------------------------------
+for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release']:
+    if 'android-armv6' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-armv6']
+
+#-------------------------------------------------------------------------
+# End enable android-armv6 tests for FF18 onwards
+#-------------------------------------------------------------------------
+
 
 if __name__ == "__main__":
     import sys, pprint, re
