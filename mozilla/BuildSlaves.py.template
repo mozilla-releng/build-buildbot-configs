@@ -11,6 +11,7 @@ SlavePasswords = {
         'macosx64-lion': 'pass',
         'try-macosx': 'pass',
         'android': 'pass',
+        'android-armv6': 'pass',
         'mock': 'pass'
         }
 tuxedoUsername = 'user'

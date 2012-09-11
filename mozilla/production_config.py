@@ -22,6 +22,7 @@ SLAVES = {
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'android':          LINUX_VMS + LINUX_IXS,
+    'android-armv6':    LINUX_VMS + LINUX_IXS,
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 

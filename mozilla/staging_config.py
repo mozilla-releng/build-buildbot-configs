@@ -16,6 +16,7 @@ STAGING_SLAVES = {
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
     'android':          LINUX_IXS,
+    'android-armv6':    LINUX_IXS,
     'mock':             MOCK_DL120G7
 }
 
