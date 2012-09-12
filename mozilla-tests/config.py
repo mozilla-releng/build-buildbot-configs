@@ -1029,6 +1029,41 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
+# Let's load Marionette for the following branches:
+for branch in ('try', ):
+    for pf in PLATFORMS:
+        if 'android' in pf:
+            # this is just for desktop Firefox
+            continue
+        hg_bin = 'hg'
+        if pf.startswith("win"):
+            hg_bin = 'c:\\mozilla-build\\hg\\hg'
+        if isinstance(PLATFORMS[pf]['mozharness_python'], list):
+            reboot_command = PLATFORMS[pf]['mozharness_python'][:]
+        else:
+            reboot_command = [PLATFORMS[pf]['mozharness_python']]
+        reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
+                               '-f', '../reboot_count.txt',
+                               '-n', '1', '-z'])
+        for slave_pf in PLATFORMS[pf]['slave_platforms']:
+            config_file = "marionette/prod_config.py"
+            if pf == "macosx" and slave_pf in ("leopard-o", "leopard"):
+                # we don't run on OSX 10.5
+                continue
+            if pf.startswith("win"):
+                config_file = "marionette/windows_config.py"
+            # Marionette is only enabled on debug builds
+            BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('marionette',
+                { 'suite': 'marionette',
+                  'mozharness_repo': MOZHARNESS_REPO,
+                  'script_path': 'scripts/marionette.py',
+                  'extra_args': [
+                      "--cfg", config_file
+                  ],
+                  'reboot_command': reboot_command,
+                  'hg_bin': hg_bin,
+                })]
+
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
