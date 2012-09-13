@@ -71,6 +71,7 @@ GLOBAL_VARS = {
     'enable_shark': True,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
+    'blocklist_update_set_approval': True,
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,

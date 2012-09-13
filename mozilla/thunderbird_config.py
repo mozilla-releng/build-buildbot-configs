@@ -56,6 +56,7 @@ GLOBAL_VARS.update({
     'brand_name': 'Daily', # Not valid for mobile builds
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
+    'blocklist_update_set_approval': True,
     'enable_nightly': True,
     'enabled_products': ['thunderbird'],
     'enable_valgrind': False,
