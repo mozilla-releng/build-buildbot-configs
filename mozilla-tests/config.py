@@ -567,20 +567,26 @@ ANDROID_UNITTEST_DICT = {
         )),
         ('reftest-1', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 1,
             },
         )),
         ('reftest-2', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 2,
             },
         )),
         ('reftest-3', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 3,
+            },
+        )),
+        ('reftest-4', (
+            {'suite': 'reftest',
+             'totalChunks': 4,
+             'thisChunk': 4,
             },
         )),
         # disabled for constant timeouts, bug 728119
@@ -633,20 +639,26 @@ ANDROID_ARMV6_UNITTEST_DICT = {
     'opt_unittest_suites': [
         ('reftest-1', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 1,
             },
         )),
         ('reftest-2', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 2,
             },
         )),
         ('reftest-3', (
             {'suite': 'reftest',
-             'totalChunks': 3,
+             'totalChunks': 4,
              'thisChunk': 3,
+            },
+        )),
+        ('reftest-4', (
+            {'suite': 'reftest',
+             'totalChunks': 4,
+             'thisChunk': 4,
             },
         )),
     ],
