@@ -1121,9 +1121,9 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRAN
 #-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
-# MERGE day - only enable android-armv6 tests for FF18 onwards
+# MERGE day - only enable android-armv6 tests for FF16 onwards
 #-------------------------------------------------------------------------
-for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release']:
+for branch in ['mozilla-release', 'mozilla-esr10']:
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
 #-------------------------------------------------------------------------
