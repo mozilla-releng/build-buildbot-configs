@@ -10,6 +10,7 @@ SLAVES = {
 }
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
+SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
