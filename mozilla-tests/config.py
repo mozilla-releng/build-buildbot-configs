@@ -75,6 +75,7 @@ PLATFORMS = {
     'linux64' : {},
     'android': {},
     'android-armv6': {},
+    'android-noion': {},
 }
 
 # work around path length problem bug 599795
@@ -136,6 +137,13 @@ PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegr
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_python'] = '/tools/buildbot/bin/python'
 
+PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
+PLATFORMS['android-noion']['env_name'] = 'android-perf'
+PLATFORMS['android-noion']['is_mobile'] = True
+PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android no-ionmonkey Tegra 250"}
+PLATFORMS['android-noion']['stage_product'] = 'mobile'
+PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
+
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -146,9 +154,6 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform])
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
-
-MOBILE_PLATFORMS = PLATFORMS['android']['slave_platforms'] + \
-                   PLATFORMS['android-armv6']['slave_platforms']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
@@ -166,8 +171,6 @@ NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 ANDROID = PLATFORMS['android']['slave_platforms']
-
-ANDROID_NATIVE = PLATFORMS['android']['slave_platforms']
 
 ANDROID_ARMV6 = PLATFORMS['android-armv6']['slave_platforms']
 
@@ -306,27 +309,27 @@ SUITES = {
     'remote-trobopan': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-trobocheck': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheckerboard', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-troboprovider': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-trobocheck2': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-trobocheck3': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck3', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
@@ -347,6 +350,7 @@ BRANCH_UNITTEST_VARS = {
         'win64': {},
         'android': {},
         'android-armv6': {},
+        'android-noion': {},
     },
 }
 
@@ -634,6 +638,14 @@ ANDROID_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
+ANDROID_NOION_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest') or suite[0].startswith('crashtest'):
+        continue
+    ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_ARMV6_UNITTEST_DICT = {
     'opt_unittest_suites': [
@@ -791,6 +803,17 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
+        },
+        'android-noion': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': False,
+            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+            'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
         },
 }
 
@@ -1018,7 +1041,7 @@ BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopar
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NATIVE)
+BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
@@ -1098,15 +1121,21 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRAN
 #-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
-# MERGE day - only enable android-armv6 tests for FF18 onwards
+# MERGE day - only enable android-armv6 tests for FF16 onwards
 #-------------------------------------------------------------------------
-for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release']:
+for branch in ['mozilla-release', 'mozilla-esr10']:
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
-
 #-------------------------------------------------------------------------
 # End enable android-armv6 tests for FF18 onwards
 #-------------------------------------------------------------------------
+
+# XXX Bug 789373 hack - add android-noion until we have b2g testing
+# Delete all references to android-noion once we have b2g testing
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'try'):
+        if 'android-noion' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['android-noion']
 
 
 if __name__ == "__main__":
