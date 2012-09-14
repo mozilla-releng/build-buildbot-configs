@@ -647,35 +647,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
         continue
     ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
-ANDROID_ARMV6_UNITTEST_DICT = {
-    'opt_unittest_suites': [
-        ('reftest-1', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 1,
-            },
-        )),
-        ('reftest-2', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 2,
-            },
-        )),
-        ('reftest-3', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 3,
-            },
-        )),
-        ('reftest-4', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 4,
-            },
-        )),
-    ],
-    'debug_unittest_suites': [],
-}
+ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_UNITTEST_DICT)
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
