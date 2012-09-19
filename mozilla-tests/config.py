@@ -1043,17 +1043,17 @@ for branch in ('try', ):
 
 ### start of mozharness desktop unittests
 mozharness_unittest_suites = [
-    {'suite_name': 'mozharness_mochitests-1/5', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
-    {'suite_name': 'mozharness_mochitests-2/5', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
-    {'suite_name': 'mozharness_mochitests-3/5', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
-    {'suite_name': 'mozharness_mochitests-4/5', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
-    {'suite_name': 'mozharness_mochitests-5/5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
-    {'suite_name': 'mozharness_mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
+    {'suite_name': 'mochitests-1/5', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
+    {'suite_name': 'mochitests-2/5', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
+    {'suite_name': 'mochitests-3/5', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
+    {'suite_name': 'mochitests-4/5', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
+    {'suite_name': 'mochitests-5/5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
+    {'suite_name': 'mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
         ['browser-chrome', 'chrome', 'a11y', 'plugins']},
-    {'suite_name': 'mozharness_reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
-    {'suite_name': 'mozharness_jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
-    {'suite_name': 'mozharness_crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},
-    {'suite_name': 'mozharness_xpcshell', 'suite_category': 'xpcshell', 'sub_categories': ['xpcshell']}
+    {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
+    {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
+    {'suite_name': 'crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},
+    {'suite_name': 'xpcshell', 'suite_category': 'xpcshell', 'sub_categories': ['xpcshell']}
 ]
 for branch in BRANCHES:
     if BRANCHES[branch].get('mozharness_unittests'):
@@ -1078,6 +1078,7 @@ for branch in BRANCHES:
             for slave_pf in PLATFORMS[pf]['slave_platforms']:
                 if pf == "macosx" and slave_pf == "leopard-o":
                     continue
+                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] = []
                 for suite in mozharness_unittest_suites:
                     extra_args = ["--cfg", config_file,
                                 '--enable-preflight-run-commands']
@@ -1085,7 +1086,7 @@ for branch in BRANCHES:
                         extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
                     BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [
                         (suite['suite_name'], {
-                            'mozharness_repo': 'http://hg.mozilla.org/users/jlund_mozilla.com/mozharness',
+                            'mozharness_repo': MOZHARNESS_REPO,
                             'script_path': 'scripts/desktop_unittest.py',
                             'extra_args': extra_args,
                             'reboot_command': reboot_command,
