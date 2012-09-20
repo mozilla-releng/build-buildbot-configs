@@ -115,6 +115,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'use_mock': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -164,6 +165,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'use_mock': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -701,6 +703,8 @@ BRANCHES['comm-release']['enable_blocklist_update'] = False
 BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
+BRANCHES['comm-release']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-release']['platforms']['linux64']['use_mock'] = False
 
 ######## comm-esr10
 BRANCHES['comm-esr10']['repo_path'] = 'releases/comm-esr10'
@@ -751,6 +755,8 @@ BRANCHES['comm-esr10']['platforms']['macosx64-debug']['base_name'] = builder_pre
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
+BRANCHES['comm-esr10']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-esr10']['platforms']['linux64']['use_mock'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -794,6 +800,8 @@ BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
+BRANCHES['comm-beta']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux64']['use_mock'] = False
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -846,6 +854,8 @@ BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'ni
 BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+BRANCHES['comm-aurora']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-aurora']['platforms']['linux64']['use_mock'] = False
 
 ######## try
 # Try-specific configs
