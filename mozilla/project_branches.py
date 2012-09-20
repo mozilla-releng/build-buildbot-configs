@@ -238,7 +238,9 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {},
         },
     },
-    'cedar': {},
+    'cedar': {
+        'mozharness_unittests': True,
+    },
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,

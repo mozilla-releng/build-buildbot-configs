@@ -16,7 +16,31 @@ HOME = /home/$(USER)
 BUILDBOT_BRANCH = production-0.8
 BUILDBOTCUSTOM_BRANCH = production-0.8
 BUILDBOTCONFIGS_BRANCH = production
+TOOLS_BRANCH = default
 INSTALL_BUILDBOT_SLAVE=
+
+# staging master setup
+ifdef USE_DEV_MASTER
+MASTERS_JSON = dev-master_config.json
+HTTP_PORT = $(error HTTP_PORT must be defined)
+PB_PORT = $(error PB_PORT must be defined)
+SSH_PORT = $(error SSH_PORT must be defined)
+ROLE = $(error ROLE must be defined)
+
+GENERATE_MASTERS_JSON_CMD = \
+    sed -e 's,@BASEDIR@,$(BASEDIR),g' \
+        -e 's,@HTTP_PORT@,$(HTTP_PORT),g' \
+        -e 's,@PB_PORT@,$(PB_PORT),g' \
+        -e 's,@SSH_PORT@,$(SSH_PORT),g' \
+        -e 's,@MASTER_NAME@,$(MASTER_NAME),g' \
+        -e 's,@ROLE@,$(ROLE),g' \
+        -e 's,@ROLE@,$(ROLE),g' \
+        -e 's,@BUILDBOTCUSTOM_BRANCH@,$(BUILDBOTCUSTOM_BRANCH),g' \
+        -e 's,@BUILDBOTCONFIGS_BRANCH@,$(BUILDBOTCONFIGS_BRANCH),g' \
+        -e 's,@TOOLS_BRANCH@,$(TOOLS_BRANCH),g' \
+        -e 's,@BUILDBOT_BRANCH@,$(BUILDBOT_BRANCH),g' \
+        $(MASTERS_JSON).in > $(MASTERS_JSON)
+endif
 
 ifdef MASTERS_JSON
 SETUP_MASTER=setup-master.py -j $(MASTERS_JSON)
@@ -49,13 +73,17 @@ ifdef INSTALL_BUILDBOT_SLAVE
 endif
 	test -d $(BASEDIR)/buildbotcustom || $(HG) clone -b $(BUILDBOTCUSTOM_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
 	test -d $(BASEDIR)/buildbot-configs || $(HG) clone -b $(BUILDBOTCONFIGS_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
-	test -d $(BASEDIR)/tools || $(HG) clone $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
+	test -d $(BASEDIR)/tools || $(HG) clone -b $(TOOLS_BRANCH) $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
 	# Get buildbotcustom and the build/tools library into PYTHONPATH
 	ln -sf $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
 	echo "$(BASEDIR)/tools/lib/python" > $(SITE_PACKAGES)/build-tools-lib.pth
 
 master:
-	(cd $(BASEDIR)/buildbot-configs; $(VIRTUALENV_PYTHON) $(SETUP_MASTER) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME))
+ifdef GENERATE_MASTERS_JSON_CMD
+	cd $(BASEDIR)/buildbot-configs && $(GENERATE_MASTERS_JSON_CMD)
+endif
+	cd $(BASEDIR)/buildbot-configs && \
+	    $(VIRTUALENV_PYTHON) $(SETUP_MASTER) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME)
 
 master-makefile:
 	ln -sf $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile

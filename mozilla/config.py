@@ -121,7 +121,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'linux',
@@ -136,14 +136,14 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -153,7 +153,28 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest'
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
         },
         'linux64': {
             'product_name': 'firefox',
@@ -169,7 +190,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'slaves': SLAVES['linux64'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'linux64',
@@ -184,7 +205,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'ffxbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -192,7 +213,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -203,6 +224,27 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -432,7 +474,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'build_space': 7,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'linux-debug',
@@ -449,11 +491,32 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
         },
         'linux64-debug': {
             'product_name': 'firefox',
@@ -467,7 +530,7 @@ PLATFORM_VARS = {
             'download_symbols': False,
             'packageTests': True,
             'build_space': 7,
-            'slaves': SLAVES['linux64'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'linux64-debug',
@@ -484,11 +547,32 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
         },
         'macosx-debug': {
             'product_name': 'firefox',
@@ -633,6 +717,11 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr"],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -650,7 +739,6 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'JAVA_HOME': '/tools/jdk6',
                 'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
             },
             'enable_opt_unittests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -687,6 +775,11 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", "bc"],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -704,7 +797,6 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'JAVA_HOME': '/tools/jdk6',
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
             },
             'enable_opt_unittests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -745,6 +837,11 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', 'mpfr'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+            ],
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1033,6 +1130,7 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/inc
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
+
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
@@ -1073,6 +1171,40 @@ BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
+# mock disabled block start
+# linux platforms
+BRANCHES['mozilla-release']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-release']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-release']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-release']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-release']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-release']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-release']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-release']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-release']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-release']['platforms']['linux64-debug']['env']['PATH']
+# android platforms
+BRANCHES['mozilla-release']['platforms']['android-debug']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['android']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-release']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-release']['platforms']['android']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
+BRANCHES['mozilla-release']['platforms']['android-debug']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['android-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-release']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
+# mock disabled block stop
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1118,6 +1250,40 @@ BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
+# mock disabled block start
+# linux platforms
+BRANCHES['mozilla-beta']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-beta']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-beta']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-beta']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-beta']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-beta']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-beta']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-beta']['platforms']['linux64-debug']['env']['PATH']
+# android platforms
+BRANCHES['mozilla-beta']['platforms']['android']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['android']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-beta']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-beta']['platforms']['android']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
+BRANCHES['mozilla-beta']['platforms']['android-debug']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['android-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['use_mock'] = False
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
+# mock disabled block stop
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1175,6 +1341,24 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_serve
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
+# mock disabled block start
+BRANCHES['mozilla-aurora']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-aurora']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-aurora']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-aurora']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-aurora']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-aurora']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-aurora']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
@@ -1229,6 +1413,24 @@ BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['mac
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_shark'] = True
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
+# mock disabled block start
+BRANCHES['mozilla-esr10']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-esr10']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-esr10']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-esr10']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr10']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr10']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr10']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr10']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-esr10']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-esr10']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## try
 # Try-specific configs
@@ -1261,13 +1463,13 @@ BRANCHES['try']['enable_shark'] = False
 BRANCHES['try']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
@@ -1406,17 +1608,6 @@ for b in ('mozilla-release',):
 # MERGE DAY
 # When Firefox 17 merges into these branches, they can be removed from the list
 # NB. mozharness configs will also need updating
-for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
-    for p in ('android', 'android-debug', 'android-armv6'):
-        if p not in BRANCHES[b]['platforms']:
-            continue
-        BRANCHES[b]['platforms'][p]['slaves'] = SLAVES['linux']
-        BRANCHES[b]['platforms'][p]['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-        BRANCHES[b]['platforms'][p]['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-        del BRANCHES[b]['platforms'][p]['use_mock']
-        del BRANCHES[b]['platforms'][p]['mock_target']
-        del BRANCHES[b]['platforms'][p]['mock_packages']
-
 for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win32-metro', 'win64'):

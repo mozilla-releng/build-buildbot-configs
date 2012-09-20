@@ -100,7 +100,7 @@ PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
-PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
+PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python27/python', '-u']
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
@@ -108,7 +108,7 @@ PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
                               'download_symbols': False,
                              }
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
+PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python27/python', '-u']
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -1040,6 +1040,60 @@ for branch in ('try', ):
                   'reboot_command': reboot_command,
                   'hg_bin': hg_bin,
                 })]
+
+### start of mozharness desktop unittests
+mozharness_unittest_suites = [
+    {'suite_name': 'mochitests-1/5', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
+    {'suite_name': 'mochitests-2/5', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
+    {'suite_name': 'mochitests-3/5', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
+    {'suite_name': 'mochitests-4/5', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
+    {'suite_name': 'mochitests-5/5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
+    {'suite_name': 'mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
+        ['browser-chrome', 'chrome', 'a11y', 'plugins']},
+    {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
+    {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
+    {'suite_name': 'crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},
+    {'suite_name': 'xpcshell', 'suite_category': 'xpcshell', 'sub_categories': ['xpcshell']}
+]
+for branch in BRANCHES:
+    if BRANCHES[branch].get('mozharness_unittests'):
+        for pf in PLATFORMS:
+            hg_bin = 'hg'
+            if isinstance(PLATFORMS[pf]['mozharness_python'], list):
+                reboot_command = PLATFORMS[pf]['mozharness_python'][:]
+            else:
+                reboot_command = [PLATFORMS[pf]['mozharness_python']]
+            reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
+                                '-f', '../reboot_count.txt',
+                                '-n', '1', '-z'])
+            if 'android' in pf:
+                continue
+            if pf.startswith("win"):
+                hg_bin = 'c:\\mozilla-build\\hg\\hg'
+                config_file = "unittests/win_unittest.py"
+            elif pf.startswith("mac"):
+                config_file = "unittests/mac_unittest.py"
+            else:
+                config_file = "unittests/linux_unittest.py"
+            for slave_pf in PLATFORMS[pf]['slave_platforms']:
+                if pf == "macosx" and slave_pf == "leopard-o":
+                    continue
+                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] = []
+                for suite in mozharness_unittest_suites:
+                    extra_args = ["--cfg", config_file,
+                                '--enable-preflight-run-commands']
+                    for sub_category in suite['sub_categories']:
+                        extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
+                    BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [
+                        (suite['suite_name'], {
+                            'mozharness_repo': MOZHARNESS_REPO,
+                            'script_path': 'scripts/desktop_unittest.py',
+                            'extra_args': extra_args,
+                            'reboot_command': reboot_command,
+                            'hg_bin': hg_bin,
+                            'script_maxtime': 7200,
+                        })]
+###################### END OF MOZHARNESS UNITTEST CONFIGS
 
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
