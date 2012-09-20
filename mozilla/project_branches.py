@@ -240,6 +240,14 @@ PROJECT_BRANCHES = {
     },
     'cedar': {
         'mozharness_unittests': True,
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'win64': {},
+            'macosx64': {},
+        },
     },
     # customizations for windows update service changes (bug 481815)
     'elm': {
