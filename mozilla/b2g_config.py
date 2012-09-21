@@ -37,6 +37,7 @@ OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 builder_prefix = "B2G "
+gaia_repo = 'projects/gaia'
 
 PLATFORM_VARS = {
         'ics_armv7a_gecko': {
@@ -189,6 +190,7 @@ PLATFORM_VARS = {
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                               'imake', 'ccache'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
+            'gaia_repo': gaia_repo,
         },
         'macosx64_gecko': {
             'product_name': 'b2g',
@@ -230,6 +232,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'test_pretty_names': False,
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
+            'gaia_repo': gaia_repo,
         },
         'win32_gecko': {
             'product_name': 'b2g',
@@ -270,6 +273,7 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': False,
             'l10n_check_test': False,
+            'gaia_repo': gaia_repo,
         },
 }
 
