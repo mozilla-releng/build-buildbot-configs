@@ -97,6 +97,7 @@ releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['useBetaChannel']      = 1
+releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr10-thunderbird-linux.cfg',
     'linux64':  'mozEsr10-thunderbird-linux64.cfg',
