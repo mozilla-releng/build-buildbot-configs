@@ -263,9 +263,6 @@ PROJECT_BRANCHES = {
             'win32-debug': {
                 'enable_pymake': False,
             },
-            'win32-metro': {
-                'enable_pymake': False,
-            },
         },
         'enable_talos': False,
     },
