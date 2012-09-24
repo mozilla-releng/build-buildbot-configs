@@ -1016,6 +1016,10 @@ for branch in BRANCHES.keys():
         # Don't override something that's set
         elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
             continue
+        # If the key is already set then we won't override with GLOBAL_VARS
+        # The "platforms" key is handle separatedely (see next for loop)
+        elif key in BRANCHES[branch] and key != 'platforms':
+            continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
 
@@ -1490,6 +1494,8 @@ for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
+
+BRANCHES['elm']['platforms']['win32']['slaves'] = SLAVES['win64-metro']
 
 # MERGE day - when FF17 moves into such branch remove it from the list
 # MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try')
