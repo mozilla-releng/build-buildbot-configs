@@ -95,6 +95,7 @@ releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['useBetaChannel']      = 1
+releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr10-firefox-linux.cfg',
     'linux64':  'mozEsr10-firefox-linux64.cfg',
