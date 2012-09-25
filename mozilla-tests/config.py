@@ -18,6 +18,9 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                        }
 
 MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
+MOZHARNESS_REBOOT_CMD = ['build/tools/buildfarm/maintenance/count_and_reboot.py',
+                         '-f', '../reboot_count.txt',
+                         '-n', '1', '-z']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
@@ -83,7 +86,11 @@ PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
 PLATFORMS['macosx']['env_name'] = 'mac-perf'
 PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
-PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['macosx']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,}
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
                                             'lion', 'mountainlion']
@@ -93,14 +100,24 @@ PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
-PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['macosx64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
-PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python27/python', '-u']
+PLATFORMS['win32']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'mozharness_repo': MOZHARNESS_REPO,
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['win64']['slave_platforms'] = ['w764']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
@@ -108,33 +125,44 @@ PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
                               'download_symbols': False,
                              }
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python27/python', '-u']
+PLATFORMS['win64']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'mozharness_repo': MOZHARNESS_REPO,
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['stage_product'] = 'firefox'
-PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['linux']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
-PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['linux64']['mozharness_config'] = {    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['android']['slave_platforms'] = ['tegra_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['stage_product'] = 'mobile'
-PLATFORMS['android']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['android']['mozharness_config'] = {}
 
 PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegra 250"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['android-armv6']['mozharness_config'] = {}
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -1012,16 +1040,6 @@ for branch in ('try', ):
         if 'android' in pf:
             # this is just for desktop Firefox
             continue
-        hg_bin = 'hg'
-        if pf.startswith("win"):
-            hg_bin = 'c:\\mozilla-build\\hg\\hg'
-        if isinstance(PLATFORMS[pf]['mozharness_python'], list):
-            reboot_command = PLATFORMS[pf]['mozharness_python'][:]
-        else:
-            reboot_command = [PLATFORMS[pf]['mozharness_python']]
-        reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
-                               '-f', '../reboot_count.txt',
-                               '-n', '1', '-z'])
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
             config_file = "marionette/prod_config.py"
             if pf == "macosx" and slave_pf in ("leopard-o", "leopard"):
@@ -1032,13 +1050,13 @@ for branch in ('try', ):
             # Marionette is only enabled on debug builds
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('marionette',
                 { 'suite': 'marionette',
-                  'mozharness_repo': MOZHARNESS_REPO,
+                  'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
                   'script_path': 'scripts/marionette.py',
                   'extra_args': [
                       "--cfg", config_file
                   ],
-                  'reboot_command': reboot_command,
-                  'hg_bin': hg_bin,
+                  'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
+                  'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
                 })]
 
 ### start of mozharness desktop unittests
@@ -1059,17 +1077,9 @@ for branch in BRANCHES:
     if BRANCHES[branch].get('mozharness_unittests'):
         for pf in PLATFORMS:
             hg_bin = 'hg'
-            if isinstance(PLATFORMS[pf]['mozharness_python'], list):
-                reboot_command = PLATFORMS[pf]['mozharness_python'][:]
-            else:
-                reboot_command = [PLATFORMS[pf]['mozharness_python']]
-            reboot_command.extend(['build/tools/buildfarm/maintenance/count_and_reboot.py',
-                                '-f', '../reboot_count.txt',
-                                '-n', '1', '-z'])
             if 'android' in pf:
                 continue
             if pf.startswith("win"):
-                hg_bin = 'c:\\mozilla-build\\hg\\hg'
                 config_file = "unittests/win_unittest.py"
             elif pf.startswith("mac"):
                 config_file = "unittests/mac_unittest.py"
@@ -1078,21 +1088,24 @@ for branch in BRANCHES:
             for slave_pf in PLATFORMS[pf]['slave_platforms']:
                 if pf == "macosx" and slave_pf == "leopard-o":
                     continue
-                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] = []
-                for suite in mozharness_unittest_suites:
-                    extra_args = ["--cfg", config_file,
-                                '--enable-preflight-run-commands']
-                    for sub_category in suite['sub_categories']:
-                        extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
-                    BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [
-                        (suite['suite_name'], {
-                            'mozharness_repo': MOZHARNESS_REPO,
-                            'script_path': 'scripts/desktop_unittest.py',
-                            'extra_args': extra_args,
-                            'reboot_command': reboot_command,
-                            'hg_bin': hg_bin,
-                            'script_maxtime': 7200,
-                        })]
+                for testtype in ("opt", "debug"):
+                    if not BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype]:
+                        continue
+                    BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] = []
+                    for suite in mozharness_unittest_suites:
+                        extra_args = ["--cfg", config_file,
+                                      '--enable-preflight-run-commands']
+                        for sub_category in suite['sub_categories']:
+                            extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
+                        BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
+                            (suite['suite_name'], {
+                                'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
+                                'script_path': 'scripts/desktop_unittest.py',
+                                'extra_args': extra_args,
+                                'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
+                                'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
+                                'script_maxtime': 7200,
+                            })]
 ###################### END OF MOZHARNESS UNITTEST CONFIGS
 
 ######## generic branch variables for project branches

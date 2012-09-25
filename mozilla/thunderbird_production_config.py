@@ -43,7 +43,7 @@ GLOBAL_VARS['unittest_masters'] = [
 ]
 GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
 GLOBAL_VARS['weekly_tinderbox_tree'] = 'Thunderbird'
-GLOBAL_VARS['l10n_tinderbox_tree'] = 'MozillaTest'
+GLOBAL_VARS['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 GLOBAL_VARS['base_mirror_urls'] = ['http://hg-internal.dmz.scl3.mozilla.com']
 GLOBAL_VARS['base_bundle_urls'] = ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles']
 GLOBAL_VARS['aus2_user'] = 'tbirdbld'
