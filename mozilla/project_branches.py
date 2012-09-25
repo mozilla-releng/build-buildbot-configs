@@ -246,6 +246,11 @@ PROJECT_BRANCHES = {
             'win32': {},
             'win64': {},
             'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
         },
     },
     # customizations for windows update service changes (bug 481815)
