@@ -188,7 +188,7 @@ PLATFORM_VARS = {
                               'libcurl-devel', 'wireless-tools-devel',
                               'libX11-devel', 'libXt-devel','mesa-libGL-devel',
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
-                              'imake', 'ccache'],
+                              'imake', 'ccache', 'wget'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
             'gaia_repo': gaia_repo,
             'mock_copyin_files': [
