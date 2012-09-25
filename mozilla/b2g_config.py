@@ -191,6 +191,9 @@ PLATFORM_VARS = {
                               'imake', 'ccache'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
             'gaia_repo': gaia_repo,
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
         },
         'macosx64_gecko': {
             'product_name': 'b2g',
