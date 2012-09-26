@@ -22,6 +22,7 @@ GLOBAL_VARS.update({
         'linux32_gecko': {},
         'macosx64_gecko': {},
         'win32_gecko': {},
+        'panda': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -36,14 +37,14 @@ GLOBAL_VARS.update({
 OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
-builder_prefix = "B2G "
+builder_prefix = "b2g"
 gaia_repo = 'projects/gaia'
 
 PLATFORM_VARS = {
         'ics_armv7a_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/nightly',
             'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
@@ -91,7 +92,7 @@ PLATFORM_VARS = {
         'ics_armv7a_gecko-debug': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/debug',
             'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
@@ -140,7 +141,7 @@ PLATFORM_VARS = {
         'linux32_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
             'enable_dep': False,
@@ -198,7 +199,7 @@ PLATFORM_VARS = {
         'macosx64_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
             'enable_dep': False,
@@ -240,7 +241,7 @@ PLATFORM_VARS = {
         'win32_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
-            'base_name': builder_prefix + '%(platform)s %(branch)s',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
             'src_mozconfig': 'b2g/config/mozconfigs/win32_gecko/nightly',
             'enable_dep': False,
@@ -277,6 +278,19 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'gaia_repo': gaia_repo,
+        },
+        'panda': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
         },
 }
 
@@ -386,6 +400,7 @@ BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
 BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
