@@ -31,7 +31,9 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
+    'datazilla_url': 'https://datazilla.mozilla.org/talos',
 }
+
 
 # Local branch overrides
 BRANCHES = {

@@ -51,10 +51,14 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
-    'mozilla-release':     {},
-    'mozilla-beta':        {},
+    # MERGE DAY:
+    # datazilla_url is riding the trains with 17. This override should be
+    # removed from beta/release as 17 gets there.
+    'mozilla-release':     {'datazilla_url': None},
+    'mozilla-beta':        {'datazilla_url': None},
     'mozilla-aurora':      {},
     'mozilla-esr10':       {
+        'datazilla_url': None,
         'platforms': {
             'macosx': {},
             'macosx64': {},
@@ -794,8 +798,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
-        # Don't override platforms if it's set
-        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+        # In order to have things ride the trains we need to be able to
+        # override "global" things. Therefore, we shouldn't override anything
+        # that's already been set.
+        if key in BRANCHES[branch]:
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
