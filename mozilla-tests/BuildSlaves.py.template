@@ -15,6 +15,7 @@ SlavePasswords = {
     "vista": "pass",
     "tegra_android": "pass",
     "tegra_android-armv6": "pass",
+    "tegra_android-noion": "pass",
 }
 
 datazillaAuth = {
