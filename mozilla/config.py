@@ -63,6 +63,7 @@ GLOBAL_VARS = {
         'win32-debug': {},
         'android': {},
         'android-armv6': {},
+        'android-noion': {},
         'android-debug': {},
     },
     'pgo_strategy': None,
@@ -745,6 +746,63 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
         },
+        'android-noion': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android no-ionmonkey %(branch)s',
+            'mozconfig': 'android/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-noion/nightly',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'packageTests': True,
+            'enable_codesighs': False,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3-noion',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'create_snippet': False,
+            'create_partial': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr"],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-noion",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': False,
+            'multi_locale': False,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+        },
         'android-debug': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -1413,12 +1471,14 @@ BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-noion']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-noion']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
@@ -1492,6 +1552,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-armv6'):
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android-noion'):
+        BRANCHES[branch]['platforms']['android-noion']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if BRANCHES[branch]['platforms'].has_key('win32'):
@@ -1555,6 +1617,13 @@ for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
         if p not in BRANCHES[b]['platforms']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
+
+# XXX bug 789373 hack until we get b2g testing going.
+# Delete all references to android-noion once we have b2g tests.
+for b in BRANCHES.keys():
+    if b not in ('mozilla-central', 'mozilla-inbound', 'try'):
+        if 'android-noion' in BRANCHES[b]['platforms']:
+            del BRANCHES[b]['platforms']['android-noion']
 
 if __name__ == "__main__":
     import sys

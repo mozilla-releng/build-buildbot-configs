@@ -19,6 +19,7 @@ SLAVES = {
 
 SLAVES['leopard-o'] = SLAVES['leopard']
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
+SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 
 TRY_SLAVES = {}
 
@@ -31,7 +32,9 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
+    'datazilla_url': 'https://datazilla.mozilla.org/talos',
 }
+
 
 # Local branch overrides
 BRANCHES = {

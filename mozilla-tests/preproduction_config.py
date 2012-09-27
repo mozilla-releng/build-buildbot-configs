@@ -11,6 +11,7 @@ GLOBAL_VARS = {
     'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
+    'datazilla_url': 'https://datazilla.mozilla.org/test',
 }
 
 BRANCHES = {

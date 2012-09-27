@@ -15,5 +15,20 @@ SlavePasswords = {
     "vista": "pass",
     "tegra_android": "pass",
     "tegra_android-armv6": "pass",
+    "tegra_android-noion": "pass",
 }
 
+datazillaAuth = {
+    'talos': {
+        'oauthKey': 'blahblah',
+        'oauthSecret': 'blahblah',
+    },
+    'jetperf': {
+        'oauthKey': 'blahblah',
+        'oauthSecret': 'blahblah',
+    },
+    'test': {
+        'oauthKey': '84c76536-5bea-4858-990b-434ad3bbadc1',
+        'oauthSecret': '92e1d99d-fd5a-45a7-b07e-ec5a9f59c844',
+    },
+}

@@ -51,10 +51,14 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
-    'mozilla-release':     {},
-    'mozilla-beta':        {},
+    # MERGE DAY:
+    # datazilla_url is riding the trains with 17. This override should be
+    # removed from beta/release as 17 gets there.
+    'mozilla-release':     {'datazilla_url': None},
+    'mozilla-beta':        {'datazilla_url': None},
     'mozilla-aurora':      {},
     'mozilla-esr10':       {
+        'datazilla_url': None,
         'platforms': {
             'macosx': {},
             'macosx64': {},
@@ -78,6 +82,7 @@ PLATFORMS = {
     'linux64' : {},
     'android': {},
     'android-armv6': {},
+    'android-noion': {},
 }
 
 # work around path length problem bug 599795
@@ -163,6 +168,14 @@ PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegra 250"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {}
+
+PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
+PLATFORMS['android-noion']['env_name'] = 'android-perf'
+PLATFORMS['android-noion']['is_mobile'] = True
+PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android no-ionmonkey Tegra 250"}
+PLATFORMS['android-noion']['stage_product'] = 'mobile'
+PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
+
 
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
@@ -369,6 +382,7 @@ BRANCH_UNITTEST_VARS = {
         'win64': {},
         'android': {},
         'android-armv6': {},
+        'android-noion': {},
     },
 }
 
@@ -656,6 +670,15 @@ ANDROID_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
+ANDROID_NOION_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest') or suite[0].startswith('crashtest'):
+        continue
+    ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
 ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_UNITTEST_DICT)
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
@@ -785,6 +808,17 @@ PLATFORM_UNITTEST_VARS = {
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
         },
+        'android-noion': {
+            'product_name': 'fennec',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'is_remote': True,
+            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+            'enable_opt_unittests': True,
+            'enable_debug_unittests': False,
+            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+            'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
+        },
 }
 
 # Copy project branches into BRANCHES keys
@@ -794,8 +828,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
-        # Don't override platforms if it's set
-        if key == 'platforms' and 'platforms' in BRANCHES[branch]:
+        # In order to have things ride the trains we need to be able to
+        # override "global" things. Therefore, we shouldn't override anything
+        # that's already been set.
+        if key in BRANCHES[branch]:
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
@@ -1138,6 +1174,14 @@ for branch in ['mozilla-release', 'mozilla-esr10']:
 #-------------------------------------------------------------------------
 # End enable android-armv6 tests for FF18 onwards
 #-------------------------------------------------------------------------
+
+# XXX Bug 789373 hack - add android-noion until we have b2g testing
+# Delete all references to android-noion once we have b2g testing
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'try'):
+        if 'android-noion' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['android-noion']
+
 
 if __name__ == "__main__":
     import sys, pprint, re
