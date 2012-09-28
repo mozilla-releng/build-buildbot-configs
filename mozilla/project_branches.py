@@ -239,6 +239,7 @@ PROJECT_BRANCHES = {
     },
     'cedar': {
         'mozharness_unittests': True,
+        'mozharness_talos': True,
         'lock_platforms': True,
         'platforms': {
             'linux': {},

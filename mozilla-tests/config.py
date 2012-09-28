@@ -150,7 +150,8 @@ PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
-PLATFORMS['linux64']['mozharness_config'] = {    'mozharness_python': '/tools/buildbot/bin/python',
+PLATFORMS['linux64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
     'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
