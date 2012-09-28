@@ -56,7 +56,8 @@ BRANCHES = {
     # removed from beta/release as 17 gets there.
     'mozilla-release':     {'datazilla_url': None},
     'mozilla-beta':        {'datazilla_url': None},
-    'mozilla-aurora':      {},
+    # bug 795174 - bustage on aurora, temporary disablement
+    'mozilla-aurora':      {'datazilla_url': None},
     'mozilla-esr10':       {
         'datazilla_url': None,
         'platforms': {
