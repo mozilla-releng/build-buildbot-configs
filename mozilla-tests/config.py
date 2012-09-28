@@ -18,7 +18,7 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                        }
 
 MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
-MOZHARNESS_REBOOT_CMD = ['build/tools/buildfarm/maintenance/count_and_reboot.py',
+MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
 
