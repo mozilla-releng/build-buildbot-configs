@@ -329,6 +329,7 @@ for platform in releaseConfig['enUSPlatforms']:
 
     if platform in releaseConfig['l10nPlatforms']:
         repack_factory = CCReleaseRepackFactory(
+            env=platform_env,
             hgHost=branchConfig['hghost'],
             project=releaseConfig['productName'],
             appName=releaseConfig['appName'],
