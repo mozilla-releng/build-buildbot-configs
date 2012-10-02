@@ -135,4 +135,5 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
+releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False
