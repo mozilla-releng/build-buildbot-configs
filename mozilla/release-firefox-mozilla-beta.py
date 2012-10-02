@@ -14,11 +14,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '16.0b5'
+releaseConfig['version']             = '16.0b6'
 releaseConfig['appVersion']          = '16.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_16_0b5'
+releaseConfig['baseTag']             = 'FIREFOX_16_0b6'
 releaseConfig['partialUpdates']      = {
     '16.0b4': {
         'appVersion': '16.0',
