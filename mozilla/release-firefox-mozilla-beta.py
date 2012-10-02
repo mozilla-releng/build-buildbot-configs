@@ -20,15 +20,15 @@ releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_16_0b5'
 releaseConfig['partialUpdates']      = {
-    '16.0b3': {
-        'appVersion': '16.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_16_0b3',
-    },
     '16.0b4': {
         'appVersion': '16.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_16_0b4',
+    },
+    '16.0b5': {
+        'appVersion': '16.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_16_0b5',
     },
 }
 #  Next (nightly) version info
@@ -39,7 +39,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '7c0af9b7ed61',
+        'revision': '8a8a932fbef4',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
