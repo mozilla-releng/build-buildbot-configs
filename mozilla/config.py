@@ -1343,24 +1343,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_serve
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-# mock disabled block start
-BRANCHES['mozilla-aurora']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-aurora']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-aurora']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-aurora']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-aurora']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-aurora']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-aurora']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-aurora']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-aurora']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
