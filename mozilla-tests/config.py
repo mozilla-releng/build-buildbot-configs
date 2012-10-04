@@ -1073,18 +1073,21 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 # Let's load Marionette for the following branches:
-for branch in ('try', ):
+for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             # this is just for desktop Firefox
             continue
+        config_file = "marionette/prod_config.py"
+        if pf.startswith('win'):
+            if branch != 'try':
+                # for now, only run windows tests on try because of bug 795513
+                continue
+            config_file = "marionette/windows_config.py"
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            config_file = "marionette/prod_config.py"
             if pf == "macosx" and slave_pf in ("leopard-o", "leopard"):
                 # we don't run on OSX 10.5
                 continue
-            if pf.startswith("win"):
-                config_file = "marionette/windows_config.py"
             # Marionette is only enabled on debug builds
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('marionette',
                 { 'suite': 'marionette',
