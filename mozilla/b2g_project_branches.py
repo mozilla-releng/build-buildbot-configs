@@ -51,7 +51,9 @@ PROJECT_BRANCHES = {
     'larch': {},
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
-    #'oak': {},
+    'oak': {
+        'enable_nightly': True
+    },
     'pine': {},
 }
 
