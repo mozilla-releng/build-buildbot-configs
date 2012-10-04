@@ -87,8 +87,8 @@ releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausUser']             = 'cltbld'
-releaseConfig['ausSshKey']           = 'cltbld_dsa'
+releaseConfig['ausUser']             = 'ffxbld'
+releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
