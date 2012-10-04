@@ -290,6 +290,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'enable_pymake': True,
         },
         'win64': {
             'product_name': 'thunderbird',
@@ -334,6 +335,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'test_pretty_names': True,
             'l10n_check_test': False,
+            'enable_pymake': True,
         },
         'linux-debug': {
             'product_name': 'thunderbird',
@@ -514,6 +516,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'enable_pymake': True,
         },
 }
 
@@ -943,6 +946,16 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
+
+# MERGE DAY
+# When Thunderbird 17 merges into these branches, they can be removed from the list
+# NB. mozharness configs will also need updating
+for b in ('comm-aurora', 'comm-beta', 'comm-release', 'comm-esr10'):
+    # Disable pymake
+    for p in ('win32', 'win32-debug', 'win64'):
+        if p not in BRANCHES[b]['platforms']:
+            continue
+        BRANCHES[b]['platforms'][p]['enable_pymake'] = False
 
 
 if __name__ == "__main__":
