@@ -51,11 +51,12 @@ PLATFORMS['macosx']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'lion']
+                                            'lion', 'mountainlion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['leopard'] = {'name': builder_prefix + "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': builder_prefix + "Rev4 MacOSX Lion 10.7"}
+PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
@@ -323,6 +324,10 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
                 'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
             },
+            'mountainlion': {
+                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            },
         },
 }
 
@@ -454,7 +459,7 @@ for branch in ['comm-central', 'try-comm-central', 'comm-aurora']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx64']['leopard']
-        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion']
+        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
 #-------------------------------------------------------------------------
 # End disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
