@@ -1174,7 +1174,7 @@ BRANCHES['mozilla-release']['enable_multi_locale'] = True
 BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-release']['enable_nightly'] = False
-BRANCHES['mozilla-release']['enable_blocklist_update'] = False
+BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
@@ -1385,7 +1385,7 @@ BRANCHES['mozilla-esr10']['create_partial'] = True
 # use mozilla-esr10-test when disabling updates for merges
 BRANCHES['mozilla-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
 BRANCHES['mozilla-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
-BRANCHES['mozilla-esr10']['enable_blocklist_update'] = False
+BRANCHES['mozilla-esr10']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['upload_mobile_symbols'] = True
