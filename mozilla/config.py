@@ -1440,6 +1440,9 @@ BRANCHES['try']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['try']['enable_xulrunner'] = False
 BRANCHES['try']['enable_mac_a11y'] = True
+# Disable codesighs on Linux until it works properly and quickly
+BRANCHES['try']['platforms']['linux']['enable_codesighs'] = False
+BRANCHES['try']['platforms']['linux64']['enable_codesighs'] = False
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False

@@ -1,4 +1,4 @@
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,95)]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,87)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(40,57) if x not in (51,52,)] # bug683792
 LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,23)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
@@ -8,7 +8,7 @@ LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20, 26]]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,25) + range(64,100) if x not in [11,20,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,111)]
-WIN64_METRO    = ['w64-ix-slave%02i' % x for x in [11,20,40,42,43]]
+WIN64_METRO    = ['w64-ix-slave%02i' % x for x in [11,20,42,43]]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1,101)]
 
@@ -34,7 +34,7 @@ TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
 TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1,101)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(27,32)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)]
-TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,64) if x not in [40,42,43]]
+TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,64) if x not in [42,43]]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)]
 TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(1,41) + [95,96]]
 

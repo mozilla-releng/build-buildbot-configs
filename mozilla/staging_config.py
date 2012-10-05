@@ -1,23 +1,27 @@
 from copy import deepcopy
 import production_config as pc
 
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 95)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave02']
 LINUX_IXS      = ['mv-moz2-linux-ix-slave01'] + \
                  ['linux-ix-slave%02i' % x for x in (3,4,5)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)] 
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 
 STAGING_SLAVES = {
     'linux':            LINUX_IXS,
     'linux64':          LINUX64_IXS,
-    'macosx64':         MAC_SNOW_MINIS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
+    'win64-metro':      [],
+    'macosx':           [],
+    'macosx64':         MAC_SNOW_MINIS,
+    'macosx64-lion':    MAC_LION_MINIS,
     'android':          LINUX_IXS,
     'android-armv6':    LINUX_IXS,
-    'mock':             MOCK_DL120G7
+    'mock':             MOCK_DL120G7,
 }
 
 SLAVES = deepcopy(STAGING_SLAVES)
@@ -113,6 +117,7 @@ BRANCHES = {
                     # Source server support, bug 506702
                     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                     'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                    'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                     'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 }
             }
@@ -120,8 +125,7 @@ BRANCHES = {
     },
 }
 
-PLATFORM_VARS = {
-}
+PLATFORM_VARS = {}
 
 PROJECTS = {
     'fuzzing': {
