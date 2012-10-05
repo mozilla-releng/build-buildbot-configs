@@ -108,14 +108,13 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'use_mock': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -124,14 +123,14 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'tbirdbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/tbirdbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/tbirdbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -142,6 +141,25 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux32/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
         },
         'linux64': {
             'product_name': 'thunderbird',
@@ -158,14 +176,13 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'slaves': SLAVES['linux64'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'use_mock': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -174,7 +191,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_USER': 'tbirdbld',
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/tbirdbld_dsa",
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/tbirdbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -182,7 +199,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
-                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin', 
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -193,6 +210,25 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux64/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
         },
         'macosx64': {
             'product_name': 'thunderbird',
@@ -350,7 +386,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'leak_target': 'mailbloat',
             'build_space': 7,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'linux-debug',
@@ -367,11 +403,30 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux32/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
         },
         'linux64-debug': {
             'product_name': 'thunderbird',
@@ -386,7 +441,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'leak_target': 'mailbloat',
             'build_space': 7,
-            'slaves': SLAVES['linux64'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'linux64-debug',
@@ -403,11 +458,30 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux64/releng.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
         },
         'macosx-debug': {
             'product_name': 'thunderbird',
@@ -706,8 +780,25 @@ BRANCHES['comm-release']['enable_blocklist_update'] = False
 BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
+# mock disabled block start
+# linux platforms
 BRANCHES['comm-release']['platforms']['linux']['use_mock'] = False
 BRANCHES['comm-release']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-release']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['comm-release']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['comm-release']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['comm-release']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-release']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['comm-release']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-release']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-release']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-release']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+BRANCHES['comm-release']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
+del BRANCHES['comm-release']['platforms']['linux']['env']['PATH']
+del BRANCHES['comm-release']['platforms']['linux64']['env']['PATH']
+del BRANCHES['comm-release']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['comm-release']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## comm-esr10
 BRANCHES['comm-esr10']['repo_path'] = 'releases/comm-esr10'
@@ -758,8 +849,24 @@ BRANCHES['comm-esr10']['platforms']['macosx64-debug']['base_name'] = builder_pre
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
+# mock disabled block start
 BRANCHES['comm-esr10']['platforms']['linux']['use_mock'] = False
 BRANCHES['comm-esr10']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-esr10']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['comm-esr10']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['comm-esr10']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['comm-esr10']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-esr10']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['comm-esr10']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-esr10']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-esr10']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-esr10']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+BRANCHES['comm-esr10']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+del BRANCHES['comm-esr10']['platforms']['linux']['env']['PATH']
+del BRANCHES['comm-esr10']['platforms']['linux64']['env']['PATH']
+del BRANCHES['comm-esr10']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['comm-esr10']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -804,7 +911,28 @@ BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
 BRANCHES['comm-beta']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-beta']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+# mock disabled block start
+# linux platforms
+BRANCHES['comm-beta']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['comm-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-beta']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['comm-beta']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-beta']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-beta']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-beta']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+BRANCHES['comm-beta']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+del BRANCHES['comm-beta']['platforms']['linux']['env']['PATH']
+del BRANCHES['comm-beta']['platforms']['linux64']['env']['PATH']
+del BRANCHES['comm-beta']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['comm-beta']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -857,8 +985,6 @@ BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'ni
 BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['comm-aurora']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-aurora']['platforms']['linux64']['use_mock'] = False
 
 ######## try
 # Try-specific configs
@@ -887,13 +1013,13 @@ BRANCHES['try-comm-central']['enable_shark'] = False
 BRANCHES['try-comm-central']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['linux']
-BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['linux64']
+BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
