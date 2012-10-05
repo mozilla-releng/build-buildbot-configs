@@ -1593,10 +1593,6 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-# MERGE DAY delete a branch from this list when FF16 merges in
-for b in ('mozilla-release',):
-    del BRANCHES[b]['platforms']['android-armv6']
-
 # MERGE DAY
 # When Firefox 17 merges into these branches, they can be removed from the list
 # NB. mozharness configs will also need updating

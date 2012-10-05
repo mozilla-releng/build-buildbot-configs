@@ -65,7 +65,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android',)
+releaseConfig['enUSPlatforms']        = ('android', 'android-armv6')
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
@@ -107,6 +107,7 @@ releaseConfig['partnerRepackConfig'] = {
 # mozconfigs
 releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
+    'android-armv6': 'mobile/android/config/mozconfigs/android-armv6/release',
 }
 
 # Misc configuration
@@ -133,6 +134,8 @@ releaseConfig['multilocale_config'] = {
     'platforms': {
         'android':
             'multi_locale/staging_release_mozilla-release_android.json',
+             'android-armv6':
+            'multi_locale/staging_release_mozilla-release_android-armv6.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
