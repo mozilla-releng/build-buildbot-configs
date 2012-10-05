@@ -2,9 +2,9 @@ MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,87)]
 MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(40,57) if x not in (51,52,)] # bug683792
 LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,23)]
 LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(2,22)] + \
-                 ['linux-ix-slave%02i' % x for x in [1,2,6] + range(12,43)]
+                 ['linux-ix-slave%02i' % x for x in [1,2,6] + range(12,32)]
 LINUX64_VMS    = ['bld-centos5-64-vmw-%03i' % x for x in range(1, 7)]
-LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,22)]
+LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3,18)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,16) + [20, 26]]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,25) + range(64,100) if x not in [11,20,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,111)]
