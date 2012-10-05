@@ -1080,9 +1080,6 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    if branch in ('mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',):
-        BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-%s' % branch
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -1131,6 +1128,7 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -1172,6 +1170,7 @@ BRANCHES['mozilla-release']['enable_blocklist_update'] = False
 BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 # mock disabled block start
 # linux platforms
@@ -1249,6 +1248,7 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
+BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
@@ -1335,6 +1335,7 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
+BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -1537,11 +1538,11 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     if BRANCHES[branch]['platforms'].has_key('linux'):
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if BRANCHES[branch]['platforms'].has_key('android'):
-        BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-' + branch
+        BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if BRANCHES[branch]['platforms'].has_key('android-armv6'):
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-noion'):
-        BRANCHES[branch]['platforms']['android-noion']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
+        BRANCHES[branch]['platforms']['android-noion']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-noion-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if BRANCHES[branch]['platforms'].has_key('win32'):
@@ -1591,10 +1592,6 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
-
-# MERGE DAY delete a branch from this list when FF16 merges in
-for b in ('mozilla-release',):
-    del BRANCHES[b]['platforms']['android-armv6']
 
 # MERGE DAY
 # When Firefox 17 merges into these branches, they can be removed from the list
