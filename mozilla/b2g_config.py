@@ -61,7 +61,7 @@ PLATFORM_VARS = {
             'stage_product': 'b2g',
             'enable_codesighs': False,
             'enable_packaging': True,
-            'uploadPackages': False,
+            'uploadPackages': True,
             'packageTests': False,
             'stage_platform': 'ics_armv7a_gecko',
             'enable_ccache': True,
@@ -87,6 +87,9 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-f16-i386',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
         },
         'ics_armv7a_gecko-debug': {
@@ -110,7 +113,7 @@ PLATFORM_VARS = {
             'stage_product': 'b2g',
             'enable_codesighs': False,
             'enable_packaging': True,
-            'uploadPackages': False,
+            'uploadPackages': True,
             'packageTests': False,
             'stage_platform': 'ics_armv7a_gecko-debug',
             'enable_ccache': True,
@@ -136,6 +139,9 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-f16-i386',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
         },
         'linux32_gecko': {
