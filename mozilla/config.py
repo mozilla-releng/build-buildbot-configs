@@ -1191,7 +1191,7 @@ del BRANCHES['mozilla-release']['platforms']['linux64']['env']['PATH']
 del BRANCHES['mozilla-release']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['mozilla-release']['platforms']['linux64-debug']['env']['PATH']
 # android platforms
-BRANCHES['mozilla-release']['platforms']['android-debug']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['android']['use_mock'] = False
 BRANCHES['mozilla-release']['platforms']['android']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-release']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
 BRANCHES['mozilla-release']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
