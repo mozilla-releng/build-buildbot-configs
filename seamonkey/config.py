@@ -8,7 +8,7 @@ SLAVES = {
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
     'macosx64': ['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
-                ['sea-mini-osx64-%i' x for x in range(1,5)],
+                ['sea-mini-osx64-%i' % x for x in range(1,5)],
 }
 
 
