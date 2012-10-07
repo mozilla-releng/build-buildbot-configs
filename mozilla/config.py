@@ -175,6 +175,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64': {
@@ -245,6 +246,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx64': {
@@ -452,6 +454,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64-debug': {
@@ -508,6 +511,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx-debug': {
@@ -657,6 +661,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -715,6 +720,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -777,6 +783,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -839,6 +846,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
                 ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
             'env': {
                 'DISPLAY': ':2',

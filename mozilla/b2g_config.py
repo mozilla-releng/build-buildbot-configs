@@ -88,6 +88,9 @@ PLATFORM_VARS = {
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
+            'mock_copyin_files': [
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+            ],
         },
         'ics_armv7a_gecko-debug': {
             'product_name': 'b2g',
@@ -137,6 +140,9 @@ PLATFORM_VARS = {
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
+            'mock_copyin_files': [
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+            ],
         },
         'linux32_gecko': {
             'product_name': 'b2g',
@@ -194,6 +200,7 @@ PLATFORM_VARS = {
             'gaia_repo': gaia_repo,
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx64_gecko': {

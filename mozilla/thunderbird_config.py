@@ -159,6 +159,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64': {
@@ -228,6 +229,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx64': {
@@ -426,6 +428,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64-debug': {
@@ -481,6 +484,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx-debug': {
