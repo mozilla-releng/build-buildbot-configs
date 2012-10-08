@@ -51,13 +51,13 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
+    'mozilla-aurora':      {},
     # MERGE DAY:
     # datazilla_url is riding the trains with 17. This override should be
     # removed from beta/release as 17 gets there.
     'mozilla-release':     {'datazilla_url': None},
+    # bug 795174 - bustage on the 17 branch, temporary disablement
     'mozilla-beta':        {'datazilla_url': None},
-    # bug 795174 - bustage on aurora, temporary disablement
-    'mozilla-aurora':      {'datazilla_url': None},
     'mozilla-esr10':       {
         'datazilla_url': None,
         'platforms': {
@@ -979,29 +979,8 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 #### MERGE DAY - EXCEPTIONS
-# When Firefox 16 is on mozilla-release we can remove these
-# Firefox 16/release
-BRANCHES['mozilla-release']['chrome.2_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-release']['chrome_mac.2_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-release']['nochrome.2_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tprow_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['svg_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['svgr_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tpn_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-# end Firefox 16/release
-
+# When Firefox 17 is on mozilla-release we can remove these
 # Firefox 17/release
-BRANCHES['mozilla-beta']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-
-
 BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
@@ -1159,7 +1138,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
-for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRANCHES:
+for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
@@ -1172,12 +1151,13 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora'] + ACTIVE_PROJECT_BRAN
 
 #-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards
+# Delete whole block when we drop esr10
 #-------------------------------------------------------------------------
 for branch in ['mozilla-esr10']:
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
 #-------------------------------------------------------------------------
-# End enable android-armv6 tests for FF18 onwards
+# End enable android-armv6 tests for FF16 onwards
 #-------------------------------------------------------------------------
 
 # XXX Bug 789373 hack - add android-noion until we have b2g testing

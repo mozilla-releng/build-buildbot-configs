@@ -1180,6 +1180,7 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
+# MERGE DAY - Remove mock-disabled when Firefox 17 merges in
 # mock disabled block start
 # linux platforms
 BRANCHES['mozilla-release']['platforms']['linux']['use_mock'] = False
@@ -1214,6 +1215,7 @@ BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['SYMBOL_SERVER_
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
 # mock disabled block stop
+# END MERGE DAY
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1260,40 +1262,6 @@ BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-# mock disabled block start
-# linux platforms
-BRANCHES['mozilla-beta']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-beta']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-beta']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-beta']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-beta']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux64-debug']['env']['PATH']
-# android platforms
-BRANCHES['mozilla-beta']['platforms']['android']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-BRANCHES['mozilla-beta']['platforms']['android-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-# mock disabled block stop
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1493,9 +1461,9 @@ for platform in BRANCHES['try']['platforms'].keys():
 BRANCHES['elm']['platforms']['win32']['slaves'] = SLAVES['win64-metro']
 
 # MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try')
+# MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
 for branch in BRANCHES:
-    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10',) and \
+    if branch not in ('mozilla-release', 'mozilla-esr10',) and \
         'macosx-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx-debug']
 
@@ -1605,9 +1573,8 @@ for branch in branches:
         }
 
 # MERGE DAY
-# When Firefox 17 merges into these branches, they can be removed from the list
-# NB. mozharness configs will also need updating
-for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
+# When Firefox 18 merges into these branches, they can be removed from the list
+for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
@@ -1617,7 +1584,7 @@ for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g tests.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
