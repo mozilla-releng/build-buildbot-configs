@@ -159,6 +159,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64': {
@@ -228,6 +229,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx64': {
@@ -426,6 +428,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'linux64-debug': {
@@ -481,6 +484,7 @@ PLATFORM_VARS = {
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
         'macosx-debug': {
@@ -833,7 +837,7 @@ BRANCHES['comm-esr10']['enable_blocklist_update'] = False
 BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr10']['enable_valgrind'] = False
 
-# MERGE DAY - Delete these four lines for esr17
+# MERGE DAY - Delete these lines for esr17
 BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -1039,9 +1043,9 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 
 # MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release remove the whole block (including 'try') 
+# MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
 for branch in BRANCHES:
-    if branch not in ('comm-beta', 'comm-release', 'comm-esr10',):
+    if branch not in ('comm-release', 'comm-esr10',):
         del BRANCHES[branch]['platforms']['macosx-debug']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
@@ -1074,15 +1078,13 @@ for branch in branches:
         }
 
 # MERGE DAY
-# When Thunderbird 17 merges into these branches, they can be removed from the list
-# NB. mozharness configs will also need updating
-for b in ('comm-aurora', 'comm-beta', 'comm-release', 'comm-esr10'):
+# When Thunderbird 18 merges into these branches, they can be removed from the list
+for b in ('comm-beta', 'comm-release', 'comm-esr10'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
-
 
 if __name__ == "__main__":
     import sys

@@ -454,7 +454,7 @@ BRANCHES['try-comm-central']['enable_try'] = True
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
-for branch in ['comm-central', 'try-comm-central', 'comm-aurora']:
+for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta']:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
