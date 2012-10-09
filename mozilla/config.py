@@ -1262,6 +1262,9 @@ BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
+# hacky workaround until release+mock is ready, https://bugzilla.mozilla.org/show_bug.cgi?id=798361
+BRANCHES['mozilla-beta']['platforms']['linux']['release_slaves'] = SLAVES['linux']
+BRANCHES['mozilla-beta']['platforms']['linux64']['release_slaves'] = SLAVES['linux64']
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
