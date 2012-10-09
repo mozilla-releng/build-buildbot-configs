@@ -129,3 +129,4 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False
+releaseConfig['use_mock'] = False

@@ -128,3 +128,4 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['use_mock'] = False

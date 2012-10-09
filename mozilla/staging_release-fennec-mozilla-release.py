@@ -152,3 +152,4 @@ releaseConfig['skip_release_download'] = True
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
+releaseConfig['use_mock'] = False
