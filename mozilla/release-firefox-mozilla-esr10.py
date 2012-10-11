@@ -14,27 +14,27 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '10.0.8esr'
-releaseConfig['appVersion']          = '10.0.8'
-releaseConfig['milestone']           = '10.0.8'
+releaseConfig['version']             = '10.0.9esr'
+releaseConfig['appVersion']          = '10.0.9'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_8esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_9esr'
 releaseConfig['partialUpdates']      = {
-    '10.0.7esr': {
-        'appVersion': '10.0.7',
+    '10.0.8esr': {
+        'appVersion': '10.0.8',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_10_0_7esr',
+        'baseTag': 'FIREFOX_10_0_8esr',
     }
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.9esrpre'
-releaseConfig['nextMilestone']       = '10.0.9esrpre'
+releaseConfig['nextAppVersion']      = '10.0.10esrpre'
+releaseConfig['nextMilestone']       = '10.0.10esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': 'd3922c1c120e',
+        'revision': '9806d9532ce3',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
