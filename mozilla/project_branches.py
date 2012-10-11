@@ -122,7 +122,7 @@ PROJECT_BRANCHES = {
 #        },
 #    },
     'profiling': {
-        'enable_talos': False,
+        'pgo_strategy': 'periodic',
         'platforms': {
             'macosx64-debug': {
                 'dont_build': True,
