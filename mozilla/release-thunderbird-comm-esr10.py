@@ -17,21 +17,21 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '10.0.8esr'
-releaseConfig['appVersion']          = '10.0.8'
+releaseConfig['version']             = '10.0.9esr'
+releaseConfig['appVersion']          = '10.0.9'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_8esr'
+releaseConfig['baseTag']             = 'THUNDERBIRD_10_0_9esr'
 releaseConfig['partialUpdates']      = {
-    '10.0.7esr': {
-        'appVersion': '10.0.7',
+    '10.0.8esr': {
+        'appVersion': '10.0.8',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_10_0_7esr',
+        'baseTag': 'THUNDERBIRD_10_0_8esr',
     }
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.9esrpre'
-releaseConfig['nextMilestone']       = '10.0.9esrpre'
+releaseConfig['nextAppVersion']      = '10.0.10esrpre'
+releaseConfig['nextMilestone']       = '10.0.10esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
@@ -49,8 +49,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': 'FIREFOX_10_0_8esr_RELEASE',
-        'relbranch': 'GECKO1008_2012100515_RELBRANCH',
+        'revision': '65788d0445a7',
+        'relbranch': 'GECKO1009_2012101115_RELBRANCH',
         'bumpFiles': {},
     }
 }
