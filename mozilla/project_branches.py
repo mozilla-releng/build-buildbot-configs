@@ -122,7 +122,7 @@ PROJECT_BRANCHES = {
 #        },
 #    },
     'profiling': {
-        'enable_talos': False,
+        'pgo_strategy': 'periodic',
         'platforms': {
             'macosx64-debug': {
                 'dont_build': True,
@@ -229,13 +229,10 @@ PROJECT_BRANCHES = {
         },
     },
     'ash': {},
-    # customizations for building OS X only (testing gcc OS X builds still work)
+    # customizations for per-window private browsing (bug 463027)
     'birch': {
-        'lock_platforms': True,
-        'platforms': {
-            'macosx64': {},
-            'macosx64-debug': {},
-        },
+        'enable_talos': False,
+        'enabled_products': ['firefox'],
     },
     'cedar': {
         'mozharness_unittests': True,
