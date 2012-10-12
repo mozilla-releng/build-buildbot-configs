@@ -88,12 +88,10 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-f16-i386',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
-            'mock_copyin_files': [
-                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-             ],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
             'mock_copyin_files': [
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
         },
         'ics_armv7a_gecko-debug': {
@@ -145,12 +143,10 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-f16-i386',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
                               'glibc-static', 'libstdc++-static'],
-            'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-            ],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
             'mock_copyin_files': [
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
         },
         'linux32_gecko': {
@@ -209,8 +205,8 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
             'gaia_repo': gaia_repo,
             'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
         },
         'macosx64_gecko': {
