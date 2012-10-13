@@ -10,7 +10,6 @@ GLOBAL_VARS = deepcopy(localconfig.GLOBAL_VARS)
 BRANCHES = {
     'try': {
         'package_url': 'http://dev-stage01.srv.releng.localconfigl3.mozilla.com/pub/mozilla.org/b2g/try-builds',
-        'stage_ssh_key': 'trybld_dsa',
     },
 }
 
