@@ -411,6 +411,8 @@ BRANCHES['try']['repo_path'] = 'try'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['try']['stage_username'] = 'trybld'
+BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
