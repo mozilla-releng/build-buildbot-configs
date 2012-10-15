@@ -65,7 +65,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-armv6')
+releaseConfig['enUSPlatforms']        = ('android',)
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
