@@ -5,6 +5,9 @@ if test -e "$topsrcdir/mozilla/build/macosx/universal/mozconfig"; then
   export topsrcdir=$topsrcdir/mozilla
 fi
 
+CC=/tools/clang/bin/clang
+CXX=/tools/clang/bin/clang++
+
 . $topsrcdir/build/macosx/universal/mozconfig
 
 if test -n $oldtopsrcdir; then

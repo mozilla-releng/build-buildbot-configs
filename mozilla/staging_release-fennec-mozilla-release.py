@@ -1,10 +1,12 @@
+EMAIL_RECIPIENTS = []
+
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer-stage.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<nobody@example.com>',]
-releaseConfig['ImportantRecipients'] = ['<nobody@example.com>',]
+releaseConfig['AllRecipients']       = EMAIL_RECIPIENTS
+releaseConfig['ImportantRecipients'] = EMAIL_RECIPIENTS
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[staging-release] '
 
@@ -65,7 +67,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-armv6')
+releaseConfig['enUSPlatforms']        = ('android',)
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
