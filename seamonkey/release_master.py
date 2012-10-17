@@ -255,7 +255,7 @@ for platform in releaseConfig['enUSPlatforms']:
     # shorthand
     pf = branchConfig['platforms'][platform]
     mozconfig = '%s/%s/release' % (platform, releaseConfig['sourceRepoName'])
-    l10nmozconfig = '%s/%s/release-l10n' % (platform, releaseConfig['sourceRepoName'])
+    l10nmozconfig = os.path.join(os.path.dirname(pf['src_mozconfig']), 'l10n-mozconfig')
     if platform in releaseConfig['talosTestPlatforms']:
         talosMasters = branchConfig['talos_masters']
     else:
@@ -350,8 +350,6 @@ for platform in releaseConfig['enUSPlatforms']:
             compareLocalesRepoPath=branchConfig['compare_locales_repo_path'],
             compareLocalesTag=branchConfig['compare_locales_tag'],
             buildSpace=2,
-            configRepoPath=branchConfig['config_repo_path'],
-            configSubDir=branchConfig['config_subdir'],
             mozconfig=l10nmozconfig,
             platform=platform,
             buildRevision='%s_RELEASE' % releaseConfig['baseTag'],
