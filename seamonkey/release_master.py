@@ -1,3 +1,5 @@
+import os
+
 from buildbot.scheduler import Scheduler, Dependent, Triggerable
 from buildbot.status.tinderbox import TinderboxMailNotifier
 
