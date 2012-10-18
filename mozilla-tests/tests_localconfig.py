@@ -2,6 +2,7 @@ from buildbot.util import json
 from buildbot.status.html import WebStatus
 from buildbot import manhole
 from thunderbird_config import PLATFORMS as THUNDERBIRD_PLATFORMS
+from b2g_config import PLATFORMS as B2G_PLATFORMS
 
 master_config = json.load(open('master_config.json'))
 
@@ -21,15 +22,23 @@ if 'ssh_port' in master_config:
 
 from config import BRANCHES, PLATFORMS, PROJECTS
 import thunderbird_config
+import b2g_config
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_THUNDERBIRD_BRANCHES = thunderbird_config.BRANCHES.keys()
-if 'limit_platforms' in master_config:
-    ACTIVE_PLATFORMS = dict((p,None) for p in master_config['limit_platforms'])
-    ACTIVE_THUNDERBIRD_PLATFORMS = dict((p,None) for p in master_config['limit_platforms'])
+ACTIVE_B2G_BRANCHES = b2g_config.BRANCHES.keys()
+if 'limit_fx_platforms' in master_config:
+    ACTIVE_PLATFORMS = dict((p,None) for p in master_config['limit_fx_platforms'])
 else:
     ACTIVE_PLATFORMS = dict((k,None) for k in PLATFORMS.keys())
+if 'limit_tb_platforms' in master_config:
+    ACTIVE_THUNDERBIRD_PLATFORMS = dict((p,None) for p in master_config['limit_tb_platforms'])
+else:
     ACTIVE_THUNDERBIRD_PLATFORMS = dict((k,None) for k in THUNDERBIRD_PLATFORMS.keys())
+if 'limit_b2g_platforms' in master_config:
+    ACTIVE_B2G_PLATFORMS = dict((p,None) for p in master_config['limit_b2g_platforms'])
+else:
+    ACTIVE_B2G_PLATFORMS = dict((k,None) for k in B2G_PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")

@@ -393,8 +393,8 @@ UNITTEST_SUITES = {
     'opt_unittest_suites': [
         # Turn on chunks for mochitests
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                             'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
@@ -405,8 +405,8 @@ UNITTEST_SUITES = {
     'debug_unittest_suites': [
         # Turn on chunks for mochitests
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-                             'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
@@ -894,7 +894,6 @@ PROJECTS = {
             'w764': {'ext':'win64-x86_64.zip', 'debug':True},
             'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True},
             'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True},
-            'leopard':{'ext':'(mac|mac64).dmg', 'debug':True},
             'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
             'lion':{'ext':'(mac|mac64).dmg', 'debug':True},
             'mountainlion':{'ext':'(mac|mac64).dmg', 'debug':True},
@@ -1086,8 +1085,10 @@ mozharness_unittest_suites = [
     {'suite_name': 'mochitests-3/5', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
     {'suite_name': 'mochitests-4/5', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
     {'suite_name': 'mochitests-5/5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
+    {'suite_name': 'mochitests-browser-chrome', 'suite_category': 'mochitest', 'sub_categories': 
+        ['browser-chrome']},
     {'suite_name': 'mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
-        ['browser-chrome', 'chrome', 'a11y', 'plugins']},
+        ['chrome', 'a11y', 'plugins']},
     {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
     {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
     {'suite_name': 'crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},

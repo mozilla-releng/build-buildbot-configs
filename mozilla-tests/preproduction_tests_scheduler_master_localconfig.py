@@ -6,11 +6,14 @@ c['manhole'] = manhole.PasswordManhole("tcp:1233:interface=127.0.0.1", "cltbld",
 
 from config import BRANCHES, PLATFORMS, PROJECTS
 import thunderbird_config
+import b2g_config
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
 ACTIVE_THUNDERBIRD_BRANCHES = thunderbird_config.BRANCHES.keys()
+ACTIVE_B2G_BRANCHES = b2g_config.BRANCHES.keys()
 ACTIVE_PLATFORMS = dict((platform, None) for platform in PLATFORMS.keys())
 ACTIVE_THUNDERBIRD_PLATFORMS = dict((platform, None) for platform in thunderbird_config.PLATFORMS.keys())
+ACTIVE_B2G_PLATFORMS = dict((platform, None) for platform in b2g_config.PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
 
 QUEUEDIR = "/dev/shm/queue"
