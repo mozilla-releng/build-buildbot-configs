@@ -42,8 +42,8 @@ GLOBAL_VARS = {
     'default_clobber_time': 24*7, # 1 week
     'unittest_suites': [
         ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-        ('mochitest-other', ['mochitest-chrome', 'mochitest-browser-chrome',
-            'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),

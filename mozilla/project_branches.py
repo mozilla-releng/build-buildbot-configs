@@ -19,8 +19,8 @@ PROJECT_BRANCHES = {
             'paint': 0,
         },
         'add_test_suites': [
-            ('macosx64', 'snowleopard', 'opt', 'mochitest-other', 'mochitest-a11y'),
-            ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'mochitest-a11y'),
+            ('macosx64', 'snowleopard', 'opt', 'mochitest-browser-chrome', 'mochitest-other', 'mochitest-a11y'),
+            ('macosx64', 'snowleopard', 'debug', 'mochitest-browser-chrome', 'mochitest-other', 'mochitest-a11y'),
         ]
     },
     'build-system': {
