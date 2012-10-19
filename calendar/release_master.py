@@ -243,7 +243,6 @@ for platform in releasePlatforms:
         stageGroup=nightly_config.BRANCHES[sourceRepoName]['stage_group'],
         stageSshKey=nightly_config.BRANCHES[sourceRepoName]['stage_ssh_key'],
         stageBasePath=nightly_config.BRANCHES[sourceRepoName]['stage_base_path'],
-        codesighs=False,
         uploadPackages=True,
         uploadSymbols=True,
         createSnippet=False,

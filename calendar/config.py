@@ -60,7 +60,6 @@ DEFAULTS = {
     'clobber_url':            "https://calendar-master.mozillalabs.com/clobberer/",
     'builder_type':           "build",
     'tinderbox_tree':         "ThunderbirdTest",
-    'codesighs':              False,
     'mozmill':                False,
     'product_name':           'sunbird',
     'brand_name':             'Sunbird',
@@ -127,7 +126,6 @@ BRANCHES['comm-release']['stage_username'] = 'calbld'
 BRANCHES['comm-release']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
 BRANCHES['comm-release']['stage_group'] = 'calendar'
 BRANCHES['comm-release']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-release']['codesighs'] = False
 BRANCHES['comm-release']['l10n'] = False
 BRANCHES['comm-release']['l10n_tree'] = 'calendar10x'
 BRANCHES['comm-release']['l10n_repo'] = 'releases/l10n/mozilla-release'
@@ -259,7 +257,6 @@ BRANCHES['comm-beta']['stage_username'] = 'calbld'
 BRANCHES['comm-beta']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
 BRANCHES['comm-beta']['stage_group'] = 'calendar'
 BRANCHES['comm-beta']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-beta']['codesighs'] = False
 BRANCHES['comm-beta']['l10n'] = False
 BRANCHES['comm-beta']['l10n_tree'] = 'calendar10x'
 BRANCHES['comm-beta']['l10n_repo'] = 'releases/l10n/mozilla-beta'
@@ -390,7 +387,6 @@ BRANCHES['comm-aurora']['stage_username'] = 'calbld'
 BRANCHES['comm-aurora']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
 BRANCHES['comm-aurora']['stage_group'] = 'calendar'
 BRANCHES['comm-aurora']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-aurora']['codesighs'] = False
 BRANCHES['comm-aurora']['l10n'] = False
 BRANCHES['comm-aurora']['l10n_tree'] = 'calendar10x'
 BRANCHES['comm-aurora']['l10n_repo'] = 'releases/l10n/mozilla-aurora'
@@ -524,7 +520,6 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
 #BRANCHES['comm-central']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
 #BRANCHES['comm-central']['stage_group'] = 'calendar'
 #BRANCHES['comm-central']['stage_ssh_key'] = 'calbld_dsa'
-#BRANCHES['comm-central']['codesighs'] = False
 #BRANCHES['comm-central']['l10n'] = False
 #BRANCHES['comm-central']['l10n_tree'] = 'calendar11x'
 #BRANCHES['comm-central']['l10n_repo'] = 'l10n-central'
