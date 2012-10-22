@@ -1,4 +1,5 @@
 import time
+import random
 from twisted.python import log
 
 c = BuildmasterConfig = {}
@@ -84,7 +85,10 @@ def prioritizeBuilders(botmaster, builders):
                     priority = p
                     break
 
-        return priority, req_priority, submitted_at
+        # Add some randomness here so that builders with the same priority,
+        # req_priority, submitted_at get processed in a different order each
+        # time
+        return priority, req_priority, submitted_at, random.random()
 
     builders.sort(key=sortkey)
     log.msg("Sorted %i builders in %.2fs" % (len(builders), time.time() - s))
