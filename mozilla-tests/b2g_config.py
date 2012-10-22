@@ -28,7 +28,7 @@ builder_prefix = "b2g "
 
 PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g']
 PLATFORMS['ics_armv7a_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "Rev3 Fedora 12"}
+PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "ics_armv7a_gecko emulator"}
 PLATFORMS['ics_armv7a_gecko']['stage_product'] = 'b2g'
 PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -65,6 +65,21 @@ UNITTEST_SUITES = {
                                'script_path': 'scripts/marionette.py',
                               },
         ),
+        ('mochitests-1/3', {'suite': 'mochitest-plain',
+                            'mozharness_repo': MOZHARNESS_REPO,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                           },
+        ),
+        ('mochitests-2/3', {'suite': 'mochitest-plain',
+                            'mozharness_repo': MOZHARNESS_REPO,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                           },
+        ),
+        ('mochitests-3/3', {'suite': 'mochitest-plain',
+                            'mozharness_repo': MOZHARNESS_REPO,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                           },
+        ),
     ],
     'debug_unittest_suites': [],
 }
@@ -88,6 +103,27 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/prod_emulator_config.py"
+                    ],
+                },
+                'mochitests-1/3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--test-suite', 'mochitests',
+                        '--this-chunk', '1', '--total-chunks', '3',
+                    ],
+                },
+                'mochitests-2/3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--test-suite', 'mochitests',
+                        '--this-chunk', '2', '--total-chunks', '3',
+                    ],
+                },
+                'mochitests-3/3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--test-suite', 'mochitests',
+                        '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
             },
