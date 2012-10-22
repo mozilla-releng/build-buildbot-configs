@@ -122,6 +122,6 @@ releaseConfig['releaseUptake']       = 30000
 releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
-releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['use_mock'] = False
+releaseConfig['ftpSymlinkName'] = 'latest'
