@@ -42,6 +42,12 @@ GENERATE_MASTERS_JSON_CMD = \
         $(MASTERS_JSON).in > $(MASTERS_JSON)
 endif
 
+ifdef UNIVERSAL
+UNIVERSAL_OPT=-u
+else
+UNIVERSAL_OPT=
+endif
+
 ifdef MASTERS_JSON
 SETUP_MASTER=setup-master.py -j $(MASTERS_JSON)
 else
@@ -83,7 +89,7 @@ ifdef GENERATE_MASTERS_JSON_CMD
 	cd $(BASEDIR)/buildbot-configs && $(GENERATE_MASTERS_JSON_CMD)
 endif
 	cd $(BASEDIR)/buildbot-configs && \
-	    $(VIRTUALENV_PYTHON) $(SETUP_MASTER) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME)
+	    $(VIRTUALENV_PYTHON) $(SETUP_MASTER) $(UNIVERSAL_OPT) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME)
 
 master-makefile:
 	ln -sf $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
