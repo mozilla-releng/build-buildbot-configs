@@ -1080,12 +1080,12 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
 
 ### start of mozharness desktop unittests
 mozharness_unittest_suites = [
-    {'suite_name': 'mochitests-1/5', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
-    {'suite_name': 'mochitests-2/5', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
-    {'suite_name': 'mochitests-3/5', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
-    {'suite_name': 'mochitests-4/5', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
-    {'suite_name': 'mochitests-5/5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
-    {'suite_name': 'mochitests-browser-chrome', 'suite_category': 'mochitest', 'sub_categories': 
+    {'suite_name': 'mochitests-1', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
+    {'suite_name': 'mochitests-2', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
+    {'suite_name': 'mochitests-3', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
+    {'suite_name': 'mochitests-4', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
+    {'suite_name': 'mochitests-5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
+    {'suite_name': 'mochitests-browser-chrome', 'suite_category': 'mochitest', 'sub_categories':
         ['browser-chrome']},
     {'suite_name': 'mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
         ['chrome', 'a11y', 'plugins']},

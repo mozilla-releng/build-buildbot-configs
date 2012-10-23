@@ -65,20 +65,20 @@ UNITTEST_SUITES = {
                                'script_path': 'scripts/marionette.py',
                               },
         ),
-        ('mochitests-1/3', {'suite': 'mochitest-plain',
-                            'mozharness_repo': MOZHARNESS_REPO,
-                            'script_path': 'scripts/b2g_emulator_unittest.py',
-                           },
+        ('mochitests-1', {'suite': 'mochitest-plain',
+                          'mozharness_repo': MOZHARNESS_REPO,
+                          'script_path': 'scripts/b2g_emulator_unittest.py',
+                         },
         ),
-        ('mochitests-2/3', {'suite': 'mochitest-plain',
-                            'mozharness_repo': MOZHARNESS_REPO,
-                            'script_path': 'scripts/b2g_emulator_unittest.py',
-                           },
+        ('mochitests-2', {'suite': 'mochitest-plain',
+                          'mozharness_repo': MOZHARNESS_REPO,
+                          'script_path': 'scripts/b2g_emulator_unittest.py',
+                         },
         ),
-        ('mochitests-3/3', {'suite': 'mochitest-plain',
-                            'mozharness_repo': MOZHARNESS_REPO,
-                            'script_path': 'scripts/b2g_emulator_unittest.py',
-                           },
+        ('mochitests-3', {'suite': 'mochitest-plain',
+                          'mozharness_repo': MOZHARNESS_REPO,
+                          'script_path': 'scripts/b2g_emulator_unittest.py',
+                         },
         ),
     ],
     'debug_unittest_suites': [],
@@ -105,21 +105,21 @@ PLATFORM_UNITTEST_VARS = {
                         "--cfg", "marionette/prod_emulator_config.py"
                     ],
                 },
-                'mochitests-1/3': {
+                'mochitests-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_prod_config.py',
                         '--test-suite', 'mochitests',
                         '--this-chunk', '1', '--total-chunks', '3',
                     ],
                 },
-                'mochitests-2/3': {
+                'mochitests-2': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_prod_config.py',
                         '--test-suite', 'mochitests',
                         '--this-chunk', '2', '--total-chunks', '3',
                     ],
                 },
-                'mochitests-3/3': {
+                'mochitests-3': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_prod_config.py',
                         '--test-suite', 'mochitests',
