@@ -138,3 +138,4 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['use_mock'] = False
+releaseConfig['ftpSymlinkName'] = 'latest'

@@ -376,7 +376,7 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
             ('preproduction_config.py', 'localconfig.py'),
             ('thunderbird_preproduction_config.py', 'thunderbird_localconfig.py'),
             ('b2g_preproduction_config.py', 'b2g_localconfig.py'),
-            ('builder_master.cfg', 'master.cfg'),
+            ('universal_master_sqlite.cfg', 'master.cfg'),
             ]
         )
 

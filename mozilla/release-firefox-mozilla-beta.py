@@ -14,16 +14,16 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0b2'
+releaseConfig['version']             = '17.0b3'
 releaseConfig['appVersion']          = '17.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_17_0b2'
+releaseConfig['baseTag']             = 'FIREFOX_17_0b3'
 releaseConfig['partialUpdates']      = {
-    '16.0b6': {
-        'appVersion': '16.0',
+    '17.0b2': {
+        'appVersion': '17.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_16_0b6',
+        'baseTag': 'FIREFOX_17_0b2',
     },
     '17.0b1': {
         'appVersion': '17.0',
@@ -39,7 +39,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '27eed0f4867f',
+        'revision': 'f8a6138bcfba',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -136,3 +136,4 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = False
+releaseConfig['ftpSymlinkName'] = 'latest-beta'
