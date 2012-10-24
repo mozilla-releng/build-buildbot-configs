@@ -14,28 +14,28 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '10.0.9esr'
-releaseConfig['appVersion']          = '10.0.9'
+releaseConfig['version']             = '10.0.10esr'
+releaseConfig['appVersion']          = '10.0.10'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_9esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_10esr'
 releaseConfig['partialUpdates']      = {
-    '10.0.8esr': {
-        'appVersion': '10.0.8',
+    '10.0.9esr': {
+        'appVersion': '10.0.9',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_10_0_8esr',
+        'baseTag': 'FIREFOX_10_0_9esr',
     }
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.10esrpre'
-releaseConfig['nextMilestone']       = '10.0.10esrpre'
+releaseConfig['nextAppVersion']      = '10.0.11esrpre'
+releaseConfig['nextMilestone']       = '10.0.11esrpre'
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '9806d9532ce3',
-        'relbranch': None,
+        'revision': '481667090414',
+        'relbranch': 'GECKO1009_2012101115_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
