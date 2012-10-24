@@ -379,6 +379,8 @@ PLATFORM_VARS = {
 BRANCHES = {
     'mozilla-central': {
     },
+    'mozilla-aurora': {
+    },
     'try': {
     },
 }
@@ -466,6 +468,15 @@ BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
+
+######## mozilla-aurora
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['mozilla-aurora']['start_hour'] = [3]
+BRANCHES['mozilla-aurora']['start_minute'] = [2]
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
 
 ######## try
 # Try-specific configs
