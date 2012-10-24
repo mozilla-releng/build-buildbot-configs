@@ -69,7 +69,6 @@ GLOBAL_VARS = {
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32'),
     'periodic_pgo_interval': 6, # in hours
-    'enable_shark': True,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'blocklist_update_set_approval': True,
@@ -257,7 +256,6 @@ PLATFORM_VARS = {
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
-            'src_shark_mozconfig': 'browser/config/mozconfigs/macosx-universal/shark',
             'packageTests': True,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
@@ -270,7 +268,6 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -531,7 +528,6 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -574,7 +570,6 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -883,8 +878,6 @@ PLATFORM_VARS["macosx64-lion"]["base_name"] = 'OS X 10.7 %(branch)s'
 PLATFORM_VARS["macosx64-lion-debug"]["base_name"] = 'OS X 10.7 64-bit %(branch)s leak test'
 PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
-PLATFORM_VARS["macosx64-lion"]["enable_shark"] = False
-PLATFORM_VARS["macosx64-lion-debug"]["enable_shark"] = False
 
 # begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
 WIN32_ENV = {
@@ -1396,15 +1389,12 @@ BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32'
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
 BRANCHES['mozilla-esr10']['platforms']['macosx64']['base_name'] = 'OS X 10.6.2 mozilla-esr10'
 BRANCHES['mozilla-esr10']['platforms']['macosx64']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx64']['enable_shark'] = True
 BRANCHES['mozilla-esr10']['platforms']['macosx64']['enable_ccache'] = False
 BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-esr10 leak test'
 BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_shark'] = True
 BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['base_name'] = 'OS X 10.6.2 mozilla-esr10 leak test'
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_shark'] = True
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
 # End delete
 # mock disabled block start
@@ -1457,7 +1447,6 @@ BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
-BRANCHES['try']['enable_shark'] = False
 BRANCHES['try']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
@@ -1526,7 +1515,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     # Enable unit tests
     BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
     BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)
-    BRANCHES[branch]['enable_shark'] = branchConfig.get('enable_shark', False)
     # L10n configuration is not set up for project_branches
     BRANCHES[branch]['enable_l10n'] = branchConfig.get('enable_l10n', False)
     BRANCHES[branch]['l10nNightlyUpdate'] = branchConfig.get('l10nNightlyUpdate', False)

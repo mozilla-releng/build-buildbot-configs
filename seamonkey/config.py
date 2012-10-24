@@ -70,7 +70,6 @@ GLOBAL_VARS = {
     },
     'pgo_strategy': None,
     'pgo_platforms': list(),
-    'enable_shark': False,
     'enable_codecoverage': False,
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,

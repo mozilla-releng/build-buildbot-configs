@@ -240,7 +240,6 @@ PLATFORM_VARS = {
             'run_alive_tests': False,
             'src_mozconfig': 'mail/config/mozconfigs/macosx-universal/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
-            'src_shark_mozconfig': 'mail/config/mozconfigs/macosx-universal/shark',
             'packageTests': True,
             'profiled_build': False,
             'leak_target': 'mailbloat',
@@ -254,7 +253,6 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -505,7 +503,6 @@ PLATFORM_VARS = {
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'enable_ccache': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
@@ -543,7 +540,6 @@ PLATFORM_VARS = {
             'stage_product': 'thunderbird',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1013,7 +1009,6 @@ BRANCHES['try-comm-central']['enable_l10n'] = False
 BRANCHES['try-comm-central']['enable_l10n_onchange'] = False
 BRANCHES['try-comm-central']['l10nNightlyUpdate'] = False
 BRANCHES['try-comm-central']['l10nDatedDirs'] = False
-BRANCHES['try-comm-central']['enable_shark'] = False
 BRANCHES['try-comm-central']['create_snippet'] = False
 # need this or the master.cfg will bail
 BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
