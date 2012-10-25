@@ -1114,8 +1114,7 @@ for branch in BRANCHES:
                         continue
                     BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] = []
                     for suite in mozharness_unittest_suites:
-                        extra_args = ["--cfg", config_file,
-                                      '--enable-preflight-run-commands']
+                        extra_args = ["--cfg", config_file]
                         for sub_category in suite['sub_categories']:
                             extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
