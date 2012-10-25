@@ -26,10 +26,10 @@ SLAVES = {
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 
-TRY_LINUX      = ['bld-centos5-32-vmw-%03i' % x for x in range(23,40)]
+TRY_LINUX      = []
 TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
                  ['linux-ix-slave%02i' % x for x in range(7,12)]
-TRY_LINUX64    = ['bld-centos5-64-vmw-%03i' % x for x in range(7, 12)]
+TRY_LINUX64    = []
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
 TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1,101)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(27,32)]
