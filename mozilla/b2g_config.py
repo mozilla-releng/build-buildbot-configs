@@ -20,6 +20,7 @@ GLOBAL_VARS.update({
         'ics_armv7a_gecko': {},
         'ics_armv7a_gecko-debug': {},
         'linux32_gecko': {},
+        'linux64_gecko': {},
         'macosx64_gecko': {},
         'win32_gecko': {},
         'panda': {},
@@ -49,7 +50,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
             'profiled_build': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 10,
+            'build_space': 13,
             'update_platform': None,
             'upload_symbols': False,
             'create_snippet': False,
@@ -104,7 +105,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
             'profiled_build': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 10,
+            'build_space': 13,
             'update_platform': None,
             'upload_symbols': False,
             'create_snippet': False,
@@ -162,7 +163,7 @@ PLATFORM_VARS = {
             'create_snippet': False,
             'create_partial': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 9,
             'upload_symbols': False,
             'packageTests': True,
             'enable_codesighs': False,
@@ -212,6 +213,66 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
         },
+        'linux64_gecko': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 9,
+            'upload_symbols': False,
+            'packageTests': True,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'unittest_masters': [],
+            'stage_product': 'b2g',
+            'stage_platform': 'linux64_gecko',
+            'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '/tools/buildbot/bin:${PATH}',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'enable_build_analysis': True,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-x86_64',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static', 'gtk2-devel',
+                              'libnotify-devel', 'yasm', 'alsa-lib-devel',
+                              'libcurl-devel', 'wireless-tools-devel',
+                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
+                              'imake', 'ccache', 'wget'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
+            'gaia_repo': gaia_repo,
+            'mock_copyin_files': [
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
+        },
         'macosx64_gecko': {
             'product_name': 'b2g',
             'app_name': 'b2g',
@@ -223,7 +284,7 @@ PLATFORM_VARS = {
             'create_snippet': False,
             'create_partial': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 9,
             'upload_symbols': True,
             'packageTests': True,
             'enable_codesighs': False,
@@ -234,7 +295,6 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_shark': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -264,7 +324,7 @@ PLATFORM_VARS = {
             'enable_dep': False,
             'profiled_build': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 5,
+            'build_space': 8,
             'upload_symbols': False,
             'packageTests': True,
             'create_snippet': False,
@@ -317,6 +377,8 @@ PLATFORM_VARS = {
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
+    },
+    'mozilla-aurora': {
     },
     'try': {
     },
@@ -405,6 +467,15 @@ BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
+
+######## mozilla-aurora
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['mozilla-aurora']['start_hour'] = [3]
+BRANCHES['mozilla-aurora']['start_minute'] = [2]
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
 
 ######## try
 # Try-specific configs
