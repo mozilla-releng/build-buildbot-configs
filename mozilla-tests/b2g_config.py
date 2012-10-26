@@ -24,11 +24,11 @@ PLATFORMS = {
     'ics_armv7a_gecko': {},
 }
 
-builder_prefix = "b2g "
+builder_prefix = "b2g"
 
 PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g']
 PLATFORMS['ics_armv7a_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "ics_armv7a_gecko emulator"}
+PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator"}
 PLATFORMS['ics_armv7a_gecko']['stage_product'] = 'b2g'
 PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -237,4 +237,3 @@ if __name__ == "__main__":
     for suite in SUITES:
         print suite
         pp.pprint(SUITES[suite])
-
