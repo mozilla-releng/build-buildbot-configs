@@ -1051,7 +1051,7 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 # Let's load Marionette for the following branches:
-for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
+for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services-central', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             # this is just for desktop Firefox
