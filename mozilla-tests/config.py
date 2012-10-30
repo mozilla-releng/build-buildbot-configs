@@ -391,8 +391,8 @@ BRANCH_UNITTEST_VARS = {
 # Default set of unit tests
 UNITTEST_SUITES = {
     'opt_unittest_suites': [
-        # Turn on chunks for mochitests
-        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
@@ -403,8 +403,8 @@ UNITTEST_SUITES = {
         #('mozmill-all', ['mozmill']),
     ],
     'debug_unittest_suites': [
-        # Turn on chunks for mochitests
-        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
@@ -417,7 +417,7 @@ UNITTEST_SUITES = {
     'mobile_unittest_suites': [
         # The disabled test suites are only disabled until we can get
         # to 100% green
-        #('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        #('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         #('mochitest-other', ['mochitest-chrome', 'mochitest-a11y',
         #                     'mochitest-ipcplugins']),
         ('mobile-mochitest-browser-chrome', ['mobile-mochitest-browser-chrome']),
@@ -1080,14 +1080,14 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', ):
 
 ### start of mozharness desktop unittests
 mozharness_unittest_suites = [
-    {'suite_name': 'mochitests-1', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
-    {'suite_name': 'mochitests-2', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
-    {'suite_name': 'mochitests-3', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
-    {'suite_name': 'mochitests-4', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
-    {'suite_name': 'mochitests-5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
-    {'suite_name': 'mochitests-browser-chrome', 'suite_category': 'mochitest', 'sub_categories':
+    {'suite_name': 'mochitest-1', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
+    {'suite_name': 'mochitest-2', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
+    {'suite_name': 'mochitest-3', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
+    {'suite_name': 'mochitest-4', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
+    {'suite_name': 'mochitest-5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
+    {'suite_name': 'mochitest-browser-chrome', 'suite_category': 'mochitest', 'sub_categories':
         ['browser-chrome']},
-    {'suite_name': 'mochitests-other', 'suite_category': 'mochitest', 'sub_categories':
+    {'suite_name': 'mochitest-other', 'suite_category': 'mochitest', 'sub_categories':
         ['chrome', 'a11y', 'plugins']},
     {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
     {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
@@ -1114,8 +1114,7 @@ for branch in BRANCHES:
                         continue
                     BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] = []
                     for suite in mozharness_unittest_suites:
-                        extra_args = ["--cfg", config_file,
-                                      '--enable-preflight-run-commands']
+                        extra_args = ["--cfg", config_file]
                         for sub_category in suite['sub_categories']:
                             extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [

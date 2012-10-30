@@ -41,7 +41,7 @@ GLOBAL_VARS = {
     'default_l10n_space': 3,
     'default_clobber_time': 24*7, # 1 week
     'unittest_suites': [
-        ('mochitests', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
@@ -67,7 +67,7 @@ GLOBAL_VARS = {
         'android-debug': {},
     },
     'pgo_strategy': None,
-    'pgo_platforms': ('linux', 'linux64', 'win32'),
+    'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
     'periodic_pgo_interval': 6, # in hours
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
@@ -914,8 +914,19 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
-    'spidermonkey_mozilla-inbound': {
+    'spidermonkey_try': {
+        'enable_try': True,
+        'variants': {
+            'linux64-debug':  ['rootanalysis'],
+        },
         'platforms': {
+            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+    },
+    'spidermonkey_mozilla-inbound': {
+        'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
@@ -923,21 +934,21 @@ PROJECTS = {
             'macosx64-lion':           ['warnaserr'],
             'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
         },
-        'env': {
-            'linux': PLATFORM_VARS['linux']['env'],
-            'linux-debug': PLATFORM_VARS['linux-debug']['env'],
-            'linux64': PLATFORM_VARS['linux64']['env'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
-            'win32': PLATFORM_VARS['win32']['env'],
-            'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
+        'platforms': {
+            'linux': PLATFORM_VARS['linux'],
+            'linux-debug': PLATFORM_VARS['linux-debug'],
+            'linux64': PLATFORM_VARS['linux64'],
+            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+            'win32': PLATFORM_VARS['win32'],
+            'win32-debug': PLATFORM_VARS['win32-debug'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
     },
     'spidermonkey_ionmonkey': {
-        'platforms': {
+        'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
@@ -945,15 +956,15 @@ PROJECTS = {
             'macosx64-lion':           ['warnaserr'],
             'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
         },
-        'env': {
-            'linux': PLATFORM_VARS['linux']['env'],
-            'linux-debug': PLATFORM_VARS['linux-debug']['env'],
-            'linux64': PLATFORM_VARS['linux64']['env'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug']['env'],
-            'win32': PLATFORM_VARS['win32']['env'],
-            'win32-debug': PLATFORM_VARS['win32-debug']['env'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion']['env'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug']['env'],
+        'platforms': {
+            'linux': PLATFORM_VARS['linux'],
+            'linux-debug': PLATFORM_VARS['linux-debug'],
+            'linux64': PLATFORM_VARS['linux64'],
+            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+            'win32': PLATFORM_VARS['win32'],
+            'win32-debug': PLATFORM_VARS['win32-debug'],
+            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
+            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
@@ -1427,7 +1438,6 @@ BRANCHES['try']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/try-builds'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
-BRANCHES['try']['pgo_platforms'] = ('linux', 'linux64', 'win32', 'win64')
 BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
