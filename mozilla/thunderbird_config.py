@@ -317,7 +317,7 @@ PLATFORM_VARS = {
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}buildbotve\\scripts;${MOZILLABUILD}python27;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
