@@ -84,7 +84,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ru": {
-    "revision": "356eedc984fe",
+    "revision": "03badc8ec29b",
     "platforms": ["android", "android-multilocale"]
   },
   "sk": {
@@ -104,7 +104,7 @@
     "platforms": ["android"]
   },
   "zh-TW": {
-    "revision": "8009ceddc969",
+    "revision": "5bcd5ea00cb6",
     "platforms": ["android"]
   }
 }
