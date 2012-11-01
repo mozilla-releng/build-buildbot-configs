@@ -96,7 +96,7 @@ BRANCHES = {
     'comm-release': {},
     'comm-beta': {},
     'comm-aurora': {},
-    'comm-central': {},
+#    'comm-central': {},
 }
 
 ######## lightning-release
@@ -499,139 +499,139 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
 }
 ######## lightning-trunk
 # All platforms being built for this branch MUST be listed here.
-BRANCHES['comm-central']['platforms'] = {
-    'linux': {},
-    'linux64': {},
-    'win32': {},
-    'macosx64': {}
-}
-
-BRANCHES['comm-central']['mozilla_central_branch'] = 'mozilla-central'
-BRANCHES['comm-central']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
-BRANCHES['comm-central']['branch_name'] = 'comm-central'
-BRANCHES['comm-central']['hg_branch'] = 'comm-central'
-BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
-BRANCHES['comm-central']['mozconfig'] = 'mozconfig-lightning'
-# Period for comm-central disabled in master.cfg
-BRANCHES['comm-central']['period'] = 60 * 60 * 10
-# Lightning doesn't need to package Thunderbird
-BRANCHES['comm-central']['package'] = False
-BRANCHES['comm-central']['upload_stage'] = True
-BRANCHES['comm-central']['upload_complete_mar'] = False
-#Might be better off per-platform instead of per-branch here.
-BRANCHES['comm-central']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
-BRANCHES['comm-central']['stage_username'] = 'calbld'
-BRANCHES['comm-central']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
-BRANCHES['comm-central']['stage_group'] = 'calendar'
-BRANCHES['comm-central']['stage_ssh_key'] = 'calbld_dsa'
-BRANCHES['comm-central']['codesighs'] = False
-BRANCHES['comm-central']['l10n'] = False
-BRANCHES['comm-central']['l10n_tree'] = 'calendar11x'
-BRANCHES['comm-central']['l10n_repo'] = 'l10n-central'
-BRANCHES['comm-central']['irc_nick'] = 'lt-trunk-builds'
-BRANCHES['comm-central']['irc_channels'] = [ 'calendar' ]
-
-BRANCHES['comm-central']['extensions'] = {
-    'lightning': {
-        'subdir': "calendar/lightning",
-        'download_base_url': DOWNLOAD_BASE_URL + 'lightning',
-        'l10n': True
-    }
-}
-BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central lightning'
-BRANCHES['comm-central']['platforms']['linux64']['base_name'] = 'Linux x86_64 comm-central lightning'
-BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central lightning'
-BRANCHES['comm-central']['platforms']['macosx64']['base_name'] = 'MacOSX 10.6 comm-central lightning'
-BRANCHES['comm-central']['platforms']['linux']['profiled_build'] = False
-BRANCHES['comm-central']['platforms']['linux64']['profiled_build'] = False
-BRANCHES['comm-central']['platforms']['win32']['profiled_build'] = False
-BRANCHES['comm-central']['platforms']['macosx64']['profiled_build'] = False
-BRANCHES['comm-central']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
-BRANCHES['comm-central']['platforms']['linux64']['milestone'] = "comm-central/linux64-xpi"
-BRANCHES['comm-central']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
-BRANCHES['comm-central']['platforms']['macosx64']['milestone'] = "comm-central/macosx-xpi"
-BRANCHES['comm-central']['platforms']['macosx64']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
-
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-central']['create_snippet'] = False
-BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
-BRANCHES['comm-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
-BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
-BRANCHES['comm-central']['platforms']['macosx64']['update_platform'] = 'Darwin_Universal-gcc3'
-# If True, 'make buildsymbols' and 'make uploadsymbols' will be run
-# SYMBOL_SERVER_* variables are setup in the environment section below
-BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['linux64']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['comm-central']['platforms']['macosx64']['upload_symbols'] = True
-BRANCHES['comm-central']['tinderbox_tree'] = 'CalendarTrunk'
-BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
-BRANCHES['comm-central']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
-BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
-BRANCHES['comm-central']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
-
-# This is used in a bunch of places where something needs to be run from
-# the objdir. This is necessary because of universal builds on Mac
-# creating subdirectories inside of the objdir.
-BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central']['platforms']['linux64']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
-BRANCHES['comm-central']['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
-BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
-    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
-
-    # Bug 779192
-    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
-}
-BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
-    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
-
-    # Bug 779192
-    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
-}
-BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/calbld_dsa',
-    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
-}
-BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
-    'MOZ_OBJDIR': OBJDIR,
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'DISABLE_LIGHTNING_INSTALL': '1',
-    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
-    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
-
-    # See bug 758694
-    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-}
+#BRANCHES['comm-central']['platforms'] = {
+#    'linux': {},
+#    'linux64': {},
+#    'win32': {},
+#    'macosx64': {}
+#}
+#
+#BRANCHES['comm-central']['mozilla_central_branch'] = 'mozilla-central'
+#BRANCHES['comm-central']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
+#BRANCHES['comm-central']['branch_name'] = 'comm-central'
+#BRANCHES['comm-central']['hg_branch'] = 'comm-central'
+#BRANCHES['comm-central']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman']
+#BRANCHES['comm-central']['mozconfig'] = 'mozconfig-lightning'
+## Period for comm-central disabled in master.cfg
+#BRANCHES['comm-central']['period'] = 60 * 60 * 10
+## Lightning doesn't need to package Thunderbird
+#BRANCHES['comm-central']['package'] = False
+#BRANCHES['comm-central']['upload_stage'] = True
+#BRANCHES['comm-central']['upload_complete_mar'] = False
+##Might be better off per-platform instead of per-branch here.
+#BRANCHES['comm-central']['upload_glob'] = "mozilla/dist/xpi-stage/{lightning,gdata-provider}.xpi"
+#BRANCHES['comm-central']['stage_username'] = 'calbld'
+#BRANCHES['comm-central']['stage_base_path'] = '/home/ftp/pub/mozilla.org/calendar/lightning'
+#BRANCHES['comm-central']['stage_group'] = 'calendar'
+#BRANCHES['comm-central']['stage_ssh_key'] = 'calbld_dsa'
+#BRANCHES['comm-central']['codesighs'] = False
+#BRANCHES['comm-central']['l10n'] = False
+#BRANCHES['comm-central']['l10n_tree'] = 'calendar11x'
+#BRANCHES['comm-central']['l10n_repo'] = 'l10n-central'
+#BRANCHES['comm-central']['irc_nick'] = 'lt-trunk-builds'
+#BRANCHES['comm-central']['irc_channels'] = [ 'calendar' ]
+#
+#BRANCHES['comm-central']['extensions'] = {
+#    'lightning': {
+#        'subdir': "calendar/lightning",
+#        'download_base_url': DOWNLOAD_BASE_URL + 'lightning',
+#        'l10n': True
+#    }
+#}
+#BRANCHES['comm-central']['platforms']['linux']['base_name'] = 'Linux comm-central lightning'
+#BRANCHES['comm-central']['platforms']['linux64']['base_name'] = 'Linux x86_64 comm-central lightning'
+#BRANCHES['comm-central']['platforms']['win32']['base_name'] = 'WINNT 5.2 comm-central lightning'
+#BRANCHES['comm-central']['platforms']['macosx64']['base_name'] = 'MacOSX 10.6 comm-central lightning'
+#BRANCHES['comm-central']['platforms']['linux']['profiled_build'] = False
+#BRANCHES['comm-central']['platforms']['linux64']['profiled_build'] = False
+#BRANCHES['comm-central']['platforms']['win32']['profiled_build'] = False
+#BRANCHES['comm-central']['platforms']['macosx64']['profiled_build'] = False
+#BRANCHES['comm-central']['platforms']['linux']['milestone'] = "comm-central/linux-xpi"
+#BRANCHES['comm-central']['platforms']['linux64']['milestone'] = "comm-central/linux64-xpi"
+#BRANCHES['comm-central']['platforms']['win32']['milestone'] = "comm-central/win32-xpi"
+#BRANCHES['comm-central']['platforms']['macosx64']['milestone'] = "comm-central/macosx-xpi"
+#BRANCHES['comm-central']['platforms']['macosx64']['upload_glob'] = "mozilla/dist/universal/xpi-stage/{lightning,gdata-provider}.xpi"
+#
+## If True, a complete update snippet for this branch will be generated and
+## uploaded to. Any platforms with 'debug' in them will not have snippets
+## generated.
+#BRANCHES['comm-central']['create_snippet'] = False
+#BRANCHES['comm-central']['platforms']['linux']['update_platform'] = 'Linux_x86-gcc3'
+#BRANCHES['comm-central']['platforms']['linux64']['update_platform'] = 'Linux_x86_64-gcc3'
+#BRANCHES['comm-central']['platforms']['win32']['update_platform'] = 'WINNT_x86-msvc'
+#BRANCHES['comm-central']['platforms']['macosx64']['update_platform'] = 'Darwin_Universal-gcc3'
+## If True, 'make buildsymbols' and 'make uploadsymbols' will be run
+## SYMBOL_SERVER_* variables are setup in the environment section below
+#BRANCHES['comm-central']['platforms']['linux']['upload_symbols'] = True
+#BRANCHES['comm-central']['platforms']['linux64']['upload_symbols'] = True
+#BRANCHES['comm-central']['platforms']['win32']['upload_symbols'] = True
+#BRANCHES['comm-central']['platforms']['macosx64']['upload_symbols'] = True
+#BRANCHES['comm-central']['tinderbox_tree'] = 'CalendarTrunk'
+#BRANCHES['comm-central']['platforms']['linux']['slaves'] = BUILDERS['linux']['community']
+#BRANCHES['comm-central']['platforms']['linux64']['slaves'] = BUILDERS['linux64']['momo']
+#BRANCHES['comm-central']['platforms']['win32']['slaves'] = BUILDERS['win32']['community-new']
+#BRANCHES['comm-central']['platforms']['macosx64']['slaves'] = BUILDERS['macosx']['10.7']['community']
+#
+## This is used in a bunch of places where something needs to be run from
+## the objdir. This is necessary because of universal builds on Mac
+## creating subdirectories inside of the objdir.
+#BRANCHES['comm-central']['platforms']['linux']['platform_objdir'] = OBJDIR
+#BRANCHES['comm-central']['platforms']['linux64']['platform_objdir'] = OBJDIR
+#BRANCHES['comm-central']['platforms']['win32']['platform_objdir'] = OBJDIR
+#BRANCHES['comm-central']['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
+#BRANCHES['comm-central']['platforms']['linux']['env'] = {'CVS_RSH': 'ssh',
+#    'MOZ_OBJDIR': OBJDIR,
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+#    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+#    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+#    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+#    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+#    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+#
+#    # Bug 779192
+#    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
+#}
+#BRANCHES['comm-central']['platforms']['linux64']['env'] = {'CVS_RSH': 'ssh',
+#    'MOZ_OBJDIR': OBJDIR,
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+#    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+#    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+#    'SYMBOL_SERVER_SSH_KEY': '/home/cltbld/.ssh/calbld_dsa',
+#    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+#
+#    # Bug 779192
+#    'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
+#}
+#BRANCHES['comm-central']['platforms']['win32']['env'] = {'CVS_RSH': 'ssh',
+#    'MOZ_OBJDIR': OBJDIR,
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+#    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+#    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+#    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+#    'SYMBOL_SERVER_SSH_KEY': '/c/Documents and Settings/cltbld/.ssh/calbld_dsa',
+#    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+#}
+#BRANCHES['comm-central']['platforms']['macosx64']['env'] = {'CVS_RSH': 'ssh',
+#    'MOZ_OBJDIR': OBJDIR,
+#    'TINDERBOX_OUTPUT': '1',
+#    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+#    'DISABLE_LIGHTNING_INSTALL': '1',
+#    'SYMBOL_SERVER_HOST': SYMBOL_SERVER_HOST,
+#    'SYMBOL_SERVER_USER': SYMBOL_SERVER_USER,
+#    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+#    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+#    'SYMBOL_SERVER_SSH_KEY': '/Users/calbld/.ssh/calbld_dsa',
+#    'LIGHTNING_UPDATE_LOCATION': LIGHTNING_UPDATE_LOCATION,
+#
+#    # See bug 758694
+#    'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+#}
 # Release automation expect to find these
 STAGE_BASE_PATH=DEFAULTS['stage_base_path']
 COMPARE_LOCALES_TAG = 'RELEASE_AUTOMATION'
