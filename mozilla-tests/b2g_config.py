@@ -132,33 +132,33 @@ PLATFORM_UNITTEST_VARS = {
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
-                        "--cfg", "marionette/prod_emulator_config.py"
+                        "--cfg", "marionette/automation_emulator_config.py"
                     ],
                 },
                 'mochitest-1': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '1', '--total-chunks', '3',
                     ],
                 },
                 'mochitest-2': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '2', '--total-chunks', '3',
                     ],
                 },
                 'mochitest-3': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
                 'reftest-1': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '1', '--total-chunks', '6',
@@ -166,7 +166,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'reftest-2': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '2', '--total-chunks', '6',
@@ -174,7 +174,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'reftest-3': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '3', '--total-chunks', '6',
@@ -182,7 +182,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'reftest-4': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '4', '--total-chunks', '6',
@@ -190,7 +190,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'reftest-5': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '5', '--total-chunks', '6',
@@ -198,7 +198,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'reftest-6': {
                     'extra_args': [
-                        '--cfg', 'b2g/emulator_prod_config.py',
+                        '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                         '--this-chunk', '6', '--total-chunks', '6',
