@@ -920,6 +920,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'try',
+        'branch': 'try',
     },
     'spidermonkey_mozilla-inbound': {
         'variants': {
@@ -942,6 +943,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
+        'branch': 'mozilla-central',
     },
     'spidermonkey_ionmonkey': {
         'variants': {
@@ -964,6 +966,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
+        'branch': 'ionmonkey',
     },
     'dxr_mozilla-central': {
         'platform': 'mock',
