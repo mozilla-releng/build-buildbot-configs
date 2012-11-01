@@ -6,17 +6,14 @@ from production_config import \
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
+GLOBAL_VARS['tinderbox_tree'] = 'MozillaTest'
 GLOBAL_VARS['disable_tinderbox_mail'] = True
 GLOBAL_VARS['stage_username'] = 'ffxbld'
 GLOBAL_VARS['stage_ssh_key'] = 'ffxbld_dsa'
 
 # Local branch overrides
 BRANCHES = {
-    'cedar': {
-        'tinderbox_tree': 'Cedar',
-    },
     'try': {
-        'tinderbox_tree': 'Try',
         'enable_mail_notifier': True,
         'notify_real_author': True,
         'enable_merging': False,
