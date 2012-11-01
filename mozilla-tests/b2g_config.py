@@ -13,11 +13,13 @@ GLOBAL_VARS['stage_username'] = 'ffxbld'
 GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
-    'cedar': {
-        'platforms': {
-            'ics_armv7a_gecko': {},
-        },
-    },
+    'ash': {},
+    'cedar': {},
+    'fx-team': {},
+    'mozilla-central': {},
+    'mozilla-inbound': {},
+    'services-central': {},
+    'try': {'coallesce_jobs': False},
 }
 
 PLATFORMS = {
@@ -57,60 +59,65 @@ BRANCH_UNITTEST_VARS = {
 
 SUITES = {}
 
+MOCHITEST_ONLY = [
+    ('mochitest-1', {'suite': 'mochitest-plain',
+                     'mozharness_repo': MOZHARNESS_REPO,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
+    ),
+    ('mochitest-2', {'suite': 'mochitest-plain',
+                     'mozharness_repo': MOZHARNESS_REPO,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
+    ),
+    ('mochitest-3', {'suite': 'mochitest-plain',
+                     'mozharness_repo': MOZHARNESS_REPO,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
+    ),
+]
+
+ALL_UNITTESTS = MOCHITEST_ONLY + [
+    ('marionette-webapi', {'suite': 'marionette-webapi',
+                           'mozharness_repo': MOZHARNESS_REPO,
+                           'script_path': 'scripts/marionette.py',
+                          },
+    ),
+    ('reftest-1', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-2', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-3', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-4', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-5', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-6', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+]
+
 # Default set of unit tests
 UNITTEST_SUITES = {
-    'opt_unittest_suites': [
-        ('marionette-webapi', {'suite': 'marionette-webapi',
-                               'mozharness_repo': MOZHARNESS_REPO,
-                               'script_path': 'scripts/marionette.py',
-                              },
-        ),
-        ('mochitest-1', {'suite': 'mochitest-plain',
-                          'mozharness_repo': MOZHARNESS_REPO,
-                          'script_path': 'scripts/b2g_emulator_unittest.py',
-                         },
-        ),
-        ('mochitest-2', {'suite': 'mochitest-plain',
-                          'mozharness_repo': MOZHARNESS_REPO,
-                          'script_path': 'scripts/b2g_emulator_unittest.py',
-                         },
-        ),
-        ('mochitest-3', {'suite': 'mochitest-plain',
-                          'mozharness_repo': MOZHARNESS_REPO,
-                          'script_path': 'scripts/b2g_emulator_unittest.py',
-                         },
-        ),
-        ('reftest-1', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-        ('reftest-2', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-        ('reftest-3', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-        ('reftest-4', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-        ('reftest-5', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-        ('reftest-6', {'suite': 'reftest',
-                       'mozharness_repo': MOZHARNESS_REPO,
-                       'script_path': 'scripts/b2g_emulator_unittest.py',
-                      },
-        ),
-    ],
+    'opt_unittest_suites': MOCHITEST_ONLY[:],
     'debug_unittest_suites': [],
 }
 
@@ -286,10 +293,18 @@ for branch in BRANCHES.keys():
 
 # The following are exceptions to the defaults
 
-######## cedar
+BRANCHES['ash']['branch_name'] = "Ash"
+BRANCHES['ash']['repo_path'] = "projects/ash"
+BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['pgo_strategy'] = None
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
+BRANCHES['mozilla-central']['branch_name'] = "Firefox"
+BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
+BRANCHES['services-central']['repo_path'] = "services/services-central"
+BRANCHES['try']['pgo_strategy'] = "try"
+BRANCHES['try']['enable_try'] = True
 
 if __name__ == "__main__":
     import sys, pprint, re
