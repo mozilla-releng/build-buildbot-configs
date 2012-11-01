@@ -52,7 +52,16 @@ releaseConfig['sourceRepositories']  = {
         'path': 'releases/mozilla-beta',
         'revision': '2584cac54ea7',
         'relbranch': None,
-        'bumpFiles': {},
+        'bumpFiles': {
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
     }
 }
 #  L10n repositories
