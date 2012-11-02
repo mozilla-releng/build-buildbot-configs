@@ -76,13 +76,7 @@ MOCHITEST_ONLY = [
                     },
     ),
 ]
-
-ALL_UNITTESTS = MOCHITEST_ONLY + [
-    ('marionette-webapi', {'suite': 'marionette-webapi',
-                           'mozharness_repo': MOZHARNESS_REPO,
-                           'script_path': 'scripts/marionette.py',
-                          },
-    ),
+REFTEST_ONLY = [
     ('reftest-1', {'suite': 'reftest',
                    'mozharness_repo': MOZHARNESS_REPO,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -115,9 +109,17 @@ ALL_UNITTESTS = MOCHITEST_ONLY + [
     ),
 ]
 
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + [
+    ('marionette-webapi', {'suite': 'marionette-webapi',
+                           'mozharness_repo': MOZHARNESS_REPO,
+                           'script_path': 'scripts/marionette.py',
+                          },
+    ),
+]
+
 # Default set of unit tests
 UNITTEST_SUITES = {
-    'opt_unittest_suites': MOCHITEST_ONLY[:],
+    'opt_unittest_suites': MOCHITEST_ONLY + REFTEST_ONLY,
     'debug_unittest_suites': [],
 }
 
