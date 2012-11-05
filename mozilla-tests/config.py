@@ -1036,7 +1036,7 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 #exclude android builds from running on non-cedar branches on pandas
-for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17'] + ACTIVE_PROJECT_BRANCHES:
+for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'] + ACTIVE_PROJECT_BRANCHES:
     if 'android' in BRANCHES[branch]['platforms'] and branch != "cedar" :
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
