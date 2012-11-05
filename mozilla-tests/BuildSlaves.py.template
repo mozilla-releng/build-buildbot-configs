@@ -17,6 +17,7 @@ SlavePasswords = {
     "tegra_android-armv6": "pass",
     "tegra_android-noion": "pass",
     "fedora-b2g": "pass",
+    "panda_android": "pass",
 }
 
 datazillaAuth = {

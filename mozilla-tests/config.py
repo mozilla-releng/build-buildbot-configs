@@ -157,10 +157,11 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android']
+PLATFORMS['android']['slave_platforms'] = ['tegra_android','panda_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
+PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {}
 
@@ -213,18 +214,18 @@ ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 SUITES = {
     'chrome': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts_paint:tpaint:tdhtml:tsspider', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts_paint:tpaint:tsspider', '--mozAfterPaint'],
         'options': ({}, NO_MAC),
     },
     # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts_paint:tpaint:tdhtml:tsspider', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts_paint:tpaint:tsspider', '--mozAfterPaint'],
         'options': ({}, MAC_ONLY),
     },
     'nochrome': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml:tsspider', '--noChrome', '--mozAfterPaint'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome', '--mozAfterPaint'],
         'options': ({}, ALL_PLATFORMS),
     },
     'dirty': {
@@ -254,18 +255,18 @@ SUITES = {
     },
     'chrome.2': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, NO_MAC),
     },
     # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
     'chrome_mac.2': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tdhtml.2:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, MAC_ONLY),
     },
     'nochrome.2': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml.2:tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
         'options': ({}, ALL_PLATFORMS),
     },
     'xperf': {
@@ -282,16 +283,6 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
-    },
-    'chromer': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'nochromer': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr', '--noChrome', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_PLATFORMS),
     },
     'other': {
         'enable_by_default': True,
@@ -315,7 +306,7 @@ SUITES = {
     },
     'chromez': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtmlr:tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
 
@@ -323,11 +314,6 @@ SUITES = {
     'remote-ts': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-tdhtml': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tdhtml', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsvg': {
@@ -798,6 +784,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
+            'panda_android': deepcopy(ANDROID_UNITTEST_DICT),
         },
         'android-armv6': {
             'product_name': 'fennec',
@@ -981,7 +968,6 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 # When Firefox 17 is on mozilla-release we can remove these
 # Firefox 17/release
 BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['chromer_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
@@ -1008,7 +994,6 @@ BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
 BRANCHES['mozilla-esr10']['tpn_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['svgr_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['nochromer_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
@@ -1049,6 +1034,12 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
                 continue
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+
+#exclude android builds from running on non-cedar branches on pandas
+for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'] + ACTIVE_PROJECT_BRANCHES:
+    if 'android' in BRANCHES[branch]['platforms'] and branch != "cedar" :
+        del BRANCHES[branch]['platforms']['android']['panda_android']
+        BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
 # Let's load Marionette for the following branches:
 for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services-central', ):

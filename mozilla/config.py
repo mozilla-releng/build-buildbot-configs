@@ -642,7 +642,6 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'enable_codesighs': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -700,7 +699,6 @@ PLATFORM_VARS = {
             'build_space': 6,
             'upload_symbols': True,
             'packageTests': True,
-            'enable_codesighs': False,
             'enable_xulrunner': False,
             'profiled_build': False,
             'slaves': SLAVES['mock'],
@@ -762,7 +760,6 @@ PLATFORM_VARS = {
             'upload_symbols': False,
             'download_symbols': False,
             'packageTests': True,
-            'enable_codesighs': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -825,7 +822,6 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'enable_codesighs': False,
             'enable_leaktests': False,
             'create_snippet': False,
             'create_partial': False,
@@ -924,6 +920,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'try',
+        'branch': 'try',
     },
     'spidermonkey_mozilla-inbound': {
         'variants': {
@@ -946,6 +943,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
+        'branch': 'mozilla-central',
     },
     'spidermonkey_ionmonkey': {
         'variants': {
@@ -968,6 +966,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
+        'branch': 'ionmonkey',
     },
     'dxr_mozilla-central': {
         'platform': 'mock',
@@ -1449,9 +1448,6 @@ BRANCHES['try']['enable_nightly'] = False
 # Disable XULRunner / SDK builds
 BRANCHES['try']['enable_xulrunner'] = False
 BRANCHES['try']['enable_mac_a11y'] = True
-# Disable codesighs on Linux until it works properly and quickly
-BRANCHES['try']['platforms']['linux']['enable_codesighs'] = False
-BRANCHES['try']['platforms']['linux64']['enable_codesighs'] = False
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False

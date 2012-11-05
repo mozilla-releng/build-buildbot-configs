@@ -1028,11 +1028,6 @@ BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
 # Disabled due to issues, see bug 751559
 BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
-BRANCHES['try-comm-central']['platforms']['linux']['enable_codesighs'] = False
-BRANCHES['try-comm-central']['platforms']['linux64']['enable_codesighs'] = False
-BRANCHES['try-comm-central']['platforms']['macosx64']['enable_codesighs'] = False
-BRANCHES['try-comm-central']['platforms']['win32']['enable_codesighs'] = False
-BRANCHES['try-comm-central']['platforms']['win64']['enable_codesighs'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'

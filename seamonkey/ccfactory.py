@@ -31,7 +31,7 @@ from buildbotcustom.steps.misc import SetMozillaBuildProperties, \
   FindFile, DownloadFile, UnpackFile, SetBuildProperty, GetHgRevision
 from buildbotcustom.steps.release import UpdateVerify, L10nVerifyMetaDiff
 from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
-  CompareLeakLogs, Codesighs, GraphServerPost
+  CompareLeakLogs, GraphServerPost
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 from buildbotcustom.env import MozillaEnvironments

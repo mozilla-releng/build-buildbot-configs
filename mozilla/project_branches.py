@@ -250,6 +250,12 @@ PROJECT_BRANCHES = {
             'macosx-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'android': {
+                'enable_opt_unittests': True,
+                'enable_unittests': True,
+                'enable_talos': True,
+                'slave_platforms': ['panda_android'],
+            },
         },
     },
     # customizations for windows update service changes (bug 481815)
