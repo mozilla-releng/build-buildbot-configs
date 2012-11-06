@@ -265,11 +265,8 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'enable_pymake': False,
             },
-            'win32-debug': {
-                'enable_pymake': False,
-            },
+            'win32-debug': {},
         },
         'enable_talos': False,
     },
