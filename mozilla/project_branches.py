@@ -251,9 +251,6 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {},
             'win32-debug': {},
             'android': {
-                'enable_opt_unittests': True,
-                'enable_unittests': True,
-                'enable_talos': True,
                 'slave_platforms': ['panda_android'],
             },
         },

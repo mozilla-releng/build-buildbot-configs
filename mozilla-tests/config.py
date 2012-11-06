@@ -157,7 +157,7 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android','panda_android']
+PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
@@ -1036,7 +1036,7 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 #exclude android builds from running on non-cedar branches on pandas
-for branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10'] + ACTIVE_PROJECT_BRANCHES:
+for branch in BRANCHES.keys():
     if 'android' in BRANCHES[branch]['platforms'] and branch != "cedar" :
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
