@@ -187,7 +187,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux64/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 7,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
