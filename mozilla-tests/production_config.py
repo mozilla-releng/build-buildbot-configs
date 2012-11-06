@@ -17,7 +17,7 @@ SLAVES = {
             226,239,241,268,275,289,291,292,301]]), # decommissioned tegras
      'panda_android': dict(
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(46,70)]
-    ),             
+    ),
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
