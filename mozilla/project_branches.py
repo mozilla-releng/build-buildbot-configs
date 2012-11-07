@@ -229,8 +229,9 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    # bug 801214 - when resetting this repo make sure that you remove
+    # 'ash' from REMOTE_PROCESS_NAMES
     'ash': {},
-    # customizations for per-window private browsing (bug 463027)
     'birch': {
         'enable_talos': False,
         'enabled_products': ['firefox'],
