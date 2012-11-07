@@ -478,6 +478,7 @@ BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -487,6 +488,7 @@ BRANCHES['mozilla-aurora']['start_hour'] = [3]
 BRANCHES['mozilla-aurora']['start_minute'] = [2]
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
 
 ######## try
 # Try-specific configs
