@@ -1,64 +1,70 @@
 releaseConfig = {}
+
+# HACK ALERT
+# TODO for 17.0.1esr: the following line should be removed for 17.0.1esr build
+# to enable updates
+#####################################
+
+releaseConfig['skip_updates'] = True
+
+#####################################
+# END OF HACK ALERT
+
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>',]
-releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
+releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
+                                        '<mbanner@mozilla.com>']
+releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
 # Basic product configuration
 #  Names for the product/files
-releaseConfig['productName']         = 'firefox'
-releaseConfig['appName']             = 'browser'
+releaseConfig['productName']         = 'thunderbird'
+releaseConfig['appName']             = 'mail'
+releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '10.0.10esr'
-releaseConfig['appVersion']          = '10.0.10'
+releaseConfig['version']             = '17.0.0esr'
+releaseConfig['appVersion']          = '17.0.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_10esr'
-releaseConfig['partialUpdates']      = {
-    '10.0.9esr': {
-        'appVersion': '10.0.9',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_10_0_9esr',
-    }
-}
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_0esr'
+releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '10.0.11esrpre'
-releaseConfig['nextMilestone']       = '10.0.11esrpre'
+releaseConfig['nextAppVersion']      = '17.0.1esrpre'
+releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
-    'mozilla': {
-        'name': 'mozilla-esr10',
-        'path': 'releases/mozilla-esr10',
-        'revision': '481667090414',
-        'relbranch': 'GECKO1009_2012101115_RELBRANCH',
+    'comm': {
+        'name': 'comm-esr17',
+        'path': 'releases/comm-esr17',
+        'revision': 'FIXME',
+        'relbranch': None,
         'bumpFiles': {
-            'browser/config/version.txt': {
+            'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
-            'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
         }
+    },
+    'mozilla': {
+        'name': 'mozilla-esr17',
+        'path': 'releases/mozilla-esr17',
+        'revision': 'FIXME',
+        'relbranch': 'FIXME',
+        'bumpFiles': {},
     }
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr10'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr17'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_0_8_2',
+    'build/compare-locales': 'RELEASE_0_9_5',
     'build/buildbot': 'production-0.8',
     'build/partner-repacks': 'default',
     'build/mozharness': 'default',
@@ -67,7 +73,7 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
@@ -76,37 +82,32 @@ releaseConfig['enableUnittests'] = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
-releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
+releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 
 # Mercurial account
-releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgUsername']          = 'tbirdbld'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozEsr17-thunderbird-branch-patcher2.cfg'  # TODO for 17.0.1esr
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
-releaseConfig['ausUser']             = 'ffxbld'
+releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'auspush'
-releaseConfig['releaseNotesUrl']     = None
+releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr10-firefox-linux.cfg',
-    'linux64':  'mozEsr10-firefox-linux64.cfg',
-    'macosx64': 'mozEsr10-firefox-mac64.cfg',
-    'win32':  'mozEsr10-firefox-win32.cfg'
-}
+releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
 releaseConfig['mozconfigs']          = {
-    'linux': 'browser/config/mozconfigs/linux32/release',
-    'linux64': 'browser/config/mozconfigs/linux64/release',
-    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
-    'win32': 'browser/config/mozconfigs/win32/release',
+    'linux': 'mail/config/mozconfigs/linux32/release',
+    'linux64': 'mail/config/mozconfigs/linux64/release',
+    'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
+    'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']      = 'esr'
 
@@ -127,4 +128,4 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = False
-releaseConfig['ftpSymlinkName'] = 'latest-10.0esr'
+releaseConfig['ftpSymlinkName'] = 'latest-esr'

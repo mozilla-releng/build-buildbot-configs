@@ -1,8 +1,7 @@
 from copy import deepcopy
 
-from config import BRANCH_UNITTEST_VARS, MOZHARNESS_REPO
-from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG, \
-                        PLATFORM_VARS
+from config import BRANCH_UNITTEST_VARS
+from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
@@ -12,8 +11,6 @@ BRANCH_UNITTEST_VARS = deepcopy(BRANCH_UNITTEST_VARS)
 
 GLOBAL_VARS['stage_username'] = 'tbirdbld'
 GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
-
-BRANCH_UNITTEST_VARS
 
 BRANCHES = {
     'comm-central': {
@@ -25,6 +22,8 @@ BRANCHES = {
     'comm-aurora': {
     },
     'comm-esr10': {
+    },
+    'comm-esr17': {
     },
     'try-comm-central': {
       'coallesce_jobs': False
@@ -447,6 +446,11 @@ BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 
 ######## comm-esr10
 BRANCHES['comm-esr10']['pgo_strategy'] = None
+BRANCHES['comm-esr10']['repo_path'] = "releases/comm-esr10"
+
+######## comm-esr17
+BRANCHES['comm-esr17']['pgo_strategy'] = None
+BRANCHES['comm-esr17']['repo_path'] = "releases/comm-esr17"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
@@ -454,7 +458,7 @@ BRANCHES['try-comm-central']['enable_try'] = True
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
-for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta']:
+for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta', 'comm-esr17']:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
@@ -465,7 +469,9 @@ for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta']:
 #-------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    import sys, pprint, re
+    import sys
+    import pprint
+    from buildbot.process.properties import WithProperties
 
     class BBPrettyPrinter(pprint.PrettyPrinter):
         def format(self, object, context, maxlevels, level):

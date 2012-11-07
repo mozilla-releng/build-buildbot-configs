@@ -128,4 +128,4 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = False
-releaseConfig['ftpSymlinkName'] = 'latest-esr'
+releaseConfig['ftpSymlinkName'] = 'latest-10.0esr'

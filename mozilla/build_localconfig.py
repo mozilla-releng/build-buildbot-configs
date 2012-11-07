@@ -27,6 +27,7 @@ ACTIVE_BRANCHES.extend([
     'mozilla-aurora',
     'mozilla-release',
     'mozilla-esr10',
+    'mozilla-esr17',
 ])
 ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-central',
@@ -34,6 +35,7 @@ ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-aurora',
     'comm-release',
     'comm-esr10',
+    'comm-esr17',
 ]
 ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
 ACTIVE_B2G_BRANCHES.extend([

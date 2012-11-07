@@ -11,7 +11,7 @@ GLOBAL_VARS = {
     'aus2_ssh_key': 'cltbld_dsa',
     'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
-    'graph_server': 'graphs.allizom.org',#TODO
+    'graph_server': 'graphs.allizom.org',
     # XXX: should point at aus4-admin-dev once production is pointing elsewhere
     #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'base_clobber_url': 'http://clobberer-preproduction.pvt.build.mozilla.org/index.php',
@@ -64,6 +64,10 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'mozilla-esr10': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-esr17': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
