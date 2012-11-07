@@ -200,7 +200,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'LC_ALL': 'C',
-                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin', 
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -620,6 +620,8 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'comm-esr17': {
+    },
     'try-comm-central': {
     },
 }
@@ -814,7 +816,7 @@ BRANCHES['comm-esr10']['enable_l10n'] = False
 BRANCHES['comm-esr10']['enable_l10n_onchange'] = False
 BRANCHES['comm-esr10']['l10nNightlyUpdate'] = False
 BRANCHES['comm-esr10']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                            'macosx64']
 BRANCHES['comm-esr10']['l10nDatedDirs'] = True
 BRANCHES['comm-esr10']['l10n_tree'] = 'tbesr10'
 BRANCHES['comm-esr10']['enable_multi_locale'] = True
@@ -866,6 +868,66 @@ del BRANCHES['comm-esr10']['platforms']['linux']['env']['PATH']
 del BRANCHES['comm-esr10']['platforms']['linux64']['env']['PATH']
 del BRANCHES['comm-esr10']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['comm-esr10']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
+
+######## comm-esr17
+BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'
+BRANCHES['comm-esr17']['repo_path'] = 'releases/comm-esr17'
+BRANCHES['comm-esr17']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-esr17']['update_channel'] = 'nightly-esr17'
+BRANCHES['comm-esr17']['mozilla_dir'] = 'mozilla'
+BRANCHES['comm-esr17']['skip_blank_repos'] = True
+BRANCHES['comm-esr17']['call_client_py'] = True
+BRANCHES['comm-esr17']['enable_weekly_bundle'] = True
+BRANCHES['comm-esr17']['start_hour'] = [3]
+BRANCHES['comm-esr17']['start_minute'] = [45]
+# Enable XULRunner / SDK builds
+BRANCHES['comm-esr17']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['comm-esr17']['enable_mac_a11y'] = True
+BRANCHES['comm-esr17']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['comm-esr17']['enable_l10n'] = False
+BRANCHES['comm-esr17']['enable_l10n_onchange'] = False
+BRANCHES['comm-esr17']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr17']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                           'macosx64']
+BRANCHES['comm-esr17']['l10nDatedDirs'] = True
+BRANCHES['comm-esr17']['l10n_tree'] = 'tbesr17'
+#make sure it has an ending slash
+BRANCHES['comm-esr17']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr17'
+BRANCHES['comm-esr17']['allLocalesFile'] = 'mail/locales/all-locales'
+BRANCHES['comm-esr17']['enable_nightly'] = True
+BRANCHES['comm-esr17']['create_snippet'] = True
+BRANCHES['comm-esr17']['create_partial'] = True
+BRANCHES['comm-esr17']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr17'
+BRANCHES['comm-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr17'
+BRANCHES['comm-esr17']['enable_blocklist_update'] = False
+BRANCHES['comm-esr17']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-esr17']['enable_valgrind'] = False
+BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+# mock disabled block start
+# linux platforms
+BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['comm-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['comm-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['comm-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+BRANCHES['comm-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
+del BRANCHES['comm-esr17']['platforms']['linux']['env']['PATH']
+del BRANCHES['comm-esr17']['platforms']['linux64']['env']['PATH']
+del BRANCHES['comm-esr17']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['comm-esr17']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 
 ######## comm-beta
@@ -1069,7 +1131,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list
-for b in ('comm-beta', 'comm-release', 'comm-esr10'):
+for b in ('comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:

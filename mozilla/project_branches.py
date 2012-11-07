@@ -229,8 +229,9 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    # bug 801214 - when resetting this repo make sure that you remove
+    # 'ash' from REMOTE_PROCESS_NAMES
     'ash': {},
-    # customizations for per-window private browsing (bug 463027)
     'birch': {
         'enable_talos': False,
         'enabled_products': ['firefox'],
@@ -265,11 +266,8 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
-                'enable_pymake': False,
             },
-            'win32-debug': {
-                'enable_pymake': False,
-            },
+            'win32-debug': {},
         },
         'enable_talos': False,
     },

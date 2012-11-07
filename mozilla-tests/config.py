@@ -14,7 +14,7 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-beta':    'org.mozilla.firefox_beta',
                          'mozilla-aurora':  'org.mozilla.fennec_aurora',
                          'mozilla-release': 'org.mozilla.firefox',
-                         'mozilla-esr10':   'org.mozilla.firefox',
+                         'ash':             'org.mozilla.fennec_aurora',
                        }
 
 MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
@@ -59,6 +59,18 @@ BRANCHES = {
     # bug 795174 - bustage on the 17 branch, temporary disablement
     'mozilla-beta':        {'datazilla_url': None},
     'mozilla-esr10':       {
+        'datazilla_url': None,
+        'platforms': {
+            'macosx': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux': {},
+            'linux64' : {},
+        },
+        'lock_platforms': True,
+    },
+    'mozilla-esr17':       {
         'datazilla_url': None,
         'platforms': {
             'macosx': {},
@@ -959,11 +971,6 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_O
 
 # Side by side staging on m-c only
 
-# pgo-strategy
-BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
-
 #### MERGE DAY - EXCEPTIONS
 # When Firefox 17 is on mozilla-release we can remove these
 # Firefox 17/release
@@ -979,14 +986,17 @@ BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLA
 BRANCHES['mozilla-release']['release_tests'] = 5
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 5
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
+BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
+BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 
 ######## mozilla-esr10
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
@@ -1006,9 +1016,13 @@ BRANCHES['mozilla-esr10']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
 BRANCHES['mozilla-esr10']['release_tests'] = 5
 BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
-BRANCHES['mozilla-esr10']['platforms']['linux']['enable_mobile_unittests'] = True
 del BRANCHES['mozilla-esr10']['platforms']['macosx64']['mountainlion']
 BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopard', 'snowleopard', 'lion']
+
+######### mozilla-esr17
+BRANCHES['mozilla-esr17']['release_tests'] = 5
+BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
+BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
@@ -1129,7 +1143,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 #-------------------------------------------------------------------------
 # MERGE day - disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
-for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta'] + ACTIVE_PROJECT_BRANCHES:
+for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-esr17'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:

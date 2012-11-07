@@ -187,7 +187,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux64/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 7,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
@@ -1006,6 +1006,19 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'mozilla-esr17': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'try': {
     },
 }
@@ -1426,6 +1439,57 @@ del BRANCHES['mozilla-esr10']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 
+######## mozilla-esr17
+BRANCHES['mozilla-esr17']['repo_path'] = 'releases/mozilla-esr17'
+BRANCHES['mozilla-esr17']['update_channel'] = 'nightly-esr17'
+BRANCHES['mozilla-esr17']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr17']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-esr17']['start_hour'] = [3]
+BRANCHES['mozilla-esr17']['start_minute'] = [45]
+BRANCHES['mozilla-esr17']['enable_xulrunner'] = False
+BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr17']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr17']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-esr17']['enable_l10n'] = False
+BRANCHES['mozilla-esr17']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-esr17']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr17']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-esr17']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr17']['l10n_tree'] = 'fxesr17'
+BRANCHES['mozilla-esr17']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr17'
+BRANCHES['mozilla-esr17']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-esr17']['enable_nightly'] = True
+BRANCHES['mozilla-esr17']['create_snippet'] = True
+BRANCHES['mozilla-esr17']['create_partial'] = True
+BRANCHES['mozilla-esr17']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
+BRANCHES['mozilla-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
+BRANCHES['mozilla-esr17']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr17']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-esr17']['enable_valgrind'] = False
+BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
+# mock disabled block start
+# linux platforms
+BRANCHES['mozilla-esr17']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
+
 ######## try
 # Try-specific configs
 BRANCHES['try']['stage_username'] = 'trybld'
@@ -1487,6 +1551,7 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
 BRANCHES['elm']['platforms']['win32']['slaves'] = SLAVES['win64-metro']
+BRANCHES['elm']['platforms']['win32-debug']['slaves'] = SLAVES['win64-metro']
 
 # MERGE day - when FF17 moves into such branch remove it from the list
 # MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
@@ -1601,7 +1666,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list
-for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10'):
+for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:

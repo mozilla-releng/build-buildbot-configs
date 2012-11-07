@@ -119,7 +119,7 @@ ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + [
 
 # Default set of unit tests
 UNITTEST_SUITES = {
-    'opt_unittest_suites': MOCHITEST_ONLY + REFTEST_ONLY,
+    'opt_unittest_suites': ALL_UNITTESTS,
     'debug_unittest_suites': [],
 }
 
@@ -297,10 +297,8 @@ for branch in BRANCHES.keys():
 
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
-BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"

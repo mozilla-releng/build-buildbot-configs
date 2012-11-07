@@ -1,6 +1,16 @@
 EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
+# HACK ALERT
+# TODO for 17.0.1esr: the following line should be removed for 17.0.1esr build
+# to enable updates
+#####################################
+
+releaseConfig['skip_updates'] = True
+
+#####################################
+# END OF HACK ALERT
+
 releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer-stage.pvt.build.mozilla.org/always_clobber.php'
@@ -17,18 +27,12 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '10.0.1esr'
-releaseConfig['appVersion']          = '10.0.1'
-releaseConfig['milestone']           = '10.0.1'
+releaseConfig['version']             = '17.0.0esr'
+releaseConfig['appVersion']          = '17.0.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_1esr'
-releaseConfig['partialUpdates']      = {
-    '10.0esr': {
-        'appVersion': '10.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_10_0esr',
-    }
-}
+releaseConfig['baseTag']             = 'FIREFOX_17_0_0esr'
+releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -37,9 +41,9 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-esr10',
-        'clonePath': 'releases/mozilla-esr10',
-        'path': 'users/stage-ffxbld/mozilla-esr10',
+        'name': 'mozilla-esr17',
+        'clonePath': 'releases/mozilla-esr17',
+        'path': 'users/stage-ffxbld/mozilla-esr17',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -62,10 +66,10 @@ releaseConfig['sourceRepositories']  = {
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr10'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr17'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'users/stage-ffxbld/compare-locales': 'RELEASE_0_8_2',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_0_9_5',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default',
 }
@@ -91,7 +95,7 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr10-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'  # TODO for 17.0.1esr
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -102,12 +106,7 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr10-firefox-linux.cfg',
-    'linux64':  'mozEsr10-firefox-linux64.cfg',
-    'macosx64': 'mozEsr10-firefox-mac64.cfg',
-    'win32':  'mozEsr10-firefox-win32.cfg'
-}
+releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -131,4 +130,4 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = False
-releaseConfig['ftpSymlinkName'] = 'latest-10.0esr'
+releaseConfig['ftpSymlinkName'] = 'latest-esr'
