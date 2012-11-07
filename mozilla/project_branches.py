@@ -262,7 +262,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'lock_platforms': True,
-        'pgo_platforms': (),
         'platforms': {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
