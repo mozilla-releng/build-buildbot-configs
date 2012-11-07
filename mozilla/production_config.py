@@ -10,7 +10,7 @@ WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,25) + range(64,100) if
                  ['w64-ix-slave%03i' % x for x in range(100,111)]
 WIN64_METRO    = ['w64-ix-slave%02i' % x for x in [11,20,42,43]]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
-LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1,101)]
+LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1 ,101) + range(300, 401) + range(600, 701)]
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
@@ -31,7 +31,7 @@ TRY_LINUX_IXS  = ['mv-moz2-linux-ix-slave%02i' % x for x in range(22,24)] + \
                  ['linux-ix-slave%02i' % x for x in range(7,12)]
 TRY_LINUX64    = []
 TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,42)]
-TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1,101)]
+TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1, 101) + range(300, 401) + range(600, 701)]
 TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range(27,32)]
 TRY_WIN32_IXS  = ['mw32-ix-slave%02i' % x for x in range(16,19) + range(22,26)]
 TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,64) if x not in [42,43]]
@@ -204,7 +204,7 @@ PROJECTS = {
 }
 
 if __name__ == "__main__":
-    import sys, pprint
+    import sys
     args = sys.argv[1:]
 
     # print build slave details
