@@ -16,6 +16,7 @@ BRANCHES = {
     'ash': {},
     'cedar': {},
     'fx-team': {},
+    'mozilla-aurora': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
     'services-central': {},
@@ -300,6 +301,7 @@ BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
+BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
