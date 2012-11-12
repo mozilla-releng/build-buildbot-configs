@@ -1405,7 +1405,6 @@ BRANCHES['mozilla-esr10']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr10']['enable_valgrind'] = False
 BRANCHES['mozilla-esr10']['upload_mobile_symbols'] = True
-# Delete these lines for esr17
 BRANCHES['mozilla-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['mozilla-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -1419,7 +1418,6 @@ BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['base_name'] = 'OS X 10.6.2 mozilla-esr10 leak test'
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
 BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
-# End delete
 # mock disabled block start
 BRANCHES['mozilla-esr10']['platforms']['linux']['use_mock'] = False
 BRANCHES['mozilla-esr10']['platforms']['linux64']['use_mock'] = False
