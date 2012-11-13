@@ -31,7 +31,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'devtools':{
+    'devtools': {
         'enable_nightly': True,
         'enabled_products': ['firefox'],
         'platforms': {
@@ -236,6 +236,7 @@ PROJECT_BRANCHES = {
     },
     'birch': {
         'enable_talos': False,
+        'enable_nightly': True,
         'enabled_products': ['firefox'],
     },
     'cedar': {
