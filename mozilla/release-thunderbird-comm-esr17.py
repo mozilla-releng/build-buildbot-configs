@@ -14,8 +14,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
-                                        '<mbanner@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
