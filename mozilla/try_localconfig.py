@@ -18,7 +18,7 @@ if 'ssh_port' in master_config:
             "tcp:%(ssh_port)i:interface=127.0.0.1" % master_config,
             "cltbld", "password")
 
-from config import BRANCHES, TRY_SLAVES
+from config import BRANCHES, PROJECTS, TRY_SLAVES
 ACTIVE_BRANCHES = ['try']
 ACTIVE_THUNDERBIRD_BRANCHES = ['try-comm-central']
 ACTIVE_B2G_BRANCHES = ['try']
