@@ -1104,6 +1104,11 @@ BRANCHES = {
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
 
+# Point projects to BRANCH values
+for v in PROJECTS.values():
+    if 'branch' in v:
+        v['branchconfig'] = BRANCHES[v['branch']]
+
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():

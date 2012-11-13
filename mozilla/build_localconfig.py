@@ -58,6 +58,7 @@ if 'limit_projects' in master_config:
     ACTIVE_PROJECTS = [x.encode("utf-8") for x in master_config['limit_projects']]
 else:
     ACTIVE_PROJECTS = PROJECTS.keys()
+ACTIVE_PROJECTS = [ p for p in ACTIVE_PROJECTS if not PROJECTS[p].get('enable_try') ]
 
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
