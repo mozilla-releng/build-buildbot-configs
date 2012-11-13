@@ -31,7 +31,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'devtools':{
+    'devtools': {
         'enable_nightly': True,
         'enabled_products': ['firefox'],
         'platforms': {
@@ -231,9 +231,12 @@ PROJECT_BRANCHES = {
     },
     # bug 801214 - when resetting this repo make sure that you remove
     # 'ash' from REMOTE_PROCESS_NAMES
-    'ash': {},
+    'ash': {
+        'mozharness_unittests': True,
+    },
     'birch': {
         'enable_talos': False,
+        'enable_nightly': True,
         'enabled_products': ['firefox'],
     },
     'cedar': {

@@ -835,7 +835,6 @@ BRANCHES['comm-esr10']['enable_blocklist_update'] = False
 BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr10']['enable_valgrind'] = False
 
-# MERGE DAY - Delete these lines for esr17
 BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
 BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
 BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
@@ -850,7 +849,6 @@ BRANCHES['comm-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['base_name'] = builder_prefix + 'OS X 10.6.2 comm-esr10 leak test'
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
 BRANCHES['comm-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
-# End delete
 # mock disabled block start
 BRANCHES['comm-esr10']['platforms']['linux']['use_mock'] = False
 BRANCHES['comm-esr10']['platforms']['linux64']['use_mock'] = False
