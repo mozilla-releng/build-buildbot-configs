@@ -42,7 +42,7 @@ ACTIVE_B2G_BRANCHES.extend([
     'mozilla-central',
     'mozilla-aurora',
 ])
-ACTIVE_PROJECTS = PROJECTS.keys()
+ACTIVE_PROJECTS = [ p for p in PROJECTS if not PROJECTS[p].get('enable_try', False) ]
 
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
