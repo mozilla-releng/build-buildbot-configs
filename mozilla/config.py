@@ -910,18 +910,19 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
-    'spidermonkey_try': {
-        'enable_try': True,
-        'variants': {
-            'linux64-debug':  ['rootanalysis'],
-        },
-        'platforms': {
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
-        },
-        'hgurl': 'http://hg.mozilla.org/',
-        'repo_path': 'try',
-        'branch': 'try',
-    },
+    # Disabled (bug 810374)
+    #'spidermonkey_try': {
+        #'enable_try': True,
+        #'variants': {
+            #'linux64-debug':  ['rootanalysis'],
+        #},
+        #'platforms': {
+            #'linux64-debug': PLATFORM_VARS['linux64-debug'],
+        #},
+        #'hgurl': 'http://hg.mozilla.org/',
+        #'repo_path': 'try',
+        #'branch': 'try',
+    #},
     'spidermonkey_mozilla-inbound': {
         'variants': {
             'linux':          ['warnaserr'],
