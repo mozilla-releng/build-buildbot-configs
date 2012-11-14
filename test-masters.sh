@@ -10,6 +10,7 @@ for dir in mozilla mozilla-tests; do
   for f in test/*.py; do
     trial $f || exit=1
   done
+  rm -rf _trial_temp
   cd ..
 done
 exit $exit
