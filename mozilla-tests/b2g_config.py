@@ -7,6 +7,8 @@ from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG, \
 import b2g_localconfig
 reload(b2g_localconfig)
 
+from buildbot.steps.shell import WithProperties
+
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
 GLOBAL_VARS['stage_username'] = 'ffxbld'
@@ -300,6 +302,54 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '1', '--total-chunks', '6',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-2'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '2', '--total-chunks', '6',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-3'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '3', '--total-chunks', '6',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-4'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '4', '--total-chunks', '6',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-5'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '5', '--total-chunks', '6',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-6'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '6', '--total-chunks', '6',
+    ],
+}
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
