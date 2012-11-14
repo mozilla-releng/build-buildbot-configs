@@ -28,7 +28,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-beta',
         'path': '{{ branch }}',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': 'MOBILE170_2012111306_RELBRANCH',
+        'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
                 'version': releaseConfig['appVersion'],
