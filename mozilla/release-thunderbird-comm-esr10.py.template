@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': 'GECKO10011_2012111510_RELBRANCH',
         'bumpFiles': {},
     }
 }
