@@ -14,16 +14,16 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '10.0.10esr'
-releaseConfig['appVersion']          = '10.0.10'
+releaseConfig['version']             = '10.0.11esr'
+releaseConfig['appVersion']          = '10.0.11'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_10_0_10esr'
+releaseConfig['baseTag']             = 'FIREFOX_10_0_11esr'
 releaseConfig['partialUpdates']      = {
-    '10.0.9esr': {
-        'appVersion': '10.0.9',
+    '10.0.10esr': {
+        'appVersion': '10.0.10',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_10_0_9esr',
+        'baseTag': 'FIREFOX_10_0_10esr',
     }
 }
 #  Next (nightly) version info
@@ -34,8 +34,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr10',
         'path': 'releases/mozilla-esr10',
-        'revision': '481667090414',
-        'relbranch': 'GECKO1009_2012101115_RELBRANCH',
+        'revision': '46a00740eb8a',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
