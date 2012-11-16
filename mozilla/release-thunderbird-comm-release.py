@@ -15,20 +15,25 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '16.0.2'
-releaseConfig['appVersion']          = releaseConfig['version']
-releaseConfig['milestone']           = releaseConfig['version']
+releaseConfig['version']             = '17.0'
+releaseConfig['appVersion']          = '17.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_16_0_2'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0'
 releaseConfig['partialUpdates']      = {
-    '16.0.1': {
+
+    '16.0.2': {
+        'appVersion': '16.0.2',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_16_0_1',
+        'baseTag': 'THUNDERBIRD_16_0_2',
     },
+
     '15.0.1': {
+        'appVersion': '15.0.1',
         'buildNumber': 1,
         'baseTag': 'THUNDERBIRD_15_0_1',
-    }
+    },
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -38,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
         'path': 'releases/comm-release',
-        'revision': 'cce1d52502cc',
+        'revision': '544fa5edc141',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -50,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'e0c8343d2809',
-        'relbranch': 'GECKO1602_2012102407_RELBRANCH',
+        'revision': '0af23f8db35d',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
