@@ -1103,8 +1103,8 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 
-# MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
+# MERGE day - "macosx-debug" dies when esr10 is gone.
+# This block can be removed at that time.
 for branch in BRANCHES:
     if branch not in ('comm-release', 'comm-esr10', 'comm-esr17'):
         del BRANCHES[branch]['platforms']['macosx-debug']
