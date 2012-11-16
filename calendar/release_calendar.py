@@ -1,16 +1,16 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'beta'
+branchSuffix               = 'aurora'
 
-sourceRepoRevision         = 'fa8ba4cecc93'
-mozillaRepoRevision        = 'THUNDERBIRD_17_0b1_RELEASE'
+sourceRepoRevision         = '030433ea8826'
+mozillaRepoRevision        = 'default'
 
-milestone                  = '17.0'
+milestone                  = '18.0'
 
-version                    = '1.9b2'
+version                    = '2.0b1'
 buildNumber                = 1
 
-oldVersion                 = '1.9b1'
+oldVersion                 = '1.9'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
