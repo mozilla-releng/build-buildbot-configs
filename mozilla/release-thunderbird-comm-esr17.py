@@ -54,7 +54,16 @@ releaseConfig['sourceRepositories']  = {
         'path': 'releases/mozilla-esr17',
         'revision': 'FIXME',
         'relbranch': 'FIXME',
-        'bumpFiles': {},
+        'bumpFiles': {
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
     }
 }
 #  L10n repositories

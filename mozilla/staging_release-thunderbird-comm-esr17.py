@@ -60,7 +60,16 @@ releaseConfig['sourceRepositories']  = {
         'path': 'users/stage-ffxbld/mozilla-esr17',
         'revision': 'default',
         'relbranch': None,
-        'bumpFiles': {},
+        'bumpFiles': {
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
     }
 }
 #  L10n repositories
