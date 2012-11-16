@@ -1106,7 +1106,7 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY
 # MERGE day - when FF17 moves into such branch remove it from the list
 # MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
 for branch in BRANCHES:
-    if branch not in ('comm-release', 'comm-esr10',):
+    if branch not in ('comm-release', 'comm-esr10', 'comm-esr17'):
         del BRANCHES[branch]['platforms']['macosx-debug']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
