@@ -1196,12 +1196,7 @@ BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-# MERGE DAY - Enable android-armv6 when Firefox 17 merges in
-del BRANCHES['mozilla-release']['platforms']['android-armv6']
-# Uncomment this when Firefox 17 merges in.
-# BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
-# end android-armv6 merge day stuff
-# MERGE DAY - Remove mock-disabled when Firefox 17 merges in
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 # mock disabled block start
 # linux platforms
 BRANCHES['mozilla-release']['platforms']['linux']['use_mock'] = False
@@ -1230,6 +1225,11 @@ BRANCHES['mozilla-release']['platforms']['android-debug']['use_mock'] = False
 BRANCHES['mozilla-release']['platforms']['android-debug']['slaves'] = SLAVES['linux']
 BRANCHES['mozilla-release']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
 BRANCHES['mozilla-release']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['use_mock'] = False
+BRANCHES['mozilla-release']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
+BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
 # mock disabled block stop
 # END MERGE DAY
 
