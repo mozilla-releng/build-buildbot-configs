@@ -621,6 +621,17 @@ BRANCHES = {
         },
     },
     'comm-esr17': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
     },
     'try-comm-central': {
     },
@@ -970,29 +981,6 @@ BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
-BRANCHES['comm-beta']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-beta']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-# mock disabled block start
-# linux platforms
-BRANCHES['comm-beta']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['comm-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-beta']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-beta']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-beta']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-beta']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-beta']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-BRANCHES['comm-beta']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-del BRANCHES['comm-beta']['platforms']['linux']['env']['PATH']
-del BRANCHES['comm-beta']['platforms']['linux64']['env']['PATH']
-del BRANCHES['comm-beta']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['comm-beta']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -1092,10 +1080,10 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 
-# MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
+# MERGE day - "macosx-debug" dies when esr10 is gone.
+# This block can be removed at that time.
 for branch in BRANCHES:
-    if branch not in ('comm-release', 'comm-esr10',):
+    if branch not in ('comm-release', 'comm-esr10', 'comm-esr17'):
         del BRANCHES[branch]['platforms']['macosx-debug']
 
 # Bug 578880, remove the following block after gcc-4.5 switch

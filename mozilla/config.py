@@ -158,7 +158,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -229,7 +229,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -436,7 +436,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -493,7 +493,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -650,7 +650,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
-            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr"],
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", 'wget'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
@@ -708,7 +708,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
-            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", "bc"],
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", "bc", 'wget'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
@@ -770,7 +770,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
-            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr"],
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", 'wget'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
@@ -832,7 +832,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
-            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', 'mpfr'],
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk5', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', 'mpfr', 'wget'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.android', '/builds/.android'),
@@ -1278,40 +1278,6 @@ BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-# mock disabled block start
-# linux platforms
-BRANCHES['mozilla-beta']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-beta']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-beta']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-beta']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-beta']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-beta']['platforms']['linux64-debug']['env']['PATH']
-# android platforms
-BRANCHES['mozilla-beta']['platforms']['android']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-BRANCHES['mozilla-beta']['platforms']['android-debug']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['use_mock'] = False
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-# mock disabled block stop
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
