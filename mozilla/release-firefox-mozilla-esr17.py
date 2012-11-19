@@ -28,7 +28,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '17.0esr'
 releaseConfig['appVersion']          = '17.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_17_0esr'
 releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
 #  Next (nightly) version info
@@ -39,7 +39,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '8cbb79d06706',
+        'revision': '1ba852d4cdee',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
