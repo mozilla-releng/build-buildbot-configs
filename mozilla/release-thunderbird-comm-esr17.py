@@ -29,7 +29,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '17.0esr'
 releaseConfig['appVersion']          = '17.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_17_0esr'
 releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
 #  Next (nightly) version info
@@ -40,7 +40,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr17',
         'path': 'releases/comm-esr17',
-        'revision': '1fb7584b4064',
+        'revision': 'e7eb28b251f6',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '8cbb79d06706',
+        'revision': '1ba852d4cdee',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
