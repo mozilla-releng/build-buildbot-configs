@@ -1641,7 +1641,7 @@ for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17'):
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g tests.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta', 'try'):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
