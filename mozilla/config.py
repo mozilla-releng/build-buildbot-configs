@@ -117,7 +117,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux32/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 9,
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
@@ -187,7 +187,7 @@ PLATFORM_VARS = {
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux64/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 7,
+            'build_space': 10,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
@@ -408,7 +408,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'packageTests': True,
-            'build_space': 7,
+            'build_space': 10,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
@@ -465,7 +465,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': False,
             'packageTests': True,
-            'build_space': 7,
+            'build_space': 10,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
@@ -1641,7 +1641,7 @@ for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17'):
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g tests.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta', 'try'):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
