@@ -41,6 +41,7 @@ ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
 ACTIVE_B2G_BRANCHES.extend([
     'mozilla-central',
     'mozilla-aurora',
+    'mozila-beta',
 ])
 ACTIVE_PROJECTS = PROJECTS.keys()
 
