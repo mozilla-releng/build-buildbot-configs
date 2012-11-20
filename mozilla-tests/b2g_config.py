@@ -19,6 +19,7 @@ BRANCHES = {
     'cedar': {},
     'fx-team': {},
     'mozilla-aurora': {},
+    'mozilla-beta': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
     'services-central': {},
@@ -352,6 +353,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
 }
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
+BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
