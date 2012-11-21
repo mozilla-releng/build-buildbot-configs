@@ -135,4 +135,4 @@ releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('android','android-armv6')
+releaseConfig['mock_platforms'] = ('android','android-armv6','linux')
