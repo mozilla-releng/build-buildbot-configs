@@ -209,6 +209,9 @@ PROJECT_BRANCHES = {
                 'dont_build': True,
                 'enable_debug_unittests': False,
             },
+            'win64': {
+                'dont_build': True,
+            },
         },
     },
     #####  TWIGS aka RENTABLE BRANCHES

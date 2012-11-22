@@ -27,11 +27,11 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0.0esr'
-releaseConfig['appVersion']          = '17.0.0'
+releaseConfig['version']             = '17.0esr'
+releaseConfig['appVersion']          = '17.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_17_0_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_17_0esr'
 releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
