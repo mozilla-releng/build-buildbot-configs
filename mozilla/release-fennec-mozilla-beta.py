@@ -1,3 +1,9 @@
+# ATTENTION:
+# If you are editing the non-template version of this file (eg, doesn't end
+# with .template), your change WILL get overwritten. If you're adding, removing,
+# or changing options as part of release automation changes you should be
+# editing the .template instead. This file should only by edited directly if
+# you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
