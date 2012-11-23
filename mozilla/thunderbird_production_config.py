@@ -95,7 +95,7 @@ BRANCHES = {
                     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                     'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
                     'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
-                    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                    'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 }
             }
         }

@@ -88,7 +88,7 @@ BRANCHES = {
                     # Source server support, bug 506702
                     'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                     'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                    'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 },
             },
         }
