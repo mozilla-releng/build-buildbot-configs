@@ -240,6 +240,8 @@ PROJECT_BRANCHES = {
     'birch': {
         'enable_talos': False,
         'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
         'enabled_products': ['firefox'],
     },
     'cedar': {
