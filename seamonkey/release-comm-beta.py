@@ -9,7 +9,7 @@ releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
 releaseConfig['version']                    = '2.15b1'
-releaseConfig['appVersion']                 = '2.14'
+releaseConfig['appVersion']                 = '2.15'
 releaseConfig['milestone']                  = '18.0'
 releaseConfig['buildNumber']                = 1
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_14b5'
