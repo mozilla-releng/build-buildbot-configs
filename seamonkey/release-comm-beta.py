@@ -12,7 +12,7 @@ releaseConfig['version']                    = '2.15b1'
 releaseConfig['appVersion']                 = '2.15'
 releaseConfig['milestone']                  = '18.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_14b5'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_15b1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.14b5'
 releaseConfig['oldAppVersion']              = '2.14'
