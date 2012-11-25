@@ -317,6 +317,8 @@ for platform in releaseConfig['enUSPlatforms']:
         unittestMasters=unittestMasters,
         unittestBranch=unittestBranch,
         clobberURL=branchConfig['base_clobber_url'],
+        tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
+        tooltool_url_list= branchConfig.get('tooltool_url_list', []),
     )
 
     builders.append({
@@ -359,6 +361,8 @@ for platform in releaseConfig['enUSPlatforms']:
             buildNumber=releaseConfig['buildNumber'],
             tree='release',
             clobberURL=branchConfig['base_clobber_url'],
+            tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
+            tooltool_url_list= branchConfig.get('tooltool_url_list', []),
         )
 
         builders.append({
