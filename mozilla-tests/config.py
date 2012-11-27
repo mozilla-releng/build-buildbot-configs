@@ -312,7 +312,7 @@ SUITES = {
     },
     'dromaeojs': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:sunspider:kraken:v8_7'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
         'options': ({}, ALL_PLATFORMS),
     },
     'chromez': {

@@ -25,6 +25,7 @@ GLOBAL_VARS.update({
         'win32_gecko': {},
         'panda': {},
         'unagi': {},
+        'otoro': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -381,6 +382,19 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'otoro': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
 }
 
 
@@ -482,6 +496,8 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -493,6 +509,8 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-aurora']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-beta
 # This is a path, relative to HGURL, where the repository is located
@@ -504,6 +522,8 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## try
 # Try-specific configs
@@ -523,6 +543,8 @@ BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['otoro']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
