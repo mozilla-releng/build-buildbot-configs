@@ -128,6 +128,7 @@ releaseConfig['disableStandaloneRepacks'] = True
 releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
+releaseConfig['enableUpdatePackaging']    = False
 
 releaseConfig['single_locale_options'] = {
     'android': [
