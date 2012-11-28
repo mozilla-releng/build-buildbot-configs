@@ -31,3 +31,6 @@ mk_add_options MOZ_MAKE_FLAGS="-j$CONCURRENCY"
 # Temporary workaround for bug 794500
 ac_add_options --enable-gnomevfs
 ac_add_options --disable-gio
+
+# Temporary workaround for bug 800798
+ac_add_options --disable-webrtc
