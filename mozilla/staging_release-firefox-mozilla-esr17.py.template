@@ -38,7 +38,7 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '{{ appVersion }}esr'
+releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 ## Staging repository path
@@ -112,7 +112,7 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr17-firefox-linux.cfg',
-    'linux64':  'mozEsr7-firefox-linux64.cfg',
+    'linux64':  'mozEsr17-firefox-linux64.cfg',
     'macosx64': 'mozEsr17-firefox-mac64.cfg',
     'win32':  'mozEsr17-firefox-win32.cfg'
 }
