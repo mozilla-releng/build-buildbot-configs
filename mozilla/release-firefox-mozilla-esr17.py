@@ -29,7 +29,7 @@ releaseConfig['partialUpdates']      = {
 
     '17.0esr': {
         'appVersion': '17.0',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_17_0esr',
     },
 
