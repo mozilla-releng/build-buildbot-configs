@@ -5,17 +5,6 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
-
-# HACK ALERT
-# TODO for 17.0.1esr: the following line should be removed for 17.0.1esr build
-# to enable updates
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
-
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
@@ -31,22 +20,30 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0esr'
-releaseConfig['appVersion']          = '17.0'
+releaseConfig['version']             = '17.0.1esr'
+releaseConfig['appVersion']          = '17.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_17_0esr'
-releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_17_0_1esr'
+releaseConfig['partialUpdates']      = {
+
+    '17.0esr': {
+        'appVersion': '17.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_17_0esr',
+    },
+
+}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0esrpre'
+releaseConfig['nextAppVersion']      = '17.0.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '1ba852d4cdee',
-        'relbranch': None,
+        'revision': '5a2f349fd763',
+        'relbranch': 'GECKO170_2012111914_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -95,7 +92,7 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'  # TODO for 17.0.1esr
+releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -107,7 +104,12 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
-releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
+releaseConfig['verifyConfigs']       = {
+    'linux':  'mozEsr17-firefox-linux.cfg',
+    'linux64':  'mozEsr17-firefox-linux64.cfg',
+    'macosx64': 'mozEsr17-firefox-mac64.cfg',
+    'win32':  'mozEsr17-firefox-win32.cfg'
+}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
