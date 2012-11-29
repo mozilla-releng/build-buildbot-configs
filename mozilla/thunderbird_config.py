@@ -145,7 +145,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -215,7 +215,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -413,7 +413,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
@@ -469,7 +469,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                         'gtk2-devel', 'libnotify-devel', 'yasm',
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
