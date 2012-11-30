@@ -589,8 +589,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py',
-                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
+                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -603,8 +602,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py',
-                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -617,8 +615,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py',
-                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
+                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
