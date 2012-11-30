@@ -23,6 +23,10 @@ GLOBAL_VARS.update({
         'linux64_gecko': {},
         'macosx64_gecko': {},
         'win32_gecko': {},
+        'linux32_gecko_localizer': {},
+        'linux64_gecko_localizer': {},
+        'macosx64_gecko_localizer': {},
+        'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
         'otoro': {},
@@ -207,6 +211,7 @@ PLATFORM_VARS = {
                               'imake', 'ccache', 'wget'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
             'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-dev.json',
             'mock_copyin_files': [
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -267,6 +272,7 @@ PLATFORM_VARS = {
                               'imake', 'ccache', 'wget'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
             'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-dev.json',
             'mock_copyin_files': [
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -290,7 +296,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'unittest_masters': [],
             'stage_product': 'b2g',
-            'stage_platform': 'macosx',
+            'stage_platform': 'macosx64_gecko',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
             'env': {
@@ -313,6 +319,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
             'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-dev.json',
         },
         'win32_gecko': {
             'product_name': 'b2g',
@@ -332,7 +339,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'unittest_masters': [],
             'stage_product': 'b2g',
-            'stage_platform': 'win32',
+            'stage_platform': 'win32_gecko',
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
             'env': {
@@ -355,13 +362,235 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-dev.json',
+        },
+        'linux32_gecko_localizer': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s localizer',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 9,
+            'upload_symbols': False,
+            'packageTests': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'unittest_masters': [],
+            'stage_product': 'b2g',
+            'stage_platform': 'linux32_gecko_localizer',
+            'update_platform': 'Linux_x86-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '${PATH}:/tools/buildbot/bin',
+                # Necessary to avoid conflicting with the dev-focused builds'
+                # filenames
+                'MOZ_PKG_SPECIAL': 'localizer',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'enable_build_analysis': True,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-i386',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static', 'gtk2-devel',
+                              'libnotify-devel', 'yasm', 'alsa-lib-devel',
+                              'libcurl-devel', 'wireless-tools-devel',
+                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
+                              'imake', 'ccache', 'wget'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
+            'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-all.json',
+            'mock_copyin_files': [
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
+        },
+        'linux64_gecko_localizer': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s localizer',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 9,
+            'upload_symbols': False,
+            'packageTests': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'unittest_masters': [],
+            'stage_product': 'b2g',
+            'stage_platform': 'linux64_gecko_localizer',
+            'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PYTHON26': '/tools/python-2.6.5/bin/python',
+                'PATH': '${PATH}:/tools/buildbot/bin',
+                # Necessary to avoid conflicting with the dev-focused builds'
+                # filenames
+                'MOZ_PKG_SPECIAL': 'localizer',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'enable_build_analysis': True,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-f16-x86_64',
+            'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
+                              'glibc-static', 'libstdc++-static', 'gtk2-devel',
+                              'libnotify-devel', 'yasm', 'alsa-lib-devel',
+                              'libcurl-devel', 'wireless-tools-devel',
+                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
+                              'imake', 'ccache', 'wget'],
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
+            'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-all.json',
+            'mock_copyin_files': [
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ],
+        },
+        'macosx64_gecko_localizer': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s localizer',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 9,
+            'upload_symbols': True,
+            'packageTests': False,
+            'slaves': SLAVES['macosx64-lion'],
+            'platform_objdir': OBJDIR,
+            'unittest_masters': [],
+            'stage_product': 'b2g',
+            'stage_platform': 'macosx64_gecko_localizer',
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:${PATH}',
+                # Necessary to avoid conflicting with the dev-focused builds'
+                # filenames
+                'MOZ_PKG_SPECIAL': 'localizer',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'test_pretty_names': False,
+            'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
+            'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-all.json',
+        },
+        'win32_gecko_localizer': {
+            'product_name': 'b2g',
+            'app_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s localizer',
+            'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/config/mozconfigs/win32_gecko/nightly',
+            'enable_dep': False,
+            'profiled_build': False,
+            'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 8,
+            'upload_symbols': False,
+            'packageTests': True,
+            'create_snippet': False,
+            'create_partial': False,
+            'slaves': SLAVES['win64'],
+            'platform_objdir': OBJDIR,
+            'unittest_masters': [],
+            'stage_product': 'b2g',
+            'stage_platform': 'win32_gecko_localizer',
+            'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                # Necessary to avoid conflicting with the dev-focused builds'
+                # filenames
+                'MOZ_PKG_SPECIAL': 'localizer',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'gaia_repo': gaia_repo,
+            'gaia_languages_file': 'shared/resources/languages-all.json',
         },
         'panda': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -374,7 +603,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -387,7 +617,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -490,6 +721,7 @@ for branch in BRANCHES.keys():
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
+BRANCHES['mozilla-central']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
@@ -503,6 +735,7 @@ BRANCHES['mozilla-central']['platforms']['otoro']['nightly_signing_servers'] = '
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-aurora']['start_hour'] = [3]
 BRANCHES['mozilla-aurora']['start_minute'] = [2]
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
@@ -516,6 +749,7 @@ BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'n
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
+BRANCHES['mozilla-beta']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
@@ -549,6 +783,7 @@ BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--t
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
+    BRANCHES[branch]['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
     BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
     BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
