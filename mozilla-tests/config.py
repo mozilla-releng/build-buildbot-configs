@@ -357,11 +357,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
-    'remote-trobocheck3': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck3', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
@@ -1025,7 +1020,6 @@ BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['remote-trobocheck3_tests'] = (1, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
