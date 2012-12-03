@@ -13,7 +13,8 @@ SlavePasswords = {
         'android': 'pass',
         'android-armv6': 'pass',
         'android-noion': 'pass',
-        'mock': 'pass'
+        'mock': 'pass',
+        'b2g_panda': 'pass',
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'
