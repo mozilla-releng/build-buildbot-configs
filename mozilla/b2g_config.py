@@ -29,6 +29,7 @@ GLOBAL_VARS.update({
         'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
+        'unagi_stable': {},
         'otoro': {},
     },
     'enable_nightly': True,
@@ -612,6 +613,19 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'unagi_stable': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
         'otoro': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
@@ -716,6 +730,14 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+# MERGE DAY: change the branch whenever stable channel moves somewhere else,
+# see bug 816275
+for branch in BRANCHES:
+    if branch not in ('mozilla-beta',) and \
+        'unagi_stable' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['unagi_stable']
+
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -755,6 +777,10 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
+BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
+BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py']
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
