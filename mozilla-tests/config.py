@@ -80,6 +80,13 @@ BRANCHES = {
             'linux64' : {},
         },
         'lock_platforms': True,
+    'mozilla-b2g18':       {
+        'datazilla_url': None,
+        'platforms': {
+            'ics_armv7a_gecko': {},
+            'b2g_panda': {},
+        },
+        'lock_platforms': True,
     },
     'try':                 { 'coallesce_jobs': False},
 }
@@ -1017,6 +1024,12 @@ BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopar
 BRANCHES['mozilla-esr17']['release_tests'] = 5
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
 BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
+
+######### mozilla-b2g18
+BRANCHES['mozilla-b2g18']['release_tests'] = 5
+BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['platforms']['linux']['enable_mobile_unittests'] = True
+#BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
