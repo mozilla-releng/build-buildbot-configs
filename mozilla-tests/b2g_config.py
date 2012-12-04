@@ -28,6 +28,7 @@ BRANCHES = {
 
 PLATFORMS = {
     'ics_armv7a_gecko': {},
+    'b2g_panda': {},
 }
 
 builder_prefix = "b2g"
@@ -41,6 +42,19 @@ PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
+
+PLATFORMS['b2g_panda']['slave_platforms'] = ['b2g_panda']
+PLATFORMS['b2g_panda']['env_name'] = None
+PLATFORMS['b2g_panda']['b2g_panda'] = {'name': builder_prefix + "_b2g_panda"}
+PLATFORMS['b2g_panda']['stage_product'] = 'b2g'
+PLATFORMS['b2g_panda']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,
+    # path to hg on the foopies
+    'hg_bin': '/usr/local/bin/hg',
+    # TODO: call something else
+    'reboot_command': None,
 }
 
 # Lets be explicit instead of magical.  leopard-o should be a second
@@ -58,6 +72,7 @@ BRANCH_UNITTEST_VARS = {
     # turn on platforms as we get them running
     'platforms': {
         'ics_armv7a_gecko': {},
+        'b2g_panda': {},
     },
 }
 
@@ -233,6 +248,17 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+    }, # end of ics_armv7a_gecko configs
+    'b2g_panda': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'b2g_panda': {
+            'opt_unittest_suites' : [],
+            'debug_unittest_suites' : [],
+        },
     },
 }
 
@@ -365,6 +391,20 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--test-manifest', 'tests/layout/reftests/reftest.list',
         '--this-chunk', '6', '--total-chunks', '6',
     ],
+}
+BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
+    ('gaia-mochitest', {'suite': 'gaia-mochitest',
+                        'mozharness_repo': MOZHARNESS_REPO,
+                        'script_path': 'scripts/b2g_panda.py',
+                       },
+    )
+]
+BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
+    'gaia-mochitest': {
+        'extra_args': [
+            "--cfg", "b2g/panda_releng.py"
+        ],
+    },
 }
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
