@@ -20,6 +20,7 @@ BRANCHES = {
     'fx-team': {},
     'mozilla-aurora': {},
     'mozilla-beta': {},
+    'mozilla-b2g18': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
     'services-central': {},

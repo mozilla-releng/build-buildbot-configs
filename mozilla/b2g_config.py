@@ -668,6 +668,23 @@ BRANCHES = {
     },
     'mozilla-beta': {
     },
+    'mozilla-b2g18': {
+        # b2g explicitly
+        'ics_armv7a_gecko': {},
+        'ics_armv7a_gecko-debug': {},
+        'linux32_gecko': {},
+        'linux64_gecko': {},
+        'macosx64_gecko': {},
+        'win32_gecko': {},
+        'linux32_gecko_localizer': {},
+        'linux64_gecko_localizer': {},
+        'macosx64_gecko_localizer': {},
+        'win32_gecko_localizer': {},
+        'panda': {},
+        'unagi': {},
+        'unagi_stable': {},
+        'otoro': {},
+    },
     'try': {
     },
 }
@@ -795,11 +812,30 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+# bug https://bugzil.la/815185#c1 START - move unagi_stable lines when
+# switch to mozilla-b2g18
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+# bug https://bugzil.la/815185#c1 END
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+
+######## mozilla-b2g18
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
+BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18']['start_hour'] = [3]
+BRANCHES['mozilla-b2g18']['start_minute'] = [2]
+BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
+BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+
 
 ######## try
 # Try-specific configs
