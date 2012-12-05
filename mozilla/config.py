@@ -1519,9 +1519,6 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
-BRANCHES['elm']['platforms']['win32']['slaves'] = SLAVES['win64-metro']
-BRANCHES['elm']['platforms']['win32-debug']['slaves'] = SLAVES['win64-metro']
-
 # MERGE day - when FF17 moves into such branch remove it from the list
 # MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
 for branch in BRANCHES:
