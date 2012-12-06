@@ -806,6 +806,7 @@ BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nig
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
 BRANCHES['try']['repo_path'] = 'try'
+BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
@@ -816,13 +817,13 @@ BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['panda_gaia_central']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda-gaia-central', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['otoro']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
