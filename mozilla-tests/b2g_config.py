@@ -46,7 +46,7 @@ PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
 
 PLATFORMS['b2g_panda']['slave_platforms'] = ['b2g_panda']
 PLATFORMS['b2g_panda']['env_name'] = None
-PLATFORMS['b2g_panda']['b2g_panda'] = {'name': builder_prefix + "_b2g_panda"}
+PLATFORMS['b2g_panda']['b2g_panda'] = {'name': builder_prefix + "_panda"}
 PLATFORMS['b2g_panda']['stage_product'] = 'b2g'
 PLATFORMS['b2g_panda']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -393,14 +393,14 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
     ],
 }
 BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
-    ('gaia-mochitest', {'suite': 'gaia-mochitest',
-                        'mozharness_repo': MOZHARNESS_REPO,
-                        'script_path': 'scripts/b2g_panda.py',
-                       },
+    ('gaia-ui-test', {'suite': 'gaia-ui-test',
+                      'mozharness_repo': MOZHARNESS_REPO,
+                      'script_path': 'scripts/b2g_panda.py',
+                     },
     )
 ]
 BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
-    'gaia-mochitest': {
+    'gaia-ui-test': {
         'extra_args': [
             "--cfg", "b2g/panda_releng.py"
         ],
