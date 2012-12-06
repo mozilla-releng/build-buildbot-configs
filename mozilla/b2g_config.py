@@ -590,7 +590,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -603,7 +604,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -616,7 +618,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py'],
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -629,7 +632,8 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py'],
+                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
             'stage_product': 'b2g',
@@ -775,10 +779,10 @@ BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
+BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py']
+BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
