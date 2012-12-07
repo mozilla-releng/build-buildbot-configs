@@ -788,7 +788,7 @@ BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'n
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
-BRANCHES['mozilla-beta']['start_hour'] = [3]
+BRANCHES['mozilla-beta']['start_hour'] = [7,23]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
