@@ -80,6 +80,7 @@ BRANCHES = {
             'linux64' : {},
         },
         'lock_platforms': True,
+    },
     'mozilla-b2g18':       {
         'datazilla_url': None,
         'platforms': {
