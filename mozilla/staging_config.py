@@ -9,10 +9,11 @@ LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
+LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
 STAGING_SLAVES = {
     'linux':            LINUX_IXS,
-    'linux64':          LINUX64_IXS,
+    'linux64':          LINUX64_IXS + LINUX64_EC2,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
     'macosx':           [],
