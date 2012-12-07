@@ -28,7 +28,6 @@ ACTIVE_BRANCHES.extend([
     'mozilla-release',
     'mozilla-esr10',
     'mozilla-esr17',
-    'mozilla-b2g18',
 ])
 ACTIVE_THUNDERBIRD_BRANCHES = [
     'comm-central',
@@ -43,7 +42,6 @@ ACTIVE_B2G_BRANCHES.extend([
     'mozilla-central',
     'mozilla-aurora',
     'mozilla-beta',
-    'mozilla-b2g18',
 ])
 ACTIVE_PROJECTS = PROJECTS.keys()
 

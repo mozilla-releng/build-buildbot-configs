@@ -59,10 +59,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr17',
         'mobile_tinderbox_tree': 'Mozilla-Esr17',
     },
-    'mozilla-b2g18': {
-        'tinderbox_tree': 'Mozilla-B2g18',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18',
-    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
