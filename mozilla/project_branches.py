@@ -267,6 +267,7 @@ PROJECT_BRANCHES = {
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,
+        'enable_weekly_bundle': True,
         'create_snippet': True,
         'create_partial': True,
         'lock_platforms': True,
