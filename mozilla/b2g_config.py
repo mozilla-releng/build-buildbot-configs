@@ -39,6 +39,8 @@ GLOBAL_VARS.update({
     'enabled_products': ['b2g'],
     'product_prefix': 'b2g',
     'unittest_suites': [],
+    # XXX: this seems like it should be at the platform level
+    'enable_multi_locale': True,
 })
 
 # shorthand, because these are used often
@@ -218,6 +220,13 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_linux32.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'linux64_gecko': {
             'product_name': 'b2g',
@@ -279,6 +288,13 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_linux64.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'macosx64_gecko': {
             'product_name': 'b2g',
@@ -322,6 +338,13 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
             'gaia_repo': gaia_repo,
             'gaia_languages_file': 'shared/resources/languages-dev.json',
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_macosx64.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'win32_gecko': {
             'product_name': 'b2g',
@@ -365,6 +388,13 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
             'gaia_repo': gaia_repo,
             'gaia_languages_file': 'shared/resources/languages-dev.json',
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_win32.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'linux32_gecko_localizer': {
             'product_name': 'b2g',
@@ -429,6 +459,13 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_linux32.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'linux64_gecko_localizer': {
             'product_name': 'b2g',
@@ -493,6 +530,13 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ],
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_linux64.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'macosx64_gecko_localizer': {
             'product_name': 'b2g',
@@ -539,6 +583,13 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
             'gaia_repo': gaia_repo,
             'gaia_languages_file': 'shared/resources/languages-all.json',
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_macosx64.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'win32_gecko_localizer': {
             'product_name': 'b2g',
@@ -585,12 +636,20 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
             'gaia_repo': gaia_repo,
             'gaia_languages_file': 'shared/resources/languages-all.json',
+            'multi_locale': True,
+            'multi_config_name': 'multi_locale/b2g_win32.py',
+            'mozharness_multi_options': [
+                '--build',
+                '--gecko-languages-file', 'build/b2g/locales/all-locales',
+            ],
+            'gecko_languages_file': 'build/b2g/locales/all-locales',
         },
         'panda': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
+                # TODO: add gecko multilocale args
                 'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -605,6 +664,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
+                # TODO: add gecko multilocale args
                 'extra_args': ['--target', 'panda-gaia-central', '--config', 'b2g/releng.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -619,6 +679,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
+                # TODO: add gecko multilocale args
                 'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -633,6 +694,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
+                # TODO: add gecko multilocale args
                 'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -647,6 +709,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
+                # TODO: add gecko multilocale args
                 'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -777,6 +840,7 @@ for branch in BRANCHES:
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-central']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
@@ -791,6 +855,7 @@ BRANCHES['mozilla-central']['platforms']['otoro']['nightly_signing_servers'] = '
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['start_hour'] = [3]
 BRANCHES['mozilla-aurora']['start_minute'] = [2]
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
@@ -805,17 +870,20 @@ BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'n
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-beta']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 BRANCHES['mozilla-beta']['start_hour'] = [7,23]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: add gecko multilocale args
 BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 # bug https://bugzil.la/815185#c1 START - move unagi_stable lines when
 # switch to mozilla-b2g18
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: add gecko multilocale args
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 # bug https://bugzil.la/815185#c1 END
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
@@ -826,12 +894,14 @@ BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nig
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 BRANCHES['mozilla-b2g18']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: add gecko multilocale args
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
@@ -853,12 +923,16 @@ BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
+# TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['panda_gaia_central']['slaves'] = TRY_SLAVES['mock']
+# TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
+# TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['otoro']['slaves'] = TRY_SLAVES['mock']
+# TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 
 ######## generic branch configs
