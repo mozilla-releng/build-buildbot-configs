@@ -270,13 +270,6 @@ PROJECT_BRANCHES = {
         'enable_weekly_bundle': True,
         'create_snippet': True,
         'create_partial': True,
-        'lock_platforms': True,
-        'platforms': {
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win32-debug': {},
-        },
         'enable_talos': False,
     },
     'holly': {},
