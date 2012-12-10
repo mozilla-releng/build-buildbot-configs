@@ -864,6 +864,16 @@ BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: enable this after bugs 796051, 808326, 817197
+BRANCHES['mozilla-aurora']['enable_multi_locale'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['win32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
 
 ######## mozilla-beta
 # This is a path, relative to HGURL, where the repository is located
@@ -888,6 +898,16 @@ BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extr
 # bug https://bugzil.la/815185#c1 END
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: enable this after bugs 796051, 808326, 817197
+BRANCHES['mozilla-beta']['enable_multi_locale'] = False
+BRANCHES['mozilla-beta']['platforms']['linux32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['linux32_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['linux64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['linux64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['macosx64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['macosx64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['win32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-beta']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
@@ -905,6 +925,16 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'ni
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: enable this after bugs 796051, 808326, 817197
+BRANCHES['mozilla-b2g18']['enable_multi_locale'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gecko_languages_file'] = None
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
 
 
 ######## try
