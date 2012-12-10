@@ -9,6 +9,7 @@ LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
+LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
 STAGING_SLAVES = {
     'linux':            LINUX_IXS,
@@ -20,7 +21,7 @@ STAGING_SLAVES = {
     'macosx64-lion':    MAC_LION_MINIS,
     'android':          LINUX_IXS,
     'android-armv6':    LINUX_IXS,
-    'mock':             MOCK_DL120G7,
+    'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 
 SLAVES = deepcopy(STAGING_SLAVES)
@@ -100,6 +101,10 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'mozilla-esr17': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-b2g18': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },

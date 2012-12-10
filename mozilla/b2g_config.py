@@ -28,6 +28,7 @@ GLOBAL_VARS.update({
         'macosx64_gecko_localizer': {},
         'win32_gecko_localizer': {},
         'panda': {},
+        'panda_gaia_central': {},
         'unagi': {},
         'unagi_stable': {},
         'otoro': {},
@@ -599,7 +600,7 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
-        'panda-gaia-central': {
+        'panda_gaia_central': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
@@ -666,6 +667,23 @@ BRANCHES = {
     'mozilla-aurora': {
     },
     'mozilla-beta': {
+    },
+    'mozilla-b2g18': {
+        # b2g explicitly
+        'ics_armv7a_gecko': {},
+        'ics_armv7a_gecko-debug': {},
+        'linux32_gecko': {},
+        'linux64_gecko': {},
+        'macosx64_gecko': {},
+        'win32_gecko': {},
+        'linux32_gecko_localizer': {},
+        'linux64_gecko_localizer': {},
+        'macosx64_gecko_localizer': {},
+        'win32_gecko_localizer': {},
+        'panda': {},
+        'unagi': {},
+        'unagi_stable': {},
+        'otoro': {},
     },
     'try': {
     },
@@ -787,24 +805,44 @@ BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'n
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
-BRANCHES['mozilla-beta']['start_hour'] = [3]
+BRANCHES['mozilla-beta']['start_hour'] = [7,23]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
 BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+# bug https://bugzil.la/815185#c1 START - move unagi_stable lines when
+# switch to mozilla-b2g18
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+# bug https://bugzil.la/815185#c1 END
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+
+######## mozilla-b2g18
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
+BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18']['start_hour'] = [3]
+BRANCHES['mozilla-b2g18']['start_minute'] = [2]
+BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
+BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+
 
 ######## try
 # Try-specific configs
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
 BRANCHES['try']['repo_path'] = 'try'
+BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
@@ -815,11 +853,13 @@ BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+BRANCHES['try']['platforms']['panda_gaia_central']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['otoro']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py']
+BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
