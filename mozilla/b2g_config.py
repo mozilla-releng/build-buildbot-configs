@@ -665,7 +665,9 @@ PLATFORM_VARS = {
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
                 # TODO: add gecko multilocale args
-                'extra_args': ['--target', 'panda-gaia-central', '--config', 'b2g/releng.py',
+                'extra_args': ['--target', 'panda',
+                               '--b2g-config-dir', 'panda-gaia-central',
+                               '--config', 'b2g/releng.py',
                                '--gaia-languages-file', 'shared/resources/languages-dev.json'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             },
@@ -957,7 +959,7 @@ BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['panda_gaia_central']['slaves'] = TRY_SLAVES['mock']
 # TODO: add gecko multilocale args
-BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
+BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda', '--b2g-config-dir', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 # TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
