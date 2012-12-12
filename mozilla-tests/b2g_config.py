@@ -19,7 +19,6 @@ BRANCHES = {
     'cedar': {},
     'fx-team': {},
     'mozilla-aurora': {},
-    'mozilla-beta': {},
     'mozilla-b2g18': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
@@ -142,6 +141,26 @@ REFTEST_ONLY = [
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
+    ('reftest-7', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-8', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-9', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('reftest-10', {'suite': 'reftest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
 ]
 
 XPCSHELL_ONLY = [
@@ -152,7 +171,7 @@ XPCSHELL_ONLY = [
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + [
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + XPCSHELL_ONLY + [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'mozharness_repo': MOZHARNESS_REPO,
                            'script_path': 'scripts/marionette.py',
@@ -234,7 +253,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '1', '--total-chunks', '6',
+                        '--this-chunk', '1', '--total-chunks', '10',
                     ],
                 },
                 'reftest-2': {
@@ -242,7 +261,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '2', '--total-chunks', '6',
+                        '--this-chunk', '2', '--total-chunks', '10',
                     ],
                 },
                 'reftest-3': {
@@ -250,7 +269,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '3', '--total-chunks', '6',
+                        '--this-chunk', '3', '--total-chunks', '10',
                     ],
                 },
                 'reftest-4': {
@@ -258,7 +277,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '4', '--total-chunks', '6',
+                        '--this-chunk', '4', '--total-chunks', '10',
                     ],
                 },
                 'reftest-5': {
@@ -266,7 +285,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '5', '--total-chunks', '6',
+                        '--this-chunk', '5', '--total-chunks', '10',
                     ],
                 },
                 'reftest-6': {
@@ -274,7 +293,39 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--this-chunk', '6', '--total-chunks', '6',
+                        '--this-chunk', '6', '--total-chunks', '10',
+                    ],
+                },
+                'reftest-7': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                        '--this-chunk', '7', '--total-chunks', '10',
+                    ],
+                },
+                'reftest-8': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                        '--this-chunk', '8', '--total-chunks', '10',
+                    ],
+                },
+                'reftest-9': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                        '--this-chunk', '9', '--total-chunks', '10',
+                    ],
+                },
+                'reftest-10': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                        '--this-chunk', '10', '--total-chunks', '10',
                     ],
                 },
                 'xpcshell': {
@@ -380,13 +431,12 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] += XPCSHELL_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
     'extra_args': [
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '1', '--total-chunks', '6',
+        '--this-chunk', '1', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-2'] = {
@@ -394,7 +444,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '2', '--total-chunks', '6',
+        '--this-chunk', '2', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-3'] = {
@@ -402,7 +452,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '3', '--total-chunks', '6',
+        '--this-chunk', '3', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-4'] = {
@@ -410,7 +460,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '4', '--total-chunks', '6',
+        '--this-chunk', '4', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-5'] = {
@@ -418,7 +468,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '5', '--total-chunks', '6',
+        '--this-chunk', '5', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-6'] = {
@@ -426,7 +476,39 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']
         '--cfg', 'b2g/emulator_automation_config.py',
         '--test-suite', 'reftest',
         '--test-manifest', 'tests/layout/reftests/reftest.list',
-        '--this-chunk', '6', '--total-chunks', '6',
+        '--this-chunk', '6', '--total-chunks', '10',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-7'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '7', '--total-chunks', '10',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-8'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '8', '--total-chunks', '10',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-9'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '9', '--total-chunks', '10',
+    ],
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-10'] = {
+    'extra_args': [
+        '--cfg', 'b2g/emulator_automation_config.py',
+        '--test-suite', 'reftest',
+        '--test-manifest', 'tests/layout/reftests/reftest.list',
+        '--this-chunk', '10', '--total-chunks', '10',
     ],
 }
 BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
@@ -445,7 +527,7 @@ BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
 }
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
-BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
+BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"

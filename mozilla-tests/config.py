@@ -683,6 +683,53 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
 
 ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_UNITTEST_DICT)
 
+ANDROID_PLAIN_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+ANDROID_PLAIN_REFTEST_DICT = {
+    'opt_unittest_suites': [
+          ('plain-reftest-1', (
+            {'suite': 'reftestsmall',
+             'totalChunks': 4,
+             'thisChunk': 1,
+             'extra_args' : '--ignore-window-size'
+            },
+         )),
+         ('plain-reftest-2', (
+            {'suite': 'reftestsmall',
+             'totalChunks': 4,
+             'thisChunk': 2,
+             'extra_args' : '--ignore-window-size'
+            },
+         )),
+         ('plain-reftest-3', (
+            {'suite': 'reftestsmall',
+             'totalChunks': 4,
+             'thisChunk': 3,
+             'extra_args' : '--ignore-window-size'
+            },
+         )),
+         ('plain-reftest-4', (
+            {'suite': 'reftestsmall',
+             'totalChunks': 4,
+             'thisChunk': 4,
+             'extra_args' : '--ignore-window-size'
+            },
+         )),
+     ],
+}
+
+
+for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest'):
+        continue
+    ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
+for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
+    ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -797,8 +844,8 @@ PLATFORM_UNITTEST_VARS = {
             'enable_opt_unittests': True,
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-            'tegra_android': deepcopy(ANDROID_UNITTEST_DICT),
-            'panda_android': deepcopy(ANDROID_UNITTEST_DICT),
+            'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
+            'panda_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
         },
         'android-armv6': {
             'product_name': 'fennec',
@@ -1054,6 +1101,18 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
+
+#-------------------------------------------------------------------------
+# MERGE day - Load reftests small for m-c based branches and exclude them for the rest
+#-------------------------------------------------------------------------
+for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
+    BRANCHES[branch]["platforms"]["android"]["panda_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
+    BRANCHES[branch]["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
+#-------------------------------------------------------------------------
+# End Load reftests small for m-c based branches and exclude them for the rest
+#-------------------------------------------------------------------------
+
+
 #exclude android builds from running on non-cedar branches on pandas
 for branch in BRANCHES.keys():
     if 'android' in BRANCHES[branch]['platforms'] and branch != "cedar" :
@@ -1175,7 +1234,7 @@ for branch in ['mozilla-esr10']:
 # Delete all references to android-noion once we have b2g testing
 # MERGE DAY - follow the 18 train.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
