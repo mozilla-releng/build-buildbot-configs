@@ -152,7 +152,7 @@ XPCSHELL_ONLY = [
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + [
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + XPCSHELL_ONLY + [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'mozharness_repo': MOZHARNESS_REPO,
                            'script_path': 'scripts/marionette.py',
@@ -380,7 +380,6 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] += XPCSHELL_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
     'extra_args': [
         '--cfg', 'b2g/emulator_automation_config.py',
