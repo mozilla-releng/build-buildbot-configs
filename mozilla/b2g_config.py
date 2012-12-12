@@ -832,7 +832,7 @@ for branch in BRANCHES.keys():
 # MERGE DAY: change the branch whenever stable channel moves somewhere else,
 # see bug 816275
 for branch in BRANCHES:
-    if branch not in ('mozilla-beta',) and \
+    if branch not in ('mozilla-b2g18',) and \
         'unagi_stable' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_stable']
 
@@ -891,13 +891,6 @@ BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 # TODO: add gecko multilocale args
 BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
-# bug https://bugzil.la/815185#c1 START - move unagi_stable lines when
-# switch to mozilla-b2g18
-BRANCHES['mozilla-beta']['platforms']['unagi_stable']['enable_nightly'] = True
-BRANCHES['mozilla-beta']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
-# TODO: add gecko multilocale args
-BRANCHES['mozilla-beta']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
-# bug https://bugzil.la/815185#c1 END
 BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 # TODO: enable this after bugs 796051, 808326, 817197
@@ -925,6 +918,10 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 # TODO: add gecko multilocale args
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py']
+BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
+# TODO: add gecko multilocale args
+BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 # TODO: enable this after bugs 796051, 808326, 817197
