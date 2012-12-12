@@ -1234,7 +1234,7 @@ for branch in ['mozilla-esr10']:
 # Delete all references to android-noion once we have b2g testing
 # MERGE DAY - follow the 18 train.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 

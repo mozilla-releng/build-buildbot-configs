@@ -731,8 +731,6 @@ BRANCHES = {
     },
     'mozilla-aurora': {
     },
-    'mozilla-beta': {
-    },
     'mozilla-b2g18': {
         # b2g explicitly
         'ics_armv7a_gecko': {},
@@ -876,33 +874,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko']['gecko_languages_file'
 BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['gecko_languages_file'] = None
 BRANCHES['mozilla-aurora']['platforms']['win32_gecko']['gecko_languages_file'] = None
 BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
-
-######## mozilla-beta
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
-BRANCHES['mozilla-beta']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
-BRANCHES['mozilla-beta']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-beta']['start_hour'] = [7,23]
-BRANCHES['mozilla-beta']['start_minute'] = [2]
-BRANCHES['mozilla-beta']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-beta']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-beta']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-beta']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-# TODO: add gecko multilocale args
-BRANCHES['mozilla-beta']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
-BRANCHES['mozilla-beta']['platforms']['otoro']['enable_nightly'] = True
-BRANCHES['mozilla-beta']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
-# TODO: enable this after bugs 796051, 808326, 817197
-BRANCHES['mozilla-beta']['enable_multi_locale'] = False
-BRANCHES['mozilla-beta']['platforms']['linux32_gecko']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['linux32_gecko_localizer']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['linux64_gecko']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['linux64_gecko_localizer']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['macosx64_gecko']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['macosx64_gecko_localizer']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['win32_gecko']['gecko_languages_file'] = None
-BRANCHES['mozilla-beta']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
