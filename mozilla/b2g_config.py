@@ -834,6 +834,13 @@ for branch in BRANCHES:
         'unagi_stable' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_stable']
 
+# MERGE DAY: change the branch whenever stable channel moves somewhere else
+# otoro is only for b2g18
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+        'otoro' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['otoro']
+
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -847,8 +854,6 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['otoro']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -862,8 +867,6 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['otoro']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 # TODO: enable this after bugs 796051, 808326, 817197
 BRANCHES['mozilla-aurora']['enable_multi_locale'] = False
 BRANCHES['mozilla-aurora']['platforms']['linux32_gecko']['gecko_languages_file'] = None
@@ -906,7 +909,6 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gecko_langua
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gecko_languages_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gecko_languages_file'] = None
 
-
 ######## try
 # Try-specific configs
 # This is a path, relative to HGURL, where the repository is located
@@ -931,9 +933,6 @@ BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_a
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 # TODO: add gecko multilocale args
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
-BRANCHES['try']['platforms']['otoro']['slaves'] = TRY_SLAVES['mock']
-# TODO: add gecko multilocale args
-BRANCHES['try']['platforms']['otoro']['mozharness_config']['extra_args'] = ['--target', 'otoro', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'shared/resources/languages-dev.json']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
