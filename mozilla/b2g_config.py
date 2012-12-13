@@ -884,7 +884,7 @@ BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['gecko_language
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g18']['start_hour'] = [3]
+BRANCHES['mozilla-b2g18']['start_hour'] = [7,23]
 BRANCHES['mozilla-b2g18']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
