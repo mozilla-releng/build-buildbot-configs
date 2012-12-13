@@ -7,7 +7,7 @@ LINUX_IXS      = ['mv-moz2-linux-ix-slave01'] + \
                  ['linux-ix-slave%02i' % x for x in (3,4,5)]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in (1,2)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1, 19, 21)]
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (4, 5)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (3, 4, 5, 22, 80)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
