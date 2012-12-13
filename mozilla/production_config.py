@@ -206,11 +206,10 @@ PROJECTS = {
         'upload_user': 'ffxbld',
         'upload_sshkey': '/home/cltbld/.ssh/ffxbld_dsa',
     },
-    # Disabled (bug 810374)
-    #'spidermonkey_try': {
-        #'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        #'idle_slaves': 0,
-    #},
+    'spidermonkey_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
 }
 
 if __name__ == "__main__":
