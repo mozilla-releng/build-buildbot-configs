@@ -181,7 +181,7 @@ ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + XPCSHELL_ONLY + [
 
 # Default set of unit tests
 UNITTEST_SUITES = {
-    'opt_unittest_suites': ALL_UNITTESTS,
+    'opt_unittest_suites': ALL_UNITTESTS[:],
     'debug_unittest_suites': [],
 }
 
@@ -525,6 +525,8 @@ BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
         ],
     },
 }
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
