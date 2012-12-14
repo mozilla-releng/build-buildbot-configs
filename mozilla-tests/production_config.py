@@ -16,9 +16,9 @@ SLAVES = {
             153,156,161,175,176,180,184,185,186,193,197,198,202,203,204,205,222,224,\
             226,241,268,275,289,291,292,301]]), # decommissioned tegras
     'panda_android': dict(
-        [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(46,70) + range(808,874)]
+        [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(46,81) + range(522,874)]
     ),
-    'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,170)]),
+    'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522)]),
 }
 
 SLAVES['leopard-o'] = SLAVES['leopard']
