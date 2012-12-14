@@ -1115,7 +1115,7 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
 
 #exclude android builds from running on non-cedar branches on pandas
 for branch in BRANCHES.keys():
-    if 'android' in BRANCHES[branch]['platforms'] and branch != "cedar" :
+    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar","mozilla-central") :
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
