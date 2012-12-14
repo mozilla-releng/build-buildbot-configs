@@ -705,6 +705,7 @@ PLATFORM_VARS = {
             'product_name': 'b2g',
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
+            'enable_dep': False,
         },
         'otoro': {
             'mozharness_config': {
@@ -874,6 +875,10 @@ BRANCHES['mozilla-aurora']['platforms']['unagi']['nightly_signing_servers'] = 'n
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [7,23]
 BRANCHES['mozilla-b2g18']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
