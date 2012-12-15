@@ -1479,6 +1479,7 @@ BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['update_channel'] = 'nightly-b2g18'
 BRANCHES['mozilla-b2g18']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-b2g18']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18']['enable_xulrunner'] = False
