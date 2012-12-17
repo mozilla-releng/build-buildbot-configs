@@ -62,6 +62,7 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
+        'android-x86': {},
         'android-armv6': {},
         'android-noion': {},
         'android-debug': {},
@@ -747,6 +748,63 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
         },
+        'android-x86': {
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'base_name': 'Android X86 %(branch)s',
+            'mozconfig': 'android-x86/%(branch)s/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-x86/nightly',
+            'mobile_dir': 'mobile/android',
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 6,
+            'upload_symbols': True,
+            'packageTests': True,
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'update_platform': 'Android_arm-eabi-gcc3-x86',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial', 'ccache', 'android-sdk15', 'android-sdk16', 'android-ndk7', 'yasm', 'zip', 'java-1.6.0-openjdk-devel', 'zlib-devel', 'glibc-static', 'openssh-clients', "mpfr", "bc"],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.android', '/builds/.android'),
+                ('/home/cltbld/.mozpass.cfg', '/builds/.mozpass.cfg'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'JAVA_HOME': '/tools/jdk6',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-x86",
+            'stage_product': 'mobile',
+            'android_signing': True,
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': False,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-x86/releng.manifest',
+        },
         'android-noion': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -1173,6 +1231,7 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/inc
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
+BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -1549,6 +1608,7 @@ BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-noion']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
@@ -1556,6 +1616,7 @@ BRANCHES['try']['platforms']['android']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-noion']['upload_symbols'] = False
 BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
+BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
 BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
@@ -1627,6 +1688,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if BRANCHES[branch]['platforms'].has_key('android-noion'):
         BRANCHES[branch]['platforms']['android-noion']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-noion-' + branch
+    if BRANCHES[branch]['platforms'].has_key('android-x86'):
+        BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
     if BRANCHES[branch]['platforms'].has_key('linux64'):
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if BRANCHES[branch]['platforms'].has_key('win32'):

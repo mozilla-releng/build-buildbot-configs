@@ -21,6 +21,7 @@ STAGING_SLAVES = {
     'macosx64-lion':    MAC_LION_MINIS,
     'android':          LINUX_IXS,
     'android-armv6':    LINUX_IXS,
+    'android-x86':      MOCK_DL120G7,
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 
