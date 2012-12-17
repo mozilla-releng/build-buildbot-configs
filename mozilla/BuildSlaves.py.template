@@ -12,6 +12,7 @@ SlavePasswords = {
         'android': 'pass',
         'android-armv6': 'pass',
         'android-noion': 'pass',
+        'android-x86': 'pass',
         'mock': 'pass',
         'b2g_panda': 'pass',
         }
