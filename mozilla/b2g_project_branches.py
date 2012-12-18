@@ -46,7 +46,21 @@ PROJECT_BRANCHES = {
     # Only need to build on OS X (testing gcc OS X builds still work)
     #'birch': {},
     'cedar': {},
-    'date': {},
+    # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
+    'date': {
+        'enable_nightly': True,
+        'enable_l10n': False,
+        'enable_xulrunner': False,
+        'enabled_products': ['b2g'],
+        'product_prefix': 'b2g',
+        'unittest_suites': [],
+        # XXX: this seems like it should be at the platform level
+        'enable_multi_locale': True,
+        'lock_platforms': True,
+        'platforms': {
+            'unagi': {},
+        },
+    },
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
     'fig': {},

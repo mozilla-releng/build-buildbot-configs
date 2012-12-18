@@ -261,7 +261,12 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'date': {},
+    # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
+    'date': {
+        # no desktop builds wanted
+        'lock_platforms': True,
+        'platforms': {},
+    },
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,
