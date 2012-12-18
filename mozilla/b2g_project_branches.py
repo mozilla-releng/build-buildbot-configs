@@ -46,9 +46,13 @@ PROJECT_BRANCHES = {
     # Only need to build on OS X (testing gcc OS X builds still work)
     #'birch': {},
     'cedar': {},
+    'date': {},
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
+    'fig': {},
+    'gum': {},
     'holly': {},
+    'jamun': {},
     'larch': {},
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181

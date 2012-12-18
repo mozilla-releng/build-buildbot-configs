@@ -261,6 +261,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    'date': {},
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,
@@ -269,7 +270,10 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'enable_talos': False,
     },
+    'fig': {},
+    'gum': {},
     'holly': {},
+    'jamun': {},
     'larch': {},
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
