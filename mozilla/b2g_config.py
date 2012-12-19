@@ -922,6 +922,7 @@ BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--t
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
     BRANCHES[branch]['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+    BRANCHES[branch]['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
     BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
     BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)

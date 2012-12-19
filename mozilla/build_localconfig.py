@@ -20,31 +20,44 @@ if 'ssh_port' in master_config:
 
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
 from b2g_config import ACTIVE_PROJECT_BRANCHES as ACTIVE_B2G_PROJECT_BRANCHES
-ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
-ACTIVE_BRANCHES.extend([
-    'mozilla-central',
-    'mozilla-beta',
-    'mozilla-aurora',
-    'mozilla-release',
-    'mozilla-esr10',
-    'mozilla-esr17',
-    'mozilla-b2g18',
-])
-ACTIVE_THUNDERBIRD_BRANCHES = [
-    'comm-central',
-    'comm-beta',
-    'comm-aurora',
-    'comm-release',
-    'comm-esr10',
-    'comm-esr17',
-]
-ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
-ACTIVE_B2G_BRANCHES.extend([
-    'mozilla-central',
-    'mozilla-aurora',
-    'mozilla-b2g18',
-])
-ACTIVE_PROJECTS = PROJECTS.keys()
+if 'limit_branches' in master_config:
+    ACTIVE_BRANCHES = [x.encode("utf-8") for x in master_config['limit_branches']]
+else:
+    ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
+    ACTIVE_BRANCHES.extend([
+        'mozilla-central',
+        'mozilla-beta',
+        'mozilla-aurora',
+        'mozilla-release',
+        'mozilla-esr10',
+        'mozilla-esr17',
+        'mozilla-b2g18',
+    ])
+if 'limit_tb_branches' in master_config:
+    ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]
+else:
+    ACTIVE_THUNDERBIRD_BRANCHES = [
+        'comm-central',
+        'comm-beta',
+        'comm-aurora',
+        'comm-release',
+        'comm-esr10',
+        'comm-esr17',
+    ]
+if 'limit_b2g_branches' in master_config:
+    ACTIVE_B2G_BRANCHES = [x.encode("utf-8") for x in master_config['limit_b2g_branches']]
+else:
+    ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
+    ACTIVE_B2G_BRANCHES.extend([
+        'mozilla-central',
+        'mozilla-aurora',
+        'mozilla-b2g18',
+    ])
+
+if 'limit_projects' in master_config:
+    ACTIVE_PROJECTS = [x.encode("utf-8") for x in master_config['limit_projects']]
+else:
+    ACTIVE_PROJECTS = PROJECTS.keys()
 
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
@@ -70,4 +83,3 @@ buildbotcustom.misc.fastRegexes.extend([
 RESERVED_SLAVES = "reserved_slaves"
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
-

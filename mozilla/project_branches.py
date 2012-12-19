@@ -261,6 +261,12 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
+    'date': {
+        # no desktop builds wanted
+        'lock_platforms': True,
+        'platforms': {},
+    },
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,
@@ -269,7 +275,10 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'enable_talos': False,
     },
+    'fig': {},
+    'gum': {},
     'holly': {},
+    'jamun': {},
     'larch': {},
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
