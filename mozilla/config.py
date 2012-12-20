@@ -763,7 +763,7 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3-x86',
+            'update_platform': 'Android_x86-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
             'use_mock': True,

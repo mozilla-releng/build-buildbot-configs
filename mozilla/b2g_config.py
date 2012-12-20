@@ -890,9 +890,13 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
