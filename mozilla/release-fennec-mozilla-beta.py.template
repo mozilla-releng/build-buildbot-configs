@@ -133,9 +133,10 @@ releaseConfig['multilocale_config'] = {
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
-        '--only-pull-locale-source',
-        '--only-add-locales',
-        '--only-package-multi',
+        '--pull-locale-source',
+        '--add-locales',
+        '--package-multi',
+        '--summary',
     ]
 }
 releaseConfig['enableSigningAtBuildTime'] = False

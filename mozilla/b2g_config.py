@@ -225,6 +225,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -293,6 +294,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -343,6 +345,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_macosx64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -393,6 +396,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_win32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -464,6 +468,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -535,6 +540,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -588,6 +594,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_macosx64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -641,6 +648,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_win32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
