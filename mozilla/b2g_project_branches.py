@@ -42,7 +42,9 @@ PROJECT_BRANCHES = {
     #},
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {},
-    'ash': {},
+    'ash': {
+        'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
+    },
     # Only need to build on OS X (testing gcc OS X builds still work)
     #'birch': {},
     'cedar': {},

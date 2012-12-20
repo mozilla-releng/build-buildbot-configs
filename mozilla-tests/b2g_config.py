@@ -429,6 +429,23 @@ for branch in BRANCHES.keys():
 
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
+BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
+BRANCHES['ash']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
+    ('gaia-ui-test', {'suite': 'gaia-ui-test',
+                      'mozharness_repo': MOZHARNESS_REPO,
+                      'script_path': 'scripts/b2g_panda.py',
+                     },
+    )
+]
+BRANCHES['ash']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
+    'gaia-ui-test': {
+        'extra_args': [
+            "--cfg", "b2g/panda_releng.py"
+        ],
+    },
+}
+BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {

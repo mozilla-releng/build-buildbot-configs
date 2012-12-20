@@ -232,10 +232,27 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # bug 801214 - when resetting this repo make sure that you remove
-    # 'ash' from REMOTE_PROCESS_NAMES
     'ash': {
         'mozharness_unittests': True,
+        'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_talos': True,
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'win64': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'android': {
+                'slave_platforms': ['panda_android'],
+            },
+        },
     },
     'birch': {
         'enable_talos': False,
