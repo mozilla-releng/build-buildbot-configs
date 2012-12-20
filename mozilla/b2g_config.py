@@ -31,6 +31,7 @@ GLOBAL_VARS.update({
         'panda_gaia_central': {},
         'unagi': {},
         'unagi_stable': {},
+        'unagi_eng': {},
         'otoro': {},
     },
     'enable_nightly': True,
@@ -224,6 +225,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -292,6 +294,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -342,6 +345,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_macosx64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -392,6 +396,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_win32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -463,6 +468,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -534,6 +540,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_linux64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -587,6 +594,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_macosx64.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -640,6 +648,7 @@ PLATFORM_VARS = {
             'multi_config_name': 'multi_locale/b2g_win32.py',
             'mozharness_multi_options': [
                 '--build',
+                '--summary',
                 '--gecko-languages-file', 'build/b2g/locales/all-locales',
             ],
             'gecko_languages_file': 'build/b2g/locales/all-locales',
@@ -707,6 +716,22 @@ PLATFORM_VARS = {
             'slaves': SLAVES['mock'],
             'enable_dep': False,
         },
+        'unagi_eng': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-eng.py',
+                               '--gaia-languages-file', 'shared/resources/languages-dev.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                               ],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
         'otoro': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
@@ -747,6 +772,7 @@ BRANCHES = {
         'panda': {},
         'unagi': {},
         'unagi_stable': {},
+        'unagi_eng': {},
         'otoro': {},
     },
     'try': {
@@ -842,6 +868,13 @@ for branch in BRANCHES:
         'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
+# MERGE DAY: change the branch whenever stable channel moves somewhere else
+# unagi_eng is only for b2g18
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+        'unagi_eng' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['unagi_eng']
+
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -889,6 +922,7 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args
 BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'shared/resources/languages-dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_dep'] = True
@@ -930,6 +964,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
     BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
+    BRANCHES[branch]['mozharness_repo_path'] = branchConfig.get('mozharness_repo_path', GLOBAL_VARS['mozharness_repo_path'])
+    BRANCHES[branch]['mozharness_tag'] = branchConfig.get('mozharness_tag', GLOBAL_VARS['mozharness_tag'])
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
@@ -951,6 +987,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
+
 
 if __name__ == "__main__":
     import sys

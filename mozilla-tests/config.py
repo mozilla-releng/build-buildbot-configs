@@ -14,7 +14,6 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-beta':    'org.mozilla.firefox_beta',
                          'mozilla-aurora':  'org.mozilla.fennec_aurora',
                          'mozilla-release': 'org.mozilla.firefox',
-                         'ash':             'org.mozilla.fennec_aurora',
                        }
 
 MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"

@@ -1,5 +1,6 @@
 import time
 import random
+import re
 from twisted.python import log
 
 c = BuildmasterConfig = {}
@@ -51,6 +52,14 @@ BRANCH_PRIORITIES = {
     'pine': 5,
 }
 
+# List of (regular expression, priority) tuples. If no expression matches the
+# builder name, a priority of 100 is used. Lower priority values get run
+# earlier.
+BUILDER_PRIORITIES = [
+    (re.compile('^b2g.*test'), 50),
+]
+
+
 # Give the release builders priority over other builders
 def prioritizeBuilders(botmaster, builders):
     s = time.time()
@@ -82,20 +91,27 @@ def prioritizeBuilders(botmaster, builders):
         req_priority = request[1]
         submitted_at = request[2]
 
-        # Default priority is 2
-        priority = 2
+        # Default branch priority is 2
+        branch_priority = 2
         if builder.builder_status.category.startswith('release'):
-            priority = 0
+            branch_priority = 0
         elif builder.properties and builder.properties.has_key('branch'):
             for branch, p in BRANCH_PRIORITIES.iteritems():
                 if branch in builder.properties['branch']:
-                    priority = p
+                    branch_priority = p
                     break
 
+        # Default builder priority is 100
+        builder_priority = 100
+        for exp, p in BUILDER_PRIORITIES:
+            if exp.search(builder.name):
+                builder_priority = p
+                break
+
         # Add some randomness here so that builders with the same priority,
-        # req_priority, submitted_at get processed in a different order each
-        # time
-        return priority, req_priority, submitted_at, random.random()
+        # req_priority, builder_priority, submitted_at get processed in a
+        # different order each time
+        return branch_priority, req_priority, builder_priority, submitted_at, random.random()
 
     builders.sort(key=sortkey)
     log.msg("Sorted %i builders in %.2fs" % (len(builders), time.time() - s))
