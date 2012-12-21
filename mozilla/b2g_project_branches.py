@@ -60,7 +60,9 @@ PROJECT_BRANCHES = {
         'enable_multi_locale': True,
         'lock_platforms': True,
         'platforms': {
-            'unagi': {},
+            'unagi': {
+                'enable_nightly': True,
+            },
         },
     },
     # Customizations for windows update service changes (bug 481815)
