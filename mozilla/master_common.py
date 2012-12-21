@@ -56,7 +56,7 @@ BRANCH_PRIORITIES = {
 # builder name, a priority of 100 is used. Lower priority values get run
 # earlier.
 BUILDER_PRIORITIES = [
-    (re.compile('^b2g.*test'), 50),
+    (re.compile('b2g(-debug)?_test'), 50),
 ]
 
 
