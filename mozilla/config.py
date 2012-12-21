@@ -164,7 +164,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -235,7 +235,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -442,7 +442,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -499,7 +499,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -972,37 +972,36 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
-    # Disabled (bug 810374)
-    #'spidermonkey_try': {
-        #'enable_try': True,
-        #'variants': {
-            #'linux64-debug':  ['rootanalysis'],
-        #},
-        #'platforms': {
-            #'linux64-debug': PLATFORM_VARS['linux64-debug'],
-        #},
-        #'hgurl': 'http://hg.mozilla.org/',
-        #'repo_path': 'try',
-        #'branch': 'try',
-    #},
+    'spidermonkey_try': {
+        'enable_try': True,
+        'variants': {
+            'linux64-debug':  ['rootanalysis'],
+        },
+        'platforms': {
+            'linux64-debug': {}, # Filled in with branch-specific values below
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
+    },
     'spidermonkey_mozilla-inbound': {
         'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'warnaserrdebug'],
-            'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
         'platforms': {
-            'linux': PLATFORM_VARS['linux'],
-            'linux-debug': PLATFORM_VARS['linux-debug'],
-            'linux64': PLATFORM_VARS['linux64'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
-            'win32': PLATFORM_VARS['win32'],
-            'win32-debug': PLATFORM_VARS['win32-debug'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
@@ -1014,18 +1013,18 @@ PROJECTS = {
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'warnaserrdebug'],
-            'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
         'platforms': {
-            'linux': PLATFORM_VARS['linux'],
-            'linux-debug': PLATFORM_VARS['linux-debug'],
-            'linux64': PLATFORM_VARS['linux64'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
-            'win32': PLATFORM_VARS['win32'],
-            'win32-debug': PLATFORM_VARS['win32-debug'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
@@ -1182,6 +1181,15 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+
+# Point projects to BRANCHES values
+for v in PROJECTS.values():
+    if 'branch' in v:
+        bconfig = BRANCHES[v['branch']]
+        v['branchconfig'] = bconfig
+        if 'platforms' in v:
+            for p in v['platforms']:
+                v['platforms'][p] = bconfig['platforms'][p]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
