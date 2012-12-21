@@ -164,7 +164,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -235,7 +235,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -442,7 +442,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
@@ -499,7 +499,7 @@ PLATFORM_VARS = {
                         'alsa-lib-devel', 'libcurl-devel',
                         'wireless-tools-devel', 'libX11-devel',
                         'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'wget',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
