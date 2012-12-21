@@ -978,7 +978,7 @@ PROJECTS = {
             'linux64-debug':  ['rootanalysis'],
         },
         'platforms': {
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
+            'linux64-debug': {}, # Filled in with branch-specific values below
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'try',
@@ -990,18 +990,18 @@ PROJECTS = {
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'warnaserrdebug'],
-            'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
         'platforms': {
-            'linux': PLATFORM_VARS['linux'],
-            'linux-debug': PLATFORM_VARS['linux-debug'],
-            'linux64': PLATFORM_VARS['linux64'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
-            'win32': PLATFORM_VARS['win32'],
-            'win32-debug': PLATFORM_VARS['win32-debug'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
@@ -1013,18 +1013,18 @@ PROJECTS = {
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'warnaserrdebug'],
-            'macosx64-lion':           ['warnaserr'],
-            'macosx64-lion-debug':     ['dtrace', 'warnaserrdebug'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
         'platforms': {
-            'linux': PLATFORM_VARS['linux'],
-            'linux-debug': PLATFORM_VARS['linux-debug'],
-            'linux64': PLATFORM_VARS['linux64'],
-            'linux64-debug': PLATFORM_VARS['linux64-debug'],
-            'win32': PLATFORM_VARS['win32'],
-            'win32-debug': PLATFORM_VARS['win32-debug'],
-            'macosx64-lion': PLATFORM_VARS['macosx64-lion'],
-            'macosx64-lion-debug': PLATFORM_VARS['macosx64-lion-debug'],
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'projects/ionmonkey',
@@ -1104,11 +1104,6 @@ BRANCHES = {
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
 
-# Point projects to BRANCH values
-for v in PROJECTS.values():
-    if 'branch' in v:
-        v['branchconfig'] = BRANCHES[v['branch']]
-
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
@@ -1186,6 +1181,15 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+
+# Point projects to BRANCHES values
+for v in PROJECTS.values():
+    if 'branch' in v:
+        bconfig = BRANCHES[v['branch']]
+        v['branchconfig'] = bconfig
+        if 'platforms' in v:
+            for p in v['platforms']:
+                v['platforms'][p] = bconfig['platforms'][p]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
