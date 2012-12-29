@@ -676,7 +676,7 @@ ANDROID_NOION_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith('reftest') or suite[0].startswith('crashtest'):
+    if not suite[0].startswith('jsreftest'):
         continue
     ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
