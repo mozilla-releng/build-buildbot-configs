@@ -1083,7 +1083,7 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
 # Let's load jetpack for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
+for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', 'birch', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             continue
