@@ -51,10 +51,7 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 BRANCHES = {
     'mozilla-central':     {},
     'mozilla-aurora':      {},
-    # MERGE DAY:
-    # datazilla_url is riding the trains with 17. This override should be
-    # removed from beta/release as 17 gets there.
-    'mozilla-release':     {'datazilla_url': None},
+    'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-esr10':       {
         'datazilla_url': None,
