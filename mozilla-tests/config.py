@@ -676,7 +676,7 @@ ANDROID_NOION_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith('reftest') or suite[0].startswith('crashtest'):
+    if not suite[0].startswith('jsreftest'):
         continue
     ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
@@ -1083,7 +1083,7 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
 # Let's load jetpack for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
+for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', 'birch', ):
     for pf in PLATFORMS:
         if 'android' in pf:
             continue
