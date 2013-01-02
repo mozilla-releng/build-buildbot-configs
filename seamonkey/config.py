@@ -173,7 +173,7 @@ PLATFORM_VARS = {
             'src_mozconfig': 'suite/config/mozconfigs/linux64/nightly',
             'profiled_build': False,
             'builds_before_reboot': BUILDS_BEFORE_REBOOT,
-            'build_space': 6,
+            'build_space': 8,
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
