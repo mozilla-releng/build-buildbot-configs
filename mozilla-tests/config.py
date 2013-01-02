@@ -938,7 +938,6 @@ PROJECTS = {
     'jetpack': {
         'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
         'platforms': {
-            'w764': {'ext':'win64-x86_64.zip', 'debug':True},
             'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True},
             'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True},
             'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
