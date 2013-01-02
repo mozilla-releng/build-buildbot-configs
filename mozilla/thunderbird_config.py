@@ -896,29 +896,6 @@ BRANCHES['comm-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thun
 BRANCHES['comm-esr17']['enable_blocklist_update'] = False
 BRANCHES['comm-esr17']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr17']['enable_valgrind'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-# mock disabled block start
-# linux platforms
-BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-BRANCHES['comm-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-del BRANCHES['comm-esr17']['platforms']['linux']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux64']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
