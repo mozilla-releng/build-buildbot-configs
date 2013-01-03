@@ -57,7 +57,16 @@ releaseConfig['sourceRepositories']  = {
         'path': 'releases/mozilla-esr10',
         'revision': 'b0b7f731ed02',
         'relbranch': 'GECKO10011_2012111510_RELBRANCH',
-        'bumpFiles': {},
+        'bumpFiles': {
+            'config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+            'js/src/config/milestone.txt': {
+                'version': releaseConfig['milestone'],
+                'nextVersion': releaseConfig['nextMilestone']
+            },
+        }
     }
 }
 #  L10n repositories
