@@ -150,4 +150,5 @@ releaseConfig['multilocale_config'] = {
 releaseConfig['enableSigningAtBuildTime'] = False
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
-releaseConfig['use_mock'] = False
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('android','android-armv6','linux')
