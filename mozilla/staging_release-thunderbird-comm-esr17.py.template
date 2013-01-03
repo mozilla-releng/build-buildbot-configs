@@ -128,10 +128,10 @@ releaseConfig['verifyConfigs']       = {
     'win32':  'mozEsr17-thunderbird-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
-    'linux': 'mail/config/mozconfigs/linux32/release',
-    'linux64': 'mail/config/mozconfigs/linux64/release',
-    'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
-    'win32': 'mail/config/mozconfigs/win32/release',
+    'linux': 'mail/config/mozconfigs/linux32/esr',
+    'linux64': 'mail/config/mozconfigs/linux64/esr',
+    'macosx64': 'mail/config/mozconfigs/macosx-universal/esr',
+    'win32': 'mail/config/mozconfigs/win32/esr',
 }
 releaseConfig['releaseChannel']      = 'esr'
 
