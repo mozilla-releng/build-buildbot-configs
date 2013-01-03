@@ -1307,41 +1307,6 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
-# mock disabled block start
-# linux platforms
-BRANCHES['mozilla-release']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-release']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-release']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-release']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-release']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-release']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-release']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-release']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-release']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-release']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-release']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-release']['platforms']['linux64-debug']['env']['PATH']
-# android platforms
-BRANCHES['mozilla-release']['platforms']['android']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['android']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-release']['platforms']['android']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-release']['platforms']['android']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-release']['platforms']['android']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-BRANCHES['mozilla-release']['platforms']['android-debug']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['android-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-release']['platforms']['android-debug']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-release']['platforms']['android-debug']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-release']['platforms']['android-armv6']['use_mock'] = False
-BRANCHES['mozilla-release']['platforms']['android-armv6']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PATH'] = "/tools/jdk6/bin:/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/"
-BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['PYTHON26'] = "/tools/python-2.6.5/bin/python"
-# mock disabled block stop
-# END MERGE DAY
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
