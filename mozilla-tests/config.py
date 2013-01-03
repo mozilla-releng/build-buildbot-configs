@@ -710,6 +710,14 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
 
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+ANDROID_PANDA_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest') or suite[0].startswith('plain-reftest'):
+        continue
+    ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -812,7 +820,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
-            'panda_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
+            'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
         },
         'android-armv6': {
             'product_name': 'fennec',
