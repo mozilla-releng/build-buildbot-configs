@@ -101,7 +101,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'

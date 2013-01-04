@@ -101,7 +101,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozEsr17-thunderbird-branch-patcher2.cfg'  # TODO for 17.0.1esr
