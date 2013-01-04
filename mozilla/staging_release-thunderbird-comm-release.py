@@ -116,7 +116,7 @@ releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozil
 releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
-releaseConfig['releaseNotesUrl']     = None
+releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-thunderbird-linux.cfg',

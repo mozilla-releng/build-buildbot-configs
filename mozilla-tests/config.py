@@ -51,10 +51,7 @@ ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 BRANCHES = {
     'mozilla-central':     {},
     'mozilla-aurora':      {},
-    # MERGE DAY:
-    # datazilla_url is riding the trains with 17. This override should be
-    # removed from beta/release as 17 gets there.
-    'mozilla-release':     {'datazilla_url': None},
+    'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-esr10':       {
         'datazilla_url': None,
@@ -1015,19 +1012,6 @@ for suite in SUITES.keys():
         BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-
-# Side by side staging on m-c only
-
-#### MERGE DAY - EXCEPTIONS
-# When Firefox 17 is on mozilla-release we can remove these
-# Firefox 17/release
-BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-# end Firefox 17/release
-#### END OF MERGE DAY - EXCEPTIONS
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 5

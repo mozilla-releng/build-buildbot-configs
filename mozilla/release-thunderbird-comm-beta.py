@@ -108,7 +108,7 @@ releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'auspush'
-releaseConfig['releaseNotesUrl']     = 'https://www.mozilla.org/thunderbird/%sbeta/releasenotes' % releaseConfig['appVersion']
+releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
