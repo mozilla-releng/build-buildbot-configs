@@ -1016,19 +1016,6 @@ for suite in SUITES.keys():
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
-# Side by side staging on m-c only
-
-#### MERGE DAY - EXCEPTIONS
-# When Firefox 17 is on mozilla-release we can remove these
-# Firefox 17/release
-BRANCHES['mozilla-release']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-# end Firefox 17/release
-#### END OF MERGE DAY - EXCEPTIONS
-
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 5
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
