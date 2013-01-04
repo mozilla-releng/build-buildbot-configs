@@ -44,7 +44,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'comm-release',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': None,
+        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
