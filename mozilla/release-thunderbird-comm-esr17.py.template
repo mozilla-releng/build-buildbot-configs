@@ -47,7 +47,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'comm-esr17',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': None,
+        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -59,7 +59,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
