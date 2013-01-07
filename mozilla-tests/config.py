@@ -1124,6 +1124,11 @@ for branch in BRANCHES:
                         extra_args = ["--cfg", config_file]
                         for sub_category in suite['sub_categories']:
                             extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
+                        if BRANCHES[branch]['fetch_symbols'] and BRANCHES[branch]['platforms'][pf][slave_pf].get('download_symbols', True):
+                            if testtype == "debug":
+                                extra_args += ["--download-symbols", "true"]
+                            else:
+                                extra_args += ["--download-symbols", "ondemand"]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
                             (suite['suite_name'], {
                                 'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
