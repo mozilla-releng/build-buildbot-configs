@@ -140,6 +140,5 @@ releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('linux','linux64')
+releaseConfig['use_mock'] = False
 releaseConfig['ftpSymlinkName'] = 'latest'
