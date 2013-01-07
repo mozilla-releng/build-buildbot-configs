@@ -23,7 +23,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '17.0.2esr'
 releaseConfig['appVersion']          = '17.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'FIREFOX_17_0_2esr'
 releaseConfig['partialUpdates']      = {
 
@@ -42,8 +42,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '15b8772620ec',
-        'relbranch': None,
+        'revision': '023401f37090',
+        'relbranch': 'GECKO1702_2013010419_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -89,7 +89,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'
@@ -134,6 +134,5 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('linux', 'linux64')
+releaseConfig['use_mock'] = False
 releaseConfig['ftpSymlinkName'] = 'latest-esr'
