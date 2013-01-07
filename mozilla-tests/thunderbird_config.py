@@ -34,7 +34,6 @@ PLATFORMS = {
     'macosx': {},
     'macosx64': {},
     'win32': {},
-    'win64': {},
     'linux': {},
     'linux64' : {},
 }
@@ -65,14 +64,6 @@ PLATFORMS['win32']['xp'] = {'name': builder_prefix + "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': builder_prefix + "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
-
-PLATFORMS['win64']['slave_platforms'] = ['w764']
-PLATFORMS['win64']['env_name'] = 'win64-perf'
-PLATFORMS['win64']['w764'] = {'name': builder_prefix + "Rev3 WINNT 6.1 x64",
-                              'download_symbols': False,
-                             }
-PLATFORMS['win64']['stage_product'] = 'thunderbird'
-PLATFORMS['win64']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -145,7 +136,6 @@ BRANCH_UNITTEST_VARS = {
         'macosx': {},
         'macosx64': {},
         'win32': {},
-        'win64': {},
     },
 }
 
@@ -278,20 +268,6 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
-        'win64': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'download_symbols': False,
-            'enable_opt_unittests': False,
-            # We can't yet run unit tests on debug builds - see bug 562459
-            'enable_debug_unittests': False,
-            'w764': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
-        },
         'macosx': {
             'product_name': 'thunderbird',
             'app_name': 'mail',
@@ -416,21 +392,6 @@ BRANCHES['comm-central']['branch_name'] = "Thunderbird"
 BRANCHES['comm-central']['repo_path'] = "comm-central"
 #BRANCHES['comm-central']['build_branch'] = "1.9.2"
 BRANCHES['comm-central']['pgo_strategy'] = None
-# Let's add win64 tests only for comm-central until we have enough capacity - see bug 667024
-# XXX hacking warning - this code could get out of date easily
-BRANCHES['comm-central']['platforms']['win64']['enable_opt_unittests'] = True
-for suite in SUITES.keys():
-    options = SUITES[suite]['options']
-    if options[1] == ALL_PLATFORMS:
-        options = (options[0], ALL_PLATFORMS + PLATFORMS['win64']['slave_platforms'])
-    if options[1] == NO_MAC:
-        options = (options[0], NO_MAC + PLATFORMS['win64']['slave_platforms'])
-    if not SUITES[suite]['enable_by_default']:
-        # Suites that are turned off by default
-        BRANCHES['comm-central'][suite + '_tests'] = (0, True) + options
-    else:
-        # Suites that are turned on by default
-        BRANCHES['comm-central'][suite + '_tests'] = (1, True) + options
 
 ######## comm-release
 BRANCHES['comm-release']['pgo_strategy'] = None

@@ -3,7 +3,6 @@ SLAVES = {
     'fedora64' : dict([("tools-r3-fed64-%03i" % x, {}) for x in range (1,4)]),
     'xp': dict([("tools-r3-xp-%03i" % x, {}) for x in range(1,4)]),
     'win7': dict([("tools-r3-w7-%03i" % x, {}) for x in range(1,4)]),
-    'w764': dict([("tools-r3-w764-%03i" % x, {}) for x in range(1,4)]),
     'leopard': dict([("tools-r3-leopard-%03i" % x, {}) for x in range(1,4)]),
     'snowleopard': dict([("tools-r3-snow-%03i" % x, {}) for x in range(1,4)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(1,4)]),
