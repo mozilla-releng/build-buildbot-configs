@@ -24,7 +24,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '17.0.2'
 releaseConfig['appVersion']          = '17.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_2'
 releaseConfig['partialUpdates']      = {
 
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
         'path': 'releases/comm-release',
-        'revision': '86dd2826b037',
+        'revision': 'b88ae0d86bec',
         'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '840dcbc2239a',
+        'revision': '0cdeaa290942',
         'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
@@ -97,7 +97,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
