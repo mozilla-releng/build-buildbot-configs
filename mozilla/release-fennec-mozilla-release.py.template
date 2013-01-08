@@ -144,6 +144,7 @@ releaseConfig['multilocale_config'] = {
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
         '--pull-locale-source',
         '--add-locales',
+        '--package-multi',
         '--summary',
     ]
 }

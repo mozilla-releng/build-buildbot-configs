@@ -59,7 +59,6 @@ BRANCHES = {
             'macosx': {},
             'macosx64': {},
             'win32': {},
-            'win64': {},
             'linux': {},
             'linux64' : {},
         },
@@ -71,7 +70,6 @@ BRANCHES = {
             'macosx': {},
             'macosx64': {},
             'win32': {},
-            'win64': {},
             'linux': {},
             'linux64' : {},
         },
@@ -93,7 +91,6 @@ PLATFORMS = {
     'macosx': {},
     'macosx64': {},
     'win32': {},
-    'win64': {},
     'linux': {},
     'linux64' : {},
     'android': {},
@@ -139,17 +136,6 @@ PLATFORMS['win32']['mozharness_config'] = {
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
-
-PLATFORMS['win64']['slave_platforms'] = ['w764']
-PLATFORMS['win64']['env_name'] = 'win64-perf'
-PLATFORMS['win64']['w764'] = {'name': "Rev3 WINNT 6.1 x64",
-                              'download_symbols': False,
-                             }
-PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['mozharness_config'] = {
-    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-    'mozharness_repo': MOZHARNESS_REPO,
-    'hg_bin': 'c:\\mozilla-build\\hg\\hg',    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,}
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
@@ -377,7 +363,6 @@ BRANCH_UNITTEST_VARS = {
         'macosx': {},
         'macosx64': {},
         'win32': {},
-        'win64': {},
         'android': {},
         'android-armv6': {},
         'android-noion': {},
@@ -781,20 +766,6 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             }
         },
-        'win64': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'download_symbols': False,
-            'enable_opt_unittests': False,
-            # We can't yet run unit tests on debug builds - see bug 562459
-            'enable_debug_unittests': False,
-            'w764': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
-        },
         'macosx': {
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -995,21 +966,6 @@ BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
 BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-# Let's add win64 tests only for mozilla-central until we have enough capacity - see bug 667024
-# XXX hacking warning - this code could get out of date easily
-BRANCHES['mozilla-central']['platforms']['win64']['enable_opt_unittests'] = True
-for suite in SUITES.keys():
-    options = SUITES[suite]['options']
-    if options[1] == ALL_PLATFORMS:
-        options = (options[0], ALL_PLATFORMS + PLATFORMS['win64']['slave_platforms'])
-    if options[1] == NO_MAC:
-        options = (options[0], NO_MAC + PLATFORMS['win64']['slave_platforms'])
-    if not SUITES[suite]['enable_by_default']:
-        # Suites that are turned off by default
-        BRANCHES['mozilla-central'][suite + '_tests'] = (0, True) + options
-    else:
-        # Suites that are turned on by default
-        BRANCHES['mozilla-central'][suite + '_tests'] = (1, True) + options
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
@@ -1097,7 +1053,7 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
 
 #exclude android builds from running on non-cedar branches on pandas
 for branch in BRANCHES.keys():
-    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar","mozilla-central") :
+    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar","mozilla-central", "try", "mozilla-inbound") :
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
@@ -1168,6 +1124,11 @@ for branch in BRANCHES:
                         extra_args = ["--cfg", config_file]
                         for sub_category in suite['sub_categories']:
                             extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
+                        if BRANCHES[branch]['fetch_symbols'] and BRANCHES[branch]['platforms'][pf][slave_pf].get('download_symbols', True):
+                            if testtype == "debug":
+                                extra_args += ["--download-symbols", "true"]
+                            else:
+                                extra_args += ["--download-symbols", "ondemand"]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
                             (suite['suite_name'], {
                                 'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],

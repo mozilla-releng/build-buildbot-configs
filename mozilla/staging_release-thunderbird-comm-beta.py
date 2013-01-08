@@ -24,16 +24,16 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '12.0b5'
-releaseConfig['appVersion']          = '12.0'
-releaseConfig['milestone']           = '12.0'
+releaseConfig['version']             = '18.0b1'
+releaseConfig['appVersion']          = '18.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_12_0b5'
+releaseConfig['baseTag']             = 'THUNDERBIRD_18_0b1'
 releaseConfig['partialUpdates']      = {
-    '12.0b4': {
-        'appVersion': '12.0',
+    '17.0b3': {
+        'appVersion': '17.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_12_0b4',
+        'baseTag': 'THUNDERBIRD_17_0b3',
     }
 }
 #  Next (nightly) version info
