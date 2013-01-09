@@ -1157,9 +1157,20 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozi
     if 'macosx64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx64']['leopard']
         BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
-
 #-------------------------------------------------------------------------
 # End disable leopard tests for FF17 onwards
+#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------
+# Temporary Hack for Bug 818833
+#-------------------------------------------------------------------------
+for branch in BRANCHES.keys():
+    if branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-esr10']:
+        continue # These branches are fine
+    if BRANCHES[branch]['platforms'].has_key("linux"):
+        del BRANCHES[branch]['platforms']['linux']
+#-------------------------------------------------------------------------
+# End Hack for Bug 818833
 #-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
