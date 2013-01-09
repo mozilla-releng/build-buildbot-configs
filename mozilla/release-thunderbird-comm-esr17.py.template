@@ -37,7 +37,15 @@ releaseConfig['appVersion']          = '{{ appVersion }}'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = {{ buildNumber }}
 releaseConfig['baseTag']             = '{{ baseTag }}'
-releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
+releaseConfig['partialUpdates']      = {
+{% for version, partial in partials.items() %}
+    '{{ version }}': {
+        'appVersion': '{{ partial['appVersion'] }}',
+        'buildNumber': {{ partial['buildNumber'] }},
+        'baseTag': '{{ partial['baseTag'] }}',
+    },
+{% endfor %}
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
@@ -47,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'comm-esr17',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -59,7 +67,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
