@@ -83,7 +83,7 @@ releaseConfig['enableMultiLocale']   = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
