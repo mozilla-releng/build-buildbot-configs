@@ -1027,6 +1027,7 @@ BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 5
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
@@ -1164,7 +1165,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # MERGE day - disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-    'mozilla-esr17'] + ACTIVE_PROJECT_BRANCHES:
+    'mozilla-esr17', 'mozilla-b2g18'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
