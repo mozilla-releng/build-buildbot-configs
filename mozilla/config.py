@@ -1029,7 +1029,7 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org/',
         'repo_path': 'integration/mozilla-inbound',
-        'branch': 'mozilla-central',
+        'branch': 'mozilla-inbound',
     },
     'spidermonkey_ionmonkey': {
         'variants': {

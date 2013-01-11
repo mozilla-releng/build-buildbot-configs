@@ -78,6 +78,11 @@ BRANCHES = {
     'mozilla-b2g18':       {
         'datazilla_url': None,
         'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64' : {},
             'ics_armv7a_gecko': {},
             'b2g_panda': {},
         },
@@ -434,15 +439,15 @@ def addSuite(suiteGroupName, newSuiteName, suiteList):
     #     e.g. suiteGroup = ('reftest', ['reftest])
     newSuiteList = []
     added = False
-    for tuple in suiteList:
-        name, suites = tuple
+    for tup in suiteList:
+        name, suites = tup
         if suiteGroupName == name:
             suites.append(newSuiteName)
             added = True
         newSuiteList.append((name, suites))
 
     if not added:
-        newSuiteList.append((name, suites))
+        newSuiteList.append((suiteGroupName, [newSuiteName]))
 
     return newSuiteList
 
@@ -710,6 +715,14 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
 
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+ANDROID_PANDA_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest') or suite[0].startswith('plain-reftest'):
+        continue
+    ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -812,7 +825,7 @@ PLATFORM_UNITTEST_VARS = {
             'enable_debug_unittests': False,
             'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
             'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
-            'panda_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
+            'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
         },
         'android-armv6': {
             'product_name': 'fennec',
@@ -1168,7 +1181,26 @@ for branch in BRANCHES.keys():
     if branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-esr10']:
         continue # These branches are fine
     if BRANCHES[branch]['platforms'].has_key("linux"):
-        del BRANCHES[branch]['platforms']['linux']
+        if branch not in ['mozilla-b2g18']:
+            # We need to keep some linux32 testing on b2g18
+            del BRANCHES[branch]['platforms']['linux']
+            continue
+        # We want ipc tests for b2g18 though
+        BRANCHES[branch]['platforms']['linux']['fedora']['mobile_unittest_suites'] = []
+        suite_list = []
+        suite_list = addSuite('mochitest-other', 'mochitest-ipcplugins', suite_list)
+        BRANCHES[branch]['platforms']['linux']['fedora']['debug_unittest_suites'] = suite_list[:]
+        suite_list = addSuite('reftest-ipc', 'reftest-ipc', suite_list)
+        suite_list = addSuite('crashtest-ipc', 'crashtest-ipc', suite_list)
+        BRANCHES[branch]['platforms']['linux']['fedora']['opt_unittest_suites'] = suite_list[:]
+        
+        # Because we keep linux on here, we need to force off linux/fedora TALOS
+        for suite in SUITES.keys():
+            plats = BRANCHES[branch][suite + '_tests'][-1][:]
+            if 'fedora' in plats:
+                plats.remove('fedora')
+                newTup = tuple(list(BRANCHES[branch][suite + '_tests'][:-1]) + [plats])
+                BRANCHES[branch][suite + '_tests'] = newTup
 #-------------------------------------------------------------------------
 # End Hack for Bug 818833
 #-------------------------------------------------------------------------
