@@ -299,7 +299,9 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'macosx64': {},
-            'win32': {},
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'win32-debug': {},
             'android': {},
             'android-debug': {},
