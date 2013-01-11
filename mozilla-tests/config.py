@@ -1164,7 +1164,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # MERGE day - disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-    'mozilla-esr17'] + ACTIVE_PROJECT_BRANCHES:
+    'mozilla-esr17', 'mozilla-b2g18'] + ACTIVE_PROJECT_BRANCHES:
     if 'macosx' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx']
     if 'macosx64' in BRANCHES[branch]['platforms']:
