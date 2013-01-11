@@ -1027,6 +1027,7 @@ BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 5
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
