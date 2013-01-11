@@ -78,6 +78,11 @@ BRANCHES = {
     'mozilla-b2g18':       {
         'datazilla_url': None,
         'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64' : {},
             'ics_armv7a_gecko': {},
             'b2g_panda': {},
         },
