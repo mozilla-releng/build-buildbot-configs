@@ -163,6 +163,24 @@ REFTEST_ONLY = [
     ),
 ]
 
+CRASHTEST_ONLY = [
+    ('crashtest-1', {'suite': 'crashtest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('crashtest-2', {'suite': 'crashtest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+    ('crashtest-3', {'suite': 'crashtest',
+                   'mozharness_repo': MOZHARNESS_REPO,
+                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  },
+    ),
+]
+
 XPCSHELL_ONLY = [
     ('xpcshell', {'suite': 'xpcshell',
                    'mozharness_repo': MOZHARNESS_REPO,
@@ -201,6 +219,27 @@ PLATFORM_UNITTEST_VARS = {
                 UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
+                'crashtest-1': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'crashtest',
+                        '--this-chunk', '1', '--total-chunks', '3',
+                    ],
+                },
+                'crashtest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'crashtest',
+                        '--this-chunk', '2', '--total-chunks', '3',
+                    ],
+                },
+                'crashtest-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'crashtest',
+                        '--this-chunk', '3', '--total-chunks', '3',
+                    ],
+                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py"
@@ -438,6 +477,7 @@ BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_s
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
     ('gaia-ui-test', {'suite': 'gaia-ui-test',
                       'mozharness_repo': MOZHARNESS_REPO,
@@ -452,7 +492,7 @@ BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
         ],
     },
 }
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
