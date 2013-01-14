@@ -1176,37 +1176,6 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozi
 #-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
-# Temporary Hack for Bug 818833
-#-------------------------------------------------------------------------
-for branch in BRANCHES.keys():
-    if branch in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-esr10']:
-        continue # These branches are fine
-    if BRANCHES[branch]['platforms'].has_key("linux"):
-        if branch not in ['mozilla-b2g18']:
-            # We need to keep some linux32 testing on b2g18
-            del BRANCHES[branch]['platforms']['linux']
-            continue
-        # We want ipc tests for b2g18 though
-        BRANCHES[branch]['platforms']['linux']['fedora']['mobile_unittest_suites'] = []
-        suite_list = []
-        suite_list = addSuite('mochitest-other', 'mochitest-ipcplugins', suite_list)
-        BRANCHES[branch]['platforms']['linux']['fedora']['debug_unittest_suites'] = suite_list[:]
-        suite_list = addSuite('reftest-ipc', 'reftest-ipc', suite_list)
-        suite_list = addSuite('crashtest-ipc', 'crashtest-ipc', suite_list)
-        BRANCHES[branch]['platforms']['linux']['fedora']['opt_unittest_suites'] = suite_list[:]
-        
-        # Because we keep linux on here, we need to force off linux/fedora TALOS
-        for suite in SUITES.keys():
-            plats = BRANCHES[branch][suite + '_tests'][-1][:]
-            if 'fedora' in plats:
-                plats.remove('fedora')
-                newTup = tuple(list(BRANCHES[branch][suite + '_tests'][:-1]) + [plats])
-                BRANCHES[branch][suite + '_tests'] = newTup
-#-------------------------------------------------------------------------
-# End Hack for Bug 818833
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards
 # Delete whole block when we drop esr10
 #-------------------------------------------------------------------------
