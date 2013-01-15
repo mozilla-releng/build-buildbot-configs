@@ -1627,7 +1627,7 @@ for platform in BRANCHES['try']['platforms'].keys():
 # MERGE day - when FF17 moves into such branch remove it from the list
 # MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
 for branch in BRANCHES:
-    if branch not in ('mozilla-release', 'mozilla-esr10',) and \
+    if branch not in ('mozilla-esr10',) and \
         'macosx-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['macosx-debug']
 
@@ -1739,7 +1739,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list
-for b in ('mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17'):
+for b in ('mozilla-esr10', 'mozilla-esr17'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
