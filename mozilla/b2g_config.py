@@ -755,8 +755,6 @@ PLATFORM_VARS = {
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-aurora': {
-    },
     'mozilla-b2g18': {
         # b2g explicitly
         'ics_armv7a_gecko': {},
@@ -888,19 +886,6 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-
-######## mozilla-aurora
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
-BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
-BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-aurora']['start_hour'] = [3]
-BRANCHES['mozilla-aurora']['start_minute'] = [2]
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
