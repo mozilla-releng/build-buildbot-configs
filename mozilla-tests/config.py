@@ -83,6 +83,7 @@ BRANCHES = {
             'win32': {},
             'linux': {},
             'linux64' : {},
+            'android-noion' : {},
             'ics_armv7a_gecko': {},
             'b2g_panda': {},
         },
@@ -1189,7 +1190,7 @@ for branch in ['mozilla-esr10']:
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 

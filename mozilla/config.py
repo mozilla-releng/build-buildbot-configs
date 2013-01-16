@@ -1252,6 +1252,7 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'android-noion': {},
         },
     },
     'try': {
@@ -1885,7 +1886,7 @@ for b in ('mozilla-esr10', 'mozilla-esr17'):
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18', 'try'):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
