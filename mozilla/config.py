@@ -1883,9 +1883,9 @@ for b in ('mozilla-esr10', 'mozilla-esr17'):
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
 
 # XXX bug 789373 hack until we get b2g testing going.
-# Delete all references to android-noion once we have b2g tests.
+# Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'try'):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 

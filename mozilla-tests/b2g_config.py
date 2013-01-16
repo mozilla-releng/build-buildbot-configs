@@ -18,7 +18,6 @@ BRANCHES = {
     'ash': {},
     'cedar': {},
     'fx-team': {},
-    'mozilla-aurora': {},
     'mozilla-b2g18': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
@@ -495,7 +494,6 @@ BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
-BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True

@@ -1187,10 +1187,9 @@ for branch in ['mozilla-esr10']:
 #-------------------------------------------------------------------------
 
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
-# Delete all references to android-noion once we have b2g testing
-# MERGE DAY - follow the 18 train.
+# Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
