@@ -24,6 +24,7 @@ SLAVES['leopard-o'] = SLAVES['leopard']
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 SLAVES['fedora-b2g'] = SLAVES['fedora']
+SLAVES['b2g_panda_gaia_central'] = SLAVES['b2g_panda']
 
 TRY_SLAVES = {}
 
