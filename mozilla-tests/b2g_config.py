@@ -546,7 +546,7 @@ BRANCHES['cedar']['platforms']['b2g_panda_gaia_central']['b2g_panda_gaia_central
         ],
     },
 }
-ANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
