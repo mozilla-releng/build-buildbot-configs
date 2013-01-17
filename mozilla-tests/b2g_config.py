@@ -28,6 +28,7 @@ BRANCHES = {
 PLATFORMS = {
     'ics_armv7a_gecko': {},
     'b2g_panda': {},
+    'b2g_panda_gaia_central': {},
 }
 
 builder_prefix = "b2g"
@@ -56,6 +57,19 @@ PLATFORMS['b2g_panda']['mozharness_config'] = {
     'reboot_command': None,
 }
 
+PLATFORMS['b2g_panda_gaia_central']['slave_platforms'] = ['b2g_panda_gaia_central']
+PLATFORMS['b2g_panda_gaia_central']['env_name'] = None
+PLATFORMS['b2g_panda_gaia_central']['b2g_panda_gaia_central'] = {'name': builder_prefix + "_panda_gaia_central"}
+PLATFORMS['b2g_panda_gaia_central']['stage_product'] = 'b2g'
+PLATFORMS['b2g_panda_gaia_central']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_repo': MOZHARNESS_REPO,
+    # path to hg on the foopies
+    'hg_bin': '/usr/local/bin/hg',
+    # TODO: call something else
+    'reboot_command': None,
+}
+
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
@@ -72,6 +86,7 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'ics_armv7a_gecko': {},
         'b2g_panda': {},
+        'b2g_panda_gaia_central': {},
     },
 }
 
@@ -376,6 +391,17 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites' : [],
         },
     },
+    'b2g_panda_gaia_central': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'b2g_panda_gaia_central': {
+            'opt_unittest_suites' : [],
+            'debug_unittest_suites' : [],
+        },
+    },
 }
 
 # Copy unittest vars in first, then platform vars
@@ -472,11 +498,25 @@ BRANCHES['ash']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
         ],
     },
 }
+BRANCHES['ash']['platforms']['b2g_panda_gaia_central']['b2g_panda_gaia_central']['opt_unittest_suites'] = [
+    ('gaia-ui-test', {
+        'suite': 'gaia-ui-test',
+        'mozharness_repo': MOZHARNESS_REPO,
+        'script_path': 'scripts/b2g_panda.py',
+        },
+    )
+]
+BRANCHES['ash']['platforms']['b2g_panda_gaia_central']['b2g_panda_gaia_central']['suite_config'] = {
+    'gaia-ui-test': {
+        'extra_args': [
+            "--cfg", "b2g/panda_releng.py"
+        ],
+    },
+}
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['opt_unittest_suites'] = [
     ('gaia-ui-test', {'suite': 'gaia-ui-test',
                       'mozharness_repo': MOZHARNESS_REPO,
@@ -491,6 +531,22 @@ BRANCHES['cedar']['platforms']['b2g_panda']['b2g_panda']['suite_config'] = {
         ],
     },
 }
+BRANCHES['cedar']['platforms']['b2g_panda_gaia_central']['b2g_panda_gaia_central']['opt_unittest_suites'] = [
+    ('gaia-ui-test', {
+         'suite': 'gaia-ui-test',
+         'mozharness_repo': MOZHARNESS_REPO,
+         'script_path': 'scripts/b2g_panda.py',
+         },
+    )
+]
+BRANCHES['cedar']['platforms']['b2g_panda_gaia_central']['b2g_panda_gaia_central']['suite_config'] = {
+    'gaia-ui-test': {
+        'extra_args': [
+            "--cfg", "b2g/panda_releng.py"
+        ],
+    },
+}
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"

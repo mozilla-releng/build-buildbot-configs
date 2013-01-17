@@ -19,6 +19,7 @@ SlavePasswords = {
     "fedora-b2g": "pass",
     "panda_android": "pass",
     "b2g_panda": "pass",
+    "b2g_panda_gaia_central": "pass",
 }
 
 datazillaAuth = {
