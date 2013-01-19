@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.15'
-releaseConfig['appVersion']                 = '2.15'
-releaseConfig['milestone']                  = '18.0'
+releaseConfig['version']                    = '2.15.1'
+releaseConfig['appVersion']                 = '2.15.1'
+releaseConfig['milestone']                  = '18.0.1'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_15'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_15_1'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.14.1'
-releaseConfig['oldAppVersion']              = '2.14.1'
+releaseConfig['oldVersion']                 = '2.15'
+releaseConfig['oldAppVersion']              = '2.15'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_14_1'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_15'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
@@ -34,8 +34,8 @@ releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_18_0_BUILD1'
-releaseConfig['mozillaRelbranchOverride']   = 'GECKO180_2013010417_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_18_0_1_BUILD1'
+releaseConfig['mozillaRelbranchOverride']   = 'GECKO1801_2013011610_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = '94ddc709132f'
