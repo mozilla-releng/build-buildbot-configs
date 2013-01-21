@@ -280,42 +280,6 @@ mozilla_tests = MasterConfig(
             ],
         )
 
-mozilla_staging_ateam_master1 = mozilla_tests + MasterConfig(
-        "staging-ateam_master1",
-        local_links = [
-            ('staging_ateam_master01_localconfig.py', 'master_localconfig.py'),
-            ('staging_ateam_config.py', 'localconfig.py'),
-            ('universal_master_sqlite.cfg', 'master.cfg'),
-            ]
-        )
-
-mozilla_staging_ateam_master2 = mozilla_tests + MasterConfig(
-        "staging-ateam_master2",
-        local_links = [
-            ('staging_ateam_master02_localconfig.py', 'master_localconfig.py'),
-            ('staging_ateam_config.py', 'localconfig.py'),
-            ('universal_master_sqlite.cfg', 'master.cfg'),
-            ]
-        )
-
-mozilla_staging_addon_master = mozilla_tests + MasterConfig(
-        "staging-addon_master",
-        local_links = [
-            ('staging_addon_master_localconfig.py', 'master_localconfig.py'),
-            ('staging_addon_config.py', 'localconfig.py'),
-            ('universal_master_sqlite.cfg', 'master.cfg'),
-            ]
-        )
-
-mozilla_production_addon_master = mozilla_tests + MasterConfig(
-        "production-addon_master",
-        local_links = [
-            ('production_addon_master_localconfig.py', 'master_localconfig.py'),
-            ('production_addon_config.py', 'localconfig.py'),
-            ('universal_master_sqlite.cfg', 'master.cfg'),
-            ]
-        )
-
 mozilla_preproduction_tests_scheduler_master = mozilla_tests + MasterConfig(
         "preproduction-tests_scheduler",
         local_links = [
@@ -384,10 +348,6 @@ mozilla_preproduction_release_master = mozilla_production + MasterConfig(
 masters_08 = [
         # Build Masters
         mozilla_production_scheduler_master,
-        mozilla_staging_ateam_master1,
-        mozilla_staging_ateam_master2,
-        mozilla_staging_addon_master,
-        mozilla_production_addon_master,
         mozilla_preproduction_tests_scheduler_master,
         mozilla_preproduction_tests_master,
         mozilla_production_tests_scheduler_master,
