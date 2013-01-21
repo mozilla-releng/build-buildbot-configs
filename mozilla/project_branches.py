@@ -92,11 +92,9 @@ PROJECT_BRANCHES = {
         },
         'platforms': {
             'linux64': {
-                'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
-                'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64-debug': {
