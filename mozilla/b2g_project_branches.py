@@ -74,7 +74,6 @@ PROJECT_BRANCHES = {
             'unagi': {
                 'enable_nightly': True,
             },
-            'unagi_stable': {},
             'unagi_eng': {},
             'otoro': {},
         },
