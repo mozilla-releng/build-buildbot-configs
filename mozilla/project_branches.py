@@ -92,11 +92,9 @@ PROJECT_BRANCHES = {
         },
         'platforms': {
             'linux64': {
-                'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
-                'build_space': 7,
                 'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64-debug': {
@@ -280,9 +278,18 @@ PROJECT_BRANCHES = {
     },
     # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
     'date': {
-        # no desktop builds wanted
         'lock_platforms': True,
-        'platforms': {},
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'android-noion': {},
+        },
     },
     # customizations for windows update service changes (bug 481815)
     'elm': {

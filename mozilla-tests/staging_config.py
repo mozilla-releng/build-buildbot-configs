@@ -15,6 +15,7 @@ STAGING_SLAVES = {
     ),
     'panda_android': dict(),
     'b2g_panda': dict(),
+    'ubuntu64': dict(),
 }
 
 STAGING_SLAVES['leopard-o'] = STAGING_SLAVES['leopard']
