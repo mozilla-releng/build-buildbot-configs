@@ -60,9 +60,23 @@ PROJECT_BRANCHES = {
         'enable_multi_locale': True,
         'lock_platforms': True,
         'platforms': {
+            'ics_armv7a_gecko': {},
+            'ics_armv7a_gecko-debug': {},
+            'linux32_gecko': {},
+            'linux64_gecko': {},
+            'macosx64_gecko': {},
+            'win32_gecko': {},
+            'linux32_gecko_localizer': {},
+            'linux64_gecko_localizer': {},
+            'macosx64_gecko_localizer': {},
+            'win32_gecko_localizer': {},
+            'panda': {},
             'unagi': {
                 'enable_nightly': True,
             },
+            'unagi_stable': {},
+            'unagi_eng': {},
+            'otoro': {},
         },
     },
     # Customizations for windows update service changes (bug 481815)
