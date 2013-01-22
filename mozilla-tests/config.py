@@ -153,9 +153,10 @@ PLATFORMS['linux']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
+PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
+PLATFORMS['linux64']['ubuntu64'] = {'name': 'Ubuntu 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -201,14 +202,20 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
+# Don't use ubuntu64 for talos for now
+ALL_PLATFORMS.remove('ubuntu64')
 
 WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
+# Don't use ubuntu64 for talos for now
+NO_WIN.remove('ubuntu64')
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
          PLATFORMS['linux64']['slave_platforms'] + \
          PLATFORMS['win32']['slave_platforms']
+# Don't use ubuntu64 for talos for now
+NO_MAC.remove('ubuntu64')
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
@@ -758,6 +765,20 @@ PLATFORM_UNITTEST_VARS = {
                 'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             },
+            'ubuntu64': {
+                'opt_unittest_suites': [
+                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                    ('crashtest', ['crashtest']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+                'debug_unittest_suites': [
+                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                    ('crashtest', ['crashtest']),
+                    ('jsreftest', ['jsreftest']),
+                ]
+            }
         },
         'win32': {
             'product_name': 'firefox',
@@ -920,22 +941,22 @@ PROJECTS = {
     'jetpack': {
         'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
         'platforms': {
-            'fedora64': {'ext':'linux-x86_64.tar.bz2', 'debug':True},
-            'fedora':{'ext':'linux-i686.tar.bz2', 'debug':True},
-            'snowleopard':{'ext':'(mac|mac64).dmg', 'debug':True},
-            'lion':{'ext':'(mac|mac64).dmg', 'debug':True},
-            'mountainlion':{'ext':'(mac|mac64).dmg', 'debug':True},
-            'xp':{
-                'ext':'win32.zip',
-                'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug':True,
-                },
-            'win7':{
-                'ext':'win32.zip',
-                'env':PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug':True,
-                },
+            'fedora64': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
+            'fedora': {'ext': 'linux-i686.tar.bz2', 'debug': True},
+            'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
+            'lion': {'ext': '(mac|mac64).dmg', 'debug': True},
+            'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
+            'xp': {
+                'ext': 'win32.zip',
+                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                'debug': True,
             },
+            'win7': {
+                'ext': 'win32.zip',
+                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                'debug': True,
+            },
+        },
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
         'jetpack_tarball': 'archive/tip.tar.bz2',
@@ -1176,6 +1197,12 @@ for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozi
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 
+#exclude ubuntu64 from running on non-cedar branches
+for branch in BRANCHES.keys():
+    if branch not in ("cedar",) and 'linux64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
+        BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
+
 #-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards
 # Delete whole block when we drop esr10
@@ -1196,26 +1223,22 @@ for branch in BRANCHES:
 
 
 if __name__ == "__main__":
-    import sys, pprint, re
-
-    class BBPrettyPrinter(pprint.PrettyPrinter):
-        def format(self, object, context, maxlevels, level):
-            if isinstance(object, WithProperties):
-                return pprint.PrettyPrinter.format(self, object.fmtstring, context, maxlevels, level)
-            return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
+    import sys
+    import pprint
 
     args = sys.argv[1:]
 
     if len(args) > 0:
-        branches = args
+        items = dict([(b, BRANCHES[b]) for b in args])
     else:
-        branches = BRANCHES.keys()
+        items = dict(BRANCHES.items() + PROJECTS.items())
 
-    pp = BBPrettyPrinter()
-    for branch in branches:
-        print branch
-        pp.pprint(BRANCHES[branch])
+    for k, v in items.iteritems():
+        out = pprint.pformat(v)
+        for l in out.splitlines():
+            print '%s: %s' % (k, l)
 
     for suite in SUITES:
-        print suite
-        pp.pprint(SUITES[suite])
+        out = pprint.pformat(SUITES[suite])
+        for l in out.splitlines():
+            print '%s: %s' % (suite, l)
