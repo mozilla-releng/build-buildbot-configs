@@ -452,7 +452,6 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'enable_installer': True,
-            'enable_post_linker_size': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
             'l10n_slaves': SLAVES['win32'],
