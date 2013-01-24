@@ -75,13 +75,13 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']        = ('android',)
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
-releaseConfig['manuallySignedPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = ('android',)
+releaseConfig['l10nNotifyPlatforms'] = releaseConfig['l10nPlatforms']
 releaseConfig['l10nChunks']          = 2
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
