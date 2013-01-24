@@ -44,7 +44,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'comm-release',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
+        'relbranch': {% if commRelbranch %}'{{ commRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -110,6 +110,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-thunderbird-linux.cfg',

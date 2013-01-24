@@ -49,7 +49,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/mozilla-esr17',
         'path': '{{ branch }}',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -110,6 +110,7 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr17-firefox-linux.cfg',
     'linux64':  'mozEsr17-firefox-linux64.cfg',

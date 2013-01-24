@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/comm-esr17',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': None,
+        'relbranch': {% if commRelbranch %}'{{ commRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -63,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/mozilla-esr17',
         'path': 'users/stage-ffxbld/mozilla-esr17',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -120,6 +120,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr17-thunderbird-linux.cfg',
     'linux64':  'mozEsr17-thunderbird-linux64.cfg',
