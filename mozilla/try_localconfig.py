@@ -38,6 +38,5 @@ buildbotcustom.misc.fastRegexes.extend([
     'linux64-ix-',
     ])
 ENABLE_RELEASES = False
-RESERVED_SLAVES = None
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
