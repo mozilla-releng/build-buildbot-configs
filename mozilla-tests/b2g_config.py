@@ -203,7 +203,7 @@ XPCSHELL_ONLY = [
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + XPCSHELL_ONLY + [
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + CRASHTEST_ONLY + XPCSHELL_ONLY + [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'mozharness_repo': MOZHARNESS_REPO,
                            'script_path': 'scripts/marionette.py',
@@ -510,11 +510,11 @@ BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_s
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY]
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
