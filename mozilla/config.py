@@ -35,7 +35,7 @@ GLOBAL_VARS = {
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'mozharness_repo_path': 'build/mozharness',
-    'mozharness_tag': 'default',
+    'mozharness_tag': 'production',
     'multi_locale_merge': True,
     'default_build_space': 5,
     'default_l10n_space': 3,

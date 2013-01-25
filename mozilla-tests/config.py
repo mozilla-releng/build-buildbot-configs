@@ -16,7 +16,6 @@ REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
                          'mozilla-release': 'org.mozilla.firefox',
                        }
 
-MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
@@ -112,7 +111,6 @@ PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 PLATFORMS['macosx']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,}
 
@@ -126,7 +124,6 @@ PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -138,7 +135,6 @@ PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -149,7 +145,7 @@ PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,    'hg_bin': 'hg',
+    'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
@@ -160,7 +156,6 @@ PLATFORMS['linux64']['ubuntu64'] = {'name': 'Ubuntu 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -1112,8 +1107,8 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services
             # Marionette is only enabled on debug builds
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('marionette',
                 { 'suite': 'marionette',
-                  'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
                   'script_path': 'scripts/marionette.py',
+                  'use_mozharness': True,
                   'extra_args': [
                       "--cfg", config_file
                   ],
@@ -1167,7 +1162,7 @@ for branch in BRANCHES:
                                 extra_args += ["--download-symbols", "ondemand"]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
                             (suite['suite_name'], {
-                                'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
+                                'use_mozharness': True,
                                 'script_path': 'scripts/desktop_unittest.py',
                                 'extra_args': extra_args,
                                 'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],

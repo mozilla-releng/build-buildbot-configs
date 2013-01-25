@@ -30,11 +30,13 @@ SLAVES['b2g_panda_gaia_central'] = SLAVES['b2g_panda']
 TRY_SLAVES = {}
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
-    '--resultsLink', '/server/collect.cgi']
+                '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {
     'disable_tinderbox_mail': True,
     'build_tools_repo_path': 'build/tools',
+    'mozharness_repo': 'http://hg.mozilla.org/build/mozharness',
+    'mozharness_tag': 'production',
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',

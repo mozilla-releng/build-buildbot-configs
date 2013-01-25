@@ -69,7 +69,7 @@ releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default',
-    'users/stage-ffxbld/mozharness': 'default',
+    'users/stage-ffxbld/mozharness': 'production',
 }
 
 # Platform configuration
