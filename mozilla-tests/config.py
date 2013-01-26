@@ -88,6 +88,20 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g18_v1_0_0': {
+        'datazilla_url': None,
+        'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+            'android-noion': {},
+            'ics_armv7a_gecko': {},
+            'b2g_panda': {},
+        },
+        'lock_platforms': True,
+    },
     'try':                 { 'coallesce_jobs': False},
 }
 
@@ -1046,6 +1060,11 @@ BRANCHES['mozilla-b2g18']['release_tests'] = 5
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 
+######### mozilla-b2g18_v1_0_0
+BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
+BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
+
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
@@ -1179,15 +1198,15 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomUnittestSuites(BRANCHES, projectBranch, branchConfig)
 
 #-------------------------------------------------------------------------
-# MERGE day - disable leopard tests for FF17 onwards
+# Remove leopard when esr10 goes away
 #-------------------------------------------------------------------------
-for branch in ['mozilla-central', 'try', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-    'mozilla-esr17', 'mozilla-b2g18'] + ACTIVE_PROJECT_BRANCHES:
-    if 'macosx' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx']
-    if 'macosx64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx64']['leopard']
-        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
+for branch in BRANCHES.keys():
+    if branch not in ["mozilla-esr10"]:
+        if 'macosx' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['macosx']
+        if 'macosx64' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['macosx64']['leopard']
+            BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
 #-------------------------------------------------------------------------
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
@@ -1212,7 +1231,7 @@ for branch in ['mozilla-esr10']:
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
