@@ -153,9 +153,10 @@ PLATFORMS['win32']['mozharness_config'] = {
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora']
+PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
+PLATFORMS['linux']['ubuntu32'] = {'name': 'Ubuntu 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -211,19 +212,22 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
                 PLATFORMS['linux64']['slave_platforms'] + \
                 PLATFORMS['win32']['slave_platforms'] + \
                 PLATFORMS['macosx64']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+# Don't use ubuntu{32,64} for talos for now
+ALL_PLATFORMS.remove('ubuntu32')
 ALL_PLATFORMS.remove('ubuntu64')
 
 WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+# Don't use ubuntu{,3264} for talos for now
+NO_WIN.remove('ubuntu32')
 NO_WIN.remove('ubuntu64')
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
          PLATFORMS['linux64']['slave_platforms'] + \
          PLATFORMS['win32']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+# Don't use ubuntu{32,64} for talos for now
+NO_MAC.remove('ubuntu32')
 NO_MAC.remove('ubuntu64')
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
@@ -761,6 +765,20 @@ PLATFORM_UNITTEST_VARS = {
                 'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
                 'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
             },
+            'ubuntu32': {
+                'opt_unittest_suites': [
+                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                    ('crashtest', ['crashtest']),
+                    ('jsreftest', ['jsreftest']),
+                ],
+                'debug_unittest_suites': [
+                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                    ('crashtest', ['crashtest']),
+                    ('jsreftest', ['jsreftest']),
+                ]
+            },
         },
         'linux64': {
             'product_name': 'firefox',
@@ -787,7 +805,7 @@ PLATFORM_UNITTEST_VARS = {
                     ('crashtest', ['crashtest']),
                     ('jsreftest', ['jsreftest']),
                 ]
-            }
+            },
         },
         'win32': {
             'product_name': 'firefox',
@@ -1211,11 +1229,14 @@ for branch in BRANCHES.keys():
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 
-#exclude ubuntu64 from running on non-cedar branches
+#exclude ubuntu32 and ubuntu64 from running on non-cedar branches
 for branch in BRANCHES.keys():
     if branch not in ("cedar",) and 'linux64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
         BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
+    if branch not in ("cedar",) and 'linux' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux']['ubuntu32']
+        BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
 
 #-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards

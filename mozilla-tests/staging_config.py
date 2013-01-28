@@ -15,6 +15,7 @@ STAGING_SLAVES = {
     ),
     'panda_android': dict(),
     'b2g_panda': dict(),
+    'ubuntu32': dict(),
     'ubuntu64': dict(),
 }
 

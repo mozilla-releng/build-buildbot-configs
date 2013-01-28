@@ -19,6 +19,7 @@ SlavePasswords = {
     "fedora-b2g": "pass",
     "panda_android": "pass",
     "b2g_panda": "pass",
+    "ubuntu32": "pass",
     "ubuntu64": "pass",
     "b2g_panda_gaia_central": "pass",
 }
