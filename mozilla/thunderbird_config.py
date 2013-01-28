@@ -156,6 +156,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -226,6 +227,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -423,6 +425,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -479,6 +482,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1123,6 +1127,14 @@ for b in ('comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17'):
         if p not in BRANCHES[b]['platforms']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
+
+# MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
+for b in ['comm-aurora', 'comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17']:
+    for p, pc in BRANCHES[b]['platforms'].items():
+        if 'mock_packages' in pc:
+            BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
 
 if __name__ == "__main__":
     import sys
