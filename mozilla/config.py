@@ -1741,7 +1741,7 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox']
+BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = 'releases/mozilla-b2g18_v1_0_0'
@@ -1773,7 +1773,7 @@ BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incom
 BRANCHES['mozilla-b2g18_v1_0_0']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['enabled_products'] = ['firefox']
+BRANCHES['mozilla-b2g18_v1_0_0']['enabled_products'] = ['firefox', 'mobile']
 
 ######## try
 # Try-specific configs
