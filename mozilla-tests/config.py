@@ -10,41 +10,35 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
-REMOTE_PROCESS_NAMES = { 'default':         'org.mozilla.fennec',
-                         'mozilla-beta':    'org.mozilla.firefox_beta',
-                         'mozilla-aurora':  'org.mozilla.fennec_aurora',
-                         'mozilla-release': 'org.mozilla.firefox',
-                       }
+REMOTE_PROCESS_NAMES = {'default': 'org.mozilla.fennec',
+                        'mozilla-beta': 'org.mozilla.firefox_beta',
+                        'mozilla-aurora': 'org.mozilla.fennec_aurora',
+                        'mozilla-release': 'org.mozilla.firefox',
+                        }
 
-MOZHARNESS_REPO = "http://hg.mozilla.org/build/mozharness"
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
 
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
-TALOS_ADDON_CMD = ['python', 'run_tests.py', '--noisy', '--amo', WithProperties('%(configFile)s')]
-
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
-TALOS_TP_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
-TALOS_TP_NEW_OPTS = {'plugins': {'32':'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
+TALOS_TP_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
+TALOS_TP_NEW_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
 
-TALOS_BASELINE_ADDON_OPTS = {'releaseTester' : True}
-
-TALOS_REMOTE_FENNEC_OPTS = { 'productName':  'fennec',
-                             'remoteTests':  True,
-                             'remoteExtras': { 'options': [ '--sampleConfig', 'remote.config',
-                                                            '--output', 'local.yml',
-                                                            '--webServer', 'bm-remote.build.mozilla.org',
-                                                            '--browserWait', '60',
-                                                          ],
-                                               'processName': REMOTE_PROCESS_NAMES,
+TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
+                            'remoteTests': True,
+                            'remoteExtras': {'options': ['--sampleConfig', 'remote.config',
+                                                         '--output', 'local.yml',
+                                                         '--webServer', 'bm-remote.build.mozilla.org',
+                                                         '--browserWait', '60',
+                                                         ],
+                                             'processName': REMOTE_PROCESS_NAMES,
                                              },
-                           }
+                            }
 
-UNITTEST_REMOTE_EXTRAS = { 'processName': REMOTE_PROCESS_NAMES,
-                         }
+UNITTEST_REMOTE_EXTRAS = {'processName': REMOTE_PROCESS_NAMES}
 ANDROID_UNITTEST_REMOTE_EXTRAS = deepcopy(UNITTEST_REMOTE_EXTRAS)
 ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
@@ -60,7 +54,7 @@ BRANCHES = {
             'macosx64': {},
             'win32': {},
             'linux': {},
-            'linux64' : {},
+            'linux64': {},
         },
         'lock_platforms': True,
     },
@@ -71,19 +65,19 @@ BRANCHES = {
             'macosx64': {},
             'win32': {},
             'linux': {},
-            'linux64' : {},
+            'linux64': {},
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g18':       {
+    'mozilla-b2g18': {
         'datazilla_url': None,
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
             'win32': {},
             'linux': {},
-            'linux64' : {},
-            'android-noion' : {},
+            'linux64': {},
+            'android-noion': {},
             'ics_armv7a_gecko': {},
             'b2g_panda': {},
         },
@@ -103,7 +97,7 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'try':                 { 'coallesce_jobs': False},
+    'try': {'coallesce_jobs': False},
 }
 
 # Talos
@@ -112,7 +106,7 @@ PLATFORMS = {
     'macosx64': {},
     'win32': {},
     'linux': {},
-    'linux64' : {},
+    'linux64': {},
     'android': {},
     'android-armv6': {},
     'android-noion': {},
@@ -126,9 +120,8 @@ PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx']['stage_product'] = 'firefox'
 PLATFORMS['macosx']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,}
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD}
 
 PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
                                             'lion', 'mountainlion']
@@ -140,7 +133,6 @@ PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -152,18 +144,18 @@ PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora']
+PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
+PLATFORMS['linux']['ubuntu32'] = {'name': 'Ubuntu 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,    'hg_bin': 'hg',
+    'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
@@ -174,7 +166,6 @@ PLATFORMS['linux64']['ubuntu64'] = {'name': 'Ubuntu 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -213,22 +204,25 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-                PLATFORMS['linux64']['slave_platforms'] + \
-                PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx64']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+    PLATFORMS['linux64']['slave_platforms'] + \
+    PLATFORMS['win32']['slave_platforms'] + \
+    PLATFORMS['macosx64']['slave_platforms']
+# Don't use ubuntu{32,64} for talos for now
+ALL_PLATFORMS.remove('ubuntu32')
 ALL_PLATFORMS.remove('ubuntu64')
 
 WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+# Don't use ubuntu{,3264} for talos for now
+NO_WIN.remove('ubuntu32')
 NO_WIN.remove('ubuntu64')
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
-         PLATFORMS['linux64']['slave_platforms'] + \
-         PLATFORMS['win32']['slave_platforms']
-# Don't use ubuntu64 for talos for now
+    PLATFORMS['linux64']['slave_platforms'] + \
+    PLATFORMS['win32']['slave_platforms']
+# Don't use ubuntu{32,64} for talos for now
+NO_MAC.remove('ubuntu32')
 NO_MAC.remove('ubuntu64')
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
@@ -236,8 +230,6 @@ MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 ANDROID = PLATFORMS['android']['slave_platforms']
 
 ANDROID_ARMV6 = PLATFORMS['android-armv6']['slave_platforms']
-
-ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
 
 SUITES = {
     'chrome': {
@@ -436,6 +428,7 @@ UNITTEST_SUITES = {
     ],
 }
 
+
 def removeSuite(suiteName, suiteList):
     '''It removes 'suite' from 'suiteList' and returns it.
 
@@ -455,6 +448,7 @@ def removeSuite(suiteName, suiteList):
             suiteList[i] = (name, suites)
     return suiteList
 
+
 def addSuite(suiteGroupName, newSuiteName, suiteList):
     # In UNITTEST_SUITES we have opt, debug and mobile unit tests keys.
     # Each one of these have a list of tuples of test suites.
@@ -473,6 +467,7 @@ def addSuite(suiteGroupName, newSuiteName, suiteList):
 
     return newSuiteList
 
+
 def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
@@ -485,14 +480,15 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
 
+
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
     coallesceJobs = branchConfig.get('coallesce_jobs', True)
     BRANCHES[branch]['suites'] = deepcopy(SUITES)
     # Check if Talos is enabled, if False, set 0 runs for all suites
-    if branchConfig.get('enable_talos') == False:
+    if branchConfig.get('enable_talos') is False:
         branchConfig['talos_suites'] = {}
         for suite in SUITES.keys():
-            branchConfig['talos_suites'][suite]  = 0
+            branchConfig['talos_suites'][suite] = 0
 
     # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites']
     # This is the default and will make all talosConfig.get(key,0) calls
@@ -519,6 +515,7 @@ def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
             # Suites that are turned on by default
             BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), coallesceJobs) + SUITES[suite]['options']
 
+
 def loadTalosSuites(BRANCHES, SUITES, branch):
     '''
     This is very similar to loadCustomTalosSuites and is to deal with branches that are not in project_branches.py
@@ -532,6 +529,7 @@ def loadTalosSuites(BRANCHES, SUITES, branch):
         else:
             # Suites that are turned on by default
             BRANCHES[branch][suite + '_tests'] = (1, coallesceJobs) + SUITES[suite]['options']
+
 
 def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
     # If you want a project branch to have a different set of unit tests you can
@@ -550,8 +548,8 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
         # 'debug_unittest_suites' or 'opt_unittest_suites' is a list of tuple
         # addSuite() modifies that list and returns a new one with the added suite
         BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type] = \
-            addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
-                      suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
+            addSuite(suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
+                     suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
 ANDROID_UNITTEST_DICT = {
     'opt_unittest_suites': [
@@ -560,121 +558,121 @@ ANDROID_UNITTEST_DICT = {
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 1,
-            },
+             },
         )),
         ('mochitest-2', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 2,
-            },
+             },
         )),
         ('mochitest-3', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 3,
-            },
+             },
         )),
         ('mochitest-4', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 4,
-            },
+             },
         )),
         ('mochitest-5', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 5,
-            },
+             },
         )),
         ('mochitest-6', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 6,
-            },
+             },
         )),
         ('mochitest-7', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 7,
-            },
+             },
         )),
         ('mochitest-8', (
             {'suite': 'mochitest-plain',
              'testManifest': 'android.json',
              'totalChunks': 8,
              'thisChunk': 8,
-           },
+             },
         )),
         ('reftest-1', (
             {'suite': 'reftest',
              'totalChunks': 4,
              'thisChunk': 1,
-            },
+             },
         )),
         ('reftest-2', (
             {'suite': 'reftest',
              'totalChunks': 4,
              'thisChunk': 2,
-            },
+             },
         )),
         ('reftest-3', (
             {'suite': 'reftest',
              'totalChunks': 4,
              'thisChunk': 3,
-            },
+             },
         )),
         ('reftest-4', (
             {'suite': 'reftest',
              'totalChunks': 4,
              'thisChunk': 4,
-            },
+             },
         )),
         # disabled for constant timeouts, bug 728119
         # ('crashtest-1', (
         #     {'suite': 'crashtest',
         #      'totalChunks': 3,
         #      'thisChunk': 1,
-        #     },
+        #      },
         # )),
         ('crashtest-2', (
             {'suite': 'crashtest',
              'totalChunks': 3,
              'thisChunk': 2,
-            },
+             },
         )),
         ('crashtest-3', (
             {'suite': 'crashtest',
              'totalChunks': 3,
              'thisChunk': 3,
-            },
+             },
         )),
         ('jsreftest-1', (
             {'suite': 'jsreftest',
              'totalChunks': 3,
              'thisChunk': 1,
-            },
+             },
         )),
         ('jsreftest-2', (
             {'suite': 'jsreftest',
              'totalChunks': 3,
              'thisChunk': 2,
-            },
+             },
         )),
         ('jsreftest-3', (
             {'suite': 'jsreftest',
              'totalChunks': 3,
              'thisChunk': 3,
-            },
+             },
         )),
         ('robocop', (
             {'suite': 'mochitest-robocop',
-            },
+             },
         )),
     ],
     'debug_unittest_suites': [],
@@ -698,35 +696,35 @@ ANDROID_PLAIN_UNITTEST_DICT = {
 
 ANDROID_PLAIN_REFTEST_DICT = {
     'opt_unittest_suites': [
-          ('plain-reftest-1', (
+        ('plain-reftest-1', (
             {'suite': 'reftestsmall',
              'totalChunks': 4,
              'thisChunk': 1,
-             'extra_args' : '--ignore-window-size'
-            },
-         )),
-         ('plain-reftest-2', (
+             'extra_args': '--ignore-window-size'
+             },
+        )),
+        ('plain-reftest-2', (
             {'suite': 'reftestsmall',
              'totalChunks': 4,
              'thisChunk': 2,
-             'extra_args' : '--ignore-window-size'
-            },
-         )),
-         ('plain-reftest-3', (
+             'extra_args': '--ignore-window-size'
+             },
+        )),
+        ('plain-reftest-3', (
             {'suite': 'reftestsmall',
              'totalChunks': 4,
              'thisChunk': 3,
-             'extra_args' : '--ignore-window-size'
-            },
-         )),
-         ('plain-reftest-4', (
+             'extra_args': '--ignore-window-size'
+             },
+        )),
+        ('plain-reftest-4', (
             {'suite': 'reftestsmall',
              'totalChunks': 4,
              'thisChunk': 4,
-             'extra_args' : '--ignore-window-size'
-            },
-         )),
-     ],
+             'extra_args': '--ignore-window-size'
+             },
+        )),
+    ],
 }
 
 
@@ -749,142 +747,169 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-        'linux': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'unittest-env' : {'DISPLAY': ':0'},
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'fedora': {
-                'opt_unittest_suites' : \
-                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
-                    [('reftest-ipc', ['reftest-ipc'])] + \
-                    [('reftest-no-accel', ['opengl-no-accel'])] + \
-                    [('crashtest-ipc', ['crashtest-ipc'])],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-                'mobile_unittest_suites' : UNITTEST_SUITES['mobile_unittest_suites'][:],
-            },
+    'linux': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'fedora': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + [
+                ('reftest-ipc', ['reftest-ipc']),
+                ('reftest-no-accel', ['opengl-no-accel']),
+                ('crashtest-ipc', ['crashtest-ipc'])
+            ],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'mobile_unittest_suites': UNITTEST_SUITES['mobile_unittest_suites'][:],
         },
-        'linux64': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'unittest-env' : {'DISPLAY': ':0'},
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'fedora64': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
-            'ubuntu64': {
-                'opt_unittest_suites': [
-                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                    ('crashtest', ['crashtest']),
-                    ('jsreftest', ['jsreftest']),
-                ],
-                'debug_unittest_suites': [
-                    ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                    ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                    ('crashtest', ['crashtest']),
-                    ('jsreftest', ['jsreftest']),
-                ]
-            }
+        'ubuntu32': {
+            'opt_unittest_suites': [
+                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                ('crashtest', ['crashtest']),
+                ('jsreftest', ['jsreftest']),
+            ],
+            'debug_unittest_suites': [
+                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                ('crashtest', ['crashtest']),
+                ('jsreftest', ['jsreftest']),
+            ],
         },
-        'win32': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'mochitest_leak_threshold': 484,
-            'crashtest_leak_threshold': 484,
-            'env_name' : 'win32-perf-unittest',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'xp': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
-            'win7': {
-                'opt_unittest_suites' : \
-                    UNITTEST_SUITES['opt_unittest_suites'][:] + \
-                    [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            }
+    },
+    'linux64': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'fedora64': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'macosx': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'leopard-o': {
-                'opt_unittest_suites' : [],
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
+        'ubuntu64': {
+            'opt_unittest_suites': [
+                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                ('crashtest', ['crashtest']),
+                ('jsreftest', ['jsreftest']),
+            ],
+            'debug_unittest_suites': [
+                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+                ('crashtest', ['crashtest']),
+                ('jsreftest', ['jsreftest']),
+            ],
         },
-        'macosx64': {
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'builds_before_reboot': 1,
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'leopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : [],
-            },
-            'snowleopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
-            'lion': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
-             'mountainlion': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
+    },
+    'ubuntu64': {
+        'opt_unittest_suites': [
+            ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+            ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+            ('crashtest', ['crashtest']),
+            ('jsreftest', ['jsreftest']),
+        ],
+        'debug_unittest_suites': [
+            ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+            ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
+            ('crashtest', ['crashtest']),
+            ('jsreftest', ['jsreftest']),
+        ],
+    },
+    'win32': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'mochitest_leak_threshold': 484,
+        'crashtest_leak_threshold': 484,
+        'env_name': 'win32-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'xp': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'android': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-            'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
-            'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
+        'win7': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] +
+            [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        }
+    },
+    'macosx': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'leopard-o': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
         },
-        'android-armv6': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
+    },
+    'macosx64': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'leopard': {
+            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+            'debug_unittest_suites': [],
         },
-        'android-noion': {
-            'product_name': 'fennec',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'is_remote': True,
-            'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': False,
-            'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-            'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
+        'snowleopard': {
+            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
         },
+        'lion': {
+            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+        },
+        'mountainlion': {
+            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
+            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+        },
+    },
+    'android': {
+        'product_name': 'fennec',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'is_remote': True,
+        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+        'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
+        'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
+    },
+    'android-armv6': {
+        'product_name': 'fennec',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'is_remote': True,
+        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+        'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
+    },
+    'android-noion': {
+        'product_name': 'fennec',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'is_remote': True,
+        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+        'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
+    },
 }
 
 # Copy project branches into BRANCHES keys
@@ -933,7 +958,7 @@ for branch in BRANCHES.keys():
                 BRANCHES[branch][key] = deepcopy(value)
 
     # Merge in any project branch config for platforms
-    if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
+    if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch]:
         for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
             if platform in PLATFORMS:
                 for key, value in platform_config.items():
@@ -1108,7 +1133,7 @@ for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
 
 #exclude android builds from running on non-cedar branches on pandas
 for branch in BRANCHES.keys():
-    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar","mozilla-central", "try", "mozilla-inbound") :
+    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar", "mozilla-central", "try", "mozilla-inbound"):
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
@@ -1129,16 +1154,17 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services
                 # we don't run on OSX 10.5
                 continue
             # Marionette is only enabled on debug builds
-            BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('marionette',
-                { 'suite': 'marionette',
-                  'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
-                  'script_path': 'scripts/marionette.py',
-                  'extra_args': [
-                      "--cfg", config_file
-                  ],
-                  'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
-                  'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
-                })]
+            BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [(
+                'marionette',
+                {'suite': 'marionette',
+                 'script_path': 'scripts/marionette.py',
+                 'use_mozharness': True,
+                 'extra_args': [
+                     "--cfg", config_file
+                 ],
+                 'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
+                 'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
+                 })]
 
 ### start of mozharness desktop unittests
 mozharness_unittest_suites = [
@@ -1186,7 +1212,7 @@ for branch in BRANCHES:
                                 extra_args += ["--download-symbols", "ondemand"]
                         BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
                             (suite['suite_name'], {
-                                'mozharness_repo': PLATFORMS[pf]['mozharness_config']['mozharness_repo'],
+                                'use_mozharness': True,
                                 'script_path': 'scripts/desktop_unittest.py',
                                 'extra_args': extra_args,
                                 'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
@@ -1216,11 +1242,14 @@ for branch in BRANCHES.keys():
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 
-#exclude ubuntu64 from running on non-cedar branches
+#exclude ubuntu32 and ubuntu64 from running on non-cedar branches
 for branch in BRANCHES.keys():
     if branch not in ("cedar",) and 'linux64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
         BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
+    if branch not in ("cedar",) and 'linux' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux']['ubuntu32']
+        BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
 
 #-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards

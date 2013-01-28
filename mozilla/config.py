@@ -35,7 +35,7 @@ GLOBAL_VARS = {
     'compare_locales_repo_path': 'build/compare-locales',
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'mozharness_repo_path': 'build/mozharness',
-    'mozharness_tag': 'default',
+    'mozharness_tag': 'production',
     'multi_locale_merge': True,
     'default_build_space': 5,
     'default_l10n_space': 3,
@@ -112,6 +112,7 @@ SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 PLATFORM_VARS = {
         'linux': {
             'product_name': 'firefox',
+            'unittest_platform': 'linux-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux %(branch)s',
@@ -148,7 +149,6 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
-            'enable_opt_unittests': False,
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -172,6 +172,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -180,6 +181,7 @@ PLATFORM_VARS = {
         },
         'linux64': {
             'product_name': 'firefox',
+            'unittest_platform': 'linux64-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s',
@@ -217,7 +219,6 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
-            'enable_opt_unittests': False,
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -241,6 +242,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -249,6 +251,7 @@ PLATFORM_VARS = {
         },
         'linux64-asan': {
             'product_name': 'firefox',
+            'unittest_platform': 'linux64-asan-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s asan',
@@ -310,6 +313,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -318,6 +322,7 @@ PLATFORM_VARS = {
         },
         'linux64-dbg-asan': {
             'product_name': 'firefox',
+            'unittest_platform': 'linux64-dbg-asan',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s debug asan',
@@ -379,6 +384,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -387,6 +393,7 @@ PLATFORM_VARS = {
         },
         'macosx64': {
             'product_name': 'firefox',
+            'unittest_platform': 'macosx64-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'OS X 10.7 %(branch)s',
@@ -440,6 +447,7 @@ PLATFORM_VARS = {
         },
         'win32': {
             'product_name': 'firefox',
+            'unittest_platform': 'win32-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'WINNT 5.2 %(branch)s',
@@ -477,7 +485,6 @@ PLATFORM_VARS = {
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
-            'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
@@ -493,6 +500,7 @@ PLATFORM_VARS = {
         },
         'win64': {
             'product_name': 'firefox',
+            'unittest_platform': 'win64-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
@@ -536,6 +544,9 @@ PLATFORM_VARS = {
             'enable_pymake': True,
         },
         'linux-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -568,7 +579,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-i386',
@@ -584,6 +595,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -591,6 +603,9 @@ PLATFORM_VARS = {
             ],
         },
         'linux64-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -623,7 +638,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
@@ -639,6 +654,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -646,6 +662,9 @@ PLATFORM_VARS = {
             ],
         },
         'macosx-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -676,7 +695,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
             # random new branches to accidentally use nightly-signing, which signs
@@ -687,6 +706,9 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx32/releng.manifest',
         },
         'macosx64-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -717,7 +739,7 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
             # random new branches to accidentally use nightly-signing, which signs
@@ -729,6 +751,9 @@ PLATFORM_VARS = {
             'enable_ccache': True,
         },
         'win32-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -756,13 +781,14 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'enable_pymake': True,
         },
         'android': {
             'product_name': 'firefox',
+            'unittest_platform': 'android-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Android %(branch)s',
@@ -772,7 +798,7 @@ PLATFORM_VARS = {
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
@@ -830,13 +856,14 @@ PLATFORM_VARS = {
         },
         'android-armv6': {
             'product_name': 'firefox',
+            'unittest_platform': 'android-armv6-opt',
             'app_name': 'browser',
             'base_name': 'Android Armv6 %(branch)s',
             'mozconfig': 'android-armv6/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-armv6/nightly',
             'mobile_dir': 'mobile/android',
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': True,
             'packageTests': True,
             'enable_xulrunner': False,
@@ -893,13 +920,14 @@ PLATFORM_VARS = {
         },
         'android-x86': {
             'product_name': 'firefox',
+            'unittest_platform': 'android-x86-opt',
             'app_name': 'browser',
             'base_name': 'Android X86 %(branch)s',
             'mozconfig': 'android-x86/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-x86/nightly',
             'mobile_dir': 'mobile/android',
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': True,
             'packageTests': True,
             'enable_xulrunner': False,
@@ -954,6 +982,7 @@ PLATFORM_VARS = {
         },
         'android-noion': {
             'product_name': 'firefox',
+            'unittest_platform': 'android-noion-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Android no-ionmonkey %(branch)s',
@@ -963,7 +992,7 @@ PLATFORM_VARS = {
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': False,
             'download_symbols': False,
             'packageTests': True,
@@ -1020,6 +1049,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-debug': {
+            'enable_nightly': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1030,7 +1060,7 @@ PLATFORM_VARS = {
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
+            'build_space': 12,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
@@ -1076,7 +1106,7 @@ PLATFORM_VARS = {
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
             },
             'enable_opt_unittests': False,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-debug",
             'stage_product': 'mobile',
@@ -1711,7 +1741,39 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox']
+BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
+
+######## mozilla-b2g18
+BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = 'releases/mozilla-b2g18_v1_0_0'
+BRANCHES['mozilla-b2g18_v1_0_0']['update_channel'] = 'nightly-b2g18_v1_0_0'
+BRANCHES['mozilla-b2g18_v1_0_0']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g18_v1_0_0']['start_hour'] = [3]
+BRANCHES['mozilla-b2g18_v1_0_0']['start_minute'] = [45]
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_mac_a11y'] = True
+BRANCHES['mozilla-b2g18_v1_0_0']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_l10n'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                                      'macosx64']
+BRANCHES['mozilla-b2g18_v1_0_0']['l10nDatedDirs'] = True
+BRANCHES['mozilla-b2g18_v1_0_0']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18_v1_0_0'
+BRANCHES['mozilla-b2g18_v1_0_0']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_0']['create_snippet'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['create_partial'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_0'
+BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_0'
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['enable_valgrind'] = False
+BRANCHES['mozilla-b2g18_v1_0_0']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = 'releases/mozilla-b2g18_v1_0_0'
@@ -1944,6 +2006,14 @@ for b in BRANCHES:
         for p in 'linux64-asan', 'linux64-dbg-asan':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
+
+# MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
+for b in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17', 'mozilla-b2g18']:
+    for p, pc in BRANCHES[b]['platforms'].items():
+        if 'mock_packages' in pc:
+            BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
 
 if __name__ == "__main__":
     import sys

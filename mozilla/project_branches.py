@@ -174,7 +174,7 @@ PROJECT_BRANCHES = {
         'mobile_tinderbox_tree': 'UX',
         'packaged_unittest_tinderbox_tree': 'UX',
         'enabled_products': ['firefox'],
-        'mozconfig_dir' : 'ux',
+        'mozconfig_dir': 'ux',
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
@@ -234,6 +234,7 @@ PROJECT_BRANCHES = {
         'mozharness_unittests': True,
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_tag': 'default',
         'mozharness_talos': True,
         'lock_platforms': True,
         'platforms': {
@@ -259,6 +260,7 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_unittests': True,
         'mozharness_talos': True,
+        'mozharness_tag': 'default',
         'lock_platforms': True,
         'platforms': {
             'linux': {},

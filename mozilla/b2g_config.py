@@ -54,6 +54,7 @@ gaia_repo = 'integration/gaia-nightly'
 PLATFORM_VARS = {
         'ics_armv7a_gecko': {
             'product_name': 'b2g',
+            'unittest_platform': 'ics_armv7a_gecko-opt',
             'app_name': 'b2g',
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
@@ -107,6 +108,7 @@ PLATFORM_VARS = {
             ],
         },
         'ics_armv7a_gecko-debug': {
+            'enable_nightly': False,
             'product_name': 'b2g',
             'app_name': 'b2g',
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -981,9 +983,9 @@ for branch in BRANCHES:
         del BRANCHES[branch]['platforms']['unagi_stable']
 
 # MERGE DAY: change the branch whenever stable channel moves somewhere else
-# otoro is only for b2g18
+# otoro is only for b2g18 + b2g18_v1_0_0
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_0') and \
         'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 

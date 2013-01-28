@@ -15,6 +15,7 @@ STAGING_SLAVES = {
     ),
     'panda_android': dict(),
     'b2g_panda': dict(),
+    'ubuntu32': dict(),
     'ubuntu64': dict(),
 }
 
@@ -41,6 +42,8 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'build_tools_repo_path': 'build/tools',
+    'mozharness_repo': 'http://hg.mozilla.org/build/mozharness',
+    'mozharness_tag': 'production',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',

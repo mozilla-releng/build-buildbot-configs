@@ -95,6 +95,7 @@ builder_prefix = "TB "
 PLATFORM_VARS = {
         'linux': {
             'product_name': 'thunderbird',
+            'unittest_platform': 'linux-opt',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
@@ -156,6 +157,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -164,6 +166,7 @@ PLATFORM_VARS = {
         },
         'linux64': {
             'product_name': 'thunderbird',
+            'unittest_platform': 'linux64-opt',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
@@ -226,6 +229,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -234,6 +238,7 @@ PLATFORM_VARS = {
         },
         'macosx64': {
             'product_name': 'thunderbird',
+            'unittest_platform': 'macosx64-opt',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.7 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
@@ -283,6 +288,7 @@ PLATFORM_VARS = {
         },
         'win32': {
             'product_name': 'thunderbird',
+            'unittest_platform': 'win32-opt',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
@@ -330,6 +336,7 @@ PLATFORM_VARS = {
         },
         'win64': {
             'product_name': 'thunderbird',
+            'unittest_platform': 'win64-opt',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'mail/config/mozconfigs/win64/nightly',
@@ -374,6 +381,8 @@ PLATFORM_VARS = {
             'enable_pymake': True,
         },
         'linux-debug': {
+            'enable_nightly': False,
+            'enable_leaktests': True,
             'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux %(branch)s leak test',
@@ -423,6 +432,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -430,6 +440,8 @@ PLATFORM_VARS = {
             ],
         },
         'linux64-debug': {
+            'enable_nightly': False,
+            'enable_leaktests': True,
             'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s leak test',
@@ -479,6 +491,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -486,6 +499,8 @@ PLATFORM_VARS = {
             ],
         },
         'macosx-debug': {
+            'enable_nightly': False,
+            'enable_leaktests': True,
             'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
@@ -523,6 +538,8 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx32/releng.manifest',
         },
         'macosx64-debug': {
+            'enable_nightly': False,
+            'enable_leaktests': True,
             'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'OS X 10.7 64-bit %(branch)s leak test',
@@ -560,6 +577,8 @@ PLATFORM_VARS = {
             'enable_ccache': True,
         },
         'win32-debug': {
+            'enable_nightly': False,
+            'enable_leaktests': True,
             'product_name': 'thunderbird',
             'app_name': 'mail',
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s leak test',
@@ -1123,6 +1142,14 @@ for b in ('comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17'):
         if p not in BRANCHES[b]['platforms']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
+
+# MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
+for b in ['comm-aurora', 'comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17']:
+    for p, pc in BRANCHES[b]['platforms'].items():
+        if 'mock_packages' in pc:
+            BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
 
 if __name__ == "__main__":
     import sys

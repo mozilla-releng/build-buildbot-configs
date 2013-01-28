@@ -1,8 +1,7 @@
 from copy import deepcopy
 
-from config import MOZHARNESS_REPO, MOZHARNESS_REBOOT_CMD
-from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG, \
-                        PLATFORM_VARS
+from config import MOZHARNESS_REBOOT_CMD
+from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import b2g_localconfig
 reload(b2g_localconfig)
@@ -40,7 +39,7 @@ PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "_ics_ar
 PLATFORMS['ics_armv7a_gecko']['stage_product'] = 'b2g'
 PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
+    'use_mozharness': True,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
@@ -51,7 +50,7 @@ PLATFORMS['b2g_panda']['b2g_panda'] = {'name': builder_prefix + "_panda"}
 PLATFORMS['b2g_panda']['stage_product'] = 'b2g'
 PLATFORMS['b2g_panda']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
+    'use_mozharness': True,
     # path to hg on the foopies
     'hg_bin': '/usr/local/bin/hg',
     # TODO: call something else
@@ -64,7 +63,7 @@ PLATFORMS['b2g_panda_gaia_central']['b2g_panda_gaia_central'] = {'name': builder
 PLATFORMS['b2g_panda_gaia_central']['stage_product'] = 'b2g'
 PLATFORMS['b2g_panda_gaia_central']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
-    'mozharness_repo': MOZHARNESS_REPO,
+    'use_mozharness': True,
     # path to hg on the foopies
     'hg_bin': '/usr/local/bin/hg',
     # TODO: call something else
@@ -95,84 +94,84 @@ SUITES = {}
 
 MOCHITEST_ONLY = [
     ('mochitest-1', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
     ('mochitest-2', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
     ('mochitest-3', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
     ('mochitest-4', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
     ('mochitest-5', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
     ('mochitest-6', {'suite': 'mochitest-plain',
-                     'mozharness_repo': MOZHARNESS_REPO,
+                     'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
                     },
     ),
 ]
 REFTEST_ONLY = [
     ('reftest-1', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-2', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-3', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-4', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-5', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-6', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-7', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-8', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-9', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
     ('reftest-10', {'suite': 'reftest',
-                   'mozharness_repo': MOZHARNESS_REPO,
+                   'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
@@ -180,33 +179,33 @@ REFTEST_ONLY = [
 
 CRASHTEST_ONLY = [
     ('crashtest-1', {'suite': 'crashtest',
-                   'mozharness_repo': MOZHARNESS_REPO,
-                   'script_path': 'scripts/b2g_emulator_unittest.py',
-                  },
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
     ),
     ('crashtest-2', {'suite': 'crashtest',
-                   'mozharness_repo': MOZHARNESS_REPO,
-                   'script_path': 'scripts/b2g_emulator_unittest.py',
-                  },
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
     ),
     ('crashtest-3', {'suite': 'crashtest',
-                   'mozharness_repo': MOZHARNESS_REPO,
-                   'script_path': 'scripts/b2g_emulator_unittest.py',
-                  },
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                    },
     ),
 ]
 
 XPCSHELL_ONLY = [
     ('xpcshell', {'suite': 'xpcshell',
-                   'mozharness_repo': MOZHARNESS_REPO,
-                   'script_path': 'scripts/b2g_emulator_unittest.py',
+                  'use_mozharness': True,
+                  'script_path': 'scripts/b2g_emulator_unittest.py',
                   },
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + XPCSHELL_ONLY + [
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + CRASHTEST_ONLY + XPCSHELL_ONLY + [
     ('marionette-webapi', {'suite': 'marionette-webapi',
-                           'mozharness_repo': MOZHARNESS_REPO,
+                           'use_mozharness': True,
                            'script_path': 'scripts/marionette.py',
                           },
     ),
@@ -391,7 +390,7 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites' : [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
-                    'mozharness_repo': MOZHARNESS_REPO,
+                    'use_mozharness': True,
                     'script_path': 'scripts/b2g_panda.py',
                 },)
             ],
@@ -413,7 +412,7 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites' : [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
-                    'mozharness_repo': MOZHARNESS_REPO,
+                    'use_mozharness': True,
                     'script_path': 'scripts/b2g_panda.py',
                 },)
             ],
@@ -507,15 +506,17 @@ for branch in BRANCHES.keys():
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
+BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS + CRASHTEST_ONLY
+BRANCHES['cedar']['mozharness_tag'] = "default"
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY]
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {

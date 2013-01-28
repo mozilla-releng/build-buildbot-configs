@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/comm-release',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
-        'relbranch': None,
+        'relbranch': {% if commRelbranch %}'{{ commRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -63,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
         'clonePath': 'releases/mozilla-release',
         'path': 'users/stage-ffxbld/mozilla-release',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': None,
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -86,7 +86,7 @@ releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default',
-    'users/stage-ffxbld/mozharness': 'default',
+    'users/stage-ffxbld/mozharness': 'production',
 }
 
 # Platform configuration
@@ -121,6 +121,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-thunderbird-linux.cfg',
     'linux64':  'mozRelease-thunderbird-linux64.cfg',
