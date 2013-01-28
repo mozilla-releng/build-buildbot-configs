@@ -429,18 +429,6 @@ for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta', '
 # End disable leopard tests for TB17 onwards
 #-------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
-# Temporary Hack for Bug 818833
-#-------------------------------------------------------------------------
-for branch in BRANCHES.keys():
-    if branch in ['comm-aurora', 'comm-beta', 'comm-release', 'comm-esr17', 'comm-esr10']:
-        continue # These branches are fine
-    if BRANCHES[branch]['platforms'].has_key("linux"):
-        del BRANCHES[branch]['platforms']['linux']
-#-------------------------------------------------------------------------
-# End Hack for Bug 818833
-#-------------------------------------------------------------------------
-
 if __name__ == "__main__":
     import sys
     import pprint
