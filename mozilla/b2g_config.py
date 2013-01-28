@@ -54,6 +54,7 @@ gaia_repo = 'integration/gaia-nightly'
 PLATFORM_VARS = {
         'ics_armv7a_gecko': {
             'product_name': 'b2g',
+            'unittest_platform': 'ics_armv7a_gecko-opt',
             'app_name': 'b2g',
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
@@ -107,6 +108,7 @@ PLATFORM_VARS = {
             ],
         },
         'ics_armv7a_gecko-debug': {
+            'enable_nightly': False,
             'product_name': 'b2g',
             'app_name': 'b2g',
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
