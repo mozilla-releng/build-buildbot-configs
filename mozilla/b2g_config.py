@@ -983,9 +983,9 @@ for branch in BRANCHES:
         del BRANCHES[branch]['platforms']['unagi_stable']
 
 # MERGE DAY: change the branch whenever stable channel moves somewhere else
-# otoro is only for b2g18
+# otoro is only for b2g18 + b2g18_v1_0_0
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_0') and \
         'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
