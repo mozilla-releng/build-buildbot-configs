@@ -1242,12 +1242,15 @@ for branch in BRANCHES.keys():
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 
-#exclude ubuntu32 and ubuntu64 from running on non-cedar branches
+# MERGE DAY NOTE: remove v21 based branches from the list below
+NON_UBUNTU_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+                       "mozilla-esr10", "mozilla-esr17", "mozilla-b2g18",
+                       "mozilla-b2g18_v1_0_0")
 for branch in BRANCHES.keys():
-    if branch not in ("cedar",) and 'linux64' in BRANCHES[branch]['platforms']:
+    if branch in NON_UBUNTU_BRANCHES and 'linux64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
         BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
-    if branch not in ("cedar",) and 'linux' in BRANCHES[branch]['platforms']:
+    if branch in NON_UBUNTU_BRANCHES and 'linux' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux']['ubuntu32']
         BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
 
