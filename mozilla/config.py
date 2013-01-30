@@ -1743,7 +1743,7 @@ BRANCHES['mozilla-b2g18']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
 
-######## mozilla-b2g18
+######## mozilla-b2g18_v1_0_0
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = 'releases/mozilla-b2g18_v1_0_0'
 BRANCHES['mozilla-b2g18_v1_0_0']['update_channel'] = 'nightly-b2g18_v1_0_0'
 BRANCHES['mozilla-b2g18_v1_0_0']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
@@ -1774,38 +1774,6 @@ BRANCHES['mozilla-b2g18_v1_0_0']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['enabled_products'] = ['firefox', 'mobile']
-
-######## mozilla-b2g18
-BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = 'releases/mozilla-b2g18_v1_0_0'
-BRANCHES['mozilla-b2g18_v1_0_0']['update_channel'] = 'nightly-b2g18_v1_0_0'
-BRANCHES['mozilla-b2g18_v1_0_0']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['start_hour'] = [3]
-BRANCHES['mozilla-b2g18_v1_0_0']['start_minute'] = [45]
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_mac_a11y'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_l10n'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                      'macosx64']
-BRANCHES['mozilla-b2g18_v1_0_0']['l10nDatedDirs'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18_v1_0_0'
-BRANCHES['mozilla-b2g18_v1_0_0']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['create_snippet'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['create_partial'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_0'
-BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_0'
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g18_v1_0_0']['enabled_products'] = ['firefox']
 
 ######## try
 # Try-specific configs
