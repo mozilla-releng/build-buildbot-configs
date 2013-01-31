@@ -14,6 +14,8 @@ REMOTE_PROCESS_NAMES = {'default': 'org.mozilla.fennec',
                         'mozilla-beta': 'org.mozilla.firefox_beta',
                         'mozilla-aurora': 'org.mozilla.fennec_aurora',
                         'mozilla-release': 'org.mozilla.firefox',
+                        'release-mozilla-beta': 'org.mozilla.firefox_beta',
+                        'release-mozilla-release': 'org.mozilla.firefox',
                         }
 
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
