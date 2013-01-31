@@ -1264,7 +1264,7 @@ for branch in BRANCHES.keys():
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                        "mozilla-esr10", "mozilla-esr17", "mozilla-b2g18",
-                       "mozilla-b2g18_v1_0_0")
+                       "mozilla-b2g18_v1_0_0", "mozilla-b2g18_v1_0_1")
 for branch in BRANCHES.keys():
     if branch in NON_UBUNTU_BRANCHES and 'linux64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
@@ -1287,7 +1287,9 @@ for branch in ['mozilla-esr10']:
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
+                      'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'
+                      ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 

@@ -2012,7 +2012,9 @@ for b in ('mozilla-esr10', 'mozilla-esr17'):
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
-    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18_v1_0_0','mozilla-b2g18_v1_0_1',  'try'):
+    if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
+                 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'
+                 ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
@@ -2024,12 +2026,14 @@ for b in BRANCHES:
                 del BRANCHES[b]['platforms'][p]
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
-for b in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10', 'mozilla-esr17', 'mozilla-b2g18']:
+for b in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10',
+          'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
+          'mozilla-b2g18_v1_0_1'
+          ]:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
-
 
 if __name__ == "__main__":
     import sys
