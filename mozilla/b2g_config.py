@@ -793,6 +793,24 @@ BRANCHES = {
         'unagi_eng': {},
         'otoro': {},
     },
+    'mozilla-b2g18_v1_0_1': {
+        # b2g explicitly
+        'ics_armv7a_gecko': {},
+        'ics_armv7a_gecko-debug': {},
+        'linux32_gecko': {},
+        'linux64_gecko': {},
+        'macosx64_gecko': {},
+        'win32_gecko': {},
+        'linux32_gecko_localizer': {},
+        'linux64_gecko_localizer': {},
+        'macosx64_gecko_localizer': {},
+        'win32_gecko_localizer': {},
+        'panda': {},
+        'unagi': {},
+        'unagi_stable': {},
+        'unagi_eng': {},
+        'otoro': {},
+    },
     'try': {
     },
 }
@@ -896,7 +914,7 @@ BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/
 # building
 BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18']['start_hour'] = [7,23]
+BRANCHES['mozilla-b2g18']['start_hour'] = [7, 23]
 BRANCHES['mozilla-b2g18']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -950,6 +968,38 @@ BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['win32_gecko']['enable_checktests'
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
+######## mozilla-b2g18_v1_0_1
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = 'releases/mozilla-b2g18_v1_0_1'
+BRANCHES['mozilla-b2g18_v1_0_1']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18_v1_0_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-b2g18_v1_0_1']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [2]
+BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+
 ######## try
 # Try-specific configs
 # This is a path, relative to HGURL, where the repository is located
@@ -983,16 +1033,16 @@ for branch in BRANCHES:
         del BRANCHES[branch]['platforms']['unagi_stable']
 
 # MERGE DAY: change the branch whenever stable channel moves somewhere else
-# otoro is only for b2g18 + b2g18_v1_0_0
+# otoro is only for b2g18 + b2g18_v1_0_0 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_0') and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1') and \
         'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
 # MERGE DAY: change the branch whenever stable channel moves somewhere else
-# unagi_eng is only for b2g18
+# unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
         'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
 

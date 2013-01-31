@@ -97,6 +97,20 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g18_v1_0_1': {
+        'datazilla_url': None,
+        'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+            'android-noion': {},
+            'ics_armv7a_gecko': {},
+            'b2g_panda': {},
+        },
+        'lock_platforms': True,
+    },
     'try': {'coallesce_jobs': False},
 }
 
@@ -1095,6 +1109,11 @@ BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 5
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
 BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
 
+######### mozilla-b2g18_v1_0_1
+BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
+BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
+
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
@@ -1268,7 +1287,7 @@ for branch in ['mozilla-esr10']:
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
