@@ -496,7 +496,6 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'enable_pymake': True,
         },
         'win64': {
             'product_name': 'firefox',
@@ -541,7 +540,6 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': True,
             'l10n_check_test': True,
-            'enable_pymake': True,
         },
         'linux-debug': {
             'enable_nightly': False,
@@ -784,7 +782,6 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'enable_pymake': True,
         },
         'android': {
             'product_name': 'firefox',
