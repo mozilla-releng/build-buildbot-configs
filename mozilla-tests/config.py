@@ -565,6 +565,18 @@ def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
             addSuite(suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
                      suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
 
+
+def nested_haskey(dictionary, *keys):
+    if len(keys) == 1:
+        return keys[0] in dictionary
+    else:
+        #recurse
+        key, keys = keys[0], keys[1:]
+        if key in dictionary:
+            return nested_haskey(dictionary[key], *keys)
+        else:
+            return False
+
 ANDROID_UNITTEST_DICT = {
     'opt_unittest_suites': [
         ('mochitest-1', (
@@ -779,18 +791,12 @@ PLATFORM_UNITTEST_VARS = {
             'mobile_unittest_suites': UNITTEST_SUITES['mobile_unittest_suites'][:],
         },
         'ubuntu32': {
-            'opt_unittest_suites': [
-                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                ('crashtest', ['crashtest']),
-                ('jsreftest', ['jsreftest']),
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + [
+                ('reftest-ipc', ['reftest-ipc']),
+                ('reftest-no-accel', ['opengl-no-accel']),
+                ('crashtest-ipc', ['crashtest-ipc'])
             ],
-            'debug_unittest_suites': [
-                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                ('crashtest', ['crashtest']),
-                ('jsreftest', ['jsreftest']),
-            ],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
     },
     'linux64': {
@@ -806,33 +812,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
         'ubuntu64': {
-            'opt_unittest_suites': [
-                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                ('crashtest', ['crashtest']),
-                ('jsreftest', ['jsreftest']),
-            ],
-            'debug_unittest_suites': [
-                ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-                ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-                ('crashtest', ['crashtest']),
-                ('jsreftest', ['jsreftest']),
-            ],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-    },
-    'ubuntu64': {
-        'opt_unittest_suites': [
-            ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-            ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-            ('crashtest', ['crashtest']),
-            ('jsreftest', ['jsreftest']),
-        ],
-        'debug_unittest_suites': [
-            ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-            ('mochitest-other', ['mochitest-a11y', 'mochitest-ipcplugins']),
-            ('crashtest', ['crashtest']),
-            ('jsreftest', ['jsreftest']),
-        ],
     },
     'win32': {
         'product_name': 'firefox',
@@ -1265,13 +1247,42 @@ for branch in BRANCHES.keys():
 NON_UBUNTU_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                        "mozilla-esr10", "mozilla-esr17", "mozilla-b2g18",
                        "mozilla-b2g18_v1_0_0", "mozilla-b2g18_v1_0_1")
-for branch in BRANCHES.keys():
-    if branch in NON_UBUNTU_BRANCHES and 'linux64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
-        BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
-    if branch in NON_UBUNTU_BRANCHES and 'linux' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux']['ubuntu32']
-        BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
+# Green tests, including mozharness based ones
+# Tests listed as Ubuntu tests won't be enabled on Fedora
+UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack"]
+UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette"]
+
+# Remove Ubuntu platform from the release trains,
+# use either Fedora or Ubuntu for other branches,
+# don't touch cedar
+for branch in set(BRANCHES.keys()) - set(['cedar']):
+    if branch in NON_UBUNTU_BRANCHES:
+        # Remove Ubuntu completely
+        if 'linux64' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
+            BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
+        if 'linux' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['linux']['ubuntu32']
+            BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
+        continue
+
+    for p, ubuntu, fedora in [('linux', 'ubuntu32', 'fedora'),
+                              ('linux64', 'ubuntu64', 'fedora64')]:
+        for suite_type, ubuntu_tests in [('opt_unittest_suites',
+                                         UBUNTU_OPT_UNITTEST),
+                                         ('debug_unittest_suites',
+                                         UBUNTU_DEBUG_UNITTEST)]:
+            if nested_haskey(BRANCHES[branch]['platforms'], p, ubuntu,
+                             suite_type):
+                for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
+                    if suite[0] not in ubuntu_tests:
+                        BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
+                    else:
+                        try:
+                            BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(suite)
+                        except KeyError:
+                            pass
+
 
 #-------------------------------------------------------------------------
 # MERGE day - only enable android-armv6 tests for FF16 onwards
@@ -1305,7 +1316,7 @@ if __name__ == "__main__":
     else:
         items = dict(BRANCHES.items() + PROJECTS.items())
 
-    for k, v in items.iteritems():
+    for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
         for l in out.splitlines():
             print '%s: %s' % (k, l)
