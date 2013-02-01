@@ -20,11 +20,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '18.0.1'
-releaseConfig['appVersion']          = '18.0.1'
+releaseConfig['version']             = '18.0.2'
+releaseConfig['appVersion']          = '18.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_18_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_18_0_2'
 releaseConfig['partialUpdates']      = {
 
     '16.0.2': {
@@ -39,10 +39,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_17_0_1',
     },
 
-    '18.0': {
-        'appVersion': '18.0',
+    '18.0.1': {
+        'appVersion': '18.0.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_18_0',
+        'baseTag': 'FIREFOX_18_0_1',
     },
 
 }
@@ -54,7 +54,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'f64a3223c828',
+        'revision': '92d3a5aa0c7d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -114,6 +114,7 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
