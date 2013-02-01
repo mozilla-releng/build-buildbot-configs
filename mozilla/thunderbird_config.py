@@ -548,7 +548,6 @@ PLATFORM_VARS = {
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
-            'leak_target': 'mailbloat',
             'build_space': 10,
             'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,

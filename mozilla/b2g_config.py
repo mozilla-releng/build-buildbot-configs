@@ -28,7 +28,6 @@ GLOBAL_VARS.update({
         'macosx64_gecko_localizer': {},
         'win32_gecko_localizer': {},
         'panda': {},
-        'panda_gaia_central': {},
         'unagi': {},
         'unagi_stable': {},
         'unagi_eng': {},
@@ -670,23 +669,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
-        'panda_gaia_central': {
-            'mozharness_config': {
-                'script_name': 'scripts/b2g_build.py',
-                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-                # --target name below
-                'extra_args': ['--target', 'panda',
-                               '--b2g-config-dir', 'panda-gaia-central',
-                               '--config', 'b2g/releng.py',
-                               '--gaia-languages-file', 'locales/languages_dev.json',
-                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            },
-            'stage_product': 'b2g',
-            'product_name': 'b2g',
-            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-            'slaves': SLAVES['mock'],
-        },
         'unagi': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
@@ -1017,8 +999,6 @@ BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['panda_gaia_central']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['panda_gaia_central']['mozharness_config']['extra_args'] = ['--target', 'panda', '--b2g-config-dir', 'panda-gaia-central', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
