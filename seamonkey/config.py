@@ -6,7 +6,6 @@ SLAVES = {
                ['sea-vm-linux64-%i' % x for x in [1]],
     'win32': ['sea-win32-%02i' % x for x in [1,2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
-    'macosx': ['cb-sea-miniosx%02i' % x for x in [1,2]],
     'macosx64': #['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
                 ['sea-mini-osx64-%i' % x for x in range(1,5)],
 }
@@ -62,7 +61,6 @@ GLOBAL_VARS = {
         'win32': {},
         'macosx64': {},
         'linux-debug': {},
-        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
     },
@@ -204,46 +202,6 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
         },
-        'macosx': {
-            'product_name': 'seamonkey',
-            'app_name': 'suite',
-            'brand_name': 'SeaMonkey',
-            'base_name': 'OS X 10.5 %(branch)s',
-            'mozconfig': 'macosx/%(branch)s/nightly',
-            'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
-            'profiled_build': False,
-            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
-            'build_space': 8,
-            'upload_symbols': True,
-            'download_symbols': True,
-            'packageTests': True,
-            'slaves': SLAVES['macosx'],
-            'platform_objdir': "%s/ppc" % OBJDIR,
-            'stage_platform': 'macosx',
-            'update_platform': 'Darwin_Universal-gcc3',
-            'enable_ccache': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
-                'SYMBOL_SERVER_USER': 'seabld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/Users/seabld/.ssh/seabld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'CHOWN_ROOT': '~/bin/chown_root',
-                'CHOWN_REVERT': '~/bin/chown_revert',
-                'MOZ_PKG_PLATFORM': 'mac',
-                'LC_ALL': 'C',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'stage_product': 'seamonkey',
-        },
         'macosx64': {
             'product_name': 'seamonkey',
             'app_name': 'suite',
@@ -357,35 +315,6 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
         },
-        'macosx-debug': {
-            'product_name': 'seamonkey',
-            'app_name': 'suite',
-            'brand_name': 'SeaMonkey',
-            'base_name': 'OS X 10.5 %(branch)s leak test',
-            'mozconfig': 'macosx/%(branch)s/debug',
-            'src_mozconfig': 'suite/config/mozconfigs/macosx32/debug',
-            'profiled_build': False,
-            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
-            'download_symbols': True,
-            'build_space': 5,
-            'slaves': SLAVES['macosx'],
-            'platform_objdir': OBJDIR,
-            'stage_platform': 'macosx-debug',
-            'enable_ccache': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-            },
-            'enable_unittests': True,
-            'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'stage_product': 'seamonkey',
-        },
         'macosx64-debug': {
             'product_name': 'seamonkey',
             'app_name': 'suite',
@@ -458,7 +387,6 @@ BRANCHES = {
             'linux': {},
             'linux64': {},
             'win32': {},
-            'macosx': {},
         }},
 }
 
@@ -486,7 +414,6 @@ BRANCHES['comm-central-trunk']['mozilla_repo_path'] = 'mozilla-central'
 BRANCHES['comm-central-trunk']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['comm-central-trunk']['start_hour'] = [0]
 BRANCHES['comm-central-trunk']['start_minute'] = [30]
-BRANCHES['comm-central-trunk']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-central-trunk'
 BRANCHES['comm-central-trunk']['enable_mac_a11y'] = True
 BRANCHES['comm-central-trunk']['unittest_build_space'] = 6
 BRANCHES['comm-central-trunk']['enable_blocklist_update'] = True
@@ -497,7 +424,7 @@ BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
-BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
 #make sure it has an ending slash
@@ -530,7 +457,6 @@ BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['comm-aurora']['enable_nightly'] = True
 BRANCHES['comm-aurora']['start_hour'] = [1]
 BRANCHES['comm-aurora']['start_minute'] = [30]
-BRANCHES['comm-aurora']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-aurora'
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
@@ -541,7 +467,7 @@ BRANCHES['comm-aurora']['enable_codecoverage'] = False
 BRANCHES['comm-aurora']['enable_l10n'] = True
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
-BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx64']
 BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'sea_aurora'
 #make sure it has an ending slash
@@ -574,7 +500,6 @@ BRANCHES['comm-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
 BRANCHES['comm-beta']['enable_nightly'] = False
 BRANCHES['comm-beta']['start_hour'] = [0]
 BRANCHES['comm-beta']['start_minute'] = [30]
-BRANCHES['comm-beta']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-beta'
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
 BRANCHES['comm-beta']['enable_blocklist_update'] = False # for now
@@ -585,7 +510,7 @@ BRANCHES['comm-beta']['enable_codecoverage'] = False
 BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
-BRANCHES['comm-beta']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-beta']['l10n_platforms'] = ['linux','win32','macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'sea_beta'
 #make sure it has an ending slash
@@ -618,7 +543,6 @@ BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['comm-release']['enable_nightly'] = False
 BRANCHES['comm-release']['start_hour'] = [0]
 BRANCHES['comm-release']['start_minute'] = [30]
-BRANCHES['comm-release']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-release'
 BRANCHES['comm-release']['enable_mac_a11y'] = True
 BRANCHES['comm-release']['unittest_build_space'] = 6
 BRANCHES['comm-release']['enable_blocklist_update'] = False # for now
@@ -629,7 +553,7 @@ BRANCHES['comm-release']['enable_codecoverage'] = False
 BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = True
 BRANCHES['comm-release']['l10nNightlyUpdate'] = True
-BRANCHES['comm-release']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-release']['l10n_platforms'] = ['linux','win32','macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
 BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
 #make sure it has an ending slash
@@ -662,7 +586,6 @@ BRANCHES['comm-2.0']['l10n_repo_path'] = 'releases/l10n-mozilla-2.0'
 BRANCHES['comm-2.0']['enable_nightly'] = False
 BRANCHES['comm-2.0']['start_hour'] = [1]
 BRANCHES['comm-2.0']['start_minute'] = [0]
-BRANCHES['comm-2.0']['platforms']['macosx-debug']['opt_base_name'] = 'OS X 10.5 comm-2.0'
 BRANCHES['comm-2.0']['enable_mac_a11y'] = True
 BRANCHES['comm-2.0']['unittest_build_space'] = 6
 # We only need one c-c blocklist update.
@@ -674,7 +597,7 @@ BRANCHES['comm-2.0']['enable_codecoverage'] = False
 BRANCHES['comm-2.0']['enable_l10n'] = True
 BRANCHES['comm-2.0']['enable_l10n_onchange'] = False
 BRANCHES['comm-2.0']['l10nNightlyUpdate'] = True
-BRANCHES['comm-2.0']['l10n_platforms'] = ['linux','win32','macosx','macosx64']
+BRANCHES['comm-2.0']['l10n_platforms'] = ['linux','win32','macosx64']
 BRANCHES['comm-2.0']['l10nDatedDirs'] = True
 BRANCHES['comm-2.0']['l10n_tree'] = 'sea21x'
 #make sure it has an ending slash
@@ -722,10 +645,6 @@ BRANCHES['comm-1.9.1']['platforms']['linux']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['enable_checktests'] = False
 BRANCHES['comm-1.9.1']['platforms']['linux64']['packageTests'] = False
-BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_unittests'] = True
-BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_opt_unittests'] = False
-BRANCHES['comm-1.9.1']['platforms']['macosx']['enable_checktests'] = False
-BRANCHES['comm-1.9.1']['platforms']['macosx']['packageTests'] = False
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_unittests'] = True
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_opt_unittests'] = False
 BRANCHES['comm-1.9.1']['platforms']['win32']['enable_checktests'] = False
@@ -739,7 +658,7 @@ BRANCHES['comm-1.9.1']['enable_codecoverage'] = False
 BRANCHES['comm-1.9.1']['enable_l10n'] = True
 BRANCHES['comm-1.9.1']['enable_l10n_onchange'] = False
 BRANCHES['comm-1.9.1']['l10nNightlyUpdate'] = False
-BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32','macosx']
+BRANCHES['comm-1.9.1']['l10n_platforms'] = ['linux','win32']
 BRANCHES['comm-1.9.1']['l10nDatedDirs'] = False
 BRANCHES['comm-1.9.1']['l10n_tree'] = 'sea20x'
 #make sure it has an ending slash

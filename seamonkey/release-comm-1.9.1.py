@@ -55,14 +55,14 @@ releaseConfig['l10nRelbranchOverride']      = 'COMM_1_9_1_BRANCH'
 #   not used yet
 
 # Platform configuration
-releaseConfig['enUSPlatforms']              = ('linux', 'linux64', 'win32', 'macosx')
+releaseConfig['enUSPlatforms']              = ('linux', 'linux64', 'win32')
 releaseConfig['talosTestPlatforms']         = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']          = ()
 
 # L10n configuration
-releaseConfig['l10nPlatforms']              = ('linux', 'win32', 'macosx')
+releaseConfig['l10nPlatforms']              = ('linux', 'win32')
 releaseConfig['mergeLocales']               = False
 
 # Mercurial account
@@ -93,7 +93,6 @@ releaseConfig['majorPatcherToolsTag']       = 'UPDATE_PACKAGING_R11_1_MU'
 releaseConfig['majorUpdateSourceRepoPath']  = 'releases/comm-release'
 releaseConfig['majorUpdatePatcherConfig']   = 'moz191-seamonkey-branch-major-patcher2.cfg'
 releaseConfig['majorUpdateVerifyConfigs']   = {'linux':  'moz191-seamonkey-linux-major.cfg',
-                                               'macosx': 'moz191-seamonkey-mac-major.cfg',
                                                'win32':  'moz191-seamonkey-win32-major.cfg'}
 releaseConfig['majorUpdateToVersion']       = '2.6.1'
 releaseConfig['majorUpdateAppVersion']      = '2.6.1'

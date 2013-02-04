@@ -406,8 +406,6 @@ for platform in releaseConfig['l10nPlatforms']:
     )
 
     verifySlavePlat = 'macosx64'
-    if releaseConfig['sourceRepoName'] == 'comm-1.9.1':
-       verifySlavePlat = 'macosx'
 
     builders.append({
         'name': '%s_l10n_verification' % platform,
