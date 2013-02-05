@@ -34,10 +34,9 @@ PLATFORMS = {
 
 builder_prefix = "b2g"
 
-PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu32']
+PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g']
 PLATFORMS['ics_armv7a_gecko']['env_name'] = 'linux-perf'
 PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator"}
-PLATFORMS['ics_armv7a_gecko']['ubuntu32'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator_ubuntu32"}
 PLATFORMS['ics_armv7a_gecko']['stage_product'] = 'b2g'
 PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -227,12 +226,13 @@ PLATFORM_UNITTEST_VARS = {
         'app_name': 'b2g',
         'brand_name': 'Gecko',
         'builds_before_reboot': 1,
-        'unittest-env': {'DISPLAY': ':0'},
+        'unittest-env' : {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'fedora-b2g': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'opt_unittest_suites' : \
+                UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'crashtest-1': {
                     'extra_args': [
@@ -380,157 +380,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'ubuntu32': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'suite_config': {
-                'crashtest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '1', '--total-chunks', '3',
-                    ],
-                },
-                'crashtest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '2', '--total-chunks', '3',
-                    ],
-                },
-                'crashtest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '3', '--total-chunks', '3',
-                    ],
-                },
-                'marionette-webapi': {
-                    'extra_args': [
-                        "--cfg", "marionette/automation_emulator_config.py"
-                    ],
-                },
-                'mochitest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '1', '--total-chunks', '6',
-                    ],
-                },
-                'mochitest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '2', '--total-chunks', '6',
-                    ],
-                },
-                'mochitest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '3', '--total-chunks', '6',
-                    ],
-                },
-                'mochitest-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '4', '--total-chunks', '6',
-                    ],
-                },
-                'mochitest-5': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '5', '--total-chunks', '6',
-                    ],
-                },
-                'mochitest-6': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', '6', '--total-chunks', '6',
-                    ],
-                },
-                'reftest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '1', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '2', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '3', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '4', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-5': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '5', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-6': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '6', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-7': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '7', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-8': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '8', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-9': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '9', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-10': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '10', '--total-chunks', '10',
-                    ],
-                },
-                'xpcshell': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'xpcshell',
-                    ],
-                },
-            },
-        },
-    },  # end of ics_armv7a_gecko configs
+    }, # end of ics_armv7a_gecko configs
     'b2g_panda': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -538,17 +388,17 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'b2g_panda': {
-            'opt_unittest_suites': [
+            'opt_unittest_suites' : [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
                     'use_mozharness': True,
                     'script_path': 'scripts/b2g_panda.py',
                 },)
             ],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites' : [],
             'suite_config': {
                 'gaia-ui-test': {
-                    'extra_args': ["--cfg", "b2g/panda_releng.py"],
+                    'extra_args': ["--cfg", "b2g/panda_releng.py" ],
                 },
             },
         },
@@ -560,17 +410,17 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'b2g_panda_gaia_central': {
-            'opt_unittest_suites': [
+            'opt_unittest_suites' : [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
                     'use_mozharness': True,
                     'script_path': 'scripts/b2g_panda.py',
                 },)
             ],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites' : [],
             'suite_config': {
                 'gaia-ui-test': {
-                    'extra_args': ["--cfg", "b2g/panda_releng.py"],
+                    'extra_args': ["--cfg", "b2g/panda_releng.py" ],
                 },
             },
         },
@@ -664,9 +514,7 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['ubuntu32']['debug_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY + REFTEST_ONLY]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu32']
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY]
@@ -926,38 +774,27 @@ BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 
-# explicitly set slave platforms per branch
-for branch in BRANCHES.keys():
-    for platform in BRANCHES[branch]['platforms']:
-        if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
-            BRANCHES[branch]['platforms'][platform]['slave_platforms'] = PLATFORMS[platform]['slave_platforms']
-
-# Disable ubuntu on non cedar branches
-for branch in set(BRANCHES.keys()) - set(['cedar']):
-    for platform in BRANCHES[branch]['platforms']:
-        if 'ubuntu32' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
-            BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu32')
-        if 'ubuntu32' in BRANCHES[branch]['platforms'][platform]:
-            del BRANCHES[branch]['platforms'][platform]['ubuntu32']
-
-
 if __name__ == "__main__":
-    import sys
-    import pprint
+    import sys, pprint, re
+
+    class BBPrettyPrinter(pprint.PrettyPrinter):
+        def format(self, object, context, maxlevels, level):
+            if isinstance(object, WithProperties):
+                return pprint.PrettyPrinter.format(self, object.fmtstring, context, maxlevels, level)
+            return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
 
     args = sys.argv[1:]
 
     if len(args) > 0:
-        items = dict([(b, BRANCHES[b]) for b in args])
+        branches = args
     else:
-        items = dict(BRANCHES.items())
+        branches = BRANCHES.keys()
 
-    for k, v in sorted(items.iteritems()):
-        out = pprint.pformat(v)
-        for l in out.splitlines():
-            print '%s: %s' % (k, l)
+    pp = BBPrettyPrinter()
+    for branch in branches:
+        print branch
+        pp.pprint(BRANCHES[branch])
 
     for suite in SUITES:
-        out = pprint.pformat(SUITES[suite])
-        for l in out.splitlines():
-            print '%s: %s' % (suite, l)
+        print suite
+        pp.pprint(SUITES[suite])
