@@ -721,7 +721,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
-                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng.py',
+                'extra_args': ['--target', 'otoro', '--config', 'b2g/releng-otoro.py',
                                '--gaia-languages-file', 'locales/languages_basecamp.json',
                                '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -934,7 +934,6 @@ BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
@@ -966,7 +965,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']

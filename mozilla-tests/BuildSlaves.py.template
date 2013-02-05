@@ -20,6 +20,7 @@ SlavePasswords = {
     "panda_android": "pass",
     "b2g_panda": "pass",
     "ubuntu32": "pass",
+    "ubuntu32-b2g": "pass",
     "ubuntu64": "pass",
     "b2g_panda_gaia_central": "pass",
 }
