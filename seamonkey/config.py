@@ -194,7 +194,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':2',
-                'PATH': '/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+                'PATH': '/usr/libexec/binutils220:/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
