@@ -20,7 +20,7 @@
     "platforms": ["android"]
   },
   "es-ES": {
-    "revision": "1c52d53fe725",
+    "revision": "d079838fbf3c",
     "platforms": ["android", "android-multilocale"]
   },
   "fi": {
