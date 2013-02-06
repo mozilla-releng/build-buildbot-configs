@@ -1183,9 +1183,9 @@ mozharness_unittest_suites = [
     {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
     {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
     {'suite_name': 'crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},
-    {'suite_name': 'reftest-ipc', 'suite_category': 'reftest', 'sub_categories': ['reftest-ipc'], 'platforms': ['linux']},
-    {'suite_name': 'reftest-no-accel', 'suite_category': 'reftest', 'sub_categories': ['reftest-no-accel'], 'platforms': ['linux']},
-    {'suite_name': 'crashtest-ipc', 'suite_category': 'reftest', 'sub_categories': ['crashtest-ipc'], 'platforms': ['linux']},
+    {'suite_name': 'reftest-ipc', 'suite_category': 'reftest', 'sub_categories': ['reftest-ipc'], 'platforms': ['linux'], 'test_types': ['opt']},
+    {'suite_name': 'reftest-no-accel', 'suite_category': 'reftest', 'sub_categories': ['reftest-no-accel'], 'platforms': ['linux'], 'test_types': ['opt']},
+    {'suite_name': 'crashtest-ipc', 'suite_category': 'reftest', 'sub_categories': ['crashtest-ipc'], 'platforms': ['linux'], 'test_types': ['opt']},
     {'suite_name': 'xpcshell', 'suite_category': 'xpcshell', 'sub_categories': ['xpcshell']},
 ]
 for branch in BRANCHES:
@@ -1209,6 +1209,8 @@ for branch in BRANCHES:
                     BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] = []
                     for suite in mozharness_unittest_suites:
                         if 'platforms' in suite and pf not in suite['platforms']:
+                            continue
+                        if 'test_types' in suite and testtype not in suite['test_types']:
                             continue
                         extra_args = ["--cfg", config_file]
                         for sub_category in suite['sub_categories']:
