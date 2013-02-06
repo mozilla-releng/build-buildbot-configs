@@ -77,7 +77,7 @@ releaseConfig['enUSPlatforms']        = ('android', 'android-armv6')
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
-releaseConfig['enableUnittests']      = True
+releaseConfig['enableUnittests']      = False
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = ('android',)
