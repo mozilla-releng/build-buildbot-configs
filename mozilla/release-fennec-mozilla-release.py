@@ -148,7 +148,7 @@ releaseConfig['multilocale_config'] = {
         '--summary',
     ]
 }
-releaseConfig['enableSigningAtBuildTime'] = False
+releaseConfig['enableSigningAtBuildTime'] = True
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
