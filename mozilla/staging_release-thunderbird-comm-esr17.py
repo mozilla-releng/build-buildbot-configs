@@ -124,10 +124,10 @@ releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunder
 releaseConfig['testOlderPartials']   = False
 releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
 releaseConfig['mozconfigs']          = {
-    'linux': 'mail/config/mozconfigs/linux32/release',
-    'linux64': 'mail/config/mozconfigs/linux64/release',
-    'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
-    'win32': 'mail/config/mozconfigs/win32/release',
+    'linux': 'mail/config/mozconfigs/linux32/esr',
+    'linux64': 'mail/config/mozconfigs/linux64/esr',
+    'macosx64': 'mail/config/mozconfigs/macosx-universal/esr',
+    'win32': 'mail/config/mozconfigs/win32/esr',
 }
 releaseConfig['releaseChannel']      = 'esr'
 

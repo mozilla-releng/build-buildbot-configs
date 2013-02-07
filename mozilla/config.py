@@ -843,7 +843,6 @@ PLATFORM_VARS = {
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android",
             'stage_product': 'mobile',
-            'android_signing': False,
             'post_upload_include_platform': True,
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
@@ -908,7 +907,6 @@ PLATFORM_VARS = {
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-armv6",
             'stage_product': 'mobile',
-            'android_signing': False,
             'post_upload_include_platform': True,
             'is_mobile_l10n': False,
             'multi_locale': True,
@@ -970,7 +968,6 @@ PLATFORM_VARS = {
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-x86",
             'stage_product': 'mobile',
-            'android_signing': False,
             'post_upload_include_platform': True,
             'is_mobile_l10n': False,
             'multi_locale': True,
@@ -1039,7 +1036,6 @@ PLATFORM_VARS = {
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-noion",
             'stage_product': 'mobile',
-            'android_signing': False,
             'post_upload_include_platform': True,
             'is_mobile_l10n': False,
             'multi_locale': False,
@@ -1107,7 +1103,6 @@ PLATFORM_VARS = {
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-debug",
             'stage_product': 'mobile',
-            'android_signing': False,
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
@@ -1501,6 +1496,7 @@ del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
+BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1544,6 +1540,7 @@ BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
+BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']

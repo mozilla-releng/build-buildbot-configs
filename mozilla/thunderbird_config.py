@@ -83,7 +83,6 @@ GLOBAL_VARS.update({
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
     'use_old_updater': False,
     'mozilla_dir': '/mozilla',
-    'leak_target': 'mailbloat',
 })
 
 # shorthand, because these are used often
