@@ -1148,7 +1148,7 @@ if __name__ == "__main__":
     else:
         items = BRANCHES
 
-    for k, v in items.iteritems():
+    for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
         for l in out.splitlines():
-             print '%s: %s' % (k, l)
+            print '%s: %s' % (k, l)

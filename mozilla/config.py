@@ -1314,14 +1314,17 @@ BRANCHES = {
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
+    if 'mobile_platforms' in BRANCHES[branch]:
+        if 'platforms' not in BRANCHES[branch]:
+            BRANCHES[branch]['platforms'] = deepcopy(BRANCHES[branch]['mobile_platforms'])
+        else:
+            BRANCHES[branch]['platforms'].update(deepcopy(BRANCHES[branch]['mobile_platforms']))
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
-            continue
-        elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
         # Don't override something that's set
         elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
@@ -1387,7 +1390,7 @@ for branch in BRANCHES.keys():
     # Check for project branch removing a platform from default platforms
     if branch in ACTIVE_PROJECT_BRANCHES:
         for key, value in PROJECT_BRANCHES[branch].items():
-            if key == 'platforms':
+            if key in ('platforms', 'mobile_platforms'):
                 for platform, platform_config in value.items():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
@@ -1901,12 +1904,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
     BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
-    if BRANCHES[branch]['enable_mobile']:
-        if branchConfig.get('mobile_platforms'):
-            for platform, platform_config in branchConfig['mobile_platforms'].items():
-                BRANCHES[branch]['mobile_platforms'][platform]['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-                for key, value in platform_config.items():
-                    BRANCHES[branch]['mobile_platforms'][platform][key] = deepcopy(value)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # Disable XULRunner / SDK builds
@@ -2039,7 +2036,7 @@ if __name__ == "__main__":
     else:
         items = dict(BRANCHES.items() + PROJECTS.items())
 
-    for k, v in items.iteritems():
+    for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
         for l in out.splitlines():
-             print '%s: %s' % (k, l)
+            print '%s: %s' % (k, l)

@@ -1,6 +1,8 @@
 from copy import deepcopy
 
-from buildbot.steps.shell import WithProperties
+import config_common
+reload(config_common)
+from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, loadTalosSuites
 
 import project_branches
 reload(project_branches)
@@ -10,39 +12,14 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
-REMOTE_PROCESS_NAMES = {'default': 'org.mozilla.fennec',
-                        'mozilla-beta': 'org.mozilla.firefox_beta',
-                        'mozilla-aurora': 'org.mozilla.fennec_aurora',
-                        'mozilla-release': 'org.mozilla.firefox',
-                        'release-mozilla-beta': 'org.mozilla.firefox_beta',
-                        'release-mozilla-release': 'org.mozilla.firefox',
-                        }
-
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
-
-TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
 TALOS_TP_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
 TALOS_TP_NEW_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
-
-TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
-                            'remoteTests': True,
-                            'remoteExtras': {'options': ['--sampleConfig', 'remote.config',
-                                                         '--output', 'local.yml',
-                                                         '--webServer', 'bm-remote.build.mozilla.org',
-                                                         '--browserWait', '60',
-                                                         ],
-                                             'processName': REMOTE_PROCESS_NAMES,
-                                             },
-                            }
-
-UNITTEST_REMOTE_EXTRAS = {'processName': REMOTE_PROCESS_NAMES}
-ANDROID_UNITTEST_REMOTE_EXTRAS = deepcopy(UNITTEST_REMOTE_EXTRAS)
-ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
 
 BRANCHES = {
     'mozilla-central':     {},
@@ -79,9 +56,6 @@ BRANCHES = {
             'win32': {},
             'linux': {},
             'linux64': {},
-            'android-noion': {},
-            'ics_armv7a_gecko': {},
-            'b2g_panda': {},
         },
         'lock_platforms': True,
     },
@@ -93,9 +67,6 @@ BRANCHES = {
             'win32': {},
             'linux': {},
             'linux64': {},
-            'android-noion': {},
-            'ics_armv7a_gecko': {},
-            'b2g_panda': {},
         },
         'lock_platforms': True,
     },
@@ -107,9 +78,6 @@ BRANCHES = {
             'win32': {},
             'linux': {},
             'linux64': {},
-            'android-noion': {},
-            'ics_armv7a_gecko': {},
-            'b2g_panda': {},
         },
         'lock_platforms': True,
     },
@@ -123,9 +91,6 @@ PLATFORMS = {
     'win32': {},
     'linux': {},
     'linux64': {},
-    'android': {},
-    'android-armv6': {},
-    'android-noion': {},
 }
 
 # work around path length problem bug 599795
@@ -186,29 +151,6 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android']
-PLATFORMS['android']['env_name'] = 'android-perf'
-PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
-PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda"}
-PLATFORMS['android']['stage_product'] = 'mobile'
-PLATFORMS['android']['mozharness_config'] = {}
-
-PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
-PLATFORMS['android-armv6']['env_name'] = 'android-perf'
-PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegra 250"}
-PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_config'] = {}
-
-PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
-PLATFORMS['android-noion']['env_name'] = 'android-perf'
-PLATFORMS['android-noion']['is_mobile'] = True
-PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android no-ionmonkey Tegra 250"}
-PLATFORMS['android-noion']['stage_product'] = 'mobile'
-PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
-
-
 # Lets be explicit instead of magical.  leopard-o should be a second
 # entry in the SLAVE dict
 for platform, platform_config in PLATFORMS.items():
@@ -242,10 +184,6 @@ NO_MAC.remove('ubuntu32')
 NO_MAC.remove('ubuntu64')
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
-
-ANDROID = PLATFORMS['android']['slave_platforms']
-
-ANDROID_ARMV6 = PLATFORMS['android-armv6']['slave_platforms']
 
 SUITES = {
     'chrome': {
@@ -345,48 +283,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_PLATFORMS),
     },
-
-    # Mobile specific talos tests
-    'remote-ts': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-tsvg': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-tsspider': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-trobopan': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-trobocheck': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheckerboard', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-troboprovider': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-trobocheck2': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
-    'remote-tp4m_nochrome': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
 }
 
 BRANCH_UNITTEST_VARS = {
@@ -398,9 +294,6 @@ BRANCH_UNITTEST_VARS = {
         'macosx': {},
         'macosx64': {},
         'win32': {},
-        'android': {},
-        'android-armv6': {},
-        'android-noion': {},
     },
 }
 
@@ -430,18 +323,6 @@ UNITTEST_SUITES = {
         # Disabled in bug 630551
         #('mozmill-all', ['mozmill']),
     ],
-    'mobile_unittest_suites': [
-        # The disabled test suites are only disabled until we can get
-        # to 100% green
-        #('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
-        #('mochitest-other', ['mochitest-chrome', 'mochitest-a11y',
-        #                     'mochitest-ipcplugins']),
-        ('mobile-mochitest-browser-chrome', ['mobile-mochitest-browser-chrome']),
-        #('reftest', ['reftest']),
-        #('crashtest', ['crashtest']),
-        #('xpcshell', ['xpcshell']),
-        #('jsreftest', ['jsreftest']),
-    ],
 }
 
 
@@ -466,7 +347,7 @@ def removeSuite(suiteName, suiteList):
 
 
 def addSuite(suiteGroupName, newSuiteName, suiteList):
-    # In UNITTEST_SUITES we have opt, debug and mobile unit tests keys.
+    # In UNITTEST_SUITES we have opt and debug unit tests keys.
     # Each one of these have a list of tuples of test suites.
     #     e.g. suiteGroup = ('reftest', ['reftest])
     newSuiteList = []
@@ -482,69 +363,6 @@ def addSuite(suiteGroupName, newSuiteName, suiteList):
         newSuiteList.append((suiteGroupName, [newSuiteName]))
 
     return newSuiteList
-
-
-def loadDefaultValues(BRANCHES, branch, branchConfig):
-    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
-    BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
-    BRANCHES[branch]['mobile_branch_name'] = branchConfig.get('mobile_branch_name', branch.title())
-    BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
-    BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
-    BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
-    BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
-    BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
-    BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
-    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
-
-
-def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
-    coallesceJobs = branchConfig.get('coallesce_jobs', True)
-    BRANCHES[branch]['suites'] = deepcopy(SUITES)
-    # Check if Talos is enabled, if False, set 0 runs for all suites
-    if branchConfig.get('enable_talos') is False:
-        branchConfig['talos_suites'] = {}
-        for suite in SUITES.keys():
-            branchConfig['talos_suites'][suite] = 0
-
-    # Want to turn on/off a talos suite? Set it in the PROJECT_BRANCHES[branch]['talos_suites']
-    # This is the default and will make all talosConfig.get(key,0) calls
-    # to default to 0 a.k.a. disabled suite
-    talosConfig = {}
-    if branchConfig.get('talos_suites'):
-        for suite, settings in branchConfig['talos_suites'].items():
-            # Normally the setting is just 0 or 1 for talosConfig to enable/disable a test
-            # If there's a list, value[0] is the enabling flag and [1] is a dict of customization
-            if isinstance(settings, list):
-                talosConfig[suite] = settings[0]
-                # append anything new in 'suites' for a talos_suite
-                for key, value in settings[1].items():
-                    if suite in SUITES.keys():
-                        BRANCHES[branch]['suites'][suite][key] += value
-            else:
-                talosConfig[suite] = settings
-
-    for suite in SUITES.keys():
-        if not SUITES[suite]['enable_by_default']:
-            # Suites that are turned off by default
-            BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 0), coallesceJobs) + SUITES[suite]['options']
-        else:
-            # Suites that are turned on by default
-            BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), coallesceJobs) + SUITES[suite]['options']
-
-
-def loadTalosSuites(BRANCHES, SUITES, branch):
-    '''
-    This is very similar to loadCustomTalosSuites and is to deal with branches that are not in project_branches.py
-    but in config.py. Both functions could be unified later on when we do further refactoring.
-    '''
-    coallesceJobs = BRANCHES[branch].get('coallesce_jobs', True)
-    for suite in SUITES.keys():
-        if not SUITES[suite]['enable_by_default']:
-            # Suites that are turned off by default
-            BRANCHES[branch][suite + '_tests'] = (0, coallesceJobs) + SUITES[suite]['options']
-        else:
-            # Suites that are turned on by default
-            BRANCHES[branch][suite + '_tests'] = (1, coallesceJobs) + SUITES[suite]['options']
 
 
 def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
@@ -579,199 +397,6 @@ def nested_haskey(dictionary, *keys):
         else:
             return False
 
-ANDROID_UNITTEST_DICT = {
-    'opt_unittest_suites': [
-        ('mochitest-1', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 1,
-             },
-        )),
-        ('mochitest-2', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 2,
-             },
-        )),
-        ('mochitest-3', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 3,
-             },
-        )),
-        ('mochitest-4', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 4,
-             },
-        )),
-        ('mochitest-5', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 5,
-             },
-        )),
-        ('mochitest-6', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 6,
-             },
-        )),
-        ('mochitest-7', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 7,
-             },
-        )),
-        ('mochitest-8', (
-            {'suite': 'mochitest-plain',
-             'testManifest': 'android.json',
-             'totalChunks': 8,
-             'thisChunk': 8,
-             },
-        )),
-        ('reftest-1', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 1,
-             },
-        )),
-        ('reftest-2', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 2,
-             },
-        )),
-        ('reftest-3', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 3,
-             },
-        )),
-        ('reftest-4', (
-            {'suite': 'reftest',
-             'totalChunks': 4,
-             'thisChunk': 4,
-             },
-        )),
-        # disabled for constant timeouts, bug 728119
-        # ('crashtest-1', (
-        #     {'suite': 'crashtest',
-        #      'totalChunks': 3,
-        #      'thisChunk': 1,
-        #      },
-        # )),
-        ('crashtest-2', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-             },
-        )),
-        ('crashtest-3', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 3,
-             },
-        )),
-        ('jsreftest-1', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 1,
-             },
-        )),
-        ('jsreftest-2', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-             },
-        )),
-        ('jsreftest-3', (
-            {'suite': 'jsreftest',
-             'totalChunks': 3,
-             'thisChunk': 3,
-             },
-        )),
-        ('robocop', (
-            {'suite': 'mochitest-robocop',
-             },
-        )),
-    ],
-    'debug_unittest_suites': [],
-}
-
-ANDROID_NOION_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if not suite[0].startswith('jsreftest'):
-        continue
-    ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
-ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_UNITTEST_DICT)
-
-ANDROID_PLAIN_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
-ANDROID_PLAIN_REFTEST_DICT = {
-    'opt_unittest_suites': [
-        ('plain-reftest-1', (
-            {'suite': 'reftestsmall',
-             'totalChunks': 4,
-             'thisChunk': 1,
-             'extra_args': '--ignore-window-size'
-             },
-        )),
-        ('plain-reftest-2', (
-            {'suite': 'reftestsmall',
-             'totalChunks': 4,
-             'thisChunk': 2,
-             'extra_args': '--ignore-window-size'
-             },
-        )),
-        ('plain-reftest-3', (
-            {'suite': 'reftestsmall',
-             'totalChunks': 4,
-             'thisChunk': 3,
-             'extra_args': '--ignore-window-size'
-             },
-        )),
-        ('plain-reftest-4', (
-            {'suite': 'reftestsmall',
-             'totalChunks': 4,
-             'thisChunk': 4,
-             'extra_args': '--ignore-window-size'
-             },
-        )),
-    ],
-}
-
-
-for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith('reftest'):
-        continue
-    ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
-for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
-    ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-ANDROID_PANDA_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith('reftest') or suite[0].startswith('plain-reftest'):
-        continue
-    ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -790,7 +415,6 @@ PLATFORM_UNITTEST_VARS = {
                 ('crashtest-ipc', ['crashtest-ipc'])
             ],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'mobile_unittest_suites': UNITTEST_SUITES['mobile_unittest_suites'][:],
         },
         'ubuntu32': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + [
@@ -873,40 +497,6 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
             'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
         },
-    },
-    'android': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
-        'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
-    },
-    'android-armv6': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
-    },
-    'android-noion': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
     },
 }
 
@@ -1017,7 +607,6 @@ for k, v in localconfig.PROJECTS.items():
 for branch in BRANCHES.keys():
     BRANCHES[branch]['repo_path'] = branch
     BRANCHES[branch]['branch_name'] = branch.title()
-    BRANCHES[branch]['mobile_branch_name'] = branch.title()
     BRANCHES[branch]['build_branch'] = branch.title()
     BRANCHES[branch]['enable_unittests'] = True
     BRANCHES[branch]['talos_command'] = TALOS_CMD
@@ -1034,23 +623,18 @@ for branch in BRANCHES.keys():
 ######## mozilla-central
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
-BRANCHES['mozilla-central']['mobile_branch_name'] = "Mobile"
-BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 5
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
-BRANCHES['mozilla-release']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 5
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
-BRANCHES['mozilla-beta']['platforms']['linux']['enable_mobile_unittests'] = True
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-aurora
@@ -1100,15 +684,12 @@ BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', 'birch', ):
     for pf in PLATFORMS:
-        if 'android' in pf:
-            continue
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
             # These two mac exceptions are because we have been adding debug jetpack to macosx/leopard-o
             # and opt jetpack to macosx64/leopard. This probably was not correct but that's how it came about
@@ -1123,29 +704,9 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 
-#-------------------------------------------------------------------------
-# MERGE day - Load reftests small for m-c based branches and exclude them for the rest
-#-------------------------------------------------------------------------
-for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
-    BRANCHES[branch]["platforms"]["android"]["panda_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
-    BRANCHES[branch]["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
-#-------------------------------------------------------------------------
-# End Load reftests small for m-c based branches and exclude them for the rest
-#-------------------------------------------------------------------------
-
-
-#exclude android builds from running on non-cedar branches on pandas
-for branch in BRANCHES.keys():
-    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar", "mozilla-central", "try", "mozilla-inbound"):
-        del BRANCHES[branch]['platforms']['android']['panda_android']
-        BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
-
 # Let's load Marionette for the following branches:
 for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services-central', ):
     for pf in PLATFORMS:
-        if 'android' in pf:
-            # this is just for desktop Firefox
-            continue
         config_file = "marionette/prod_config.py"
         if pf.startswith('win'):
             if branch != 'try':
@@ -1192,8 +753,6 @@ for branch in BRANCHES:
     if BRANCHES[branch].get('mozharness_unittests'):
         for pf in PLATFORMS:
             hg_bin = 'hg'
-            if 'android' in pf:
-                continue
             if pf.startswith("win"):
                 config_file = "unittests/win_unittest.py"
             elif pf.startswith("mac"):
@@ -1293,27 +852,6 @@ for branch in set(BRANCHES.keys()) - set(['cedar', 'build-system']):
                             pass
 
 
-#-------------------------------------------------------------------------
-# MERGE day - only enable android-armv6 tests for FF16 onwards
-# Delete whole block when we drop esr10
-#-------------------------------------------------------------------------
-for branch in ['mozilla-esr10']:
-    if 'android-armv6' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-armv6']
-#-------------------------------------------------------------------------
-# End enable android-armv6 tests for FF16 onwards
-#-------------------------------------------------------------------------
-
-# XXX Bug 789373 hack - add android-noion until we have b2g testing
-# Delete all references to android-noion once we have b2g jsreftests not in an emulator.
-for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'
-                      ):
-        if 'android-noion' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['android-noion']
-
-
 if __name__ == "__main__":
     import sys
     import pprint
@@ -1330,7 +868,7 @@ if __name__ == "__main__":
         for l in out.splitlines():
             print '%s: %s' % (k, l)
 
-    for suite in SUITES:
+    for suite in sorted(SUITES):
         out = pprint.pformat(SUITES[suite])
         for l in out.splitlines():
             print '%s: %s' % (suite, l)

@@ -38,6 +38,8 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'slave_platforms': ['snowleopard', 'lion', 'mountainlion'],
             },
+        },
+        'mobile_platforms': {
             'android': {
                 'enable_opt_unittests': False,
                 'enable_debug_unittests': False,
@@ -155,6 +157,8 @@ PROJECT_BRANCHES = {
             'win64': {
                 'nightly_signing_servers': 'nightly-signing',
             },
+        },
+        'mobile_platforms': {
             'android-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
@@ -215,7 +219,8 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     # customizations while booked for bug 687570 - WebRTC project
     'alder': {
-        'platforms': {
+        'platforms': {},
+        'mobile_platforms': {
             'android': {
                 'enable_opt_unittests': False,
                 'enable_debug_unittests': False,
@@ -248,6 +253,8 @@ PROJECT_BRANCHES = {
             'macosx-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+        },
+        'mobile_platforms': {
             'android': {
                 'slave_platforms': ['panda_android'],
             },
@@ -273,6 +280,8 @@ PROJECT_BRANCHES = {
             'macosx-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+        },
+        'mobile_platforms': {
             'android': {
                 'slave_platforms': ['panda_android'],
             },
@@ -290,6 +299,8 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+        },
+        'mobile_platforms': {
             'android-noion': {},
         },
     },
@@ -312,6 +323,8 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'win32-debug': {},
+        },
+        'mobile_platforms': {
             'android': {},
             'android-debug': {},
             'android-armv6': {},

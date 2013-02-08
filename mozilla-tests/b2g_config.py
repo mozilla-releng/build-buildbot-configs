@@ -957,7 +957,7 @@ if __name__ == "__main__":
         for l in out.splitlines():
             print '%s: %s' % (k, l)
 
-    for suite in SUITES:
+    for suite in sorted(SUITES):
         out = pprint.pformat(SUITES[suite])
         for l in out.splitlines():
             print '%s: %s' % (suite, l)
