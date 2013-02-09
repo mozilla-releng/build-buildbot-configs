@@ -26,7 +26,7 @@ BRANCHES = {
     'comm-esr17': {
     },
     'try-comm-central': {
-      'coallesce_jobs': False
+        'coallesce_jobs': False
     },
 }
 
@@ -35,7 +35,7 @@ PLATFORMS = {
     'macosx64': {},
     'win32': {},
     'linux': {},
-    'linux64' : {},
+    'linux64': {},
 }
 
 builder_prefix = "TB "
@@ -90,42 +90,21 @@ for platform, platform_config in PLATFORMS.items():
 MOBILE_PLATFORMS = []
 
 ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-                PLATFORMS['linux64']['slave_platforms'] + \
-                PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx64']['slave_platforms']
+    PLATFORMS['linux64']['slave_platforms'] + \
+    PLATFORMS['win32']['slave_platforms'] + \
+    PLATFORMS['macosx64']['slave_platforms']
 
 WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
-         PLATFORMS['linux64']['slave_platforms'] + \
-         PLATFORMS['win32']['slave_platforms']
+    PLATFORMS['linux64']['slave_platforms'] + \
+    PLATFORMS['win32']['slave_platforms']
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
-ANDROID = []
-
-ANDROID_NATIVE = []
-
-ANDROID_XUL = []
-
-ADDON_TESTER_PLATFORMS = ['win7', 'fedora', 'snowleopard']
-
 SUITES = {}
-
-# these three are for mozilla-1.9.2
-OLD_BRANCH_ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-                PLATFORMS['win32']['slave_platforms'] + \
-                PLATFORMS['macosx']['slave_platforms']
-
-OLD_BRANCH_NO_WIN = PLATFORMS['macosx']['slave_platforms'] + PLATFORMS['linux']['slave_platforms']
-
-OLD_BRANCH_NO_MAC = PLATFORMS['linux']['slave_platforms'] + PLATFORMS['win32']['slave_platforms']
-
-OLD_BRANCH_MAC_ONLY = PLATFORMS['macosx']['slave_platforms']
-
-OLD_BRANCH_ADDON_TESTER_PLATFORMS = ['win7'] + ['fedora'] + ['snowleopard']
 
 BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
@@ -151,159 +130,91 @@ UNITTEST_SUITES = {
     ],
 }
 
-def removeSuite(suiteName, suiteList):
-    '''It removes 'suite' from 'suiteList' and returns it.
-
-    Keyword arguments:
-    suiteName -- it is the name of the suite that we want to remove
-    suiteList -- it is the list of suites from where we want to remove
-                 suiteList is a list of tuples. The tuples is formed
-                 of a string and a list of suites.
-    '''
-    # Let's iterate over each tuple
-    for i, info in enumerate(suiteList):
-        name, suites = info
-        # Let's see if suiteName is on this list of suites
-        if suiteName in suites:
-            suites = suites[:]
-            suites.remove(suiteName)
-            suiteList[i] = (name, suites)
-    return suiteList
-
-def addSuite(suiteGroupName, newSuiteName, suiteList):
-    # In UNITTEST_SUITES we have opt, debug and mobile unit tests keys.
-    # Each one of these have a list of tuples of test suites.
-    #     e.g. suiteGroup = ('reftest', ['reftest])
-    newSuiteList = []
-    added = False
-    for tuple in suiteList:
-        name, suites = tuple
-        if suiteGroupName == name:
-            suites.append(newSuiteName)
-            added = True
-        newSuiteList.append((name, suites))
-
-    if not added:
-        newSuiteList.append((name, suites))
-
-    return newSuiteList
-
-def loadDefaultValues(BRANCHES, branch, branchConfig):
-    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
-    BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
-    BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
-    BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
-    BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
-    BRANCHES[branch]['pgo_strategy'] = None
-
-def loadCustomUnittestSuites(BRANCHES, branch, branchConfig):
-    # If you want a project branch to have a different set of unit tests you can
-    # do the following:
-    #  - add a key called "add_test_suites"
-    #  - add a tuple for each test suite with the following format:
-    #      ('OS_nick', 'platform', 'opt|debug', 'new or existing group', 'suite name')
-    #      e.g. ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'a11y')
-    #
-    # Old way of adding suites but still the same format
-    #    BRANCHES['mozilla-central']['platforms']['win32']['win7']['debug_unittest_suites'] \
-    #        += [('jetpack', ['jetpack'])]
-    #
-    for suiteToAdd in branchConfig.get('add_test_suites', []):
-        type = 'opt_unittest_suites' if suiteToAdd[2] == 'opt' else 'debug_unittest_suites'
-        # 'debug_unittest_suites' or 'opt_unittest_suites' is a list of tuple
-        # addSuite() modifies that list and returns a new one with the added suite
-        BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type] = \
-            addSuite( suiteGroupName=suiteToAdd[3], newSuiteName=suiteToAdd[4],
-                      suiteList=BRANCHES[branch]['platforms'][suiteToAdd[0]][suiteToAdd[1]][type])
-
-ANDROID_XUL_UNITTEST_DICT = {}
-ANDROID_UNITTEST_DICT = {}
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-        'linux': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'unittest-env' : {'DISPLAY': ':0'},
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'fedora': {
-                'opt_unittest_suites' : \
-                    UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
+    'linux': {
+        'product_name': 'thunderbird',
+        'app_name': 'mail',
+        'brand_name': 'Daily',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'fedora': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'linux64': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'unittest-env' : {'DISPLAY': ':0'},
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'fedora64': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
+    },
+    'linux64': {
+        'product_name': 'thunderbird',
+        'app_name': 'mail',
+        'brand_name': 'Daily',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'fedora64': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'win32': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'mochitest_leak_threshold': 484,
-            'crashtest_leak_threshold': 484,
-            'env_name' : 'win32-perf-unittest',
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'xp': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            },
-            'win7': {
-                'opt_unittest_suites' : UNITTEST_SUITES['opt_unittest_suites'][:],
-                'debug_unittest_suites' : UNITTEST_SUITES['debug_unittest_suites'][:],
-            }
+    },
+    'win32': {
+        'product_name': 'thunderbird',
+        'app_name': 'mail',
+        'brand_name': 'Daily',
+        'builds_before_reboot': 1,
+        'mochitest_leak_threshold': 484,
+        'crashtest_leak_threshold': 484,
+        'env_name': 'win32-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'xp': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'macosx': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'leopard-o': {
-                'opt_unittest_suites' : [],
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
+        'win7': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
-        'macosx64': {
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'brand_name': 'Daily',
-            'builds_before_reboot': 1,
-            'enable_opt_unittests': True,
-            'enable_debug_unittests': True,
-            'leopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : [],
-            },
-            'snowleopard': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
-            'lion': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
-            'mountainlion': {
-                'opt_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-                'debug_unittest_suites' : removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-            },
+    },
+    'macosx': {
+        'product_name': 'thunderbird',
+        'app_name': 'mail',
+        'brand_name': 'Daily',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'leopard-o': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
+    },
+    'macosx64': {
+        'product_name': 'thunderbird',
+        'app_name': 'mail',
+        'brand_name': 'Daily',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'leopard': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': [],
+        },
+        'snowleopard': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
+        'lion': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
+        'mountainlion': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
+    },
 }
 
 # Copy project branches into BRANCHES keys
