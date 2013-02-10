@@ -1,13 +1,13 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'aurora'
+branchSuffix               = 'esr17'
 
-sourceRepoRevision         = '030433ea8826'
+sourceRepoRevision         = '48a7e6a5f754'
 mozillaRepoRevision        = 'default'
 
-milestone                  = '18.0'
+milestone                  = '17.0'
 
-version                    = '2.0b1'
+version                    = '1.9.1'
 buildNumber                = 1
 
 oldVersion                 = '1.9'
