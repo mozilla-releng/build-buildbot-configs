@@ -15,7 +15,6 @@ if test -n $oldtopsrcdir; then
 fi
 
 mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
-mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/providers/gdata/universal.mk
 
 ac_add_options --enable-application=mail
 ac_add_options --enable-calendar

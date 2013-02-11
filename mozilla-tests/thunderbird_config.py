@@ -432,27 +432,20 @@ for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta', '
 if __name__ == "__main__":
     import sys
     import pprint
-    from buildbot.process.properties import WithProperties
-
-    class BBPrettyPrinter(pprint.PrettyPrinter):
-        def format(self, object, context, maxlevels, level):
-            if isinstance(object, WithProperties):
-                return pprint.PrettyPrinter.format(self, object.fmtstring, context, maxlevels, level)
-            return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
 
     args = sys.argv[1:]
 
     if len(args) > 0:
-        branches = args
+        items = dict([(b, BRANCHES[b]) for b in args])
     else:
-        branches = BRANCHES.keys()
+        items = dict(BRANCHES.items())
 
-    pp = BBPrettyPrinter()
-    for branch in branches:
-        print branch
-        pp.pprint(BRANCHES[branch])
+    for k, v in sorted(items.iteritems()):
+        out = pprint.pformat(v)
+        for l in out.splitlines():
+            print '%s: %s' % (k, l)
 
-    for suite in SUITES:
-        print suite
-        pp.pprint(SUITES[suite])
-
+    for suite in sorted(SUITES):
+        out = pprint.pformat(SUITES[suite])
+        for l in out.splitlines():
+            print '%s: %s' % (suite, l)

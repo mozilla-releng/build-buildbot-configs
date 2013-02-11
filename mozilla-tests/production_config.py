@@ -7,7 +7,7 @@ SLAVES = {
     'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,27) \
           if x not in [7]]), # bug 655437
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(4,10) + range(11,81) + [82,84]]),
-    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(4,10) + range(11,83) + [84]]),
+    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(4,10) + range(11,58) + range(59,83) + [84]]),
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(4,10) + range(11,90)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
         for x in range(31,371) \
