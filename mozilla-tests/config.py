@@ -628,12 +628,12 @@ BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-release
-BRANCHES['mozilla-release']['release_tests'] = 5
+BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-beta
-BRANCHES['mozilla-beta']['release_tests'] = 5
+BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
@@ -663,22 +663,22 @@ del BRANCHES['mozilla-esr10']['platforms']['macosx64']['mountainlion']
 BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopard', 'snowleopard', 'lion']
 
 ######### mozilla-esr17
-BRANCHES['mozilla-esr17']['release_tests'] = 5
+BRANCHES['mozilla-esr17']['release_tests'] = 1
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
 BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g18
-BRANCHES['mozilla-b2g18']['release_tests'] = 5
+BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g18_v1_0_0
-BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
 BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g18_v1_0_1
-BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 
