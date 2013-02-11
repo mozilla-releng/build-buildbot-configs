@@ -22,6 +22,7 @@ ACTIVE_B2G_BRANCHES = b2g_config.BRANCHES.keys()
 ACTIVE_MOBILE_BRANCHES = mobile_config.BRANCHES.keys()
 ACTIVE_PLATFORMS = dict((platform, None) for platform in PLATFORMS.keys())
 ACTIVE_THUNDERBIRD_PLATFORMS = dict((platform, None) for platform in thunderbird_config.PLATFORMS.keys())
+ACTIVE_B2G_PLATFORMS = dict((platform, None) for platform in b2g_config.PLATFORMS.keys())
 ACTIVE_MOBILE_PLATFORMS = dict((platform, None) for platform in mobile_config.PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
 
