@@ -1,16 +1,16 @@
 ### This needs to be filled in ###
 
-branchSuffix               = 'esr17'
+branchSuffix               = 'beta'
 
-sourceRepoRevision         = '48a7e6a5f754'
+sourceRepoRevision         = 'd2c6e7722663'
 mozillaRepoRevision        = 'default'
 
-milestone                  = '17.0'
+milestone                  = '19.0'
 
-version                    = '1.9.1'
+version                    = '2.1b1'
 buildNumber                = 1
 
-oldVersion                 = '1.9'
+oldVersion                 = '2.0b1'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
