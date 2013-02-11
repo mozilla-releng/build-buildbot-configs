@@ -2,7 +2,7 @@
 
 branchSuffix               = 'beta'
 
-sourceRepoRevision         = 'd2c6e7722663'
+sourceRepoRevision         = 'd01a73f93672'
 mozillaRepoRevision        = 'default'
 
 milestone                  = '19.0'
