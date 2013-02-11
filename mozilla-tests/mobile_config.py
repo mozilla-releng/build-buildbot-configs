@@ -503,13 +503,13 @@ BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 
 ######### mozilla-release
-BRANCHES['mozilla-release']['release_tests'] = 5
+BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_platforms'] = []
 
 ######### mozilla-beta
-BRANCHES['mozilla-beta']['release_tests'] = 5
+BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-beta']['pgo_platforms'] = []
@@ -523,7 +523,7 @@ BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr10']['pgo_platforms'] = []
 BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
-BRANCHES['mozilla-esr10']['release_tests'] = 5
+BRANCHES['mozilla-esr10']['release_tests'] = 1
 BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
 
 ######### mozilla-esr17
@@ -533,19 +533,19 @@ BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr17']['pgo_platforms'] = []
 
 ######### mozilla-b2g18
-BRANCHES['mozilla-b2g18']['release_tests'] = 5
+BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
 
 ######### mozilla-b2g18_v1_0_0
-BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
 BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_0_0']['pgo_platforms'] = []
 
 ######### mozilla-b2g18_v1_0_1
-BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 5
+BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_platforms'] = []
