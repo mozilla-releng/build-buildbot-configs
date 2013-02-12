@@ -47,7 +47,7 @@ OBJDIR = GLOBAL_VARS['objdir']
 SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 builder_prefix = "b2g"
-gaia_repo = 'integration/gaia-nightly'
+gaia_repo = 'integration/gaia-central'
 
 PLATFORM_VARS = {
         'ics_armv7a_gecko': {
