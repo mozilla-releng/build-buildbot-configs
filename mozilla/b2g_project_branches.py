@@ -1,9 +1,6 @@
 # Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
-    'accessibility': {
-        'enable_nightly': True,
-    },
     'build-system': {},
     'devtools':{
         'enable_nightly': True,
