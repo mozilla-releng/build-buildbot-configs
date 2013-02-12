@@ -17,6 +17,12 @@ BRANCHES = {
     'ash': {},
     'cedar': {},
     'fx-team': {},
+    'gaia-master': {
+        'lock_platforms': True,
+        'platforms': {
+             'b2g_panda': {},
+        },
+    },
     'mozilla-b2g18': {},
     'mozilla-b2g18_v1_0_0': {},
     'mozilla-b2g18_v1_0_1': {},
