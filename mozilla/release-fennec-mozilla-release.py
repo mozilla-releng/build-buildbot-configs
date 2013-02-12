@@ -111,7 +111,6 @@ releaseConfig['partnerRepackConfig'] = {
 releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
     'android-armv6': 'mobile/android/config/mozconfigs/android-armv6/release',
-    'android-x86': 'mobile/android/config/mozconfigs/android-x86/release',
 }
 
 # Misc configuration
