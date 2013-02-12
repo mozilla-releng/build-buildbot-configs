@@ -75,6 +75,14 @@ PROJECT_BRANCHES = {
             'otoro': {},
         },
     },
+    'gaia-master': {
+        'repo_path': 'mozilla-central',
+        'poll_repo': 'integration/gaia-central',
+        'lock_platforms': True,
+        'platforms': {
+            'panda': {},
+        }
+    },
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
     'fig': {},

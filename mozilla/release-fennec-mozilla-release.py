@@ -20,11 +20,11 @@ releaseConfig['productName']         = 'fennec'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '18.0'
-releaseConfig['appVersion']          = '18.0'
+releaseConfig['version']             = '18.0.2'
+releaseConfig['appVersion']          = '18.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_18_0'
+releaseConfig['baseTag']             = 'FENNEC_18_0_2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '3a7b66445659',
+        'revision': '912b9ffcbaad',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
@@ -144,6 +144,7 @@ releaseConfig['multilocale_config'] = {
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
         '--pull-locale-source',
         '--add-locales',
+        '--package-multi',
         '--summary',
     ]
 }

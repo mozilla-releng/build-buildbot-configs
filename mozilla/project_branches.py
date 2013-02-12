@@ -333,6 +333,10 @@ PROJECT_BRANCHES = {
         },
     },
     'pine': {},
+    'gaia-master': {
+        'lock_platforms': True,
+        'platforms': {}
+    }
 }
 
 # All is the default
