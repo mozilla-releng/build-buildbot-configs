@@ -80,7 +80,7 @@ PROJECT_BRANCHES = {
     },
     'gaia-master': {
         'repo_path': 'mozilla-central',
-        'poll_repo': 'integration/gaia',
+        'poll_repo': 'integration/gaia-central',
         'lock_platforms': True,
         'platforms': {
             'panda': {},
