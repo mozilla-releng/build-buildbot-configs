@@ -29,7 +29,6 @@ GLOBAL_VARS.update({
         'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
-        'unagi_stable': {},
         'unagi_eng': {},
         'otoro': {},
     },
@@ -685,22 +684,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
-        'unagi_stable': {
-            'mozharness_config': {
-                'script_name': 'scripts/b2g_build.py',
-                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-                # --target name below
-                'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py',
-                               '--gaia-languages-file', 'locales/languages_dev.json',
-                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            },
-            'stage_product': 'b2g',
-            'product_name': 'b2g',
-            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-            'slaves': SLAVES['mock'],
-            'enable_dep': False,
-        },
         'unagi_eng': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
@@ -754,7 +737,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
-        'unagi_stable': {},
         'unagi_eng': {},
         'otoro': {},
     },
@@ -772,7 +754,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
-        'unagi_stable': {},
         'unagi_eng': {},
         'otoro': {},
     },
@@ -790,7 +771,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'panda': {},
         'unagi': {},
-        'unagi_stable': {},
         'unagi_eng': {},
         'otoro': {},
     },
@@ -904,9 +884,6 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
@@ -935,9 +912,6 @@ BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux32_gecko']['enable_checktests'] = False
@@ -966,9 +940,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_stable']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta-stable.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
@@ -1004,22 +975,14 @@ BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--t
 
 # TODO: move the MERGE DAY items below to above the BRANCHES['mozilla-central']
 # chunk above, once the whole v1_0_0/v1_0_1/kill_b2g18 stuff has calmed down
-# MERGE DAY: change the branch whenever stable channel moves somewhere else,
-# see bug 816275
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
-        'unagi_stable' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['unagi_stable']
 
-# MERGE DAY: change the branch whenever stable channel moves somewhere else
-# otoro is only for b2g18 + b2g18_v1_0_0 + b2g18_v1_0_1
+# MERGE DAY: otoro is only for b2g18 + b2g18_v1_0_0 + b2g18_v1_0_1
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1') and \
         'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
-# MERGE DAY: change the branch whenever stable channel moves somewhere else
-# unagi_eng is only for b2g18 + b2g18_v1_0_1
+# MERGE DAY: unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
         'unagi_eng' in BRANCHES[branch]['platforms']:
