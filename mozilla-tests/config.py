@@ -779,7 +779,8 @@ NON_UBUNTU_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                        "mozilla-b2g18_v1_0_0", "mozilla-b2g18_v1_0_1")
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
-UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack"]
+UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
+                       "reftest-ipc"]
 UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette"]
 
 # Remove Ubuntu platform from the release trains,
