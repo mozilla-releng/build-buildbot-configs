@@ -218,6 +218,14 @@ CRASHTEST_ONLY = [
     ),
 ]
 
+MARIONETTE_ONLY = [
+    ('marionette-webapi', {'suite': 'marionette-webapi',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/marionette.py',
+                          },
+    ),
+]
+
 XPCSHELL_ONLY = [
     ('xpcshell', {'suite': 'xpcshell',
                   'use_mozharness': True,
@@ -226,13 +234,7 @@ XPCSHELL_ONLY = [
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + CRASHTEST_ONLY + XPCSHELL_ONLY + [
-    ('marionette-webapi', {'suite': 'marionette-webapi',
-                           'use_mozharness': True,
-                           'script_path': 'scripts/marionette.py',
-                          },
-    ),
-]
+ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + CRASHTEST_ONLY + MARIONETTE_ONLY + XPCSHELL_ONLY
 
 # Default set of unit tests
 UNITTEST_SUITES = {
@@ -423,30 +425,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu32-b2g': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': MOCHITEST_ONLY + MARIONETTE_ONLY + XPCSHELL_ONLY,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
-                'crashtest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '1', '--total-chunks', '3',
-                    ],
-                },
-                'crashtest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '2', '--total-chunks', '3',
-                    ],
-                },
-                'crashtest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'crashtest',
-                        '--this-chunk', '3', '--total-chunks', '3',
-                    ],
-                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py"
@@ -513,76 +494,6 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '9', '--total-chunks', '9',
-                    ],
-                },
-                'reftest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '1', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '2', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '3', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '4', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-5': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '5', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-6': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '6', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-7': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '7', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-8': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '8', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-9': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '9', '--total-chunks', '10',
-                    ],
-                },
-                'reftest-10': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', '10', '--total-chunks', '10',
                     ],
                 },
                 'xpcshell': {
