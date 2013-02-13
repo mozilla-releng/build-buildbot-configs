@@ -8,16 +8,16 @@ releaseConfig['productName']                = 'seamonkey'
 releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
-releaseConfig['version']                    = '2.16b4'
+releaseConfig['version']                    = '2.16b5'
 releaseConfig['appVersion']                 = '2.16'
 releaseConfig['milestone']                  = '19.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_16b4'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_16b5'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.16b3'
+releaseConfig['oldVersion']                 = '2.16b4'
 releaseConfig['oldAppVersion']              = '2.16'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_16b3'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_16b4'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
@@ -26,14 +26,14 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = '95425f5ca8a7'
+releaseConfig['sourceRepoRevision']         = 'c32f17244f9a'
 releaseConfig['relbranchOverride']          = ''
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_19_0b5_BUILD1'
-releaseConfig['mozillaRelbranchOverride']   = 'GECKO190_2013020611_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_19_0b6_BUILD1'
+releaseConfig['mozillaRelbranchOverride']   = 'GECKO190_2013021211_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = '10d78e2e475b'
