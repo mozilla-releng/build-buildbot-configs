@@ -44,8 +44,8 @@ releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
-        'clonePath': 'releases/comm-release',
-        'path': 'users/stage-ffxbld/comm-release',
+        'clonePath': 'releases/comm-esr17',
+        'path': 'users/stage-ffxbld/comm-esr17',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -57,8 +57,8 @@ releaseConfig['sourceRepositories']  = {
     },
     'mozilla': {
         'name': 'mozilla-release',
-        'clonePath': 'releases/mozilla-release',
-        'path': 'users/stage-ffxbld/mozilla-release',
+        'clonePath': 'releases/mozilla-esr17',
+        'path': 'users/stage-ffxbld/mozilla-esr17',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
@@ -77,7 +77,7 @@ releaseConfig['sourceRepositories']  = {
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr17'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',

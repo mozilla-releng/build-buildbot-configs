@@ -42,7 +42,7 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
-        'path': 'releases/comm-release',
+        'path': 'releases/comm-esr17',
         'revision': 'b88ae0d86bec',
         'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
@@ -54,7 +54,7 @@ releaseConfig['sourceRepositories']  = {
     },
     'mozilla': {
         'name': 'mozilla-release',
-        'path': 'releases/mozilla-release',
+        'path': 'releases/mozilla-esr17',
         'revision': '0cdeaa290942',
         'relbranch': 'GECKO1701_2013010313_RELBRANCH',
         'bumpFiles': {
@@ -72,7 +72,7 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr17'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
