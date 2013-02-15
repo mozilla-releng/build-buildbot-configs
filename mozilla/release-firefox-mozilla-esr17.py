@@ -20,30 +20,30 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0.2esr'
-releaseConfig['appVersion']          = '17.0.2'
+releaseConfig['version']             = '17.0.3esr'
+releaseConfig['appVersion']          = '17.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_17_0_2esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_17_0_3esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.1esr': {
-        'appVersion': '17.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_17_0_1esr',
+    '17.0.2esr': {
+        'appVersion': '17.0.2',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_17_0_2esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.2esrpre'
+releaseConfig['nextAppVersion']      = '17.0.3esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '023401f37090',
-        'relbranch': 'GECKO1702_2013010419_RELBRANCH',
+        'revision': 'c597e6510be4',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -102,6 +102,7 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
