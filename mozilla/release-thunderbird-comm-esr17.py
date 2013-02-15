@@ -32,22 +32,30 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.2esr'
-releaseConfig['appVersion']          = '17.0.2'
+releaseConfig['version']             = '17.0.3'
+releaseConfig['appVersion']          = '17.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_2esr'
-releaseConfig['partialUpdates']      = {}  # TODO for 17.0.1esr
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3'
+releaseConfig['partialUpdates']      = {
+
+    '17.0.2': {
+        'appVersion': '17.0.2',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_17_0_2',
+    },
+
+}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.2esrpre'
+releaseConfig['nextAppVersion']      = '17.0.3pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr17',
         'path': 'releases/comm-esr17',
-        'revision': '489d7750fe04',
-        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
+        'revision': '66f7060807f0',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -58,8 +66,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': 'd30f6b14a4f9',
-        'relbranch': 'GECKO1702_2013010417_RELBRANCH',
+        'revision': 'c597e6510be4',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -114,6 +122,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
