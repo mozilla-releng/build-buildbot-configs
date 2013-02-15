@@ -32,22 +32,22 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.3'
+releaseConfig['version']             = '17.0.3esr'
 releaseConfig['appVersion']          = '17.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.2': {
+    '17.0.2esr': {
         'appVersion': '17.0.2',
         'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_17_0_2',
+        'baseTag': 'THUNDERBIRD_17_0_2esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.3pre'
+releaseConfig['nextAppVersion']      = '17.0.3esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
