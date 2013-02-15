@@ -1123,7 +1123,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list
-for b in ('comm-esr10', 'comm-esr17'):
+for b in ('comm-esr10', 'comm-esr17', 'comm-release'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
