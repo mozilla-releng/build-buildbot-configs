@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.2'
-releaseConfig['appVersion']          = '17.0.2'
+releaseConfig['version']             = '17.0.3'
+releaseConfig['appVersion']          = '17.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_2'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3'
 releaseConfig['partialUpdates']      = {
 
-    '17.0': {
-        'appVersion': '17.0',
+    '17.0.2': {
+        'appVersion': '17.0.2',
         'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_17_0',
+        'baseTag': 'THUNDERBIRD_17_0_2',
     },
 
 }
@@ -43,8 +43,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
         'path': 'releases/comm-esr17',
-        'revision': 'b88ae0d86bec',
-        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
+        'revision': '66f7060807f0',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -55,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-esr17',
-        'revision': '0cdeaa290942',
-        'relbranch': 'GECKO1701_2013010313_RELBRANCH',
+        'revision': 'c597e6510be4',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -110,6 +110,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-thunderbird-linux.cfg',
