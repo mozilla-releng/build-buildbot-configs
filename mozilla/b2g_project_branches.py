@@ -80,7 +80,17 @@ PROJECT_BRANCHES = {
         'poll_repo': 'integration/gaia-central',
         'lock_platforms': True,
         'platforms': {
-            'panda': {},
+            'panda': {
+                'mozharness_config': {
+                    'script_name': 'scripts/b2g_build.py',
+                    'extra_args': ['--target', 'panda', '--config', 'b2g/releng.py',
+                                   '--gaia-languages-file', 'locales/languages_dev.json',
+                                   '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                                   '--additional-source-tarballs', 'download-panda.tar.bz2',
+                                   '--checkout-revision', 'default'],
+                    'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+                }
+            }
         }
     },
     # Customizations for windows update service changes (bug 481815)
