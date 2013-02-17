@@ -11,7 +11,7 @@ releaseConfig = {}
 # to enable updates
 #####################################
 
-releaseConfig['skip_updates'] = True
+#releaseConfig['skip_updates'] = True
 
 #####################################
 # END OF HACK ALERT
@@ -47,7 +47,7 @@ releaseConfig['partialUpdates']      = {
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.3esrpre'
+releaseConfig['nextAppVersion']      = '17.0.4esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
