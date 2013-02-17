@@ -125,7 +125,12 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
-releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
+releaseConfig['verifyConfigs']       = {
+    'linux':  'mozEsr17-thunderbird-linux.cfg',
+    'linux64':  'mozEsr17-thunderbird-linux64.cfg',
+    'macosx64': 'mozEsr17-thunderbird-mac64.cfg',
+    'win32':  'mozEsr17-thunderbird-win32.cfg'
+}
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/esr',
     'linux64': 'mail/config/mozconfigs/linux64/esr',
