@@ -905,7 +905,7 @@ BRANCHES['mozilla-b2g18_v1_0_0']['gecko_l10n_root'] = 'https://hg.mozilla.org/re
 # building
 BRANCHES['mozilla-b2g18_v1_0_0']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_0_0']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18_v1_0_0']['start_hour'] = [7]
 BRANCHES['mozilla-b2g18_v1_0_0']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_0']['aus2_base_upload_dir_l10n'] = 'fake'
