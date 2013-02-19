@@ -648,7 +648,7 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
 # Let's load jetpack for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', 'birch', ):
+for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
     for pf in PLATFORMS:
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
             # These two mac exceptions are because we have been adding debug jetpack to macosx/leopard-o
