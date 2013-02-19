@@ -200,6 +200,14 @@ REFTEST_ONLY = [
     ),
 ]
 
+REFTEST_SANITY_ONLY = [
+    ('reftest', {'suite': 'reftest',
+                 'use_mozharness': True,
+                 'script_path': 'scripts/b2g_emulator_unittest.py',
+                },
+    ),
+]
+
 CRASHTEST_ONLY = [
     ('crashtest-1', {'suite': 'crashtest',
                      'use_mozharness': True,
@@ -344,6 +352,13 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '9', '--total-chunks', '9',
+                    ],
+                },
+                'reftest': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                     ],
                 },
                 'reftest-1': {
@@ -643,257 +658,17 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = T
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu32-b2g']
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST_ONLY] + REFTEST_SANITY_ONLY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '1', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-2'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '2', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-3'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '3', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-4'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '4', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-5'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '5', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-6'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '6', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-7'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '7', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-8'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '8', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-9'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '9', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-10'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '10', '--total-chunks', '10',
-    ],
-}
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY + REFTEST_ONLY] + REFTEST_SANITY_ONLY
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '1', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-2'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '2', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-3'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '3', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-4'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '4', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-5'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '5', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-6'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '6', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-7'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '7', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-8'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '8', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-9'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '9', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-10'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '10', '--total-chunks', '10',
-    ],
-}
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY + REFTEST_ONLY] + REFTEST_SANITY_ONLY
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-1'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '1', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-2'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '2', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-3'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '3', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-4'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '4', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-5'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '5', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-6'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '6', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-7'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '7', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-8'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '8', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-9'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '9', '--total-chunks', '10',
-    ],
-}
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['suite_config']['reftest-10'] = {
-    'extra_args': [
-        '--cfg', 'b2g/emulator_automation_config.py',
-        '--test-suite', 'reftest',
-        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-        '--this-chunk', '10', '--total-chunks', '10',
-    ],
-}
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
