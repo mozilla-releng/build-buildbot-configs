@@ -333,6 +333,7 @@ PROJECT_BRANCHES = {
         },
     },
     'pine': {},
+    # gaia-master is b2g only
     'gaia-master': {
         'lock_platforms': True,
         'platforms': {}
