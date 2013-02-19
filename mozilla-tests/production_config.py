@@ -15,7 +15,7 @@ SLAVES = {
             153,156,161,175,176,180,184,185,186,193,197,198,202,203,204,205,222,224,\
             226,241,268,275,289,291,292,301]]), # decommissioned tegras
     'panda_android': dict(
-        [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(22,81) + range(522,874)]
+        [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(22,82) + range(522,874) + range(885,887)]
     ),
     'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522)]),
     'ubuntu32': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
