@@ -29,7 +29,6 @@ BRANCHES = {
     'mozilla-esr17':       {
         'datazilla_url': None,
         'platforms': {
-            'macosx': {},
             'macosx64': {},
             'win32': {},
             'linux': {},
@@ -75,28 +74,14 @@ BRANCHES = {
 
 # Talos
 PLATFORMS = {
-    'macosx': {},
     'macosx64': {},
     'win32': {},
     'linux': {},
     'linux64': {},
 }
 
-# work around path length problem bug 599795
-# leopard-o == leopard-old
-PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
-PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard-o'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
-PLATFORMS['macosx']['stage_product'] = 'firefox'
-PLATFORMS['macosx']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD}
-
-PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'lion', 'mountainlion']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64']['leopard'] = {'name': "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
@@ -140,8 +125,7 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-# Lets be explicit instead of magical.  leopard-o should be a second
-# entry in the SLAVE dict
+# Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
@@ -280,7 +264,6 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'linux': {},
         'linux64': {},
-        'macosx': {},
         'macosx64': {},
         'win32': {},
     },
@@ -411,18 +394,6 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         }
     },
-    'macosx': {
-        'product_name': 'firefox',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'builds_before_reboot': 1,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'leopard-o': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
-        },
-    },
     'macosx64': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -430,10 +401,6 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'leopard': {
-            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-            'debug_unittest_suites': [],
-        },
         'snowleopard': {
             'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
             'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
@@ -619,15 +586,6 @@ BRANCHES['try']['enable_try'] = True
 for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
     for pf in PLATFORMS:
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            # These two mac exceptions are because we have been adding debug jetpack to macosx/leopard-o
-            # and opt jetpack to macosx64/leopard. This probably was not correct but that's how it came about
-            # XXX clean this mess in the next refactoring patch
-            if pf == "macosx" and slave_pf == "leopard-o":
-                BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
-                continue
-            if pf == "macosx64" and slave_pf == "leopard":
-                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-                continue
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
@@ -642,9 +600,6 @@ for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services
                 continue
             config_file = "marionette/windows_config.py"
         for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            if pf == "macosx" and slave_pf in ("leopard-o", "leopard"):
-                # we don't run on OSX 10.5
-                continue
             # Marionette is only enabled on debug builds
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [(
                 'marionette',
@@ -689,8 +644,6 @@ for branch in BRANCHES:
             else:
                 config_file = "unittests/linux_unittest.py"
             for slave_pf in PLATFORMS[pf]['slave_platforms']:
-                if pf == "macosx" and slave_pf == "leopard-o":
-                    continue
                 for testtype in ("opt", "debug"):
                     if not BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype]:
                         continue
@@ -727,18 +680,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
-#-------------------------------------------------------------------------
-# Remove leopard when esr10 goes away
-#-------------------------------------------------------------------------
-for branch in BRANCHES.keys():
-    if 'macosx' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx']
-    if 'macosx64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx64']['leopard']
-        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
-#-------------------------------------------------------------------------
-# End disable leopard tests for FF17 onwards
-#-------------------------------------------------------------------------
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-beta", "mozilla-release", "mozilla-esr17",

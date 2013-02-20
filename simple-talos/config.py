@@ -1,12 +1,4 @@
 platforms = {
-    'leopard-o': {
-        'slaves': ['leopard-o1'],
-        'env': 'mac-perf'
-    },
-    'leopard': {
-        'slaves': ['leopard1'],
-        'env': 'mac-perf'
-    },
     'snowleopard': {
         'slaves': ['snowleopard1'],
         'env': 'mac-perf'
