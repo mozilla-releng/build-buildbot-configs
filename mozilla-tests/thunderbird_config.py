@@ -21,8 +21,6 @@ BRANCHES = {
     },
     'comm-aurora': {
     },
-    'comm-esr10': {
-    },
     'comm-esr17': {
     },
     'try-comm-central': {
@@ -315,10 +313,6 @@ BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
-
-######## comm-esr10
-BRANCHES['comm-esr10']['pgo_strategy'] = None
-BRANCHES['comm-esr10']['repo_path'] = "releases/comm-esr10"
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['pgo_strategy'] = None

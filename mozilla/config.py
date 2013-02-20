@@ -60,7 +60,6 @@ GLOBAL_VARS = {
         'linux64-debug': {},
         'linux64-asan': {},
         'linux64-dbg-asan': {},
-        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
@@ -659,50 +658,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
-        'macosx-debug': {
-            'enable_nightly': False,
-            'enable_xulrunner': False,
-            'enable_leaktests': True,
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'OS X 10.7 32-bit %(branch)s leak test',
-            'mozconfig': 'macosx/%(branch)s/debug',
-            'src_mozconfig': 'browser/config/mozconfigs/macosx32/debug',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'download_symbols': True,
-            'packageTests': True,
-            'build_space': 10,
-            'slaves': SLAVES['macosx64-lion'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'macosx-debug',
-            'enable_shared_checkouts': True,
-            'enable_ccache': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'LC_ALL': 'C',
-                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-            },
-            'enable_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': None,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'mac-dep-signing',
-            'dep_signing_servers': 'mac-dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx32/releng.manifest',
-        },
         'macosx64-debug': {
             'enable_nightly': False,
             'enable_xulrunner': False,
@@ -1115,32 +1070,6 @@ PLATFORM_VARS["macosx64-lion-debug"]["base_name"] = 'OS X 10.7 64-bit %(branch)s
 PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 
-# begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
-WIN32_ENV = {
-    'MOZ_OBJDIR': OBJDIR,
-    'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-    'SYMBOL_SERVER_USER': 'ffxbld',
-    'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-    'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-    'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/ffxbld_dsa",
-    'TINDERBOX_OUTPUT': '1',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    # Source server support, bug 506702
-    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
-    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-    'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
-    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
-}
-WIN32_DEBUG_ENV = {
-    'MOZ_OBJDIR': OBJDIR,
-    'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-    'BINSCOPE': 'C:\Program Files\Microsoft\SDL Binscope\Binscope.exe',
-    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
-}
-# end delete
-
 PROJECTS = {
     'fuzzing': {
         'platforms': ['linux', 'linux64', 'macosx64-lion', 'win32'],
@@ -1231,20 +1160,6 @@ BRANCHES = {
     'mozilla-beta': {
     },
     'mozilla-aurora': {
-    },
-    'mozilla-esr10': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
     },
     'mozilla-esr17': {
         'lock_platforms': True,
@@ -1606,73 +1521,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] =
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
-######## mozilla-esr10
-BRANCHES['mozilla-esr10']['repo_path'] = 'releases/mozilla-esr10'
-BRANCHES['mozilla-esr10']['update_channel'] = 'nightly-esr10'
-BRANCHES['mozilla-esr10']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr10']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-esr10']['start_hour'] = [3]
-BRANCHES['mozilla-esr10']['start_minute'] = [45]
-BRANCHES['mozilla-esr10']['enable_xulrunner'] = False
-BRANCHES['mozilla-esr10']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
-# L10n configuration
-BRANCHES['mozilla-esr10']['enable_l10n'] = False
-BRANCHES['mozilla-esr10']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-esr10']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr10']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
-BRANCHES['mozilla-esr10']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr10']['l10n_tree'] = 'fxesr10'
-BRANCHES['mozilla-esr10']['enable_multi_locale'] = True
-BRANCHES['mozilla-esr10']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr10'
-BRANCHES['mozilla-esr10']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-esr10']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-esr10' % (GLOBAL_VARS['hgurl'])
-# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
-BRANCHES['mozilla-esr10']['enable_nightly'] = True
-BRANCHES['mozilla-esr10']['create_snippet'] = True
-BRANCHES['mozilla-esr10']['create_partial'] = True
-# use mozilla-esr10-test when disabling updates for merges
-BRANCHES['mozilla-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
-BRANCHES['mozilla-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr10'
-BRANCHES['mozilla-esr10']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr10']['blocklist_update_on_closed_tree'] = False
-BRANCHES['mozilla-esr10']['enable_valgrind'] = False
-BRANCHES['mozilla-esr10']['upload_mobile_symbols'] = True
-BRANCHES['mozilla-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-esr10']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['mozilla-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['mozilla-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-BRANCHES['mozilla-esr10']['platforms']['macosx64']['base_name'] = 'OS X 10.6.2 mozilla-esr10'
-BRANCHES['mozilla-esr10']['platforms']['macosx64']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx64']['enable_ccache'] = False
-BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['base_name'] = 'OS X 10.5.2 mozilla-esr10 leak test'
-BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
-BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['base_name'] = 'OS X 10.6.2 mozilla-esr10 leak test'
-BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['mozilla-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
-# mock disabled block start
-BRANCHES['mozilla-esr10']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-esr10']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-esr10']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-esr10']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-esr10']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-esr10']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-esr10']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-esr10']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-esr10']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-esr10']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-esr10']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-esr10']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
-
 ######## mozilla-esr17
 BRANCHES['mozilla-esr17']['repo_path'] = 'releases/mozilla-esr17'
 BRANCHES['mozilla-esr17']['update_channel'] = 'nightly-esr17'
@@ -1884,13 +1732,6 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
-# MERGE day - when FF17 moves into such branch remove it from the list
-# MERGE day - when FF17 moves into mozilla-release (and esr10 is gone) remove the whole block
-for branch in BRANCHES:
-    if branch not in ('mozilla-esr10',) and \
-        'macosx-debug' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx-debug']
-
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
@@ -1993,7 +1834,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list
-for b in ('mozilla-esr10', 'mozilla-esr17'):
+for b in ('mozilla-esr17',):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
@@ -2017,9 +1858,9 @@ for b in BRANCHES:
                 del BRANCHES[b]['platforms'][p]
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
-for b in ['mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr10',
-          'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
-          'mozilla-b2g18_v1_0_1'
+# MERGE DAY - Remove branches as FF21 reaches them
+for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+          'mozilla-b2g18', 'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1'
           ]:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:

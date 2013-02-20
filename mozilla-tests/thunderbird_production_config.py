@@ -18,9 +18,6 @@ BRANCHES = {
     'comm-release': {
         'tinderbox_tree': 'Thunderbird-Release',
     },
-    'comm-esr10': {
-        'tinderbox_tree': 'Thunderbird-Esr10',
-    },
     'comm-esr17': {
         'tinderbox_tree': 'Thunderbird-Esr17',
     },

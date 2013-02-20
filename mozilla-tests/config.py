@@ -26,17 +26,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr10':       {
-        'datazilla_url': None,
-        'platforms': {
-            'macosx': {},
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr17':       {
         'datazilla_url': None,
         'platforms': {
@@ -601,27 +590,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 
-######## mozilla-esr10
-BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
-BRANCHES['mozilla-esr10']['tpn_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['svgr_tests'] = (0, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['other_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['chromez_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['tp_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['svg_tests'] = (1, True, TALOS_TP_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['chrome_tests'] = (1, True, {}, NO_MAC)
-BRANCHES['mozilla-esr10']['chrome_mac_tests'] = (1, True, {}, MAC_ONLY)
-BRANCHES['mozilla-esr10']['nochrome_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['dirtypaint_tests'] = (0, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['dirty_tests'] = (1, True, TALOS_DIRTY_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['dromaeojs_tests'] = (0, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['dromaeo_tests'] = (1, True, {}, ALL_PLATFORMS)
-BRANCHES['mozilla-esr10']['release_tests'] = 5
-BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
-del BRANCHES['mozilla-esr10']['platforms']['macosx64']['mountainlion']
-BRANCHES['mozilla-esr10']['platforms']['macosx64']['slave_platforms'] = ['leopard', 'snowleopard', 'lion']
-
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
@@ -763,20 +731,18 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # Remove leopard when esr10 goes away
 #-------------------------------------------------------------------------
 for branch in BRANCHES.keys():
-    if branch not in ["mozilla-esr10"]:
-        if 'macosx' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['macosx']
-        if 'macosx64' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['macosx64']['leopard']
-            BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
+    if 'macosx' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx']
+    if 'macosx64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['macosx64']['leopard']
+        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
 #-------------------------------------------------------------------------
 # End disable leopard tests for FF17 onwards
 #-------------------------------------------------------------------------
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
-NON_UBUNTU_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-                       "mozilla-esr10", "mozilla-esr17", "mozilla-b2g18",
-                       "mozilla-b2g18_v1_0_0", "mozilla-b2g18_v1_0_1")
+NON_UBUNTU_BRANCHES = ("mozilla-beta", "mozilla-release", "mozilla-esr17",
+                       "mozilla-b2g18", "mozilla-b2g18_v1_0_0", "mozilla-b2g18_v1_0_1")
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",

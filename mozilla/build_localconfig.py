@@ -29,7 +29,6 @@ else:
         'mozilla-beta',
         'mozilla-aurora',
         'mozilla-release',
-        'mozilla-esr10',
         'mozilla-esr17',
         'mozilla-b2g18',
         'mozilla-b2g18_v1_0_0',
@@ -43,7 +42,6 @@ else:
         'comm-beta',
         'comm-aurora',
         'comm-release',
-        'comm-esr10',
         'comm-esr17',
     ]
 if 'limit_b2g_branches' in master_config:
