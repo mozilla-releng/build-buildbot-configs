@@ -269,9 +269,10 @@ BRANCH_UNITTEST_VARS = {
     },
 }
 
-# Default set of unit tests
-UNITTEST_SUITES = {
-    'opt_unittest_suites': [
+# MERGE DAY remove this chunk when Firefox 22 is on all branches.
+# Buildbot-based unit tests.
+BUILDBOT_UNITTEST_SUITES = {
+    'opt': [
         # Turn on chunks for mochitest
         ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
@@ -283,11 +284,63 @@ UNITTEST_SUITES = {
         # Disabled in bug 630551
         #('mozmill-all', ['mozmill']),
     ],
-    'debug_unittest_suites': [
+    'opt_with_ipc': [
         # Turn on chunks for mochitest
         ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
         ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
         ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+        # Disabled in bug 630551
+        #('mozmill-all', ['mozmill']),
+        ('reftest-ipc', ['reftest-ipc']),
+        ('reftest-no-accel', ['opengl-no-accel']),
+        ('crashtest-ipc', ['crashtest-ipc'])
+    ],
+    'opt_with_no-d2d-d3d': [
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+        # Disabled in bug 630551
+        #('mozmill-all', ['mozmill']),
+        ('reftest-no-accel', ['reftest-no-d2d-d3d']),
+    ],
+    'opt_no_a11y': [
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+        # Disabled in bug 630551
+        #('mozmill-all', ['mozmill']),
+    ],
+    'debug': [
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-a11y', 'mochitest-ipcplugins']),
+        ('reftest', ['reftest']),
+        ('crashtest', ['crashtest']),
+        ('xpcshell', ['xpcshell']),
+        ('jsreftest', ['jsreftest']),
+        # Disabled in bug 630551
+        #('mozmill-all', ['mozmill']),
+    ],
+    'debug_no_a11y': [
+        # Turn on chunks for mochitest
+        ('mochitest', dict(suite='mochitest-plain', chunkByDir=4, totalChunks=5)),
+        ('mochitest-browser-chrome', ['mochitest-browser-chrome']),
+        ('mochitest-other', ['mochitest-chrome', 'mochitest-ipcplugins']),
         ('reftest', ['reftest']),
         ('crashtest', ['crashtest']),
         ('xpcshell', ['xpcshell']),
@@ -296,26 +349,123 @@ UNITTEST_SUITES = {
         #('mozmill-all', ['mozmill']),
     ],
 }
+# End MERGE DAY
 
+MOCHITEST_NO_OTHER = [
+    ('mochitest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain1'],
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain2'],
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain3'],
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain4'],
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain5'],
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-browser-chrome', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'browser-chrome'],
+        'script_maxtime': 7200,
+    }),
+]
+MOCHITEST_NO_A11Y = MOCHITEST_NO_OTHER + [('mochitest-other', {
+    'use_mozharness': True,
+    'script_path': 'scripts/desktop_unittest.py',
+    'extra_args': ['--mochitest-suite', 'chrome,plugins'],
+    'script_maxtime': 7200,
+})]
+MOCHITEST = MOCHITEST_NO_OTHER + [('mochitest-other', {
+    'use_mozharness': True,
+    'script_path': 'scripts/desktop_unittest.py',
+    'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
+    'script_maxtime': 7200,
+})]
 
-def removeSuite(suiteName, suiteList):
-    '''It removes 'suite' from 'suiteList' and returns it.
+REFTEST_NO_IPC = [
+    ('reftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest'],
+        'script_maxtime': 7200,
+    }),
+    ('jsreftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'jsreftest'],
+        'script_maxtime': 7200,
+    }),
+    ('crashtest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'crashtest'],
+        'script_maxtime': 7200,
+    }),
+]
+REFTEST_NOACCEL = [
+    ('reftest-no-accel', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-no-accel'],
+        'script_maxtime': 7200,
+    }),
+]
+REFTEST_IPC = REFTEST_NOACCEL[:] + [
+    ('reftest-ipc', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-ipc'],
+        'script_maxtime': 7200,
+    }),
+    ('crashtest-ipc', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'crashtest-ipc'],
+        'script_maxtime': 7200,
+    }),
+]
 
-    Keyword arguments:
-    suiteName -- it is the name of the suite that we want to remove
-    suiteList -- it is the list of suites from where we want to remove
-                 suiteList is a list of tuples. The tuples is formed
-                 of a string and a list of suites.
-    '''
-    # Let's iterate over each tuple
-    for i, info in enumerate(suiteList):
-        name, suites = info
-        # Let's see if suiteName is on this list of suites
-        if suiteName in suites:
-            suites = suites[:]
-            suites.remove(suiteName)
-            suiteList[i] = (name, suites)
-    return suiteList
+XPCSHELL = [
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--xpcshell-suite', 'xpcshell'],
+        'script_maxtime': 7200,
+    }),
+]
+MARIONETTE = [
+    ('marionette', {
+        'use_mozharness': True,
+        'script_path': 'scripts/marionette.py',
+        'download_symbols': False,
+    }),
+]
+
+UNITTEST_SUITES = {
+    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
+    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE,
+}
+UNITTEST_SUITES_NO_A11Y = MOCHITEST_NO_A11Y + REFTEST_NO_IPC + XPCSHELL
 
 
 def nested_haskey(dictionary, *keys):
@@ -341,20 +491,106 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'fedora': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + [
-                ('reftest-ipc', ['reftest-ipc']),
-                ('reftest-no-accel', ['opengl-no-accel']),
-                ('crashtest-ipc', ['crashtest-ipc'])
-            ],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC[:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
         'ubuntu32': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + [
-                ('reftest-ipc', ['reftest-ipc']),
-                ('reftest-no-accel', ['opengl-no-accel']),
-                ('crashtest-ipc', ['crashtest-ipc'])
-            ],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC[:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
     },
     'linux64': {
@@ -368,10 +604,104 @@ PLATFORM_UNITTEST_VARS = {
         'fedora64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
         'ubuntu64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
     },
     'win32': {
@@ -386,12 +716,105 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'xp': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+            },
         },
         'win7': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] +
-            [('reftest-no-accel', ['reftest-no-d2d-d3d'])],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+            },
         }
     },
     'macosx64': {
@@ -402,16 +825,157 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
+            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
         'lion': {
-            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
+            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
         'mountainlion': {
-            'opt_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['opt_unittest_suites'][:]),
-            'debug_unittest_suites': removeSuite('mochitest-a11y', UNITTEST_SUITES['debug_unittest_suites'][:]),
+            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
+            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
         },
     },
 }
@@ -547,40 +1111,146 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_O
 BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
+# MERGE DAY remove the below when Firefox 22 merges in
+BRANCHES['mozilla-release']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-release']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-release']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-release']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-release']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-release']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-release']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-release']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+# End MERGE DAY
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
+# MERGE DAY remove the below when Firefox 22 merges in
+BRANCHES['mozilla-beta']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-beta']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-beta']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-beta']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-beta']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-beta']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-beta']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-beta']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+# End MERGE DAY
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+# MERGE DAY remove the below when Firefox 22 merges in
+BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-aurora']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-aurora']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+# End MERGE DAY
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
 BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr17']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-esr17']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-esr17']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-esr17']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-esr17']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-esr17']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-esr17']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-esr17']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 
 ######### mozilla-b2g18_v1_0_0
 BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
 BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_0']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
+BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
 # Let's load jetpack for the following branches:
 for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
@@ -589,90 +1259,6 @@ for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'i
             BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
             BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
-
-# Let's load Marionette for the following branches:
-for branch in ('mozilla-central', 'mozilla-inbound', 'try', 'fx-team', 'services-central', ):
-    for pf in PLATFORMS:
-        config_file = "marionette/prod_config.py"
-        if pf.startswith('win'):
-            if branch != 'try':
-                # for now, only run windows tests on try because of bug 795513
-                continue
-            config_file = "marionette/windows_config.py"
-        for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            # Marionette is only enabled on debug builds
-            BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [(
-                'marionette',
-                {'suite': 'marionette',
-                 'script_path': 'scripts/marionette.py',
-                 'use_mozharness': True,
-                 'extra_args': [
-                     "--cfg", config_file
-                 ],
-                 'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
-                 'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
-                 })]
-
-### start of mozharness desktop unittests
-mozharness_unittest_suites = [
-    {'suite_name': 'mochitest-1', 'suite_category': 'mochitest', 'sub_categories': ['plain1']},
-    {'suite_name': 'mochitest-2', 'suite_category': 'mochitest', 'sub_categories': ['plain2']},
-    {'suite_name': 'mochitest-3', 'suite_category': 'mochitest', 'sub_categories': ['plain3']},
-    {'suite_name': 'mochitest-4', 'suite_category': 'mochitest', 'sub_categories': ['plain4']},
-    {'suite_name': 'mochitest-5', 'suite_category': 'mochitest', 'sub_categories': ['plain5']},
-    {'suite_name': 'mochitest-browser-chrome', 'suite_category': 'mochitest', 'sub_categories':
-        ['browser-chrome']},
-    {'suite_name': 'mochitest-other', 'suite_category': 'mochitest', 'sub_categories':
-        ['chrome', 'a11y', 'plugins']},
-    {'suite_name': 'reftest', 'suite_category': 'reftest', 'sub_categories': ['reftest']},
-    {'suite_name': 'jsreftest', 'suite_category': 'reftest', 'sub_categories': ['jsreftest']},
-    {'suite_name': 'crashtest', 'suite_category': 'reftest', 'sub_categories': ['crashtest']},
-    {'suite_name': 'reftest-ipc', 'suite_category': 'reftest', 'sub_categories': ['reftest-ipc'], 'platforms': ['linux'], 'test_types': ['opt']},
-    {'suite_name': 'reftest-no-accel', 'suite_category': 'reftest', 'sub_categories': ['reftest-no-accel'],
-     'platforms': ['linux', 'win32'], 'slave_platforms': ['fedora', 'ubuntu32', 'win7'], 'test_types': ['opt']},
-    {'suite_name': 'crashtest-ipc', 'suite_category': 'reftest', 'sub_categories': ['crashtest-ipc'], 'platforms': ['linux'], 'test_types': ['opt']},
-    {'suite_name': 'xpcshell', 'suite_category': 'xpcshell', 'sub_categories': ['xpcshell']},
-]
-for branch in BRANCHES:
-    if BRANCHES[branch].get('mozharness_unittests'):
-        for pf in PLATFORMS:
-            hg_bin = 'hg'
-            if pf.startswith("win"):
-                config_file = "unittests/win_unittest.py"
-            elif pf.startswith("mac"):
-                config_file = "unittests/mac_unittest.py"
-            else:
-                config_file = "unittests/linux_unittest.py"
-            for slave_pf in PLATFORMS[pf]['slave_platforms']:
-                for testtype in ("opt", "debug"):
-                    if not BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype]:
-                        continue
-                    BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] = []
-                    for suite in mozharness_unittest_suites:
-                        if 'platforms' in suite and pf not in suite['platforms']:
-                            continue
-                        if 'test_types' in suite and testtype not in suite['test_types']:
-                            continue
-                        if 'slave_platforms' in suite and slave_pf not in suite['slave_platforms']:
-                            continue
-                        extra_args = ["--cfg", config_file]
-                        for sub_category in suite['sub_categories']:
-                            extra_args += ["--%s-suite" % suite['suite_category'], sub_category]
-                        if BRANCHES[branch]['fetch_symbols'] and BRANCHES[branch]['platforms'][pf][slave_pf].get('download_symbols', True):
-                            if testtype == "debug":
-                                extra_args += ["--download-symbols", "true"]
-                            else:
-                                extra_args += ["--download-symbols", "ondemand"]
-                        BRANCHES[branch]['platforms'][pf][slave_pf]['%s_unittest_suites' % testtype] += [
-                            (suite['suite_name'], {
-                                'use_mozharness': True,
-                                'script_path': 'scripts/desktop_unittest.py',
-                                'extra_args': extra_args,
-                                'reboot_command': PLATFORMS[pf]['mozharness_config']['reboot_command'],
-                                'hg_bin': PLATFORMS[pf]['mozharness_config']['hg_bin'],
-                                'script_maxtime': 7200,
-                            })]
-###################### END OF MOZHARNESS UNITTEST CONFIGS
 
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
@@ -687,8 +1273,9 @@ NON_UBUNTU_BRANCHES = ("mozilla-beta", "mozilla-release", "mozilla-esr17",
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
-                       "reftest-ipc"]
-UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette"]
+                       "reftest-ipc", "xpcshell"]
+UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
+                         "xpcshell"]
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
@@ -716,10 +1303,12 @@ for branch in set(BRANCHES.keys()) - set(['cedar', 'build-system']):
                     if suite[0] not in ubuntu_tests:
                         BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
                     else:
-                        try:
-                            BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(suite)
-                        except KeyError:
-                            pass
+                        for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
+                            try:
+                                if i[0] == suite[0]:
+                                    BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
+                            except KeyError:
+                                pass
 
 
 if __name__ == "__main__":

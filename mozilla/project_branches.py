@@ -213,7 +213,6 @@ PROJECT_BRANCHES = {
         },
     },
     'ash': {
-        'mozharness_unittests': True,
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_tag': 'default',
@@ -241,7 +240,6 @@ PROJECT_BRANCHES = {
         'enabled_products': ['firefox'],
     },
     'cedar': {
-        'mozharness_unittests': True,
         'mozharness_talos': True,
         'mozharness_tag': 'default',
         'lock_platforms': True,
