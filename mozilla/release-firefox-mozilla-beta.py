@@ -27,10 +27,15 @@ releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_20_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '19.0b1': {
+    '19.0b6': {
         'appVersion': '19.0',
-        'buildNumber': 5,
-        'baseTag': 'FIREFOX_19_0b1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_19_0b6',
+    },
+    '19.0b5': {
+        'appVersion': '19.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_19_0b5',
     },
 
 }
