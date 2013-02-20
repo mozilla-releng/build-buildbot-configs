@@ -635,7 +635,7 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['branch_name'] = branch.title()
     BRANCHES[branch]['build_branch'] = branch.title()
     BRANCHES[branch]['enable_unittests'] = True
-    BRANCHES[branch]['fetch_symbols'] = True
+    BRANCHES[branch]['fetch_symbols'] = False
     BRANCHES[branch]['fetch_release_symbols'] = False
     BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = []
