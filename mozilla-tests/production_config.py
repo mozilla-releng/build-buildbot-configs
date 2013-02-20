@@ -23,7 +23,8 @@ SLAVES = {
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 SLAVES['fedora-b2g'] = SLAVES['fedora']
-SLAVES['ubuntu32-b2g'] = SLAVES['ubuntu32']
+# Use "-b2g" suffix to make misc.py generate unique builder names
+SLAVES['ubuntu64-b2g'] = SLAVES['ubuntu64']
 SLAVES['b2g_panda_gaia_central'] = SLAVES['b2g_panda']
 
 TRY_SLAVES = {}
