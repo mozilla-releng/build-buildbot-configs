@@ -21,8 +21,6 @@ BRANCHES = {
     },
     'comm-aurora': {
     },
-    'comm-esr10': {
-    },
     'comm-esr17': {
     },
     'try-comm-central': {
@@ -31,7 +29,6 @@ BRANCHES = {
 }
 
 PLATFORMS = {
-    'macosx': {},
     'macosx64': {},
     'win32': {},
     'linux': {},
@@ -40,18 +37,8 @@ PLATFORMS = {
 
 builder_prefix = "TB "
 
-# work around path length problem bug 599795
-# leopard-o == leopard-old
-PLATFORMS['macosx']['slave_platforms'] = ['leopard-o']
-PLATFORMS['macosx']['env_name'] = 'mac-perf'
-PLATFORMS['macosx']['leopard-o'] = {'name': builder_prefix + "Rev3 MacOSX Leopard 10.5.8"}
-PLATFORMS['macosx']['stage_product'] = 'thunderbird'
-PLATFORMS['macosx']['mozharness_python'] = '/tools/buildbot/bin/python'
-
-PLATFORMS['macosx64']['slave_platforms'] = ['leopard', 'snowleopard',
-                                            'lion', 'mountainlion']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64']['leopard'] = {'name': builder_prefix + "Rev3 MacOSX Leopard 10.5.8"}
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['lion'] = {'name': builder_prefix + "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX Mountain Lion 10.8"}
@@ -77,8 +64,7 @@ PLATFORMS['linux64']['fedora64'] = {'name': builder_prefix + "Rev3 Fedora 12x64"
 PLATFORMS['linux64']['stage_product'] = 'thunderbird'
 PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-# Lets be explicit instead of magical.  leopard-o should be a second
-# entry in the SLAVE dict
+# Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
@@ -112,7 +98,6 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'linux': {},
         'linux64': {},
-        'macosx': {},
         'macosx64': {},
         'win32': {},
     },
@@ -179,18 +164,6 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
     },
-    'macosx': {
-        'product_name': 'thunderbird',
-        'app_name': 'mail',
-        'brand_name': 'Daily',
-        'builds_before_reboot': 1,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'leopard-o': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-        },
-    },
     'macosx64': {
         'product_name': 'thunderbird',
         'app_name': 'mail',
@@ -198,10 +171,6 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'leopard': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': [],
-        },
         'snowleopard': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -316,29 +285,12 @@ BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 
-######## comm-esr10
-BRANCHES['comm-esr10']['pgo_strategy'] = None
-BRANCHES['comm-esr10']['repo_path'] = "releases/comm-esr10"
-
 ######## comm-esr17
 BRANCHES['comm-esr17']['pgo_strategy'] = None
 BRANCHES['comm-esr17']['repo_path'] = "releases/comm-esr17"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
-
-#-------------------------------------------------------------------------
-# MERGE day - disable leopard tests for TB17 onwards
-#-------------------------------------------------------------------------
-for branch in ['comm-central', 'try-comm-central', 'comm-aurora', 'comm-beta', 'comm-release', 'comm-esr17']:
-    if 'macosx' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx']
-    if 'macosx64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['macosx64']['leopard']
-        BRANCHES[branch]['platforms']['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
-#-------------------------------------------------------------------------
-# End disable leopard tests for TB17 onwards
-#-------------------------------------------------------------------------
 
 if __name__ == "__main__":
     import sys

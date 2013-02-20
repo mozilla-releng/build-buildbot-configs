@@ -4,8 +4,6 @@ SLAVES = {
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,101) \
           if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,17) + range(18,105)]),
-    'leopard': dict([("talos-r3-leopard-%03i" % x, {}) for x in range(3,10) + range(11,27) \
-          if x not in [7]]), # bug 655437
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(4,10) + range(11,81) + [82,84]]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(4,10) + range(11,58) + range(59,83) + [84]]),
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(4,10) + range(11,90)]),
@@ -22,7 +20,6 @@ SLAVES = {
     'ubuntu64': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
 }
 
-SLAVES['leopard-o'] = SLAVES['leopard']
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 SLAVES['fedora-b2g'] = SLAVES['fedora']
@@ -55,10 +52,6 @@ BRANCHES = {
     'mozilla-release': {
         'tinderbox_tree': 'Mozilla-Release',
         'mobile_tinderbox_tree': 'Mozilla-Release',
-    },
-    'mozilla-esr10': {
-        'tinderbox_tree': 'Mozilla-Esr10',
-        'mobile_tinderbox_tree': 'Mozilla-Esr10',
     },
     'mozilla-esr17': {
         'tinderbox_tree': 'Mozilla-Esr17',

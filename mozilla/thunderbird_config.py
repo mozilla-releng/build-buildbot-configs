@@ -44,7 +44,6 @@ GLOBAL_VARS.update({
         'macosx64': {},
         'linux-debug': {},
         'linux64-debug': {},
-        'macosx-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
     },
@@ -489,44 +488,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ],
         },
-        'macosx-debug': {
-            'enable_nightly': False,
-            'enable_leaktests': True,
-            'product_name': 'thunderbird',
-            'app_name': 'mail',
-            'base_name': builder_prefix + 'OS X 10.7 32-bit %(branch)s leak test',
-            'mozconfig': 'macosx/%(branch)s/debug',
-            'run_alive_tests': False,
-            'src_mozconfig': 'mail/config/mozconfigs/macosx32/debug',
-            'profiled_build': False,
-            'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
-            'download_symbols': True,
-            'packageTests': True,
-            'build_space': 10,
-            'slaves': SLAVES['macosx64-lion'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'thunderbird',
-            'stage_platform': 'macosx-debug',
-            'enable_shared_checkouts': True,
-            'enable_ccache': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'LC_ALL': 'C',
-                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-            },
-            'enable_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': None,
-            'nightly_signing_servers': 'mac-dep-signing',
-            'dep_signing_servers': 'mac-dep-signing',
-            'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx32/releng.manifest',
-        },
         'macosx64-debug': {
             'enable_nightly': False,
             'enable_leaktests': False,
@@ -612,20 +573,6 @@ BRANCHES = {
     },
     'comm-release': {
     },
-    'comm-esr10': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'comm-esr17': {
         'lock_platforms': True,
         'platforms': {
@@ -692,31 +639,6 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
-
-# begin delete WIN32_ENV and WIN32_DEBUG_ENV for esr10 EOL
-WIN32_ENV = {
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': thunderbird_localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'tbirdbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/cltbld/.ssh/tbirdbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                # Source server support, bug 506702
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
-}
-
-WIN32_DEBUG_ENV = {
-                'MOZ_OBJDIR': OBJDIR,
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                'PATH': "${MOZILLABUILD}nsis-2.46u;${PATH}",
-}
-# end delete
 
 ######## comm-central
 # This is a path, relative to HGURL, where the repository is located
@@ -817,72 +739,6 @@ del BRANCHES['comm-release']['platforms']['linux']['env']['PATH']
 del BRANCHES['comm-release']['platforms']['linux64']['env']['PATH']
 del BRANCHES['comm-release']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['comm-release']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
-
-######## comm-esr10
-BRANCHES['comm-esr10']['repo_path'] = 'releases/comm-esr10'
-BRANCHES['comm-esr10']['update_channel'] = 'nightly-esr10'
-BRANCHES['comm-esr10']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr10']['enable_weekly_bundle'] = True
-BRANCHES['comm-esr10']['start_hour'] = [3]
-BRANCHES['comm-esr10']['start_minute'] = [45]
-BRANCHES['comm-esr10']['enable_xulrunner'] = False
-BRANCHES['comm-esr10']['enable_mac_a11y'] = True
-# L10n configuration
-BRANCHES['comm-esr10']['enable_l10n'] = False
-BRANCHES['comm-esr10']['enable_l10n_onchange'] = False
-BRANCHES['comm-esr10']['l10nNightlyUpdate'] = False
-BRANCHES['comm-esr10']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                            'macosx64']
-BRANCHES['comm-esr10']['l10nDatedDirs'] = True
-BRANCHES['comm-esr10']['l10n_tree'] = 'tbesr10'
-BRANCHES['comm-esr10']['enable_multi_locale'] = True
-BRANCHES['comm-esr10']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr10'
-BRANCHES['comm-esr10']['allLocalesFile'] = 'mail/locales/all-locales'
-BRANCHES['comm-esr10']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr10' % (GLOBAL_VARS['hgurl'])
-# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
-BRANCHES['comm-esr10']['enable_nightly'] = True
-BRANCHES['comm-esr10']['create_snippet'] = True
-BRANCHES['comm-esr10']['create_partial'] = True
-BRANCHES['comm-esr10']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr10'
-BRANCHES['comm-esr10']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr10'
-BRANCHES['comm-esr10']['enable_blocklist_update'] = False
-BRANCHES['comm-esr10']['blocklist_update_on_closed_tree'] = False
-BRANCHES['comm-esr10']['enable_valgrind'] = False
-
-BRANCHES['comm-esr10']['platforms']['win32']['slaves'] = SLAVES['win32']
-BRANCHES['comm-esr10']['platforms']['win32']['env'] = WIN32_ENV
-BRANCHES['comm-esr10']['platforms']['win32-debug']['slaves'] = SLAVES['win32']
-BRANCHES['comm-esr10']['platforms']['win32-debug']['env'] = WIN32_DEBUG_ENV
-
-BRANCHES['comm-esr10']['platforms']['macosx64']['base_name'] = builder_prefix + 'OS X 10.6.2 comm-esr10'
-BRANCHES['comm-esr10']['platforms']['macosx64']['slaves'] = SLAVES['macosx64']
-BRANCHES['comm-esr10']['platforms']['macosx64']['enable_ccache'] = False
-BRANCHES['comm-esr10']['platforms']['macosx-debug']['base_name'] = builder_prefix + 'OS X 10.5.2 comm-esr10 leak test'
-BRANCHES['comm-esr10']['platforms']['macosx-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['comm-esr10']['platforms']['macosx-debug']['enable_ccache'] = False
-BRANCHES['comm-esr10']['platforms']['macosx64-debug']['base_name'] = builder_prefix + 'OS X 10.6.2 comm-esr10 leak test'
-BRANCHES['comm-esr10']['platforms']['macosx64-debug']['slaves'] = SLAVES['macosx64']
-BRANCHES['comm-esr10']['platforms']['macosx64-debug']['enable_ccache'] = False
-# mock disabled block start
-BRANCHES['comm-esr10']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-esr10']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-esr10']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['comm-esr10']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['comm-esr10']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr10']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr10']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr10']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr10']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr10']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr10']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-BRANCHES['comm-esr10']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-del BRANCHES['comm-esr10']['platforms']['linux']['env']['PATH']
-del BRANCHES['comm-esr10']['platforms']['linux64']['env']['PATH']
-del BRANCHES['comm-esr10']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['comm-esr10']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 
 ######## comm-esr17
@@ -1074,7 +930,6 @@ BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['ma
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try-comm-central']['platforms']['macosx-debug']['slaves'] = TRY_SLAVES['macosx64']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
@@ -1085,12 +940,6 @@ BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-
-# MERGE day - "macosx-debug" dies when esr10 is gone.
-# This block can be removed at that time.
-for branch in BRANCHES:
-    if branch not in ('comm-release', 'comm-esr10', 'comm-esr17'):
-        del BRANCHES[branch]['platforms']['macosx-debug']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
@@ -1123,7 +972,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list
-for b in ('comm-esr10', 'comm-esr17', 'comm-release'):
+for b in ('comm-esr17', 'comm-release'):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
@@ -1131,7 +980,8 @@ for b in ('comm-esr10', 'comm-esr17', 'comm-release'):
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
-for b in ['comm-aurora', 'comm-beta', 'comm-release', 'comm-esr10', 'comm-esr17']:
+# MERGE DAY - when FF21 reaches them remove them from this list
+for b in ['comm-beta', 'comm-release', 'comm-esr17']:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \

@@ -40,11 +40,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr10':       {
-        'datazilla_url': None,
-        'platforms': {},
-        'lock_platforms': True,
-    },
     'mozilla-esr17':       {
         'datazilla_url': None,
         'platforms': {},
@@ -104,8 +99,7 @@ PLATFORMS['android-noion']['stage_product'] = 'mobile'
 PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 
-# Lets be explicit instead of magical.  leopard-o should be a second
-# entry in the SLAVE dict
+# Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
@@ -518,13 +512,6 @@ BRANCHES['mozilla-beta']['pgo_platforms'] = []
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-
-######## mozilla-esr10
-BRANCHES['mozilla-esr10']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr10']['pgo_platforms'] = []
-BRANCHES['mozilla-esr10']['talos_from_source_code'] = False
-BRANCHES['mozilla-esr10']['release_tests'] = 1
-BRANCHES['mozilla-esr10']['repo_path'] = "releases/mozilla-esr10"
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 5

@@ -4,8 +4,6 @@ SlavePasswords = {
     "fedora": "pass",
     "fedora64": "pass",
     "tiger": "pass",
-    "leopard": "pass",
-    "leopard-o": "pass",
     "snowleopard": "pass",
     "lion": "pass",
     "mountainlion": "pass",

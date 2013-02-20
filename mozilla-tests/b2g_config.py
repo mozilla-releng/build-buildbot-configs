@@ -78,8 +78,7 @@ PLATFORMS['b2g_panda_gaia_central']['mozharness_config'] = {
     'reboot_command': None,
 }
 
-# Lets be explicit instead of magical.  leopard-o should be a second
-# entry in the SLAVE dict
+# Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
