@@ -1,5 +1,5 @@
 SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,18) + range(19,59) + range(60,87)]),
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(3,10) + range(11,18) + range(19,59) + range(60,103)]),
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (3,10) + range(11,35) + range(36,72)]),
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(4,10) + range(11,101) \
           if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
@@ -15,7 +15,7 @@ SLAVES = {
     'panda_android': dict(
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(22,33) + range(34,45) + range(46,82) + range(522,874) + range(885,887)]
     ),
-    'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522)]),
+    'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522) + range(33,34) + range(45,46)]),
     'ubuntu32': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
     'ubuntu64': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
 }
@@ -61,10 +61,6 @@ BRANCHES = {
     'mozilla-b2g18': {
         'tinderbox_tree': 'Mozilla-B2g18',
         'mobile_tinderbox_tree': 'Mozilla-B2g18',
-    },
-    'mozilla-b2g18_v1_0_0': {
-        'tinderbox_tree': 'Mozilla-B2g18_v1_0_0',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18_v1_0_0',
     },
     'mozilla-b2g18_v1_0_1': {
         'tinderbox_tree': 'Mozilla-B2g18_v1_0_1',

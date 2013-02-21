@@ -52,13 +52,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g18_v1_0_0': {
-        'datazilla_url': None,
-        'platforms': {
-            'android-noion': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g18_v1_0_1': {
         'datazilla_url': None,
         'platforms': {
@@ -525,12 +518,6 @@ BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
 
-######### mozilla-b2g18_v1_0_0
-BRANCHES['mozilla-b2g18_v1_0_0']['release_tests'] = 1
-BRANCHES['mozilla-b2g18_v1_0_0']['repo_path'] = "releases/mozilla-b2g18_v1_0_0"
-BRANCHES['mozilla-b2g18_v1_0_0']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18_v1_0_0']['pgo_platforms'] = []
-
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
@@ -572,7 +559,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1', 'try'
+                      'mozilla-b2g18_v1_0_1', 'try'
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
