@@ -462,7 +462,7 @@ PLATFORM_VARS = {
             'enable_post_linker_size': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
-            'l10n_slaves': SLAVES['win64'],
+            'l10n_slaves': SLAVES['win32'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32',
