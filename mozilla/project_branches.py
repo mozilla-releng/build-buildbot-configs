@@ -329,9 +329,8 @@ PROJECT_BRANCHES = {
         },
     },
     'pine': {},
-    # gaia-master is b2g only; no desktop platforms are needed
+    # gaia-master is b2g only
     'gaia-master': {
-        'poll_repo': 'integration/gaia-central',
         'lock_platforms': True,
         'platforms': {}
     }
