@@ -340,7 +340,7 @@ BUILDBOT_UNITTEST_SUITES = {
 }
 # End MERGE DAY
 
-MOCHITEST_NO_OTHER = [
+MOCHITEST = [
     ('mochitest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
@@ -377,19 +377,13 @@ MOCHITEST_NO_OTHER = [
         'extra_args': ['--mochitest-suite', 'browser-chrome'],
         'script_maxtime': 7200,
     }),
+    ('mochitest-other', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
+        'script_maxtime': 7200,
+    }),
 ]
-MOCHITEST_NO_A11Y = MOCHITEST_NO_OTHER + [('mochitest-other', {
-    'use_mozharness': True,
-    'script_path': 'scripts/desktop_unittest.py',
-    'extra_args': ['--mochitest-suite', 'chrome,plugins'],
-    'script_maxtime': 7200,
-})]
-MOCHITEST = MOCHITEST_NO_OTHER + [('mochitest-other', {
-    'use_mozharness': True,
-    'script_path': 'scripts/desktop_unittest.py',
-    'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
-    'script_maxtime': 7200,
-})]
 
 REFTEST_NO_IPC = [
     ('reftest', {
@@ -454,7 +448,6 @@ UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
     'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE,
 }
-UNITTEST_SUITES_NO_A11Y = MOCHITEST_NO_A11Y + REFTEST_NO_IPC + XPCSHELL
 
 
 def nested_haskey(dictionary, *keys):
@@ -814,8 +807,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -865,8 +858,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'lion': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -916,8 +909,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'mountainlion': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
