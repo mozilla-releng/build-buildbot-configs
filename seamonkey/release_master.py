@@ -287,8 +287,6 @@ for platform in releaseConfig['enUSPlatforms']:
         inspectorRepoPath=releaseConfig['inspectorRepoPath'],
         venkmanRepoPath=releaseConfig['venkmanRepoPath'],
         chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
-        # Disable cvsroot on comm-central/comm-2.0 builds
-        #cvsroot=releaseConfig['cvsroot'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         configRepoPath=branchConfig['config_repo_path'],
         configSubDir=branchConfig['config_subdir'],
@@ -343,8 +341,6 @@ for platform in releaseConfig['enUSPlatforms']:
             inspectorRepoPath=releaseConfig['inspectorRepoPath'],
             venkmanRepoPath=releaseConfig['venkmanRepoPath'],
             chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
-            # Disable cvsroot on comm-central/comm-2.0 builds
-            #cvsroot=cvsroot,
             l10nRepoPath=releaseConfig['l10nRepoPath'],
             mergeLocales=releaseConfig['mergeLocales'],
             stageServer=branchConfig['stage_server'],
