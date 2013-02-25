@@ -340,7 +340,7 @@ BUILDBOT_UNITTEST_SUITES = {
 }
 # End MERGE DAY
 
-MOCHITEST_NO_OTHER = [
+MOCHITEST = [
     ('mochitest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
@@ -377,19 +377,13 @@ MOCHITEST_NO_OTHER = [
         'extra_args': ['--mochitest-suite', 'browser-chrome'],
         'script_maxtime': 7200,
     }),
+    ('mochitest-other', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
+        'script_maxtime': 7200,
+    }),
 ]
-MOCHITEST_NO_A11Y = MOCHITEST_NO_OTHER + [('mochitest-other', {
-    'use_mozharness': True,
-    'script_path': 'scripts/desktop_unittest.py',
-    'extra_args': ['--mochitest-suite', 'chrome,plugins'],
-    'script_maxtime': 7200,
-})]
-MOCHITEST = MOCHITEST_NO_OTHER + [('mochitest-other', {
-    'use_mozharness': True,
-    'script_path': 'scripts/desktop_unittest.py',
-    'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
-    'script_maxtime': 7200,
-})]
 
 REFTEST_NO_IPC = [
     ('reftest', {
@@ -454,7 +448,6 @@ UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
     'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE,
 }
-UNITTEST_SUITES_NO_A11Y = MOCHITEST_NO_A11Y + REFTEST_NO_IPC + XPCSHELL
 
 
 def nested_haskey(dictionary, *keys):
@@ -814,8 +807,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -865,8 +858,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'lion': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -916,8 +909,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'mountainlion': {
-            'opt_unittest_suites': UNITTEST_SUITES_NO_A11Y[:],
-            'debug_unittest_suites': UNITTEST_SUITES_NO_A11Y + MARIONETTE,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1182,38 +1175,38 @@ BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
-BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
 BRANCHES['mozilla-b2g18']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
 BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
@@ -1238,8 +1231,9 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
-NON_UBUNTU_BRANCHES = ("mozilla-beta", "mozilla-release", "mozilla-esr17",
-                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
+                       "mozilla-esr17", "mozilla-b2g18",
+                       "mozilla-b2g18_v1_0_1")
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
@@ -1250,7 +1244,7 @@ UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
 # don't touch cedar
-for branch in set(BRANCHES.keys()) - set(['cedar', 'build-system']):
+for branch in set(BRANCHES.keys()) - set(['cedar']):
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:

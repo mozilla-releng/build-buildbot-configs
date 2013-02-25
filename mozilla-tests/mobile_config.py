@@ -293,8 +293,6 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
         continue
     ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
-ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_UNITTEST_DICT)
-
 ANDROID_PLAIN_UNITTEST_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -341,6 +339,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
 
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
 ANDROID_PANDA_UNITTEST_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -349,6 +348,8 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
     if suite[0].startswith('reftest') or suite[0].startswith('plain-reftest'):
         continue
     ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
+ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -529,18 +530,6 @@ BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
-
-
-#-------------------------------------------------------------------------
-# MERGE day - Load reftests small for m-c based branches and exclude them for the rest
-#-------------------------------------------------------------------------
-for branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
-    BRANCHES[branch]["platforms"]["android"]["panda_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
-    BRANCHES[branch]["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(ANDROID_UNITTEST_DICT["opt_unittest_suites"])
-#-------------------------------------------------------------------------
-# End Load reftests small for m-c based branches and exclude them for the rest
-#-------------------------------------------------------------------------
-
 
 #exclude android builds from running on non-cedar branches on pandas
 for branch in BRANCHES.keys():
