@@ -1243,7 +1243,7 @@ UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
 # don't touch cedar
-for branch in set(BRANCHES.keys()) - set(['cedar', 'build-system']):
+for branch in set(BRANCHES.keys()) - set(['cedar']):
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:
