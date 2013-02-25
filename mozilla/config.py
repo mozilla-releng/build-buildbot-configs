@@ -1543,6 +1543,10 @@ BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].remove('gcc45_0
 BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].remove('gcc45_0moz3')
 BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].append('gcc45_0moz4')
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
