@@ -65,3 +65,15 @@ def loadTalosSuites(BRANCHES, SUITES, branch):
         else:
             # Suites that are turned on by default
             BRANCHES[branch][suite + '_tests'] = (1, coallesceJobs) + SUITES[suite]['options']
+
+
+def nested_haskey(dictionary, *keys):
+    if len(keys) == 1:
+        return keys[0] in dictionary
+    else:
+        #recurse
+        key, keys = keys[0], keys[1:]
+        if key in dictionary:
+            return nested_haskey(dictionary[key], *keys)
+        else:
+            return False

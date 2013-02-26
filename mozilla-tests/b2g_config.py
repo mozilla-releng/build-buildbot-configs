@@ -5,6 +5,9 @@ from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import b2g_localconfig
 reload(b2g_localconfig)
+import config_common
+reload(config_common)
+from config_common import nested_haskey
 
 from buildbot.steps.shell import WithProperties
 
@@ -98,7 +101,7 @@ BRANCH_UNITTEST_VARS = {
 
 SUITES = {}
 
-MOCHITEST_ONLY = [
+MOCHITEST = [
     ('mochitest-1', {'suite': 'mochitest-plain',
                      'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -145,7 +148,7 @@ MOCHITEST_ONLY = [
                     },
     ),
 ]
-REFTEST_ONLY = [
+REFTEST = [
     ('reftest-1', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -198,7 +201,7 @@ REFTEST_ONLY = [
     ),
 ]
 
-REFTEST_SANITY_ONLY = [
+REFTEST_SANITY = [
     ('reftest', {'suite': 'reftest',
                  'use_mozharness': True,
                  'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -206,7 +209,7 @@ REFTEST_SANITY_ONLY = [
     ),
 ]
 
-CRASHTEST_ONLY = [
+CRASHTEST = [
     ('crashtest-1', {'suite': 'crashtest',
                      'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -224,7 +227,7 @@ CRASHTEST_ONLY = [
     ),
 ]
 
-MARIONETTE_ONLY = [
+MARIONETTE = [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'use_mozharness': True,
                            'script_path': 'scripts/marionette.py',
@@ -232,7 +235,7 @@ MARIONETTE_ONLY = [
     ),
 ]
 
-XPCSHELL_ONLY = [
+XPCSHELL = [
     ('xpcshell', {'suite': 'xpcshell',
                   'use_mozharness': True,
                   'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -240,7 +243,7 @@ XPCSHELL_ONLY = [
     ),
 ]
 
-ALL_UNITTESTS = MOCHITEST_ONLY + REFTEST_ONLY + CRASHTEST_ONLY + MARIONETTE_ONLY + XPCSHELL_ONLY
+ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 
 # Default set of unit tests
 UNITTEST_SUITES = {
@@ -438,8 +441,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64-b2g': {
-            'opt_unittest_suites': MOCHITEST_ONLY + MARIONETTE_ONLY + XPCSHELL_ONLY,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'opt_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
+            'debug_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -651,17 +654,16 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['ubuntu64-b2g']['debug_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY + REFTEST_ONLY]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64-b2g']
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST_ONLY] + REFTEST_SANITY_ONLY
-BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
+BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
+BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST_ONLY + REFTEST_ONLY] + REFTEST_SANITY_ONLY
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST_ONLY + XPCSHELL_ONLY
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in CRASHTEST + REFTEST] + REFTEST_SANITY
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
@@ -673,15 +675,32 @@ BRANCHES['try']['enable_try'] = True
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms']:
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
-            BRANCHES[branch]['platforms'][platform]['slave_platforms'] = PLATFORMS[platform]['slave_platforms']
+            BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
 
-# Disable ubuntu on non cedar branches
+# MERGE DAY NOTE: remove v22 based branches from the list below
+NON_UBUNTU_BRANCHES = ("mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+
+# use either Fedora or Ubuntu for other branches,
+# don't touch cedar
 for branch in set(BRANCHES.keys()) - set(['cedar']):
-    for platform in BRANCHES[branch]['platforms']:
-        if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
-            BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64-b2g')
-        if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]:
-            del BRANCHES[branch]['platforms'][platform]['ubuntu64-b2g']
+    if branch in NON_UBUNTU_BRANCHES:
+        # Remove Ubuntu completely
+        for platform in BRANCHES[branch]['platforms']:
+            if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
+                BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64-b2g')
+            if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]:
+                del BRANCHES[branch]['platforms'][platform]['ubuntu64-b2g']
+        continue
+
+    for suite_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+        if nested_haskey(BRANCHES[branch]['platforms'], 'ics_armv7a_gecko',
+                         'ubuntu64-b2g', suite_type) and \
+           nested_haskey(BRANCHES[branch]['platforms'], 'ics_armv7a_gecko',
+                         'fedora-b2g', suite_type):
+            # Don't run tests on Fedora if they listed in Ubuntu
+            for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64-b2g'][suite_type]:
+                BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type] = \
+                    [s for s in deepcopy(BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type]) if s[0] != suite[0]]
 
 
 if __name__ == "__main__":

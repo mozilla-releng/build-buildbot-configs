@@ -2,7 +2,8 @@ from copy import deepcopy
 
 import config_common
 reload(config_common)
-from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, loadTalosSuites
+from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
+    loadTalosSuites, nested_haskey
 
 import project_branches
 reload(project_branches)
@@ -449,17 +450,6 @@ UNITTEST_SUITES = {
     'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE,
 }
 
-
-def nested_haskey(dictionary, *keys):
-    if len(keys) == 1:
-        return keys[0] in dictionary
-    else:
-        #recurse
-        key, keys = keys[0], keys[1:]
-        if key in dictionary:
-            return nested_haskey(dictionary[key], *keys)
-        else:
-            return False
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
