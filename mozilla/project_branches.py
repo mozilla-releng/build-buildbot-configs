@@ -40,11 +40,9 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
     },
-    # Turning off graphics - bug 649507
-    #'graphics':{
-    #    'enable_unittests': False,
-    #    'enable_talos': False,
-    #},
+    'graphics':{
+        'enable_talos': False,
+    },
     'ionmonkey': {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': True,
