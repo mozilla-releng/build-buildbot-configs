@@ -11,8 +11,7 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/fx-team',
         'enable_nightly': True,
     },
-    # Turning off graphics - bug 649507
-    #'graphics': {},
+    'graphics': {},
     'ionmonkey': {
         'enable_nightly': True
     },
