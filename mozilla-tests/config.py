@@ -82,10 +82,11 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
+PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
+PLATFORMS['win32']['win8'] = {'name': "Rev3 WINNT 6.2"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -219,6 +220,11 @@ SUITES = {
     'tpn': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
+    },
+    'tp5o': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
     },
     'other': {
@@ -414,7 +420,7 @@ REFTEST_NOACCEL = [
         'script_maxtime': 7200,
     }),
 ]
-REFTEST_IPC = REFTEST_NOACCEL[:] + [
+REFTEST_IPC = [
     ('reftest-ipc', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
@@ -463,7 +469,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'fedora': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC[:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -514,7 +520,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu32': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC[:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -687,7 +693,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'xp': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
@@ -738,6 +744,57 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL,
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+            },
+        },
+        'win8': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
@@ -797,7 +854,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -848,7 +905,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'lion': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -899,7 +956,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'mountainlion': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -1078,6 +1135,7 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-central']['tp5o_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -1200,6 +1258,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
@@ -1219,6 +1278,11 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
+# MERGE DAY
+for branch in set(BRANCHES.keys()) - set(['cedar']):
+    if 'win32' in BRANCHES[branch]['platforms'] and 'win8' in BRANCHES[branch]['platforms']['win32']:
+        del BRANCHES[branch]['platforms']['win32']['win8']
+        BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
@@ -1227,9 +1291,9 @@ NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
-                       "reftest-ipc", "xpcshell"]
+                       "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel"]
 UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
-                         "xpcshell"]
+                         "xpcshell", "reftest"]
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,

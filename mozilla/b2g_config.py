@@ -62,7 +62,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 13,
             'update_platform': None,
-            'upload_symbols': False,
+            'upload_symbols': True,
             'create_snippet': False,
             'create_partial': False,
             'enable_xulrunner': False,
@@ -72,14 +72,18 @@ PLATFORM_VARS = {
             'enable_packaging': True,
             'uploadPackages': True,
             'packageTests': True,
-            'disable_symbols': True,
+            'disable_symbols': False,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': 'ics_armv7a_gecko',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
             'env': {
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -117,14 +121,14 @@ PLATFORM_VARS = {
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 13,
             'update_platform': None,
-            'upload_symbols': False,
+            'upload_symbols': True,
             'create_snippet': False,
             'create_partial': False,
             'enable_xulrunner': False,
             'enable_leaktests': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': 'obj-b2g',
-            'disable_symbols': True,
+            'disable_symbols': False,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_product': 'b2g',
             'enable_packaging': True,
@@ -135,7 +139,11 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -866,6 +874,7 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
@@ -894,7 +903,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
