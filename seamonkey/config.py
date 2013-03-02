@@ -161,6 +161,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': False,
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -201,6 +202,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux64/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': False,
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -242,6 +244,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/macosx64/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': False,
         },
         'win32': {
             'product_name': 'seamonkey',
@@ -282,6 +285,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': True,
         },
         'linux-debug': {
             'product_name': 'seamonkey',
@@ -314,6 +318,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': False,
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
@@ -345,6 +350,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/macosx64/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': False,
         },
         'win32-debug': {
             'product_name': 'seamonkey',
@@ -372,6 +378,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
+            'enable_pymake': True,
         },
 }
 
