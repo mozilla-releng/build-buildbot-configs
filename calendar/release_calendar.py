@@ -2,15 +2,15 @@
 
 branchSuffix               = 'beta'
 
-sourceRepoRevision         = 'd01a73f93672'
+sourceRepoRevision         = 'c526ff1baa4e'
 mozillaRepoRevision        = 'default'
 
-milestone                  = '19.0'
+milestone                  = '20.0'
 
-version                    = '2.1b1'
+version                    = '2.2b1'
 buildNumber                = 1
 
-oldVersion                 = '2.0b1'
+oldVersion                 = '2.1b1'
 oldBuildNumber             = 1
 
 relbranchOverride          = ''
