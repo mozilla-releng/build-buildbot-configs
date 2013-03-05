@@ -528,6 +528,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'b2g_panda': {
+            'download_symbols': False,
             'opt_unittest_suites': [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
@@ -550,6 +551,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'b2g_panda_gaia_central': {
+            'download_symbols': False,
             'opt_unittest_suites': [
                 ('gaia-ui-test', {
                     'suite': 'gaia-ui-test',
