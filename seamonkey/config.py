@@ -56,8 +56,6 @@ GLOBAL_VARS = {
     'unittest_exec_reftest_suites': False,
     'unittest_exec_mochi_suites': False,
     'unittest_exec_mozmill_suites': False,
-    'geriatric_masters': [],
-    'geriatric_branches': {},
     'platforms': {
         'linux': {},
         'linux64': {},

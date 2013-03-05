@@ -49,7 +49,6 @@ GLOBAL_VARS = {
         ('xpcshell', ['xpcshell']),
         ('jsreftest', ['jsreftest']),
     ],
-    'geriatric_masters': [],
     'platforms': {
         'linux': {},
         'linux64': {},
