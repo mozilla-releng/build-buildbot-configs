@@ -12,15 +12,10 @@ MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
 STAGING_SLAVES = {
-    'linux':            LINUX_IXS,
-    'linux64':          LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
     'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
-    'android':          LINUX_IXS,
-    'android-armv6':    LINUX_IXS,
-    'android-x86':      MOCK_DL120G7,
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 

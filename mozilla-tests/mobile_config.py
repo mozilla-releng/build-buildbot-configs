@@ -298,6 +298,11 @@ ANDROID_PLAIN_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
+TEGRA_RELEASE_PLAIN_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
 ANDROID_PLAIN_REFTEST_DICT = {
     'opt_unittest_suites': [
         ('plain-reftest-1', (
@@ -331,13 +336,40 @@ ANDROID_PLAIN_REFTEST_DICT = {
     ],
 }
 
+ANDROID_PLAIN_ROBOCOP_DICT = {
+    'opt_unittest_suites': [
+        ('robocop-1', (
+            {'suite': 'mochitest-robocop',
+             'totalChunks': 2,
+             'thisChunk': 1
+             },
+        )),
+        ('robocop-2', (
+            {'suite': 'mochitest-robocop',
+             'totalChunks': 2,
+             'thisChunk': 2
+             },
+        )),
+    ],
+}
 
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     if suite[0].startswith('reftest'):
         continue
+    if suite[0].startswith('robocop'):
+        continue
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
+for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith('reftest'):
+        continue
+    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
+    ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
+for suite in ANDROID_PLAIN_ROBOCOP_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_PANDA_UNITTEST_DICT = {
@@ -536,6 +568,9 @@ for branch in BRANCHES.keys():
     if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar", "mozilla-central", "try", "mozilla-inbound"):
         del BRANCHES[branch]['platforms']['android']['panda_android']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
+
+# Ignore robocop chunks for mozilla-release, robocop-chunks is defined in ANDROID_PLAIN_UNITTEST_DICT
+BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(TEGRA_RELEASE_PLAIN_UNITTEST_DICT["opt_unittest_suites"])
 
 ######## generic branch variables for project branches
 for projectBranch in ACTIVE_PROJECT_BRANCHES:
