@@ -219,7 +219,7 @@ PLATFORM_VARS = {
                               'glibc-static', 'libstdc++-static', 'gtk2-devel',
                               'libnotify-devel', 'yasm', 'alsa-lib-devel',
                               'libcurl-devel', 'wireless-tools-devel',
-                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                               'imake', 'ccache', 'wget'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
@@ -288,7 +288,7 @@ PLATFORM_VARS = {
                               'glibc-static', 'libstdc++-static', 'gtk2-devel',
                               'libnotify-devel', 'yasm', 'alsa-lib-devel',
                               'libcurl-devel', 'wireless-tools-devel',
-                              'libX11-devel', 'libXt-devel','mesa-libGL-devel',
+                              'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                               'imake', 'ccache', 'wget'],
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
@@ -923,13 +923,15 @@ BRANCHES['try']['repo_path'] = 'try'
 BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s'
 BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['ics_armv7a_gecko']['upload_symbols'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--additional-source-tarballs', 'download-panda.tar.bz2']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
@@ -942,13 +944,13 @@ BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--t
 # MERGE DAY: otoro is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
-        'otoro' in BRANCHES[branch]['platforms']:
+            'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
 # MERGE DAY: unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
-        'unagi_eng' in BRANCHES[branch]['platforms']:
+            'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
 
 ######## generic branch configs
@@ -957,13 +959,13 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
     BRANCHES[branch]['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
     BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
-    BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
+    BRANCHES[branch]['app_name'] = branchConfig.get('app_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['mozharness_repo_path'] = branchConfig.get('mozharness_repo_path', GLOBAL_VARS['mozharness_repo_path'])
     BRANCHES[branch]['mozharness_tag'] = branchConfig.get('mozharness_tag', GLOBAL_VARS['mozharness_tag'])
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
-    BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # nightly updates
@@ -998,4 +1000,4 @@ if __name__ == "__main__":
     for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
         for l in out.splitlines():
-             print '%s: %s' % (k, l)
+            print '%s: %s' % (k, l)
