@@ -98,6 +98,7 @@ GLOBAL_VARS = {
             'toolkit',
             ],
     'use_old_updater': False,
+    'run_make_alive_tests': True,
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
@@ -1818,6 +1819,12 @@ for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
+# MERGE DAY
+# When Firefox 22 merges into these branches, they can be removed from the list
+for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+          'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+    BRANCHES[b]["run_make_alive_tests"] = False
 
 if __name__ == "__main__":
     import sys
