@@ -693,7 +693,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'xp': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
@@ -744,7 +744,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL,
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
@@ -854,7 +854,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -905,7 +905,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'lion': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -956,7 +956,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'mountainlion': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest-1': {
@@ -1261,7 +1261,12 @@ BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
+BRANCHES['try']['platforms']['macosx64']['lion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
+BRANCHES['try']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
+BRANCHES['try']['platforms']['win32']['xp']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
 BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
+BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
 # Let's load jetpack for the following branches:
