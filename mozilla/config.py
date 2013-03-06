@@ -73,6 +73,9 @@ GLOBAL_VARS = {
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'blocklist_update_set_approval': True,
+    'enable_hsts_update': False,
+    'hsts_update_on_closed_tree': False,
+    'hsts_update_set_approval': True,
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,
@@ -1359,7 +1362,7 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
-BRANCHES['mozilla-central']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -1402,7 +1405,6 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
-BRANCHES['mozilla-release']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
@@ -1447,7 +1449,6 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
-BRANCHES['mozilla-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
@@ -1501,7 +1502,7 @@ BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
-BRANCHES['mozilla-aurora']['blocklist_update_on_closed_tree'] = False
+BRANCHES['mozilla-central']['enable_hsts_update'] = True
 del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
@@ -1542,7 +1543,6 @@ BRANCHES['mozilla-esr17']['create_partial'] = True
 BRANCHES['mozilla-esr17']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
 BRANCHES['mozilla-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
 BRANCHES['mozilla-esr17']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr17']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr17']['enable_valgrind'] = False
 BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
 # We need to use a special version of GCC that is compiled in such a way that
@@ -1585,7 +1585,6 @@ BRANCHES['mozilla-b2g18']['create_partial'] = False
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g18']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
 
@@ -1617,7 +1616,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['create_partial'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enabled_products'] = ['firefox', 'mobile']
 
