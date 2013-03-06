@@ -6,7 +6,7 @@ SLAVES = {
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,10) + range(11,17) + range(18,105)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,99) \
          if x not in [98]]), # IT reserving t-w864-ix-098 to continue to work on the graphics automation
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(4,10) + range(11,81) + [82,84]]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(4,46) + range(47,81) + [82,84]]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(4,10) + range(11,58) + range(59,83) + [84]]),
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(4,10) + range(11,90)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \

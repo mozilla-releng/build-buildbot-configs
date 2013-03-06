@@ -7,7 +7,7 @@ STAGING_SLAVES = {
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in [1, 2, 3, 10]]),
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in [1, 2, 3, 10]]),
     'win8': dict(),
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [1, 2, 3, 46]]),
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in [1, 2, 3, 10]]),
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in [1, 2, 3, 10]]),
     'tegra_android': dict(
