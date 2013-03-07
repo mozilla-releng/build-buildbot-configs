@@ -1545,17 +1545,25 @@ BRANCHES['mozilla-esr17']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr17']['blocklist_update_on_closed_tree'] = False
 BRANCHES['mozilla-esr17']['enable_valgrind'] = False
 BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
-# We need to use a special version of GCC that is compiled in such a way that
-# it doesn't break binary compatibility with previous esr17 builds.
-# Details are in bug 827354
-BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
+# mock disabled block start
+# linux platforms
+BRANCHES['mozilla-esr17']['platforms']['linux']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux64']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['use_mock'] = False
+BRANCHES['mozilla-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
+BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
+BRANCHES['mozilla-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
+del BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
+del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
+# mock disabled block stop
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
