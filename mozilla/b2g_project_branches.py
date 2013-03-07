@@ -97,7 +97,8 @@ PROJECT_BRANCHES = {
     'fig': {},
     'gum': {},
     'holly': {},
-    'jamun': {},
+    # Bug 848025 - disable b2g builds for jamun
+    #'jamun': {},
     'larch': {},
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
