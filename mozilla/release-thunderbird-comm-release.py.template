@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-esr17',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
+        'relbranch': 'GECKO1703_2013021512_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
