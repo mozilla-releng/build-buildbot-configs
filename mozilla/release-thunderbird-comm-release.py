@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.3'
-releaseConfig['appVersion']          = '17.0.3'
+releaseConfig['version']             = '17.0.4'
+releaseConfig['appVersion']          = '17.0.4'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_4'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.2': {
-        'appVersion': '17.0.2',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_17_0_2',
+    '17.0.3': {
+        'appVersion': '17.0.3',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_17_0_3',
     },
 
 }
@@ -55,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-esr17',
-        'revision': 'c597e6510be4',
-        'relbranch': None,
+        'revision': '2c3766cfba66',
+        'relbranch': 'GECKO1703_2013021513_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
