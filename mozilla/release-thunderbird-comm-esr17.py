@@ -11,7 +11,7 @@ releaseConfig = {}
 # to enable updates
 #####################################
 
-#releaseConfig['skip_updates'] = True
+releaseConfig['skip_updates'] = True
 
 #####################################
 # END OF HACK ALERT
@@ -32,17 +32,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.3esr'
-releaseConfig['appVersion']          = '17.0.3'
+releaseConfig['version']             = '17.0.4esr'
+releaseConfig['appVersion']          = '17.0.4'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_3esr'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_4esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.2esr': {
-        'appVersion': '17.0.2',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_17_0_2esr',
+    '17.0.3esr': {
+        'appVersion': '17.0.3',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_17_0_3esr',
     },
 
 }
@@ -66,8 +66,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': 'c597e6510be4',
-        'relbranch': 'GECKO1703_2013021512_RELBRANCH',
+        'revision': '2c3766cfba66',
+        'relbranch': 'GECKO1703_2013021513_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -125,12 +125,7 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 4
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr17-thunderbird-linux.cfg',
-    'linux64':  'mozEsr17-thunderbird-linux64.cfg',
-    'macosx64': 'mozEsr17-thunderbird-mac64.cfg',
-    'win32':  'mozEsr17-thunderbird-win32.cfg'
-}
+releaseConfig['verifyConfigs']       = {}  # TODO for 17.0.1esr
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/esr',
     'linux64': 'mail/config/mozconfigs/linux64/esr',
