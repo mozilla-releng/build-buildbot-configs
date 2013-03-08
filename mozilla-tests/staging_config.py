@@ -2,14 +2,14 @@ from copy import deepcopy
 import production_config as pc
 
 STAGING_SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in [1, 2, 10]]),
-    'fedora64': dict([("talos-r3-fed64-%03i" % x, {}) for x in [1, 2, 10]]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in [1, 2, 3, 10]]),
-    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'fedora': dict(),
+    'fedora64': dict(),
+    'xp': dict(),
+    'win7': dict(),
     'win8': dict(),
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [1, 2, 3, 46]]),
-    'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in [1, 2, 3, 10]]),
-    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in [1, 2, 3, 10]]),
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [46]]),
+    'lion': dict(),
+    'mountainlion': dict(),
     'tegra_android': dict(
         [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(10,30)]
     ),
