@@ -7,16 +7,6 @@
 EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
-# HACK ALERT
-# TODO for 17.0.1esr: the following line should be removed for 17.0.1esr build
-# to enable updates
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
-
 releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer-stage.pvt.build.mozilla.org/always_clobber.php'
