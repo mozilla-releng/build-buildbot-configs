@@ -359,6 +359,8 @@ for platform in releaseConfig['enUSPlatforms']:
             tree='release',
             clobberURL=branchConfig['base_clobber_url'],
             enable_pymake=pf['enable_pymake'],
+            tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
+            tooltool_url_list= branchConfig.get('tooltool_url_list', []),
         )
 
         builders.append({
