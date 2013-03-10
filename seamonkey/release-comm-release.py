@@ -50,7 +50,7 @@ releaseConfig['chatzillaRepoRevision']      = 'SEAMONKEY_2_16_BUILD1'
 releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_16_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM190_20130217_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 #  Support repositories
 #   not used yet
