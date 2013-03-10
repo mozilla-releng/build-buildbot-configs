@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.16.1'
-releaseConfig['appVersion']                 = '2.16.1'
+releaseConfig['version']                    = '2.16.2'
+releaseConfig['appVersion']                 = '2.16.2'
 releaseConfig['milestone']                  = '19.0.2'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_16_1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_16_2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.16'
-releaseConfig['oldAppVersion']              = '2.16'
+releaseConfig['oldVersion']                 = '2.16.1'
+releaseConfig['oldAppVersion']              = '2.16.1'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_16'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_16_1'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
