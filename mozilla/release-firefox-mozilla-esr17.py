@@ -89,7 +89,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'
@@ -135,5 +135,6 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['use_mock'] = False
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('linux', 'linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-esr'

@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-esr17',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': 'GECKO1703_2013021513_RELBRANCH',
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -97,7 +97,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
@@ -141,5 +141,6 @@ releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['use_mock'] = False
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('linux', 'linux64')
 releaseConfig['ftpSymlinkName'] = 'latest'

@@ -9,7 +9,7 @@ SLAVES = {
         if x not in [18]]), # bug ?
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,99) \
         if x not in [98]]), # IT reserving t-w864-ix-098 to continue to work on the graphics automation
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,84) \
+    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85) \
         if x not in [46]]), # bug 824754 - This machine is not suitable for production
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,85) \
         if x not in [58, 81, 83]]), # bug 730545, bug 729090 (x2)
