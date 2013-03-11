@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-esr17',
         'path': '{{ branch }}',
         'revision': '{{ mozillaRevision }}',
-        'relbranch': 'GECKO1703_2013021512_RELBRANCH',
+        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
