@@ -35,7 +35,6 @@ GLOBAL_VARS.update({
         ('xpcshell', ['xpcshell']),
         ('mozmill', ['mozmill']),
     ],
-    'geriatric_masters': [],
     'platforms': {
         'linux': {},
         'linux64': {},

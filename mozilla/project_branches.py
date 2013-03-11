@@ -40,7 +40,7 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'pgo_strategy': 'periodic',
     },
-    'graphics':{
+    'graphics': {
         'enable_talos': False,
     },
     'ionmonkey': {
@@ -305,7 +305,21 @@ PROJECT_BRANCHES = {
     'fig': {},
     'gum': {},
     'holly': {},
-    'jamun': {},
+    # Bug 848025 - disable android builds for jamun
+    'jamun': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'macosx64': {},
+            'win32': {},
+            'win32-debug': {},
+        },
+        'mobile_platforms': {},
+    },
     'larch': {},
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
