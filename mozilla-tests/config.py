@@ -1297,9 +1297,12 @@ NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
                        "reftest-ipc", "xpcshell", "reftest",
-                       "reftest-no-accel", "mochitest"]
+                       "reftest-no-accel", "mochitest-1", "mochitest-2",
+                       "mochitest-3", "mochitest-4", "mochitest-5"]
 UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
-                         "xpcshell", "reftest", "reftest-no-accel", "mochitest"]
+                         "xpcshell", "reftest", "reftest-no-accel",
+                         "mochitest-1", "mochitest-2", "mochitest-3",
+                         "mochitest-4", "mochitest-5"]
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
