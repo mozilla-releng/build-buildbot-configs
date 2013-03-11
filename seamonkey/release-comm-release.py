@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.16.2'
 releaseConfig['appVersion']                 = '2.16.2'
 releaseConfig['milestone']                  = '19.0.2'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_16_2'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.16.1'
