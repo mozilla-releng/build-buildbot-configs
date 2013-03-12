@@ -6,7 +6,7 @@ SLAVES = {
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,101) \
         if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,105) \
-        if x not in [18]]), # bug ?
+        if x not in [17]]), # bug 747734
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,99) \
         if x not in [98]]), # IT reserving t-w864-ix-098 to continue to work on the graphics automation
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85) \
