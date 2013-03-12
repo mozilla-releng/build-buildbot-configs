@@ -1820,8 +1820,9 @@ for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
 
 # MERGE DAY
 # When Firefox 22 merges into these branches, they can be removed from the list
+# 'birch' only needs to be here until the April 4th merge
 for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17',
-          'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+          'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'birch'):
     BRANCHES[b]["run_make_alive_tests"] = False
 
 if __name__ == "__main__":
