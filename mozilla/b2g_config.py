@@ -878,12 +878,16 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args
 BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 
@@ -906,12 +910,16 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 

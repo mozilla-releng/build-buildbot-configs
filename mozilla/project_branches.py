@@ -1,7 +1,7 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     'build-system': {
-        'pgo_strategy': 'per-checkin',
+        'pgo_strategy': 'periodic',
         'platforms': {
             'win32': {
                 'pgo_platform': 'win64',
