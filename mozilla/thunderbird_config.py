@@ -298,7 +298,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
-            'l10n_slaves': SLAVES['win32'],
+            'l10n_slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32',
@@ -731,6 +731,7 @@ BRANCHES['comm-release']['platforms']['linux-debug']['mock_packages'].remove('gc
 BRANCHES['comm-release']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['comm-release']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
 BRANCHES['comm-release']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
+BRANCHES['comm-release']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'
@@ -779,6 +780,7 @@ BRANCHES['comm-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc4
 BRANCHES['comm-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['comm-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
 BRANCHES['comm-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
+BRANCHES['comm-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -822,6 +824,7 @@ BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
 del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
+BRANCHES['comm-beta']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -839,8 +842,8 @@ BRANCHES['comm-aurora']['enable_xulrunner'] = False
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
+BRANCHES['comm-aurora']['enable_l10n'] = False
+BRANCHES['comm-aurora']['enable_l10n_onchange'] = False
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                              'macosx64']
