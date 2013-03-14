@@ -1458,6 +1458,7 @@ BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
+BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
