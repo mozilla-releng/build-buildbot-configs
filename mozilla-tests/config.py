@@ -1284,7 +1284,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # MERGE DAY
-for branch in set(BRANCHES.keys()) - set(['cedar']):
+for branch in set(BRANCHES.keys()) - set(['cedar', 'mozilla-central', 'mozilla-inbound', 'try']):
     if 'win32' in BRANCHES[branch]['platforms'] and 'win8' in BRANCHES[branch]['platforms']['win32']:
         del BRANCHES[branch]['platforms']['win32']['win8']
         BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
