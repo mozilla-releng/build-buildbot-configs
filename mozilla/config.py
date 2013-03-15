@@ -471,7 +471,7 @@ PLATFORM_VARS = {
             'enable_post_linker_size': True,
             'packageTests': True,
             'slaves': SLAVES['win64'],
-            'l10n_slaves': SLAVES['win32'],
+            'l10n_slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32',
@@ -1410,6 +1410,7 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-release']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1456,6 +1457,8 @@ BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_B
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-beta']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
+BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -1556,6 +1559,7 @@ BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].remove('g
 BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
 BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
+BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
