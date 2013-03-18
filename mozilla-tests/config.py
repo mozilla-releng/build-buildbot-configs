@@ -1310,11 +1310,11 @@ NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
                        "reftest-ipc", "xpcshell", "reftest",
                        "reftest-no-accel", "mochitest-1", "mochitest-2",
-                       "mochitest-3", "mochitest-4", "mochitest-5"]
+                       "mochitest-3", "mochitest-4", "mochitest-5", "mochitest"]
 UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
                          "xpcshell", "reftest", "reftest-no-accel",
                          "mochitest-1", "mochitest-2", "mochitest-3",
-                         "mochitest-4", "mochitest-5"]
+                         "mochitest-4", "mochitest-5", "mochitest"]
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
