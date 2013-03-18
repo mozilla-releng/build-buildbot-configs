@@ -842,8 +842,8 @@ BRANCHES['comm-aurora']['enable_xulrunner'] = False
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = False
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = False
+BRANCHES['comm-aurora']['enable_l10n'] = True
+BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                              'macosx64']
