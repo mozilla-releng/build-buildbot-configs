@@ -929,6 +929,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'
 # HGURL  repo_path should be a valid repository
 BRANCHES['try']['repo_path'] = 'try'
 BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['try']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s'
