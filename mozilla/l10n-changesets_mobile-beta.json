@@ -12,7 +12,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "de": {
-    "revision": "96fcafe13b4b",
+    "revision": "7d4a3971644e",
     "platforms": ["android", "android-multilocale"]
   },
   "es-AR": {
@@ -60,7 +60,7 @@
     "platforms": ["android"]
   },
   "nb-NO": {
-    "revision": "1a967b024168",
+    "revision": "bbbbd2df0493",
     "platforms": ["android", "android-multilocale"]
   },
   "nl": {
