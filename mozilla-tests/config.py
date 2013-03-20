@@ -86,7 +86,7 @@ PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
-PLATFORMS['win32']['win8'] = {'name': "Rev3 WINNT 6.2"}
+PLATFORMS['win32']['win8'] = {'name': "WINNT 6.2"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -1092,6 +1092,11 @@ PROJECTS = {
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
             },
+            'win8': {
+                'ext': 'win32.zip',
+                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                'debug': True,
+            },
         },
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
@@ -1225,6 +1230,9 @@ BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['opt_unittest
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-esr17']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-esr17']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+del BRANCHES['mozilla-esr17']['platforms']['win32']['win8']
+BRANCHES['mozilla-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
+
 
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
@@ -1294,12 +1302,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
-
-# MERGE DAY
-for branch in set(BRANCHES.keys()) - set(['cedar', 'mozilla-central', 'mozilla-inbound', 'try']):
-    if 'win32' in BRANCHES[branch]['platforms'] and 'win8' in BRANCHES[branch]['platforms']['win32']:
-        del BRANCHES[branch]['platforms']['win32']['win8']
-        BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
