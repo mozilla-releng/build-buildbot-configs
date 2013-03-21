@@ -209,7 +209,7 @@ PLATFORM_VARS = {
                 'PATH': '${PATH}:/tools/buildbot/bin',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'enable_build_analysis': True,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -278,7 +278,7 @@ PLATFORM_VARS = {
                 'PATH': '${PATH}:/tools/buildbot/bin',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'enable_build_analysis': True,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -344,7 +344,7 @@ PLATFORM_VARS = {
                 'PATH': '/tools/python/bin:${PATH}',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'test_pretty_names': False,
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
             'gaia_repo': gaia_repo,
@@ -394,7 +394,7 @@ PLATFORM_VARS = {
                 'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -452,7 +452,7 @@ PLATFORM_VARS = {
                 'MOZ_PKG_SPECIAL': 'localizer',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'enable_build_analysis': True,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -524,7 +524,7 @@ PLATFORM_VARS = {
                 'MOZ_PKG_SPECIAL': 'localizer',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'enable_build_analysis': True,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -593,7 +593,7 @@ PLATFORM_VARS = {
                 'MOZ_PKG_SPECIAL': 'localizer',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'test_pretty_names': False,
             'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
             'gaia_repo': gaia_repo,
@@ -646,7 +646,7 @@ PLATFORM_VARS = {
                 'MOZ_PKG_SPECIAL': 'localizer',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -876,13 +876,9 @@ BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -908,13 +904,9 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
@@ -929,6 +921,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'
 # HGURL  repo_path should be a valid repository
 BRANCHES['try']['repo_path'] = 'try'
 BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['try']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s'
@@ -941,9 +934,13 @@ BRANCHES['try']['platforms']['ics_armv7a_gecko']['upload_symbols'] = False
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux32_gecko']['enable_checktests'] = True
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64_gecko']['enable_checktests'] = True
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['macosx64_gecko']['enable_checktests'] = True
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try']['platforms']['win32_gecko']['enable_checktests'] = True
 BRANCHES['try']['platforms']['panda']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['panda']['mozharness_config']['extra_args'] = ['--target', 'panda', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--additional-source-tarballs', 'download-panda.tar.bz2']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']

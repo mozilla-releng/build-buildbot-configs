@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 from localconfig import \
-    GLOBAL_VARS, MAC_LION_MINIS, MAC_SNOW_MINIS, \
+    GLOBAL_VARS, MAC_LION_MINIS, \
     LINUX_VMS, LINUX_IXS, LINUX64_VMS, LINUX64_IXS, WIN32_IXS, WIN64_IXS, \
     WIN64_IXS, MOCK_DL120G7, \
     TRY_LINUX, TRY_LINUX_IXS, TRY_LINUX64, TRY_LINUX64_IXS, \
@@ -16,7 +16,6 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7
 }

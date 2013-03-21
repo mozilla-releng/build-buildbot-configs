@@ -64,7 +64,7 @@ GLOBAL_VARS.update({
     # to download and thereby accelerate their cloning
     'enable_weekly_bundle': False,
 
-    'hash_type': 'sha512',
+    'hash_type': 'SHA512',
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,

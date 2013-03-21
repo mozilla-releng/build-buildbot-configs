@@ -140,4 +140,12 @@ PROJECTS = {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
     },
+    'spidermonkey_ggc_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
+    'spidermonkey_exact_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
 }

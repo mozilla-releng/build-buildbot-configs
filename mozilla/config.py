@@ -85,7 +85,7 @@ GLOBAL_VARS = {
     # to download and thereby accelerate their cloning
     'enable_weekly_bundle': False,
 
-    'hash_type': 'sha512',
+    'hash_type': 'SHA512',
     'create_snippet': False,
     'create_partial': False,
     'create_partial_l10n': False,
@@ -1093,8 +1093,35 @@ PROJECTS = {
     },
     'spidermonkey_try': {
         'enable_try': True,
+        'try_by_default': True,
         'variants': {
             'linux64-debug':  ['rootanalysis'],
+        },
+        'platforms': {
+            'linux64-debug': {}, # Filled in with branch-specific values below
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
+    },
+    'spidermonkey_ggc_try': {
+        'enable_try': True,
+        'try_by_default': False,
+        'variants': {
+            'linux64-debug':  ['generational'],
+        },
+        'platforms': {
+            'linux64-debug': {}, # Filled in with branch-specific values below
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
+    },
+    'spidermonkey_exact_try': {
+        'enable_try': True,
+        'try_by_default': False,
+        'variants': {
+            'linux64-debug':  ['exactrooting'],
         },
         'platforms': {
             'linux64-debug': {}, # Filled in with branch-specific values below

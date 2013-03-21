@@ -2,21 +2,11 @@ from copy import deepcopy
 import production_config as pc
 
 STAGING_SLAVES = {
-    'fedora': dict(),
-    'fedora64': dict(),
-    'xp': dict(),
-    'win7': dict(),
-    'win8': dict(),
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [46]]),
-    'lion': dict(),
-    'mountainlion': dict(),
     'tegra_android': dict(
         [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(10,30)]
     ),
-    'panda_android': dict(),
-    'b2g_panda': dict(),
-    'ubuntu32': dict(),
-    'ubuntu64': dict(),
+    'fedora': dict(),
 }
 
 STAGING_SLAVES['tegra_android-armv6'] = STAGING_SLAVES['tegra_android']

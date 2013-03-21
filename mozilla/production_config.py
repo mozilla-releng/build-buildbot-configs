@@ -1,5 +1,4 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(41,87) + [88]]
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(40,57) if x not in (51,52,)] # bug683792
 LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,23)]
 LINUX_IXS      = ['linux-ix-slave%02i' % x for x in [1,2,6]]
 LINUX64_VMS    = ['bld-centos5-64-vmw-%03i' % x for x in range(1, 7)]
@@ -16,7 +15,6 @@ SLAVES = {
     'linux64':          LINUX64_VMS + LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx64':         MAC_SNOW_MINIS,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7 + LINUX64_EC2 + MOCK_IX,
 }
@@ -201,6 +199,14 @@ PROJECTS = {
         'upload_sshkey': '/home/cltbld/.ssh/ffxbld_dsa',
     },
     'spidermonkey_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
+    'spidermonkey_ggc_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
+    'spidermonkey_exact_try': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
     },
