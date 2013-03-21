@@ -1163,7 +1163,9 @@ BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['opt_unitte
 BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-release']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-release']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-# End MERGE DAY
+del BRANCHES['mozilla-release']['platforms']['win32']['win8']
+BRANCHES['mozilla-release']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
+# End MERGE DAY remove the above when Firefox 22 merges in
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
@@ -1186,7 +1188,9 @@ BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['opt_unittest_
 BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-beta']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-beta']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-# End MERGE DAY
+del BRANCHES['mozilla-beta']['platforms']['win32']['win8']
+BRANCHES['mozilla-beta']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
+# End MERGE DAY remove the above when Firefox 22 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -1208,7 +1212,7 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['opt_unittes
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-aurora']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-aurora']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-# End MERGE DAY
+# End MERGE DAY remove the above when Firefox 22 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1254,6 +1258,8 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+del BRANCHES['mozilla-b2g18']['platforms']['win32']['win8']
+BRANCHES['mozilla-b2g18']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
@@ -1275,6 +1281,8 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['opt_u
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
 BRANCHES['mozilla-b2g18_v1_0_1']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win8']
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
