@@ -94,10 +94,10 @@ PLATFORMS['win32']['mozharness_config'] = {
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32']
+PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
-PLATFORMS['linux']['ubuntu32'] = {'name': 'Ubuntu 12.04'}
+PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -105,10 +105,10 @@ PLATFORMS['linux']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64']
+PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
-PLATFORMS['linux64']['ubuntu64'] = {'name': 'Ubuntu 12.04 x64'}
+PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -130,22 +130,22 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
     PLATFORMS['win32']['slave_platforms'] + \
     PLATFORMS['macosx64']['slave_platforms']
 # Don't use ubuntu{32,64} for talos for now
-ALL_PLATFORMS.remove('ubuntu32')
-ALL_PLATFORMS.remove('ubuntu64')
+ALL_PLATFORMS.remove('ubuntu32_vm')
+ALL_PLATFORMS.remove('ubuntu64_vm')
 
 WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
-# Don't use ubuntu{,3264} for talos for now
-NO_WIN.remove('ubuntu32')
-NO_WIN.remove('ubuntu64')
+# Don't use ubuntu{32,64} for talos for now
+NO_WIN.remove('ubuntu32_vm')
+NO_WIN.remove('ubuntu64_vm')
 
 NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
     PLATFORMS['linux64']['slave_platforms'] + \
     PLATFORMS['win32']['slave_platforms']
 # Don't use ubuntu{32,64} for talos for now
-NO_MAC.remove('ubuntu32')
-NO_MAC.remove('ubuntu64')
+NO_MAC.remove('ubuntu32_vm')
+NO_MAC.remove('ubuntu64_vm')
 
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
@@ -519,7 +519,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'ubuntu32': {
+        'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -630,7 +630,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'ubuntu64': {
+        'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -1077,8 +1077,8 @@ PROJECTS = {
     'jetpack': {
         'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
         'platforms': {
-            'ubuntu64': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
-            'ubuntu32': {'ext': 'linux-i686.tar.bz2', 'debug': True},
+            'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
+            'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
             'lion': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
@@ -1325,15 +1325,15 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux64']['ubuntu64']
+            del BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm']
             BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
         if 'linux' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux']['ubuntu32']
+            del BRANCHES[branch]['platforms']['linux']['ubuntu32_vm']
             BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
         continue
 
-    for p, ubuntu, fedora in [('linux', 'ubuntu32', 'fedora'),
-                              ('linux64', 'ubuntu64', 'fedora64')]:
+    for p, ubuntu, fedora in [('linux', 'ubuntu32_vm', 'fedora'),
+                              ('linux64', 'ubuntu64_vm', 'fedora64')]:
         for suite_type, ubuntu_tests in [('opt_unittest_suites',
                                          UBUNTU_OPT_UNITTEST),
                                          ('debug_unittest_suites',

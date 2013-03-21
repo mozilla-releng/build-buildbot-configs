@@ -42,10 +42,10 @@ PLATFORMS = {
 
 builder_prefix = "b2g"
 
-PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64-b2g']
+PLATFORMS['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g']
 PLATFORMS['ics_armv7a_gecko']['env_name'] = 'linux-perf'
 PLATFORMS['ics_armv7a_gecko']['fedora-b2g'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator"}
-PLATFORMS['ics_armv7a_gecko']['ubuntu64-b2g'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator_vm"}
+PLATFORMS['ics_armv7a_gecko']['ubuntu64_vm-b2g'] = {'name': builder_prefix + "_ics_armv7a_gecko_emulator_vm"}
 PLATFORMS['ics_armv7a_gecko']['stage_product'] = 'b2g'
 PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -440,7 +440,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'ubuntu64-b2g': {
+        'ubuntu64_vm-b2g': {
             'opt_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
             'debug_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
             'suite_config': {
@@ -657,7 +657,7 @@ BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64-b2g']
+BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g']
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
@@ -688,19 +688,19 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         for platform in BRANCHES[branch]['platforms']:
-            if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
-                BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64-b2g')
-            if 'ubuntu64-b2g' in BRANCHES[branch]['platforms'][platform]:
-                del BRANCHES[branch]['platforms'][platform]['ubuntu64-b2g']
+            if 'ubuntu64_vm-b2g' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
+                BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64_vm-b2g')
+            if 'ubuntu64_vm-b2g' in BRANCHES[branch]['platforms'][platform]:
+                del BRANCHES[branch]['platforms'][platform]['ubuntu64_vm-b2g']
         continue
 
     for suite_type in ('opt_unittest_suites', 'debug_unittest_suites'):
         if nested_haskey(BRANCHES[branch]['platforms'], 'ics_armv7a_gecko',
-                         'ubuntu64-b2g', suite_type) and \
+                         'ubuntu64_vm-b2g', suite_type) and \
            nested_haskey(BRANCHES[branch]['platforms'], 'ics_armv7a_gecko',
                          'fedora-b2g', suite_type):
             # Don't run tests on Fedora if they listed in Ubuntu
-            for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64-b2g'][suite_type]:
+            for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g'][suite_type]:
                 BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type] = \
                     [s for s in deepcopy(BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type]) if s[0] != suite[0]]
 

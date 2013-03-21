@@ -21,6 +21,9 @@ SlavePasswords = {
     "ubuntu32": "pass",
     "ubuntu64-b2g": "pass",
     "ubuntu64": "pass",
+    "ubuntu32_vm": "pass",
+    "ubuntu64_vm-b2g": "pass",
+    "ubuntu64_vm": "pass",
     "b2g_panda_gaia_central": "pass",
 }
 
