@@ -571,6 +571,17 @@ BRANCHES = {
     'comm-beta': {
     },
     'comm-release': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
     },
     'comm-esr17': {
         'lock_platforms': True,
@@ -691,9 +702,13 @@ BRANCHES['comm-central']['platforms']['macosx64-debug']['nightly_signing_servers
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## comm-release
-BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
+BRANCHES['comm-release']['repo_path'] = 'releases/comm-esr17'
+BRANCHES['comm-release']['moz_repo_path'] = 'releases/mozilla-esr17'
 BRANCHES['comm-release']['update_channel'] = 'release'
-BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-release']['mozilla_dir'] = 'mozilla'
+BRANCHES['comm-release']['skip_blank_repos'] = True
+BRANCHES['comm-release']['call_client_py'] = True
+BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-esr17'
 BRANCHES['comm-release']['enable_weekly_bundle'] = True
 BRANCHES['comm-release']['start_hour'] = [3]
 BRANCHES['comm-release']['start_minute'] = [2]
@@ -702,7 +717,7 @@ BRANCHES['comm-release']['enable_xulrunner'] = False
 BRANCHES['comm-release']['enable_mac_a11y'] = True
 # L10n configuration
 BRANCHES['comm-release']['enable_l10n'] = False
-BRANCHES['comm-release']['enable_l10n_onchange'] = True
+BRANCHES['comm-release']['enable_l10n_onchange'] = False
 BRANCHES['comm-release']['l10nNightlyUpdate'] = False
 BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                               'macosx64']
@@ -713,12 +728,10 @@ BRANCHES['comm-release']['enUS_binaryURL'] = \
 BRANCHES['comm-release']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-release']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-release']['enable_multi_locale'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-release']['enable_nightly'] = False
 BRANCHES['comm-release']['enable_blocklist_update'] = False
 BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
-del BRANCHES['comm-release']['platforms']['win64']
 BRANCHES['comm-release']['enable_valgrind'] = False
 # We need to use a special version of GCC that is compiled in such a way that
 # it doesn't break binary compatibility with previous esr17 builds.
