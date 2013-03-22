@@ -1286,6 +1286,14 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                                          UBUNTU_DEBUG_UNITTEST)]:
             if nested_haskey(BRANCHES[branch]['platforms'], p, ubuntu,
                              suite_type):
+                # Explicitly remove tests listed in ubuntu_tests even though
+                # them are not enabled. This would remove old style tests when
+                # Ubuntu runs mozharness based tests. (mochitest vs
+                # mochitest-{1..5}
+                for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
+                    if i[0] in ubuntu_tests:
+                        BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
+
                 for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
                     if suite[0] not in ubuntu_tests:
                         BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
