@@ -172,7 +172,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -242,7 +242,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -313,7 +313,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -387,7 +387,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -603,7 +603,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
@@ -662,7 +662,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
@@ -1579,12 +1579,16 @@ BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
 # it doesn't break binary compatibility with previous esr17 builds.
 # Details are in bug 827354
 BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].remove('gcc472_0moz1')
 BRANCHES['mozilla-esr17']['platforms']['linux']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].remove('gcc472_0moz1')
 BRANCHES['mozilla-esr17']['platforms']['linux64']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc472_0moz1')
 BRANCHES['mozilla-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc472_0moz1')
 BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
