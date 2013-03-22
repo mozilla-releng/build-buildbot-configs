@@ -253,9 +253,8 @@ PROJECT_BRANCHES = {
             'win32-debug': {},
         },
         'mobile_platforms': {
-            'android': {
-                'slave_platforms': ['panda_android'],
-            },
+            'android': {},
+            'android-debug': {},
         },
     },
     # Customizations for b2g 1.1 work (bug 822783 & bug 819368)

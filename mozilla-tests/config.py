@@ -150,72 +150,10 @@ NO_MAC.remove('ubuntu64_vm')
 MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 SUITES = {
-    'chrome': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:a11y:ts_paint:tpaint:tsspider', '--mozAfterPaint'],
-        'options': ({}, NO_MAC),
-    },
-    # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
-    'chrome_mac': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll:ts_paint:tpaint:tsspider', '--mozAfterPaint'],
-        'options': ({}, MAC_ONLY),
-    },
-    'nochrome': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome', '--mozAfterPaint'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'dirty': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_places_generated_med:ts_places_generated_max', '--setPref', 'hangmonitor.timeout=0'],
-        'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
-    },
-    'tp': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5', '--mozAfterPaint'],
-        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
-    },
-    'cold': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_cold:ts_cold_generated_min:ts_cold_generated_med:ts_cold_generated_max'],
-        'options': (TALOS_DIRTY_OPTS, NO_WIN),
-    },
-    'svg': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg:tsvg_opacity'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'dromaeo': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom'],
-        'options': ({}, ALL_PLATFORMS),
-    },
-    'chrome.2': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:a11y.2:ts_paint:tpaint:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': ({}, NO_MAC),
-    },
-    # chrome_mac compared to chrome is that it does not contain a11y and only run on Mac
-    'chrome_mac.2': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscroll.2:ts_paint:tpaint:tsspider.2', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': ({}, MAC_ONLY),
-    },
-    'nochrome.2': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider.2', '--noChrome', '--mozAfterPaint', '--ignoreFirst', '--sampleConfig', 'sample.2.config'],
-        'options': ({}, ALL_PLATFORMS),
-    },
     'xperf': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
-    },
-    'tprow': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5row', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median', '--sampleConfig', 'sample.2.config'],
-        'options': (TALOS_TP_OPTS, ALL_PLATFORMS),
     },
     'tpn': {
         'enable_by_default': False,
@@ -1348,6 +1286,14 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                                          UBUNTU_DEBUG_UNITTEST)]:
             if nested_haskey(BRANCHES[branch]['platforms'], p, ubuntu,
                              suite_type):
+                # Explicitly remove tests listed in ubuntu_tests even though
+                # them are not enabled. This would remove old style tests when
+                # Ubuntu runs mozharness based tests. (mochitest vs
+                # mochitest-{1..5}
+                for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
+                    if i[0] in ubuntu_tests:
+                        BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
+
                 for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
                     if suite[0] not in ubuntu_tests:
                         BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)

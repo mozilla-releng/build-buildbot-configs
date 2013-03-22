@@ -91,7 +91,6 @@ PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android no-ionmonk
 PLATFORMS['android-noion']['stage_product'] = 'mobile'
 PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
@@ -153,6 +152,7 @@ BRANCH_UNITTEST_VARS = {
         'android': {},
         'android-armv6': {},
         'android-noion': {},
+        'android-debug': {},
     },
 }
 
@@ -383,6 +383,9 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
 
 ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
 
+ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
+ANDROID_PANDA_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'])
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -393,7 +396,7 @@ PLATFORM_UNITTEST_VARS = {
         'is_remote': True,
         'host_utils_url': 'http://bm-remote.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
         'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
+        'enable_debug_unittests': True,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
         'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
@@ -588,6 +591,11 @@ for branch in BRANCHES:
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
+for branch in BRANCHES:
+    if branch not in ('cedar') and \
+            'android' in BRANCHES[branch]['platforms'] and \
+            'enable_debug_unittests' in BRANCHES[branch]['platforms']['android']:
+        BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
 
 if __name__ == "__main__":
     import sys
