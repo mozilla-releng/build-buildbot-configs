@@ -1084,10 +1084,10 @@ PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
     },
     'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win32'],
+        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
