@@ -31,6 +31,7 @@ BRANCHES = {
     'mozilla-central': {},
     'mozilla-inbound': {},
     'services-central': {},
+    'ionmonkey': {},
     'try': {'coallesce_jobs': False},
 }
 
