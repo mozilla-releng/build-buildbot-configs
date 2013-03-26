@@ -77,3 +77,12 @@ def nested_haskey(dictionary, *keys):
             return nested_haskey(dictionary[key], *keys)
         else:
             return False
+
+
+def get_talos_slave_platforms(platforms_dict, platforms):
+    """Returns talos_slave_platforms if defined or slave_platform otherwise"""
+    ret = []
+    for p in platforms:
+        ret.extend(platforms_dict[p].get('talos_slave_platforms',
+                                         platforms_dict[p]['slave_platforms']))
+    return ret

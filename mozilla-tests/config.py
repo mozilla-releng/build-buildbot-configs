@@ -3,7 +3,7 @@ from copy import deepcopy
 import config_common
 reload(config_common)
 from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
-    loadTalosSuites, nested_haskey
+    loadTalosSuites, nested_haskey, get_talos_slave_platforms
 
 import project_branches
 reload(project_branches)
@@ -95,9 +95,11 @@ PLATFORMS['win32']['mozharness_config'] = {
 }
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
+PLATFORMS['linux']['talos_slave_platforms'] = ['fedora', 'ubuntu32_hw']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
+PLATFORMS['linux']['ubuntu32_hw'] = {'name': 'Ubuntu HW 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -106,9 +108,11 @@ PLATFORMS['linux']['mozharness_config'] = {
 }
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
+PLATFORMS['linux64']['talos_slave_platforms'] = ['fedora64', 'ubuntu64_hw']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
+PLATFORMS['linux64']['ubuntu64_hw'] = {'name': 'Ubuntu HW 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -118,36 +122,21 @@ PLATFORMS['linux64']['mozharness_config'] = {
 
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
-    for slave_platform in platform_config['slave_platforms']:
+    all_slave_platforms = set(platform_config['slave_platforms'] +
+                              platform_config.get('talos_slave_platforms', []))
+    for slave_platform in all_slave_platforms:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
         if slave_platform in TRY_SLAVES:
             platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform])
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
-    PLATFORMS['linux64']['slave_platforms'] + \
-    PLATFORMS['win32']['slave_platforms'] + \
-    PLATFORMS['macosx64']['slave_platforms']
-# Don't use ubuntu{32,64} for talos for now
-ALL_PLATFORMS.remove('ubuntu32_vm')
-ALL_PLATFORMS.remove('ubuntu64_vm')
 
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64'))
+NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
+NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
+MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7']
-
-NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
-# Don't use ubuntu{32,64} for talos for now
-NO_WIN.remove('ubuntu32_vm')
-NO_WIN.remove('ubuntu64_vm')
-
-NO_MAC = PLATFORMS['linux']['slave_platforms'] + \
-    PLATFORMS['linux64']['slave_platforms'] + \
-    PLATFORMS['win32']['slave_platforms']
-# Don't use ubuntu{32,64} for talos for now
-NO_MAC.remove('ubuntu32_vm')
-NO_MAC.remove('ubuntu64_vm')
-
-MAC_ONLY = PLATFORMS['macosx64']['slave_platforms']
 
 SUITES = {
     'xperf': {
@@ -158,37 +147,37 @@ SUITES = {
     'tpn': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'tp5o': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_PLATFORMS),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'other': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_PLATFORMS),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'svgr': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_PLATFORMS),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dirtypaint': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
-        'options': (TALOS_DIRTY_OPTS, ALL_PLATFORMS),
+        'options': (TALOS_DIRTY_OPTS, ALL_TALOS_PLATFORMS),
     },
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, ALL_PLATFORMS),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'chromez': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_PLATFORMS),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
 }
 
@@ -1099,8 +1088,8 @@ BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['opt_unittest_suite
 BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-release']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-release']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-release']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-release']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-release']['platforms']['win32']['win8']
 BRANCHES['mozilla-release']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 # End MERGE DAY remove the above when Firefox 22 merges in
@@ -1124,8 +1113,8 @@ BRANCHES['mozilla-beta']['platforms']['macosx64']['lion']['opt_unittest_suites']
 BRANCHES['mozilla-beta']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-beta']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-beta']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-beta']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-beta']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-beta']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-beta']['platforms']['win32']['win8']
 BRANCHES['mozilla-beta']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 # End MERGE DAY remove the above when Firefox 22 merges in
@@ -1148,8 +1137,8 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['opt_unittest_suites
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-aurora']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-aurora']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-aurora']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 # End MERGE DAY remove the above when Firefox 22 merges in
 
 ######### mozilla-esr17
@@ -1170,8 +1159,8 @@ BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['opt_unittest_suites'
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-esr17']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-esr17']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-esr17']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-esr17']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-esr17']['platforms']['win32']['win8']
 BRANCHES['mozilla-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
@@ -1194,8 +1183,8 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['opt_unittest_suites'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
-BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['win8']
 BRANCHES['mozilla-b2g18']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
@@ -1217,14 +1206,14 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['opt_unittest_
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
-BRANCHES['mozilla-b2g18_v1_0_1']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
-BRANCHES['mozilla-b2g18_v1_0_1']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['mozilla-b2g18_v1_0_1']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-b2g18_v1_0_1']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win8']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 ######## try
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_PLATFORMS)
+BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
@@ -1304,6 +1293,21 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                                     BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
                             except KeyError:
                                 pass
+
+
+# Remove ubuntu_hw from all branches but cedar
+for branch in set(BRANCHES.keys()) - set(['cedar']):
+    for s in SUITES.iterkeys():
+        if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
+            options = list(BRANCHES[branch]['suites'][s]['options'])
+            # filter out ubuntu
+            options[1] = [x for x in options[1] if x not in ('ubuntu32_hw', 'ubuntu64_hw')]
+            BRANCHES[branch]['suites'][s]['options'] = tuple(options)
+        tests_key = '%s_tests' % s
+        if tests_key in BRANCHES[branch]:
+            tests = list(BRANCHES[branch]['%s_tests' % s])
+            tests[3] = [x for x in tests[3] if x not in ('ubuntu32_hw', 'ubuntu64_hw')]
+            BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 
 if __name__ == "__main__":
