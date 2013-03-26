@@ -98,7 +98,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozEsr17-thunderbird-branch-patcher2.cfg'
@@ -144,6 +144,5 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
-releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('linux', 'linux64')
+releaseConfig['use_mock'] = False
 releaseConfig['ftpSymlinkName'] = 'latest-esr'
