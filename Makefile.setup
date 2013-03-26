@@ -99,3 +99,5 @@ other-files:
 	echo "database = mysql://buildbot:password@$(DATABASE)" >> $(MYSQL_CONFIG)
 	echo "master = http://this-master:port" >> $(MYSQL_CONFIG)
 	echo "name = $(MASTER_NAME)" >> $(MYSQL_CONFIG)
+
+.PHONY: all done virtualenv deps install-buildbot master master-makefile other-files
