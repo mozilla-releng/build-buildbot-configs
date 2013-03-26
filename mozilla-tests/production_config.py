@@ -25,8 +25,6 @@ SLAVES = {
     'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522) + range(33,34) + range(45,46)]),
     'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
     'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
-    'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 101)]),
-    'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 101)]),
 }
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
