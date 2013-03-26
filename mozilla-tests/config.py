@@ -1236,11 +1236,15 @@ BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_
 BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
 # Let's load jetpack for the following branches:
-for branch in ('mozilla-central', 'mozilla-aurora', 'try', 'mozilla-inbound', 'ionmonkey', ):
-    for pf in PLATFORMS:
-        for slave_pf in PLATFORMS[pf]['slave_platforms']:
-            BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-            BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+# MERGE DAY once FF21 merges into a branch remove it from this list
+for branch in BRANCHES.keys():
+    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
+        for pf in PLATFORMS:
+            if pf not in BRANCHES[branch]['platforms'].keys():
+                continue
+            for slave_pf in PLATFORMS[pf]['slave_platforms']:
+                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
+                BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
 
 ######## generic branch variables for project branches
