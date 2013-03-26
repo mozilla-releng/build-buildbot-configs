@@ -789,7 +789,6 @@ BRANCHES['comm-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thun
 BRANCHES['comm-esr17']['enable_blocklist_update'] = False
 BRANCHES['comm-esr17']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr17']['enable_valgrind'] = False
-<<<<<<< local
 BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
 BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
 BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
@@ -813,20 +812,7 @@ del BRANCHES['comm-esr17']['platforms']['linux64']['env']['PATH']
 del BRANCHES['comm-esr17']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['comm-esr17']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
-=======
-# We need to use a special version of GCC that is compiled in such a way that
-# it doesn't break binary compatibility with previous esr17 builds.
-# Details are in bug 827354
-BRANCHES['comm-esr17']['platforms']['linux']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['comm-esr17']['platforms']['linux']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['comm-esr17']['platforms']['linux64']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['comm-esr17']['platforms']['linux64']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['comm-esr17']['platforms']['linux-debug']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['comm-esr17']['platforms']['linux-debug']['mock_packages'].append('gcc45_0moz4')
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['mock_packages'].remove('gcc45_0moz3')
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['mock_packages'].append('gcc45_0moz4')
 BRANCHES['comm-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
->>>>>>> other
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
