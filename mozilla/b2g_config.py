@@ -319,7 +319,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 9,
-            'upload_symbols': True,
+            'upload_symbols': False,
             'packageTests': True,
             'slaves': SLAVES['macosx64-lion'],
             'platform_objdir': OBJDIR,
