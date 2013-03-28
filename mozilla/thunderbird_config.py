@@ -343,6 +343,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'enable_installer': True,
             'packageTests': True,
+            'try_by_default': False,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
@@ -650,6 +651,9 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
 
+    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
+        del BRANCHES[branch]['platforms']['win64']
+
 ######## comm-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -854,7 +858,6 @@ BRANCHES['comm-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
-del BRANCHES['comm-beta']['platforms']['win64']
 BRANCHES['comm-beta']['enable_valgrind'] = False
 BRANCHES['comm-beta']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
@@ -902,7 +905,6 @@ BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderb
 BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = False
-del BRANCHES['comm-aurora']['platforms']['win64']
 BRANCHES['comm-aurora']['enable_valgrind'] = False
 BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -939,7 +941,6 @@ BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try-comm-central']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
@@ -950,7 +951,6 @@ BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['macosx64']['upload_symbols'] = False
 # Disabled due to issues, see bug 751559
 BRANCHES['try-comm-central']['platforms']['win32']['upload_symbols'] = False
-BRANCHES['try-comm-central']['platforms']['win64']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
@@ -983,6 +983,8 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
+    if BRANCHES[branch]['platforms'].has_key('win64'):
+        del BRANCHES[branch]['platforms']['win64']
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list

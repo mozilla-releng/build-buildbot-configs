@@ -129,9 +129,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
         },
         'mobile_platforms': {
             'android-debug': {
@@ -186,9 +183,6 @@ PROJECT_BRANCHES = {
                 'dont_build': True,
                 'enable_debug_unittests': False,
             },
-            'win64': {
-                'dont_build': True,
-            },
         },
     },
     #####  TWIGS aka RENTABLE BRANCHES
@@ -220,7 +214,6 @@ PROJECT_BRANCHES = {
             'linux': {},
             'linux64': {},
             'win32': {},
-            'win64': {},
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
@@ -245,7 +238,6 @@ PROJECT_BRANCHES = {
             'linux': {},
             'linux64': {},
             'win32': {},
-            'win64': {},
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
