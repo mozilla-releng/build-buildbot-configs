@@ -68,7 +68,7 @@ GLOBAL_VARS = {
         'android-debug': {},
     },
     'pgo_strategy': None,
-    'pgo_platforms': ('linux', 'linux64', 'win32', 'win64'),
+    'pgo_platforms': ('linux', 'linux64', 'win32',),
     'periodic_pgo_interval': 6, # in hours
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
@@ -521,6 +521,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'enable_installer': True,
             'packageTests': True,
+            'try_by_default': False,
             'slaves': SLAVES['win64'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
@@ -1333,6 +1334,8 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
+    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
+        del BRANCHES[branch]['platforms']['win64']
 
 # Point projects to BRANCHES values
 for v in PROJECTS.values():
@@ -1432,7 +1435,6 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
-del BRANCHES['mozilla-release']['platforms']['win64']
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
@@ -1477,7 +1479,6 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
-del BRANCHES['mozilla-beta']['platforms']['win64']
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
@@ -1533,7 +1534,6 @@ BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
-del BRANCHES['mozilla-aurora']['platforms']['win64']
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 # aurora nightlies should use our nightly signing server
@@ -1777,7 +1777,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     if BRANCHES[branch]['platforms'].has_key('win32'):
         BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if BRANCHES[branch]['platforms'].has_key('win64'):
-        BRANCHES[branch]['platforms']['win64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'win64-' + branch
+        del BRANCHES[branch]['platforms']['win64']
     if BRANCHES[branch]['platforms'].has_key('macosx64'):
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # Platform-specific defaults/interpretation

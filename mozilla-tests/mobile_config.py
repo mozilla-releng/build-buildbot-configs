@@ -258,6 +258,10 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 3,
              },
         )),
+        ('xpcshell', (
+            {'suite': 'xpcshell',
+             },
+        )),
         ('jsreftest-1', (
             {'suite': 'jsreftest',
              'totalChunks': 3,
@@ -378,6 +382,8 @@ ANDROID_PANDA_UNITTEST_DICT = {
 }
 for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
     if suite[0].startswith('reftest') or suite[0].startswith('plain-reftest'):
+        continue
+    if suite[0].startswith('xpcshell'):
         continue
     ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
@@ -591,11 +597,33 @@ for branch in BRANCHES:
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
+# Do android debug only on cedar
 for branch in BRANCHES:
     if branch not in ('cedar') and \
             'android' in BRANCHES[branch]['platforms'] and \
             'enable_debug_unittests' in BRANCHES[branch]['platforms']['android']:
         BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
+
+# XPCShell will need to ride trains
+for branch in BRANCHES:
+    # Loop removes it from any branch that gets beyond here
+    if branch in ('cedar',):
+        continue
+
+    for platform in BRANCHES[branch]['platforms']:
+        if not PLATFORMS.has_key(platform):
+            continue
+        if not platform.startswith('android'):
+            continue
+        if platform.endswith('-debug'):
+            continue # no slave_platform for debug
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not BRANCHES[branch]['platforms'][platform].has_key(slave_plat):
+                continue
+            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
+                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+                    if "xpcshell" in suite[0]:
+                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
     import sys
