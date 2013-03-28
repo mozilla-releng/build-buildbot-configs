@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.4'
-releaseConfig['appVersion']          = '17.0.4'
+releaseConfig['version']             = '17.0.5'
+releaseConfig['appVersion']          = '17.0.5'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_4'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_5'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.3': {
-        'appVersion': '17.0.3',
+    '17.0.4': {
+        'appVersion': '17.0.4',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_17_0_3',
+        'baseTag': 'THUNDERBIRD_17_0_4',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-release',
         'path': 'releases/comm-esr17',
-        'revision': '66f7060807f0',
+        'revision': '57e2f985b4bd',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-esr17',
-        'revision': '2c3766cfba66',
-        'relbranch': 'GECKO1703_2013021513_RELBRANCH',
+        'revision': 'cd7d672b40ea',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
