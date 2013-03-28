@@ -752,6 +752,7 @@ del BRANCHES['comm-release']['platforms']['linux64']['env']['PATH']
 del BRANCHES['comm-release']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['comm-release']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
+BRANCHES['comm-release']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'
