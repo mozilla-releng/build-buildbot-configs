@@ -31,6 +31,8 @@ GLOBAL_VARS.update({
         'unagi': {},
         'unagi_eng': {},
         'otoro': {},
+        'inari': {},
+        'leo': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -723,6 +725,36 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'inari': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
+        'leo': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'leo', '--config', 'b2g/releng-otoro.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
 }
 
 
@@ -747,6 +779,8 @@ BRANCHES = {
         'unagi': {},
         'unagi_eng': {},
         'otoro': {},
+        'inari': {},
+        'leo': {},
     },
     'mozilla-b2g18_v1_0_1': {
         # b2g explicitly
@@ -764,6 +798,8 @@ BRANCHES = {
         'unagi': {},
         'unagi_eng': {},
         'otoro': {},
+        'inari': {},
+        'leo': {},
     },
     'try': {
     },
@@ -886,6 +922,10 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_repo'] 
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['leo']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-b2g18_v1_0_1
 # This is a path, relative to HGURL, where the repository is located
@@ -955,6 +995,18 @@ for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
+
+# MERGE DAY: inari is only for b2g18
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+            'inari' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['inari']
+
+# MERGE DAY: leo is only for b2g18
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+            'leo' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['leo']
 
 # MERGE DAY: unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
