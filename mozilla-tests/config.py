@@ -1243,9 +1243,8 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
-NON_UBUNTU_BRANCHES = ("birch", "mozilla-beta", "mozilla-release",
-                       "mozilla-esr17", "mozilla-b2g18",
-                       "mozilla-b2g18_v1_0_1")
+NON_UBUNTU_BRANCHES = ("birch", "mozilla-release", "mozilla-esr17",
+                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
