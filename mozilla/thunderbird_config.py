@@ -998,7 +998,7 @@ for b in ('comm-esr17', 'comm-release'):
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - when FF21 reaches them remove them from this list
-for b in ['comm-beta', 'comm-release', 'comm-esr17']:
+for b in ['comm-release', 'comm-esr17']:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \

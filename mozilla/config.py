@@ -1849,7 +1849,7 @@ for b in BRANCHES:
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
-for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+for b in ['mozilla-release', 'mozilla-esr17',
           'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'
           ]:
     for p, pc in BRANCHES[b]['platforms'].items():
