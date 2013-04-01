@@ -37,7 +37,7 @@ PROJECT_BRANCHES = {
     'fx-team': {
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
+        'enable_nightly': False,
         'pgo_strategy': 'periodic',
     },
     'graphics': {

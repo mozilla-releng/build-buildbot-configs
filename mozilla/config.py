@@ -1492,8 +1492,8 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-aurora']['start_hour'] = [4]
-BRANCHES['mozilla-aurora']['start_minute'] = [20]
+BRANCHES['mozilla-aurora']['start_hour'] = [0]
+BRANCHES['mozilla-aurora']['start_minute'] = [40]
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
@@ -1595,6 +1595,7 @@ del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
+BRANCHES['mozilla-esr17']["run_make_alive_tests"] = False
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
@@ -1626,6 +1627,7 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g18']["run_make_alive_tests"] = False
 
 ######## mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = 'releases/mozilla-b2g18_v1_0_1'
@@ -1657,6 +1659,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incom
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g18_v1_0_1']["run_make_alive_tests"] = False
 
 ######## try
 # Try-specific configs
@@ -1849,7 +1852,7 @@ for b in BRANCHES:
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
-for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+for b in ['mozilla-release', 'mozilla-esr17',
           'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'
           ]:
     for p, pc in BRANCHES[b]['platforms'].items():
@@ -1859,9 +1862,7 @@ for b in ['mozilla-beta', 'mozilla-release', 'mozilla-esr17',
 
 # MERGE DAY
 # When Firefox 22 merges into these branches, they can be removed from the list
-# 'birch' only needs to be here until the April 4th merge
-for b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'mozilla-esr17',
-          'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'birch'):
+for b in ('mozilla-beta', 'mozilla-release',):
     BRANCHES[b]["run_make_alive_tests"] = False
 
 if __name__ == "__main__":
