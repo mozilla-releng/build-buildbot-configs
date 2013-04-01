@@ -1122,24 +1122,6 @@ BRANCHES['mozilla-beta']['platforms']['win32']['slave_platforms'] = ['xp', 'win7
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# MERGE DAY remove the below when Firefox 22 merges in
-BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
-BRANCHES['mozilla-aurora']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-aurora']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-aurora']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-aurora']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
-BRANCHES['mozilla-aurora']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-aurora']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-# End MERGE DAY remove the above when Firefox 22 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
