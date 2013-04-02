@@ -651,7 +651,7 @@ for branch in BRANCHES.keys():
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
 
-    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
+    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'comm-central'):
         del BRANCHES[branch]['platforms']['win64']
 
 ######## comm-central
@@ -984,8 +984,6 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
-    if BRANCHES[branch]['platforms'].has_key('win64'):
-        del BRANCHES[branch]['platforms']['win64']
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list
