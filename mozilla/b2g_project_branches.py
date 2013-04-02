@@ -9,7 +9,7 @@ PROJECT_BRANCHES = {
     #'electrolysis': {},
     'fx-team': {
         'repo_path': 'integration/fx-team',
-        'enable_nightly': True,
+        'enable_nightly': False,
     },
     'graphics': {},
     'ionmonkey': {
