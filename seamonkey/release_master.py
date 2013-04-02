@@ -399,7 +399,6 @@ for platform in releaseConfig['l10nPlatforms']:
         oldBuildNumber=releaseConfig['oldBuildNumber'],
         clobberURL=branchConfig['base_clobber_url'],
         platform=platform,
-        enable_pymake=pf['enable_pymake'],
     )
 
     verifySlavePlat = 'macosx64'
@@ -455,7 +454,6 @@ updates_factory = ReleaseUpdatesFactory(
     testOlderPartials=releaseConfig['testOlderPartials'],
     schema=releaseConfig.get("snippetSchema", 1), # Bug 682805
     useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
-    enable_pymake=pf['enable_pymake'],
 )
 
 builders.append({
