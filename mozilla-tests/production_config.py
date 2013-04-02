@@ -3,9 +3,9 @@ SLAVES = {
         if x not in [18, 59]]), # bug 731793, bug 779574
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (1,72) \
         if x not in [35]]), # bug 735846
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,101) \
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,111) \
         if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
-    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,105) \
+    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(1,115) \
         if x not in [17]]), # bug 747734
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,101)]),
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85) \
