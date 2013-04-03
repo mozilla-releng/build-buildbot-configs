@@ -41,8 +41,7 @@ PROJECT_BRANCHES = {
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
     },
-    # Only need to build on OS X (testing gcc OS X builds still work)
-    #'birch': {},
+    'birch': {},
     'cedar': {},
     # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
     'date': {
