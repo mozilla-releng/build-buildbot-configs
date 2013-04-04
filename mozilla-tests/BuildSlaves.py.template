@@ -9,6 +9,7 @@ SlavePasswords = {
     "ubuntu64_vm": "pass",
     "ubuntu64_vm-b2g": "pass",
     "ubuntu64_hw": "pass",
+    "ubuntu64_hw-b2g": "pass",
     "tiger": "pass",
     "snowleopard": "pass",
     "lion": "pass",
