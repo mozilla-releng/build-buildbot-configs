@@ -226,10 +226,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'birch': {
-        'enable_talos': False,
-        'enabled_products': ['firefox'],
-    },
+    'birch': {},
     'cedar': {
         'mozharness_talos': True,
         'mozharness_tag': 'default',

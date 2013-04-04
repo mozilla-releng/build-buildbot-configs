@@ -943,6 +943,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-x86/releng.manifest',
         },
         'android-noion': {
+            'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'android-noion-opt',
             'app_name': 'browser',

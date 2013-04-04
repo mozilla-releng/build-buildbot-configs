@@ -287,9 +287,9 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-f16-x86_64',
             'mock_packages': ['autoconf213', 'python', 'zip', 'mercurial', 'git', 'ccache',
-                              'glibc-static', 'libstdc++-static', 'gtk2-devel',
-                              'libnotify-devel', 'yasm', 'alsa-lib-devel',
-                              'libcurl-devel', 'wireless-tools-devel',
+                              'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                              'perl-Config-General', 'gtk2-devel', 'libnotify-devel',
+                              'yasm', 'alsa-lib-devel', 'libcurl-devel', 'wireless-tools-devel',
                               'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                               'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                               'imake', 'ccache', 'wget'],
@@ -954,6 +954,8 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## try
 # Try-specific configs
@@ -996,9 +998,9 @@ for branch in BRANCHES:
             'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
-# MERGE DAY: inari is only for b2g18
+# MERGE DAY: inari is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'inari' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari']
 
