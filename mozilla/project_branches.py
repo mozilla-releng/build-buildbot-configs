@@ -228,7 +228,6 @@ PROJECT_BRANCHES = {
     },
     'birch': {},
     'cedar': {
-        'mozharness_talos': True,
         'mozharness_tag': 'default',
         'lock_platforms': True,
         'platforms': {
