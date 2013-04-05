@@ -605,20 +605,22 @@ for branch in BRANCHES:
         BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
 
 # XPCShell will need to ride trains
+# MERGE DAY, drop trees from branch list as Firefox 23 rides forward.
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar',):
+    if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+                      'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
         continue
 
     for platform in BRANCHES[branch]['platforms']:
-        if not PLATFORMS.has_key(platform):
+        if not platform in PLATFORMS:
             continue
         if not platform.startswith('android'):
             continue
         if platform.endswith('-debug'):
-            continue # no slave_platform for debug
+            continue  # no slave_platform for debug
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not BRANCHES[branch]['platforms'][platform].has_key(slave_plat):
+            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
                 continue
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
