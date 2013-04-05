@@ -172,7 +172,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3','gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -242,7 +242,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -313,7 +313,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -387,7 +387,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -604,7 +604,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
@@ -663,7 +663,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
