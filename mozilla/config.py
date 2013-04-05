@@ -172,7 +172,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3','gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -242,7 +242,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -313,7 +313,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -387,7 +387,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         ],
@@ -604,7 +604,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
@@ -663,7 +663,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
@@ -1529,10 +1529,10 @@ BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
 BRANCHES['mozilla-aurora']['create_partial'] = True
 BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
 # use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
