@@ -358,7 +358,6 @@ for platform in releaseConfig['enUSPlatforms']:
             buildNumber=releaseConfig['buildNumber'],
             tree='release',
             clobberURL=branchConfig['base_clobber_url'],
-            enable_pymake=pf['enable_pymake'],
         )
 
         builders.append({
