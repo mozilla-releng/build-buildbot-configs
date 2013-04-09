@@ -870,8 +870,8 @@ BRANCHES['comm-aurora']['call_client_py'] = True
 BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
 BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['comm-aurora']['enable_weekly_bundle'] = True
-BRANCHES['comm-aurora']['start_hour'] = [4]
-BRANCHES['comm-aurora']['start_minute'] = [20]
+BRANCHES['comm-aurora']['start_hour'] = [0]
+BRANCHES['comm-aurora']['start_minute'] = [40]
 # Enable XULRunner / SDK builds
 BRANCHES['comm-aurora']['enable_xulrunner'] = False
 # Enable unit tests
