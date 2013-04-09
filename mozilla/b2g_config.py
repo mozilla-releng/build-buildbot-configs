@@ -33,6 +33,7 @@ GLOBAL_VARS.update({
         'otoro': {},
         'inari': {},
         'leo': {},
+        'hamachi': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -755,6 +756,21 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'hamachi': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-otoro.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
 }
 
 
@@ -781,6 +797,7 @@ BRANCHES = {
         'otoro': {},
         'inari': {},
         'leo': {},
+        'hamachi': {},
     },
     'mozilla-b2g18_v1_0_1': {
         # b2g explicitly
@@ -926,6 +943,8 @@ BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['hamachi']['nightly_signing_servers'] = 'nightly-signing'
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
@@ -935,7 +954,6 @@ BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['enable_checkt
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
-
 
 ######## mozilla-b2g18_v1_0_1
 # This is a path, relative to HGURL, where the repository is located
@@ -1024,6 +1042,12 @@ for branch in BRANCHES:
     if branch not in ('mozilla-b2g18',) and \
             'leo' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo']
+
+# MERGE DAY: hamachi is only for b2g18
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+            'hamachi' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['hamachi']
 
 # MERGE DAY: unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
