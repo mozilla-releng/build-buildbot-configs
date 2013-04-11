@@ -1727,7 +1727,7 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
 for platform in ['linux64', 'linux64-debug']:
-    BRANCHES['try']['platforms'][platform]['mock_packages'] = 
+    BRANCHES['try']['platforms'][platform]['mock_packages'] = \
         list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
         'glibc-devel.i686', 'cairo-devel.i686', 'fontconfig-devel.i686',
         'gtk2-devel.i686', 'dbus-glib-devel.i686', 'glib2-devel.i686',
