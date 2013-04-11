@@ -23,8 +23,8 @@ SLAVES = {
             for x in range(22,33) + range(34,45) + range(46,82) + range(522,874) + range(885,887)]
     ),
     'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522) + range(33,34) + range(45,46)]),
-    'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
-    'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 150) + range(300, 450)]),
+    'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)]),
+    'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 101)]),
     'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 101)]),
 }
