@@ -1280,8 +1280,9 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                                 pass
 
 
-# Remove ubuntu_hw from all branches but cedar
-for branch in set(BRANCHES.keys()) - set(['cedar']):
+# Remove ubuntu_hw from all branches but cedar, m-c, inbound and try
+for branch in set(BRANCHES.keys()) - set(['cedar', 'mozilla-central',
+                                          'mozilla-inbound', 'try']):
     for s in SUITES.iterkeys():
         if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
             options = list(BRANCHES[branch]['suites'][s]['options'])
