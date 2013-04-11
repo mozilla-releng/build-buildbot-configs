@@ -984,6 +984,8 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['nightly_signing_servers'] = 'nightly-signing'
 # Disable desktop B2G checktests on the b2g18_v1_0_1 branch
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
@@ -1045,7 +1047,7 @@ for branch in BRANCHES:
 
 # MERGE DAY: hamachi is only for b2g18
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
 
