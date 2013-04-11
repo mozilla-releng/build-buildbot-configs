@@ -1726,6 +1726,20 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
+for platform in ['linux64', 'linux64-debug']:
+    BRANCHES['try']['platforms'][platform]['mock_packages'] = 
+        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
+        'glibc-devel.i686', 'cairo-devel.i686', 'fontconfig-devel.i686',
+        'gtk2-devel.i686', 'dbus-glib-devel.i686', 'glib2-devel.i686',
+        'gdk-pixbuf2-devel.i686', 'pango-devel.i686', 'pixman-devel.i686',
+        'freetype-devel.i686', 'libpng-devel.i686', 'libXrender-devel.i686',
+        'libX11-devel.i686', 'libxcb-devel.i686', 'libXau-devel.i686',
+        'atk-devel.i686', 'libnotify-devel.i686', 'dbus-devel.i686',
+        'libcurl-devel.i686', 'libXt-devel.i686', 'libXext-devel.i686',
+        'libstdc++-devel.i686', 'zlib-devel.i686', 'alsa-lib-devel.i686',
+        'libgcc-devel.i686',
+        ]
+
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
