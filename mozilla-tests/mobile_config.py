@@ -22,7 +22,7 @@ TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
                                              },
                             }
 
-ANDROID_UNITTEST_REMOTE_EXTRAS = {'cmdOptions': '--bootstrap', }
+ANDROID_UNITTEST_REMOTE_EXTRAS = {'cmdOptions': ['--bootstrap'], }
 
 BRANCHES = {
     'mozilla-central':     {},
