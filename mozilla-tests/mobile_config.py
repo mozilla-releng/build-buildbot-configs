@@ -12,14 +12,6 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
-REMOTE_PROCESS_NAMES = {'default': 'org.mozilla.fennec',
-                        'mozilla-beta': 'org.mozilla.firefox_beta',
-                        'mozilla-aurora': 'org.mozilla.fennec_aurora',
-                        'mozilla-release': 'org.mozilla.firefox',
-                        'release-mozilla-beta': 'org.mozilla.firefox_beta',
-                        'release-mozilla-release': 'org.mozilla.firefox',
-                        }
-
 TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
                             'remoteTests': True,
                             'remoteExtras': {'options': ['--sampleConfig', 'remote.config',
@@ -27,13 +19,10 @@ TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
                                                          '--webServer', 'bm-remote.build.mozilla.org',
                                                          '--browserWait', '60',
                                                          ],
-                                             'processName': REMOTE_PROCESS_NAMES,
                                              },
                             }
 
-UNITTEST_REMOTE_EXTRAS = {'processName': REMOTE_PROCESS_NAMES}
-ANDROID_UNITTEST_REMOTE_EXTRAS = deepcopy(UNITTEST_REMOTE_EXTRAS)
-ANDROID_UNITTEST_REMOTE_EXTRAS['cmdOptions'] = ['--bootstrap']
+ANDROID_UNITTEST_REMOTE_EXTRAS = {'cmdOptions': '--bootstrap', }
 
 BRANCHES = {
     'mozilla-central':     {},
