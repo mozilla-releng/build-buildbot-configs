@@ -1089,6 +1089,13 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
+# B2G WORK WEEK
+BRANCHES['birch']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['birch']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['birch']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['birch']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+# END B2G WORK WEEK
+
 
 if __name__ == "__main__":
     import sys

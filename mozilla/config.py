@@ -1875,6 +1875,13 @@ for b in ['mozilla-release', 'mozilla-esr17',
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
 
+# B2G WORK WEEK
+from localconfig import LINUX64_EC2
+for b in ['birch',]:
+    BRANCHES[b]['platforms']['linux-debug']['slaves'] = LINUX64_EC2
+    BRANCHES[b]['platforms']['linux64-debug']['slaves'] = LINUX64_EC2
+# END B2G WORK WEEK
+
 # MERGE DAY
 # When Firefox 22 merges into these branches, they can be removed from the list
 for b in ('mozilla-beta', 'mozilla-release',):
