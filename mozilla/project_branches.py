@@ -226,7 +226,29 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'birch': {},
+    'birch': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+            },
+            'macosx64': {
+                'enable_checktests': False,
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+            },
+        },
+    },
     'cedar': {
         'mozharness_tag': 'default',
         'lock_platforms': True,

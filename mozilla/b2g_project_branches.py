@@ -41,7 +41,9 @@ PROJECT_BRANCHES = {
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
     },
-    'birch': {},
+    'birch': {
+        'enable_perproduct_builds': True,
+    },
     'cedar': {},
     # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
     'date': {

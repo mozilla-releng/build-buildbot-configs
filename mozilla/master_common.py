@@ -41,7 +41,7 @@ BRANCH_PRIORITIES = {
     'try-comm-central': 5,
     'alder': 5,
     'ash': 5,
-    'birch': 5,
+    'birch': 1,
     'cedar': 5,
     'date': 5,
     'elm': 5,
