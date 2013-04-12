@@ -45,6 +45,9 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
     },
     'cedar': {},
+    'cypress': {
+        'enable_perproduct_builds': True,
+    },
     'date': {},
     'gaia-master': {
         'repo_path': 'mozilla-central',

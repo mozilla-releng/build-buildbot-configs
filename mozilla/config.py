@@ -1884,7 +1884,7 @@ for b in ['mozilla-release', 'mozilla-esr17',
 
 # B2G WORK WEEK
 from localconfig import LINUX64_EC2
-for b in ['birch', ]:
+for b in ('birch', 'cypress'):
     BRANCHES[b]['platforms']['linux-debug']['slaves'] = LINUX64_EC2
     BRANCHES[b]['platforms']['linux64-debug']['slaves'] = LINUX64_EC2
     for p in ['win32-debug', 'macosx64-debug', 'android', 'android-armv6', 'android-debug', 'android-x86']:

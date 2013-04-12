@@ -267,6 +267,29 @@ PROJECT_BRANCHES = {
             'android-debug': {},
         },
     },
+    'cypress': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+            },
+            'macosx64': {
+                'enable_checktests': False,
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+            },
+        },
+    },
     # Android x86_64 build environment (bug 860246)
     'date': {
         'lock_platforms': True,

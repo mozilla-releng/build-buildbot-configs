@@ -43,6 +43,7 @@ BRANCH_PRIORITIES = {
     'ash': 5,
     'birch': 1,
     'cedar': 5,
+    'cypress': 1,
     'date': 5,
     'elm': 5,
     'fig': 5,
