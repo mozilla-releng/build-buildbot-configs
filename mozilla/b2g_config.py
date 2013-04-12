@@ -1094,6 +1094,11 @@ BRANCHES['birch']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['birch']['platforms']['linux64_gecko']['enable_checktests'] = False
 BRANCHES['birch']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
 BRANCHES['birch']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+for b in ('birch', ):
+    del BRANCHES[b]['platforms']['ics_armv7a_gecko-debug']
+    for p in BRANCHES[b]['platforms'].keys():
+        if 'win32' in p or 'macosx' in p:
+            del BRANCHES[b]['platforms'][p]
 # END B2G WORK WEEK
 
 
