@@ -1740,6 +1740,13 @@ for platform in ['linux64', 'linux64-debug']:
         'libgcc-devel.i686',
         ]
 
+for platform in ['android', 'android-armv6', 'android-noion', 'android-x86']:
+    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
+    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
+        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
+        'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+        ]
+
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]

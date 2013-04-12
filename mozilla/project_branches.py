@@ -267,21 +267,16 @@ PROJECT_BRANCHES = {
             'android-debug': {},
         },
     },
-    # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
+    # Android x86_64 build environment (bug 860246)
     'date': {
         'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
+        'platforms': {},
         'mobile_platforms': {
+            'android': {},
+            'android-debug': {},
             'android-noion': {},
+            'android-armv6': {},
+            'android-x86': {},
         },
     },
     # customizations for windows update service changes (bug 481815)
