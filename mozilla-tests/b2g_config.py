@@ -18,7 +18,9 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
     'ash': {},
+    'birch': {},
     'cedar': {},
+    'cypress': {},
     'fx-team': {},
     'gaia-master': {
         'lock_platforms': True,
@@ -758,6 +760,7 @@ BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozill
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
+del BRANCHES['ash']['platforms']['b2g_panda']
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
@@ -765,7 +768,9 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g', 'ubuntu64_hw-b2g']
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
+del BRANCHES['fx-team']['platforms']['b2g_panda']
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
+del BRANCHES['ionmonkey']['platforms']['b2g_panda']
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
@@ -775,8 +780,11 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g'][
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
+del BRANCHES['mozilla-central']['platforms']['b2g_panda']
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
+del BRANCHES['mozilla-inbound']['platforms']['b2g_panda']
 BRANCHES['services-central']['repo_path'] = "services/services-central"
+del BRANCHES['services-central']['platforms']['b2g_panda']
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 

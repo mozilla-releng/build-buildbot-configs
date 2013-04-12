@@ -226,7 +226,29 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'birch': {},
+    'birch': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+            },
+            'macosx64': {
+                'enable_checktests': False,
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+            },
+        },
+    },
     'cedar': {
         'mozharness_tag': 'default',
         'lock_platforms': True,
@@ -245,21 +267,39 @@ PROJECT_BRANCHES = {
             'android-debug': {},
         },
     },
-    # Customizations for b2g 1.1 work (bug 822783 & bug 819368)
+    'cypress': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+            },
+            'macosx64': {
+                'enable_checktests': False,
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+            },
+        },
+    },
+    # Android x86_64 build environment (bug 860246)
     'date': {
         'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
+        'platforms': {},
         'mobile_platforms': {
+            'android': {},
+            'android-debug': {},
             'android-noion': {},
+            'android-armv6': {},
+            'android-x86': {},
         },
     },
     # customizations for windows update service changes (bug 481815)

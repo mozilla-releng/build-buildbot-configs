@@ -1726,6 +1726,27 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
+for platform in ['linux64', 'linux64-debug']:
+    BRANCHES['try']['platforms'][platform]['mock_packages'] = \
+        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
+        'glibc-devel.i686', 'cairo-devel.i686', 'fontconfig-devel.i686',
+        'gtk2-devel.i686', 'dbus-glib-devel.i686', 'glib2-devel.i686',
+        'gdk-pixbuf2-devel.i686', 'pango-devel.i686', 'pixman-devel.i686',
+        'freetype-devel.i686', 'libpng-devel.i686', 'libXrender-devel.i686',
+        'libX11-devel.i686', 'libxcb-devel.i686', 'libXau-devel.i686',
+        'atk-devel.i686', 'libnotify-devel.i686', 'dbus-devel.i686',
+        'libcurl-devel.i686', 'libXt-devel.i686', 'libXext-devel.i686',
+        'libstdc++-devel.i686', 'zlib-devel.i686', 'alsa-lib-devel.i686',
+        'libgcc-devel.i686',
+        ]
+
+for platform in ['android', 'android-armv6', 'android-noion', 'android-x86']:
+    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
+    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
+        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
+        'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+        ]
+
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
@@ -1860,6 +1881,19 @@ for b in ['mozilla-release', 'mozilla-esr17',
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
+# B2G WORK WEEK
+from localconfig import LINUX64_EC2
+for b in ('birch', 'cypress'):
+    BRANCHES[b]['platforms']['linux-debug']['slaves'] = LINUX64_EC2
+    BRANCHES[b]['platforms']['linux64-debug']['slaves'] = LINUX64_EC2
+    for p in ['win32-debug', 'macosx64-debug', 'android', 'android-armv6', 'android-debug', 'android-x86']:
+        if p in BRANCHES[b]['platforms']:
+            del(BRANCHES[b]['platforms'][p])
+    for p in BRANCHES[b]['platforms'].keys():
+        if 'linux' not in p:
+            BRANCHES[b]['platforms'][p]['enable_checktests'] = False
+# END B2G WORK WEEK
 
 # MERGE DAY
 # When Firefox 22 merges into these branches, they can be removed from the list

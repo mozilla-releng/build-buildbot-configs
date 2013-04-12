@@ -1,7 +1,7 @@
 from copy import deepcopy
 import production_config as pc
 
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 95) if x not in [88]]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 93) if x not in [88]]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1,)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (3, 4, 5, 22, 80)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
