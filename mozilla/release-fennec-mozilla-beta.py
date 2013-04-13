@@ -23,7 +23,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '21.0b2'
 releaseConfig['appVersion']          = '21.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_21_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
