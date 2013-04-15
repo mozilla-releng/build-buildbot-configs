@@ -1280,22 +1280,6 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                                 pass
 
 
-# Remove ubuntu_hw from all branches but cedar, m-c, inbound and try
-for branch in set(BRANCHES.keys()) - set(['cedar', 'mozilla-central',
-                                          'mozilla-inbound', 'try']):
-    for s in SUITES.iterkeys():
-        if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
-            options = list(BRANCHES[branch]['suites'][s]['options'])
-            # filter out ubuntu
-            options[1] = [x for x in options[1] if x not in ('ubuntu32_hw', 'ubuntu64_hw')]
-            BRANCHES[branch]['suites'][s]['options'] = tuple(options)
-        tests_key = '%s_tests' % s
-        if tests_key in BRANCHES[branch]:
-            tests = list(BRANCHES[branch]['%s_tests' % s])
-            tests[3] = [x for x in tests[3] if x not in ('ubuntu32_hw', 'ubuntu64_hw')]
-            BRANCHES[branch]['%s_tests' % s] = tuple(tests)
-
-
 if __name__ == "__main__":
     import sys
     import pprint
