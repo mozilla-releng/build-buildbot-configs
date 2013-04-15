@@ -43,10 +43,26 @@ PROJECT_BRANCHES = {
     },
     'birch': {
         'enable_perproduct_builds': True,
+        'platforms': {
+            'macosx64_gecko': {
+                'enable_checktests': False,
+            },
+            'win32_gecko': {
+                'enable_checktests': False,
+            },
+        },
     },
     'cedar': {},
     'cypress': {
         'enable_perproduct_builds': True,
+        'platforms': {
+            'macosx64_gecko': {
+                'enable_checktests': False,
+            },
+            'win32_gecko': {
+                'enable_checktests': False,
+            },
+        },
     },
     'date': {},
     'gaia-master': {
