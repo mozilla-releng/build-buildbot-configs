@@ -761,12 +761,16 @@ BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 del BRANCHES['ash']['platforms']['b2g_panda']
+BRANCHES['birch']['branch_name'] = "Birch"
+BRANCHES['birch']['repo_path'] = "projects/birch"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g', 'ubuntu64_hw-b2g']
+BRANCHES['cypress']['branch_name'] = "Cypress"
+BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 del BRANCHES['fx-team']['platforms']['b2g_panda']
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
