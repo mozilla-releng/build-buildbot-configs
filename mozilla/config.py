@@ -175,6 +175,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3','gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -245,6 +246,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -316,6 +318,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -390,6 +393,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1867,6 +1871,15 @@ for b in ['mozilla-release', 'mozilla-esr17',
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
+# MERGE DAY - gstreamer-devel packages on try only (bug 855492)
+for b in BRANCHES:
+    if b not in ('try',):
+        for p, pc in BRANCHES[b]['platforms'].items():
+            if 'mock_packages' in pc:
+                BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                    [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in ('gstreamer-devel', 'gstreamer-plugins-base-devel')]
+
 
 # B2G WORK WEEK
 from localconfig import LINUX64_EC2
