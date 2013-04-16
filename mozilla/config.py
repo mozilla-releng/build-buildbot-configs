@@ -1846,7 +1846,7 @@ for b in ('mozilla-esr17',):
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
     if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                 'mozilla-b2g18_v1_0_1', 'try'
+                 'mozilla-b2g18_v1_0_1', 'try', 'birch', 'cypress', 'date',
                  ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
