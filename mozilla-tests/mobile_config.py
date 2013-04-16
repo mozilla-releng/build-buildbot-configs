@@ -581,7 +581,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_1', 'try'
+                      'mozilla-b2g18_v1_0_1', 'try', 'birch', 'cypress', 'date',
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
