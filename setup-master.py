@@ -181,10 +181,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
 
     retval = []
     for m in masters:
-        # Unsupported...for now!
-        if m['role'] in ('scheduler',):
-            continue
-
         # Sometimes we only want masters of a specific role to be loaded
         if role and m['role'] != role:
                 continue
@@ -229,6 +225,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 mastercfg = 'tests_master.cfg'
             elif m['role'] == 'build' or m['role'] == 'try':
                 mastercfg = 'builder_master.cfg'
+            elif m['role'] == 'scheduler':
+                mastercfg = 'scheduler_master.cfg'
             else:
                 raise AssertionError("What is a %s role?" % m['role'])
 
@@ -276,6 +274,19 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 ('tests_localconfig.py', 'master_localconfig.py'))
             c.globs.append('tests_localconfig.py')
             c.globs.append(mastercfg)
+        elif m['role'] == 'scheduler':
+            if 'build_scheduler' in m['name']:
+                c.config_dir = 'mozilla'
+                c.globs.append('release-firefox*.py')
+                c.globs.append('release-fennec*.py')
+                c.globs.append('release-thunderbird*.py')
+            elif 'tests_scheduler' in m['name']:
+                c.config_dir = 'mozilla-tests'
+            c.globs.append(mastercfg)
+            c.globs.append('scheduler_localconfig.py')
+            c.local_links.append((mastercfg, 'master.cfg'))
+            c.local_links.append(
+                ('scheduler_localconfig.py', 'master_localconfig.py'))
 
         retval.append(c)
     return retval
