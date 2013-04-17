@@ -181,10 +181,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
 
     retval = []
     for m in masters:
-        # Unsupported...for now!
-        if m['role'] in ('scheduler',):
-            continue
-
         # Sometimes we only want masters of a specific role to be loaded
         if role and m['role'] != role:
                 continue
@@ -229,6 +225,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 mastercfg = 'tests_master.cfg'
             elif m['role'] == 'build' or m['role'] == 'try':
                 mastercfg = 'builder_master.cfg'
+            elif m['role'] == 'scheduler':
+                mastercfg = 'scheduler_master.cfg'
             else:
                 raise AssertionError("What is a %s role?" % m['role'])
 
@@ -276,6 +274,19 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 ('tests_localconfig.py', 'master_localconfig.py'))
             c.globs.append('tests_localconfig.py')
             c.globs.append(mastercfg)
+        elif m['role'] == 'scheduler':
+            if 'build_scheduler' in m['name']:
+                c.config_dir = 'mozilla'
+                c.globs.append('release-firefox*.py')
+                c.globs.append('release-fennec*.py')
+                c.globs.append('release-thunderbird*.py')
+            elif 'tests_scheduler' in m['name']:
+                c.config_dir = 'mozilla-tests'
+            c.globs.append(mastercfg)
+            c.globs.append('scheduler_localconfig.py')
+            c.local_links.append((mastercfg, 'master.cfg'))
+            c.local_links.append(
+                ('scheduler_localconfig.py', 'master_localconfig.py'))
 
         retval.append(c)
     return retval
@@ -329,7 +340,10 @@ if __name__ == "__main__":
                                     log=log, universal=options.universal)
     if options.test:
         log.debug('adding universal builders because we are testing')
-        master_list.extend(load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log))
+        uni_masters = load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log)
+        # a universal scheduler master doesn't make any sense
+        uni_masters = [m for m in uni_masters if 'scheduler' not in m.name]
+        master_list.extend(uni_masters)
 
     # Make sure we don't have duplicate names
     master_map = dict((m.name, m) for m in master_list)
