@@ -175,6 +175,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3','gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -245,6 +246,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -316,6 +318,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -390,6 +393,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1726,11 +1730,26 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
-for platform in ['android', 'android-armv6', 'android-noion', 'android-x86']:
+for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'android-debug']:
     BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
     BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
-        'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
+            'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+        ]
+
+for platform in ['linux', 'linux-debug']:
+    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
+    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
+        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
+            'glibc-devel.i686', 'cairo-devel.i686', 'fontconfig-devel.i686',
+            'gtk2-devel.i686', 'dbus-glib-devel.i686', 'glib2-devel.i686',
+            'gdk-pixbuf2-devel.i686', 'pango-devel.i686', 'pixman-devel.i686',
+            'freetype-devel.i686', 'libpng-devel.i686', 'libXrender-devel.i686',
+            'libX11-devel.i686', 'libxcb-devel.i686', 'libXau-devel.i686',
+            'atk-devel.i686', 'libnotify-devel.i686', 'dbus-devel.i686',
+            'libcurl-devel.i686', 'libXt-devel.i686', 'libXext-devel.i686',
+            'libstdc++-devel.i686', 'zlib-devel.i686', 'alsa-lib-devel.i686',
+            'libgcc.i686',
         ]
 
 ######## generic branch configs
@@ -1867,6 +1886,15 @@ for b in ['mozilla-release', 'mozilla-esr17',
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+
+# MERGE DAY - gstreamer-devel packages on try only (bug 855492)
+for b in BRANCHES:
+    if b not in ('try',):
+        for p, pc in BRANCHES[b]['platforms'].items():
+            if 'mock_packages' in pc:
+                BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                    [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in ('gstreamer-devel', 'gstreamer-plugins-base-devel')]
+
 
 # B2G WORK WEEK
 from localconfig import LINUX64_EC2

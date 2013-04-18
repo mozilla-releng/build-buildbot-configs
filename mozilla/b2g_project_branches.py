@@ -2,7 +2,7 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     'build-system': {},
-    'devtools':{
+    'devtools': {
         'enable_nightly': True,
     },
     # Disabled because of builder limit problems - bug 721854
@@ -64,7 +64,10 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'date': {},
+    'date': {
+        'lock_platforms': True,
+        'platforms': {},
+    },
     'gaia-master': {
         'repo_path': 'mozilla-central',
         'poll_repo': 'integration/gaia-central',

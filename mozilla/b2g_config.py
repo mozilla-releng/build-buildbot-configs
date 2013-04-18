@@ -909,7 +909,6 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
@@ -926,7 +925,6 @@ BRANCHES['mozilla-b2g18']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -938,13 +936,9 @@ BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_repo'] =
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['leo']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['nightly_signing_servers'] = 'nightly-signing'
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
@@ -970,7 +964,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
@@ -981,11 +974,8 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_r
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['nightly_signing_servers'] = 'nightly-signing'
 # Disable desktop B2G checktests on the b2g18_v1_0_1 branch
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
