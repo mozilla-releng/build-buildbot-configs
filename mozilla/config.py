@@ -1730,11 +1730,11 @@ for platform in BRANCHES['try']['platforms'].keys():
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
 
-for platform in ['android', 'android-armv6', 'android-noion', 'android-x86']:
+for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'android-debug']:
     BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
     BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        list(BRANCHES['try']['platforms'][platform]['mock_packages']) + [
-        'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
+            'glibc.i686', 'libstdc++.i686', 'zlib.i686',
         ]
 
 ######## generic branch configs
