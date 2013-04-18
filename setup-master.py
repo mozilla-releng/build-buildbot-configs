@@ -176,7 +176,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 unique_masters[k] = m
                 new_masters.append(m)
             else:
-                print "Skipping", m['name'], "same as", unique_masters[k]['name']
+                log.debug("Skipping %s; same as %s" % (m['name'], unique_masters[k]['name']))
         masters = new_masters
 
     retval = []
@@ -336,8 +336,11 @@ if __name__ == "__main__":
     log.debug('using master json file from "%s"' % options.masters_json)
     if options.role:
         log.info('filtering by "%s" roles' % options.role)
+
+    dedupe = options.test
     master_list = load_masters_json(options.masters_json, role=options.role,
-                                    log=log, universal=options.universal)
+                                    log=log, universal=options.universal,
+                                    dedupe=dedupe)
     if options.test:
         log.debug('adding universal builders because we are testing')
         uni_masters = load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log)
