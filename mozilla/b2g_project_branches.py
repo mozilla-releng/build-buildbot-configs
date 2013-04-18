@@ -52,7 +52,9 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'cedar': {},
+    'cedar': {
+        'mozharness_tag': 'default',
+    },
     'cypress': {
         'enable_perproduct_builds': True,
         'platforms': {
