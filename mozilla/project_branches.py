@@ -293,7 +293,10 @@ PROJECT_BRANCHES = {
     # Android x86_64 build environment (bug 860246)
     'date': {
         'lock_platforms': True,
-        'platforms': {},
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+        },
         'mobile_platforms': {
             'android': {},
             'android-debug': {},
