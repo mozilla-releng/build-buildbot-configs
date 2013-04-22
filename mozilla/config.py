@@ -1869,7 +1869,7 @@ for b in ('mozilla-esr17',):
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
     if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                 'mozilla-b2g18_v1_0_1', 'try', 'birch', 'cypress', 'date',
+                 'mozilla-b2g18_v1_0_1', 'try', 'birch', 'date',
                  ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
@@ -1901,10 +1901,7 @@ for b in BRANCHES:
 
 
 # B2G WORK WEEK
-from localconfig import LINUX64_EC2
-for b in ('birch', 'cypress'):
-    BRANCHES[b]['platforms']['linux-debug']['slaves'] = LINUX64_EC2
-    BRANCHES[b]['platforms']['linux64-debug']['slaves'] = LINUX64_EC2
+for b in ('birch',):
     for p in ['win32-debug', 'macosx64-debug', 'android', 'android-armv6', 'android-debug', 'android-x86']:
         if p in BRANCHES[b]['platforms']:
             del(BRANCHES[b]['platforms'][p])
