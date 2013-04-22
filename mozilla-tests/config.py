@@ -743,6 +743,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'metro-immersive': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1237,6 +1240,17 @@ UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
                          "xpcshell", "reftest", "reftest-no-accel",
                          "mochitest-1", "mochitest-2", "mochitest-3",
                          "mochitest-4", "mochitest-5", "mochitest"]
+
+# Add metro tests to cedar only
+BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += [
+    ('metro-immersive', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'metro-immersive'],
+        'script_maxtime': 7200,
+    }),
+]
+
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches,
