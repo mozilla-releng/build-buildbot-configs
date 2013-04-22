@@ -1740,17 +1740,21 @@ for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'an
 for platform in ['linux', 'linux-debug']:
     BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
     BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
-            'glibc-devel.i686', 'cairo-devel.i686', 'fontconfig-devel.i686',
-            'gtk2-devel.i686', 'dbus-glib-devel.i686', 'glib2-devel.i686',
-            'gdk-pixbuf2-devel.i686', 'pango-devel.i686', 'pixman-devel.i686',
-            'freetype-devel.i686', 'libpng-devel.i686', 'libXrender-devel.i686',
-            'libX11-devel.i686', 'libxcb-devel.i686', 'libXau-devel.i686',
-            'atk-devel.i686', 'libnotify-devel.i686', 'dbus-devel.i686',
-            'libcurl-devel.i686', 'libXt-devel.i686', 'libXext-devel.i686',
-            'libstdc++-devel.i686', 'zlib-devel.i686', 'alsa-lib-devel.i686',
-            'libgcc.i686',
-        ]
+        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+         'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple', 'perl-Config-General',
+         'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
+         'alsa-lib-devel.i686', 'libcurl-devel.i686',
+         'wireless-tools-devel.i686', 'libX11-devel.i686',
+         'libXt-devel.i686', 'mesa-libGL-devel.i686',
+         'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
+         'mpfr',  # required for system compiler
+         'xorg-x11-font*',  # fonts required for PGO
+         'imake',  # required for makedepend!?!
+         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repo
+         'valgrind',
+         'pulseaudio-libs-devel.i686',
+         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+         ]
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
