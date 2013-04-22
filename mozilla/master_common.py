@@ -37,13 +37,13 @@ BRANCH_PRIORITIES = {
     'comm-aurora': 3,
     # Unlisted branches are prioritized at this level
     'mozilla-inbound': 4,
+    'birch': 4,  # temporary 2nd inbound for b2g; bug 861299
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
     'ash': 5,
-    'birch': 1,
     'cedar': 5,
-    'cypress': 1,
+    'cypress': 5,
     'date': 5,
     'elm': 5,
     'fig': 5,

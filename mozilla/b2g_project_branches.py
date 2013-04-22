@@ -55,17 +55,7 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'cypress': {
-        'enable_perproduct_builds': True,
-        'platforms': {
-            'macosx64_gecko': {
-                'enable_checktests': False,
-            },
-            'win32_gecko': {
-                'enable_checktests': False,
-            },
-        },
-    },
+    'cypress': {},
     'date': {
         'lock_platforms': True,
         'platforms': {},
