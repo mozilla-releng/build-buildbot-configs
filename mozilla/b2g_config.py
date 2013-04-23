@@ -32,8 +32,11 @@ GLOBAL_VARS.update({
         'unagi_eng': {},
         'otoro': {},
         'inari': {},
+        'inari_eng': {},
         'leo': {},
+        'leo_eng': {},
         'hamachi': {},
+        'hamachi_eng': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -741,6 +744,21 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'inari_eng': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro-eng.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
         'leo': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
@@ -756,12 +774,42 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + '_%(branch)s_%(platform)s',
             'slaves': SLAVES['mock'],
         },
+        'leo_eng': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'leo', '--config', 'b2g/releng-otoro-eng.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
         'hamachi': {
             'mozharness_config': {
                 'script_name': 'scripts/b2g_build.py',
                 # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
                 # --target name below
                 'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-otoro.py',
+                               '--gaia-languages-file', 'locales/languages_basecamp.json',
+                               '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            },
+            'stage_product': 'b2g',
+            'product_name': 'b2g',
+            'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+            'slaves': SLAVES['mock'],
+        },
+        'hamachi_eng': {
+            'mozharness_config': {
+                'script_name': 'scripts/b2g_build.py',
+                # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+                # --target name below
+                'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-otoro-eng.py',
                                '--gaia-languages-file', 'locales/languages_basecamp.json',
                                '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
                 'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -797,6 +845,7 @@ BRANCHES = {
         'otoro': {},
         'inari': {},
         'leo': {},
+        'leo_eng': {},
         'hamachi': {},
     },
     'mozilla-b2g18_v1_0_1': {
@@ -816,7 +865,9 @@ BRANCHES = {
         'unagi_eng': {},
         'otoro': {},
         'inari': {},
+        'inari_eng': {},
         'leo': {},
+        'hamachi_eng': {},
     },
     'try': {
     },
@@ -938,6 +989,7 @@ BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = '
 BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
@@ -975,7 +1027,9 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18_v1_0_1 branch
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
@@ -1029,17 +1083,33 @@ for branch in BRANCHES:
             'inari' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari']
 
-# MERGE DAY: leo is only for b2g18
+# MERGE DAY: inari_eng is only for b2g18_v1_0_1
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18_v1_0_1',) and \
+            'inari_eng' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['inari_eng']
+
+# MERGE DAY: leo/leo_eng is only for b2g18
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18',) and \
             'leo' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo']
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18',) and \
+            'leo_eng' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['leo_eng']
 
 # MERGE DAY: hamachi is only for b2g18
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
+
+# MERGE DAY: hamachi_eng is only for b2g18_v1_0_1
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18_v1_0_1',) and \
+            'hamachi_eng' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['hamachi_eng']
 
 # MERGE DAY: unagi_eng is only for b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
