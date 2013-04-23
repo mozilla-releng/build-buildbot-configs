@@ -311,7 +311,17 @@ PROJECT_BRANCHES = {
             'android-x86': {},
         },
     },
-    'fig': {},
+    'fig': {
+        'lock_platforms': True,
+        'platforms': {},
+        'mobile_platforms': {
+            'android': {},
+            'android-debug': {},
+            'android-noion': {},
+            'android-armv6': {},
+            'android-x86': {},
+        },
+    },
     'gum': {},
     'holly': {},
     # Bug 848025 - disable android builds for jamun
