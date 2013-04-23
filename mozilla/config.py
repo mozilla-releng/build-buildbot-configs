@@ -1754,6 +1754,24 @@ for platform in ['linux', 'linux-debug']:
          'valgrind',
          'pulseaudio-libs-devel.i686',
          'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+         # Packages already installed in the mock environment, as x86_64
+         # packages.
+         'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
+         # yum likes to install .x86_64 -devel packages that satisfy .i686
+         # -devel packages dependencies. So manually install the dependencies
+         # of the above packages.
+         'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
+         'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
+         'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
+         'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
+         'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
+         'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
+         'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
+         'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
+         'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
+         'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
+         'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
+         'pixman-devel.i686', 'zlib-devel.i686',
          ]
 
 ######## generic branch configs
