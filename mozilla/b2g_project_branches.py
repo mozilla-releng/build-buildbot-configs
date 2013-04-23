@@ -80,7 +80,10 @@ PROJECT_BRANCHES = {
     },
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
-    'fig': {},
+    'fig': {
+        'lock_platforms': True,
+        'platforms': {},
+    },
     'gum': {},
     'holly': {},
     # Bug 848025 - disable b2g builds for jamun
