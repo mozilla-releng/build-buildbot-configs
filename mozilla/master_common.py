@@ -63,6 +63,7 @@ BRANCH_PRIORITIES = {
 # earlier.
 BUILDER_PRIORITIES = [
     (re.compile('b2g(-debug)?_test'), 50),
+    (re.compile('l10n'), 150),
 ]
 
 
