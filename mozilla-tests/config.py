@@ -1293,6 +1293,23 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
                             except KeyError:
                                 pass
 
+# MERGE DAY: remove branches when Firefox 23 merges in
+NON_UBUNTU_TALOS_BRANCHES = ("mozilla-aurora", "mozilla-beta",
+                             "mozilla-release", "mozilla-esr17",
+                             "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
+    for s in SUITES.iterkeys():
+        if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
+            options = list(BRANCHES[branch]['suites'][s]['options'])
+            # filter out fedora
+            options[1] = [x for x in options[1] if x not in ('fedora', 'fedora64')]
+            BRANCHES[branch]['suites'][s]['options'] = tuple(options)
+        tests_key = '%s_tests' % s
+        if tests_key in BRANCHES[branch]:
+            tests = list(BRANCHES[branch]['%s_tests' % s])
+            tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
+            BRANCHES[branch]['%s_tests' % s] = tuple(tests)
+
 
 if __name__ == "__main__":
     import sys
