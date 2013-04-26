@@ -68,6 +68,7 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
+    'build/partner-repacks': 'default',
     'build/mozharness': 'production',
 }
 
@@ -124,7 +125,7 @@ releaseConfig['xulrunner_mozconfigs']          = {
 releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
+releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
