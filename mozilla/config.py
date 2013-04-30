@@ -1712,23 +1712,12 @@ BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-noion']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux']['upload_symbols'] = False
-BRANCHES['try']['platforms']['linux64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['macosx64']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android-armv6']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android-noion']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android-debug']['upload_symbols'] = False
-BRANCHES['try']['platforms']['android-x86']['upload_symbols'] = False
-BRANCHES['try']['platforms']['win32']['upload_symbols'] = True
-BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] = 'trybld'
-BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
-BRANCHES['try']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
-BRANCHES['try']['platforms']['win64']['upload_symbols'] = False
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
+    # Disable symbol upload across the board
+    BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 
 for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'android-debug']:
     BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
