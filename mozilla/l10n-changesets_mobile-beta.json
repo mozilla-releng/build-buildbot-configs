@@ -84,11 +84,11 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ru": {
-    "revision": "44c0ba54e967",
+    "revision": "10223ef13029",
     "platforms": ["android", "android-multilocale"]
   },
   "sk": {
-    "revision": "e7b29eb25e6d",
+    "revision": "99bf6ee28534",
     "platforms": ["android"]
   },
   "sl": {
