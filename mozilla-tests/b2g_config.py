@@ -41,6 +41,8 @@ PLATFORMS = {
     'ics_armv7a_gecko': {},
     'b2g_panda': {},
     'b2g_panda_gaia_central': {},
+    'linux32_gecko': {},
+    'linux64_gecko': {},
 }
 
 builder_prefix = "b2g"
@@ -84,6 +86,28 @@ PLATFORMS['b2g_panda_gaia_central']['mozharness_config'] = {
     'reboot_command': None,
 }
 
+PLATFORMS['linux32_gecko']['slave_platforms'] = ['ubuntu32_vm-b2gdt', ]
+PLATFORMS['linux32_gecko']['env_name'] = 'linux-perf'
+PLATFORMS['linux32_gecko']['ubuntu32_vm-b2gdt'] = {'name': builder_prefix + "_ubuntu32_vm"}
+PLATFORMS['linux32_gecko']['stage_product'] = 'b2g'
+PLATFORMS['linux32_gecko']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'use_mozharness': True,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
+
+PLATFORMS['linux64_gecko']['slave_platforms'] = ['ubuntu64_vm-b2gdt', ]
+PLATFORMS['linux64_gecko']['env_name'] = 'linux-perf'
+PLATFORMS['linux64_gecko']['ubuntu64_vm-b2gdt'] = {'name': builder_prefix + "_ubuntu64_vm"}
+PLATFORMS['linux64_gecko']['stage_product'] = 'b2g'
+PLATFORMS['linux64_gecko']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'use_mozharness': True,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
+
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
     for slave_platform in platform_config['slave_platforms']:
@@ -100,6 +124,8 @@ BRANCH_UNITTEST_VARS = {
         'ics_armv7a_gecko': {},
         'b2g_panda': {},
         'b2g_panda_gaia_central': {},
+        'linux32_gecko': {},
+        'linux64_gecko': {},
     },
 }
 
@@ -246,6 +272,14 @@ XPCSHELL = [
                   },
     ),
 ]
+
+GAIA_UNITTESTS = [(
+    'gaia-unit', {
+        'suite': 'gaia-unit',
+        'use_mozharness': True,
+        'script_path': 'scripts/gaia_unit.py',
+    },
+)]
 
 ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 
@@ -675,6 +709,46 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
     },
+    'linux32_gecko': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'brand_name': 'Gecko',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu32_vm-b2gdt': {
+            'opt_unittest_suites': GAIA_UNITTESTS[:],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'gaia-unit': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
+            },
+        },
+    },
+    'linux64_gecko': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'brand_name': 'Gecko',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu64_vm-b2gdt': {
+            'opt_unittest_suites': GAIA_UNITTESTS[:],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'gaia-unit': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
+            },
+        },
+    },
 }
 
 # Copy unittest vars in first, then platform vars
@@ -830,6 +904,13 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
             BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64_hw-b2g')
         if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
             del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
+
+# Disable linux{32,64}_gecko on all branches but cedar
+for branch in set(BRANCHES.keys()) - set(['cedar']):
+    for platform in ('linux32_gecko', 'linux64_gecko'):
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        del BRANCHES[branch]['platforms'][platform]
 
 
 if __name__ == "__main__":
