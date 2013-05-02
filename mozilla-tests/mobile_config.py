@@ -235,6 +235,10 @@ ANDROID_UNITTEST_DICT = {
         #      'thisChunk': 1,
         #      },
         # )),
+        ('crashtest', (
+            {'suite': 'crashtest',
+             },
+        )),
         ('crashtest-2', (
             {'suite': 'crashtest',
              'totalChunks': 3,
