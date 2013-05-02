@@ -722,7 +722,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'otoro', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -737,7 +737,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -752,7 +752,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -767,7 +767,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'leo', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -782,7 +782,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'leo', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -797,7 +797,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -812,7 +812,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_basecamp.json',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
