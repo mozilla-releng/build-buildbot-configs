@@ -59,6 +59,7 @@ GLOBAL_VARS = {
         'linux64-debug': {},
         'linux64-asan': {},
         'linux64-dbg-asan': {},
+        'linux64-dbg-st-an': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
@@ -394,6 +395,80 @@ PLATFORM_VARS = {
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+            ],
+            # The status of this build doesn't affect the last good revision
+            # algorithm for nightlies
+            'consider_for_nightly': False,
+        },
+        'linux64-dbg-st-an': {
+            'product_name': 'firefox',
+            'unittest_platform': 'linux64-dbg-st-an',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Linux x86-64 %(branch)s debug static analysis',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'browser/config/mozconfigs/linux64/debug-static-analysis-clang',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 10,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'packageTests': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'linux64-dbg-st-an',
+            'update_platform': 'Linux_x86_64-gcc3',
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-dbg-st-an',
+                'TINDERBOX_OUTPUT': '1',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'enable_build_analysis': False,
+            'try_by_default': False,
+            'create_snippet': False,
+            'create_partial': False,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind',
+                        'pulseaudio-libs-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1704,7 +1779,7 @@ BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-dbg-asan']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-dbg-st-an']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
@@ -1884,7 +1959,7 @@ for b in BRANCHES.keys():
 # ASan builds are only on mozilla-central for now
 for b in BRANCHES:
     if b not in ('mozilla-central',):
-        for p in 'linux64-asan', 'linux64-dbg-asan':
+        for p in 'linux64-asan', 'linux64-dbg-asan', 'linux64-dbg-st-an':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
 
