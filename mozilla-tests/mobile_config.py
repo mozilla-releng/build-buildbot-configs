@@ -565,12 +565,6 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
 
-#exclude android builds from running on non-cedar branches on pandas
-for branch in BRANCHES.keys():
-    if 'android' in BRANCHES[branch]['platforms'] and branch not in ("cedar", "mozilla-central", "try", "mozilla-inbound"):
-        del BRANCHES[branch]['platforms']['android']['panda_android']
-        BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
-
 # Ignore robocop chunks for mozilla-release, robocop-chunks is defined in ANDROID_PLAIN_UNITTEST_DICT
 BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(TEGRA_RELEASE_PLAIN_UNITTEST_DICT["opt_unittest_suites"])
 
@@ -589,6 +583,17 @@ for branch in BRANCHES:
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
+
+# MERGE DAY, drop trees from branch list as Firefox 22 rides forward.
+for branch in BRANCHES.keys():
+    # Loop removes it from any branch that gets beyond here
+    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+        continue
+
+    if 'android' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android']['panda_android']
+        BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
 # Do android debug only on cedar
 for branch in BRANCHES:
