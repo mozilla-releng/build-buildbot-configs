@@ -1286,8 +1286,8 @@ BRANCHES['try']['platforms']['win32']['win8']['debug_unittest_suites'] = MOCHITE
 
 # Let's disable win7-ix while we green things out on Cedar
 for branch in BRANCHES.keys():
-    if branch == "cedar":
-        continue 
+    if branch != "cedar":
+        continue
     if "win7-ix" in BRANCHES[branch]['platforms'].get('win32', {}).get('slave_platforms', []):
         del BRANCHES[branch]['platforms']['win32']['win7-ix']
         BRANCHES[branch]['platforms']['win32']['slave_platforms'].remove("win7-ix")
