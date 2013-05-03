@@ -82,10 +82,11 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
+PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7', 'win7-ix', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
+PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
 PLATFORMS['win32']['win8'] = {'name': "WINNT 6.2"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
@@ -136,7 +137,7 @@ ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', '
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
-WIN7_ONLY = ['win7']
+WIN7_ONLY = ['win7', 'win7-ix']
 
 SUITES = {
     'xperf': {
@@ -721,6 +722,57 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'win7-ix': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL,
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+            },
+        },
         'win8': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
@@ -1022,6 +1074,11 @@ PROJECTS = {
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
             },
+            'win7-ix': {
+                'ext': 'win32.zip',
+                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
+                'debug': True,
+            },
             'win8': {
                 'ext': 'win32.zip',
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
@@ -1075,7 +1132,10 @@ BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_O
 BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
-
+# MERGE DAY remove the below when Firefox 23 merges in
+del BRANCHES['mozilla-release']['platforms']['win32']['win7-ix']
+BRANCHES['mozilla-release']['platforms']['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
+# End MERGE DAY remove the above when Firefox 23 merges in
 # MERGE DAY remove the below when Firefox 22 merges in
 BRANCHES['mozilla-release']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-release']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
@@ -1101,6 +1161,10 @@ BRANCHES['mozilla-release']['platforms']['win32']['slave_platforms'] = ['xp', 'w
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
+# MERGE DAY remove the below when Firefox 23 merges in
+del BRANCHES['mozilla-beta']['platforms']['win32']['win7-ix']
+BRANCHES['mozilla-beta']['platforms']['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
+# End MERGE DAY remove the above when Firefox 23 merges in
 # MERGE DAY remove the below when Firefox 22 merges in
 BRANCHES['mozilla-beta']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-beta']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
@@ -1125,6 +1189,10 @@ BRANCHES['mozilla-beta']['platforms']['win32']['slave_platforms'] = ['xp', 'win7
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+# MERGE DAY remove the below when Firefox 23 merges in
+del BRANCHES['mozilla-aurora']['platforms']['win32']['win7-ix']
+BRANCHES['mozilla-aurora']['platforms']['win32']['slave_platforms'] = ['xp', 'win7', 'win8']
+# End MERGE DAY remove the above when Firefox 23 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1147,6 +1215,7 @@ BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['debug_unitte
 BRANCHES['mozilla-esr17']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-esr17']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-esr17']['platforms']['win32']['win8']
+del BRANCHES['mozilla-esr17']['platforms']['win32']['win7-ix']
 BRANCHES['mozilla-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 
@@ -1171,6 +1240,7 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unitte
 BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['win8']
+del BRANCHES['mozilla-b2g18']['platforms']['win32']['win7-ix']
 BRANCHES['mozilla-b2g18']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 ######### mozilla-b2g18_v1_0_1
@@ -1194,6 +1264,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug
 BRANCHES['mozilla-b2g18_v1_0_1']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-b2g18_v1_0_1']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win8']
+del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7-ix']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 
 ######## try
@@ -1208,15 +1279,28 @@ BRANCHES['try']['platforms']['win32']['xp']['opt_unittest_suites'] = UNITTEST_SU
 BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
+BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
+BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
+BRANCHES['try']['platforms']['win32']['win8']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
+BRANCHES['try']['platforms']['win32']['win8']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
+
+# Let's disable win7-ix while we green things out on Cedar
+for branch in BRANCHES.keys():
+    if branch == "cedar":
+        continue 
+    if "win7-ix" in BRANCHES[branch]['platforms'].get('win32', {}).get('slave_platforms', []):
+        del BRANCHES[branch]['platforms']['win32']['win7-ix']
+        BRANCHES[branch]['platforms']['win32']['slave_platforms'].remove("win7-ix")
 
 # Let's load jetpack for the following branches:
 # MERGE DAY once FF21 merges into a branch remove it from this list
 for branch in BRANCHES.keys():
-    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
+    if branch not in ('mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
         for pf in PLATFORMS:
             if pf not in BRANCHES[branch]['platforms'].keys():
                 continue
-            for slave_pf in PLATFORMS[pf]['slave_platforms']:
+            for slave_pf in BRANCHES[branch]['platforms'][pf].get('slave_platforms', \
+                PLATFORMS[pf]['slave_platforms']):
                 BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
                 BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 

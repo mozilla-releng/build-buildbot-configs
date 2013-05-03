@@ -1,11 +1,12 @@
 SLAVES = {
-    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(6,103) \
+    'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(11,103) \
         if x not in [18, 59]]), # bug 731793, bug 779574
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (37,72)]),
-    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,135) \
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (40,72)]),
+    'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,142) \
         if x not in [45, 58, 59]]), # bug 661377, bug 780515, bug 753357
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,135) \
         if x not in [10, 17]]), # bug 861326 & bug 747734
+    'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,101)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,101)]),
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85) \
         if x not in [46, 81, 83]]), # bug 824754, bug 729090

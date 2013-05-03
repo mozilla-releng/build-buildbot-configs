@@ -1973,7 +1973,7 @@ for b in ['mozilla-release', 'mozilla-esr17',
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
 
-# MERGE DAY - gstreamer-devel packages on try only (bug 855492)
+# gstreamer-devel packages on try only (bug 855492)
 for b in BRANCHES:
     if b not in ('try',):
         for p, pc in BRANCHES[b]['platforms'].items():
@@ -1982,7 +1982,7 @@ for b in BRANCHES:
                     [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in ('gstreamer-devel', 'gstreamer-plugins-base-devel')]
 
 
-# B2G WORK WEEK
+# B2G's INBOUND
 for b in ('birch',):
     for p in ['win32-debug', 'macosx64-debug', 'android', 'android-armv6', 'android-debug', 'android-x86']:
         if p in BRANCHES[b]['platforms']:
@@ -1990,7 +1990,7 @@ for b in ('birch',):
     for p in BRANCHES[b]['platforms'].keys():
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
-# END B2G WORK WEEK
+# END B2G's INBOUND
 
 # MERGE DAY
 # When Firefox 22 merges into these branches, they can be removed from the list
