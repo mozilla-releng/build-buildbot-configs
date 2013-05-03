@@ -1216,7 +1216,8 @@ for branch in BRANCHES.keys():
         for pf in PLATFORMS:
             if pf not in BRANCHES[branch]['platforms'].keys():
                 continue
-            for slave_pf in PLATFORMS[pf]['slave_platforms']:
+            for slave_pf in BRANCHES[branch]['platforms'][pf].get('slave_platforms', \
+                    PLATFORMS[pf]['slave_platforms']):
                 BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
                 BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
 
