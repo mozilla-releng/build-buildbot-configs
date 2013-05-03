@@ -279,7 +279,7 @@ ANDROID_UNITTEST_DICT = {
         )),
         ('mochitest-gl', (
             {'suite': 'mochitest-plain',
-             'testPath': 'content/canvas/test/webgl/test_webgl_conformance_test_suite.html',
+             'testPath': 'content/canvas/test/webgl',
              },
         )),
     ],
