@@ -277,6 +277,11 @@ ANDROID_UNITTEST_DICT = {
             {'suite': 'mochitest-robocop',
              },
         )),
+        ('mochitest-gl', (
+            {'suite': 'mochitest-plain',
+             'testPath': 'content/canvas/test/webgl/test_webgl_conformance_test_suite.html',
+             },
+        )),
     ],
     'debug_unittest_suites': [],
 }
