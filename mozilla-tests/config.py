@@ -1212,7 +1212,7 @@ BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITE
 # Let's load jetpack for the following branches:
 # MERGE DAY once FF21 merges into a branch remove it from this list
 for branch in BRANCHES.keys():
-    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
+    if branch not in ('mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
         for pf in PLATFORMS:
             if pf not in BRANCHES[branch]['platforms'].keys():
                 continue
