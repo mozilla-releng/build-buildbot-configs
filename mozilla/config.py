@@ -1483,7 +1483,7 @@ BRANCHES['mozilla-central']['platforms']['android']['nightly_signing_servers'] =
 BRANCHES['mozilla-central']['platforms']['android-armv6']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['mozilla-central']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
+BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
@@ -1540,7 +1540,7 @@ BRANCHES['mozilla-beta']['enable_l10n'] = False
 BRANCHES['mozilla-beta']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                              'macosx64']
 BRANCHES['mozilla-beta']['l10nDatedDirs'] = True
 BRANCHES['mozilla-beta']['l10n_tree'] = 'fxbeta'
 #make sure it has an ending slash
@@ -1622,7 +1622,7 @@ BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 
 BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['macosx64-debug']['nightly_signing_servers'] = 'mac-nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
-BRANCHES['mozilla-aurora']['l10n_extra_configure_args']= ['--with-macbundlename-prefix=Firefox']
+BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-esr17
@@ -1752,7 +1752,7 @@ BRANCHES['try']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/try-builds'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
-BRANCHES['try']['package_dir'] ='%(who)s-%(got_revision)s'
+BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
 BRANCHES['try']['repo_path'] = 'try'
@@ -1842,12 +1842,12 @@ for platform in ['linux', 'linux-debug']:
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
     BRANCHES[branch]['product_name'] = branchConfig.get('product_name', None)
-    BRANCHES[branch]['app_name']     = branchConfig.get('app_name', None)
-    BRANCHES[branch]['brand_name']   = branchConfig.get('brand_name', None)
+    BRANCHES[branch]['app_name'] = branchConfig.get('app_name', None)
+    BRANCHES[branch]['brand_name'] = branchConfig.get('brand_name', None)
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
-    BRANCHES[branch]['enable_nightly'] =  branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
     BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
@@ -1878,23 +1878,23 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/'
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
-    if BRANCHES[branch]['platforms'].has_key('linux'):
+    if 'linux' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if BRANCHES[branch]['platforms'].has_key('android'):
+    if 'android' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if BRANCHES[branch]['platforms'].has_key('android-armv6'):
+    if 'android-armv6' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
-    if BRANCHES[branch]['platforms'].has_key('android-noion'):
+    if 'android-noion' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-noion']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-noion-' + branch
-    if BRANCHES[branch]['platforms'].has_key('android-x86'):
+    if 'android-x86' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
-    if BRANCHES[branch]['platforms'].has_key('linux64'):
+    if 'linux64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
-    if BRANCHES[branch]['platforms'].has_key('win32'):
+    if 'win32' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if BRANCHES[branch]['platforms'].has_key('win64'):
+    if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
-    if BRANCHES[branch]['platforms'].has_key('macosx64'):
+    if 'macosx64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # Platform-specific defaults/interpretation
     for platform in BRANCHES[branch]['platforms']:
@@ -1917,23 +1917,23 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
-    if BRANCHES[branch]['platforms'].has_key('linux'):
+    if 'linux' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
         BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
         }
-    if BRANCHES[branch]['platforms'].has_key('linux64'):
+    if 'linux64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
         BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
-    if BRANCHES[branch]['platforms'].has_key('linux-debug'):
-        BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+    if 'linux-debug' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
         BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
         }
-    if BRANCHES[branch]['platforms'].has_key('linux64-debug'):
-        BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] ='/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
+    if 'linux64-debug' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
@@ -1965,9 +1965,7 @@ for b in BRANCHES:
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
-for b in ['mozilla-release', 'mozilla-esr17',
-          'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'
-          ]:
+for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1']:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \

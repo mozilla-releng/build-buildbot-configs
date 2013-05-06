@@ -1212,7 +1212,7 @@ BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITE
 # Let's load jetpack for the following branches:
 # MERGE DAY once FF21 merges into a branch remove it from this list
 for branch in BRANCHES.keys():
-    if branch not in ('mozilla-release', 'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1', ):
+    if branch not in ('mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
         for pf in PLATFORMS:
             if pf not in BRANCHES[branch]['platforms'].keys():
                 continue
@@ -1229,8 +1229,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
-NON_UBUNTU_BRANCHES = ("mozilla-release", "mozilla-esr17",
-                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
 # Green tests, including mozharness based ones
 # Tests listed as Ubuntu tests won't be enabled on Fedora
 UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
