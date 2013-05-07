@@ -154,12 +154,8 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
-        'enable_unittests': False,
-        'enable_talos': False,
         'platforms': {
             'macosx64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
             'macosx64': {
@@ -170,18 +166,6 @@ PROJECT_BRANCHES = {
             },
             'linux64': {
                 'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'linux64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'win32-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
             },
         },
     },
