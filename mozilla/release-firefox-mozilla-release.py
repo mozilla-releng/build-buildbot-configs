@@ -23,7 +23,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '21.0'
 releaseConfig['appVersion']          = '21.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_21_0'
 releaseConfig['partialUpdates']      = {
 
@@ -54,8 +54,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '159a10910249',
-        'relbranch': None,
+        'revision': 'GECKO210_2013050704_RELBRANCH',
+        'relbranch': 'GECKO210_2013050704_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
