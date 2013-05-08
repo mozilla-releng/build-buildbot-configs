@@ -228,27 +228,8 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 4,
              },
         )),
-        # disabled for constant timeouts, bug 728119
-        # ('crashtest-1', (
-        #     {'suite': 'crashtest',
-        #      'totalChunks': 3,
-        #      'thisChunk': 1,
-        #      },
-        # )),
         ('crashtest', (
             {'suite': 'crashtest',
-             },
-        )),
-        ('crashtest-2', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-             },
-        )),
-        ('crashtest-3', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 3,
              },
         )),
         ('xpcshell', (
