@@ -228,27 +228,8 @@ ANDROID_UNITTEST_DICT = {
              'thisChunk': 4,
              },
         )),
-        # disabled for constant timeouts, bug 728119
-        # ('crashtest-1', (
-        #     {'suite': 'crashtest',
-        #      'totalChunks': 3,
-        #      'thisChunk': 1,
-        #      },
-        # )),
         ('crashtest', (
             {'suite': 'crashtest',
-             },
-        )),
-        ('crashtest-2', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 2,
-             },
-        )),
-        ('crashtest-3', (
-            {'suite': 'crashtest',
-             'totalChunks': 3,
-             'thisChunk': 3,
              },
         )),
         ('xpcshell', (
@@ -386,6 +367,10 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
+# Bug 869590 Disable mochitest-gl for armv6
+for suite in ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'][:]:
+    if suite[0] == 'mochitest-gl':
+        ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'].remove(suite)
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 ANDROID_PANDA_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'])
