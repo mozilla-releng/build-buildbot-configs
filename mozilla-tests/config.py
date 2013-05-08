@@ -1253,9 +1253,8 @@ BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += [
 
 
 # Remove Ubuntu platform from the release trains,
-# use either Fedora or Ubuntu for other branches,
-# don't touch cedar
-for branch in set(BRANCHES.keys()) - set(['cedar']):
+# use either Fedora or Ubuntu for other branches
+for branch in BRANCHES:
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:
@@ -1284,6 +1283,9 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
                 for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
                     if suite[0] not in ubuntu_tests:
+                        if branch == "cedar":
+                            # Don't disable any Ubuntu test on Cedar
+                            continue
                         BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
                     else:
                         for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
