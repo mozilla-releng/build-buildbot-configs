@@ -386,6 +386,10 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
+# Bug 869590 Disable mochitest-gl for armv6
+for suite in ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'][:]:
+    if suite[0] == 'mochitest-gl':
+        ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'].remove(suite)
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 ANDROID_PANDA_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'])
