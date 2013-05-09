@@ -236,10 +236,13 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
         'lock_platforms': True,
+        'enable_talos': True,
         'platforms': {
             'linux': {},
             'linux64': {},
-            'win32': {},
+            'win32': {
+                'talos_slave_platforms': ['win7', 'win7-ix'],
+            },
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
