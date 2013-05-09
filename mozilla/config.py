@@ -895,13 +895,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -959,13 +960,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1022,12 +1024,13 @@ PLATFORM_VARS = {
             'use_mock': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk7', 'android-ndk8', 'yasm', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
-                              'glibc-static', 'openssh-clients', 'mpfr', 'bc'],
+                              'glibc-static', 'openssh-clients', 'mpfr', 'bc',
+                              'glibc.i686', 'libstdc++.i686', 'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1089,13 +1092,14 @@ PLATFORM_VARS = {
             'use_mock': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1156,13 +1160,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1834,13 +1839,6 @@ for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 
-for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'android-debug']:
-    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
-    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
-            'glibc.i686', 'libstdc++.i686', 'zlib.i686',
-        ]
-
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
@@ -1991,6 +1989,14 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
         if not platform.endswith("-debug"):
             BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
                 ["valgrind"]
+
+# MERGE DAY building android in a x86_64 env rides the trains
+# MERGE DAy remove branches from this list when gecko 24 merges into them.
+for b in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-esr17"):
+    for plat in ['android', 'android-armv6', 'android-noion',
+                 'android-x86', 'android-debug']:
+        BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
