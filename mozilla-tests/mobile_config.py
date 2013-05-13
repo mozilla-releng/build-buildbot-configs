@@ -596,8 +596,8 @@ for branch in BRANCHES:
 # MERGE DAY, drop trees from branch list as Firefox 23 rides forward.
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-                      'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
         continue
 
     for platform in BRANCHES[branch]['platforms']:

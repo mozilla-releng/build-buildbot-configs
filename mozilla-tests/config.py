@@ -1354,9 +1354,9 @@ for branch in BRANCHES:
                                 pass
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-NON_UBUNTU_TALOS_BRANCHES = ("mozilla-aurora", "mozilla-beta",
-                             "mozilla-release", "mozilla-esr17",
-                             "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+NON_UBUNTU_TALOS_BRANCHES = ("mozilla-beta", "mozilla-release",
+                             "mozilla-esr17", "mozilla-b2g18",
+                             "mozilla-b2g18_v1_0_1")
 for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
     for s in SUITES.iterkeys():
         if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
