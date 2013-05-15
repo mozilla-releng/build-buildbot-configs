@@ -1282,19 +1282,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
-# MERGE DAY NOTE: remove v21 based branches from the list below
-NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
-# Green tests, including mozharness based ones
-# Tests listed as Ubuntu tests won't be enabled on Fedora
-UBUNTU_OPT_UNITTEST = ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
-                       "reftest-ipc", "xpcshell", "reftest",
-                       "reftest-no-accel", "mochitest-1", "mochitest-2",
-                       "mochitest-3", "mochitest-4", "mochitest-5", "mochitest"]
-UBUNTU_DEBUG_UNITTEST = ["crashtest", "jsreftest", "jetpack", "marionette",
-                         "xpcshell", "reftest", "reftest-no-accel",
-                         "mochitest-1", "mochitest-2", "mochitest-3",
-                         "mochitest-4", "mochitest-5", "mochitest"]
-
 # Add metro tests to cedar only
 BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += [
     ('metro-immersive', {
@@ -1304,6 +1291,32 @@ BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += [
         'script_maxtime': 7200,
     }),
 ]
+
+# MERGE DAY NOTE: remove v21 based branches from the list below
+NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+
+
+# Green tests, including mozharness based ones
+# Tests listed as Ubuntu tests won't be enabled on Fedora
+def get_ubuntu_unittests(branch, test_type):
+    UBUNTU_TESTS = {"opt_unittest_suites":
+                    ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
+                     "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
+                     "mochitest-1", "mochitest-2", "mochitest-3",
+                     "mochitest-4", "mochitest-5", "mochitest"],
+                    "debug_unittest_suites":
+                    ["crashtest", "jsreftest", "jetpack", "marionette",
+                     "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
+                     "mochitest-2", "mochitest-3", "mochitest-4",
+                     "mochitest-5", "mochitest"]}
+    # MERGE DAY: uplift when Firefox 23 merges in
+    FF23_TESTS = {"opt_unittest_suites":
+                  ["mochitest-browser-chrome", "mochitest-other"],
+                  "debug_unittest_suites": ["mochitest-other"]}
+    if branch not in ("mozilla-aurora", "mozilla-beta", "mozilla-release"):
+        return UBUNTU_TESTS[test_type] + FF23_TESTS[test_type]
+    else:
+        return list(UBUNTU_TESTS[test_type])
 
 
 # Remove Ubuntu platform from the release trains,
@@ -1322,9 +1335,9 @@ for branch in BRANCHES:
     for p, ubuntu, fedora in [('linux', 'ubuntu32_vm', 'fedora'),
                               ('linux64', 'ubuntu64_vm', 'fedora64')]:
         for suite_type, ubuntu_tests in [('opt_unittest_suites',
-                                         UBUNTU_OPT_UNITTEST),
+                                         get_ubuntu_unittests(branch, 'opt_unittest_suites')),
                                          ('debug_unittest_suites',
-                                         UBUNTU_DEBUG_UNITTEST)]:
+                                         get_ubuntu_unittests(branch, 'debug_unittest_suites'))]:
             if nested_haskey(BRANCHES[branch]['platforms'], p, ubuntu,
                              suite_type):
                 # Explicitly remove tests listed in ubuntu_tests even though
