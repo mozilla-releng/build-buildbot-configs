@@ -1996,7 +1996,8 @@ for b in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
           "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-esr17"):
     for plat in ['android', 'android-armv6', 'android-noion',
                  'android-x86', 'android-debug']:
-        BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
+        if plat in BRANCHES[b]['platforms']:
+            BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
