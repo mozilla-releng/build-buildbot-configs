@@ -83,7 +83,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7', 'win7-ix', 'win8']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
+PLATFORMS['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win7-ix', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
@@ -1172,10 +1172,6 @@ BRANCHES['mozilla-beta']['platforms']['win32']['talos_slave_platforms'] = ['xp',
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# MERGE DAY remove the below when Firefox 23 merges in
-del BRANCHES['mozilla-aurora']['platforms']['win32']['win7-ix']
-BRANCHES['mozilla-aurora']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
-# End MERGE DAY remove the above when Firefox 23 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1370,6 +1366,7 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
+# If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys(): # 'macosx64', 'win32' and on
         if os not in BRANCHES[branch]['platforms'].keys():
@@ -1390,12 +1387,6 @@ for branch in BRANCHES.keys():
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-
-# Let's disable win7-ix while we green things out on Cedar
-for branch in set(BRANCHES.keys()) - set(['cedar']):
-    pf_win32 = BRANCHES[branch]['platforms'].get('win32', {})
-    if "win7-ix" in pf_win32:
-        del BRANCHES[branch]['platforms']['win32']['win7-ix']
 
 if __name__ == "__main__":
     import sys
