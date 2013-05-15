@@ -161,22 +161,40 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                        'gtk2-devel', 'libnotify-devel', 'yasm',
-                        'alsa-lib-devel', 'libcurl-devel',
-                        'wireless-tools-devel', 'libX11-devel',
-                        'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                        'mpfr', # required for system compiler
-                        'xorg-x11-font*', # fonts required for PGO
-                        'imake', # required for makedepend!?!
-                        'gcc45_0moz3','gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple', 'perl-Config-General',
+                        'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
+                        'alsa-lib-devel.i686', 'libcurl-devel.i686',
+                        'wireless-tools-devel.i686', 'libX11-devel.i686',
+                        'libXt-devel.i686', 'mesa-libGL-devel.i686',
+                        'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
+                        'mpfr',  # required for system compiler
+                        'xorg-x11-font*',  # fonts required for PGO
+                        'imake',  # required for makedepend!?!
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repo
                         'valgrind',
-                        'pulseaudio-libs-devel',
-                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'pulseaudio-libs-devel.i686',
+                        'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                        # Packages already installed in the mock environment, as x86_64
+                        # packages.
+                        'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
+                        # yum likes to install .x86_64 -devel packages that satisfy .i686
+                        # -devel packages dependencies. So manually install the dependencies
+                        # of the above packages.
+                        'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
+                        'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
+                        'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
+                        'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
+                        'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
+                        'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
+                        'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
+                        'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
+                        'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
+                        'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
+                        'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
+                        'pixman-devel.i686', 'zlib-devel.i686',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -671,20 +689,42 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
                        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                        'gtk2-devel', 'libnotify-devel', 'yasm',
-                        'alsa-lib-devel', 'libcurl-devel',
-                        'wireless-tools-devel', 'libX11-devel',
-                        'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                        'mpfr', # required for system compiler
-                        'xorg-x11-font*', # fonts required for PGO
-                        'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'pulseaudio-libs-devel',
+                        'glibc-static.i686', 'libstdc++-static.i686',
+                        'perl-Test-Simple', 'perl-Config-General',
+                        'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
+                        'alsa-lib-devel.i686', 'libcurl-devel.i686',
+                        'wireless-tools-devel.i686', 'libX11-devel.i686',
+                        'libXt-devel.i686', 'mesa-libGL-devel.i686',
+                        'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
+                        'mpfr',  # required for system compiler
+                        'xorg-x11-font*',  # fonts required for PGO
+                        'imake',  # required for makedepend!?!
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repj
+                        'valgrind',
+                        'pulseaudio-libs-devel.i686',
+                        'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                        # Packages already installed in the mock environment,
+                        # as x86_64 packages.
+                        'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
+                        # yum likes to install .x86_64 -devel packages that satisfy .i686
+                        # -devel packages dependencies. So manually install the
+                        # dependencies of the above packages.
+                        'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
+                        'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
+                        'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
+                        'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
+                        'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
+                        'libXcursor-devel.i686', 'libXdamage-devel.i686',
+                        'libXdmcp-devel.i686', 'libXext-devel.i686',
+                        'libXfixes-devel.i686', 'libXft-devel.i686',
+                        'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
+                        'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
+                        'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
+                        'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
+                        'pixman-devel.i686', 'zlib-devel.i686',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -855,13 +895,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -919,13 +960,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -982,12 +1024,13 @@ PLATFORM_VARS = {
             'use_mock': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk7', 'android-ndk8', 'yasm', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
-                              'glibc-static', 'openssh-clients', 'mpfr', 'bc'],
+                              'glibc-static', 'openssh-clients', 'mpfr', 'bc',
+                              'glibc.i686', 'libstdc++.i686', 'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1049,13 +1092,14 @@ PLATFORM_VARS = {
             'use_mock': True,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1116,13 +1160,14 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              'wget'],
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1794,50 +1839,6 @@ for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 
-for platform in ['android', 'android-armv6', 'android-noion', 'android-x86', 'android-debug']:
-    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
-    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        list(BRANCHES['date']['platforms'][platform]['mock_packages']) + [
-            'glibc.i686', 'libstdc++.i686', 'zlib.i686',
-        ]
-
-for platform in ['linux', 'linux-debug']:
-    BRANCHES['date']['platforms'][platform]['mock_target'] = 'mozilla-centos6-x86_64'
-    BRANCHES['date']['platforms'][platform]['mock_packages'] = \
-        ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-         'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple', 'perl-Config-General',
-         'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
-         'alsa-lib-devel.i686', 'libcurl-devel.i686',
-         'wireless-tools-devel.i686', 'libX11-devel.i686',
-         'libXt-devel.i686', 'mesa-libGL-devel.i686',
-         'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
-         'mpfr',  # required for system compiler
-         'xorg-x11-font*',  # fonts required for PGO
-         'imake',  # required for makedepend!?!
-         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repo
-         'valgrind',
-         'pulseaudio-libs-devel.i686',
-         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
-         # Packages already installed in the mock environment, as x86_64
-         # packages.
-         'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
-         # yum likes to install .x86_64 -devel packages that satisfy .i686
-         # -devel packages dependencies. So manually install the dependencies
-         # of the above packages.
-         'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
-         'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
-         'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
-         'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
-         'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
-         'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
-         'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
-         'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
-         'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
-         'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
-         'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
-         'pixman-devel.i686', 'zlib-devel.i686',
-         ]
-
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
@@ -1962,6 +1963,41 @@ for b in BRANCHES:
         for p in 'linux64-asan', 'linux64-dbg-asan', 'linux64-dbg-st-an':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
+
+# MERGE DAY building 32-bit linux in a x86_64 env rides the trains
+# MERGE DAY remove branches from this list when gecko 24 merges into them.
+for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+               "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-esr17"):
+    for platform in ['linux', 'linux-debug']:
+        BRANCHES[branch]['platforms'][platform]['mock_target'] = \
+            'mozilla-centos6-i386'
+        BRANCHES[branch]['platforms'][platform]['mock_packages'] = \
+            ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
+             'git', 'ccache', 'glibc-static', 'libstdc++-static',
+             'perl-Test-Simple', 'perl-Config-General',
+             'gtk2-devel', 'libnotify-devel', 'yasm',
+             'alsa-lib-devel', 'libcurl-devel',
+             'wireless-tools-devel', 'libX11-devel',
+             'libXt-devel', 'mesa-libGL-devel',
+             'gnome-vfs2-devel', 'GConf2-devel', 'wget',
+             'mpfr', # required for system compiler
+             'xorg-x11-font*', # fonts required for PGO
+             'imake', # required for makedepend!?!
+             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+             'pulseaudio-libs-devel',
+            ]
+        if not platform.endswith("-debug"):
+            BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
+                ["valgrind"]
+
+# MERGE DAY building android in a x86_64 env rides the trains
+# MERGE DAy remove branches from this list when gecko 24 merges into them.
+for b in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-esr17"):
+    for plat in ['android', 'android-armv6', 'android-noion',
+                 'android-x86', 'android-debug']:
+        if plat in BRANCHES[b]['platforms']:
+            BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - Remove branches as FF21 reaches them
