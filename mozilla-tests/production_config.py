@@ -4,6 +4,7 @@ SLAVES = {
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (40,72)]),
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,142) \
         if x not in [4, 45, 58, 59]]), # bug 856604, 661377, 780515, 753357
+    'xp-ix': dict([("t-xp32-ix-%03i" % x, {}) for x in range(1,101)]),
     'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,135) \
         if x not in [10, 17]]), # bug 861326 & bug 747734
     'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,101)]),
