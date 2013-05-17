@@ -241,7 +241,7 @@ PROJECT_BRANCHES = {
             'linux': {},
             'linux64': {},
             'win32': {
-                'talos_slave_platforms': ['win7', 'win7-ix'],
+                'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
             },
             'macosx64': {},
             'linux-debug': {},
