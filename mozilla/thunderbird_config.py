@@ -155,6 +155,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -226,6 +227,7 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_1.8', 'freetype-devel-2.3.11-6.el6_1.8',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -424,6 +426,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -482,6 +485,7 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_1.8', 'freetype-devel-2.3.11-6.el6_1.8',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),

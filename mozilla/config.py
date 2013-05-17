@@ -185,7 +185,7 @@ PLATFORM_VARS = {
                         # of the above packages.
                         'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
                         'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
-                        'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
+                        'fontconfig-devel.i686', 'glib2-devel.i686',
                         'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
                         'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
                         'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
@@ -195,6 +195,10 @@ PLATFORM_VARS = {
                         'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
                         'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
                         'pixman-devel.i686', 'zlib-devel.i686',
+                        # Freetype packages need to be installed be version, because a newer
+                        # version is available, but we don't want it for Firefox builds.
+                        'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -266,6 +270,8 @@ PLATFORM_VARS = {
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -338,6 +344,8 @@ PLATFORM_VARS = {
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -413,6 +421,8 @@ PLATFORM_VARS = {
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -487,6 +497,9 @@ PLATFORM_VARS = {
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -714,7 +727,7 @@ PLATFORM_VARS = {
                         # dependencies of the above packages.
                         'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
                         'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
-                        'fontconfig-devel.i686', 'freetype-devel.i686', 'glib2-devel.i686',
+                        'fontconfig-devel.i686', 'glib2-devel.i686',
                         'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
                         'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
                         'libXcursor-devel.i686', 'libXdamage-devel.i686',
@@ -725,6 +738,8 @@ PLATFORM_VARS = {
                         'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
                         'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
                         'pixman-devel.i686', 'zlib-devel.i686',
+                        'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -784,6 +799,9 @@ PLATFORM_VARS = {
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -902,7 +920,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -967,7 +985,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1030,7 +1048,8 @@ PLATFORM_VARS = {
                               'android-ndk7', 'android-ndk8', 'yasm', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              'glibc.i686', 'libstdc++.i686', 'zlib.i686'],
+                              'glibc.i686', 'libstdc++.i686', 'zlib.i686',
+                              'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1099,7 +1118,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1167,7 +1186,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1985,6 +2004,8 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
              'imake', # required for makedepend!?!
              'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
              'pulseaudio-libs-devel',
+             'freetype-2.3.11-6.el6_2.9',
+             'freetype-devel-2.3.11-6.el6_2.9',
             ]
         if not platform.endswith("-debug"):
             BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
