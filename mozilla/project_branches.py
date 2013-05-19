@@ -221,15 +221,20 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'enable_checktests': False,
+                'slave_platforms': ['win8'],
+                'talos_slave_platforms': ['win8'],
             },
             'win32-debug': {
                 'enable_checktests': False,
+                'slave_platforms': ['win8'],
             },
             'macosx64': {
                 'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
             },
             'macosx64-debug': {
                 'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
             },
         },
     },
