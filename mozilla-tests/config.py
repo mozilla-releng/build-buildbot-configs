@@ -83,7 +83,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'xp-ix', 'win7', 'win7-ix', 'win8']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win7-ix', 'win8']
+PLATFORMS['win32']['talos_slave_platforms'] = ['xp', 'xp-ix', 'win7', 'win7-ix', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit"}
@@ -1466,12 +1466,6 @@ for branch in BRANCHES.keys():
                 tests = list(BRANCHES[branch]['%s_tests' % s])
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
-
-# Let's disable everywhere xp-ix unit tests except on Cedar, m-i and try
-for branch in set(BRANCHES.keys()) - set(['cedar', 'try', 'mozilla-inbound']):
-    pf_win32 = BRANCHES[branch]['platforms'].get('win32', {})
-    if "xp-ix" in pf_win32:
-        del BRANCHES[branch]['platforms']['win32']['xp-ix']
 
 if __name__ == "__main__":
     import sys
