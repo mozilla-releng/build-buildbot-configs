@@ -89,7 +89,7 @@
   },
   "sk": {
     "revision": "159352c6f47b",
-    "platforms": ["android"]
+    "platforms": ["android", "android-multilocale"]
   },
   "sl": {
     "revision": "07442918d3aa",
