@@ -2034,7 +2034,10 @@ for b in BRANCHES:
         for p, pc in BRANCHES[b]['platforms'].items():
             if 'mock_packages' in pc:
                 BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                    [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in ('gstreamer-devel', 'gstreamer-plugins-base-devel')]
+                    [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                    )]
 
 
 # B2G's INBOUND
