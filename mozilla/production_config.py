@@ -181,6 +181,12 @@ PROJECTS = {
         'tinderbox_tree': 'Nanojit',
         'disable_tinderbox_mail': False,
     },
+    'spidermonkey_cypress': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Cypress',
+        'disable_tinderbox_mail': False,
+    },
     'spidermonkey_mozilla-inbound': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,

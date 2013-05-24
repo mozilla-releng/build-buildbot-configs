@@ -18,8 +18,13 @@ PROJECT_BRANCHES = {
     'jaegermonkey': {
         'enable_nightly': True
     },
+    # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
+        'enable_perproduct_builds': True,
+    },
+    # Customized to be the same as inbound. bug 866314
+    'cypress': {
         'enable_perproduct_builds': True,
     },
     # Disabled because of builder limit problems - bug 721854
@@ -55,7 +60,6 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'cypress': {},
     'date': {
         'lock_platforms': True,
         'platforms': {},
