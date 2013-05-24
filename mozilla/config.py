@@ -1298,6 +1298,29 @@ PROJECTS = {
         'repo_path': 'integration/mozilla-inbound',
         'branch': 'mozilla-inbound',
     },
+    'spidermonkey_cypress': {
+        'variants': {
+            'linux':          ['warnaserr'],
+            'linux-debug':    ['warnaserrdebug'],
+            'linux64':        ['warnaserr'],
+            'linux64-debug':  ['rootanalysis', 'warnaserrdebug'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
+        },
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'projects/cypress',
+        'branch': 'cypress',
+    },
     'spidermonkey_ionmonkey': {
         'variants': {
             'linux':          ['warnaserr'],
@@ -1971,7 +1994,7 @@ for b in ('mozilla-esr17',):
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for b in BRANCHES.keys():
     if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                 'mozilla-b2g18_v1_0_1', 'try', 'birch', 'date',
+                 'mozilla-b2g18_v1_0_1', 'try', 'birch', 'date', 'cypress',
                  ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']

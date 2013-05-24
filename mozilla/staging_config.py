@@ -142,7 +142,7 @@ PROJECTS = {
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
-    'spidermonkey_mozilla-inbound': {
+    'spidermonkey_cypress': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
