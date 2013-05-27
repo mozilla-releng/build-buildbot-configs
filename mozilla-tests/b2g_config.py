@@ -22,12 +22,6 @@ BRANCHES = {
     'cedar': {},
     'cypress': {},
     'fx-team': {},
-    'gaia-master': {
-        'lock_platforms': True,
-        'platforms': {
-             'b2g_panda': {},
-        },
-    },
     'mozilla-b2g18': {},
     'mozilla-b2g18_v1_0_1': {},
     'mozilla-central': {},
@@ -39,8 +33,6 @@ BRANCHES = {
 
 PLATFORMS = {
     'ics_armv7a_gecko': {},
-    'b2g_panda': {},
-    'b2g_panda_gaia_central': {},
     'linux32_gecko': {},
     'linux64_gecko': {},
 }
@@ -58,32 +50,6 @@ PLATFORMS['ics_armv7a_gecko']['mozharness_config'] = {
     'use_mozharness': True,
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
-
-PLATFORMS['b2g_panda']['slave_platforms'] = ['b2g_panda']
-PLATFORMS['b2g_panda']['env_name'] = None
-PLATFORMS['b2g_panda']['b2g_panda'] = {'name': builder_prefix + "_panda"}
-PLATFORMS['b2g_panda']['stage_product'] = 'b2g'
-PLATFORMS['b2g_panda']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    # path to hg on the foopies
-    'hg_bin': '/usr/local/bin/hg',
-    # TODO: call something else
-    'reboot_command': None,
-}
-
-PLATFORMS['b2g_panda_gaia_central']['slave_platforms'] = ['b2g_panda_gaia_central']
-PLATFORMS['b2g_panda_gaia_central']['env_name'] = None
-PLATFORMS['b2g_panda_gaia_central']['b2g_panda_gaia_central'] = {'name': builder_prefix + "_panda_gaia_central"}
-PLATFORMS['b2g_panda_gaia_central']['stage_product'] = 'b2g'
-PLATFORMS['b2g_panda_gaia_central']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    # path to hg on the foopies
-    'hg_bin': '/usr/local/bin/hg',
-    # TODO: call something else
-    'reboot_command': None,
 }
 
 PLATFORMS['linux32_gecko']['slave_platforms'] = ['ubuntu32_vm-b2gdt', ]
@@ -122,8 +88,6 @@ BRANCH_UNITTEST_VARS = {
     # turn on platforms as we get them running
     'platforms': {
         'ics_armv7a_gecko': {},
-        'b2g_panda': {},
-        'b2g_panda_gaia_central': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
     },
@@ -775,52 +739,6 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
     },  # end of ics_armv7a_gecko configs
-    'b2g_panda': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'builds_before_reboot': 1,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'b2g_panda': {
-            'download_symbols': False,
-            'opt_unittest_suites': [
-                ('gaia-ui-test', {
-                    'suite': 'gaia-ui-test',
-                    'use_mozharness': True,
-                    'script_path': 'scripts/b2g_panda.py',
-                },)
-            ],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'gaia-ui-test': {
-                    'extra_args': ["--cfg", "b2g/panda_releng.py"],
-                },
-            },
-        },
-    },
-    'b2g_panda_gaia_central': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'builds_before_reboot': 1,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'b2g_panda_gaia_central': {
-            'download_symbols': False,
-            'opt_unittest_suites': [
-                ('gaia-ui-test', {
-                    'suite': 'gaia-ui-test',
-                    'use_mozharness': True,
-                    'script_path': 'scripts/b2g_panda.py',
-                },)
-            ],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'gaia-ui-test': {
-                    'extra_args': ["--cfg", "b2g/panda_releng.py"],
-                },
-            },
-        },
-    },
     'linux32_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -946,7 +864,6 @@ BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozill
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-del BRANCHES['ash']['platforms']['b2g_panda']
 BRANCHES['birch']['branch_name'] = "Birch"
 BRANCHES['birch']['repo_path'] = "projects/birch"
 BRANCHES['cedar']['branch_name'] = "Cedar"
@@ -959,9 +876,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
-del BRANCHES['fx-team']['platforms']['b2g_panda']
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
-del BRANCHES['ionmonkey']['platforms']['b2g_panda']
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
@@ -973,11 +888,8 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['ics_armv7a_gecko']['enable_debug_
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['mozilla-central']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
-del BRANCHES['mozilla-central']['platforms']['b2g_panda']
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
-del BRANCHES['mozilla-inbound']['platforms']['b2g_panda']
 BRANCHES['services-central']['repo_path'] = "services/services-central"
-del BRANCHES['services-central']['platforms']['b2g_panda']
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 
