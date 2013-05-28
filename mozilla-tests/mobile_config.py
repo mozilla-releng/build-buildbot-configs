@@ -366,11 +366,11 @@ for suite in ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites']:
         continue
     ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
-ANDROID_ARMV6_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
-# Bug 869590 Disable mochitest-gl for armv6
-for suite in ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'][:]:
+ANDROID_NOWEBGL_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
+# Bug 869590 Disable mochitest-gl for armv6, Bug 875633 Disable for Tegras
+for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'][:]:
     if suite[0] == 'mochitest-gl':
-        ANDROID_ARMV6_UNITTEST_DICT['opt_unittest_suites'].remove(suite)
+        ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'].remove(suite)
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 ANDROID_PANDA_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PANDA_UNITTEST_DICT['opt_unittest_suites'])
@@ -387,7 +387,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android': deepcopy(ANDROID_PLAIN_UNITTEST_DICT),
+        'tegra_android': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
         'panda_android': deepcopy(ANDROID_PANDA_UNITTEST_DICT),
     },
     'android-armv6': {
@@ -399,7 +399,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-armv6': deepcopy(ANDROID_ARMV6_UNITTEST_DICT),
+        'tegra_android-armv6': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
     },
     'android-noion': {
         'product_name': 'fennec',
