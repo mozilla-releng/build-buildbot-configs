@@ -23,7 +23,6 @@ SLAVES = {
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
             for x in range(22,33) + range(34,45) + range(46,82) + range(522,874) + range(885,887)]
     ),
-    'b2g_panda': dict([("panda-%04i" % x, {}) for x in range(82,522) + range(33,34) + range(45,46)]),
     'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 56)]),
@@ -38,7 +37,6 @@ SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']
 SLAVES['ubuntu64_vm-b2g'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm-b2gdt'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
-SLAVES['b2g_panda_gaia_central'] = SLAVES['b2g_panda']
 
 TRY_SLAVES = {}
 
