@@ -227,9 +227,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
                 mastercfg = 'builder_master.cfg'
             elif m['role'] == 'scheduler':
                 mastercfg = 'scheduler_master.cfg'
-            elif m['role'] == 'servo':
-                self.log.info("Skipping master with role 'servo'")
-                return
             else:
                 raise AssertionError("What is a %s role?" % m['role'])
 
