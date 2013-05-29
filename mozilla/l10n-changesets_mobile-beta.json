@@ -8,7 +8,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "da": {
-    "revision": "2ee323da7783",
+    "revision": "38f8b342b861",
     "platforms": ["android", "android-multilocale"]
   },
   "de": {
@@ -20,15 +20,15 @@
     "platforms": ["android"]
   },
   "es-ES": {
-    "revision": "79180390f6b2",
+    "revision": "0dfc30750aed",
     "platforms": ["android", "android-multilocale"]
   },
   "fi": {
-    "revision": "56536d490f49",
+    "revision": "f5b473a24685",
     "platforms": ["android", "android-multilocale"]
   },
   "fr": {
-    "revision": "e06ba1cfa9b4",
+    "revision": "4cbcfe080690",
     "platforms": ["android", "android-multilocale"]
   },
   "fy-NL": {
@@ -48,11 +48,11 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
-    "revision": "37de0e5c03d0",
+    "revision": "b1dac0386c6e",
     "platforms": ["android", "android-multilocale"]
   },
   "ko": {
-    "revision": "0b2bdf2b60b8",
+    "revision": "e9892cfdb73c",
     "platforms": ["android", "android-multilocale"]
   },
   "lt": {
@@ -64,7 +64,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "nl": {
-    "revision": "b44f3c676b09",
+    "revision": "b53476bdb740",
     "platforms": ["android", "android-multilocale"]
   },
   "pa-IN": {
@@ -72,11 +72,11 @@
     "platforms": ["android"]
   },
   "pl": {
-    "revision": "35b8da76455d",
+    "revision": "965725bfa9e3",
     "platforms": ["android", "android-multilocale"]
   },
   "pt-BR": {
-    "revision": "16de64211759",
+    "revision": "d0e5ea8ab5be",
     "platforms": ["android", "android-multilocale"]
   },
   "pt-PT": {
@@ -84,7 +84,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ru": {
-    "revision": "52f2fd126fa0",
+    "revision": "55674c8a803c",
     "platforms": ["android", "android-multilocale"]
   },
   "sk": {
@@ -104,7 +104,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "zh-TW": {
-    "revision": "4a603c6b7c0e",
+    "revision": "56ae621e9857",
     "platforms": ["android", "android-multilocale"]
   }
 }
