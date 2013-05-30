@@ -1117,17 +1117,7 @@ PROJECTS = {
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
             'lion': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'xp': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
             'xp-ix': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
-            'win7': {
                 'ext': 'win32.zip',
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
@@ -1446,7 +1436,16 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-# If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
+# Disable Rev3 winxp and win7 machines for FF24 (m-c) and FF23 (m-a) branches
+for branch in set(BRANCHES.keys()) - set(NON_WIN32_REV3_BRANCHES):
+    if not BRANCHES[branch]['platforms'].has_key('win32'):
+        continue
+    del BRANCHES[branch]['platforms']['win32']['xp']
+    del BRANCHES[branch]['platforms']['win32']['win7']
+    if not BRANCHES[branch]['platforms']['win32'].has_key('talos_slave_platforms'):
+        BRANCHES[branch]['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
+
+# TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys(): # 'macosx64', 'win32' and on
         if os not in BRANCHES[branch]['platforms'].keys():
@@ -1456,11 +1455,6 @@ for branch in BRANCHES.keys():
         platforms_for_os = get_talos_slave_platforms(PLATFORMS, platforms=(os,))
         enabled_platforms_for_os = BRANCHES[branch]['platforms'][os]['talos_slave_platforms']
         for s in SUITES.iterkeys():
-            if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
-                options = list(BRANCHES[branch]['suites'][s]['options'])
-                # filter out non-specified platforms
-                options[1] = [x for x in options[1] if x not in platforms_for_os or x in enabled_platforms_for_os]
-                BRANCHES[branch]['suites'][s]['options'] = tuple(options)
             tests_key = '%s_tests' % s
             if tests_key in BRANCHES[branch]:
                 tests = list(BRANCHES[branch]['%s_tests' % s])
