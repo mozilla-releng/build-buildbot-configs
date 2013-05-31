@@ -225,6 +225,9 @@ PROJECT_BRANCHES = {
         'mozharness_tag': 'default',
         'mozharness_talos': True,
         'lock_platforms': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'platforms': {
             'linux': {},
             'linux64': {},
