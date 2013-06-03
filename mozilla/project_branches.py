@@ -185,6 +185,7 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
+        'pgo_strategy': 'periodic',
         'platforms': {
             'macosx64-debug': {
                 'nightly_signing_servers': 'mac-nightly-signing',
