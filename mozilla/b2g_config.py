@@ -1177,7 +1177,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
 # B2G WORK WEEK
-for b in ('birch', 'cypress'):
+for b in ('birch',):
     BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
