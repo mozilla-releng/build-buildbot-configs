@@ -1221,11 +1221,9 @@ BRANCHES['mozilla-beta']['platforms']['win32']['talos_slave_platforms'] = ['xp',
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# MERGE DAY remove the below when Firefox 24 merges in
+# bug 878465 - Once we are back to normal we can remove this
 del BRANCHES['mozilla-aurora']['platforms']['win32']['win7']
-del BRANCHES['mozilla-aurora']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-aurora']['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
-# End MERGE DAY remove the above when Firefox 24 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
