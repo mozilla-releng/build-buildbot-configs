@@ -152,7 +152,8 @@ class MasterConfig:
             return (rc, test_log_filename, test_dir)
 
 
-def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe=True):
+def load_masters_json(masters_json, role=None, universal=False, log=None,
+                      dedupe=True, ignored_roles=[]):
     if 'http' in masters_json:
         masters = json.load(urllib.urlopen(masters_json))
     else:
@@ -183,7 +184,9 @@ def load_masters_json(masters_json, role=None, universal=False, log=None, dedupe
     for m in masters:
         # Sometimes we only want masters of a specific role to be loaded
         if role and m['role'] != role:
-                continue
+            continue
+        if ignored_roles and m['role'] in ignored_roles:
+            continue
 
         if m['environment'] == 'production':
             environment_config = 'production_config.py'
@@ -315,6 +318,8 @@ if __name__ == "__main__":
     parser.add_option(
         "-e", "--error-logs", dest="error_logs", action="store_true")
     parser.add_option("-d", "--debug", dest="debug", action="store_true")
+    parser.add_option("--ignore-role", dest="ignored_roles", action="append", default=[],
+                      help="Ignore masters with this role. May be passed multiple times.")
 
     options, args = parser.parse_args()
 
@@ -324,6 +329,8 @@ if __name__ == "__main__":
         loglvl = logging.ERROR
     else:
         loglvl = logging.INFO
+
+    ignored_roles = options.ignored_roles or ["servo"]
 
     log = logging.getLogger('setup-master')
     log.setLevel(logging.DEBUG)
@@ -340,12 +347,12 @@ if __name__ == "__main__":
     dedupe = options.test
     master_list = load_masters_json(options.masters_json, role=options.role,
                                     log=log, universal=options.universal,
-                                    dedupe=dedupe)
+                                    dedupe=dedupe, ignored_roles=ignored_roles)
     if options.test:
         log.debug('adding universal builders because we are testing')
-        uni_masters = load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log)
         # a universal scheduler master doesn't make any sense
-        uni_masters = [m for m in uni_masters if 'scheduler' not in m.name]
+        ignored_roles += ['scheduler']
+        uni_masters = load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log, ignored_roles=ignored_roles)
         master_list.extend(uni_masters)
 
     # Make sure we don't have duplicate names
