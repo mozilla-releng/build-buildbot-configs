@@ -294,22 +294,7 @@ PROJECT_BRANCHES = {
             'android-debug': {},
         },
     },
-    # Android x86_64 build environment (bug 860246)
-    'date': {
-        'lock_platforms': True,
-        'pgo_strategy': 'per-checkin',
-        'platforms': {
-            'linux': {},
-            'linux-debug': {},
-        },
-        'mobile_platforms': {
-            'android': {},
-            'android-debug': {},
-            'android-noion': {},
-            'android-armv6': {},
-            'android-x86': {},
-        },
-    },
+    'date': {},
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,
@@ -350,21 +335,7 @@ PROJECT_BRANCHES = {
     },
     'gum': {},
     'holly': {},
-    # Bug 848025 - disable android builds for jamun
-    'jamun': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux-debug': {},
-            'linux64': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'macosx64': {},
-            'win32': {},
-            'win32-debug': {},
-        },
-        'mobile_platforms': {},
-    },
+    'jamun': {},
     'larch': {},
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
