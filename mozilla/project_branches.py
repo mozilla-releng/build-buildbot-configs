@@ -9,6 +9,7 @@ PROJECT_BRANCHES = {
         },
     },
     'fx-team': {
+        'enable_perproduct_builds': True,
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': False,
