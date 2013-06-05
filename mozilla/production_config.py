@@ -104,6 +104,11 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
         'mobile_tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
     },
+    'mozilla-b2g18_v1_1_0_hd': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+        'tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+        'mobile_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+    },
     'mozilla-beta': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',
         'tinderbox_tree': 'Mozilla-Beta',

@@ -32,6 +32,7 @@ else:
         'mozilla-esr17',
         'mozilla-b2g18',
         'mozilla-b2g18_v1_0_1',
+        'mozilla-b2g18_v1_1_0_hd',
     ])
 if 'limit_tb_branches' in master_config:
     ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]
@@ -51,6 +52,7 @@ else:
         'mozilla-central',
         'mozilla-b2g18',
         'mozilla-b2g18_v1_0_1',
+        'mozilla-b2g18_v1_1_0_hd',
     ])
 
 if 'limit_projects' in master_config:

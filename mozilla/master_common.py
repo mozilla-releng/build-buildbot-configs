@@ -28,6 +28,7 @@ BRANCH_PRIORITIES = {
     'mozilla-esr17': 1,
     'mozilla-b2g18': 1,
     'mozilla-b2g18_v1_0_1': 1,
+    'mozilla-b2g18_v1_1_0_hd': 1,
     'comm-esr17': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
