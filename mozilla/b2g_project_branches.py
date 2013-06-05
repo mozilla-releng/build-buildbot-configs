@@ -60,10 +60,7 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'date': {
-        'lock_platforms': True,
-        'platforms': {},
-    },
+    'date': {},
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
     'fig': {
@@ -72,8 +69,7 @@ PROJECT_BRANCHES = {
     },
     'gum': {},
     'holly': {},
-    # Bug 848025 - disable b2g builds for jamun
-    #'jamun': {},
+    'jamun': {},
     'larch': {},
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181

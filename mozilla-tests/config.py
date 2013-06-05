@@ -139,7 +139,7 @@ ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', '
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
-WIN7_ONLY = ['win7']
+WIN7_ONLY = ['win7-ix']
 
 SUITES = {
     'xperf': {
@@ -1221,11 +1221,9 @@ BRANCHES['mozilla-beta']['platforms']['win32']['talos_slave_platforms'] = ['xp',
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# MERGE DAY remove the below when Firefox 24 merges in
+# bug 878465 - Once we are back to normal we can remove this
 del BRANCHES['mozilla-aurora']['platforms']['win32']['win7']
-del BRANCHES['mozilla-aurora']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-aurora']['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
-# End MERGE DAY remove the above when Firefox 24 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1311,13 +1309,12 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
 BRANCHES['try']['platforms']['macosx64']['lion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
 BRANCHES['try']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
-BRANCHES['try']['platforms']['win32']['xp']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
 BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
-BRANCHES['try']['platforms']['win32']['xp-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
+BRANCHES['try']['platforms']['win32']['xp-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites']
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
-BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
+BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
-BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL
+BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
 # Let's load jetpack for the following branches:
