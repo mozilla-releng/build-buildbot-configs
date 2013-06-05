@@ -139,7 +139,7 @@ ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', '
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
-WIN7_ONLY = ['win7']
+WIN7_ONLY = ['win7-ix']
 
 SUITES = {
     'xperf': {
