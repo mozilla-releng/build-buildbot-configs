@@ -114,26 +114,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Aurora',
         'mobile_tinderbox_tree': 'Mozilla-Aurora',
     },
-    'places': {
-        'tinderbox_tree': 'Places',
-        'mobile_tinderbox_tree': 'Places',
-        'packaged_unittest_tinderbox_tree': 'Places',
-    },
-    'electrolysis': {
-        'tinderbox_tree': 'Electrolysis',
-        'mobile_tinderbox_tree': 'Electrolysis',
-        'packaged_unittest_tinderbox_tree': 'Electrolysis',
-    },
-    'addonsmgr': {
-        'tinderbox_tree': 'AddonsMgr',
-        'mobile_tinderbox_tree': 'AddonsMgr',
-        'packaged_unittest_tinderbox_tree': 'AddonsMgr',
-    },
-    'jaegermonkey': {
-        'tinderbox_tree': 'Jaegermonkey',
-        'mobile_tinderbox_tree': 'Jaegermonkey',
-        'packaged_unittest_tinderbox_tree': 'Jaegermonkey',
-    },
     'try': {
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',

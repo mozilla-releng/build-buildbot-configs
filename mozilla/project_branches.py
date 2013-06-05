@@ -8,32 +8,6 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'devtools': {
-        'enable_nightly': True,
-        'enabled_products': ['firefox'],
-        'platforms': {
-            'macosx64': {
-                'slave_platforms': ['snowleopard', 'lion', 'mountainlion'],
-            },
-        },
-        'mobile_platforms': {
-            'android': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'tegra_android': {},
-            },
-            'android-armv6': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'tegra_android': {},
-            },
-        },
-    },
-    # DISABLED because of builder limit problems - bug 721854
-    #'electrolysis': {
-    #    'mozconfig_dir': 'electrolysis',
-    #    'enable_talos': True,
-    #},
     'fx-team': {
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
@@ -49,12 +23,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-    },
-    'jaegermonkey': {
-        'mozconfig_dir': 'jaegermonkey',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
     },
     # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
@@ -117,17 +85,6 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # DISABLED because of builder limit problems - bug 721854
-#    'places': {
-#        'platforms': {
-#            'linux64': {
-#                'build_space': 6,
-#            },
-#            'linux': {
-#                'build_space': 6,
-#            },
-#        },
-#    },
     'profiling': {
         'pgo_strategy': 'periodic',
         'platforms': {

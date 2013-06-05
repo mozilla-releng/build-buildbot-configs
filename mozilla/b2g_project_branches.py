@@ -2,20 +2,12 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     'build-system': {},
-    'devtools': {
-        'enable_nightly': True,
-    },
-    # Disabled because of builder limit problems - bug 721854
-    #'electrolysis': {},
     'fx-team': {
         'repo_path': 'integration/fx-team',
         'enable_nightly': False,
     },
     'graphics': {},
     'ionmonkey': {
-        'enable_nightly': True
-    },
-    'jaegermonkey': {
         'enable_nightly': True
     },
     # Please sync any customizations made to mozilla-inbound to cypress.
@@ -27,8 +19,6 @@ PROJECT_BRANCHES = {
     'cypress': {
         'enable_perproduct_builds': True,
     },
-    # Disabled because of builder limit problems - bug 721854
-    #'places': {},
     # B2G builds not required on the profiling branch
     #'profiling': {},
     'services-central': {
