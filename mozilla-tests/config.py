@@ -1192,11 +1192,11 @@ BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
-# MERGE DAY remove the below when Firefox 24 merges in
+# MERGE DAY remove the below when Firefox 23 merges in
 del BRANCHES['mozilla-release']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-release']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
-# End MERGE DAY remove the above when Firefox 24 merges in
+# End MERGE DAY remove the above when Firefox 23 merges in
 
 # MERGE DAY remove the below when Firefox 22 merges in
 BRANCHES['mozilla-release']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
@@ -1223,18 +1223,15 @@ BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = ['x
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-# MERGE DAY remove the below when Firefox 24 merges in
+# MERGE DAY remove the below when Firefox 23 merges in
 del BRANCHES['mozilla-beta']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-beta']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-beta']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
-# End MERGE DAY remove the above when Firefox 24 merges in
+# End MERGE DAY remove the above when Firefox 23 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# bug 878465 - Once we are back to normal we can remove this
-del BRANCHES['mozilla-aurora']['platforms']['win32']['win7']
-BRANCHES['mozilla-aurora']['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1472,10 +1469,11 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-WIN32_REV3_BRANCHES = ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+# MERGE DAY: remove branches when Firefox 23 merges in
+WIN32_REV3_BRANCHES = ("mozilla-beta", "mozilla-release",
                        "mozilla-esr17", "mozilla-b2g18",
                        "mozilla-b2g18_v1_0_1")
-# Disable Rev3 winxp and win7 machines for FF24+
+# Disable Rev3 winxp and win7 machines for FF23+
 for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
     if 'win32' not in BRANCHES[branch]['platforms']:
         continue
