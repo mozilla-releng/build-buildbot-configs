@@ -98,7 +98,7 @@ PLATFORM_VARS = {
             'LC_ALL': 'C',
             'GONK_PRODUCT': 'generic',
             'TOOLCHAIN_HOST': 'linux-x86',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
         },
         'enable_opt_unittests': False,
         'enable_checktests': False,
@@ -108,7 +108,7 @@ PLATFORM_VARS = {
         # MOCK SPECIFIC OPTIONS BELOW
         'use_mock': True,
         'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
         'mock_copyin_files': [
@@ -158,7 +158,7 @@ PLATFORM_VARS = {
             'LC_ALL': 'C',
             'GONK_PRODUCT': 'generic',
             'TOOLCHAIN_HOST': 'linux-x86',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
         },
         'enable_opt_unittests': False,
         'enable_checktests': False,
@@ -168,7 +168,7 @@ PLATFORM_VARS = {
         # MOCK SPECIFIC OPTIONS BELOW
         'use_mock': True,
         'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
         'mock_copyin_files': [
@@ -213,7 +213,7 @@ PLATFORM_VARS = {
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -222,7 +222,7 @@ PLATFORM_VARS = {
         'l10n_check_test': False,
         'use_mock': True,
         'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
                           'perl-Config-General', 'gtk2-devel', 'libnotify-devel',
                           'yasm', 'alsa-lib-devel', 'libcurl-devel', 'wireless-tools-devel',
@@ -283,7 +283,7 @@ PLATFORM_VARS = {
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -292,7 +292,7 @@ PLATFORM_VARS = {
         'l10n_check_test': False,
         'use_mock': True,
         'mock_target': 'mozilla-centos6-x86_64',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
                           'perl-Config-General', 'gtk2-devel', 'libnotify-devel',
                           'yasm', 'alsa-lib-devel', 'libcurl-devel', 'wireless-tools-devel',
@@ -454,7 +454,7 @@ PLATFORM_VARS = {
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
@@ -466,7 +466,7 @@ PLATFORM_VARS = {
         'l10n_check_test': False,
         'use_mock': True,
         'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static', 'gtk2-devel',
                           'libnotify-devel', 'yasm', 'alsa-lib-devel',
                           'libcurl-devel', 'wireless-tools-devel',
@@ -526,7 +526,7 @@ PLATFORM_VARS = {
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
-            'PATH': '/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
@@ -538,7 +538,7 @@ PLATFORM_VARS = {
         'l10n_check_test': False,
         'use_mock': True,
         'mock_target': 'mozilla-centos6-x86_64',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mercurial', 'git', 'ccache',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                           'glibc-static', 'libstdc++-static', 'gtk2-devel',
                           'libnotify-devel', 'yasm', 'alsa-lib-devel',
                           'libcurl-devel', 'wireless-tools-devel',
@@ -888,6 +888,27 @@ BRANCHES = {
         'leo': {},
         'hamachi_eng': {},
     },
+    'mozilla-b2g18_v1_1_0_hd': {
+        # b2g explicitly
+        'ics_armv7a_gecko': {},
+        'ics_armv7a_gecko-debug': {},
+        'linux32_gecko': {},
+        'linux64_gecko': {},
+        'macosx64_gecko': {},
+        'win32_gecko': {},
+        'linux32_gecko_localizer': {},
+        'linux64_gecko_localizer': {},
+        'macosx64_gecko_localizer': {},
+        'win32_gecko_localizer': {},
+        'panda': {},
+        'unagi': {},
+        'unagi_eng': {},
+        'otoro': {},
+        'inari': {},
+        'leo': {},
+        'leo_eng': {},
+        'hamachi': {},
+    },
     'try': {
     },
 }
@@ -1060,6 +1081,46 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['enable
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
+
+######## mozilla-b2g18_v1_1_0_hd
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = 'releases/mozilla-b2g18_v1_1_0_hd'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [2]
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['otoro']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
+# Disable desktop B2G checktests on the b2g18 branch
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
 
 ######## try
 # Try-specific configs

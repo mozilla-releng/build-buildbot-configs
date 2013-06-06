@@ -48,6 +48,13 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g18_v1_1_0_hd': {
+        'datazilla_url': None,
+        'platforms': {
+            'android-noion': {},
+        },
+        'lock_platforms': True,
+    },
     'try': {'coallesce_jobs': False},
 }
 
@@ -549,6 +556,12 @@ BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_platforms'] = []
 
+######### mozilla-b2g18_v1_1_0_hd
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_platforms'] = []
+
 ######## try
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
@@ -569,7 +582,8 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_1', 'try', 'birch', 'date',
+                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd', 'try',
+                      'birch', 'date',
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
@@ -578,7 +592,7 @@ for branch in BRANCHES:
 for branch in BRANCHES.keys():
     # Loop removes it from any branch that gets beyond here
     if branch not in ('mozilla-release', 'mozilla-esr17', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_1'):
+                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         continue
 
     if 'android' in BRANCHES[branch]['platforms']:
@@ -597,7 +611,8 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
     if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
+                      'mozilla-b2g18_v1_1_0_hd'):
         continue
 
     for platform in BRANCHES[branch]['platforms']:

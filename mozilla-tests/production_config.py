@@ -77,6 +77,10 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
         'mobile_tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
     },
+    'mozilla-b2g18_v1_1_0_hd': {
+        'tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+        'mobile_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
@@ -84,14 +88,6 @@ BRANCHES = {
     'mozilla-aurora': {
         'tinderbox_tree': 'Mozilla-Aurora',
         'mobile_tinderbox_tree': 'Mozilla-Aurora',
-    },
-    'places': {
-        'tinderbox_tree': 'Places',
-        'mobile_tinderbox_tree': 'Places',
-    },
-    'electrolysis': {
-        'tinderbox_tree': 'Electrolysis',
-        'mobile_tinderbox_tree': 'Electrolysis',
     },
     'addontester': {
         'tinderbox_tree': 'AddonTester',
@@ -112,10 +108,6 @@ BRANCHES = {
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',
-    },
-    'jaegermonkey': {
-        'tinderbox_tree': 'Jaegermonkey',
-        'mobile_tinderbox_tree': 'Jaegermonkey',
     },
 }
 
