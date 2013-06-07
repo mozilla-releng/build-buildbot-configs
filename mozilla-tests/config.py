@@ -846,7 +846,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win8': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:] + METRO[:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
@@ -1379,6 +1379,12 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
+
+# Enable metro jobs for now
+BRANCHES['mozilla-central']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['try']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
