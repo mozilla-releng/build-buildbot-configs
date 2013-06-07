@@ -1121,7 +1121,7 @@ for branch in BRANCHES.keys():
 ### PROJECTS ###
 PROJECTS = {
     'jetpack': {
-        'branches': ['mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release'],
+        'branches': ['mozilla-central'],
         'platforms': {
             'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
             'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
