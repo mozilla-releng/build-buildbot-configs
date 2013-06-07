@@ -391,6 +391,14 @@ MARIONETTE = [
         'download_symbols': False,
     }),
 ]
+METRO = [
+    ('metro-immersive', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'metro-immersive'],
+        'script_maxtime': 7200,
+    }),
+]
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
@@ -838,7 +846,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win8': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:] + METRO[:],
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
@@ -1371,16 +1379,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
-
-# Add metro tests to cedar only
-BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += [
-    ('metro-immersive', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'metro-immersive'],
-        'script_maxtime': 7200,
-    }),
-]
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
