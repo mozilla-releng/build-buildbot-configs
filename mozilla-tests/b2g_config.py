@@ -22,6 +22,7 @@ BRANCHES = {
     'cedar': {},
     'cypress': {},
     'fx-team': {},
+    'graphics': {},
     'mozilla-b2g18': {},
     'mozilla-b2g18_v1_0_1': {},
     'mozilla-b2g18_v1_1_0_hd': {},
@@ -877,6 +878,7 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
+BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
