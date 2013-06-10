@@ -248,7 +248,9 @@ PROJECT_BRANCHES = {
             'win32-debug': {},
         },
         'mobile_platforms': {
-            'android': {},
+            'android': {
+                'enable_nightly': True,
+             },
             'android-debug': {},
         },
     },
