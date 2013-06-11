@@ -55,6 +55,7 @@ SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 builder_prefix = "b2g"
 gaia_repo = 'integration/gaia-central'
+gaia_revision_file = 'b2g/config/gaia.json'
 
 PLATFORM_VARS = {
     'ics_armv7a_gecko': {
@@ -232,6 +233,7 @@ PLATFORM_VARS = {
                           'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_dev.json',
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -302,6 +304,7 @@ PLATFORM_VARS = {
                           'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_dev.json',
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -357,6 +360,7 @@ PLATFORM_VARS = {
         'test_pretty_names': False,
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_dev.json',
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_macosx64.py',
@@ -409,6 +413,7 @@ PLATFORM_VARS = {
         'test_pretty_names': False,
         'l10n_check_test': False,
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_dev.json',
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_win32.py',
@@ -477,6 +482,7 @@ PLATFORM_VARS = {
                           'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_all.json',
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -549,6 +555,7 @@ PLATFORM_VARS = {
                           'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_all.json',
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -607,6 +614,7 @@ PLATFORM_VARS = {
         'test_pretty_names': False,
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_all.json',
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_macosx64.py',
@@ -661,6 +669,7 @@ PLATFORM_VARS = {
         'test_pretty_names': False,
         'l10n_check_test': False,
         'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
         'gaia_languages_file': 'locales/languages_all.json',
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_win32.py',
@@ -1036,13 +1045,21 @@ BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
 ######## mozilla-b2g18_v1_0_1
 # This is a path, relative to HGURL, where the repository is located
@@ -1075,13 +1092,21 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = Tru
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18_v1_0_1 branch
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
 ######## mozilla-b2g18_v1_1_0_hd
 # This is a path, relative to HGURL, where the repository is located
@@ -1115,13 +1140,21 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = 
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
 ######## try
 # Try-specific configs
