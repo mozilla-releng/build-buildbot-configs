@@ -1404,7 +1404,7 @@ def get_ubuntu_unittests(branch, test_type):
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
                      "mochitest-5", "mochitest"]}
-    # MERGE DAY: uplift when Firefox 23 merges in
+    # MERGE DAY: uplift when Firefox 24 merges in
     FF23_TESTS = {"opt_unittest_suites":
                   ["mochitest-browser-chrome", "mochitest-other"],
                   "debug_unittest_suites": ["mochitest-other"]}
