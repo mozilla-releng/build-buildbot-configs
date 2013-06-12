@@ -235,23 +235,41 @@ PROJECT_BRANCHES = {
         'mozharness_tag': 'default',
         'lock_platforms': True,
         'enable_talos': True,
+        'enable_nightly': True,
         'platforms': {
-            'linux': {},
-            'linux64': {},
+            'linux': {
+                'enable_nightly': False,
+            },
+            'linux64': {
+                'enable_nightly': False,
+            },
             'win32': {
+                'enable_nightly': False,
                 'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
             },
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
+            'macosx64': {
+                'enable_nightly': False,
+            },
+            'linux-debug': {
+                'enable_nightly': False,
+            },
+            'linux64-debug': {
+                'enable_nightly': False,
+            },
+            'macosx64-debug': {
+                'enable_nightly': False,
+            },
+            'win32-debug': {
+                'enable_nightly': False,
+            },
         },
         'mobile_platforms': {
             'android': {
                 'enable_nightly': True,
              },
-            'android-debug': {},
+            'android-debug': {
+                'enable_nightly': False,
+            },
         },
     },
     'date': {},

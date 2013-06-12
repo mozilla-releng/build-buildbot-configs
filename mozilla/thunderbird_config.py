@@ -1082,6 +1082,18 @@ for branch in ("comm-aurora", "comm-beta", "comm-release", "comm-esr17"):
             BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
                 ["valgrind"]
 
+# MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
+# MERGE DAY - remove branches from this list when gecko 24 merges into them.
+for b in ("comm-aurora", "comm-beta", "comm-release",
+          "comm-esr17"):
+    for p, pc in BRANCHES[b]['platforms'].items():
+        if 'mock_packages' in pc:
+            BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+                    'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                    'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                )]
+
 if __name__ == "__main__":
     import sys
     import pprint
