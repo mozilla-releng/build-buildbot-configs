@@ -1123,7 +1123,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [2]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
