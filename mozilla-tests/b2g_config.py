@@ -220,19 +220,16 @@ CRASHTEST = [
     ('crashtest-1', {'suite': 'crashtest',
                      'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'dont_remove_fedora': True,
                     },
     ),
     ('crashtest-2', {'suite': 'crashtest',
                      'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'dont_remove_fedora': True,
                     },
     ),
     ('crashtest-3', {'suite': 'crashtest',
                      'use_mozharness': True,
                      'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'dont_remove_fedora': True,
                     },
     ),
 ]
@@ -459,8 +456,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64_vm-b2g': {
-            'opt_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
-            'debug_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL,
+            'opt_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL + CRASHTEST,
+            'debug_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL + CRASHTEST,
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -637,8 +634,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64_hw-b2g': {
-            'opt_unittest_suites': REFTEST + CRASHTEST,
-            'debug_unittest_suites': REFTEST + CRASHTEST,
+            'opt_unittest_suites': REFTEST,
+            'debug_unittest_suites': REFTEST,
             'suite_config': {
                 'crashtest-1': {
                     'extra_args': [
