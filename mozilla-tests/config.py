@@ -148,6 +148,7 @@ for platform, platform_config in PLATFORMS.items():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64'))
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
+NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp' and platform != 'xp-ix']
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
@@ -186,7 +187,7 @@ SUITES = {
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, NO_WINXP),
     },
     'chromez': {
         'enable_by_default': True,
