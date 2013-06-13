@@ -148,6 +148,7 @@ for platform, platform_config in PLATFORMS.items():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64'))
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
+NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp' and platform != 'xp-ix']
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
@@ -186,7 +187,7 @@ SUITES = {
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, NO_WINXP),
     },
     'chromez': {
         'enable_by_default': True,
@@ -392,10 +393,10 @@ MARIONETTE = [
     }),
 ]
 METRO = [
-    ('metro-immersive', {
+    ('mochitest-metro-chrome', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'metro-immersive'],
+        'extra_args': ['--mochitest-suite', 'mochitest-metro-chrome'],
         'script_maxtime': 7200,
     }),
 ]
@@ -867,7 +868,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'metro-immersive': {
+                'mochitest-metro-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-other': {
@@ -1382,9 +1383,13 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 
 # Enable metro jobs for now
 BRANCHES['mozilla-central']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['mozilla-central']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 BRANCHES['try']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+BRANCHES['try']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
