@@ -9,8 +9,6 @@ import config_common
 reload(config_common)
 from config_common import nested_haskey
 
-from buildbot.steps.shell import WithProperties
-
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
 GLOBAL_VARS['stage_username'] = 'ffxbld'
@@ -148,61 +146,51 @@ REFTEST = [
     ('reftest-1', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-2', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-3', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-4', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-5', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-6', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-7', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-8', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-9', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
     ('reftest-10', {'suite': 'reftest',
                    'use_mozharness': True,
                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                   'dont_remove_fedora': True,
                   },
     ),
 ]
@@ -211,7 +199,6 @@ REFTEST_SANITY = [
     ('reftest', {'suite': 'reftest',
                  'use_mozharness': True,
                  'script_path': 'scripts/b2g_emulator_unittest.py',
-                 'dont_remove_fedora': True,
                 },
     ),
 ]
@@ -890,8 +877,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['fedora-b2g
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
-BRANCHES['mozilla-central']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['opt_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['mozilla-central']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
@@ -905,8 +890,6 @@ for branch in BRANCHES.keys():
 
 # MERGE DAY NOTE: remove v22 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
-# Specify branches where some of Ubuntu suites can be orange/red
-UBUNTU_CAN_BE_ORANGE_BRANCHES = ("mozilla-central", "cedar")
 
 # use either Fedora or Ubuntu for other branches,
 # don't touch cedar
@@ -926,20 +909,9 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
            nested_haskey(BRANCHES[branch]['platforms'], 'ics_armv7a_gecko',
                          'fedora-b2g', suite_type):
             # Don't run tests on Fedora if they listed in Ubuntu
-            if branch in UBUNTU_CAN_BE_ORANGE_BRANCHES:
-                # dont_remove_fedora means that the suite is not ready to be
-                # run on Ubuntu yet (Fedora is the main slave platform for this
-                # suite). Aplly to branches we want to see both platforms
-                # running.
-                for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g'][suite_type]:
-                    BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type] = \
-                        [s for s in deepcopy(BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type])
-                         if s[0] != suite[0] or s[1].get('dont_remove_fedora')]
-            else:
-                for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g'][suite_type]:
-                    BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type] = \
-                        [s for s in deepcopy(BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type])
-                         if s[0] != suite[0]]
+            for suite in BRANCHES[branch]['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g'][suite_type]:
+                BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type] = \
+                    [s for s in deepcopy(BRANCHES[branch]['platforms']['ics_armv7a_gecko']['fedora-b2g'][suite_type]) if s[0] != suite[0]]
 
 # Disable ubuntu64_hw-b2g on all branches but cedar
 for branch in set(BRANCHES.keys()) - set(['cedar']):
