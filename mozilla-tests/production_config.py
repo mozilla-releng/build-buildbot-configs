@@ -32,11 +32,14 @@ SLAVES = {
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 SLAVES['fedora-b2g'] = SLAVES['fedora']
+SLAVES['fedora-b2g-emulator'] = SLAVES['fedora']
 # Use "-b2g" suffix to make misc.py generate unique builder names
 SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']
 SLAVES['ubuntu64_vm-b2g'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm-b2gdt'] = SLAVES['ubuntu64_vm']
+SLAVES['ubuntu64_vm-b2g-emulator'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
+SLAVES['ubuntu64_hw-b2g-emulator'] = SLAVES['ubuntu64_hw']
 
 TRY_SLAVES = {}
 
