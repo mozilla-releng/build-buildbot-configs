@@ -4,6 +4,7 @@ PROJECT_BRANCHES = {
     'build-system': {},
     'fx-team': {
         'repo_path': 'integration/fx-team',
+        'enable_perproduct_builds': True,
         'enable_nightly': False,
     },
     'graphics': {},

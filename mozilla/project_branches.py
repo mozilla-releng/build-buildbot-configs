@@ -236,39 +236,53 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'enable_talos': True,
         'enable_nightly': True,
+        'create_snippet': True,
+        'create_mobile_snippet': True,
         'platforms': {
             'linux': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'linux64': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'win32': {
                 'enable_nightly': False,
+                'create_snippet': False,
                 'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
             },
             'macosx64': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'linux-debug': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'linux64-debug': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'macosx64-debug': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
             'win32-debug': {
                 'enable_nightly': False,
+                'create_snippet': False,
             },
         },
         'mobile_platforms': {
             'android': {
                 'enable_nightly': True,
+                'create_snippet': True,
+                'create_mobile_snippet': True,
              },
             'android-debug': {
                 'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
             },
         },
     },
