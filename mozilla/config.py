@@ -2102,11 +2102,6 @@ for b in ('birch',):
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
 
-# MERGE DAY
-# When Firefox 22 merges into these branches, they can be removed from the list
-for b in ('mozilla-release',):
-    BRANCHES[b]["run_make_alive_tests"] = False
-
 if __name__ == "__main__":
     import sys
     import pprint
