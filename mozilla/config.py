@@ -2004,31 +2004,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
     BRANCHES[branch]['enable_valgrind'] = False
 
-# Bug 578880, remove the following block after gcc-4.5 switch
-branches = BRANCHES.keys()
-branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in branches:
-    if 'linux' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-        BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-    if 'linux64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
-        BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-        }
-    if 'linux-debug' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-        BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-    if 'linux64-debug' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
-        BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-        }
-
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list
 for b in ('mozilla-esr17',):
@@ -2126,11 +2101,6 @@ for b in ('birch',):
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
-
-# MERGE DAY
-# When Firefox 22 merges into these branches, they can be removed from the list
-for b in ('mozilla-release',):
-    BRANCHES[b]["run_make_alive_tests"] = False
 
 if __name__ == "__main__":
     import sys

@@ -1207,27 +1207,6 @@ del BRANCHES['mozilla-release']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
 # End MERGE DAY remove the above when Firefox 23 merges in
 
-# MERGE DAY remove the below when Firefox 22 merges in
-BRANCHES['mozilla-release']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
-BRANCHES['mozilla-release']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-release']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-release']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-release']['platforms']['win32']['xp']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
-BRANCHES['mozilla-release']['platforms']['win32']['xp']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-release']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
-BRANCHES['mozilla-release']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-release']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-release']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-release']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-del BRANCHES['mozilla-release']['platforms']['win32']['win8']
-BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7']
-# End MERGE DAY remove the above when Firefox 22 merges in
-
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1367,8 +1346,8 @@ for branch in BRANCHES.keys():
         for pf in PLATFORMS:
             if pf not in BRANCHES[branch]['platforms'].keys():
                 continue
-            for slave_pf in BRANCHES[branch]['platforms'][pf].get('slave_platforms', \
-                    PLATFORMS[pf]['slave_platforms']):
+            for slave_pf in BRANCHES[branch]['platforms'][pf].get(
+                    'slave_platforms', PLATFORMS[pf]['slave_platforms']):
                 if slave_pf not in BRANCHES[branch]['platforms'][pf]:
                     continue
                 BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
@@ -1410,11 +1389,11 @@ def get_ubuntu_unittests(branch, test_type):
                      "mochitest-2", "mochitest-3", "mochitest-4",
                      "mochitest-5", "mochitest"]}
     # MERGE DAY: uplift when Firefox 24 merges in
-    FF23_TESTS = {"opt_unittest_suites":
+    FF24_TESTS = {"opt_unittest_suites":
                   ["mochitest-browser-chrome", "mochitest-other"],
                   "debug_unittest_suites": ["mochitest-other"]}
     if branch not in ("mozilla-aurora", "mozilla-beta", "mozilla-release"):
-        return UBUNTU_TESTS[test_type] + FF23_TESTS[test_type]
+        return UBUNTU_TESTS[test_type] + FF24_TESTS[test_type]
     else:
         return list(UBUNTU_TESTS[test_type])
 
@@ -1493,10 +1472,10 @@ for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
-    for os in PLATFORMS.keys(): # 'macosx64', 'win32' and on
+    for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
         if os not in BRANCHES[branch]['platforms'].keys():
             continue
-        if BRANCHES[branch]['platforms'][os].get('talos_slave_platforms') == None:
+        if BRANCHES[branch]['platforms'][os].get('talos_slave_platforms') is None:
             continue
         platforms_for_os = get_talos_slave_platforms(PLATFORMS, platforms=(os,))
         enabled_platforms_for_os = BRANCHES[branch]['platforms'][os]['talos_slave_platforms']
