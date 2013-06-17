@@ -1389,11 +1389,11 @@ def get_ubuntu_unittests(branch, test_type):
                      "mochitest-2", "mochitest-3", "mochitest-4",
                      "mochitest-5", "mochitest"]}
     # MERGE DAY: uplift when Firefox 24 merges in
-    FF23_TESTS = {"opt_unittest_suites":
+    FF24_TESTS = {"opt_unittest_suites":
                   ["mochitest-browser-chrome", "mochitest-other"],
                   "debug_unittest_suites": ["mochitest-other"]}
     if branch not in ("mozilla-aurora", "mozilla-beta", "mozilla-release"):
-        return UBUNTU_TESTS[test_type] + FF23_TESTS[test_type]
+        return UBUNTU_TESTS[test_type] + FF24_TESTS[test_type]
     else:
         return list(UBUNTU_TESTS[test_type])
 
