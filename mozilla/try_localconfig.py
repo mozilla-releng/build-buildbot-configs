@@ -18,14 +18,15 @@ if 'ssh_port' in master_config:
             "tcp:%(ssh_port)i:interface=127.0.0.1" % master_config,
             "cltbld", "password")
 
-from config import BRANCHES, PROJECTS, TRY_SLAVES
+from config import BRANCHES, PROJECTS, TRY_SLAVES, BRANCH_PROJECTS
 ACTIVE_BRANCHES = ['try']
 ACTIVE_THUNDERBIRD_BRANCHES = ['try-comm-central']
 ACTIVE_B2G_BRANCHES = ['try']
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
-ACTIVE_PROJECTS = [ k for k,v in PROJECTS.items() if v.get('enable_try') ]
+ACTIVE_PROJECTS = [k for k,v in PROJECTS.items() if v.get('enable_try')]
+ACTIVE_BRANCH_PROJECTS = [k for k,v in BRANCH_PROJECTS.items() if v.get('enable_try')]
 
 # Override with TRY_SLAVES
 SLAVES = TRY_SLAVES
