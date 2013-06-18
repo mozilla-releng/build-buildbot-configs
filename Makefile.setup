@@ -17,6 +17,7 @@ BUILDBOT_BRANCH = production-0.8
 BUILDBOTCUSTOM_BRANCH = production-0.8
 BUILDBOTCONFIGS_BRANCH = production
 TOOLS_BRANCH = default
+TOOLS_REPO ?= $(HG_HOST)/$(HG_DIR)/tools
 INSTALL_BUILDBOT_SLAVE=
 
 # staging master setup
@@ -79,7 +80,7 @@ ifdef INSTALL_BUILDBOT_SLAVE
 endif
 	test -d $(BASEDIR)/buildbotcustom || $(HG) clone -b $(BUILDBOTCUSTOM_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
 	test -d $(BASEDIR)/buildbot-configs || $(HG) clone -b $(BUILDBOTCONFIGS_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
-	test -d $(BASEDIR)/tools || $(HG) clone -b $(TOOLS_BRANCH) $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
+	test -d $(BASEDIR)/tools || $(HG) clone -b $(TOOLS_BRANCH) $(TOOLS_REPO) $(BASEDIR)/tools
 	# Get buildbotcustom and the build/tools library into PYTHONPATH
 	ln -sf $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
 	echo "$(BASEDIR)/tools/lib/python" > $(SITE_PACKAGES)/build-tools-lib.pth
