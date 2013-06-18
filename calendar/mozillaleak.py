@@ -9,7 +9,7 @@ import buildbotcustom.steps.updates
 
 from buildbotcustom.steps.misc import SetMozillaBuildProperties
 from buildbotcustom.steps.test import AliveTest, CompareBloatLogs, \
-  CompareLeakLogs, Codesighs, GraphServerPost
+  CompareLeakLogs, GraphServerPost
 from buildbotcustom.steps.transfer import MozillaStageUpload
 from buildbotcustom.steps.updates import CreateCompleteUpdateSnippet
 

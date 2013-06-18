@@ -1,63 +1,57 @@
-MAC_SNOW_MINIS = ['moz2-darwin10-slave%02i' % x for x in range(1,30) + range(40,57)]
-MAC_MINIS      = ['moz2-darwin9-slave%02i' % x for x in range(1,73) if x not in (4,5,20,40,59)]
-XSERVES        = ['bm-xserve%02i' % x for x in range(6,13) + range(15,25)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(1,27)] + ['w32-ix-slave%02i' % x for x in range(1,45)]
-WIN64_IXS      = ['mw64-ix-slave01'] + ['w64-ix-slave%02i' % x for x in range(1,43)]
-LINUX_VMS      = ['moz2-linux-slave%02i' % x for x in range(1,61)]
-LINUX_IXS      = ['mv-moz2-linux-ix-slave%02i' % x for x in range(1,24)] + ['linux-ix-slave%02i' % x for x in range(1,43)]
-LINUX64_VMS    = ['moz2-linux64-slave%02i' % x for x in range(1,13)]
-LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(1,42)]
-SLAVES = {
-    'linux':            LINUX_VMS + LINUX_IXS,
-    'linux64':          LINUX64_VMS + LINUX64_IXS,
+from copy import deepcopy
+import production_config as pc
+
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 93) if x not in [88]]
+WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1,)]
+WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (3, 4, 5, 22, 80)]
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
+LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
+
+STAGING_SLAVES = {
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
-    'macosx':           MAC_MINIS + XSERVES,
-    'macosx64':         MAC_SNOW_MINIS,
-    'linux-android':    LINUX_VMS + LINUX_IXS,
-    'android':          LINUX_VMS + LINUX_IXS,
-    'android-xul':      LINUX_VMS + LINUX_IXS,
+    'macosx64-lion':    MAC_LION_MINIS,
+    'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
 
-TRY_LINUX      = ['try-linux-slave%02i' % x for x in range (1,31)]
-TRY_LINUX_IXS  = []
-TRY_LINUX64    = ['try-linux64-slave%02i' % x for x in range (1,11)]
-TRY_LINUX64_IXS= ['linux64-ix-slave%02i' % x for x in range(22,41)]
-TRY_MAC        = ['try-mac-slave%02i' % x for x in range (1,48)]
-TRY_MAC64      = ['try-mac64-slave%02i' % x for x in range (1,32)]
-TRY_WIN32_IXS  = []
+SLAVES = deepcopy(STAGING_SLAVES)
 
-TRY_SLAVES = SLAVES
-TRY_SLAVES['linux'] += TRY_LINUX + TRY_LINUX_IXS
-TRY_SLAVES['linux64'] += TRY_LINUX64 + TRY_LINUX64_IXS
-TRY_SLAVES['macosx'] += TRY_MAC
-TRY_SLAVES['macosx64'] += TRY_MAC64
-TRY_SLAVES['win32'] += TRY_WIN32_IXS
+for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
+    if p not in SLAVES:
+        SLAVES[p] = list(slaves)
+    else:
+        SLAVES[p].extend(slaves)
 
+
+TRY_SLAVES = deepcopy(SLAVES)
 
 GLOBAL_VARS = {
     'staging': True,
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'stage_server': 'dev-stage01.build.sjc1.mozilla.com',
-    'aus2_host': 'dev-stage01.build.sjc1.mozilla.com',
-    'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
+    'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
+    'aus2_host': 'dev-stage01.srv.releng.scl3.mozilla.com',
+    'aus2_user': 'ffxbld',
+    'aus2_ssh_key': 'ffxbld_dsa',
+    'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
+    # XXX: should point at aus4-admin-dev once production is pointing elsewhere
+    #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'build_tools_repo_path': 'build/tools',
-    'base_clobber_url': 'http://build.mozilla.org/stage-clobberer/index.php',
+    'base_clobber_url': 'http://clobberer-stage.pvt.build.mozilla.org/index.php',
     'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
     'talos_masters': [
-#        ('dev-master01.build.scl1.mozilla.com:9009', True, 1),
+        ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
     ],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-#        ('staging-master.build.mozilla.org:9009', True, 1),
+        ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'MozillaTest',
     'weekly_tinderbox_tree': 'MozillaTest',
@@ -66,12 +60,13 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
-    'base_mirror_urls': ['http://hg.build.scl1.mozilla.com'],
+    'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com'],
     'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
+    'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
 }
 
 BUILDS_BEFORE_REBOOT = 5
-SYMBOL_SERVER_HOST = 'dev-stage01.build.sjc1.mozilla.com'
+SYMBOL_SERVER_HOST = 'dev-stage01.srv.releng.scl3.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
@@ -91,57 +86,56 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'mozilla-esr10': {
+    'mozilla-esr17': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'mozilla-1.9.2': {
+    'mozilla-b2g18': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-b2g18_v1_0_1': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
+    'mozilla-b2g18_v1_1_0_hd': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
     'try': {
-        'download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox',
-        'mobile_download_base_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/mobile',
+        'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
+        'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://dev-stage01.build.sjc1.mozilla.com/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
                 'env': {
-                    'SYMBOL_SERVER_HOST': 'dev-stage01.build.sjc1.mozilla.com',
-                    'CVS_RSH': 'ssh',
+                    'SYMBOL_SERVER_HOST': 'dev-stage01.srv.releng.scl3.mozilla.com',
                     'MOZ_OBJDIR': 'obj-firefox',
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
                     'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
-                    'PATH': "${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                    'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
+                    'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 }
             }
         }
     },
-    'shadow-central': {
-        'stage_server' : 'dm-pvtbuild01.mozilla.org',
-        'stage_base_path' : '/mnt/pvt_builds/staging',
-        'stage_log_base_url': 'https://dm-pvtbuild01.mozilla.org/staging',
-        'package_url': 'https://dm-pvtbuild01.mozilla.org/staging/shadow-central/',
-        'build_tools_repo_path' : 'http://hg.mozilla.org/users/stage-ffxbld/tools',
-        'hghost' : 'ssh://stage-ffxbld@hgpvt.mozilla.org',
-        'stage_username': 'stage-ffxbld',
-    },
 }
 
-PLATFORM_VARS = {
-}
+PLATFORM_VARS = {}
 
 PROJECTS = {
     'fuzzing': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'fuzzing_bundle': 'http://pvtbuilds.pvt.build.mozilla.org/bundles/fuzzing.hg',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
-        'fuzzing_remote_host': 'stage-ffxbld@dm-pvtbuild01.mozilla.org',
+        'fuzzing_remote_host': 'stage-ffxbld@stage.mozilla.org',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
         'idle_slaves': 0,
@@ -152,16 +146,40 @@ PROJECTS = {
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
-    'spidermonkey_mozilla-inbound': {
+    'spidermonkey_cypress': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
+    },
+    'spidermonkey_mozilla-inbound': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Mozilla-Inbound',
+        'disable_tinderbox_mail': False,
     },
     'spidermonkey_ionmonkey': {
         'disable_tinderbox_mail': True,
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
+    },
+    'dxr_mozilla-central': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'upload_host': GLOBAL_VARS['stage_server'],
+        'upload_user': 'ffxbld',
+        'upload_sshkey': '/home/cltbld/.ssh/ffxbld_dsa',
+    },
+    'spidermonkey_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
+    'spidermonkey_ggc_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+    },
+    'spidermonkey_exact_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
     },
 }

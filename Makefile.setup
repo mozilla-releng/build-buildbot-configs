@@ -8,7 +8,6 @@ HG_DIR = build
 MASTER_NAME = $(error MASTER_NAME must be defined (see setup-master.py -l for a list))
 DATABASE = tm-b01-master01.mozilla.org/buildbot
 MYSQL_CONFIG = $(HOME)/.$(MASTER_NAME)_update_from_files.conf
-CRONTAB = /etc/cron.d/$(MASTER_NAME)
 VIRTUALENV_PYTHON = $(BASEDIR)/bin/python
 PIP = $(BASEDIR)/bin/pip
 BUILDBOT = $(BASEDIR)/bin/buildbot
@@ -17,7 +16,38 @@ HOME = /home/$(USER)
 BUILDBOT_BRANCH = production-0.8
 BUILDBOTCUSTOM_BRANCH = production-0.8
 BUILDBOTCONFIGS_BRANCH = production
+TOOLS_BRANCH = default
+TOOLS_REPO ?= $(HG_HOST)/$(HG_DIR)/tools
 INSTALL_BUILDBOT_SLAVE=
+
+# staging master setup
+ifdef USE_DEV_MASTER
+MASTERS_JSON = dev-master_config.json
+HTTP_PORT = $(error HTTP_PORT must be defined)
+PB_PORT = $(error PB_PORT must be defined)
+SSH_PORT = $(error SSH_PORT must be defined)
+ROLE = $(error ROLE must be defined)
+
+GENERATE_MASTERS_JSON_CMD = \
+    sed -e 's,@BASEDIR@,$(BASEDIR),g' \
+        -e 's,@HTTP_PORT@,$(HTTP_PORT),g' \
+        -e 's,@PB_PORT@,$(PB_PORT),g' \
+        -e 's,@SSH_PORT@,$(SSH_PORT),g' \
+        -e 's,@MASTER_NAME@,$(MASTER_NAME),g' \
+        -e 's,@ROLE@,$(ROLE),g' \
+        -e 's,@ROLE@,$(ROLE),g' \
+        -e 's,@BUILDBOTCUSTOM_BRANCH@,$(BUILDBOTCUSTOM_BRANCH),g' \
+        -e 's,@BUILDBOTCONFIGS_BRANCH@,$(BUILDBOTCONFIGS_BRANCH),g' \
+        -e 's,@TOOLS_BRANCH@,$(TOOLS_BRANCH),g' \
+        -e 's,@BUILDBOT_BRANCH@,$(BUILDBOT_BRANCH),g' \
+        $(MASTERS_JSON).in > $(MASTERS_JSON)
+endif
+
+ifdef UNIVERSAL
+UNIVERSAL_OPT=-u
+else
+UNIVERSAL_OPT=
+endif
 
 ifdef MASTERS_JSON
 SETUP_MASTER=setup-master.py -j $(MASTERS_JSON)
@@ -32,7 +62,6 @@ done:
 	@echo
 	@echo You probably want to update at least the following files to contain accurate passwords/descriptions:
 	@echo BuildSlaves.py, passwords.py, $(MYSQL_CONFIG)
-	@echo You should also run the "cron" target as root, with the same variables set.
 
 virtualenv:
 	$(VIRTUALENV) --distribute --no-site-packages -p $(PYTHON) $(BASEDIR)
@@ -51,16 +80,20 @@ ifdef INSTALL_BUILDBOT_SLAVE
 endif
 	test -d $(BASEDIR)/buildbotcustom || $(HG) clone -b $(BUILDBOTCUSTOM_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbotcustom $(BASEDIR)/buildbotcustom
 	test -d $(BASEDIR)/buildbot-configs || $(HG) clone -b $(BUILDBOTCONFIGS_BRANCH) $(HG_HOST)/$(HG_DIR)/buildbot-configs $(BASEDIR)/buildbot-configs
-	test -d $(BASEDIR)/tools || $(HG) clone $(HG_HOST)/$(HG_DIR)/tools $(BASEDIR)/tools
+	test -d $(BASEDIR)/tools || $(HG) clone -b $(TOOLS_BRANCH) $(TOOLS_REPO) $(BASEDIR)/tools
 	# Get buildbotcustom and the build/tools library into PYTHONPATH
 	ln -sf $(BASEDIR)/buildbotcustom $(SITE_PACKAGES)/buildbotcustom
 	echo "$(BASEDIR)/tools/lib/python" > $(SITE_PACKAGES)/build-tools-lib.pth
 
 master:
-	(cd $(BASEDIR)/buildbot-configs; $(VIRTUALENV_PYTHON) $(SETUP_MASTER) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME))
+ifdef GENERATE_MASTERS_JSON_CMD
+	cd $(BASEDIR)/buildbot-configs && $(GENERATE_MASTERS_JSON_CMD)
+endif
+	cd $(BASEDIR)/buildbot-configs && \
+	    $(VIRTUALENV_PYTHON) $(SETUP_MASTER) $(UNIVERSAL_OPT) -b $(BUILDBOT) $(BASEDIR)/master $(MASTER_NAME)
 
 master-makefile:
-	cp $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
+	ln -sf $(BASEDIR)/buildbot-configs/Makefile.master $(BASEDIR)/Makefile
 
 other-files:
 	echo "[DEFAULT]" > $(MYSQL_CONFIG)
@@ -68,10 +101,4 @@ other-files:
 	echo "master = http://this-master:port" >> $(MYSQL_CONFIG)
 	echo "name = $(MASTER_NAME)" >> $(MYSQL_CONFIG)
 
-cron:
-	echo "MAILTO=release@mozilla.com" > $(CRONTAB)
-	echo "@hourly cltbld (source $(HOME)/.bash_profile && $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/watch_twistd_log.py -t .$(MASTER_NAME)-last-time.txt -n $(MASTER_NAME) -f cltbld@`hostname --fqdn` -e release@mozilla.com $(BASEDIR)/master)" >> $(CRONTAB)
-	echo "15 * * * * cltbld lockfile -60 -r 3 $(HOME)/lockfile.$(MASTER_NAME)_cleanup 2>/dev/null && (source $(HOME)/.bash_profile && nice -n 19 $(VIRTUALENV_PYTHON) $(BASEDIR)/tools/buildfarm/maintenance/master_cleanup.py -t4 $(BASEDIR)/master ; rm -f $(HOME)/lockfile.$(MASTER_NAME)_cleanup) >> cleanup.log 2>&1" >> $(CRONTAB)
-	echo "*/2 * * * *	cltbld lockfile -20 -r 3 $(HOME)/lockfile.bbdb 2>/dev/null && (source $(HOME)/.bash_profile && cd $(BASEDIR)/master; time nice $(VIRTUALENV_PYTHON) $(BASEDIR)/buildbotcustom/bin/update_from_files.py -c $(MYSQL_CONFIG) . ; rm -f $(HOME)/lockfile.bbdb ) >> update.log 2>&1" >> $(CRONTAB)
-	echo "@hourly cltbld find $(HOME) -name lockfile.bbdb -mmin +360 -delete" >> $(CRONTAB)
-	chmod 644 $(CRONTAB)
+.PHONY: all done virtualenv deps install-buildbot master master-makefile other-files

@@ -1,10 +1,17 @@
+# ATTENTION:
+# If you are editing the non-template version of this file (eg, doesn't end
+# with .template), your change WILL get overwritten. If you're adding, removing,
+# or changing options as part of release automation changes you should be
+# editing the .template instead. This file should only by edited directly if
+# you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
+releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['release@mozilla.com','akeybl@mozilla.com','Callek@gmail.com']
-releaseConfig['ImportantRecipients'] = ['release-drivers@mozilla.org',]
-releaseConfig['AVVendorsRecipients'] = ['av-vendor-release-announce@mozilla.org',]
+releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
+releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
+releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
@@ -12,19 +19,27 @@ releaseConfig['messagePrefix']       = '[release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
-releaseConfig['binaryName']          = releaseConfig['productName'].capitalize()
-releaseConfig['oldBinaryName']       = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']             = '12.0b1'
-releaseConfig['appVersion']          = '12.0'
-releaseConfig['milestone']           = '12.0'
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_12_0b1'
-#  Old version info
-releaseConfig['oldVersion']          = '11.0b8'
-releaseConfig['oldAppVersion']       = '11.0'
-releaseConfig['oldBuildNumber']      = 1
-releaseConfig['oldBaseTag']          = 'FIREFOX_11_0b8'
+releaseConfig['version']             = '22.0b6'
+releaseConfig['appVersion']          = '22.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_22_0b6'
+releaseConfig['partialUpdates']      = {
+
+    '22.0b4': {
+        'appVersion': '22.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_22_0b4',
+    },
+
+    '22.0b5': {
+        'appVersion': '22.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_22_0b5',
+    },
+
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -33,7 +48,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '06883319e069',
+        'revision': '9f0d4fe5db55',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -59,7 +74,8 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
-    'build/mozharness': 'default',
+    'build/partner-repacks': 'default',
+    'build/mozharness': 'production',
 }
 
 # Platform configuration
@@ -75,27 +91,25 @@ releaseConfig['enableUnittests']     = True
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
-releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['cvsroot']             = ':ext:cltbld@cvs.mozilla.org:/cvsroot'
 releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
-releaseConfig['commitPatcherConfig'] = True
-releaseConfig['patcherToolsTag']     = 'UPDATE_PACKAGING_R16'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
-releaseConfig['ausHost']             = 'aus2-staging.mozilla.org'
-releaseConfig['ausUser']             = 'cltbld'
-releaseConfig['ausSshKey']           = 'cltbld_dsa'
+releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausUser']             = 'ffxbld'
+releaseConfig['ausSshKey']           = 'auspush'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
+releaseConfig['updateVerifyChunks']  = 4
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-firefox-linux.cfg',
     'linux64':  'mozBeta-firefox-linux64.cfg',
@@ -117,11 +131,9 @@ releaseConfig['xulrunner_mozconfigs']          = {
 releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
+releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
-# Major update configuration
-releaseConfig['majorUpdateRepoPath'] = None
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
@@ -134,3 +146,6 @@ releaseConfig['releasetestUptake']   = 1
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('linux','linux64')
+releaseConfig['ftpSymlinkName'] = 'latest-beta'

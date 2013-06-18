@@ -1,143 +1,107 @@
-# Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
-    'accessibility': {
-        'mozconfig_dir': 'accessibility',
-        'enable_nightly': True,
-        'enabled_products': ['firefox'],
-        # only want a11y which is run within the "chrome" suite
-        # turn other suites off
-        'talos_suites': {
-            'dirty': 0,
-            'tp4': 0,
-            'tp': 0,
-            'chrome_twinopen': 0,
-            'chrome_mac': 0,
-            'chrome': 0,
-            'nochrome': 0,
-            'dromaeo': 0,
-            'svg': 0,
-            'paint': 0,
-        },
-        'add_test_suites': [
-            ('macosx64', 'snowleopard', 'opt', 'mochitest-other', 'mochitest-a11y'),
-            ('macosx64', 'snowleopard', 'debug', 'mochitest-other', 'mochitest-a11y'),
-        ]
-    },
     'build-system': {
-        'enable_talos': True,
-        'pgo_strategy': 'per-checkin',
+        'pgo_strategy': 'periodic',
+        'platforms': {
+            'win32': {
+                'pgo_platform': 'win64',
+            },
+        },
     },
-    # DISABLED because of builder limit problems - bug 721854
-#    'devtools':{
-#        'enable_nightly': True,
-#        'enabled_products': ['firefox'],
-#        'platforms': {
-#            'macosx-debug': {
-#                'dont_build': True,
-#                'enable_debug_unittests': False,
-#            },
-#            'macosx': {
-#                'slave_platforms': [],
-#            },
-#            'macosx64': {
-#                'slave_platforms': ['snowleopard'],
-#            },
-#            'android': {
-#                'enable_opt_unittests': False,
-#                'enable_debug_unittests': False,
-#                'tegra_android': {},
-#            },
-#        },
-#    },
-    # DISABLED because of builder limit problems - bug 721854
-    #'electrolysis': {
-    #    'mozconfig_dir': 'electrolysis',
-    #    'enable_talos': True,
-    #},
     'fx-team': {
+        'enable_perproduct_builds': True,
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
+        'enable_nightly': False,
         'pgo_strategy': 'periodic',
     },
-    'graphics':{
-        'enable_unittests': False,
+    'graphics': {
         'enable_talos': False,
     },
     'ionmonkey': {
-        'disable_tinderbox_mail': False,
         'mozconfig_dir': 'mozilla-central',
-        'enable_talos' : False,
-    },
-    'jaegermonkey': {
-        'mozconfig_dir': 'jaegermonkey',
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
-        'talos_suites': {
-            'remote-ts': 1,
-            'remote-tdhtml': 1,
-            'remote-tsvg': 1,
-            'remote-tsspider': 1,
-            'remote-twinopen': 1,
-        },
+        'pgo_strategy': 'periodic',
     },
+    # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
+        'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
+        'enable_nightly': False,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'platforms': {
             'linux64': {
-                'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
-                'build_space': 7,
-            },
-            'linuxqt': {
-                'build_space': 7,
+                'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64-debug': {
                 'enable_leaktests': True,
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
-        'talos_suites': {
-            'v8': 1,
-        }
     },
-    # DISABLED because of builder limit problems - bug 721854
-#    'places': {
-#        'platforms': {
-#            'linux64': {
-#                'build_space': 6,
-#            },
-#            'linux': {
-#                'build_space': 6,
-#            },
-#            'linuxqt': {
-#                'build_space': 6,
-#            },
-#        },
-#    },
-    'profiling': {
-        'enable_talos': True,
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
+    # Customized to be the same as inbound. bug 866314
+    'cypress': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': False,
+        'enable_weekly_bundle': True,
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'platforms': {
-            'macosx-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
             },
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64-debug': {
+                'enable_leaktests': True,
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
+    },
+    'profiling': {
+        'pgo_strategy': 'periodic',
+        'platforms': {
             'macosx64-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linux-debug': {
                 'dont_build': True,
@@ -154,8 +118,11 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
+        },
+        'mobile_platforms': {
+            'android-debug': {
+                'dont_build': True,
+                'enable_debug_unittests': False,
             },
         },
     },
@@ -172,74 +139,197 @@ PROJECT_BRANCHES = {
         'mobile_tinderbox_tree': 'UX',
         'packaged_unittest_tinderbox_tree': 'UX',
         'enabled_products': ['firefox'],
-        'mozconfig_dir' : 'ux',
+        'mozconfig_dir': 'ux',
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
+        'pgo_strategy': 'periodic',
         'platforms': {
-            'macosx-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
             'macosx64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
+                'nightly_signing_servers': 'mac-nightly-signing',
             },
-            'linux-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
             },
-            'linux64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
             },
-            'win32-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
             },
         },
     },
     #####  TWIGS aka RENTABLE BRANCHES
     # customizations while booked for bug 687570 - WebRTC project
     'alder': {
-        'enable_unittests': False,
-        'enable_talos': False,
+        'platforms': {},
+        'mobile_platforms': {
+            'android': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+            'android-armv6': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'enable_talos': False,
+                'tegra_android': {},
+            },
+        },
     },
-    'ash': {},
-    'birch': {},
-    'cedar': {},
-    # customizations for windows update service changes (bug 481815)
-    'elm': {
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
+    'ash': {
+        'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_tag': 'default',
+        'mozharness_talos': True,
         'lock_platforms': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'platforms': {
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
             'win32-debug': {},
         },
-        'enable_talos': False,
+        'mobile_platforms': {
+            'android': {
+                'slave_platforms': ['panda_android'],
+            },
+        },
     },
-    'holly': {},
-    'larch': {},
-    # customizations while booked for bcp47 project as per bug 667734
-    'maple': {
+    'birch': {
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+                'slave_platforms': ['win8'],
+                'talos_slave_platforms': ['win8'],
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+                'slave_platforms': ['win8'],
+            },
+            'macosx64': {
+                'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
+            },
+        },
+    },
+    'cedar': {
+        'mozharness_tag': 'default',
+        'lock_platforms': True,
         'enable_talos': True,
         'enable_nightly': True,
         'create_snippet': True,
         'create_mobile_snippet': True,
-        'create_partial': True,
         'platforms': {
-            'win64': {
-                'dont_build': True,
+            'linux': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'linux64': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'win32': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
+            },
+            'macosx64': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'linux-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'linux64-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'macosx64-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'win32-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+        },
+        'mobile_platforms': {
+            'android': {
+                'enable_nightly': True,
+                'create_snippet': True,
+                'create_mobile_snippet': True,
+             },
+            'android-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
             },
         },
     },
+    'date': {},
+    # customizations for windows update service changes (bug 481815)
+    'elm': {
+        'enable_nightly': True,
+        'enable_weekly_bundle': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'enable_talos': False,
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'macosx64': {},
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win32-debug': {},
+        },
+        'mobile_platforms': {
+            'android': {},
+            'android-debug': {},
+            'android-armv6': {},
+            'android-x86': {},
+        },
+    },
+    'fig': {
+        'lock_platforms': True,
+        'platforms': {},
+        'mobile_platforms': {
+            'android': {},
+            'android-debug': {},
+            'android-noion': {},
+            'android-armv6': {},
+            'android-x86': {},
+        },
+    },
+    'gum': {},
+    'holly': {},
+    'jamun': {},
+    'larch': {},
+    'maple': {},
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
         'enable_nightly': True,
@@ -247,44 +337,22 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'enable_talos': False,
         'platforms': {
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
     },
-    'pine': {
-        'enable_unittests': False,
-        'enabled_products': ['firefox'],
-        'talos_suites': {
-            'tp': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
-            'chrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
-            'chrome_mac': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
-            'nochrome': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
-            'dirty': 0,
-            'svg': [1, {'suites': ['--sampleConfig', 'cycles.config']}],
-            'dromaeo': 0,
-            # hate that remote talos still show up when mobile product is not being requested
-            # but that's not part of the bug i'm doing this for, so leaving for now
-            'remote-ts': 0,
-            'remote-tdhtml': 0,
-            'remote-tsvg': 0,
-            'remote-tsspider': 0,
-            'remote-tpan': 0,
-            'remote-tp4m': 0,
-            'remote-tp4m_nochrome': 0,
-            'remote-twinopen': 0,
-            'remote-tzoom': 0,
-            'remote-trobocop': 1,
-            'remote-trobocheck': 1,
-        },
-    },
+    'pine': {},
 }
 
 # All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
-# Turning off graphics - bug 649507
-for branch in ('graphics',):
-    ACTIVE_PROJECT_BRANCHES.remove(branch)
 
 # Load up project branches' local values
 for branch in PROJECT_BRANCHES.keys():

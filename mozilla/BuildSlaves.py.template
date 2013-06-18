@@ -5,12 +5,16 @@ SlavePasswords = {
         'win32': 'pass',
         'win64': 'pass',
         'try-win32': 'pass',
-        'macosx': 'pass',
         'macosx64': 'pass',
-        'try-macosx': 'pass',
-        'linux-android': 'pass',
+        'macosx64-lion': 'pass',
         'android': 'pass',
-        'android-xul': 'pass',
+        'android-armv6': 'pass',
+        'android-noion': 'pass',
+        'android-x86': 'pass',
+        'mock': 'pass',
+        'b2g_panda': 'pass',
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'
+balrog_username = 'user'
+balrog_password = 'passwd'
