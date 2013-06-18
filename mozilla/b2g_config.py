@@ -230,7 +230,8 @@ PLATFORM_VARS = {
                           'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                           'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                           'imake', 'ccache', 'wget',
-                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
+                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
+                          'gstreamer-devel', 'gstreamer-plugins-base-devel'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
         'gaia_repo': gaia_repo,
         'gaia_revision_file': gaia_revision_file,
@@ -301,7 +302,8 @@ PLATFORM_VARS = {
                           'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                           'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                           'imake', 'ccache', 'wget',
-                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
+                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
+                          'gstreamer-devel', 'gstreamer-plugins-base-devel'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
         'gaia_repo': gaia_repo,
         'gaia_revision_file': gaia_revision_file,
@@ -479,7 +481,8 @@ PLATFORM_VARS = {
                           'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                           'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                           'imake', 'ccache', 'wget',
-                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
+                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
+                          'gstreamer-devel', 'gstreamer-plugins-base-devel'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
         'gaia_repo': gaia_repo,
         'gaia_revision_file': gaia_revision_file,
@@ -552,7 +555,8 @@ PLATFORM_VARS = {
                           'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
                           'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
                           'imake', 'ccache', 'wget',
-                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9'],
+                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
+                          'gstreamer-devel', 'gstreamer-plugins-base-devel'],
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
         'gaia_repo': gaia_repo,
         'gaia_revision_file': gaia_revision_file,
@@ -1233,6 +1237,17 @@ for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'mozilla-central',) and \
             'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
+
+# MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
+# MERGE DAY - remove branches from this list if gecko 24 merges into them
+for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd"):
+    for p, pc in BRANCHES[b]['platforms'].items():
+        if 'mock_packages' in pc:
+            BRANCHES[b]['platforms'][p]['mock_packages'] = \
+                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+                    'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                    'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                )]
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
