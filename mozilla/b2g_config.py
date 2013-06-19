@@ -1033,6 +1033,9 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_dep'] = False
+BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
@@ -1217,15 +1220,15 @@ for branch in BRANCHES:
             'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
-# MERGE DAY: inari is only for b2g18 + b2g18_v1_0_1
+# MERGE DAY: inari is only for central + birch + b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'inari' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari']
 
-# MERGE DAY: inari_eng is only for b2g18_v1_0_1
+# MERGE DAY: inari_eng is only for central + birch + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18_v1_0_1',) and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18_v1_0_1',) and \
             'inari_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari_eng']
 
