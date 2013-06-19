@@ -205,8 +205,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                         # 'project_branches.py',
                          ],
                          renames=[
-                         ('BuildSlaves.py.template', 'BuildSlaves.py'),
-                        ('passwords.py.template', 'passwords.py'),
+                        # ('BuildSlaves.py.template', 'BuildSlaves.py'),
+                        #('passwords.py.template', 'passwords.py'),
                          ],
                          local_links=[
                          (environment_config, 'localconfig.py'),
