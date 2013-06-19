@@ -189,7 +189,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             continue
 
         if m['environment'] == 'production':
-            environment_config = 'production_config.py'
+            #environment_config = 'production_config.py'
+            environment_config = 'config.py'
         elif m['environment'] == 'staging':
             environment_config = 'staging_config.py'
         elif m['environment'] == 'preproduction':
@@ -197,11 +198,11 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
         c = MasterConfig(name=m['name'],
                          globs=[
                          'config.py',
-                         'thunderbird_config.py',
+                        # 'thunderbird_config.py',
                          '*_config.py',
                          '*_common.py',
-                         'b2g_project_branches.py',
-                         'project_branches.py',
+                        # 'b2g_project_branches.py',
+                        # 'project_branches.py',
                          ],
                          renames=[
                          ('BuildSlaves.py.template', 'BuildSlaves.py'),
@@ -209,9 +210,9 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                          ],
                          local_links=[
                          (environment_config, 'localconfig.py'),
-                        ('thunderbird_' +
-                         environment_config, 'thunderbird_localconfig.py'),
-                        ('b2g_' + environment_config, 'b2g_localconfig.py'),
+                        #('thunderbird_' +
+                        # environment_config, 'thunderbird_localconfig.py'),
+                        #('b2g_' + environment_config, 'b2g_localconfig.py'),
                          ],
                          extras=[
                          ('master_config.json', json.dumps(
@@ -227,14 +228,16 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             if m['role'] == 'tests':
                 mastercfg = 'tests_master.cfg'
             elif m['role'] == 'build' or m['role'] == 'try':
-                mastercfg = 'builder_master.cfg'
+                #mastercfg = 'builder_master.cfg'
+                mastercfg = 'master.cfg'
             elif m['role'] == 'scheduler':
                 mastercfg = 'scheduler_master.cfg'
             else:
                 raise AssertionError("What is a %s role?" % m['role'])
 
         if m['role'] == 'build':
-            c.config_dir = 'mozilla'
+            #c.config_dir = 'mozilla'
+            c.config_dir = 'seamonkey'
             c.globs.append('l10n-changesets*')
             c.globs.append('release_templates')
             if m['environment'] == 'staging':
@@ -255,12 +258,15 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                      ]
                 )
             else:
-                c.globs.append('release-firefox*.py')
-                c.globs.append('release-fennec*.py')
-                c.globs.append('release-thunderbird*.py')
+                #c.globs.append('release-firefox*.py')
+                c.globs.append('release-*.py')
+                c.globs.append('release_master.py')
+                #c.globs.append('release-fennec*.py')
+                #c.globs.append('release-thunderbird*.py')
             c.globs.append(mastercfg)
             c.globs.append('build_localconfig.py')
-            c.local_links.append((mastercfg, 'master.cfg'))
+            c.globs.append('master-main.cfg')
+            #c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(
                 ('build_localconfig.py', 'master_localconfig.py'))
         elif m['role'] == 'try':
