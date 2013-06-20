@@ -1361,14 +1361,15 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # Enable metro jobs for now
-BRANCHES['mozilla-central']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
-BRANCHES['mozilla-central']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
-BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+# MERGE DAY: This may need to follow the trains: see bug 847442
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
-BRANCHES['try']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
-BRANCHES['try']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
+for branch in BRANCHES.keys():
+    if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+                      'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
+                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+        if 'win32' in BRANCHES[branch]['platforms'] and \
+                'win8' in BRANCHES[branch]['platforms']['win32']:
+            BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
 # MERGE DAY NOTE: remove v21 based branches from the list below
 NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
