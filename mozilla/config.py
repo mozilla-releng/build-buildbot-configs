@@ -1758,8 +1758,6 @@ BRANCHES['mozilla-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-esr17']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr17']['enable_valgrind'] = False
 BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
-# mock disabled block start
-# linux platforms
 BRANCHES['mozilla-esr17']['platforms']['linux']['use_mock'] = False
 BRANCHES['mozilla-esr17']['platforms']['linux64']['use_mock'] = False
 BRANCHES['mozilla-esr17']['platforms']['linux-debug']['use_mock'] = False
@@ -1776,9 +1774,25 @@ del BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PATH']
 del BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PATH']
 del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
 BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 BRANCHES['mozilla-esr17']["run_make_alive_tests"] = False
+BRANCHES['mozilla-esr17']['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
+BRANCHES['mozilla-esr17']['platforms']['linux']['unittest-env'] = {
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+}
+BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
+BRANCHES['mozilla-esr17']['platforms']['linux64']['unittest-env'] = {
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+}
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
+BRANCHES['mozilla-esr17']['platforms']['linux-debug']['unittest-env'] = {
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
+}
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
+BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['unittest-env'] = {
+    'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
+}
+
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
@@ -2003,31 +2017,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
     BRANCHES[branch]['enable_valgrind'] = False
-
-# Bug 578880, remove the following block after gcc-4.5 switch
-branches = BRANCHES.keys()
-branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in branches:
-    if 'linux' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
-        BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-    if 'linux64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64'
-        BRANCHES[branch]['platforms']['linux64']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-        }
-    if 'linux-debug' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib:%s/dist/bin' % OBJDIR
-        BRANCHES[branch]['platforms']['linux-debug']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib',
-        }
-    if 'linux64-debug' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64-debug']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib64:%s/dist/bin' % OBJDIR
-        BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
-            'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
-        }
 
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list
