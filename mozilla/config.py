@@ -86,6 +86,7 @@ GLOBAL_VARS = {
     'branch_projects': {
         # Values will be filled in later with a map from branch name to project
         # config info
+        'spidermonkey_tier_1': {},
     },
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
@@ -1330,7 +1331,7 @@ BRANCH_PROJECTS = {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['warnaserrdebug', 'rootanalysis', 'generational'],
+            'linux64-debug':  ['warnaserrdebug'],
             'macosx64':           ['warnaserr'],
             'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
