@@ -69,7 +69,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android', 'android-armv6')
+releaseConfig['enUSPlatforms']        = ('android', 'android-armv6', 'android-x86')
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
@@ -111,6 +111,7 @@ releaseConfig['partnerRepackConfig'] = {
 releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
     'android-armv6': 'mobile/android/config/mozconfigs/android-armv6/release',
+    'android-x86': 'mobile/android/config/mozconfigs/android-x86/release',
 }
 
 # Misc configuration
@@ -139,6 +140,8 @@ releaseConfig['multilocale_config'] = {
             'multi_locale/release_mozilla-release_android.json',
         'android-armv6':
             'multi_locale/release_mozilla-release_android-armv6.json',
+        'android-x86':
+            'multi_locale/release_mozilla-release_android-x86.json',
     },
     'multilocaleOptions': [
         '--tag-override=%s_RELEASE' % releaseConfig['baseTag'],
@@ -152,4 +155,4 @@ releaseConfig['enableSigningAtBuildTime'] = True
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('android','android-armv6','linux')
+releaseConfig['mock_platforms'] = ('android', 'android-armv6', 'android-x86', 'linux')

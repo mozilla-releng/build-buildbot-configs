@@ -43,6 +43,10 @@
     "revision": "6a40cee822a6",
     "platforms": ["android"]
   },
+  "hu": {
+    "revision": "c02923b837ca",
+    "platforms": ["android"]
+  },
   "it": {
     "revision": "e9f3a2863b13",
     "platforms": ["android", "android-multilocale"]
