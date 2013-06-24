@@ -1057,7 +1057,7 @@ for b in ['comm-release', 'comm-esr17']:
 
 # MERGE DAY building 32-bit linux in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for branch in ("comm-aurora", "comm-beta", "comm-release", "comm-esr17"):
+for branch in ("comm-beta", "comm-release", "comm-esr17"):
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
             'mozilla-centos6-i386'
@@ -1084,7 +1084,7 @@ for branch in ("comm-aurora", "comm-beta", "comm-release", "comm-esr17"):
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("comm-aurora", "comm-beta", "comm-release",
+for b in ("comm-beta", "comm-release",
           "comm-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
