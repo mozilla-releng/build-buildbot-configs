@@ -2051,7 +2051,7 @@ for b in BRANCHES.keys():
 # ASan builds are only on mozilla-central for now
 for b in BRANCHES:
     if b not in ('mozilla-central',):
-        for p in 'linux64-asan', 'linux64-dbg-asan', 'linux64-dbg-st-an':
+        for p in 'linux64-asan', 'linux64-dbg-asan':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
 
@@ -2116,6 +2116,12 @@ for b in ("mozilla-beta", "mozilla-release",
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
 
+# Static analysis happens only on m-c and derived branches.
+for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+               "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
+    if 'linux64-dbg-st-an' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux64-dbg-st-an']
 
 # B2G's INBOUND
 for b in ('birch',):
