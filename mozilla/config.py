@@ -2105,7 +2105,7 @@ for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+for b in ("mozilla-beta", "mozilla-release",
           "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd",
           "mozilla-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():
