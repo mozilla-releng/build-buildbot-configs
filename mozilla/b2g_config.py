@@ -1036,9 +1036,6 @@ BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
@@ -1235,19 +1232,19 @@ for branch in BRANCHES:
             'inari_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari_eng']
 
-# MERGE DAY: leo/leo_eng is only for birch, m-c, b2g18
+# MERGE DAY: leo/leo_eng is only for b2g18
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18',) and \
             'leo' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo']
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18',) and \
+    if branch not in ('mozilla-b2g18',) and \
             'leo_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo_eng']
 
-# MERGE DAY: hamachi is only for m-c, birch, b2g18, b2g18_v1_0_1
+# MERGE DAY: hamachi is only for b2g18
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
 
