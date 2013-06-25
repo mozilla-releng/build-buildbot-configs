@@ -4,6 +4,10 @@ import config_common
 reload(config_common)
 from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, loadTalosSuites
 
+import master_common
+reload(master_common)
+from master_common import setMainFirefoxVersions, items_before
+
 import project_branches
 reload(project_branches)
 from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
@@ -32,11 +36,13 @@ BRANCHES = {
     'mozilla-beta':        {},
     'mozilla-esr17':       {
         'datazilla_url': None,
+        'gecko_version': 17,
         'platforms': {},
         'lock_platforms': True,
     },
     'mozilla-b2g18': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             'android-noion': {},
         },
@@ -44,6 +50,7 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_0_1': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             'android-noion': {},
         },
@@ -51,6 +58,7 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_1_0_hd': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             'android-noion': {},
         },
@@ -58,6 +66,8 @@ BRANCHES = {
     },
     'try': {'coallesce_jobs': False},
 }
+
+setMainFirefoxVersions(BRANCHES)
 
 # Talos
 PLATFORMS = {
@@ -1038,17 +1048,11 @@ for branch in BRANCHES:
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
-# Remove this block once these branches EOL (Gecko 22 based)
-for branch in BRANCHES.keys():
-    # Loop removes it from any branch that gets beyond here
-    if branch not in ('mozilla-esr17', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
-        continue
-
-    if 'android' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android']['panda_android']
+for name, branch in items_before(BRANCHES, 'gecko_version', 22):
+    if 'android' in branch['platforms']:
+        del branch['platforms']['android']['panda_android']
         del BRANCHES[branch]['platforms']['android']['panda_android-nomozpool']
-        BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
+        branch['platforms']['android']['slave_platforms'] = ['tegra_android']
 
 # Do android debug only on cedar
 for branch in BRANCHES:
@@ -1058,14 +1062,8 @@ for branch in BRANCHES:
         BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
 
 # XPCShell (Gecko 23 based)
-# Remove this block once these branches EOL
-for branch in BRANCHES:
-    # Loop removes it from any branch that gets beyond here
-    if branch not in ('mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-                      'mozilla-b2g18_v1_1_0_hd'):
-        continue
-
-    for platform in BRANCHES[branch]['platforms']:
+for name, branch in items_before(BRANCHES, 'gecko_version', 23):
+    for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
         if not platform.startswith('android'):
@@ -1073,12 +1071,12 @@ for branch in BRANCHES:
         if platform.endswith('-debug'):
             continue  # no slave_platform for debug
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+            if not slave_plat in branch['platforms'][platform]:
                 continue
-            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
-                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+            for type in branch['platforms'][platform][slave_plat]:
+                for suite in branch['platforms'][platform][slave_plat][type][:]:
                     if "xpcshell" in suite[0]:
-                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+                        branch['platforms'][platform][slave_plat][type].remove(suite)
 
 # Panda XPCShell on try only
 for branch in BRANCHES:

@@ -6,6 +6,10 @@ from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
 
+import master_common
+reload(master_common)
+from master_common import setMainCommVersions
+
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 BRANCH_UNITTEST_VARS = deepcopy(BRANCH_UNITTEST_VARS)
 
@@ -20,13 +24,17 @@ BRANCHES = {
     'comm-aurora': {
     },
     'comm-esr17': {
+        'gecko_version': 17
     },
     'comm-esr24': {
+        'gecko_version': 24
     },
     'try-comm-central': {
         'coallesce_jobs': False
     },
 }
+
+setMainCommVersions(BRANCHES)
 
 PLATFORMS = {
     'macosx64': {},

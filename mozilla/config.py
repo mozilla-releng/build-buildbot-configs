@@ -8,6 +8,10 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES
 
+import master_common
+reload(master_common)
+from master_common import setMainFirefoxVersions, items_before
+
 GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.
@@ -1440,6 +1444,7 @@ BRANCHES = {
     'mozilla-esr17': {
         'branch_projects': [],
         'lock_platforms': True,
+        'gecko_version': 17,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -1454,6 +1459,7 @@ BRANCHES = {
     'mozilla-esr24': {
         'branch_projects': [],
         'lock_platforms': True,
+        'gecko_version': 24,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -1468,6 +1474,7 @@ BRANCHES = {
     'mozilla-b2g18': {
         'branch_projects': [],
         'lock_platforms': True,
+        'gecko_version': 18,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
             # https://bugzil.la/818378#c8)
@@ -1485,6 +1492,7 @@ BRANCHES = {
     'mozilla-b2g18_v1_0_1': {
         'branch_projects': [],
         'lock_platforms': True,
+        'gecko_version': 18,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
             # https://bugzil.la/818378#c8)
@@ -1502,6 +1510,7 @@ BRANCHES = {
     'mozilla-b2g18_v1_1_0_hd': {
         'branch_projects': [],
         'lock_platforms': True,
+        'gecko_version': 18,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
             # https://bugzil.la/818378#c8)
@@ -1525,6 +1534,8 @@ BRANCHES = {
         },
     },
 }
+
+setMainFirefoxVersions(BRANCHES)
 
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
@@ -2157,13 +2168,11 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % project_name
         PROJECTS[branch_project_name] = project
 
-# When esr17 dissapears remove this block (gecko 18 based)
-for b in ('mozilla-esr17',):
-    # Disable pymake
+# Disable pymake (bug 593585)
+for name, branch in items_before(BRANCHES, 'gecko_version', 18):
     for p in ('win32', 'win32-debug', 'win64', 'win64-debug'):
-        if p not in BRANCHES[b]['platforms']:
-            continue
-        BRANCHES[b]['platforms'][p]['enable_pymake'] = False
+        if p in branch['platforms']:
+            branch['platforms'][p]['enable_pymake'] = False
 
 # XXX bug 789373 hack until we get b2g testing going.
 # Delete all references to android-noion once we have b2g jsreftests not in an emulator.
@@ -2186,14 +2195,11 @@ for b in BRANCHES:
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
 
-# Building 32-bit linux in a x86_64 env rides the trains (based on gecko 24)
-# Remove this block when these branches reach their EOL
-for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
-               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
+# Building 32-bit linux in a x86_64 env rides the trains (bug 857697)
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for platform in ['linux', 'linux-debug']:
-        BRANCHES[branch]['platforms'][platform]['mock_target'] = \
-            'mozilla-centos6-i386'
-        BRANCHES[branch]['platforms'][platform]['mock_packages'] = \
+        branch['platforms'][platform]['mock_target'] = 'mozilla-centos6-i386'
+        branch['platforms'][platform]['mock_packages'] = \
             ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
              'git', 'ccache', 'glibc-static', 'libstdc++-static',
              'perl-Test-Simple', 'perl-Config-General',
@@ -2211,39 +2217,42 @@ for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
              'freetype-devel-2.3.11-6.el6_2.9',
             ]
         if not platform.endswith("-debug"):
-            BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
-                ["valgrind"]
+            branch["platforms"][platform]["mock_packages"] += ["valgrind"]
 
-# Building android in a x86_64 env (based on gecko 24)
-# Remove block when branches EOL
-for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
-          "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
+# Building android in a x86_64 env rides the trains (bug 860246)
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for plat in ['android', 'android-armv6', 'android-noion',
                  'android-x86', 'android-debug']:
-        if plat in BRANCHES[b]['platforms']:
-            BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
+        if plat in branch['platforms']:
+            branch['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
 
-# Pulseaudio-libs-devel package rides the trains (bug 662417 - based on gecko 21)
-# Remove block when branches EOL
-for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-          'mozilla-b2g18_v1_1_0_hd']:
-    for p, pc in BRANCHES[b]['platforms'].items():
+# pulseaudio-libs-devel package rides the trains (bug 662417)
+for name, branch in items_before(BRANCHES, 'gecko_version', 21):
+    for pc in branch['platforms'].values():
         if 'mock_packages' in pc:
-            BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+            pc['mock_packages'] = \
+                [x for x in pc['mock_packages'] if x != 'pulseaudio-libs-devel']
 
-# gstreamer-devel packages ride the trains (bug 881589 - based on gecko 24)
-# Remove block when branches EOL
-for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
-          "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
-    for p, pc in BRANCHES[b]['platforms'].items():
+# gstreamer-devel packages ride the trains (bug 881589)
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
+    for pc in branch['platforms'].values():
         if 'mock_packages' in pc:
-            BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+            pc['mock_packages'] = \
+                [x for x in pc['mock_packages'] if x not in (
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
 
+for name, branch in items_before(BRANCHES, 'gecko_version', 22):
+    branch["run_make_alive_tests"] = False
+
+for b in ("mozilla-beta", "mozilla-release",
+          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd",
+          "mozilla-esr17"):
+    if b not in ('mozilla-central',):
+        for p in 'linux64-asan', 'linux64-dbg-asan', 'linux64-dbg-st-an':
+            if p in BRANCHES[b]['platforms']:
+                del BRANCHES[b]['platforms'][p]
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",

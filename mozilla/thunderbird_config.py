@@ -9,6 +9,10 @@ reload(thunderbird_localconfig)
 # Can't reload this one because it gets reloaded in another file
 from localconfig import SLAVES, TRY_SLAVES
 
+import master_common
+reload(master_common)
+from master_common import setMainCommVersions, items_before
+
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
 
@@ -616,6 +620,7 @@ BRANCHES = {
     },
     'comm-esr17': {
         'lock_platforms': True,
+        'gecko_version': 17,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -628,10 +633,13 @@ BRANCHES = {
         },
     },
     'comm-esr24': {
+        'gecko_version': 24,
     },
     'try-comm-central': {
     },
 }
+
+setMainCommVersions(BRANCHES)
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -994,29 +1002,26 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-# Remove this block when the branch EOL
-for b in ['comm-esr17']:
+for name, branch in items_before(BRANCHES, 'gecko_version', 18):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
-        if p not in BRANCHES[b]['platforms']:
+        if p not in branch['platforms']:
             continue
-        BRANCHES[b]['platforms'][p]['enable_pymake'] = False
+        branch['platforms'][p]['enable_pymake'] = False
 
-# pulseaudio-libs-devel package rides the trains (bug 662417 - based on gecko 21)
-# Remove this block when the branch EOL
-for b in ['comm-esr17']:
-    for p, pc in BRANCHES[b]['platforms'].items():
+# pulseaudio-libs-devel package rides the trains (bug 662417)
+for name, branch in items_before(BRANCHES, 'gecko_version', 21):
+    for p, pc in branch['platforms'].items():
         if 'mock_packages' in pc:
-            BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
+            branch['platforms'][p]['mock_packages'] = \
+                [x for x in branch['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
 
-# building 32-bit linux in a x86_64 env (based on gecko 24)
-# Remove this block when the branch EOL
-for branch in ["comm-esr17"]:
+# building 32-bit linux in a x86_64 env rides the trains
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for platform in ['linux', 'linux-debug']:
-        BRANCHES[branch]['platforms'][platform]['mock_target'] = \
+        branch['platforms'][platform]['mock_target'] = \
             'mozilla-centos6-i386'
-        BRANCHES[branch]['platforms'][platform]['mock_packages'] = \
+        branch['platforms'][platform]['mock_packages'] = \
             ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
              'git', 'ccache', 'glibc-static', 'libstdc++-static',
              'perl-Test-Simple', 'perl-Config-General',
@@ -1034,16 +1039,15 @@ for branch in ["comm-esr17"]:
              'freetype-devel-2.3.11-6.el6_2.9',
             ]
         if not platform.endswith("-debug"):
-            BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
+            branch["platforms"][platform]["mock_packages"] += \
                 ["valgrind"]
 
-# gstreamer-devel packages ride the trains (bug 881589 - gecko 24)
-# Remove this block when the branch EOL
-for b in ["comm-esr17"]:
-    for p, pc in BRANCHES[b]['platforms'].items():
+# gstreamer-devel packages ride the trains (bug 881589)
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
+    for p, pc in branch['platforms'].items():
         if 'mock_packages' in pc:
-            BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+            branch['platforms'][p]['mock_packages'] = \
+                [x for x in branch['platforms'][p]['mock_packages'] if x not in (
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
