@@ -1722,7 +1722,8 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-WIN32_REV3_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+WIN32_REV3_BRANCHES = ("mozilla-esr17",
+                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 # Disable Rev3 winxp and win7 machines for FF23+
 for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
     if 'win32' not in BRANCHES[branch]['platforms']:
