@@ -13,9 +13,12 @@ if 'ssh_port' in master_config:
 
 QUEUEDIR = "/dev/shm/queue"
 
+from config import BRANCH_PROJECTS
+
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
+ACTIVE_BRANCH_PROJECTS = [k for k,v in BRANCH_PROJECTS.items() if not v.get('enable_try')]
 ENABLE_RELEASES = False
 if 'release_branches' in master_config:
     ACTIVE_RELEASE_BRANCHES.extend(master_config['release_branches'])
