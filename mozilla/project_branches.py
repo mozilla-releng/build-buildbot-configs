@@ -24,9 +24,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-        'branch_projects': {
-            'spidermonkey_inbound': {}
-        },
     },
     # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
@@ -58,9 +55,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
-        'branch_projects': {
-            'spidermonkey_inbound': {}
-        },
     },
     # Customized to be the same as inbound. bug 866314
     'cypress': {
@@ -90,9 +84,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
-        },
-        'branch_projects': {
-            'spidermonkey_inbound': {}
         },
     },
     'profiling': {
@@ -287,7 +278,7 @@ PROJECT_BRANCHES = {
                 'enable_nightly': True,
                 'create_snippet': True,
                 'create_mobile_snippet': True,
-             },
+            },
             'android-debug': {
                 'enable_nightly': False,
                 'create_snippet': False,
@@ -326,12 +317,35 @@ PROJECT_BRANCHES = {
     'fig': {
         'lock_platforms': True,
         'platforms': {},
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_mobile_snippet': True,
         'mobile_platforms': {
-            'android': {},
-            'android-debug': {},
-            'android-noion': {},
-            'android-armv6': {},
-            'android-x86': {},
+            'android': {
+                'enable_nightly': True,
+                'create_snippet': True,
+                'create_mobile_snippet': True,
+            },
+            'android-debug': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
+            },
+            'android-noion': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
+            },
+            'android-armv6': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
+            },
+            'android-x86': {
+                'enable_nightly': False,
+                'create_snippet': False,
+                'create_mobile_snippet': False,
+            },
         },
     },
     'gum': {},
