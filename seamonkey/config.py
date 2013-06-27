@@ -2,8 +2,7 @@ from copy import deepcopy
 
 SLAVES = {
     'linux': ['sea-vm-linux32-%i' % x for x in range(1,7)],
-    'linux64': ['cb-seamonkey-linux64-%02i' % x for x in [1]] +
-               ['sea-vm-linux64-%i' % x for x in [1]],
+    'linux64': ['sea-vm-linux64-%i' % x for x in [1]],
     'win32': ['sea-win32-%02i' % x for x in [1,2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx64': #['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
