@@ -260,6 +260,14 @@ GAIA_UNITTESTS = [(
     },
 )]
 
+GAIA_UI = [(
+    'gaia-ui-test', {
+        'suite': 'gaia-ui-test',
+        'use_mozharness': True,
+        'script_path': 'scripts/marionette.py',
+    },
+)]
+
 ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 
 # Default set of unit tests
@@ -749,12 +757,17 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:],
+            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-unit': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
+                'gaia-ui-test': {
+                    'extra_args': [
+                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
                     ],
                 },
             },
@@ -769,12 +782,17 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:],
+            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-unit': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
+                'gaia-ui-test': {
+                    'extra_args': [
+                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
                     ],
                 },
             },
