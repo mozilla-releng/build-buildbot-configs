@@ -601,6 +601,10 @@ ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     if suite[0].startswith('reftest'):
         continue
+    if suite[0].startswith('mochitest-gl'):
+        continue
+    if suite[0].startswith('robocop'):
+        continue
     TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
@@ -609,6 +613,7 @@ for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
 
 for suite in ANDROID_PLAIN_ROBOCOP_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_NOWEBGL_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
 # Bug 869590 Disable mochitest-gl for armv6, Bug 875633 Disable for Tegras
@@ -826,8 +831,8 @@ for branch in BRANCHES:
 
 # MERGE DAY, drop trees from branch list as Firefox 22 rides forward.
 for branch in BRANCHES.keys():
-    # Loop removes it from any branch that gets beyond here
-    if branch not in ('mozilla-release', 'mozilla-esr17', 'mozilla-b2g18',
+    # Loop removes it from any branch that gets beyond here 
+    if branch not in ('mozilla-esr17', 'mozilla-b2g18',
                       'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         continue
 
@@ -846,7 +851,7 @@ for branch in BRANCHES:
 # MERGE DAY, drop trees from branch list as Firefox 23 rides forward.
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch not in ('mozilla-beta', 'mozilla-release', 'mozilla-esr17',
+    if branch not in ('mozilla-release', 'mozilla-esr17',
                       'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
                       'mozilla-b2g18_v1_1_0_hd'):
         continue
