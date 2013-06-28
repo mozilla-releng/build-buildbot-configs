@@ -24,9 +24,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-        'branch_projects': {
-            'spidermonkey_inbound': {}
-        },
     },
     # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
@@ -58,9 +55,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
-        'branch_projects': {
-            'spidermonkey_inbound': {}
-        },
     },
     # Customized to be the same as inbound. bug 866314
     'cypress': {
@@ -90,9 +84,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
-        },
-        'branch_projects': {
-            'spidermonkey_inbound': {}
         },
     },
     'profiling': {
