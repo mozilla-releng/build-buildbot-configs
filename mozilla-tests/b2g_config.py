@@ -807,8 +807,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'fedora-b2g-emulator': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'opt_unittest_suites': REFTEST + MARIONETTE,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'crashtest-1': {
                     'extra_args': [
@@ -1010,8 +1010,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64_vm-b2g-emulator': {
-            'opt_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL + CRASHTEST,
-            'debug_unittest_suites': MOCHITEST + MARIONETTE + XPCSHELL + CRASHTEST,
+            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -1425,6 +1425,8 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g', 'ubuntu64_hw-b2g']
+BRANCHES['cedar']['platforms']['b2g_emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['b2g_emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = MOCHITEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['b2g_emulator']['fedora-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['b2g_emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['b2g_emulator']['enable_debug_unittests'] = True
@@ -1490,12 +1492,22 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
         if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
             del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
 
-# Disable linux{32,64}_gecko, b2g_emulator on all branches but cedar
+# Disable linux{32,64}_gecko on all branches but cedar
 for branch in set(BRANCHES.keys()) - set(['cedar']):
-    for platform in ('linux32_gecko', 'linux64_gecko', 'b2g_emulator'):
+    for platform in ('linux32_gecko', 'linux64_gecko'):
         if platform not in BRANCHES[branch]['platforms']:
             continue
         del BRANCHES[branch]['platforms'][platform]
+
+# b2g_emulator hacks.  See bug 885456
+# MERGE DAY This will someday ride trains...
+for branch in BRANCHES.keys():
+    if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+                  'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+        if 'b2g_emulator' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['b2g_emulator']
+        continue
 
 
 if __name__ == "__main__":
