@@ -179,6 +179,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
+    'rafx': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollx:tsvgx', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
     'dirtypaint': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
@@ -1195,6 +1200,7 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-central']['rafx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
