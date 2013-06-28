@@ -114,6 +114,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
+    'remote-tsvgx': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    },
     'remote-tsspider': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
@@ -761,6 +766,7 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
