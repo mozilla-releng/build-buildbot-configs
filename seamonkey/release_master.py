@@ -204,6 +204,7 @@ tag_factory = ReleaseTaggingFactory(
     hgSshKey=releaseConfig['hgSshKey'],
     relbranchPrefix=releaseConfig['relbranchPrefix'],
     clobberURL=branchConfig['base_clobber_url'],
+    buildSpace=4,
 )
 
 if releaseConfig['skip_tag']:
