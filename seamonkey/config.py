@@ -576,10 +576,3 @@ BRANCHES['comm-release']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Se
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-release']['tinderbox_tree'] = 'SeaMonkey-Release'
 BRANCHES['comm-release']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Release'
-
-for b in ('comm-release',):
-    # Disable pymake
-    for p in ('win32', 'win32-debug', 'win64'):
-        if p not in BRANCHES[b]['platforms']:
-            continue
-        BRANCHES[b]['platforms'][p]['enable_pymake'] = False
