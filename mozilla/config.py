@@ -83,7 +83,7 @@ GLOBAL_VARS = {
     'valgrind_platforms': ('linux', 'linux64'),
 
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
-    'branch_projects': [],
+    'branch_projects': ['spidermonkey_tier_1'],
 
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
@@ -1327,7 +1327,7 @@ BRANCH_PROJECTS = {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['warnaserrdebug', 'rootanalysis', 'generational'],
+            'linux64-debug':  ['warnaserrdebug'],
             'macosx64':           ['warnaserr'],
             'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
