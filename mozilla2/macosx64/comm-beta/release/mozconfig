@@ -1,0 +1,26 @@
+. $topsrcdir/build/macosx/universal/mozconfig
+
+ac_add_options --enable-application=mail
+ac_add_options --enable-update-channel=beta
+ac_add_options --enable-update-packaging
+ac_add_options --enable-tests
+ac_add_options --enable-official-branding
+ac_add_options --enable-calendar
+
+# Make sure Lightning is also unified
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
+
+export CFLAGS="-gdwarf-2"
+export CXXFLAGS="-gdwarf-2"
+
+# For NSS symbols
+export MOZ_DEBUG_SYMBOLS=1
+ac_add_options --enable-debug-symbols="-gdwarf-2"
+
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+# Run client.py
+# don't use hgtool here, as the source tarball builders don't clone the scripts repo.
+mk_add_options CLIENT_PY_ARGS="--hg-options='--time' --hgtool=../tools/buildfarm/utils/hgtool.py --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
+mk_add_options ALWAYS_RUN_CLIENT_PY=1

@@ -1,0 +1,14 @@
+ac_add_options --with-l10n-base=`pwd`/../../mozilla-beta
+ac_add_options --enable-application=mail
+ac_add_options --enable-official-branding
+ac_add_options --enable-update-channel=beta
+ac_add_options --enable-update-packaging
+ac_add_options --enable-calendar
+
+# Make sure Lightning is also unified
+mk_add_options MOZ_POSTFLIGHT_ALL+=calendar/lightning/build/universal.mk
+
+# Run client.py
+mk_add_options CLIENT_PY_ARGS="--hg-options='--time' --skip-chatzilla --skip-comm --skip-inspector --skip-venkman --tinderbox-print --comm-rev=${COMM_REV} --mozilla-rev=${MOZILLA_REV}"
+mk_add_options ALWAYS_RUN_CLIENT_PY=1
+

@@ -124,12 +124,6 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['l10n_mozconfigs']     = {
-    'linux': 'mail/config/mozconfigs/linux32/release-l10n',
-    'linux64': 'mail/config/mozconfigs/linux64/release-l10n',
-    'macosx64': 'mail/config/mozconfigs/macosx-universal/release-l10n',
-    'win32': 'mail/config/mozconfigs/win32/release-l10n',
-}
 releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
