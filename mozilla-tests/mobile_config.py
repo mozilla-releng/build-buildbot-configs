@@ -467,7 +467,7 @@ ANDROID_MOZHARNESS_MOCHITESTGL = [
     ]
 
 ANDROID_MOZHARNESS_PLAIN_REFTEST = [
-       ('reftest-1',
+       ('plain-reftest-1',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -476,7 +476,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-2',
+        ('plain-reftest-2',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -485,7 +485,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-3',
+        ('plain-reftest-3',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -494,7 +494,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-4',
+        ('plain-reftest-4',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -605,7 +605,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
-   'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL,
+   'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST,
    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL,
 }
 
@@ -884,6 +884,28 @@ for branch in BRANCHES:
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
                     if "xpcshell" in suite[0]:
+                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+
+#bug 882324 - Support reftests for pandaboards on Cedar
+for branch in BRANCHES:
+    # Loop removes it from any branch that gets beyond here
+    if branch in ('cedar',):
+        continue
+    for platform in BRANCHES[branch]['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform.startswith('android'):
+            continue
+        if platform.endswith('-debug'):
+            continue  # no slave_platform for debug
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if not slave_plat == "panda_android":
+                continue
+            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
+                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+                    if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
