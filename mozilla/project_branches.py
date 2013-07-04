@@ -236,6 +236,7 @@ PROJECT_BRANCHES = {
     },
     'cedar': {
         'mozharness_tag': 'default',
+        'mozharness_talos': True,
         'lock_platforms': True,
         'enable_talos': True,
         'enable_nightly': True,
