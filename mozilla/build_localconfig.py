@@ -18,7 +18,7 @@ if 'ssh_port' in master_config:
             "tcp:%(ssh_port)i:interface=127.0.0.1" % master_config,
             "cltbld", "password")
 
-from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES
+from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES, BRANCH_PROJECTS
 from b2g_config import ACTIVE_PROJECT_BRANCHES as ACTIVE_B2G_PROJECT_BRANCHES
 if 'limit_branches' in master_config:
     ACTIVE_BRANCHES = [x.encode("utf-8") for x in master_config['limit_branches']]
@@ -59,7 +59,13 @@ if 'limit_projects' in master_config:
     ACTIVE_PROJECTS = [x.encode("utf-8") for x in master_config['limit_projects']]
 else:
     ACTIVE_PROJECTS = PROJECTS.keys()
-ACTIVE_PROJECTS = [ p for p in ACTIVE_PROJECTS if not PROJECTS[p].get('enable_try') ]
+ACTIVE_PROJECTS = [p for p in ACTIVE_PROJECTS if not PROJECTS[p].get('enable_try')]
+
+if 'limit_branch_projects' in master_config:
+    ACTIVE_BRANCH_PROJECTS = [x.encode("utf-8") for x in master_config['limit_branch_projects']]
+else:
+    ACTIVE_BRANCH_PROJECTS = BRANCH_PROJECTS.keys()
+ACTIVE_BRANCH_PROJECTS = [p for p in ACTIVE_BRANCH_PROJECTS if not BRANCH_PROJECTS[p].get('enable_try')]
 
 ACTIVE_RELEASE_BRANCHES = []
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
