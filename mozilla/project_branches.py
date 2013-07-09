@@ -254,7 +254,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'enable_nightly': False,
                 'create_snippet': False,
-                'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
             },
             'macosx64': {
                 'enable_nightly': False,
