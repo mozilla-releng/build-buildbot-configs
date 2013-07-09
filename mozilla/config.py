@@ -82,9 +82,6 @@ GLOBAL_VARS = {
     'enable_valgrind': True,
     'valgrind_platforms': ('linux', 'linux64'),
 
-    # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
-    'branch_projects': ['spidermonkey_tier_1'],
-
     # if true, this branch will get bundled and uploaded to ftp.m.o for users
     # to download and thereby accelerate their cloning
     'enable_weekly_bundle': False,
@@ -1239,95 +1236,51 @@ PROJECTS = {
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
-    'dxr_mozilla-central': {
-        'platform': 'mock',
-        'repo_path': 'mozilla-central',
-        'env': {'HG_SHARE_BASE_DIR': '/builds/hg-shared'},
-    },
-}
-
-
-# Override config settings with local settings
-def apply_localconfig(config, local):
-    for k, v in local.items():
-        if k not in config:
-            config[k] = {}
-        config[k].update(v)
-
-apply_localconfig(PROJECTS, localconfig.PROJECTS)
-
-# Branch-associated projects
-#
-# BRANCHES values contain a 'branch_projects' key containing a list of
-# BRANCH_PROJECTS keys to instantiate for that branch. These are intended for
-# builds that are associated with one or more branches, but use separate
-# scheduling and build mechanisms. Each project will have a 'branch' key filled
-# in with the name of the branch to which it applies.
-#
-# Configuration keys:
-#
-#  project_name - pattern used to construct (part of) the builder name. It
-#    can use %-interpolation to select anything from the config, which
-#    usually means it will contain "%(branch)s".
-#
-# Spidermonkey-specific configuration keys:
-#
-#  variants - mapping of platforms (with build configuration, eg linux64-debug)
-#    to an array of variant names. These names correspond to files in
-#    build-tools/scripts/spidermonkey_builds/.
-#
-#  enable_try - this project should be active for the try server
-#
-#  try_by_default - list of variants that should be triggered by default on
-#    try. If a variant is missing from this list, then the build will only be
-#    triggered if the corresponding base platform is explicitly requested in
-#    the -p option of trychooser. For example, |-p all| will not trigger such a
-#    project, but either |-p linux64| or |-p all,linux64| will (assuming the
-#    project has both 'platforms' and 'variants' entries for 'linux' or
-#    'linux64'.)
-#
-BRANCH_PROJECTS = {
-    # Builds that should trigger backouts if they break. Should be on all trees
-    # feeding into mozilla-central.
-    'spidermonkey_tier_1': {
-        'variants': {
-            'linux64-debug':  ['rootanalysis', 'generational'],
-        },
-        'platforms': {
-            'linux': {},
-            'linux-debug': {},
-            'linux64': {},
-            'linux64-debug': {},
-            'win32': {},
-            'win32-debug': {},
-            'macosx64': {},
-            'macosx64-debug': {},
-        },
-        'hgurl': 'http://hg.mozilla.org/',
-    },
-
-    # Try server builds only triggered on changes to the spidermonkey source
     'spidermonkey_try': {
         'enable_try': True,
-        'try_by_default': ['rootanalysis', 'generational'],
+        'try_by_default': True,
         'variants': {
-            'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting'],
+            'linux64-debug':  ['rootanalysis'],
         },
         'platforms': {
             'linux64-debug': {}, # Filled in with branch-specific values below
         },
         'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
     },
-
-    # Non-tier-1 builds that provide useful information but are hidden on tbpl.
-    # These will probably be run on the subset of the trees that the relevant
-    # developers will actually look.
-    'spidermonkey_inbound': {
+    'spidermonkey_ggc_try': {
+        'enable_try': True,
+        'try_by_default': False,
+        'variants': {
+            'linux64-debug':  ['generational'],
+        },
+        'platforms': {
+            'linux64-debug': {}, # Filled in with branch-specific values below
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
+    },
+    'spidermonkey_exact_try': {
+        'enable_try': True,
+        'try_by_default': False,
+        'variants': {
+            'linux64-debug':  ['exactrooting'],
+        },
+        'platforms': {
+            'linux64-debug': {}, # Filled in with branch-specific values below
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'try',
+        'branch': 'try',
+    },
+    'spidermonkey_mozilla-inbound': {
         'variants': {
             'linux':          ['warnaserr'],
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
-            'linux64-debug':  ['warnaserrdebug'],
+            'linux64-debug':  ['rootanalysis', 'warnaserrdebug', 'generational'],
             'macosx64':           ['warnaserr'],
             'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
@@ -1342,10 +1295,67 @@ BRANCH_PROJECTS = {
             'macosx64-debug': {},
         },
         'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'integration/mozilla-inbound',
+        'branch': 'mozilla-inbound',
+    },
+    'spidermonkey_cypress': {
+        'variants': {
+            'linux':          ['warnaserr'],
+            'linux-debug':    ['warnaserrdebug'],
+            'linux64':        ['warnaserr'],
+            'linux64-debug':  ['rootanalysis', 'warnaserrdebug', 'generational'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
+        },
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'projects/cypress',
+        'branch': 'cypress',
+    },
+    'spidermonkey_ionmonkey': {
+        'variants': {
+            'linux':          ['warnaserr'],
+            'linux-debug':    ['warnaserrdebug'],
+            'linux64':        ['warnaserr'],
+            'linux64-debug':  ['rootanalysis', 'warnaserrdebug', 'generational'],
+            'macosx64':           ['warnaserr'],
+            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
+        },
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
+        },
+        'hgurl': 'http://hg.mozilla.org/',
+        'repo_path': 'projects/ionmonkey',
+        'branch': 'ionmonkey',
+    },
+    'dxr_mozilla-central': {
+        'platform': 'mock',
+        'repo_path': 'mozilla-central',
+        'env': {'HG_SHARE_BASE_DIR': '/builds/hg-shared'},
     },
 }
 
-apply_localconfig(BRANCH_PROJECTS, localconfig.BRANCH_PROJECTS)
+for k, v in localconfig.PROJECTS.items():
+    if k not in PROJECTS:
+        PROJECTS[k] = {}
+    for k1, v1 in v.items():
+        PROJECTS[k][k1] = v1
 
 # All branches (not in project_branches) that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
@@ -1353,16 +1363,12 @@ BRANCHES = {
     'mozilla-central': {
     },
     'mozilla-release': {
-        'branch_projects': []
     },
     'mozilla-beta': {
-        'branch_projects': []
     },
     'mozilla-aurora': {
-        'branch_projects': []
     },
     'mozilla-esr17': {
-        'branch_projects': [],
         'lock_platforms': True,
         'platforms': {
             'linux': {},
@@ -1376,7 +1382,6 @@ BRANCHES = {
         },
     },
     'mozilla-b2g18': {
-        'branch_projects': [],
         'lock_platforms': True,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
@@ -1393,7 +1398,6 @@ BRANCHES = {
         },
     },
     'mozilla-b2g18_v1_0_1': {
-        'branch_projects': [],
         'lock_platforms': True,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
@@ -1410,7 +1414,6 @@ BRANCHES = {
         },
     },
     'mozilla-b2g18_v1_1_0_hd': {
-        'branch_projects': [],
         'lock_platforms': True,
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
@@ -1427,7 +1430,6 @@ BRANCHES = {
         },
     },
     'try': {
-        'branch_projects': ['spidermonkey_try'],
     },
 }
 
@@ -1451,17 +1453,17 @@ for branch in BRANCHES.keys():
             continue
         # If the key is already set then we won't override with GLOBAL_VARS
         # The "platforms" key is handle separatedely (see next for loop)
-        elif key == 'platforms' or key not in BRANCHES[branch]:
+        elif key in BRANCHES[branch] and key != 'platforms':
+            continue
+        else:
             BRANCHES[branch][key] = deepcopy(value)
-        elif key == 'branch_projects':
-            BRANCHES[branch][key].extend(value)
 
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
                 # put default platform set in all branches, but grab any
                 # project_branches.py overrides/additional keys
-                if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch]:
+                if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
                     if platform in PROJECT_BRANCHES[branch]['platforms'].keys():
                         if key in PROJECT_BRANCHES[branch]['platforms'][platform].keys():
                             value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform][key])
@@ -1482,7 +1484,6 @@ for branch in BRANCHES.keys():
                     else:
                         value = deepcopy(value)
                     BRANCHES[branch]['platforms'][platform][key] = value
-
     # Copy in local config
     if branch in localconfig.BRANCHES:
         for key, value in localconfig.BRANCHES[branch].items():
@@ -1518,6 +1519,15 @@ for branch in BRANCHES.keys():
 
     if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
         del BRANCHES[branch]['platforms']['win64']
+
+# Point projects to BRANCHES values
+for v in PROJECTS.values():
+    if 'branch' in v:
+        bconfig = BRANCHES[v['branch']]
+        v['branchconfig'] = bconfig
+        if 'platforms' in v:
+            for p in v['platforms']:
+                v['platforms'][p] = bconfig['platforms'][p]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -2018,23 +2028,6 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
-
-# Expand out the branch_projects into a full PROJECT object per branch. This
-# must come after the BRANCHES configuration above, so that
-# BRANCHES[*]['enable_try'] is set when appropriate.
-for b, branch in BRANCHES.items():
-    for name in branch.get('branch_projects', []):
-        branch_project = BRANCH_PROJECTS[name]
-        if branch.get('enable_try', False) != branch_project.get('enable_try', False):
-            continue
-
-        project = deepcopy(branch_project)
-        project['project_name'] = name
-        project['branch'] = b
-        project['branchconfig'] = branch
-        branch_project_name = '%s__%s' % (name, b)
-        assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % project_name
-        PROJECTS[branch_project_name] = project
 
 # MERGE DAY
 # When Firefox 18 merges into these branches, they can be removed from the list

@@ -166,29 +166,40 @@ PROJECTS = {
         'tinderbox_tree': 'Nanojit',
         'disable_tinderbox_mail': False,
     },
+    'spidermonkey_cypress': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Cypress',
+        'disable_tinderbox_mail': False,
+    },
+    'spidermonkey_mozilla-inbound': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Mozilla-Inbound',
+        'disable_tinderbox_mail': False,
+    },
+    'spidermonkey_ionmonkey': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
+        'tinderbox_tree': 'Ionmonkey',
+    },
     'dxr_mozilla-central': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'upload_host': GLOBAL_VARS['stage_server'],
         'upload_user': 'ffxbld',
         'upload_sshkey': '/home/cltbld/.ssh/ffxbld_dsa',
     },
-}
-
-BRANCH_PROJECTS = {
-    'spidermonkey_tier_1': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
-    },
     'spidermonkey_try': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
-    'spidermonkey_inbound': {
+    'spidermonkey_ggc_try': {
         'scripts_repo': 'http://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
+    },
+    'spidermonkey_exact_try': {
+        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'idle_slaves': 0,
     },
 }
 
