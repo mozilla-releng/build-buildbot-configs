@@ -236,6 +236,9 @@ PROJECT_BRANCHES = {
         'mozharness_talos': True,
         'lock_platforms': True,
         'enable_talos': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'enable_nightly': True,
         'create_snippet': True,
         'create_mobile_snippet': True,
