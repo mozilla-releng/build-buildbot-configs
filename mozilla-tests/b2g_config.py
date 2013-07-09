@@ -35,7 +35,7 @@ PLATFORMS = {
     'ics_armv7a_gecko': {},
     'linux32_gecko': {},
     'linux64_gecko': {},
-    'b2g_emulator': {},
+    'emulator': {},
 }
 
 builder_prefix = "b2g"
@@ -75,13 +75,13 @@ PLATFORMS['linux64_gecko']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['b2g_emulator']['slave_platforms'] = ['fedora-b2g-emulator', 'ubuntu64_vm-b2g-emulator', 'ubuntu64_hw-b2g-emulator']
-PLATFORMS['b2g_emulator']['env_name'] = 'linux-perf'
-PLATFORMS['b2g_emulator']['fedora-b2g-emulator'] = {'name': "b2g_emulator"}
-PLATFORMS['b2g_emulator']['ubuntu64_vm-b2g-emulator'] = {'name': "b2g_emulator_vm"}
-PLATFORMS['b2g_emulator']['ubuntu64_hw-b2g-emulator'] = {'name': "b2g_emulator_hw"}
-PLATFORMS['b2g_emulator']['stage_product'] = 'b2g'
-PLATFORMS['b2g_emulator']['mozharness_config'] = {
+PLATFORMS['emulator']['slave_platforms'] = ['fedora-b2g-emulator', 'ubuntu64_vm-b2g-emulator', 'ubuntu64_hw-b2g-emulator']
+PLATFORMS['emulator']['env_name'] = 'linux-perf'
+PLATFORMS['emulator']['fedora-b2g-emulator'] = {'name': "b2g_emulator"}
+PLATFORMS['emulator']['ubuntu64_vm-b2g-emulator'] = {'name': "b2g_emulator_vm"}
+PLATFORMS['emulator']['ubuntu64_hw-b2g-emulator'] = {'name': "b2g_emulator_hw"}
+PLATFORMS['emulator']['stage_product'] = 'b2g'
+PLATFORMS['emulator']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'use_mozharness': True,
     'hg_bin': 'hg',
@@ -104,7 +104,7 @@ BRANCH_UNITTEST_VARS = {
         'ics_armv7a_gecko': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
-        'b2g_emulator': {},
+        'emulator': {},
     },
 }
 
@@ -798,7 +798,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
     },
-    'b2g_emulator': {
+    'emulator': {
         'product_name': 'b2g',
         'app_name': 'b2g',
         'brand_name': 'Gecko',
@@ -1425,11 +1425,11 @@ BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['ubuntu64_vm-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['ics_armv7a_gecko']['slave_platforms'] = ['fedora-b2g', 'ubuntu64_vm-b2g', 'ubuntu64_hw-b2g']
-BRANCHES['cedar']['platforms']['b2g_emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['cedar']['platforms']['b2g_emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = MOCHITEST + CRASHTEST + MARIONETTE + XPCSHELL
-BRANCHES['cedar']['platforms']['b2g_emulator']['fedora-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['cedar']['platforms']['b2g_emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
-BRANCHES['cedar']['platforms']['b2g_emulator']['enable_debug_unittests'] = True
+BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = MOCHITEST + CRASHTEST + MARIONETTE + XPCSHELL
+BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
@@ -1499,14 +1499,14 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# b2g_emulator hacks.  See bug 885456
+# emulator hacks.  See bug 885456
 # MERGE DAY This will someday ride trains...
 for branch in BRANCHES.keys():
     if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
-        if 'b2g_emulator' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['b2g_emulator']
+        if 'emulator' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['emulator']
         continue
 
 
