@@ -1507,7 +1507,9 @@ for branch in BRANCHES.keys():
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator']
-        continue
+    else:
+        if 'ics_armv7a_gecko' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['ics_armv7a_gecko']
 
 
 if __name__ == "__main__":

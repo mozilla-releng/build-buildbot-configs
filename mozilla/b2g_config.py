@@ -1287,6 +1287,13 @@ for branch in BRANCHES:
             'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
 
+# MERGE DAY: get rid of ics_armv7a_gecko opt+debug on non-b2g18 level repos
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',):
+        for platform in ('ics_armv7a_gecko', 'ics_armv7a_gecko-debug'):
+            if platform in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][platform]
+
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list if gecko 24 merges into them
 for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd"):
@@ -1336,7 +1343,6 @@ for b in ('birch',):
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
-    del BRANCHES[b]['platforms']['ics_armv7a_gecko-debug']
 # END B2G WORK WEEK
 
 
