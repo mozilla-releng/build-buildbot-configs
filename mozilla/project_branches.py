@@ -236,6 +236,9 @@ PROJECT_BRANCHES = {
         'mozharness_talos': True,
         'lock_platforms': True,
         'enable_talos': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
         'enable_nightly': True,
         'create_snippet': True,
         'create_mobile_snippet': True,
@@ -251,7 +254,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'enable_nightly': False,
                 'create_snippet': False,
-                'talos_slave_platforms': ['xp', 'xp-ix', 'win7', 'win7-ix'],
             },
             'macosx64': {
                 'enable_nightly': False,
