@@ -328,7 +328,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -406,7 +406,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
