@@ -782,7 +782,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
+            'opt_unittest_suites': GAIA_UNITTESTS[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-unit': {
@@ -1430,6 +1430,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
 BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] = GAIA_UNITTESTS[:] + GAIA_UI[:]
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
@@ -1492,14 +1493,14 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
         if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
             del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
 
-# Disable linux{32,64}_gecko on all branches but cedar
+# Disable linux32_gecko on all branches but cedar
 for branch in set(BRANCHES.keys()) - set(['cedar']):
-    for platform in ('linux32_gecko', 'linux64_gecko'):
+    for platform in ('linux32_gecko',):
         if platform not in BRANCHES[branch]['platforms']:
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# emulator hacks.  See bug 885456
+# emulator+linux64_gecko hacks.  See bug 885456, bug 891973
 # MERGE DAY This will someday ride trains...
 for branch in BRANCHES.keys():
     if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
@@ -1507,6 +1508,8 @@ for branch in BRANCHES.keys():
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator']
+        if 'linux64_gecko' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['linux64_gecko']
     else:
         if 'ics_armv7a_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['ics_armv7a_gecko']
