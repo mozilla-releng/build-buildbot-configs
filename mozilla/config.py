@@ -203,6 +203,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
         'linux64': {
@@ -276,6 +277,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
         'linux64-asan': {
@@ -326,7 +328,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -350,6 +352,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -403,7 +406,7 @@ PLATFORM_VARS = {
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -427,6 +430,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -504,6 +508,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -744,6 +749,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
         'linux64-debug': {
@@ -806,6 +812,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
         'macosx64-debug': {
@@ -1517,7 +1524,7 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
+    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central', 'date'):
         del BRANCHES[branch]['platforms']['win64']
 
 # Point projects to BRANCHES values
@@ -1983,7 +1990,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if 'win32' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'win64' in BRANCHES[branch]['platforms']:
+    if 'win64' in BRANCHES[branch]['platforms'] and branch not in ('date',):
         del BRANCHES[branch]['platforms']['win64']
     if 'macosx64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch

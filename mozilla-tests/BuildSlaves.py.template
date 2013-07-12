@@ -25,6 +25,7 @@ SlavePasswords = {
     "win7-ix": "pass",
     "win8": "pass",
     "w764": "pass",
+    "win64_vm": "pass",
     "vista": "pass",
     "tegra_android": "pass",
     "tegra_android-armv6": "pass",

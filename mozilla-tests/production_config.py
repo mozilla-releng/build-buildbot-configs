@@ -27,6 +27,7 @@ SLAVES = {
     'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 56)]),
     'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 56)]),
+    'win64_vm': dict([('tst-w64-ec2-%03i' % x, {}) for x in range(100)]),
 }
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']

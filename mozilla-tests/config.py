@@ -79,6 +79,7 @@ PLATFORMS = {
     'win32': {},
     'linux': {},
     'linux64': {},
+    'win64': {},
 }
 
 PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
@@ -106,6 +107,15 @@ PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+}
+
+PLATFORMS['win64']['slave_platforms'] = ['win64_vm']
+PLATFORMS['win64']['win64_vm'] = {'name': 'win64_vm'}
+PLATFORMS['win64']['stage_product'] = 'firefox'
+PLATFORMS['win64']['mozharness_config'] = {
+    'mozharness_python': ['c:/python27/python', '-u'],
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
 }
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
@@ -209,6 +219,7 @@ BRANCH_UNITTEST_VARS = {
         'linux64': {},
         'macosx64': {},
         'win32': {},
+        'win64': {},
     },
 }
 
@@ -906,6 +917,71 @@ PLATFORM_UNITTEST_VARS = {
             },
         }
     },
+    'win64': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'mochitest_leak_threshold': 484,
+        'crashtest_leak_threshold': 484,
+        'env_name': 'win64-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'win64_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'metro-immersive': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+            },
+        }
+    },
     'macosx64': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -1486,6 +1562,13 @@ for branch in BRANCHES.keys():
                 tests = list(BRANCHES[branch]['%s_tests' % s])
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
+
+# LOOOOOOOOOOOOOOOPS
+# Enable win64 testing on select branches only
+WIN64_TESTING_BRANCHES = ('date', 'try')
+for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
+    if 'win64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['win64']
 
 if __name__ == "__main__":
     import sys
