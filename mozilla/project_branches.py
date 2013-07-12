@@ -289,7 +289,13 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'date': {},
+    'date': {
+        'platforms': {
+            'win64': {
+                'enable_opt_unittests': True,
+            },
+        },
+    },
     # customizations for windows update service changes (bug 481815)
     'elm': {
         'enable_nightly': True,

@@ -1524,7 +1524,7 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central'):
+    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central', 'date'):
         del BRANCHES[branch]['platforms']['win64']
 
 # Point projects to BRANCHES values
@@ -1990,7 +1990,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if 'win32' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'win64' in BRANCHES[branch]['platforms']:
+    if 'win64' in BRANCHES[branch]['platforms'] and branch not in ('date',):
         del BRANCHES[branch]['platforms']['win64']
     if 'macosx64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
