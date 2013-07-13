@@ -37,7 +37,7 @@ GLOBAL_VARS['talos_masters'] = []
 # if a failure to notify the master should result in a warning,
 # and sendchange retry count before give up
 GLOBAL_VARS['unittest_masters'] = [
-    ('buildbot-master36.build.mozilla.org:9301', True, 5),
+    ('buildbot-master81.build.mozilla.org:9301', True, 5),
 ]
 GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
 GLOBAL_VARS['weekly_tinderbox_tree'] = 'Thunderbird'
