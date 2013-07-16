@@ -283,6 +283,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                 c.globs.append('release-firefox*.py')
                 c.globs.append('release-fennec*.py')
                 c.globs.append('release-thunderbird*.py')
+                c.globs.append('release_templates')
             elif 'tests_scheduler' in m['name']:
                 c.config_dir = 'mozilla-tests'
             c.globs.append(mastercfg)
