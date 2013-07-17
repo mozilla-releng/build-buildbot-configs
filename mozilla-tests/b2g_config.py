@@ -757,7 +757,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
+            'opt_unittest_suites': GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-unit': {

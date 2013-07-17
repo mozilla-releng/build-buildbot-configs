@@ -66,11 +66,12 @@ PLATFORMS = {
     'android-noion': {},
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android']
+PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android', 'panda_android-nomozpool']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
 PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda"}
+PLATFORMS['android']['panda_android-nomozpool'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -102,47 +103,50 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 ANDROID = PLATFORMS['android']['slave_platforms']
+ANDROID_NOT_MOZPOOL = deepcopy(ANDROID)
+if 'panda_android-nomozpool' in PLATFORMS['android']['slave_platforms']:
+    ANDROID_NOT_MOZPOOL.remove('panda_android')
 
 SUITES = {
     'remote-ts': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-tsvg': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-tsvgx': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-tsspider': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-trobopan': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-troboprovider': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-trobocheck2': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
 }
 
@@ -156,6 +160,8 @@ BRANCH_UNITTEST_VARS = {
         'android-debug': {},
     },
 }
+
+EMPTY_UNITTEST_DICT = {'opt_unittest_suites': [], 'debug_unittest_suites': []}
 
 ANDROID_UNITTEST_DICT = {
     'opt_unittest_suites': [
@@ -637,6 +643,7 @@ PLATFORM_UNITTEST_VARS = {
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
         'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
+        'panda_android-nomozpool': deepcopy(EMPTY_UNITTEST_DICT),
     },
     'android-armv6': {
         'product_name': 'fennec',
@@ -761,7 +768,7 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -839,6 +846,7 @@ for branch in BRANCHES.keys():
 
     if 'android' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android']['panda_android']
+        del BRANCHES[branch]['platforms']['android']['panda_android-nomozpool']
         BRANCHES[branch]['platforms']['android']['slave_platforms'] = ['tegra_android']
 
 # Do android debug only on cedar

@@ -19,9 +19,13 @@ SLAVES = {
         if x not in range(122,129) + [30,33,34,43,44,49,65,69,77,131,137,143,147,\
             153,156,161,175,176,180,184,185,186,193,197,198,202,203,204,205,222,224,\
             226,241,268,275,289,291,292,301,349]]), # decommissioned tegras
+    'panda_android-nomozpool': dict(
+        [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
+            for x in range(522,729)]
+    ),
     'panda_android': dict(
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
-            for x in range(22,33) + range(34,45) + range(46,82) + range(522,874) + range(885,887)]
+            for x in range(22,33) + range(34,45) + range(46,82) + range(729,874) + range(885,887)]
     ),
     'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),
