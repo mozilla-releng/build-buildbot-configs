@@ -199,7 +199,7 @@ PROJECT_BRANCHES = {
         },
         'mobile_platforms': {
             'android': {
-                'slave_platforms': ['panda_android'],
+                'slave_platforms': ['panda_android', 'panda_android-nomozpool'],
             },
         },
     },
