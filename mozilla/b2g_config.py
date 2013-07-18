@@ -1050,6 +1050,7 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
