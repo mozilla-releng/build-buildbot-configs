@@ -38,6 +38,7 @@ BRANCH_PRIORITIES = {
     'comm-aurora': 3,
     # Unlisted branches are prioritized at this level
     'mozilla-inbound': 4,
+    'b2g-inbound': 4,
     # Cypress is also an inbound!
     'cypress': 4,
     'birch': 4,  # temporary 2nd inbound for b2g; bug 861299

@@ -89,6 +89,38 @@ PROJECT_BRANCHES = {
         },
         'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
     },
+    # Customized to be the same as birch. bug 875989
+    'b2g-inbound': {
+        'repo_path': 'integration/mozilla-inbound',
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'enable_nightly': False,
+        'enable_weekly_bundle': True,
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64-debug': {
+                'enable_leaktests': True,
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
+        'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
+    },
     'profiling': {
         'pgo_strategy': 'periodic',
         'platforms': {
@@ -206,6 +238,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    # Please sync any customizations made to birch to b2g-inbound.
     'birch': {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
