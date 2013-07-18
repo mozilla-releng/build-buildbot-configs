@@ -26,6 +26,7 @@ BRANCHES = {
     'mozilla-b2g18_v1_1_0_hd': {},
     'mozilla-central': {},
     'mozilla-inbound': {},
+    'b2g-inbound': {},
     'services-central': {},
     'ionmonkey': {},
     'try': {'coallesce_jobs': False},
@@ -1450,6 +1451,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['fedora-b2g
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
+BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
