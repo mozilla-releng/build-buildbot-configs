@@ -206,7 +206,6 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # Please sync any customizations made to birch to b2g-inbound.
     'birch': {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',

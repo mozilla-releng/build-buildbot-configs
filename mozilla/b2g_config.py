@@ -1244,38 +1244,31 @@ for branch in BRANCHES:
             'otoro' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['otoro']
 
-# MERGE DAY: inari is only for central + b2g-inbound (birch) + b2g18 +
-# b2g18_v1_0_1
+# MERGE DAY: inari is only for central + birch + b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'birch',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'inari' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari']
 
-# MERGE DAY: inari_eng is only for central + b2g-inbound (birch) + b2g18 +
-# b2g18_v1_0_1
+# MERGE DAY: inari_eng is only for central + birch + b2g18 + b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'birch',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',) and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',) and \
             'inari_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['inari_eng']
 
-# MERGE DAY: leo/leo_eng is only for b2g-inbound (birch), m-c, b2g18
+# MERGE DAY: leo/leo_eng is only for birch, m-c, b2g18
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'birch',
-                      'mozilla-b2g18',) and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18',) and \
             'leo' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo']
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'birch',
-                      'mozilla-b2g18',) and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18',) and \
             'leo_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['leo_eng']
 
-# MERGE DAY: hamachi is only for m-c, b2g-inbound (birch), b2g18, b2g18_v1_0_1
+# MERGE DAY: hamachi is only for m-c, birch, b2g18, b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'birch',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
+    if branch not in ('mozilla-central', 'birch', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
 
@@ -1347,12 +1340,13 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
-# We don't run these tests on b2g-inbound (birch)
-for b in ('b2g-inbound', 'birch',):
+# B2G WORK WEEK
+for b in ('birch',):
     BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
+# END B2G WORK WEEK
 
 
 if __name__ == "__main__":
