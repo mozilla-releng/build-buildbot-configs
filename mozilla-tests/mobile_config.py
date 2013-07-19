@@ -838,7 +838,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
                       'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd', 'try',
-                      'b2g-inbound', 'birch', 'date',
+                      'birch', 'date',
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
