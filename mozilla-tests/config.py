@@ -191,7 +191,7 @@ SUITES = {
     },
     'rafx': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollx:tsvgx', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollx:tsvgx:tcanvasmark', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dirtypaint': {

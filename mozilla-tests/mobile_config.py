@@ -123,6 +123,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
+    'remote-tcanvasmark': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+    },
     'remote-tsspider': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
@@ -462,7 +467,7 @@ ANDROID_MOZHARNESS_MOCHITESTGL = [
     ]
 
 ANDROID_MOZHARNESS_PLAIN_REFTEST = [
-       ('reftest-1',
+       ('plain-reftest-1',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -471,7 +476,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-2',
+        ('plain-reftest-2',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -480,7 +485,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-3',
+        ('plain-reftest-3',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -489,7 +494,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
-        ('reftest-4',
+        ('plain-reftest-4',
             {'suite': 'reftestsmall',
              'use_mozharness': True,
              'script_path': 'scripts/android_panda.py',
@@ -600,7 +605,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
-   'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL,
+   'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST,
    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL,
 }
 
@@ -769,6 +774,7 @@ BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-central']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -832,7 +838,7 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
                       'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd', 'try',
-                      'birch', 'date',
+                      'b2g-inbound', 'birch', 'date',
                       ):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
@@ -878,6 +884,28 @@ for branch in BRANCHES:
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
                     if "xpcshell" in suite[0]:
+                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+
+#bug 882324 - Support reftests for pandaboards on Cedar
+for branch in BRANCHES:
+    # Loop removes it from any branch that gets beyond here
+    if branch in ('cedar',):
+        continue
+    for platform in BRANCHES[branch]['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform.startswith('android'):
+            continue
+        if platform.endswith('-debug'):
+            continue  # no slave_platform for debug
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if not slave_plat == "panda_android":
+                continue
+            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
+                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+                    if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
