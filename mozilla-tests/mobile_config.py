@@ -123,6 +123,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
+    'remote-tcanvasmark': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+    },
     'remote-tsspider': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
@@ -769,6 +774,7 @@ BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-central']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
