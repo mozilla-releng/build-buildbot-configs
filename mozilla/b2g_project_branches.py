@@ -20,6 +20,18 @@ PROJECT_BRANCHES = {
     'cypress': {
         'enable_perproduct_builds': True,
     },
+    # please sync any customizations made to birch to b2g-inbound
+    'b2g-inbound': {
+        'enable_perproduct_builds': True,
+        'platforms': {
+            'macosx64_gecko': {
+                'enable_checktests': False,
+            },
+            'win32_gecko': {
+                'enable_checktests': False,
+            },
+        },
+    },
     # B2G builds not required on the profiling branch
     #'profiling': {},
     'services-central': {
@@ -37,6 +49,7 @@ PROJECT_BRANCHES = {
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
     },
+    # please sync any customizations made to birch to b2g-inbound
     'birch': {
         'enable_perproduct_builds': True,
         'platforms': {

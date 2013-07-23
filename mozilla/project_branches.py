@@ -89,6 +89,36 @@ PROJECT_BRANCHES = {
         },
         'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
     },
+    # Please sync any customizations made to birch to b2g-inbound.
+    'b2g-inbound': {
+        'repo_path': 'integration/b2g-inbound',
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'periodic_pgo_interval': 3,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'platforms': {
+            'win32': {
+                'enable_checktests': False,
+                'slave_platforms': ['win8'],
+                'talos_slave_platforms': ['win8'],
+            },
+            'win32-debug': {
+                'enable_checktests': False,
+                'slave_platforms': ['win8'],
+            },
+            'macosx64': {
+                'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
+            },
+            'macosx64-debug': {
+                'enable_checktests': False,
+                'slave_platforms': ['mountainlion'],
+            },
+        },
+    },
     'profiling': {
         'pgo_strategy': 'periodic',
         'platforms': {
@@ -206,6 +236,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
+    # Please sync any customizations made to birch to b2g-inbound.
     'birch': {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
