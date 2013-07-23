@@ -135,7 +135,6 @@ PLATFORM_VARS = {
         'create_snippet': False,
         'create_partial': False,
         'enable_xulrunner': False,
-        'enable_leaktests': False,
         'slaves': SLAVES['mock'],
         'platform_objdir': 'obj-b2g',
         'disable_symbols': False,

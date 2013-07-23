@@ -46,7 +46,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64-debug': {
-                'enable_leaktests': True,
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
             'macosx64': {
@@ -77,7 +76,6 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64-debug': {
-                'enable_leaktests': True,
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
             'macosx64': {
