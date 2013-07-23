@@ -184,16 +184,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'otherx': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
-    'svgx': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'svgr': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
@@ -201,7 +191,7 @@ SUITES = {
     },
     'rafx': {
         'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--filter', 'ignore_first:1', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollx:tsvgx:tcanvasmark', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dirtypaint': {
@@ -1287,10 +1277,6 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['mozilla-central']['rafx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['svgx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['otherx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['svgr_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
