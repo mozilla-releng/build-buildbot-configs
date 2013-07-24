@@ -1502,19 +1502,26 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# emulator+linux64_gecko hacks.  See bug 885456, bug 891973
+# emulator hacks.  See bug 885456
+# MERGE DAY This will someday ride trains...
+for branch in BRANCHES.keys():
+    if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+                  'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+        if 'emulator' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['emulator']
+    elif branch not in ('mozilla-b2g18', ):
+        if 'ics_armv7a_gecko' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['ics_armv7a_gecko']
+
+# linux64_gecko hacks.  See bug 891973
 # MERGE DAY This will someday ride trains...
 for branch in BRANCHES.keys():
     if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
-        if 'emulator' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['emulator']
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
-    else:
-        if 'ics_armv7a_gecko' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['ics_armv7a_gecko']
 
 
 if __name__ == "__main__":
