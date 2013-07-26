@@ -105,7 +105,6 @@ GLOBAL_VARS = {
             'toolkit',
             ],
     'use_old_updater': False,
-    'run_make_alive_tests': True,
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
@@ -674,7 +673,6 @@ PLATFORM_VARS = {
         'linux-debug': {
             'enable_nightly': False,
             'enable_xulrunner': False,
-            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -758,7 +756,6 @@ PLATFORM_VARS = {
         'linux64-debug': {
             'enable_nightly': False,
             'enable_xulrunner': False,
-            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -821,13 +818,11 @@ PLATFORM_VARS = {
         'macosx64-debug': {
             'enable_nightly': False,
             'enable_xulrunner': False,
-            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'OS X 10.7 64-bit %(branch)s leak test',
             'mozconfig': 'macosx64/%(branch)s/debug',
-            'enable_leaktests': True,
             'src_mozconfig': 'browser/config/mozconfigs/macosx64/debug',
             'packageTests': True,
             'profiled_build': False,
@@ -866,7 +861,6 @@ PLATFORM_VARS = {
         'win32-debug': {
             'enable_nightly': False,
             'enable_xulrunner': False,
-            'enable_leaktests': True,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1180,7 +1174,6 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'enable_leaktests': False,
             'create_snippet': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
@@ -1775,7 +1768,6 @@ del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
 del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
-BRANCHES['mozilla-esr17']["run_make_alive_tests"] = False
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
@@ -1807,7 +1799,6 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-b2g18']["run_make_alive_tests"] = False
 
 ######## mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = 'releases/mozilla-b2g18_v1_0_1'
@@ -1839,7 +1830,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incom
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-b2g18_v1_0_1']["run_make_alive_tests"] = False
 
 ######## mozilla-b2g18_v1_1_0_hd
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = 'releases/mozilla-b2g18_v1_1_0_hd'
@@ -1871,7 +1861,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = '/opt/aus2/in
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-b2g18_v1_1_0_hd']["run_make_alive_tests"] = False
 
 ######## try
 # Try-specific configs

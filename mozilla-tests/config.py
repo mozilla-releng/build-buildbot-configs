@@ -165,7 +165,7 @@ WIN7_ONLY = ['win7-ix']
 
 SUITES = {
     'xperf': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path', '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
@@ -340,7 +340,7 @@ MOCHITEST = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome'],
-        'script_maxtime': 7200,
+        'script_maxtime': 9000,
     }),
     ('mochitest-other', {
         'use_mozharness': True,
@@ -1275,13 +1275,16 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['xperf_tests'] = (1, True, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['mozilla-central']['rafx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
+
+# MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+# END MERGE DAY remove the below when Firefox 25 merges in
 
 # MERGE DAY remove the below when Firefox 23 merges in
 del BRANCHES['mozilla-release']['platforms']['win32']['win7-ix']
@@ -1294,9 +1297,17 @@ BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
+# MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+# END MERGE DAY remove the below when Firefox 25 merges in
+
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+
+# MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-aurora']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+# END MERGE DAY remove the below when Firefox 25 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1348,6 +1359,7 @@ del BRANCHES['mozilla-b2g18']['platforms']['win32']['win8']
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-b2g18']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7']
+BRANCHES['mozilla-b2g18']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
@@ -1373,6 +1385,7 @@ del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win8']
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7']
+BRANCHES['mozilla-b2g18_v1_0_1']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18_v1_1_0_hd
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
@@ -1398,6 +1411,7 @@ del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win8']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7']
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######## try
 BRANCHES['try']['mozharness_talos'] = True
