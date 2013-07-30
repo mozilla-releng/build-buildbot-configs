@@ -1267,6 +1267,7 @@ for branch in BRANCHES.keys():
     loadTalosSuites(BRANCHES, SUITES, branch)
     BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
+    BRANCHES[branch]['mozharness_talos'] = True
 
 # The following are exceptions to the defaults
 
@@ -1283,6 +1284,7 @@ BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-release']['mozharness_talos'] = False
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
 
@@ -1298,6 +1300,7 @@ BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-beta']['mozharness_talos'] = False
 BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
 
@@ -1306,13 +1309,15 @@ BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
+BRANCHES['mozilla-aurora']['mozharness_talos'] = False
 BRANCHES['mozilla-aurora']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-# END MERGE DAY remove the below when Firefox 25 merges in
+# End MERGE DAY remove the above when Firefox 25 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
 BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr17']['mozharness_talos'] = False
 BRANCHES['mozilla-esr17']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-esr17']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-esr17']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
@@ -1339,6 +1344,7 @@ BRANCHES['mozilla-esr17']['platforms']['win32']['talos_slave_platforms'] = ['xp'
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18']['mozharness_talos'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
@@ -1365,6 +1371,7 @@ BRANCHES['mozilla-b2g18']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ON
 BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_1']['mozharness_talos'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
@@ -1391,6 +1398,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, 
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['mozharness_talos'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux']['fedora']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_ipc'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
@@ -1414,7 +1422,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######## try
-BRANCHES['try']['mozharness_talos'] = True
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'

@@ -213,7 +213,6 @@ PROJECT_BRANCHES = {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_tag': 'default',
-        'mozharness_talos': True,
         'lock_platforms': True,
         'talos_suites': {
             'xperf': 1,
@@ -265,7 +264,6 @@ PROJECT_BRANCHES = {
     },
     'cedar': {
         'mozharness_tag': 'default',
-        'mozharness_talos': True,
         'lock_platforms': True,
         'enable_talos': True,
         'talos_suites': {

@@ -15,6 +15,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['mozharness_talos'] = True
 
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
