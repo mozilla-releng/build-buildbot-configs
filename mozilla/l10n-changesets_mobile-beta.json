@@ -52,7 +52,7 @@
     "platforms": ["android"]
   },
   "hu": {
-    "revision": "09f19201df1a",
+    "revision": "2570a031ec8b",
     "platforms": ["android", "android-multilocale"]
   },
   "it": {
