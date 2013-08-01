@@ -2128,9 +2128,6 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
 
 # B2G's INBOUND
 for b in ('b2g-inbound', 'birch',):
-    for p in ['win32-debug', 'macosx64-debug', 'android', 'android-armv6', 'android-debug', 'android-x86']:
-        if p in BRANCHES[b]['platforms']:
-            del(BRANCHES[b]['platforms'][p])
     for p in BRANCHES[b]['platforms'].keys():
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
