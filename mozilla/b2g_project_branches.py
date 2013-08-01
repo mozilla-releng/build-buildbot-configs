@@ -22,6 +22,7 @@ PROJECT_BRANCHES = {
     },
     # please sync any customizations made to birch to b2g-inbound
     'b2g-inbound': {
+        'repo_path': 'integration/b2g-inbound',
         'enable_perproduct_builds': True,
         'platforms': {
             'macosx64_gecko': {
