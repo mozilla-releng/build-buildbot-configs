@@ -886,10 +886,10 @@ for branch in BRANCHES:
                     if "xpcshell" in suite[0]:
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
-#bug 882324 - Support reftests for pandaboards on Cedar
+#Support reftests for pandaboards on Cedar and Try
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar',):
+    if branch in ('cedar', 'try'):
         continue
     for platform in BRANCHES[branch]['platforms']:
         if not platform in PLATFORMS:
