@@ -23,7 +23,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '23.0'
 releaseConfig['appVersion']          = '23.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_23_0'
 releaseConfig['partialUpdates']      = {
 
