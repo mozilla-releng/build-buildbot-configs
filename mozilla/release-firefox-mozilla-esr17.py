@@ -23,7 +23,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '17.0.8esr'
 releaseConfig['appVersion']          = '17.0.8'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_17_0_8esr'
 releaseConfig['partialUpdates']      = {
 
@@ -42,7 +42,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '5b878e1d226c',
+        'revision': '8d80b1912bd7',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
