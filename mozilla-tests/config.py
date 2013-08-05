@@ -1288,12 +1288,6 @@ BRANCHES['mozilla-release']['mozharness_talos'] = False
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
 
-# MERGE DAY remove the below when Firefox 23 merges in
-del BRANCHES['mozilla-release']['platforms']['win32']['win7-ix']
-del BRANCHES['mozilla-release']['platforms']['win32']['xp-ix']
-BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7', 'win8']
-# End MERGE DAY remove the above when Firefox 23 merges in
-
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1307,11 +1301,6 @@ BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONL
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-
-# MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-aurora']['mozharness_talos'] = False
-BRANCHES['mozilla-aurora']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-# End MERGE DAY remove the above when Firefox 25 merges in
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 1
@@ -1492,7 +1481,7 @@ def get_ubuntu_unittests(branch, test_type):
     FF24_TESTS = {"opt_unittest_suites":
                   ["mochitest-browser-chrome", "mochitest-other"],
                   "debug_unittest_suites": ["mochitest-other"]}
-    if branch not in ("mozilla-beta", "mozilla-release"):
+    if branch not in ("mozilla-release"):
         return UBUNTU_TESTS[test_type] + FF24_TESTS[test_type]
     else:
         return list(UBUNTU_TESTS[test_type])
@@ -1542,8 +1531,7 @@ for branch in BRANCHES:
                                 pass
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-NON_UBUNTU_TALOS_BRANCHES = ("mozilla-release", "mozilla-esr17",
-                             "mozilla-b2g18")
+NON_UBUNTU_TALOS_BRANCHES = ("mozilla-esr17", "mozilla-b2g18")
 for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
     for s in SUITES.iterkeys():
         if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
@@ -1558,8 +1546,7 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-WIN32_REV3_BRANCHES = ("mozilla-release", "mozilla-esr17", "mozilla-b2g18",
-                       "mozilla-b2g18_v1_0_1")
+WIN32_REV3_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
 # Disable Rev3 winxp and win7 machines for FF23+
 for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
     if 'win32' not in BRANCHES[branch]['platforms']:

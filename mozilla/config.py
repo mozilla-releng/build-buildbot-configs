@@ -175,7 +175,7 @@ PLATFORM_VARS = {
                         'mpfr',  # required for system compiler
                         'xorg-x11-font*',  # fonts required for PGO
                         'imake',  # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel.i686',
                         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
@@ -269,7 +269,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
@@ -344,7 +344,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
@@ -422,7 +422,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
@@ -500,7 +500,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'valgrind',
                         'pulseaudio-libs-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
@@ -721,7 +721,7 @@ PLATFORM_VARS = {
                         'mpfr',  # required for system compiler
                         'xorg-x11-font*',  # fonts required for PGO
                         'imake',  # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache',  # <-- from releng repj
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repj
                         'valgrind',
                         'pulseaudio-libs-devel.i686',
                         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
@@ -803,7 +803,7 @@ PLATFORM_VARS = {
                         'mpfr', # required for system compiler
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
                         'pulseaudio-libs-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
                         'freetype-devel-2.3.11-6.el6_1.8.x86_64',
@@ -923,7 +923,7 @@ PLATFORM_VARS = {
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
-                              "gcc472_0moz1", 'wget', 'glibc.i686',
+                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
                               'libstdc++.i686', 'zlib.i686',
                               'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
@@ -989,7 +989,7 @@ PLATFORM_VARS = {
                               'android-ndk5', 'android-ndk8', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              "gcc472_0moz1", 'wget', 'glibc.i686',
+                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
                               'libstdc++.i686', 'zlib.i686',
                               'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
@@ -1054,7 +1054,7 @@ PLATFORM_VARS = {
                               'android-ndk7', 'android-ndk8', 'yasm', 'zip',
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              "gcc472_0moz1", 'glibc.i686', 'libstdc++.i686',
+                              "gcc472_0moz1", "gcc473_0moz1", 'glibc.i686', 'libstdc++.i686',
                               'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1120,7 +1120,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1",
+                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
@@ -1187,7 +1187,7 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
                               'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1",
+                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
@@ -1701,10 +1701,10 @@ BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
 BRANCHES['mozilla-aurora']['create_partial'] = True
 BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
 # use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
@@ -2060,8 +2060,7 @@ for b in BRANCHES:
 
 # MERGE DAY building 32-bit linux in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for branch in ("mozilla-beta", "mozilla-release",
-               "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for branch in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
@@ -2078,7 +2077,7 @@ for branch in ("mozilla-beta", "mozilla-release",
              'mpfr', # required for system compiler
              'xorg-x11-font*', # fonts required for PGO
              'imake', # required for makedepend!?!
-             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'yasm', 'ccache', # <-- from releng repo
+             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
              'pulseaudio-libs-devel',
              'freetype-2.3.11-6.el6_2.9',
              'freetype-devel-2.3.11-6.el6_2.9',
@@ -2089,9 +2088,8 @@ for branch in ("mozilla-beta", "mozilla-release",
 
 # MERGE DAY building android in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-beta", "mozilla-release",
-          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd",
-          "mozilla-esr17"):
+for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+          "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for plat in ['android', 'android-armv6', 'android-noion',
                  'android-x86', 'android-debug']:
         if plat in BRANCHES[b]['platforms']:
@@ -2108,9 +2106,8 @@ for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-beta", "mozilla-release",
-          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd",
-          "mozilla-esr17"):
+for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+          "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
