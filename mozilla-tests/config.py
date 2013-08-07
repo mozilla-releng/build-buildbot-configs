@@ -92,6 +92,8 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/mac_config.py',
 }
 
 PLATFORMS['win32']['slave_platforms'] = ['xp', 'xp-ix', 'win7', 'win7-ix', 'win8']
@@ -107,6 +109,8 @@ PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
+    'config_file': 'talos/windows_config.py',
 }
 
 PLATFORMS['win64']['slave_platforms'] = ['win64_vm']
@@ -116,6 +120,8 @@ PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/windows_config.py',
 }
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
@@ -129,6 +135,8 @@ PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
+    'config_file': 'talos/linux_config.py',
 }
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
@@ -142,6 +150,8 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
 }
 
 # Lets be explicit instead of magical.
