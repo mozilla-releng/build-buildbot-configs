@@ -1026,7 +1026,7 @@ for branch in BRANCHES.keys():
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['mozilla-central']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
-BRANCHES['mozilla-central']['start_hour'] = [7]
+BRANCHES['mozilla-central']['start_hour'] = [4]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1051,7 +1051,7 @@ BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/
 # building
 BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18']['start_minute'] = [12]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1100,7 +1100,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/re
 # building
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [32]
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1147,7 +1147,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org
 # building
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [7, 23]
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1307,7 +1307,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
-    BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [7])
+    BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [42])
     # nightly updates
     BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
