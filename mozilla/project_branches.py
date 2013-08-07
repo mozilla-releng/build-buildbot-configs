@@ -175,7 +175,7 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'ux',
         'enable_nightly': True,
         'create_snippet': True,
-        'create_partial': False,
+        'create_partial': True,
         'pgo_strategy': 'periodic',
         'platforms': {
             'macosx64-debug': {
