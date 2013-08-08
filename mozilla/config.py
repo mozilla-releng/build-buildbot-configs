@@ -162,6 +162,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': '/builds/tooltool.py',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -206,7 +207,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
         },
         'linux64': {
@@ -257,6 +258,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': '/builds/tooltool.py',
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -281,7 +283,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
         },
         'linux64-asan': {
@@ -1624,7 +1626,6 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
-BRANCHES['mozilla-release']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -1670,7 +1671,6 @@ BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_B
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-beta']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
 ######## mozilla-aurora
