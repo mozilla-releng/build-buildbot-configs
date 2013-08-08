@@ -283,7 +283,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
         },
         'linux64-asan': {
@@ -359,7 +358,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -438,7 +436,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -517,7 +514,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -758,7 +754,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
         },
         'linux64-debug': {
@@ -821,7 +816,6 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
         },
         'macosx64-debug': {
@@ -938,7 +932,6 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1005,7 +998,6 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1070,7 +1062,6 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1140,7 +1131,6 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1208,7 +1198,6 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/tools/tooltool.py', '/tools/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
