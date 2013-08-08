@@ -1014,6 +1014,7 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--no-update',
                     ],
                 },
                 'xpcshell': {
@@ -1230,6 +1231,7 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--no-update',
                     ],
                 },
             },
@@ -1354,6 +1356,7 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--no-update',
                     ],
                 },
             },
