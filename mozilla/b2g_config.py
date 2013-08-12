@@ -29,7 +29,6 @@ GLOBAL_VARS.update({
         'win32_gecko_localizer': {},
         'unagi': {},
         'unagi_eng': {},
-        'otoro': {},
         'inari': {},
         'inari_eng': {},
         'leo': {},
@@ -719,21 +718,6 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
-    'otoro': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'otoro', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-    },
     'inari': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -893,7 +877,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'unagi': {},
         'unagi_eng': {},
-        'otoro': {},
         'inari': {},
         'leo': {},
         'leo_eng': {},
@@ -913,7 +896,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'unagi': {},
         'unagi_eng': {},
-        'otoro': {},
         'inari': {},
         'inari_eng': {},
         'leo': {},
@@ -933,7 +915,6 @@ BRANCHES = {
         'win32_gecko_localizer': {},
         'unagi': {},
         'unagi_eng': {},
-        'otoro': {},
         'inari': {},
         'leo': {},
         'leo_eng': {},
@@ -1066,7 +1047,6 @@ BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gaia_repo'] =
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
@@ -1114,7 +1094,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['gaia_r
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = True
@@ -1161,7 +1140,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['gai
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['otoro']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
@@ -1217,12 +1195,6 @@ BRANCHES['try']['platforms']['emulator_debug']['mozharness_config']['extra_args'
 
 # TODO: move the MERGE DAY items below to above the BRANCHES['mozilla-central']
 # chunk above, once the whole v1_0_1/kill_b2g18 stuff has calmed down
-
-# MERGE DAY: otoro is only for b2g18 + b2g18_v1_0_1
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
-            'otoro' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['otoro']
 
 # MERGE DAY: inari is only for central + b2g-inbound (birch) + b2g18 +
 # b2g18_v1_0_1
