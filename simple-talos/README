@@ -13,7 +13,7 @@ Required Properties:
                   any pagesets, plugins, or talos addons provided. (See
                   'Option Properties' for descriptions of those three things.)
                   If you're not using custom versions of any of these tools,
-                  http://build.mozilla.org/talos is a good value for this.
+                  http://talos-bundles.pvt.build.mozilla.org is a good value for this.
 
   configurationOptions: A comma seperated list of arguments to pass to
                         PerfConfigurator.py. You must pass at least
@@ -46,10 +46,10 @@ Optional Properties:
 
 Examples:
 - To run an add-on test (after flipping releaseTester=True in master.cfg) on Windows 7:
-    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,ts,--noShutdown,--sampleConfig,addon.config' -p 'supportUrlBase:http://build.mozilla.org/talos' --branch=win7 -p 'addonUrl:/pub/mozilla.org/addons/722/noscript-2.1.5-fn+sm+fx.xpi' -p'extraTalosArg:--amo' http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central/firefox-10.0a1.en-US.win32.installer.exe
+    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,ts,--noShutdown,--sampleConfig,addon.config' -p 'supportUrlBase:http://talos-bundles.pvt.build.mozilla.org' --branch=win7 -p 'addonUrl:/pub/mozilla.org/addons/722/noscript-2.1.5-fn+sm+fx.xpi' -p'extraTalosArg:--amo' http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla-central/firefox-10.0a1.en-US.win32.installer.exe
 
 - To run Tp5 on Snow Leopard:
-    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,tp5,--mozAfterPaint' -p 'supportUrlBase:http://build.mozilla.org/talos' --branch=snowleopard -p 'pageset1:zips/tp5.zip' http://stage.mozilla.org/pub/mozilla.org/firefox/releases/7.0.1/mac/en-US/Firefox%207.0.1.dmg
+    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,tp5,--mozAfterPaint' -p 'supportUrlBase:http://talos-bundles.pvt.build.mozilla.org' --branch=snowleopard -p 'pageset1:zips/tp5.zip' http://stage.mozilla.org/pub/mozilla.org/firefox/releases/7.0.1/mac/en-US/Firefox%207.0.1.dmg
 
 - To run Ts on Snow Leopard:
-    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,ts_places_generated_min:ts_places_generated_med:ts_places_generated_max' -p 'supportUrlBase:http://build.mozilla.org/talos' --branch=snowleopard -p 'talosAddon1:profiles/dirtyDBs.zip' -p 'talosAddon2:profiles/dirtyMaxDBs.zip' http://stage.mozilla.org/pub/mozilla.org/firefox/releases/7.0.1/mac/en-US/Firefox%207.0.1.dmg
+    buildbot sendchange -m localhost:9118 -u bhearsum -p 'configurationOptions:--activeTests,ts_places_generated_min:ts_places_generated_med:ts_places_generated_max' -p 'supportUrlBase:http://talos-bundles.pvt.build.mozilla.org' --branch=snowleopard -p 'talosAddon1:profiles/dirtyDBs.zip' -p 'talosAddon2:profiles/dirtyMaxDBs.zip' http://stage.mozilla.org/pub/mozilla.org/firefox/releases/7.0.1/mac/en-US/Firefox%207.0.1.dmg
