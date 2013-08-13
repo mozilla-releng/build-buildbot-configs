@@ -759,7 +759,7 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['fetch_symbols'] = True
     BRANCHES[branch]['fetch_release_symbols'] = False
     BRANCHES[branch]['talos_from_source_code'] = True
-    BRANCHES[branch]['support_url_base'] = 'http://build.mozilla.org/talos'
+    BRANCHES[branch]['support_url_base'] = 'http://talos-bundles.pvt.build.mozilla.org'
     loadTalosSuites(BRANCHES, SUITES, branch)
     BRANCHES[branch]['pgo_strategy'] = None
     BRANCHES[branch]['pgo_platforms'] = []

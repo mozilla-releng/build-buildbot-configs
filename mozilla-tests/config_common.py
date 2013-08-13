@@ -12,7 +12,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
     BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
-    BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://build.mozilla.org/talos')
+    BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://talos-bundles.pvt.build.mozilla.org')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
     BRANCHES[branch]['mozharness_talos'] = True
