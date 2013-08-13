@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '23.0b1'
-releaseConfig['appVersion']          = '23.0'
+releaseConfig['version']             = '24.0b1'
+releaseConfig['appVersion']          = '24.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_23_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '22.0b1': {
-        'appVersion': '22.0',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_22_0b1',
+    '23.0b1': {
+        'appVersion': '23.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_23_0b1',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'db23b7cc60ef',
+        'revision': 'fae2ec4e3455',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '428adf9c17a7',
+        'revision': '23b7a978c567',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -94,6 +94,7 @@ releaseConfig['enableUnittests']     = True
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
