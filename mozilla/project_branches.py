@@ -322,6 +322,7 @@ PROJECT_BRANCHES = {
         },
     },
     'date': {
+        'lock_platforms': True,
         'platforms': {
             'win64': {
                 'enable_opt_unittests': True,
