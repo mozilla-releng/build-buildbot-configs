@@ -1294,9 +1294,12 @@ BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-release']['mozharness_talos'] = False
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
+
+# MERGE DAY remove the below when Firefox 24 merges in
+BRANCHES['mozilla-release']['mozharness_talos'] = False
+# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
@@ -1304,9 +1307,12 @@ BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-beta']['mozharness_talos'] = False
 BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
+
+# MERGE DAY remove the below when Firefox 24 merges in
+BRANCHES['mozilla-beta']['mozharness_talos'] = False
+# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
