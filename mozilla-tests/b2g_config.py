@@ -1480,6 +1480,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['fedora-b2g']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = MOCHITEST + XPCSHELL
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = [x for x in ALL_UNITTESTS if x not in REFTEST] + REFTEST_SANITY
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
@@ -1539,7 +1540,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 for branch in BRANCHES.keys():
     if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+                  'mozilla-b2g18_v1_0_1'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator']
     elif branch not in ('mozilla-b2g18', ):
