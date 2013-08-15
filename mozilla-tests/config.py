@@ -411,6 +411,15 @@ XPCSHELL = [
         'script_maxtime': 7200,
     }),
 ]
+
+CPPUNIT = [
+    ('cppunit', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--cppunittest-suite', 'cppunittest'],
+        'script_maxtime': 7200,
+    }),
+]
 MARIONETTE = [
     ('marionette', {
         'use_mozharness': True,
@@ -1463,6 +1472,18 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
+
+# Enable cppunittest jobs for now
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
 
 # Enable metro jobs for now
 # MERGE DAY: This may need to follow the trains: see bug 847442
