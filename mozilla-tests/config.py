@@ -411,6 +411,15 @@ XPCSHELL = [
         'script_maxtime': 7200,
     }),
 ]
+
+CPPUNIT = [
+    ('cppunit', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--cppunittest-suite', 'cppunittest'],
+        'script_maxtime': 7200,
+    }),
+]
 MARIONETTE = [
     ('marionette', {
         'use_mozharness': True,
@@ -1294,9 +1303,12 @@ BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-release']['mozharness_talos'] = False
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
+
+# MERGE DAY remove the below when Firefox 24 merges in
+BRANCHES['mozilla-release']['mozharness_talos'] = False
+# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
@@ -1304,9 +1316,12 @@ BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
 # MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-beta']['mozharness_talos'] = False
 BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
+
+# MERGE DAY remove the below when Firefox 24 merges in
+BRANCHES['mozilla-beta']['mozharness_talos'] = False
+# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -1457,6 +1472,18 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[projectBranch]
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
+
+# Enable cppunittest jobs for now
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
 
 # Enable metro jobs for now
 # MERGE DAY: This may need to follow the trains: see bug 847442
