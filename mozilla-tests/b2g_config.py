@@ -221,10 +221,20 @@ REFTEST_SANITY = [
 
 
 JSREFTEST = [
-    ('jsreftest', {'suite': 'reftest',
-                   'use_mozharness': True,
-                   'script_path': 'scripts/b2g_emulator_unittest.py',
-                   },
+    ('jsreftest-1', {'suite': 'jsreftest',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     },
+     ),
+    ('jsreftest-2', {'suite': 'jsreftest',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     },
+     ),
+    ('jsreftest-3', {'suite': 'jsreftest',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     },
      ),
 ]
 
@@ -1010,10 +1020,27 @@ PLATFORM_UNITTEST_VARS = {
                         '--no-update',
                     ],
                 },
-                'jsreftest': {
+                'jsreftest-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--this-chunk', '1', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '2', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '3', '--total-chunks', '3',
                         '--no-update',
                     ],
                 },
@@ -1227,10 +1254,27 @@ PLATFORM_UNITTEST_VARS = {
                         '--no-update',
                     ],
                 },
-                'jsreftest': {
+                'jsreftest-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--this-chunk', '1', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '2', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '3', '--total-chunks', '3',
                         '--no-update',
                     ],
                 },
@@ -1352,10 +1396,27 @@ PLATFORM_UNITTEST_VARS = {
                         '--no-update',
                     ],
                 },
-                'jsreftest': {
+                'jsreftest-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'jsreftest',
+                        '--this-chunk', '1', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '2', '--total-chunks', '3',
+                        '--no-update',
+                    ],
+                },
+                'jsreftest-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'jsreftest',
+                        '--this-chunk', '3', '--total-chunks', '3',
                         '--no-update',
                     ],
                 },
