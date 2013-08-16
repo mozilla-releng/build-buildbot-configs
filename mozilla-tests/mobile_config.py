@@ -505,6 +505,15 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
              'script_maxtime': 14400,
              },
         ),
+        ('plain-reftest-5',
+            {'suite': 'reftestsmall',
+             'use_mozharness': True,
+             'script_path': 'scripts/android_panda.py',
+             'extra_args': ['--cfg', 'android/android_panda_releng.py', '--reftest-suite', 'reftest-5'],
+             'timeout': 2400,
+             'script_maxtime': 14400,
+             },
+        ),
     ]
 
 
