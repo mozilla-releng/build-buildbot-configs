@@ -65,7 +65,8 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'date': {},
+    # B2G builds not required on date
+    # 'date': {},
     # Customizations for windows update service changes (bug 481815)
     #'elm': {},
     'fig': {
