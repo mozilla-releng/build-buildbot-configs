@@ -8,9 +8,6 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
-# work around bustage tagging compare-locales from bug 905189
-releaseConfig['skip_tag']            = True
-
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
@@ -23,11 +20,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.0b3'
+releaseConfig['version']             = '24.0b4'
 releaseConfig['appVersion']          = '24.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_0b3'
+releaseConfig['baseTag']             = 'FIREFOX_24_0b4'
 releaseConfig['partialUpdates']      = {
 
     '24.0b2': {
@@ -36,10 +33,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_24_0b2',
     },
 
-    '23.0b10': {
-        'appVersion': '23.0',
+    '24.0b3': {
+        'appVersion': '24.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_23_0b10',
+        'baseTag': 'FIREFOX_24_0b3',
     },
 
 }
@@ -51,7 +48,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '7aac8f0f72d0',
+        'revision': 'cadb54f63c80',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
