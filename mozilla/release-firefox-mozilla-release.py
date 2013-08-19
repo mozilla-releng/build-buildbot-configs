@@ -8,6 +8,9 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
+# work around bustage tagging compare-locales from bug 905189
+releaseConfig['skip_tag']            = True
+
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
