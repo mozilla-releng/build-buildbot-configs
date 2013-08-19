@@ -1147,6 +1147,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None
