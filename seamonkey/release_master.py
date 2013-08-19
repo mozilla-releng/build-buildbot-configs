@@ -301,7 +301,6 @@ for platform in releaseConfig['enUSPlatforms']:
         stageSshKey=branchConfig['stage_ssh_key'],
         stageBasePath='%s/%s' % (branchConfig['stage_base_path'],
                                  pf['stage_product']),
-        codesighs=False,
         uploadPackages=True,
         uploadSymbols=True,
         createSnippet=False,
