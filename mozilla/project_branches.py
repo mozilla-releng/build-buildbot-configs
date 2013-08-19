@@ -32,29 +32,11 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/mozilla-inbound',
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': False,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
         'talos_suites': {
             'xperf': 1,
-        },
-        'platforms': {
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'macosx64-debug': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
         },
         'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
     },
@@ -62,33 +44,14 @@ PROJECT_BRANCHES = {
     'cypress': {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': False,
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_pgo_interval': 3,
         'talos_suites': {
             'xperf': 1,
         },
-        'platforms': {
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'macosx64-debug': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-        },
         'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
     },
-    # Please sync any customizations made to birch to b2g-inbound.
     'b2g-inbound': {
         'repo_path': 'integration/b2g-inbound',
         'enable_perproduct_builds': True,
@@ -125,16 +88,6 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
             },
             'linux-debug': {
                 'dont_build': True,
@@ -147,9 +100,6 @@ PROJECT_BRANCHES = {
             'win32-debug': {
                 'dont_build': True,
                 'enable_debug_unittests': False,
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
             },
         },
         'mobile_platforms': {
@@ -178,9 +128,6 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'pgo_strategy': 'periodic',
         'platforms': {
-            'macosx64-debug': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
             'macosx64': {
                 'nightly_signing_servers': 'mac-nightly-signing',
             },
@@ -238,35 +185,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # Please sync any customizations made to birch to b2g-inbound.
-    'birch': {
-        'enable_perproduct_builds': True,
-        'mozconfig_dir': 'mozilla-central',
-        'pgo_strategy': 'periodic',
-        'periodic_pgo_interval': 3,
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'platforms': {
-            'win32': {
-                'enable_checktests': False,
-                'slave_platforms': ['win8'],
-                'talos_slave_platforms': ['win8'],
-            },
-            'win32-debug': {
-                'enable_checktests': False,
-                'slave_platforms': ['win8'],
-            },
-            'macosx64': {
-                'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
-            },
-            'macosx64-debug': {
-                'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
-            },
-        },
-    },
+    'birch': {},
     'cedar': {
         'mozharness_tag': 'default',
         'lock_platforms': True,
@@ -332,7 +251,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # customizations for windows update service changes (bug 481815)
+    # customizations for PICL (bug 900212)
     'elm': {
         'enable_nightly': True,
         'enable_weekly_bundle': True,
@@ -341,12 +260,18 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
         'lock_platforms': True,
         'platforms': {
-            'linux': {},
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'linux-debug': {},
-            'linux64': {},
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'linux64-debug': {},
             'macosx64-debug': {},
-            'macosx64': {},
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
@@ -410,6 +335,9 @@ PROJECT_BRANCHES = {
             },
             'linux64': {
                 'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
