@@ -137,9 +137,6 @@ PROJECT_BRANCHES = {
             'linux64': {
                 'nightly_signing_servers': 'nightly-signing',
             },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
         },
     },
     #####  TWIGS aka RENTABLE BRANCHES
