@@ -154,6 +154,9 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':2',
                 'PATH': '/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+
+                # LD_LIBRARY_PATH needs to be set to properly run elfhack during build process (Bug 904485)
+                'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -195,6 +198,9 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':2',
                 'PATH': '/usr/libexec/binutils220:/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+
+                # LD_LIBRARY_PATH needs to be set to properly run elfhack during build process (Bug 904485)
+                'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
