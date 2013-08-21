@@ -190,6 +190,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
+        'blob_upload': True,
         'enable_nightly': True,
         'create_snippet': True,
         'create_mobile_snippet': True,
