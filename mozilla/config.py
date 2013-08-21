@@ -2045,7 +2045,7 @@ for b in ('mozilla-esr17',):
 for b in BRANCHES.keys():
     if b not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd', 'try',
-                 'b2g-inbound', 'birch', 'date', 'cypress',
+                 'b2g-inbound', 'date', 'cypress',
                  ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
@@ -2123,7 +2123,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
         del BRANCHES[branch]['platforms']['linux64-dbg-st-an']
 
 # B2G's INBOUND
-for b in ('b2g-inbound', 'birch',):
+for b in ('b2g-inbound',):
     for p in BRANCHES[b]['platforms'].keys():
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False

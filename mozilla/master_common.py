@@ -41,11 +41,11 @@ BRANCH_PRIORITIES = {
     'b2g-inbound': 4,
     # Cypress is also an inbound!
     'cypress': 4,
-    'birch': 4,  # temporary 2nd inbound for b2g; bug 861299
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
     'ash': 5,
+    'birch': 5,
     'cedar': 5,
     'date': 5,
     'elm': 5,
