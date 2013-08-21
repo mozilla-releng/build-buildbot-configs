@@ -499,6 +499,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -548,6 +551,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -610,6 +616,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -659,6 +668,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -723,6 +735,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -772,6 +787,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -825,6 +843,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -874,6 +895,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -928,6 +952,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -995,6 +1022,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -1054,6 +1084,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1105,6 +1138,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'cppunit': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1154,6 +1190,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'marionette': {
@@ -1230,7 +1269,7 @@ for branch in BRANCHES.keys():
 ### PROJECTS ###
 PROJECTS = {
     'jetpack': {
-        'branches': ['mozilla-central'],
+        'branches': ['fx-team'],
         'platforms': {
             'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
             'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},

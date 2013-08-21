@@ -16,7 +16,6 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
     'ash': {},
-    'birch': {},
     'cedar': {},
     'cypress': {},
     'fx-team': {},
@@ -1508,8 +1507,6 @@ BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozill
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['fedora-b2g']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['ash']['platforms']['ics_armv7a_gecko']['enable_debug_unittests'] = True
-BRANCHES['birch']['branch_name'] = "Birch"
-BRANCHES['birch']['repo_path'] = "projects/birch"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
