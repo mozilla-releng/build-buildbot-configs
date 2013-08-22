@@ -45,10 +45,12 @@ PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX M
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-PLATFORMS['win32']['slave_platforms'] = ['xp', 'win7']
+PLATFORMS['win32']['slave_platforms'] = ['xp', 'xp-ix', 'win7', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp'] = {'name': builder_prefix + "Rev3 WINNT 5.1"}
+PLATFORMS['win32']['xp-ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
 PLATFORMS['win32']['win7'] = {'name': builder_prefix + "Rev3 WINNT 6.1"}
+PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
@@ -159,7 +161,15 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
+        'xp-ix': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
         'win7': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
+        'win7-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
@@ -276,21 +286,42 @@ BRANCHES['comm-central']['pgo_strategy'] = None
 ######## comm-release
 BRANCHES['comm-release']['pgo_strategy'] = None
 BRANCHES['comm-release']['repo_path'] = "releases/comm-release"
+del BRANCHES['comm-release']['platforms']['win32']['xp-ix']
+del BRANCHES['comm-release']['platforms']['win32']['win7-ix']
 
 ######## comm-beta
 BRANCHES['comm-beta']['pgo_strategy'] = None
 BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
+del BRANCHES['comm-beta']['platforms']['win32']['xp-ix']
+del BRANCHES['comm-beta']['platforms']['win32']['win7-ix']
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
+del BRANCHES['comm-aurora']['platforms']['win32']['xp-ix']
+del BRANCHES['comm-aurora']['platforms']['win32']['win7-ix']
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['pgo_strategy'] = None
 BRANCHES['comm-esr17']['repo_path'] = "releases/comm-esr17"
+del BRANCHES['comm-esr17']['platforms']['win32']['xp-ix']
+del BRANCHES['comm-esr17']['platforms']['win32']['win7-ix']
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
+
+WIN32_REV3_BRANCHES = ("comm-release", "comm-esr17", "comm-beta",
+                       "comm-aurora")
+
+# Disable Rev3 winxp and win7 machines for all branches apart from try and comm-central
+# for now.
+for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
+    if 'win32' not in BRANCHES[branch]['platforms']:
+        continue
+
+    del BRANCHES[branch]['platforms']['win32']['xp']
+    del BRANCHES[branch]['platforms']['win32']['win7']
+
 
 if __name__ == "__main__":
     import sys
