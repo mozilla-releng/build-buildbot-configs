@@ -27,7 +27,7 @@ TRY_MAC64      = []
 TRY_WIN32_IXS  = []
 TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(25,64) if x not in [42,43]]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)]
-TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(51, 74)]
+TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(49, 74)]
 TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,41)]
 
 TRY_SLAVES = {
