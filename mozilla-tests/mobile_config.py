@@ -908,7 +908,7 @@ for branch in BRANCHES:
 # Panda XPCShell on try only
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch in ('try', ):
+    if branch in ('try', 'mozilla-central', 'mozilla-inbound', 'fx-team', 'b2g-inbound' ):
         continue
 
     for platform in BRANCHES[branch]['platforms']:

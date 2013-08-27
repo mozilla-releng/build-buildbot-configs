@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from config import BRANCH_UNITTEST_VARS
+from config import BRANCH_UNITTEST_VARS, MOZHARNESS_REBOOT_CMD
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import thunderbird_localconfig
@@ -54,17 +54,33 @@ PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora']
+PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': builder_prefix + "Rev3 Fedora 12"}
+PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['stage_product'] = 'thunderbird'
 PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['linux']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
+    'config_file': 'talos/linux_config.py',
+}
 
-PLATFORMS['linux64']['slave_platforms'] = ['fedora64']
+PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': builder_prefix + "Rev3 Fedora 12x64"}
+PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'thunderbird'
 PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
+PLATFORMS['linux64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
+}
 
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
@@ -133,6 +149,10 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
+        'ubuntu32_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
     },
     'linux64': {
         'product_name': 'thunderbird',
@@ -143,6 +163,10 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'fedora64': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+        },
+        'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
@@ -286,42 +310,61 @@ BRANCHES['comm-central']['pgo_strategy'] = None
 ######## comm-release
 BRANCHES['comm-release']['pgo_strategy'] = None
 BRANCHES['comm-release']['repo_path'] = "releases/comm-release"
+# MERGE DAY: remove when Thunderbird 24 merges in
 del BRANCHES['comm-release']['platforms']['win32']['xp-ix']
 del BRANCHES['comm-release']['platforms']['win32']['win7-ix']
+del BRANCHES['comm-release']['platforms']['linux']['ubuntu32_vm']
+del BRANCHES['comm-release']['platforms']['linux64']['ubuntu64_vm']
+BRANCHES['comm-release']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
+BRANCHES['comm-release']['platforms']['linux']['slave_platforms'] = ['fedora']
+BRANCHES['comm-release']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
 ######## comm-beta
 BRANCHES['comm-beta']['pgo_strategy'] = None
 BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
-del BRANCHES['comm-beta']['platforms']['win32']['xp-ix']
-del BRANCHES['comm-beta']['platforms']['win32']['win7-ix']
+BRANCHES['comm-beta']['platforms']['linux']['slave_platforms'] = ['fedora']
+BRANCHES['comm-beta']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
-del BRANCHES['comm-aurora']['platforms']['win32']['xp-ix']
-del BRANCHES['comm-aurora']['platforms']['win32']['win7-ix']
+BRANCHES['comm-aurora']['platforms']['linux']['slave_platforms'] = ['fedora']
+BRANCHES['comm-aurora']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['pgo_strategy'] = None
 BRANCHES['comm-esr17']['repo_path'] = "releases/comm-esr17"
 del BRANCHES['comm-esr17']['platforms']['win32']['xp-ix']
 del BRANCHES['comm-esr17']['platforms']['win32']['win7-ix']
+del BRANCHES['comm-esr17']['platforms']['linux']['ubuntu32_vm']
+del BRANCHES['comm-esr17']['platforms']['linux64']['ubuntu64_vm']
+BRANCHES['comm-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
+BRANCHES['comm-esr17']['platforms']['linux']['slave_platforms'] = ['fedora']
+BRANCHES['comm-esr17']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
 
-WIN32_REV3_BRANCHES = ("comm-release", "comm-esr17", "comm-beta",
-                       "comm-aurora")
+# MERGE DAY: Remove comm-release when TB 24 merges in.
+WIN32_REV3_BRANCHES = ("comm-release", "comm-esr17")
+FEDORA_REV3_BRANCHES = WIN32_REV3_BRANCHES
 
 # Disable Rev3 winxp and win7 machines for all branches apart from try and comm-central
 # for now.
 for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
     if 'win32' not in BRANCHES[branch]['platforms']:
         continue
-
     del BRANCHES[branch]['platforms']['win32']['xp']
     del BRANCHES[branch]['platforms']['win32']['win7']
+    BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 
+for branch in set(BRANCHES.keys()) - set(FEDORA_REV3_BRANCHES):
+    if 'linux' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux']['fedora']
+        BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['ubuntu32_vm']
+    if 'linux64' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux64']['fedora64']
+        BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['ubuntu64_vm']
 
 if __name__ == "__main__":
     import sys
