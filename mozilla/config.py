@@ -58,8 +58,8 @@ GLOBAL_VARS = {
         'linux-debug': {},
         'linux64-debug': {},
         'linux64-asan': {},
-        'linux64-dbg-asan': {},
-        'linux64-dbg-st-an': {},
+        'linux64-asan-debug': {},
+        'linux64-st-an-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'android': {},
@@ -364,9 +364,10 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
         },
-        'linux64-dbg-asan': {
+        'linux64-asan-debug': {
+            'enable_nightly': True,
             'product_name': 'firefox',
-            'unittest_platform': 'linux64-dbg-asan',
+            'unittest_platform': 'linux64-asan-debug',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s debug asan',
@@ -382,7 +383,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
-            'stage_platform': 'linux64-dbg-asan',
+            'stage_platform': 'linux64-asan-debug',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -395,7 +396,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-dbg-asan',
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan-debug',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
@@ -442,9 +443,10 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
         },
-        'linux64-dbg-st-an': {
+        'linux64-st-an-debug': {
+            'enable_nightly': False,
             'product_name': 'firefox',
-            'unittest_platform': 'linux64-dbg-st-an',
+            'unittest_platform': 'linux64-st-an-debug',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s debug static analysis',
@@ -460,7 +462,7 @@ PLATFORM_VARS = {
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
-            'stage_platform': 'linux64-dbg-st-an',
+            'stage_platform': 'linux64-st-an-debug',
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
@@ -473,7 +475,7 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-dbg-st-an',
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-st-an-debug',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
@@ -485,7 +487,6 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'enable_build_analysis': False,
-            'try_by_default': False,
             'create_snippet': False,
             'create_partial': False,
             'test_pretty_names': False,
@@ -1899,7 +1900,7 @@ BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-dbg-st-an']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
@@ -2053,7 +2054,7 @@ for b in BRANCHES.keys():
 # ASan builds are only on mozilla-central for now
 for b in BRANCHES:
     if b not in ('mozilla-central',):
-        for p in 'linux64-asan', 'linux64-dbg-asan':
+        for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
 
@@ -2119,7 +2120,7 @@ for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
-    if 'linux64-dbg-st-an' in BRANCHES[branch]['platforms']:
+    if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-dbg-st-an']
 
 # B2G's INBOUND
