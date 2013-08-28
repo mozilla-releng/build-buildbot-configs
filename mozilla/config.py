@@ -2121,7 +2121,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64-dbg-st-an']
+        del BRANCHES[branch]['platforms']['linux64-st-an-debug']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):
