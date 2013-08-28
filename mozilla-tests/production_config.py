@@ -18,7 +18,7 @@ SLAVES = {
         for x in range(31,371) \
         if x not in range(122,129) + [30,33,34,43,44,49,65,69,77,131,137,143,147,\
             153,156,161,175,176,180,184,185,186,193,197,198,202,203,204,205,222,224,\
-            226,241,268,275,289,291,292,301,349]]), # decommissioned tegras
+            226,241,268,275,289,291,292,301,349,368]]), # decommissioned tegras
     'panda_android-nomozpool': dict(
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
             for x in range(270,306) + range(320,729)]
