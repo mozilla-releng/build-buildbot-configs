@@ -1900,6 +1900,7 @@ BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
@@ -2051,9 +2052,9 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# ASan builds are only on mozilla-central for now
+# ASan builds are only on mozilla-central, cedar and try for now
 for b in BRANCHES:
-    if b not in ('mozilla-central',):
+    if b not in ('mozilla-central', 'cedar', 'try'):
         for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
