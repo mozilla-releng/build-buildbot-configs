@@ -6,7 +6,8 @@ import b2g_project_branches
 reload(b2g_project_branches)
 from b2g_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
-# Note that b2g_localconfig.py is symlinked to one of: {production,staging,preproduction}_b2g_config.py
+# Note that b2g_localconfig.py is symlinked to one of:
+# {production,staging,preproduction}_b2g_config.py
 import b2g_localconfig
 reload(b2g_localconfig)
 
@@ -17,8 +18,6 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 GLOBAL_VARS.update({
     'platforms': {
-        'ics_armv7a_gecko': {},
-        'ics_armv7a_gecko-debug': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
         'macosx64_gecko': {},
@@ -38,6 +37,8 @@ GLOBAL_VARS.update({
         'helix': {},
         'emulator': {},
         'emulator-debug': {},
+        'emulator-jb': {},
+        'emulator-jb-debug': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -58,124 +59,6 @@ gaia_repo = 'integration/gaia-central'
 gaia_revision_file = 'b2g/config/gaia.json'
 
 PLATFORM_VARS = {
-    'ics_armv7a_gecko': {
-        'product_name': 'b2g',
-        'unittest_platform': 'ics_armv7a_gecko-opt',
-        'app_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
-        'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/nightly',
-        'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
-        'profiled_build': False,
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 13,
-        'update_platform': None,
-        'upload_symbols': True,
-        'create_snippet': False,
-        'create_partial': False,
-        'enable_xulrunner': False,
-        'slaves': SLAVES['mock'],
-        'platform_objdir': 'obj-b2g',
-        'stage_product': 'b2g',
-        'enable_packaging': True,
-        'uploadPackages': True,
-        'packageTests': True,
-        'disable_symbols': False,
-        'unittest_masters': GLOBAL_VARS['unittest_masters'],
-        'stage_platform': 'ics_armv7a_gecko',
-        'enable_ccache': True,
-        'enable_shared_checkouts': True,
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
-            'CCACHE_DIR': '/builds/ccache',
-            'CCACHE_COMPRESS': '1',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-            'GONK_PRODUCT': 'generic',
-            'TOOLCHAIN_HOST': 'linux-x86',
-            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
-        },
-        'enable_opt_unittests': False,
-        'enable_checktests': False,
-        'enable_build_analysis': False,
-        'test_pretty_names': False,
-        'l10n_check_test': False,
-        # MOCK SPECIFIC OPTIONS BELOW
-        'use_mock': True,
-        'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                          'glibc-static', 'libstdc++-static'],
-        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
-        'mock_copyin_files': [
-            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-        ],
-    },
-    'ics_armv7a_gecko-debug': {
-        'enable_nightly': False,
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
-        'src_mozconfig': 'b2g/config/mozconfigs/ics_armv7a_gecko/debug',
-        'src_xulrunner_mozconfig': 'NO-B2G-XULRUNNER',
-        'profiled_build': False,
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 13,
-        'update_platform': None,
-        'upload_symbols': True,
-        'create_snippet': False,
-        'create_partial': False,
-        'enable_xulrunner': False,
-        'slaves': SLAVES['mock'],
-        'platform_objdir': 'obj-b2g',
-        'disable_symbols': False,
-        'unittest_masters': GLOBAL_VARS['unittest_masters'],
-        'stage_product': 'b2g',
-        'enable_packaging': True,
-        'uploadPackages': True,
-        'packageTests': True,
-        'stage_platform': 'ics_armv7a_gecko-debug',
-        'enable_ccache': True,
-        'enable_shared_checkouts': True,
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
-            'CCACHE_DIR': '/builds/ccache',
-            'CCACHE_COMPRESS': '1',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-            'GONK_PRODUCT': 'generic',
-            'TOOLCHAIN_HOST': 'linux-x86',
-            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
-        },
-        'enable_opt_unittests': False,
-        'enable_checktests': False,
-        'enable_build_analysis': False,
-        'test_pretty_names': False,
-        'l10n_check_test': False,
-        # MOCK SPECIFIC OPTIONS BELOW
-        'use_mock': True,
-        'mock_target': 'mozilla-centos6-i386',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                          'glibc-static', 'libstdc++-static'],
-        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/ics.manifest',
-        'mock_copyin_files': [
-            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-        ],
-    },
     'linux32_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -214,6 +97,7 @@ PLATFORM_VARS = {
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
             'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -287,6 +171,7 @@ PLATFORM_VARS = {
             'CCACHE_UMASK': '002',
             'LC_ALL': 'C',
             'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -357,6 +242,7 @@ PLATFORM_VARS = {
             'CHOWN_REVERT': '~/bin/chown_revert',
             'LC_ALL': 'C',
             'PATH': '/tools/python/bin:${PATH}',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -409,6 +295,7 @@ PLATFORM_VARS = {
             'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -467,6 +354,7 @@ PLATFORM_VARS = {
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -542,6 +430,7 @@ PLATFORM_VARS = {
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -615,6 +504,7 @@ PLATFORM_VARS = {
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -669,6 +559,7 @@ PLATFORM_VARS = {
             # Necessary to avoid conflicting with the dev-focused builds'
             # filenames
             'MOZ_PKG_SPECIAL': 'localizer',
+            'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
         'enable_checktests': True,
@@ -855,6 +746,38 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
+    'emulator-jb': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
+                           '--b2g-config-dir', 'emulator-jb',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
+    'emulator-jb-debug': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
+                           '--b2g-config-dir', 'emulator-jb', '--debug',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
 }
 
 
@@ -865,8 +788,6 @@ BRANCHES = {
     },
     'mozilla-b2g18': {
         # b2g explicitly
-        'ics_armv7a_gecko': {},
-        'ics_armv7a_gecko-debug': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
         'macosx64_gecko': {},
@@ -884,8 +805,6 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_0_1': {
         # b2g explicitly
-        'ics_armv7a_gecko': {},
-        'ics_armv7a_gecko-debug': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
         'macosx64_gecko': {},
@@ -903,8 +822,6 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_1_0_hd': {
         # b2g explicitly
-        'ics_armv7a_gecko': {},
-        'ics_armv7a_gecko-debug': {},
         'linux32_gecko': {},
         'linux64_gecko': {},
         'macosx64_gecko': {},
@@ -1180,10 +1097,6 @@ BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
-BRANCHES['try']['platforms']['ics_armv7a_gecko']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['ics_armv7a_gecko']['upload_symbols'] = False
-BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['ics_armv7a_gecko-debug']['upload_symbols'] = False
 BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
@@ -1194,6 +1107,10 @@ BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
 
 # TODO: move the MERGE DAY items below to above the BRANCHES['mozilla-central']
@@ -1251,12 +1168,12 @@ for branch in BRANCHES:
             'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
 
-# MERGE DAY: get rid of ics_armv7a_gecko opt+debug on non-b2g18 level repos
+# MERGE DAY: emulator-jb* is only for m-c, b2g-inbound (birch), m-i
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',):
-        for platform in ('ics_armv7a_gecko', 'ics_armv7a_gecko-debug'):
-            if platform in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][platform]
+    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-inbound'):
+        for p in BRANCHES[branch]['platforms'].keys():
+            if p.startswith("emulator-jb"):
+                del BRANCHES[branch]['platforms'][p]
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list if gecko 24 merges into them

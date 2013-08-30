@@ -79,6 +79,7 @@ PLATFORMS = {
     'win32': {},
     'linux': {},
     'linux64': {},
+    'linux64-asan': {},
     'win64': {},
 }
 
@@ -147,6 +148,17 @@ PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['ubuntu64_hw'] = {'name': 'Ubuntu HW 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
+}
+
+PLATFORMS['linux64-asan']['slave_platforms'] = ['ubuntu64-asan_vm']
+PLATFORMS['linux64-asan']['ubuntu64-asan_vm'] = {'name': 'Ubuntu ASAN VM 12.04 x64'}
+PLATFORMS['linux64-asan']['stage_product'] = 'firefox'
+PLATFORMS['linux64-asan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
@@ -227,6 +239,7 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'linux': {},
         'linux64': {},
+        'linux64-asan': {},
         'macosx64': {},
         'win32': {},
         'win64': {},
@@ -640,6 +653,69 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+            },
+        },
+    },
+    'linux64-asan': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu64-asan_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -1669,6 +1745,13 @@ WIN64_TESTING_BRANCHES = ('date', 'try')
 for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
+
+# Enable ASAN tests on cedar and try for now
+ASAN_TESTING_BRANCHES = ('cedar', 'try')
+for branch in set(BRANCHES.keys()) - set(ASAN_TESTING_BRANCHES):
+    if 'linux64-asan' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux64-asan']
+
 
 if __name__ == "__main__":
     import sys

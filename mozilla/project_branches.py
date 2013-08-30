@@ -122,6 +122,7 @@ PROJECT_BRANCHES = {
         'mobile_tinderbox_tree': 'UX',
         'packaged_unittest_tinderbox_tree': 'UX',
         'enabled_products': ['firefox'],
+        'enable_weekly_bundle': True,
         'mozconfig_dir': 'ux',
         'enable_nightly': True,
         'create_snippet': True,
@@ -200,6 +201,14 @@ PROJECT_BRANCHES = {
                 'create_snippet': False,
             },
             'linux64': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'linux64-asan': {
+                'enable_nightly': False,
+                'create_snippet': False,
+            },
+            'linux64-asan-debug': {
                 'enable_nightly': False,
                 'create_snippet': False,
             },

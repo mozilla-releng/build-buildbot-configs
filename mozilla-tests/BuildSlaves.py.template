@@ -9,6 +9,7 @@ SlavePasswords = {
     "ubuntu32_vm-b2gdt": "pass",
     "ubuntu32_hw": "pass",
     "ubuntu64_vm": "pass",
+    "ubuntu64-asan_vm": "pass",
     "ubuntu64_vm-b2g": "pass",
     "ubuntu64_vm-b2g-emulator": "pass",
     "ubuntu64_vm-b2gdt": "pass",
