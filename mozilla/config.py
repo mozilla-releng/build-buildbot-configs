@@ -2052,9 +2052,9 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# ASan builds are only on mozilla-central, cedar and try for now
+# ASan builds are only on mozilla-central and try
 for b in BRANCHES:
-    if b not in ('mozilla-central', 'cedar', 'try'):
+    if b not in ('mozilla-central', 'try'):
         for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]

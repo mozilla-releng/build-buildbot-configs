@@ -82,7 +82,7 @@ releaseConfig['enableUnittests']      = False
 # L10n configuration
 releaseConfig['l10nPlatforms']       = ('android',)
 releaseConfig['l10nNotifyPlatforms'] = releaseConfig['l10nPlatforms']
-releaseConfig['l10nChunks']          = 2
+releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
 

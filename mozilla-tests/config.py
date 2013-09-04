@@ -1746,8 +1746,8 @@ for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
 
-# Enable ASAN tests on cedar and try for now
-ASAN_TESTING_BRANCHES = ('cedar', 'try')
+# Enable ASAN tests on mozilla-central and try only
+ASAN_TESTING_BRANCHES = ('mozilla-central', 'try')
 for branch in set(BRANCHES.keys()) - set(ASAN_TESTING_BRANCHES):
     if 'linux64-asan' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-asan']
