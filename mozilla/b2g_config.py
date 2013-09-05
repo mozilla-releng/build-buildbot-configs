@@ -1149,9 +1149,10 @@ for branch in BRANCHES:
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
 
-# MERGE DAY: hamachi_eng is only for b2g18_v1_0_1
+# MERGE DAY: hamachi_eng is only for m-c, b2g-inbound, b2g18, b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18_v1_0_1',) and \
+    if branch not in ('mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi_eng']
 
