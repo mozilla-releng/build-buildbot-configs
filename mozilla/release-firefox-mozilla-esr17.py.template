@@ -104,7 +104,7 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['useBetaChannel']      = 1
-releaseConfig['updateVerifyChunks']  = 4
+releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozEsr17-firefox-linux.cfg',
     'linux64':  'mozEsr17-firefox-linux64.cfg',
