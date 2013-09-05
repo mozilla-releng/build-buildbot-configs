@@ -181,6 +181,9 @@ PROJECT_BRANCHES = {
             'android': {
                 'slave_platforms': ['panda_android', 'panda_android-nomozpool'],
             },
+            'android-x86': {
+                'enable_opt_unittests': True,
+            },
         },
     },
     'birch': {},
@@ -236,6 +239,9 @@ PROJECT_BRANCHES = {
                 'enable_nightly': False,
                 'create_snippet': False,
             },
+            'android-x86': {
+                'enable_opt_unittests': True,
+            },
         },
         'mobile_platforms': {
             'android': {
@@ -247,6 +253,9 @@ PROJECT_BRANCHES = {
                 'enable_nightly': False,
                 'create_snippet': False,
                 'create_mobile_snippet': False,
+            },
+            'android-x86': {
+                'enable_opt_unittests': True,
             },
         },
     },
