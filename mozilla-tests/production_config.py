@@ -14,8 +14,8 @@ SLAVES = {
         if x not in [46, 81, 84]]), # bug 824754, bug 729090, bug 795558
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,91) \
         if x not in [58, 81, 83]]), # bug 730545, bug 729090 (x2)
-    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90)] \
-        if x not in [87]]) # bug 786994
+    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
+        if x not in [87]]), # bug 786994
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
         for x in range(31,371) \
         if x not in range(122,129) + [30,33,34,43,44,49,65,69,77,131,137,143,147,\
