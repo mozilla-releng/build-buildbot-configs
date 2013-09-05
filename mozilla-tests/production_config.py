@@ -1,7 +1,8 @@
 SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(11,103) \
-        if x not in [18, 59]]), # bug 731793, bug 779574
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (40,72)]),
+        if x not in [01, 02, 18, 59, 70]]), # bug 799528, bug 731300, bug 731793, bug 779574, bug 740505
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (40,72) \
+        if x not in [32]]), # bug 785862
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,142) \
         if x not in [4, 45, 58, 59, 116, 119]]), # bug 856604, 661377, 780515, 753357, 863407
     'xp-ix': dict([("t-xp32-ix-%03i" % x, {}) for x in range(1,131)]),
@@ -13,7 +14,8 @@ SLAVES = {
         if x not in [46, 81, 84]]), # bug 824754, bug 729090, bug 795558
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,91) \
         if x not in [58, 81, 83]]), # bug 730545, bug 729090 (x2)
-    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90)]),
+    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
+        if x not in [87]]), # bug 786994
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
         for x in range(31,371) \
         if x not in range(122,129) + [30,33,34,43,44,49,65,69,77,131,137,143,147,\

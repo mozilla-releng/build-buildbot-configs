@@ -1168,9 +1168,9 @@ for branch in BRANCHES:
             'unagi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['unagi_eng']
 
-# MERGE DAY: emulator-jb* is only for m-c, b2g-inbound (birch), m-i
+# emulator-jb* is only for m-c, integration branches, and try
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-inbound'):
+    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-inbound', 'fx-team', 'try'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
