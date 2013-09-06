@@ -2052,9 +2052,12 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# ASan builds are only on mozilla-central and try
+# MERGE DAY
+# ASAN builds/tests should ride the trains for gecko 26
 for b in BRANCHES:
-    if b not in ('mozilla-central', 'try'):
+    if b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+             'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
+             'mozilla-b2g18_v1_1_0_hd'):
         for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]

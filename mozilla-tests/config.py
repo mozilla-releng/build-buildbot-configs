@@ -1746,9 +1746,13 @@ for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
 
-# Enable ASAN tests on mozilla-central and try only
-ASAN_TESTING_BRANCHES = ('mozilla-central', 'try')
-for branch in set(BRANCHES.keys()) - set(ASAN_TESTING_BRANCHES):
+# MERGE DAY
+# ASAN builds/tests should ride the trains for gecko 26
+ASAN_NON_TESTING_BRANCHES = ('mozilla-aurora', 'mozilla-beta',
+                             'mozilla-release', 'mozilla-esr17',
+                             'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
+                             'mozilla-b2g18_v1_1_0_hd')
+for branch in ASAN_NON_TESTING_BRANCHES:
     if 'linux64-asan' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-asan']
 
