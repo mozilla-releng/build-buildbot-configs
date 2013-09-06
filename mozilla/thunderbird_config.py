@@ -615,17 +615,6 @@ BRANCHES = {
     'comm-beta': {
     },
     'comm-release': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
     },
     'comm-esr17': {
         'lock_platforms': True,
@@ -748,19 +737,20 @@ BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nig
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 
 ######## comm-release
-BRANCHES['comm-release']['repo_path'] = 'releases/comm-esr17'
-BRANCHES['comm-release']['moz_repo_path'] = 'releases/mozilla-esr17'
+BRANCHES['comm-release']['repo_path'] = 'releases/comm-esr24'
+BRANCHES['comm-release']['moz_repo_path'] = 'releases/mozilla-esr24'
 BRANCHES['comm-release']['update_channel'] = 'release'
 BRANCHES['comm-release']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-release']['skip_blank_repos'] = True
 BRANCHES['comm-release']['call_client_py'] = True
-BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-esr17'
+BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-esr24'
 BRANCHES['comm-release']['enable_weekly_bundle'] = True
 BRANCHES['comm-release']['start_hour'] = [3]
 BRANCHES['comm-release']['start_minute'] = [2]
 BRANCHES['comm-release']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-release']['enable_mac_a11y'] = True
+BRANCHES['comm-release']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = False
@@ -779,26 +769,6 @@ BRANCHES['comm-release']['enable_nightly'] = False
 BRANCHES['comm-release']['enable_blocklist_update'] = False
 BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-release']['enable_valgrind'] = False
-# mock disabled block start
-# linux platforms
-BRANCHES['comm-release']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-release']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-release']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['comm-release']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['comm-release']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-release']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-release']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-release']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-release']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-release']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-release']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
-BRANCHES['comm-release']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = '/home/cltbld/.ssh/tbirdbld_dsa'
-del BRANCHES['comm-release']['platforms']['linux']['env']['PATH']
-del BRANCHES['comm-release']['platforms']['linux64']['env']['PATH']
-del BRANCHES['comm-release']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['comm-release']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
-BRANCHES['comm-release']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'
@@ -893,7 +863,6 @@ BRANCHES['comm-beta']['enUS_binaryURL'] = \
 BRANCHES['comm-beta']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-beta']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-beta' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-beta']['enable_multi_locale'] = True
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
 BRANCHES['comm-beta']['enable_nightly'] = False
 # If True, a complete update snippet for this branch will be generated and
@@ -1027,7 +996,7 @@ for branch in branches:
 
 # MERGE DAY
 # When Thunderbird 18 merges into these branches, they can be removed from the list
-for b in ('comm-esr17', 'comm-release'):
+for b in ['comm-esr17']:
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
         if p not in BRANCHES[b]['platforms']:
@@ -1036,7 +1005,7 @@ for b in ('comm-esr17', 'comm-release'):
 
 # MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
 # MERGE DAY - when FF21 reaches them remove them from this list
-for b in ['comm-release', 'comm-esr17']:
+for b in ['comm-esr17']:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
@@ -1044,7 +1013,7 @@ for b in ['comm-release', 'comm-esr17']:
 
 # MERGE DAY building 32-bit linux in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for branch in ("comm-release", "comm-esr17"):
+for branch in ["comm-esr17"]:
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
             'mozilla-centos6-i386'
@@ -1071,7 +1040,7 @@ for branch in ("comm-release", "comm-esr17"):
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("comm-release", "comm-esr17"):
+for b in ["comm-esr17"]:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \

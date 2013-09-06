@@ -995,9 +995,8 @@ BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_revision_f
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = 'releases/mozilla-b2g18_v1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_0_1'
 BRANCHES['mozilla-b2g18_v1_0_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g18_v1_0_1']['enable_nightly_lastgood'] = False
+# Build only on changes in gecko, ignoring gaia, manifests, etc
+BRANCHES['mozilla-b2g18_v1_0_1']['enable_nightly_lastgood'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [32]
@@ -1150,9 +1149,10 @@ for branch in BRANCHES:
             'hamachi' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi']
 
-# MERGE DAY: hamachi_eng is only for b2g18_v1_0_1
+# MERGE DAY: hamachi_eng is only for m-c, b2g-inbound, b2g18, b2g18_v1_0_1
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18_v1_0_1',) and \
+    if branch not in ('mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi_eng']
 

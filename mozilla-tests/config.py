@@ -37,6 +37,15 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-esr24': {
+        'platforms': {
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'platforms': {
@@ -1483,6 +1492,11 @@ del BRANCHES['mozilla-esr17']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-esr17']['platforms']['win32']['xp-ix']
 BRANCHES['mozilla-esr17']['platforms']['win32']['talos_slave_platforms'] = ['xp', 'win7']
 
+######### mozilla-esr24
+BRANCHES['mozilla-esr24']['release_tests'] = 1
+BRANCHES['mozilla-esr24']['repo_path'] = "releases/mozilla-esr24"
+BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
@@ -1621,7 +1635,8 @@ BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METR
 for branch in BRANCHES.keys():
     if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
                       'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
-                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                      'mozilla-esr24'):
         if 'win32' in BRANCHES[branch]['platforms'] and \
                 'win8' in BRANCHES[branch]['platforms']['win32']:
             BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
@@ -1698,7 +1713,7 @@ for branch in BRANCHES:
                                 pass
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-NON_UBUNTU_TALOS_BRANCHES = ("mozilla-esr17", "mozilla-b2g18")
+NON_UBUNTU_TALOS_BRANCHES = ["mozilla-esr17"]
 for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
     for s in SUITES.iterkeys():
         if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
@@ -1746,9 +1761,13 @@ for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
 
-# Enable ASAN tests on mozilla-central and try only
-ASAN_TESTING_BRANCHES = ('mozilla-central', 'try')
-for branch in set(BRANCHES.keys()) - set(ASAN_TESTING_BRANCHES):
+# MERGE DAY
+# ASAN builds/tests should ride the trains for gecko 26
+ASAN_NON_TESTING_BRANCHES = ('mozilla-aurora', 'mozilla-beta',
+                             'mozilla-release', 'mozilla-esr17',
+                             'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
+                             'mozilla-b2g18_v1_1_0_hd')
+for branch in ASAN_NON_TESTING_BRANCHES:
     if 'linux64-asan' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-asan']
 

@@ -1382,6 +1382,20 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'mozilla-esr24': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'mozilla-b2g18': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1769,6 +1783,37 @@ del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
 # mock disabled block stop
 BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
+######## mozilla-esr24
+BRANCHES['mozilla-esr24']['repo_path'] = 'releases/mozilla-esr24'
+BRANCHES['mozilla-esr24']['update_channel'] = 'nightly-esr24'
+BRANCHES['mozilla-esr24']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr24']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-esr24']['start_hour'] = [0]
+BRANCHES['mozilla-esr24']['start_minute'] = [05]
+BRANCHES['mozilla-esr24']['enable_xulrunner'] = False
+BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr24']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr24']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-esr24']['enable_l10n'] = False
+BRANCHES['mozilla-esr24']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-esr24']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr24']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-esr24']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr24']['l10n_tree'] = 'fxesr24'
+BRANCHES['mozilla-esr24']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr24'
+BRANCHES['mozilla-esr24']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-esr24']['enable_nightly'] = True
+BRANCHES['mozilla-esr24']['create_snippet'] = True
+BRANCHES['mozilla-esr24']['create_partial'] = True
+BRANCHES['mozilla-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
+BRANCHES['mozilla-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
+BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr24']['enable_valgrind'] = False
+BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
+
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['update_channel'] = 'nightly-b2g18'
@@ -2052,9 +2097,12 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# ASan builds are only on mozilla-central and try
+# MERGE DAY
+# ASAN builds/tests should ride the trains for gecko 26
 for b in BRANCHES:
-    if b not in ('mozilla-central', 'try'):
+    if b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+             'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
+             'mozilla-b2g18_v1_1_0_hd'):
         for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
@@ -2120,7 +2168,7 @@ for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
-               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
+               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17", "mozilla-esr24"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
 
