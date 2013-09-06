@@ -30,6 +30,7 @@ else:
         'mozilla-aurora',
         'mozilla-release',
         'mozilla-esr17',
+        'mozilla-esr24',
         'mozilla-b2g18',
         'mozilla-b2g18_v1_0_1',
         'mozilla-b2g18_v1_1_0_hd',

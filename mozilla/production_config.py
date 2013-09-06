@@ -94,6 +94,11 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr17',
         'mobile_tinderbox_tree': 'Mozilla-Esr17',
     },
+    'mozilla-esr24': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-Esr24',
+        'tinderbox_tree': 'Mozilla-Esr24',
+        'mobile_tinderbox_tree': 'Mozilla-Esr24',
+    },
     'mozilla-b2g18': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18',
         'tinderbox_tree': 'Mozilla-B2g18',

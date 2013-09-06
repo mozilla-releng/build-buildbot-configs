@@ -23,33 +23,25 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '{{ version }}'
-releaseConfig['appVersion']          = '{{ appVersion }}'
+releaseConfig['version']             = '24.0esr'
+releaseConfig['appVersion']          = '24.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = {{ buildNumber }}
-releaseConfig['baseTag']             = '{{ baseTag }}'
-releaseConfig['partialUpdates']      = {
-{% for version, partial in partials.items() %}
-    '{{ version }}': {
-        'appVersion': '{{ partial['appVersion'] }}',
-        'buildNumber': {{ partial['buildNumber'] }},
-        'baseTag': '{{ partial['baseTag'] }}',
-    },
-{% endfor %}
-}
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_24_0esr'
+releaseConfig['partialUpdates']      = {}  # TODO for 24.0.1esr
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '{{ version }}pre'
-releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
+releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 ## Staging repository path
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-esr17',
-        'clonePath': 'releases/mozilla-esr17',
-        'path': '{{ branch }}',
-        'revision': '{{ mozillaRevision }}',
-        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
+        'name': 'mozilla-esr24',
+        'clonePath': 'releases/mozilla-esr24',
+        'path': 'users/stage-ffxbld/mozilla-esr24',
+        'revision': 'default',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -70,7 +62,7 @@ releaseConfig['sourceRepositories']  = {
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr17'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr24'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_0_9_5',
@@ -80,26 +72,27 @@ releaseConfig['otherReposToTag']     = {
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr17-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozEsr24-branch-patcher2.cfg'  # TODO for 17.0.1esr
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -110,13 +103,7 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr17-firefox-linux.cfg',
-    'linux64':  'mozEsr17-firefox-linux64.cfg',
-    'macosx64': 'mozEsr17-firefox-mac64.cfg',
-    'win32':  'mozEsr17-firefox-win32.cfg'
-}
+releaseConfig['verifyConfigs']       = {}  # TODO for 24.0.1esr
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -139,5 +126,6 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
-releaseConfig['use_mock'] = False
-releaseConfig['ftpSymlinkName'] = 'latest-17.0esr'
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('linux','linux64')
+releaseConfig['ftpSymlinkName'] = 'latest-esr'
