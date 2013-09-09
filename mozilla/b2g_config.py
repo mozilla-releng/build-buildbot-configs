@@ -937,6 +937,8 @@ BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 
 ######## mozilla-b2g18
