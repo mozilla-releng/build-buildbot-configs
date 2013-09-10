@@ -614,8 +614,6 @@ BRANCHES = {
     },
     'comm-beta': {
     },
-    'comm-release': {
-    },
     'comm-esr17': {
         'lock_platforms': True,
         'platforms': {
@@ -628,6 +626,8 @@ BRANCHES = {
             'macosx64-debug': {},
             'win32-debug': {},
         },
+    },
+    'comm-esr24': {
     },
     'try-comm-central': {
     },
@@ -736,39 +736,39 @@ BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'n
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
 
-######## comm-release
-BRANCHES['comm-release']['repo_path'] = 'releases/comm-esr24'
-BRANCHES['comm-release']['moz_repo_path'] = 'releases/mozilla-esr24'
-BRANCHES['comm-release']['update_channel'] = 'release'
-BRANCHES['comm-release']['mozilla_dir'] = 'mozilla'
-BRANCHES['comm-release']['skip_blank_repos'] = True
-BRANCHES['comm-release']['call_client_py'] = True
-BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-esr24'
-BRANCHES['comm-release']['enable_weekly_bundle'] = True
-BRANCHES['comm-release']['start_hour'] = [3]
-BRANCHES['comm-release']['start_minute'] = [2]
-BRANCHES['comm-release']['enable_xulrunner'] = False
+######## comm-esr24
+BRANCHES['comm-esr24']['repo_path'] = 'releases/comm-esr24'
+BRANCHES['comm-esr24']['moz_repo_path'] = 'releases/mozilla-esr24'
+BRANCHES['comm-esr24']['update_channel'] = 'release'
+BRANCHES['comm-esr24']['mozilla_dir'] = 'mozilla'
+BRANCHES['comm-esr24']['skip_blank_repos'] = True
+BRANCHES['comm-esr24']['call_client_py'] = True
+BRANCHES['comm-esr24']['l10n_repo_path'] = 'releases/l10n/mozilla-esr24'
+BRANCHES['comm-esr24']['enable_weekly_bundle'] = True
+BRANCHES['comm-esr24']['start_hour'] = [3]
+BRANCHES['comm-esr24']['start_minute'] = [2]
+BRANCHES['comm-esr24']['enable_xulrunner'] = False
 # Enable unit tests
-BRANCHES['comm-release']['enable_mac_a11y'] = True
-BRANCHES['comm-release']['unittest_build_space'] = 6
+BRANCHES['comm-esr24']['enable_mac_a11y'] = True
+BRANCHES['comm-esr24']['unittest_build_space'] = 6
 # L10n configuration
-BRANCHES['comm-release']['enable_l10n'] = False
-BRANCHES['comm-release']['enable_l10n_onchange'] = False
-BRANCHES['comm-release']['l10nNightlyUpdate'] = False
-BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                              'macosx64']
-BRANCHES['comm-release']['l10nDatedDirs'] = True
-BRANCHES['comm-release']['l10n_tree'] = 'tbrel'
-BRANCHES['comm-release']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-release'
-BRANCHES['comm-release']['allLocalesFile'] = 'mail/locales/all-locales'
-BRANCHES['comm-release']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-release' % (GLOBAL_VARS['hgurl'])
+BRANCHES['comm-esr24']['enable_l10n'] = False
+BRANCHES['comm-esr24']['enable_l10n_onchange'] = False
+BRANCHES['comm-esr24']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr24']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                            'macosx64']
+BRANCHES['comm-esr24']['l10nDatedDirs'] = True
+BRANCHES['comm-esr24']['l10n_tree'] = 'tbrel'
+BRANCHES['comm-esr24']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr24'
+BRANCHES['comm-esr24']['allLocalesFile'] = 'mail/locales/all-locales'
+BRANCHES['comm-esr24']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr24' % (GLOBAL_VARS['hgurl'])
 # temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
-BRANCHES['comm-release']['enable_nightly'] = False
-BRANCHES['comm-release']['enable_blocklist_update'] = False
-BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = False
-BRANCHES['comm-release']['enable_valgrind'] = False
+BRANCHES['comm-esr24']['enable_nightly'] = False
+BRANCHES['comm-esr24']['enable_blocklist_update'] = False
+BRANCHES['comm-esr24']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-esr24']['enable_valgrind'] = False
 
 ######## comm-esr17
 BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'

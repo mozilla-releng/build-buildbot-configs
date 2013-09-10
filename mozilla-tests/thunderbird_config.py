@@ -15,13 +15,13 @@ GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
 BRANCHES = {
     'comm-central': {
     },
-    'comm-release': {
-    },
     'comm-beta': {
     },
     'comm-aurora': {
     },
     'comm-esr17': {
+    },
+    'comm-esr24': {
     },
     'try-comm-central': {
         'coallesce_jobs': False
@@ -307,10 +307,6 @@ BRANCHES['comm-central']['repo_path'] = "comm-central"
 #BRANCHES['comm-central']['build_branch'] = "1.9.2"
 BRANCHES['comm-central']['pgo_strategy'] = None
 
-######## comm-release
-BRANCHES['comm-release']['pgo_strategy'] = None
-BRANCHES['comm-release']['repo_path'] = "releases/comm-esr24"
-
 ######## comm-beta
 BRANCHES['comm-beta']['pgo_strategy'] = None
 BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
@@ -331,6 +327,10 @@ del BRANCHES['comm-esr17']['platforms']['linux64']['ubuntu64_vm']
 BRANCHES['comm-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
 BRANCHES['comm-esr17']['platforms']['linux']['slave_platforms'] = ['fedora']
 BRANCHES['comm-esr17']['platforms']['linux64']['slave_platforms'] = ['fedora64']
+
+######## comm-esr24
+BRANCHES['comm-esr24']['pgo_strategy'] = None
+BRANCHES['comm-esr24']['repo_path'] = "releases/comm-esr24"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True

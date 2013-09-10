@@ -54,13 +54,13 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Thunderbird',
         'tinderbox_tree': 'Thunderbird',
     },
-    'comm-release': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird-Release',
-        'tinderbox_tree': 'Thunderbird-Release',
-    },
     'comm-esr17': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr17',
         'tinderbox_tree': 'Thunderbird-Esr17',
+    },
+    'comm-esr24': {
+        'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr24',
+        'tinderbox_tree': 'Thunderbird-Esr24',
     },
     'comm-beta': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird-Beta',
