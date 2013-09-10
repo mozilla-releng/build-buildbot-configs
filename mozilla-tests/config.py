@@ -1439,10 +1439,6 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
 
-# MERGE DAY remove the below when Firefox 24 merges in
-BRANCHES['mozilla-release']['mozharness_talos'] = False
-# END MERGE DAY remove the below when Firefox 24 merges in
-
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1451,10 +1447,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # MERGE DAY remove the below when Firefox 25 merges in
 BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
-
-# MERGE DAY remove the below when Firefox 24 merges in
-BRANCHES['mozilla-beta']['mozharness_talos'] = False
-# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -1647,20 +1639,14 @@ def get_ubuntu_unittests(branch, test_type):
                     ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
                      "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
                      "mochitest-1", "mochitest-2", "mochitest-3",
-                     "mochitest-4", "mochitest-5", "mochitest"],
+                     "mochitest-4", "mochitest-5", "mochitest",
+                     "mochitest-browser-chrome", "mochitest-other"],
                     "debug_unittest_suites":
                     ["crashtest", "jsreftest", "jetpack", "marionette",
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest"]}
-    # MERGE DAY: uplift when Firefox 24 merges in
-    FF24_TESTS = {"opt_unittest_suites":
-                  ["mochitest-browser-chrome", "mochitest-other"],
-                  "debug_unittest_suites": ["mochitest-other"]}
-    if branch not in ("mozilla-release"):
-        return UBUNTU_TESTS[test_type] + FF24_TESTS[test_type]
-    else:
-        return list(UBUNTU_TESTS[test_type])
+                     "mochitest-5", "mochitest", "mochitest-other"]}
+    return list(UBUNTU_TESTS[test_type])
 
 
 # Remove Ubuntu platform from the release trains,

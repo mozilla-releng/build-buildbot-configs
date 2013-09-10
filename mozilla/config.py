@@ -2138,7 +2138,7 @@ for b in BRANCHES:
 
 # MERGE DAY building 32-bit linux in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for branch in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
@@ -2166,7 +2166,7 @@ for branch in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
 
 # MERGE DAY building android in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for plat in ['android', 'android-armv6', 'android-noion',
                  'android-x86', 'android-debug']:
@@ -2184,7 +2184,7 @@ for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
