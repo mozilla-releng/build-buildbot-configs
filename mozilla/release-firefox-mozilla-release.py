@@ -8,9 +8,6 @@ releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
-# work around bustage tagging compare-locales from bug 905189
-releaseConfig['skip_tag']            = True
-
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
@@ -23,23 +20,23 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '23.0.1'
-releaseConfig['appVersion']          = '23.0.1'
+releaseConfig['version']             = '24.0'
+releaseConfig['appVersion']          = '24.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_23_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_24_0'
 releaseConfig['partialUpdates']      = {
+
+    '23.0.1': {
+        'appVersion': '23.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_23_0_1',
+    },
 
     '22.0': {
         'appVersion': '22.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_22_0',
-    },
-
-    '21.0': {
-        'appVersion': '21.0',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_21_0',
     },
 
     '23.0': {
@@ -57,7 +54,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'b41d7bb7cae8',
+        'revision': '0159b95e8c6c',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -101,6 +98,7 @@ releaseConfig['enableUnittests'] = True
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
