@@ -70,7 +70,7 @@ PLATFORMS = {
 PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android', 'panda_android-nomozpool']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Android Tegra 250"}
+PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra"}
 PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['panda_android-nomozpool'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['stage_product'] = 'mobile'
@@ -83,21 +83,21 @@ PLATFORMS['android']['mozharness_config'] = {
 PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android Armv6 Tegra 250"}
+PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {}
 
 PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
 PLATFORMS['android-noion']['env_name'] = 'android-perf'
 PLATFORMS['android-noion']['is_mobile'] = True
-PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android no-ionmonkey Tegra 250"}
+PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android 2.2 no-ionmonkey Tegra"}
 PLATFORMS['android-noion']['stage_product'] = 'mobile'
 PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
 PLATFORMS['android-x86']['is_mobile'] = True
-PLATFORMS['android-x86']['ubuntu64_hw'] = {'name': "Android x86 Emulator"}
+PLATFORMS['android-x86']['ubuntu64_hw'] = {'name': "Android 4.2 x86 Emulator"}
 PLATFORMS['android-x86']['stage_product'] = 'mobile'
 PLATFORMS['android-x86']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
