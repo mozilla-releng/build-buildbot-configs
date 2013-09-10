@@ -266,6 +266,9 @@ PROJECT_BRANCHES = {
             'win64': {
                 'enable_opt_unittests': True,
             },
+            'win64-debug': {
+                'enable_debug_unittests': True,
+            },
         },
     },
     # customizations for PICL (bug 900212)
