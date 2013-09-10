@@ -220,11 +220,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'rafx': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollx:tsvgx:tcanvasmark', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'dirtypaint': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
@@ -1434,7 +1429,6 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['rafx_tests'] = (1, True, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -1445,10 +1439,6 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
 
-# MERGE DAY remove the below when Firefox 24 merges in
-BRANCHES['mozilla-release']['mozharness_talos'] = False
-# END MERGE DAY remove the below when Firefox 24 merges in
-
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1457,10 +1447,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # MERGE DAY remove the below when Firefox 25 merges in
 BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 # END MERGE DAY remove the below when Firefox 25 merges in
-
-# MERGE DAY remove the below when Firefox 24 merges in
-BRANCHES['mozilla-beta']['mozharness_talos'] = False
-# END MERGE DAY remove the below when Firefox 24 merges in
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -1653,20 +1639,14 @@ def get_ubuntu_unittests(branch, test_type):
                     ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
                      "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
                      "mochitest-1", "mochitest-2", "mochitest-3",
-                     "mochitest-4", "mochitest-5", "mochitest"],
+                     "mochitest-4", "mochitest-5", "mochitest",
+                     "mochitest-browser-chrome", "mochitest-other"],
                     "debug_unittest_suites":
                     ["crashtest", "jsreftest", "jetpack", "marionette",
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest"]}
-    # MERGE DAY: uplift when Firefox 24 merges in
-    FF24_TESTS = {"opt_unittest_suites":
-                  ["mochitest-browser-chrome", "mochitest-other"],
-                  "debug_unittest_suites": ["mochitest-other"]}
-    if branch not in ("mozilla-release"):
-        return UBUNTU_TESTS[test_type] + FF24_TESTS[test_type]
-    else:
-        return list(UBUNTU_TESTS[test_type])
+                     "mochitest-5", "mochitest", "mochitest-other"]}
+    return list(UBUNTU_TESTS[test_type])
 
 
 # Remove Ubuntu platform from the release trains,
@@ -1728,7 +1708,8 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 # MERGE DAY: remove branches when Firefox 23 merges in
-WIN32_REV3_BRANCHES = ("mozilla-esr17", "mozilla-b2g18", "mozilla-b2g18_v1_0_1")
+WIN32_REV3_BRANCHES = ("mozilla-esr17",
+                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 # Disable Rev3 winxp and win7 machines for FF23+
 for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
     if 'win32' not in BRANCHES[branch]['platforms']:

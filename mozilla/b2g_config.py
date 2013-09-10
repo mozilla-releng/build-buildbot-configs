@@ -266,8 +266,7 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
         'src_mozconfig': 'b2g/config/mozconfigs/win32_gecko/nightly',
-        'enable_dep': False,
-        'enable_nightly': True,
+        'enable_dep': True,
         'profiled_build': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -938,6 +937,8 @@ BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 
 ######## mozilla-b2g18

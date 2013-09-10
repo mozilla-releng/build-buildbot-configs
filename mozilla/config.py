@@ -80,7 +80,7 @@ GLOBAL_VARS = {
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,
-    'valgrind_platforms': ('linux', 'linux64'),
+    'valgrind_platforms': ('linux64',),
 
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
     'branch_projects': ['spidermonkey_tier_1'],
@@ -520,6 +520,28 @@ PLATFORM_VARS = {
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
             'consider_for_nightly': False,
+        },
+        'linux64-haz': {
+            'mozharness_config': {
+                'script_name': 'scripts/spidermonkey_build.py',
+                'extra_args': [
+                    '--config-file', 'spidermonkey/hazards.py',
+                ],
+            },
+            'mozharness_tag': 'default',
+            'stage_product': 'firefox',
+            'product_name': 'firefox',
+            'base_name': '%(platform)s_%(branch)s',
+            'slaves': SLAVES['mock'],
+            'try_by_default': False,
+            'consider_for_nightly': False,
+            'mock_target': 'mozilla-centos6-x86_64',
+            "mock_packages": [
+                "autoconf213", "mozilla-python27-mercurial", "ccache",
+                "zip", "zlib-devel", "glibc-static",
+                "openssh-clients", "mpfr", "wget",
+                "gmp-devel", "nspr", "nspr-devel",
+            ],
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -1449,6 +1471,10 @@ BRANCHES = {
     },
     'try': {
         'branch_projects': ['spidermonkey_try'],
+        # For now, only run linux64-haz on try
+        'extra_platforms': {
+            'linux64-haz': {}
+        },
     },
 }
 
@@ -1474,6 +1500,8 @@ for branch in BRANCHES.keys():
         # The "platforms" key is handle separatedely (see next for loop)
         elif key == 'platforms' or key not in BRANCHES[branch]:
             BRANCHES[branch][key] = deepcopy(value)
+
+    BRANCHES[branch]['platforms'].update(BRANCHES[branch].get('extra_platforms', {}))
 
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
@@ -1947,6 +1975,7 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
@@ -2109,7 +2138,7 @@ for b in BRANCHES:
 
 # MERGE DAY building 32-bit linux in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for branch in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
@@ -2137,7 +2166,7 @@ for branch in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
 
 # MERGE DAY building android in a x86_64 env rides the trains
 # MERGE DAY remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for plat in ['android', 'android-armv6', 'android-noion',
                  'android-x86', 'android-debug']:
@@ -2155,7 +2184,7 @@ for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
 
 # MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
 # MERGE DAY - remove branches from this list when gecko 24 merges into them.
-for b in ("mozilla-release", "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
+for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
