@@ -62,6 +62,7 @@ GLOBAL_VARS = {
         'linux64-st-an-debug': {},
         'macosx64-debug': {},
         'win32-debug': {},
+        'win64-debug': {},
         'android': {},
         'android-x86': {},
         'android-armv6': {},
@@ -919,6 +920,40 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
         },
+        'win64-debug': {
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'WINNT 6.1 x86-64 %(branch)s leak test',
+            'mozconfig': 'win64/%(branch)s/debug',
+            'src_mozconfig': 'browser/config/mozconfigs/win64/debug',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': True,
+            'enable_installer': True,
+            'packageTests': True,
+            'build_space': 9,
+            'slaves': SLAVES['win64'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'win64-debug',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            },
+            'enable_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': None,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+        },
         'android': {
             'product_name': 'firefox',
             'unittest_platform': 'android-opt',
@@ -1565,6 +1600,8 @@ for branch in BRANCHES.keys():
 
     if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central', 'date'):
         del BRANCHES[branch]['platforms']['win64']
+    if BRANCHES[branch]['platforms'].has_key('win64-debug') and branch not in ('try', 'mozilla-central', 'date'):
+        del BRANCHES[branch]['platforms']['win64-debug']
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -1969,6 +2006,7 @@ BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
@@ -2044,8 +2082,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
     if 'win32' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'win64' in BRANCHES[branch]['platforms'] and branch not in ('date',):
-        del BRANCHES[branch]['platforms']['win64']
     if 'macosx64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # Platform-specific defaults/interpretation
@@ -2111,7 +2147,7 @@ for b, branch in BRANCHES.items():
 # When Firefox 18 merges into these branches, they can be removed from the list
 for b in ('mozilla-esr17',):
     # Disable pymake
-    for p in ('win32', 'win32-debug', 'win64'):
+    for p in ('win32', 'win32-debug', 'win64', 'win64-debug'):
         if p not in BRANCHES[b]['platforms']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
