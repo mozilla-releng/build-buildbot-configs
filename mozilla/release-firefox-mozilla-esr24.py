@@ -38,14 +38,14 @@ releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_24_0esr'
 releaseConfig['partialUpdates']      = {}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.0.1esrpre'
+releaseConfig['nextAppVersion']      = '24.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '839b8438b2b8',
+        'revision': '8766c4204836',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
