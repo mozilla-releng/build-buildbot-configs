@@ -20,29 +20,29 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0.8esr'
-releaseConfig['appVersion']          = '17.0.8'
+releaseConfig['version']             = '17.0.9esr'
+releaseConfig['appVersion']          = '17.0.9'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_17_0_8esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_17_0_9esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.7esr': {
-        'appVersion': '17.0.7',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_17_0_7esr',
+    '17.0.8esr': {
+        'appVersion': '17.0.8',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_17_0_8esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.8esrpre'
+releaseConfig['nextAppVersion']      = '17.0.9esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '8d80b1912bd7',
+        'revision': '09d9550bd906',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -136,4 +136,4 @@ releaseConfig['releasetestUptake']   = 1
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = False
-releaseConfig['ftpSymlinkName'] = 'latest-esr'
+releaseConfig['ftpSymlinkName'] = 'latest-17.0esr'
