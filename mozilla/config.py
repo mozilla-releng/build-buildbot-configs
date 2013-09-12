@@ -522,14 +522,14 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
         },
-        'linux64-haz': {
+        'linux64-sh-haz': {
             'mozharness_config': {
                 'script_name': 'scripts/spidermonkey_build.py',
                 'extra_args': [
-                    '--config-file', 'spidermonkey/hazards.py',
+                    '--config-file', 'hazards/build_shell.py',
+                    '--config-file', 'hazards/common.py',
                 ],
             },
-            'mozharness_tag': 'default',
             'stage_product': 'firefox',
             'product_name': 'firefox',
             'base_name': '%(platform)s_%(branch)s',
@@ -537,12 +537,23 @@ PLATFORM_VARS = {
             'try_by_default': False,
             'consider_for_nightly': False,
             'mock_target': 'mozilla-centos6-x86_64',
-            "mock_packages": [
-                "autoconf213", "mozilla-python27-mercurial", "ccache",
-                "zip", "zlib-devel", "glibc-static",
-                "openssh-clients", "mpfr", "wget",
-                "gmp-devel", "nspr", "nspr-devel",
-            ],
+        },
+        'linux64-br-haz': {
+            'mozharness_config': {
+                'script_name': 'scripts/spidermonkey_build.py',
+                'extra_args': [
+                    '--config-file', 'hazards/build_browser.py',
+                    '--config-file', 'hazards/common.py',
+                ],
+            },
+
+            'stage_product': 'firefox',
+            'product_name': 'firefox',
+            'base_name': '%(platform)s_%(branch)s',
+            'slaves': SLAVES['mock'],
+            'try_by_default': False,
+            'consider_for_nightly': False,
+            'mock_target': 'mozilla-centos6-x86_64',
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -1507,9 +1518,10 @@ BRANCHES = {
     },
     'try': {
         'branch_projects': ['spidermonkey_try'],
-        # For now, only run linux64-haz on try
+        # For now, only run rooting hazards builds on try
         'extra_platforms': {
-            'linux64-haz': {}
+            'linux64-sh-haz': {},
+            'linux64-br-haz': {},
         },
     },
 }
@@ -2014,7 +2026,8 @@ BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-haz']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-sh-haz']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
