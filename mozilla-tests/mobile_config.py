@@ -70,7 +70,7 @@ PLATFORMS = {
 PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android', 'panda_android-nomozpool']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra"}
+PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra", "try_by_default": False}
 PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['panda_android-nomozpool'] = {'name': "Android 4.0 Panda"}
 PLATFORMS['android']['stage_product'] = 'mobile'
@@ -83,14 +83,14 @@ PLATFORMS['android']['mozharness_config'] = {
 PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
+PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra", "try_by_default": False}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {}
 
 PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
 PLATFORMS['android-noion']['env_name'] = 'android-perf'
 PLATFORMS['android-noion']['is_mobile'] = True
-PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android 2.2 no-ionmonkey Tegra"}
+PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android 2.2 no-ionmonkey Tegra", "try_by_default": False}
 PLATFORMS['android-noion']['stage_product'] = 'mobile'
 PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
 
