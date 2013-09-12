@@ -21,29 +21,29 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.8esr'
-releaseConfig['appVersion']          = '17.0.8'
+releaseConfig['version']             = '17.0.9esr'
+releaseConfig['appVersion']          = '17.0.9'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_8esr'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_9esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.7esr': {
-        'appVersion': '17.0.7',
+    '17.0.8esr': {
+        'appVersion': '17.0.8',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_17_0_7esr',
+        'baseTag': 'THUNDERBIRD_17_0_8esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.8esrpre'
+releaseConfig['nextAppVersion']      = '17.0.9esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr17',
         'path': 'releases/comm-esr17',
-        'revision': 'cc7b87e272ba',
+        'revision': '22c6a1b599ef',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '5b878e1d226c',
+        'revision': '09d9550bd906',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
