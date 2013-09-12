@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = 'will_be_replaced'
-releaseConfig['appVersion']          = 'will_be_replaced'
+releaseConfig['version']             = '24.0'
+releaseConfig['appVersion']          = '24.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'will_be_replaced'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_0'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.7': {
-        'appVersion': '17.0.7',
+    '17.0.8': {
+        'appVersion': '17.0.8',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_17_0_7',
+        'baseTag': 'THUNDERBIRD_17_0_8',
     },
 
 }
@@ -42,8 +42,8 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr24',
-        'path': 'will be replaced',
-        'revision': 'will be replaced',
+        'path': 'releases/comm-esr24',
+        'revision': 'addcb1bcb9b2',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -53,9 +53,9 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-release',
+        'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'will be replaced',
+        'revision': '8766c4204836',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -71,7 +71,7 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-esr24'
+releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr24'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
@@ -94,6 +94,7 @@ releaseConfig['enableUnittests']     = True
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = False
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
