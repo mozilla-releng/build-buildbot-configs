@@ -467,6 +467,14 @@ METRO = [
         'script_maxtime': 7200,
     }),
 ]
+JITTEST = [
+    ('jittest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--jittest-suite', 'jittest'],
+        'script_maxtime': 7200,
+    }),
+]
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
@@ -537,6 +545,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
         'ubuntu32_vm': {
@@ -590,6 +601,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
                 },
             },
         },
@@ -654,6 +668,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
         'ubuntu64_vm': {
@@ -707,6 +724,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
                 },
             },
         },
@@ -770,6 +790,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
                 },
             },
         },
@@ -836,6 +859,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         },
         'xp-ix': {
@@ -889,6 +915,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
                 },
             },
         },
@@ -944,6 +973,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         },
         'win7-ix': {
@@ -997,6 +1029,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
                 },
             },
         },
@@ -1054,6 +1089,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
                 },
             },
         }
@@ -1123,6 +1161,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         }
     },
@@ -1185,6 +1226,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
             },
         },
         'lion': {
@@ -1239,6 +1283,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'jittest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
             },
         },
         'mountainlion': {
@@ -1292,6 +1339,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
             },
         },
@@ -1614,6 +1664,22 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
+
+# Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
 
 # Enable metro jobs for now
 # MERGE DAY: This may need to follow the trains: see bug 847442
