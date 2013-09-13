@@ -34,6 +34,7 @@ GLOBAL_VARS.update({
         'leo_eng': {},
         'hamachi': {},
         'hamachi_eng': {},
+        'nexus-4': {},
         'helix': {},
         'emulator': {},
         'emulator-debug': {},
@@ -698,6 +699,25 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
+    'nexus-4': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'mako', '--config', 'b2g/releng-private-updates.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'env': {
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:/usr/local/bin:/usr/lib64/ccache:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/cltbld/bin',
+            'PYTHONPATH': '/tools/python27/lib',
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
     'helix': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -939,6 +959,7 @@ BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 
 ######## mozilla-b2g18
@@ -1156,6 +1177,12 @@ for branch in BRANCHES:
                       'mozilla-b2g18', 'mozilla-b2g18_v1_0_1') and \
             'hamachi_eng' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['hamachi_eng']
+
+# MERGE DAY: nexus-4 is only for m-c, b2g-inbound
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'b2g-inbound') and \
+            'nexus-4' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is only for b2g18_v1_1_0_hd, mozilla-central
 for branch in BRANCHES:
