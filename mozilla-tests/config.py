@@ -539,9 +539,6 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cppunit': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -660,9 +657,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1660,10 +1654,27 @@ for platform in PLATFORMS.keys():
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
+        if slave_platform in ['fedora', 'fedora64']:
+            continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
+
+#enable cppunitests on opt but not for fedora, fedora64 https://bugzilla.mozilla.org/show_bug.cgi?id=912192
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        if slave_platform in ['fedora', 'fedora64']:
+            continue
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPPUNIT[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = CPPUNIT[:]
+
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
