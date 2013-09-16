@@ -36,8 +36,8 @@ GLOBAL_VARS.update({
         'hamachi_eng': {},
         'nexus-4': {},
         'helix': {},
-        'emulator': {},
-        'emulator-debug': {},
+        'emulator-ics': {},
+        'emulator-ics-debug': {},
         'emulator-jb': {},
         'emulator-jb-debug': {},
     },
@@ -733,13 +733,13 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
-    'emulator': {
+    'emulator-ics': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
-                           '--b2g-config-dir', 'emulator',
+                           '--b2g-config-dir', 'emulator-ics',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -749,13 +749,13 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
-    'emulator-debug': {
+    'emulator-ics-debug': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
-                           '--b2g-config-dir', 'emulator', '--debug',
+                           '--b2g-config-dir', 'emulator-ics', '--debug',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -1150,10 +1150,10 @@ BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-ics']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-ics']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-ics', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-ics-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-ics-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-ics', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
