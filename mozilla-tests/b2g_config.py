@@ -23,6 +23,7 @@ BRANCHES = {
     'mozilla-b2g18_v1_0_1': {},
     'mozilla-b2g18_v1_1_0_hd': {},
     'mozilla-central': {},
+    'mozilla-aurora': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
@@ -1038,6 +1039,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
+BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
@@ -1092,7 +1094,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 # emulator hacks.  See bug 885456
 # MERGE DAY This will someday ride trains...
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+    if branch in ('mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1'):
         if 'emulator' in BRANCHES[branch]['platforms']:
@@ -1101,7 +1103,7 @@ for branch in BRANCHES.keys():
 # linux64_gecko hacks.  See bug 891973
 # MERGE DAY This will someday ride trains...
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+    if branch in ('mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
