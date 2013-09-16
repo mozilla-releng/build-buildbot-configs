@@ -994,8 +994,7 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-# MERGE DAY
-# When Thunderbird 18 merges into these branches, they can be removed from the list
+# Remove this block when the branch EOL
 for b in ['comm-esr17']:
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64'):
@@ -1003,16 +1002,16 @@ for b in ['comm-esr17']:
             continue
         BRANCHES[b]['platforms'][p]['enable_pymake'] = False
 
-# MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
-# MERGE DAY - when FF21 reaches them remove them from this list
+# pulseaudio-libs-devel package rides the trains (bug 662417 - based on gecko 21)
+# Remove this block when the branch EOL
 for b in ['comm-esr17']:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
 
-# MERGE DAY building 32-bit linux in a x86_64 env rides the trains
-# MERGE DAY remove branches from this list when gecko 24 merges into them.
+# building 32-bit linux in a x86_64 env (based on gecko 24)
+# Remove this block when the branch EOL
 for branch in ["comm-esr17"]:
     for platform in ['linux', 'linux-debug']:
         BRANCHES[branch]['platforms'][platform]['mock_target'] = \
@@ -1038,8 +1037,8 @@ for branch in ["comm-esr17"]:
             BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
                 ["valgrind"]
 
-# MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
-# MERGE DAY - remove branches from this list when gecko 24 merges into them.
+# gstreamer-devel packages ride the trains (bug 881589 - gecko 24)
+# Remove this block when the branch EOL
 for b in ["comm-esr17"]:
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:

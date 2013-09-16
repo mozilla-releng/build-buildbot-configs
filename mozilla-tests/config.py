@@ -250,7 +250,8 @@ BRANCH_UNITTEST_VARS = {
     },
 }
 
-# MERGE DAY remove this chunk when Firefox 22 is on all branches.
+# Remove this chunk when Firefox 22 is on all branches.
+# That will happen when esr17 and b2g18 based repos EOL
 # Buildbot-based unit tests.
 BUILDBOT_UNITTEST_SUITES = {
     'opt': [
@@ -330,7 +331,7 @@ BUILDBOT_UNITTEST_SUITES = {
         #('mozmill-all', ['mozmill']),
     ],
 }
-# End MERGE DAY
+# End of block to be removed when esr17 and b2g18 branches are removed
 
 MOCHITEST = [
     ('mochitest-1', {
@@ -539,9 +540,6 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cppunit': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -660,9 +658,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1494,10 +1489,6 @@ BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 
-# MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-beta']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-# END MERGE DAY remove the below when Firefox 25 merges in
-
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
@@ -1631,8 +1622,7 @@ BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITE
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
-# Let's load jetpack for the following branches:
-# MERGE DAY once FF21 merges into a branch remove it from this list
+# Remove this block once these branches EOL - Let's load jetpack for the following branches (gecko 21 based):
 for branch in BRANCHES.keys():
     if branch not in ('mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
                       'mozilla-b2g18_v1_1_0_hd'):
@@ -1660,10 +1650,27 @@ for platform in PLATFORMS.keys():
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
+        if slave_platform in ['fedora', 'fedora64']:
+            continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
+
+#enable cppunitests on opt but not for fedora, fedora64 https://bugzilla.mozilla.org/show_bug.cgi?id=912192
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        if slave_platform in ['fedora', 'fedora64']:
+            continue
+        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPPUNIT[:]
+        else:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = CPPUNIT[:]
+
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
@@ -1681,8 +1688,8 @@ for platform in PLATFORMS.keys():
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
 
-# Enable metro jobs for now
-# MERGE DAY: This may need to follow the trains: see bug 847442
+# Enable metro debug jobs for now
+# This may need to follow the trains: see bug 847442 (comment 73)
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 for branch in BRANCHES.keys():
     if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
@@ -1693,7 +1700,7 @@ for branch in BRANCHES.keys():
                 'win8' in BRANCHES[branch]['platforms']['win32']:
             BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
-# MERGE DAY NOTE: remove v21 based branches from the list below
+# Remove this block once these branches EOL - gecko 21 based
 NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
                        "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 
@@ -1758,7 +1765,7 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
-# MERGE DAY: remove branches when Firefox 23 merges in
+# Remove block when branch EOL
 NON_UBUNTU_TALOS_BRANCHES = ["mozilla-esr17"]
 for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
     for s in SUITES.iterkeys():
@@ -1773,7 +1780,7 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-# MERGE DAY: remove branches when Firefox 23 merges in
+# Remove this block when the branches EOL (gecko 23 based)
 WIN32_REV3_BRANCHES = ("mozilla-esr17",
                        "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 # Disable Rev3 winxp and win7 machines for FF23+
@@ -1808,9 +1815,10 @@ for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
 
-# MERGE DAY
+# MERGE DAY - Remove this line once gecko 26 reaches "mozilla-release"
 # ASAN builds/tests should ride the trains for gecko 26
-ASAN_NON_TESTING_BRANCHES = ('mozilla-aurora', 'mozilla-beta',
+# Remove this block once these branches EOL
+ASAN_NON_TESTING_BRANCHES = ('mozilla-beta',
                              'mozilla-release', 'mozilla-esr17',
                              'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
                              'mozilla-b2g18_v1_1_0_hd')
