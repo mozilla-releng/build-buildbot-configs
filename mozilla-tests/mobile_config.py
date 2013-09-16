@@ -986,7 +986,7 @@ for branch in BRANCHES:
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
-# MERGE DAY, drop trees from branch list as Firefox 22 rides forward.
+# Remove this block once these branches EOL (Gecko 22 based)
 for branch in BRANCHES.keys():
     # Loop removes it from any branch that gets beyond here
     if branch not in ('mozilla-esr17', 'mozilla-b2g18',
@@ -1005,8 +1005,8 @@ for branch in BRANCHES:
             'enable_debug_unittests' in BRANCHES[branch]['platforms']['android']:
         BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
 
-# XPCShell will need to ride trains
-# MERGE DAY, drop trees from branch list as Firefox 23 rides forward.
+# XPCShell (Gecko 23 based)
+# Remove this block once these branches EOL
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
     if branch not in ('mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',

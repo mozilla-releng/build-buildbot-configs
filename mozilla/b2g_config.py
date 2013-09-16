@@ -1223,8 +1223,8 @@ for branch in BRANCHES:
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
 
-# MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
-# MERGE DAY - remove branches from this list if gecko 24 merges into them
+# gstreamer-devel packages ride the trains (bug 881589) - non-gecko-24 branches
+# Remove this block when these branches EOL
 for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd"):
     for p, pc in BRANCHES[b]['platforms'].items():
         if 'mock_packages' in pc:

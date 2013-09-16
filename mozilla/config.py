@@ -2144,8 +2144,7 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % project_name
         PROJECTS[branch_project_name] = project
 
-# MERGE DAY
-# When Firefox 18 merges into these branches, they can be removed from the list
+# When esr17 dissapears remove this block (gecko 18 based)
 for b in ('mozilla-esr17',):
     # Disable pymake
     for p in ('win32', 'win32-debug', 'win64', 'win64-debug'):
@@ -2163,18 +2162,19 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# MERGE DAY
+# MERGE DAY - Once gecko 26 reaches 'mozilla-release' remove this line
 # ASAN builds/tests should ride the trains for gecko 26
+# Once the MERGE DAY is removed leave this note: "Remove this block when branches EOL"
 for b in BRANCHES:
-    if b in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
+    if b in ('mozilla-beta', 'mozilla-release',
              'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
              'mozilla-b2g18_v1_1_0_hd'):
         for p in 'linux64-asan', 'linux64-asan-debug':
             if p in BRANCHES[b]['platforms']:
                 del BRANCHES[b]['platforms'][p]
 
-# MERGE DAY building 32-bit linux in a x86_64 env rides the trains
-# MERGE DAY remove branches from this list when gecko 24 merges into them.
+# Building 32-bit linux in a x86_64 env rides the trains (based on gecko 24)
+# Remove this block when these branches reach their EOL
 for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for platform in ['linux', 'linux-debug']:
@@ -2201,8 +2201,8 @@ for branch in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
             BRANCHES[branch]["platforms"][platform]["mock_packages"] += \
                 ["valgrind"]
 
-# MERGE DAY building android in a x86_64 env rides the trains
-# MERGE DAY remove branches from this list when gecko 24 merges into them.
+# Building android in a x86_64 env (based on gecko 24)
+# Remove block when branches EOL
 for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for plat in ['android', 'android-armv6', 'android-noion',
@@ -2210,8 +2210,8 @@ for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
         if plat in BRANCHES[b]['platforms']:
             BRANCHES[b]['platforms'][plat]['mock_target'] = 'mozilla-centos6-i386'
 
-# MERGE DAY - pulseaudio-libs-devel package rides the trains (bug 662417)
-# MERGE DAY - Remove branches as FF21 reaches them
+# Pulseaudio-libs-devel package rides the trains (bug 662417 - based on gecko 21)
+# Remove block when branches EOL
 for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
           'mozilla-b2g18_v1_1_0_hd']:
     for p, pc in BRANCHES[b]['platforms'].items():
@@ -2219,8 +2219,8 @@ for b in ['mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
             BRANCHES[b]['platforms'][p]['mock_packages'] = \
                 [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
 
-# MERGE DAY - gstreamer-devel packages ride the trains (bug 881589)
-# MERGE DAY - remove branches from this list when gecko 24 merges into them.
+# gstreamer-devel packages ride the trains (bug 881589 - based on gecko 24)
+# Remove block when branches EOL
 for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1",
           "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17"):
     for p, pc in BRANCHES[b]['platforms'].items():

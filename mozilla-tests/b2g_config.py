@@ -1053,7 +1053,7 @@ for branch in BRANCHES.keys():
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
             BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
 
-# MERGE DAY NOTE: remove v22 based branches from the list below
+# remove this block when these branches EOL (gecko 22 based)
 NON_UBUNTU_BRANCHES = ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 
 # use either Fedora or Ubuntu for other branches,
