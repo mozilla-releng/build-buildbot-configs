@@ -486,7 +486,7 @@ PLATFORM_VARS = {
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_opt_unittests': False,
-            'enable_checktests': True,
+            'enable_checktests': False,
             'enable_build_analysis': False,
             'create_snippet': False,
             'create_partial': False,
