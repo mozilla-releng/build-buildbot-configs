@@ -687,86 +687,126 @@ ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UN
 
 # Beginning Androidx86 configurations
 ANDROID_X86_MOZHARNESS_DICT = [
-    ('androidx86-set-1',
-     {
-         'use_mozharness': True,
-         'script_path': 'scripts/androidx86_emulator_unittest.py',
-         'extra_args': [
-    '--cfg', 'android/androidx86.py',
-                 '--test-suite', 'mochitest-1',
-                 '--test-suite', 'mochitest-2',
-                 '--test-suite', 'mochitest-3',
-                 '--test-suite', 'mochitest-4',
-             ],
-             'timeout': 2400,
-             'script_maxtime': 14400,
-             },
-         ),
-         ('androidx86-set-2',
-             {
-             'use_mozharness': True,
-             'script_path': 'scripts/androidx86_emulator_unittest.py',
-             'extra_args': [
-                 '--cfg', 'android/androidx86.py',
-                 '--test-suite', 'mochitest-5',
-                 '--test-suite', 'mochitest-6',
-                 '--test-suite', 'mochitest-7',
-                 '--test-suite', 'mochitest-8',
-             ],
-             'timeout': 2400,
-             'script_maxtime': 14400,
-             },
-         ),
-         ('androidx86-set-3',
-             {
-             'use_mozharness': True,
-             'script_path': 'scripts/androidx86_emulator_unittest.py',
-             'extra_args': [
-                 '--cfg', 'android/androidx86.py',
-                 '--test-suite', 'reftest-1',
-                 '--test-suite', 'reftest-2',
-                 '--test-suite', 'reftest-3',
-                 '--test-suite', 'crashtest',
-             ],
-             'timeout': 2400,
-             'script_maxtime': 14400,
-             },
-         ),
-         ('androidx86-set-4',
-             {
-             'use_mozharness': True,
-             'script_path': 'scripts/androidx86_emulator_unittest.py',
-             'extra_args': [
-                 '--cfg', 'android/androidx86.py',
-                 '--test-suite', 'mochitest-gl',
-                 '--test-suite', 'xpcshell',
-                 '--test-suite', 'robocop-1',
-                 '--test-suite', 'robocop-2',
-             ],
-             'timeout': 2400,
-             'script_maxtime': 14400,
-             },
-         ),
-         ('androidx86-set-5',
-             {
-             'use_mozharness': True,
-             'script_path': 'scripts/androidx86_emulator_unittest.py',
-             'extra_args': [
-                 '--cfg', 'android/androidx86.py',
-                 '--test-suite', 'jsreftest-1',
-                 '--test-suite', 'jsreftest-2',
-                 '--test-suite', 'jsreftest-3',
-             ],
-             'timeout': 2400,
-             'script_maxtime': 14400,
-             },
-         ),
+    ('androidx86-set-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'mochitest-1',
+            '--test-suite', 'mochitest-2',
+            '--test-suite', 'mochitest-4',
+            '--test-suite', 'xpcshell',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'mochitest-5',
+            '--test-suite', 'mochitest-6',
+            '--test-suite', 'mochitest-7',
+            '--test-suite', 'mochitest-8',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+
+ANDROID_X86_NOT_GREEN_DICT = [
+    ('androidx86-set-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'reftest-1',
+            '--test-suite', 'reftest-2',
+            '--test-suite', 'reftest-3',
+            '--test-suite', 'reftest-4',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'reftest-5',
+            '--test-suite', 'reftest-6',
+            '--test-suite', 'reftest-7',
+            '--test-suite', 'reftest-8',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'reftest-9',
+            '--test-suite', 'reftest-10',
+            '--test-suite', 'jsreftest-1',
+            '--test-suite', 'jsreftest-2',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-6', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'jsreftest-3',
+            '--test-suite', 'jsreftest-4',
+            '--test-suite', 'jsreftest-5',
+            '--test-suite', 'jsreftest-6',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-7', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'crashtest-1',
+            '--test-suite', 'crashtest-2',
+            '--test-suite', 'crashtest-3',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-8', {
+        'use_mozharness': True,
+        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'mochitest-3',
+            '--test-suite', 'mochitest-gl',
+            '--test-suite', 'robocop-1',
+            '--test-suite', 'robocop-2',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
 ]
 
 # Funky DICT naming
 ANDROID_X86_MOZHARNESS_UNITTEST_DICT = {
    'opt_unittest_suites': ANDROID_X86_MOZHARNESS_DICT,
-   'debug_unittest_suites': ANDROID_X86_MOZHARNESS_DICT,
+   'debug_unittest_suites': [],
 }
 # End of Androidx86 configurations
 
@@ -810,7 +850,7 @@ PLATFORM_UNITTEST_VARS = {
     },
     'android-x86': {
         'product_name': 'fennec',
-        'enable_opt_unittests': False,
+        'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_hw': deepcopy(ANDROID_X86_MOZHARNESS_UNITTEST_DICT),
     },
@@ -923,17 +963,26 @@ BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_platforms'] = []
+# MERGE DAY: Remove this line when FF26 merges in
+BRANCHES['mozilla-release']['platforms']['android-x86']['enable_opt_unittests'] = False
+# MERGE DAY: end
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-beta']['pgo_platforms'] = []
+# MERGE DAY: Remove this line when FF26 merges in
+BRANCHES['mozilla-beta']['platforms']['android-x86']['enable_opt_unittests'] = False
+# MERGE DAY: end
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
+# MERGE DAY: Remove this line when FF26 merges in
+BRANCHES['mozilla-aurora']['platforms']['android-x86']['enable_opt_unittests'] = False
+# MERGE DAY: end
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 5
@@ -974,6 +1023,9 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
+# Until we green out these Android x86 tests
+BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
+BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
 # XXX Bug 789373 hack - add android-noion until we have b2g testing
 # Delete all references to android-noion once we have b2g jsreftests not
