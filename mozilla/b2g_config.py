@@ -1190,9 +1190,10 @@ for branch in BRANCHES:
         if 'hamachi_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi_eng']
 
-# MERGE DAY: nexus-4 is only for m-c, b2g-inbound
+# MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound') and \
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound') and \
             'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 

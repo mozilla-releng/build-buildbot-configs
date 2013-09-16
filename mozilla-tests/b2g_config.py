@@ -1092,7 +1092,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
         del BRANCHES[branch]['platforms'][platform]
 
 # emulator hacks.  See bug 885456
-# MERGE DAY This will someday ride trains...
+# MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
     if branch in ('mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
@@ -1101,7 +1101,7 @@ for branch in BRANCHES.keys():
             del BRANCHES[branch]['platforms']['emulator']
 
 # linux64_gecko hacks.  See bug 891973
-# MERGE DAY This will someday ride trains...
+# MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
     if branch in ('mozilla-beta', 'mozilla-release',
                   'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
