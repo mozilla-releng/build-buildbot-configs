@@ -36,7 +36,15 @@ releaseConfig['appVersion']          = '{{ appVersion }}'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = {{ buildNumber }}
 releaseConfig['baseTag']             = '{{ baseTag }}'
-releaseConfig['partialUpdates']      = {}
+releaseConfig['partialUpdates']      = {
+{% for version, partial in partials.items() %}
+    '{{ version }}': {
+        'appVersion': '{{ partial['appVersion'] }}',
+        'buildNumber': {{ partial['buildNumber'] }},
+        'baseTag': '{{ partial['baseTag'] }}',
+    },
+{% endfor %}
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
