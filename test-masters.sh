@@ -3,46 +3,7 @@
 # the -t option.  We use that now
 exit=0
 
-mkdir test-output 2>/dev/null
-
-actioning="Checking"
-MASTERS_JSON_URL="${MASTERS_JSON_URL:-http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json}"
-
-atexit=()
-trap 'for cmd in "${atexit[@]}"; do eval $cmd; done' EXIT
-
-# I have had problems where a whole bunch of parallel HTTP requests caused
-# errors (?), so fetch it once here and pass it in.
-MASTERS_JSON=$(mktemp)
-wget -q -O$MASTERS_JSON "$MASTERS_JSON_URL" || exit 1
-atexit+=("rm $MASTERS_JSON")
-
-FAILFILE=$(mktemp)
-
-# Construct the set of masters that we will test.
-MASTERS=($(./setup-master.py -l -j "$MASTERS_JSON" --tested-only "$@"))
-
-# Fire off all the tests in parallel.
-for MASTER in ${MASTERS[*]}; do (
-    OUTFILE=$(mktemp)
-
-    ./setup-master.py -t -j "$MASTERS_JSON" "$@" $MASTER > $OUTFILE 2>&1 || echo "$MASTER" >> $FAILFILE
-    cat $OUTFILE # Make the output a little less interleaved
-    rm $OUTFILE
-) &
-atexit+=("[ -e /proc/$! ] && kill $!")
-done
-
-echo "$actioning ${#MASTERS[*]} masters..."
-echo "${MASTERS[*]}"
-wait
-
-if [ -s $FAILFILE ]; then
-    echo "*** $(wc -l < $FAILFILE) master tests failed ***" >&2
-    echo "Failed masters:" >&2
-    sed -e 's/^/  /' "$FAILFILE" >&2
-    exit 1
-fi
+./setup-master.py -t "$@" || exit=1
 
 for dir in mozilla mozilla-tests; do
   cd $dir
@@ -52,5 +13,4 @@ for dir in mozilla mozilla-tests; do
   rm -rf _trial_temp
   cd ..
 done
-
 exit $exit
