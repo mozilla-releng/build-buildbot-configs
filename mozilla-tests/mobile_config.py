@@ -1033,6 +1033,17 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
+# start temp fix until panda android pools are collapsed again in bug 913206    
+BRANCHES['cedar']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-tp4m_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-troboprovider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['cedar']['remote-trobocheck2_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+
+BRANCHES['cedar']['platforms']['android']['slave_platforms'] = ['tegra_android', 'panda_android']
+# end temp fix until panda android pools are collapsed again in bug 913206
+
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
