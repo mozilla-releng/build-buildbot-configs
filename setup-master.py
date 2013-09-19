@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""
-  setup-master.py master_dir master_name
-  setup-master.py -t [masters...]
-  setup-master.py -l [--tested-only] [masters...]
+"""setup-master.py master_dir master_name
 
 Sets up mozilla buildbot master in master_dir."""
 
@@ -315,17 +312,13 @@ if __name__ == "__main__":
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
     parser.add_option("-j", "--masters-json", dest="masters_json",
                       default="http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
-    parser.add_option("-R", "--role", dest="role", default=None,
-                      help="Filter by given comma-separated role(s), eg try, build, tests, scheduler")
+    parser.add_option("-R", "--role", dest="role", default=None)
     parser.add_option(
-        "-u", "--universal", dest="universal", action="store_true",
-        help="Set up a universal master")
+        "-u", "--universal", dest="universal", action="store_true")
     parser.add_option("-q", "--quiet", dest="quiet", action="store_true")
     parser.add_option(
         "-e", "--error-logs", dest="error_logs", action="store_true")
     parser.add_option("-d", "--debug", dest="debug", action="store_true")
-    parser.add_option("--tested-only", dest="tested_only", action="store_true",
-                      help="Restrict to the set of masters that would be used with -t")
     parser.add_option("--ignore-role", dest="ignored_roles", action="append", default=[],
                       help="Ignore masters with this role. May be passed multiple times.")
 
@@ -352,14 +345,11 @@ if __name__ == "__main__":
     if options.role:
         log.info('filtering by "%s" roles' % options.role)
 
-    if options.test:
-        options.tested_only = True
-
+    dedupe = options.test
     master_list = load_masters_json(options.masters_json, role=options.role,
                                     log=log, universal=options.universal,
-                                    dedupe=options.tested_only,
-                                    ignored_roles=ignored_roles)
-    if options.tested_only:
+                                    dedupe=dedupe, ignored_roles=ignored_roles)
+    if options.test:
         log.debug('adding universal builders because we are testing')
         # a universal scheduler master doesn't make any sense
         ignored_roles += ['scheduler']
@@ -372,22 +362,13 @@ if __name__ == "__main__":
         master_map.values()) == len(master_list), "Duplicate master names"
     assert len(master_list) > 0, "No masters specified. Bad role?"
 
-    if options.list or options.test:
-        masters = filter_masters(master_list)
-        if len(args) > 0:
-            wanted = set(args)
-            available = set([ m.name for m in masters ])
-            unknown = wanted - available
-            assert len(unknown) == 0, "%d unknown masters requested: %s" % (len(unknown), " ".join(unknown))
-            masters = [ m for m in masters if m.name in wanted ]
-
     if options.list:
-        for m in masters:
+        for m in filter_masters(master_list):
             print m.name
     elif options.test:
         failing_masters = []
         # Test the masters, once normally and onces as a universal master
-        for m in masters:
+        for m in filter_masters(master_list):
             rc, logfile, dir = m.testMaster(
                 options.buildbot, error_logs=options.error_logs)
             if rc != 0:
