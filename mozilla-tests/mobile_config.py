@@ -142,6 +142,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
+    'remote-tspaint': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--mozAfterPaint'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+    },
     'remote-tsvg': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
@@ -155,11 +160,6 @@ SUITES = {
     'remote-tcanvasmark': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
-    },
-    'remote-tsspider': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsspider', '--noChrome'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
     },
     'remote-trobopan': {
@@ -965,8 +965,11 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['remote-tsvg_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 BRANCHES['mozilla-central']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-central']['remote-ts_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-central']['remote-tspaint_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -990,6 +993,11 @@ BRANCHES['mozilla-beta']['platforms']['android-x86']['enable_opt_unittests'] = F
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
+BRANCHES['mozilla-aurora']['remote-tsvg_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-aurora']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-aurora']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-aurora']['remote-ts_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
+BRANCHES['mozilla-aurora']['remote-tspaint_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 # MERGE DAY: Remove this line when FF26 merges in
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['enable_opt_unittests'] = False
 # MERGE DAY: end
