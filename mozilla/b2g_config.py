@@ -982,6 +982,7 @@ BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_revision_file'] = None
