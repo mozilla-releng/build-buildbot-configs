@@ -630,8 +630,8 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'enable_post_linker_size': True,
             'packageTests': True,
-            'slaves': SLAVES['win64'],
-            'l10n_slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
+            'l10n_slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32',
@@ -648,8 +648,8 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
@@ -682,7 +682,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'try_by_default': False,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win64',
@@ -700,8 +700,8 @@ PLATFORM_VARS = {
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
@@ -916,7 +916,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'build_space': 9,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win32-debug',
@@ -925,7 +925,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
@@ -951,7 +951,7 @@ PLATFORM_VARS = {
             'packageTests': True,
             'build_space': 9,
             'try_by_default': False,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
             'stage_platform': 'win64-debug',
@@ -2028,9 +2028,9 @@ BRANCHES['try']['create_snippet'] = False
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64']
-BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
+BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
+BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
@@ -2039,7 +2039,7 @@ BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock'
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-sh-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
@@ -2183,6 +2183,19 @@ for b in BRANCHES.keys():
                  ):
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
+
+# MERGE DAY         
+# Migrate branches to win64-rev2 platform (bug 918414)
+for branch in BRANCHES.keys(): # disabled by default
+    for platform in ('win32','win32-debug','win64','win64-debug'):
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
+            BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
+        BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
+        BRANCHES[branch]['platforms'][platform]['slaves'] = SLAVES['win64']
+        if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
+            BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = SLAVES['win64']
 
 # MERGE DAY - Once gecko 26 reaches 'mozilla-release' remove this line
 # ASAN builds/tests should ride the trains for gecko 26

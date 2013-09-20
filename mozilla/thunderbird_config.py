@@ -326,8 +326,8 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'enable_installer': True,
             'packageTests': True,
-            'slaves': SLAVES['win64'],
-            'l10n_slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
+            'l10n_slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32',
@@ -344,8 +344,8 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/tbirdbld_dsa",
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
@@ -372,7 +372,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'try_by_default': False,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win64',
@@ -390,8 +390,8 @@ PLATFORM_VARS = {
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
                 'TINDERBOX_OUTPUT': '1',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
@@ -588,7 +588,7 @@ PLATFORM_VARS = {
             'enable_installer': True,
             'packageTests': True,
             'build_space': 10,
-            'slaves': SLAVES['win64'],
+            'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'thunderbird',
             'stage_platform': 'win32-debug',
@@ -597,7 +597,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
@@ -958,11 +958,11 @@ BRANCHES['try-comm-central']['create_snippet'] = False
 BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try-comm-central']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try-comm-central']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try-comm-central']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try-comm-central']['platforms']['linux']['upload_symbols'] = False
 BRANCHES['try-comm-central']['platforms']['linux64']['upload_symbols'] = False
@@ -1051,6 +1051,20 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
+
+# MERGE DAY
+# Migrate branches to win64-rev2 platform (bug 918414)
+for branch in BRANCHES.keys(): # disabled by default
+    for platform in ('win32','win32-debug','win64','win64-debug'):
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
+            BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
+        BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
+        BRANCHES[branch]['platforms'][platform]['slaves'] = SLAVES['win64']
+        if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'comm-esr17':
+            BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = SLAVES['win64']
+
 
 if __name__ == "__main__":
     import sys

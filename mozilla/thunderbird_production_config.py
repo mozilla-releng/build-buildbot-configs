@@ -6,7 +6,7 @@ from localconfig import \
     WIN64_IXS, MOCK_DL120G7, \
     TRY_LINUX, TRY_LINUX_IXS, TRY_LINUX64, TRY_LINUX64_IXS, \
     TRY_MAC64, TRY_WIN32_IXS, TRY_WIN64_IXS, TRY_MOCK_DL120G7, \
-    TRY_LION, \
+    TRY_LION, WIN64_REV2, TRY_WIN64_REV2, \
     BUILDS_BEFORE_REBOOT, SYMBOL_SERVER_HOST
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
@@ -16,6 +16,7 @@ SLAVES = {
     'linux64':          LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
+    'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7
 }
@@ -25,6 +26,7 @@ TRY_SLAVES = {
     'linux64':     TRY_LINUX64 + TRY_LINUX64_IXS,
     'win32':       TRY_WIN32_IXS,
     'win64':       TRY_WIN64_IXS,
+    'win64-rev2':  TRY_WIN64_REV2,
     'macosx64':    TRY_MAC64,
     'macosx64-lion': TRY_LION,
     'mock':        TRY_MOCK_DL120G7,
@@ -86,8 +88,8 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                    'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                    'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                     'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                     'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 }

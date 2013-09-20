@@ -4,12 +4,14 @@ import production_config as pc
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 93) if x not in [88]]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in (1,)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in (3, 4, 5, 22, 80)]
+WIN64_REV2     = ['ix-mn-w0864-%03d' % x for x in range(1,3)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
 STAGING_SLAVES = {
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
+    'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
 }
@@ -121,8 +123,8 @@ BRANCHES = {
                     'TINDERBOX_OUTPUT': '1',
                     'MOZ_CRASHREPORTER_NO_REPORT': '1',
                     # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-                    'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                    'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                    'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                     'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
                     'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 }
