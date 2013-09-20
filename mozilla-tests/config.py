@@ -231,7 +231,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dirtypaint': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
         'options': (TALOS_DIRTY_OPTS, ALL_TALOS_PLATFORMS),
     },
