@@ -4,6 +4,7 @@ SlavePasswords = {
         'linux64': 'pass',
         'win32': 'pass',
         'win64': 'pass',
+        'win64-rev2': 'pass',
         'try-win32': 'pass',
         'macosx64': 'pass',
         'macosx64-lion': 'pass',
