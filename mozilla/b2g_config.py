@@ -950,6 +950,12 @@ BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
+# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
+# builds not needed for B2G 1.2
+BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
