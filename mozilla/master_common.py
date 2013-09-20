@@ -221,3 +221,35 @@ def prioritizeBuilders(buildmaster, builders):
     return builders
 
 c['prioritizeBuilders'] = prioritizeBuilders
+
+
+def setMainFirefoxVersions(BRANCHES):
+    # MERGE DAY
+    BRANCHES['mozilla-release']['gecko_version'] = 24
+    BRANCHES['mozilla-beta']['gecko_version']    = 25
+    BRANCHES['mozilla-aurora']['gecko_version']  = 26
+
+def setMainCommVersions(BRANCHES):
+    # MERGE DAY
+    BRANCHES['comm-beta']['gecko_version'] = 25
+    BRANCHES['comm-aurora']['gecko_version'] = 26
+
+def items_before(map, key, maxval):
+    """
+    yield all items from the dict 'map' where mapvalue[key] is present and less
+    than 'maxval' (assume that anything missing a value is later than the
+    threshold you're testing for.)
+    """
+    for k, v in map.items():
+        value = v.get(key)
+        if value and cmp(value, maxval) < 0:
+            yield (k, v)
+
+def items_at_least(map, key, minval):
+    """yield all items from the dict 'map' where mapvalue[key] is either not
+    present, or at least 'minval' if it is present (assume that anything
+    missing a value is definitely greater than the minimum)"""
+    for k, v in map.items():
+        value = v.get(key, minval)
+        if cmp(value, minval) >= 0:
+            yield (k, v)

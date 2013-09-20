@@ -11,6 +11,10 @@ from b2g_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 import b2g_localconfig
 reload(b2g_localconfig)
 
+import master_common
+reload(master_common)
+from master_common import items_before
+
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
 
@@ -808,56 +812,15 @@ BRANCHES = {
     'mozilla-aurora': {
     },
     'mozilla-b2g18': {
-        # b2g explicitly
-        'linux32_gecko': {},
-        'linux64_gecko': {},
-        'macosx64_gecko': {},
-        'win32_gecko': {},
-        'linux32_gecko_localizer': {},
-        'linux64_gecko_localizer': {},
-        'macosx64_gecko_localizer': {},
-        'win32_gecko_localizer': {},
-        'unagi': {},
-        'unagi_eng': {},
-        'inari': {},
-        'leo': {},
-        'leo_eng': {},
-        'hamachi': {},
+        'gecko_version': 18,
     },
     'mozilla-b2g18_v1_0_1': {
-        # b2g explicitly
-        'linux32_gecko': {},
-        'linux64_gecko': {},
-        'macosx64_gecko': {},
-        'win32_gecko': {},
-        'linux32_gecko_localizer': {},
-        'linux64_gecko_localizer': {},
-        'macosx64_gecko_localizer': {},
-        'win32_gecko_localizer': {},
-        'unagi': {},
-        'unagi_eng': {},
-        'inari': {},
-        'inari_eng': {},
-        'leo': {},
-        'hamachi_eng': {},
+        'gecko_version': 18,
+        'b2g_version': (1, 0, 1),
     },
     'mozilla-b2g18_v1_1_0_hd': {
-        # b2g explicitly
-        'linux32_gecko': {},
-        'linux64_gecko': {},
-        'macosx64_gecko': {},
-        'win32_gecko': {},
-        'linux32_gecko_localizer': {},
-        'linux64_gecko_localizer': {},
-        'macosx64_gecko_localizer': {},
-        'win32_gecko_localizer': {},
-        'unagi': {},
-        'unagi_eng': {},
-        'inari': {},
-        'leo': {},
-        'leo_eng': {},
-        'hamachi': {},
-        'helix': {},
+        'gecko_version': 18,
+        'b2g_version': (1, 1, 0),
     },
     'try': {
     },
@@ -987,6 +950,12 @@ BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
+# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
+# builds not needed for B2G 1.2
+BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
 
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
@@ -1019,6 +988,7 @@ BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_revision_file'] = None
@@ -1159,7 +1129,6 @@ BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] =
 BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
-
 # MERGE DAY: inari is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
@@ -1223,13 +1192,12 @@ for branch in BRANCHES:
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
 
-# gstreamer-devel packages ride the trains (bug 881589) - non-gecko-24 branches
-# Remove this block when these branches EOL
-for b in ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd"):
-    for p, pc in BRANCHES[b]['platforms'].items():
+# gstreamer-devel packages ride the trains (bug 881589)
+for name, branch in items_before(BRANCHES, 'gecko_version', 24):
+    for p, pc in branch['platforms'].items():
         if 'mock_packages' in pc:
-            BRANCHES[b]['platforms'][p]['mock_packages'] = \
-                [x for x in BRANCHES[b]['platforms'][p]['mock_packages'] if x not in (
+            branch['platforms'][p]['mock_packages'] = \
+                [x for x in branch['platforms'][p]['mock_packages'] if x not in (
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]

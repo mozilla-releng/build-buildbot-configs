@@ -5,6 +5,10 @@ reload(config_common)
 from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
     loadTalosSuites, nested_haskey, get_talos_slave_platforms
 
+import master_common
+reload(master_common)
+from master_common import setMainFirefoxVersions, items_before, items_at_least
+
 import project_branches
 reload(project_branches)
 from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
@@ -29,6 +33,7 @@ BRANCHES = {
     'mozilla-beta':        {},
     'mozilla-esr17':       {
         'datazilla_url': None,
+        'gecko_version': 17,
         'platforms': {
             'macosx64': {},
             'win32': {},
@@ -48,6 +53,7 @@ BRANCHES = {
     },
     'mozilla-b2g18': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
@@ -59,6 +65,7 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_0_1': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
@@ -70,6 +77,7 @@ BRANCHES = {
     },
     'mozilla-b2g18_v1_1_0_hd': {
         'datazilla_url': None,
+        'gecko_version': 18,
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
@@ -81,6 +89,8 @@ BRANCHES = {
     },
     'try': {'coallesce_jobs': False},
 }
+
+setMainFirefoxVersions(BRANCHES)
 
 # Talos
 PLATFORMS = {
@@ -221,7 +231,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dirtypaint': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max', '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
         'options': (TALOS_DIRTY_OPTS, ALL_TALOS_PLATFORMS),
     },
@@ -1622,19 +1632,17 @@ BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITE
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE
 
-# Remove this block once these branches EOL - Let's load jetpack for the following branches (gecko 21 based):
-for branch in BRANCHES.keys():
-    if branch not in ('mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-                      'mozilla-b2g18_v1_1_0_hd'):
-        for pf in PLATFORMS:
-            if pf not in BRANCHES[branch]['platforms'].keys():
+# Load jetpack for branches that have at least FF21
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
+    for pf in PLATFORMS:
+        if pf not in branch['platforms']:
+            continue
+        for slave_pf in branch['platforms'][pf].get(
+                'slave_platforms', PLATFORMS[pf]['slave_platforms']):
+            if slave_pf not in branch['platforms'][pf]:
                 continue
-            for slave_pf in BRANCHES[branch]['platforms'][pf].get(
-                    'slave_platforms', PLATFORMS[pf]['slave_platforms']):
-                if slave_pf not in BRANCHES[branch]['platforms'][pf]:
-                    continue
-                BRANCHES[branch]['platforms'][pf][slave_pf]['opt_unittest_suites'] += [('jetpack', ['jetpack'])]
-                BRANCHES[branch]['platforms'][pf][slave_pf]['debug_unittest_suites'] += [('jetpack', ['jetpack'])]
+            branch['platforms'][pf][slave_pf]['opt_unittest_suites'].append(('jetpack', ['jetpack']))
+            branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
 
 
 ######## generic branch variables for project branches
@@ -1700,9 +1708,7 @@ for branch in BRANCHES.keys():
                 'win8' in BRANCHES[branch]['platforms']['win32']:
             BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
-# Remove this block once these branches EOL - gecko 21 based
-NON_UBUNTU_BRANCHES = ("mozilla-esr17", "mozilla-b2g18",
-                       "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
+NON_UBUNTU_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 21)])
 
 
 # Green tests, including mozharness based ones
@@ -1720,7 +1726,6 @@ def get_ubuntu_unittests(branch, test_type):
                      "mochitest-2", "mochitest-3", "mochitest-4",
                      "mochitest-5", "mochitest", "mochitest-other"]}
     return list(UBUNTU_TESTS[test_type])
-
 
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches
@@ -1765,7 +1770,7 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
-# Remove block when branch EOL
+# Remove whole section when esr17 is EOL
 NON_UBUNTU_TALOS_BRANCHES = ["mozilla-esr17"]
 for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
     for s in SUITES.iterkeys():
@@ -1780,17 +1785,14 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-# Remove this block when the branches EOL (gecko 23 based)
-WIN32_REV3_BRANCHES = ("mozilla-esr17",
-                       "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
 # Disable Rev3 winxp and win7 machines for FF23+
-for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
-    if 'win32' not in BRANCHES[branch]['platforms']:
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 23):
+    if 'win32' not in branch['platforms']:
         continue
-    del BRANCHES[branch]['platforms']['win32']['xp']
-    del BRANCHES[branch]['platforms']['win32']['win7']
-    if 'talos_slave_platforms' not in BRANCHES[branch]['platforms']['win32']:
-        BRANCHES[branch]['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
+    del branch['platforms']['win32']['xp']
+    del branch['platforms']['win32']['win7']
+    if 'talos_slave_platforms' not in branch['platforms']['win32']:
+        branch['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
@@ -1815,16 +1817,10 @@ for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
 
-# MERGE DAY - Remove this line once gecko 26 reaches "mozilla-release"
 # ASAN builds/tests should ride the trains for gecko 26
-# Remove this block once these branches EOL
-ASAN_NON_TESTING_BRANCHES = ('mozilla-beta',
-                             'mozilla-release', 'mozilla-esr17',
-                             'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-                             'mozilla-b2g18_v1_1_0_hd')
-for branch in ASAN_NON_TESTING_BRANCHES:
-    if 'linux64-asan' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64-asan']
+for name, branch in items_before(BRANCHES, 'gecko_version', 26):
+    if 'linux64-asan' in branch['platforms']:
+        del branch['platforms']['linux64-asan']
 
 
 if __name__ == "__main__":

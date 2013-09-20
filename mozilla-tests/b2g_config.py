@@ -5,6 +5,11 @@ from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import b2g_localconfig
 reload(b2g_localconfig)
+
+import master_common
+reload(master_common)
+from master_common import items_before
+
 import config_common
 reload(config_common)
 
@@ -19,9 +24,17 @@ BRANCHES = {
     'cypress': {},
     'fx-team': {},
     'graphics': {},
-    'mozilla-b2g18': {},
-    'mozilla-b2g18_v1_0_1': {},
-    'mozilla-b2g18_v1_1_0_hd': {},
+    'mozilla-b2g18': {
+        'gecko_version': 18,
+    },
+    'mozilla-b2g18_v1_0_1': {
+        'gecko_version': 18,
+        'b2g_version': (1,0,1),
+    },
+    'mozilla-b2g18_v1_1_0_hd': {
+        'gecko_version': 18,
+        'b2g_version': (1,1,0),
+    },
     'mozilla-central': {},
     'mozilla-aurora': {},
     'mozilla-inbound': {},
@@ -1053,8 +1066,7 @@ for branch in BRANCHES.keys():
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
             BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
 
-# remove this block when these branches EOL (gecko 22 based)
-NON_UBUNTU_BRANCHES = ("mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd")
+NON_UBUNTU_BRANCHES = set([name for name,branch in items_before(BRANCHES, 'gecko_version', 22)])
 
 # use either Fedora or Ubuntu for other branches,
 # don't touch cedar
