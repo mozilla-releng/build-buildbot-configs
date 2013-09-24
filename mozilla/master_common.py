@@ -1,7 +1,6 @@
 import time
 import random
 import re
-from twisted.python import log as twlog
 
 c = BuildmasterConfig = {}
 c['projectName'] = "Firefox"
@@ -104,6 +103,15 @@ def builderPriority(builder, request):
 
     return branch_priority, req_priority, builder_priority, submitted_at
 
+cache_twlog = None
+def getTwlog():
+    global cached_twlog
+    if cached_twlog:
+        return cached_twlog
+    else:
+        from twisted.python import log as twlog
+        cached_twlog = twlog
+        return cached_twlog
 
 def prioritizeBuilders(buildmaster, builders):
     """
@@ -115,6 +123,7 @@ def prioritizeBuilders(buildmaster, builders):
     The final list is shuffled so that each of the important builders has a
     fair chance of being assigned to a slave.
     """
+    twlog = getTwlog()
     start_time = time.time()
 
     def log(msg, *args):
