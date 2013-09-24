@@ -747,8 +747,8 @@ BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = '
 ######## comm-esr24
 BRANCHES['comm-esr24']['repo_path'] = 'releases/comm-esr24'
 BRANCHES['comm-esr24']['moz_repo_path'] = 'releases/mozilla-esr24'
-BRANCHES['comm-esr24']['update_channel'] = 'release'
 BRANCHES['comm-esr24']['mozilla_dir'] = 'mozilla'
+BRANCHES['comm-esr24']['update_channel'] = 'nightly-esr24'
 BRANCHES['comm-esr24']['skip_blank_repos'] = True
 BRANCHES['comm-esr24']['call_client_py'] = True
 BRANCHES['comm-esr24']['l10n_repo_path'] = 'releases/l10n/mozilla-esr24'
@@ -772,8 +772,11 @@ BRANCHES['comm-esr24']['enUS_binaryURL'] = \
 BRANCHES['comm-esr24']['allLocalesFile'] = 'mail/locales/all-locales'
 BRANCHES['comm-esr24']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr24' % (GLOBAL_VARS['hgurl'])
-# temp disable nightlies (which includes turning off enable_l10n and l10nNightlyUpdate)
-BRANCHES['comm-esr24']['enable_nightly'] = False
+BRANCHES['comm-esr24']['enable_nightly'] = True
+BRANCHES['comm-esr24']['create_snippet'] = True
+BRANCHES['comm-esr24']['create_partial'] = True
+BRANCHES['comm-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
+BRANCHES['comm-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
 BRANCHES['comm-esr24']['enable_blocklist_update'] = False
 BRANCHES['comm-esr24']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr24']['enable_valgrind'] = False
