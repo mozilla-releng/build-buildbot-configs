@@ -103,7 +103,7 @@ def builderPriority(builder, request):
 
     return branch_priority, req_priority, builder_priority, submitted_at
 
-cache_twlog = None
+cached_twlog = None
 def getTwlog():
     global cached_twlog
     if cached_twlog:
