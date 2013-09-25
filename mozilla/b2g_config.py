@@ -1131,7 +1131,7 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
-for branch in BRANCHES: # disabled by default
+for branch in [x for x in BRANCHES.keys() if x not in ['cedar']]:
     for platform in ('win32_gecko','win32_gecko_localizer'):
         if platform not in BRANCHES[branch]['platforms']:
             continue

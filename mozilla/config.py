@@ -2186,7 +2186,7 @@ for b in BRANCHES.keys():
 
 # MERGE DAY         
 # Migrate branches to win64-rev2 platform (bug 918414)
-for branch in BRANCHES.keys(): # disabled by default
+for branch in [x for x in BRANCHES.keys() if x not in ['cedar']]:
     for platform in ('win32','win32-debug','win64','win64-debug'):
         if platform not in BRANCHES[branch]['platforms']:
             continue
