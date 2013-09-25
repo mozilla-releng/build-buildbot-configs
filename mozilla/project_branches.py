@@ -180,7 +180,7 @@ PROJECT_BRANCHES = {
         },
         'mobile_platforms': {
             'android': {
-                'slave_platforms': ['panda_android', 'panda_android-nomozpool'],
+                'slave_platforms': ['panda_android'],
             },
             'android-x86': {
                 'enable_opt_unittests': True,
@@ -190,7 +190,6 @@ PROJECT_BRANCHES = {
     'birch': {},
     'cedar': {
         'mozharness_tag': 'default',
-        'mozharness_talos': True,
         'lock_platforms': True,
         'enable_talos': True,
         'talos_suites': {
