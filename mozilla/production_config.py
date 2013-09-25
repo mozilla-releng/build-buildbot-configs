@@ -4,11 +4,13 @@ LINUX_IXS      = ['linux-ix-slave%02i' % x for x in [1,2,6]]
 LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3, 7)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,13)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,25) + range(42,44) + range(75,100) if x not in [22,80,85,86]] + \
-                 ['w64-ix-slave%03i' % x for x in range(100,158)]
+                 ['w64-ix-slave%03i' % x for x in range(100,158) if x not in range(110,120)]
 WIN64_REV2     = ['w64-ix-slave%03i' % x for x in range(110,120)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 900)]
 MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(27, 38)]
+if set(WIN64_REV2).intersection(set(WIN64_IXS)):
+    raise Exception('WIN64_REV2 and WIN64_IXS overlap')
 
 SLAVES = {
     'linux':            LINUX_VMS + LINUX_IXS,
