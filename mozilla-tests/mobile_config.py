@@ -77,7 +77,7 @@ PLATFORMS = {
     'android-x86': {},
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android', 'panda_android-nomozpool']
+PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra",
@@ -86,9 +86,6 @@ PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra",
 PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda",
                                          'mozharness_talos': True,
                                          }
-PLATFORMS['android']['panda_android-nomozpool'] = {'name': "Android 4.0 Panda",
-                                                   'mozharness_talos': True,
-                                                   }
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -132,55 +129,52 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 ANDROID = PLATFORMS['android']['slave_platforms']
-ANDROID_NOT_MOZPOOL = deepcopy(ANDROID)
-if 'panda_android-nomozpool' in PLATFORMS['android']['slave_platforms']:
-    ANDROID_NOT_MOZPOOL.remove('panda_android')
 
 SUITES = {
     'remote-ts': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tspaint': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--mozAfterPaint'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsvg': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tsvgx': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tcanvasmark': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-trobopan': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-troboprovider': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-trobocheck2': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
 }
 
@@ -861,7 +855,6 @@ PLATFORM_UNITTEST_VARS = {
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
         'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
-        'panda_android-nomozpool': deepcopy(EMPTY_UNITTEST_DICT),
     },
     'android-armv6': {
         'product_name': 'fennec',
@@ -992,11 +985,6 @@ BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
 BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['remote-tsvg_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-central']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-central']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-central']['remote-ts_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-central']['remote-tspaint_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['release_tests'] = 1
@@ -1005,6 +993,12 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_platforms'] = []
 # MERGE DAY: Remove this line when FF26 merges in
 BRANCHES['mozilla-release']['platforms']['android-x86']['enable_opt_unittests'] = False
+BRANCHES['mozilla-release']['platforms']['android-x86']['enable_opt_unittests'] = False
+BRANCHES['mozilla-release']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tsvgx_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tcanvasmark_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-release']['remote-tspaint_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 # MERGE DAY: end
 
 ######### mozilla-beta
@@ -1014,17 +1008,17 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-beta']['pgo_platforms'] = []
 # MERGE DAY: Remove this line when FF26 merges in
 BRANCHES['mozilla-beta']['platforms']['android-x86']['enable_opt_unittests'] = False
+BRANCHES['mozilla-beta']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tsvgx_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tcanvasmark_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
+BRANCHES['mozilla-beta']['remote-tspaint_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
 # MERGE DAY: end
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-BRANCHES['mozilla-aurora']['remote-tsvg_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-aurora']['remote-tsvgx_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-aurora']['remote-tcanvasmark_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-aurora']['remote-ts_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
-BRANCHES['mozilla-aurora']['remote-tspaint_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_MOZPOOL)
 # MERGE DAY: Remove this line when FF26 merges in
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['enable_opt_unittests'] = False
 # MERGE DAY: end
@@ -1068,17 +1062,6 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
     loadDefaultValues(BRANCHES, projectBranch, branchConfig)
     loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
-# start temp fix until panda android pools are collapsed again in bug 913206    
-BRANCHES['cedar']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-trobopan_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tp4m_nochrome_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-troboprovider_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['cedar']['remote-trobocheck2_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-
-BRANCHES['cedar']['platforms']['android']['slave_platforms'] = ['tegra_android', 'panda_android']
-# end temp fix until panda android pools are collapsed again in bug 913206
-
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
@@ -1097,7 +1080,6 @@ for branch in BRANCHES:
 for name, branch in items_before(BRANCHES, 'gecko_version', 22):
     if 'android' in branch['platforms']:
         del branch['platforms']['android']['panda_android']
-        del BRANCHES[branch]['platforms']['android']['panda_android-nomozpool']
         branch['platforms']['android']['slave_platforms'] = ['tegra_android']
 
 # Do android debug only on cedar
@@ -1168,14 +1150,6 @@ for branch in BRANCHES:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
                     if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
-
-#only run mozharness talos with mozpool for Panda android tests on cedar 
-for branch in BRANCHES:
-    # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', ):
-        continue
-    BRANCHES[branch]['mozharness_talos'] = False
-
 
 # schedule jittests for pandas on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
