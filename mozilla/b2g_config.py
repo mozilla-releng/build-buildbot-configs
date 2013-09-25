@@ -279,7 +279,7 @@ PLATFORM_VARS = {
         'packageTests': True,
         'create_snippet': False,
         'create_partial': False,
-        'slaves': SLAVES['win64'],
+        'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
         'unittest_masters': [],
         'stage_product': 'b2g',
@@ -295,8 +295,8 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
             'TINDERBOX_OUTPUT': '1',
             'MOZ_CRASHREPORTER_NO_REPORT': '1',
-            'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-            'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+            'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+            'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
@@ -540,7 +540,7 @@ PLATFORM_VARS = {
         'packageTests': True,
         'create_snippet': False,
         'create_partial': False,
-        'slaves': SLAVES['win64'],
+        'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
         'unittest_masters': [],
         'stage_product': 'b2g',
@@ -556,8 +556,8 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
             'TINDERBOX_OUTPUT': '1',
             'MOZ_CRASHREPORTER_NO_REPORT': '1',
-            'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe',
-            'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+            'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+            'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             # Necessary to avoid conflicting with the dev-focused builds'
@@ -1117,7 +1117,7 @@ BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64']
+BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
@@ -1128,6 +1128,20 @@ BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+
+# MERGE DAY
+# Migrate branches to win64-rev2 platform (bug 918414)
+for branch in BRANCHES: # disabled by default
+    for platform in ('win32_gecko','win32_gecko_localizer'):
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
+            BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
+        BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
+        oldslaves = SLAVES['win64']
+        if 'try' in branch:
+            oldslaves = TRY_SLAVES['win64']
+        BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
 
 # MERGE DAY: inari is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
