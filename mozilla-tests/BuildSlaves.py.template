@@ -20,6 +20,7 @@ SlavePasswords = {
     "snowleopard": "pass",
     "lion": "pass",
     "mountainlion": "pass",
+    "mountainlion-b2gdt": "pass",
     "xp": "pass",
     "xp-ix": "pass",
     "win7": "pass",
@@ -32,7 +33,6 @@ SlavePasswords = {
     "tegra_android-armv6": "pass",
     "tegra_android-noion": "pass",
     "panda_android": "pass",
-    "panda_android-nomozpool": "pass",
 }
 
 datazillaAuth = {

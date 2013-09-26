@@ -564,7 +564,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
       'timeout': 2400,
       'script_maxtime': 14400,
       },
-     ),     
+     ),
 ]
 
 ANDROID_MOZHARNESS_JITTEST = [
@@ -573,6 +573,18 @@ ANDROID_MOZHARNESS_JITTEST = [
       'use_mozharness': True,
       'script_path': 'scripts/android_panda.py',
       'extra_args': ['--cfg', 'android/android_panda_releng.py', '--jittest-suite', 'jittest'],
+      'timeout': 2400,
+      'script_maxtime': 14400,
+      },
+     ),
+]
+
+ANDROID_MOZHARNESS_CPPUNITTEST = [
+    ('cppunittest',
+     {'suite': 'cppunittest',
+      'use_mozharness': True,
+      'script_path': 'scripts/android_panda.py',
+      'extra_args': ['--cfg', 'android/android_panda_releng.py', '--cppunittest-suite', 'cppunittest'],
       'timeout': 2400,
       'script_maxtime': 14400,
       },
@@ -687,7 +699,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
-    'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST,
+    'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
     'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_JITTEST,
 }
 
@@ -728,6 +740,7 @@ ANDROID_X86_MOZHARNESS_DICT = [
             '--test-suite', 'mochitest-4',
             '--test-suite', 'xpcshell',
         ],
+        'trychooser_suites': ['mochitest-1', 'mochitest-2', 'mochitest-4', 'xpcshell'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -742,6 +755,7 @@ ANDROID_X86_MOZHARNESS_DICT = [
             '--test-suite', 'mochitest-7',
             '--test-suite', 'mochitest-8',
         ],
+        'trychooser_suites': ['mochitest-5', 'mochitest-6', 'mochitest-7', 'mochitest-8'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -759,6 +773,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'reftest-3',
             '--test-suite', 'reftest-4',
         ],
+        'trychooser_suites': ['plain-reftest-1', 'plain-reftest-2', 'plain-reftest-3', 'plain-reftest-4'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -773,6 +788,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'reftest-7',
             '--test-suite', 'reftest-8',
         ],
+        'trychooser_suites': ['plain-reftest-5', 'plain-reftest-6', 'plain-reftest-7', 'plain-reftest-8'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -787,6 +803,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'jsreftest-1',
             '--test-suite', 'jsreftest-2',
         ],
+        'trychooser_suites': ['plain-reftest-9', 'plain-reftest-10', 'jsreftest-1', 'jsreftest-2'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -801,6 +818,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'jsreftest-5',
             '--test-suite', 'jsreftest-6',
         ],
+        'trychooser_suites': ['jsreftest-3', 'jsreftest-4', 'jsreftest-5', 'jsreftest-6'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -814,6 +832,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'crashtest-2',
             '--test-suite', 'crashtest-3',
         ],
+        'trychooser_suites': ['crashtest-1', 'crashtest-2', 'crashtest-3'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -828,6 +847,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'robocop-1',
             '--test-suite', 'robocop-2',
         ],
+        'trychooser_suites': ['mochitest-3', 'mochitest-gl', 'robocop-1', 'robocop-2'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -1171,7 +1191,7 @@ for branch in BRANCHES:
                 continue
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
-                    if ("jittest" in suite[0]):
+                      if ("jittest" in suite[0]) or ("cppunittest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
