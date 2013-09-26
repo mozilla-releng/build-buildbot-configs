@@ -564,7 +564,7 @@ ANDROID_MOZHARNESS_PLAIN_REFTEST = [
       'timeout': 2400,
       'script_maxtime': 14400,
       },
-     ),     
+     ),
 ]
 
 ANDROID_MOZHARNESS_JITTEST = [
@@ -573,6 +573,18 @@ ANDROID_MOZHARNESS_JITTEST = [
       'use_mozharness': True,
       'script_path': 'scripts/android_panda.py',
       'extra_args': ['--cfg', 'android/android_panda_releng.py', '--jittest-suite', 'jittest'],
+      'timeout': 2400,
+      'script_maxtime': 14400,
+      },
+     ),
+]
+
+ANDROID_MOZHARNESS_CPPUNITTEST = [
+    ('cppunittest',
+     {'suite': 'cppunittest',
+      'use_mozharness': True,
+      'script_path': 'scripts/android_panda.py',
+      'extra_args': ['--cfg', 'android/android_panda_releng.py', '--cppunittest-suite', 'cppunittest'],
       'timeout': 2400,
       'script_maxtime': 14400,
       },
@@ -687,7 +699,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
-    'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST,
+    'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
     'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_JITTEST,
 }
 
@@ -1179,7 +1191,7 @@ for branch in BRANCHES:
                 continue
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
-                    if ("jittest" in suite[0]):
+                      if ("jittest" in suite[0]) or ("cppunittest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
