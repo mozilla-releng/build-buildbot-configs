@@ -49,3 +49,6 @@ datazillaAuth = {
         'oauthSecret': '92e1d99d-fd5a-45a7-b07e-ec5a9f59c844',
     },
 }
+
+blobber_username = 'user'
+blobber_password = 'passwd'
