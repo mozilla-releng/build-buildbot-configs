@@ -190,7 +190,6 @@ PROJECT_BRANCHES = {
     'birch': {},
     'cedar': {
         'mozharness_tag': 'default',
-        'lock_platforms': True,
         'enable_talos': True,
         'talos_suites': {
             'xperf': 1,
@@ -199,66 +198,13 @@ PROJECT_BRANCHES = {
         'enable_nightly': True,
         'create_snippet': True,
         'create_mobile_snippet': True,
-        'platforms': {
-            'linux': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'linux64': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'linux64-asan': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'linux64-asan-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'win32': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'macosx64': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'linux-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'linux64-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'macosx64-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'win32-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-            },
-            'android-x86': {
-                'enable_opt_unittests': True,
-            },
-        },
-        'mobile_platforms': {
-            'android': {
-                'enable_nightly': True,
-                'create_snippet': True,
-                'create_mobile_snippet': True,
-            },
-            'android-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-                'create_mobile_snippet': False,
-            },
-            'android-x86': {
-                'enable_opt_unittests': True,
-            },
-        },
+        'enable_opt_unittests': True,
+        'enable_l10n': True,
+        'enable_l10n_onchange': True,
+        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
+        'l10n_tree': 'fxcentral',
+        'l10n_repo_path': 'l10n-central',
+        'enUS_binaryURL': '/nightly/latest-cedar',
     },
     'date': {
         'lock_platforms': True,
