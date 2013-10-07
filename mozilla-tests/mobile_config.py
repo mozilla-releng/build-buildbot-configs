@@ -900,7 +900,7 @@ PLATFORM_UNITTEST_VARS = {
     },
     'android-x86': {
         'product_name': 'fennec',
-        'enable_opt_unittests': False,
+        'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_hw': deepcopy(ANDROID_X86_MOZHARNESS_UNITTEST_DICT),
     },
