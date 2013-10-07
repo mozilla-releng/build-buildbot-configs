@@ -1408,8 +1408,6 @@ BRANCH_PROJECTS = {
             'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['warnaserrdebug'],
-            'macosx64':           ['warnaserr'],
-            'macosx64-debug':     ['dtrace', 'warnaserrdebug'],
         },
         'platforms': {
             'linux': {},
