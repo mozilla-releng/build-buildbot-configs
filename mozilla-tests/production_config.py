@@ -11,7 +11,7 @@ SLAVES = {
     'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,131)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,131)]),
     'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,85) \
-        if x not in [46, 81, 84]]), # bug 824754, bug 729090, bug 795558
+        if x not in [81, 84]]), # bug 729090, bug 795558
     'lion': dict([("talos-r4-lion-%03i" % x, {}) for x in range(1,91) \
         if x not in [58, 81, 83]]), # bug 730545, bug 729090 (x2)
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
