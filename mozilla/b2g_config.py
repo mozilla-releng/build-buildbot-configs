@@ -1160,6 +1160,8 @@ for branch in BRANCHES:
                       'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
+    # leo-eng isn't for 1.2 anymore, bug 924503
+    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g18'):
         if 'leo_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo_eng']
 
@@ -1215,6 +1217,25 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
+
+# Turn off a bunch of builds: bug 924503
+# Hamachi 1.0.1
+for p in BRANCHES['mozilla-b2g18_v1_0_1']['platforms'].keys():
+    if p not in ('hamachi', ):
+        del BRANCHES['mozilla-b2g18_v1_0_1']['platforms'][p]
+# Subset for 1.1
+for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
+    if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'unagi_eng'):
+        del BRANCHES['mozilla-b2g18']['platforms'][p]
+# Subset for 1.1hd
+for p in BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'].keys():
+    if p in ('unagi', ):
+        del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'][p]
+# B2G desktop builds before 1.2
+for name, branch in items_before(BRANCHES, 'gecko_version', 26):
+    for p in branch['platforms'].keys():
+        if '_gecko' in p:
+            del branch['platforms'][p]
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
