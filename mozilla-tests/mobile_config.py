@@ -900,7 +900,7 @@ PLATFORM_UNITTEST_VARS = {
     },
     'android-x86': {
         'product_name': 'fennec',
-        'enable_opt_unittests': True,
+        'enable_opt_unittests': False,
         'enable_debug_unittests': False,
         'ubuntu64_hw': deepcopy(ANDROID_X86_MOZHARNESS_UNITTEST_DICT),
     },
@@ -1086,14 +1086,9 @@ for projectBranch in ACTIVE_PROJECT_BRANCHES:
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
-# XXX Bug 789373 hack - add android-noion until we have b2g testing
-# Delete all references to android-noion once we have b2g jsreftests not
-# in an emulator.
+# MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'mozilla-b2g18',
-                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd', 'try',
-                      'b2g-inbound', 'date',
-                      ):
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 

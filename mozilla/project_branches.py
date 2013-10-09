@@ -267,11 +267,6 @@ PROJECT_BRANCHES = {
                 'create_snippet': False,
                 'create_mobile_snippet': False,
             },
-            'android-noion': {
-                'enable_nightly': False,
-                'create_snippet': False,
-                'create_mobile_snippet': False,
-            },
             'android-armv6': {
                 'enable_nightly': False,
                 'create_snippet': False,

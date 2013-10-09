@@ -2,7 +2,6 @@ from copy import deepcopy
 import production_config as pc
 
 STAGING_SLAVES = {
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in [46]]),
     'tegra_android': dict(
         [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) for x in range(10,30)]
     ),

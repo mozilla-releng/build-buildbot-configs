@@ -961,7 +961,7 @@ BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
-BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_1'
 BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
@@ -1056,7 +1056,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_rev
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = 'releases/mozilla-b2g18_v1_1_0_hd'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_1'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
@@ -1132,7 +1132,7 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 for branch in [x for x in BRANCHES.keys() if x not in ['cedar']]:
-    for platform in ('win32_gecko','win32_gecko_localizer'):
+    for platform in ('win32_gecko', 'win32_gecko_localizer'):
         if platform not in BRANCHES[branch]['platforms']:
             continue
         if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
@@ -1160,6 +1160,8 @@ for branch in BRANCHES:
                       'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
+    # leo-eng isn't for 1.2 anymore, bug 924503
+    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g18'):
         if 'leo_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo_eng']
 
@@ -1215,6 +1217,25 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
+
+# Turn off a bunch of builds: bug 924503
+# Hamachi 1.0.1
+for p in BRANCHES['mozilla-b2g18_v1_0_1']['platforms'].keys():
+    if p not in ('hamachi', ):
+        del BRANCHES['mozilla-b2g18_v1_0_1']['platforms'][p]
+# Subset for 1.1
+for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
+    if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'unagi_eng'):
+        del BRANCHES['mozilla-b2g18']['platforms'][p]
+# Subset for 1.1hd
+for p in BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'].keys():
+    if p in ('unagi', ):
+        del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'][p]
+# B2G desktop builds before 1.2
+for name, branch in items_before(BRANCHES, 'gecko_version', 26):
+    for p in branch['platforms'].keys():
+        if '_gecko' in p:
+            del branch['platforms'][p]
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
