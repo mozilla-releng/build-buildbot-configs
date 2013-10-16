@@ -87,7 +87,10 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'try': {'coallesce_jobs': False},
+    'try': {
+      'coallesce_jobs': False,
+      'blob_upload' : True,
+    },
 }
 
 setMainFirefoxVersions(BRANCHES)
