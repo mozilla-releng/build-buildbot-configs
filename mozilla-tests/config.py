@@ -3,7 +3,7 @@ from copy import deepcopy
 import config_common
 reload(config_common)
 from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
-    loadTalosSuites, nested_haskey, get_talos_slave_platforms
+    nested_haskey, get_talos_slave_platforms
 
 import master_common
 reload(master_common)
@@ -1463,19 +1463,8 @@ for k, v in localconfig.PROJECTS.items():
 
 # Let's load the defaults
 for branch in BRANCHES.keys():
-    BRANCHES[branch]['repo_path'] = branch
-    BRANCHES[branch]['branch_name'] = branch.title()
-    BRANCHES[branch]['build_branch'] = branch.title()
-    BRANCHES[branch]['enable_unittests'] = True
-    BRANCHES[branch]['talos_command'] = TALOS_CMD
-    BRANCHES[branch]['fetch_symbols'] = True
-    BRANCHES[branch]['fetch_release_symbols'] = False
-    BRANCHES[branch]['talos_from_source_code'] = True
-    BRANCHES[branch]['support_url_base'] = 'http://talos-bundles.pvt.build.mozilla.org'
-    loadTalosSuites(BRANCHES, SUITES, branch)
-    BRANCHES[branch]['pgo_strategy'] = None
-    BRANCHES[branch]['pgo_platforms'] = ['linux', 'linux64', 'win32']
-    BRANCHES[branch]['mozharness_talos'] = True
+    loadDefaultValues(BRANCHES, branch, BRANCHES[branch])
+    loadCustomTalosSuites(BRANCHES, SUITES, branch, BRANCHES[branch])
 
 # The following are exceptions to the defaults
 
@@ -1617,6 +1606,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######## try
+BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
@@ -1644,12 +1634,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
             branch['platforms'][pf][slave_pf]['opt_unittest_suites'].append(('jetpack', ['jetpack']))
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
 
-
-######## generic branch variables for project branches
-for projectBranch in ACTIVE_PROJECT_BRANCHES:
-    branchConfig = PROJECT_BRANCHES[projectBranch]
-    loadDefaultValues(BRANCHES, projectBranch, branchConfig)
-    loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # Enable cppunittest jobs for now
 for platform in PLATFORMS.keys():

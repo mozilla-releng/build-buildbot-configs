@@ -9,12 +9,15 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['branch_name'] = branchConfig.get('branch_name', branch.title())
     BRANCHES[branch]['build_branch'] = branchConfig.get('build_branch', branch.title())
+    BRANCHES[branch]['mobile_branch_name'] = branch.title()
     BRANCHES[branch]['talos_command'] = branchConfig.get('talos_cmd', TALOS_CMD)
     BRANCHES[branch]['fetch_symbols'] = branchConfig.get('fetch_symbols', True)
+    BRANCHES[branch]['fetch_release_symbols'] = branchConfig.get('fetch_release_symbols', False)
     BRANCHES[branch]['talos_from_source_code'] = branchConfig.get('talos_from_source_code', True)
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://talos-bundles.pvt.build.mozilla.org')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['pgo_platforms'] = branchConfig.get('pgo_platforms', ['linux', 'linux64', 'win32'])
     BRANCHES[branch]['mozharness_talos'] = True
 
 
@@ -51,21 +54,6 @@ def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):
         else:
             # Suites that are turned on by default
             BRANCHES[branch][suite + '_tests'] = (talosConfig.get(suite, 1), coallesceJobs) + SUITES[suite]['options']
-
-
-def loadTalosSuites(BRANCHES, SUITES, branch):
-    '''
-    This is very similar to loadCustomTalosSuites and is to deal with branches that are not in project_branches.py
-    but in config.py. Both functions could be unified later on when we do further refactoring.
-    '''
-    coallesceJobs = BRANCHES[branch].get('coallesce_jobs', True)
-    for suite in SUITES.keys():
-        if not SUITES[suite]['enable_by_default']:
-            # Suites that are turned off by default
-            BRANCHES[branch][suite + '_tests'] = (0, coallesceJobs) + SUITES[suite]['options']
-        else:
-            # Suites that are turned on by default
-            BRANCHES[branch][suite + '_tests'] = (1, coallesceJobs) + SUITES[suite]['options']
 
 
 def nested_haskey(dictionary, *keys):
