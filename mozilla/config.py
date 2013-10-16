@@ -2177,7 +2177,7 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# MERGE DAY         
+# MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound','mozilla-inbound'])
 for branch in disabled_branches:
@@ -2194,16 +2194,10 @@ for branch in disabled_branches:
         if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
             BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
 
-# MERGE DAY - Once gecko 26 reaches 'mozilla-release' remove this line
-# ASAN builds/tests should ride the trains for gecko 26
-# Once the MERGE DAY is removed leave this note: "Remove this block when branches EOL"
-for b in BRANCHES:
-    if b in ('mozilla-beta', 'mozilla-release',
-             'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-             'mozilla-b2g18_v1_1_0_hd'):
-        for p in 'linux64-asan', 'linux64-asan-debug':
-            if p in BRANCHES[b]['platforms']:
-                del BRANCHES[b]['platforms'][p]
+for _, branch in items_before(BRANCHES, 'gecko_version', 26):
+    for p in 'linux64-asan', 'linux64-asan-debug':
+        if p in branch['platforms']:
+            del branch['platforms'][p]
 
 # Building 32-bit linux in a x86_64 env rides the trains (bug 857697)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
@@ -2256,13 +2250,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 for name, branch in items_before(BRANCHES, 'gecko_version', 22):
     branch["run_make_alive_tests"] = False
 
-for b in ("mozilla-beta", "mozilla-release",
-          "mozilla-b2g18", "mozilla-b2g18_v1_0_1", "mozilla-b2g18_v1_1_0_hd",
-          "mozilla-esr17"):
-    if b not in ('mozilla-central',):
-        for p in 'linux64-asan', 'linux64-dbg-asan', 'linux64-dbg-st-an':
-            if p in BRANCHES[b]['platforms']:
-                del BRANCHES[b]['platforms'][p]
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
