@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import config_common
 reload(config_common)
-from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, loadTalosSuites
+from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites
 
 import master_common
 reload(master_common)
@@ -980,19 +980,8 @@ for branch in BRANCHES.keys():
 
 # Let's load the defaults
 for branch in BRANCHES.keys():
-    BRANCHES[branch]['repo_path'] = branch
-    BRANCHES[branch]['branch_name'] = branch.title()
-    BRANCHES[branch]['mobile_branch_name'] = branch.title()
-    BRANCHES[branch]['build_branch'] = branch.title()
-    BRANCHES[branch]['enable_unittests'] = True
-    BRANCHES[branch]['talos_command'] = TALOS_CMD
-    BRANCHES[branch]['fetch_symbols'] = True
-    BRANCHES[branch]['fetch_release_symbols'] = False
-    BRANCHES[branch]['talos_from_source_code'] = True
-    BRANCHES[branch]['support_url_base'] = 'http://talos-bundles.pvt.build.mozilla.org'
-    loadTalosSuites(BRANCHES, SUITES, branch)
-    BRANCHES[branch]['pgo_strategy'] = None
-    BRANCHES[branch]['pgo_platforms'] = []
+    loadDefaultValues(BRANCHES, branch, BRANCHES[branch])
+    loadCustomTalosSuites(BRANCHES, SUITES, branch, BRANCHES[branch])
 
 # The following are exceptions to the defaults
 
@@ -1068,6 +1057,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_platforms'] = []
 
 ######## try
+BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
@@ -1075,12 +1065,6 @@ BRANCHES['try']['enable_try'] = True
 
 # Ignore robocop chunks for mozilla-release, robocop-chunks is defined in ANDROID_PLAIN_UNITTEST_DICT
 BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"]["opt_unittest_suites"] = deepcopy(TEGRA_RELEASE_PLAIN_UNITTEST_DICT["opt_unittest_suites"])
-
-######## generic branch variables for project branches
-for projectBranch in ACTIVE_PROJECT_BRANCHES:
-    branchConfig = PROJECT_BRANCHES[projectBranch]
-    loadDefaultValues(BRANCHES, projectBranch, branchConfig)
-    loadCustomTalosSuites(BRANCHES, SUITES, projectBranch, branchConfig)
 
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]

@@ -205,6 +205,11 @@ PROJECT_BRANCHES = {
         'l10n_tree': 'fxcentral',
         'l10n_repo_path': 'l10n-central',
         'enUS_binaryURL': '/nightly/latest-cedar',
+        'mobile_platforms': {
+            'android-x86': {
+                'enable_opt_unittests': True,
+            },
+        },
     },
     'date': {
         'lock_platforms': True,
