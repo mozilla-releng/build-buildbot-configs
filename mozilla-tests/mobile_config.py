@@ -619,6 +619,15 @@ ANDROID_MOZHARNESS_PLAIN_ROBOCOP = [
       'script_maxtime': 14400,
       },
      ),
+     ('robocop-4',
+     {'suite': 'mochitest-robocop',
+      'use_mozharness': True,
+      'script_path': 'scripts/android_panda.py',
+      'extra_args': ['--cfg', 'android/android_panda_releng.py', '--robocop-suite', 'robocop-4'],
+      'timeout': 2400,
+      'script_maxtime': 14400,
+      },
+     ),
 ]
 
 ANDROID_NOION_UNITTEST_DICT = {
