@@ -168,6 +168,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
+        'blob_upload': True,
         'platforms': {
             'linux': {},
             'linux64': {},
