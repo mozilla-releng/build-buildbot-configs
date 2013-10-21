@@ -28,21 +28,8 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'periodic',
         'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
     },
-    # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
-        'enable_perproduct_builds': True,
-        'mozconfig_dir': 'mozilla-central',
-        'enable_weekly_bundle': True,
-        'pgo_strategy': 'periodic',
-        'periodic_pgo_interval': 3,
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
-    },
-    # Customized to be the same as inbound. bug 866314
-    'cypress': {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
         'enable_weekly_bundle': True,
@@ -211,6 +198,8 @@ PROJECT_BRANCHES = {
                 'enable_opt_unittests': True,
             },
         },
+    },
+    'cypress': {
     },
     'date': {
         'lock_platforms': True,
