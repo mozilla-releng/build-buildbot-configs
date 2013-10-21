@@ -1482,10 +1482,6 @@ BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 
-# MERGE DAY remove the below when Firefox 25 merges in
-BRANCHES['mozilla-release']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-# END MERGE DAY remove the below when Firefox 25 merges in
-
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
