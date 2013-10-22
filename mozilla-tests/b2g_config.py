@@ -22,6 +22,7 @@ BRANCHES = {
     'ash': {},
     'cedar': {},
     'cypress': {},
+    'pine': {},
     'fx-team': {},
     'graphics': {},
     'mozilla-b2g18': {
@@ -1109,6 +1110,15 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_un
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
+BRANCHES['pine']['branch_name'] = "Pine"
+BRANCHES['pine']['repo_path'] = "projects/pine"
+BRANCHES['pine']['mozharness_tag'] = "default"
+BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
+BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
+BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['pine']['platforms']['emulator']['enable_debug_unittests'] = True
+BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
+BRANCHES['pine']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
@@ -1164,8 +1174,8 @@ for branch in BRANCHES.keys():
             if 'ubuntu64_vm-b2gdt' in BRANCHES[branch]['platforms']['linux64_gecko']:
                 del BRANCHES[branch]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']
 
-# Disable linux32_gecko, macosx64_gecko on all branches but cedar
-for branch in set(BRANCHES.keys()) - set(['cedar']):
+# Disable linux32_gecko, macosx64_gecko on all branches but cedar and pine
+for branch in set(BRANCHES.keys()) - set(['cedar', 'pine']):
     for platform in ('linux32_gecko', 'macosx64_gecko'):
         if platform not in BRANCHES[branch]['platforms']:
             continue

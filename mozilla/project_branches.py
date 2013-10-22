@@ -300,7 +300,25 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'pine': {},
+    'pine': {
+        'mozharness_tag': 'default',
+        'enable_talos': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'blob_upload': True,
+        'enable_nightly': False,
+        'create_snippet': True,
+        'create_mobile_snippet': True,
+        'enable_opt_unittests': True,
+        'enable_l10n': False,
+        'enable_l10n_onchange': False,
+        'mobile_platforms': {
+            'android-x86': {
+                'enable_opt_unittests': True,
+            },
+        },
+    }
 }
 
 # All is the default

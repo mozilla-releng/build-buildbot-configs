@@ -70,7 +70,9 @@ PROJECT_BRANCHES = {
     'oak': {
         'enable_nightly': True
     },
-    'pine': {},
+    'pine': {
+        'mozharness_tag': 'default',
+    }
 }
 
 # All is the default
