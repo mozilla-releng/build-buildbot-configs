@@ -36,7 +36,7 @@
     "platforms": ["android"]
   },
   "es-ES": {
-    "revision": "4eeacec36faa",
+    "revision": "5fd0b66ea650",
     "platforms": ["android", "android-multilocale"]
   },
   "fi": {
