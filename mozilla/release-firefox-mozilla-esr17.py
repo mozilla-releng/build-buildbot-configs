@@ -20,29 +20,29 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '17.0.9esr'
-releaseConfig['appVersion']          = '17.0.9'
+releaseConfig['version']             = '17.0.10esr'
+releaseConfig['appVersion']          = '17.0.10'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_17_0_9esr'
+releaseConfig['baseTag']             = 'FIREFOX_17_0_10esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.8esr': {
-        'appVersion': '17.0.8',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_17_0_8esr',
+    '17.0.9esr': {
+        'appVersion': '17.0.9',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_17_0_9esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.9esrpre'
+releaseConfig['nextAppVersion']      = '17.0.10esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '09d9550bd906',
+        'revision': 'c3750e0515f7',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -86,6 +86,7 @@ releaseConfig['enableUnittests'] = True
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = False
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
