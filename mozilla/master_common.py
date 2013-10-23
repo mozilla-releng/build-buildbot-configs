@@ -39,14 +39,13 @@ BRANCH_PRIORITIES = {
     # Unlisted branches are prioritized at this level
     'mozilla-inbound': 4,
     'b2g-inbound': 4,
-    # Cypress is also an inbound!
-    'cypress': 4,
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
     'ash': 5,
     'birch': 5,
     'cedar': 5,
+    'cypress': 5,
     'date': 5,
     'elm': 5,
     'fig': 5,
