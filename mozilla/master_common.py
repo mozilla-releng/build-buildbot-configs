@@ -231,6 +231,8 @@ def prioritizeBuilders(buildmaster, builders):
 c['prioritizeBuilders'] = prioritizeBuilders
 
 
+# BRANCHES without 'gecko_version' set are considered to have a gecko_version
+# later (larger) than any other value. See items_before for example usage.
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
     BRANCHES['mozilla-release']['gecko_version'] = 25
@@ -242,6 +244,12 @@ def setMainCommVersions(BRANCHES):
     BRANCHES['comm-beta']['gecko_version'] = 25
     BRANCHES['comm-aurora']['gecko_version'] = 26
 
+# Typical usage pattern:
+#
+#   set cfg = current_behavior
+#   for (b in items_before(BRANCHES, 'gecko_version', N)):
+#     set cfg = previous_behavior
+#
 def items_before(map, key, maxval):
     """
     yield all items from the dict 'map' where mapvalue[key] is present and less
@@ -253,6 +261,11 @@ def items_before(map, key, maxval):
         if value and cmp(value, maxval) < 0:
             yield (k, v)
 
+# Typical usage pattern:
+#
+#   for (b in items_at_least(BRANCHES, 'gecko_version', N)):
+#     set cfg = new_behavior
+#
 def items_at_least(map, key, minval):
     """yield all items from the dict 'map' where mapvalue[key] is either not
     present, or at least 'minval' if it is present (assume that anything
