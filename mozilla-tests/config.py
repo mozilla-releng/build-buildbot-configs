@@ -1524,7 +1524,6 @@ BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18
-BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['mozharness_talos'] = False
@@ -1551,7 +1550,6 @@ BRANCHES['mozilla-b2g18']['platforms']['win32']['talos_slave_platforms'] = ['xp'
 BRANCHES['mozilla-b2g18']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18_v1_0_1
-BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_0_1']['mozharness_talos'] = False
@@ -1578,7 +1576,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['talos_slave_platforms'] 
 BRANCHES['mozilla-b2g18_v1_0_1']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-b2g18_v1_1_0_hd
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['mozharness_talos'] = False
