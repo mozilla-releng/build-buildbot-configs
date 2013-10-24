@@ -293,6 +293,14 @@ XPCSHELL = [
      ),
 ]
 
+GAIA_INTEGRATION = [(
+    'gaia-integration', {
+        'suite': 'gaia-integration',
+        'use_mozharness': True,
+        'script_path': 'scripts/gaia_integration.py',
+    },
+)]
+
 GAIA_UNITTESTS = [(
     'gaia-unit', {
         'suite': 'gaia-unit',
@@ -332,6 +340,11 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
+                'gaia-integration': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
                 'gaia-unit': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_unit_production_config.py',
@@ -364,6 +377,11 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
+                'gaia-integration': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
                 'gaia-unit': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_unit_production_config.py',
@@ -1108,8 +1126,8 @@ BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
-BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
+BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + GAIA_INTEGRATION[:]
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + GAIA_INTEGRATION[:]
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['mozharness_tag'] = "default"
