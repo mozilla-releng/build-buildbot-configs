@@ -90,7 +90,7 @@ PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'reboot_command': None,
     'talos_script_maxtime': 10800,
 }
 
