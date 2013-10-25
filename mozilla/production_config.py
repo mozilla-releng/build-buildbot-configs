@@ -177,12 +177,6 @@ PROJECTS = {
         'tinderbox_tree': 'Nanojit',
         'disable_tinderbox_mail': False,
     },
-    'dxr_mozilla-central': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
-        'upload_host': GLOBAL_VARS['stage_server'],
-        'upload_user': 'ffxbld',
-        'upload_sshkey': '/home/cltbld/.ssh/ffxbld_dsa',
-    },
 }
 
 BRANCH_PROJECTS = {
