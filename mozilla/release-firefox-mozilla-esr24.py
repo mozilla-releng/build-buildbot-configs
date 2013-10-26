@@ -6,16 +6,6 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 
-# HACK ALERT
-# TODO for 24.0.1esr: the following line should be removed for 24.0.1esr build
-# to enable updates
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
-
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
@@ -104,7 +94,7 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr24-branch-patcher2.cfg'     # TODO for 24.0.1esr
+releaseConfig['patcherConfig']       = 'mozEsr24-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -117,7 +107,12 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {}       # TODO for 24.0.1esr
+releaseConfig['verifyConfigs']       = {
+    'linux':  'mozEsr24-firefox-linux.cfg',
+    'linux64':  'mozEsr24-firefox-linux64.cfg',
+    'macosx64': 'mozEsr24-firefox-mac64.cfg',
+    'win32':  'mozEsr24-firefox-win32.cfg'
+}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
