@@ -51,6 +51,18 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g26_v1_2': {
+        'datazilla_url': None,
+        'gecko_version': 26,
+        'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1680,7 +1692,7 @@ for branch in BRANCHES.keys():
     if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
                       'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
                       'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
-                      'mozilla-esr24'):
+                      'mozilla-esr24', 'mozilla-b2g26_v1_2'):
         if 'win32' in BRANCHES[branch]['platforms'] and \
                 'win8' in BRANCHES[branch]['platforms']['win32']:
             BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
