@@ -1,4 +1,5 @@
 from copy import deepcopy
+from os import uname
 
 from config import GLOBAL_VARS, PLATFORM_VARS, SLAVES, TRY_SLAVES
 
@@ -1134,17 +1135,34 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound', 'mozilla-inbound'])
+mixed_masters = ['buildbot-master83']
+mixed_branches = ['try']
+win64_mix_size = 2
+for b in mixed_branches:
+    if b not in disabled_branches:
+        raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
+win64_rev2_master = False
+for m in mixed_masters:
+    if m in uname()[1]:
+        win64_rev2_master = True
+        break
 for branch in disabled_branches:
     for platform in ('win32_gecko', 'win32_gecko_localizer'):
         if platform not in BRANCHES[branch]['platforms']:
             continue
-        if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
-            BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
-        BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
-        oldslaves = SLAVES['win64']
-        if 'try' in branch:
-            oldslaves = TRY_SLAVES['win64']
-        BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
+        if branch in mixed_branches and win64_rev2_master:
+            slaves = SLAVES['win64-rev2'][:win64_mix_size]
+            if 'try' in branch:
+                slaves = TRY_SLAVES['win64-rev2'][:win64_mix_size]
+            BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
+        else:
+            if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
+                BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
+            BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
+            oldslaves = SLAVES['win64']
+            if 'try' in branch:
+                oldslaves = TRY_SLAVES['win64']
+            BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
 
 # MERGE DAY: inari is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and higher)
 for branch in BRANCHES:
