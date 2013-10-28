@@ -37,8 +37,11 @@ BRANCHES = {
         'gecko_version': 18,
         'b2g_version': (1, 1, 1),
     },
+    'mozilla-b2g26_v1_2': {
+        'gecko_version': 26,
+        'b2g_version': (1, 2, 0),
+    },
     'mozilla-central': {},
-    'mozilla-aurora': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
@@ -1075,16 +1078,6 @@ for branch in BRANCHES.keys():
             else:
                 BRANCHES[branch][key] = deepcopy(value)
 
-#    # Merge in any project branch config for platforms
-#    if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
-#        for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
-#            if platform in PLATFORMS:
-#                for key, value in platform_config.items():
-#                    value = deepcopy(value)
-#                    if isinstance(value, str):
-#                        value = value % locals()
-#                    BRANCHES[branch]['platforms'][platform][key] = value
-
     for platform, platform_config in b2g_localconfig.PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
@@ -1147,8 +1140,8 @@ BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_u
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
+BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
-BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"

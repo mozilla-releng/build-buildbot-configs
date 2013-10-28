@@ -1,4 +1,5 @@
 from copy import deepcopy
+from os import uname
 
 import project_branches
 reload(project_branches)
@@ -1464,6 +1465,24 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'mozilla-b2g26_v1_2': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 26,
+        'platforms': {
+            # desktop for gecko security reproduciton (per akeybl
+            # https://bugzil.la/818378#c8)
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'android-noion': {},
+        },
+    },
     'mozilla-b2g18': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1798,10 +1817,10 @@ BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
 BRANCHES['mozilla-aurora']['create_partial'] = True
 BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
 # use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
+BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora-test'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
@@ -1895,6 +1914,37 @@ BRANCHES['mozilla-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr24']['enable_valgrind'] = False
 BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
+
+######## mozilla-b2g26_v1_2
+BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = 'releases/mozilla-b2g26_v1_2'
+BRANCHES['mozilla-b2g26_v1_2']['update_channel'] = 'nightly-b2g26'
+BRANCHES['mozilla-b2g26_v1_2']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
+BRANCHES['mozilla-b2g26_v1_2']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
+BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [45]
+BRANCHES['mozilla-b2g26_v1_2']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g26_v1_2']['enable_mac_a11y'] = True
+BRANCHES['mozilla-b2g26_v1_2']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-b2g26_v1_2']['enable_l10n'] = False
+BRANCHES['mozilla-b2g26_v1_2']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-b2g26_v1_2']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-b2g26_v1_2']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-b2g26_v1_2']['l10nDatedDirs'] = True
+BRANCHES['mozilla-b2g26_v1_2']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g26_v1_2'
+BRANCHES['mozilla-b2g26_v1_2']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-b2g26_v1_2']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['create_snippet'] = False
+BRANCHES['mozilla-b2g26_v1_2']['create_partial'] = False
+BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
+BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
+BRANCHES['mozilla-b2g26_v1_2']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g26_v1_2']['enable_valgrind'] = False
+BRANCHES['mozilla-b2g26_v1_2']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
@@ -2175,19 +2225,38 @@ for b in BRANCHES.keys():
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound','mozilla-inbound'])
+mixed_masters = ['buildbot-master83']
+mixed_branches = ['try']
+win64_mix_size = 2
+for b in mixed_branches:
+    if b not in disabled_branches:
+        raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
+win64_rev2_master = False
+for m in mixed_masters:
+    if m in uname()[1]:
+        win64_rev2_master = True
+        break
 for branch in disabled_branches:
     for platform in ('win32','win32-debug','win64','win64-debug'):
         if platform not in BRANCHES[branch]['platforms']:
             continue
-        if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
-            BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
-        BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
-        oldslaves = SLAVES['win64']
-        if 'try' in branch:
-            oldslaves = TRY_SLAVES['win64']
-        BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
-        if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
-            BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
+        if branch in mixed_branches and win64_rev2_master:
+            slaves = SLAVES['win64-rev2'][:win64_mix_size]
+            if 'try' in branch:
+                slaves = TRY_SLAVES['win64-rev2'][:win64_mix_size]
+            BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
+                BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves
+        else:
+            if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
+                BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
+            BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
+            oldslaves = SLAVES['win64']
+            if 'try' in branch:
+                oldslaves = TRY_SLAVES['win64']
+            BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
+                BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
 
 for _, branch in items_before(BRANCHES, 'gecko_version', 26):
     for p in 'linux64-asan', 'linux64-asan-debug':

@@ -5,7 +5,7 @@ LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3, 7)]
 WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,13)]
 WIN64_IXS      = ['w64-ix-slave%02i' % x for x in range(6,30) + range(42,44) + range(75,100) if x not in [22,80,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,158) if x not in range(110,131)]
-WIN64_REV2     = ['w64-ix-slave%03i' % x for x in range(110,131)]
+WIN64_REV2     = ['w64-ix-slave%03i' % x for x in range(111,131)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 900)]
 MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(27, 38)]
@@ -30,10 +30,14 @@ TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1, 900)]
 TRY_MAC64      = []
 TRY_WIN32_IXS  = []
 TRY_WIN64_IXS  = ['w64-ix-slave%02i' % x for x in range(30,75) if x not in [42,43]]
-TRY_WIN64_REV2 = ['w64-ix-slave%03i' % x for x in []]
+TRY_WIN64_REV2 = ['w64-ix-slave%03i' % x for x in [3,110]]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)]
 TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(49, 74)]
 TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,41)]
+if set(TRY_WIN64_REV2).intersection(set(TRY_WIN64_IXS)):
+    raise Exception('TRY_WIN64_REV2 and TRY_WIN64_IXS overlap')
+if set(TRY_WIN64_IXS + TRY_WIN64_REV2).intersection(WIN64_IXS + WIN64_REV2):
+    raise Exception('(TRY_WIN64_IXS + TRY_WIN64_REV2) and (WIN64_IXS + WIN64_REV2) overlap')
 
 TRY_SLAVES = {
     'win32':       TRY_WIN32_IXS,
@@ -119,6 +123,11 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
         'tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
         'mobile_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
+    },
+    'mozilla-b2g26_v1_2': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g26-v1.2',
+        'tinderbox_tree': 'Mozilla-B2g26-v1.2',
+        'mobile_tinderbox_tree': 'Mozilla-B2g26-v1.2',
     },
     'mozilla-beta': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',

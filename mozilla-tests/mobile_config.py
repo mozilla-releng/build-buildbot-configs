@@ -40,6 +40,9 @@ BRANCHES = {
         'platforms': {},
         'lock_platforms': True,
     },
+    'mozilla-b2g26_v1_2': {
+        'gecko_version': 26,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1056,28 +1059,22 @@ BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-beta']['pgo_platforms'] = []
-# MERGE DAY: Remove this line when FF26 merges in
-BRANCHES['mozilla-beta']['platforms']['android-x86']['enable_opt_unittests'] = False
-BRANCHES['mozilla-beta']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-beta']['remote-tsvgx_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-beta']['remote-tcanvasmark_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-beta']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-beta']['remote-tspaint_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-# MERGE DAY: end
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-# MERGE DAY: Remove this line when FF26 merges in
-BRANCHES['mozilla-aurora']['platforms']['android-x86']['enable_opt_unittests'] = False
-# MERGE DAY: end
 
 ######### mozilla-esr17
 BRANCHES['mozilla-esr17']['release_tests'] = 5
 BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
 BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr17']['pgo_platforms'] = []
+
+######### mozilla-b2g26_v1_2
+BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
+BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g26_v1_2']['pgo_platforms'] = []
 
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
