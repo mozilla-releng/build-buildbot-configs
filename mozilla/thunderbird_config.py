@@ -1059,7 +1059,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = BRANCHES.keys()
-mixed_masters = ['buildbot-master83']
+mixed_masters = []
 mixed_branches = ['try-comm-central']
 win64_mix_size = 2
 for b in mixed_branches:
