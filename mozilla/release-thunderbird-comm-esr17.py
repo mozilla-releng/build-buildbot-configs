@@ -21,29 +21,29 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '17.0.9esr'
-releaseConfig['appVersion']          = '17.0.9'
+releaseConfig['version']             = '17.0.10esr'
+releaseConfig['appVersion']          = '17.0.10'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_9esr'
+releaseConfig['baseTag']             = 'THUNDERBIRD_17_0_10esr'
 releaseConfig['partialUpdates']      = {
 
-    '17.0.8esr': {
-        'appVersion': '17.0.8',
+    '17.0.9esr': {
+        'appVersion': '17.0.9',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_17_0_8esr',
+        'baseTag': 'THUNDERBIRD_17_0_9esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '17.0.9esrpre'
+releaseConfig['nextAppVersion']      = '17.0.10esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr17',
         'path': 'releases/comm-esr17',
-        'revision': '22c6a1b599ef',
+        'revision': '2a36f2b5a97d',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr17',
         'path': 'releases/mozilla-esr17',
-        'revision': '09d9550bd906',
+        'revision': 'c3750e0515f7',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -95,6 +95,7 @@ releaseConfig['enableUnittests'] = True
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = False
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'tbirdbld'
