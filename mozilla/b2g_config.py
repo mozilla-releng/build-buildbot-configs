@@ -1135,7 +1135,7 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound', 'mozilla-inbound'])
-mixed_masters = []
+mixed_masters = ['buildbot-master56']
 mixed_branches = ['try']
 win64_mix_size = 2
 for b in mixed_branches:
