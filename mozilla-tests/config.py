@@ -1616,14 +1616,9 @@ BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
-BRANCHES['try']['platforms']['macosx64']['lion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
-BRANCHES['try']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC
 BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
-BRANCHES['try']['platforms']['win32']['xp-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites']
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
-BRANCHES['try']['platforms']['win32']['win7']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
 
