@@ -1556,9 +1556,8 @@ del BRANCHES['mozilla-b2g18']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['xp-ix']
 del BRANCHES['mozilla-b2g18']['platforms']['win32']['xp']
 del BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']
-BRANCHES['mozilla-b2g18']['platforms']['win32']['talos_slave_platforms'] = ['win7']
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['talos_slave_platforms'] = ['lion', 'mountainlion']
-BRANCHES['mozilla-b2g18']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-b2g18']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g18']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g18_v1_0_1
 BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
@@ -1581,9 +1580,8 @@ del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp-ix']
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['xp']
 del BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['snowleopard']
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['talos_slave_platforms'] = ['win7']
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['talos_slave_platforms'] = ['lion', 'mountainlion']
-BRANCHES['mozilla-b2g18_v1_0_1']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g18_v1_1_0_hd
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
@@ -1606,9 +1604,12 @@ del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7-ix']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['xp-ix']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['xp']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['snowleopard']
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms'] = ['win7']
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['talos_slave_platforms'] = ['lion', 'mountainlion']
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['talos_slave_platforms'] = []
+
+######### mozilla-b2g26_v1_2
+BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
+BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
