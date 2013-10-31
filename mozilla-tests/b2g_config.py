@@ -12,6 +12,7 @@ from master_common import items_before
 
 import config_common
 reload(config_common)
+from config_common import nested_haskey
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
@@ -668,7 +669,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64_vm-b2g-emulator': {
-            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL,
+            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
             'debug_unittest_suites': [],
             'suite_config': {
                 'marionette-webapi': {
@@ -1209,6 +1210,26 @@ for branch in BRANCHES.keys():
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
+
+# marionette-webapi Ubuntu train, see bug 932988
+FEDORA_MARIONETTE_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 28)])
+for b in BRANCHES.keys():
+    slave_p = None
+    branch = BRANCHES[b]
+    # Figure out which slave platform to delete
+    if b in FEDORA_MARIONETTE_BRANCHES:
+        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
+            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
+    else:
+        if nested_haskey(branch['platforms'], 'emulator', 'fedora-b2g-emulator'):
+            slave_p = branch['platforms']['emulator']['fedora-b2g-emulator']
+    if slave_p:
+        for i in slave_p['opt_unittest_suites']:
+            if i[0] == "marionette-webapi":
+                slave_p['opt_unittest_suites'].remove(i)
+        for i in slave_p['debug_unittest_suites']:
+            if i[0] == "marionette-webapi":
+                slave_p['opt_unittest_suites'].remove(i)
 
 
 if __name__ == "__main__":
