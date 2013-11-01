@@ -2225,8 +2225,8 @@ for b in BRANCHES.keys():
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound','mozilla-inbound'])
-mixed_masters = ['buildbot-master56']
-mixed_branches = ['try']
+mixed_masters = ['buildbot-master56','buildbot-master66']
+mixed_branches = ['try','mozilla-inbound']
 win64_mix_size = 2
 for b in mixed_branches:
     if b not in disabled_branches:
