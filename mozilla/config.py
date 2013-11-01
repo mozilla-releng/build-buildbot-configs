@@ -1924,7 +1924,7 @@ BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [45]
 BRANCHES['mozilla-b2g26_v1_2']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g26_v1_2']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g26_v1_2']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g26_v1_2']['unittest_build_space'] = 6
 # L10n configuration
@@ -1955,7 +1955,7 @@ BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18']['unittest_build_space'] = 6
 # L10n configuration
@@ -1986,7 +1986,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_1']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['unittest_build_space'] = 6
  # L10n configuration
@@ -2017,7 +2017,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['unittest_build_space'] = 6
 # L10n configuration
