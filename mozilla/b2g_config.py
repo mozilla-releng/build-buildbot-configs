@@ -229,7 +229,7 @@ PLATFORM_VARS = {
         'packageTests': True,
         'slaves': SLAVES['macosx64-lion'],
         'platform_objdir': OBJDIR,
-        'unittest_masters': GLOBAL_VARS['unittest_masters'],
+        'unittest_masters': [],
         'stage_product': 'b2g',
         'stage_platform': 'macosx64_gecko',
         'update_platform': 'Darwin_x86_64-gcc3',
