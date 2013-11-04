@@ -341,7 +341,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:],
+            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -378,7 +378,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:],
+            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:] + MOCHITEST_DESKTOP[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -1111,8 +1111,6 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
-BRANCHES['ash']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
-BRANCHES['ash']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
@@ -1120,8 +1118,8 @@ BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
-BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + GAIA_INTEGRATION[:]
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + GAIA_INTEGRATION[:]
+BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['mozharness_tag'] = "default"
@@ -1129,8 +1127,6 @@ BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_s
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['pine']['platforms']['emulator']['enable_debug_unittests'] = True
-BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
-BRANCHES['pine']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
@@ -1180,8 +1176,9 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable ubuntu64_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr17', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+    if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                  'mozilla-b2g26_v1_2'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             if 'ubuntu64_vm-b2gdt' in BRANCHES[branch]['platforms']['linux64_gecko']:
                 del BRANCHES[branch]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']
