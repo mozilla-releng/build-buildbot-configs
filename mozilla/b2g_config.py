@@ -229,7 +229,7 @@ PLATFORM_VARS = {
         'packageTests': True,
         'slaves': SLAVES['macosx64-lion'],
         'platform_objdir': OBJDIR,
-        'unittest_masters': [],
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
         'stage_product': 'b2g',
         'stage_platform': 'macosx64_gecko',
         'update_platform': 'Darwin_x86_64-gcc3',
@@ -247,7 +247,7 @@ PLATFORM_VARS = {
             'CHOWN_ROOT': '~/bin/chown_root',
             'CHOWN_REVERT': '~/bin/chown_revert',
             'LC_ALL': 'C',
-            'PATH': '/tools/python/bin:${PATH}',
+            'PATH': '/tools/python/bin:/tools/buildbot/bin:${PATH}',
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
@@ -1139,8 +1139,8 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 # MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound', 'mozilla-inbound'])
-mixed_masters = ['buildbot-master56','buildbot-master66']
-mixed_branches = ['try','mozilla-inbound','b2g-inbound']
+mixed_masters = ['buildbot-master56', 'buildbot-master66']
+mixed_branches = ['try', 'mozilla-inbound', 'b2g-inbound']
 win64_mix_size = 2
 for b in mixed_branches:
     if b not in disabled_branches:
@@ -1200,7 +1200,7 @@ for branch in BRANCHES:
 # MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g26_v1_2') \
-       and 'nexus-4' in BRANCHES[branch]['platforms']:
+            and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
