@@ -1610,6 +1610,8 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['talos_slave_platfo
 ######### mozilla-b2g26_v1_2
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
