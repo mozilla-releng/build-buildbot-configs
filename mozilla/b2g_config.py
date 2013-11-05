@@ -1141,7 +1141,7 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound', 'mozilla-inbound'])
 mixed_masters = ['buildbot-master56', 'buildbot-master66']
 mixed_branches = ['try', 'mozilla-inbound', 'b2g-inbound']
-win64_mix_size = 7
+win64_mix_size = 12
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
