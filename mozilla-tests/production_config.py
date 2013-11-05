@@ -23,7 +23,7 @@ SLAVES = {
             226,241,268,275,289,291,292,301,307,349,368]]), # decommissioned tegras
     'panda_android': dict(
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
-            for x in range(22,257) + range(270,306) + range(320,874) + range(885,887)]
+            for x in range(22,257) + range(270,306) + range(320,874) + range(885,910)]
     ),
     'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)]),
     'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),

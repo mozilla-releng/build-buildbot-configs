@@ -1780,6 +1780,8 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-aurora']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
@@ -1924,7 +1926,7 @@ BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [45]
 BRANCHES['mozilla-b2g26_v1_2']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g26_v1_2']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g26_v1_2']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g26_v1_2']['unittest_build_space'] = 6
 # L10n configuration
@@ -1955,7 +1957,7 @@ BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18']['unittest_build_space'] = 6
 # L10n configuration
@@ -1986,7 +1988,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_0_1']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18_v1_0_1']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18_v1_0_1']['unittest_build_space'] = 6
  # L10n configuration
@@ -2017,7 +2019,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [3]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [45]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['unittest_build_space'] = 6
 # L10n configuration
@@ -2227,7 +2229,7 @@ for b in BRANCHES.keys():
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound','mozilla-inbound'])
 mixed_masters = ['buildbot-master56','buildbot-master66']
 mixed_branches = ['try','mozilla-inbound']
-win64_mix_size = 2
+win64_mix_size = 7
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
