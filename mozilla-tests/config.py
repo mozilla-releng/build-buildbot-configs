@@ -504,6 +504,7 @@ MARIONETTE = [
         'use_mozharness': True,
         'script_path': 'scripts/marionette.py',
         'download_symbols': False,
+        'blob_upload': True,
     }),
 ]
 METRO = [

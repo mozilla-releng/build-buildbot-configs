@@ -285,6 +285,7 @@ MARIONETTE = [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'use_mozharness': True,
                            'script_path': 'scripts/marionette.py',
+                           'blob_upload': True,
                            },
      ),
 ]
