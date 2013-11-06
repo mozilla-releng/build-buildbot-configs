@@ -218,6 +218,7 @@ NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp' and
 NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
+WIN8_ONLY = ['win8']
 
 SUITES = {
     'xperf': {
@@ -259,6 +260,27 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+     # now let's add the metro talos suites
+    'tp5o-metro': {
+        'enable_by_default': False,
+        'suites': [],  # suite + args are governed by talos.json
+        'options': ({}, WIN8_ONLY),
+    },
+    'other-metro': {
+        'enable_by_default': False,
+        'suites': [],  # suite + args are governed by talos.json
+        'options': ({}, WIN8_ONLY),
+    },
+    'svgr-metro': {
+        'enable_by_default': False,
+        'suites': [],  # suite + args are governed by talos.json
+        'options': ({}, WIN8_ONLY),
+    },
+    'dromaeojs-metro': {
+        'enable_by_default': False,
+        'suites': [],  # suite + args are governed by talos.json
+        'options': ({}, WIN8_ONLY),
     },
 }
 
