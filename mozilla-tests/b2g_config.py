@@ -285,6 +285,7 @@ MARIONETTE = [
     ('marionette-webapi', {'suite': 'marionette-webapi',
                            'use_mozharness': True,
                            'script_path': 'scripts/marionette.py',
+                           'blob_upload': True,
                            },
      ),
 ]
@@ -378,7 +379,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UNITTESTS[:] + GAIA_UI[:] + MOCHITEST_DESKTOP[:],
+            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -1142,6 +1143,7 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
+BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_UNITTESTS
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
@@ -1177,8 +1179,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 # Disable ubuntu64_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
-                  'mozilla-b2g26_v1_2'):
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             if 'ubuntu64_vm-b2gdt' in BRANCHES[branch]['platforms']['linux64_gecko']:
                 del BRANCHES[branch]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']

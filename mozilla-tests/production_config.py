@@ -25,8 +25,14 @@ SLAVES = {
         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
             for x in range(22,257) + range(270,306) + range(320,874) + range(885,910)]
     ),
-    'ubuntu32_vm': dict([("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)]),
-    'ubuntu64_vm': dict([("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)]),
+    'ubuntu32_vm': dict(
+        [("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)] +
+        [("tst-linux32-spot-%03i" % x, {}) for x in range(1, 900)]
+    ),
+    'ubuntu64_vm': dict(
+        [("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)] +
+        [("tst-linux64-spot-%03i" % x, {}) for x in range(1, 900)]
+    ),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 56)]),
     'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 56)]),
     'win64_vm': dict([('tst-w64-ec2-%03i' % x, {}) for x in range(100)]),
