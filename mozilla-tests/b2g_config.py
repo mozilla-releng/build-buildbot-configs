@@ -1179,8 +1179,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 # Disable ubuntu64_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
-                  'mozilla-b2g26_v1_2'):
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             if 'ubuntu64_vm-b2gdt' in BRANCHES[branch]['platforms']['linux64_gecko']:
                 del BRANCHES[branch]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']
