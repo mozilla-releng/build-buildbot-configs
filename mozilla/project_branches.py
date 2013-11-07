@@ -187,16 +187,7 @@ PROJECT_BRANCHES = {
             'dromaeojs-metro': 1,
         },
         'blob_upload': True,
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_mobile_snippet': True,
         'enable_opt_unittests': True,
-        'enable_l10n': True,
-        'enable_l10n_onchange': True,
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
-        'l10n_tree': 'fxcentral',
-        'l10n_repo_path': 'l10n-central',
-        'enUS_binaryURL': '/nightly/latest-cedar',
         'mobile_platforms': {
             'android-x86': {
                 'enable_opt_unittests': True,
