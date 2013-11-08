@@ -1056,12 +1056,11 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
 
-# MERGE DAY
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = BRANCHES.keys()
 mixed_masters = ['buildbot-master56']
 mixed_branches = ['try-comm-central']
-win64_mix_size = 37
+win64_mix_size = 42
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
