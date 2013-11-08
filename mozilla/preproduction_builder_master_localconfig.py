@@ -21,13 +21,6 @@ ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = []
 ACTIVE_MOBILE_RELEASE_BRANCHES = []
 ACTIVE_B2G_BRANCHES = []
 
-# Set up our fast slaves
-# No need to reload, this is reloaded by builder_master.cfg
-import buildbotcustom.misc
-buildbotcustom.misc.fastRegexes.extend([
-    'linux-ix-',
-    'linux64-ix-',
-    ])
 ENABLE_RELEASES = False
 
 QUEUEDIR = "/dev/shm/queue"

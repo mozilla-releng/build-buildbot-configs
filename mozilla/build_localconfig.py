@@ -84,12 +84,4 @@ if 'mobile_release_branches' in master_config:
     ACTIVE_MOBILE_RELEASE_BRANCHES.extend(master_config['mobile_release_branches'])
     ENABLE_RELEASES = True
 
-# Set up our fast slaves
-# No need to reload, this is reloaded by builder_master.cfg
-import buildbotcustom.misc
-buildbotcustom.misc.fastRegexes.extend([
-    'linux-ix-',
-    'linux64-ix-',
-    ])
-
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
