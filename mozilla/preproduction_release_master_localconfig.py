@@ -19,13 +19,6 @@ ACTIVE_RELEASE_BRANCHES = ['mozilla-beta']
 ACTIVE_THUNDERBIRD_RELEASE_BRANCHES = ['comm-beta']
 ACTIVE_MOBILE_RELEASE_BRANCHES = ['mozilla-beta']
 
-# Set up our fast slaves
-# No need to reload, this is reloaded by builder_master.cfg
-import buildbotcustom.misc
-buildbotcustom.misc.fastRegexes.extend([
-    'linux-ix-',
-    'linux64-ix-',
-    ])
 ENABLE_RELEASES = True
 
 QUEUEDIR = "/dev/shm/queue"

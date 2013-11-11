@@ -868,6 +868,15 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-browser-chrome-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },

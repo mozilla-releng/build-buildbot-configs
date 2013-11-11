@@ -31,13 +31,6 @@ ACTIVE_BRANCH_PROJECTS = [k for k,v in BRANCH_PROJECTS.items() if v.get('enable_
 # Override with TRY_SLAVES
 SLAVES = TRY_SLAVES
 
-# Set up our fast slaves
-# No need to reload, this is reloaded by builder_master.cfg
-import buildbotcustom.misc
-buildbotcustom.misc.fastRegexes.extend([
-    'linux-ix-',
-    'linux64-ix-',
-    ])
 ENABLE_RELEASES = False
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
