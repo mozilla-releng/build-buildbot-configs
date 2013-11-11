@@ -216,6 +216,7 @@ PLATFORM_VARS = {
     'macosx64_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
+        'unittest_platform': 'macosx64_gecko-opt',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
