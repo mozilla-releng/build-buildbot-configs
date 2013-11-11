@@ -28,8 +28,6 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # B2G builds not required on the profiling branch
-    #'profiling': {},
     'services-central': {
         'repo_path': 'services/services-central'
     },
