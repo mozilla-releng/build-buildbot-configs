@@ -1831,10 +1831,10 @@ for platform in PLATFORMS.keys():
 
 #enable cppunitests on opt but not for fedora, fedora64 https://bugzilla.mozilla.org/show_bug.cgi?id=912192
 for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
+    if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms'][platform]):
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+        if slave_platform not in (BRANCHES['cedar']['platforms'][platform] or BRANCHES['try']['platforms'][platform]):
             continue
         if slave_platform in ['fedora', 'fedora64']:
             continue
@@ -1842,6 +1842,10 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPPUNIT[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = CPPUNIT[:]
+        if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
+        else:
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
 
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
