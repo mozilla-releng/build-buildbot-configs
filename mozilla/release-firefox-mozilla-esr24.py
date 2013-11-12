@@ -21,30 +21,30 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.1.0esr'
-releaseConfig['appVersion']          = '24.1.0'
+releaseConfig['version']             = '24.1.1esr'
+releaseConfig['appVersion']          = '24.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_1_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_24_1_1esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.0esr': {
-        'appVersion': '24.0',
+    '24.1.0esr': {
+        'appVersion': '24.1.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_0esr',
+        'baseTag': 'FIREFOX_24_1_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.1.0esrpre'
+releaseConfig['nextAppVersion']      = '24.1.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'b6aa22c418f4',
-        'relbranch': None,
+        'revision': 'GECKO2410esr_2013102201_RELBRANCH',
+        'relbranch': 'GECKO2410esr_2013102201_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
