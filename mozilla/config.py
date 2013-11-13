@@ -961,7 +961,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
