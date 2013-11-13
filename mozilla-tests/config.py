@@ -1850,10 +1850,10 @@ for platform in PLATFORMS.keys():
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
-    if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
+    if platform not in BRANCHES['cedar']['platforms']:
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in (BRANCHES['cedar']['platforms'][platform] or BRANCHES['try']['platforms'][platform]):
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
@@ -1863,14 +1863,6 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
-        if BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
-        if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
