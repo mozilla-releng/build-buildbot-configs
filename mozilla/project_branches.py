@@ -70,33 +70,6 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'profiling': {
-        'pgo_strategy': 'periodic',
-        'platforms': {
-            'macosx64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'linux-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'linux64-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-            'win32-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-        },
-        'mobile_platforms': {
-            'android-debug': {
-                'dont_build': True,
-                'enable_debug_unittests': False,
-            },
-        },
-    },
     'services-central': {
         'repo_path': 'services/services-central',
         'enable_weekly_bundle': True,

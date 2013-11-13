@@ -961,7 +961,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
@@ -2228,9 +2228,9 @@ for b in BRANCHES.keys():
             del BRANCHES[b]['platforms']['android-noion']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound','mozilla-inbound'])
-mixed_masters = ['buildbot-master56','buildbot-master66']
-mixed_branches = ['try','mozilla-inbound']
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try']] + ['b2g-inbound','mozilla-inbound'])
+mixed_masters = ['buildbot-master66']
+mixed_branches = ['mozilla-inbound','mozilla-central']
 win64_mix_size = 42
 for b in mixed_branches:
     if b not in disabled_branches:

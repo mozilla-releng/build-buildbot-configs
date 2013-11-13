@@ -1118,7 +1118,7 @@ for branch in BRANCHES:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', ):
+    if branch in ('cedar', 'try' ):
         continue
     for platform in BRANCHES[branch]['platforms']:
         if not platform in PLATFORMS:
