@@ -1138,9 +1138,9 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys()] + ['b2g-inbound', 'mozilla-inbound'])
-mixed_masters = ['buildbot-master56', 'buildbot-master66']
-mixed_branches = ['try', 'mozilla-inbound', 'b2g-inbound']
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try']] + ['b2g-inbound', 'mozilla-inbound'])
+mixed_masters = ['buildbot-master66']
+mixed_branches = ['mozilla-inbound', 'b2g-inbound']
 win64_mix_size = 42
 for b in mixed_branches:
     if b not in disabled_branches:
