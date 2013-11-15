@@ -61,6 +61,7 @@ GLOBAL_VARS = {
         'win64': {},
         'macosx64': {},
         'linux-debug': {},
+        'linux64-br-haz': {},
         'linux64-debug': {},
         'linux64-asan': {},
         'linux64-asan-debug': {},
@@ -556,7 +557,7 @@ PLATFORM_VARS = {
             'product_name': 'firefox',
             'base_name': '%(platform)s_%(branch)s',
             'slaves': SLAVES['mock'],
-            'try_by_default': False,
+            'try_by_default': True,
             'consider_for_nightly': False,
             'mock_target': 'mozilla-centos6-x86_64',
         },
@@ -1539,10 +1540,10 @@ BRANCHES = {
     },
     'try': {
         'branch_projects': ['spidermonkey_try'],
-        # For now, only run rooting hazards builds on try
+        # For now, only run shell rooting hazards builds on try. (Browser
+        # hazard builds run everywhere, not just on try.)
         'extra_platforms': {
             'linux64-sh-haz': {},
-            'linux64-br-haz': {},
         },
     },
 }
@@ -2324,6 +2325,8 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17", "mozilla-esr24"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
+    if 'linux64-br-haz' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['linux64-br-haz']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):
