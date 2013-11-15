@@ -83,7 +83,7 @@ PLATFORMS['linux64_gecko']['mozharness_config'] = {
 
 PLATFORMS['macosx64_gecko']['slave_platforms'] = ['mountainlion-b2gdt', ]
 PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_mtnlion"}
+PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_macosx64"}
 PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
 PLATFORMS['macosx64_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
