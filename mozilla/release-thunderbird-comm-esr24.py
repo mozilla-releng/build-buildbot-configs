@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.1.0'
-releaseConfig['appVersion']          = '24.1.0'
+releaseConfig['version']             = '24.1.1'
+releaseConfig['appVersion']          = '24.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_1_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_1_1'
 releaseConfig['partialUpdates']      = {
 
-    '24.0.1': {
-        'appVersion': '24.0.1',
+    '24.1.0': {
+        'appVersion': '24.1.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_24_0_1',
+        'baseTag': 'THUNDERBIRD_24_1_0',
     },
 
 }
@@ -43,8 +43,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr24',
         'path': 'releases/comm-esr24',
-        'revision': 'b58e293b7622',
-        'relbranch': None,
+        'revision': 'GECKO2410_2013102317_RELBRANCH',
+        'relbranch': 'GECKO2410_2013102317_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -55,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'GECKO2410_2013102320_RELBRANCH',
-        'relbranch': 'GECKO2410_2013102320_RELBRANCH',
+        'revision': 'GECKO2411esr_2013111803_RELBRANCH',
+        'relbranch': 'GECKO2411esr_2013111803_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
