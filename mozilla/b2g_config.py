@@ -1140,7 +1140,7 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_ar
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try']] + ['b2g-inbound', 'mozilla-inbound'])
 mixed_masters = ['buildbot-master66']
-mixed_branches = ['mozilla-inbound', 'b2g-inbound','mozilla-central']
+mixed_branches = ['mozilla-inbound', 'b2g-inbound', 'mozilla-central']
 win64_mix_size = 42
 for b in mixed_branches:
     if b not in disabled_branches:
@@ -1221,7 +1221,7 @@ for branch in BRANCHES:
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-inbound',
-                      'fx-team', 'try', 'mozilla-b2g26_v1_2'):
+                      'fx-team', 'try', 'mozilla-b2g26_v1_2', 'birch'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
