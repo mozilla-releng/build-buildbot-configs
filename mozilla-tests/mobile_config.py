@@ -1125,6 +1125,29 @@ for branch in BRANCHES:
                     if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
+# schedule cpp unittests for pandas on cedar and try
+# https://bugzilla.mozilla.org/show_bug.cgi?id=931926
+for branch in BRANCHES:
+    # Loop removes it from any branch that gets beyond here
+    if branch in ('cedar', 'try'):
+        continue
+    for platform in BRANCHES[branch]['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform.startswith('android'):
+            continue
+        if platform.endswith('-debug'):
+            continue  # no slave_platform for debug
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if not slave_plat == "panda_android":
+                continue
+            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
+                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+                    if "cppunittest" in suite[0]:
+                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+
 # schedule jittests for pandas on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for branch in BRANCHES:
@@ -1145,7 +1168,7 @@ for branch in BRANCHES:
                 continue
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
-                      if ("jittest" in suite[0]) or ("cppunittest" in suite[0]):
+                    if "jittest" in suite[0]:
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":
