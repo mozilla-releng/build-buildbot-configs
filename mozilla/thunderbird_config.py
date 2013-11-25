@@ -1060,7 +1060,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 disabled_branches = [x for x in BRANCHES.keys() if x not in ['try-comm-central']]
 mixed_masters = ['buildbot-master66']
 mixed_branches = ['comm-central']
-win64_mix_size = 42
+win64_mix_size = 47
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
