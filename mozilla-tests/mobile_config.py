@@ -776,7 +776,7 @@ ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UN
 ANDROID_X86_MOZHARNESS_DICT = [
     ('androidx86-set-1', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'jsreftest',
@@ -789,7 +789,7 @@ ANDROID_X86_MOZHARNESS_DICT = [
     ),
     ('androidx86-set-2', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'mochitest-2',
@@ -805,7 +805,7 @@ ANDROID_X86_MOZHARNESS_DICT = [
 ANDROID_X86_NOT_GREEN_DICT = [
     ('androidx86-set-3', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'reftest-1',
@@ -820,7 +820,7 @@ ANDROID_X86_NOT_GREEN_DICT = [
     ),
     ('androidx86-set-4', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'robocop-1',
