@@ -1815,41 +1815,28 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
 
 
-# Enable cppunittest jobs for now
+# Enable cppunittest jobs on cedar and try for now
 for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+    for branch in ['cedar', 'try']:
+        if platform not in BRANCHES[branch]['platforms']:
             continue
-        if slave_platform in ['fedora', 'fedora64']:
-            continue
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPPUNIT[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = CPPUNIT[:]
-
-#enable cppunitests on opt but not for fedora, fedora64 https://bugzilla.mozilla.org/show_bug.cgi?id=912192
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-        if slave_platform in ['fedora', 'fedora64']:
-            continue
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPPUNIT[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = CPPUNIT[:]
-
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if slave_platform in ['fedora', 'fedora64']:
+                continue
+            for suites in ['debug_unittest_suites', 'opt_unittest_suites']:
+                if BRANCHES[branch]['platforms'][platform][slave_platform][suites]:
+                    BRANCHES[branch]['platforms'][platform][slave_platform][suites] += CPPUNIT[:]
+                else:
+                    BRANCHES[branch]['platforms'][platform][slave_platform][suites] = CPPUNIT[:]
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
+    if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+        if slave_platform not in (BRANCHES['cedar']['platforms'][platform] or BRANCHES['try']['platforms'][platform]):
             continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
@@ -1859,6 +1846,14 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
+        if BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+        else:
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
+        if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+        else:
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():

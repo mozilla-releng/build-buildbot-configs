@@ -203,7 +203,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                          'thunderbird_config.py',
                          '*_config.py',
                          '*_common.py',
-                         'b2g_project_branches.py',
+                         '*_project_branches.py',
                          'project_branches.py',
                          ],
                          renames=[

@@ -776,15 +776,26 @@ ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UN
 ANDROID_X86_MOZHARNESS_DICT = [
     ('androidx86-set-1', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
+            '--test-suite', 'jsreftest',
             '--test-suite', 'mochitest-1',
+        ],
+        'trychooser_suites': ['mochitest-1', 'jsreftest'],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('androidx86-set-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
             '--test-suite', 'mochitest-2',
             '--test-suite', 'mochitest-gl',
-            '--test-suite', 'jsreftest',
         ],
-        'trychooser_suites': ['mochitest-1', 'mochitest-2', 'mochitest-gl', 'jsreftest'],
+        'trychooser_suites': ['mochitest-2', 'mochitest-gl'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -792,9 +803,9 @@ ANDROID_X86_MOZHARNESS_DICT = [
 ]
 
 ANDROID_X86_NOT_GREEN_DICT = [
-    ('androidx86-set-2', {
+    ('androidx86-set-3', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'reftest-1',
@@ -807,9 +818,9 @@ ANDROID_X86_NOT_GREEN_DICT = [
         'script_maxtime': 14400,
         },
     ),
-    ('androidx86-set-3', {
+    ('androidx86-set-4', {
         'use_mozharness': True,
-        'script_path': 'scripts/androidx86_emulator_unittest.py',
+        'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
             '--test-suite', 'robocop-1',
@@ -1114,6 +1125,29 @@ for branch in BRANCHES:
                     if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
+# schedule cpp unittests for pandas on cedar and try
+# https://bugzilla.mozilla.org/show_bug.cgi?id=931926
+for branch in BRANCHES:
+    # Loop removes it from any branch that gets beyond here
+    if branch in ('cedar', 'try'):
+        continue
+    for platform in BRANCHES[branch]['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform.startswith('android'):
+            continue
+        if platform.endswith('-debug'):
+            continue  # no slave_platform for debug
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if not slave_plat == "panda_android":
+                continue
+            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
+                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+                    if "cppunittest" in suite[0]:
+                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+
 # schedule jittests for pandas on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for branch in BRANCHES:
@@ -1134,7 +1168,7 @@ for branch in BRANCHES:
                 continue
             for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
                 for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
-                      if ("jittest" in suite[0]) or ("cppunittest" in suite[0]):
+                    if "jittest" in suite[0]:
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
 if __name__ == "__main__":

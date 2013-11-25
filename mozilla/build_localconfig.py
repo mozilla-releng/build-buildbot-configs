@@ -19,6 +19,7 @@ if 'ssh_port' in master_config:
             "cltbld", "password")
 
 from config import BRANCHES, SLAVES, PROJECTS, ACTIVE_PROJECT_BRANCHES, BRANCH_PROJECTS
+from thunderbird_config import ACTIVE_PROJECT_BRANCHES as ACTIVE_THUNDERBIRD_PROJECT_BRANCHES
 from b2g_config import ACTIVE_PROJECT_BRANCHES as ACTIVE_B2G_PROJECT_BRANCHES
 if 'limit_branches' in master_config:
     ACTIVE_BRANCHES = [x.encode("utf-8") for x in master_config['limit_branches']]
@@ -39,13 +40,14 @@ else:
 if 'limit_tb_branches' in master_config:
     ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]
 else:
-    ACTIVE_THUNDERBIRD_BRANCHES = [
+    ACTIVE_THUNDERBIRD_BRANCHES = ACTIVE_THUNDERBIRD_PROJECT_BRANCHES[:]
+    ACTIVE_THUNDERBIRD_BRANCHES.extend([
         'comm-central',
         'comm-beta',
         'comm-aurora',
         'comm-esr17',
         'comm-esr24',
-    ]
+    ])
 if 'limit_b2g_branches' in master_config:
     ACTIVE_B2G_BRANCHES = [x.encode("utf-8") for x in master_config['limit_b2g_branches']]
 else:

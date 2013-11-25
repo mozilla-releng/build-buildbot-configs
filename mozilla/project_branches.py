@@ -101,25 +101,9 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    #####  TWIGS aka RENTABLE BRANCHES
-    # customizations while booked for bug 687570 - WebRTC project
-    'alder': {
-        'platforms': {},
-        'mobile_platforms': {
-            'android': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
-            'android-armv6': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
-        },
-    },
+    # Not needed while booked for Thunderbird
+    #'alder': {
+    #},
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
@@ -148,7 +132,18 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'birch': {},
+    'birch': {
+        'pgo_strategy': 'periodic',
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_mobile_snippet': True,
+        'enable_l10n': True,
+        'enable_l10n_onchange': False,
+        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
+        'l10n_tree': 'fxcentral',
+        'l10n_repo_path': 'l10n-central',
+        'enUS_binaryURL': '/nightly/latest-birch',
+    },
     'cedar': {
         'mozharness_tag': 'default',
         'enable_talos': True,
