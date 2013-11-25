@@ -101,25 +101,9 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    #####  TWIGS aka RENTABLE BRANCHES
-    # customizations while booked for bug 687570 - WebRTC project
-    'alder': {
-        'platforms': {},
-        'mobile_platforms': {
-            'android': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
-            'android-armv6': {
-                'enable_opt_unittests': False,
-                'enable_debug_unittests': False,
-                'enable_talos': False,
-                'tegra_android': {},
-            },
-        },
-    },
+    # Not needed while booked for Thunderbird
+    #'alder': {
+    #},
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',

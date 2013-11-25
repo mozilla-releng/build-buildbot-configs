@@ -3,6 +3,10 @@ from os import uname
 
 from config import GLOBAL_VARS, PLATFORM_VARS
 
+import thunderbird_project_branches
+reload(thunderbird_project_branches)
+from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
+
 # Note that thunderbird_localconfig.py is symlinked to one of: {production,staging,preproduction}_thunderbird_config.py
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
@@ -640,6 +644,10 @@ BRANCHES = {
     },
 }
 
+# Copy project branches into BRANCHES keys
+for branch in ACTIVE_PROJECT_BRANCHES:
+    BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
+
 setMainCommVersions(BRANCHES)
 
 # Copy global vars in first, then platform vars
@@ -659,14 +667,29 @@ for branch in BRANCHES.keys():
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
             for key, value in platform_config.items():
-                # put default platform set in all branches
-                value = deepcopy(value)
+                # put default platform set in all branches, but grab any
+                # project_branches.py overrides/additional keys
+                if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch]:
+                    if platform in PROJECT_BRANCHES[branch]['platforms'].keys():
+                        if key in PROJECT_BRANCHES[branch]['platforms'][platform].keys():
+                            value = deepcopy(PROJECT_BRANCHES[branch]['platforms'][platform][key])
+                else:
+                    value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
                 else:
                     value = deepcopy(value)
                 BRANCHES[branch]['platforms'][platform][key] = value
 
+            if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch] and \
+                    platform in PROJECT_BRANCHES[branch]['platforms']:
+                for key, value in PROJECT_BRANCHES[branch]['platforms'][platform].items():
+                    if key == 'env':
+                        value = deepcopy(PLATFORM_VARS[platform]['env'])
+                        value.update(PROJECT_BRANCHES[branch]['platforms'][platform][key])
+                    else:
+                        value = deepcopy(value)
+                    BRANCHES[branch]['platforms'][platform][key] = value
     # Copy in local config
     if branch in thunderbird_localconfig.BRANCHES:
         for key, value in thunderbird_localconfig.BRANCHES[branch].items():
@@ -691,6 +714,14 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+    # Check for project branch removing a platform from default platforms
+    if branch in ACTIVE_PROJECT_BRANCHES:
+        for key, value in PROJECT_BRANCHES[branch].items():
+            if key == 'platforms':
+                for platform, platform_config in value.items():
+                    if platform_config.get('dont_build'):
+                        del BRANCHES[branch]['platforms'][platform]
 
     if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'comm-central'):
         del BRANCHES[branch]['platforms']['win64']
@@ -977,8 +1008,71 @@ BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_USER'] 
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_PATH'] = '/symbols/windows'
 BRANCHES['try-comm-central']['platforms']['win32']['env']['SYMBOL_SERVER_SSH_KEY'] = '/c/Documents and Settings/cltbld/.ssh/trybld_dsa'
 
+######## generic branch configs
+for branch in ACTIVE_PROJECT_BRANCHES:
+    branchConfig = PROJECT_BRANCHES[branch]
+    BRANCHES[branch]['brand_name'] = branchConfig.get('brand_name', GLOBAL_VARS['brand_name'])
+    BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
+    BRANCHES[branch]['mozilla_dir'] = branchConfig.get('mozilla_dir', 'mozilla')
+    BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
+                                                            GLOBAL_VARS['enabled_products'])
+    BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
+    BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
+    BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
+    BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
+    BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
+    # Disable XULRunner / SDK builds
+    BRANCHES[branch]['enable_xulrunner'] = branchConfig.get('enable_xulrunner', False)
+    # Enable unit tests
+    BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
+    BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)
+    # L10n configuration is not set up for project_branches
+    BRANCHES[branch]['enable_l10n'] = branchConfig.get('enable_l10n', False)
+    BRANCHES[branch]['l10nNightlyUpdate'] = branchConfig.get('l10nNightlyUpdate', False)
+    BRANCHES[branch]['l10nDatedDirs'] = branchConfig.get('l10nDatedDirs', False)
+    # nightly updates
+    BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
+    BRANCHES[branch]['update_channel'] = branchConfig.get('update_channel', 'nightly-%s' % branch)
+    BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
+    BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
+    BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
+    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', GLOBAL_VARS['aus2_user'])
+    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', GLOBAL_VARS['aus2_ssh_key'])
+    BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Thunderbird/' + branch)
+    BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Thunderbird/' + branch)    #make sure it has an ending slash
+    BRANCHES[branch]['l10nUploadPath'] = \
+        '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-' + branch + '-l10n/'
+    BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
+    if 'linux' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    if 'linux64' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
+    if 'win32' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    if 'macosx64' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
+    # Platform-specific defaults/interpretation
+    for platform in BRANCHES[branch]['platforms']:
+        # point to the mozconfigs, default is generic
+        if platform.endswith('debug'):
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
+        else:
+            BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
+        # Project branches should be allowed to override the signing servers.
+        # If a branch does not set dep_signing_servers, it should be set to the global default.
+        BRANCHES[branch]['platforms'][platform]['dep_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('dep_signing_servers',
+                                                                         PLATFORM_VARS[platform].get('dep_signing_servers'))
+        # If a branch does not set nightly_signing_servers, it should be set to its dep signing server,
+        # which may have already been set to the global default.
+        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
+                                                                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
+    BRANCHES[branch]['enable_valgrind'] = False
+
+
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
+branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
     if BRANCHES[branch]['platforms'].has_key('linux'):
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
