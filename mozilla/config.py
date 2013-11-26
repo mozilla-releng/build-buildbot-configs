@@ -2229,10 +2229,9 @@ for b in BRANCHES.keys():
             del BRANCHES[b]['platforms']['android-noion']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try']] + ['b2g-inbound','mozilla-inbound'])
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try','mozilla-central']] + ['b2g-inbound','mozilla-inbound'])
 mixed_masters = ['buildbot-master66']
-mixed_branches = ['mozilla-inbound','mozilla-central']
-win64_mix_size = 57
+mixed_branches = ['mozilla-inbound']
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
@@ -2246,9 +2245,9 @@ for branch in disabled_branches:
         if platform not in BRANCHES[branch]['platforms']:
             continue
         if branch in mixed_branches and win64_rev2_master:
-            slaves = SLAVES['win64-rev2'][:win64_mix_size]
+            slaves = SLAVES['win64-rev2']
             if 'try' in branch:
-                slaves = TRY_SLAVES['win64-rev2'][:win64_mix_size]
+                slaves = TRY_SLAVES['win64-rev2']
             BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
             if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves

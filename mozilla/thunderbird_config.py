@@ -1151,10 +1151,9 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                 )]
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = [x for x in BRANCHES.keys() if x not in ['try-comm-central']]
+disabled_branches = [x for x in BRANCHES.keys() if x not in ['try-comm-central','comm-central']]
 mixed_masters = ['buildbot-master66']
-mixed_branches = ['comm-central']
-win64_mix_size = 57
+mixed_branches = []
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
@@ -1168,9 +1167,9 @@ for branch in disabled_branches:
         if platform not in BRANCHES[branch]['platforms']:
             continue
         if branch in mixed_branches and win64_rev2_master:
-            slaves = SLAVES['win64-rev2'][:win64_mix_size]
+            slaves = SLAVES['win64-rev2']
             if 'try' in branch:
-                slaves = TRY_SLAVES['win64-rev2'][:win64_mix_size]
+                slaves = TRY_SLAVES['win64-rev2']
             BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
             if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'comm-esr17':
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves
