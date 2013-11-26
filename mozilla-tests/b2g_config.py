@@ -855,7 +855,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'ubuntu64_vm-b2g-emulator': {
             'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
-            'debug_unittest_suites': XPCSHELL[:],
+            'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL[:],
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -1438,10 +1438,13 @@ BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
+BRANCHES['mozilla-b2g18']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
