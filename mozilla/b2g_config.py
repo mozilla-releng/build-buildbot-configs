@@ -1138,10 +1138,9 @@ BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try']] + ['b2g-inbound', 'mozilla-inbound'])
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try','mozilla-central']] + ['b2g-inbound', 'mozilla-inbound'])
 mixed_masters = ['buildbot-master66']
-mixed_branches = ['mozilla-inbound', 'b2g-inbound', 'mozilla-central']
-win64_mix_size = 52
+mixed_branches = ['mozilla-inbound', 'b2g-inbound']
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
@@ -1155,9 +1154,9 @@ for branch in disabled_branches:
         if platform not in BRANCHES[branch]['platforms']:
             continue
         if branch in mixed_branches and win64_rev2_master:
-            slaves = SLAVES['win64-rev2'][:win64_mix_size]
+            slaves = SLAVES['win64-rev2']
             if 'try' in branch:
-                slaves = TRY_SLAVES['win64-rev2'][:win64_mix_size]
+                slaves = TRY_SLAVES['win64-rev2']
             BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
         else:
             if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
