@@ -64,7 +64,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "it": {
-    "revision": "de5017ad8fe6",
+    "revision": "9c10c3b90bdf",
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
