@@ -26,7 +26,7 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'pgo_strategy': 'periodic',
-        'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
+        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
@@ -38,7 +38,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': [ 'spidermonkey_tier_1', 'spidermonkey_info' ],
+        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
     'b2g-inbound': {
         'repo_path': 'integration/b2g-inbound',
@@ -238,7 +238,26 @@ PROJECT_BRANCHES = {
         },
     },
     'gum': {},
-    'holly': {},
+    'holly': {
+        'pgo_strategy': 'periodic',
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'platforms': {
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'mac-nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+        },
+    },
     'jamun': {},
     'larch': {},
     'maple': {},

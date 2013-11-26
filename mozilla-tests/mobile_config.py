@@ -151,7 +151,7 @@ SUITES = {
     },
     'remote-tsvgx': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome', '--tppagecycles', '10'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
     'remote-tcanvasmark': {
