@@ -117,10 +117,9 @@ PLATFORMS = {
     'win64': {},
 }
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'lion', 'mountainlion']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
-PLATFORMS['macosx64']['lion'] = {'name': "Rev4 MacOSX Lion 10.7"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
@@ -1410,72 +1409,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'lion': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'suite_config': {
-                'mochitest-1': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-2': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-3': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-4': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-5': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome-1': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome-2': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome-3': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-            },
-        },
         'mountainlion': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -1616,7 +1549,6 @@ PROJECTS = {
             'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
             'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'lion': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
             'xp-ix': {
                 'ext': 'win32.zip',
@@ -1695,8 +1627,6 @@ BRANCHES['mozilla-esr17']['platforms']['win32']['win7']['opt_unittest_suites'] =
 BRANCHES['mozilla-esr17']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
-BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-esr17']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-esr17']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'][:]
 BRANCHES['mozilla-esr17']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -1722,8 +1652,6 @@ BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suit
 BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
 BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -1746,8 +1674,6 @@ BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['opt_unitte
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_0_1']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -1770,8 +1696,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['opt_uni
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['lion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['lion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)

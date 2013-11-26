@@ -18,7 +18,6 @@ SlavePasswords = {
     "ubuntu64_hw-b2g-emulator": "pass",
     "tiger": "pass",
     "snowleopard": "pass",
-    "lion": "pass",
     "mountainlion": "pass",
     "mountainlion-b2gdt": "pass",
     "xp": "pass",
