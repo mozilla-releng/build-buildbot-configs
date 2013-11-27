@@ -1148,11 +1148,12 @@ for branch in BRANCHES:
                     if "cppunittest" in suite[0]:
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
-# schedule jittests for pandas on cedar
+# schedule jittests for pandas on cedar and try
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
+# https://bugzilla.mozilla.org/show_bug.cgi?id=931874
 for branch in BRANCHES:
     # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', ):
+    if branch in ('cedar', 'try'):
         continue
     for platform in BRANCHES[branch]['platforms']:
         if not platform in PLATFORMS:
