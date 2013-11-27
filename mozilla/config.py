@@ -280,7 +280,7 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'valgrind',
+                        'valgrind', 'dbus-x11',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
