@@ -87,6 +87,10 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
+    'mozilla-b2g26_v1_2f': {
+        'enable_blocklist_update': False,
+        'blocklist_update_on_closed_tree': False,
+    },
     'try': {
         'email_override': [], # Set to your address when testing
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
