@@ -12,7 +12,7 @@ SLAVES = {
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,131)]),
     'snowleopard':dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,171) \
         if x not in [81, 84]]), # bug 729090, bug 795558
-    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
+    'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,96) \
         if x not in [87]]), # bug 786994
     'mavericks': dict([("t-mavericks-r5-%03i" % x, {}) for x in range(1,6)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
