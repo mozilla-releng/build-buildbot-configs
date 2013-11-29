@@ -3,7 +3,7 @@ from copy import deepcopy
 import config_common
 reload(config_common)
 from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
-    nested_haskey, get_talos_slave_platforms
+    nested_haskey, get_talos_slave_platforms, delete_slave_platform
 
 import master_common
 reload(master_common)
@@ -129,10 +129,11 @@ PLATFORMS = {
     'win64': {},
 }
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion', 'mavericks']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
+PLATFORMS['macosx64']['mavericks'] = {'name': "Rev5 MacOSX Mavericks 10.9"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -221,7 +222,6 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = sorted(TRY_SLAVES[slave_platform])
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
-
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64'))
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
@@ -1487,6 +1487,72 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'mavericks': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'mochitest-1': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-2': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-3': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-4': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-5': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome-1': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome-2': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome-3': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+            },
+        },
     },
 }
 
@@ -1744,6 +1810,13 @@ BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
 
+######## cedar
+BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
+BRANCHES['cedar']['platforms']['macosx64']['mavericks']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
+
+# Enable mavericks testing on select branches only
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
+
 # Load jetpack for branches that have at least FF21
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
     for pf in PLATFORMS:
@@ -1778,24 +1851,26 @@ for platform in PLATFORMS.keys():
     if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in (BRANCHES['cedar']['platforms'][platform] or BRANCHES['try']['platforms'][platform]):
-            continue
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
-        if BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
-        if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
-        else:
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
+        # cedar
+        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+            if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+            else:
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
+            if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+            else:
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
+        # try
+        if slave_platform in BRANCHES['try']['platforms'][platform]:
+            if BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites']:
+                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+            else:
+                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
+            if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+            else:
+                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():

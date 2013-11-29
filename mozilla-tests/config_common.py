@@ -1,7 +1,6 @@
 from copy import deepcopy
 
 from buildbot.steps.shell import WithProperties
-
 TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 
@@ -75,3 +74,17 @@ def get_talos_slave_platforms(platforms_dict, platforms):
         ret.extend(platforms_dict[p].get('talos_slave_platforms',
                                          platforms_dict[p]['slave_platforms']))
     return ret
+
+def delete_slave_platform(BRANCHES, PLATFORMS, platforms_to_delete, branch_exclusions=[]):
+    for branch in set(BRANCHES.keys()) - set(branch_exclusions):
+        for platform, slave_platform in platforms_to_delete.iteritems():
+            if platform not in BRANCHES[branch]['platforms']:
+                continue
+            if nested_haskey(BRANCHES[branch]['platforms'], platform, slave_platform):
+                del BRANCHES[branch]['platforms'][platform][slave_platform]
+            # Disable talos for this branch by making sure talos_slave_platforms is set.
+            if 'talos_slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
+                # Need to copy the list from PLATFORMS, so we don't change what's in PLATFORMS.
+                BRANCHES[branch]['platforms'][platform]['talos_slave_platforms'] = PLATFORMS[platform]['slave_platforms'][:]
+            if slave_platform in BRANCHES[branch]['platforms'][platform]['talos_slave_platforms']:
+                BRANCHES[branch]['platforms'][platform]['talos_slave_platforms'].remove(slave_platform)
