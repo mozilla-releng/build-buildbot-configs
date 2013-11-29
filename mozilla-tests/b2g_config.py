@@ -43,6 +43,10 @@ BRANCHES = {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
     },
+    'mozilla-b2g26_v1_2f': {
+        'gecko_version': 26,
+        'b2g_version': (1, 2, 1),
+    },
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
@@ -1170,6 +1174,7 @@ BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
+BRANCHES['mozilla-b2g26_v1_2f']['repo_path'] = "releases/mozilla-b2g26_v1_2f"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"

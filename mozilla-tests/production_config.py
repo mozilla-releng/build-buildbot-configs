@@ -1,7 +1,7 @@
 SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(11,103) \
         if x not in [01, 02, 18, 59, 70]]), # bug 799528, bug 731300, bug 731793, bug 779574, bug 740505
-    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (40,72) \
+    'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (37,72) \
         if x not in [32]]), # bug 785862
     'xp': dict([("talos-r3-xp-%03i" % x, {}) for x in range(1,142) \
         if x not in [4, 45, 58, 59, 116, 119]]), # bug 856604, 661377, 780515, 753357, 863407
@@ -10,7 +10,7 @@ SLAVES = {
         if x not in [10, 17]]), # bug 861326 & bug 747734
     'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,131)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,131)]),
-    'snowleopard': dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,174) \
+    'snowleopard':dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,171) \
         if x not in [81, 84]]), # bug 729090, bug 795558
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
         if x not in [87]]), # bug 786994
@@ -100,6 +100,10 @@ BRANCHES = {
     'mozilla-b2g26_v1_2': {
         'tinderbox_tree': 'Mozilla-B2g26-v1.2',
         'mobile_tinderbox_tree': 'Mozilla-B2g26-v1.2',
+    },
+    'mozilla-b2g26_v1_2f': {
+        'tinderbox_tree': 'Mozilla-B2g26-v1.2f',
+        'mobile_tinderbox_tree': 'Mozilla-B2g26-v1.2f',
     },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
