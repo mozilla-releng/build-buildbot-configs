@@ -17,15 +17,18 @@ reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 from config import MOZHARNESS_REBOOT_CMD
 
-TALOS_REMOTE_FENNEC_OPTS = {'productName': 'fennec',
-                            'remoteTests': True,
-                            'remoteExtras': {'options': ['--sampleConfig', 'remote.config',
-                                                         '--output', 'local.yml',
-                                                         '--webServer', 'bm-remote.build.mozilla.org',
-                                                         '--browserWait', '60',
-                                                         ],
-                                             },
-                            }
+TALOS_REMOTE_FENNEC_OPTS = {
+    'productName': 'fennec',
+    'remoteTests': True,
+    'remoteExtras': {
+        'options': [
+             '--sampleConfig', 'remote.config',
+             '--output', 'local.yml',
+             '--webServer', 'bm-remote.build.mozilla.org',
+             '--browserWait', '60',
+        ],
+    },
+}
 
 ANDROID_UNITTEST_REMOTE_EXTRAS = {'cmdOptions': ['--bootstrap'], }
 
@@ -83,15 +86,21 @@ PLATFORMS = {
     'android-x86': {},
 }
 
-PLATFORMS['android']['slave_platforms'] = ['tegra_android', 'panda_android']
+PLATFORMS['android']['slave_platforms'] = \
+    ['tegra_android', 'panda_android', 'vm_android_2_3']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {'name': "Android 2.2 Tegra",
-                                         'mozharness_talos': False,
-                                         }
-PLATFORMS['android']['panda_android'] = {'name': "Android 4.0 Panda",
-                                         'mozharness_talos': True,
-                                         }
+PLATFORMS['android']['tegra_android'] = {
+    'name': "Android 2.2 Tegra",
+    'mozharness_talos': False,
+}
+PLATFORMS['android']['panda_android'] = {
+    'name': "Android 4.0 Panda",
+    'mozharness_talos': True,
+}
+PLATFORMS['android']['vm_android_2_3'] = {
+    'name': "Android 2.3 Emulator",
+}
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -134,7 +143,8 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ANDROID = PLATFORMS['android']['slave_platforms']
+# List of Android platforms that have talos enabled
+ANDROID = ["panda_android", "tegra_android"]
 
 SUITES = {
     'remote-ts': {
@@ -845,6 +855,62 @@ ANDROID_X86_MOZHARNESS_UNITTEST_DICT = {
 }
 # End of Androidx86 configurations
 
+# Beginning Android 2.3 configurations
+ANDROID_2_3_MOZHARNESS_DICT = [
+    ('android_2_3-set-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-1',
+            '--test-suite', 'mochitest-2',
+            '--test-suite', 'mochitest-gl',
+            '--test-suite', 'jsreftest',
+        ],
+        'trychooser_suites': ['mochitest-1', 'mochitest-2', 'mochitest-gl', 'jsreftest'],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('android_2_3-set-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'reftest-1',
+            '--test-suite', 'reftest-2',
+            '--test-suite', 'reftest-3',
+            '--test-suite', 'crashtest',
+        ],
+        'trychooser_suites': ['plain-reftest-1', 'plain-reftest-2', 'plain-reftest-3', 'crashtest'],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('android_2_3-set-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'robocop-1',
+            '--test-suite', 'robocop-2',
+            '--test-suite', 'robocop-3',
+            '--test-suite', 'xpcshell',
+        ],
+        'trychooser_suites': ['robocop-1', 'robocop-2', 'robocop-3', 'xpcshell'],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+
+# Funky DICT naming
+ANDROID_2_3_MOZHARNESS_UNITTEST_DICT = {
+   'opt_unittest_suites': ANDROID_2_3_MOZHARNESS_DICT,
+   'debug_unittest_suites': [],
+}
+# End of Android 2.3 configurations
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -1052,6 +1118,9 @@ BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"]["opt_unitte
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
+BRANCHES['ash']['platforms']['android']['vm_android_2_3'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
+}
 
 # MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for branch in BRANCHES:

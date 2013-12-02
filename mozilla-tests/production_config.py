@@ -50,6 +50,7 @@ SLAVES['ubuntu64_vm-b2g-emulator'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
 SLAVES['ubuntu64_hw-b2g-emulator'] = SLAVES['ubuntu64_hw']
 SLAVES['mountainlion-b2gdt'] = SLAVES['mountainlion']
+SLAVES['vm_android_2_3'] = SLAVES['ubuntu64_vm']
 
 TRY_SLAVES = {}
 
