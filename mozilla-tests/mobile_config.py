@@ -1133,12 +1133,9 @@ for branch in BRANCHES:
                     if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
-# schedule cpp unittests for pandas on cedar and try
-# https://bugzilla.mozilla.org/show_bug.cgi?id=931926
-for branch in BRANCHES:
-    # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', 'try'):
-        continue
+# schedule cpp unittests for pandas, rides trains
+# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
     for platform in BRANCHES[branch]['platforms']:
         if not platform in PLATFORMS:
             continue
