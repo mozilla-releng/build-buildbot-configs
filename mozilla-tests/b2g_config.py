@@ -374,7 +374,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:],
+            'opt_unittest_suites': MOCHITEST_DESKTOP[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -1152,7 +1152,7 @@ BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
-BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
+BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:] + GAIA_UI[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
 BRANCHES['cedar']['blob_upload'] = True
 BRANCHES['pine']['branch_name'] = "Pine"
@@ -1161,6 +1161,7 @@ BRANCHES['pine']['mozharness_tag'] = "default"
 BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI[:]
 BRANCHES['pine']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['pine']['blob_upload'] = True
 BRANCHES['cypress']['branch_name'] = "Cypress"
@@ -1213,17 +1214,20 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
         if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
             del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
 
-# Disable ubuntu64_vm-b2gdt (ie gaia-ui-test) on older branches
+# Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
-        if 'linux64_gecko' in BRANCHES[branch]['platforms']:
-            if 'ubuntu64_vm-b2gdt' in BRANCHES[branch]['platforms']['linux64_gecko']:
-                del BRANCHES[branch]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                  'mozilla-b2g18'):
+        for platform in ('linux64_gecko', 'linux32_gecko'):
+            if platform in BRANCHES[branch]['platforms']:
+                for slave_platform in ('ubuntu64_vm-b2gdt', 'ubuntu32_vm-b2gdt'):
+                    if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                        del BRANCHES[branch]['platforms'][platform][slave_platform]
 
-# Disable linux32_gecko, macosx64_gecko on all branches but cedar and pine
+# Disable macosx64_gecko on all branches but cedar and pine
 for branch in set(BRANCHES.keys()) - set(['cedar', 'pine']):
-    for platform in ('linux32_gecko', 'macosx64_gecko'):
+    for platform in ('macosx64_gecko',):
         if platform not in BRANCHES[branch]['platforms']:
             continue
         del BRANCHES[branch]['platforms'][platform]
