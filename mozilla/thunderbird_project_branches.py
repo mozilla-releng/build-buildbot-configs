@@ -11,3 +11,8 @@ PROJECT_BRANCHES = {
 
 # All is the default
 ACTIVE_PROJECT_BRANCHES = PROJECT_BRANCHES.keys()
+
+# Load up project branches' local values
+for branch in PROJECT_BRANCHES.keys():
+    PROJECT_BRANCHES[branch]['tinderbox_tree'] = PROJECT_BRANCHES[branch].get('tinderbox_tree', branch.title())
+    PROJECT_BRANCHES[branch]['packaged_unittest_tinderbox_tree'] = PROJECT_BRANCHES[branch].get('packaged_unittest_tinderbox_tree', branch.title())
