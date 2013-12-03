@@ -2280,15 +2280,15 @@ for b in BRANCHES.keys():
 
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try','mozilla-central']] + ['b2g-inbound','mozilla-inbound'])
-mixed_masters = ['buildbot-master66']
+win64_rev1_masters = ['buildbot-master82']
 mixed_branches = ['mozilla-inbound']
 for b in mixed_branches:
     if b not in disabled_branches:
         raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
-win64_rev2_master = False
-for m in mixed_masters:
+win64_rev2_master = True
+for m in win64_rev1_masters:
     if m in uname()[1]:
-        win64_rev2_master = True
+        win64_rev2_master = False
         break
 for branch in disabled_branches:
     for platform in ('win32','win32-debug','win64','win64-debug'):
