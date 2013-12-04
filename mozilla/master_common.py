@@ -41,6 +41,7 @@ BRANCH_PRIORITIES = {
     # Unlisted branches are prioritized at this level
     'mozilla-inbound': 4,
     'b2g-inbound': 4,
+    'fx-team': 4,
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
@@ -66,7 +67,6 @@ BRANCH_PRIORITIES = {
 # builder name, a priority of 100 is used. Lower priority values get run
 # earlier.
 BUILDER_PRIORITIES = [
-    (re.compile('b2g(-debug)?_test'), 50),
     (re.compile('l10n'), 150),
 ]
 

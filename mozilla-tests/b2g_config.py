@@ -189,6 +189,99 @@ MOCHITEST = [
      ),
 ]
 
+MOCHITEST_EMULATOR_DEBUG = [
+    ('mochitest-debug-1', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-2', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-3', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-4', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-5', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-6', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-7', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-8', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-9', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-10', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-11', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-12', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-13', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-14', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+    ('mochitest-debug-15', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
+]
+
 MOCHITEST_DESKTOP = [
     ('mochitest-1', {'suite': 'mochitest-plain',
                      'use_mozharness': True,
@@ -783,6 +876,126 @@ PLATFORM_UNITTEST_VARS = {
                         '--no-update',
                     ],
                 },
+                'mochitest-debug-1': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '1', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '2', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '3', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-4': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '4', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-5': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '5', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-6': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '6', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-7': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '7', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-8': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '8', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-9': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '9', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-10': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '10', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-11': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '11', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-12': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '12', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-13': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '13', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-14': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '14', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
+                'mochitest-debug-15': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '15', '--total-chunks', '15',
+                        '--no-update',
+                    ],
+                },
                 'xpcshell': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
@@ -1150,7 +1363,7 @@ BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
-BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:] + GAIA_UI[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
@@ -1160,7 +1373,7 @@ BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['mozharness_tag'] = "default"
 BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
-BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = ALL_UNITTESTS[:]
+BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI[:]
 BRANCHES['pine']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['pine']['blob_upload'] = True
