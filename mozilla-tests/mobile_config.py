@@ -1157,13 +1157,10 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 23):
                     if "xpcshell" in suite[0]:
                         branch['platforms'][platform][slave_plat][type].remove(suite)
 
-# Panda XPCShell on try only
-for branch in BRANCHES:
+# Panda XPCShell
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
     # Loop removes it from any branch that gets beyond here
-    if branch in ('try', 'mozilla-central', 'mozilla-inbound', 'fx-team', 'b2g-inbound'):
-        continue
-
-    for platform in BRANCHES[branch]['platforms']:
+    for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
         if not platform.startswith('android'):
@@ -1171,14 +1168,14 @@ for branch in BRANCHES:
         if platform.endswith('-debug'):
             continue  # no slave_platform for debug
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+            if not slave_plat in branch['platforms'][platform]:
                 continue
             if not 'panda' in slave_plat:
                 continue
-            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
-                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+            for type in branch['platforms'][platform][slave_plat]:
+                for suite in branch['platforms'][platform][slave_plat][type][:]:
                     if "xpcshell" in suite[0]:
-                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+                        branch['platforms'][platform][slave_plat][type].remove(suite)
 
 # Support reftests for pandaboards on Cedar and Try
 for branch in BRANCHES:
