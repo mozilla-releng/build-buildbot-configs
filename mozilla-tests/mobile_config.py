@@ -145,6 +145,7 @@ for platform, platform_config in PLATFORMS.items():
 
 # List of Android platforms that have talos enabled
 ANDROID = ["panda_android", "tegra_android"]
+ANDROID_NOT_PANDA = [slave_plat for slave_plat in ANDROID if 'panda' not in slave_plat]
 
 SUITES = {
     'remote-ts': {
@@ -170,7 +171,7 @@ SUITES = {
     'remote-tcanvasmark': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_PANDA),
     },
     'remote-trobopan': {
         'enable_by_default': True,
