@@ -2279,7 +2279,7 @@ for b in BRANCHES.keys():
             del BRANCHES[b]['platforms']['android-noion']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try','mozilla-central']] + ['b2g-inbound','mozilla-inbound'])
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora']] + ['b2g-inbound', 'mozilla-inbound'])
 win64_rev1_masters = ['buildbot-master82']
 mixed_branches = ['mozilla-inbound']
 for b in mixed_branches:
