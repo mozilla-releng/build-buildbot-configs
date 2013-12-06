@@ -24,14 +24,14 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '24.2.0esr'
 releaseConfig['appVersion']          = '24.2.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_24_2_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.1.1': {
+    '24.1.1esr': {
         'appVersion': '24.1.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_1_1',
+        'baseTag': 'FIREFOX_24_1_1esr',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '46049da0a585',
+        'revision': '9ee70aadb3fd',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
