@@ -2222,7 +2222,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         # which may have already been set to the global default.
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
-    BRANCHES[branch]['enable_valgrind'] = False
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
