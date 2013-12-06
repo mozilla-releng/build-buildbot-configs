@@ -1076,7 +1076,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                 )]
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = [x for x in BRANCHES.keys() if x not in ['try-comm-central', 'comm-central', 'comm-aurora']]
+disabled_branches = [x for x in BRANCHES.keys() if x not in ['try-comm-central', 'comm-central', 'comm-aurora', 'comm-beta']]
 win64_rev1_masters = ['buildbot-master82']
 mixed_branches = []
 for b in mixed_branches:
