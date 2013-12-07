@@ -8,16 +8,16 @@ releaseConfig['productName']                = 'seamonkey'
 releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
-releaseConfig['version']                    = '2.23b1'
+releaseConfig['version']                    = '2.23b2'
 releaseConfig['appVersion']                 = '2.23'
 releaseConfig['milestone']                  = '26.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_23b1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_23b2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.22b2'
-releaseConfig['oldAppVersion']              = '2.22'
+releaseConfig['oldVersion']                 = '2.23b1'
+releaseConfig['oldAppVersion']              = '2.23'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_22b2'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_23b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
@@ -26,7 +26,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = '80f16a3e89db'
+releaseConfig['sourceRepoRevision']         = '24a9e761a614'
 releaseConfig['relbranchOverride']          = ''
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
