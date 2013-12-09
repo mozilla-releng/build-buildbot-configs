@@ -562,8 +562,8 @@ JITTEST = [
 
 
 UNITTEST_SUITES = {
-    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,
-    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MARIONETTE,
+    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,
+    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE,
 }
 
 
@@ -1200,7 +1200,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win8': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1280,7 +1280,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'win64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,  # No marionette except on Try
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1646,7 +1646,6 @@ PROJECTS = {
         },
         'hgurl': 'http://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
-        'jetpack_tarball': 'archive/tip.tar.bz2',
         'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
     },
 }
@@ -1804,11 +1803,11 @@ BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
-BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
+BRANCHES['try']['platforms']['win32']['xp']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
+BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
-BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL
+BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 
 ######## cedar
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
@@ -1830,21 +1829,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
 
 
-# Enable cppunittest jobs on cedar and try for now
+# cppunittest jobs ride the train with 28, so they need to be disabled
+# for branches running an older version.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
 for platform in PLATFORMS.keys():
-    for branch in ['cedar', 'try']:
-        if platform not in BRANCHES[branch]['platforms']:
+    for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+        if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+            if slave_platform not in branch['platforms'][platform]:
                 continue
-            if slave_platform in ['fedora', 'fedora64']:
-                continue
-            for suites in ['debug_unittest_suites', 'opt_unittest_suites']:
-                if BRANCHES[branch]['platforms'][platform][slave_platform][suites]:
-                    BRANCHES[branch]['platforms'][platform][slave_platform][suites] += CPPUNIT[:]
-                else:
-                    BRANCHES[branch]['platforms'][platform][slave_platform][suites] = CPPUNIT[:]
+            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for cpp_suite in CPPUNIT:
+                    try:
+                        branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(cpp_suite)
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(cpp_suite)
+                    except ValueError:
+                        # wasn't in the list anyways
+                        pass
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
@@ -1856,21 +1858,15 @@ for platform in PLATFORMS.keys():
             if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
                 BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
             else:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
             if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
                 BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
             else:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
         # try
         if slave_platform in BRANCHES['try']['platforms'][platform]:
-            if BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-            else:
-                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] = JITTEST[:]
-            if BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
-            else:
-                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] = JITTEST[:]
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
@@ -1911,12 +1907,12 @@ def get_ubuntu_unittests(branch, test_type):
                      "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
                      "mochitest-1", "mochitest-2", "mochitest-3",
                      "mochitest-4", "mochitest-5", "mochitest",
-                     "mochitest-browser-chrome", "mochitest-other"],
+                     "mochitest-browser-chrome", "mochitest-other", "cppunit"],
                     "debug_unittest_suites":
                     ["crashtest", "jsreftest", "jetpack", "marionette",
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest", "mochitest-other"]}
+                     "mochitest-5", "mochitest", "mochitest-other", "cppunit"]}
     return list(UBUNTU_TESTS[test_type])
 
 # Remove Ubuntu platform from the release trains,
