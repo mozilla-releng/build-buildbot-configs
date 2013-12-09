@@ -56,10 +56,6 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Thunderbird',
         'tinderbox_tree': 'Thunderbird',
     },
-    'comm-esr17': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr17',
-        'tinderbox_tree': 'Thunderbird-Esr17',
-    },
     'comm-esr24': {
         'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr24',
         'tinderbox_tree': 'Thunderbird-Esr24',

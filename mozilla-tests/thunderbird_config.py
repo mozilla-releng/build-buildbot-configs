@@ -23,9 +23,6 @@ BRANCHES = {
     },
     'comm-aurora': {
     },
-    'comm-esr17': {
-        'gecko_version': 17
-    },
     'comm-esr24': {
         'gecko_version': 24
     },
@@ -52,11 +49,9 @@ PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX M
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
 
-PLATFORMS['win32']['slave_platforms'] = ['xp', 'xp-ix', 'win7', 'win7-ix']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp'] = {'name': builder_prefix + "Rev3 WINNT 5.1"}
 PLATFORMS['win32']['xp-ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
-PLATFORMS['win32']['win7'] = {'name': builder_prefix + "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
@@ -188,15 +183,7 @@ PLATFORM_UNITTEST_VARS = {
         'env_name': 'win32-perf-unittest',
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'xp': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-        },
         'xp-ix': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-        },
-        'win7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
         },
@@ -320,17 +307,6 @@ BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 BRANCHES['comm-aurora']['platforms']['linux']['slave_platforms'] = ['fedora']
 BRANCHES['comm-aurora']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
-######## comm-esr17
-BRANCHES['comm-esr17']['pgo_strategy'] = None
-BRANCHES['comm-esr17']['repo_path'] = "releases/comm-esr17"
-del BRANCHES['comm-esr17']['platforms']['win32']['xp-ix']
-del BRANCHES['comm-esr17']['platforms']['win32']['win7-ix']
-del BRANCHES['comm-esr17']['platforms']['linux']['ubuntu32_vm']
-del BRANCHES['comm-esr17']['platforms']['linux64']['ubuntu64_vm']
-BRANCHES['comm-esr17']['platforms']['win32']['slave_platforms'] = ['xp', 'win7']
-BRANCHES['comm-esr17']['platforms']['linux']['slave_platforms'] = ['fedora']
-BRANCHES['comm-esr17']['platforms']['linux64']['slave_platforms'] = ['fedora64']
-
 ######## comm-esr24
 BRANCHES['comm-esr24']['pgo_strategy'] = None
 BRANCHES['comm-esr24']['repo_path'] = "releases/comm-esr24"
@@ -338,19 +314,16 @@ BRANCHES['comm-esr24']['repo_path'] = "releases/comm-esr24"
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
 
-WIN32_REV3_BRANCHES = ["comm-esr17"]
-FEDORA_REV3_BRANCHES = ["comm-esr17"]
-
-# Disable Rev3 winxp and win7 machines for all branches apart from try and comm-central
-# for now.
-for branch in set(BRANCHES.keys()) - set(WIN32_REV3_BRANCHES):
+# Disable Rev3 winxp and win7 machines for all branches
+for branch in set(BRANCHES.keys()):
     if 'win32' not in BRANCHES[branch]['platforms']:
         continue
-    del BRANCHES[branch]['platforms']['win32']['xp']
+    if 'win7' not in BRANCHES[branch]['platforms']['win32']:
+        continue
     del BRANCHES[branch]['platforms']['win32']['win7']
     BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 
-for branch in set(BRANCHES.keys()) - set(FEDORA_REV3_BRANCHES):
+for branch in set(BRANCHES.keys()):
     if 'linux' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux']['fedora']
         BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['ubuntu32_vm']

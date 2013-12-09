@@ -623,20 +623,6 @@ BRANCHES = {
     },
     'comm-beta': {
     },
-    'comm-esr17': {
-        'lock_platforms': True,
-        'gecko_version': 17,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'comm-esr24': {
         'gecko_version': 24,
     },
@@ -812,67 +798,6 @@ BRANCHES['comm-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thun
 BRANCHES['comm-esr24']['enable_blocklist_update'] = False
 BRANCHES['comm-esr24']['blocklist_update_on_closed_tree'] = False
 BRANCHES['comm-esr24']['enable_valgrind'] = False
-
-######## comm-esr17
-BRANCHES['comm-esr17']['moz_repo_path'] = 'releases/mozilla-esr17'
-BRANCHES['comm-esr17']['repo_path'] = 'releases/comm-esr17'
-BRANCHES['comm-esr17']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr17']['update_channel'] = 'nightly-esr17'
-BRANCHES['comm-esr17']['mozilla_dir'] = 'mozilla'
-BRANCHES['comm-esr17']['skip_blank_repos'] = True
-BRANCHES['comm-esr17']['call_client_py'] = True
-BRANCHES['comm-esr17']['enable_weekly_bundle'] = True
-BRANCHES['comm-esr17']['start_hour'] = [3]
-BRANCHES['comm-esr17']['start_minute'] = [45]
-# Enable XULRunner / SDK builds
-BRANCHES['comm-esr17']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['comm-esr17']['enable_mac_a11y'] = True
-BRANCHES['comm-esr17']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['comm-esr17']['enable_l10n'] = False
-BRANCHES['comm-esr17']['enable_l10n_onchange'] = False
-BRANCHES['comm-esr17']['l10nNightlyUpdate'] = False
-BRANCHES['comm-esr17']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                           'macosx64']
-BRANCHES['comm-esr17']['l10nDatedDirs'] = True
-BRANCHES['comm-esr17']['l10n_tree'] = 'tbesr17'
-#make sure it has an ending slash
-BRANCHES['comm-esr17']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr17'
-BRANCHES['comm-esr17']['allLocalesFile'] = 'mail/locales/all-locales'
-BRANCHES['comm-esr17']['enable_nightly'] = True
-BRANCHES['comm-esr17']['create_snippet'] = True
-BRANCHES['comm-esr17']['create_partial'] = True
-BRANCHES['comm-esr17']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr17'
-BRANCHES['comm-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr17'
-BRANCHES['comm-esr17']['enable_blocklist_update'] = False
-BRANCHES['comm-esr17']['blocklist_update_on_closed_tree'] = False
-BRANCHES['comm-esr17']['enable_valgrind'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-# mock disabled block start
-# linux platforms
-BRANCHES['comm-esr17']['platforms']['linux']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['comm-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['comm-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['comm-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['comm-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-BRANCHES['comm-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/tbirdbld_dsa"
-del BRANCHES['comm-esr17']['platforms']['linux']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux64']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['comm-esr17']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
-BRANCHES['comm-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -1171,7 +1096,7 @@ for branch in disabled_branches:
             if 'try' in branch:
                 slaves = TRY_SLAVES['win64-rev2']
             BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'comm-esr17':
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves
         else:
             if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
@@ -1181,7 +1106,7 @@ for branch in disabled_branches:
             if 'try' in branch:
                 oldslaves = TRY_SLAVES['win64']
             BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'comm-esr17':
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
 
 

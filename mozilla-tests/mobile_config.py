@@ -37,12 +37,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr17':       {
-        'datazilla_url': None,
-        'gecko_version': 17,
-        'platforms': {},
-        'lock_platforms': True,
-    },
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
     },
@@ -1071,12 +1065,6 @@ BRANCHES['mozilla-beta']['pgo_platforms'] = []
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-
-######### mozilla-esr17
-BRANCHES['mozilla-esr17']['release_tests'] = 5
-BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
-BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr17']['pgo_platforms'] = []
 
 ######### mozilla-b2g26_v1_2
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"

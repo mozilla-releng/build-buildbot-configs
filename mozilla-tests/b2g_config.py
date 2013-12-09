@@ -1429,7 +1429,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
+    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
                   'mozilla-b2g18'):
         for platform in ('linux64_gecko', 'linux32_gecko'):
@@ -1449,7 +1449,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar', 'pine']):
 # MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
     if branch in ('mozilla-beta', 'mozilla-release',
-                  'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator']
@@ -1458,7 +1458,7 @@ for branch in BRANCHES.keys():
 # MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
     if branch in ('mozilla-beta', 'mozilla-release',
-                  'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
