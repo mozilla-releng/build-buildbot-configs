@@ -1200,28 +1200,20 @@ for branch in BRANCHES:
                     if ("plain-reftest" in suite[0]):
                         BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
 
-# schedule cpp unittests for pandas on cedar and try
-# https://bugzilla.mozilla.org/show_bug.cgi?id=931926
-for branch in BRANCHES:
-    # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', 'try'):
-        continue
-    for platform in BRANCHES[branch]['platforms']:
-        if not platform in PLATFORMS:
+# cppunittest jobs ride the train with 28, so they need to be disabled
+# for branches running an older version.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+    for platform in branch['platforms']:
+        if platform not in PLATFORMS:
             continue
-        if not platform.startswith('android'):
-            continue
-        if platform.endswith('-debug'):
-            continue  # no slave_platform for debug
-        for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+        for slave_plat in PLATFORMS[platform].get('slave_platforms', {}):
+            if slave_plat not in branch['platforms'][platform]:
                 continue
-            if not slave_plat == "panda_android":
-                continue
-            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
-                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
+            for type_ in branch['platforms'][platform][slave_plat]:
+                for suite in branch['platforms'][platform][slave_plat][type_][:]:
                     if "cppunittest" in suite[0]:
-                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+                        branch['platforms'][platform][slave_plat][type_].remove(suite)
 
 # schedule jittests for pandas on cedar and try
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
