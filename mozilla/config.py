@@ -1933,6 +1933,7 @@ BRANCHES['mozilla-esr24']['create_partial'] = True
 BRANCHES['mozilla-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
 BRANCHES['mozilla-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
 BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr24']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr24']['enable_valgrind'] = False
 BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
 
