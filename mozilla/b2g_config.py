@@ -816,10 +816,6 @@ BRANCHES = {
     'mozilla-b2g18': {
         'gecko_version': 18,
     },
-    'mozilla-b2g18_v1_0_1': {
-        'gecko_version': 18,
-        'b2g_version': (1, 0, 1),
-    },
     'mozilla-b2g18_v1_1_0_hd': {
         'gecko_version': 18,
         'b2g_version': (1, 1, 0),
@@ -1090,51 +1086,6 @@ BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_revisio
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
-######## mozilla-b2g18_v1_0_1
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = 'releases/mozilla-b2g18_v1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build only on changes in gecko, ignoring gaia, manifests, etc
-BRANCHES['mozilla-b2g18_v1_0_1']['enable_nightly_lastgood'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['start_hour'] = [4]
-BRANCHES['mozilla-b2g18_v1_0_1']['start_minute'] = [32]
-BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_0_1']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-1_0_1'
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['hamachi_eng']['enable_nightly'] = True
-# Disable desktop B2G checktests on the b2g18_v1_0_1 branch
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_0_1']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
-
 ######## mozilla-b2g18_v1_1_0_hd
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -1324,10 +1275,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                 )]
 
 # Turn off a bunch of builds: bug 924503
-# Hamachi 1.0.1
-for p in BRANCHES['mozilla-b2g18_v1_0_1']['platforms'].keys():
-    if p not in ('hamachi', ):
-        del BRANCHES['mozilla-b2g18_v1_0_1']['platforms'][p]
 # Subset for 1.1
 for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
     if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'unagi_eng', 'emulator'):

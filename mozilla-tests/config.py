@@ -1750,8 +1750,7 @@ for platform in PLATFORMS.keys():
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 for branch in BRANCHES.keys():
     if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
-                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd',
                       'mozilla-esr24', 'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f'):
         if 'win32' in BRANCHES[branch]['platforms'] and \
                 'win8' in BRANCHES[branch]['platforms']['win32']:

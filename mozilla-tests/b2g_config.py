@@ -31,10 +31,6 @@ BRANCHES = {
         'gecko_version': 18,
         'b2g_version': (1, 1, 0),
     },
-    'mozilla-b2g18_v1_0_1': {
-        'gecko_version': 18,
-        'b2g_version': (1, 0, 1),
-    },
     'mozilla-b2g18_v1_1_0_hd': {
         'gecko_version': 18,
         'b2g_version': (1, 1, 1),
@@ -1385,7 +1381,6 @@ BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
-BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
@@ -1431,9 +1426,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
-                  'mozilla-b2g18'):
+    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18'):
         for platform in ('linux64_gecko', 'linux32_gecko'):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('ubuntu64_vm-b2gdt', 'ubuntu32_vm-b2gdt'):
