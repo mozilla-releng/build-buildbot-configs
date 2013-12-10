@@ -1436,21 +1436,6 @@ BRANCHES = {
     'mozilla-aurora': {
         'branch_projects': []
     },
-    'mozilla-esr17': {
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 17,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'mozilla-esr24': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1854,57 +1839,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] =
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
-######## mozilla-esr17
-BRANCHES['mozilla-esr17']['repo_path'] = 'releases/mozilla-esr17'
-BRANCHES['mozilla-esr17']['update_channel'] = 'nightly-esr17'
-BRANCHES['mozilla-esr17']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr17']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-esr17']['start_hour'] = [0]
-BRANCHES['mozilla-esr17']['start_minute'] = [05]
-BRANCHES['mozilla-esr17']['enable_xulrunner'] = False
-BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr17']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr17']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-esr17']['enable_l10n'] = False
-BRANCHES['mozilla-esr17']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-esr17']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr17']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                               'macosx64']
-BRANCHES['mozilla-esr17']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr17']['l10n_tree'] = 'fxesr17'
-BRANCHES['mozilla-esr17']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr17'
-BRANCHES['mozilla-esr17']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-esr17']['enable_nightly'] = True
-BRANCHES['mozilla-esr17']['create_snippet'] = True
-BRANCHES['mozilla-esr17']['create_partial'] = True
-BRANCHES['mozilla-esr17']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
-BRANCHES['mozilla-esr17']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr17'
-BRANCHES['mozilla-esr17']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr17']['enable_valgrind'] = False
-BRANCHES['mozilla-esr17']['enabled_products'] = ['firefox']
-# mock disabled block start
-# linux platforms
-BRANCHES['mozilla-esr17']['platforms']['linux']['use_mock'] = False
-BRANCHES['mozilla-esr17']['platforms']['linux64']['use_mock'] = False
-BRANCHES['mozilla-esr17']['platforms']['linux-debug']['use_mock'] = False
-BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['use_mock'] = False
-BRANCHES['mozilla-esr17']['platforms']['linux']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-esr17']['platforms']['linux64']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-esr17']['platforms']['linux-debug']['slaves'] = SLAVES['linux']
-BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['slaves'] = SLAVES['linux64']
-BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PYTHON26'] = '/tools/python-2.6.5/bin/python'
-BRANCHES['mozilla-esr17']['platforms']['linux']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['SYMBOL_SERVER_SSH_KEY'] = "/home/cltbld/.ssh/ffxbld_dsa"
-del BRANCHES['mozilla-esr17']['platforms']['linux']['env']['PATH']
-del BRANCHES['mozilla-esr17']['platforms']['linux64']['env']['PATH']
-del BRANCHES['mozilla-esr17']['platforms']['linux-debug']['env']['PATH']
-del BRANCHES['mozilla-esr17']['platforms']['linux64-debug']['env']['PATH']
-# mock disabled block stop
-BRANCHES['mozilla-esr17']['platforms']['win32']['l10n_slaves'] = SLAVES['win32']
-
 ######## mozilla-esr24
 BRANCHES['mozilla-esr24']['repo_path'] = 'releases/mozilla-esr24'
 BRANCHES['mozilla-esr24']['update_channel'] = 'nightly-esr24'
@@ -1933,6 +1867,7 @@ BRANCHES['mozilla-esr24']['create_partial'] = True
 BRANCHES['mozilla-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
 BRANCHES['mozilla-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
 BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr24']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr24']['enable_valgrind'] = False
 BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
 
@@ -2278,7 +2213,7 @@ for b in BRANCHES.keys():
             del BRANCHES[b]['platforms']['android-noion']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora']] + ['b2g-inbound', 'mozilla-inbound'])
+disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora', 'mozilla-beta']] + ['b2g-inbound', 'mozilla-inbound'])
 win64_rev1_masters = ['buildbot-master82']
 mixed_branches = ['mozilla-inbound', 'b2g-inbound']
 for b in mixed_branches:
@@ -2298,7 +2233,7 @@ for branch in disabled_branches:
             if 'try' in branch:
                 slaves = TRY_SLAVES['win64-rev2']
             BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves
         else:
             if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
@@ -2308,7 +2243,7 @@ for branch in disabled_branches:
             if 'try' in branch:
                 oldslaves = TRY_SLAVES['win64']
             BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform] and branch != 'mozilla-esr17':
+            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
                 BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
 
 for _, branch in items_before(BRANCHES, 'gecko_version', 26):
@@ -2370,7 +2305,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 22):
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_0_1",
-               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr17", "mozilla-esr24"):
+               "mozilla-b2g18_v1_1_0_hd", "mozilla-esr24"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
     if 'linux64-br-haz' in BRANCHES[branch]['platforms']:

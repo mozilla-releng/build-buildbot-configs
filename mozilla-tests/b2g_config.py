@@ -48,6 +48,7 @@ BRANCHES = {
         'b2g_version': (1, 2, 1),
     },
     'mozilla-central': {},
+    'mozilla-aurora': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
@@ -1390,6 +1391,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulato
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2f']['repo_path'] = "releases/mozilla-b2g26_v1_2f"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
+BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
@@ -1429,7 +1431,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr17', 'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
+    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
                   'mozilla-b2g18'):
         for platform in ('linux64_gecko', 'linux32_gecko'):
@@ -1445,21 +1447,10 @@ for branch in set(BRANCHES.keys()) - set(['cedar', 'pine']):
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# emulator hacks.  See bug 885456
-# MERGE DAY remove branches as gecko26 merges in
-for branch in BRANCHES.keys():
-    if branch in ('mozilla-beta', 'mozilla-release',
-                  'mozilla-esr17', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1'):
-        if 'emulator' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['emulator']
-
 # linux64_gecko hacks.  See bug 891973
 # MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-beta', 'mozilla-release',
-                  'mozilla-esr17', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+    if branch in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
 

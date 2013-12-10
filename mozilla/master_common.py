@@ -24,14 +24,12 @@ DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
     'comm-esr24': 0,
-    'mozilla-esr17': 1,
     'mozilla-esr24': 1,
     'mozilla-b2g18': 1,
     'mozilla-b2g18_v1_0_1': 1,
     'mozilla-b2g18_v1_1_0_hd': 1,
     'mozilla-b2g26_v1_2': 1,
     'mozilla-b2g26_v1_2f': 1,
-    'comm-esr17': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
     'mozilla-central': 3,
@@ -237,15 +235,14 @@ c['prioritizeBuilders'] = prioritizeBuilders
 # later (larger) than any other value. See items_before for example usage.
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['mozilla-release']['gecko_version'] = 25
-    BRANCHES['mozilla-beta']['gecko_version'] = 26
-    BRANCHES['mozilla-aurora']['gecko_version'] = 27
-
+    BRANCHES['mozilla-release']['gecko_version'] = 26
+    BRANCHES['mozilla-beta']['gecko_version']    = 27
+    BRANCHES['mozilla-aurora']['gecko_version']  = 28
 
 def setMainCommVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['comm-beta']['gecko_version'] = 26
-    BRANCHES['comm-aurora']['gecko_version'] = 27
+    BRANCHES['comm-beta']['gecko_version'] = 27
+    BRANCHES['comm-aurora']['gecko_version'] = 28
 
 # Typical usage pattern:
 #

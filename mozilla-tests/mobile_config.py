@@ -37,12 +37,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr17':       {
-        'datazilla_url': None,
-        'gecko_version': 17,
-        'platforms': {},
-        'lock_platforms': True,
-    },
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
     },
@@ -50,14 +44,6 @@ BRANCHES = {
         'gecko_version': 26,
     },
     'mozilla-b2g18': {
-        'datazilla_url': None,
-        'gecko_version': 18,
-        'platforms': {
-            'android-noion': {},
-        },
-        'lock_platforms': True,
-    },
-    'mozilla-b2g18_v1_0_1': {
         'datazilla_url': None,
         'gecko_version': 18,
         'platforms': {
@@ -1051,15 +1037,6 @@ BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_platforms'] = []
-# MERGE DAY: Remove this line when FF26 merges in
-BRANCHES['mozilla-release']['platforms']['android-x86']['enable_opt_unittests'] = False
-BRANCHES['mozilla-release']['platforms']['android-x86']['enable_opt_unittests'] = False
-BRANCHES['mozilla-release']['remote-tsvg_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-release']['remote-tsvgx_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-release']['remote-tcanvasmark_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-release']['remote-ts_tests'] = (1, True, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-BRANCHES['mozilla-release']['remote-tspaint_tests'] = (0, False, TALOS_REMOTE_FENNEC_OPTS, ANDROID)
-# MERGE DAY: end
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['release_tests'] = 1
@@ -1071,12 +1048,6 @@ BRANCHES['mozilla-beta']['pgo_platforms'] = []
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-
-######### mozilla-esr17
-BRANCHES['mozilla-esr17']['release_tests'] = 5
-BRANCHES['mozilla-esr17']['repo_path'] = "releases/mozilla-esr17"
-BRANCHES['mozilla-esr17']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr17']['pgo_platforms'] = []
 
 ######### mozilla-b2g26_v1_2
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
@@ -1093,12 +1064,6 @@ BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
-
-######### mozilla-b2g18_v1_0_1
-BRANCHES['mozilla-b2g18_v1_0_1']['release_tests'] = 1
-BRANCHES['mozilla-b2g18_v1_0_1']['repo_path'] = "releases/mozilla-b2g18_v1_0_1"
-BRANCHES['mozilla-b2g18_v1_0_1']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18_v1_0_1']['pgo_platforms'] = []
 
 ######### mozilla-b2g18_v1_1_0_hd
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
@@ -1125,7 +1090,7 @@ BRANCHES['ash']['platforms']['android']['vm_android_2_3'] = {
 
 # MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd'):
+    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
         if 'android-noion' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android-noion']
 
