@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import config_common
 reload(config_common)
-from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites, \
+from config_common import loadDefaultValues, loadCustomTalosSuites, \
     nested_haskey, get_talos_slave_platforms, delete_slave_platform
 
 import master_common
@@ -1818,6 +1818,22 @@ for branch in BRANCHES:
                                     BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
                             except KeyError:
                                 pass
+
+# TODO get rid of this block after disabling fedora tests everywhere
+NON_UBUNTU_TALOS_BRANCHES = []
+for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
+    for s in SUITES.iterkeys():
+        if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
+            options = list(BRANCHES[branch]['suites'][s]['options'])
+            # filter out fedora
+            options[1] = [x for x in options[1] if x not in ('fedora', 'fedora64')]
+            BRANCHES[branch]['suites'][s]['options'] = tuple(options)
+        tests_key = '%s_tests' % s
+        if tests_key in BRANCHES[branch]:
+            tests = list(BRANCHES[branch]['%s_tests' % s])
+            tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
+            BRANCHES[branch]['%s_tests' % s] = tuple(tests)
+
 # XXX: Remove this block once we don't run Win7 on b2g18 and b2g18-v1.1.0hd
 # Disable Rev3 Win7 machines for FF23+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 23):
