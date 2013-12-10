@@ -235,15 +235,14 @@ c['prioritizeBuilders'] = prioritizeBuilders
 # later (larger) than any other value. See items_before for example usage.
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['mozilla-release']['gecko_version'] = 25
-    BRANCHES['mozilla-beta']['gecko_version'] = 26
-    BRANCHES['mozilla-aurora']['gecko_version'] = 27
-
+    BRANCHES['mozilla-release']['gecko_version'] = 26
+    BRANCHES['mozilla-beta']['gecko_version']    = 27
+    BRANCHES['mozilla-aurora']['gecko_version']  = 28
 
 def setMainCommVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['comm-beta']['gecko_version'] = 26
-    BRANCHES['comm-aurora']['gecko_version'] = 27
+    BRANCHES['comm-beta']['gecko_version'] = 27
+    BRANCHES['comm-aurora']['gecko_version'] = 28
 
 # Typical usage pattern:
 #

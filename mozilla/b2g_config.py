@@ -811,6 +811,8 @@ PLATFORM_VARS = {
 BRANCHES = {
     'mozilla-central': {
     },
+    'mozilla-aurora': {
+    },
     'mozilla-b2g18': {
         'gecko_version': 18,
     },
@@ -934,6 +936,40 @@ BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
+
+######## mozilla-aurora
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_2'
+BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-aurora']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-aurora']['start_hour'] = [0]
+BRANCHES['mozilla-aurora']['start_minute'] = [40]
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['mozilla-aurora']['platforms']['unagi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['unagi_eng']['enable_dep'] = False
+BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-aurora']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['leo_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
+# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
+# builds not needed for B2G 1.2
+BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
 
 ######## mozilla-b2g26_v1_2
 # This is a path, relative to HGURL, where the repository is located
@@ -1206,19 +1242,23 @@ for branch in disabled_branches:
                 oldslaves = TRY_SLAVES['win64']
             BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
 
-# MERGE DAY: inari is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and higher)
+# MERGE DAY: inari is for B2G 1.0+ (b2g18 + gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g26_v1_2f', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g18'):
         if 'inari' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['inari']
         if 'inari_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['inari_eng']
 
 # MERGE DAY: leo is for B2G 1.1+ (b2g18 + gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g26_v1_2f', 'mozilla-b2g18'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
     # leo-eng isn't for 1.2 anymore, bug 924503
@@ -1226,40 +1266,49 @@ for branch in BRANCHES:
         if 'leo_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo_eng']
 
-# MERGE DAY: hamachi is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and higher)
+# MERGE DAY: hamachi is for B2G 1.0+ (b2g18 + gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g26_v1_2f', 'mozilla-b2g18', 'mozilla-b2g18_v1_0_1'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g18'):
         if 'hamachi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi']
         if 'hamachi_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi_eng']
 
 # MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f') \
-            and 'nexus-4' in BRANCHES[branch]['platforms']:
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f') \
+              and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g26_v1_2f', 'mozilla-central', 'b2g-inbound'):
+    if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
 
-# MERGE DAY: unagi_eng is for B2G 1.0+ (b2g18_v1_0_1, b2g18 + gecko26 and
+# MERGE DAY: unagi_eng is for B2G 1.0+ (b2g18 + gecko26 and
 # higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_0_1',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f', 'mozilla-central', 'b2g-inbound'):
+    if branch not in ('mozilla-b2g18', 'mozilla-aurora', 'mozilla-b2g26_v1_2',
+                      'mozilla-b2g26_v1_2f', 'mozilla-central', 'b2g-inbound'):
         if 'unagi_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['unagi_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
+# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-inbound',
-                      'fx-team', 'try', 'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f', 'birch'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
+                      'mozilla-inbound', 'fx-team', 'try',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f', 'birch'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
