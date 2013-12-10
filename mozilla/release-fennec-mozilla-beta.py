@@ -5,6 +5,8 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
+# FIXME: remove the following temporary line
+releaseConfig['skip_tag'] = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
