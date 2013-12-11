@@ -1,5 +1,0 @@
-ac_add_options --with-l10n-base=../../mozilla-release
-ac_add_options --enable-application=browser
-ac_add_options --enable-update-channel=esr
-ac_add_options --enable-update-packaging
-ac_add_options --enable-official-branding
