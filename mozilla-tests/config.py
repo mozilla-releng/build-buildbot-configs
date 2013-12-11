@@ -32,6 +32,7 @@ BRANCHES = {
     'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-esr24': {
+        'gecko_version': 24,
         'platforms': {
             'macosx64': {},
             'win32': {},
