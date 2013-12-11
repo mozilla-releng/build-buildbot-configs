@@ -1496,12 +1496,10 @@ BRANCHES = {
             # https://bugzil.la/818378#c8)
             'linux': {},
             'linux64': {},
-            'win32': {},
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},
-            'win32-debug': {},
             'android-noion': {},
         },
     },
@@ -1514,12 +1512,10 @@ BRANCHES = {
             # https://bugzil.la/818378#c8)
             'linux': {},
             'linux64': {},
-            'win32': {},
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},
-            'win32-debug': {},
             'android-noion': {},
         },
     },
@@ -1940,7 +1936,7 @@ BRANCHES['mozilla-b2g18']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g18']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g18']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['enable_nightly'] = False 
 BRANCHES['mozilla-b2g18']['create_snippet'] = False
 BRANCHES['mozilla-b2g18']['create_partial'] = False
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
@@ -1972,7 +1968,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18_v1_1_0_hd'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly'] = False 
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['create_snippet'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['create_partial'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_1_0_hd'
