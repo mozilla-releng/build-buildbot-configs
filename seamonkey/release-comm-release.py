@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.22.1'
-releaseConfig['appVersion']                 = '2.22.1'
-releaseConfig['milestone']                  = '25.0.1'
+releaseConfig['version']                    = '2.23'
+releaseConfig['appVersion']                 = '2.23'
+releaseConfig['milestone']                  = '26.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_22_1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_23'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.22'
-releaseConfig['oldAppVersion']              = '2.22'
+releaseConfig['oldVersion']                 = '2.22.1'
+releaseConfig['oldAppVersion']              = '2.22.1'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_22'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_22_1'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
@@ -28,14 +28,14 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '59262113bd33'
+releaseConfig['sourceRepoRevision']         = '1c3ba1998485'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = 'a2dbb71a5c5e'
-releaseConfig['mozillaRelbranchOverride']   = 'SEA2_22_1_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'c6bc408104a2'
+releaseConfig['mozillaRelbranchOverride']   = '' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'c39783b41b92'
