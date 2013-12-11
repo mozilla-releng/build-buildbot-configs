@@ -563,7 +563,7 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
+        'enable_debug_unittests': True,
         'fedora-b2g-emulator': {
             'opt_unittest_suites': REFTEST + MARIONETTE,
             'debug_unittest_suites': [],
@@ -793,7 +793,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'ubuntu64_vm-b2g-emulator': {
             'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': XPCSHELL[:],
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -1361,7 +1361,6 @@ BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
-BRANCHES['cedar']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:] + GAIA_UI[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP[:]
@@ -1373,7 +1372,6 @@ BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_s
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI[:]
-BRANCHES['pine']['platforms']['emulator']['enable_debug_unittests'] = True
 BRANCHES['pine']['blob_upload'] = True
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
@@ -1424,6 +1422,14 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
             BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64_hw-b2g')
         if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
             del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
+
+# Disable emulator debug unittests on older branches
+for branch in BRANCHES.keys():
+    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_0_0',
+                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                  'mozilla-b2g18'):
+        if 'emulator' in BRANCHES[branch]['platforms']:
+            BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
