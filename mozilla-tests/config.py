@@ -32,6 +32,7 @@ BRANCHES = {
     'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-esr24': {
+        'gecko_version': 24,
         'platforms': {
             'macosx64': {},
             'win32': {},
@@ -70,7 +71,6 @@ BRANCHES = {
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
-            'win32': {},
             'linux': {},
             'linux64': {},
         },
@@ -82,7 +82,6 @@ BRANCHES = {
         'platforms': {
             # desktop per sicking in Bug 829513
             'macosx64': {},
-            'win32': {},
             'linux': {},
             'linux64': {},
         },
@@ -1613,17 +1612,11 @@ BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['opt_unittest_suites']
 BRANCHES['mozilla-b2g18']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
 BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
-BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
-BRANCHES['mozilla-b2g18']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-del BRANCHES['mozilla-b2g18']['platforms']['win32']['win8']
-del BRANCHES['mozilla-b2g18']['platforms']['win32']['win7-ix']
-del BRANCHES['mozilla-b2g18']['platforms']['win32']['xp-ix']
 del BRANCHES['mozilla-b2g18']['platforms']['macosx64']['snowleopard']
-BRANCHES['mozilla-b2g18']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g18']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g18_v1_1_0_hd
@@ -1634,17 +1627,11 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux']['fedora']['opt_unittes
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux']['fedora']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'] + MARIONETTE
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_with_no-d2d-d3d'][:]
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['opt_no_a11y'][:]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = BUILDBOT_UNITTEST_SUITES['debug_no_a11y'] + MARIONETTE
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win8']
-del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['win7-ix']
-del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['xp-ix']
 del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['snowleopard']
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g26_v1_2
@@ -1750,8 +1737,7 @@ for platform in PLATFORMS.keys():
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 for branch in BRANCHES.keys():
     if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_0_0',
-                      'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
+                      'mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd',
                       'mozilla-esr24', 'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f'):
         if 'win32' in BRANCHES[branch]['platforms'] and \
                 'win8' in BRANCHES[branch]['platforms']['win32']:

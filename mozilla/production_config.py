@@ -26,10 +26,11 @@ TRY_LINUX      = []
 TRY_LINUX_IXS  = []
 TRY_LINUX64    = []
 TRY_LINUX64_IXS= []
-TRY_LINUX64_EC2= ['try-linux64-ec2-%03d' % x for x in range(1, 900)]
 TRY_MAC64      = []
 TRY_WIN32_IXS  = []
 TRY_WIN64_IXS  = []
+TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 900)] + \
+    ['try-linux64-spot-%03d' % x for x in range(1, 900)]
 TRY_WIN64_REV2 = ['w64-ix-slave%02i' % x for x in [3] + range(30,75) if x not in [42,43]] + \
                  ['w64-ix-slave%03i' % x for x in [110]]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)] + \
@@ -110,11 +111,6 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18',
         'tinderbox_tree': 'Mozilla-B2g18',
         'mobile_tinderbox_tree': 'Mozilla-B2g18',
-    },
-    'mozilla-b2g18_v1_0_1': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
-        'tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18_v1_0_1',
     },
     'mozilla-b2g18_v1_1_0_hd': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',

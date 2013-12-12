@@ -63,6 +63,7 @@ PROJECT_BRANCHES = {
             'macosx64': {
                 'enable_checktests': False,
                 'slave_platforms': ['mountainlion'],
+                'talos_slave_platforms': ['mountainlion'],
             },
             'macosx64-debug': {
                 'enable_checktests': False,
