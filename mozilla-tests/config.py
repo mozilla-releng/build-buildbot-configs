@@ -119,11 +119,10 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'config_file': 'talos/mac_config.py',
 }
 
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7', 'win7-ix', 'win8']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7', 'win7-ix', 'win8']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
+PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit"}
-PLATFORMS['win32']['win7'] = {'name': "Rev3 WINNT 6.1"}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
 PLATFORMS['win32']['win8'] = {'name': "WINNT 6.2"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
@@ -975,72 +974,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'win7': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL,
-            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
-            'suite_config': {
-                'mochitest-1': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-2': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-3': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-4': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-5': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome-1': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome-2': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome-3': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/windows_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-            },
-        },
         'win7-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL,
             'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
@@ -1653,7 +1586,6 @@ BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORM
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
-BRANCHES['try']['platforms']['win32']['win7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 
@@ -1819,17 +1751,6 @@ for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
             tests = list(BRANCHES[branch]['%s_tests' % s])
             tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
             BRANCHES[branch]['%s_tests' % s] = tuple(tests)
-
-# XXX: Remove this block once we don't run Win7 on b2g18 and b2g18-v1.1.0hd
-# Disable Rev3 Win7 machines for FF23+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 23):
-    if 'win32' not in branch['platforms']:
-        continue
-    if 'win7' not in branch['platforms']['win32']:
-        continue
-    del branch['platforms']['win32']['win7']
-    if 'talos_slave_platforms' not in branch['platforms']['win32']:
-        branch['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
