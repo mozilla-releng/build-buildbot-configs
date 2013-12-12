@@ -32,7 +32,7 @@ TRY_WIN64_IXS  = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 900)] + \
     ['try-linux64-spot-%03d' % x for x in range(1, 900)]
 TRY_WIN64_REV2 = ['w64-ix-slave%02i' % x for x in [3] + range(30,75) if x not in [42,43]] + \
-                 ['w64-ix-slave%03i' % x for x in [110]]
+                 ['w64-ix-slave%03i' % x for x in [110] + range(158,171)]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)] + \
                    ['b-linux64-hp-%03d' % x for x in range(1, 7)]
 TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(49, 74)]
