@@ -4,8 +4,6 @@ SLAVES = {
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (37,72) \
         if x not in [32]]), # bug 785862
     'xp-ix': dict([("t-xp32-ix-%03i" % x, {}) for x in range(1,131)]),
-    'win7': dict([("talos-r3-w7-%03i" % x, {}) for x in range(4,135) \
-        if x not in [10, 17]]), # bug 861326 & bug 747734
     'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,131)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,131)]),
     'snowleopard':dict([("talos-r4-snow-%03i" % x, {}) for x in range(1,171) \
@@ -31,7 +29,7 @@ SLAVES = {
         [("tst-linux64-spot-%03i" % x, {}) for x in range(1, 900)]
     ),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 56)]),
-    'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 56)]),
+    'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 120)]),
     'win64_vm': dict([('tst-w64-ec2-%03i' % x, {}) for x in range(100)]),
 }
 

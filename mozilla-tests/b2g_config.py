@@ -1425,7 +1425,8 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable emulator debug unittests on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_0_0',
+    if branch in ('mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                  'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
                   'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
                   'mozilla-b2g18'):
         if 'emulator' in BRANCHES[branch]['platforms']:
