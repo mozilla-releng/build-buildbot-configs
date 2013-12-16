@@ -51,6 +51,7 @@ PROJECT_BRANCHES = {
         'mozharness_tag': 'default',
     },
     'cypress': {
+        'mozharness_tag': 'default',
     },
     # B2G builds not required on date
     # 'date': {},

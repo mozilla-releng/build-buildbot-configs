@@ -164,6 +164,7 @@ PROJECT_BRANCHES = {
         },
     },
     'cypress': {
+        'mozharness_tag': 'default',
     },
     'date': {
         'lock_platforms': True,
