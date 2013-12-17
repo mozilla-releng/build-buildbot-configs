@@ -824,10 +824,6 @@ BRANCHES = {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
     },
-    'mozilla-b2g26_v1_2f': {
-        'gecko_version': 26,
-        'b2g_version': (1, 2, 1),
-    },
     'try': {
     },
 }
@@ -1001,41 +997,6 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux64_gecko_localizer']['enable_n
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
 
-######## mozilla-b2g26_v1_2f
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g26_v1_2f']['repo_path'] = 'releases/mozilla-b2g26_v1_2f'
-# XXX: we may need separate l10n repos for this branch
-BRANCHES['mozilla-b2g26_v1_2f']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_2'
-BRANCHES['mozilla-b2g26_v1_2f']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g26_v1_2f']['enable_nightly_lastgood'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['start_hour'] = [0]
-BRANCHES['mozilla-b2g26_v1_2f']['start_minute'] = [40]
-BRANCHES['mozilla-b2g26_v1_2f']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2f']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['unagi_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['leo_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['hamachi_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['helix']['enable_nightly'] = True
-# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
-# builds not needed for B2G 1.2
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
-
 ######## mozilla-b2g18
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -1197,7 +1158,7 @@ for branch in disabled_branches:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g26_v1_2',
                       'mozilla-b2g18'):
         if 'inari' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['inari']
@@ -1208,7 +1169,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g26_v1_2',
                       'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
@@ -1221,7 +1182,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g26_v1_2',
                       'mozilla-b2g18'):
         if 'hamachi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi']
@@ -1232,7 +1193,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f') \
+                      'mozilla-b2g26_v1_2') \
               and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
@@ -1240,7 +1201,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f',
+                      'mozilla-b2g26_v1_2',
                       'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
@@ -1250,7 +1211,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g18', 'mozilla-aurora', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g26_v1_2f', 'mozilla-central', 'b2g-inbound'):
+                      'mozilla-central', 'b2g-inbound'):
         if 'unagi_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['unagi_eng']
 
@@ -1259,7 +1220,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-inbound', 'fx-team', 'try',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f', 'birch'):
+                      'mozilla-b2g26_v1_2', 'birch'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]

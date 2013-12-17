@@ -105,10 +105,6 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'mozilla-b2g26_v1_2f': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
     'try': {
         'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
