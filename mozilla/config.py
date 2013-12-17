@@ -1494,12 +1494,8 @@ BRANCHES = {
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
             # https://bugzil.la/818378#c8)
-            'linux': {},
             'linux64': {},
-            'macosx64': {},
-            'linux-debug': {},
             'linux64-debug': {},
-            'macosx64-debug': {},
             'android-noion': {},
         },
     },
@@ -1510,12 +1506,8 @@ BRANCHES = {
         'platforms': {
             # desktop for gecko security reproduciton (per akeybl
             # https://bugzil.la/818378#c8)
-            'linux': {},
             'linux64': {},
-            'macosx64': {},
-            'linux-debug': {},
             'linux64-debug': {},
-            'macosx64-debug': {},
             'android-noion': {},
         },
     },
@@ -1917,7 +1909,7 @@ BRANCHES['mozilla-b2g26_v1_2f']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['update_channel'] = 'nightly-b2g18'
 BRANCHES['mozilla-b2g18']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-b2g18']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g18']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [3]
@@ -1936,7 +1928,7 @@ BRANCHES['mozilla-b2g18']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g18']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g18']['enable_nightly'] = False 
+BRANCHES['mozilla-b2g18']['enable_nightly'] = False
 BRANCHES['mozilla-b2g18']['create_snippet'] = False
 BRANCHES['mozilla-b2g18']['create_partial'] = False
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
@@ -1949,7 +1941,7 @@ BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = 'releases/mozilla-b2g18_v1_1_0_hd'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['update_channel'] = 'nightly-b2g18_v1_1_0_hd'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [3]
@@ -2201,6 +2193,8 @@ for _, branch in items_before(BRANCHES, 'gecko_version', 26):
 # Building 32-bit linux in a x86_64 env rides the trains (bug 857697)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for platform in ['linux', 'linux-debug']:
+        if platform not in branch['platforms']:
+            continue
         branch['platforms'][platform]['mock_target'] = 'mozilla-centos6-i386'
         branch['platforms'][platform]['mock_packages'] = \
             ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
