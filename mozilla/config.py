@@ -1469,24 +1469,6 @@ BRANCHES = {
             'android-noion': {},
         },
     },
-    'mozilla-b2g26_v1_2f': {
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 26,
-        'platforms': {
-            # desktop for gecko security reproduciton (per akeybl
-            # https://bugzil.la/818378#c8)
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'android-noion': {},
-        },
-    },
     'mozilla-b2g18': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1873,38 +1855,6 @@ BRANCHES['mozilla-b2g26_v1_2']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enabled_products'] = ['firefox', 'mobile']
 
-######## mozilla-b2g26_v1_2f
-BRANCHES['mozilla-b2g26_v1_2f']['repo_path'] = 'releases/mozilla-b2g26_v1_2f'
-BRANCHES['mozilla-b2g26_v1_2f']['update_channel'] = 'nightly-b2g26f'
-BRANCHES['mozilla-b2g26_v1_2f']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g26_v1_2f']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['enable_nightly_lastgood'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['start_hour'] = [3]
-BRANCHES['mozilla-b2g26_v1_2f']['start_minute'] = [45]
-BRANCHES['mozilla-b2g26_v1_2f']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['pgo_platforms'] = []
-BRANCHES['mozilla-b2g26_v1_2f']['enable_mac_a11y'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-b2g26_v1_2f']['enable_l10n'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                               'macosx64']
-BRANCHES['mozilla-b2g26_v1_2f']['l10nDatedDirs'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g26_v1_2f'
-BRANCHES['mozilla-b2g26_v1_2f']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g26_v1_2f']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2f']['create_snippet'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['create_partial'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2f'
-BRANCHES['mozilla-b2g26_v1_2f']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2f'
-BRANCHES['mozilla-b2g26_v1_2f']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g26_v1_2f']['enabled_products'] = ['firefox', 'mobile']
-
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['update_channel'] = 'nightly-b2g18'
@@ -1960,7 +1910,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g18_v1_1_0_hd'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly'] = False 
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['create_snippet'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['create_partial'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18_v1_1_0_hd'

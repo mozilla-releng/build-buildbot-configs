@@ -53,18 +53,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g26_v1_2f': {
-        'datazilla_url': None,
-        'gecko_version': 26,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1557,12 +1545,6 @@ BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['macosx64']['talos_slave_platforms'] = []
-
-######### mozilla-b2g26_v1_2f
-BRANCHES['mozilla-b2g26_v1_2f']['repo_path'] = "releases/mozilla-b2g26_v1_2f"
-BRANCHES['mozilla-b2g26_v1_2f']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g26_v1_2f']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
