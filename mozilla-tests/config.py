@@ -1652,13 +1652,11 @@ for platform in PLATFORMS.keys():
 # Enable metro debug jobs for now
 # This may need to follow the trains: see bug 847442 (comment 73)
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
-for branch in BRANCHES.keys():
-    if branch not in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release',
-                      'mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd',
-                      'mozilla-esr24', 'mozilla-b2g26_v1_2', 'mozilla-b2g26_v1_2f'):
-        if 'win32' in BRANCHES[branch]['platforms'] and \
-                'win8' in BRANCHES[branch]['platforms']['win32']:
-            BRANCHES[branch]['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
+
+# Let's add the metro unit tests for Windows 8
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
+    if 'win32' in branch['platforms'] and 'win8' in branch['platforms']['win32']:
+        branch['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
 NON_UBUNTU_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 21)])
 
