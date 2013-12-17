@@ -355,6 +355,14 @@ REFTEST_SANITY = [
      ),
 ]
 
+REFTEST_DESKTOP = [
+    ('reftest', {'suite': 'reftest',
+                 'use_mozharness': True,
+                 'script_path': 'scripts/b2g_desktop_unittest.py',
+                 'blob_upload': True,
+                 },
+     ),
+]
 
 JSREFTEST = [
     ('jsreftest-1', {'suite': 'jsreftest',
@@ -485,6 +493,12 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
+                'reftest': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                    ],
+                },
             },
         },
     },
@@ -522,6 +536,12 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
+                'reftest': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                    ],
+                },
             },
         },
     },
@@ -547,6 +567,19 @@ PLATFORM_UNITTEST_VARS = {
                 'gaia-ui-test': {
                     'extra_args': [
                         '--cfg', 'marionette/gaia_ui_test_prod_config.py',
+                    ],
+                },
+                'mochitest-1': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', 1, '--total-chunks', 1,
+                    ],
+                },
+                'reftest': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
                     ],
                 },
             },
@@ -1357,9 +1390,9 @@ BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
-BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:] + GAIA_UI[:]
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION[:]
-BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP[:]
+BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION + GAIA_UI + REFTEST_DESKTOP
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_INTEGRATION + REFTEST_DESKTOP
+BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP
 BRANCHES['cedar']['blob_upload'] = True
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
@@ -1367,7 +1400,7 @@ BRANCHES['pine']['mozharness_tag'] = "default"
 BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
-BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI[:]
+BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['pine']['blob_upload'] = True
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
