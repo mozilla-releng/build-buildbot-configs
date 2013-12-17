@@ -20,17 +20,17 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '27.0b1'
+releaseConfig['version']             = '27.0b2'
 releaseConfig['appVersion']          = '27.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_27_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_27_0b2'
 releaseConfig['partialUpdates']      = {
 
-    '26.0b10': {
-        'appVersion': '26.0',
+    '27.0b1': {
+        'appVersion': '27.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_26_0b10',
+        'baseTag': 'FIREFOX_27_0b1',
     },
 
     '26.0b8': {
@@ -48,7 +48,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'e9c28a98266c',
+        'revision': 'df7c72278682',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -141,8 +141,6 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
-releaseConfig['releaseUptake']       = 3
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
