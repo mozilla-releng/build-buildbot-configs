@@ -31,8 +31,6 @@ GLOBAL_VARS.update({
         'linux64_gecko_localizer': {},
         'macosx64_gecko_localizer': {},
         'win32_gecko_localizer': {},
-        'unagi': {},
-        'unagi_eng': {},
         'inari': {},
         'inari_eng': {},
         'leo': {},
@@ -584,37 +582,6 @@ PLATFORM_VARS = {
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
     },
-    'unagi': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'unagi', '--config', 'b2g/releng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-    },
-    'unagi_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'unagi', '--config', 'b2g/releng-eng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-                           ],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-    },
     'inari': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -914,10 +881,6 @@ BRANCHES['mozilla-central']['start_hour'] = [4]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-central']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['unagi_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
@@ -943,10 +906,6 @@ BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-aurora']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['mozilla-aurora']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['unagi_eng']['enable_dep'] = False
 BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
@@ -977,10 +936,6 @@ BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['unagi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['unagi_eng']['enable_dep'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_dep'] = False
@@ -1011,10 +966,7 @@ BRANCHES['mozilla-b2g18']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18']['start_minute'] = [12]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-private-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
-BRANCHES['mozilla-b2g18']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -1061,8 +1013,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -1076,7 +1026,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-beta.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None
@@ -1113,8 +1062,6 @@ BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
-BRANCHES['try']['platforms']['unagi']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['unagi']['mozharness_config']['extra_args'] = ['--target', 'unagi', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-debug']['slaves'] = TRY_SLAVES['mock']
@@ -1194,7 +1141,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-b2g26_v1_2') \
-              and 'nexus-4' in BRANCHES[branch]['platforms']:
+            and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
@@ -1205,15 +1152,6 @@ for branch in BRANCHES:
                       'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
-
-# MERGE DAY: unagi_eng is for B2G 1.0+ (b2g18 + gecko26 and
-# higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-aurora', 'mozilla-b2g26_v1_2',
-                      'mozilla-central', 'b2g-inbound'):
-        if 'unagi_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['unagi_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
@@ -1238,12 +1176,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 # Turn off a bunch of builds: bug 924503
 # Subset for 1.1
 for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
-    if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'unagi_eng', 'emulator'):
+    if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'emulator'):
         del BRANCHES['mozilla-b2g18']['platforms'][p]
-# Subset for 1.1hd
-for p in BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'].keys():
-    if p in ('unagi', ):
-        del BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms'][p]
 # B2G desktop builds before 1.2
 for name, branch in items_before(BRANCHES, 'gecko_version', 26):
     for p in branch['platforms'].keys():
