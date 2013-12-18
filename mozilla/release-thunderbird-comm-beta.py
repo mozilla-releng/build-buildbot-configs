@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '26.0b1'
-releaseConfig['appVersion']          = '26.0'
+releaseConfig['version']             = '27.0b1'
+releaseConfig['appVersion']          = '27.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_26_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_27_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '25.0b1': {
-        'appVersion': '25.0',
+    '26.0b1': {
+        'appVersion': '26.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_25_0b1',
+        'baseTag': 'THUNDERBIRD_26_0b1',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'da43980580e0',
+        'revision': '5c77c00eb0e7',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '851face56dbe',
+        'revision': '9fcd2c8f95b5',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -137,8 +137,6 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
-releaseConfig['releaseUptake']       = 3
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
