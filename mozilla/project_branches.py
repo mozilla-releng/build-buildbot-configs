@@ -165,6 +165,7 @@ PROJECT_BRANCHES = {
     },
     'cypress': {
         'mozharness_tag': 'default',
+        'enable_talos': True,
     },
     'date': {
         'lock_platforms': True,
