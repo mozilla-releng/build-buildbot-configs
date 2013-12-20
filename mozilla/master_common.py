@@ -110,6 +110,7 @@ def getTwlog():
         cached_twlog = twlog
         return cached_twlog
 
+
 def prioritizeBuilders(buildmaster, builders):
     """
     This is called by the buildmaster to sort the list of builders
@@ -233,9 +234,13 @@ c['prioritizeBuilders'] = prioritizeBuilders
 # later (larger) than any other value. See items_before for example usage.
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['mozilla-release']['gecko_version'] = 26
-    BRANCHES['mozilla-beta']['gecko_version']    = 27
-    BRANCHES['mozilla-aurora']['gecko_version']  = 28
+    if 'mozilla-release' in BRANCHES:
+        BRANCHES['mozilla-release']['gecko_version'] = 26
+    if 'mozilla-beta' in BRANCHES:
+        BRANCHES['mozilla-beta']['gecko_version'] = 27
+    if 'mozilla-aurora' in BRANCHES:
+        BRANCHES['mozilla-aurora']['gecko_version'] = 28
+
 
 def setMainCommVersions(BRANCHES):
     # MERGE DAY

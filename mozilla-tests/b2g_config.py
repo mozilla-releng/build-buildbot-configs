@@ -8,7 +8,7 @@ reload(b2g_localconfig)
 
 import master_common
 reload(master_common)
-from master_common import items_before
+from master_common import setMainFirefoxVersions, items_before
 
 import config_common
 reload(config_common)
@@ -47,6 +47,8 @@ BRANCHES = {
     'ionmonkey': {},
     'try': {'coallesce_jobs': False},
 }
+
+setMainFirefoxVersions(BRANCHES)
 
 PLATFORMS = {
     'linux32_gecko': {},
@@ -184,94 +186,94 @@ MOCHITEST = [
 
 MOCHITEST_EMULATOR_DEBUG = [
     ('mochitest-debug-1', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-2', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-3', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-4', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-5', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-6', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-7', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-8', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-9', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                           'use_mozharness': True,
+                           'script_path': 'scripts/b2g_emulator_unittest.py',
+                           'blob_upload': True,
+                           },
      ),
     ('mochitest-debug-10', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
     ('mochitest-debug-11', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
     ('mochitest-debug-12', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
     ('mochitest-debug-13', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
     ('mochitest-debug-14', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
     ('mochitest-debug-15', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
      ),
 ]
 
@@ -1461,22 +1463,18 @@ for branch in BRANCHES.keys():
             BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
 
 # Disable gaia-integration tests on older branches
-OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 28)])
+OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
 for b in BRANCHES.keys():
-    slave_p = None
     branch = BRANCHES[b]
     if b in OLD_BRANCHES:
-        if nested_haskey(branch['platforms'], 'linux64_gecko', 'ubuntu64_vm-b2gdt'):
-            slave_p = branch['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']
-        if nested_haskey(branch['platforms'], 'linux32_gecko', 'ubuntu32_vm-b2gdt'):
-            slave_p = branch['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']
-    if slave_p:
-        for i in slave_p['opt_unittest_suites']:
-            if i[0] == "gaia-integration":
-                slave_p['opt_unittest_suites'].remove(i)
-        for i in slave_p['debug_unittest_suites']:
-            if i[0] == "gaia-integration":
-                slave_p['debug_unittest_suites'].remove(i)
+        for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
+                               ('linux32_gecko', 'ubuntu32_vm-b2gdt')):
+            if nested_haskey(branch['platforms'], slave_platform[0], slave_platform[1]):
+                slave_p = branch['platforms'][slave_platform[0]][slave_platform[1]]
+                slave_p['opt_unittest_suites'] = [x for x in slave_p['opt_unittest_suites']
+                                                  if x[0] != "gaia-integration"]
+                slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
+                                                    if x[0] != "gaia-integration"]
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
