@@ -73,7 +73,6 @@ BRANCHES = {
     },
     'try': {
         'coallesce_jobs': False,
-        'blob_upload': True,
     },
 }
 

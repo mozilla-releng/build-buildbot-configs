@@ -113,7 +113,6 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'blob_upload': True,
         'platforms': {
             'linux': {},
             'linux64': {},
@@ -155,7 +154,6 @@ PROJECT_BRANCHES = {
             'svgr-metro': 1,
             'dromaeojs-metro': 1,
         },
-        'blob_upload': True,
         'enable_opt_unittests': True,
         'mobile_platforms': {
             'android-x86': {
@@ -291,7 +289,6 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'blob_upload': True,
         'enable_nightly': False,
         'create_snippet': True,
         'create_mobile_snippet': True,
