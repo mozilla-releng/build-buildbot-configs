@@ -108,7 +108,7 @@ releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'tbirdbld'
-releaseConfig['ausSshKey']           = 'auspush'
+releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
