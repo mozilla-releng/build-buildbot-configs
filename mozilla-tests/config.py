@@ -1599,16 +1599,12 @@ for platform in PLATFORMS.keys():
     if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if 'fedora' in slave_platform:
+            continue  # Don't use rev3 mini's with this stuff
         # cedar
         if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-            else:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-            if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
-            else:
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
         # try
         if slave_platform in BRANCHES['try']['platforms'][platform]:
             BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
