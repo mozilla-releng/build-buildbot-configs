@@ -58,7 +58,7 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus3-staging.mozilla.org',
     'aus2_user': 'ffxbld',
-    'aus2_ssh_key': 'auspush',
+    'aus2_ssh_key': 'ffxbld_dsa',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs.mozilla.org',
@@ -84,6 +84,7 @@ GLOBAL_VARS = {
     'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com'],
     'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
+    'blob_upload': True,
 }
 
 BUILDS_BEFORE_REBOOT = 1

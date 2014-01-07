@@ -47,7 +47,7 @@ GLOBAL_VARS['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 GLOBAL_VARS['base_mirror_urls'] = ['http://hg-internal.dmz.scl3.mozilla.com']
 GLOBAL_VARS['base_bundle_urls'] = ['http://ftp.mozilla.org/pub/mozilla.org/thunderbird/bundles']
 GLOBAL_VARS['aus2_user'] = 'tbirdbld'
-GLOBAL_VARS['aus2_ssh_key'] = 'auspush'
+GLOBAL_VARS['aus2_ssh_key'] = 'tbirdbld_dsa'
 GLOBAL_VARS['aus2_host'] = 'aus3-staging.mozilla.org'
 
 # Local branch overrides

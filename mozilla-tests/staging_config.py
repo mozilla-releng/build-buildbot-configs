@@ -42,6 +42,7 @@ GLOBAL_VARS = {
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_dsa',
     'datazilla_url': 'https://datazilla.mozilla.org/test',
+    'blob_upload': True,
 }
 
 BRANCHES = {

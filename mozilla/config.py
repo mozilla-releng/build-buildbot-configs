@@ -971,6 +971,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'consider_for_nightly': False,
         },
         'android': {
             'product_name': 'firefox',

@@ -39,8 +39,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
-    # XXX: should point at aus4-admin-dev once production is pointing elsewhere
-    #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://clobberer-stage.pvt.build.mozilla.org/index.php',
     'disable_tinderbox_mail': True,
@@ -66,6 +65,7 @@ GLOBAL_VARS = {
     'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com'],
     'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
+    'blob_upload': True,
 }
 
 BUILDS_BEFORE_REBOOT = 5
