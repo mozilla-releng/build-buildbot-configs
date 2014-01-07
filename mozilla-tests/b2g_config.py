@@ -284,6 +284,12 @@ MOCHITEST_DESKTOP = [
                      'blob_upload': True,
                      },
      ),
+    ('mochitest-2', {'suite': 'mochitest-plain',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_desktop_unittest.py',
+                     'blob_upload': True,
+                     },
+     ),
 ]
 
 REFTEST = [
@@ -492,7 +498,14 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
+                        '--this-chunk', 1, '--total-chunks', 2,
+                    ],
+                },
+                'mochitest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', 2, '--total-chunks', 2,
                     ],
                 },
                 'reftest': {
@@ -535,7 +548,14 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
+                        '--this-chunk', 1, '--total-chunks', 2,
+                    ],
+                },
+                'mochitest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', 2, '--total-chunks', 2,
                     ],
                 },
                 'reftest': {
@@ -575,7 +595,14 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
+                        '--this-chunk', 1, '--total-chunks', 2,
+                    ],
+                },
+                'mochitest-2': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', 2, '--total-chunks', 2,
                     ],
                 },
                 'reftest': {
