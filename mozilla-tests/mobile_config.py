@@ -1135,27 +1135,20 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 28):
                     if "xpcshell" in suite[0]:
                         branch['platforms'][platform][slave_plat][type].remove(suite)
 
-# Support reftests for pandaboards on Cedar and Try
-for branch in BRANCHES:
-    # Loop removes it from any branch that gets beyond here
-    if branch in ('cedar', 'try'):
-        continue
-    for platform in BRANCHES[branch]['platforms']:
-        if not platform in PLATFORMS:
+# panda reftests jobs ride the train with 29, so they need to be disabled
+# for branches running an older version.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=929447
+for name, branch in items_before(BRANCHES, 'gecko_version', 29):
+    for platform in branch['platforms']:
+        if platform not in PLATFORMS:
             continue
-        if not platform.startswith('android'):
-            continue
-        if platform.endswith('-debug'):
-            continue  # no slave_platform for debug
-        for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in BRANCHES[branch]['platforms'][platform]:
+        for slave_plat in PLATFORMS[platform].get('slave_platforms', {}):
+            if slave_plat not in branch['platforms'][platform]:
                 continue
-            if not slave_plat == "panda_android":
-                continue
-            for type in BRANCHES[branch]['platforms'][platform][slave_plat]:
-                for suite in BRANCHES[branch]['platforms'][platform][slave_plat][type][:]:
-                    if ("plain-reftest" in suite[0]):
-                        BRANCHES[branch]['platforms'][platform][slave_plat][type].remove(suite)
+            for type_ in branch['platforms'][platform][slave_plat]:
+                for suite in branch['platforms'][platform][slave_plat][type_][:]:
+                    if "plain-reftest" in suite[0]:
+                        branch['platforms'][platform][slave_plat][type_].remove(suite)
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
