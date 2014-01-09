@@ -4,8 +4,7 @@ import production_config as pc
 STAGING_SLAVES = {
     'tegra_android': dict(
         [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
-            for x in  # range(10,30)
-            range(184,186) + [224]]
+            for x in range(10,30) + range(184,186) + [224]]
     ),
     'fedora': dict(),
     'panda_android': dict(
