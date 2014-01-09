@@ -20,11 +20,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '27.0b4'
+releaseConfig['version']             = '27.0b5'
 releaseConfig['appVersion']          = '27.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_27_0b4'
+releaseConfig['baseTag']             = 'FIREFOX_27_0b5'
 releaseConfig['partialUpdates']      = {
 
     '27.0b2': {
@@ -33,10 +33,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_27_0b2',
     },
 
-    '27.0b1': {
+    '27.0b4': {
         'appVersion': '27.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_27_0b1',
+        'baseTag': 'FIREFOX_27_0b4',
     },
 
 }
@@ -48,7 +48,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'd10eb10bfd0b',
+        'revision': '46cd787239b7',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -106,7 +106,7 @@ releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'auspush'
+releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
