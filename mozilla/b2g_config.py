@@ -1159,7 +1159,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-b2g26_v1_2') \
-           and 'nexus-4' in BRANCHES[branch]['platforms']:
+            and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
@@ -1170,6 +1170,8 @@ for branch in BRANCHES:
                       'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
+        if 'helix_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['helix_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
