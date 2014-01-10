@@ -1515,13 +1515,6 @@ for branch in BRANCHES.keys():
                     if slave_platform in BRANCHES[branch]['platforms'][platform]:
                         del BRANCHES[branch]['platforms'][platform][slave_platform]
 
-# Disable macosx64_gecko on all branches but cedar and pine
-for branch in set(BRANCHES.keys()) - set(['cedar', 'pine']):
-    for platform in ('macosx64_gecko',):
-        if platform not in BRANCHES[branch]['platforms']:
-            continue
-        del BRANCHES[branch]['platforms'][platform]
-
 # linux64_gecko hacks.  See bug 891973
 # MERGE DAY remove branches as gecko26 merges in
 for branch in BRANCHES.keys():
