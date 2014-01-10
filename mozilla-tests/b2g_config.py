@@ -456,6 +456,7 @@ GAIA_UI = [(
         'suite': 'gaia-ui-test',
         'use_mozharness': True,
         'script_path': 'scripts/marionette.py',
+        'blob_upload': True,
     },
 )]
 
