@@ -84,7 +84,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "nl": {
-    "revision": "3701b9b37fb9",
+    "revision": "a86f696ea13c",
     "platforms": ["android", "android-multilocale"]
   },
   "pa-IN": {
@@ -108,7 +108,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ru": {
-    "revision": "9677335690b3",
+    "revision": "5bc87151fc2c",
     "platforms": ["android", "android-multilocale"]
   },
   "sk": {
