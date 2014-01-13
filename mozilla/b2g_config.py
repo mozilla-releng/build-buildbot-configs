@@ -39,10 +39,12 @@ GLOBAL_VARS.update({
         'hamachi_eng': {},
         'nexus-4': {},
         'helix': {},
+        'helix_eng': {},
         'emulator': {},
         'emulator-debug': {},
         'emulator-jb': {},
         'emulator-jb-debug': {},
+        'buri-limited-memory': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -706,6 +708,21 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
+    'helix_eng': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'helix', '--config', 'b2g/releng-otoro-eng.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
     'emulator': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -761,6 +778,24 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
                            '--b2g-config-dir', 'emulator-jb', '--debug',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
+    'buri-limited-memory': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-private-updates.py',
+                           '--gecko-config', 'b2g/config/hamachi/limited-memory-config.json',
+                           '--no-make-updates', '--no-build-update-testdata',
+                           '--no-make-update-xml', '--no-upload-updates',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -891,6 +926,9 @@ BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['buri-limited-memory']['enable_nightly'] = True
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -915,6 +953,7 @@ BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['buri-limited-memory']['enable_nightly'] = True
 # Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
 # builds not needed for B2G 1.2
 BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
@@ -1141,7 +1180,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-b2g26_v1_2') \
-           and 'nexus-4' in BRANCHES[branch]['platforms']:
+            and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
@@ -1152,6 +1191,8 @@ for branch in BRANCHES:
                       'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
+        if 'helix_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['helix_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
@@ -1162,6 +1203,15 @@ for branch in BRANCHES:
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
+
+# MERGE DAY: buri-limited-memory is for B3G 1.3+ only
+# When gecko29 is on aurora we don't run B2G builds there, but will on beta
+# TODO: when the corresponding patch is landed on aurora add mozilla-aurora to
+# the list of branches
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'b2g-inbound'):
+        if 'buri-limited-memory' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['buri-limited-memory']
 
 # gstreamer-devel packages ride the trains (bug 881589)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
