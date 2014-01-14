@@ -3,24 +3,6 @@
 # the -t option.  We use that now
 exit=0
 
-# even though it isn't fully used, the config check does require a valid
-# shared memory setup AT THE DEFAULT LOCATION. If you're running on a
-# laptop, that may not exist. Fail early.
-#
-# OSX note: it "works" (for test-masters purposes) to just create the
-#           directory, even though that isn't how shared memory is
-#           handled on OSX. The directories must be owned by the id
-#           running the tests.
-shm=(/dev/shm/queue/commands /dev/shm/queue/tmp)
-good_shm=true
-for needed_dir in ${shm[@]}; do
-    if ! test -w $needed_dir; then
-        echo 1>&2 "No shm setup, please create writable directory '$needed_dir'"
-        good_shm=false
-    fi
-done
-$good_shm || exit 1
-
 WORK=test-output
 mkdir $WORK 2>/dev/null
 
