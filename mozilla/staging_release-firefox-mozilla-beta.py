@@ -136,7 +136,7 @@ releaseConfig['releaseChannel']      = 'beta'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'users/mgervasini_mozilla.com/partner-repacks-123456'
+releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoConfig']        = 'firefox-tuxedo.ini'

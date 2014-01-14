@@ -68,7 +68,7 @@ releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
-    'users/mgervasini_mozilla.com/partner-repacks-123456': 'default',
+    'users/stage-ffxbld/partner-repacks': 'default',
     'users/stage-ffxbld/mozharness': 'production',
 }
 
@@ -100,7 +100,7 @@ releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
-releaseConfig['partnersRepoPath']       = 'users/mgervasini_mozilla.com/partner-repacks-123456'
+releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs
