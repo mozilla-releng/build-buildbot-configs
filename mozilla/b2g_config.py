@@ -1235,6 +1235,8 @@ for branch in BRANCHES:
 for _, branch in items_before(BRANCHES, 'gecko_version', 29):
     if 'wasabi' in branch['platforms']:
         del branch['platforms']['wasabi']
+if 'wasabi' in BRANCHES['try']['platforms']:
+    del BRANCHES['try']['platforms']['wasabi']
 
 
 # gstreamer-devel packages ride the trains (bug 881589)
