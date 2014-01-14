@@ -1206,10 +1206,8 @@ for branch in BRANCHES:
 
 # MERGE DAY: buri-limited-memory is for B3G 1.3+ only
 # When gecko29 is on aurora we don't run B2G builds there, but will on beta
-# TODO: when the corresponding patch is landed on aurora add mozilla-aurora to
-# the list of branches
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'b2g-inbound'):
+    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-aurora'):
         if 'buri-limited-memory' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['buri-limited-memory']
 
