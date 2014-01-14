@@ -45,6 +45,7 @@ GLOBAL_VARS.update({
         'emulator-jb': {},
         'emulator-jb-debug': {},
         'buri-limited-memory': {},
+        'wasabi': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -805,6 +806,22 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
+    'wasabi': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            # using releng-otoro since we are not doing nightlies/updates
+            'extra_args': ['--target', 'wasabi', '--config', 'b2g/releng-otoro.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+    },
 }
 
 
@@ -929,6 +946,7 @@ BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['buri-limited-memory']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = False
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -954,6 +972,7 @@ BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['buri-limited-memory']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = False
 # Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
 # builds not needed for B2G 1.2
 BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
@@ -1210,6 +1229,13 @@ for branch in BRANCHES:
     if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-aurora'):
         if 'buri-limited-memory' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['buri-limited-memory']
+
+# MERGE DAY: wasabi is for B2G 1.3+ only
+# When gecko29 is on aurora we don't run B2G builds there, but will on beta
+for _, branch in items_before(BRANCHES, 'gecko_version', 29):
+    if 'wasabi' in branch['platforms']:
+        del branch['platforms']['wasabi']
+
 
 # gstreamer-devel packages ride the trains (bug 881589)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
