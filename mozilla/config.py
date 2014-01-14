@@ -2207,6 +2207,9 @@ for b in ('b2g-inbound',):
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
 
+# Bug 950206 - Enable 32-bit Windows builds on Date, test those builds on tst-w64-ec2-XXXX
+BRANCHES['date']['platforms']['win32']['unittest_platform'] = 'win64-opt'
+
 if __name__ == "__main__":
     import sys
     import pprint

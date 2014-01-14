@@ -168,6 +168,9 @@ PROJECT_BRANCHES = {
     'date': {
         'lock_platforms': True,
         'platforms': {
+            'win32': {
+                'enable_opt_unittests': True,
+            },
             'win64': {
                 'enable_opt_unittests': True,
             },
