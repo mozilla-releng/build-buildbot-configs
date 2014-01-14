@@ -1,0 +1,1 @@
+../mozilla/thunderbird_project_branches.py
