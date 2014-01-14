@@ -77,7 +77,7 @@ GLOBAL_VARS = {
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32',),
-    'periodic_pgo_interval': 6, # in hours
+    'periodic_interval': 6, # in hours
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'blocklist_update_set_approval': True,
@@ -239,6 +239,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'enable_nonunified_build': True,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -816,6 +817,7 @@ PLATFORM_VARS = {
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
+            'enable_nonunified_build': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1986,7 +1988,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
-    BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
+    BRANCHES[branch]['periodic_interval'] = branchConfig.get('periodic_interval', 6)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # Disable XULRunner / SDK builds
