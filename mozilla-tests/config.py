@@ -1730,7 +1730,7 @@ for branch in BRANCHES.keys():
 
 # LOOOOOOOOOOOOOOOPS
 # Enable win64 testing on select branches only
-WIN64_TESTING_BRANCHES = ('date', 'try')
+WIN64_TESTING_BRANCHES = ['date']
 for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']

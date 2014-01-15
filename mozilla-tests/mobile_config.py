@@ -306,7 +306,7 @@ ANDROID_UNITTEST_DICT = {
         )),
         ('mochitest-gl', (
             {'suite': 'mochitest-plain',
-             'testPath': 'content/canvas/test/webgl',
+             'testManifest': 'gl.json',
              },
         )),
     ],
