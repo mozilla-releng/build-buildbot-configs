@@ -57,7 +57,7 @@ GLOBAL_VARS.update({
     },
     'pgo_platforms': list(),
     'pgo_strategy': None,
-    'periodic_pgo_interval': 6, # in hours
+    'periodic_interval': 6, # in hours
     'product_name': 'thunderbird', # Not valid for mobile builds
     'app_name': 'mail',     # Not valid for mobile builds
     'brand_name': 'Daily', # Not valid for mobile builds
@@ -944,7 +944,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
-    BRANCHES[branch]['periodic_pgo_interval'] = branchConfig.get('periodic_pgo_interval', 6)
+    BRANCHES[branch]['periodic_interval'] = branchConfig.get('periodic_interval', 6)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # Disable XULRunner / SDK builds

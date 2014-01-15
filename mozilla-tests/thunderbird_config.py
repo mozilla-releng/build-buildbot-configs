@@ -10,6 +10,10 @@ import master_common
 reload(master_common)
 from master_common import setMainCommVersions
 
+import thunderbird_project_branches
+reload(thunderbird_project_branches)
+from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
+
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 BRANCH_UNITTEST_VARS = deepcopy(BRANCH_UNITTEST_VARS)
 
@@ -211,8 +215,8 @@ PLATFORM_UNITTEST_VARS = {
 }
 
 # Copy project branches into BRANCHES keys
-#for branch in ACTIVE_PROJECT_BRANCHES:
-#    BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
+for branch in ACTIVE_PROJECT_BRANCHES:
+    BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
 
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -253,15 +257,15 @@ for branch in BRANCHES.keys():
             else:
                 BRANCHES[branch][key] = deepcopy(value)
 
-#    # Merge in any project branch config for platforms
-#    if branch in ACTIVE_PROJECT_BRANCHES and PROJECT_BRANCHES[branch].has_key('platforms'):
-#        for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
-#            if platform in PLATFORMS:
-#                for key, value in platform_config.items():
-#                    value = deepcopy(value)
-#                    if isinstance(value, str):
-#                        value = value % locals()
-#                    BRANCHES[branch]['platforms'][platform][key] = value
+    # Merge in any project branch config for platforms
+    if branch in ACTIVE_PROJECT_BRANCHES and 'platforms' in PROJECT_BRANCHES[branch]:
+        for platform, platform_config in PROJECT_BRANCHES[branch]['platforms'].items():
+            if platform in PLATFORMS:
+                for key, value in platform_config.items():
+                    value = deepcopy(value)
+                    if isinstance(value, str):
+                        value = value % locals()
+                    BRANCHES[branch]['platforms'][platform][key] = value
 
     for platform, platform_config in thunderbird_localconfig.PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
