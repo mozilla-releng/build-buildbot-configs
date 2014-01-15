@@ -11,7 +11,7 @@ exit=0
 #           directory, even though that isn't how shared memory is
 #           handled on OSX. The directories must be owned by the id
 #           running the tests.
-shm=(/dev/shm/queue)
+shm=(/dev/shm)
 good_shm=true
 for needed_dir in ${shm[@]}; do
     if ! test -w $needed_dir; then
