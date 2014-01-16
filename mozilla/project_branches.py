@@ -178,6 +178,7 @@ PROJECT_BRANCHES = {
                 'enable_debug_unittests': True,
             },
         },
+        'enable_merging': False,
     },
     # customizations for PICL (bug 900212)
     'elm': {
