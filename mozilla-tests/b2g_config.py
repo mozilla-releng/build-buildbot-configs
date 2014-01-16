@@ -1507,6 +1507,17 @@ for b in BRANCHES.keys():
                 slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                                     if x[0] != "gaia-integration"]
 
+# Disable macosx64_gecko gaia-ui tests on older branches
+for branch in BRANCHES.keys():
+    if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
+                  'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
+                  'mozilla-b2g26_v1_2', 'mozilla-aurora'):
+        for platform in ('macosx64_gecko',):
+            if platform in BRANCHES[branch]['platforms']:
+                for slave_platform in ('mountainlion-b2gdt',):
+                    if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                        del BRANCHES[branch]['platforms'][platform][slave_platform]
+
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18'):
