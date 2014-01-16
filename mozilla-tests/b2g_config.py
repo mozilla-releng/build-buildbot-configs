@@ -1434,6 +1434,7 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
+BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
