@@ -1204,12 +1204,10 @@ for branch in BRANCHES:
 
 # MERGE DAY: wasabi is for B2G 1.3+ only
 # When gecko29 is on aurora we don't run B2G builds there, but will on beta
-for _, branch in items_before(BRANCHES, 'gecko_version', 29):
-    if 'wasabi' in branch['platforms']:
-        del branch['platforms']['wasabi']
-if 'wasabi' in BRANCHES['try']['platforms']:
-    del BRANCHES['try']['platforms']['wasabi']
-
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-aurora', 'b2g-inbound'):
+        if 'wasabi' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['wasabi']
 
 # gstreamer-devel packages ride the trains (bug 881589)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
