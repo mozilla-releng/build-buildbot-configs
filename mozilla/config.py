@@ -2194,6 +2194,17 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 for name, branch in items_before(BRANCHES, 'gecko_version', 22):
     branch["run_make_alive_tests"] = False
 
+# Disable non-unified builds on gecko < 29
+for name, branch in items_before(BRANCHES, 'gecko_version', 29):
+    for pc in branch['platforms'].values():
+        if 'enable_nonunified_build' in pc:
+            pc['enable_nonunified_build'] = False
+
+# Disable non-unified builds on try
+for pc in BRANCHES['try']['platforms'].values():
+    if 'enable_nonunified_build' in pc:
+        pc['enable_nonunified_build'] = False
+
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd", "mozilla-esr24"):

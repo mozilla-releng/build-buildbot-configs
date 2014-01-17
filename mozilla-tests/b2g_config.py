@@ -1434,6 +1434,7 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
+BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
@@ -1505,6 +1506,27 @@ for b in BRANCHES.keys():
                                                   if x[0] != "gaia-integration"]
                 slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                                     if x[0] != "gaia-integration"]
+
+# Disable macosx64_gecko gaia-ui tests on older branches
+for branch in BRANCHES.keys():
+    if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
+                  'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
+                  'mozilla-b2g26_v1_2', 'mozilla-aurora'):
+        for platform in ('macosx64_gecko',):
+            if platform in BRANCHES[branch]['platforms']:
+                for slave_platform in ('mountainlion-b2gdt',):
+                    if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                        del BRANCHES[branch]['platforms'][platform][slave_platform]
+
+# Disable debug emulator mochitests on older branches
+OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
+for b in BRANCHES.keys():
+    branch = BRANCHES[b]
+    if b in OLD_BRANCHES:
+        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
+            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
+            slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
+                                                if not x[0].startswith('mochitest-debug')]
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
