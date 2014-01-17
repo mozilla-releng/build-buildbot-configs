@@ -1518,6 +1518,16 @@ for branch in BRANCHES.keys():
                     if slave_platform in BRANCHES[branch]['platforms'][platform]:
                         del BRANCHES[branch]['platforms'][platform][slave_platform]
 
+# Disable debug emulator mochitests on older branches
+OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
+for b in BRANCHES.keys():
+    branch = BRANCHES[b]
+    if b in OLD_BRANCHES:
+        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
+            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
+            slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
+                                                if not x[0].startswith('mochitest-debug')]
+
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18'):
