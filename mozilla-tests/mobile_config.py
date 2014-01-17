@@ -771,6 +771,24 @@ ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UN
 
 # Beginning Androidx86 configurations
 ANDROID_X86_MOZHARNESS_DICT = [
+    ('androidx86-set-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidx86.py',
+            '--test-suite', 'robocop-1',
+            '--test-suite', 'robocop-2',
+            '--test-suite', 'robocop-3',
+            '--test-suite', 'xpcshell',
+        ],
+        'trychooser_suites': ['robocop-1', 'robocop-2', 'robocop-3', 'xpcshell'],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+
+ANDROID_X86_NOT_GREEN_DICT = [
     ('androidx86-set-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -797,9 +815,6 @@ ANDROID_X86_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
         },
     ),
-]
-
-ANDROID_X86_NOT_GREEN_DICT = [
     ('androidx86-set-3', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -811,21 +826,6 @@ ANDROID_X86_NOT_GREEN_DICT = [
             '--test-suite', 'crashtest',
         ],
         'trychooser_suites': ['plain-reftest-1', 'plain-reftest-2', 'plain-reftest-3', 'crashtest'],
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('androidx86-set-4', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidx86.py',
-            '--test-suite', 'robocop-1',
-            '--test-suite', 'robocop-2',
-            '--test-suite', 'robocop-3',
-            '--test-suite', 'xpcshell',
-        ],
-        'trychooser_suites': ['robocop-1', 'robocop-2', 'robocop-3', 'xpcshell'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
@@ -934,7 +934,7 @@ PLATFORM_UNITTEST_VARS = {
     },
     'android-x86': {
         'product_name': 'fennec',
-        'enable_opt_unittests': False,
+        'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_hw': deepcopy(ANDROID_X86_MOZHARNESS_UNITTEST_DICT),
     },
@@ -1149,6 +1149,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 29):
                 for suite in branch['platforms'][platform][slave_plat][type_][:]:
                     if "plain-reftest" in suite[0]:
                         branch['platforms'][platform][slave_plat][type_].remove(suite)
+
+# Disable Android x86 on branches that are older than gecko 29
+# should not run Android x86 jobs
+for name, branch in items_before(BRANCHES, 'gecko_version', 29):
+    if 'android-x86' in branch['platforms']:
+        branch['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] = []
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
