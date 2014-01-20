@@ -1143,6 +1143,10 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 29):
         if platform not in PLATFORMS:
             continue
         for slave_plat in PLATFORMS[platform].get('slave_platforms', {}):
+            # we don't want to change scheduling for non panda slaves
+            # https://bugzilla.mozilla.org/show_bug.cgi?id=961575
+            if not 'panda_android' in slave_plat:
+                continue
             if slave_plat not in branch['platforms'][platform]:
                 continue
             for type_ in branch['platforms'][platform][slave_plat]:
