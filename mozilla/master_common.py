@@ -238,15 +238,15 @@ def setMainFirefoxVersions(BRANCHES):
     if 'mozilla-release' in BRANCHES:
         BRANCHES['mozilla-release']['gecko_version'] = 27
     if 'mozilla-beta' in BRANCHES:
-        BRANCHES['mozilla-beta']['gecko_version'] = 27
+        BRANCHES['mozilla-beta']['gecko_version'] = 28
     if 'mozilla-aurora' in BRANCHES:
-        BRANCHES['mozilla-aurora']['gecko_version'] = 28
+        BRANCHES['mozilla-aurora']['gecko_version'] = 29
 
 
 def setMainCommVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['comm-beta']['gecko_version'] = 27
-    BRANCHES['comm-aurora']['gecko_version'] = 28
+    BRANCHES['comm-beta']['gecko_version'] = 28
+    BRANCHES['comm-aurora']['gecko_version'] = 29
 
 # Typical usage pattern:
 #
