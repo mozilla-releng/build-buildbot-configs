@@ -125,6 +125,7 @@ releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['disablePushToMirrors']     = True
 releaseConfig['enableUpdatePackaging']    = False
+releaseConfig['balrog_api_root']          = None
 
 releaseConfig['single_locale_options'] = {
     'android': [

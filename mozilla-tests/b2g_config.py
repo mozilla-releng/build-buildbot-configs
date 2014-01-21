@@ -440,6 +440,7 @@ GAIA_INTEGRATION = [(
         'suite': 'gaia-integration',
         'use_mozharness': True,
         'script_path': 'scripts/gaia_integration.py',
+        'timeout': 1800,
     },
 )]
 
