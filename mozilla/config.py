@@ -1853,6 +1853,7 @@ BRANCHES['mozilla-b2g26_v1_2']['create_partial'] = False
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
 BRANCHES['mozilla-b2g26_v1_2']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g26_v1_2']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g26_v1_2']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enabled_products'] = ['firefox', 'mobile']
 
@@ -1885,6 +1886,7 @@ BRANCHES['mozilla-b2g18']['create_partial'] = False
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g18']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g18']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g18']['enabled_products'] = ['firefox', 'mobile']
 
