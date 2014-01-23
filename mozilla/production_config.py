@@ -1,8 +1,8 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,87) + [88] + range(93,95)]
 LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,7)]
-LINUX_IXS      = ['linux-ix-slave%02i' % x for x in [1,2,6]]
-LINUX64_IXS    = ['linux64-ix-slave%02i' % x for x in range(3, 7)]
-WIN32_IXS      = ['mw32-ix-slave%02i' % x for x in range(2,13)]
+LINUX_IXS      = []
+LINUX64_IXS    = []
+WIN32_IXS      = []
 WIN64_IXS      = ['w64-ix-slave%03i' % x for x in range(144,158)]
 WIN64_REV2     = ['w64-ix-slave%02i' % x for x in range(6,30) + range(42,44) + range(75,100) if x not in [22,80,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,110) + range(111,144)] + \
