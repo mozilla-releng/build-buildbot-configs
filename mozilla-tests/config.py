@@ -518,6 +518,16 @@ JITTEST = [
     }),
 ]
 
+WEB_PLATFORM_TESTS = [
+    ('web-platform-tests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': [],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,
@@ -597,6 +607,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'ubuntu32_vm': {
@@ -662,6 +675,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         },
@@ -735,6 +751,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'ubuntu64_vm': {
@@ -803,6 +822,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         },
@@ -878,6 +900,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         },
@@ -1245,6 +1270,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'mountainlion': {
@@ -1311,6 +1339,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'mavericks': {
@@ -1376,6 +1407,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         },
@@ -1629,6 +1663,19 @@ for platform in PLATFORMS.keys():
 # Enable metro debug jobs for now
 # This may need to follow the trains: see bug 847442 (comment 73)
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
+
+# Enable web-platform-tests on cedar (non-windows only for now)
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms'] or platform.startswith('win'):
+        continue
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform] or slave_platform.startswith('fedora'):
+            continue
+
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS
+
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS
 
 # Let's add the metro unit tests for Windows 8
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
