@@ -9,7 +9,9 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
+                                        '<release-mgmt@mozilla.com>',
+                                        '<qa-drivers@mozilla.org>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -20,18 +22,12 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '26.0'
-releaseConfig['appVersion']          = '26.0'
+releaseConfig['version']             = '27.0'
+releaseConfig['appVersion']          = '27.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_26_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_27_0'
 releaseConfig['partialUpdates']      = {
-
-    '24.0': {
-        'appVersion': '24.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_0',
-    },
 
     '25.0': {
         'appVersion': '25.0',
@@ -45,6 +41,12 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_25_0_1',
     },
 
+    '26.0': {
+        'appVersion': '26.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_26_0',
+    },
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -54,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'a79174df6ea3',
+        'revision': 'dd8bcd49bbfe',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -147,8 +149,6 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
-
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
