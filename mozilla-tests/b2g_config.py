@@ -376,6 +376,48 @@ REFTEST_DESKTOP = [
                    'blob_upload': True,
                    },
      ),
+    ('reftest-4', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-5', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-6', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-7', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-8', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-9', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
+    ('reftest-10', {'suite': 'reftest',
+                   'use_mozharness': True,
+                   'script_path': 'scripts/b2g_desktop_unittest.py',
+                   'blob_upload': True,
+                   },
+     ),
 ]
 
 REFTEST_DESKTOP_SANITY = [
@@ -529,21 +571,70 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 1, '--total-chunks', 3,
+                        '--this-chunk', 1, '--total-chunks', 10,
                     ],
                 },
                 'reftest-2': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 2, '--total-chunks', 3,
+                        '--this-chunk', 2, '--total-chunks', 10,
                     ],
                 },
                 'reftest-3': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 3, '--total-chunks', 3,
+                        '--this-chunk', 3, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-4': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 4, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-5': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 5, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-6': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 6, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-7': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 7, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-8': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 8, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-9': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 9, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-10': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 10, '--total-chunks', 10,
                     ],
                 },
             },
@@ -594,21 +685,70 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 1, '--total-chunks', 3,
+                        '--this-chunk', 1, '--total-chunks', 10,
                     ],
                 },
                 'reftest-2': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 2, '--total-chunks', 3,
+                        '--this-chunk', 2, '--total-chunks', 10,
                     ],
                 },
                 'reftest-3': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 3, '--total-chunks', 3,
+                        '--this-chunk', 3, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-4': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 4, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-5': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 5, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-6': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 6, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-7': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 7, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-8': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 8, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-9': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 9, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-10': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 10, '--total-chunks', 10,
                     ],
                 },
             },
@@ -656,21 +796,70 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 1, '--total-chunks', 3,
+                        '--this-chunk', 1, '--total-chunks', 10,
                     ],
                 },
                 'reftest-2': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 2, '--total-chunks', 3,
+                        '--this-chunk', 2, '--total-chunks', 10,
                     ],
                 },
                 'reftest-3': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', 3, '--total-chunks', 3,
+                        '--this-chunk', 3, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-4': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 4, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-5': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 5, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-6': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 6, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-7': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 7, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-8': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 8, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-9': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 9, '--total-chunks', 10,
+                    ],
+                },
+                'reftest-10': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', 10, '--total-chunks', 10,
                     ],
                 },
             },
