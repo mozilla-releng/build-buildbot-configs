@@ -7,7 +7,7 @@ from project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 import localconfig
 reload(localconfig)
-from localconfig import SLAVES, TRY_SLAVES
+from localconfig import SLAVES, TRY_SLAVES, MOCK_DL120G7, MOCK_IX
 
 import master_common
 reload(master_common)
@@ -1827,6 +1827,9 @@ BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr24']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr24']['enable_valgrind'] = False
 BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
+# FIXME: a dirty hack to avoid using c3.xlarge
+BRANCHES['mozilla-esr24']['platforms']['linux']['slaves'] = MOCK_DL120G7 + MOCK_IX
+# end of FIXME
 
 ######## mozilla-b2g26_v1_2
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = 'releases/mozilla-b2g26_v1_2'
