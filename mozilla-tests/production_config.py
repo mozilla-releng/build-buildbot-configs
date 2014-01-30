@@ -92,6 +92,10 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-B2g26-v1.2',
         'mobile_tinderbox_tree': 'Mozilla-B2g26-v1.2',
     },
+    'mozilla-b2g28_v1_3': {
+        'tinderbox_tree': 'Mozilla-B2g28-v1.3',
+        'mobile_tinderbox_tree': 'Mozilla-B2g28-v1.3',
+    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',

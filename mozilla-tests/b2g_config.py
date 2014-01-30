@@ -39,6 +39,10 @@ BRANCHES = {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
     },
+    'mozilla-b2g28_v1_3': {
+        'gecko_version': 28,
+        'b2g_version': (1, 3, 0),
+    },
     'mozilla-central': {},
     'mozilla-aurora': {},
     'mozilla-inbound': {},
@@ -413,10 +417,10 @@ REFTEST_DESKTOP = [
                    },
      ),
     ('reftest-10', {'suite': 'reftest',
-                   'use_mozharness': True,
-                   'script_path': 'scripts/b2g_desktop_unittest.py',
-                   'blob_upload': True,
-                   },
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_desktop_unittest.py',
+                    'blob_upload': True,
+                    },
      ),
 ]
 
@@ -649,7 +653,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:],
+            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -1699,12 +1703,12 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulato
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
+BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
-BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_UNITTESTS
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
@@ -1756,8 +1760,9 @@ for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
         slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                             if x[0] if x[0] != 'reftest']
 
-# Disable b2g desktop reftest-sanity and gaia-integration tests on older branches
+# Disable b2g desktop reftest-sanity, gaia-integration and gaia-unit tests on older branches
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
+excluded_tests = ['gaia-integration', 'reftest', 'gaia-unit']
 for b in BRANCHES.keys():
     branch = BRANCHES[b]
     if b in OLD_BRANCHES:
@@ -1766,15 +1771,16 @@ for b in BRANCHES.keys():
             if nested_haskey(branch['platforms'], slave_platform[0], slave_platform[1]):
                 slave_p = branch['platforms'][slave_platform[0]][slave_platform[1]]
                 slave_p['opt_unittest_suites'] = [x for x in slave_p['opt_unittest_suites']
-                                                  if x[0] != 'gaia-integration' if x[0] != 'reftest']
+                                                  if x[0] not in excluded_tests]
                 slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
-                                                    if x[0] != 'gaia-integration' if x[0] != 'reftest']
+                                                    if x[0] not in excluded_tests]
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
                   'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
-                  'mozilla-b2g26_v1_2', 'mozilla-aurora'):
+                  'mozilla-b2g26_v1_2', 'mozilla-aurora',
+                  'mozilla-b2g28_v1_3'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):

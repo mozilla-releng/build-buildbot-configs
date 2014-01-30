@@ -824,6 +824,10 @@ BRANCHES = {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
     },
+    'mozilla-b2g28_v1_3': {
+        'gecko_version': 28,
+        'b2g_version': (1, 3, 0),
+    },
     'try': {
     },
 }
@@ -959,6 +963,35 @@ BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['enable_night
 BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
 
+######## mozilla-b2g28_v1_3
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
+BRANCHES['mozilla-b2g28_v1_3']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_3'
+BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-b2g28_v1_3'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-b2g28_v1_3']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
+BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
+
 ######## mozilla-b2g26_v1_2
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -969,7 +1002,7 @@ BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 # building
 BRANCHES['mozilla-b2g26_v1_2']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0]
+BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -999,11 +1032,11 @@ BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/
 # building
 BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18']['start_hour'] = [4, 16]
+BRANCHES['mozilla-b2g18']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18']['start_minute'] = [12]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-private-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
+BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -1142,7 +1175,7 @@ for branch in disabled_branches:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
                       'mozilla-b2g18'):
         if 'inari' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['inari']
@@ -1153,7 +1186,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
                       'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
@@ -1166,7 +1199,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
                       'mozilla-b2g18'):
         if 'hamachi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi']
@@ -1177,7 +1210,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2') \
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3') \
             and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
@@ -1185,7 +1218,7 @@ for branch in BRANCHES:
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
-                      'mozilla-b2g26_v1_2',
+                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
                       'mozilla-central', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
@@ -1197,7 +1230,8 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-inbound', 'fx-team', 'try',
-                      'mozilla-b2g26_v1_2', 'birch'):
+                      'mozilla-b2g26_v1_2', 'birch',
+                      'mozilla-b2g28_v1_3'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
@@ -1205,7 +1239,8 @@ for branch in BRANCHES:
 # MERGE DAY: wasabi is for B2G 1.3+ only
 # When gecko29 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-aurora', 'b2g-inbound'):
+    if branch not in ('mozilla-central', 'mozilla-aurora', 'b2g-inbound',
+                      'mozilla-b2g28_v1_3'):
         if 'wasabi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['wasabi']
 
