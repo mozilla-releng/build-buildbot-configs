@@ -40,6 +40,9 @@ BRANCHES = {
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
     },
+    'mozilla-b2g28_v1_3': {
+        'gecko_version': 28,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1054,6 +1057,11 @@ BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g26_v1_2']['pgo_platforms'] = []
+
+######### mozilla-b2g28_v1_3
+BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
+BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g28_v1_3']['pgo_platforms'] = []
 
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1

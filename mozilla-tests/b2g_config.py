@@ -39,6 +39,10 @@ BRANCHES = {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
     },
+    'mozilla-b2g28_v1_3': {
+        'gecko_version': 28,
+        'b2g_version': (1, 3, 0),
+    },
     'mozilla-central': {},
     'mozilla-aurora': {},
     'mozilla-inbound': {},
@@ -413,10 +417,10 @@ REFTEST_DESKTOP = [
                    },
      ),
     ('reftest-10', {'suite': 'reftest',
-                   'use_mozharness': True,
-                   'script_path': 'scripts/b2g_desktop_unittest.py',
-                   'blob_upload': True,
-                   },
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_desktop_unittest.py',
+                    'blob_upload': True,
+                    },
      ),
 ]
 
@@ -1699,6 +1703,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulato
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
+BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
@@ -1774,7 +1779,8 @@ for b in BRANCHES.keys():
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
                   'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
-                  'mozilla-b2g26_v1_2', 'mozilla-aurora'):
+                  'mozilla-b2g26_v1_2', 'mozilla-aurora',
+                  'mozilla-b2g28_v1_3'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):
