@@ -139,7 +139,7 @@ PLATFORM_VARS = {}
 PROJECTS = {
     'fuzzing': {
         'disable_tinderbox_mail': True,
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'fuzzing_bundle': 'http://pvtbuilds.pvt.build.mozilla.org/bundles/fuzzing.hg',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'stage-ffxbld@stage.mozilla.org',
@@ -149,7 +149,7 @@ PROJECTS = {
     },
     'nanojit': {
         'disable_tinderbox_mail': True,
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'tinderbox_tree': 'MozillaTest',
     },
@@ -157,17 +157,17 @@ PROJECTS = {
 
 BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_try': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_info': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },

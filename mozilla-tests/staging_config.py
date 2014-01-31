@@ -36,7 +36,7 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'build_tools_repo_path': 'build/tools',
-    'mozharness_repo': 'http://hg.mozilla.org/build/mozharness',
+    'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
@@ -61,7 +61,7 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     'jetpack': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'tinderbox_tree': 'MozillaTest',
     },
 }

@@ -1516,7 +1516,7 @@ PROJECTS = {
                 'debug': True,
             },
         },
-        'hgurl': 'http://hg.mozilla.org',
+        'hgurl': 'https://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
         'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
     },

@@ -1671,7 +1671,7 @@ for branch in BRANCHES.keys():
 
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
-BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
+BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"

@@ -56,7 +56,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
 GLOBAL_VARS = {
     'disable_tinderbox_mail': True,
     'build_tools_repo_path': 'build/tools',
-    'mozharness_repo': 'http://hg.mozilla.org/build/mozharness',
+    'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
@@ -131,7 +131,7 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     'jetpack': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'tinderbox_tree': 'Jetpack',
     },
 }

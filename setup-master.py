@@ -314,7 +314,7 @@ if __name__ == "__main__":
         "-8", action="store_true", dest="buildbot08", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
     parser.add_option("-j", "--masters-json", dest="masters_json",
-                      default="http://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
+                      default="https://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
     parser.add_option("-R", "--role", dest="role", default=None,
                       help="Filter by given comma-separated role(s), eg try, build, tests, scheduler")
     parser.add_option(

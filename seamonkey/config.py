@@ -19,7 +19,7 @@ GLOBAL_VARS = {
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
     # a problem to keep them in sync.
-    'hgurl': 'http://hg.mozilla.org/',
+    'hgurl': 'https://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'cvsroot': ':ext:seabld@cvs.mozilla.org:/cvsroot', #?
     'config_subdir': 'seamonkey',

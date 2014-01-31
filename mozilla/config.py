@@ -18,7 +18,7 @@ GLOBAL_VARS = {
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
     # a problem to keep them in sync.
-    'hgurl': 'http://hg.mozilla.org/',
+    'hgurl': 'https://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'config_subdir': 'mozilla2',
     'objdir': 'obj-firefox',
@@ -1323,7 +1323,7 @@ PROJECTS = {
     },
     'nanojit': {
         'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
-        'hgurl': 'http://hg.mozilla.org',
+        'hgurl': 'https://hg.mozilla.org',
         'repo_path': 'projects/nanojit-central',
     },
 }
@@ -1385,7 +1385,7 @@ BRANCH_PROJECTS = {
             'macosx64': {},
             'macosx64-debug': {},
         },
-        'hgurl': 'http://hg.mozilla.org/',
+        'hgurl': 'https://hg.mozilla.org/',
     },
 
     # Try server builds only triggered on changes to the spidermonkey source
@@ -1398,7 +1398,7 @@ BRANCH_PROJECTS = {
         'platforms': {
             'linux64-debug': {}, # Filled in with branch-specific values below
         },
-        'hgurl': 'http://hg.mozilla.org/',
+        'hgurl': 'https://hg.mozilla.org/',
     },
 
     # Non-tier-1 builds that provide useful information but are hidden on tbpl.
@@ -1421,7 +1421,7 @@ BRANCH_PROJECTS = {
             'macosx64': {},
             'macosx64-debug': {},
         },
-        'hgurl': 'http://hg.mozilla.org/',
+        'hgurl': 'https://hg.mozilla.org/',
     },
 }
 
