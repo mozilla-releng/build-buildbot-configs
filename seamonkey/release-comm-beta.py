@@ -11,7 +11,7 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['version']                    = '2.24b1'
 releaseConfig['appVersion']                 = '2.24'
 releaseConfig['milestone']                  = '27.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_24b1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.23b2'
@@ -26,26 +26,26 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = '34e90812b83a'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['relbranchOverride']          = 'SEA_COMM270_20140117_RELBRANCH'
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_27_0b7_BUILD1'
-releaseConfig['mozillaRelbranchOverride']   = 'GECKO270b7_2014011615_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['mozillaRelbranchOverride']   = 'SEA_COMM270_20140117_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
-releaseConfig['inspectorRepoRevision']      = '87599cab4bd2'
-releaseConfig['inspectorRelbranchOverride'] = 'SEA2_24_RELBRANCH'
+releaseConfig['inspectorRepoRevision']      = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM270_20140117_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = 'venkman' # leave empty if venkman is not to be tagged
-releaseConfig['venkmanRepoRevision']        = '4f4e838630ee'
-releaseConfig['venkmanRelbranchOverride']   = 'SEA2_24_RELBRANCH'
+releaseConfig['venkmanRepoRevision']        = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['venkmanRelbranchOverride']   = 'SEA_COMM270_20140117_RELBRANCH'
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
-releaseConfig['chatzillaRepoRevision']      = '4276fcabbb24'
-releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_24_RELBRANCH'
+releaseConfig['chatzillaRepoRevision']      = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM270_20140117_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRelbranchOverride']      = ''
