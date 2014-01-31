@@ -36,16 +36,16 @@ releaseConfig['mozillaRepoRevision']        = 'SEA_COMM270_20140117_RELBRANCH'
 releaseConfig['mozillaRelbranchOverride']   = 'SEA_COMM270_20140117_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
-releaseConfig['inspectorRepoRevision']      = 'SEA_COMM270_20140117_RELBRANCH'
-releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['inspectorRepoRevision']      = '87599cab4bd2'
+releaseConfig['inspectorRelbranchOverride'] = 'SEA2_24_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = 'venkman' # leave empty if venkman is not to be tagged
-releaseConfig['venkmanRepoRevision']        = 'SEA_COMM270_20140117_RELBRANCH'
-releaseConfig['venkmanRelbranchOverride']   = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['venkmanRepoRevision']        = '4f4e838630ee'
+releaseConfig['venkmanRelbranchOverride']   = 'SEA2_24_RELBRANCH'
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
-releaseConfig['chatzillaRepoRevision']      = 'SEA_COMM270_20140117_RELBRANCH'
-releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['chatzillaRepoRevision']      = '4276fcabbb24'
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_24_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM270_20140117_RELBRANCH'
