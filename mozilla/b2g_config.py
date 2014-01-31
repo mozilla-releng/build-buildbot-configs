@@ -968,7 +968,7 @@ BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
 BRANCHES['mozilla-b2g28_v1_3']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_3'
-BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-b2g28_v1_3'
+BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
 BRANCHES['mozilla-b2g28_v1_3']['enable_nightly_lastgood'] = False
