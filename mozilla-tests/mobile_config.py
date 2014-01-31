@@ -848,47 +848,134 @@ ANDROID_X86_MOZHARNESS_UNITTEST_DICT = {
 
 # Beginning Android 2.3 configurations
 ANDROID_2_3_MOZHARNESS_DICT = [
-    ('android_2_3-set-1', {
+    ('mochitest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'mochitest-1',
-            '--test-suite', 'mochitest-2',
-            '--test-suite', 'mochitest-gl',
-            '--test-suite', 'jsreftest',
         ],
-        'trychooser_suites': ['mochitest-1', 'mochitest-2', 'mochitest-gl', 'jsreftest'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
     ),
-    ('android_2_3-set-2', {
+    ('mochitest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-2',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('mochitest-gl', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-gl',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('jsreftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'jsreftest',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('plain-reftest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'reftest-1',
-            '--test-suite', 'reftest-2',
-            '--test-suite', 'reftest-3',
-            '--test-suite', 'crashtest',
         ],
-        'trychooser_suites': ['plain-reftest-1', 'plain-reftest-2', 'plain-reftest-3', 'crashtest'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
     ),
-    ('android_2_3-set-3', {
+    ('plain-reftest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'reftest-2',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('plain-reftest-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'reftest-3',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('crashtest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'crashtest',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'robocop-1',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
             '--test-suite', 'robocop-2',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
             '--test-suite', 'robocop-3',
+        ],
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
             '--test-suite', 'xpcshell',
         ],
-        'trychooser_suites': ['robocop-1', 'robocop-2', 'robocop-3', 'xpcshell'],
         'timeout': 2400,
         'script_maxtime': 14400,
         },
