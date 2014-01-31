@@ -24,7 +24,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '24.3.0'
 releaseConfig['appVersion']          = '24.3.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_24_3_0'
 releaseConfig['partialUpdates']      = {
 
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'd9fb5f6ddb35',
+        'revision': '557a5299bc6a',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
