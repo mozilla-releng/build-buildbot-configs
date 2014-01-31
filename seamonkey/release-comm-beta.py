@@ -48,7 +48,7 @@ releaseConfig['chatzillaRepoRevision']      = 'SEA_COMM270_20140117_RELBRANCH'
 releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM270_20140117_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM270_20140117_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-beta'
 #  Support repositories
 #   not used yet
