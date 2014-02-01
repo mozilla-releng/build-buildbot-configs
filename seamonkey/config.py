@@ -97,7 +97,7 @@ GLOBAL_VARS = {
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
+    'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/seamonkey',
     'graph_server': 'graphs.mozilla.org',
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
 #    'build_tools_repo_path': 'build/tools',
