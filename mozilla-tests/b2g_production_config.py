@@ -18,7 +18,7 @@ BRANCHES = {
         'notify_real_author': True,
         'enable_merging': False,
         'slave_key': 'try_slaves',
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/b2g/try-builds',
+        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/b2g/try-builds',
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',

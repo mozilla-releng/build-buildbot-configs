@@ -1,10 +1,10 @@
-HGURL = 'http://hg.mozilla.org/'
+HGURL = 'https://hg.mozilla.org/'
 HGHOST = 'hg.mozilla.org'
-CONFIG_REPO_URL = 'http://hg.mozilla.org/build/buildbot-configs'
+CONFIG_REPO_URL = 'https://hg.mozilla.org/build/buildbot-configs'
 CONFIG_REPO_PATH = 'build/buildbot-configs'
 COMPARE_LOCALES_REPO_PATH = 'build/compare-locales'
 CONFIG_SUBDIR = 'calendar'
-LOCALE_REPO_URL = 'http://hg.mozilla.org/releases/l10n/mozilla-aurora/%(locale)s'
+LOCALE_REPO_URL = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora/%(locale)s'
 OBJDIR = 'objdir-tb'
 STAGE_USERNAME = 'calbld'
 STAGE_SERVER = 'stage.mozilla.org'
@@ -12,7 +12,7 @@ STAGE_GROUP = 'calendar'
 STAGE_SSH_KEY = 'calbld_dsa'
 AUS2_USER = 'calbld'
 AUS2_HOST = 'aus-staging.sj.mozillamessaging.com'
-DOWNLOAD_BASE_URL = 'http://ftp.mozilla.org/pub/mozilla.org/calendar/'
+DOWNLOAD_BASE_URL = 'https://ftp-ssl.mozilla.org/pub/mozilla.org/calendar/'
 PRODUCT = 'calendar'
 MOZ_APP_NAME = 'calendar'
 SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
@@ -111,7 +111,7 @@ BRANCHES['comm-release']['mozilla_central_branch'] = 'releases/mozilla-release'
 BRANCHES['comm-release']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
 BRANCHES['comm-release']['branch_name'] = 'comm-release'
 BRANCHES['comm-release']['hg_branch'] = 'releases/comm-release'
-BRANCHES['comm-release']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-release']
+BRANCHES['comm-release']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=https://hg.mozilla.org/releases/mozilla-release']
 BRANCHES['comm-release']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-release']['period'] = 60 * 60 * 10
 BRANCHES['comm-release']['nightly_hour'] = [0]
@@ -242,7 +242,7 @@ BRANCHES['comm-beta']['mozilla_central_branch'] = 'releases/mozilla-beta'
 BRANCHES['comm-beta']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
 BRANCHES['comm-beta']['branch_name'] = 'comm-beta'
 BRANCHES['comm-beta']['hg_branch'] = 'releases/comm-beta'
-BRANCHES['comm-beta']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-beta']
+BRANCHES['comm-beta']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=https://hg.mozilla.org/releases/mozilla-beta']
 BRANCHES['comm-beta']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-beta']['period'] = 60 * 60 * 10
 BRANCHES['comm-beta']['nightly_hour'] = [0]
@@ -373,7 +373,7 @@ BRANCHES['comm-aurora']['mozilla_central_branch'] = 'releases/mozilla-aurora'
 BRANCHES['comm-aurora']['download_base_url'] = DOWNLOAD_BASE_URL + 'sunbird'
 BRANCHES['comm-aurora']['branch_name'] = 'comm-aurora'
 BRANCHES['comm-aurora']['hg_branch'] = 'releases/comm-aurora'
-BRANCHES['comm-aurora']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=http://hg.mozilla.org/releases/mozilla-aurora']
+BRANCHES['comm-aurora']['client_py_args'] = ['--skip-comm', '--skip-chatzilla', '--skip-venkman'] + ['--mozilla-repo=https://hg.mozilla.org/releases/mozilla-aurora']
 BRANCHES['comm-aurora']['mozconfig'] = 'mozconfig-lightning'
 BRANCHES['comm-aurora']['period'] = 60 * 60 * 10
 BRANCHES['comm-aurora']['nightly_hour'] = [0]

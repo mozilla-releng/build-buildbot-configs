@@ -811,8 +811,6 @@ PLATFORM_VARS = {
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-aurora': {
-    },
     'mozilla-b2g18': {
         'gecko_version': 18,
     },
@@ -930,38 +928,7 @@ BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = False
-
-######## mozilla-aurora
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
-BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_2'
-BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-aurora']['enable_nightly_lastgood'] = False
-BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-aurora']['start_hour'] = [0, 16]
-BRANCHES['mozilla-aurora']['start_minute'] = [40]
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-aurora']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['leo_eng']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = False
-# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
-# builds not needed for B2G 1.2
-BRANCHES['mozilla-aurora']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-aurora']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3
 # This is a path, relative to HGURL, where the repository is located
@@ -986,7 +953,7 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False

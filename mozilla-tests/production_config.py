@@ -56,7 +56,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
 GLOBAL_VARS = {
     'disable_tinderbox_mail': True,
     'build_tools_repo_path': 'build/tools',
-    'mozharness_repo': 'http://hg.mozilla.org/build/mozharness',
+    'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
@@ -119,7 +119,7 @@ BRANCHES = {
         'notify_real_author': True,
         'enable_merging': False,
         'slave_key': 'try_slaves',
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',
@@ -131,7 +131,7 @@ PLATFORM_VARS = {
 
 PROJECTS = {
     'jetpack': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'tinderbox_tree': 'Jetpack',
     },
 }

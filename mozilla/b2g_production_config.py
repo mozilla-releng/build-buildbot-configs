@@ -9,7 +9,7 @@ GLOBAL_VARS = deepcopy(localconfig.GLOBAL_VARS)
 # Local branch overrides
 BRANCHES = {
     'try': {
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/b2g/try-builds',
+        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/b2g/try-builds',
     },
 }
 

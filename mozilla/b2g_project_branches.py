@@ -43,7 +43,7 @@ PROJECT_BRANCHES = {
     #'alder': {},
     'ash': {
         'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
-        'mozharness_repo': 'http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_repo': 'https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_tag': 'default',
     },
     'birch': {},

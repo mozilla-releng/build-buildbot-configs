@@ -60,8 +60,8 @@ GLOBAL_VARS = {
     'aus2_host': 'aus3-staging.mozilla.org',
     'aus2_user': 'ffxbld',
     'aus2_ssh_key': 'ffxbld_dsa',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
+    'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox',
+    'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs.mozilla.org',
     'balrog_api_root': 'https://aus4-admin.mozilla.org',
     'build_tools_repo_path': 'build/tools',
@@ -82,8 +82,7 @@ GLOBAL_VARS = {
     'xulrunner_tinderbox_tree': 'XULRunner',
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
-    'base_mirror_urls': ['http://hg-internal.dmz.scl3.mozilla.com'],
-    'base_bundle_urls': ['http://ftp.mozilla.org/pub/mozilla.org/firefox/bundles'],
+    'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
     'blob_upload': True,
 }
@@ -143,11 +142,11 @@ BRANCHES = {
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
         'packaged_unittest_tinderbox_tree': 'Try',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
-        'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
@@ -171,7 +170,7 @@ PLATFORM_VARS = {}
 
 PROJECTS = {
     'fuzzing': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'fuzzing_bundle': 'http://pvtbuilds.pvt.build.mozilla.org/bundles/fuzzing.hg',
         'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
@@ -181,7 +180,7 @@ PROJECTS = {
         'disable_tinderbox_mail': False,
     },
     'nanojit': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 3,
         'tinderbox_tree': 'Nanojit',
         'disable_tinderbox_mail': False,
@@ -190,17 +189,17 @@ PROJECTS = {
 
 BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_try': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_info': {
-        'scripts_repo': 'http://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },

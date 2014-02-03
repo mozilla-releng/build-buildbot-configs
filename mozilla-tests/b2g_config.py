@@ -44,7 +44,6 @@ BRANCHES = {
         'b2g_version': (1, 3, 0),
     },
     'mozilla-central': {},
-    'mozilla-aurora': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
@@ -1671,7 +1670,7 @@ for branch in BRANCHES.keys():
 
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
-BRANCHES['ash']['mozharness_repo'] = "http://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
+BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
@@ -1705,7 +1704,6 @@ BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
-BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
@@ -1779,8 +1777,7 @@ for b in BRANCHES.keys():
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
                   'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
-                  'mozilla-b2g26_v1_2', 'mozilla-aurora',
-                  'mozilla-b2g28_v1_3'):
+                  'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):
