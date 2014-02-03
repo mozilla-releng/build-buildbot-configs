@@ -928,7 +928,7 @@ BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3
 # This is a path, relative to HGURL, where the repository is located
@@ -953,7 +953,7 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
