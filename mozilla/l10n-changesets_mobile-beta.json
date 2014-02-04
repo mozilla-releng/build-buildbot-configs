@@ -41,7 +41,7 @@
   },
   "et": {
     "revision": "e6210c7a84d5",
-    "platforms": ["android"]
+    "platforms": ["android", "android-multilocale"]
   },
   "fi": {
     "revision": "48fb2136b789",
