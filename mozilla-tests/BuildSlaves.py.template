@@ -26,6 +26,7 @@ SlavePasswords = {
     "win7": "pass",
     "win7-ix": "pass",
     "win8": "pass",
+    "win8_64": "pass",
     "w764": "pass",
     "win64_vm": "pass",
     "vista": "pass",
