@@ -1770,14 +1770,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
     if 'win32' in branch['platforms'] and 'win8' in branch['platforms']['win32']:
         branch['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
-# Bug 940690 - Get existing metrofx talos tests running on release/project
-# branches
-#  for now, let's only enable metro talos that has at least gecko version 29
-#  and only talos suite dromaeojs
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 29):
-    coallesce_jobs = branch.get('coallesce_jobs', True)
-    branch['dromaeojs-metro_tests'] = (1, coallesce_jobs, {}, ['win8'])
-
 NON_UBUNTU_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 21)])
 
 
