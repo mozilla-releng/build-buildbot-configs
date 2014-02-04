@@ -9,7 +9,9 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>','<release-mgmt@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
+                                        '<release-mgmt@mozilla.com>',
+                                        '<qa-drivers@mozilla.org>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -20,23 +22,23 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '27.0b9'
-releaseConfig['appVersion']          = '27.0'
+releaseConfig['version']             = '28.0b1'
+releaseConfig['appVersion']          = '28.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_27_0b9'
+releaseConfig['baseTag']             = 'FIREFOX_28_0b1'
 releaseConfig['partialUpdates']      = {
+
+    '27.0b9': {
+        'appVersion': '27.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_27_0b9',
+    },
 
     '27.0b8': {
         'appVersion': '27.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_27_0b8',
-    },
-
-    '27.0b7': {
-        'appVersion': '27.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_27_0b7',
     },
 
 }
@@ -48,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '4b60f871d7f2',
+        'revision': '60c04d0987f1',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
