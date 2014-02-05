@@ -61,7 +61,7 @@ GLOBAL_VARS = {
     'aus2_user': 'ffxbld',
     'aus2_ssh_key': 'ffxbld_dsa',
     'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/mobile',
+    'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs.mozilla.org',
     'balrog_api_root': 'https://aus4-admin.mozilla.org',
     'build_tools_repo_path': 'build/tools',
