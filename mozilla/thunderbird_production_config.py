@@ -33,7 +33,7 @@ TRY_SLAVES = {
 }
 
 # Local overrides for default values
-GLOBAL_VARS['download_base_url'] = 'https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird'
+GLOBAL_VARS['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 GLOBAL_VARS['talos_masters'] = []
 # List of unittest masters to notify of new builds to test,
 # if a failure to notify the master should result in a warning,
@@ -70,7 +70,7 @@ BRANCHES = {
     'try-comm-central': {
         'tinderbox_tree': 'Try-Comm-Central',
         'packaged_unittest_tinderbox_tree': 'Try-Comm-Central',
-        'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
+        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
         'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
