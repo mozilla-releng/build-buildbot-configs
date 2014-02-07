@@ -8,7 +8,8 @@ WIN64_REV2     = ['w64-ix-slave%02i' % x for x in range(6,30) + range(42,44) + r
                  ['w64-ix-slave%03i' % x for x in range(100,110) + range(111,144)] + \
                  ['b-2008-ix-%04i' % x for x in range(1,18)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
-LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 900)]
+LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 900)] + \
+                 ['bld-linux64-spot-%03d' % x for x in range(1, 900)]
 MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(27, 38)]
 if set(WIN64_REV2).intersection(set(WIN64_IXS)):
     raise Exception('WIN64_REV2 and WIN64_IXS overlap')
