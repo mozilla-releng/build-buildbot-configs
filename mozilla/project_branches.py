@@ -288,24 +288,8 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'pine': {
-        'mozharness_tag': 'default',
-        'enable_talos': True,
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'enable_nightly': False,
-        'create_snippet': True,
-        'create_mobile_snippet': True,
-        'enable_opt_unittests': True,
-        'enable_l10n': False,
-        'enable_l10n_onchange': False,
-        'mobile_platforms': {
-            'android-x86': {
-                'enable_opt_unittests': True,
-            },
-        },
-    }
+    # Not needed whilst booked for bug 929203.
+    #'pine': {}
 }
 
 # All is the default

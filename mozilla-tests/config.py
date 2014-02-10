@@ -133,6 +133,9 @@ PLATFORMS['win64']['slave_platforms'] = ['win64_vm', 'win8_64']
 PLATFORMS['win64']['win64_vm'] = {'name': 'win64_vm'}
 PLATFORMS['win64']['win8_64'] = {'name': 'win8_64'}
 PLATFORMS['win64']['stage_product'] = 'firefox'
+PLATFORMS['win64']['win8_64']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+}
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
