@@ -146,12 +146,6 @@ PROJECTS = {
         'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
         'idle_slaves': 0,
     },
-    'nanojit': {
-        'disable_tinderbox_mail': True,
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'idle_slaves': 0,
-        'tinderbox_tree': 'MozillaTest',
-    },
 }
 
 BRANCH_PROJECTS = {

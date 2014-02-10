@@ -1321,11 +1321,6 @@ PROJECTS = {
     'fuzzing': {
         'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
     },
-    'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
-        'hgurl': 'https://hg.mozilla.org',
-        'repo_path': 'projects/nanojit-central',
-    },
 }
 
 

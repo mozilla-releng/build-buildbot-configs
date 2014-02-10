@@ -180,12 +180,6 @@ PROJECTS = {
         'idle_slaves': 3,
         'disable_tinderbox_mail': False,
     },
-    'nanojit': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'idle_slaves': 3,
-        'tinderbox_tree': 'Nanojit',
-        'disable_tinderbox_mail': False,
-    },
 }
 
 BRANCH_PROJECTS = {

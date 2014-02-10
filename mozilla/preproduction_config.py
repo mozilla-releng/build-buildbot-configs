@@ -120,12 +120,6 @@ PROJECTS = {
         'fuzzing_base_dir': '/pub/mozilla.org/firefox/tinderbox-builds/fuzzing/',
         'idle_slaves': 0,
     },
-    'nanojit': {
-        'disable_tinderbox_mail': True,
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'idle_slaves': 0,
-        'tinderbox_tree': 'MozillaTest',
-    },
 }
 
 BRANCH_PROJECTS = {
