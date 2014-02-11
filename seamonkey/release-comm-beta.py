@@ -8,16 +8,16 @@ releaseConfig['productName']                = 'seamonkey'
 releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
-releaseConfig['version']                    = '2.24b1'
-releaseConfig['appVersion']                 = '2.24'
-releaseConfig['milestone']                  = '27.0'
-releaseConfig['buildNumber']                = 2
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_24b1'
+releaseConfig['version']                    = '2.25b1'
+releaseConfig['appVersion']                 = '2.25'
+releaseConfig['milestone']                  = '28.0'
+releaseConfig['buildNumber']                = 1
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_25b1'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.23b2'
-releaseConfig['oldAppVersion']              = '2.23'
-releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_23b2'
+releaseConfig['oldVersion']                 = '2.24b1'
+releaseConfig['oldAppVersion']              = '2.24'
+releaseConfig['oldBuildNumber']             = 2
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_24b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
@@ -26,29 +26,29 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = 'SEA_COMM270_20140117_RELBRANCH'
-releaseConfig['relbranchOverride']          = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['sourceRepoRevision']         = '2fd0cb220492'
+releaseConfig['relbranchOverride']          = ''
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'SEA_COMM270_20140117_RELBRANCH'
-releaseConfig['mozillaRelbranchOverride']   = 'SEA_COMM270_20140117_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_28_0b2_BUILD1'
+releaseConfig['mozillaRelbranchOverride']   = 'GECKO280b2_2014021018_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
-releaseConfig['inspectorRepoRevision']      = '87599cab4bd2'
-releaseConfig['inspectorRelbranchOverride'] = 'SEA2_24_RELBRANCH'
+releaseConfig['inspectorRepoRevision']      = 'SEA2_25_RELBRANCH'
+releaseConfig['inspectorRelbranchOverride'] = ''
 #   Venkman
 releaseConfig['venkmanRepoPath']            = 'venkman' # leave empty if venkman is not to be tagged
-releaseConfig['venkmanRepoRevision']        = '4f4e838630ee'
-releaseConfig['venkmanRelbranchOverride']   = 'SEA2_24_RELBRANCH'
+releaseConfig['venkmanRepoRevision']        = 'SEA2_25_RELBRANCH'
+releaseConfig['venkmanRelbranchOverride']   = ''
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
-releaseConfig['chatzillaRepoRevision']      = '4276fcabbb24'
-releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_24_RELBRANCH'
+releaseConfig['chatzillaRepoRevision']      = 'SEA2_25_RELBRANCH'
+releaseConfig['chatzillaRelbranchOverride'] = ''
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM270_20140117_RELBRANCH'
+releaseConfig['l10nRelbranchOverride']      = ''
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-beta'
 #  Support repositories
 #   not used yet
