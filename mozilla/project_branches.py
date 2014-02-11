@@ -181,68 +181,8 @@ PROJECT_BRANCHES = {
         },
         'enable_merging': False,
     },
-    # customizations for PICL (bug 900212)
-    'elm': {
-        'enable_nightly': True,
-        'enable_weekly_bundle': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'enable_talos': False,
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux-debug': {},
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win32-debug': {},
-        },
-        'mobile_platforms': {
-            'android': {},
-            'android-debug': {},
-            'android-armv6': {},
-            'android-x86': {},
-        },
-    },
-    'fig': {
-        'lock_platforms': True,
-        'platforms': {},
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_mobile_snippet': True,
-        'mobile_platforms': {
-            'android': {
-                'enable_nightly': True,
-                'create_snippet': True,
-                'create_mobile_snippet': True,
-            },
-            'android-debug': {
-                'enable_nightly': False,
-                'create_snippet': False,
-                'create_mobile_snippet': False,
-            },
-            'android-armv6': {
-                'enable_nightly': False,
-                'create_snippet': False,
-                'create_mobile_snippet': False,
-            },
-            'android-x86': {
-                'enable_nightly': False,
-                'create_snippet': False,
-                'create_mobile_snippet': False,
-            },
-        },
-    },
+    'elm': {},
+    'fig': {},
     'gum': {},
     'holly': {
         'pgo_strategy': 'periodic',
