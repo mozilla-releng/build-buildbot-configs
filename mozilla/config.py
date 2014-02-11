@@ -1369,6 +1369,7 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational'],
+            'linux-debug': ['arm-sim'],
         },
         'platforms': {
             'linux': {},
@@ -1389,9 +1390,11 @@ BRANCH_PROJECTS = {
         'try_by_default': ['rootanalysis', 'generational'],
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting'],
+            'linux-debug': ['arm-sim'],
         },
         'platforms': {
             'linux64-debug': {}, # Filled in with branch-specific values below
+            'linux-debug': {}, # Filled in with branch-specific values below
         },
         'hgurl': 'https://hg.mozilla.org/',
     },
