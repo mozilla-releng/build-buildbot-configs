@@ -55,7 +55,12 @@ PROJECT_BRANCHES = {
     },
     # B2G builds not required on date
     # 'date': {},
-    'elm': {},
+    'elm': {
+        'lock_platforms': True,
+        'platforms': {
+            'emulator': {},
+        }
+    },
     'fig': {},
     'gum': {},
     'holly': {},

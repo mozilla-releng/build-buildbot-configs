@@ -181,7 +181,11 @@ PROJECT_BRANCHES = {
         },
         'enable_merging': False,
     },
-    'elm': {},
+    'elm': {
+        'lock_platforms': True,
+        'platforms': {
+        },
+    },
     'fig': {},
     'gum': {},
     'holly': {
