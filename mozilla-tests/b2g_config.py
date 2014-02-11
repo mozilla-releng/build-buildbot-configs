@@ -24,6 +24,7 @@ BRANCHES = {
     'birch': {},
     'cedar': {},
     'cypress': {},
+    'elm': {},
     'pine': {},
     'fx-team': {},
     'graphics': {},
@@ -1681,6 +1682,11 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_un
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY
+BRANCHES['elm']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = REFTEST[:]
+del BRANCHES['elm']['platforms']['linux64_gecko']
+del BRANCHES['elm']['platforms']['linux32_gecko']
+del BRANCHES['elm']['platforms']['macosx64_gecko']
+BRANCHES['elm']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = []
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST

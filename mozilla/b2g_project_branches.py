@@ -55,12 +55,13 @@ PROJECT_BRANCHES = {
     },
     # B2G builds not required on date
     # 'date': {},
-    # Customizations for windows update service changes (bug 481815)
-    #'elm': {},
-    'fig': {
+    'elm': {
         'lock_platforms': True,
-        'platforms': {},
+        'platforms': {
+            'emulator': {},
+        }
     },
+    'fig': {},
     'gum': {},
     'holly': {},
     'jamun': {},

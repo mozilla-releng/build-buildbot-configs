@@ -598,6 +598,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'inari_eng': {
         'mozharness_config': {
@@ -613,6 +615,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'leo': {
         'mozharness_config': {
@@ -628,6 +632,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'leo_eng': {
         'mozharness_config': {
@@ -643,6 +649,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'hamachi': {
         'mozharness_config': {
@@ -658,6 +666,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
     },
     'hamachi_eng': {
         'mozharness_config': {
@@ -673,6 +683,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
     },
     'nexus-4': {
         'mozharness_config': {
@@ -692,6 +704,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'helix': {
         'mozharness_config': {
@@ -707,6 +721,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'helix_eng': {
         'mozharness_config': {
@@ -722,6 +738,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'emulator': {
         'mozharness_config': {
@@ -802,6 +820,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
     },
 }
 
@@ -919,6 +939,7 @@ BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_periodic'] = False
 BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
@@ -945,15 +966,32 @@ BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_periodic'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
@@ -974,14 +1012,29 @@ BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_periodic'] = False
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_periodic'] = False
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_periodic'] = False
 # Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
 # builds not needed for B2G 1.2
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
@@ -1004,6 +1057,8 @@ BRANCHES['mozilla-b2g18']['start_minute'] = [12]
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
+BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_periodic'] = False
+BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
@@ -1013,9 +1068,15 @@ BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_repo'] =
 BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_periodic'] = False
+BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
@@ -1063,6 +1124,10 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_periodic'] = False
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix_eng']['enable_periodic'] = False
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None

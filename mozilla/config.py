@@ -1321,11 +1321,6 @@ PROJECTS = {
     'fuzzing': {
         'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
     },
-    'nanojit': {
-        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
-        'hgurl': 'https://hg.mozilla.org',
-        'repo_path': 'projects/nanojit-central',
-    },
 }
 
 
@@ -2250,20 +2245,18 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 for name, branch in items_before(BRANCHES, 'gecko_version', 22):
     branch["run_make_alive_tests"] = False
 
-# Disable non-unified builds on gecko < 29
-for name, branch in items_before(BRANCHES, 'gecko_version', 29):
-    for pc in branch['platforms'].values():
+# Only run non-unified builds on m-c and derived branches
+for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
+               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g26_v1_2",
+               "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd", "try"):
+    for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
-# Disable non-unified builds on try
-for pc in BRANCHES['try']['platforms'].values():
-    if 'enable_nonunified_build' in pc:
-        pc['enable_nonunified_build'] = False
-
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd", "mozilla-esr24"):
+               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g26_v1_2",
+               "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
     if 'linux64-br-haz' in BRANCHES[branch]['platforms']:
