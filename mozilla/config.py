@@ -1867,7 +1867,7 @@ BRANCHES['mozilla-b2g26_v1_2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g26_v1_2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g26_v1_2'
 BRANCHES['mozilla-b2g26_v1_2']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g26_v1_2']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['enable_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['create_snippet'] = False
 BRANCHES['mozilla-b2g26_v1_2']['create_partial'] = False
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
