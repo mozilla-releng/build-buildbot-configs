@@ -1010,7 +1010,7 @@ PLATFORM_VARS = {
                               'glibc-static', 'openssh-clients', 'mpfr',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
                               'libstdc++.i686', 'zlib.i686',
-                              'freetype-2.3.11-6.el6_1.8.x86_64'],
+                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1076,7 +1076,7 @@ PLATFORM_VARS = {
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
                               'libstdc++.i686', 'zlib.i686',
-                              'freetype-2.3.11-6.el6_1.8.x86_64'],
+                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1140,7 +1140,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
                               "gcc472_0moz1", "gcc473_0moz1", 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1209,7 +1209,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1276,7 +1276,7 @@ PLATFORM_VARS = {
                               'java-1.6.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
-                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64'],
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant'],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
@@ -1369,6 +1369,7 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational'],
+            'linux-debug': ['arm-sim'],
         },
         'platforms': {
             'linux': {},
@@ -1389,9 +1390,11 @@ BRANCH_PROJECTS = {
         'try_by_default': ['rootanalysis', 'generational'],
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting'],
+            'linux-debug': ['arm-sim'],
         },
         'platforms': {
             'linux64-debug': {}, # Filled in with branch-specific values below
+            'linux-debug': {}, # Filled in with branch-specific values below
         },
         'hgurl': 'https://hg.mozilla.org/',
     },
@@ -1864,7 +1867,7 @@ BRANCHES['mozilla-b2g26_v1_2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g26_v1_2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g26_v1_2'
 BRANCHES['mozilla-b2g26_v1_2']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g26_v1_2']['enable_nightly'] = True
+BRANCHES['mozilla-b2g26_v1_2']['enable_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['create_snippet'] = False
 BRANCHES['mozilla-b2g26_v1_2']['create_partial'] = False
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g26_v1_2'
@@ -2240,6 +2243,19 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                 [x for x in pc['mock_packages'] if x not in (
                     'gstreamer-devel', 'gstreamer-plugins-base-devel',
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                )]
+
+# ant test on try
+## ant rides the trains (Bug 971841)
+# for name, branch in items_before(BRANCHES, 'gecko_version', 30):
+for name, branch in BRANCHES.items():
+    if "try" in name:
+        continue # Remove this condition when we switch to riding trains
+    for plat, pc in branch['platforms'].items():
+        if 'mock_packages' in pc and "android" in plat:
+            pc['mock_packages'] = \
+                [x for x in pc['mock_packages'] if x not in (
+                    'ant',
                 )]
 
 for name, branch in items_before(BRANCHES, 'gecko_version', 22):
