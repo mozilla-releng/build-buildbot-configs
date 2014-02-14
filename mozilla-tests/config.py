@@ -634,6 +634,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
         'ubuntu32_vm': {
@@ -702,6 +705,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
                 },
             },
         },
@@ -778,6 +784,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
         'ubuntu64_vm': {
@@ -849,6 +858,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
                 },
             },
         },
@@ -928,6 +940,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
     },
@@ -1005,6 +1020,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         },
         'win7-ix': {
@@ -1069,6 +1087,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
             },
@@ -1138,6 +1159,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
             },
@@ -1220,6 +1244,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         },
         'win64_vm': {
@@ -1287,6 +1314,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
             },
@@ -1366,6 +1396,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
             },
         },
         'mountainlion': {
@@ -1435,6 +1468,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'mozbase': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
             },
         },
         'mavericks': {
@@ -1503,6 +1539,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
             },
         },
