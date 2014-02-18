@@ -43,7 +43,7 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-release',
+        'name': 'comm-esr24',
         'clonePath': 'releases/comm-esr24',
         'path': 'users/stage-ffxbld/comm-esr24',
         'revision': 'default',
@@ -132,7 +132,7 @@ releaseConfig['mozconfigs']          = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = True
+releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
