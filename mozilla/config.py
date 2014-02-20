@@ -1319,7 +1319,7 @@ PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['linux', 'linux64', 'macosx64-lion', 'win64'],
+        'platforms': ['mock-hw', 'macosx64-lion', 'win64'],
     },
 }
 

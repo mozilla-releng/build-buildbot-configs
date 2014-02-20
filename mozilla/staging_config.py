@@ -15,6 +15,7 @@ STAGING_SLAVES = {
     'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7 + LINUX64_EC2,
+    'mock-hw':          MOCK_DL120G7,
 }
 
 SLAVES = deepcopy(STAGING_SLAVES)
