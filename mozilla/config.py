@@ -1387,7 +1387,10 @@ BRANCH_PROJECTS = {
     # Try server builds only triggered on changes to the spidermonkey source
     'spidermonkey_try': {
         'enable_try': True,
-        'try_by_default': ['rootanalysis', 'generational'],
+        'try_by_default': {
+            'rootanalysis': True, # all platforms for which it is defined
+            'generational': set(['linux64-debug']),
+        },
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting'],
             'linux-debug': ['arm-sim'],
