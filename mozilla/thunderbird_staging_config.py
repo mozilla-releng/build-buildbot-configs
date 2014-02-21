@@ -18,7 +18,7 @@ GLOBAL_VARS = {
     # if a failure to notify the master should result in a warning,
     # and sendchange retry count before give up
     'unittest_masters': [
-        ('dev-master01.build.scl1.mozilla.com:9901', True, 1),
+        ('dev-master1.srv.releng.scl3.mozilla.com:9901', True, 1),
         ],
     'xulrunner_tinderbox_tree': 'ThunderbirdTest',
     'weekly_tinderbox_tree': 'ThunderbirdTest',
