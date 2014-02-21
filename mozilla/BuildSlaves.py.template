@@ -13,6 +13,7 @@ SlavePasswords = {
         'android-noion': 'pass',
         'android-x86': 'pass',
         'mock': 'pass',
+        'mock-hw': 'pass',
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'

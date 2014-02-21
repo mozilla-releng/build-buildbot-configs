@@ -1262,7 +1262,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-inbound', 'fx-team', 'try',
-                      'mozilla-b2g26_v1_2', 'birch',
+                      'mozilla-b2g26_v1_2', 'birch', 'cedar',
                       'mozilla-b2g28_v1_3'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):

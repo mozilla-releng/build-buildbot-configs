@@ -189,6 +189,9 @@ PROJECT_BRANCHES = {
     'fig': {},
     'gum': {},
     'holly': {
+        # Mimic mozilla-aurora
+        'gecko_version': 29,
+        'branch_projects': [],
         'pgo_strategy': 'periodic',
         'enable_nightly': True,
         'create_snippet': True,

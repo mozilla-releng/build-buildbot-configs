@@ -22,6 +22,7 @@ SLAVES = {
     'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             MOCK_DL120G7 + LINUX64_EC2 + MOCK_IX,
+    'mock-hw':          MOCK_DL120G7 + MOCK_IX,
 }
 
 TRY_LINUX      = []
