@@ -1392,6 +1392,7 @@ BRANCH_PROJECTS = {
         'try_by_default': {
             'rootanalysis': True, # all platforms for which it is defined
             'generational': set(['linux64-debug']),
+            'arm-sim': True,
         },
         'variants': {
             'linux': ['arm-sim', 'warnaserr'],
