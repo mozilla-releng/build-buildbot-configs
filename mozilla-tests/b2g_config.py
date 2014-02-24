@@ -1639,7 +1639,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
                         '--this-chunk', '1', '--total-chunks', '1',
-                        '--test-manifest', 'tests/mochitest/emulator-jb.ini',
+                        '--test-manifest', 'tests/mochitest/manifests/emulator-jb.ini',
                         '--no-update',
                     ],
                 },
