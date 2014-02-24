@@ -1378,6 +1378,8 @@ BRANCH_PROJECTS = {
             'linux64-debug': {},
             'win32': {},
             'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
             'macosx64': {},
             'macosx64-debug': {},
         },
@@ -1387,14 +1389,30 @@ BRANCH_PROJECTS = {
     # Try server builds only triggered on changes to the spidermonkey source
     'spidermonkey_try': {
         'enable_try': True,
-        'try_by_default': ['rootanalysis', 'generational'],
+        'try_by_default': {
+            'rootanalysis': True, # all platforms for which it is defined
+            'generational': set(['linux64-debug']),
+            'arm-sim': True,
+        },
         'variants': {
-            'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting'],
-            'linux-debug': ['arm-sim'],
+            'linux': ['arm-sim', 'warnaserr'],
+            'linux-debug': ['arm-sim', 'warnaserrdebug'],
+            'linux64':  ['warnaserr'],
+            'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting', 'warnaserrdebug'],
+            'win32': ['generational', 'warnaserr'],
+            'win32-debug': ['generational', 'warnaserrdebug'],
         },
         'platforms': {
-            'linux64-debug': {}, # Filled in with branch-specific values below
-            'linux-debug': {}, # Filled in with branch-specific values below
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
         },
         'hgurl': 'https://hg.mozilla.org/',
     },
@@ -1416,6 +1434,8 @@ BRANCH_PROJECTS = {
             'linux64-debug': {},
             'win32': {},
             'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
             'macosx64': {},
             'macosx64-debug': {},
         },

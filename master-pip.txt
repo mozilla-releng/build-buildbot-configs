@@ -13,4 +13,4 @@ pycrypto==2.3
 pytz==2011d
 wsgiref==0.1.2
 zope.interface==3.6.1
-https://hg.mozilla.org/users/clegnitto_mozilla.com/mozillapulse/archive/ad95569a089e.tar.bz2
+MozillaPulse==0.80
