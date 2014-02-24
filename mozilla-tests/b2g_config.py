@@ -112,7 +112,7 @@ PLATFORMS['emulator']['mozharness_config'] = {
 
 PLATFORMS['emulator-jb']['slave_platforms'] = ['ubuntu64_vm-b2g-emulator-jb']
 PLATFORMS['emulator-jb']['env_name'] = 'linux-perf'
-PLATFORMS['emulator-jb']['ubuntu64_vm-b2g-emulator-jb'] = {'name': "b2g_emulator_jb_vm"}
+PLATFORMS['emulator-jb']['ubuntu64_vm-b2g-emulator-jb'] = {'name': "b2g_emulator-jb_vm"}
 PLATFORMS['emulator-jb']['stage_product'] = 'b2g'
 PLATFORMS['emulator-jb']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
