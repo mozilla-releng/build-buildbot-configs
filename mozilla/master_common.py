@@ -179,10 +179,27 @@ def prioritizeBuilders(buildmaster, builders):
 
     # For each set of slaves, create a list of (priority, builder) for that set
     # of slaves
+    # If we're checking the jacuzzi allocations, then limit the available
+    # slaves by whatever the jacuzzi allocation is.
+    # If we don't incorporate the jacuzzi allocations here, we could end up
+    # with lower priority builders being discarded below which have available
+    # slaves attached and allocated.
+    from buildbotcustom.misc import J
     builders_by_slaves = {}
     for b in builders:
-        slaves = frozenset(s.slave.slavename for s in b[1].slaves if s.slave.slavename in avail_slaves)
-        builders_by_slaves.setdefault(slaves, []).append(b)
+        slaves = [s for s in b[1].slaves if s.slave.slavename in avail_slaves]
+        if getattr(prioritizeBuilders, 'check_jacuzzis', False):
+            try:
+                # Filter the available slaves through the jacuzzi bubbles..
+                slaves = J.get_slaves(b[1].name, slaves)
+            except Exception:
+                twlog.err("handled exception talking to jacuzzi; trying to carry on")
+
+        if slaves:
+            slaves = frozenset(s.slave.slavename for s in slaves)
+            builders_by_slaves.setdefault(slaves, []).append(b)
+        else:
+            log('removed builder %s with no allocated slaves available' % b[1].name)
     log("assigned into %i slave set(s)", len(builders_by_slaves))
 
     # Find the set of builders with the highest priority for each set of slaves
