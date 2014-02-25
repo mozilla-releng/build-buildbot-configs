@@ -1395,7 +1395,7 @@ BRANCH_PROJECTS = {
             'arm-sim': True,
         },
         'variants': {
-            'linux': ['arm-sim', 'warnaserr'],
+            'linux': ['warnaserr'],
             'linux-debug': ['arm-sim', 'warnaserrdebug'],
             'linux64':  ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting', 'warnaserrdebug'],
