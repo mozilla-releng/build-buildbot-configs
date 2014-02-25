@@ -1,5 +1,4 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,87) + [88] + range(93,95)]
-LINUX_VMS      = ['bld-centos5-32-vmw-%03i' % x for x in range(1,7)]
 LINUX_IXS      = []
 LINUX64_IXS    = []
 WIN32_IXS      = []
@@ -15,7 +14,7 @@ if set(WIN64_REV2).intersection(set(WIN64_IXS)):
     raise Exception('WIN64_REV2 and WIN64_IXS overlap')
 
 SLAVES = {
-    'linux':            LINUX_VMS + LINUX_IXS,
+    'linux':            LINUX_IXS,
     'linux64':          LINUX64_IXS,
     'win32':            WIN32_IXS,
     'win64':            WIN64_IXS,
