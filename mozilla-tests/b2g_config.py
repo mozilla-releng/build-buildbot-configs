@@ -1640,7 +1640,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_un
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP
-BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY
+BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['elm']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = REFTEST[:]
 del BRANCHES['elm']['platforms']['linux64_gecko']
 del BRANCHES['elm']['platforms']['linux32_gecko']
@@ -1729,7 +1729,8 @@ for b in BRANCHES.keys():
     branch = BRANCHES[b]
     if b in OLD_BRANCHES:
         for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
-                               ('linux32_gecko', 'ubuntu32_vm-b2gdt')):
+                               ('linux32_gecko', 'ubuntu32_vm-b2gdt'),
+                               ('macosx64_gecko', 'mountainlion-b2gdt')):
             if nested_haskey(branch['platforms'], slave_platform[0], slave_platform[1]):
                 slave_p = branch['platforms'][slave_platform[0]][slave_platform[1]]
                 slave_p['opt_unittest_suites'] = [x for x in slave_p['opt_unittest_suites']
