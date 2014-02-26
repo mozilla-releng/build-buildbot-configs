@@ -1552,7 +1552,6 @@ PLATFORM_UNITTEST_VARS = {
                         '--test-suite', 'mochitest',
                         '--this-chunk', '1', '--total-chunks', '1',
                         '--test-manifest', 'tests/mochitest/manifests/emulator-jb.ini',
-                        '--no-update',
                     ],
                 },
             },
