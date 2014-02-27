@@ -5,6 +5,7 @@ GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
+    'balrog_username': 'stage-tbirdbld',
     'aus2_user': 'tbirdbld',
     'aus2_ssh_key': 'tbirdbld_dsa',
     'aus2_host': 'dev-stage01.srv.releng.scl3.mozilla.com',
