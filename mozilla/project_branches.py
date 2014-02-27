@@ -145,6 +145,7 @@ PROJECT_BRANCHES = {
         'enUS_binaryURL': '/nightly/latest-birch',
         'enable_valgrind': False,
         'branch_projects': [],
+        'enable_nightly': False,
         'lock_platforms': True,
         'platforms': {
             'linux': {},

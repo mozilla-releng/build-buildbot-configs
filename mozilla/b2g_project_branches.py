@@ -46,7 +46,8 @@ PROJECT_BRANCHES = {
         'mozharness_repo': 'https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
         'mozharness_tag': 'default',
     },
-    'birch': {},
+    # Not needed on Birch at the moment, bug 977420.
+    #'birch': {},
     'cedar': {
         'mozharness_tag': 'default',
     },
