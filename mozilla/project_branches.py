@@ -139,10 +139,19 @@ PROJECT_BRANCHES = {
         'create_mobile_snippet': True,
         'enable_l10n': True,
         'enable_l10n_onchange': False,
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
+        'l10n_platforms': ['linux', 'linux64'],
         'l10n_tree': 'fxcentral',
         'l10n_repo_path': 'l10n-central',
         'enUS_binaryURL': '/nightly/latest-birch',
+        'enable_valgrind': False,
+        'branch_projects': [],
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+        }
     },
     'cedar': {
         'mozharness_tag': 'default',
