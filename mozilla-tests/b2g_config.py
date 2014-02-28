@@ -21,7 +21,8 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
     'ash': {},
-    'birch': {},
+    # Not needed right now, see bug 977420
+    #'birch': {},
     'cedar': {},
     'cypress': {},
     'elm': {},
