@@ -41,6 +41,7 @@ GLOBAL_VARS = {
     'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
     'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    'balrog_username': 'stage-ffxbld',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://clobberer-stage.pvt.build.mozilla.org/index.php',
     'disable_tinderbox_mail': True,

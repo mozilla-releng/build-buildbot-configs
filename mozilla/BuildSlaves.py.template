@@ -17,7 +17,9 @@ SlavePasswords = {
         }
 tuxedoUsername = 'user'
 tuxedoPassword = 'passwd'
-balrog_username = 'user'
-balrog_password = 'passwd'
+balrog_credentials = {
+    'user': 'pass',
+    'user2': 'pass',
+}
 blobber_username = 'user'
 blobber_password = 'passwd'

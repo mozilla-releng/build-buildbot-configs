@@ -33,6 +33,7 @@ TRY_SLAVES = {
 }
 
 # Local overrides for default values
+GLOBAL_VARS['balrog_username'] = 'tbirdbld'
 GLOBAL_VARS['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
 GLOBAL_VARS['talos_masters'] = []
 # List of unittest masters to notify of new builds to test,

@@ -666,8 +666,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
-        'enable_periodic': False,
-        'enable_dep': True,
+        'enable_periodic': True,
+        'enable_dep': False,
     },
     'hamachi_eng': {
         'mozharness_config': {
@@ -1206,9 +1206,9 @@ for branch in disabled_branches:
 # MERGE DAY: inari is for B2G 1.0+ (b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                      'mozilla-b2g18'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-b2g26_v1_2',
+                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
         if 'inari' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['inari']
         if 'inari_eng' in BRANCHES[branch]['platforms']:
@@ -1217,22 +1217,24 @@ for branch in BRANCHES:
 # MERGE DAY: leo is for B2G 1.1+ (b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                      'mozilla-b2g18'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
+                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
     # leo-eng isn't for 1.2 anymore, bug 924503
-    if branch not in ('mozilla-central', 'b2g-inbound', 'mozilla-b2g18'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound',
+                      'mozilla-b2g18'):
         if 'leo_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo_eng']
 
 # MERGE DAY: hamachi is for B2G 1.0+ (b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                      'mozilla-b2g18'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
+                      'larch',  # bug 977718
+                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
         if 'hamachi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi']
         if 'hamachi_eng' in BRANCHES[branch]['platforms']:
@@ -1241,8 +1243,9 @@ for branch in BRANCHES:
 # MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3') \
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-b2g26_v1_2',
+                      'mozilla-b2g28_v1_3') \
             and 'nexus-4' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['nexus-4']
 
@@ -1251,7 +1254,7 @@ for branch in BRANCHES:
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
                       'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                      'mozilla-central', 'b2g-inbound'):
+                      'mozilla-central', 'mozilla-inbound', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
         if 'helix_eng' in BRANCHES[branch]['platforms']:
@@ -1271,8 +1274,8 @@ for branch in BRANCHES:
 # MERGE DAY: wasabi is for B2G 1.3+ only
 # When gecko29 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-aurora', 'b2g-inbound',
-                      'mozilla-b2g28_v1_3'):
+    if branch not in ('mozilla-central', 'mozilla-aurora', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-b2g28_v1_3'):
         if 'wasabi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['wasabi']
 

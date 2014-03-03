@@ -145,11 +145,20 @@ PROJECT_BRANCHES = {
         'enUS_binaryURL': '/nightly/latest-birch',
         'enable_valgrind': False,
         'branch_projects': [],
+        'enable_nightly': False,
         'lock_platforms': True,
         'platforms': {
-            'linux': {},
+            'linux': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'talos_slave_platforms': [],
+            },
             'linux-debug': {},
-            'linux64': {},
+            'linux64': {
+                'enable_opt_unittests': False,
+                'enable_debug_unittests': False,
+                'talos_slave_platforms': [],
+            },
             'linux64-debug': {},
         }
     },
