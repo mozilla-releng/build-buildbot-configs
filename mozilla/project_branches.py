@@ -133,6 +133,7 @@ PROJECT_BRANCHES = {
         },
     },
     'birch': {
+        'enable_merging': False,
         'pgo_strategy': 'periodic',
         'enable_nightly': True,
         'create_snippet': True,
