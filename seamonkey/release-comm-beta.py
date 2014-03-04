@@ -32,7 +32,7 @@ releaseConfig['relbranchOverride']          = ''
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_28_0b7_BUILD1 '
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_28_0b7_BUILD1'
 releaseConfig['mozillaRelbranchOverride']   = 'GECKO280b7_2014022720_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
