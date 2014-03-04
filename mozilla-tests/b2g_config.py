@@ -800,6 +800,11 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': GAIA_UI[:],
             'debug_unittest_suites': [],
             'suite_config': {
+                'gaia-integration': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                    ],
+                },
                 'gaia-ui-test': {
                     'extra_args': [
                         '--cfg', 'marionette/gaia_ui_test_prod_config.py',
