@@ -533,6 +533,22 @@ JITTEST = [
         'script_maxtime': 7200,
     }),
 ]
+JITTEST_CHUNKED = [
+    ('jittest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--jittest-suite', 'jittest1'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('jittest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--jittest-suite', 'jittest2'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
 MOZBASE = [
     ('mozbase', {
         'use_mozharness': True,
@@ -541,7 +557,6 @@ MOZBASE = [
         'script_maxtime': 7200,
     }),
 ]
-
 WEB_PLATFORM_TESTS = [
     ('web-platform-tests', {
         'use_mozharness': True,
@@ -1770,17 +1785,24 @@ for platform in PLATFORMS.keys():
 for platform in PLATFORMS.keys():
     if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
         continue
+
+    # run in chunks on linux only
+    if platform in ['linux', 'linux64', 'linux64-asan']:
+        jittests = JITTEST_CHUNKED
+    else:
+        jittests = JITTEST
+ 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         # cedar
         if slave_platform in BRANCHES['cedar']['platforms'][platform]:
             if 'fedora' in slave_platform:
                 continue  # Don't use rev3 mini's with this stuff
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
         # try
         if slave_platform in BRANCHES['try']['platforms'][platform]:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += JITTEST[:]
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += JITTEST[:]
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
