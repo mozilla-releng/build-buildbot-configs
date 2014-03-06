@@ -729,7 +729,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'packageTests': True,
-            'build_space': 14,
+            'build_space': 15,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
