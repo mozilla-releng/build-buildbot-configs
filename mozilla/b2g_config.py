@@ -44,6 +44,8 @@ GLOBAL_VARS.update({
         'emulator-debug': {},
         'emulator-jb': {},
         'emulator-jb-debug': {},
+        'emulator-kk': {},
+        'emulator-kk-debug': {},
         'wasabi': {},
     },
     'enable_nightly': True,
@@ -805,6 +807,42 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
     },
+    'emulator-kk': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
+                           '--b2g-config-dir', 'emulator-kk',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
+    'emulator-kk-debug': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'generic', '--config', 'b2g/releng-emulator.py',
+                           '--b2g-config-dir', 'emulator-kk', '--debug',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
     'wasabi': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1172,6 +1210,10 @@ BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-jb', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-kk']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-kk']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-kk', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-kk-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_args'] = ['--target', 'generic', '--config', 'b2g/releng-try.py', '--b2g-config-dir', 'emulator-kk', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
 # Migrate branches to win64-rev2 platform (bug 918414)
 disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release']] + ['b2g-inbound', 'mozilla-inbound'])
@@ -1270,6 +1312,14 @@ for branch in BRANCHES:
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
+
+# MERGE DAY: emulator-kk is for B2G 1.3+
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound', 'try'):
+        if 'emulator-kk' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['emulator-kk']
+        if 'emulator-kk-debug' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['emulator-kk-debug']
 
 # MERGE DAY: wasabi is for B2G 1.3+ only
 # When gecko29 is on aurora we don't run B2G builds there, but will on beta
