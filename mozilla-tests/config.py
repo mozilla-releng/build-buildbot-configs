@@ -567,10 +567,13 @@ WEB_PLATFORM_TESTS = [
     }),
 ]
 
+JETPACK = [
+    ('jetpack', ['jetpack'])
+]
 
 UNITTEST_SUITES = {
-    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,
-    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE,
+    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + JETPACK,
+    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE + JETPACK,
 }
 
 
@@ -1746,21 +1749,29 @@ BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCH
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
+######## elm
+MOCHITEST_BROWSER_CHROME = [
+    ('mochitest-browser-chrome', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'browser-chrome'],
+        'blob_upload': True,
+        'script_maxtime': 9900,
+    }),
+]
+BRANCHES['elm']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['elm']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['elm']['platforms']['linux']['fedora']['opt_unittest_suites'] = []
+BRANCHES['elm']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = []
+BRANCHES['elm']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] = []
+BRANCHES['elm']['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] = []
+BRANCHES['elm']['platforms']['linux']['fedora']['debug_unittest_suites'] = MOCHITEST_BROWSER_CHROME[:]
+BRANCHES['elm']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = MOCHITEST_BROWSER_CHROME[:]
+BRANCHES['elm']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = MOCHITEST_BROWSER_CHROME[:]
+BRANCHES['elm']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = MOCHITEST_BROWSER_CHROME[:]
+
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
-
-# Load jetpack for branches that have at least FF21
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
-    for pf in PLATFORMS:
-        if pf not in branch['platforms']:
-            continue
-        for slave_pf in branch['platforms'][pf].get(
-                'slave_platforms', PLATFORMS[pf]['slave_platforms']):
-            if slave_pf not in branch['platforms'][pf]:
-                continue
-            branch['platforms'][pf][slave_pf]['opt_unittest_suites'].append(('jetpack', ['jetpack']))
-            branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
-
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
@@ -1876,6 +1887,10 @@ def get_ubuntu_unittests(branch, test_type):
 # Remove Ubuntu platform from the release trains,
 # use either Fedora or Ubuntu for other branches
 for branch in BRANCHES:
+    # Remove the elm exception when we fix b2g reftests
+    # and debug mochitest-browser-chrome bug 837017 and bug 850105
+    if branch == "elm":
+        continue
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:

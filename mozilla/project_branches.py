@@ -201,8 +201,15 @@ PROJECT_BRANCHES = {
         'enable_merging': False,
     },
     'elm': {
+        'enable_valgrind': False,
         'lock_platforms': True,
         'platforms': {
+            'linux': {
+                'enable_nonunified_build': False,
+            },
+            'linux64': {
+                'enable_nonunified_build': False,
+            },
         },
     },
     'fig': {},
