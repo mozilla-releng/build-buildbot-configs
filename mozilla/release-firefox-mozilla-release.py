@@ -22,11 +22,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '27.0.1'
-releaseConfig['appVersion']          = '27.0.1'
+releaseConfig['version']             = '28.0'
+releaseConfig['appVersion']          = '28.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_27_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_28_0'
 releaseConfig['partialUpdates']      = {
 
     '27.0': {
@@ -35,16 +35,16 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_27_0',
     },
 
-    '25.0.1': {
-        'appVersion': '25.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_25_0_1',
-    },
-
     '26.0': {
         'appVersion': '26.0',
         'buildNumber': 2,
         'baseTag': 'FIREFOX_26_0',
+    },
+
+    '27.0.1': {
+        'appVersion': '27.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_27_0_1',
     },
 
 }
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '66b0d478ee77',
+        'revision': 'dc38b741b04e',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -149,6 +149,7 @@ releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
+releaseConfig['bouncer_add_euballot'] = True
 
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
