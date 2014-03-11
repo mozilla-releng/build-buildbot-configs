@@ -1746,6 +1746,18 @@ BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCH
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
+# Disable mochitest-browser-chrome on mozilla-b2g branches
+for branch in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
+    for platform in ['linux', 'linux64']:
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        for slave_platform in ['fedora', 'fedora64']:
+            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+                continue
+            slave_p = BRANCHES[branch]['platforms'][platform][slave_platform]
+            slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
+                                                if x[0] if not x[0].startswith('mochitest-browser-chrome')]
+
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
 
