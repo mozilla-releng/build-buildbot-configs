@@ -23,7 +23,6 @@ MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
 
 TALOS_DIRTY_OPTS = {'talosAddOns': ['profiles/dirtyDBs.zip', 'profiles/dirtyMaxDBs.zip']}
 
-TALOS_TP_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5.zip']}
 TALOS_TP_NEW_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64': 'zips/flash64_11_0_d1_98.zip'}, 'pagesets': ['zips/tp5n.zip']}
 
 BRANCHES = {
@@ -423,21 +422,21 @@ MOCHITEST_BC_3 = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-1'],
         'blob_upload': True,
-        'script_maxtime': 7200,
+        'script_maxtime': 4200,
     }),
     ('mochitest-browser-chrome-2', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-2'],
         'blob_upload': True,
-        'script_maxtime': 7200,
+        'script_maxtime': 4200,
     }),
     ('mochitest-browser-chrome-3', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-3'],
         'blob_upload': True,
-        'script_maxtime': 7200,
+        'script_maxtime': 4200,
     }),
 ]
 
