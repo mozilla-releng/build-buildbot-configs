@@ -145,7 +145,7 @@ PLATFORMS['win64']['mozharness_config'] = {
 }
 
 PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
-PLATFORMS['linux']['talos_slave_platforms'] = ['fedora', 'ubuntu32_hw']
+PLATFORMS['linux']['talos_slave_platforms'] = ['ubuntu32_hw']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
@@ -160,7 +160,7 @@ PLATFORMS['linux']['mozharness_config'] = {
 }
 
 PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
-PLATFORMS['linux64']['talos_slave_platforms'] = ['fedora64', 'ubuntu64_hw']
+PLATFORMS['linux64']['talos_slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
@@ -1881,6 +1881,7 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
 
+# MERGE DAY: Remove this on 3/17 merge day
 NON_UBUNTU_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 21)])
 
 
@@ -1907,6 +1908,7 @@ for branch in BRANCHES:
     # and debug mochitest-browser-chrome bug 837017 and bug 850105
     if branch == "elm":
         continue
+    # MERGE DAY: Remove this loop on 3/17 merge day
     if branch in NON_UBUNTU_BRANCHES:
         # Remove Ubuntu completely
         if 'linux64' in BRANCHES[branch]['platforms']:
@@ -1946,21 +1948,6 @@ for branch in BRANCHES:
                                     BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
                             except KeyError:
                                 pass
-
-# TODO get rid of this block after disabling fedora tests everywhere
-NON_UBUNTU_TALOS_BRANCHES = []
-for branch in set(BRANCHES.keys()) - set(NON_UBUNTU_TALOS_BRANCHES):
-    for s in SUITES.iterkeys():
-        if nested_haskey(BRANCHES[branch], 'suites', s, 'options'):
-            options = list(BRANCHES[branch]['suites'][s]['options'])
-            # filter out fedora
-            options[1] = [x for x in options[1] if x not in ('fedora', 'fedora64')]
-            BRANCHES[branch]['suites'][s]['options'] = tuple(options)
-        tests_key = '%s_tests' % s
-        if tests_key in BRANCHES[branch]:
-            tests = list(BRANCHES[branch]['%s_tests' % s])
-            tests[3] = [x for x in tests[3] if x not in ('fedora', 'fedora64')]
-            BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
