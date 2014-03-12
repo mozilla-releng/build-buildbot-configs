@@ -1025,20 +1025,6 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
-for name, branch in items_before(BRANCHES, 'gecko_version', 18):
-    # Disable pymake
-    for p in ('win32', 'win32-debug', 'win64'):
-        if p not in branch['platforms']:
-            continue
-        branch['platforms'][p]['enable_pymake'] = False
-
-# pulseaudio-libs-devel package rides the trains (bug 662417)
-for name, branch in items_before(BRANCHES, 'gecko_version', 21):
-    for p, pc in branch['platforms'].items():
-        if 'mock_packages' in pc:
-            branch['platforms'][p]['mock_packages'] = \
-                [x for x in branch['platforms'][p]['mock_packages'] if x != 'pulseaudio-libs-devel']
-
 # building 32-bit linux in a x86_64 env rides the trains
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for platform in ['linux', 'linux-debug']:
