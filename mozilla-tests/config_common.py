@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 from buildbot.steps.shell import WithProperties
-TALOS_CMD = ['python', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
+TALOS_CMD = ['python', '-u', 'run_tests.py', '--noisy', WithProperties('%(configFile)s')]
 
 
 def loadDefaultValues(BRANCHES, branch, branchConfig):
