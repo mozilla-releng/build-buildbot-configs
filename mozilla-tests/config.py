@@ -1928,6 +1928,10 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
+# Bug 982225 - mozilla-inbound
+BRANCHES['mozilla-inbound']['platforms']['linux-debug']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+BRANCHES['mozilla-inbound']['platforms']['linux64-debug']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
