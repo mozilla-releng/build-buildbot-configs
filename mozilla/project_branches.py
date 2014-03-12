@@ -200,29 +200,7 @@ PROJECT_BRANCHES = {
         },
         'enable_merging': False,
     },
-    'elm': {
-        'mozharness_tag': 'default',
-        'lock_platforms': True,
-        'enable_talos': False,
-        'enable_valgrind': False,
-        'platforms': {
-            'linux': {
-                'enable_opt_unittests': False,
-                'enable_nonunified_build': False,
-            },
-            'linux-debug': {
-                'enable_nonunified_build': False,
-            },
-            'linux64': {
-                'enable_opt_unittests': False,
-                'enable_nonunified_build': False,
-            },
-            'linux64-debug': {
-                'enable_nonunified_build': False,
-            },
-        },
-        'branch_projects': [],
-    },
+    'elm': {},
     'fig': {},
     'gum': {},
     'holly': {

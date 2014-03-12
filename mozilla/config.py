@@ -2178,41 +2178,6 @@ for b in BRANCHES.keys():
         if 'android-noion' in BRANCHES[b]['platforms']:
             del BRANCHES[b]['platforms']['android-noion']
 
-# Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release']] + ['b2g-inbound', 'mozilla-inbound'])
-# Disabled for bug 980976
-win64_rev1_masters = []#['buildbot-master82']
-mixed_branches = ['mozilla-inbound', 'b2g-inbound']
-for b in mixed_branches:
-    if b not in disabled_branches:
-        raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
-win64_rev2_master = True
-for m in win64_rev1_masters:
-    if m in uname()[1]:
-        win64_rev2_master = False
-        break
-for branch in disabled_branches:
-    for platform in ('win32','win32-debug','win64','win64-debug'):
-        if platform not in BRANCHES[branch]['platforms']:
-            continue
-        if branch in mixed_branches and win64_rev2_master:
-            slaves = SLAVES['win64-rev2']
-            if 'try' in branch:
-                slaves = TRY_SLAVES['win64-rev2']
-            BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
-                BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = slaves
-        else:
-            if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
-                BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
-            BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
-            oldslaves = SLAVES['win64']
-            if 'try' in branch:
-                oldslaves = TRY_SLAVES['win64']
-            BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
-            if 'l10n_slaves' in BRANCHES[branch]['platforms'][platform]:
-                BRANCHES[branch]['platforms'][platform]['l10n_slaves'] = oldslaves
-
 for _, branch in items_before(BRANCHES, 'gecko_version', 26):
     for p in 'linux64-asan', 'linux64-asan-debug':
         if p in branch['platforms']:
