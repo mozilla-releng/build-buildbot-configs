@@ -37,6 +37,7 @@ GLOBAL_VARS.update({
         'leo_eng': {},
         'hamachi': {},
         'hamachi_eng': {},
+        'tarako_eng': {},
         'nexus-4': {},
         'helix': {},
         'helix_eng': {},
@@ -688,6 +689,23 @@ PLATFORM_VARS = {
         'enable_periodic': False,
         'enable_dep': True,
     },
+    'tarako_eng': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'tarako', '--config', 'b2g/releng-fota-eng.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
+    },
     'nexus-4': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -884,6 +902,14 @@ BRANCHES = {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
     },
+    'mozilla-b2g28_v1_3t': {
+        'gecko_version': 28,
+        'b2g_version': (1, 3, 0),
+        'platforms': {
+            'tarako_eng': {}
+        },
+        'lock_platforms': True,
+    },
     'try': {
     },
 }
@@ -988,6 +1014,20 @@ BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
+
+######## mozilla-b2g28_v1_3t
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3t'
+BRANCHES['mozilla-b2g28_v1_3t']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_3t'
+BRANCHES['mozilla-b2g28_v1_3t']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
+# Build every night since we have external dependencies like gaia which need
+# building
+BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly_lastgood'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0]
+BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
+BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir_l10n'] = 'fake'
 
 ######## mozilla-b2g28_v1_3
 # This is a path, relative to HGURL, where the repository is located
@@ -1256,6 +1296,12 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['hamachi']
         if 'hamachi_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['hamachi_eng']
+
+# MERGE DAY: tarako is for B2G 1.3t only (gecko28)
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g28_v1_3t',):
+        if 'tarako_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['tarako_eng']
 
 # MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta

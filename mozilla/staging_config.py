@@ -3,9 +3,9 @@ import production_config as pc
 
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(87, 93) if x not in [88]]
 WIN32_IXS      = []
-WIN64_IXS      = ['w64-ix-slave%02i' % x for x in [5]]
+WIN64_IXS      = []
 WIN64_REV2     = ['ix-mn-w0864-%03d' % x for x in range(1,3)] + \
-                 ['w64-ix-slave%02i' % x for x in [4, 22, 80]]
+                 ['w64-ix-slave%02i' % x for x in [4, 5, 22, 80]]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(1, 6)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
