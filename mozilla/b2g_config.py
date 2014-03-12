@@ -1219,35 +1219,6 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_ar
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
 
-# Migrate branches to win64-rev2 platform (bug 918414)
-disabled_branches = set([x for x in BRANCHES.keys() if x not in PROJECT_BRANCHES.keys() + ['try', 'mozilla-central', 'mozilla-aurora', 'mozilla-beta', 'mozilla-release']] + ['b2g-inbound', 'mozilla-inbound'])
-win64_rev1_masters = ['buildbot-master82']
-mixed_branches = ['mozilla-inbound', 'b2g-inbound']
-for b in mixed_branches:
-    if b not in disabled_branches:
-        raise Exception("win64-rev2 mixed branch '%s' must be in disabled branches list")
-win64_rev2_master = True
-for m in win64_rev1_masters:
-    if m in uname()[1]:
-        win64_rev2_master = False
-        break
-for branch in disabled_branches:
-    for platform in ('win32_gecko', 'win32_gecko_localizer'):
-        if platform not in BRANCHES[branch]['platforms']:
-            continue
-        if branch in mixed_branches and win64_rev2_master:
-            slaves = SLAVES['win64-rev2']
-            if 'try' in branch:
-                slaves = TRY_SLAVES['win64-rev2']
-            BRANCHES[branch]['platforms'][platform]['slaves'] = slaves
-        else:
-            if 'PDBSTR_PATH' in BRANCHES[branch]['platforms'][platform]['env']:
-                BRANCHES[branch]['platforms'][platform]['env']['PDBSTR_PATH'] = '/c/Program Files/Debugging Tools for Windows (x64)/srcsrv/pdbstr.exe'
-            BRANCHES[branch]['platforms'][platform]['env']['HG_SHARE_BASE_DIR'] = 'e:/builds/hg-shared'
-            oldslaves = SLAVES['win64']
-            if 'try' in branch:
-                oldslaves = TRY_SLAVES['win64']
-            BRANCHES[branch]['platforms'][platform]['slaves'] = oldslaves
 
 # MERGE DAY: inari is for B2G 1.0+ (b2g18 + gecko26 and higher)
 # When gecko27 is on aurora we don't run B2G builds there, but will on beta
