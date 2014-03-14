@@ -1643,6 +1643,7 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-central']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
@@ -1650,6 +1651,7 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
+BRANCHES['mozilla-central']['periodic_interval'] = 3
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
