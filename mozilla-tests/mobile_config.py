@@ -610,8 +610,8 @@ ANDROID_MOZHARNESS_JITTEST = [
 ]
 
 ANDROID_MOZHARNESS_CPPUNITTEST = [
-    ('cppunittest',
-     {'suite': 'cppunittest',
+    ('cppunit',
+     {'suite': 'cppunit',
       'use_mozharness': True,
       'script_path': 'scripts/android_panda.py',
       'extra_args': ['--cfg', 'android/android_panda_releng.py', '--cppunittest-suite', 'cppunittest'],
@@ -1461,7 +1461,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 28):
                 continue
             for type_ in branch['platforms'][platform][slave_plat]:
                 for suite in branch['platforms'][platform][slave_plat][type_][:]:
-                    if "cppunittest" in suite[0]:
+                    if "cppunit" in suite[0]:
                         branch['platforms'][platform][slave_plat][type_].remove(suite)
 
 # schedule jittests for pandas on cedar and try

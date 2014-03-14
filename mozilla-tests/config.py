@@ -429,7 +429,7 @@ MOCHITEST_BC_3 = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-2'],
         'blob_upload': True,
-        'script_maxtime': 4200,
+        'script_maxtime': 4800,
     }),
     ('mochitest-browser-chrome-3', {
         'use_mozharness': True,
@@ -645,6 +645,12 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'jittest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
@@ -715,6 +721,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-2': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'web-platform-tests': {
@@ -795,6 +807,12 @@ PLATFORM_UNITTEST_VARS = {
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'jittest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
@@ -868,6 +886,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-2': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'web-platform-tests': {
@@ -949,6 +973,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jittest-2': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'web-platform-tests': {

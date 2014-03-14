@@ -1674,6 +1674,7 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
+BRANCHES['mozilla-inbound']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
