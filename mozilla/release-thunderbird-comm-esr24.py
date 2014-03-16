@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.3.0'
-releaseConfig['appVersion']          = '24.3.0'
+releaseConfig['version']             = '24.4.0'
+releaseConfig['appVersion']          = '24.4.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_3_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_4_0'
 releaseConfig['partialUpdates']      = {
 
-    '24.2.0': {
-        'appVersion': '24.2.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_24_2_0',
+    '24.3.0': {
+        'appVersion': '24.3.0',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_24_3_0',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr24',
         'path': 'releases/comm-esr24',
-        'revision': '614096655436',
+        'revision': '290d7629194a',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,7 +55,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '557a5299bc6a',
+        'revision': '4ca6defeab8a',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -131,7 +131,7 @@ releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api/'
+releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
                                           'opensolaris-sparc',
                                           'opensolaris-i386')
