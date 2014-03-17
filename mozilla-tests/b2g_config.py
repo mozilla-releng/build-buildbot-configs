@@ -45,6 +45,10 @@ BRANCHES = {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
     },
+    'mozilla-aurora': {
+        'gecko_version': 30,
+        'b2g_version': (1, 4, 0),
+    },
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
@@ -1672,6 +1676,8 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unitt
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
+BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
+BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['mozilla-inbound']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]

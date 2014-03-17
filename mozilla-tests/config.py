@@ -1860,8 +1860,9 @@ for platform in PLATFORMS.keys():
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = MOCHITEST_BC_3[:]
 
-# Enable metro debug jobs for now
+# Enable metro on cedar for now
 # This may need to follow the trains: see bug 847442 (comment 73)
+BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 
 # Enable web-platform-tests on cedar (non-windows only for now)
@@ -1876,11 +1877,6 @@ for platform in PLATFORMS.keys():
         BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS
 
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS
-
-# Let's add the metro unit tests for Windows 8
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
-    if 'win32' in branch['platforms'] and 'win8' in branch['platforms']['win32']:
-        branch['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
 
 # Enable mozbase unit tests on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=971687

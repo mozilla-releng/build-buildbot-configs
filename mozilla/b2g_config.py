@@ -1,5 +1,4 @@
 from copy import deepcopy
-from os import uname
 
 from config import GLOBAL_VARS, PLATFORM_VARS, SLAVES, TRY_SLAVES
 
@@ -39,6 +38,7 @@ GLOBAL_VARS.update({
         'hamachi_eng': {},
         'tarako_eng': {},
         'nexus-4': {},
+        'nexus-4_eng': {},
         'helix': {},
         'helix_eng': {},
         'emulator': {},
@@ -727,6 +727,27 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_dep': False,
     },
+    'nexus-4_eng': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'mako', '--config', 'b2g/releng-otoro-eng.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'env': {
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:/usr/local/bin:/usr/lib64/ccache:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/cltbld/bin',
+            'PYTHONPATH': '/tools/python27/lib',
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
     'helix': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -887,6 +908,10 @@ PLATFORM_VARS = {
 BRANCHES = {
     'mozilla-central': {
     },
+    'mozilla-aurora': {
+        'gecko_version': 30,
+        'b2g_version': (1, 4, 0),
+    },
     'mozilla-b2g18': {
         'gecko_version': 18,
     },
@@ -1010,10 +1035,37 @@ BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
+
+######## mozilla-aurora
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-aurora']['start_hour'] = [0, 16]
+BRANCHES['mozilla-aurora']['start_minute'] = [2]
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_periodic'] = False
+BRANCHES['mozilla-aurora']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['leo_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['nexus-4']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['helix_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['helix_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1070,6 +1122,8 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_periodic'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
@@ -1113,6 +1167,9 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_periodic'] = False
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['enable_periodic'] = False
+BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 # Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
 # builds not needed for B2G 1.2
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
@@ -1261,7 +1318,6 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
 
 
 # MERGE DAY: inari is for B2G 1.0+ (b2g18 + gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
                       'b2g-inbound', 'mozilla-b2g26_v1_2',
@@ -1272,7 +1328,6 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['inari_eng']
 
 # MERGE DAY: leo is for B2G 1.1+ (b2g18 + gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
                       'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
@@ -1280,13 +1335,12 @@ for branch in BRANCHES:
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
     # leo-eng isn't for 1.2 anymore, bug 924503
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound',
-                      'mozilla-b2g18'):
+    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound', 'mozilla-b2g18'):
         if 'leo_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo_eng']
 
 # MERGE DAY: hamachi is for B2G 1.0+ (b2g18 + gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
                       'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
@@ -1304,16 +1358,15 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['tarako_eng']
 
 # MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
                       'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g28_v1_3') \
-            and 'nexus-4' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['nexus-4']
+                      'mozilla-b2g28_v1_3'):
+        for p in ('nexus-4', 'nexus-4_eng'):
+            if p in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][p]
 
 # MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
                       'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
@@ -1324,7 +1377,6 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['helix_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
-# When gecko27 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-inbound', 'fx-team', 'try',
@@ -1336,14 +1388,14 @@ for branch in BRANCHES:
 
 # MERGE DAY: emulator-kk is for B2G 1.3+
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound', 'try'):
+    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound',
+                      'try', 'mozilla-aurora'):
         if 'emulator-kk' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator-kk']
         if 'emulator-kk-debug' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['emulator-kk-debug']
 
 # MERGE DAY: wasabi is for B2G 1.3+ only
-# When gecko29 is on aurora we don't run B2G builds there, but will on beta
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-aurora', 'mozilla-inbound',
                       'b2g-inbound', 'mozilla-b2g28_v1_3'):

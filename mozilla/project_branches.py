@@ -90,6 +90,7 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'enable_talos': False,
+        'lock_platforms': True,
         'platforms': {
             'macosx64': {
                 'nightly_signing_servers': 'mac-nightly-signing',
@@ -98,6 +99,9 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
         },
