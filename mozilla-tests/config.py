@@ -429,7 +429,7 @@ MOCHITEST_BC_3 = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-2'],
         'blob_upload': True,
-        'script_maxtime': 4800,
+        'script_maxtime': 6000,
     }),
     ('mochitest-browser-chrome-3', {
         'use_mozharness': True,
@@ -1770,6 +1770,8 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
+BRANCHES['try']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+BRANCHES['try']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
 
 ######## cedar
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]

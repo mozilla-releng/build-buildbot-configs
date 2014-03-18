@@ -1686,6 +1686,7 @@ BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
