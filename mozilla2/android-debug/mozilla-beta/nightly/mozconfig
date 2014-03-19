@@ -16,7 +16,6 @@ ac_add_options --with-android-platform=/tools/android-ndk-r5c/platforms/android-
 ac_add_options --with-system-zlib
 ac_add_options --enable-debug-symbols="-gdwarf-2"
 
-export JAVA_HOME=/tools/jdk6
 export MOZILLA_OFFICIAL=1
 
 ac_add_options --with-branding=mobile/android/branding/beta
