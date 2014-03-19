@@ -112,6 +112,23 @@ GLOBAL_VARS = {
             'toolkit',
             ],
     'use_old_updater': False,
+    # currently we have the logic that if we a platform uses mozharness as
+    # the build step logic, it will have 'mozharness_config' in its dict.
+    # But we need to differentiate when that platform is a FF
+    # desktop build opposed to the existing other mozharness builds (ie: b2g,
+    # spider, etc). This list serves that purpose:
+    'mozharness_desktop_build_platforms': [
+        'linux', 'linux64', 'linux64-asan', 'linux64-asan-debug',
+        'linux64-st-an-debug', 'linux-debug', 'linux64-debug'
+    ],
+    # rather than repeat these options in each of these options in
+    # every platform, let's define the arguments here and when we want to
+    # turn an existing platform into say a 'nightly' version, add the options
+    #  from here and append it to 'extra_options'
+    'mozharness_desktop_extra_options': {
+        'nightly': ['--enable-pgo', '--enable-nightly'],
+        'pgo': ['--enable-pgo'],
+    }
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
@@ -123,11 +140,21 @@ SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 PLATFORM_VARS = {
         'linux': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_32_builds.py',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+            'dep_signing_servers': 'dep-signing',
+            'base_name': 'Linux %(branch)s',
+
             'product_name': 'firefox',
             'unittest_platform': 'linux-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'src_mozconfig': 'browser/config/mozconfigs/linux32/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux32/xulrunner',
@@ -167,7 +194,6 @@ PLATFORM_VARS = {
             'test_pretty_names': True,
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
             'tooltool_script': '/builds/tooltool.py',
             'use_mock': True,
@@ -218,6 +244,22 @@ PLATFORM_VARS = {
             ],
         },
         'linux64': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+            # because non-unified platforms are defined at misc level,
+            # we can not add a new platform in config.py for this but instead
+            #  add another config on all non-unified able platforms
+            'mozharness_non_unified_extra_args': [
+                '--config', 'builds/releng_base_linux_64_builds.py',
+                '--custom-build-variant-cfg', 'non-unified',
+            ],
+
             'product_name': 'firefox',
             'unittest_platform': 'linux64-opt',
             'app_name': 'browser',
@@ -295,6 +337,16 @@ PLATFORM_VARS = {
             ],
         },
         'linux64-asan': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--custom-build-variant-cfg', 'asan',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+
             'product_name': 'firefox',
             'unittest_platform': 'linux64-asan-opt',
             'app_name': 'browser',
@@ -372,6 +424,16 @@ PLATFORM_VARS = {
             'consider_for_nightly': False,
         },
         'linux64-asan-debug': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--custom-build-variant-cfg', 'asan-and-debug',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+
             'enable_nightly': True,
             'product_name': 'firefox',
             'unittest_platform': 'linux64-asan-debug',
@@ -450,6 +512,16 @@ PLATFORM_VARS = {
             'consider_for_nightly': False,
         },
         'linux64-st-an-debug': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--custom-build-variant-cfg', 'stat-and-debug',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+
             'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'linux64-st-an-debug',
@@ -717,6 +789,16 @@ PLATFORM_VARS = {
             'consider_for_nightly': False,
         },
         'linux-debug': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_32_builds.py',
+                    '--custom-build-variant-cfg', 'debug',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+
             'enable_nightly': False,
             'enable_xulrunner': False,
             'product_name': 'firefox',
@@ -800,6 +882,23 @@ PLATFORM_VARS = {
             ],
         },
         'linux64-debug': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--custom-build-variant-cfg', 'debug',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+            # because non-unified platforms are defined at misc level,
+            # we can not add a new platform in config.py for this but instead
+            #  add another config on all non-unified able platforms
+            'mozharness_non_unified_extra_args': [
+                '--config', 'builds/releng_base_linux_64_builds.py',
+                '--custom-build-variant-cfg', 'debug-and-non-unified',
+            ],
+
             'enable_nightly': False,
             'enable_xulrunner': False,
             'product_name': 'firefox',
