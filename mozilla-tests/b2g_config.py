@@ -8,7 +8,7 @@ reload(b2g_localconfig)
 
 import master_common
 reload(master_common)
-from master_common import setMainFirefoxVersions, items_before
+from master_common import setMainFirefoxVersions, items_before, items_at_least
 
 import config_common
 reload(config_common)
@@ -1644,22 +1644,20 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
-BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST + GAIA_UI
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + GAIA_UI
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
-BRANCHES['elm']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = REFTEST[:]
-del BRANCHES['elm']['platforms']['linux64_gecko']
-del BRANCHES['elm']['platforms']['linux32_gecko']
-del BRANCHES['elm']['platforms']['macosx64_gecko']
-BRANCHES['elm']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = []
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] += JSREFTEST
-BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = ALL_UNITTESTS[:] + JSREFTEST
-BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
+BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST
+BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
+    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
@@ -1680,13 +1678,11 @@ BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
-BRANCHES['mozilla-inbound']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
@@ -1750,6 +1746,13 @@ for b in BRANCHES.keys():
                                                   if x[0] not in excluded_tests]
                 slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                                     if x[0] not in excluded_tests]
+
+# Enabled b2g reftests on EC2
+# For branches newer than Gecko 30 (including)
+# Once we uplift the patches to esr24 and the b2g branches
+# we can get enable the REFTESTS for every branch
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST[:]
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
