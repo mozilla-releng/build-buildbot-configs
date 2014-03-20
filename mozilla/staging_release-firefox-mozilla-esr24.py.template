@@ -45,6 +45,7 @@ releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
+        # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'clonePath': 'releases/mozilla-esr24',
         'path': '{{ branch }}',
