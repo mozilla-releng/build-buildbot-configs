@@ -1,5 +1,4 @@
 import time
-import random
 import re
 
 c = BuildmasterConfig = {}
@@ -168,83 +167,65 @@ def prioritizeBuilders(buildmaster, builders):
                 seen_slaves.add(s.slave.slavename)
     log("found %i available of %i connected slaves", len(avail_slaves), len(seen_slaves))
 
-    # Remove builders we have no slaves for
-    builders = filter(lambda builder: [s for s in builder.slaves if s.slave.slavename in avail_slaves], builders)
-    log("builders with slaves: %i", len(builders))
-
-    # Annotate our list of builders with their priority
-    builders = map(lambda builder: (builderPriority(builder, requests[builder.name]), builder), builders)
-    builders.sort()
-    log("prioritized %i builder(s): %s", len(builders), [(p, b.name) for (p, b) in builders])
-
-    # For each set of slaves, create a list of (priority, builder) for that set
-    # of slaves
+    # Find which builders have slaves available
     # If we're checking the jacuzzi allocations, then limit the available
     # slaves by whatever the jacuzzi allocation is.
     # If we don't incorporate the jacuzzi allocations here, we could end up
     # with lower priority builders being discarded below which have available
     # slaves attached and allocated.
     from buildbotcustom.misc import J
-    builders_by_slaves = {}
+    builders_with_slaves = []
     for b in builders:
-        slaves = [s for s in b[1].slaves if s.slave.slavename in avail_slaves]
+        slaves = [s for s in b.slaves if s.slave.slavename in avail_slaves]
         if getattr(prioritizeBuilders, 'check_jacuzzis', False):
             try:
                 # Filter the available slaves through the jacuzzi bubbles..
-                slaves = J.get_slaves(b[1].name, slaves)
+                slaves = J.get_slaves(b.name, slaves)
             except Exception:
                 twlog.err("handled exception talking to jacuzzi; trying to carry on")
 
         if slaves:
-            slaves = frozenset(s.slave.slavename for s in slaves)
-            builders_by_slaves.setdefault(slaves, []).append(b)
+            builders_with_slaves.append(b)
         else:
-            log('removed builder %s with no allocated slaves available' % b[1].name)
-    log("assigned into %i slave set(s)", len(builders_by_slaves))
+            log('removed builder %s with no allocated slaves available' % b.name)
+    log("builders with slaves: %i", len(builders_with_slaves))
 
-    # Find the set of builders with the highest priority for each set of slaves
-    # If there are multiple builders with the same priority, keep all of them,
-    # but discard builders with lower priority.
-    # By removing lower priority builders, we avoid the situation where a slave
-    # connects when the master is partway through iterating through the full
-    # set of builders and assigns work to lower priority builders while there's
-    # still work pending for higher priority builders.
-    # If we do end up discarding lower priority builders, we should re-run the
-    # builder loop after assigning the high-priority work.
+    # Annotate our list of builders with their priority
+    builders_with_slaves = map(lambda builder: (builderPriority(builder, requests[builder.name]), builder), builders_with_slaves)
+    builders_with_slaves.sort()
+    log("prioritized %i builder(s): %s", len(builders_with_slaves), [(p, b.name) for (p, b) in builders_with_slaves])
+
+    # Process as many builders as we have slaves available,
+    # in sorted order. e.g. if we have 3 builders [b0, b1, b2], and 2 connected
+    # slaves, then return [b0, b1].
+    # NB. Both b0 and b1 can fail to assign work if their nextSlave functions
+    # return None, in which case b2 will be starved.
+    # It's possible (but hopefully rare!) that b0 will steal all available
+    # slaves, b1 will be skipped over, a slave will connect, and then b2 will
+    # run and get the slave.
+    log("using up to first %i builders:", len(avail_slaves))
     run_again = False
-    important_builders = set()
-    for slaves, builder_list in builders_by_slaves.items():
-        builder_list.sort()
-        # The first entry in the list is the builder with the highest priority
-        best_priority = builder_list[0][0]
-        if len(slaves) < 20:
-            log("finding important builders for slaves: %s", list(slaves))
-        else:
-            log("finding important builders for slaves: %s", list(slaves)[:20] + ["..."])
+    important_builders = []
+    for p, b in builders_with_slaves[:len(avail_slaves)]:
+        log("important builder %s (p = %s)", b.name, p)
+        important_builders.append(b)
+    # Log out ones we've skipped
+    for p, b in builders_with_slaves[len(avail_slaves):]:
+        run_again = True
+        log("unimportant builder %s (p = %s)", b.name, p)
 
-        for p, b in builder_list:
-            if p == best_priority:
-                important_builders.add(b)
-                log("important builder %s (p == %s)", b.name, p)
-            else:
-                run_again = True
-                log("unimportant builder %s (%s != %s)", b.name, p, best_priority)
+    # Now we're left with enough important builders for our connected slaves
     log("found %i important builder(s): %s", len(important_builders), [b.name for b in important_builders])
 
-    # Now we're left with important builders for all the slave pools
-    builders = list(important_builders)
-    # They should be all the same priority now, so we can shuffle them to make
-    # sure we assign jobs to slaves fairly
-    log("shuffling important builders")
-    random.shuffle(builders)
-
-    # We've ended up dropping some builders
+    # We've ended up dropping some builders, so run the builder loop again soon
     if run_again:
         log("triggering builder loop again since we've dropped some lower priority builders")
-        buildmaster.botmaster.loop.trigger()
+        # Trigger the builder loop to run again in a few seconds
+        from twisted.internet import reactor
+        reactor.callLater(10, buildmaster.botmaster.loop.trigger)
     log("finished prioritization")
 
-    return builders
+    return important_builders
 
 c['prioritizeBuilders'] = prioritizeBuilders
 

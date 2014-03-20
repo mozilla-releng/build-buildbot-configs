@@ -59,6 +59,7 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
+        # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'clonePath': 'releases/mozilla-esr24',
         'path': 'users/stage-ffxbld/mozilla-esr24',

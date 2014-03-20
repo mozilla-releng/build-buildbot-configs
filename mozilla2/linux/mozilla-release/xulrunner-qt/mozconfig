@@ -1,5 +1,4 @@
 export MOZILLA_OFFICIAL=1
-export JAVA_HOME=/tools/jdk
 
 # For NSS symbols
 export MOZ_DEBUG_SYMBOLS=1
