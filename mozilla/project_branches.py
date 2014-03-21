@@ -212,27 +212,21 @@ PROJECT_BRANCHES = {
     'fig': {},
     'gum': {},
     'holly': {
-        # Mimic mozilla-aurora
-        'gecko_version': 29,
         'branch_projects': [],
-        'pgo_strategy': 'periodic',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
+        'pgo_strategy': None,
+        'lock_platforms': True,
+        'enable_nightly': False,
         'platforms': {
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
         },
+        'enable_talos': False,
     },
     'jamun': {},
     'larch': {},

@@ -1801,6 +1801,16 @@ BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
+# Filter the tests that are enabled on holly for bug 985718.
+for platform in BRANCHES['holly']['platforms'].keys():
+    if platform not in PLATFORMS:
+        continue
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
+        for suite in ['debug_unittest_suites', 'opt_unittest_suites']:
+            slave_p[suite] = MOCHITEST + REFTEST_NO_IPC
+
 # Disable mochitest-browser-chrome on mozilla-b2g branches
 for branch in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     for platform in ['linux', 'linux64']:
