@@ -122,6 +122,8 @@ releaseConfig['mozconfigs']          = {
     'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']      = 'beta'
+releaseConfig['testChannels']        = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']  = [27,28]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -130,9 +132,6 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False

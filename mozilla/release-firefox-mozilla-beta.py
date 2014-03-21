@@ -128,6 +128,8 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 releaseConfig['releaseChannel']      = 'beta'
+releaseConfig['testChannels']        = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']  = [25,26]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True

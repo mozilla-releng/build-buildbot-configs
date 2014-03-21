@@ -118,10 +118,7 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False

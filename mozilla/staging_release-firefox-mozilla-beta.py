@@ -133,6 +133,8 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 releaseConfig['releaseChannel']      = 'beta'
+releaseConfig['testChannels']        = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']  = [19,20]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -140,10 +142,7 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_beta.py'
 
 releaseConfig['releaseUptake']       = 3
 releaseConfig['releasetestUptake']   = 1
