@@ -131,7 +131,7 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_beta.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
