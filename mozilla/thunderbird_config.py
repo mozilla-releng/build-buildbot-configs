@@ -86,6 +86,7 @@ GLOBAL_VARS.update({
             'toolkit',
             'security/manager',
         ],
+    'default_l10n_space': 4,
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
     'use_old_updater': False,
