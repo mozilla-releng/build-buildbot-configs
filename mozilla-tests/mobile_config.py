@@ -1086,6 +1086,18 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
         },
     ),
+    ('crashtest-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'crashtest-5',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
     ('robocop-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
