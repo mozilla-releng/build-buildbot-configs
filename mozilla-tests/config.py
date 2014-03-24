@@ -1801,8 +1801,6 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
-BRANCHES['try']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-BRANCHES['try']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
 
 ######## cedar
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
@@ -1902,6 +1900,10 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = MOCHITEST_BC_3[:]
+        # We are enabling debug mochitest-browser-chrome everywhere for Linux/Linux64
+        # This is to skip adding it twice
+        if slave_platform in ('ubuntu32_vm', 'ubuntu64_vm'):
+            continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3[:]
         else:
@@ -2001,9 +2003,14 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
-# Bug 982225 - mozilla-inbound
-BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-BRANCHES['mozilla-inbound']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+# Enable debug mochitest-browser-chrome on EC2
+# For branches newer than Gecko 30 (including)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    if 'linux' in branch['platforms']:
+        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+    if 'linux64' in branch['platforms']:
+        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
