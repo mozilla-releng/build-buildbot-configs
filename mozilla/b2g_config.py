@@ -931,7 +931,15 @@ BRANCHES = {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
         'platforms': {
-            'tarako_eng': {}
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-jb': {},
+            'emulator-jb-debug': {},
+            'linux32_gecko': {},
+            'linux64_gecko': {},
+            'macosx64_gecko': {},
+            'win32_gecko': {},
+            'tarako_eng': {},
         },
         'lock_platforms': True,
     },
@@ -1080,6 +1088,10 @@ BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0]
 BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux32_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux64_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['macosx64_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['win32_gecko']['enable_nightly'] = False
 
 ######## mozilla-b2g28_v1_3
 # This is a path, relative to HGURL, where the repository is located
@@ -1381,7 +1393,7 @@ for branch in BRANCHES:
     if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
                       'mozilla-inbound', 'fx-team', 'try',
                       'mozilla-b2g26_v1_2', 'birch', 'cedar',
-                      'mozilla-b2g28_v1_3'):
+                      'mozilla-b2g28_v1_3', 'mozilla-b2g28_v1_3t'):
         for p in BRANCHES[branch]['platforms'].keys():
             if p.startswith("emulator-jb"):
                 del BRANCHES[branch]['platforms'][p]
