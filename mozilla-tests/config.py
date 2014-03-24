@@ -1859,9 +1859,6 @@ for platform in PLATFORMS.keys():
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
-    if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
-        continue
-
     # run in chunks on linux only
     if platform in ['linux', 'linux64', 'linux64-asan']:
         jittests = JITTEST_CHUNKED
@@ -1869,16 +1866,17 @@ for platform in PLATFORMS.keys():
         jittests = JITTEST
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        # cedar
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            if 'fedora' in slave_platform:
-                continue  # Don't use rev3 mini's with this stuff
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
-        # try
-        if slave_platform in BRANCHES['try']['platforms'][platform]:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+        if platform in BRANCHES['cedar']['platforms']:
+            if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+                if 'fedora' in slave_platform:
+                    continue  # Don't use rev3 mini's with this stuff
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+
+        if platform in BRANCHES['try']['platforms']:
+            if slave_platform in BRANCHES['try']['platforms'][platform]:
+                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
