@@ -1688,6 +1688,7 @@ PROJECTS = {
         'branches': ['fx-team'],
         'platforms': {
             'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
+            'ubuntu64-asan_vm': {'ext': 'linux-x86_64-asan.tar.bz2', 'debug': False},
             'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
