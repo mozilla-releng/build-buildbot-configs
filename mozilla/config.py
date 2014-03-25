@@ -1748,6 +1748,7 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-central']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-central']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
