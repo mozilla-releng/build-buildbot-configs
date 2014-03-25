@@ -64,6 +64,15 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g28_v1_3t': {
+        'datazilla_url': None,
+        'gecko_version': 28,
+        'platforms': {
+            # desktop per bug 986213
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1679,6 +1688,7 @@ PROJECTS = {
         'branches': ['fx-team'],
         'platforms': {
             'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
+            'ubuntu64-asan_vm': {'ext': 'linux-x86_64-asan.tar.bz2', 'debug': False},
             'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
@@ -1779,6 +1789,10 @@ BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64']['talos_slave_platforms'] = []
 
+######### mozilla-b2g28_v1_3t
+BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
+BRANCHES['mozilla-b2g28_v1_3t']['pgo_strategy'] = 'per-checkin'
+
 ######## try
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
@@ -1788,8 +1802,6 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
 BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
-BRANCHES['try']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-BRANCHES['try']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
 
 ######## cedar
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
@@ -1800,6 +1812,16 @@ BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += REFTES
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += REFTEST_OMTC[:]
+
+# Filter the tests that are enabled on holly for bug 985718.
+for platform in BRANCHES['holly']['platforms'].keys():
+    if platform not in PLATFORMS:
+        continue
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
+        for suite in ['debug_unittest_suites', 'opt_unittest_suites']:
+            slave_p[suite] = MOCHITEST + REFTEST_NO_IPC
 
 # Disable mochitest-browser-chrome on mozilla-b2g branches
 for branch in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
@@ -1849,9 +1871,6 @@ for platform in PLATFORMS.keys():
 
 # Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
 for platform in PLATFORMS.keys():
-    if platform not in (BRANCHES['cedar']['platforms'] or BRANCHES['try']['platforms']):
-        continue
-
     # run in chunks on linux only
     if platform in ['linux', 'linux64', 'linux64-asan']:
         jittests = JITTEST_CHUNKED
@@ -1859,16 +1878,17 @@ for platform in PLATFORMS.keys():
         jittests = JITTEST
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        # cedar
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            if 'fedora' in slave_platform:
-                continue  # Don't use rev3 mini's with this stuff
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
-        # try
-        if slave_platform in BRANCHES['try']['platforms'][platform]:
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+        if platform in BRANCHES['cedar']['platforms']:
+            if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+                if 'fedora' in slave_platform:
+                    continue  # Don't use rev3 mini's with this stuff
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+
+        if platform in BRANCHES['try']['platforms']:
+            if slave_platform in BRANCHES['try']['platforms'][platform]:
+                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
 
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
@@ -1881,6 +1901,10 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = MOCHITEST_BC_3[:]
+        # We are enabling debug mochitest-browser-chrome everywhere for Linux/Linux64
+        # This is to skip adding it twice
+        if slave_platform in ('ubuntu32_vm', 'ubuntu64_vm'):
+            continue
         if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3[:]
         else:
@@ -1980,9 +2004,14 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
-# Bug 982225 - mozilla-inbound
-BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-BRANCHES['mozilla-inbound']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+# Enable debug mochitest-browser-chrome on EC2
+# For branches newer than Gecko 30 (including)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    if 'linux' in branch['platforms']:
+        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+    if 'linux64' in branch['platforms']:
+        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():

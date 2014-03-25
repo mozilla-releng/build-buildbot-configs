@@ -45,6 +45,10 @@ BRANCHES = {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
     },
+    'mozilla-b2g28_v1_3t': {
+        'gecko_version': 28,
+        'b2g_version': (1, 3, 0),
+    },
     'mozilla-aurora': {
         'gecko_version': 30,
         'b2g_version': (1, 4, 0),
@@ -1674,6 +1678,7 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unitt
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
+BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
@@ -1758,7 +1763,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
                   'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
-                  'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3'):
+                  'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
+                  'mozilla-b2g28_v1_3t'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):

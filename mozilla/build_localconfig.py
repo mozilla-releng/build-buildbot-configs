@@ -35,6 +35,7 @@ else:
         'mozilla-b2g18_v1_1_0_hd',
         'mozilla-b2g26_v1_2',
         'mozilla-b2g28_v1_3',
+        'mozilla-b2g28_v1_3t',
     ])
 if 'limit_tb_branches' in master_config:
     ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]

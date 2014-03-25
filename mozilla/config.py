@@ -87,6 +87,7 @@ GLOBAL_VARS = {
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,
+    'enable_xulrunner': False,
     'valgrind_platforms': ('linux64',),
 
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
@@ -195,7 +196,7 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
-            'tooltool_script': '/builds/tooltool.py',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -308,7 +309,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-            'tooltool_script': '/builds/tooltool.py',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -1606,6 +1607,16 @@ BRANCHES = {
             'android-noion': {},
         },
     },
+    'mozilla-b2g28_v1_3t': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 28,
+        'platforms': {
+            # desktop per bug 986213
+            'linux64': {},
+            'linux64-debug': {},
+        },
+    },
     'mozilla-b2g18': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1737,6 +1748,7 @@ for branch in BRANCHES.keys():
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
+BRANCHES['mozilla-central']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-central']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
@@ -2027,6 +2039,13 @@ BRANCHES['mozilla-b2g28_v1_3']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g28_v1_3']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enabled_products'] = ['firefox', 'mobile']
+
+######## mozilla-b2g28_v1_3t
+BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
+BRANCHES['mozilla-b2g28_v1_3t']['enable_l10n'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['enable_valgrind'] = False
 
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
@@ -2347,15 +2366,17 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 22):
 
 # Only run non-unified builds on m-c and derived branches
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g26_v1_2",
-               "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd", "try"):
+               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g28_v1_3t",
+               "mozilla-b2g26_v1_2", "mozilla-b2g18",
+               "mozilla-b2g18_v1_1_0_hd", "try"):
     for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g26_v1_2",
+               "mozilla-esr24", "mozilla-b2g28_v1_3",
+               "mozilla-b2g28_v1_3t", "mozilla-b2g26_v1_2",
                "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
