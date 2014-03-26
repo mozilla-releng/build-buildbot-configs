@@ -36,6 +36,7 @@ GLOBAL_VARS.update({
         'leo_eng': {},
         'hamachi': {},
         'hamachi_eng': {},
+        'tarako': {},
         'tarako_eng': {},
         'nexus-4': {},
         'nexus-4_eng': {},
@@ -689,6 +690,23 @@ PLATFORM_VARS = {
         'enable_periodic': False,
         'enable_dep': True,
     },
+    'tarako': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'tarako', '--config', 'b2g/releng-fota-updates.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
+    },
     'tarako_eng': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -939,6 +957,7 @@ BRANCHES = {
             'linux64_gecko': {},
             'macosx64_gecko': {},
             'win32_gecko': {},
+            'tarako': {},
             'tarako_eng': {},
         },
         'lock_platforms': True,
@@ -1092,6 +1111,8 @@ BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux32_gecko']['enable_nightly'] 
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['macosx64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['win32_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3
 # This is a path, relative to HGURL, where the repository is located
@@ -1366,6 +1387,8 @@ for branch in BRANCHES:
 # MERGE DAY: tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g28_v1_3t',):
+        if 'tarako' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['tarako']
         if 'tarako_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['tarako_eng']
 
