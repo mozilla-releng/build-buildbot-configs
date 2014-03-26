@@ -2041,7 +2041,7 @@ BRANCHES['mozilla-b2g28_v1_3']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g28_v1_3t
-BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
+BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3t'
 BRANCHES['mozilla-b2g28_v1_3t']['enable_l10n'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['enable_xulrunner'] = False
