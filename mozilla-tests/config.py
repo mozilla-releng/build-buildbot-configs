@@ -425,6 +425,16 @@ MOCHITEST = [
     }),
 ]
 
+MOCHITEST_DT = [
+    ('mochitest-devtools', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-devtools-chrome'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MOCHITEST_BC_3 = [
     ('mochitest-browser-chrome-1', {
         'use_mozharness': True,
@@ -2011,6 +2021,29 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
         branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
+
+# Enable mochitest-devtools on all branches that support browser-chrome, requires gecko 31
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+  if name == "cedar":
+    if 'linux' in branch['platforms']:
+        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
+    if 'linux64' in branch['platforms']:
+        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
+
+    if 'win32' in branch['platforms']:
+        branch['platforms']['win32']['xp-ix']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['win32']['win7-ix']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['win32']['win8']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['win32']['xp-ix']['opt_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['win32']['win7-ix']['opt_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['win32']['win8']['opt_unittest_suites'] += MOCHITEST_DT[:]
+    if 'macosx64' in branch['platforms']:
+        branch['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] += MOCHITEST_DT[:]
 
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
