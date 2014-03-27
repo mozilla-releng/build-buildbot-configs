@@ -1116,7 +1116,6 @@ BRANCHES['mozilla-b2g28_v1_3t']['gaia_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g28_v1_3t']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0]
 BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
@@ -1136,7 +1135,6 @@ BRANCHES['mozilla-b2g28_v1_3']['gaia_l10n_root'] = 'https://hg.mozilla.org/relea
 BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
@@ -1190,7 +1188,6 @@ BRANCHES['mozilla-b2g26_v1_2']['gaia_l10n_root'] = 'https://hg.mozilla.org/relea
 BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g26_v1_2']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
@@ -1238,7 +1235,6 @@ BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/g
 BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18']['start_minute'] = [12]
@@ -1293,7 +1289,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
