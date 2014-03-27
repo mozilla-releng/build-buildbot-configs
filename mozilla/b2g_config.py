@@ -323,6 +323,7 @@ PLATFORM_VARS = {
             '--gecko-languages-file', 'build/b2g/locales/all-locales',
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
+        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/win32/releng.manifest',
     },
     'linux32_gecko_localizer': {
         'product_name': 'b2g',
@@ -587,6 +588,7 @@ PLATFORM_VARS = {
             '--gecko-languages-file', 'build/b2g/locales/all-locales',
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
+        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/win32/releng.manifest',
     },
     'inari': {
         'mozharness_config': {
