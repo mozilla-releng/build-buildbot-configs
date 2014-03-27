@@ -1070,6 +1070,12 @@ BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -1095,6 +1101,12 @@ BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['helix_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1104,7 +1116,6 @@ BRANCHES['mozilla-b2g28_v1_3t']['gaia_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g28_v1_3t']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0]
 BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
@@ -1124,7 +1135,6 @@ BRANCHES['mozilla-b2g28_v1_3']['gaia_l10n_root'] = 'https://hg.mozilla.org/relea
 BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
@@ -1163,6 +1173,12 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_n
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-jb']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
 ######## mozilla-b2g26_v1_2
 # This is a path, relative to HGURL, where the repository is located
@@ -1172,7 +1188,6 @@ BRANCHES['mozilla-b2g26_v1_2']['gaia_l10n_root'] = 'https://hg.mozilla.org/relea
 BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g26_v1_2']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
@@ -1220,7 +1235,6 @@ BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/g
 BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g18']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18']['start_minute'] = [12]
@@ -1275,7 +1289,6 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_nightly_lastgood'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
