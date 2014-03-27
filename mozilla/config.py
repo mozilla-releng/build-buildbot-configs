@@ -741,6 +741,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64': {
             'product_name': 'firefox',
@@ -790,6 +791,7 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'linux-debug': {
             'mozharness_config': {
@@ -1043,6 +1045,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64-debug': {
             'enable_nightly': False,
@@ -1080,6 +1083,7 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
             'consider_for_nightly': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'android': {
             'product_name': 'firefox',
