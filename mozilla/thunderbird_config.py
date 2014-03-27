@@ -361,6 +361,7 @@ PLATFORM_VARS = {
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'mail/config/tooltool-manifests/win32/releng.manifest',
         },
         'win64': {
             'product_name': 'thunderbird',
@@ -405,6 +406,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'test_pretty_names': True,
             'l10n_check_test': False,
+            'tooltool_manifest_src': 'mail/config/tooltool-manifests/win64/releng.manifest',
         },
         'linux-debug': {
             'enable_nightly': False,
@@ -611,6 +613,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'mail/config/tooltool-manifests/win32/releng.manifest',
         },
 }
 

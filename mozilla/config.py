@@ -740,6 +740,7 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
         },
         'win64': {
             'product_name': 'firefox',
@@ -788,6 +789,7 @@ PLATFORM_VARS = {
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
             'consider_for_nightly': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
         },
         'linux-debug': {
             'mozharness_config': {
@@ -1040,6 +1042,7 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
         },
         'win64-debug': {
             'enable_nightly': False,
@@ -1076,6 +1079,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'consider_for_nightly': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
         },
         'android': {
             'product_name': 'firefox',
