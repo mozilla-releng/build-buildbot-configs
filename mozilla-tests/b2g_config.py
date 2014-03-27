@@ -1825,7 +1825,7 @@ for b in BRANCHES.keys():
 # For branches newer than Gecko 30 (including)
 # Once we uplift the patches to esr24 and the b2g branches
 # we can get enable the REFTESTS for every branch
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
     branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
 
 # Disable macosx64_gecko gaia-ui tests on older branches
