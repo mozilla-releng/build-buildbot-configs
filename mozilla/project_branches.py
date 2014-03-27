@@ -172,10 +172,6 @@ PROJECT_BRANCHES = {
         'enable_talos': True,
         'talos_suites': {
             'xperf': 1,
-            'tp5o-metro': 1,
-            'other-metro': 1,
-            'svgr-metro': 1,
-            'dromaeojs-metro': 1,
         },
         'enable_opt_unittests': True,
         'mobile_platforms': {
