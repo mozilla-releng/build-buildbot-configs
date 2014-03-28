@@ -6,7 +6,7 @@ from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites
 
 import master_common
 reload(master_common)
-from master_common import setMainFirefoxVersions, items_before
+from master_common import setMainFirefoxVersions, items_before, items_at_least
 
 import project_branches
 reload(project_branches)
@@ -1560,12 +1560,53 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 22):
         del branch['platforms']['android']['panda_android']
         branch['platforms']['android']['slave_platforms'] = ['tegra_android']
 
-# Do android debug only on cedar
-for branch in BRANCHES:
-    if branch not in ('cedar') and \
-            'android' in BRANCHES[branch]['platforms'] and \
-            'enable_debug_unittests' in BRANCHES[branch]['platforms']['android']:
-        BRANCHES[branch]['platforms']['android']['enable_debug_unittests'] = False
+# Panda debug enabled on trunk that rides the trains
+#this stanza is to disable it for branches on an older version of gecko
+for name, branch in items_before(BRANCHES, 'gecko_version', 31):
+    # Loop removes it from any branch that gets beyond here
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform == ('android'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue
+            if not branch['platforms'][platform][slave_plat]['debug_unittest_suites']:
+                continue
+            else:
+                branch['platforms'][platform]['enable_debug_unittests'] = False
+
+BRANCHES['cedar']['platforms']['android']['enable_debug_unittests'] = True
+#this loop is to limit the debug tests run on trunk branches to M4,M5,M6,M7,J1,J2,J3 only for panda-android
+d = ['mochitest-4', 'mochitest-5', 'mochitest-6', 'mochitest-7', 'jsreftest-1','jsreftest-2', 'jsreftest-3', ]
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+    # Loop removes it from any branch that gets beyond here
+    if name in ('cedar', ):
+        continue
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform == ('android'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue
+            if not branch['platforms'][platform][slave_plat]['debug_unittest_suites']:
+                continue
+            if branch['platforms'][platform]['enable_debug_unittests'] == True:
+                for type in branch['platforms'][platform][slave_plat]:
+                    if 'debug_unittest_suite' in type:
+                        for suite in branch['platforms'][platform][slave_plat][type][:]:
+                            if suite[0] not in d:
+                               branch['platforms'][platform][slave_plat][type].remove(suite)
+
+##have to disable this manually or it blows up in misc.py
+BRANCHES['ash']['platforms']['android']['enable_debug_unittests'] = False
 
 # XPCShell (Gecko 23 based)
 for name, branch in items_before(BRANCHES, 'gecko_version', 23):
