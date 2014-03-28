@@ -362,6 +362,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/win32/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64': {
             'product_name': 'thunderbird',
@@ -407,6 +408,7 @@ PLATFORM_VARS = {
             'test_pretty_names': True,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'linux-debug': {
             'enable_nightly': False,
@@ -614,6 +616,7 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/win32/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
 }
 
