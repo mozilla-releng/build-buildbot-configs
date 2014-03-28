@@ -64,7 +64,8 @@ PROJECT_BRANCHES = {
     },
     'fig': {},
     'gum': {},
-    'holly': {},
+    # disabled for bug 985718
+    #'holly': {},
     'jamun': {},
     'larch': {},
     'maple': {},
