@@ -2035,8 +2035,8 @@ for branch in BRANCHES:
 
                 for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
                     if suite[0] not in ubuntu_tests:
-                        if branch == "cedar":
-                            # Don't disable any Ubuntu test on Cedar
+                        if branch in ("cedar", "try"):
+                            # Don't disable any Ubuntu test on Cedar or Try
                             continue
                         BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
                     else:
