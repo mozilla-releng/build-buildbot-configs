@@ -2064,6 +2064,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_DT[:]
         branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
+    if 'linux64-asan' in branch['platforms']:
+        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
+
 
     if 'win32' in branch['platforms']:
         branch['platforms']['win32']['xp-ix']['debug_unittest_suites'] += MOCHITEST_DT[:]
@@ -2077,6 +2081,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         branch['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] += MOCHITEST_DT[:]
         branch['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += MOCHITEST_DT[:]
         branch['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['macosx64']['mavericks']['debug_unittest_suites'] += MOCHITEST_DT[:]
+        branch['platforms']['macosx64']['mavericks']['opt_unittest_suites'] += MOCHITEST_DT[:]
 
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
