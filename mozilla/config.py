@@ -2288,12 +2288,6 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % project_name
         PROJECTS[branch_project_name] = project
 
-# Disable pymake (bug 593585)
-for name, branch in items_before(BRANCHES, 'gecko_version', 18):
-    for p in ('win32', 'win32-debug', 'win64', 'win64-debug'):
-        if p in branch['platforms']:
-            branch['platforms'][p]['enable_pymake'] = False
-
 # MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for b in BRANCHES.keys():
     if b not in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
