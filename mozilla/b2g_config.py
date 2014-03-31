@@ -1165,6 +1165,7 @@ BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
