@@ -857,7 +857,7 @@ ANDROID_X86_MOZHARNESS_UNITTEST_DICT = {
 # End of Androidx86 configurations
 
 # Beginning Android 2.3 configurations
-ANDROID_2_3_MOZHARNESS_DICT = [
+ANDROID_2_3_MOZHARNESS_ENABLED_DICT = [
     ('mochitest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -1002,6 +1002,94 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
         },
     ),
+    ('robocop-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'robocop-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'robocop-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'robocop-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('robocop-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'robocop-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('xpcshell-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'xpcshell-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('xpcshell-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'xpcshell-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('xpcshell-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'xpcshell-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+
+# Beginning Android 2.3 configurations
+ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [    
     ('mochitest-gl', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -1266,93 +1354,10 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
         },
     ),
-    ('robocop-1', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'robocop-1',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('robocop-2', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'robocop-2',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('robocop-3', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'robocop-3',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('robocop-4', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'robocop-4',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('xpcshell-1', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'xpcshell-1',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('xpcshell-2', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'xpcshell-2',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-    ('xpcshell-3', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'xpcshell-3',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
 ]
 
 # Funky DICT naming
+ANDROID_2_3_MOZHARNESS_DICT =  ANDROID_2_3_MOZHARNESS_ENABLED_DICT +  ANDROID_2_3_MOZHARNESS_DISABLED_DICT
 ANDROID_2_3_MOZHARNESS_UNITTEST_DICT = {
    'opt_unittest_suites': ANDROID_2_3_MOZHARNESS_DICT,
    'debug_unittest_suites': [],
@@ -1548,6 +1553,22 @@ BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'
 BRANCHES['ash']['platforms']['android']['vm_android_2_3'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
+
+#enable 2.3 tests to ride the trains but only mochitest, robocop and xpshell bug 989462
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+    # Loop removes it from any branch that gets beyond here
+    if name in ('ash',):
+        continue
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform == ('android'):
+            continue
+        BRANCHES[name]['platforms']['android']['vm_android_2_3'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_ENABLED_DICT),
+            'debug_unittest_suites': []
+        }
+       
 
 # MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for branch in BRANCHES:
