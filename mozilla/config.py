@@ -2299,32 +2299,6 @@ for _, branch in items_before(BRANCHES, 'gecko_version', 26):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
-# Building 32-bit linux in a x86_64 env rides the trains (bug 857697)
-for name, branch in items_before(BRANCHES, 'gecko_version', 24):
-    for platform in ['linux', 'linux-debug']:
-        if platform not in branch['platforms']:
-            continue
-        branch['platforms'][platform]['mock_target'] = 'mozilla-centos6-i386'
-        branch['platforms'][platform]['mock_packages'] = \
-            ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
-             'git', 'ccache', 'glibc-static', 'libstdc++-static',
-             'perl-Test-Simple', 'perl-Config-General',
-             'gtk2-devel', 'libnotify-devel', 'yasm',
-             'alsa-lib-devel', 'libcurl-devel',
-             'wireless-tools-devel', 'libX11-devel',
-             'libXt-devel', 'mesa-libGL-devel',
-             'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-             'mpfr', # required for system compiler
-             'xorg-x11-font*', # fonts required for PGO
-             'imake', # required for makedepend!?!
-             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-             'pulseaudio-libs-devel',
-             'freetype-2.3.11-6.el6_2.9',
-             'freetype-devel-2.3.11-6.el6_2.9',
-            ]
-        if not platform.endswith("-debug"):
-            branch["platforms"][platform]["mock_packages"] += ["valgrind"]
-
 # Building android in a x86_64 env rides the trains (bug 860246)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
     for plat in ['android', 'android-armv6', 'android-noion',
