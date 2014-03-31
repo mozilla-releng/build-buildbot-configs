@@ -830,6 +830,7 @@ PLATFORM_VARS = {
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'TINDERBOX_OUTPUT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -931,6 +932,7 @@ PLATFORM_VARS = {
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'TINDERBOX_OUTPUT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -991,6 +993,7 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'TINDERBOX_OUTPUT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
                 'CCACHE_DIR': '/builds/ccache',
@@ -1035,6 +1038,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'TINDERBOX_OUTPUT': '1',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -1072,6 +1076,7 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'TINDERBOX_OUTPUT': '1',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -2283,12 +2288,6 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % project_name
         PROJECTS[branch_project_name] = project
 
-# Disable pymake (bug 593585)
-for name, branch in items_before(BRANCHES, 'gecko_version', 18):
-    for p in ('win32', 'win32-debug', 'win64', 'win64-debug'):
-        if p in branch['platforms']:
-            branch['platforms'][p]['enable_pymake'] = False
-
 # MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
 for b in BRANCHES.keys():
     if b not in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
@@ -2299,32 +2298,6 @@ for _, branch in items_before(BRANCHES, 'gecko_version', 26):
     for p in 'linux64-asan', 'linux64-asan-debug':
         if p in branch['platforms']:
             del branch['platforms'][p]
-
-# Building 32-bit linux in a x86_64 env rides the trains (bug 857697)
-for name, branch in items_before(BRANCHES, 'gecko_version', 24):
-    for platform in ['linux', 'linux-debug']:
-        if platform not in branch['platforms']:
-            continue
-        branch['platforms'][platform]['mock_target'] = 'mozilla-centos6-i386'
-        branch['platforms'][platform]['mock_packages'] = \
-            ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial',
-             'git', 'ccache', 'glibc-static', 'libstdc++-static',
-             'perl-Test-Simple', 'perl-Config-General',
-             'gtk2-devel', 'libnotify-devel', 'yasm',
-             'alsa-lib-devel', 'libcurl-devel',
-             'wireless-tools-devel', 'libX11-devel',
-             'libXt-devel', 'mesa-libGL-devel',
-             'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-             'mpfr', # required for system compiler
-             'xorg-x11-font*', # fonts required for PGO
-             'imake', # required for makedepend!?!
-             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-             'pulseaudio-libs-devel',
-             'freetype-2.3.11-6.el6_2.9',
-             'freetype-devel-2.3.11-6.el6_2.9',
-            ]
-        if not platform.endswith("-debug"):
-            branch["platforms"][platform]["mock_packages"] += ["valgrind"]
 
 # Building android in a x86_64 env rides the trains (bug 860246)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
@@ -2370,7 +2343,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 22):
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g28_v1_3t",
                "mozilla-b2g26_v1_2", "mozilla-b2g18",
-               "mozilla-b2g18_v1_1_0_hd", "try"):
+               "mozilla-b2g18_v1_1_0_hd", "try", "holly"):
     for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False

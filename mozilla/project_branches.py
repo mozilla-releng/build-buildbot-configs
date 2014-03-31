@@ -139,9 +139,6 @@ PROJECT_BRANCHES = {
     'birch': {
         'enable_merging': False,
         'pgo_strategy': 'periodic',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_mobile_snippet': True,
         'enable_l10n': True,
         'enable_l10n_onchange': False,
         'l10n_platforms': ['linux', 'linux64'],
@@ -179,13 +176,17 @@ PROJECT_BRANCHES = {
                 'enable_opt_unittests': True,
             },
         },
+        # once ready, we can flip this switch and any platform with
+        # mozharness_config in its build config will use mozharness instead
+        # of MozharnessBuildFactory
+        'desktop_mozharness_builds_enabled': True,
     },
     'cypress': {
         'mozharness_tag': 'default',
         'enable_talos': True,
         # once ready, we can flip this switch and any platform with
         # mozharness_config in its build config will use mozharness instead
-        # of MozharnessBuildFactory on only cypress
+        # of MozharnessBuildFactory
         'desktop_mozharness_builds_enabled': False,
     },
     'date': {
