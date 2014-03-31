@@ -139,9 +139,6 @@ PROJECT_BRANCHES = {
     'birch': {
         'enable_merging': False,
         'pgo_strategy': 'periodic',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_mobile_snippet': True,
         'enable_l10n': True,
         'enable_l10n_onchange': False,
         'l10n_platforms': ['linux', 'linux64'],
