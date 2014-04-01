@@ -425,6 +425,44 @@ MOCHITEST = [
     }),
 ]
 
+MOCHITEST_E10S = [
+    ('mochitest-e10s-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain1', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-e10s-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain2', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-e10s-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain3', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-e10s-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain4', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('mochitest-e10s-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain5', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MOCHITEST_DT = [
     ('mochitest-devtools-chrome', {
         'use_mozharness': True,
@@ -706,6 +744,21 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-5': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-e10s-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -794,6 +847,21 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-5': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-1': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-2': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-3': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-4': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-5': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-browser-chrome': {
@@ -2084,6 +2152,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         branch['platforms']['macosx64']['mavericks']['debug_unittest_suites'] += MOCHITEST_DT[:]
         branch['platforms']['macosx64']['mavericks']['opt_unittest_suites'] += MOCHITEST_DT[:]
 
+# Enable e10s Linux mochitests on m-c, m-i & try
+for branch in ['mozilla-central', 'mozilla-inbound', 'try']:
+    BRANCHES[branch]['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
+    BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():

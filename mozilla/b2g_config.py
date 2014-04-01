@@ -25,6 +25,7 @@ GLOBAL_VARS.update({
         'linux32_gecko': {},
         'linux64_gecko': {},
         'macosx64_gecko': {},
+        'macosx64_gecko-debug': {},
         'win32_gecko': {},
         'linux32_gecko_localizer': {},
         'linux64_gecko_localizer': {},
@@ -237,6 +238,60 @@ PLATFORM_VARS = {
         'unittest_masters': GLOBAL_VARS['unittest_masters'],
         'stage_product': 'b2g',
         'stage_platform': 'macosx64_gecko',
+        'update_platform': 'Darwin_x86_64-gcc3',
+        'enable_shared_checkouts': True,
+        'env': {
+            'MOZ_OBJDIR': OBJDIR,
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+            'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+            'TINDERBOX_OUTPUT': '1',
+            'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            'CHOWN_ROOT': '~/bin/chown_root',
+            'CHOWN_REVERT': '~/bin/chown_revert',
+            'LC_ALL': 'C',
+            'PATH': '/tools/python/bin:/tools/buildbot/bin:${PATH}',
+            'WGET_OPTS': '-q -c',
+        },
+        'enable_opt_unittests': False,
+        'enable_checktests': True,
+        'test_pretty_names': False,
+        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
+        'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
+        'gaia_languages_file': 'locales/languages_dev.json',
+        'multi_locale': True,
+        'multi_config_name': 'multi_locale/b2g_macosx64.py',
+        'mozharness_multi_options': [
+            '--build',
+            '--summary',
+            '--gecko-languages-file', 'build/b2g/locales/all-locales',
+        ],
+        'gecko_languages_file': 'build/b2g/locales/all-locales',
+    },
+    'macosx64_gecko-debug': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'unittest_platform': 'macosx64_gecko-debug',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
+        'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/debug',
+        'enable_dep': True,
+        'profiled_build': False,
+        'create_snippet': False,
+        'create_partial': False,
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 13,
+        'upload_symbols': False,
+        'packageTests': True,
+        'slaves': SLAVES['macosx64-lion'],
+        'platform_objdir': OBJDIR,
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
+        'stage_product': 'b2g',
+        'stage_platform': 'macosx64_gecko-debug',
         'update_platform': 'Darwin_x86_64-gcc3',
         'enable_shared_checkouts': True,
         'env': {
@@ -1078,6 +1133,7 @@ BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -1109,6 +1165,7 @@ BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1453,6 +1510,12 @@ for branch in BRANCHES:
                       'b2g-inbound', 'mozilla-b2g28_v1_3'):
         if 'wasabi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['wasabi']
+
+# only central and aurora enabled (bug 956451)
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-aurora'):
+        if 'macosx64_gecko-debug' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['macosx64_gecko-debug']
 
 # gstreamer-devel packages ride the trains (bug 881589)
 for name, branch in items_before(BRANCHES, 'gecko_version', 24):
