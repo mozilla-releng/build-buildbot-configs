@@ -11,6 +11,10 @@ exit=0
 #           directory, even though that isn't how shared memory is
 #           handled on OSX. The directories must be owned by the id
 #           running the tests.
+#
+# if you want to run trial tests without needing to execute the full test suite
+# call this script with: run-test
+
 shm=(/dev/shm)
 good_shm=true
 for needed_dir in ${shm[@]}; do
@@ -23,6 +27,25 @@ $good_shm || exit 1
 
 WORK=test-output
 mkdir $WORK 2>/dev/null
+
+
+function run_unittests {
+for dir in mozilla mozilla-tests; do
+  cd $dir
+  for f in test/*.py; do
+    trial $f || exit=1
+  done
+  rm -rf _trial_temp
+  cd ..
+done
+}
+
+if [ "$1" == "run-tests" ]
+then
+    # run trial and exit
+    run_unittests
+    exit
+fi
 
 actioning="Checking"
 MASTERS_JSON_URL="${MASTERS_JSON_URL:-https://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json}"
@@ -71,14 +94,7 @@ if [ -s $FAILFILE ]; then
     exit 1
 fi
 
-for dir in mozilla mozilla-tests; do
-  cd $dir
-  for f in test/*.py; do
-    trial $f || exit=1
-  done
-  rm -rf _trial_temp
-  cd ..
-done
+run_unittests
 
 if test "$exit" -ne 0 ; then
     check_for_virtual_env
