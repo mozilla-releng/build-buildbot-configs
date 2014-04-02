@@ -64,17 +64,21 @@ BRANCH_PRIORITIES = {
 # builder name, a priority of 100 is used. Lower priority values get run
 # earlier.
 BUILDER_PRIORITIES = [
-    (re.compile('l10n'), 150),
+    (re.compile('l10n'), 25),
 ]
 
 
 def builderPriority(builder, request):
     """
-    Our builder sorting function
-    Returns (branch_priority, request_priority, builder_priority, submitted_at)
+    Builder sorting function
+    Returns (release, magic_number, submitted_at)
+    where magic_number = 5 * branch_priority + req_priority + builder_priority
 
-    NB: lower values returned by this function correspond to a "higher" or
-    "better" priority
+    req_priority is the negative value of the request priority in the
+    database: increasing the request priority increases the builderPriority()
+
+    builder_priority, branch_priority, submitted_at: as they increase their
+    values, the final priority gets less important
     """
     # larger request priorities correspond to more important jobs
     # see buildbot's DBConnector.get_unclaimed_buildrequests which sorts the
@@ -83,23 +87,31 @@ def builderPriority(builder, request):
     req_priority = -request[1]
     submitted_at = request[2]
 
-    branch_priority = DEFAULT_BRANCH_PRIORITY
+    # is this a release?
+    release = 0
     if builder.builder_status.category.startswith('release'):
-        branch_priority = 0
-    elif builder.properties and 'branch' in builder.properties:
-        for branch, p in BRANCH_PRIORITIES.iteritems():
-            if branch in builder.properties['branch']:
-                branch_priority = p
-                break
+        # this is a release, set it to a negative value
+        # lower value means higher priority
+        release = -1
 
-    # Default builder priority is 100
-    builder_priority = 100
-    for exp, p in BUILDER_PRIORITIES:
+    try:
+        branch_priority = BRANCH_PRIORITIES.get(builder.properties['branch'],
+                                                DEFAULT_BRANCH_PRIORITY)
+    except (AttributeError, KeyError):
+        # AttributeError => builder has no properties
+        #       KeyError => builder has no 'branch'
+        branch_priority = DEFAULT_BRANCH_PRIORITY
+
+    # Default builder priority is 0
+    builder_priority = 0
+    for exp, priority in BUILDER_PRIORITIES:
         if exp.search(builder.name):
-            builder_priority = p
+            builder_priority = priority
             break
+    return (release,
+            branch_priority * 5 + req_priority + builder_priority,
+            submitted_at)
 
-    return branch_priority, req_priority, builder_priority, submitted_at
 
 cached_twlog = None
 def getTwlog():

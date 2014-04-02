@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import config_common
 reload(config_common)
-from config_common import TALOS_CMD, loadDefaultValues, loadCustomTalosSuites
+from config_common import loadDefaultValues, loadCustomTalosSuites
 
 import master_common
 reload(master_common)

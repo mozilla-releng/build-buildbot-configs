@@ -1912,7 +1912,7 @@ for platform in PLATFORMS.keys():
                         # wasn't in the list anyways
                         pass
 
-# Enable jittests on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=912997
+# Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for platform in PLATFORMS.keys():
     # run in chunks on linux only
     if platform in ['linux', 'linux64', 'linux64-asan']:
@@ -1920,19 +1920,15 @@ for platform in PLATFORMS.keys():
     else:
         jittests = JITTEST
 
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if platform in BRANCHES['cedar']['platforms']:
-            if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-                if 'fedora' in slave_platform:
-                    continue  # Don't use rev3 mini's with this stuff
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-                BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
-
-        if platform in BRANCHES['try']['platforms']:
-            if slave_platform in BRANCHES['try']['platforms'][platform]:
-                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
-
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    if 'fedora' in slave_platform:
+                        continue  # Don't use rev3 mini's with this stuff
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+     
 # Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['cedar']['platforms']:
@@ -1995,12 +1991,12 @@ def get_ubuntu_unittests(branch, test_type):
                      "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
                      "mochitest-1", "mochitest-2", "mochitest-3",
                      "mochitest-4", "mochitest-5", "mochitest",
-                     "mochitest-browser-chrome", "mochitest-other", "cppunit"],
+                     "mochitest-browser-chrome", "mochitest-other", "cppunit", "jittest-1", "jittest-2"],
                     "debug_unittest_suites":
                     ["crashtest", "jsreftest", "jetpack", "marionette",
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest", "mochitest-other", "cppunit"]}
+                     "mochitest-5", "mochitest", "mochitest-other", "cppunit", "jittest-1", "jittest-2"]}
     return list(UBUNTU_TESTS[test_type])
 
 # Remove Ubuntu platform from the release trains,

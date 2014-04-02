@@ -1175,7 +1175,7 @@ BRANCHES['mozilla-b2g28_v1_3t']['gaia_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g28_v1_3t']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0]
+BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir_l10n'] = 'fake'
