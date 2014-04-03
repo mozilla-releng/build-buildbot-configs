@@ -20,14 +20,6 @@ PROJECT_BRANCHES = {
     'graphics': {
         'enable_talos': False,
     },
-    'ionmonkey': {
-        'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'pgo_strategy': 'periodic',
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
-    },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'enable_perproduct_builds': True,

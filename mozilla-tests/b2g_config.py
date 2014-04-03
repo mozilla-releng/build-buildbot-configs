@@ -57,7 +57,6 @@ BRANCHES = {
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
-    'ionmonkey': {},
     'try': {'coallesce_jobs': False},
 }
 
@@ -1735,7 +1734,6 @@ BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
-BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
