@@ -2399,8 +2399,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         branch['platforms']['macosx64']['mavericks']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
         branch['platforms']['macosx64']['mavericks']['opt_unittest_suites'] += MOCHITEST_DT[:]
 
-# Enable e10s Linux mochitests on m-c, m-i & try
-for branch in ['mozilla-central', 'mozilla-inbound', 'try']:
+# Enable e10s Linux mochitests on main branches
+for branch in ['mozilla-central', 'mozilla-inbound', 'fx-team', 'b2g-inbound', 'try']:
     BRANCHES[branch]['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
     BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
 
