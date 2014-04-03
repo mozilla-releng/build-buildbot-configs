@@ -2360,8 +2360,11 @@ for branch in BRANCHES:
                                 pass
 
 # Enable debug mochitest-browser-chrome on EC2
-# For branches newer than Gecko 30 (including)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+# For branches newer than Gecko 28 (including) and esr24
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 24):
+    # Exclude b2g release branches
+    if name.startswith("mozilla-b2g"):
+        continue
     if 'linux' in branch['platforms']:
         branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
     if 'linux64' in branch['platforms']:
