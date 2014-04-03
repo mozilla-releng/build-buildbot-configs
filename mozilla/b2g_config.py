@@ -24,6 +24,7 @@ GLOBAL_VARS.update({
     'platforms': {
         'linux32_gecko': {},
         'linux64_gecko': {},
+        'linux64_gecko-debug': {},
         'macosx64_gecko': {},
         'macosx64_gecko-debug': {},
         'win32_gecko': {},
@@ -164,6 +165,80 @@ PLATFORM_VARS = {
         'unittest_masters': GLOBAL_VARS['unittest_masters'],
         'stage_product': 'b2g',
         'stage_platform': 'linux64_gecko',
+        'update_platform': 'Linux_x86_64-gcc3',
+        'enable_ccache': True,
+        'enable_shared_checkouts': True,
+        'env': {
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'MOZ_OBJDIR': OBJDIR,
+            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
+            'TINDERBOX_OUTPUT': '1',
+            'MOZ_CRASHREPORTER_NO_REPORT': '1',
+            'CCACHE_DIR': '/builds/ccache',
+            'CCACHE_COMPRESS': '1',
+            'CCACHE_UMASK': '002',
+            'LC_ALL': 'C',
+            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
+            'WGET_OPTS': '-q -c',
+        },
+        'enable_opt_unittests': False,
+        'enable_checktests': True,
+        'enable_build_analysis': True,
+        'test_pretty_names': False,
+        'l10n_check_test': False,
+        'use_mock': True,
+        'mock_target': 'mozilla-centos6-x86_64',
+        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                          'glibc-static', 'libstdc++-static', 'perl-Test-Simple',
+                          'perl-Config-General', 'gtk2-devel', 'libnotify-devel',
+                          'yasm', 'alsa-lib-devel', 'libcurl-devel', 'wireless-tools-devel',
+                          'libX11-devel', 'libXt-devel', 'mesa-libGL-devel',
+                          'gnome-vfs2-devel', 'mpfr', 'xorg-x11-font',
+                          'imake', 'ccache', 'wget',
+                          'gcc472_0moz1', 'gcc473_0moz1',
+                          'freetype-2.3.11-6.el6_2.9', 'freetype-devel-2.3.11-6.el6_2.9',
+                          'gstreamer-devel', 'gstreamer-plugins-base-devel'],
+        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux64/releng.manifest',
+        'gaia_repo': gaia_repo,
+        'gaia_revision_file': gaia_revision_file,
+        'gaia_languages_file': 'locales/languages_dev.json',
+        'mock_copyin_files': [
+            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+        ],
+        'multi_locale': True,
+        'multi_config_name': 'multi_locale/b2g_linux64.py',
+        'mozharness_multi_options': [
+            '--build',
+            '--summary',
+            '--gecko-languages-file', 'build/b2g/locales/all-locales',
+        ],
+        'gecko_languages_file': 'build/b2g/locales/all-locales',
+    },
+    'linux64_gecko-debug': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'unittest_platform': 'linux64_gecko-debug',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
+        'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/debug',
+        'enable_dep': True,
+        'profiled_build': False,
+        'create_snippet': False,
+        'create_partial': False,
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 13,
+        'upload_symbols': False,
+        'packageTests': True,
+        'slaves': SLAVES['mock'],
+        'platform_objdir': OBJDIR,
+        'unittest_masters': GLOBAL_VARS['unittest_masters'],
+        'stage_product': 'b2g',
+        'stage_platform': 'linux64_gecko-debug',
         'update_platform': 'Linux_x86_64-gcc3',
         'enable_ccache': True,
         'enable_shared_checkouts': True,
@@ -1134,6 +1209,7 @@ BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] 
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['linux64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -1166,6 +1242,7 @@ BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] =
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['linux64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1510,6 +1587,11 @@ for branch in BRANCHES:
                       'b2g-inbound', 'mozilla-b2g28_v1_3'):
         if 'wasabi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['wasabi']
+
+for branch in BRANCHES:
+    if branch not in ('mozilla-central', 'mozilla-aurora'):
+        if 'linux64_gecko-debug' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['linux64_gecko-debug']
 
 # only central and aurora enabled (bug 956451)
 for branch in BRANCHES:
