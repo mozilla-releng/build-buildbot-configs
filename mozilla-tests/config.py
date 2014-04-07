@@ -503,7 +503,7 @@ MOCHITEST_BC_3 = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-2'],
         'blob_upload': True,
-        'script_maxtime': 6000,
+        'script_maxtime': 7200,
     }),
     ('mochitest-browser-chrome-3', {
         'use_mozharness': True,
