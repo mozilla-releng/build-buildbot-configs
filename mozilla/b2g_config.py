@@ -96,6 +96,8 @@ PLATFORM_VARS = {
         'enable_shared_checkouts': True,
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'MOZ_OBJDIR': OBJDIR,
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
@@ -170,6 +172,8 @@ PLATFORM_VARS = {
         'enable_shared_checkouts': True,
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'MOZ_OBJDIR': OBJDIR,
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
@@ -318,6 +322,8 @@ PLATFORM_VARS = {
         'env': {
             'MOZ_OBJDIR': OBJDIR,
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
@@ -480,6 +486,8 @@ PLATFORM_VARS = {
         'enable_shared_checkouts': True,
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'MOZ_OBJDIR': OBJDIR,
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
@@ -556,6 +564,8 @@ PLATFORM_VARS = {
         'enable_shared_checkouts': True,
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'MOZ_OBJDIR': OBJDIR,
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
@@ -632,6 +642,8 @@ PLATFORM_VARS = {
         'env': {
             'MOZ_OBJDIR': OBJDIR,
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
             'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
             'SYMBOL_SERVER_USER': 'ffxbld',
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,

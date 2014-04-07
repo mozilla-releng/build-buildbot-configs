@@ -57,7 +57,6 @@ BRANCHES = {
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
-    'ionmonkey': {},
     'try': {'coallesce_jobs': False},
 }
 
@@ -948,7 +947,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'fedora-b2g-emulator': {
-            'opt_unittest_suites': REFTEST + MARIONETTE,
+            'opt_unittest_suites': REFTEST,
             'debug_unittest_suites': [],
             'suite_config': {
                 'crashtest-1': {
@@ -1735,12 +1734,13 @@ BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
-BRANCHES['ionmonkey']['repo_path'] = "projects/ionmonkey"
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['platforms']['emulator']['enable_debug_unittests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
+BRANCHES['mozilla-b2g18']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = []
+BRANCHES['mozilla-b2g18']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_SANITY
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = MARIONETTE + REFTEST_SANITY
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = []
+BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_SANITY
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
@@ -1863,26 +1863,6 @@ for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
-
-# marionette-webapi Ubuntu train, see bug 932988
-FEDORA_MARIONETTE_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 28)])
-for b in BRANCHES.keys():
-    slave_p = None
-    branch = BRANCHES[b]
-    # Figure out which slave platform to delete
-    if b in FEDORA_MARIONETTE_BRANCHES:
-        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
-            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
-    else:
-        if nested_haskey(branch['platforms'], 'emulator', 'fedora-b2g-emulator'):
-            slave_p = branch['platforms']['emulator']['fedora-b2g-emulator']
-    if slave_p:
-        for i in slave_p['opt_unittest_suites']:
-            if i[0] == "marionette-webapi":
-                slave_p['opt_unittest_suites'].remove(i)
-        for i in slave_p['debug_unittest_suites']:
-            if i[0] == "marionette-webapi":
-                slave_p['debug_unittest_suites'].remove(i)
 
 
 if __name__ == "__main__":
