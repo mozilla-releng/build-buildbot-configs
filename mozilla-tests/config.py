@@ -496,6 +496,13 @@ MOCHITEST_DT_2 = [
         'blob_upload': True,
         'script_maxtime': 4800,
     }),
+    ('mochitest-devtools-chrome-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-devtools-chrome-3'],
+        'blob_upload': True,
+        'script_maxtime': 4800,
+    }),
 ]
 
 MOCHITEST_BC_3 = [
