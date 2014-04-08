@@ -566,6 +566,15 @@ GAIA_INTEGRATION = [(
     },
 )]
 
+GAIA_BUILD = [(
+    'gaia-build', {
+        'suite': 'gaia-build',
+        'use_mozharness': True,
+        'script_path': 'scripts/gaia_build_integration.py',
+        'timeout': 1800,
+    },
+)]
+
 GAIA_UNITTESTS = [(
     'gaia-unit', {
         'suite': 'gaia-unit',
@@ -608,7 +617,7 @@ PLATFORM_UNITTEST_VARS = {
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
-                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                        '--cfg', 'b2g/gaia_integration_config.py',
                     ],
                 },
                 'gaia-unit': {
@@ -722,7 +731,12 @@ PLATFORM_UNITTEST_VARS = {
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
-                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                        '--cfg', 'b2g/gaia_integration_config.py',
+                    ],
+                },
+                'gaia-build': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_integration_config.py',
                     ],
                 },
                 'gaia-unit': {
@@ -843,7 +857,7 @@ PLATFORM_UNITTEST_VARS = {
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
-                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                        '--cfg', 'b2g/gaia_integration_config.py',
                     ],
                 },
                 'gaia-ui-test': {
@@ -1712,6 +1726,8 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
+BRANCHES['ash']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+    GAIA_BUILD
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
