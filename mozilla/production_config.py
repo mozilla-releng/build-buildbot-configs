@@ -6,7 +6,7 @@ WIN64_IXS      = []
 WIN64_REV2     = ['w64-ix-slave%02i' % x for x in range(6,30) + range(42,44) + range(75,100) if x not in [22,80,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,110) + range(111,158)] + \
                  ['b-2008-ix-%04i' % x for x in range(1,18)]
-MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,24)] # 5 staging, 17 prod, 17 try
+MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,10) + range(12,14) + range(15,20)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 900)] + \
                  ['bld-linux64-spot-%03d' % x for x in range(1, 900)]
 MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(27, 38)] + \
@@ -38,7 +38,7 @@ TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 900)] + \
 TRY_WIN64_REV2 = ['w64-ix-slave%02i' % x for x in [3] + range(31,75) if x not in [42,43]] + \
                  ['w64-ix-slave%03i' % x for x in [110] + range(158,171)] + \
                  ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,15)]
-TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,43)] + \
+TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,33) + [35] + range(40,43)] + \
                    ['b-linux64-hp-%03d' % x for x in range(1, 7)] + \
                    ['b-linux64-hp-%04d' % x for x in range(1, 20)] + \
                    ['b-linux64-ix-%04d' % x for x in range(12, 14)]
