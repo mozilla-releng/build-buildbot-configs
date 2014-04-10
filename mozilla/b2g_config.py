@@ -137,6 +137,7 @@ PLATFORM_VARS = {
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ('/home/cltbld/.boto', '/builds/.boto'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux32.py',
@@ -213,6 +214,7 @@ PLATFORM_VARS = {
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ('/home/cltbld/.boto', '/builds/.boto'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux64.py',
@@ -287,6 +289,7 @@ PLATFORM_VARS = {
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ('/home/cltbld/.boto', '/builds/.boto'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux64.py',
@@ -530,6 +533,7 @@ PLATFORM_VARS = {
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ('/home/cltbld/.boto', '/builds/.boto'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux32.py',
@@ -608,6 +612,7 @@ PLATFORM_VARS = {
         'mock_copyin_files': [
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+            ('/home/cltbld/.boto', '/builds/.boto'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux64.py',
