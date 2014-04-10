@@ -73,7 +73,7 @@ PLATFORMS = {
 }
 
 PLATFORMS['android']['slave_platforms'] = \
-    ['tegra_android', 'panda_android', 'vm_android_2_3', 'ubuntu64_hw']
+    ['tegra_android', 'panda_android', 'vm_android_2_3']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {
@@ -85,9 +85,6 @@ PLATFORMS['android']['panda_android'] = {
     'mozharness_talos': True,
 }
 PLATFORMS['android']['vm_android_2_3'] = {
-    'name': "Android 2.3 Emulator",
-}
-PLATFORMS['android']['ubuntu64_hw'] = {
     'name': "Android 2.3 Emulator",
 }
 PLATFORMS['android']['stage_product'] = 'mobile'
@@ -1358,6 +1355,13 @@ ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [
     },
     ),
 ]
+
+# Funky DICT naming
+ANDROID_2_3_MOZHARNESS_DICT = ANDROID_2_3_MOZHARNESS_ENABLED_DICT + ANDROID_2_3_MOZHARNESS_DISABLED_DICT
+ANDROID_2_3_MOZHARNESS_UNITTEST_DICT = {
+    'opt_unittest_suites': ANDROID_2_3_MOZHARNESS_DICT,
+    'debug_unittest_suites': [],
+}
 # End of Android 2.3 configurations
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
@@ -1549,10 +1553,7 @@ BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"][
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android']['vm_android_2_3'] = {
-    'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_ENABLED_DICT)
-}
-BRANCHES['ash']['platforms']['android']['ubuntu64_hw'] = {
-    'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DISABLED_DICT)
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
 # enable 2.3 tests to ride the trains but only mochitest, robocop and
