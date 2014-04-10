@@ -20,8 +20,8 @@ for i in range(307,320) + range(874,885):
 
 STAGING_SLAVES['tegra_android-armv6'] = STAGING_SLAVES['tegra_android']
 STAGING_SLAVES['tegra_android-noion'] = STAGING_SLAVES['tegra_android']
-STAGING_SLAVES['fedora-b2g'] = STAGING_SLAVES['fedora']
-STAGING_SLAVES['fedora-b2g-emulator'] = STAGING_SLAVES['fedora']
+STAGING_SLAVES['fedora-b2g'] = {}
+STAGING_SLAVES['fedora-b2g-emulator'] = {}
 
 SLAVES = deepcopy(STAGING_SLAVES)
 

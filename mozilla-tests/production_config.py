@@ -46,21 +46,21 @@ for i in range(1,4):
 for i in range(31,33) + range(35,43) + range(45,49) + range(50,53) + \
          range(54,56) + range(57,64) + range(66,69) + range(70,75) + [77] + \
          range(79,86) + range(87,90) + range(91,106) + range(107,112) + \
-         range(113,116) + range(117,122) + range(129,131) + range(132,137) + \
+         range(113,116) + range(117,124) + range(129,131) + range(132,137) + \
          range(138,143) + range(144,147) + range(148,152) + range(154,155) + \
-         range(157,160) + range(163,172) + [174] + range(177,180) + \
-         range(181,184) + range(187,193) + range(194,197) + range(199,202) + \
-         range(206,221) + [223,225] + range(227,230) + range(231,241) + \
-         range(242,275) + range(276,289) + range(293,295) + [297,299,301] + \
-         [304,309] + range(311,314) + range(315,319) + range(320,321) + \
-         [329,331] + range(334,336) + range(338,340) + range(343,346) + \
-         [348] + range(351,356) + [357] + range(361,365) + [367,369]:
+         range(157,160) + [161] + range(163,172) + [174] + range(177,180) + \
+         range(181,184) + range(187,193) + range(194,197) + range(198,221) + \
+         [223,225] + range(227,230) + range(231,241) + range(242,289) + \
+         range(293,295) + [297,299,301] + [304,309] + range(311,314) + \
+         range(315,319) + range(320,321) + [329,331] + range(334,336) + \
+         range(338,340) + range(343,346) + [348] + range(351,356) + [357] + \
+         range(361,365) + [367,369]:
     SLAVES['tegra_android']['tegra-%03i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,
     }
 
-for i in range(22,257) + range(270,307) + range(320,874) + range(885,910):
+for i in range(22,307) + range(320,874) + range(885,910):
     SLAVES['panda_android']['panda-%04i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,
