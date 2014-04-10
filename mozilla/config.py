@@ -242,6 +242,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -337,6 +338,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -424,6 +426,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
@@ -514,6 +517,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
@@ -604,6 +608,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
             ],
             # The status of this build doesn't affect the last good revision
@@ -898,6 +903,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
@@ -981,6 +987,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
             ],
         },
@@ -1146,6 +1153,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1213,6 +1221,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1278,6 +1287,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1348,6 +1358,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1417,6 +1428,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
             ],
             'env': {
                 'DISPLAY': ':2',

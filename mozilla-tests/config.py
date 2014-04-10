@@ -613,15 +613,6 @@ MARIONETTE = [
         'blob_upload': True,
     }),
 ]
-METRO = [
-    ('mochitest-metro-chrome', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-metro-chrome'],
-        'blob_upload': True,
-        'script_maxtime': 7200,
-    }),
-]
 JITTEST = [
     ('jittest', {
         'use_mozharness': True,
@@ -1453,9 +1444,6 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome-3': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-metro-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'mochitest-other': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1566,9 +1554,6 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome-3': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-metro-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'mochitest-other': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1663,9 +1648,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-browser-chrome-3': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'metro-immersive': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-other': {
@@ -2301,11 +2283,6 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3[:]
         else:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = MOCHITEST_BC_3[:]
-
-# Enable metro on cedar for now
-# This may need to follow the trains: see bug 847442 (comment 73)
-BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += METRO[:]
-BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += METRO[:]
 
 # Enable web-platform-tests on cedar (non-windows only for now)
 for platform in PLATFORMS.keys():
