@@ -2,16 +2,21 @@ from copy import deepcopy
 import production_config as pc
 
 STAGING_SLAVES = {
-    'tegra_android': dict(
-        [('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
-            for x in range(10,30) + range(184,186) + [224]]
-    ),
-    'fedora': dict(),
-    'panda_android': dict(
-         [('panda-%04i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
-            for x in range(307,320) + range(874,885)]
-    ),
+    'tegra_android': {},
+    'panda_android': {},
 }
+
+for i in range(10,24) + range(25,30) + range(184,186) + [224]:
+    STAGING_SLAVES['tegra_android']['tegra-%03i' % i] = {
+        'http_port': '30%03i' % i,
+        'ssl_port': '31%03i' % i,
+    }
+
+for i in range(307,320) + range(874,885):
+    STAGING_SLAVES['panda_android']['panda-%04i' % i] = {
+        'http_port': '30%03i' % i,
+        'ssl_port': '31%03i' % i,
+    }
 
 STAGING_SLAVES['tegra_android-armv6'] = STAGING_SLAVES['tegra_android']
 STAGING_SLAVES['tegra_android-noion'] = STAGING_SLAVES['tegra_android']
