@@ -2,17 +2,17 @@ SLAVES = {
     'fedora': dict([("talos-r3-fed-%03i" % x, {}) for x in range(11,103) \
         if x not in [01, 02, 18, 57, 59, 70]]), # bug 799528, bug 731300, bug 731793, bug 753367, bug 779574, bug 740505
     'fedora64' : dict([("talos-r3-fed64-%03i" % x, {}) for x in range (37,72) \
-        if x not in [32,58]]), # bug 785862, bug 751893
+        if x not in [32,37,38,39,42,58]]), # bug 785862, bug 751893
     'xp-ix': dict([("t-xp32-ix-%03i" % x, {}) for x in range(1,131)]),
     'win7-ix': dict([("t-w732-ix-%03i" % x, {}) for x in range(1,131)]),
     'win8': dict([("t-w864-ix-%03i" % x, {}) for x in range(1,131)]),
     'snowleopard':dict(
-        [("talos-r4-snow-%03i" % x, {}) for x in range(1,171) if x not in [81, 84]] +
+        [("talos-r4-snow-%03i" % x, {}) for x in range(1,171) if x not in [1,30,41,81, 84]] +
         [("t-snow-r4-%04i" % x, {}) for x in range(1,167)]
     ),
     'mountainlion': dict([("talos-mtnlion-r5-%03i" % x, {}) for x in range(1,90) \
         if x not in [87]]), # bug 786994
-    'mavericks': dict([("t-mavericks-r5-%03i" % x, {}) for x in range(1,6)]),
+    'mavericks': dict([("t-mavericks-r5-%03i" % x, {}) for x in range(1,4)]),
     'tegra_android': dict([('tegra-%03i' % x, {'http_port': '30%03i' % x, 'ssl_port': '31%03i' % x}) \
         for x in range(31,371) \
         if x not in range(122,129) + [30,33,34,43,44,49,53,65,69,77,78,86,106,131,137,143,147,\
@@ -23,16 +23,16 @@ SLAVES = {
             for x in range(22,257) + range(270,307) + range(320,874) + range(885,910)]
     ),
     'ubuntu32_vm': dict(
-        [("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 900)] +
-        [("tst-linux32-spot-%03i" % x, {}) for x in range(1, 1000)]
+        [("tst-linux32-ec2-%03i" % x, {}) for x in range(1, 100) + range(300, 360)] +
+        [("tst-linux32-spot-%03i" % x, {}) for x in range(1, 800)]
     ),
     'ubuntu64_vm': dict(
-        [("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 900)] +
+        [("tst-linux64-ec2-%03i" % x, {}) for x in range(1, 100) + range(300,400)] +
         [("tst-linux64-spot-%03i" % x, {}) for x in range(1, 1000)]
     ),
     'ubuntu32_hw': dict([("talos-linux32-ix-%03i" % x, {}) for x in range(1, 56)]),
     'ubuntu64_hw': dict([("talos-linux64-ix-%03i" % x, {}) for x in range(1, 120)]),
-    'win64_vm': dict([('tst-w64-ec2-%03i' % x, {}) for x in range(100)]),
+    'win64_vm': dict([('tst-w64-ec2-%03i' % x, {}) for x in range(1,3)]),
 }
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
