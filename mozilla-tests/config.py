@@ -430,9 +430,6 @@ MOCHITEST_OTHER = [
     }),
 ]
 
-MOCHITEST = MOCHITEST_WO_BC[:] + MOCHITEST_BC + MOCHITEST_OTHER
-MOCHITEST_WO_BC += MOCHITEST_OTHER
-
 MOCHITEST_E10S = [
     ('mochitest-e10s-1', {
         'use_mozharness': True,
@@ -481,7 +478,7 @@ MOCHITEST_DT = [
     }),
 ]
 
-MOCHITEST_DT_2 = [
+MOCHITEST_DT_3 = [
     ('mochitest-devtools-chrome-1', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
@@ -528,6 +525,9 @@ MOCHITEST_BC_3 = [
         'script_maxtime': 4800,
     }),
 ]
+
+MOCHITEST = MOCHITEST_WO_BC[:] + MOCHITEST_BC_3 + MOCHITEST_OTHER
+MOCHITEST_WO_BC += MOCHITEST_OTHER
 
 REFTEST_NO_IPC = [
     ('reftest', {
@@ -657,8 +657,8 @@ WEB_PLATFORM_TESTS = [
 
 
 UNITTEST_SUITES = {
-    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,
-    'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE,
+    'opt_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT,
+    'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE + MOCHITEST_DT_3,
 }
 
 
@@ -1202,7 +1202,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'xp-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_3,
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1300,8 +1300,8 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7-ix': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL,
-            'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL,  # No marionette except on Try
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL,
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_3,
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1400,7 +1400,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win8': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1510,7 +1510,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'win8_64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1606,7 +1606,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT,  # No marionette except on Try
+            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
             'suite_config': {
                 'mochitest-1': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2188,9 +2188,6 @@ BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['platforms']['win32']['xp-ix']['debug_unittest_suites'] = MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
-BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_NOACCEL
-BRANCHES['try']['platforms']['win32']['win7-ix']['debug_unittest_suites'] = MOCHITEST_WO_BC + REFTEST_NO_IPC + XPCSHELL + CPPUNIT
 
 ######## cedar
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
@@ -2209,8 +2206,8 @@ for platform in BRANCHES['holly']['platforms'].keys():
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
-        slave_p['opt_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC
-        slave_p['debug_unittest_suites'] = MOCHITEST_WO_BC + REFTEST_NO_IPC
+        slave_p['opt_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT
+        slave_p['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT_3
 
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
@@ -2261,29 +2258,6 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
 
-# Enable 3 chunks mochitest-bc on cedar https://bugzilla.mozilla.org/show_bug.cgi?id=819963
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-        # Nothing for Rev3 minis
-        if slave_platform in ('fedora', 'fedora64'):
-            continue
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = MOCHITEST_BC_3[:]
-        # We are enabling debug mochitest-browser-chrome everywhere for Linux/Linux64
-        # This is to skip adding it twice
-        if slave_platform in ('ubuntu32_vm', 'ubuntu64_vm'):
-            continue
-        if BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites']:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-        else:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = MOCHITEST_BC_3[:]
-
 # Enable web-platform-tests on cedar (non-windows only for now)
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['cedar']['platforms'] or platform.startswith('win'):
@@ -2321,12 +2295,19 @@ def get_ubuntu_unittests(branch, test_type):
                      "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
                      "mochitest-1", "mochitest-2", "mochitest-3",
                      "mochitest-4", "mochitest-5", "mochitest",
-                     "mochitest-browser-chrome", "mochitest-other", "cppunit", "jittest-1", "jittest-2"],
+                     "mochitest-browser-chrome", "mochitest-other", "cppunit", "jittest-1", "jittest-2",
+                     "mochitest-devtools-chrome",
+                     "mochitest-browser-chrome-1", "mochitest-browser-chrome-2",
+                     "mochitest-browser-chrome-3"],
                     "debug_unittest_suites":
                     ["crashtest", "jsreftest", "jetpack", "marionette",
                      "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
                      "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest", "mochitest-other", "cppunit", "jittest-1", "jittest-2"]}
+                     "mochitest-5", "mochitest", "mochitest-other", "cppunit", "jittest-1", "jittest-2",
+                     "mochitest-browser-chrome", "mochitest-browser-chrome-1",
+                     "mochitest-browser-chrome-2", "mochitest-browser-chrome-3",
+                     "mochitest-devtools-chrome-1", "mochitest-devtools-chrome-2",
+                     "mochitest-devtools-chrome-3"]}
     return list(UBUNTU_TESTS[test_type])
 
 # Remove Ubuntu platform from the release trains,
@@ -2373,35 +2354,6 @@ for branch in BRANCHES:
                             except KeyError:
                                 pass
 
-# Enable mochitest-devtools-chrome on all branches that support browser-chrome, requires gecko 31
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
-  if name == "cedar":
-    if 'linux' in branch['platforms']:
-        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
-    if 'linux64' in branch['platforms']:
-        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
-    if 'linux64-asan' in branch['platforms']:
-        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
-
-
-    if 'win32' in branch['platforms']:
-        branch['platforms']['win32']['xp-ix']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['win32']['win7-ix']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['win32']['win8']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['win32']['xp-ix']['opt_unittest_suites'] += MOCHITEST_DT[:]
-        branch['platforms']['win32']['win7-ix']['opt_unittest_suites'] += MOCHITEST_DT[:]
-        branch['platforms']['win32']['win8']['opt_unittest_suites'] += MOCHITEST_DT[:]
-    if 'macosx64' in branch['platforms']:
-        branch['platforms']['macosx64']['snowleopard']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['macosx64']['snowleopard']['opt_unittest_suites'] += MOCHITEST_DT[:]
-        branch['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] += MOCHITEST_DT[:]
-        branch['platforms']['macosx64']['mavericks']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
-        branch['platforms']['macosx64']['mavericks']['opt_unittest_suites'] += MOCHITEST_DT[:]
-
 # Enable e10s Linux mochitests on main branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
     if 'linux' in branch['platforms']:
@@ -2425,54 +2377,62 @@ for branch in BRANCHES.keys():
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-# Enable debug CHUNKED mochitest-browser-chrome on EC2
-# For branches newer than Gecko 28 (including) and esr24
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 24):
-    # Exclude b2g release branches
-    if name.startswith("mozilla-b2g"):
-        continue
-    if 'linux' in branch['platforms']:
-        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-    if 'linux64' in branch['platforms']:
-        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_BC_3[:]
-
-# Enable debug 1-chunk mochitest-browser-chrome for
-# every platform except for Linux (see next block to see what happens with Linux)
-for name in BRANCHES.keys():
+# Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
+for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
-    for pf in PLATFORMS:
-        if pf not in branch['platforms']:
-            continue
-        if pf in ('linux', 'linux64'):
-            continue
-        for slave_pf in branch['platforms'][pf].get(
-                'slave_platforms', PLATFORMS[pf]['slave_platforms']):
-            if slave_pf not in branch['platforms'][pf]:
+    if 'linux' in branch['platforms'] and 'ubuntu32_vm' in branch['platforms']['linux']:
+        for chunked_bc in MOCHITEST_BC_3:
+            branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'].remove(chunked_bc)
+    if 'linux64' in branch['platforms'] and 'ubuntu64_vm' in branch['platforms']['linux64']:
+        for chunked_bc in MOCHITEST_BC_3:
+            branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'].remove(chunked_bc)
+    if 'linux64-asan' in branch['platforms'] and 'ubuntu64-asan_vm' in branch['platforms']['linux64-asan']:
+        for chunked_bc in MOCHITEST_BC_3:
+            branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'].remove(chunked_bc)
+
+# mochitest-browser-chrome changes in 31:
+#  * it's done chunked
+#  * it's done on ec2 machines instead of fedora
+#
+# Exception: linux debug tests are always chunked and always on ec2 machines,
+# so don't make any changes to them (the defaults are correct).
+for name, branch in items_before(BRANCHES, 'gecko_version', 31):
+    for platform in branch['platforms']:
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if 'fedora' in slave_platform:
                 continue
-            branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_BC
-
-# Enable debug 1-chunk mochitest-browser-chrome for Fedora/Fedora64
-# on mozilla-beta, mozilla-release and mozilla-esr24,
-# This way we can run it side-by-side with 3-chunks on EC2
-for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-    if 'linux' in branch['platforms']:
-        branch['platforms']['linux']['fedora']['debug_unittest_suites'] += MOCHITEST_BC[:]
-    if 'linux64' in branch['platforms']:
-        branch['platforms']['linux64']['fedora64']['debug_unittest_suites'] += MOCHITEST_BC[:]
-
-# Disable mochitest-browser-chrome on mozilla-b2g branches
-for branch in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
-    for platform in ['linux', 'linux64']:
-        if platform not in BRANCHES[branch]['platforms']:
-            continue
-        for slave_platform in ['fedora', 'fedora64']:
-            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+            if slave_platform not in branch['platforms'][platform]:
                 continue
-            slave_p = BRANCHES[branch]['platforms'][platform][slave_platform]
-            slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
-                                                if x[0] if not x[0].startswith('mochitest-browser-chrome')]
+            branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC
+            if 'ubuntu' not in slave_platform:
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC
+            for chunked_bc in MOCHITEST_BC_3:
+                try:
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(chunked_bc)
+                    if 'ubuntu' not in slave_platform:
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(chunked_bc)
+                except ValueError:
+                    # wasn't in the list anyways
+                    pass
 
-
+# mochitest-devtools-chrome only exists on 31+
+for name, branch in items_before(BRANCHES, 'gecko_version', 31):
+    for platform in branch['platforms']:
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            try:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(MOCHITEST_DT[0])
+            except ValueError:
+                # wasn't there anyways
+                pass
+            for dt in MOCHITEST_DT_3:
+                try:
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(dt)
+                except ValueError:
+                    # wasn't there anyways
+                    pass
+                    
 # LOOOOOOOOOOOOOOOPS
 # Enable win64 testing on select branches only
 WIN64_TESTING_BRANCHES = ['date']
