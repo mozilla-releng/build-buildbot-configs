@@ -1835,12 +1835,13 @@ for b in BRANCHES.keys():
                 slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                                     if x[0] not in excluded_tests]
 
-# Enabled b2g reftests on EC2
-# For branches newer than Gecko 30 (including)
-# Once we uplift the patches to esr24 and the b2g branches
-# we can get enable the REFTESTS for every branch
+# Enable b2g reftests on EC2
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
     branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
+
+# Disable b2g reftests on minis
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+    branch['platforms']['emulator']['fedora-b2g-emulator']['opt_unittest_suites'] = []
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
