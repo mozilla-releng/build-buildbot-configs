@@ -6,7 +6,7 @@ STAGING_SLAVES = {
     'panda_android': {},
 }
 
-for i in range(10,24) + range(25,30) + range(184,186) + [224]:
+for i in range(10,24) + range(25,30) + [180] + range(184,186) + [224,241]:
     STAGING_SLAVES['tegra_android']['tegra-%03i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,
