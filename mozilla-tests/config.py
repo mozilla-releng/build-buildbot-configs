@@ -2375,7 +2375,6 @@ for branch in BRANCHES:
 
 # Enable mochitest-devtools-chrome on all branches that support browser-chrome, requires gecko 31
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
-  if name == "cedar":
     if 'linux' in branch['platforms']:
         branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_DT_2[:]
         branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_DT[:]
