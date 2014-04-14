@@ -30,6 +30,19 @@ TALOS_REMOTE_FENNEC_OPTS = {
     },
 }
 
+TALOS_REMOTE_FENNEC_OPTS_CEDAR = {
+    'productName': 'fennec',
+    'remoteTests': True,
+    'remoteExtras': {
+        'options': [
+            '--sampleConfig', 'remote.config',
+            '--output', 'local.yml',
+            '--webServer', 'talos-remote.pvt.build.mozilla.org',
+            '--browserWait', '60',
+        ],
+    },
+}
+
 ANDROID_UNITTEST_REMOTE_EXTRAS = {'cmdOptions': ['--bootstrap'], }
 
 BRANCHES = {
@@ -178,6 +191,54 @@ SUITES = {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
+    },
+}
+
+SUITES_CEDAR = {
+    'remote-ts': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts', '--mozAfterPaint', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-tspaint': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint', '--mozAfterPaint'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-tsvg': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvg', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-tsvgx': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome', '--tppagecycles', '10'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-tcanvasmark': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID_NOT_PANDA),
+    },
+    'remote-trobopan': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'trobopan', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-troboprovider': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tprovider', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-trobocheck2': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
+    },
+    'remote-tp4m_nochrome': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
+        'options': (TALOS_REMOTE_FENNEC_OPTS_CEDAR, ANDROID),
     },
 }
 
@@ -1484,7 +1545,10 @@ for branch in BRANCHES.keys():
 # Let's load the defaults
 for branch in BRANCHES.keys():
     loadDefaultValues(BRANCHES, branch, BRANCHES[branch])
-    loadCustomTalosSuites(BRANCHES, SUITES, branch, BRANCHES[branch])
+    if branch not in ('cedar'):
+        loadCustomTalosSuites(BRANCHES, SUITES, branch, BRANCHES[branch])
+    else:
+        loadCustomTalosSuites(BRANCHES, SUITES_CEDAR, branch, BRANCHES[branch])
 
 # The following are exceptions to the defaults
 
