@@ -66,7 +66,7 @@ for i in range(22,307) + range(320,874) + range(885,910):
         'ssl_port': '31%03i' % i,
     }
 
-for i in range(1,100) + range(301,360):
+for i in range(1,100) + range(300,360):
     SLAVES['ubuntu32_vm']['tst-linux32-ec2-%03i' % i] = {}
 
 for i in range(1,800):
