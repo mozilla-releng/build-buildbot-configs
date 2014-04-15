@@ -86,7 +86,7 @@ PLATFORMS = {
 }
 
 PLATFORMS['android']['slave_platforms'] = \
-    ['tegra_android', 'panda_android', 'vm_android_2_3']
+    ['tegra_android', 'panda_android', 'vm_android_2_3', 'ubuntu64_hw']
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {
@@ -99,6 +99,9 @@ PLATFORMS['android']['panda_android'] = {
 }
 PLATFORMS['android']['vm_android_2_3'] = {
     'name': "Android 2.3 Emulator",
+}
+PLATFORMS['android']['ubuntu64_hw'] = {
+    'name': "Android 2.3 Emulator on ix",
 }
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
@@ -1616,7 +1619,7 @@ BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"][
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
-BRANCHES['ash']['platforms']['android']['vm_android_2_3'] = {
+BRANCHES['ash']['platforms']['android']['ubuntu64_hw'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
