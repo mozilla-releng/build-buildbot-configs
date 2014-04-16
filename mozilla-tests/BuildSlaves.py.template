@@ -1,10 +1,6 @@
 SlavePasswords = {
     "linux": "pass",
     "linux64": "pass",
-    "fedora": "pass",
-    "fedora-b2g": "pass",
-    "fedora-b2g-emulator": "pass",
-    "fedora64": "pass",
     "ubuntu32_vm": "pass",
     "ubuntu32_vm-b2gdt": "pass",
     "ubuntu32_hw": "pass",

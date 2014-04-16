@@ -1,6 +1,4 @@
 SLAVES = {
-    'fedora': {},
-    'fedora64': {},
     'xp-ix': {},
     'win7-ix': {},
     'win8': {},
@@ -15,12 +13,6 @@ SLAVES = {
     'ubuntu64_hw': {},
     'win64_vm': {},
 }
-
-for i in range(3,18) + range(19,57) + [58] + range(60,70) + range(71,103):
-    SLAVES['fedora']['talos-r3-fed-%03i' % i] = {}
-
-for i in range(40,42) + range(43,58) + range(59,72):
-    SLAVES['fedora64']['talos-r3-fed64-%03i' % i] = {}
 
 for i in range(1,131):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
@@ -89,8 +81,6 @@ for i in range(1,3):
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
-SLAVES['fedora-b2g'] = SLAVES['fedora']
-SLAVES['fedora-b2g-emulator'] = SLAVES['fedora']
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 # Use "-b2g" suffix to make misc.py generate unique builder names
 SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']

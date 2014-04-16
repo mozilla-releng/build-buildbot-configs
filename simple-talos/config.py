@@ -19,14 +19,6 @@ platforms = {
         'slaves': ['w764-1'],
         'env': 'win64-perf'
     },
-    'fedora': {
-        'slaves': ['fed1'],
-        'env': 'linux-perf'
-    },
-    'fedora64': {
-        'slaves': ['fed64-1'],
-        'env': 'linux-perf'
-    },
 }
 
 buildBranch = 'MozillaTest'
