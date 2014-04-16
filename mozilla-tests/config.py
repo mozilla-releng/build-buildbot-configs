@@ -152,10 +152,9 @@ PLATFORMS['win64']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
+PLATFORMS['linux']['slave_platforms'] = ['ubuntu32_vm']
 PLATFORMS['linux']['talos_slave_platforms'] = ['ubuntu32_hw']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
-PLATFORMS['linux']['fedora'] = {'name': "Rev3 Fedora 12"}
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['ubuntu32_hw'] = {'name': 'Ubuntu HW 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
@@ -167,10 +166,9 @@ PLATFORMS['linux']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
+PLATFORMS['linux64']['slave_platforms'] = ['ubuntu64_vm']
 PLATFORMS['linux64']['talos_slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
-PLATFORMS['linux64']['fedora64'] = {'name': "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['ubuntu64_hw'] = {'name': 'Ubuntu HW 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
@@ -673,96 +671,6 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'fedora': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_IPC + REFTEST_NOACCEL,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'suite_config': {
-                'mochitest-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-4': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-5': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-4': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-5': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-            },
-        },
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -877,96 +785,6 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'fedora64': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'suite_config': {
-                'mochitest-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-4': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-5': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-4': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-5': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome-3': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest-1': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest-2': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-            },
-        },
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -2152,8 +1970,6 @@ BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ON
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
 BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18']['mozharness_talos'] = False
-BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = []
-BRANCHES['mozilla-b2g18']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = []
 BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
 BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
 
@@ -2161,8 +1977,6 @@ BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, LINUX64_O
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['mozharness_talos'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['opt_unittest_suites'] = []
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64']['fedora64']['debug_unittest_suites'] = []
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
 
@@ -2264,7 +2078,7 @@ for platform in PLATFORMS.keys():
         continue
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform] or slave_platform.startswith('fedora'):
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
         BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS
@@ -2277,82 +2091,9 @@ for platform in PLATFORMS.keys():
     if platform not in BRANCHES['cedar']['platforms']:
         continue
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if 'fedora' in slave_platform:
-            continue  # Don't use rev3 mini's with this stuff
         if slave_platform in BRANCHES['cedar']['platforms'][platform]:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
-
-# MERGE DAY: Remove this on 3/17 merge day
-NON_UBUNTU_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 21)])
-
-
-# Green tests, including mozharness based ones
-# Tests listed as Ubuntu tests won't be enabled on Fedora
-def get_ubuntu_unittests(branch, test_type):
-    UBUNTU_TESTS = {"opt_unittest_suites":
-                    ["crashtest", "jsreftest", "jetpack", "crashtest-ipc",
-                     "reftest-ipc", "xpcshell", "reftest", "reftest-no-accel",
-                     "mochitest-1", "mochitest-2", "mochitest-3",
-                     "mochitest-4", "mochitest-5", "mochitest",
-                     "mochitest-browser-chrome", "mochitest-other", "cppunit", "jittest-1", "jittest-2",
-                     "mochitest-devtools-chrome",
-                     "mochitest-browser-chrome-1", "mochitest-browser-chrome-2",
-                     "mochitest-browser-chrome-3"],
-                    "debug_unittest_suites":
-                    ["crashtest", "jsreftest", "jetpack", "marionette",
-                     "xpcshell", "reftest", "reftest-no-accel", "mochitest-1",
-                     "mochitest-2", "mochitest-3", "mochitest-4",
-                     "mochitest-5", "mochitest", "mochitest-other", "cppunit", "jittest-1", "jittest-2",
-                     "mochitest-browser-chrome", "mochitest-browser-chrome-1",
-                     "mochitest-browser-chrome-2", "mochitest-browser-chrome-3",
-                     "mochitest-devtools-chrome-1", "mochitest-devtools-chrome-2",
-                     "mochitest-devtools-chrome-3"]}
-    return list(UBUNTU_TESTS[test_type])
-
-# Remove Ubuntu platform from the release trains,
-# use either Fedora or Ubuntu for other branches
-for branch in BRANCHES:
-    # MERGE DAY: Remove this loop on 3/17 merge day
-    if branch in NON_UBUNTU_BRANCHES:
-        # Remove Ubuntu completely
-        if 'linux64' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm']
-            BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['fedora64']
-        if 'linux' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux']['ubuntu32_vm']
-            BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['fedora']
-        continue
-
-    for p, ubuntu, fedora in [('linux', 'ubuntu32_vm', 'fedora'),
-                              ('linux64', 'ubuntu64_vm', 'fedora64')]:
-        for suite_type, ubuntu_tests in [('opt_unittest_suites',
-                                          get_ubuntu_unittests(branch, 'opt_unittest_suites')),
-                                         ('debug_unittest_suites',
-                                          get_ubuntu_unittests(branch, 'debug_unittest_suites'))]:
-            if nested_haskey(BRANCHES[branch]['platforms'], p, ubuntu,
-                             suite_type):
-                # Explicitly remove tests listed in ubuntu_tests even though
-                # them are not enabled. This would remove old style tests when
-                # Ubuntu runs mozharness based tests. (mochitest vs
-                # mochitest-{1..5}
-                for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
-                    if i[0] in ubuntu_tests:
-                        BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
-
-                for suite in list(BRANCHES[branch]['platforms'][p][ubuntu][suite_type]):
-                    if suite[0] not in ubuntu_tests:
-                        if branch in ("cedar", "try"):
-                            # Don't disable any Ubuntu test on Cedar or Try
-                            continue
-                        BRANCHES[branch]['platforms'][p][ubuntu][suite_type].remove(suite)
-                    else:
-                        for i in BRANCHES[branch]['platforms'][p][fedora][suite_type]:
-                            try:
-                                if i[0] == suite[0]:
-                                    BRANCHES[branch]['platforms'][p][fedora][suite_type].remove(i)
-                            except KeyError:
-                                pass
 
 # Enable e10s Linux mochitests on main branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
@@ -2392,15 +2133,12 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
 
 # mochitest-browser-chrome changes in 31:
 #  * it's done chunked
-#  * it's done on ec2 machines instead of fedora
 #
 # Exception: linux debug tests are always chunked and always on ec2 machines,
 # so don't make any changes to them (the defaults are correct).
 for name, branch in items_before(BRANCHES, 'gecko_version', 31):
     for platform in branch['platforms']:
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if 'fedora' in slave_platform:
-                continue
             if slave_platform not in branch['platforms'][platform]:
                 continue
             branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC

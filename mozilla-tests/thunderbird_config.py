@@ -60,9 +60,8 @@ PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
 
-PLATFORMS['linux']['slave_platforms'] = ['fedora', 'ubuntu32_vm']
+PLATFORMS['linux']['slave_platforms'] = ['ubuntu32_vm']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
-PLATFORMS['linux']['fedora'] = {'name': builder_prefix + "Rev3 Fedora 12"}
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['stage_product'] = 'thunderbird'
 PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
@@ -74,9 +73,8 @@ PLATFORMS['linux']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64']['slave_platforms'] = ['fedora64', 'ubuntu64_vm']
+PLATFORMS['linux64']['slave_platforms'] = ['ubuntu64_vm']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
-PLATFORMS['linux64']['fedora64'] = {'name': builder_prefix + "Rev3 Fedora 12x64"}
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'thunderbird'
 PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
@@ -151,10 +149,6 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'fedora': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-        },
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -168,10 +162,6 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'fedora64': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-        },
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -308,8 +298,6 @@ BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
-BRANCHES['comm-aurora']['platforms']['linux']['slave_platforms'] = ['fedora']
-BRANCHES['comm-aurora']['platforms']['linux64']['slave_platforms'] = ['fedora64']
 
 ######## comm-esr24
 BRANCHES['comm-esr24']['pgo_strategy'] = None
@@ -329,10 +317,8 @@ for branch in set(BRANCHES.keys()):
 
 for branch in set(BRANCHES.keys()):
     if 'linux' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux']['fedora']
         BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['ubuntu32_vm']
     if 'linux64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64']['fedora64']
         BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['ubuntu64_vm']
 
 if __name__ == "__main__":
