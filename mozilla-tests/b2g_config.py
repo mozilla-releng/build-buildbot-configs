@@ -1623,6 +1623,18 @@ for b in BRANCHES.keys():
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
     branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
 
+# Once we EOL mozilla-b2g26_v1_2 we can remove this
+for suite_to_remove in ('reftest-8', 'reftest-13'):
+    for s in BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites']:
+        if s[0] == suite_to_remove:
+            BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'].remove(s)
+
+# Once we EOL mozilla-b2g28_v1_3t we can remove this
+for suite_to_remove in ('reftest-10', 'reftest-15'):
+    for s in BRANCHES['mozilla-b2g28_v1_3t']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites']:
+        if s[0] == suite_to_remove:
+            BRANCHES['mozilla-b2g28_v1_3t']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'].remove(s)
+
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
