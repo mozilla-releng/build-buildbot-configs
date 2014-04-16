@@ -35,7 +35,6 @@ GLOBAL_VARS.update({
         'inari': {},
         'inari_eng': {},
         'leo': {},
-        'leo_eng': {},
         'hamachi': {},
         'hamachi_eng': {},
         'tarako': {},
@@ -43,7 +42,6 @@ GLOBAL_VARS.update({
         'nexus-4': {},
         'nexus-4_eng': {},
         'helix': {},
-        'helix_eng': {},
         'emulator': {},
         'emulator-debug': {},
         'emulator-jb': {},
@@ -790,23 +788,6 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_dep': False,
     },
-    'leo_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'leo', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
     'hamachi': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -923,23 +904,6 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'helix', '--config', 'b2g/releng-private-updates.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'helix_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'helix', '--config', 'b2g/releng-otoro-eng.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
@@ -1208,7 +1172,6 @@ BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
 BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_periodic'] = False
 BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
@@ -1216,8 +1179,6 @@ BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['helix_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
@@ -1243,14 +1204,11 @@ BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
 BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_periodic'] = False
 BRANCHES['mozilla-aurora']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['helix_eng']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['helix_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-debug']['enable_nightly'] = True
@@ -1289,7 +1247,7 @@ BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 # Build every night since we have external dependencies like gaia which need
 # building
 BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0]
 BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1302,7 +1260,6 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_periodic'] = Fa
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_periodic'] = False
@@ -1313,8 +1270,6 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
@@ -1342,7 +1297,7 @@ BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 # Build every night since we have external dependencies like gaia which need
 # building
 BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1355,7 +1310,6 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_periodic'] = Fa
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_periodic'] = False
@@ -1366,8 +1320,6 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['consider_for_nightly
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['enable_dep'] = True
@@ -1411,9 +1363,6 @@ BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['leo_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi_eng']['enable_nightly'] = True
 # Disable desktop B2G checktests on the b2g18 branch
@@ -1457,13 +1406,10 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['ga
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_periodic'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix_eng']['enable_periodic'] = False
 # Disable desktop B2G checktests on the b2g18 branch
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None
@@ -1535,11 +1481,6 @@ for branch in BRANCHES:
                       'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
         if 'leo' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['leo']
-    # leo-eng isn't for 1.2 anymore, bug 924503
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-b2g18'):
-        if 'leo_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['leo_eng']
 
 # MERGE DAY: hamachi is for B2G 1.0+ (b2g18 + gecko26 and higher)
 for branch in BRANCHES:
@@ -1576,8 +1517,6 @@ for branch in BRANCHES:
                       'mozilla-central', 'mozilla-inbound', 'b2g-inbound'):
         if 'helix' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['helix']
-        if 'helix_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['helix_eng']
 
 # MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
 for branch in BRANCHES:
@@ -1629,7 +1568,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
 # Turn off a bunch of builds: bug 924503
 # Subset for 1.1
 for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
-    if p not in ('hamachi', 'inari', 'leo', 'leo_eng', 'emulator'):
+    if p not in ('hamachi', 'inari', 'leo', 'emulator'):
         del BRANCHES['mozilla-b2g18']['platforms'][p]
 # B2G desktop builds before 1.2
 for name, branch in items_before(BRANCHES, 'gecko_version', 26):
