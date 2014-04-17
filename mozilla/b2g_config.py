@@ -1102,12 +1102,6 @@ BRANCHES = {
         'platforms': {
             'emulator': {},
             'emulator-debug': {},
-            'emulator-jb': {},
-            'emulator-jb-debug': {},
-            'linux32_gecko': {},
-            'linux64_gecko': {},
-            'macosx64_gecko': {},
-            'win32_gecko': {},
             'tarako': {},
             'tarako_eng': {},
         },
@@ -1265,14 +1259,10 @@ BRANCHES['mozilla-b2g28_v1_3t']['gaia_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g28_v1_3t']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 # Build every night since we have external dependencies like gaia which need
 # building
-BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g28_v1_3t']['start_hour'] = [1, 16]
 BRANCHES['mozilla-b2g28_v1_3t']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux32_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['platforms']['linux64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['platforms']['macosx64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['platforms']['win32_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako_eng']['enable_nightly'] = True
 
@@ -1285,7 +1275,7 @@ BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 # Build every night since we have external dependencies like gaia which need
 # building
 BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [0]
+BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [2]
 BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
@@ -1335,7 +1325,7 @@ BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 # Build every night since we have external dependencies like gaia which need
 # building
 BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [0]
+BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
