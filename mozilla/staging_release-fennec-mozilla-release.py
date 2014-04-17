@@ -159,7 +159,6 @@ releaseConfig['multilocale_config'] = {
 
 # Staging config
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
-releaseConfig['skip_release_download'] = True
 releaseConfig['enableSigningAtBuildTime'] = True
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
