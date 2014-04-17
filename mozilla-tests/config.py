@@ -2131,12 +2131,12 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
         for chunked_bc in MOCHITEST_BC_3:
             branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'].remove(chunked_bc)
 
-# mochitest-browser-chrome changes in 31:
+# mochitest-browser-chrome changes in 30:
 #  * it's done chunked
 #
 # Exception: linux debug tests are always chunked and always on ec2 machines,
 # so don't make any changes to them (the defaults are correct).
-for name, branch in items_before(BRANCHES, 'gecko_version', 31):
+for name, branch in items_before(BRANCHES, 'gecko_version', 30):
     for platform in branch['platforms']:
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
@@ -2153,8 +2153,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 31):
                     # wasn't in the list anyways
                     pass
 
-# mochitest-devtools-chrome only exists on 31+
-for name, branch in items_before(BRANCHES, 'gecko_version', 31):
+# mochitest-devtools-chrome only exists on 30+
+for name, branch in items_before(BRANCHES, 'gecko_version', 30):
     for platform in branch['platforms']:
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
