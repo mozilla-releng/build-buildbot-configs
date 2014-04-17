@@ -48,6 +48,10 @@ BRANCHES = {
     'mozilla-b2g28_v1_3t': {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'emulator': {},
+        },
     },
     'mozilla-aurora': {
         'gecko_version': 30,
