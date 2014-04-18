@@ -1664,11 +1664,7 @@ BRANCHES = {
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 28,
-        'platforms': {
-            # desktop per bug 986213
-            'linux64': {},
-            'linux64-debug': {},
-        },
+        'platforms': {},
     },
     'mozilla-b2g18': {
         'branch_projects': [],
