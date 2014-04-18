@@ -1108,6 +1108,19 @@ BRANCHES = {
         'lock_platforms': True,
     },
     'try': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux32_gecko': {},
+            'linux64_gecko': {},
+            'macosx64_gecko': {},
+            'win32_gecko': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-jb': {},
+            'emulator-jb-debug': {},
+            'emulator-kk': {},
+            'emulator-kk-debug': {},
+        },
     },
 }
 
@@ -1242,6 +1255,8 @@ BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] =
 BRANCHES['mozilla-aurora']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['flame']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
@@ -1301,6 +1316,8 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['flame']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_dep'] = True
@@ -1572,12 +1589,12 @@ for branch in BRANCHES:
         if 'wasabi' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['wasabi']
 
-# MERGE DAY: flame is for B2G 1.5+
+# MERGE DAY: flame is for B2G 1.3+
 for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound'):
+    for name, branch in items_before(BRANCHES, 'gecko_version', 28):
         for p in ('flame', 'flame_eng'):
-            if p in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][p]
+            if p in branch['platforms']:
+                del branch['platforms'][p]
 
 for branch in BRANCHES:
     if branch not in ('mozilla-central', 'mozilla-aurora'):
