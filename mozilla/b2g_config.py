@@ -1316,8 +1316,6 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_dep'] = True
@@ -1591,7 +1589,7 @@ for branch in BRANCHES:
 
 # MERGE DAY: flame is for B2G 1.3+
 for branch in BRANCHES:
-    for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+    for name, branch in items_before(BRANCHES, 'gecko_version', 30):
         for p in ('flame', 'flame_eng'):
             if p in branch['platforms']:
                 del branch['platforms'][p]
