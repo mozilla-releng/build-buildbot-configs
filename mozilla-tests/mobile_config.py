@@ -56,6 +56,9 @@ BRANCHES = {
     'mozilla-b2g28_v1_3': {
         'gecko_version': 28,
     },
+    'mozilla-b2g30_v1_4': {
+        'gecko_version': 30,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1592,6 +1595,11 @@ BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g28_v1_3']['pgo_platforms'] = []
 
+######### mozilla-b2g30_v1_4
+BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
+BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g30_v1_4']['pgo_platforms'] = []
+
 ######### mozilla-b2g18
 BRANCHES['mozilla-b2g18']['release_tests'] = 1
 BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
@@ -1672,7 +1680,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 31):
 BRANCHES['cedar']['platforms']['android']['enable_debug_unittests'] = True
 # this loop is to limit the debug tests run on trunk branches to
 # M4,M5,M6,M7,J1,J2,J3 only for panda-android
-d = ['mochitest-4', 'mochitest-5', 'mochitest-6', 'mochitest-7',
+d = ['mochitest-1', 'mochitest-2', 'mochitest-3', 'mochitest-4', 
+     'mochitest-5', 'mochitest-6', 'mochitest-7', 'mochitest-8',
      'jsreftest-1', 'jsreftest-2', 'jsreftest-3', ]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
     # Loop removes it from any branch that gets beyond here

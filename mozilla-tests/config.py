@@ -73,6 +73,18 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-b2g30_v1_4': {
+        'datazilla_url': None,
+        'gecko_version': 30,
+        'platforms': {
+            # desktop per sicking in Bug 829513
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g18': {
         'datazilla_url': None,
         'gecko_version': 18,
@@ -1996,6 +2008,12 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64']['talos_slave_platforms']
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g28_v1_3t']['pgo_strategy'] = 'per-checkin'
 
+######### mozilla-b2g30_v1_4
+BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
+BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms'] = []
+
 ######## try
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
@@ -2170,7 +2188,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
                 except ValueError:
                     # wasn't there anyways
                     pass
-                    
+
 # LOOOOOOOOOOOOOOOPS
 # Enable win64 testing on select branches only
 WIN64_TESTING_BRANCHES = ['date']

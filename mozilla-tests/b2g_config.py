@@ -53,6 +53,10 @@ BRANCHES = {
             'emulator': {},
         },
     },
+    'mozilla-b2g30_v1_4': {
+        'gecko_version': 30,
+        'b2g_version': (1, 4, 0),
+    },
     'mozilla-aurora': {
         'gecko_version': 30,
         'b2g_version': (1, 4, 0),
@@ -1564,6 +1568,7 @@ BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
+BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"

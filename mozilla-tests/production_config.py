@@ -147,6 +147,10 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-B2g28-v1.3t',
         'mobile_tinderbox_tree': 'Mozilla-B2g28-v1.3t',
     },
+    'mozilla-b2g30_v1_4': {
+        'tinderbox_tree': 'Mozilla-B2g30-v1.4',
+        'mobile_tinderbox_tree': 'Mozilla-B2g30-v1.4',
+    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
