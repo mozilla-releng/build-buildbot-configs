@@ -1639,7 +1639,6 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
-            'android-noion': {},
         },
     },
     'mozilla-b2g28_v1_3': {
@@ -1657,7 +1656,6 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
-            'android-noion': {},
         },
     },
     'mozilla-b2g28_v1_3t': {
@@ -1665,6 +1663,21 @@ BRANCHES = {
         'lock_platforms': True,
         'gecko_version': 28,
         'platforms': {},
+    },
+    'mozilla-b2g30_v1_4': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 30,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
     },
     'mozilla-b2g18': {
         'branch_projects': [],
@@ -2092,6 +2105,38 @@ BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['enable_xulrunner'] = False
 BRANCHES['mozilla-b2g28_v1_3t']['enable_valgrind'] = False
 
+######## mozilla-b2g30_v1_4
+BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'
+BRANCHES['mozilla-b2g30_v1_4']['update_channel'] = 'nightly-b2g30'
+BRANCHES['mozilla-b2g30_v1_4']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
+BRANCHES['mozilla-b2g30_v1_4']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [3]
+BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [45]
+BRANCHES['mozilla-b2g30_v1_4']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g30_v1_4']['pgo_platforms'] = []
+BRANCHES['mozilla-b2g30_v1_4']['enable_mac_a11y'] = True
+BRANCHES['mozilla-b2g30_v1_4']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-b2g30_v1_4']['enable_l10n'] = False
+BRANCHES['mozilla-b2g30_v1_4']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-b2g30_v1_4']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-b2g30_v1_4']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-b2g30_v1_4']['l10nDatedDirs'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g30_v1_4'
+BRANCHES['mozilla-b2g30_v1_4']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-b2g30_v1_4']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['create_snippet'] = False
+BRANCHES['mozilla-b2g30_v1_4']['create_partial'] = False
+BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
+BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
+BRANCHES['mozilla-b2g30_v1_4']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g30_v1_4']['enable_hsts_update'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enable_valgrind'] = False
+BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox', 'mobile']
+
 ######## mozilla-b2g18
 BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
 BRANCHES['mozilla-b2g18']['update_channel'] = 'nightly-b2g18'
@@ -2378,6 +2423,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 22):
 # Only run non-unified builds on m-c and derived branches
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g28_v1_3t",
+               "mozilla-b2g30_v1_4",
                "mozilla-b2g26_v1_2", "mozilla-b2g18",
                "mozilla-b2g18_v1_1_0_hd", "try", "holly"):
     for pc in BRANCHES[branch]['platforms'].values():
@@ -2387,6 +2433,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr24", "mozilla-b2g28_v1_3",
+               "mozilla-b2g30_v1_4",
                "mozilla-b2g28_v1_3t", "mozilla-b2g26_v1_2",
                "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:

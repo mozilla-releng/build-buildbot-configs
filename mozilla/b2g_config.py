@@ -233,6 +233,7 @@ PLATFORM_VARS = {
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
         'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/debug',
         'enable_dep': True,
+        'enable_nightly': False,
         'profiled_build': False,
         'create_snippet': False,
         'create_partial': False,
@@ -364,6 +365,7 @@ PLATFORM_VARS = {
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/debug',
         'enable_dep': True,
+        'enable_nightly': False,
         'profiled_build': False,
         'create_snippet': False,
         'create_partial': False,
@@ -1083,10 +1085,23 @@ BRANCHES = {
     },
     'mozilla-b2g18': {
         'gecko_version': 18,
+        'lock_platforms': True,
+        'platforms': {
+            'hamachi': {},
+            'inari': {},
+            'leo': {},
+            'emulator': {},
+        },
     },
     'mozilla-b2g18_v1_1_0_hd': {
         'gecko_version': 18,
         'b2g_version': (1, 1, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'emulator': {},
+            'emulator-debug': {},
+            'helix': {},
+        },
     },
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
@@ -1106,6 +1121,10 @@ BRANCHES = {
             'tarako_eng': {},
         },
         'lock_platforms': True,
+    },
+    'mozilla-b2g30_v1_4': {
+        'gecko_version': 30,
+        'b2g_version': (1, 4, 0),
     },
     'try': {
         'lock_platforms': True,
@@ -1231,8 +1250,6 @@ BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
-BRANCHES['mozilla-central']['platforms']['linux64_gecko-debug']['enable_nightly'] = False
 
 ######## mozilla-aurora
 # This is a path, relative to HGURL, where the repository is located
@@ -1263,8 +1280,36 @@ BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
-BRANCHES['mozilla-aurora']['platforms']['linux64_gecko-debug']['enable_nightly'] = False
+
+######## mozilla-b2g30_v1_4
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'
+BRANCHES['mozilla-b2g30_v1_4']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g30_v1_4']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
+BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
+BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_dep'] = False
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_periodic'] = False
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['leo']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-4']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1391,40 +1436,13 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_periodic'] = False
-BRANCHES['mozilla-b2g18']['platforms']['inari_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['hamachi_eng']['enable_nightly'] = True
-# Disable desktop B2G checktests on the b2g18 branch
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
 ######## mozilla-b2g18_v1_1_0_hd
 # This is a path, relative to HGURL, where the repository is located
@@ -1439,37 +1457,9 @@ BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_repo'] = 'integration/gaia-v1-train'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_dep'] = True
 BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_periodic'] = False
-# Disable desktop B2G checktests on the b2g18 branch
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux32_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['linux64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['macosx64_gecko_localizer']['gaia_revision_file'] = None
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['enable_checktests'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['win32_gecko_localizer']['gaia_revision_file'] = None
 
 ######## try
 # Try-specific configs
@@ -1506,37 +1496,7 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_ar
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
 
-
-# MERGE DAY: inari is for B2G 1.0+ (b2g18 + gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
-        if 'inari' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['inari']
-        if 'inari_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['inari_eng']
-
-# MERGE DAY: leo is for B2G 1.1+ (b2g18 + gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
-        if 'leo' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['leo']
-
-# MERGE DAY: hamachi is for B2G 1.0+ (b2g18 + gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-inbound', 'mozilla-b2g26_v1_2',
-                      'larch',  # bug 977718
-                      'mozilla-b2g28_v1_3', 'mozilla-b2g18'):
-        if 'hamachi' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['hamachi']
-        if 'hamachi_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['hamachi_eng']
-
-# MERGE DAY: tarako is for B2G 1.3t only (gecko28)
+# tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g28_v1_3t',):
         if 'tarako' in BRANCHES[branch]['platforms']:
@@ -1544,70 +1504,12 @@ for branch in BRANCHES:
         if 'tarako_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['tarako_eng']
 
-# MERGE DAY: nexus-4 is for B2G 1.2+ (gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-b2g26_v1_2',
-                      'mozilla-b2g28_v1_3'):
-        for p in ('nexus-4', 'nexus-4_eng'):
-            if p in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][p]
-
-# MERGE DAY: helix is for B3G 1.1hd+ (b2g18_v1_1_0_hd + gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-b2g18_v1_1_0_hd',
-                      'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                      'mozilla-central', 'mozilla-inbound', 'b2g-inbound'):
-        if 'helix' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['helix']
-
-# MERGE DAY: emulator-jb* is for B2G 1.2+ (gecko26 and higher)
-for branch in BRANCHES:
-    if branch not in ('mozilla-aurora', 'mozilla-central', 'b2g-inbound',
-                      'mozilla-inbound', 'fx-team', 'try',
-                      'mozilla-b2g26_v1_2', 'birch', 'cedar',
-                      'mozilla-b2g28_v1_3', 'mozilla-b2g28_v1_3t'):
-        for p in BRANCHES[branch]['platforms'].keys():
-            if p.startswith("emulator-jb"):
-                del BRANCHES[branch]['platforms'][p]
-
-# MERGE DAY: emulator-kk is for B2G 1.3+
-for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound',
-                      'try', 'mozilla-aurora'):
-        if 'emulator-kk' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['emulator-kk']
-        if 'emulator-kk-debug' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['emulator-kk-debug']
-
-# MERGE DAY: wasabi is for B2G 1.3+ only
-for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-aurora', 'mozilla-inbound',
-                      'b2g-inbound', 'mozilla-b2g28_v1_3'):
-        if 'wasabi' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['wasabi']
-
-# MERGE DAY: flame is for B2G 1.3+
-for branch in BRANCHES:
-    for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-        for p in ('flame', 'flame_eng'):
-            if p in branch['platforms']:
-                del branch['platforms'][p]
-
-for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-aurora'):
-        if 'linux64_gecko-debug' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux64_gecko-debug']
-
-# only central and aurora enabled (bug 956451)
-for branch in BRANCHES:
-    if branch not in ('mozilla-central', 'mozilla-aurora'):
-        if 'macosx64_gecko-debug' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['macosx64_gecko-debug']
-
-# gstreamer-devel packages ride the trains (bug 881589)
-for name, branch in items_before(BRANCHES, 'gecko_version', 24):
+# B2G 1.2+
+for name, branch in items_before(BRANCHES, 'gecko_version', 26):
     for p, pc in branch['platforms'].items():
+        if '_gecko' in p or p.startswith("emulator-jb") or p in ('nexus-4', 'nexus-4_eng'):
+            del branch['platforms'][p]
+            continue
         if 'mock_packages' in pc:
             branch['platforms'][p]['mock_packages'] = \
                 [x for x in branch['platforms'][p]['mock_packages'] if x not in (
@@ -1615,15 +1517,16 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 24):
                     'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                 )]
 
-# Turn off a bunch of builds: bug 924503
-# Subset for 1.1
-for p in BRANCHES['mozilla-b2g18']['platforms'].keys():
-    if p not in ('hamachi', 'inari', 'leo', 'emulator'):
-        del BRANCHES['mozilla-b2g18']['platforms'][p]
-# B2G desktop builds before 1.2
-for name, branch in items_before(BRANCHES, 'gecko_version', 26):
-    for p in branch['platforms'].keys():
-        if '_gecko' in p:
+# B2G 1.3+
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+    if 'wasabi' in branch['platforms']:
+        del branch['platforms']['wasabi']
+
+# b2g 1.4+
+for name, branch in items_before(BRANCHES, 'gecko_version', 30):
+    for p in ('flame', 'flame_eng', 'linux64_gecko-debug',
+              'macosx64_gecko-debug', 'emulator-kk', 'emulator-kk-debug'):
+        if p in branch['platforms']:
             del branch['platforms'][p]
 
 ######## generic branch configs
