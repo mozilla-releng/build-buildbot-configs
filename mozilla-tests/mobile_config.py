@@ -1672,7 +1672,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 31):
 BRANCHES['cedar']['platforms']['android']['enable_debug_unittests'] = True
 # this loop is to limit the debug tests run on trunk branches to
 # M4,M5,M6,M7,J1,J2,J3 only for panda-android
-d = ['mochitest-4', 'mochitest-5', 'mochitest-6', 'mochitest-7',
+d = ['mochitest-1', 'mochitest-2', 'mochitest-3', 'mochitest-4', 
+     'mochitest-5', 'mochitest-6', 'mochitest-7', 'mochitest-8',
      'jsreftest-1', 'jsreftest-2', 'jsreftest-3', ]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
     # Loop removes it from any branch that gets beyond here
