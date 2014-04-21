@@ -23,29 +23,30 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.4.0esr'
-releaseConfig['appVersion']          = '24.4.0'
+releaseConfig['version']             = '24.5.0esr'
+releaseConfig['appVersion']          = '24.5.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_4_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_24_5_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.3.0esr': {
-        'appVersion': '24.3.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_24_3_0esr',
+    '24.4.0esr': {
+        'appVersion': '24.4.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_24_4_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.4.0esrpre'
+releaseConfig['nextAppVersion']      = '24.5.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
+        # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '4ca6defeab8a',
+        'revision': '2dcea6a55d16',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -129,10 +130,7 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
