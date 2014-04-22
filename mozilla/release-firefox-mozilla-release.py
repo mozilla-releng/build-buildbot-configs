@@ -22,17 +22,17 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '28.0'
-releaseConfig['appVersion']          = '28.0'
+releaseConfig['version']             = '29.0'
+releaseConfig['appVersion']          = '29.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_28_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_29_0'
 releaseConfig['partialUpdates']      = {
 
-    '25.0.1': {
-        'appVersion': '25.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_25_0_1',
+    '28.0': {
+        'appVersion': '28.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_28_0',
     },
 
     '26.0': {
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '12cbf785d769',
+        'revision': 'ac5db8c74ac0',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -64,10 +64,6 @@ releaseConfig['sourceRepositories']  = {
                 'nextVersion': releaseConfig['nextAppVersion']
             },
             'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
@@ -145,11 +141,7 @@ releaseConfig['syncPartnerBundles']  = True
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox.py'
-releaseConfig['bouncer_add_euballot'] = True
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_release.py'
 
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
@@ -157,3 +149,9 @@ releaseConfig['enable_repo_setup'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest'
+
+releaseConfig['bouncer_aliases'] = {
+    'Firefox-%(version)s': 'firefox-latest',
+    'Firefox-%(version)s-stub': 'firefox-stub',
+    'Firefox-%(version)s-EUBallot': 'firefox-latest-euballot',
+}
