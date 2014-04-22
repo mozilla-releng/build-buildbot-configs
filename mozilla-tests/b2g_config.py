@@ -582,6 +582,15 @@ GAIA_BUILD = [(
     },
 )]
 
+GAIA_LINTER = [(
+    'gaia-linter', {
+        'suite': 'gaia-linter',
+        'use_mozharness': True,
+        'script_path': 'scripts/gaia_linter.py',
+        'timeout': 1800,
+    },
+)]
+
 GAIA_UNITTESTS = [(
     'gaia-unit', {
         'suite': 'gaia-unit',
@@ -742,6 +751,11 @@ PLATFORM_UNITTEST_VARS = {
                     ],
                 },
                 'gaia-build': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_integration_config.py',
+                    ],
+                },
+                'gaia-linter': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_integration_config.py',
                     ],
@@ -1544,7 +1558,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP + GAIA_BUILD + GAIA_LINTER
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
