@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '28.0b1'
-releaseConfig['appVersion']          = '28.0'
+releaseConfig['version']             = '29.0b1'
+releaseConfig['appVersion']          = '29.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_28_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_29_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '27.0b1': {
-        'appVersion': '27.0',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_27_0b1',
+    '28.0b1': {
+        'appVersion': '28.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_28_0b1',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'c6c68dd64727',
+        'revision': 'b25778686523',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,14 +55,10 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'd13e6de7885f',
+        'revision': 'bd6fdc0dcac0',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
@@ -136,9 +132,6 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
