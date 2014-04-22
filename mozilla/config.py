@@ -11,7 +11,7 @@ from localconfig import SLAVES, TRY_SLAVES
 
 import master_common
 reload(master_common)
-from master_common import setMainFirefoxVersions, items_before
+from master_common import setMainFirefoxVersions, items_before, items_at_least
 
 GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
@@ -2438,8 +2438,20 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
-    if 'linux64-br-haz' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64-br-haz']
+
+# Exact rooting landed for desktop only in 28.
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+    if 'linux64-br-haz' in branch['platforms']:
+        del branch['platforms']['linux64-br-haz']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
+    # b2g cannot use exact rooting yet since it has known hazards. If a
+    # b2g-only tree were to acquire additional desktop-only hazard, we
+    # currently would not care. Eventually, we will get the analysis running on
+    # b2g, fix the hazards, turn on exact rooting for b2g, and then turn these
+    # builds on.
+    if 'b2g' in name and 'inbound' not in name:
+        if 'linux64-br-haz' in branch['platforms']:
+            del branch['platforms']['linux64-br-haz']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):
