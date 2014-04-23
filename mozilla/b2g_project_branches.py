@@ -4,6 +4,7 @@ PROJECT_BRANCHES = {
     'build-system': {},
     'fx-team': {
         'repo_path': 'integration/fx-team',
+        'periodic_start_hours': range(2, 24, 3),
         'enable_perproduct_builds': True,
         'enable_nightly': False,
     },
@@ -11,10 +12,12 @@ PROJECT_BRANCHES = {
     # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
+        'periodic_start_hours': range(1, 24, 3),
         'enable_perproduct_builds': True,
     },
     'b2g-inbound': {
         'repo_path': 'integration/b2g-inbound',
+        'periodic_start_hours': range(2, 24, 3),
         'enable_perproduct_builds': True,
         'platforms': {
             'macosx64_gecko': {
