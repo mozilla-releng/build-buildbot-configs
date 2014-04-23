@@ -28,3 +28,8 @@ BRANCHES = {
 PLATFORM_VARS = {}
 
 PROJECTS = {}
+B2G_PROJECTS = {
+    'gaia-try': {
+        'scripts_repo': 'https://hg.mozilla.org/build/mozharness',
+    },
+}

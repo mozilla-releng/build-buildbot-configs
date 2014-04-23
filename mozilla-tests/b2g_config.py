@@ -1,6 +1,9 @@
 from copy import deepcopy
 
 from config import MOZHARNESS_REBOOT_CMD
+
+import localconfig
+reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import b2g_localconfig
@@ -22,7 +25,7 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 BRANCHES = {
     'ash': {},
     # Not needed right now, see bug 977420
-    #'birch': {},
+    # 'birch': {},
     'cedar': {},
     'cypress': {},
     'elm': {},
@@ -66,6 +69,15 @@ BRANCHES = {
     'b2g-inbound': {},
     'services-central': {},
     'try': {'coallesce_jobs': False},
+    'gaia-try': {
+        'coallesce_jobs': False,
+        'lock_platforms': True,
+        'platforms': {
+            'linux32_gecko': {},
+            'linux64_gecko': {},
+            'macosx64_gecko': {},
+        },
+    },
 }
 
 setMainFirefoxVersions(BRANCHES)
@@ -218,10 +230,10 @@ MOCHITEST = [
 
 MOCHITEST_EMULATOR_JB = [
     ('mochitest-1', {'suite': 'mochitest-plain',
-                           'use_mozharness': True,
-                           'script_path': 'scripts/b2g_emulator_unittest.py',
-                           'blob_upload': True,
-                           },
+                     'use_mozharness': True,
+                     'script_path': 'scripts/b2g_emulator_unittest.py',
+                     'blob_upload': True,
+                     },
      ),
 ]
 
@@ -390,8 +402,8 @@ REFTEST = [
      ),
 ]
 
-REFTEST_15=REFTEST[:]
-REFTEST_15+=[ \
+REFTEST_15 = REFTEST[:]
+REFTEST_15 += [
     ('reftest-11', {'suite': 'reftest',
                     'use_mozharness': True,
                     'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -1592,6 +1604,7 @@ BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
+BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
@@ -1644,7 +1657,8 @@ for b in BRANCHES.keys():
 
 # Enable b2g reftests on EC2
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
-    branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
+    if 'emulator' in branch['platforms']:
+        branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
 
 # Once we EOL mozilla-b2g26_v1_2 we can remove this
 for suite_to_remove in ('reftest-8', 'reftest-13'):
@@ -1695,6 +1709,49 @@ for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
         if 'linux64_gecko' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['linux64_gecko']
+
+
+### PROJECTS ###
+PROJECTS = {
+    'gaia-try': {
+        'hgurl': 'https://hg.mozilla.org',
+        'repo_path': 'integration/gaia-try',
+    },
+}
+PROJECTS['gaia-try']['platforms'] = deepcopy(BRANCHES['mozilla-central']['platforms'])
+for k, v in localconfig.B2G_PROJECTS.items():
+    if k not in PROJECTS:
+        PROJECTS[k] = {}
+    for k1, v1 in v.items():
+        PROJECTS[k][k1] = v1
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+for pf, pf_config in BRANCHES['gaia-try']['platforms'].items():
+    for sp in pf_config['slave_platforms']:
+        for suite, suite_config in pf_config[sp]['suite_config'].items():
+            suite_config['extra_args'].extend([
+                '-c', 'b2g/gaia_try.py',
+            ])
+            if 'linux32' in pf:
+                suite_config['extra_args'].extend([
+                    '--installer-url',
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-i686.tar.bz2' % mc_gecko_version,
+                    '--test-url',
+                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-i686.tests.zip' % mc_gecko_version,
+                ])
+            elif 'linux64' in pf:
+                suite_config['extra_args'].extend([
+                    '--installer-url',
+                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-x86_64.tar.bz2' % mc_gecko_version,
+                    '--test-url',
+                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-x86_64.tests.zip' % mc_gecko_version,
+                ])
+            elif 'macosx64' in pf:
+                suite_config['extra_args'].extend([
+                    '--installer-url',
+                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.mac64.dmg' % mc_gecko_version,
+                    '--test-url',
+                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.mac64.tests.zip' % mc_gecko_version,
+                ])
 
 
 if __name__ == "__main__":
