@@ -1227,6 +1227,8 @@ BRANCHES['mozilla-central']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10
 BRANCHES['mozilla-central']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['mozilla-central']['start_hour'] = [4, 16]
 BRANCHES['mozilla-central']['start_minute'] = [2]
+BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
+BRANCHES['mozilla-central']['periodic_start_minute'] = 30
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
@@ -1259,6 +1261,7 @@ BRANCHES['mozilla-aurora']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n
 BRANCHES['mozilla-aurora']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['start_hour'] = [0, 16]
 BRANCHES['mozilla-aurora']['start_minute'] = [2]
+BRANCHES['mozilla-aurora']['periodic_start_minute'] = 30
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
@@ -1289,6 +1292,7 @@ BRANCHES['mozilla-b2g30_v1_4']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-
 BRANCHES['mozilla-b2g30_v1_4']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
+BRANCHES['mozilla-b2g30_v1_4']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari']['enable_nightly'] = True
@@ -1542,6 +1546,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['periodic_start_hours'] = branchConfig.get('periodic_start_hours', range(0, 24, 6))
+    BRANCHES[branch]['periodic_start_minute'] = branchConfig.get('periodic_start_minute', 30)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [42])
     # nightly updates

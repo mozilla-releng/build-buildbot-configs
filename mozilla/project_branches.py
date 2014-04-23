@@ -14,7 +14,7 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': False,
         'pgo_strategy': 'periodic',
-        'periodic_interval': 3,
+        'periodic_start_hours': range(2, 24, 3),
         'enable_weekly_bundle': True,
     },
     'graphics': {
@@ -26,7 +26,7 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
-        'periodic_interval': 3,
+        'periodic_start_hours': range(1, 24, 3),
         'talos_suites': {
             'xperf': 1,
         },
@@ -37,7 +37,7 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
         'pgo_strategy': 'periodic',
-        'periodic_interval': 3,
+        'periodic_start_hours': range(2, 24, 3),
         'enable_weekly_bundle': True,
         'talos_suites': {
             'xperf': 1,
@@ -54,12 +54,12 @@ PROJECT_BRANCHES = {
             },
             'macosx64': {
                 'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
-                'talos_slave_platforms': ['mountainlion'],
+                'slave_platforms': ['snowleopard'],
+                'talos_slave_platforms': ['snowleopard'],
             },
             'macosx64-debug': {
                 'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
+                'slave_platforms': ['snowleopard'],
             },
         },
     },

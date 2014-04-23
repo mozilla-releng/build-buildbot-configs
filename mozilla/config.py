@@ -11,7 +11,7 @@ from localconfig import SLAVES, TRY_SLAVES
 
 import master_common
 reload(master_common)
-from master_common import setMainFirefoxVersions, items_before
+from master_common import setMainFirefoxVersions, items_before, items_at_least
 
 GLOBAL_VARS = {
     # It's a little unfortunate to have both of these but some things (HgPoller)
@@ -77,7 +77,7 @@ GLOBAL_VARS = {
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32',),
-    'periodic_interval': 6, # in hours
+    'periodic_start_hours': range(0, 24, 6),
     'enable_blocklist_update': False,
     'blocklist_update_on_closed_tree': False,
     'blocklist_update_set_approval': True,
@@ -1818,7 +1818,8 @@ BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['periodic_interval'] = 3
+BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
+BRANCHES['mozilla-central']['periodic_start_minute'] = 30
 # Enable unit tests
 BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
@@ -1952,6 +1953,8 @@ BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
+BRANCHES['mozilla-aurora']['periodic_start_hours'] = range(1, 24, 6)
+BRANCHES['mozilla-aurora']['periodic_start_minute'] = 30
 # Enable XULRunner / SDK builds
 BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
@@ -2267,7 +2270,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
     BRANCHES[branch]['enable_mobile'] = branchConfig.get('enable_mobile', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
-    BRANCHES[branch]['periodic_interval'] = branchConfig.get('periodic_interval', 6)
+    BRANCHES[branch]['periodic_start_hours'] = branchConfig.get('periodic_start_hours', range(0, 24, 6))
+    BRANCHES[branch]['periodic_start_minute'] = branchConfig.get('periodic_start_minute', 30)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
     # Disable XULRunner / SDK builds
@@ -2438,8 +2442,20 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-b2g18", "mozilla-b2g18_v1_1_0_hd"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
-    if 'linux64-br-haz' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64-br-haz']
+
+# Exact rooting landed for desktop only in 28.
+for name, branch in items_before(BRANCHES, 'gecko_version', 28):
+    if 'linux64-br-haz' in branch['platforms']:
+        del branch['platforms']['linux64-br-haz']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
+    # b2g cannot use exact rooting yet since it has known hazards. If a
+    # b2g-only tree were to acquire additional desktop-only hazard, we
+    # currently would not care. Eventually, we will get the analysis running on
+    # b2g, fix the hazards, turn on exact rooting for b2g, and then turn these
+    # builds on.
+    if 'b2g' in name and 'inbound' not in name:
+        if 'linux64-br-haz' in branch['platforms']:
+            del branch['platforms']['linux64-br-haz']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):
