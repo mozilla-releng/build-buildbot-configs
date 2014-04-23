@@ -24,14 +24,14 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '29.0b1'
 releaseConfig['appVersion']          = '29.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_29_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '29.0b1': {
-        'appVersion': '29.0',
+    '28.0b1': {
+        'appVersion': '28.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_29_0b1',
+        'baseTag': 'THUNDERBIRD_28_0b1',
     },
 
 }
