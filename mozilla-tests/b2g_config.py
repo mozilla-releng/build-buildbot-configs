@@ -628,7 +628,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
-            'opt_unittest_suites': MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:],
+            'opt_unittest_suites': MOCHITEST_DESKTOP[:] + REFTEST_DESKTOP_SANITY[:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
