@@ -54,12 +54,12 @@ PROJECT_BRANCHES = {
             },
             'macosx64': {
                 'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
-                'talos_slave_platforms': ['mountainlion'],
+                'slave_platforms': ['snowleopard'],
+                'talos_slave_platforms': ['snowleopard'],
             },
             'macosx64-debug': {
                 'enable_checktests': False,
-                'slave_platforms': ['mountainlion'],
+                'slave_platforms': ['snowleopard'],
             },
         },
     },
