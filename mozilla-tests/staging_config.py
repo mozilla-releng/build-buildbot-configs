@@ -68,3 +68,4 @@ PROJECTS = {
         'tinderbox_tree': 'MozillaTest',
     },
 }
+B2G_PROJECTS = {}

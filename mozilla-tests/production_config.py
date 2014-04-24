@@ -190,3 +190,4 @@ PROJECTS = {
         'tinderbox_tree': 'Jetpack',
     },
 }
+B2G_PROJECTS = {}

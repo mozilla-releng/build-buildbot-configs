@@ -24,6 +24,7 @@ if 'ssh_port' in master_config:
 from config import BRANCHES, PLATFORMS, PROJECTS
 import thunderbird_config
 import b2g_config
+from b2g_config import PROJECTS as B2G_PROJECTS
 import mobile_config
 # Do everything!
 ACTIVE_BRANCHES = BRANCHES.keys()
@@ -55,5 +56,6 @@ if 'limit_mobile_platforms' in master_config:
 else:
     ACTIVE_MOBILE_PLATFORMS = dict((k, None) for k in MOBILE_PLATFORMS.keys())
 ACTIVE_PROJECTS = PROJECTS.keys()
+ACTIVE_B2G_PROJECTS = B2G_PROJECTS.keys()
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
