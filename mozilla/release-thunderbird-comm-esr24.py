@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.4.0'
-releaseConfig['appVersion']          = '24.4.0'
+releaseConfig['version']             = '24.5.0'
+releaseConfig['appVersion']          = '24.5.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_4_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_5_0'
 releaseConfig['partialUpdates']      = {
 
-    '24.3.0': {
-        'appVersion': '24.3.0',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_24_3_0',
+    '24.4.0': {
+        'appVersion': '24.4.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_24_4_0',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr24',
         'path': 'releases/comm-esr24',
-        'revision': '290d7629194a',
+        'revision': '83644ae8e82b',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -53,9 +53,10 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
+        # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '4ca6defeab8a',
+        'revision': '2dcea6a55d16',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -132,9 +133,6 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['extraBouncerPlatforms'] = ('solaris-sparc', 'solaris-i386',
-                                          'opensolaris-sparc',
-                                          'opensolaris-i386')
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
 
 # Misc configuration
