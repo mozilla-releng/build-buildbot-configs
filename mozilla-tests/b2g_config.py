@@ -339,6 +339,8 @@ MOCHITEST_DESKTOP = [
      ),
 ]
 
+MOCHITEST_OOP_DESKTOP = [('mochitest-oop-1', MOCHITEST_DESKTOP[0][1])]
+
 REFTEST = [
     ('reftest-1', {'suite': 'reftest',
                    'use_mozharness': True,
@@ -516,6 +518,8 @@ REFTEST_DESKTOP_SANITY = [
      ),
 ]
 
+REFTEST_DESKTOP_OOP_SANITY = [('reftest-oop', REFTEST_DESKTOP_SANITY[0][1])]
+
 JSREFTEST = [
     ('jsreftest-1', {'suite': 'jsreftest',
                      'use_mozharness': True,
@@ -611,6 +615,8 @@ GAIA_UNITTESTS = [(
     },
 )]
 
+GAIA_UNITTESTS_OOP = [('gaia-unit-oop', GAIA_UNITTESTS[0][1])]
+
 GAIA_UI = [(
     'gaia-ui-test', {
         'suite': 'gaia-ui-test',
@@ -619,6 +625,8 @@ GAIA_UI = [(
         'blob_upload': True,
     },
 )]
+
+GAIA_UI_OOP = [('gaia-ui-test-oop', GAIA_UI[0][1])]
 
 ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 
@@ -777,9 +785,21 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/gaia_unit_production_config.py',
                     ],
                 },
+                'gaia-unit-oop': {
+                    'extra_args': [
+                        '--cfg', 'b2g/gaia_unit_production_config.py',
+                        '--browser-arg', '-oop',
+                    ],
+                },
                 'gaia-ui-test': {
                     'extra_args': [
                         '--cfg', 'marionette/gaia_ui_test_prod_config.py',
+                    ],
+                },
+                'gaia-ui-test-oop': {
+                    'extra_args': [
+                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
+                        '--app-arg', '-oop',
                     ],
                 },
                 'mochitest-1': {
@@ -789,11 +809,27 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
+                'mochitest-oop-1': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', 1, '--total-chunks', 1,
+                        '--browser-arg', '-oop',
+                    ],
+                },
                 'reftest': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                    ],
+                },
+                'reftest-oop': {
+                    'extra_args': [
+                        '--cfg', 'b2g/desktop_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
+                        '--browser-arg', '-oop',
                     ],
                 },
                 'reftest-1': {
@@ -1570,7 +1606,8 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += REFTEST_DESKTOP + GAIA_BUILD
+BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+  REFTEST_DESKTOP + GAIA_BUILD + MOCHITEST_OOP_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
