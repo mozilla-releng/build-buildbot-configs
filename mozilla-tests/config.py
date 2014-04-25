@@ -2171,11 +2171,15 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
                     # wasn't in the list anyways
                     pass
 
-# mochitest-devtools-chrome only exists on 30+
+# mochitest-devtools-chrome and mountainlion only exist on 30+
 for name, branch in items_before(BRANCHES, 'gecko_version', 30):
     for platform in branch['platforms']:
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
+                continue
+            # Delete mountainlion, bug 997959
+            if slave_platform in ('mountainlion', ):
+                del branch['platforms'][platform][slave_platform]
                 continue
             try:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(MOCHITEST_DT[0])
