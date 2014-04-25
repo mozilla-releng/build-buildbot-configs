@@ -1043,7 +1043,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'flame', '--config', 'b2g/releng-private-updates.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gaia-languages-file', 'locales/languages_all.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -1060,7 +1060,7 @@ PLATFORM_VARS = {
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
             'extra_args': ['--target', 'flame', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gaia-languages-file', 'locales/languages_all.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
@@ -1288,7 +1288,7 @@ BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] =
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'
-BRANCHES['mozilla-b2g30_v1_4']['gaia_l10n_root'] = 'https://hg.mozilla.org/integration/gaia-1_4/'
+BRANCHES['mozilla-b2g30_v1_4']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_4/'
 BRANCHES['mozilla-b2g30_v1_4']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
 BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
