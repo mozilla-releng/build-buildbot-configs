@@ -249,11 +249,11 @@ def setMainFirefoxVersions(BRANCHES):
     if 'mozilla-release' in BRANCHES:
         BRANCHES['mozilla-release']['gecko_version'] = 29
     if 'mozilla-beta' in BRANCHES:
-        BRANCHES['mozilla-beta']['gecko_version'] = 29
+        BRANCHES['mozilla-beta']['gecko_version'] = 30
     if 'mozilla-aurora' in BRANCHES:
-        BRANCHES['mozilla-aurora']['gecko_version'] = 30
+        BRANCHES['mozilla-aurora']['gecko_version'] = 31
     if 'mozilla-central' in BRANCHES:
-        BRANCHES['mozilla-central']['gecko_version'] = 31
+        BRANCHES['mozilla-central']['gecko_version'] = 32
 
 
 def setMainCommVersions(BRANCHES):
