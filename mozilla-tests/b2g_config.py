@@ -646,10 +646,10 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
+        'enable_debug_unittests': True,
         'ubuntu32_vm-b2gdt': {
             'opt_unittest_suites': MOCHITEST_DESKTOP[:] + REFTEST_DESKTOP_SANITY[:],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': MOCHITEST_DESKTOP[:] + REFTEST_DESKTOP_SANITY[:],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -760,10 +760,10 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
+        'enable_debug_unittests': True,
         'ubuntu64_vm-b2gdt': {
             'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -919,10 +919,10 @@ PLATFORM_UNITTEST_VARS = {
             "PAGER": '/bin/cat',
         },
         'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
+        'enable_debug_unittests': True,
         'mountainlion-b2gdt': {
             'opt_unittest_suites': GAIA_UI[:],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': GAIA_UI[:],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -1665,6 +1665,14 @@ for branch in BRANCHES.keys():
                   'mozilla-b2g18'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
+
+# Disable gecko-debug unittests on older branches, Bug 91611
+OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 30)])
+for b in BRANCHES.keys():
+    if b in OLD_BRANCHES:
+        for platform in ['linux32_gecko', 'linux64_gecko', 'macosx64_gecko']:
+             if platform in BRANCHES[branch]['platforms']:
+                 BRANCHES[branch]['platforms'][platform]['enable_debug_unittests'] = False
 
 # Disable b2g desktop reftest-sanity on cedar
 for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
