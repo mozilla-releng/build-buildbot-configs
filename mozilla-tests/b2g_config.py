@@ -1671,8 +1671,8 @@ OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_versi
 for b in BRANCHES.keys():
     if b in OLD_BRANCHES:
         for platform in ['linux32_gecko', 'linux64_gecko', 'macosx64_gecko']:
-             if platform in BRANCHES[branch]['platforms']:
-                 BRANCHES[branch]['platforms'][platform]['enable_debug_unittests'] = False
+             if platform in BRANCHES[b]['platforms']:
+                 BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
 
 # Disable b2g desktop reftest-sanity on cedar
 for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
