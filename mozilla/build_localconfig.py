@@ -54,7 +54,7 @@ else:
     ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
     ACTIVE_B2G_BRANCHES.extend([
         'mozilla-central',
-        'mozilla-aurora',
+        #'mozilla-aurora',
         'mozilla-b2g18',
         'mozilla-b2g18_v1_1_0_hd',
         'mozilla-b2g26_v1_2',
