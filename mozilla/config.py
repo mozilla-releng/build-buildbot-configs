@@ -2448,7 +2448,8 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr24"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
-        BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
+        if platform in BRANCHES[branch]['platforms']:
+            BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
 # Exact rooting landed for desktop only in 28.
 for name, branch in items_before(BRANCHES, 'gecko_version', 28):
