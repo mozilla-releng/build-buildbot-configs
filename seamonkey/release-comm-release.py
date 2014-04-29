@@ -28,8 +28,8 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '2454e1e5b5d0'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = 'fff7e58a1a14'
+releaseConfig['relbranchOverride']          = 'SEA_COMM290_20140428_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
