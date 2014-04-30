@@ -1300,6 +1300,30 @@ ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [
         'script_maxtime': 14400,
     },
     ),
+    ('plain-reftest-11', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'reftest-11',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-12', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'reftest-12',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
     ('crashtest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -1330,30 +1354,6 @@ ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'crashtest-3',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('crashtest-4', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'crashtest-4',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('crashtest-5', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'crashtest-5',
         ],
         'blob_upload': True,
         'timeout': 2400,
