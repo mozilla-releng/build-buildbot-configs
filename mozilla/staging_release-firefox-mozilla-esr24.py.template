@@ -126,6 +126,8 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']      = 'esr'
+releaseConfig['testChannels']        = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']  = [20,29]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
