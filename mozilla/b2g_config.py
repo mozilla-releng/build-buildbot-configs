@@ -648,7 +648,7 @@ PLATFORM_VARS = {
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
-        'enable_checktests': True,
+        'enable_checktests': False,
         'enable_build_analysis': True,
         'test_pretty_names': False,
         'l10n_check_test': False,
@@ -727,7 +727,7 @@ PLATFORM_VARS = {
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
-        'enable_checktests': True,
+        'enable_checktests': False,
         'enable_build_analysis': True,
         'test_pretty_names': False,
         'l10n_check_test': False,
@@ -804,7 +804,7 @@ PLATFORM_VARS = {
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
-        'enable_checktests': True,
+        'enable_checktests': False,
         'test_pretty_names': False,
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/macosx64/releng.manifest',
         'gaia_repo': gaia_repo,
@@ -859,7 +859,7 @@ PLATFORM_VARS = {
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
-        'enable_checktests': True,
+        'enable_checktests': False,
         'talos_masters': GLOBAL_VARS['talos_masters'],
         'test_pretty_names': False,
         'l10n_check_test': False,
@@ -1707,8 +1707,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 for b in ('b2g-inbound',):
     BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
-    BRANCHES[b]['platforms']['linux32_gecko_localizer']['enable_checktests'] = False
-    BRANCHES[b]['platforms']['linux64_gecko_localizer']['enable_checktests'] = False
 
 
 if __name__ == "__main__":
