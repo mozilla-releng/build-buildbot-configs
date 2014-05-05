@@ -68,9 +68,8 @@ BRANCHES = {
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
-    'try': {'coallesce_jobs': False},
+    'try': {},
     'gaia-try': {
-        'coallesce_jobs': False,
         'lock_platforms': True,
         'platforms': {
             'linux32_gecko': {},
