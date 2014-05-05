@@ -233,46 +233,6 @@ class builderProrityTest(unittest.TestCase):
         result = sorted(result)
         self.assertTrue(result == expected)
 
-    def test_slaveapi_priority_increase(self):
-        """Same builder and we compare a random priority (rp) with a list
-           of priorities. Results are stable and unique"""
-
-        import random
-        oak_builder = self.oak_builder
-        submitted_at = 0
-
-        priorities_range = range(5, 200)
-        random.shuffle(priorities_range)
-        random_priority = priorities_range.pop(0)
-        request = requestStub(random_priority, submitted_at)
-
-        priority_0 = oak_builder.get_priority_request(request)
-
-        lesser = []
-        greater = []
-        for priority in priorities_range:
-            priority_1 = oak_builder.get_priority_request(
-                requestStub(priority, submitted_at))
-            if priority_1 < priority_0:
-                # req has an higher priority request than request
-                greater.append(priority)
-            elif priority_1 > priority_0:
-                lesser.append(priority)
-            else:
-                # this means that we have two different values that generate
-                # the same tuple, make this test fail
-                self.assertTrue(priority_0 > priority_1)
-        # no repetitions
-        self.assertTrue(len(greater) == len(set(greater)))
-        self.assertTrue(len(lesser) == len(set(lesser)))
-        # disjoint sets
-        self.assertTrue(set(greater).isdisjoint(set(lesser)))
-        # random_priority is not part of any list
-        self.assertFalse(random_priority in greater)
-        self.assertFalse(random_priority in lesser)
-        #
-        self.assertTrue(min(greater) > max(lesser))
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -23,6 +23,9 @@ BRANCHES = {
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',
     },
+    'gaia-try': {
+        'enable_merging': False,
+    },
 }
 
 PLATFORM_VARS = {}

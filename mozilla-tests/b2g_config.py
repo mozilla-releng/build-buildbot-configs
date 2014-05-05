@@ -68,9 +68,8 @@ BRANCHES = {
     'mozilla-inbound': {},
     'b2g-inbound': {},
     'services-central': {},
-    'try': {'coallesce_jobs': False},
+    'try': {},
     'gaia-try': {
-        'coallesce_jobs': False,
         'lock_platforms': True,
         'platforms': {
             'linux32_gecko': {},
@@ -1669,10 +1668,11 @@ for branch in BRANCHES.keys():
 # Disable gecko-debug unittests on older branches, Bug 91611
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 30)])
 for b in BRANCHES.keys():
-    if b in OLD_BRANCHES:
+    if b != 'cedar' or b in OLD_BRANCHES:
         for platform in ['linux32_gecko', 'linux64_gecko', 'macosx64_gecko']:
              if platform in BRANCHES[b]['platforms']:
                  BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
+
 
 # Disable b2g desktop reftest-sanity on cedar
 for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
@@ -1793,26 +1793,38 @@ for pf, pf_config in BRANCHES['gaia-try']['platforms'].items():
                 '-c', 'b2g/gaia_try.py',
             ])
             if 'linux32' in pf:
-                suite_config['extra_args'].extend([
+                suite_config['opt_extra_args'] = [
                     '--installer-url',
-                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-i686.tar.bz2' % mc_gecko_version,
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.linux-i686.tar.bz2' % (pf, mc_gecko_version),
                     '--test-url',
-                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-i686.tests.zip' % mc_gecko_version,
-                ])
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.linux-i686.tests.zip' % (pf, mc_gecko_version),
+                ]
             elif 'linux64' in pf:
-                suite_config['extra_args'].extend([
+                suite_config['opt_extra_args'] = [
                     '--installer-url',
-                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-x86_64.tar.bz2' % mc_gecko_version,
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.linux-x86_64.tar.bz2' % (pf, mc_gecko_version),
                     '--test-url',
-                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.linux-x86_64.tests.zip' % mc_gecko_version,
-                ])
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.linux-x86_64.tests.zip' % (pf, mc_gecko_version),
+                ]
+                suite_config['debug_extra_args'] = [
+                    '--installer-url',
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s-debug/latest/en-US/b2g-%d.0a1.en-US.linux-x86_64.tar.bz2' % (pf, mc_gecko_version),
+                    '--test-url',
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s-debug/latest/en-US/b2g-%d.0a1.en-US.linux-x86_64.tests.zip' % (pf, mc_gecko_version),
+                ]
             elif 'macosx64' in pf:
-                suite_config['extra_args'].extend([
+                suite_config['opt_extra_args'] = [
                     '--installer-url',
-                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.mac64.dmg' % mc_gecko_version,
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.mac64.dmg' % (pf, mc_gecko_version),
                     '--test-url',
-                    'http://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/b2g-%d.0a1.multi.mac64.tests.zip' % mc_gecko_version,
-                ])
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s/latest/en-US/b2g-%d.0a1.en-US.mac64.tests.zip' % (pf, mc_gecko_version),
+                ]
+                suite_config['debug_extra_args'] = [
+                    '--installer-url',
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s-debug/latest/en-US/b2g-%d.0a1.en-US.mac64.dmg' % (pf, mc_gecko_version),
+                    '--test-url',
+                    'https://ftp.mozilla.org/pub/mozilla.org/b2g/tinderbox-builds/mozilla-central-%s-debug/latest/en-US/b2g-%d.0a1.en-US.mac64.tests.zip' % (pf, mc_gecko_version),
+                ]
 
 
 if __name__ == "__main__":
