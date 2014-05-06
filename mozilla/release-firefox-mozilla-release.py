@@ -22,11 +22,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '29.0'
-releaseConfig['appVersion']          = '29.0'
+releaseConfig['version']             = '29.0.1'
+releaseConfig['appVersion']          = '29.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_29_0'
+releaseConfig['baseTag']             = 'FIREFOX_29_0_1'
 releaseConfig['partialUpdates']      = {
 
     '28.0': {
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'ac5db8c74ac0',
+        'revision': 'bebd4af02d88',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -133,6 +133,9 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
+releaseConfig['releaseChannel']      = 'release'
+releaseConfig['testChannels']        = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']  = [25,26]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
