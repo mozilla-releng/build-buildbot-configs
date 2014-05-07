@@ -64,11 +64,17 @@ for i in range(1,100) + range(300,360):
 for i in range(1,800):
     SLAVES['ubuntu32_vm']['tst-linux32-spot-%03i' % i] = {}
 
+for i in range(1000, 1100):
+    SLAVES['ubuntu32_vm']['tst-linux32-spot-%i' % i] = {}
+
 for i in range(1,100) + range(301,400):
     SLAVES['ubuntu64_vm']['tst-linux64-ec2-%03i' % i] = {}
 
 for i in range(1,1000):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
+
+for i in range(1000, 1100):
+    SLAVES['ubuntu64_vm']['tst-linux64-spot-%i' % i] = {}
 
 for i in range(1,56):
     SLAVES['ubuntu32_hw']['talos-linux32-ix-%03i' % i] = {}

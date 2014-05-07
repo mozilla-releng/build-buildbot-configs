@@ -1642,6 +1642,12 @@ BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 
+# Run at scale
+BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+    GAIA_BUILD
+BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+    GAIA_BUILD
+
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms']:
