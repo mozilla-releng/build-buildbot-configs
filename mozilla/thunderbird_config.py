@@ -65,6 +65,7 @@ GLOBAL_VARS.update({
     'blocklist_update_on_closed_tree': False,
     'blocklist_update_set_approval': True,
     'enable_nightly': True,
+    'enable_perproduct_builds': True,
     'enabled_products': ['thunderbird'],
     'enable_valgrind': False,
     'valgrind_platforms': ('linux', 'linux64'),
