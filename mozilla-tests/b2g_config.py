@@ -28,7 +28,6 @@ BRANCHES = {
     # 'birch': {},
     'cedar': {},
     'cypress': {},
-    'elm': {},
     'pine': {},
     'fx-team': {},
     'graphics': {},
