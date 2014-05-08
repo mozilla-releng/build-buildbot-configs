@@ -46,7 +46,7 @@ TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,33) + [35] + ran
                    ['b-linux64-hp-%04d' % x for x in range(1, 20)] + \
                    ['b-linux64-ix-%04d' % x for x in range(12, 14)]
 TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(49,51)]
-TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,40)]
+TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,40) + [87]]
 if set(TRY_WIN64_REV2).intersection(set(TRY_WIN64_IXS)):
     raise Exception('TRY_WIN64_REV2 and TRY_WIN64_IXS overlap')
 if set(TRY_WIN64_IXS + TRY_WIN64_REV2).intersection(WIN64_IXS + WIN64_REV2):
