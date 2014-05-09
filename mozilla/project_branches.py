@@ -197,7 +197,22 @@ PROJECT_BRANCHES = {
         },
         'enable_merging': False,
     },
-    'elm': {},
+    'elm': {
+        'branch_projects': [],
+        'enable_talos': False,
+        'enable_valgrind': False,
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'fig': {},
     'gum': {},
     'holly': {

@@ -2429,7 +2429,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g28_v1_3t",
                "mozilla-b2g30_v1_4",
                "mozilla-b2g26_v1_2", "mozilla-b2g18",
-               "mozilla-b2g18_v1_1_0_hd", "try", "holly"):
+               "mozilla-b2g18_v1_1_0_hd", "try", "holly", "elm"):
     for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False

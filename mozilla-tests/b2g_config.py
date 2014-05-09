@@ -28,7 +28,6 @@ BRANCHES = {
     # 'birch': {},
     'cedar': {},
     'cypress': {},
-    'elm': {},
     'pine': {},
     'fx-team': {},
     'graphics': {},
@@ -1641,6 +1640,9 @@ BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
+# Temporary redirect for debugging: bug 1008351
+BRANCHES['gaia-try']['mozharness_repo'] = "https://hg.mozilla.org/users/jford_mozilla.com/mozharness"
+BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
 # Run at scale
 BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \

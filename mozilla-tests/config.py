@@ -2038,6 +2038,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
 
+# Filter the tests that are enabled on elm for bug 1006717.
+for platform in BRANCHES['elm']['platforms'].keys():
+    if platform not in PLATFORMS:
+        continue
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['elm']['platforms'][platform]:
+            continue
+        slave_p = BRANCHES['elm']['platforms'][platform][slave_platform]
+        slave_p['opt_unittest_suites'] = MOCHITEST + XPCSHELL + MOCHITEST_DT
+        slave_p['debug_unittest_suites'] = MOCHITEST + XPCSHELL + MARIONETTE + MOCHITEST_DT_3
+
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
