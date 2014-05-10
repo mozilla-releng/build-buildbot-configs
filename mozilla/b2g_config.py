@@ -318,7 +318,7 @@ PLATFORM_VARS = {
         'create_snippet': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 13,
+        'build_space': 16,
         'upload_symbols': False,
         'packageTests': True,
         'slaves': SLAVES['mock'],
