@@ -95,9 +95,6 @@ GLOBAL_VARS = {
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
     'blob_upload': True,
-    'mozharness_configs': {
-        'balrog': 'balrog/production.py',
-    },
 }
 
 BUILDS_BEFORE_REBOOT = 1
