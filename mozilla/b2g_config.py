@@ -918,7 +918,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'leo', '--config', 'b2g/releng-private-updates.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'stage_product': 'b2g',
@@ -935,7 +936,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'stage_product': 'b2g',
@@ -969,7 +971,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'tarako', '--config', 'b2g/releng-fota-updates.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'stage_product': 'b2g',
@@ -1003,7 +1006,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'mako', '--config', 'b2g/releng-private-updates.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'env': {
@@ -1045,7 +1049,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'helix', '--config', 'b2g/releng-private-updates.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'stage_product': 'b2g',
@@ -1180,7 +1185,8 @@ PLATFORM_VARS = {
             # --target name below
             'extra_args': ['--target', 'flame', '--config', 'b2g/releng-private-updates.py',
                            '--gaia-languages-file', 'locales/languages_all.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
         },
         'stage_product': 'b2g',

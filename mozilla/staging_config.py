@@ -67,6 +67,9 @@ GLOBAL_VARS = {
     'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
     'blob_upload': True,
+    'mozharness_configs': {
+        'balrog': 'balrog/staging.py',
+    },
 }
 
 BUILDS_BEFORE_REBOOT = 5
