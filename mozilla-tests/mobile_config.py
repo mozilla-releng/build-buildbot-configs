@@ -1566,7 +1566,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             continue
         if not platform == ('android'):
             continue
-        BRANCHES[name]['platforms']['android']['vm_android_2_3'] = {
+        BRANCHES[name]['platforms']['android']['ubuntu64_hw_mobile'] = {
             'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
             'debug_unittest_suites': []
         }
