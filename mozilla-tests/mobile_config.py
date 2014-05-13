@@ -760,7 +760,7 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
 
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
     'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
-    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_JITTEST,
+    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
 }
 
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
@@ -863,7 +863,7 @@ ANDROID_X86_MOZHARNESS_UNITTEST_DICT = {
 # End of Androidx86 configurations
 
 # Beginning Android 2.3 configurations
-ANDROID_2_3_MOZHARNESS_ENABLED_DICT = [
+ANDROID_2_3_MOZHARNESS_DICT = [
     ('mochitest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -1092,10 +1092,6 @@ ANDROID_2_3_MOZHARNESS_ENABLED_DICT = [
         'script_maxtime': 14400,
     },
     ),
-]
-
-# Beginning Android 2.3 configurations
-ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [
     ('mochitest-gl', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -1361,13 +1357,6 @@ ANDROID_2_3_MOZHARNESS_DISABLED_DICT = [
     },
     ),
 ]
-
-# Funky DICT naming
-ANDROID_2_3_MOZHARNESS_DICT = ANDROID_2_3_MOZHARNESS_ENABLED_DICT + ANDROID_2_3_MOZHARNESS_DISABLED_DICT
-ANDROID_2_3_MOZHARNESS_UNITTEST_DICT = {
-    'opt_unittest_suites': ANDROID_2_3_MOZHARNESS_DICT,
-    'debug_unittest_suites': [],
-}
 # End of Android 2.3 configurations
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
@@ -1567,9 +1556,8 @@ BRANCHES['ash']['platforms']['android']['ubuntu64_hw_mobile'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
-# enable 2.3 tests to ride the trains but only mochitest, robocop and
-# xpshell bug 989462
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+# enable android 2.3 tests to ride the trains bug 1004791
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     # Loop removes it from any branch that gets beyond here
     if name in ('ash',):
         continue
@@ -1579,7 +1567,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         if not platform == ('android'):
             continue
         BRANCHES[name]['platforms']['android']['vm_android_2_3'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_ENABLED_DICT),
+            'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
             'debug_unittest_suites': []
         }
 
