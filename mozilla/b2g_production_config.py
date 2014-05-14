@@ -6,6 +6,8 @@ from localconfig import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
 
 GLOBAL_VARS = deepcopy(localconfig.GLOBAL_VARS)
 
+GLOBAL_VARS['balrog_username'] = 'b2gbld'
+
 # Local branch overrides
 BRANCHES = {
     'try': {
