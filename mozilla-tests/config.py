@@ -1045,6 +1045,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
             },
         },
         'win7-ix': {
@@ -1144,6 +1147,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
             },
         },
         'win8': {
@@ -1242,6 +1248,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         }
@@ -1350,6 +1359,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
             },
         },
         'win64_vm': {
@@ -1445,6 +1457,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mozbase': {
                     'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         }
@@ -2010,7 +2025,7 @@ for platform in PLATFORMS.keys():
 
 # Enable web-platform-tests on cedar (non-windows only for now)
 for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms'] or platform.startswith('win'):
+    if platform not in BRANCHES['cedar']['platforms']:
         continue
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
