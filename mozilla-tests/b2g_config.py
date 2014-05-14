@@ -1594,8 +1594,6 @@ BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
-BRANCHES['ash']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-    GAIA_BUILD
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
@@ -1605,7 +1603,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_un
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  REFTEST_DESKTOP + GAIA_BUILD + MOCHITEST_OOP_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+  REFTEST_DESKTOP + MOCHITEST_OOP_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
@@ -1644,11 +1642,9 @@ BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 BRANCHES['gaia-try']['mozharness_repo'] = "https://hg.mozilla.org/users/jford_mozilla.com/mozharness"
 BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
-# Run at scale
-BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-    GAIA_BUILD
-BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-    GAIA_BUILD
+# gaia-build
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
+    BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_BUILD
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
