@@ -1999,6 +1999,11 @@ for platform in PLATFORMS.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
                 continue
+
+            # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
+            if slave_platform == 'mountainlion':
+                continue
+
             for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for cpp_suite in CPPUNIT:
                     try:
@@ -2018,6 +2023,11 @@ for platform in PLATFORMS.keys():
 
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
+
+            # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
+            if slave_platform == 'mountainlion':
+                continue
+
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
