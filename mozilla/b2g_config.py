@@ -34,9 +34,6 @@ GLOBAL_VARS.update({
         'linux64_gecko_localizer': {},
         'macosx64_gecko_localizer': {},
         'win32_gecko_localizer': {},
-        'inari': {},
-        'inari_eng': {},
-        'leo': {},
         'hamachi': {},
         'hamachi_eng': {},
         'tarako': {},
@@ -877,58 +874,6 @@ PLATFORM_VARS = {
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/win32/releng.manifest',
         'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
     },
-    'inari': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'inari_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'inari', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'leo': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'leo', '--config', 'b2g/releng-private-updates.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
     'hamachi': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1230,8 +1175,6 @@ BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'hamachi': {},
-            'inari': {},
-            'leo': {},
             'emulator': {},
         },
     },
@@ -1373,11 +1316,6 @@ BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-central']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-central']['platforms']['inari_eng']['enable_periodic'] = False
-BRANCHES['mozilla-central']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
@@ -1406,11 +1344,6 @@ BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] 
 #BRANCHES['mozilla-aurora']['periodic_start_minute'] = 30
 #BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = 'fake'
 #BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = 'fake'
-#BRANCHES['mozilla-aurora']['platforms']['inari']['enable_nightly'] = True
-#BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_nightly'] = True
-#BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_dep'] = False
-#BRANCHES['mozilla-aurora']['platforms']['inari_eng']['enable_periodic'] = False
-#BRANCHES['mozilla-aurora']['platforms']['leo']['enable_nightly'] = True
 #BRANCHES['mozilla-aurora']['platforms']['hamachi']['enable_nightly'] = True
 #BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['enable_nightly'] = True
 #BRANCHES['mozilla-aurora']['platforms']['hamachi_eng']['consider_for_nightly'] = False
@@ -1437,11 +1370,6 @@ BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
 BRANCHES['mozilla-b2g30_v1_4']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['inari_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['leo']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['consider_for_nightly'] = False
@@ -1485,15 +1413,6 @@ BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [2]
 BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['inari_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_dep'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_periodic'] = False
@@ -1535,15 +1454,6 @@ BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['inari_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['leo']['enable_periodic'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_dep'] = True
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_periodic'] = False
@@ -1582,12 +1492,6 @@ BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_periodic'] = False
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['inari']['enable_periodic'] = False
-BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_periodic'] = False
-BRANCHES['mozilla-b2g18']['platforms']['leo']['enable_dep'] = True
 BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
 
 ######## mozilla-b2g18_v1_1_0_hd
