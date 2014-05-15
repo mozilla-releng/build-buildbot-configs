@@ -66,7 +66,7 @@ BRANCHES = {
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
-    'services-central': {},
+    #'services-central': {},  # Bug 1010674
     'try': {},
     'gaia-try': {
         'lock_platforms': True,
@@ -1634,7 +1634,6 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
-BRANCHES['services-central']['repo_path'] = "services/services-central"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"

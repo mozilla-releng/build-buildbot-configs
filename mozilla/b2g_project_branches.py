@@ -1,7 +1,7 @@
 # Additional branches that start as identical (individual variables can be overriden here)
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
-    'build-system': {},
+    # 'build-system': {},  # Bug 1010674
     'fx-team': {
         'repo_path': 'integration/fx-team',
         'periodic_start_hours': range(2, 24, 3),
@@ -28,9 +28,7 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'services-central': {
-        'repo_path': 'services/services-central'
-    },
+    #'services-central': {},  # Bug 1010674
     # B2G builds not required on the UX branch
     #'ux': {
     #    'branch_name': 'UX',
