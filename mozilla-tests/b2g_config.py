@@ -437,10 +437,10 @@ REFTEST_15 += [
 ]
 
 REFTEST_SANITY = [
-    ('reftest', {'suite': 'reftest',
-                 'use_mozharness': True,
-                 'script_path': 'scripts/b2g_emulator_unittest.py',
-                 },
+    ('reftest-sanity', {'suite': 'reftest',
+                        'use_mozharness': True,
+                        'script_path': 'scripts/b2g_emulator_unittest.py',
+                       },
      ),
 ]
 
@@ -508,15 +508,15 @@ REFTEST_DESKTOP = [
 ]
 
 REFTEST_DESKTOP_SANITY = [
-    ('reftest', {'suite': 'reftest',
-                 'use_mozharness': True,
-                 'script_path': 'scripts/b2g_desktop_unittest.py',
-                 'blob_upload': True,
-                 },
+    ('reftest-sanity', {'suite': 'reftest',
+                        'use_mozharness': True,
+                        'script_path': 'scripts/b2g_desktop_unittest.py',
+                        'blob_upload': True,
+                       },
      ),
 ]
 
-REFTEST_DESKTOP_OOP_SANITY = [('reftest-oop', REFTEST_DESKTOP_SANITY[0][1])]
+REFTEST_DESKTOP_OOP_SANITY = [('reftest-sanity-oop', REFTEST_DESKTOP_SANITY[0][1])]
 
 JSREFTEST = [
     ('jsreftest-1', {'suite': 'jsreftest',
@@ -671,7 +671,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -815,14 +815,14 @@ PLATFORM_UNITTEST_VARS = {
                         '--browser-arg', '-oop',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                     ],
                 },
-                'reftest-oop': {
+                'reftest-sanity-oop': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -939,7 +939,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -1237,7 +1237,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
@@ -1397,7 +1397,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
