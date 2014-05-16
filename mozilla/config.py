@@ -139,6 +139,12 @@ SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
+GLOBAL_ENV = {
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_AUTOMATION': '1',
+}
+
 PLATFORM_VARS = {
         'linux': {
             'mozharness_config': {
@@ -183,8 +189,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -298,8 +302,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -387,8 +389,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -478,8 +478,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan-debug',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -569,8 +567,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-st-an-debug',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -681,8 +677,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
@@ -739,8 +733,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -793,8 +785,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -848,8 +838,6 @@ PLATFORM_VARS = {
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'TINDERBOX_OUTPUT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -953,8 +941,6 @@ PLATFORM_VARS = {
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'TINDERBOX_OUTPUT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1017,8 +1003,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'TINDERBOX_OUTPUT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
                 'CCACHE_DIR': '/builds/ccache',
@@ -1062,8 +1046,6 @@ PLATFORM_VARS = {
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'TINDERBOX_OUTPUT': '1',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -1100,8 +1082,6 @@ PLATFORM_VARS = {
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                'TINDERBOX_OUTPUT': '1',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -1167,8 +1147,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1235,8 +1213,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1300,8 +1276,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1372,8 +1346,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1442,8 +1414,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -1466,6 +1436,12 @@ PLATFORM_VARS["macosx64-lion"]["base_name"] = 'OS X 10.7 %(branch)s'
 PLATFORM_VARS["macosx64-lion-debug"]["base_name"] = 'OS X 10.7 64-bit %(branch)s leak test'
 PLATFORM_VARS["macosx64-lion"]["slaves"] = SLAVES['macosx64-lion']
 PLATFORM_VARS["macosx64-lion-debug"]["slaves"] = SLAVES['macosx64-lion']
+
+for platform in PLATFORM_VARS.values():
+    if 'env' not in platform:
+        platform['env'] = deepcopy(GLOBAL_ENV)
+    else:
+        platform['env'].update((k, v) for k, v in GLOBAL_ENV.items() if k not in platform['env'])
 
 PROJECTS = {
     'fuzzing': {

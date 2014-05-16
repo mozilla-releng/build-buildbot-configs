@@ -100,6 +100,12 @@ SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
 SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
 builder_prefix = "TB "
 
+GLOBAL_ENV = {
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_AUTOMATION': '1',
+}
+
 PLATFORM_VARS = {
         'linux': {
             'product_name': 'thunderbird',
@@ -131,8 +137,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/tbirdbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -227,8 +231,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/tbirdbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -301,8 +303,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/tbirdbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
@@ -351,8 +351,6 @@ PLATFORM_VARS = {
                 'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/tbirdbld_dsa",
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -399,8 +397,6 @@ PLATFORM_VARS = {
                 'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/tbirdbld_dsa",
                 'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
-                'TINDERBOX_OUTPUT': '1',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
@@ -437,7 +433,6 @@ PLATFORM_VARS = {
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -518,7 +513,6 @@ PLATFORM_VARS = {
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -575,7 +569,6 @@ PLATFORM_VARS = {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
                 'CCACHE_DIR': '/builds/ccache',
@@ -611,7 +604,6 @@ PLATFORM_VARS = {
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'MOZ_CRASHREPORTER_NO_REPORT': '1',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             },
@@ -625,6 +617,11 @@ PLATFORM_VARS = {
         },
 }
 
+for platform in PLATFORM_VARS.values():
+    if 'env' not in platform:
+        platform['env'] = deepcopy(GLOBAL_ENV)
+    else:
+        platform['env'].update((k, v) for k, v in GLOBAL_ENV.items() if k not in platform['env'])
 
 # All branches (not in project_branches) that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
