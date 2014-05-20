@@ -3,14 +3,14 @@ LINUX_IXS      = []
 LINUX64_IXS    = []
 WIN32_IXS      = []
 WIN64_IXS      = []
-WIN64_REV2     = ['w64-ix-slave%02i' % x for x in range(6,30) + range(42,44) + range(75,100) if x not in [22,80,85,86]] + \
+WIN64_REV2     = ['w64-ix-slave%02i' % x for x in range(42,44) + range(75,100) if x not in [80,85,86]] + \
                  ['w64-ix-slave%03i' % x for x in range(100,110) + range(111,158)] + \
-                 ['b-2008-ix-%04i' % x for x in range(1,18)]
+                 ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(161,165)]
 MOCK_DL120G7   = ['bld-centos6-hp-%03d' % x for x in range(6,10) + range(12,14) + range(15,20)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
                  ['bld-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
                  ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
-MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(28, 38)] + \
+MOCK_IX        = ['bld-linux64-ix-%03d' % x for x in range(31, 38)] + \
                  ['b-linux64-ix-%04d' % x for x in range(1, 12)]
 
 if set(WIN64_REV2).intersection(set(WIN64_IXS)):
@@ -37,12 +37,11 @@ TRY_WIN64_IXS  = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
     ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
     ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
-TRY_WIN64_REV2 = ['w64-ix-slave%02i' % x for x in [3] + range(32,75) if x not in [42,43]] + \
+TRY_WIN64_REV2 = ['w64-ix-slave%02i' % x for x in range(35,41) + range(53,75)] + \
                  ['w64-ix-slave%03i' % x for x in [110] + range(159,171)] + \
-                 ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,15)] + \
+                 ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,176)] + \
                  ['b-2008-sm-%04d' % x for x in range(1, 65)]
 TRY_MOCK_DL120G7 = ['bld-centos6-hp-%03d' % x for x in range(24,33) + [35] + range(40,43)] + \
-                   ['b-linux64-hp-%03d' % x for x in range(1, 7)] + \
                    ['b-linux64-hp-%04d' % x for x in range(1, 20)] + \
                    ['b-linux64-ix-%04d' % x for x in range(12, 14)]
 TRY_MOCK_IX      = ['bld-linux64-ix-%03d' % x for x in range(49,51)]
