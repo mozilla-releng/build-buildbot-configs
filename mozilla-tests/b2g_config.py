@@ -437,10 +437,10 @@ REFTEST_15 += [
 ]
 
 REFTEST_SANITY = [
-    ('reftest', {'suite': 'reftest',
-                 'use_mozharness': True,
-                 'script_path': 'scripts/b2g_emulator_unittest.py',
-                 },
+    ('reftest-sanity', {'suite': 'reftest',
+                        'use_mozharness': True,
+                        'script_path': 'scripts/b2g_emulator_unittest.py',
+                       },
      ),
 ]
 
@@ -508,15 +508,15 @@ REFTEST_DESKTOP = [
 ]
 
 REFTEST_DESKTOP_SANITY = [
-    ('reftest', {'suite': 'reftest',
-                 'use_mozharness': True,
-                 'script_path': 'scripts/b2g_desktop_unittest.py',
-                 'blob_upload': True,
-                 },
+    ('reftest-sanity', {'suite': 'reftest',
+                        'use_mozharness': True,
+                        'script_path': 'scripts/b2g_desktop_unittest.py',
+                        'blob_upload': True,
+                       },
      ),
 ]
 
-REFTEST_DESKTOP_OOP_SANITY = [('reftest-oop', REFTEST_DESKTOP_SANITY[0][1])]
+REFTEST_DESKTOP_OOP_SANITY = [('reftest-sanity-oop', REFTEST_DESKTOP_SANITY[0][1])]
 
 JSREFTEST = [
     ('jsreftest-1', {'suite': 'jsreftest',
@@ -671,7 +671,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -815,14 +815,14 @@ PLATFORM_UNITTEST_VARS = {
                         '--browser-arg', '-oop',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
                     ],
                 },
-                'reftest-oop': {
+                'reftest-sanity-oop': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -939,7 +939,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', 1, '--total-chunks', 1,
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
@@ -1237,7 +1237,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
@@ -1397,7 +1397,7 @@ PLATFORM_UNITTEST_VARS = {
                         '--this-chunk', '3', '--total-chunks', '3',
                     ],
                 },
-                'reftest': {
+                'reftest-sanity': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
@@ -1645,6 +1645,12 @@ BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
 # Run at scale
 BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+
+# Run at scale
+BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
     GAIA_BUILD
 BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
     GAIA_BUILD
@@ -1673,12 +1679,28 @@ for branch in BRANCHES.keys():
             BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
 
 # Disable gecko-debug unittests on older branches, Bug 91611
+# All tests need to be enabled on cedar until they green up, Bug 1004610
+# On recent branches, enable GAIA_UI for linux64, Bug 1004610, c9
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 30)])
 for b in BRANCHES.keys():
-    if b != 'cedar' or b in OLD_BRANCHES:
+    if b in OLD_BRANCHES:
         for platform in ['linux32_gecko', 'linux64_gecko', 'macosx64_gecko']:
              if platform in BRANCHES[b]['platforms']:
                  BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
+    else:
+        if b == 'cedar':
+            # run all test suites on all platforms
+            pass
+        else:
+            for platform in ['linux32_gecko', 'macosx64_gecko']:
+                 # disable all tests
+                 if platform in BRANCHES[b]['platforms']:
+                     BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
+            for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'), ):
+                # enable GAIA_UI tests only
+                if nested_haskey(BRANCHES[b]['platforms'], slave_platform[0], slave_platform[1]):
+                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]] 
+                    slave_p['debug_unittest_suites'] = GAIA_UI[:]
 
 
 # Disable b2g desktop reftest-sanity on cedar
