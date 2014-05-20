@@ -1020,6 +1020,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-debug': {
         'mozharness_config': {
@@ -1036,6 +1037,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-jb': {
         'mozharness_config': {
@@ -1052,6 +1054,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-jb-debug': {
         'mozharness_config': {
@@ -1068,6 +1071,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-kk': {
         'mozharness_config': {
@@ -1086,6 +1090,7 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'enable_periodic': True,
         'enable_dep': False,
+        'maxTime': 6 * 3600,
     },
     'emulator-kk-debug': {
         'mozharness_config': {
@@ -1104,6 +1109,7 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'enable_periodic': True,
         'enable_dep': False,
+        'maxTime': 6 * 3600,
     },
     'wasabi': {
         'mozharness_config': {
