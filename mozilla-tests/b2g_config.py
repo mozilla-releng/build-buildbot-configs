@@ -1645,6 +1645,12 @@ BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
 # Run at scale
 BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+
+# Run at scale
+BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
     GAIA_BUILD
 BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
     GAIA_BUILD
