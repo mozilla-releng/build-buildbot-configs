@@ -88,11 +88,11 @@
     "platforms": ["android", "android-multilocale"]
   },
   "lt": {
-    "revision": "9e269c73722f",
+    "revision": "def7c3341f63",
     "platforms": ["android", "android-multilocale"]
   },
   "lv": {
-    "revision": "b09fc4a84398",
+    "revision": "db8d5a7cc2ad",
     "platforms": ["android", "android-multilocale"]
   },
   "ms": {
