@@ -23,7 +23,7 @@ for i in range(1,131):
 for i in range(1,131):
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
-for i in range(2,30) + range(31,41) + range(42,81) + range(82,84) + range(85,171):
+for i in range(43,81) + range(82,84) + range(85,171):
     SLAVES['snowleopard']['talos-r4-snow-%03i' % i] = {}
 
 for i in range(1,167):
