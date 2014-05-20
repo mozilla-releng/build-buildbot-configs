@@ -760,8 +760,10 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
-            'debug_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
+            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
+                    REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
+            'debug_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
+                    REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -1731,7 +1733,7 @@ for b in BRANCHES.keys():
 
 # Disable b2g desktop reftest-sanity, gaia-integration and gaia-unit tests on older branches
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
-excluded_tests = ['gaia-integration', 'reftest', 'gaia-unit']
+excluded_tests = ['gaia-integration', 'reftest-sanity', 'gaia-unit']
 for b in BRANCHES.keys():
     branch = BRANCHES[b]
     if b in OLD_BRANCHES:
