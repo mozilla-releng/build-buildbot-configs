@@ -1433,25 +1433,15 @@ for platform in PLATFORMS.keys():
             if slave_platform not in branch['platforms'][platform]:
                 continue
 
+            # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
+            if slave_platform == 'mountainlion':
+                continue
+
             for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for cpp_suite in CPPUNIT:
                     try:
                         branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(cpp_suite)
                         branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(cpp_suite)
-                    except ValueError:
-                        # wasn't in the list anyways
-                        pass
-
-    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-    if 'mountainlion' in PLATFORMS[platform]['slave_platforms']:
-        for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
-            if 'mountainlion' not in branch['platforms'][platform]:
-                continue
-            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
-                for cpp_suite in CPPUNIT:
-                    try:
-                        branch['platforms'][platform]['mountainlion']['opt_unittest_suites'].remove(cpp_suite)
-                        branch['platforms'][platform]['mountainlion']['debug_unittest_suites'].remove(cpp_suite)
                     except ValueError:
                         # wasn't in the list anyways
                         pass
