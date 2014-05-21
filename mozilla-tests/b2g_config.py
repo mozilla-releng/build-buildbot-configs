@@ -1639,9 +1639,6 @@ BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
-# Temporary redirect for debugging: bug 1008351
-BRANCHES['gaia-try']['mozharness_repo'] = "https://hg.mozilla.org/users/jford_mozilla.com/mozharness"
-BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
 # Run at scale
 BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
@@ -1697,7 +1694,7 @@ for b in BRANCHES.keys():
             for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'), ):
                 # enable GAIA_UI tests only
                 if nested_haskey(BRANCHES[b]['platforms'], slave_platform[0], slave_platform[1]):
-                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]] 
+                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]]
                     slave_p['debug_unittest_suites'] = GAIA_UI[:]
 
 
