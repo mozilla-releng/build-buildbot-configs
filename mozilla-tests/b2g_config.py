@@ -1605,7 +1605,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_un
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  REFTEST_DESKTOP + MOCHITEST_OOP_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
+  REFTEST_DESKTOP + GAIA_UI_OOP
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
@@ -1639,19 +1639,11 @@ BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
-# Temporary redirect for debugging: bug 1008351
-BRANCHES['gaia-try']['mozharness_repo'] = "https://hg.mozilla.org/users/jford_mozilla.com/mozharness"
-BRANCHES['gaia-try']['mozharness_tag'] = "default"
 
-# Run at scale
-BRANCHES['mozilla-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
-BRANCHES['b2g-inbound']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY
-
-# gaia-build
+# new linux64_gecko tests as of gecko 32
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-    BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GAIA_BUILD
+    BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+      GAIA_BUILD + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY + MOCHITEST_OOP_DESKTOP
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
@@ -1697,7 +1689,7 @@ for b in BRANCHES.keys():
             for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'), ):
                 # enable GAIA_UI tests only
                 if nested_haskey(BRANCHES[b]['platforms'], slave_platform[0], slave_platform[1]):
-                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]] 
+                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]]
                     slave_p['debug_unittest_suites'] = GAIA_UI[:]
 
 

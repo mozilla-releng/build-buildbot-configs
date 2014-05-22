@@ -69,6 +69,12 @@ builder_prefix = "b2g"
 gaia_repo = 'integration/gaia-central'
 gaia_revision_file = 'b2g/config/gaia.json'
 
+GLOBAL_ENV = {
+    'MOZ_CRASHREPORTER_NO_REPORT': '1',
+    'TINDERBOX_OUTPUT': '1',
+    'MOZ_AUTOMATION': '1',
+}
+
 PLATFORM_VARS = {
     'linux32_gecko': {
         'product_name': 'b2g',
@@ -103,8 +109,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -181,8 +185,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -258,8 +260,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -334,8 +334,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -410,8 +408,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CHOWN_ROOT': '~/bin/chown_root',
             'CHOWN_REVERT': '~/bin/chown_revert',
             'LC_ALL': 'C',
@@ -465,8 +461,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CHOWN_ROOT': '~/bin/chown_root',
             'CHOWN_REVERT': '~/bin/chown_revert',
             'LC_ALL': 'C',
@@ -517,8 +511,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -573,8 +565,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -632,8 +622,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -711,8 +699,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CCACHE_DIR': '/builds/ccache',
             'CCACHE_COMPRESS': '1',
             'CCACHE_UMASK': '002',
@@ -789,8 +775,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'CHOWN_ROOT': '~/bin/chown_root',
             'CHOWN_REVERT': '~/bin/chown_revert',
             'LC_ALL': 'C',
@@ -844,8 +828,6 @@ PLATFORM_VARS = {
             'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
             'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
             'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
-            'TINDERBOX_OUTPUT': '1',
-            'MOZ_CRASHREPORTER_NO_REPORT': '1',
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -1020,6 +1002,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-debug': {
         'mozharness_config': {
@@ -1036,6 +1019,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-jb': {
         'mozharness_config': {
@@ -1052,6 +1036,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-jb-debug': {
         'mozharness_config': {
@@ -1068,6 +1053,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
     },
     'emulator-kk': {
         'mozharness_config': {
@@ -1086,6 +1072,7 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'enable_periodic': True,
         'enable_dep': False,
+        'maxTime': 6 * 3600,
     },
     'emulator-kk-debug': {
         'mozharness_config': {
@@ -1104,6 +1091,7 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'enable_periodic': True,
         'enable_dep': False,
+        'maxTime': 6 * 3600,
     },
     'wasabi': {
         'mozharness_config': {
@@ -1159,6 +1147,12 @@ PLATFORM_VARS = {
         'enable_dep': False,
     },
 }
+
+for platform in PLATFORM_VARS.values():
+    if 'env' not in platform:
+        platform['env'] = deepcopy(GLOBAL_ENV)
+    else:
+        platform['env'].update((k, v) for k, v in GLOBAL_ENV.items() if k not in platform['env'])
 
 
 # All branches (not in project_branches) that are to be built MUST be listed here, along with their
