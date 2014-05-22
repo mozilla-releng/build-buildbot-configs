@@ -387,9 +387,9 @@ PLATFORM_VARS = {
 
 for platform in PLATFORM_VARS.values():
   if 'env' not in platform:
-    platform['env'] = deepcopy(GLOBAL_ENV)
+    platform['env'] = deepcopy(GLOBAL_ENVS)
   else:
-    platform['env'].update((k, v) for k, v in GLOBAL_ENV.items() if k not in platform['env'])
+    platform['env'].update((k, v) for k, v in GLOBAL_ENVS.items() if k not in platform['env'])
 
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
