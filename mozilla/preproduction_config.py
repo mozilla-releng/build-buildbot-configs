@@ -1,5 +1,3 @@
-from staging_config import SLAVES, TRY_SLAVES
-
 GLOBAL_VARS = {
     'staging': True,
     'config_repo_path': 'build/buildbot-configs',
@@ -13,7 +11,7 @@ GLOBAL_VARS = {
     'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
     # XXX: should point at aus4-admin-dev once production is pointing elsewhere
-    #'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    # 'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'base_clobber_url': 'http://clobberer-preproduction.pvt.build.mozilla.org/index.php',
     'pollInterval': 6*60*60,
     'l10nPollInterval': 6*60*60,
@@ -66,14 +64,6 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'mozilla-b2g18': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
     'mozilla-b2g26_v1_2': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
@@ -83,7 +73,7 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'try': {
-        'email_override': [], # Set to your address when testing
+        'email_override': [],  # Set to your address when testing
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False,

@@ -86,7 +86,6 @@ for i in range(1,3):
     SLAVES['win64_vm']['tst-w64-ec2-%03i' % i] = {}
 
 SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
-SLAVES['tegra_android-noion'] = SLAVES['tegra_android']
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 # Use "-b2g" suffix to make misc.py generate unique builder names
 SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']
@@ -132,14 +131,6 @@ BRANCHES = {
     'mozilla-esr24': {
         'tinderbox_tree': 'Mozilla-Esr24',
         'mobile_tinderbox_tree': 'Mozilla-Esr24',
-    },
-    'mozilla-b2g18': {
-        'tinderbox_tree': 'Mozilla-B2g18',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18',
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
     },
     'mozilla-b2g26_v1_2': {
         'tinderbox_tree': 'Mozilla-B2g26-v1.2',

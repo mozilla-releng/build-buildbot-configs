@@ -1164,24 +1164,6 @@ BRANCHES = {
 #        'gecko_version': 32,
 #        'b2g_version': (2, 0, 0),
 #    },
-    'mozilla-b2g18': {
-        'gecko_version': 18,
-        'lock_platforms': True,
-        'platforms': {
-            'hamachi': {},
-            'emulator': {},
-        },
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'gecko_version': 18,
-        'b2g_version': (1, 1, 0),
-        'lock_platforms': True,
-        'platforms': {
-            'emulator': {},
-            'emulator-debug': {},
-            'helix': {},
-        },
-    },
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
@@ -1469,41 +1451,6 @@ BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux32_gecko_localizer']['enable_n
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
-
-######## mozilla-b2g18
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g18']['repo_path'] = 'releases/mozilla-b2g18'
-BRANCHES['mozilla-b2g18']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_1'
-BRANCHES['mozilla-b2g18']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g18']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18']['start_hour'] = [4]
-BRANCHES['mozilla-b2g18']['start_minute'] = [12]
-BRANCHES['mozilla-b2g18']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g18']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['mozharness_config']['extra_args'] = ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales', '--nightly-update-channel', 'beta', '--publish-channel', 'nightly']
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_periodic'] = False
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_dep'] = True
-BRANCHES['mozilla-b2g18']['platforms']['hamachi']['enable_nightly'] = True
-
-######## mozilla-b2g18_v1_1_0_hd
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = 'releases/mozilla-b2g18_v1_1_0_hd'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_1'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_hour'] = [4]
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['start_minute'] = [22]
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_dep'] = True
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['helix']['enable_periodic'] = False
 
 ######## try
 # Try-specific configs

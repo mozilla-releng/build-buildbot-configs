@@ -24,8 +24,6 @@ BRANCH_PRIORITIES = {
     'mozilla-release': 0,
     'comm-esr24': 0,
     'mozilla-esr24': 1,
-    'mozilla-b2g18': 1,
-    'mozilla-b2g18_v1_1_0_hd': 1,
     'mozilla-b2g26_v1_2': 1,
     'mozilla-b2g28_v1_3': 1,
     'mozilla-beta': 2,
@@ -261,6 +259,7 @@ def setMainCommVersions(BRANCHES):
     BRANCHES['comm-beta']['gecko_version'] = 29
     BRANCHES['comm-aurora']['gecko_version'] = 30
 
+
 # Typical usage pattern:
 #
 #   set cfg = current_behavior
@@ -277,6 +276,7 @@ def items_before(map, key, maxval):
         value = v.get(key)
         if value and cmp(value, maxval) < 0:
             yield (k, v)
+
 
 # Typical usage pattern:
 #
