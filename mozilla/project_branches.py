@@ -175,7 +175,12 @@ PROJECT_BRANCHES = {
             'win32-debug': {},
         },
     },
-    'fig': {},
+    'fig': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux64-mulet': {},
+        }
+    },
     'gum': {},
     'holly': {
         'branch_projects': [],

@@ -99,6 +99,7 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
+    'linux64-mulet': {},
     'win64': {},
 }
 
@@ -184,6 +185,22 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
+
+PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-mulet']['ubuntu64_vm'] = {
+    'name': 'Ubuntu Mulet VM 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_mulet',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_mulet'
+}
+PLATFORMS['linux64-mulet']['stage_product'] = 'firefox'
+PLATFORMS['linux64-mulet']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
+}
+
 
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
@@ -278,6 +295,7 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-asan': {},
+        'linux64-mulet': {},
         'macosx64': {},
         'win32': {},
         'win64': {},
@@ -667,6 +685,72 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'webapprt-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
+        },
+    },
+    'linux64-mulet': {
+        'product_name': 'Irrelevant',
+        'app_name': 'Irrelevant',
+        'brand_name': 'Irrelevant',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu64_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'reftest': {
@@ -1426,6 +1510,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
     for pf in PLATFORMS:
         if pf not in branch['platforms']:
             continue
+        # Skip these platforms
+        if pf in ('linux64-mulet',):
+            continue
         for slave_pf in branch['platforms'][pf].get(
                 'slave_platforms', PLATFORMS[pf]['slave_platforms']):
             if slave_pf not in branch['platforms'][pf]:
@@ -1624,6 +1711,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 26):
     if 'linux64-asan' in branch['platforms']:
         del branch['platforms']['linux64-asan']
 
+# Disable Mulet in every branch except fig and try
+for name in BRANCHES.keys():
+    if name not in ('try', 'fig'):
+        continue
+    if 'linux64-mulet' in BRANCHES[name]['platforms']:
+        del BRANCHES[name]['platforms']['linux64-mulet']
 
 if __name__ == "__main__":
     import sys

@@ -54,7 +54,10 @@ PROJECT_BRANCHES = {
     },
     # B2G builds not required on date
     # 'date': {},
-    'fig': {},
+    'fig': {
+        'lock_platforms': True,
+        'platforms': {},
+    },
     'gum': {},
     # disabled for bug 985718
     #'holly': {},

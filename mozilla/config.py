@@ -65,6 +65,7 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
+        'linux64-mulet': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -640,6 +641,28 @@ PLATFORM_VARS = {
             'slaves': SLAVES['mock'],
             'try_by_default': True,
             'consider_for_nightly': False,
+            'mock_target': 'mozilla-centos6-x86_64',
+        },
+        'linux64-mulet': {
+            'mozharness_config': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                ],
+                'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                                   '-f', '../reboot_count.txt','-n', '1', '-z'],
+            },
+
+            'unittest_platform': 'linux64-mulet',
+            'stage_product': 'firefox',
+            'stage_platform': 'linux64-mulet',
+            'base_name': '%(platform)s_%(branch)s',
+            'slaves': SLAVES['mock'],
+            'try_by_default': False,
+            'consider_for_nightly': False,
+            'enable_opt_unittests': False,
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'b2g/dev/config/mozconfigs/linux64/mulet',
             'mock_target': 'mozilla-centos6-x86_64',
         },
         'macosx64': {
@@ -2070,6 +2093,7 @@ BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(
@@ -2249,6 +2273,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
     if 'b2g' in name and 'inbound' not in name:
         if 'linux64-br-haz' in branch['platforms']:
             del branch['platforms']['linux64-br-haz']
+
+# Disable in other branches until we're ready
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
+    if name in ('try', 'fig'):
+        continue
+    if 'linux64-mulet' in branch['platforms']:
+        del branch['platforms']['linux64-mulet']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):
