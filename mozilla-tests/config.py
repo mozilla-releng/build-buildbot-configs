@@ -1511,7 +1511,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
         if pf not in branch['platforms']:
             continue
         # Skip these platforms
-        if pf in ('linux64-mulet',):
+        if pf in ('linux64-mulet', 'linux64-asan',):
             continue
         for slave_pf in branch['platforms'][pf].get(
                 'slave_platforms', PLATFORMS[pf]['slave_platforms']):
