@@ -1713,7 +1713,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 26):
 
 # Disable Mulet in every branch except fig and try
 for name in BRANCHES.keys():
-    if name not in ('try', 'fig'):
+    if name in ('try', 'fig'):
         continue
     if 'linux64-mulet' in BRANCHES[name]['platforms']:
         del BRANCHES[name]['platforms']['linux64-mulet']
