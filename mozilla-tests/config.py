@@ -85,24 +85,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g18': {
-        'datazilla_url': None,
-        'gecko_version': 18,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'datazilla_url': None,
-        'gecko_version': 18,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'try': {
         'coallesce_jobs': False,
     },
@@ -117,6 +99,7 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
+    'linux64-mulet': {},
     'win64': {},
 }
 
@@ -202,6 +185,22 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
+
+PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-mulet']['ubuntu64_vm'] = {
+    'name': 'Ubuntu Mulet VM 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_mulet',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_mulet'
+}
+PLATFORMS['linux64-mulet']['stage_product'] = 'firefox'
+PLATFORMS['linux64-mulet']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
+}
+
 
 # Lets be explicit instead of magical.
 for platform, platform_config in PLATFORMS.items():
@@ -296,6 +295,7 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-asan': {},
+        'linux64-mulet': {},
         'macosx64': {},
         'win32': {},
         'win64': {},
@@ -685,6 +685,72 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'webapprt-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
+        },
+    },
+    'linux64-mulet': {
+        'product_name': 'Irrelevant',
+        'app_name': 'Irrelevant',
+        'brand_name': 'Irrelevant',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu64_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'reftest': {
@@ -1387,20 +1453,6 @@ BRANCHES['mozilla-esr24']['repo_path'] = "releases/mozilla-esr24"
 BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
-######### mozilla-b2g18
-BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
-BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18']['mozharness_talos'] = False
-BRANCHES['mozilla-b2g18']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
-BRANCHES['mozilla-b2g18']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
-
-######### mozilla-b2g18_v1_1_0_hd
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['mozharness_talos'] = False
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['tpn_tests'] = (1, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['tp5o_tests'] = (0, True, TALOS_TP_NEW_OPTS, LINUX64_ONLY)
-
 ######### mozilla-b2g26_v1_2
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
@@ -1453,10 +1505,13 @@ for platform in BRANCHES['holly']['platforms'].keys():
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
 
-# Load jetpack for branches that have at least FF21
+# Load jetpack for (all) branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
     for pf in PLATFORMS:
         if pf not in branch['platforms']:
+            continue
+        # Skip these platforms
+        if pf in ('linux64-mulet', 'linux64-asan',):
             continue
         for slave_pf in branch['platforms'][pf].get(
                 'slave_platforms', PLATFORMS[pf]['slave_platforms']):
@@ -1476,15 +1531,26 @@ for platform in PLATFORMS.keys():
             if slave_platform not in branch['platforms'][platform]:
                 continue
 
-            # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-            if slave_platform == 'mountainlion':
+            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for cpp_suite in CPPUNIT:
+                    try:
+                        branch['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
+                    except ValueError:
+                        # wasn't in the list anyways
+                        pass
+
+    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
+        if platform not in branch['platforms']:
+            continue
+        if 'mountainlion' in PLATFORMS[platform]['slave_platforms']:
+            if 'mountainlion' not in branch['platforms'][platform]:
                 continue
 
             for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for cpp_suite in CPPUNIT:
                     try:
-                        branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(cpp_suite)
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(cpp_suite)
+                        branch['platforms'][platform]['mountainlion'][suite_type].remove(cpp_suite)
                     except ValueError:
                         # wasn't in the list anyways
                         pass
@@ -1645,6 +1711,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 26):
     if 'linux64-asan' in branch['platforms']:
         del branch['platforms']['linux64-asan']
 
+# Disable Mulet in every branch except fig and try
+for name in BRANCHES.keys():
+    if name not in ('try', 'fig'):
+        continue
+    if 'linux64-mulet' in BRANCHES[name]['platforms']:
+        del BRANCHES[name]['platforms']['linux64-mulet']
 
 if __name__ == "__main__":
     import sys

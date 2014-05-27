@@ -46,22 +46,6 @@ BRANCHES = {
     'mozilla-b2g30_v1_4': {
         'gecko_version': 30,
     },
-    'mozilla-b2g18': {
-        'datazilla_url': None,
-        'gecko_version': 18,
-        'platforms': {
-            'android-noion': {},
-        },
-        'lock_platforms': True,
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'datazilla_url': None,
-        'gecko_version': 18,
-        'platforms': {
-            'android-noion': {},
-        },
-        'lock_platforms': True,
-    },
     'try': {'coallesce_jobs': False},
 }
 
@@ -71,7 +55,6 @@ setMainFirefoxVersions(BRANCHES)
 PLATFORMS = {
     'android': {},
     'android-armv6': {},
-    'android-noion': {},
     'android-x86': {},
 }
 
@@ -107,13 +90,6 @@ PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {}
-
-PLATFORMS['android-noion']['slave_platforms'] = ['tegra_android-noion']
-PLATFORMS['android-noion']['env_name'] = 'android-perf'
-PLATFORMS['android-noion']['is_mobile'] = True
-PLATFORMS['android-noion']['tegra_android-noion'] = {'name': "Android 2.2 no-ionmonkey Tegra"}
-PLATFORMS['android-noion']['stage_product'] = 'mobile'
-PLATFORMS['android-noion']['mozharness_python'] = '/tools/buildbot/bin/python'
 
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
@@ -193,7 +169,6 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'android': {},
         'android-armv6': {},
-        'android-noion': {},
         'android-debug': {},
         'android-x86': {},
     },
@@ -680,15 +655,6 @@ ANDROID_MOZHARNESS_PLAIN_ROBOCOP = [
       },
      ),
 ]
-
-ANDROID_NOION_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if not suite[0].startswith('jsreftest'):
-        continue
-    ANDROID_NOION_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 ANDROID_PLAIN_UNITTEST_DICT = {
     'opt_unittest_suites': [],
@@ -1385,17 +1351,6 @@ PLATFORM_UNITTEST_VARS = {
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android-armv6': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
     },
-    'android-noion': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'host_utils_url': 'http://talos-remote.pvt.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-noion': deepcopy(ANDROID_NOION_UNITTEST_DICT),
-    },
     'android-x86': {
         'product_name': 'fennec',
         'enable_opt_unittests': True,
@@ -1525,18 +1480,6 @@ BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-b2g30_v1_4']['pgo_platforms'] = []
 
-######### mozilla-b2g18
-BRANCHES['mozilla-b2g18']['release_tests'] = 1
-BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
-BRANCHES['mozilla-b2g18']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18']['pgo_platforms'] = []
-
-######### mozilla-b2g18_v1_1_0_hd
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['release_tests'] = 1
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['pgo_platforms'] = []
-
 ######## try
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
@@ -1571,17 +1514,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'debug_unittest_suites': []
         }
 
-# MERGE DAY - Delete all references to android-noion once mozilla-b2g18 is EOL.
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
-        if 'android-noion' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['android-noion']
-
-for name, branch in items_before(BRANCHES, 'gecko_version', 22):
-    if 'android' in branch['platforms']:
-        del branch['platforms']['android']['panda_android']
-        branch['platforms']['android']['slave_platforms'] = ['tegra_android']
-
 # Panda debug enabled on trunk that rides the trains
 # this stanza is to disable it for branches on an older version of gecko
 for name, branch in items_before(BRANCHES, 'gecko_version', 31):
@@ -1604,7 +1536,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 31):
 BRANCHES['cedar']['platforms']['android']['enable_debug_unittests'] = True
 # this loop is to limit the debug tests run on trunk branches to
 # M4,M5,M6,M7,J1,J2,J3 only for panda-android
-d = ['mochitest-1', 'mochitest-2', 'mochitest-3', 'mochitest-4', 
+d = ['mochitest-1', 'mochitest-2', 'mochitest-3', 'mochitest-4',
      'mochitest-5', 'mochitest-6', 'mochitest-7', 'mochitest-8',
      'jsreftest-1', 'jsreftest-2', 'jsreftest-3', ]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
@@ -1632,23 +1564,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
 
 # have to disable this manually or it blows up in misc.py
 BRANCHES['ash']['platforms']['android']['enable_debug_unittests'] = False
-
-# XPCShell (Gecko 23 based)
-for name, branch in items_before(BRANCHES, 'gecko_version', 23):
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if not platform.startswith('android'):
-            continue
-        if platform.endswith('-debug'):
-            continue  # no slave_platform for debug
-        for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in branch['platforms'][platform]:
-                continue
-            for type in branch['platforms'][platform][slave_plat]:
-                for suite in branch['platforms'][platform][slave_plat][type][:]:
-                    if "xpcshell" in suite[0]:
-                        branch['platforms'][platform][slave_plat][type].remove(suite)
 
 # Panda XPCShell
 for name, branch in items_before(BRANCHES, 'gecko_version', 28):

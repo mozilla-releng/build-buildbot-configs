@@ -120,16 +120,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr24',
         'mobile_tinderbox_tree': 'Mozilla-Esr24',
     },
-    'mozilla-b2g18': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18',
-        'tinderbox_tree': 'Mozilla-B2g18',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18',
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
-        'tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
-        'mobile_tinderbox_tree': 'Mozilla-B2g18-v1.1.0hd',
-    },
     'mozilla-b2g26_v1_2': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g26-v1.2',
         'tinderbox_tree': 'Mozilla-B2g26-v1.2',

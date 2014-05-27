@@ -31,14 +31,6 @@ BRANCHES = {
     'pine': {},
     'fx-team': {},
     'graphics': {},
-    'mozilla-b2g18': {
-        'gecko_version': 18,
-        'b2g_version': (1, 1, 0),
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'gecko_version': 18,
-        'b2g_version': (1, 1, 1),
-    },
     'mozilla-b2g26_v1_2': {
         'gecko_version': 26,
         'b2g_version': (1, 2, 0),
@@ -1619,12 +1611,6 @@ BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
-BRANCHES['mozilla-b2g18']['repo_path'] = "releases/mozilla-b2g18"
-BRANCHES['mozilla-b2g18']['platforms']['emulator']['enable_debug_unittests'] = False
-BRANCHES['mozilla-b2g18']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_SANITY
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['repo_path'] = "releases/mozilla-b2g18_v1_1_0_hd"
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_SANITY
-BRANCHES['mozilla-b2g18_v1_1_0_hd']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
 BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
@@ -1662,9 +1648,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 # Disable emulator debug unittests on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-b2g26_v1_2',
-                  'mozilla-esr24', 'mozilla-b2g18_v1_0_0',
-                  'mozilla-b2g18_v1_0_1', 'mozilla-b2g18_v1_1_0_hd',
-                  'mozilla-b2g18'):
+                  'mozilla-esr24'):
         if 'emulator' in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
 
@@ -1754,9 +1738,7 @@ for suite_to_remove in ('reftest-10', 'reftest-15'):
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-b2g18_v1_0_0', 'mozilla-b2g18_v1_0_1',
-                  'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18',
-                  'mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
+    if branch in ('mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
                   'mozilla-b2g28_v1_3t'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
@@ -1776,19 +1758,12 @@ for b in BRANCHES.keys():
 
 # Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr24', 'mozilla-b2g18_v1_1_0_hd', 'mozilla-b2g18'):
+    if branch in ('mozilla-esr24', ):
         for platform in ('linux64_gecko', 'linux32_gecko'):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('ubuntu64_vm-b2gdt', 'ubuntu32_vm-b2gdt'):
                     if slave_platform in BRANCHES[branch]['platforms'][platform]:
                         del BRANCHES[branch]['platforms'][platform][slave_platform]
-
-# linux64_gecko hacks.  See bug 891973
-# MERGE DAY remove branches as gecko26 merges in
-for branch in BRANCHES.keys():
-    if branch in ('mozilla-b2g18', 'mozilla-b2g18_v1_1_0_hd'):
-        if 'linux64_gecko' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['linux64_gecko']
 
 
 ### PROJECTS ###

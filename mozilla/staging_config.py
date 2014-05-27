@@ -97,14 +97,6 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
-    'mozilla-b2g18': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
-    'mozilla-b2g18_v1_1_0_hd': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
     'mozilla-b2g26_v1_2': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
