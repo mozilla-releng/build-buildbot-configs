@@ -84,12 +84,17 @@ PLATFORMS['android']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
+PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu64_hw_armv6_mobile']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
+PLATFORMS['android-armv6']['ubuntu64_hw_armv6_mobile'] = {'name': "Android 2.3 Emulator on ix for armv6"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_config'] = {}
+PLATFORMS['android-armv6']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
@@ -1290,6 +1295,11 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': False,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android-armv6': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
+        'ubuntu64_hw_armv6_mobile': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+        },
+
     },
     'android-x86': {
         'product_name': 'fennec',
@@ -1453,6 +1463,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
             'debug_unittest_suites': []
         }
+
+# bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = {
+   'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
+   'debug_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
+}
+
+# otherwise spurious builders are created on ash
+# part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
+del BRANCHES['ash']['platforms']['android-armv6']['tegra_android-armv6']
 
 # Panda debug enabled on trunk that rides the trains
 # this stanza is to disable it for branches on an older version of gecko
