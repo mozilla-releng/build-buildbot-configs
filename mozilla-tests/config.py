@@ -546,6 +546,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'reftest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -684,9 +687,6 @@ PLATFORM_UNITTEST_VARS = {
                 'webapprt-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'reftest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -751,6 +751,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'webapprt-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'reftest': {
@@ -819,6 +822,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest': {
@@ -942,6 +948,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest': {
@@ -1078,12 +1087,6 @@ PLATFORM_UNITTEST_VARS = {
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'reftest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1147,6 +1150,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'webapprt-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'reftest': {
@@ -1264,9 +1270,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'webapprt-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'webapprt-chrome': {
