@@ -1462,7 +1462,6 @@ BRANCHES['ash']['platforms']['android']['ubuntu64_hw_mobile'] = {
 
 # bug 1017599 disable most tegra tests on trunk and let this ride the trains 
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-   # print "name " + str(name)
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
