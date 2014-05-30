@@ -115,6 +115,10 @@ PROJECT_BRANCHES = {
             'android-x86': {
                 'enable_opt_unittests': True,
             },
+            'android-armv6': {
+                'enable_opt_unittests': True,
+            }
+
         },
     },
     #'birch': {},  # Bug 1010674

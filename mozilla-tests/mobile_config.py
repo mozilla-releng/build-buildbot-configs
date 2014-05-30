@@ -84,12 +84,17 @@ PLATFORMS['android']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6']
+PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu64_hw_armv6_mobile']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
+PLATFORMS['android-armv6']['ubuntu64_hw_armv6_mobile'] = {'name': "Android 2.3 Emulator on ix for armv6"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_config'] = {}
+PLATFORMS['android-armv6']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
 
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
@@ -754,6 +759,17 @@ for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'][:]:
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 
+# tests that are still enabled on Tegras because they don't run successfully on 2.3 emulators yet
+# Bug 1017599 - disable selected tests on tegras
+ANDROID_ENABLED_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites']:
+    if suite[0].startswith(('mochitest-2', 'mochitest-3', 'mochitest-4', 'robocop')):    
+        ANDROID_ENABLED_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
 # Beginning Androidx86 configurations
 ANDROID_X86_MOZHARNESS_DICT = [
     ('androidx86-set-4', {
@@ -920,54 +936,6 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'mochitest-8',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('mochitest-9', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-9',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('mochitest-10', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-10',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('mochitest-11', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-11',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
-    ('mochitest-12', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-12',
         ],
         'blob_upload': True,
         'timeout': 2400,
@@ -1310,18 +1278,6 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
     },
     ),
-    ('crashtest-3', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm.py',
-            '--test-suite', 'crashtest-3',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
 ]
 # End of Android 2.3 configurations
 
@@ -1350,6 +1306,11 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': False,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android-armv6': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
+        'ubuntu64_hw_armv6_mobile': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+        },
+
     },
     'android-x86': {
         'product_name': 'fennec',
@@ -1499,6 +1460,21 @@ BRANCHES['ash']['platforms']['android']['ubuntu64_hw_mobile'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
+# bug 1017599 disable most tegra tests on trunk and let this ride the trains 
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform == ('android'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'tegra_android' in slave_plat:
+                continue
+            #enable only M2-4, and robocop
+            BRANCHES[name]['platforms']['android']['tegra_android'] =  deepcopy(ANDROID_ENABLED_UNITTEST_DICT)
+           
 # enable android 2.3 tests to ride the trains bug 1004791
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     # Loop removes it from any branch that gets beyond here
@@ -1513,6 +1489,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
             'debug_unittest_suites': []
         }
+
+# bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = {
+   'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
+   'debug_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
+}
+
+# otherwise spurious builders are created on ash
+# part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
+del BRANCHES['ash']['platforms']['android-armv6']['tegra_android-armv6']
 
 # Panda debug enabled on trunk that rides the trains
 # this stanza is to disable it for branches on an older version of gecko
