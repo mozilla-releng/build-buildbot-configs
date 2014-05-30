@@ -88,7 +88,7 @@ PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu6
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
-PLATFORMS['android-armv6']['ubuntu64_hw_armv6_mobile'] = {'name': "Android 2.3 Emulator on ix for armv6"}
+PLATFORMS['android-armv6']['ubuntu64_hw_armv6_mobile'] = {'name': "Android 2.2 Armv6 on 2.3 Emulator on ix"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
