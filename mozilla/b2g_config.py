@@ -13,7 +13,7 @@ reload(b2g_localconfig)
 
 import master_common
 reload(master_common)
-from master_common import items_before
+from master_common import items_before, setMainFirefoxVersions
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
@@ -1213,6 +1213,8 @@ BRANCHES = {
     },
 }
 
+setMainFirefoxVersions(BRANCHES)
+
 # Copy project branches into BRANCHES keys
 for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch] = deepcopy(PROJECT_BRANCHES[branch])
@@ -1568,6 +1570,14 @@ for b in ('b2g-inbound',):
     BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
 
+# Only run non-unified builds on m-c and derived branches, except for try
+for name, branch in BRANCHES.iteritems():
+    gecko_version = branch.get('gecko_version')
+    if name != 'try' and (gecko_version is None or gecko_version >= BRANCHES['mozilla-central']['gecko_version']):
+        continue
+    for pc in branch['platforms'].values():
+        if 'enable_nonunified_build' in pc:
+            pc['enable_nonunified_build'] = False
 
 if __name__ == "__main__":
     import sys
