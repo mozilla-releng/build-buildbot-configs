@@ -23,22 +23,22 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.5.0esr'
-releaseConfig['appVersion']          = '24.5.0'
+releaseConfig['version']             = '24.6.0esr'
+releaseConfig['appVersion']          = '24.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_5_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_24_6_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.4.0esr': {
-        'appVersion': '24.4.0',
+    '24.5.0esr': {
+        'appVersion': '24.5.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_4_0esr',
+        'baseTag': 'FIREFOX_24_5_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.5.0esrpre'
+releaseConfig['nextAppVersion']      = '24.6.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
@@ -46,7 +46,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '2dcea6a55d16',
+        'revision': 'f2e036f80683',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -123,6 +123,8 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']      = 'esr'
+releaseConfig['testChannels']        = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']  = [26,37]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
