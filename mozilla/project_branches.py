@@ -105,6 +105,8 @@ PROJECT_BRANCHES = {
             'macosx64': {},
             'linux-debug': {},
             'linux64-debug': {},
+            'linux64-br-haz': {},
+            'linux64-sh-haz': {},
             'macosx64-debug': {},
             'win32-debug': {},
         },
