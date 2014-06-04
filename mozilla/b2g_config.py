@@ -50,6 +50,8 @@ GLOBAL_VARS.update({
         'wasabi': {},
         'flame': {},
         'flame_eng': {},
+        'dolphin': {},
+        'dolphin_eng': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -1155,6 +1157,41 @@ PLATFORM_VARS = {
         'enable_periodic': False,
         'enable_dep': True,
     },
+    'dolphin': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'dolphin', '--config', 'b2g/releng-private-updates.py',
+                           '--gaia-languages-file', 'locales/languages_all.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
+    'dolphin_eng': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'dolphin', '--config', 'b2g/releng-otoro-eng.py',
+                           '--gaia-languages-file', 'locales/languages_all.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
 }
 
 for platform in PLATFORM_VARS.values():
@@ -1371,6 +1408,8 @@ BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb']['enable_nightly'] = T
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['dolphin']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g28_v1_3t
 # This is a path, relative to HGURL, where the repository is located
@@ -1505,6 +1544,15 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['tarako']
         if 'tarako_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['tarako_eng']
+
+# dolphin is for B2G 1.4 only
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g30_v1_4',):
+        if 'dolphin' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['dolphin']
+        if 'dolphin_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['dolphin_eng']
+
 
 # B2G 1.2+
 for name, branch in items_before(BRANCHES, 'gecko_version', 26):
