@@ -65,7 +65,6 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
-        'linux64-mulet': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -119,7 +118,8 @@ GLOBAL_VARS = {
     # spider, etc). This list serves that purpose:
     'mozharness_desktop_build_platforms': [
         'linux', 'linux64', 'linux64-asan', 'linux64-asan-debug',
-        'linux64-st-an-debug', 'linux-debug', 'linux64-debug'
+        'linux64-st-an-debug', 'linux-debug', 'linux64-debug',
+        'linux64-mulet'
     ],
     # rather than repeat these options in each of these options in
     # every platform, let's define the arguments here and when we want to
@@ -653,17 +653,62 @@ PLATFORM_VARS = {
                                    '-f', '../reboot_count.txt','-n', '1', '-z'],
             },
 
-            'unittest_platform': 'linux64-mulet',
-            'stage_product': 'firefox',
-            'stage_platform': 'linux64-mulet',
-            'base_name': '%(platform)s_%(branch)s',
-            'slaves': SLAVES['mock'],
-            'try_by_default': False,
             'consider_for_nightly': False,
-            'enable_opt_unittests': False,
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_opt_unittests': True,
+            'try_by_default': False,
+            'upload_symbols': False,
+
+            'product_name': 'firefox',
+            'unittest_platform': 'linux64-mulet',
+            'base_name': 'Linux Mulet x86-64 %(branch)s',
+            'slaves': SLAVES['mock'],
             'mozconfig': 'in_tree',
             'src_mozconfig': 'b2g/dev/config/mozconfigs/linux64/mulet',
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'linux64-mulet',
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
+            },
+            'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind', 'dbus-x11',
+                        'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
+            ],
         },
         'macosx64': {
             'product_name': 'firefox',
@@ -1617,6 +1662,7 @@ BRANCHES = {
         # hazard builds run everywhere, not just on try.)
         'extra_platforms': {
             'linux64-sh-haz': {},
+            'linux64-mulet': {},
         },
     },
 }
@@ -2277,13 +2323,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
     if 'b2g' in name and 'inbound' not in name:
         if 'linux64-br-haz' in branch['platforms']:
             del branch['platforms']['linux64-br-haz']
-
-# Disable in other branches until we're ready
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-    if name in ('try', 'fig'):
-        continue
-    if 'linux64-mulet' in branch['platforms']:
-        del branch['platforms']['linux64-mulet']
 
 # B2G's INBOUND
 for b in ('b2g-inbound',):

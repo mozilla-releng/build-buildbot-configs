@@ -1152,8 +1152,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
+        'enable_periodic': False,
+        'enable_dep': True,
     },
 }
 
