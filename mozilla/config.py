@@ -1155,8 +1155,6 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'consider_for_nightly': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
