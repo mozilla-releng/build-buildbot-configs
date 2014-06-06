@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.5.0'
-releaseConfig['appVersion']          = '24.5.0'
+releaseConfig['version']             = '24.6.0'
+releaseConfig['appVersion']          = '24.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_5_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_6_0'
 releaseConfig['partialUpdates']      = {
 
-    '24.4.0': {
-        'appVersion': '24.4.0',
+    '24.5.0': {
+        'appVersion': '24.5.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_24_4_0',
+        'baseTag': 'THUNDERBIRD_24_5_0',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr24',
         'path': 'releases/comm-esr24',
-        'revision': '83644ae8e82b',
+        'revision': '41aefb13384e',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': '2dcea6a55d16',
+        'revision': 'f2e036f80683',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -126,6 +126,9 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
+releaseConfig['releaseChannel']      = 'esr'
+releaseConfig['testChannels']        = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']  = [28,38]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
