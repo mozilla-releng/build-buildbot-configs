@@ -503,7 +503,14 @@ WEB_PLATFORM_TESTS = [
     ('web-platform-tests', {
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
-        'extra_args': [],
+        'extra_args': ["--test-type=testharness"],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('web-platform-tests-reftests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=reftest"],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -582,6 +589,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -649,6 +659,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
                 'mozbase': {
@@ -789,6 +802,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -866,6 +882,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'win7-ix': {
@@ -929,6 +948,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'win8': {
@@ -991,6 +1013,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         }
@@ -1063,6 +1088,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'win64_vm': {
@@ -1122,6 +1150,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         }
@@ -1188,6 +1219,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1248,6 +1282,9 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1306,6 +1343,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
                 'mozbase': {
