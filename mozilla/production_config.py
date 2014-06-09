@@ -121,11 +121,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr24',
         'mobile_tinderbox_tree': 'Mozilla-Esr24',
     },
-    'mozilla-b2g26_v1_2': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g26-v1.2',
-        'tinderbox_tree': 'Mozilla-B2g26-v1.2',
-        'mobile_tinderbox_tree': 'Mozilla-B2g26-v1.2',
-    },
     'mozilla-b2g28_v1_3': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g28-v1.3',
         'tinderbox_tree': 'Mozilla-B2g28-v1.3',

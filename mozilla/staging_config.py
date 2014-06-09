@@ -5,8 +5,8 @@ MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(89, 93)]
 WIN32_IXS      = []
 WIN64_IXS      = []
 WIN64_REV2     = ['ix-mn-w0864-%03d' % x for x in range(1,3)] + \
-                 ['w64-ix-slave%02i' % x for x in [4, 5, 22]] + \
-                 ['b-2008-ix-%04i' % x for x in [97]]
+                 ['w64-ix-slave%02i' % x for x in [4, 5, 22]]
+#                 ['b-2008-ix-%04i' % x for x in [97]]
 MOCK_DL120G7   = ['b-linux64-hp-%04d' % x for x in range(20,25)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
@@ -95,10 +95,6 @@ BRANCHES = {
         'blocklist_update_on_closed_tree': False,
     },
     'mozilla-esr24': {
-        'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
-    },
-    'mozilla-b2g26_v1_2': {
         'enable_blocklist_update': False,
         'blocklist_update_on_closed_tree': False,
     },
