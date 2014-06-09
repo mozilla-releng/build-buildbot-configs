@@ -1210,10 +1210,6 @@ BRANCHES = {
 #        'gecko_version': 32,
 #        'b2g_version': (2, 0, 0),
 #    },
-    'mozilla-b2g26_v1_2': {
-        'gecko_version': 26,
-        'b2g_version': (1, 2, 0),
-    },
     'mozilla-b2g28_v1_3': {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
@@ -1467,41 +1463,6 @@ BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-jb-debug']['enable_nightly
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
-######## mozilla-b2g26_v1_2
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = 'releases/mozilla-b2g26_v1_2'
-BRANCHES['mozilla-b2g26_v1_2']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_2'
-BRANCHES['mozilla-b2g26_v1_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g26_v1_2']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g26_v1_2']['start_hour'] = [3]
-BRANCHES['mozilla-b2g26_v1_2']['start_minute'] = [40]
-BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['hamachi_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['helix']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
-# Per bug https://bugzilla.mozilla.org/show_bug.cgi?id=917692#c14 , localizer
-# builds not needed for B2G 1.2
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
-
 ######## try
 # Try-specific configs
 # This is a path, relative to HGURL, where the repository is located
@@ -1552,25 +1513,6 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['dolphin']
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin_eng']
-
-
-# B2G 1.2+
-for name, branch in items_before(BRANCHES, 'gecko_version', 26):
-    for p, pc in branch['platforms'].items():
-        if '_gecko' in p or p.startswith("emulator-jb") or p in ('nexus-4', 'nexus-4_eng'):
-            del branch['platforms'][p]
-            continue
-        if 'mock_packages' in pc:
-            branch['platforms'][p]['mock_packages'] = \
-                [x for x in branch['platforms'][p]['mock_packages'] if x not in (
-                    'gstreamer-devel', 'gstreamer-plugins-base-devel',
-                    'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
-                )]
-
-# B2G 1.3+
-for name, branch in items_before(BRANCHES, 'gecko_version', 28):
-    if 'wasabi' in branch['platforms']:
-        del branch['platforms']['wasabi']
 
 # b2g 1.4+
 for name, branch in items_before(BRANCHES, 'gecko_version', 30):

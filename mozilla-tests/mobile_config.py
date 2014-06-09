@@ -37,9 +37,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-b2g26_v1_2': {
-        'gecko_version': 26,
-    },
     'mozilla-b2g28_v1_3': {
         'gecko_version': 28,
     },
@@ -767,7 +764,7 @@ ANDROID_ENABLED_UNITTEST_DICT = {
 }
 
 for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith(('mochitest-2', 'mochitest-3', 'mochitest-4', 'robocop')):    
+    if suite[0].startswith(('mochitest-2', 'mochitest-3', 'mochitest-4', 'robocop')):
         ANDROID_ENABLED_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 # Beginning Androidx86 configurations
@@ -1426,11 +1423,6 @@ BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 
-######### mozilla-b2g26_v1_2
-BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
-BRANCHES['mozilla-b2g26_v1_2']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g26_v1_2']['pgo_platforms'] = []
-
 ######### mozilla-b2g28_v1_3
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
@@ -1460,7 +1452,7 @@ BRANCHES['ash']['platforms']['android']['ubuntu64_hw_mobile'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
-# bug 1017599 disable most tegra tests on trunk and let this ride the trains 
+# bug 1017599 disable most tegra tests on trunk and let this ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
@@ -1474,7 +1466,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
                 continue
             #enable only M2-4, and robocop
             BRANCHES[name]['platforms']['android']['tegra_android'] =  deepcopy(ANDROID_ENABLED_UNITTEST_DICT)
-           
+
 # enable android 2.3 tests to ride the trains bug 1004791
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     # Loop removes it from any branch that gets beyond here

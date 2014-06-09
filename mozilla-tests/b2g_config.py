@@ -31,10 +31,6 @@ BRANCHES = {
     'pine': {},
     'fx-team': {},
     'graphics': {},
-    'mozilla-b2g26_v1_2': {
-        'gecko_version': 26,
-        'b2g_version': (1, 2, 0),
-    },
     'mozilla-b2g28_v1_3': {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
@@ -1611,8 +1607,6 @@ BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
-BRANCHES['mozilla-b2g26_v1_2']['repo_path'] = "releases/mozilla-b2g26_v1_2"
-BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['enable_debug_unittests'] = False
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
@@ -1647,8 +1641,7 @@ for branch in set(BRANCHES.keys()) - set(['cedar']):
 
 # Disable emulator debug unittests on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-b2g26_v1_2',
-                  'mozilla-esr24'):
+    if branch in ('mozilla-esr24', ):
         if 'emulator' in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
 
@@ -1724,12 +1717,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
     if 'emulator' in branch['platforms']:
         branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
 
-# Once we EOL mozilla-b2g26_v1_2 we can remove this
-for suite_to_remove in ('reftest-8', 'reftest-13'):
-    for s in BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites']:
-        if s[0] == suite_to_remove:
-            BRANCHES['mozilla-b2g26_v1_2']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'].remove(s)
-
 # Once we EOL mozilla-b2g28_v1_3t we can remove this
 for suite_to_remove in ('reftest-10', 'reftest-15'):
     for s in BRANCHES['mozilla-b2g28_v1_3t']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites']:
@@ -1738,8 +1725,7 @@ for suite_to_remove in ('reftest-10', 'reftest-15'):
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-b2g26_v1_2', 'mozilla-b2g28_v1_3',
-                  'mozilla-b2g28_v1_3t'):
+    if branch in ('mozilla-b2g28_v1_3', 'mozilla-b2g28_v1_3t'):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):
