@@ -24,7 +24,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '24.6.0'
 releaseConfig['appVersion']          = '24.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_24_6_0'
 releaseConfig['partialUpdates']      = {
 
@@ -126,8 +126,8 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'esr'
-releaseConfig['testChannels']        = ['releasetest', 'esrtest']
+releaseConfig['releaseChannel']      = 'release'
+releaseConfig['testChannels']        = ['releasetest', 'betatest']
 releaseConfig['testChannelRuleIds']  = [28,38]
 
 # Partner repack configuration
