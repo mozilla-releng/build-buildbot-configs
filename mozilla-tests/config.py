@@ -871,7 +871,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
                 'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         },
@@ -937,7 +937,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
                 'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         },
@@ -1003,7 +1003,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
                 'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         }
@@ -1077,7 +1077,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
                 'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         },
@@ -1140,7 +1140,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
                 'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
         }
