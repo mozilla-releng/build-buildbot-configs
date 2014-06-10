@@ -26,7 +26,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '24.6.0esr'
 releaseConfig['appVersion']          = '24.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_24_6_0esr'
 releaseConfig['partialUpdates']      = {
 
@@ -46,7 +46,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'f2e036f80683',
+        'revision': 'a65ce0160810',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
