@@ -1450,6 +1450,12 @@ PROJECTS = {
     },
 }
 
+# For bug 978211, we are using MOZ_AUTOMATION to trigger the automation build
+# steps from mach. However, these build variants already use mach, and so they
+# would inadvertently trigger the automation steps. We can remove the
+# MOZ_AUTOMATION environment variable for them, since it's not used anyway.
+del PLATFORM_VARS["linux64-sh-haz"]["env"]["MOZ_AUTOMATION"]
+del PLATFORM_VARS["linux64-br-haz"]["env"]["MOZ_AUTOMATION"]
 
 # Override config settings with local settings
 def apply_localconfig(config, local):
