@@ -668,6 +668,11 @@ TEGRA_RELEASE_PLAIN_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
+ARMV6_ANDROID_2_3_UNITTEST_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
 ANDROID_PLAIN_REFTEST_DICT = {
     'opt_unittest_suites': [
         ('plain-reftest-1', (
@@ -1482,11 +1487,23 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'debug_unittest_suites': []
         }
 
-# bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
-BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = {
-   'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
-   'debug_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
-}
+for suite in ANDROID_2_3_MOZHARNESS_DICT:
+    if suite[0].startswith('mochitest-gl'):
+        continue
+    ARMV6_ANDROID_2_3_UNITTEST_DICT['opt_unittest_suites'].append(suite)
+
+# bug 1020970 Schedule all Android 2.3 armv6 tests, except mochitest-gl, 
+# on all trunk trees and make them ride the trains 
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 33):
+    # Loop removes it from any branch that gets beyond here
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if not platform == ('android-armv6'):
+            continue
+        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = {
+            'opt_unittest_suites': deepcopy(ARMV6_ANDROID_2_3_UNITTEST_DICT['opt_unittest_suites']),
+        }
 
 # otherwise spurious builders are created on ash
 # part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only

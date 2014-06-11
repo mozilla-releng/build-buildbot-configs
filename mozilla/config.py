@@ -682,6 +682,8 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
