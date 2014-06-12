@@ -1050,7 +1050,7 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_hw-b2g-emulator': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
-            'suite_confg': {
+            'suite_config': {
                 'gaia-ui-test': {
                     'extra_args': [
                         '--cfg', 'marionette/gaia_ui_test_prod_config.py',
