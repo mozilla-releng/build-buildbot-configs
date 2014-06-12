@@ -659,6 +659,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': True,
             'try_by_default': False,
             'upload_symbols': False,
+            'packageTests': True,
 
             'product_name': 'firefox',
             'unittest_platform': 'linux64-mulet',
