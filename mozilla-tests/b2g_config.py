@@ -390,8 +390,8 @@ REFTEST = [
      ),
 ]
 
-REFTEST_15 = REFTEST[:]
-REFTEST_15 += [
+REFTEST_20 = REFTEST[:]
+REFTEST_20 += [
     ('reftest-11', {'suite': 'reftest',
                     'use_mozharness': True,
                     'script_path': 'scripts/b2g_emulator_unittest.py',
@@ -417,6 +417,36 @@ REFTEST_15 += [
                     },
      ),
     ('reftest-15', {'suite': 'reftest',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('reftest-16', {'suite': 'reftest',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('reftest-17', {'suite': 'reftest',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('reftest-18', {'suite': 'reftest',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('reftest-19', {'suite': 'reftest',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('reftest-20', {'suite': 'reftest',
                     'use_mozharness': True,
                     'script_path': 'scripts/b2g_emulator_unittest.py',
                     'blob_upload': True,
@@ -1250,105 +1280,140 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '1', '--total-chunks', '15',
+                        '--this-chunk', '1', '--total-chunks', '20',
                     ],
                 },
                 'reftest-2': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '2', '--total-chunks', '15',
+                        '--this-chunk', '2', '--total-chunks', '20',
                     ],
                 },
                 'reftest-3': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '3', '--total-chunks', '15',
+                        '--this-chunk', '3', '--total-chunks', '20',
                     ],
                 },
                 'reftest-4': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '4', '--total-chunks', '15',
+                        '--this-chunk', '4', '--total-chunks', '20',
                     ],
                 },
                 'reftest-5': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '5', '--total-chunks', '15',
+                        '--this-chunk', '5', '--total-chunks', '20',
                     ],
                 },
                 'reftest-6': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '6', '--total-chunks', '15',
+                        '--this-chunk', '6', '--total-chunks', '20',
                     ],
                 },
                 'reftest-7': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '7', '--total-chunks', '15',
+                        '--this-chunk', '7', '--total-chunks', '20',
                     ],
                 },
                 'reftest-8': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '8', '--total-chunks', '15',
+                        '--this-chunk', '8', '--total-chunks', '20',
                     ],
                 },
                 'reftest-9': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '9', '--total-chunks', '15',
+                        '--this-chunk', '9', '--total-chunks', '20',
                     ],
                 },
                 'reftest-10': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '10', '--total-chunks', '15',
+                        '--this-chunk', '10', '--total-chunks', '20',
                     ],
                 },
                 'reftest-11': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '11', '--total-chunks', '15',
+                        '--this-chunk', '11', '--total-chunks', '20',
                     ],
                 },
                 'reftest-12': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '12', '--total-chunks', '15',
+                        '--this-chunk', '12', '--total-chunks', '20',
                     ],
                 },
                 'reftest-13': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '13', '--total-chunks', '15',
+                        '--this-chunk', '13', '--total-chunks', '20',
                     ],
                 },
                 'reftest-14': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '14', '--total-chunks', '15',
+                        '--this-chunk', '14', '--total-chunks', '20',
                     ],
                 },
                 'reftest-15': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'reftest',
-                        '--this-chunk', '15', '--total-chunks', '15',
+                        '--this-chunk', '15', '--total-chunks', '20',
+                    ],
+                },
+                'reftest-16': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', '16', '--total-chunks', '20',
+                    ],
+                },
+                'reftest-17': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', '17', '--total-chunks', '20',
+                    ],
+                },
+                'reftest-18': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', '18', '--total-chunks', '20',
+                    ],
+                },
+                'reftest-19': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', '19', '--total-chunks', '20',
+                    ],
+                },
+                'reftest-20': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'reftest',
+                        '--this-chunk', '20', '--total-chunks', '20',
                     ],
                 },
                 'jsreftest-1': {
@@ -1728,7 +1793,7 @@ for b in BRANCHES.keys():
 # Enable b2g reftests on EC2
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 26):
     if 'emulator' in branch['platforms']:
-        branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_15[:]
+        branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += REFTEST_20[:]
 
 # Once we EOL mozilla-b2g28_v1_3t we can remove this
 for suite_to_remove in ('reftest-10', 'reftest-15'):

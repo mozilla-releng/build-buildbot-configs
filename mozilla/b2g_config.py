@@ -1534,6 +1534,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
+    BRANCHES[branch]['enable_nightly_everytime'] = branchConfig.get('enable_nightly_everytime', False)
     BRANCHES[branch]['periodic_start_hours'] = branchConfig.get('periodic_start_hours', range(0, 24, 6))
     BRANCHES[branch]['periodic_start_minute'] = branchConfig.get('periodic_start_minute', 30)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
