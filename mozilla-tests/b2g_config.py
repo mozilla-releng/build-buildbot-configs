@@ -329,6 +329,15 @@ MOCHITEST_EMULATOR_DEBUG = [
      ),
 ]
 
+MOCHITEST_MEDIA = [
+    ('mochitest-media', {'suite': 'mochitest-plain',
+                         'use_mozharness': True,
+                         'script_path': 'scripts/b2g_emulator_unittest.py',
+                         'blob_upload': True,
+                        },
+     ),
+]
+
 MOCHITEST_DESKTOP = [
     ('mochitest-1', {'suite': 'mochitest-plain',
                      'use_mozharness': True,
@@ -1087,6 +1096,13 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'marionette/gaia_ui_test_emu_config.py',
                     ],
                 },
+                'mochitest-media': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--test-path', 'media/',
+                    ],
+                },
                 'mochitest-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
@@ -1578,7 +1594,7 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + GAIA_UI
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + GAIA_UI + MOCHITEST_MEDIA
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_hw-b2g-emulator']['opt_unittest_suites'] = GAIA_UI
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:] + MARIONETTE[:]
