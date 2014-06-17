@@ -5,7 +5,7 @@ MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(89, 93)]
 WIN32_IXS      = []
 WIN64_IXS      = []
 WIN64_REV2     = ['ix-mn-w0864-%03d' % x for x in range(1,3)] + \
-                 ['w64-ix-slave%02i' % x for x in [4, 5, 22]]
+                 ['b-2008-ix-%04d' % x for x in [182, 183]]
 MOCK_DL120G7   = ['b-linux64-hp-%04d' % x for x in range(20,25)]
 LINUX64_EC2    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 
