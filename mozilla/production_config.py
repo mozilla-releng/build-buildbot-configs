@@ -7,7 +7,7 @@ WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + ran
                  ['b-2008-sm-%04d' % x for x in range(33, 65)]
 MOCK_DL120G7   = ['b-linux64-hp-%04d' % x for x in range(25,36)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
-                 ['bld-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
+                 ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
                  ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
 MOCK_IX        = ['b-linux64-ix-%04d' % x for x in range(1, 12)]
 
