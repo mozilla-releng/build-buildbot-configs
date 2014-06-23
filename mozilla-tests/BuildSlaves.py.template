@@ -5,6 +5,7 @@ SlavePasswords = {
     "ubuntu32_vm-b2gdt": "pass",
     "ubuntu32_hw": "pass",
     "ubuntu64_hw_mobile": "pass",
+    "ubuntu64_vm_mobile": "pass",
     "ubuntu64_hw_armv6_mobile": "pass",
     "ubuntu64_vm": "pass",
     "ubuntu64_vm_armv6_mobile": "pass",
@@ -34,7 +35,6 @@ SlavePasswords = {
     "tegra_android": "pass",
     "tegra_android-armv6": "pass",
     "panda_android": "pass",
-    "vm_android_2_3": "pass",
 }
 
 datazillaAuth = {
