@@ -56,7 +56,7 @@ PLATFORMS = {
 }
 
 PLATFORMS['android']['slave_platforms'] = \
-    ['tegra_android', 'panda_android', 'ubuntu64_vm_mobile', 'ubuntu64_hw_mobile', ]
+    ['tegra_android', 'panda_android', 'vm_android_2_3', 'ubuntu64_hw_mobile', ]
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
 PLATFORMS['android']['tegra_android'] = {
@@ -67,11 +67,11 @@ PLATFORMS['android']['panda_android'] = {
     'name': "Android 4.0 Panda",
     'mozharness_talos': True,
 }
-PLATFORMS['android']['ubuntu64_vm_mobile'] = {
+PLATFORMS['android']['vm_android_2_3'] = {
     'name': "Android 2.3 Emulator",
 }
 PLATFORMS['android']['ubuntu64_hw_mobile'] = {
-    'name': "Android 2.3 Emulator",
+    'name': "Android 2.3 Emulator on ix",
 }
 PLATFORMS['android']['stage_product'] = 'mobile'
 PLATFORMS['android']['mozharness_config'] = {
@@ -675,16 +675,6 @@ ANDROID_2_3_ARMV6_AWS_DICT = {
 }
 
 ANDROID_2_3_ARMV6_IX_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
-ANDROID_2_3_IX_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
-ANDROID_2_3_AWS_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
 }
@@ -1587,17 +1577,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             #enable only M2-4, and robocop
             BRANCHES[name]['platforms']['android']['tegra_android'] =  deepcopy(ANDROID_ENABLED_UNITTEST_DICT)
 
-#split 2.3 tests to ones that can run on ix and AWS
-for suite in ANDROID_2_3_MOZHARNESS_DICT:
-    if suite[0].startswith('plain-reftest'):
-        ANDROID_2_3_IX_DICT['opt_unittest_suites'].append(suite)
-    elif suite[0].startswith('crashtest'):
-        ANDROID_2_3_IX_DICT['opt_unittest_suites'].append(suite)
-    elif suite[0].startswith('jsreftest'):
-        ANDROID_2_3_IX_DICT['opt_unittest_suites'].append(suite)
-    else:
-        ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
-
 # enable android 2.3 tests to ride the trains bug 1004791
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     # Loop removes it from any branch that gets beyond here
@@ -1609,11 +1588,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
         if not platform == ('android'):
             continue
         BRANCHES[name]['platforms']['android']['ubuntu64_hw_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_IX_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': []
-        }
-        BRANCHES[name]['platforms']['android']['ubuntu64_vm_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
+            'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT),
             'debug_unittest_suites': []
         }
 
@@ -1629,22 +1604,9 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites'].append(suite)
 
-# bug 1020970 Schedule all Android 2.3 armv6 tests, except mochitest-gl, 
-# on all trunk trees and make them ride the trains 
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
-    # Loop removes it from any branch that gets beyond here
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if not platform == ('android-armv6'):
-            continue
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_IX_DICT['opt_unittest_suites']),
-        }    
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
-        }
-
+# bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_hw_armv6_mobile'] = deepcopy(ANDROID_2_3_ARMV6_IX_DICT)
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = deepcopy(ANDROID_2_3_ARMV6_AWS_DICT)
 
 # otherwise spurious builders are created on ash
 # part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
