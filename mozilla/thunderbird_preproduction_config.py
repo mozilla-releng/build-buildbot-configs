@@ -38,21 +38,21 @@ SYMBOL_SERVER_HOST = 'preproduction-stage.srv.releng.scl3.mozilla.com'
 BRANCHES = {
     'comm-central': {
         'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
+        'file_update_on_closed_tree': False,
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
     },
     'comm-beta': {
         'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
+        'file_update_on_closed_tree': False,
     },
     'comm-aurora': {
         'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
+        'file__update_on_closed_tree': False,
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
     },
     'comm-esr24': {
         'enable_blocklist_update': False,
-        'blocklist_update_on_closed_tree': False,
+        'file_update_on_closed_tree': False,
     },
     'try-comm-central': {
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/',

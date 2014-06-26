@@ -77,11 +77,10 @@ GLOBAL_VARS = {
     'pgo_platforms': ('linux', 'linux64', 'win32',),
     'periodic_start_hours': range(0, 24, 6),
     'enable_blocklist_update': False,
-    'blocklist_update_on_closed_tree': False,
-    'blocklist_update_set_approval': True,
     'enable_hsts_update': False,
-    'hsts_update_on_closed_tree': False,
-    'hsts_update_set_approval': True,
+    'enable_hpkp_update': False,
+    'file_update_on_closed_tree': False,
+    'file_update_set_approval': True,
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,
@@ -1804,6 +1803,7 @@ BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming
 BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['enable_hsts_update'] = True
+BRANCHES['mozilla-central']['enable_hpkp_update'] = True
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -1944,6 +1944,7 @@ BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/
 BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
+BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 # aurora nightlies should use our nightly signing server
@@ -2015,6 +2016,7 @@ BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g28_v1_3'
 BRANCHES['mozilla-b2g28_v1_3']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enable_hsts_update'] = True
+BRANCHES['mozilla-b2g28_v1_3']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g28_v1_3']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g28_v1_3']['enabled_products'] = ['firefox', 'mobile']
 
@@ -2054,6 +2056,7 @@ BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
 BRANCHES['mozilla-b2g30_v1_4']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_hsts_update'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox', 'mobile']
 

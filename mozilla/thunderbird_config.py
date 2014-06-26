@@ -62,8 +62,10 @@ GLOBAL_VARS.update({
     'app_name': 'mail',     # Not valid for mobile builds
     'brand_name': 'Daily', # Not valid for mobile builds
     'enable_blocklist_update': False,
-    'blocklist_update_on_closed_tree': False,
-    'blocklist_update_set_approval': True,
+    'enable_hsts_update': False,
+    'enable_hpkp_update': False,
+    'file_update_on_closed_tree': False,
+    'file_update_set_approval': True,
     'enable_nightly': True,
     'enable_perproduct_builds': True,
     'enabled_products': ['thunderbird'],
@@ -770,7 +772,7 @@ BRANCHES['comm-central']['create_partial_l10n'] = True
 BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
 BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
 BRANCHES['comm-central']['enable_blocklist_update'] = True
-BRANCHES['comm-central']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-central']['file_update_on_closed_tree'] = False
 BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -810,7 +812,7 @@ BRANCHES['comm-esr24']['create_partial'] = True
 BRANCHES['comm-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
 BRANCHES['comm-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
 BRANCHES['comm-esr24']['enable_blocklist_update'] = False
-BRANCHES['comm-esr24']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-esr24']['file_update_on_closed_tree'] = False
 BRANCHES['comm-esr24']['enable_valgrind'] = False
 
 ######## comm-beta
@@ -851,7 +853,7 @@ BRANCHES['comm-beta']['enable_nightly'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['comm-beta']['enable_blocklist_update'] = True
-BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-beta']['file_update_on_closed_tree'] = False
 BRANCHES['comm-beta']['enable_valgrind'] = False
 
 ######## comm-aurora
@@ -897,7 +899,7 @@ BRANCHES['comm-aurora']['create_partial_l10n'] = True
 BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
 BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
-BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = False
+BRANCHES['comm-aurora']['file_update_on_closed_tree'] = False
 BRANCHES['comm-aurora']['enable_valgrind'] = False
 BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
