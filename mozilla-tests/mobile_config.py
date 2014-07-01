@@ -1631,7 +1631,7 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
 
 # bug 1020970 Schedule all Android 2.3 armv6 tests, except mochitest-gl, 
 # on all trunk trees and make them ride the trains 
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 33):
     # Loop removes it from any branch that gets beyond here
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
