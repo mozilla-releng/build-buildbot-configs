@@ -1063,6 +1063,27 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'maxTime': 6 * 3600,
     },
+    'linux64-b2g-haz': {
+        'mozharness_config': {
+            'script_name': 'scripts/hazard_build.py',
+            'extra_args': [
+                '--target', 'emulator-jb',
+                '--config-file', 'b2g/releng-emulator.py',
+                '--b2g-config-dir', 'emulator-jb',
+                '--config-file', 'hazards/common.py',
+                '--config-file', 'hazards/build_b2g.py',
+            ],
+        },
+        'enable_nonunified_build': True,
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
+        'try_by_default': False,
+        'consider_for_nightly': False,
+        'mock_target': 'mozilla-centos6-x86_64',
+    },
     'emulator-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1234,6 +1255,7 @@ BRANCHES = {
         'platforms': {
             'linux32_gecko': {},
             'linux64_gecko': {},
+            'linux64-b2g-haz': {},
             'macosx64_gecko': {},
             'win32_gecko': {},
             'emulator': {},
@@ -1479,6 +1501,7 @@ BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
@@ -1520,6 +1543,11 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
               'macosx64_gecko-debug', 'linux32_gecko-debug', 'win32_gecko-debug','emulator-kk', 'emulator-kk-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
+
+# exact rooting was enabled in gecko 32
+for name, branch in items_before(BRANCHES, 'gecko_version', 32):
+    if 'linux64-b2g-haz' in branch['platforms']:
+        del branch['platforms']['linux64-b2g-haz']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:

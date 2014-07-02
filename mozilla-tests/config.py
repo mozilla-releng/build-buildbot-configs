@@ -208,7 +208,8 @@ NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'wi
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
 WIN8_ONLY = ['win8']
-LINUX64_ONLY = ['ubuntu64_hw']
+LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
+NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64'))
 
 SUITES = {
     'xperf': {
@@ -227,10 +228,25 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
+    'g1': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
+    },
     'other': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+    'other_nol64': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, NO_LINUX64),
+    },
+    'other_l64': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, LINUX64_ONLY),
     },
     'svgr': {
         'enable_by_default': True,
@@ -1504,6 +1520,10 @@ BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms']
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
+BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
@@ -1530,6 +1550,14 @@ for platform in BRANCHES['holly']['platforms'].keys():
 
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
+    if 'enable_talos' in branch and branch['enable_talos'] is False:
+        continue
+    branch['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
+    branch['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+    branch['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 
 # Load jetpack for (all) branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
@@ -1659,18 +1687,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
         branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
-
-# Filter the tests that are enabled on elm for bug 1006717.
-for platform in BRANCHES['elm']['platforms'].keys():
-    if platform not in PLATFORMS:
-        continue
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['elm']['platforms'][platform]:
-            continue
-        slave_p = BRANCHES['elm']['platforms'][platform][slave_platform]
-        slave_p['opt_unittest_suites'] = MOCHITEST + XPCSHELL + MOCHITEST_DT
-        slave_p['debug_unittest_suites'] = MOCHITEST + XPCSHELL + MARIONETTE + MOCHITEST_DT_3
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
