@@ -1609,7 +1609,7 @@ BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['op
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  REFTEST_DESKTOP + GAIA_UI_OOP
+  REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
@@ -1642,7 +1642,7 @@ BRANCHES['gaia-try']['mozharness_tag'] = "default"
 # new linux64_gecko tests as of gecko 32
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-      GAIA_BUILD + GAIA_UNITTESTS_OOP + REFTEST_DESKTOP_OOP_SANITY + MOCHITEST_OOP_DESKTOP
+      GAIA_BUILD + REFTEST_DESKTOP_OOP_SANITY + MOCHITEST_OOP_DESKTOP
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
