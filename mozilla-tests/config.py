@@ -40,6 +40,16 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-esr31': {
+        'gecko_version': 31,
+        'platforms': {
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g28_v1_3': {
         'datazilla_url': None,
         'gecko_version': 28,
@@ -176,7 +186,7 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
 
 PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm']
 PLATFORMS['linux64-mulet']['ubuntu64_vm'] = {
-    'name': 'Ubuntu Mulet VM 12.04 x64',
+    'name': 'Ubuntu VM 12.04 x64 Mulet',
     'build_dir_prefix': 'ubuntu64_vm_mulet',
     'scheduler_slave_platform_identifier': 'ubuntu64_vm_mulet'
 }
@@ -1499,6 +1509,11 @@ BRANCHES['mozilla-esr24']['release_tests'] = 1
 BRANCHES['mozilla-esr24']['repo_path'] = "releases/mozilla-esr24"
 BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+
+######### mozilla-esr31
+BRANCHES['mozilla-esr31']['release_tests'] = 1
+BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
+BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g28_v1_3
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"

@@ -31,6 +31,7 @@ else:
         'mozilla-aurora',
         'mozilla-release',
         'mozilla-esr24',
+        'mozilla-esr31',
         'mozilla-b2g28_v1_3',
         'mozilla-b2g28_v1_3t',
         'mozilla-b2g30_v1_4',

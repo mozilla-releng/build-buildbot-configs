@@ -23,30 +23,21 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.6.0esr'
-releaseConfig['appVersion']          = '24.6.0'
+releaseConfig['version']             = '31.0.0esr'
+releaseConfig['appVersion']          = '31.0.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_24_6_0esr'
-releaseConfig['partialUpdates']      = {
-
-    '24.5.0esr': {
-        'appVersion': '24.5.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_5_0esr',
-    },
-
-}
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_31_0_0esr'
+releaseConfig['partialUpdates']      = {}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.6.0esrpre'
+releaseConfig['nextAppVersion']      = '31.0.0esppre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        # XXX remove js/src/config/milestone.txt when setting up ESR31
-        'name': 'mozilla-esr24',
-        'path': 'releases/mozilla-esr24',
-        'revision': 'a65ce0160810',
+        'name': 'mozilla-esr31',
+        'path': 'releases/mozilla-esr31',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -57,17 +48,13 @@ releaseConfig['sourceRepositories']  = {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
-            'js/src/config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
         }
     }
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr24'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr31'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_0_9_5',
@@ -97,7 +84,8 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr24-branch-patcher2.cfg'
+releaseConfig['skip_updates']        = True
+releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -110,12 +98,7 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr24-firefox-linux.cfg',
-    'linux64':  'mozEsr24-firefox-linux64.cfg',
-    'macosx64': 'mozEsr24-firefox-mac64.cfg',
-    'win32':  'mozEsr24-firefox-win32.cfg'
-}
+releaseConfig['verifyConfigs']       = {}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -136,7 +119,7 @@ releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest-24.0esr'
+releaseConfig['ftpSymlinkName'] = 'latest-esr'
