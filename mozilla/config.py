@@ -1612,6 +1612,21 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'mozilla-esr31': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 31,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'mozilla-b2g28_v1_3': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1987,6 +2002,38 @@ BRANCHES['mozilla-esr24']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr24']['enable_valgrind'] = False
 BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
 
+######## mozilla-esr31
+BRANCHES['mozilla-esr31']['repo_path'] = 'releases/mozilla-esr31'
+BRANCHES['mozilla-esr31']['update_channel'] = 'nightly-esr31'
+BRANCHES['mozilla-esr31']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr31']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-esr31']['start_hour'] = [0]
+BRANCHES['mozilla-esr31']['start_minute'] = [05]
+BRANCHES['mozilla-esr31']['enable_xulrunner'] = False
+BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr31']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr31']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-esr31']['enable_l10n'] = False
+BRANCHES['mozilla-esr31']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-esr31']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr31']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-esr31']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr31']['l10n_tree'] = 'fxesr31'
+BRANCHES['mozilla-esr31']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr31'
+BRANCHES['mozilla-esr31']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-esr31']['enable_nightly'] = True
+BRANCHES['mozilla-esr31']['create_snippet'] = True
+BRANCHES['mozilla-esr31']['create_partial'] = True
+BRANCHES['mozilla-esr31']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr31'
+BRANCHES['mozilla-esr31']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr31'
+BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
+BRANCHES['mozilla-esr31']['enable_valgrind'] = False
+BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox']
+
 ######## mozilla-b2g28_v1_3
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
 BRANCHES['mozilla-b2g28_v1_3']['update_channel'] = 'nightly-b2g28'
@@ -2251,8 +2298,8 @@ for name, branch in BRANCHES.items():
 
 # Only run non-unified builds on m-c and derived branches
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-b2g28_v1_3", "mozilla-b2g28_v1_3t",
-               "mozilla-b2g30_v1_4",
+               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
+               "mozilla-b2g28_v1_3t", "mozilla-b2g30_v1_4",
                "try", "holly", "elm"):
     for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
@@ -2260,7 +2307,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
 
 # Static analysis happens only on m-c and derived branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-b2g28_v1_3",
+               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
                "mozilla-b2g30_v1_4", "mozilla-b2g28_v1_3t"):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
@@ -2268,7 +2315,7 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
 # Only test pretty names on train branches, not m-c or project branches.
 # That's also forced on nonunified builds in buildbotcustom.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24"):
+               "mozilla-esr24", "mozilla-esr31"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True

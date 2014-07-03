@@ -139,4 +139,4 @@ releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest-esr'
+releaseConfig['ftpSymlinkName'] = 'latest-24.0esr'
