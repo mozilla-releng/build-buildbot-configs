@@ -664,7 +664,7 @@ PLATFORM_VARS = {
 
             'product_name': 'firefox',
             'unittest_platform': 'linux64-mulet-opt',
-            'base_name': 'Linux Mulet x86-64 %(branch)s',
+            'base_name': 'Linux x86-64 Mulet %(branch)s',
             'slaves': SLAVES['mock'],
             'mozconfig': 'in_tree',
             'src_mozconfig': 'b2g/dev/config/mozconfigs/linux64/mulet',

@@ -176,7 +176,7 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
 
 PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm']
 PLATFORMS['linux64-mulet']['ubuntu64_vm'] = {
-    'name': 'Ubuntu Mulet VM 12.04 x64',
+    'name': 'Ubuntu VM 12.04 x64 Mulet',
     'build_dir_prefix': 'ubuntu64_vm_mulet',
     'scheduler_slave_platform_identifier': 'ubuntu64_vm_mulet'
 }
