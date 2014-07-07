@@ -181,6 +181,7 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'linux64-mulet': {},
+            'macosx64-mulet': {},
         }
     },
     'gum': {},
