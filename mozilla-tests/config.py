@@ -93,6 +93,7 @@ setMainFirefoxVersions(BRANCHES)
 # Talos
 PLATFORMS = {
     'macosx64': {},
+    'macosx64-mulet': {},
     'win32': {},
     'linux': {},
     'linux64': {},
@@ -108,6 +109,22 @@ PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8
 PLATFORMS['macosx64']['mavericks'] = {'name': "Rev5 MacOSX Mavericks 10.9"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/mac_config.py',
+}
+
+PLATFORMS['macosx64-mulet']['slave_platforms'] = ['snowleopard']
+PLATFORMS['macosx64-mulet']['env_name'] = 'mac-perf'
+PLATFORMS['macosx64-mulet']['snowleopard'] = {
+    'name': 'Rev4 MacOSX Mulet Snow Leopard 10.6',
+    'build_dir_prefix': 'snowleopard_mulet',
+    'scheduler_slave_platform_identifier': 'snowleopard_mulet'
+}
+PLATFORMS['macosx64-mulet']['stage_product'] = 'firefox'
+PLATFORMS['macosx64-mulet']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
@@ -311,6 +328,7 @@ BRANCH_UNITTEST_VARS = {
         'linux64-asan': {},
         'linux64-mulet': {},
         'macosx64': {},
+        'macosx64-mulet': {},
         'win32': {},
         'win64': {},
     },
@@ -1369,6 +1387,77 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
     },
+    'macosx64-mulet': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'snowleopard': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+            },
+        },
+    },
 }
 
 # Copy project branches into BRANCHES keys
@@ -1581,7 +1670,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
         if pf not in branch['platforms']:
             continue
         # Skip these platforms
-        if pf in ('linux64-mulet', 'linux64-asan',):
+        if pf in ('linux64-mulet', 'linux64-asan', 'macosx64-mulet'):
             continue
         for slave_pf in branch['platforms'][pf].get(
                 'slave_platforms', PLATFORMS[pf]['slave_platforms']):
@@ -1794,8 +1883,9 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 26):
 for name in BRANCHES.keys():
     if name in ('try', 'fig'):
         continue
-    if 'linux64-mulet' in BRANCHES[name]['platforms']:
-        del BRANCHES[name]['platforms']['linux64-mulet']
+    for platform in ('linux64-mulet', 'macosx64-mulet'):
+        if platform in BRANCHES[name]['platforms']:
+            del BRANCHES[name]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys
