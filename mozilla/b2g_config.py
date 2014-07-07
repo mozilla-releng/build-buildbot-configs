@@ -45,6 +45,7 @@ GLOBAL_VARS.update({
         'emulator-debug': {},
         'emulator-jb': {},
         'emulator-jb-debug': {},
+        'linux64-b2g-haz': {},
         'emulator-kk': {},
         'emulator-kk-debug': {},
         'wasabi': {},
@@ -1080,7 +1081,7 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
         'maxTime': 6 * 3600,
-        'try_by_default': False,
+        'try_by_default': True,
         'consider_for_nightly': False,
         'mock_target': 'mozilla-centos6-x86_64',
     },
@@ -1372,6 +1373,7 @@ BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
