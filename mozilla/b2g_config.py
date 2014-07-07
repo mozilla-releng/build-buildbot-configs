@@ -1081,7 +1081,7 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
         'maxTime': 6 * 3600,
-        'try_by_default': False,
+        'try_by_default': True,
         'consider_for_nightly': False,
         'mock_target': 'mozilla-centos6-x86_64',
     },
