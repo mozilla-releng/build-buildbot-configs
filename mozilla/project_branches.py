@@ -202,7 +202,15 @@ PROJECT_BRANCHES = {
         'enable_talos': False,
     },
     'jamun': {},
-    'larch': {},
+    'larch': {
+        'lock_platforms': True,
+        'platforms': {
+            'android': {},
+            'android-armv6': {},
+            'android-x86': {},
+            'android-debug': {},
+        },
+    },
     'maple': {},
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
