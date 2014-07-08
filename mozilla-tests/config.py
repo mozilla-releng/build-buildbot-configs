@@ -476,6 +476,7 @@ CPPUNIT = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--cppunittest-suite', 'cppunittest'],
+        'blob_upload': True,
         'script_maxtime': 7200,
     }),
 ]
