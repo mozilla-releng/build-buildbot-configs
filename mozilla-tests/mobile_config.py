@@ -777,17 +777,6 @@ for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'][:]:
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 
-# tests that are still enabled on Tegras because they don't run successfully on 2.3 emulators yet
-# Bug 1017599 - disable selected tests on tegras
-ANDROID_ENABLED_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
-for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith(('mochitest-2', 'mochitest-3', 'mochitest-4', 'robocop')):
-        ANDROID_ENABLED_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
 # Beginning Androidx86 configurations
 ANDROID_X86_MOZHARNESS_DICT = [
     ('androidx86-set-4', {
@@ -1572,20 +1561,22 @@ BRANCHES['ash']['platforms']['android']['ubuntu64_hw_mobile'] = {
     'opt_unittest_suites': deepcopy(ANDROID_2_3_MOZHARNESS_DICT)
 }
 
-# bug 1017599 disable most tegra tests on trunk and let this ride the trains
+# bug 1033507 disable tegra tests on 32 and let this ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if not platform == ('android'):
+        if not platform in ('android', 'android-armv6'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
                 continue
-            if not 'tegra_android' in slave_plat:
+            if not slave_plat in ('tegra_android', 'tegra_android-armv6'):
                 continue
-            #enable only M2-4, and robocop
-            BRANCHES[name]['platforms']['android']['tegra_android'] =  deepcopy(ANDROID_ENABLED_UNITTEST_DICT)
+            BRANCHES[name]['platforms'][platform][slave_plat] =   {
+                'opt_unittest_suites': [],
+                'debug_unittest_suites': [],
+            }
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
