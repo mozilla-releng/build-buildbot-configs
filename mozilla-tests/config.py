@@ -1786,8 +1786,10 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
 
-# Enable e10s Linux mochitests on main branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+# Enable e10s Linux mochitests on trunk branches
+# Fix this to a certain gecko version once e10s starts riding the trains
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux' in branch['platforms']:
         branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
     if 'linux64' in branch['platforms']:
