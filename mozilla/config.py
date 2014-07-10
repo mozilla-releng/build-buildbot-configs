@@ -1819,10 +1819,11 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central', 'date'):
-        del BRANCHES[branch]['platforms']['win64']
-    if BRANCHES[branch]['platforms'].has_key('win64-debug') and branch not in ('try', 'mozilla-central', 'date'):
-        del BRANCHES[branch]['platforms']['win64-debug']
+    # win64 builds run on a limited set of branches
+    if branch not in ('try', 'mozilla-central', 'date', 'oak'):
+        for platform in ('win64', 'win64-debug'):
+            if platform in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][platform]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
