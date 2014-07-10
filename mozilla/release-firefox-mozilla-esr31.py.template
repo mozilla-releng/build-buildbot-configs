@@ -5,6 +5,15 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
+# HACK ALERT
+# TODO for 31.0.1esr: the following line should be removed for 31.0.1esr build
+# to enable updates
+#####################################
+
+releaseConfig['skip_updates'] = True
+
+#####################################
+# END OF HACK ALERT
 
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
@@ -28,15 +37,7 @@ releaseConfig['appVersion']          = '{{ appVersion }}'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = {{ buildNumber }}
 releaseConfig['baseTag']             = '{{ baseTag }}'
-releaseConfig['partialUpdates']      = {
-{% for version, partial in partials.items() %}
-    '{{ version }}': {
-        'appVersion': '{{ partial['appVersion'] }}',
-        'buildNumber': {{ partial['buildNumber'] }},
-        'baseTag': '{{ partial['baseTag'] }}',
-    },
-{% endfor %}
-}
+releaseConfig['partialUpdates']      = {}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
@@ -92,7 +93,6 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['skip_updates']        = True
 releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
