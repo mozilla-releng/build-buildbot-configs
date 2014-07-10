@@ -1,7 +1,7 @@
 from copy import deepcopy
 import production_config as pc
 
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(89, 93)]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in [43,86,92]]
 WIN32_IXS      = []
 WIN64_IXS      = []
 WIN64_REV2     = ['ix-mn-w0864-%03d' % x for x in range(1,3)] + \
