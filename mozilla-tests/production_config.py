@@ -26,7 +26,7 @@ for i in range(1,131):
 for i in range(1,167):
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
-for i in range(1,87) + range(88,90):
+for i in range(1,87) + range(88,101):
     SLAVES['mountainlion']['talos-mtnlion-r5-%03i' % i] = {}
 
 for i in range(1,4):
