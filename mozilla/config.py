@@ -770,6 +770,61 @@ PLATFORM_VARS = {
             'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
             'enable_ccache': True,
         },
+        'macosx64-mulet': {
+            'product_name': 'firefox',
+            'unittest_platform': 'macosx64-mulet-opt',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'OS X Mulet %(branch)s',
+            'mozconfig': 'macosx64/%(branch)s/nightly',
+            'src_mozconfig': 'b2g/dev/config/mozconfigs/macosx-universal/mulet',
+            'packageTests': True,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 12,
+            'upload_symbols': False,
+            'download_symbols': False,
+            'slaves': SLAVES['macosx64-lion'],
+            'platform_objdir': "%s/i386" % OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'macosx64-mulet',
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64-mulet',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'mac-dep-signing',
+            'dep_signing_servers': 'mac-dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
+            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
+            'enable_ccache': True,
+        },
         'win32': {
             'product_name': 'firefox',
             'unittest_platform': 'win32-opt',
@@ -1672,6 +1727,7 @@ BRANCHES = {
         'extra_platforms': {
             'linux64-sh-haz': {},
             'linux64-mulet': {},
+            'macosx64-mulet': {},
         },
     },
 }
@@ -1763,10 +1819,11 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    if BRANCHES[branch]['platforms'].has_key('win64') and branch not in ('try', 'mozilla-central', 'date'):
-        del BRANCHES[branch]['platforms']['win64']
-    if BRANCHES[branch]['platforms'].has_key('win64-debug') and branch not in ('try', 'mozilla-central', 'date'):
-        del BRANCHES[branch]['platforms']['win64-debug']
+    # win64 builds run on a limited set of branches
+    if branch not in ('try', 'mozilla-central', 'date', 'oak'):
+        for platform in ('win64', 'win64-debug'):
+            if platform in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][platform]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -2143,6 +2200,7 @@ BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']

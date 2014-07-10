@@ -62,7 +62,8 @@ PROJECT_BRANCHES = {
     # disabled for bug 985718
     #'holly': {},
     'jamun': {},
-    'larch': {},
+    # disabled for bug 1033704
+    #'larch': {},
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
     'oak': {
