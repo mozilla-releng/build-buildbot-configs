@@ -1,4 +1,5 @@
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,69) + range(70,87) + [88] + range(93,95)]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,43) + range(44,69) + \
+                                                  range(70,86) + range(88,92) + range(93,95)]
 LINUX_IXS      = []
 LINUX64_IXS    = []
 WIN32_IXS      = []
@@ -39,7 +40,7 @@ TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,182)] 
                  ['b-2008-sm-%04d' % x for x in range(1, 33)]
 TRY_MOCK_DL120G7 = ['b-linux64-hp-%04d' % x for x in range(1, 20)]
 TRY_MOCK_IX      = ['b-linux64-ix-%04d' % x for x in range(12,14)]
-TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,40) + [87]]
+TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,37)]
 if set(TRY_WIN64_REV2).intersection(set(TRY_WIN64_IXS)):
     raise Exception('TRY_WIN64_REV2 and TRY_WIN64_IXS overlap')
 if set(TRY_WIN64_IXS + TRY_WIN64_REV2).intersection(WIN64_IXS + WIN64_REV2):
