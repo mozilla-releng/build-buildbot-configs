@@ -8,6 +8,8 @@ SlavePasswords = {
     "ubuntu64_vm_mobile": "pass",
     "ubuntu64_hw_armv6_mobile": "pass",
     "ubuntu64_vm": "pass",
+    "ubuntu64_vm_armv6_large": "pass",
+    "ubuntu64_vm_large": "pass",
     "ubuntu64_vm_armv6_mobile": "pass",
     "ubuntu64-asan_vm": "pass",
     "ubuntu64_vm-b2g": "pass",
