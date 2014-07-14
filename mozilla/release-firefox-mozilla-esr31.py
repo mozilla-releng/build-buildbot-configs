@@ -5,6 +5,15 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
+# HACK ALERT
+# TODO for 31.0.1esr: the following line should be removed for 31.0.1esr build
+# to enable updates
+#####################################
+
+releaseConfig['skip_updates'] = True
+
+#####################################
+# END OF HACK ALERT
 
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
@@ -23,21 +32,21 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.0.0esr'
-releaseConfig['appVersion']          = '31.0.0'
+releaseConfig['version']             = '31.0esr'
+releaseConfig['appVersion']          = '31.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_0_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_31_0esr'
 releaseConfig['partialUpdates']      = {}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.0.0esppre'
+releaseConfig['nextAppVersion']      = '31.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'default',
+        'revision': 'e91c79c4c04b',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -84,7 +93,6 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
-releaseConfig['skip_updates']        = True
 releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
@@ -98,7 +106,7 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {}
+releaseConfig['verifyConfigs']       = {} # TODO for 31.0.1esr
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
