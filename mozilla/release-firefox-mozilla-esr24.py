@@ -23,22 +23,22 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.6.0esr'
-releaseConfig['appVersion']          = '24.6.0'
+releaseConfig['version']             = '24.7.0esr'
+releaseConfig['appVersion']          = '24.7.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_24_6_0esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_24_7_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.5.0esr': {
-        'appVersion': '24.5.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_5_0esr',
+    '24.6.0esr': {
+        'appVersion': '24.6.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_24_6_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.6.0esrpre'
+releaseConfig['nextAppVersion']      = '24.7.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
@@ -46,7 +46,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'a65ce0160810',
+        'revision': 'efbda06cb0fa',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -136,7 +136,7 @@ releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-24.0esr'
