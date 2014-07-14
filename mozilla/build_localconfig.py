@@ -44,7 +44,7 @@ else:
         'comm-central',
         'comm-beta',
         'comm-aurora',
-        'comm-esr24',
+        'comm-esr31',
     ])
 if 'limit_b2g_branches' in master_config:
     ACTIVE_B2G_BRANCHES = [x.encode("utf-8") for x in master_config['limit_b2g_branches']]
