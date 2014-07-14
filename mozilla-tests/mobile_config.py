@@ -81,12 +81,13 @@ PLATFORMS['android']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu64_hw_armv6_mobile', 'ubuntu64_vm_armv6_mobile']
+PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu64_hw_armv6_mobile', 'ubuntu64_vm_armv6_mobile', 'ubuntu64_vm_armv6_large']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
 PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
 PLATFORMS['android-armv6']['ubuntu64_hw_armv6_mobile'] = {'name': "Android 2.3 Armv6 Emulator"}
 PLATFORMS['android-armv6']['ubuntu64_vm_armv6_mobile'] = {'name': "Android 2.3 Armv6 Emulator"}
+PLATFORMS['android-armv6']['ubuntu64_vm_armv6_large'] = {'name': "Android 2.3 Armv6 Emulator"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
 PLATFORMS['android-armv6']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1416,6 +1417,10 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_vm_armv6_mobile': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
+        },       
+        'ubuntu64_vm_armv6_large': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
         },
     },
     'android-x86': {
@@ -1620,9 +1625,18 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites'].append(suite)
 
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_IX_DICT['opt_unittest_suites']),
+}
+BRANCHES['ash']['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
+}
+
 # bug 1020970 Schedule all Android 2.3 armv6 tests, except mochitest-gl, 
 # on all trunk trees and make them ride the trains 
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 33):
+    if name in ('ash',):
+        continue
     # Loop removes it from any branch that gets beyond here
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
@@ -1635,7 +1649,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 33):
         BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
             'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
         }
-
 
 # otherwise spurious builders are created on ash
 # part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
