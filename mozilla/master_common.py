@@ -22,7 +22,6 @@ c['change_source'] = []
 DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
-    'comm-esr24': 0,
     'comm-esr31': 0,
     'mozilla-esr24': 1,
     'mozilla-esr31': 1,
@@ -246,7 +245,7 @@ c['prioritizeBuilders'] = prioritizeBuilders
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
     if 'mozilla-release' in BRANCHES:
-        BRANCHES['mozilla-release']['gecko_version'] = 30
+        BRANCHES['mozilla-release']['gecko_version'] = 31
     if 'mozilla-beta' in BRANCHES:
         BRANCHES['mozilla-beta']['gecko_version'] = 31
     if 'mozilla-aurora' in BRANCHES:

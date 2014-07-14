@@ -4,16 +4,19 @@
 # or changing options as part of release automation changes you should be
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
+EMAIL_RECIPIENTS = []
+
 releaseConfig = {}
+releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
+releaseConfig['base_clobber_url'] = 'http://clobberer-stage.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>']
-releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
-releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
+releaseConfig['AllRecipients']       = EMAIL_RECIPIENTS
+releaseConfig['ImportantRecipients'] = EMAIL_RECIPIENTS
+releaseConfig['AVVendorsRecipients'] = EMAIL_RECIPIENTS
 releaseConfig['releaseTemplates']    = 'release_templates'
-releaseConfig['messagePrefix']       = '[release] '
+releaseConfig['messagePrefix']       = '[staging-release] '
 
 # Basic product configuration
 #  Names for the product/files
@@ -21,29 +24,29 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.6.0'
-releaseConfig['appVersion']          = '24.6.0'
-releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_6_0'
+releaseConfig['version']             = '9.0'
+releaseConfig['appVersion']          = releaseConfig['version']
+releaseConfig['milestone']           = releaseConfig['version']
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_9_0'
 releaseConfig['partialUpdates']      = {
-
-    '24.5.0': {
-        'appVersion': '24.5.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_24_5_0',
-    },
-
+    '8.0.1': {
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_8_0_1',
+    }
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
+## Staging repository path
+releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-esr24',
-        'path': 'releases/comm-esr24',
-        'revision': '41aefb13384e',
+        'name': 'comm-esr31',
+        'clonePath': 'releases/comm-esr31',
+        'path': 'users/stage-ffxbld/comm-esr31',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -53,10 +56,10 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        # XXX remove js/src/config/milestone.txt when setting up ESR31
-        'name': 'mozilla-esr24',
-        'path': 'releases/mozilla-esr24',
-        'revision': 'a65ce0160810',
+        'name': 'mozilla-release',
+        'clonePath': 'releases/mozilla-esr24',
+        'path': 'users/stage-ffxbld/mozilla-esr24',
+        'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -72,48 +75,49 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr24'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION',
-    'build/buildbot': 'production-0.8',
-    'build/mozharness': 'production',
+    'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
+    'users/stage-ffxbld/buildbot': 'production-0.8',
+    'users/stage-ffxbld/partner-repacks': 'default',
+    'users/stage-ffxbld/mozharness': 'production',
 }
 
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
+releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests']     = True
+releaseConfig['enableUnittests'] = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
+releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
-releaseConfig['l10nUsePymake']       = False
 
 # Mercurial account
-releaseConfig['hgUsername']          = 'tbirdbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
+releaseConfig['hgUsername']          = 'stage-ffxbld'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
-releaseConfig['ftpServer']           = 'ftp.mozilla.org'
-releaseConfig['stagingServer']       = 'stage.mozilla.org'
+releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
-releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
-releaseConfig['promptWaitTime']      = None
-releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-thunderbird-linux.cfg',
     'linux64':  'mozRelease-thunderbird-linux64.cfg',
@@ -126,20 +130,17 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'release'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [28,38]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
+releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
+releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('linux','linux64')
+releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
+releaseConfig['use_mock'] = False
 releaseConfig['ftpSymlinkName'] = 'latest'
