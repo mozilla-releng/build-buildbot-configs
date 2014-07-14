@@ -43,9 +43,9 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-esr24',
-        'clonePath': 'releases/comm-esr24',
-        'path': 'users/stage-ffxbld/comm-esr24',
+        'name': 'comm-esr31',
+        'clonePath': 'releases/comm-esr31',
+        'path': 'users/stage-ffxbld/comm-esr31',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
