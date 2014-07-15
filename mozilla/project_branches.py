@@ -112,7 +112,7 @@ PROJECT_BRANCHES = {
         },
         'mobile_platforms': {
             'android': {
-                'slave_platforms': ['panda_android', 'ubuntu64_hw_mobile'],
+                'slave_platforms': ['panda_android', 'ubuntu64_vm_large'],
             },
             'android-x86': {
                 'enable_opt_unittests': True,
