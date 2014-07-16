@@ -812,7 +812,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
-            'talos_masters': None,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
             'test_pretty_names': False,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
@@ -1726,6 +1726,9 @@ BRANCHES = {
         # hazard builds run everywhere, not just on try.)
         'extra_platforms': {
             'linux64-sh-haz': {},
+            'linux64-mulet': {},
+            'macosx64-mulet': {},
+        },
     },
 }
 
