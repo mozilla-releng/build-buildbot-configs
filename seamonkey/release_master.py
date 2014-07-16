@@ -16,6 +16,7 @@ from buildbotcustom.process.factory import StagingRepositorySetupFactory, \
   L10nVerifyFactory, CCReleaseRepackFactory, UnittestPackagedBuildFactory, \
   MajorUpdateFactory, TuxedoEntrySubmitterFactory
 from buildbotcustom.changes.ftppoller import FtpPoller
+from release.platforms import buildbot2ftp
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
@@ -331,6 +332,12 @@ for platform in releaseConfig['enUSPlatforms']:
     })
 
     if platform in releaseConfig['l10nPlatforms']:
+        EN_US_BINARY_URL = "http://ftp.mozilla.org/pub/mozilla.org/seamonkey/candidates/%(version)s-candidates/build%(buildNumber)d"
+        if 'win' in platform:
+            enable_pymake = pf.get('enable_pymake', True)
+            EN_US_BINARY_URL += "/unsigned"
+        else:
+            enable_pymake = pf.get('enable_pymake', False)
         repack_factory = CCReleaseRepackFactory(
             env=platform_env,
             hgHost=branchConfig['hghost'],
@@ -338,6 +345,7 @@ for platform in releaseConfig['enUSPlatforms']:
             appName=releaseConfig['appName'],
             brandName=releaseConfig['brandName'],
             repoPath=releaseConfig['sourceRepoPath'],
+            objdir='obj-l10n',
             mozRepoPath=releaseConfig['mozillaRepoPath'],
             inspectorRepoPath=releaseConfig['inspectorRepoPath'],
             venkmanRepoPath=releaseConfig['venkmanRepoPath'],
@@ -357,7 +365,11 @@ for platform in releaseConfig['enUSPlatforms']:
             version=releaseConfig['version'],
             buildNumber=releaseConfig['buildNumber'],
             tree='release',
+            enable_pymake=enable_pymake,
             clobberURL=branchConfig['base_clobber_url'],
+            tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
+            tooltool_url_list= branchConfig.get('tooltool_url_list', []),
+            enUSBinaryURL=EN_US_BINARY_URL % releaseConfig,
         )
 
         builders.append({
