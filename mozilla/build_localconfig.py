@@ -44,6 +44,7 @@ else:
         'comm-central',
         'comm-beta',
         'comm-aurora',
+        'comm-esr24',
         'comm-esr31',
     ])
 if 'limit_b2g_branches' in master_config:

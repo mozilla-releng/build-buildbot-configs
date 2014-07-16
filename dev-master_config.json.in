@@ -18,7 +18,7 @@
   "master_dir": "@BASEDIR@/master",
   "release_branches": ["mozilla-release", "mozilla-beta"],
   "mobile_release_branches": ["mozilla-release", "mozilla-beta"],
-  "thunderbird_release_branches": ["comm-beta", "comm-esr31"],
+  "thunderbird_release_branches": ["comm-beta", "comm-esr24", "comm-esr31"],
   "name": "@MASTER_NAME@",
   "pb_port": @PB_PORT@,
   "role": "@ROLE@",
