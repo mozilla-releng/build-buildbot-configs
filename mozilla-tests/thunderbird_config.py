@@ -27,6 +27,9 @@ BRANCHES = {
     },
     'comm-aurora': {
     },
+    'comm-esr24': {
+        'gecko_version': 24
+    },
     'comm-esr31': {
         'gecko_version': 31
     },
@@ -298,6 +301,10 @@ BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
+
+######## comm-esr24
+BRANCHES['comm-esr24']['pgo_strategy'] = None
+BRANCHES['comm-esr24']['repo_path'] = "releases/comm-esr24"
 
 ######## comm-esr31
 BRANCHES['comm-esr31']['pgo_strategy'] = None

@@ -639,6 +639,9 @@ BRANCHES = {
     },
     'comm-beta': {
     },
+    'comm-esr24': {
+        'gecko_version': 24,
+    },
     'comm-esr31': {
         'gecko_version': 31,
     },
@@ -777,6 +780,43 @@ BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nig
 BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'mac-nightly-signing'
+
+######## comm-esr24
+BRANCHES['comm-esr24']['repo_path'] = 'releases/comm-esr24'
+BRANCHES['comm-esr24']['moz_repo_path'] = 'releases/mozilla-esr24'
+BRANCHES['comm-esr24']['mozilla_dir'] = 'mozilla'
+BRANCHES['comm-esr24']['update_channel'] = 'nightly-esr24'
+BRANCHES['comm-esr24']['skip_blank_repos'] = True
+BRANCHES['comm-esr24']['call_client_py'] = True
+BRANCHES['comm-esr24']['l10n_repo_path'] = 'releases/l10n/mozilla-esr24'
+BRANCHES['comm-esr24']['enable_weekly_bundle'] = True
+BRANCHES['comm-esr24']['start_hour'] = [3]
+BRANCHES['comm-esr24']['start_minute'] = [2]
+BRANCHES['comm-esr24']['enable_xulrunner'] = False
+# Enable unit tests
+BRANCHES['comm-esr24']['enable_mac_a11y'] = True
+BRANCHES['comm-esr24']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['comm-esr24']['enable_l10n'] = False
+BRANCHES['comm-esr24']['enable_l10n_onchange'] = False
+BRANCHES['comm-esr24']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr24']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                            'macosx64']
+BRANCHES['comm-esr24']['l10nDatedDirs'] = True
+BRANCHES['comm-esr24']['l10n_tree'] = 'tbrel'
+BRANCHES['comm-esr24']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr24'
+BRANCHES['comm-esr24']['allLocalesFile'] = 'mail/locales/all-locales'
+BRANCHES['comm-esr24']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr24' % (GLOBAL_VARS['hgurl'])
+BRANCHES['comm-esr24']['enable_nightly'] = True
+BRANCHES['comm-esr24']['create_snippet'] = True
+BRANCHES['comm-esr24']['create_partial'] = True
+BRANCHES['comm-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
+BRANCHES['comm-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr24'
+BRANCHES['comm-esr24']['enable_blocklist_update'] = False
+BRANCHES['comm-esr24']['file_update_on_closed_tree'] = False
+BRANCHES['comm-esr24']['enable_valgrind'] = False
 
 ######## comm-esr31
 BRANCHES['comm-esr31']['repo_path'] = 'releases/comm-esr31'

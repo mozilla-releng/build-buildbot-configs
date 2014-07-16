@@ -115,7 +115,7 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 # List of Android platforms that have talos enabled
-ANDROID = ["panda_android", "tegra_android"]
+ANDROID = ["panda_android"]
 ANDROID_NOT_PANDA = [slave_plat for slave_plat in ANDROID if 'panda' not in slave_plat]
 
 SUITES = {
