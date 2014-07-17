@@ -55,6 +55,10 @@ BRANCHES = {
         'gecko_version': 30,
         'b2g_version': (1, 4, 0),
     },
+    'mozilla-b2g32_v2_0': {
+        'gecko_version': 32,
+        'b2g_version': (2, 0, 0),
+    },
     'mozilla-aurora': {
         'gecko_version': 32,
         'b2g_version': (2, 0, 0),
@@ -1626,6 +1630,7 @@ BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
+BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
