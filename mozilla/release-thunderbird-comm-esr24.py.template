@@ -114,7 +114,7 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = None
+releaseConfig['releaseChannel']      = 'release'
 releaseConfig['testChannels']        = []
 releaseConfig['testChannelRuleIds']  = []
 
