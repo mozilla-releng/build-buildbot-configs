@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.6.0'
-releaseConfig['appVersion']          = '24.6.0'
+releaseConfig['version']             = '31.0'
+releaseConfig['appVersion']          = '31.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_6_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_0'
 releaseConfig['partialUpdates']      = {
 
-    '24.5.0': {
-        'appVersion': '24.5.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_24_5_0',
+    '24.6.0': {
+        'appVersion': '24.6.0',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_24_6_0',
     },
 
 }
@@ -41,9 +41,9 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-esr31',
+        'name': 'comm-esr34',
         'path': 'releases/comm-esr31',
-        'revision': '41aefb13384e',
+        'revision': '90e8c17ab16e',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -53,17 +53,12 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        # XXX remove js/src/config/milestone.txt when setting up ESR31
-        'name': 'mozilla-esr24',
-        'path': 'releases/mozilla-esr24',
-        'revision': 'a65ce0160810',
-        'relbranch': None,
+        'name': 'mozilla-esr31',
+        'path': 'releases/mozilla-esr31',
+        'revision': 'GECKO310_20140717_RELBRANCH',
+        'relbranch': 'GECKO310_20140717_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
@@ -73,7 +68,7 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr24'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr31'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
