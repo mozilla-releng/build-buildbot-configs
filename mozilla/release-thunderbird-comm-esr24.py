@@ -24,7 +24,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '24.7.0'
 releaseConfig['appVersion']          = '24.7.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_24_7_0'
 releaseConfig['partialUpdates']      = {}  # No more supported
 #  Next (nightly) version info
