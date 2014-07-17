@@ -22,11 +22,11 @@ releaseConfig['productName']         = 'fennec'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '31.0b10'
+releaseConfig['version']             = '31.0'
 releaseConfig['appVersion']          = '31.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_31_0b10'
+releaseConfig['baseTag']             = 'FENNEC_31_0'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -35,7 +35,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'd33428174ff1',
+        'revision': '650879b8b29d',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
