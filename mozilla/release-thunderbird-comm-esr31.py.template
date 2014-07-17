@@ -41,7 +41,7 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-esr34',
+        'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
         'revision': '{{ commRevision }}',
         'relbranch': {% if commRelbranch %}'{{ commRelbranch }}'{% else %}None{% endif %},
