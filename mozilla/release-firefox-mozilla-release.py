@@ -25,19 +25,19 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '31.0'
 releaseConfig['appVersion']          = '31.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_31_0'
 releaseConfig['partialUpdates']      = {
 
     '28.0': {
         'appVersion': '28.0',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_28_0',
     },
 
     '29.0.1': {
         'appVersion': '29.0.1',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_29_0_1',
     },
 
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'd33428174ff1',
+        'revision': '2552ea57100d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
