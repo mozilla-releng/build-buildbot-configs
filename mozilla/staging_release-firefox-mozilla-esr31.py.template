@@ -120,9 +120,10 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'esr'
-releaseConfig['testChannels']        = ['releasetest', 'esrtest']
-releaseConfig['testChannelRuleIds']  = [20,29]
+releaseConfig['releaseChannel']        = 'esr'
+releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['testChannels']          = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']    = [20,29]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

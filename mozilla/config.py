@@ -812,7 +812,7 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'test_pretty_names': False,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
@@ -1720,14 +1720,27 @@ BRANCHES = {
             'win32-debug': {},
         },
     },
+    'mozilla-b2g32_v2_0': {
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 32,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+        },
+    },
     'try': {
         'branch_projects': ['spidermonkey_try'],
         # For now, only run shell rooting hazards builds on try. (Browser
         # hazard builds run everywhere, not just on try.)
         'extra_platforms': {
             'linux64-sh-haz': {},
-            'linux64-mulet': {},
-            'macosx64-mulet': {},
         },
     },
 }
@@ -2164,6 +2177,39 @@ BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox', 'mobile']
 
+######## mozilla-b2g32_v2_0
+BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = 'releases/mozilla-b2g32_v2_0'
+BRANCHES['mozilla-b2g32_v2_0']['update_channel'] = 'nightly-b2g32'
+BRANCHES['mozilla-b2g32_v2_0']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
+BRANCHES['mozilla-b2g32_v2_0']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g32_v2_0']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g32_v2_0']['start_hour'] = [3]
+BRANCHES['mozilla-b2g32_v2_0']['start_minute'] = [45]
+BRANCHES['mozilla-b2g32_v2_0']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g32_v2_0']['pgo_platforms'] = []
+BRANCHES['mozilla-b2g32_v2_0']['enable_mac_a11y'] = True
+BRANCHES['mozilla-b2g32_v2_0']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-b2g32_v2_0']['enable_l10n'] = False
+BRANCHES['mozilla-b2g32_v2_0']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-b2g32_v2_0']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-b2g32_v2_0']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                               'macosx64']
+BRANCHES['mozilla-b2g32_v2_0']['l10nDatedDirs'] = True
+BRANCHES['mozilla-b2g32_v2_0']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g32_v2_0'
+BRANCHES['mozilla-b2g32_v2_0']['allLocalesFile'] = 'browser/locales/all-locales'
+BRANCHES['mozilla-b2g32_v2_0']['enable_nightly'] = True
+BRANCHES['mozilla-b2g32_v2_0']['create_snippet'] = False
+BRANCHES['mozilla-b2g32_v2_0']['create_partial'] = False
+BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g32_v2_0'
+BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g32_v2_0'
+BRANCHES['mozilla-b2g32_v2_0']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g32_v2_0']['enable_hsts_update'] = True
+BRANCHES['mozilla-b2g32_v2_0']['enable_hpkp_update'] = True
+BRANCHES['mozilla-b2g32_v2_0']['enable_valgrind'] = False
+BRANCHES['mozilla-b2g32_v2_0']['enabled_products'] = ['firefox', 'mobile']
+
 ######## try
 # Try-specific configs
 BRANCHES['try']['stage_username'] = 'trybld'
@@ -2200,7 +2246,6 @@ BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
@@ -2214,7 +2259,6 @@ BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
     # isn't true for try :(

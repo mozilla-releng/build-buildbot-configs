@@ -26,7 +26,6 @@ BRANCH_PRIORITIES = {
     'comm-esr31': 0,
     'mozilla-esr24': 1,
     'mozilla-esr31': 1,
-    'mozilla-b2g28_v1_3': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
     'mozilla-central': 3,

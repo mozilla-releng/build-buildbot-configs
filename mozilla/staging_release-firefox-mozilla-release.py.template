@@ -127,9 +127,10 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
     'win32': 'xulrunner/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'release'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [19,20]
+releaseConfig['releaseChannel']        = 'release'
+releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']    = [19,20]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True

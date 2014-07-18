@@ -130,6 +130,11 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-B2g30-v1.4',
         'mobile_tinderbox_tree': 'Mozilla-B2g30-v1.4',
     },
+    'mozilla-b2g32_v2_0': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g32-v2.0',
+        'tinderbox_tree': 'Mozilla-B2g32-v2.0',
+        'mobile_tinderbox_tree': 'Mozilla-B2g32-v2.0',
+    },
     'mozilla-beta': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',
         'tinderbox_tree': 'Mozilla-Beta',
