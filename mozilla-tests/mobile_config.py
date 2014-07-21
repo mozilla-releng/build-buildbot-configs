@@ -747,9 +747,10 @@ for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
         continue
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
+# bug 982799 limit the debug tests run on trunk branches
 ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
     'opt_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
-    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST,
+    'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST,
 }
 
 for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
@@ -1655,12 +1656,10 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 31):
                 branch['platforms'][platform]['enable_debug_unittests'] = False
 
 BRANCHES['cedar']['platforms']['android']['enable_debug_unittests'] = True
-# this loop is to limit the debug tests run on trunk branches to
-# M4,M5,M6,M7,J1,J2,J3 only for panda-android
-d = ['mochitest-1', 'mochitest-2', 'mochitest-3', 'mochitest-4',
-     'mochitest-5', 'mochitest-6', 'mochitest-7', 'mochitest-8',
-     'jsreftest-1', 'jsreftest-2', 'jsreftest-3', ]
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+BRANCHES['cedar']['platforms']['android']['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST)
+
+# bug 1030753 limit the debug tests run on trunk branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     # Loop removes it from any branch that gets beyond here
     if name in ('cedar', ):
         continue
@@ -1679,9 +1678,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
             if branch['platforms'][platform]['enable_debug_unittests'] is True:
                 for type in branch['platforms'][platform][slave_plat]:
                     if 'debug_unittest_suite' in type:
-                        for suite in branch['platforms'][platform][slave_plat][type][:]:
-                            if suite[0] not in d:
-                               branch['platforms'][platform][slave_plat][type].remove(suite)
+                        BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
 # have to disable this manually or it blows up in misc.py
 BRANCHES['ash']['platforms']['android']['enable_debug_unittests'] = False
