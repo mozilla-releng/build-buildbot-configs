@@ -1432,8 +1432,6 @@ BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb']['enable_nightly'] = T
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g30_v1_4
 # This is a path, relative to HGURL, where the repository is located
@@ -1563,11 +1561,19 @@ for branch in BRANCHES:
         if 'tarako_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['tarako_eng']
 
+# dolphin is for B2G 1.4 only
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g30_v1_4',):
+        if 'dolphin' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['dolphin']
+        if 'dolphin_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['dolphin_eng']
+
 # b2g 1.4+
 for name, branch in items_before(BRANCHES, 'gecko_version', 30):
     for p in ('flame', 'flame_eng', 'linux64_gecko-debug',
               'macosx64_gecko-debug', 'linux32_gecko-debug', 'win32_gecko-debug',
-              'emulator-kk', 'emulator-kk-debug', 'dolphin', 'dolphin_eng'):
+              'emulator-kk', 'emulator-kk-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
