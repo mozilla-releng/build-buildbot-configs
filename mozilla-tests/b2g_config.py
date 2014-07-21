@@ -59,10 +59,10 @@ BRANCHES = {
         'gecko_version': 32,
         'b2g_version': (2, 0, 0),
     },
-    'mozilla-aurora': {
-        'gecko_version': 32,
-        'b2g_version': (2, 0, 0),
-    },
+#    'mozilla-aurora': {
+#        'gecko_version': 34,
+#        'b2g_version': (2, 1, 0),
+#    },
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
@@ -1600,7 +1600,7 @@ for branch in BRANCHES.keys():
 
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
-BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness"
+BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/build/ash-mozharness"
 BRANCHES['ash']['mozharness_tag'] = "default"
 BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
@@ -1631,8 +1631,8 @@ BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
-BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
-BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
+#BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
+#BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"

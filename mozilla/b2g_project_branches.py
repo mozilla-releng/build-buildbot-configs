@@ -40,8 +40,8 @@ PROJECT_BRANCHES = {
     # Booked for Thunderbird
     #'alder': {},
     'ash': {
-        'mozharness_repo_path': 'users/asasaki_mozilla.com/ash-mozharness',
-        'mozharness_repo': 'https://hg.mozilla.org/users/asasaki_mozilla.com/ash-mozharness',
+        'mozharness_repo_path': 'build/ash-mozharness',
+        'mozharness_repo': 'https://hg.mozilla.org/build/ash-mozharness',
         'mozharness_tag': 'default',
     },
     # Not needed on Birch at the moment, bug 977420.
