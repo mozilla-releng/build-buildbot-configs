@@ -22,11 +22,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.0b9'
-releaseConfig['appVersion']          = '31.0'
+releaseConfig['version']             = '32.0b1'
+releaseConfig['appVersion']          = '32.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_0b9'
+releaseConfig['baseTag']             = 'FIREFOX_32_0b1'
 releaseConfig['partialUpdates']      = {
 
     '31.0b8': {
@@ -35,10 +35,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_31_0b8',
     },
 
-    '31.0b7': {
+    '31.0b9': {
         'appVersion': '31.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_0b7',
+        'baseTag': 'FIREFOX_31_0b9',
     },
 
 }
@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '27f25e1d82ad',
+        'revision': '76dd853f227b',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -127,9 +127,10 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
-releaseConfig['releaseChannel']      = 'beta'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [25,26]
+releaseConfig['releaseChannel']        = 'beta'
+releaseConfig['releaseChannelRuleIds'] = [32]
+releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']    = [25,26]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
