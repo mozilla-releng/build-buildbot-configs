@@ -37,7 +37,6 @@ BRANCH_PRIORITIES = {
     'b2g-inbound': 4,
     'fx-team': 4,
     'try': 5,
-    'gaia-try': 5,
     'try-comm-central': 5,
     'alder': 5,
     'ash': 5,
