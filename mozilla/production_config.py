@@ -4,7 +4,7 @@ LINUX_IXS      = []
 LINUX64_IXS    = []
 WIN32_IXS      = []
 WIN64_IXS      = []
-WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(90,159) + range(161,173) + [184]] + \
+WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(90,159) + range(161,173)] + \
                  ['b-2008-sm-%04d' % x for x in range(33, 65)]
 MOCK_DL120G7   = ['b-linux64-hp-%04d' % x for x in range(25,36)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
@@ -36,7 +36,7 @@ TRY_WIN64_IXS  = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
     ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
     ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
-TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,182)] + \
+TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,182) + [184]] + \
                  ['b-2008-sm-%04d' % x for x in range(1, 33)]
 TRY_MOCK_DL120G7 = ['b-linux64-hp-%04d' % x for x in range(1, 20)]
 TRY_MOCK_IX      = ['b-linux64-ix-%04d' % x for x in range(12,14)]
