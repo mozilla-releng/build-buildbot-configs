@@ -65,6 +65,7 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
+        'linux64-mulet': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -683,7 +684,7 @@ PLATFORM_VARS = {
             'enable_nightly': False,
             'enable_xulrunner': False,
             'enable_opt_unittests': True,
-            'try_by_default': False,
+            'try_by_default': True,
             'upload_symbols': False,
             'packageTests': True,
 
@@ -2382,6 +2383,7 @@ BRANCHES['try']['create_snippet'] = False
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
@@ -2557,6 +2559,11 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
+
+# Mulet landed in gecko 34
+for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+    if 'linux64-mulet' in branch['platforms']:
+        del branch['platforms']['linux64-mulet']
 
 # Exact rooting landed for desktop only in 28.
 for name, branch in items_before(BRANCHES, 'gecko_version', 28):
