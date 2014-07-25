@@ -91,6 +91,7 @@ PROJECT_BRANCHES = {
     #'alder': {
     #},
     'ash': {
+        'desktop_mozharness_repacks_enabled': True,
         'mozharness_repo_path': 'build/ash-mozharness',
         'mozharness_repo': 'https://hg.mozilla.org/build/ash-mozharness',
         'mozharness_tag': 'default',
