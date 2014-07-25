@@ -127,7 +127,13 @@ GLOBAL_VARS = {
     'mozharness_desktop_extra_options': {
         'nightly': ['--enable-pgo', '--enable-nightly'],
         'pgo': ['--enable-pgo'],
-    }
+    },
+    # list platforms with mozharness l10n repacks enabled.
+    # mozharness repacks will be enabled per branch
+    'mozharness_desktop_l10n_platforms': [
+        'linux', 'linux64', 'macosx64'
+    ],
+    # bug 1027890: excluding win32/win64 for now
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
@@ -153,9 +159,17 @@ PLATFORM_VARS = {
                 'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                    '-f', '../reboot_count.txt', '-n', '1', '-z'],
             },
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_l10n': {
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 10,
+                'use_credentials_file': True,
+                'config': 'single_locale/linux.py',
+            },
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
             'dep_signing_servers': 'dep-signing',
             'base_name': 'Linux %(branch)s',
-
             'product_name': 'firefox',
             'unittest_platform': 'linux-opt',
             'app_name': 'browser',
@@ -266,6 +280,15 @@ PLATFORM_VARS = {
                 '--config', 'builds/releng_base_linux_64_builds.py',
                 '--custom-build-variant-cfg', 'non-unified',
             ],
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_l10n': {
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 10,
+                'use_credentials_file': True,
+                'config': 'single_locale/linux64.py',
+            },
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
 
             'product_name': 'firefox',
             'unittest_platform': 'linux64-opt',
@@ -715,6 +738,16 @@ PLATFORM_VARS = {
             ],
         },
         'macosx64': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_l10n': {
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 10,
+                'use_credentials_file': True,
+                'config': 'single_locale/macosx64.py',
+            },
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+
             'product_name': 'firefox',
             'unittest_platform': 'macosx64-opt',
             'app_name': 'browser',
@@ -826,6 +859,16 @@ PLATFORM_VARS = {
             'enable_ccache': True,
         },
         'win32': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'mozharness_desktop_l10n': {
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 10,
+                'use_credentials_file': True,
+                'config': 'single_locale/win32.py',
+            },
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+
             'product_name': 'firefox',
             'unittest_platform': 'win32-opt',
             'app_name': 'browser',
@@ -880,6 +923,16 @@ PLATFORM_VARS = {
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'mozharness_desktop_l10n': {
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 10,
+                'use_credentials_file': True,
+                'config': 'single_locale/win64.py',
+            },
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+
             'product_name': 'firefox',
             'unittest_platform': 'win64-opt',
             'app_name': 'browser',
@@ -2442,6 +2495,19 @@ for b in ('b2g-inbound',):
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
+
+# desktop repacks with mozharness
+for name, branch in BRANCHES.items():
+    if branch.get('desktop_mozharness_repacks_enabled'):
+        for platform_name in branch['platforms']:
+            if platform_name in GLOBAL_VARS['mozharness_desktop_l10n_platforms']:
+                pf = branch['platforms'][platform_name]
+                pf['desktop_mozharness_repacks_enabled'] = True
+        continue
+    # for all other branches delete mozharness_desktop_l10n
+    for p in branch["platforms"]:
+        if "mozharness_desktop_l10n" in p:
+            del p["mozharness_desktop_l10n"]
 
 # Bug 950206 - Enable 32-bit Windows builds on Date, test those builds on tst-w64-ec2-XXXX
 BRANCHES['date']['platforms']['win32']['unittest_platform'] = 'win64-opt'
