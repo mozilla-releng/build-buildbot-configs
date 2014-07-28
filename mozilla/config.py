@@ -1286,7 +1286,7 @@ PLATFORM_VARS = {
             'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 14,
+            'build_space': 16,
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
