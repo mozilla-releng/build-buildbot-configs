@@ -1632,21 +1632,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 33):
             'opt_unittest_suites': [],
         }
 
-#Bug 1042835 - disable armv6 builds and tests for gecko < 32
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-    # Loop removes it from any branch that gets beyond here
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if not platform == ('android-armv6'):
-            continue
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
-            'opt_unittest_suites': [],
-        }
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
-            'opt_unittest_suites': [],
-        }
-
 # otherwise spurious builders are created on ash
 # part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
 del BRANCHES['ash']['platforms']['android-armv6']['tegra_android-armv6']

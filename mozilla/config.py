@@ -2496,10 +2496,6 @@ for b in ('b2g-inbound',):
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
 
-# Bug 1042835 disable armv6 builds and tests for gecko < 32
-for name, branch in items_before(BRANCHES, 'gecko_version', 32):
-    if 'android-armv6' in branch['platforms']:
-            del branch['platforms']['android-armv6']
 # desktop repacks with mozharness
 for name, branch in BRANCHES.items():
     if branch.get('desktop_mozharness_repacks_enabled'):
