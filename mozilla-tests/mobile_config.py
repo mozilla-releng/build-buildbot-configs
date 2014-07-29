@@ -1627,7 +1627,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 33):
             continue
         BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
             'opt_unittest_suites': [],
-        }    
+        }
         BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
             'opt_unittest_suites': [],
         }
