@@ -2539,18 +2539,14 @@ for name, branch in BRANCHES.items():
                 )]
 
 # Only run non-unified builds on m-c and derived branches
-for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
-               "mozilla-b2g28_v1_3t", "mozilla-b2g30_v1_4",
-               "try", "holly", "elm"):
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
-for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
-               "mozilla-b2g30_v1_4", "mozilla-b2g28_v1_3t"):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['linux64-st-an-debug']
 
