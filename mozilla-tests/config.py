@@ -1700,8 +1700,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     branch['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
     branch['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 
-# Load jetpack for (all) branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 21):
+# Run Jetpack tests everywhere except on versioned B2G branches.
+for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
+    branch = BRANCHES[name]
     for pf in PLATFORMS:
         if pf not in branch['platforms']:
             continue
