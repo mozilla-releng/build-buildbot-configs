@@ -1075,7 +1075,6 @@ PLATFORM_VARS = {
                 '--config-file', 'hazards/build_b2g.py',
             ],
         },
-        'enable_nonunified_build': True,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
