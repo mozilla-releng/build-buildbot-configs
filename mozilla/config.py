@@ -1434,6 +1434,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-armv6': {
+            'enable_nightly': False,            
             'product_name': 'firefox',
             'unittest_platform': 'android-armv6-opt',
             'app_name': 'browser',
@@ -2480,10 +2481,18 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
 
-# Bug 578880, remove the following block after gcc-4.5 switch
+#bug 1042835 Disable armv6 builds and tests everywhere apart from esr31 
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
+    if 'android-armv6' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-armv6']
+
+
+# Bug 578880, remove the following block after gcc-4.5 switch
+branches = BRANCHES.keys()
+branches.extend(ACTIVE_PROJECT_BRANCHES)
+for branch in branches:  
     if 'linux' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
         BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
