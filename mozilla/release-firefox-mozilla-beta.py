@@ -22,11 +22,11 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '32.0b2'
+releaseConfig['version']             = '32.0b3'
 releaseConfig['appVersion']          = '32.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_32_0b2'
+releaseConfig['baseTag']             = 'FIREFOX_32_0b3'
 releaseConfig['partialUpdates']      = {
 
     '32.0b1': {
@@ -35,10 +35,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_32_0b1',
     },
 
-    '31.0b9': {
-        'appVersion': '31.0',
+    '32.0b2': {
+        'appVersion': '32.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_0b9',
+        'baseTag': 'FIREFOX_32_0b2',
     },
 
 }
@@ -50,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '61b30b605194',
+        'revision': '33eea1df6465',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
