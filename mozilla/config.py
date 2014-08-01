@@ -2551,13 +2551,13 @@ for name, branch in BRANCHES.items():
 
 # Only run non-unified builds on m-c and derived branches
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     for pc in branch['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64-st-an-debug' in branch['platforms']:
         del branch['platforms']['linux64-st-an-debug']
 
