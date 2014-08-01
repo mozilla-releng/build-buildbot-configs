@@ -65,6 +65,7 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
+        'linux64-mulet': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -683,7 +684,7 @@ PLATFORM_VARS = {
             'enable_nightly': False,
             'enable_xulrunner': False,
             'enable_opt_unittests': True,
-            'try_by_default': False,
+            'try_by_default': True,
             'upload_symbols': False,
             'packageTests': True,
 
@@ -1433,6 +1434,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-armv6': {
+            'enable_nightly': False,            
             'product_name': 'firefox',
             'unittest_platform': 'android-armv6-opt',
             'app_name': 'browser',
@@ -2382,6 +2384,7 @@ BRANCHES['try']['create_snippet'] = False
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
@@ -2478,10 +2481,18 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
 
-# Bug 578880, remove the following block after gcc-4.5 switch
+#bug 1042835 Disable armv6 builds and tests everywhere apart from esr31 
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
+    if 'android-armv6' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-armv6']
+
+
+# Bug 578880, remove the following block after gcc-4.5 switch
+branches = BRANCHES.keys()
+branches.extend(ACTIVE_PROJECT_BRANCHES)
+for branch in branches:  
     if 'linux' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
         BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
@@ -2539,20 +2550,16 @@ for name, branch in BRANCHES.items():
                 )]
 
 # Only run non-unified builds on m-c and derived branches
-for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
-               "mozilla-b2g28_v1_3t", "mozilla-b2g30_v1_4",
-               "try", "holly", "elm"):
-    for pc in BRANCHES[branch]['platforms'].values():
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+    for pc in branch['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
-for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-esr31", "mozilla-b2g28_v1_3",
-               "mozilla-b2g30_v1_4", "mozilla-b2g28_v1_3t"):
-    if 'linux64-st-an-debug' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['linux64-st-an-debug']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+    if 'linux64-st-an-debug' in branch['platforms']:
+        del branch['platforms']['linux64-st-an-debug']
 
 # Only test pretty names on train branches, not m-c or project branches.
 # That's also forced on nonunified builds in buildbotcustom.
@@ -2561,6 +2568,11 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
+
+# Mulet landed in gecko 34
+for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+    if 'linux64-mulet' in branch['platforms']:
+        del branch['platforms']['linux64-mulet']
 
 # Exact rooting landed for desktop only in 28.
 for name, branch in items_before(BRANCHES, 'gecko_version', 28):

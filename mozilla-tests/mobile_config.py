@@ -669,16 +669,6 @@ TEGRA_RELEASE_PLAIN_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
-ANDROID_2_3_ARMV6_AWS_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
-ANDROID_2_3_ARMV6_C3_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
 ANDROID_2_3_C3_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -1385,18 +1375,6 @@ ANDROID_2_3_MOZHARNESS_DICT = [
 ]
 # End of Android 2.3 configurations
 
-for suite in ANDROID_2_3_MOZHARNESS_DICT:
-    if suite[0].startswith('mochitest-gl'):
-        continue
-    elif suite[0].startswith('plain-reftest'):
-        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
-    elif suite[0].startswith('crashtest'):
-        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
-    elif suite[0].startswith('jsreftest'):
-        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
-    else:
-        ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites'].append(suite)
-
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -1420,14 +1398,17 @@ PLATFORM_UNITTEST_VARS = {
         'host_utils_url': 'http://talos-remote.pvt.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-armv6': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS, 
+        'tegra_android-armv6': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+        },
         'ubuntu64_vm_armv6_mobile': {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
+            'opt_unittest_suites': [],
             'debug_unittest_suites': [],
         },       
         'ubuntu64_vm_armv6_large': {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites']),
+            'opt_unittest_suites': [],
             'debug_unittest_suites': [],
         },
     },
@@ -1581,7 +1562,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
                 continue
-            if not slave_plat in ('tegra_android', 'tegra_android-armv6'):
+            if not slave_plat in ('tegra_android', ):
                 continue
             BRANCHES[name]['platforms'][platform][slave_plat] =   {
                 'opt_unittest_suites': [],
@@ -1615,26 +1596,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
             'debug_unittest_suites': []
         }
-
-# bug 1020970 Schedule all Android 2.3 armv6 tests, except mochitest-gl, 
-# on all trunk trees and make them ride the trains 
-for name, branch in items_before(BRANCHES, 'gecko_version', 33):
-    # Loop removes it from any branch that gets beyond here
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if not platform == ('android-armv6'):
-            continue
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
-            'opt_unittest_suites': [],
-        }
-        BRANCHES[name]['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
-            'opt_unittest_suites': [],
-        }
-
-# otherwise spurious builders are created on ash
-# part of bug 1006082 Run Android 2.3 tests against armv6 builds, on Ash only
-del BRANCHES['ash']['platforms']['android-armv6']['tegra_android-armv6']
 
 # Panda debug enabled on trunk that rides the trains
 # this stanza is to disable it for branches on an older version of gecko
