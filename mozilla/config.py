@@ -2549,10 +2549,15 @@ for name, branch in BRANCHES.items():
                     'ant', 'ant-apache-regexp',
                 )]
 
-# Only run non-unified builds on m-c and derived branches
+# Don't schedule non-unified builds anywhere except on m-c and derived branches
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     for pc in branch['platforms'].values():
+        if 'enable_nonunified_build' in pc:
+            pc['enable_nonunified_build'] = False
+# Don't try to schedule non-unified builds on Try either
+for branch in ("try",):
+    for pc in BRANCHES[branch]['platforms'].values():
         if 'enable_nonunified_build' in pc:
             pc['enable_nonunified_build'] = False
 
