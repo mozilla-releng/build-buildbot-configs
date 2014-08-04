@@ -12,7 +12,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "bn-IN": {
-    "revision": "8cda4a9e805a",
+    "revision": "af9c10e38a6c",
     "platforms": ["android", "android-multilocale"]
   },
   "ca": {
@@ -112,7 +112,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "it": {
-    "revision": "f1c4941ce4fe",
+    "revision": "f6580228b29d",
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
