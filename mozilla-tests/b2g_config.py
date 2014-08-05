@@ -124,10 +124,10 @@ PLATFORMS['macosx64_gecko']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['emulator']['slave_platforms'] = ['ubuntu64_vm-b2g-emulator', 'ubuntu64_hw-b2g-emulator']
+PLATFORMS['emulator']['slave_platforms'] = ['ubuntu64_vm-b2g-emulator', 'ubuntu64_vm-b2g-lg-emulator']
 PLATFORMS['emulator']['env_name'] = 'linux-perf'
 PLATFORMS['emulator']['ubuntu64_vm-b2g-emulator'] = {'name': "b2g_emulator_vm"}
-PLATFORMS['emulator']['ubuntu64_hw-b2g-emulator'] = {'name': "b2g_emulator_hw"}
+PLATFORMS['emulator']['ubuntu64_vm-b2g-lg-emulator'] = {'name': "b2g_emulator_vm_large"}
 PLATFORMS['emulator']['stage_product'] = 'b2g'
 PLATFORMS['emulator']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1089,19 +1089,7 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'ubuntu64_hw-b2g-emulator': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'gaia-ui-test': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--cfg', 'marionette/gaia_ui_test_emu_config.py',
-                    ],
-                },
-            },
-        },
+        'enable_debug_unittests': True,       
         'ubuntu64_vm-b2g-emulator': {
             'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
             'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL[:],
@@ -1495,6 +1483,25 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'ubuntu64_vm-b2g-lg-emulator': {
+           'opt_unittest_suites': [],
+           'debug_unittest_suites': [],
+           'suite_config': {
+               'gaia-ui-test': {
+                   'extra_args': [
+                       '--cfg', 'marionette/gaia_ui_test_prod_config.py',
+                       '--cfg', 'marionette/gaia_ui_test_emu_config.py',
+                   ],
+               },
+                'mochitest-media': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--test-path', 'media/',
+                    ],
+                },
+           },
+       },
     },
     'emulator-jb': {
         'product_name': 'b2g',
@@ -1621,9 +1628,9 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + GAIA_UI + MOCHITEST_MEDIA + CPPUNIT
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL + CPPUNIT
-BRANCHES['cedar']['platforms']['emulator']['ubuntu64_hw-b2g-emulator']['opt_unittest_suites'] = GAIA_UI
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = GAIA_UI + MOCHITEST_MEDIA
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:] + MARIONETTE[:]
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
