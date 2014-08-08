@@ -662,6 +662,7 @@ GAIA_UNITTESTS = [(
         'suite': 'gaia-unit',
         'use_mozharness': True,
         'script_path': 'scripts/gaia_unit.py',
+        'blob_upload': True,
     },
 )]
 
