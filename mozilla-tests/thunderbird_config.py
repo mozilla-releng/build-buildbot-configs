@@ -55,8 +55,6 @@ PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Sn
 PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
-# Workaround to get correct python version whilst Thunderbird doesn't have mozharness
-PLATFORMS['macosx64']['env']['PATH'] = '/tools/buildbot/bin/:/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin'
 
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
