@@ -1648,7 +1648,7 @@ for platform in PLATFORM_VARS.values():
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['mock-hw', 'macosx64-lion', 'win64'],
+        'platforms': ['mock-hw', 'macosx64-lion', 'win64-rev2'],
     },
 }
 
