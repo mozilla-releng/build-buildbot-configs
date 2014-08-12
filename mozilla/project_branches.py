@@ -74,7 +74,7 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
+                'nightly_signing_servers': 'nightly-signing',
             },
             'linux': {
                 'nightly_signing_servers': 'nightly-signing',
@@ -223,7 +223,7 @@ PROJECT_BRANCHES = {
                 'nightly_signing_servers': 'nightly-signing',
             },
             'macosx64': {
-                'nightly_signing_servers': 'mac-nightly-signing',
+                'nightly_signing_servers': 'nightly-signing',
             },
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
