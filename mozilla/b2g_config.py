@@ -1379,6 +1379,8 @@ BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] 
 BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['dolphin']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######### mozilla-aurora
 ## This is a path, relative to HGURL, where the repository is located
@@ -1405,6 +1407,8 @@ BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] 
 #BRANCHES['mozilla-aurora']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 #BRANCHES['mozilla-aurora']['platforms']['emulator-kk']['enable_nightly'] = True
 #BRANCHES['mozilla-aurora']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+#BRANCHES['mozilla-aurora']['platforms']['dolphin']['enable_nightly'] = True
+#BRANCHES['mozilla-aurora']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g32_v2_0
 # This is a path, relative to HGURL, where the repository is located
@@ -1431,6 +1435,8 @@ BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb']['enable_nightly'] = T
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['dolphin']['enable_nightly'] = True
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g30_v1_4
 # This is a path, relative to HGURL, where the repository is located
@@ -1562,7 +1568,9 @@ for branch in BRANCHES:
 
 # dolphin is for B2G 1.4 only
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g30_v1_4',):
+    if branch not in ('mozilla-b2g30_v1_4', 'mozilla-b2g32_v2_0',
+                      'mozilla-aurora', 'mozilla-central', 'mozilla-inbound',
+                      'b2g-inbound'):
         if 'dolphin' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin']
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:
