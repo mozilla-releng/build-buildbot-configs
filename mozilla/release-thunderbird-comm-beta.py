@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.0b3'
-releaseConfig['appVersion']          = '31.0'
+releaseConfig['version']             = '32.0b1'
+releaseConfig['appVersion']          = '32.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_0b3'
+releaseConfig['baseTag']             = 'THUNDERBIRD_32_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '31.0b2': {
+    '31.0b3': {
         'appVersion': '31.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_0b2',
+        'baseTag': 'THUNDERBIRD_31_0b3',
     },
 
 }
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'f736c50b4929',
+        'revision': '98d598127699',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -55,8 +55,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'GECKO310b3_20140715_RELBRANCH',
-        'relbranch': 'GECKO310b3_20140715_RELBRANCH',
+        'revision': '8bf5700cb82e',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -121,9 +121,10 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'beta'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [27,28]
+releaseConfig['releaseChannel']        = 'beta'
+releaseConfig['releaseChannelRuleIds'] = [43]
+releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']    = [27,28]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
