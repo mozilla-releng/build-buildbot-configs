@@ -66,6 +66,7 @@ GLOBAL_VARS = {
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
         'linux64-mulet': {},
+        'linux64-cc': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -711,6 +712,93 @@ PLATFORM_VARS = {
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': \
+                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
+                        'gtk2-devel', 'libnotify-devel', 'yasm',
+                        'alsa-lib-devel', 'libcurl-devel',
+                        'wireless-tools-devel', 'libX11-devel',
+                        'libXt-devel', 'mesa-libGL-devel',
+                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
+                        'mpfr', # required for system compiler
+                        'xorg-x11-font*', # fonts required for PGO
+                        'imake', # required for makedepend!?!
+                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                        'valgrind', 'dbus-x11',
+                        'pulseaudio-libs-devel',
+                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                        'freetype-2.3.11-6.el6_1.8.x86_64',
+                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                        ],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
+            ],
+        },
+        'linux64-cc': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--custom-build-variant-cfg', 'code-coverage',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
+            'consider_for_nightly': False,
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'enable_opt_unittests': True,
+            'try_by_default': False,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+
+            'product_name': 'firefox',
+            'unittest_platform': 'linux64-cc-opt',
+            'app_name': 'browser',
+            'base_name': 'Linux x86-64 Code Coverage %(branch)s',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'browser/config/mozconfigs/linux64/code-coverage',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'linux64-cc',
+            'update_platform': 'Linux_x86_64-gcc3',
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
+            },
+            'enable_checktests': True,
+            'enable_build_analysis': False,
+            'test_pretty_names': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/linux64/l10n.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
@@ -1434,7 +1522,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-armv6': {
-            'enable_nightly': False,            
+            'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'android-armv6-opt',
             'app_name': 'browser',
@@ -1980,6 +2068,12 @@ for branch in BRANCHES.keys():
             if platform in BRANCHES[branch]['platforms']:
                 del BRANCHES[branch]['platforms'][platform]
 
+    # linux64-cc builds only run on cedar for now
+    if branch not in ('cedar',):
+        for platform in ('linux64-cc',):
+            if platform in BRANCHES[branch]['platforms']:
+                del BRANCHES[branch]['platforms'][platform]
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -2268,7 +2362,7 @@ BRANCHES['mozilla-b2g28_v1_3']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g28_v1_3']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g28_v1_3'
 BRANCHES['mozilla-b2g28_v1_3']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g28_v1_3']['enable_nightly'] = True
+BRANCHES['mozilla-b2g28_v1_3']['enable_nightly'] = False
 BRANCHES['mozilla-b2g28_v1_3']['create_snippet'] = False
 BRANCHES['mozilla-b2g28_v1_3']['create_partial'] = False
 BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g28_v1_3'
@@ -2308,7 +2402,7 @@ BRANCHES['mozilla-b2g30_v1_4']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g30_v1_4'
 BRANCHES['mozilla-b2g30_v1_4']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g30_v1_4']['enable_nightly'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enable_nightly'] = False
 BRANCHES['mozilla-b2g30_v1_4']['create_snippet'] = False
 BRANCHES['mozilla-b2g30_v1_4']['create_partial'] = False
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
@@ -2341,7 +2435,7 @@ BRANCHES['mozilla-b2g32_v2_0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g32_v2_0'
 BRANCHES['mozilla-b2g32_v2_0']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-b2g32_v2_0']['enable_nightly'] = True
+BRANCHES['mozilla-b2g32_v2_0']['enable_nightly'] = False
 BRANCHES['mozilla-b2g32_v2_0']['create_snippet'] = False
 BRANCHES['mozilla-b2g32_v2_0']['create_partial'] = False
 BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g32_v2_0'
@@ -2481,7 +2575,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
 
-#bug 1042835 Disable armv6 builds and tests everywhere apart from esr31 
+#bug 1042835 Disable armv6 builds and tests everywhere apart from esr31
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
@@ -2492,7 +2586,7 @@ for branch in branches:
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in branches:  
+for branch in branches:
     if 'linux' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux']['env']['LD_LIBRARY_PATH'] = '/tools/gcc-4.3.3/installed/lib'
         BRANCHES[branch]['platforms']['linux']['unittest-env'] = {
