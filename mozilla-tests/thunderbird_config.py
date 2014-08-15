@@ -5,11 +5,9 @@ from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
-
 import master_common
 reload(master_common)
-from master_common import setMainCommVersions
-
+from master_common import setMainCommVersions, items_before
 import thunderbird_project_branches
 reload(thunderbird_project_branches)
 from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
@@ -54,39 +52,43 @@ PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX Mountain Lion 10.8"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
-PLATFORMS['macosx64']['mozharness_python'] = '/tools/buildbot/bin/python'
-
+PLATFORMS['macosx64']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+}
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
 PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
-PLATFORMS['win32']['mozharness_python'] = ['c:/mozilla-build/python25/python', '-u']
-
+PLATFORMS['win32']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
+}
 PLATFORMS['linux']['slave_platforms'] = ['ubuntu32_vm']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['stage_product'] = 'thunderbird'
-PLATFORMS['linux']['mozharness_python'] = '/tools/buildbot/bin/python'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '32',
-    'config_file': 'talos/linux_config.py',
 }
 
 PLATFORMS['linux64']['slave_platforms'] = ['ubuntu64_vm']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'thunderbird'
-PLATFORMS['linux64']['mozharness_python'] = '/tools/buildbot/bin/python'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
-    'config_file': 'talos/linux_config.py',
 }
 
 # Lets be explicit instead of magical.
@@ -127,20 +129,25 @@ BRANCH_UNITTEST_VARS = {
         'win32': {},
     },
 }
+XPCSHELL = [
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--xpcshell-suite', 'xpcshell'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
 
 # Default set of unit tests
 UNITTEST_SUITES = {
     'opt_unittest_suites': [
-        ('xpcshell', ['xpcshell']),
         ('mozmill', ['mozmill']),
-    ],
+    ] + XPCSHELL,
     'debug_unittest_suites': [
-        ('xpcshell', ['xpcshell']),
         ('mozmill', ['mozmill']),
-    ],
+    ] + XPCSHELL,
 }
-
-
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -155,6 +162,11 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
         },
     },
     'linux64': {
@@ -168,6 +180,11 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
         },
     },
     'win32': {
@@ -183,10 +200,20 @@ PLATFORM_UNITTEST_VARS = {
         'xp-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+            },
         },
         'win7-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+            },
         },
     },
     'macosx64': {
@@ -199,10 +226,20 @@ PLATFORM_UNITTEST_VARS = {
         'snowleopard': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+            },
         },
         'mountainlion': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+            },
         },
     },
 }
@@ -327,6 +364,28 @@ for branch in set(BRANCHES.keys()):
         BRANCHES[branch]['platforms']['linux']['slave_platforms'] = ['ubuntu32_vm']
     if 'linux64' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['linux64']['slave_platforms'] = ['ubuntu64_vm']
+
+# xpcshell-on-mozharness should ride the trains
+# Replace old trains with non-mozharness code.
+# MERGE DAY (remove this code once Thunderbird no longer services Gecko 33 and lower)
+for platform in PLATFORMS.keys():
+    XPCSHELL_OLD = ('xpcshell', ['xpcshell'])
+    for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+
+            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for xpcshell in XPCSHELL:
+                    try:
+                        branch['platforms'][platform][slave_platform][suite_type].remove(xpcshell)
+                        if XPCSHELL_OLD not in branch['platforms'][platform][slave_platform][suite_type]:
+                            branch['platforms'][platform][slave_platform][suite_type].append(XPCSHELL_OLD)
+                    except ValueError:
+                        # wasn't in the list anyways
+                        pass
 
 if __name__ == "__main__":
     import sys
