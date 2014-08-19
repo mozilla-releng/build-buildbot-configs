@@ -567,7 +567,7 @@ WEB_PLATFORM_TESTS_CHUNKED = [
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
-        'totalChunks': 3,
+        'totalChunks': 4,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
