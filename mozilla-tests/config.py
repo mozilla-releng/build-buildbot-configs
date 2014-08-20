@@ -110,6 +110,7 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
+    'linux64-cc': {},
     'linux64-mulet': {},
     'win64': {},
 }
@@ -211,6 +212,20 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
     'config_file': 'talos/linux_config.py',
+}
+
+PLATFORMS['linux64-cc']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-cc']['ubuntu64_vm'] = {
+    'name': 'Ubuntu Code Coverage VM 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_cc',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_cc'
+}
+PLATFORMS['linux64-cc']['stage_product'] = 'firefox'
+PLATFORMS['linux64-cc']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
 }
 
 PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm']
@@ -338,6 +353,7 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-asan': {},
+        'linux64-cc': {},
         'linux64-mulet': {},
         'macosx64': {},
         'macosx64-mulet': {},
@@ -795,6 +811,78 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
+        },
+    },
+    'linux64-cc': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'ubuntu64_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-ipc': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
                 'mozbase': {
@@ -1779,7 +1867,7 @@ for platform in PLATFORMS.keys():
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for platform in PLATFORMS.keys():
     # run in chunks on linux only
-    if platform in ['linux', 'linux64', 'linux64-asan']:
+    if platform in ['linux', 'linux64', 'linux64-asan', 'linux64-cc']:
         jittests = JITTEST_CHUNKED
     else:
         jittests = JITTEST
@@ -1877,6 +1965,9 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     if 'linux64-asan' in branch['platforms'] and 'ubuntu64-asan_vm' in branch['platforms']['linux64-asan']:
         for chunked_bc in MOCHITEST_BC_3:
             branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'].remove(chunked_bc)
+    if 'linux64-cc' in branch['platforms'] and 'ubuntu64_vm' in branch['platforms']['linux64-cc']:
+        for chunked_bc in MOCHITEST_BC_3:
+            branch['platforms']['linux64-cc']['ubuntu64_vm']['debug_unittest_suites'].remove(chunked_bc)
 
 # mochitest-browser-chrome changes in 30:
 #  * it's done chunked
@@ -1947,6 +2038,14 @@ for name in BRANCHES.keys():
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):
     if 'linux64-mulet' in branch['platforms']:
         del branch['platforms']['linux64-mulet']
+
+# Disable Linux64-cc in every branch except cedar
+for name in BRANCHES.keys():
+    if name in ('cedar',):
+        continue
+    for platform in ('linux64-cc',):
+        if platform in BRANCHES[name]['platforms']:
+            del BRANCHES[name]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys
