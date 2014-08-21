@@ -8,13 +8,13 @@ releaseConfig['productName']                = 'seamonkey'
 releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
-releaseConfig['version']                    = '2.26b2'
-releaseConfig['appVersion']                 = '2.26'
-releaseConfig['milestone']                  = '29.0'
+releaseConfig['version']                    = '2.29b1'
+releaseConfig['appVersion']                 = '2.29'
+releaseConfig['milestone']                  = '32.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_26b2'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_29b1'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.26b1'
+releaseConfig['oldVersion']                 = '2.26b2'
 releaseConfig['oldAppVersion']              = '2.26'
 releaseConfig['oldBuildNumber']             = 2
 releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_26b1'
@@ -26,14 +26,14 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = 'fa389df20061'
+releaseConfig['sourceRepoRevision']         = 'ca5ec1a2966f'
 releaseConfig['relbranchOverride']          = ''
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_29_0b8_BUILD1'
-releaseConfig['mozillaRelbranchOverride']   = 'GECKO290b8_2014041417_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_32_0b8_BUILD1'
+releaseConfig['mozillaRelbranchOverride']   = 'GECKO320b8_2014081821_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'SEA2_26_RELBRANCH'
