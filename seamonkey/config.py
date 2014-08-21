@@ -7,6 +7,7 @@ SLAVES = {
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx64': #['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
                 ['sea-mini-osx64-%i' % x for x in range(1,5)],
+    'mock': ['sea-hp-linux64-%i' % x for x in range(2,14)],
 }
 
 
@@ -113,6 +114,60 @@ GLOBAL_VARS = {
     'pgo_strategy': None,
     'enabled_products': ['seamonkey'],
     'tooltool_url_list': ['http://tooltool.pub.build.mozilla.org/temp-sm-stuff/'],
+    'mock_packages_i686' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                            'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple', 'perl-Config-General',
+                            'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
+                            'alsa-lib-devel.i686', 'libcurl-devel.i686',
+                            'wireless-tools-devel.i686', 'libX11-devel.i686',
+                            'libXt-devel.i686', 'mesa-libGL-devel.i686',
+                            'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
+                            'mpfr', # required for system compiler
+                            'xorg-x11-font*', # fonts required for PGO
+                            'imake', # required for makedepend!?!
+                            'gcc45_0moz3', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                            'valgrind',
+                            'pulseaudio-libs-devel.i686',
+                            'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
+                            # Packages already installed in the mock environment, as x86_64
+                            # packages.
+                            'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
+                            # yum likes to install .x86_64 -devel packages that satisfy .i686
+                            # -devel packages dependencies. So manually install the dependencies
+                            # of the above packages.
+                            'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
+                            'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
+                            'fontconfig-devel.i686', 'glib2-devel.i686',
+                            'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
+                            'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
+                            'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
+                            'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
+                            'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
+                            'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
+                            'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
+                            'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
+                            'pixman-devel.i686', 'zlib-devel.i686',
+                            # Freetype packages need to be installed be version, because a newer
+                            # version is available, but we don't want it for Firefox builds.
+                            'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
+                            'freetype-2.3.11-6.el6_1.8.x86_64',
+                            ],
+    'mock_packages_x86-64' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+                            'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
+                            'gtk2-devel', 'libnotify-devel', 'yasm',
+                            'alsa-lib-devel', 'libcurl-devel',
+                            'wireless-tools-devel', 'libX11-devel',
+                            'libXt-devel', 'mesa-libGL-devel',
+                            'gnome-vfs2-devel', 'GConf2-devel', 'wget',
+                            'mpfr', # required for system compiler
+                            'xorg-x11-font*', # fonts required for PGO
+                            'imake', # required for makedepend!?!
+                            'gcc45_0moz3', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                            'valgrind', 'dbus-x11',
+                            'pulseaudio-libs-devel',
+                            'gstreamer-devel', 'gstreamer-plugins-base-devel',
+                            'freetype-2.3.11-6.el6_1.8.x86_64',
+                            'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                            ],
 }
 
 GLOBAL_ENVS = {
@@ -141,7 +196,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_platform': 'linux',
             'update_platform': 'Linux_x86-gcc3',
@@ -157,7 +212,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':2',
-                'PATH': '/tools/python-2.7.3/bin:/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
 
                 # LD_LIBRARY_PATH needs to be set to properly run elfhack during build process (Bug 904485)
                 'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
@@ -168,6 +223,11 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': GLOBAL_VARS['mock_packages_i686'],
+            'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -182,7 +242,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': True,
             'packageTests': True,
-            'slaves': SLAVES['linux64'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_platform': 'linux64',
             'update_platform': 'Linux_x86_64-gcc3',
@@ -199,7 +259,7 @@ PLATFORM_VARS = {
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
                 'DISPLAY': ':2',
-                'PATH': '/usr/libexec/binutils220:/tools/python-2.7.3/bin:tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
 
                 # LD_LIBRARY_PATH needs to be set to properly run elfhack during build process (Bug 904485)
                 'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib64',
@@ -210,6 +270,11 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64',
+            'mock_packages': GLOBAL_VARS['mock_packages_x86-64'],
+            'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -301,7 +366,7 @@ PLATFORM_VARS = {
             'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'download_symbols': True,
             'build_space': 7,
-            'slaves': SLAVES['linux'],
+            'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
             'stage_platform': 'linux-debug',
             'enable_ccache': True,
@@ -314,7 +379,7 @@ PLATFORM_VARS = {
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
-                'PATH': '/tools/python-2.7.3/bin:/tools/python-2.7.2/bin:/tools/python-2.6.5/bin:${PATH}',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
             'enable_unittests': True,
             'enable_checktests': True,
@@ -322,6 +387,11 @@ PLATFORM_VARS = {
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-i386',
+            'mock_packages': GLOBAL_VARS['mock_packages_i686'],
+            'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
@@ -434,7 +504,7 @@ BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
-BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux','win32','macosx64']
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
 #make sure it has an ending slash
@@ -477,7 +547,7 @@ BRANCHES['comm-aurora']['enable_codecoverage'] = False
 BRANCHES['comm-aurora']['enable_l10n'] = True
 BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
-BRANCHES['comm-aurora']['l10n_platforms'] = ['linux','win32','macosx64']
+BRANCHES['comm-aurora']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'sea_aurora'
 #make sure it has an ending slash
@@ -520,7 +590,7 @@ BRANCHES['comm-beta']['enable_codecoverage'] = False
 BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
-BRANCHES['comm-beta']['l10n_platforms'] = ['linux','win32','macosx64']
+BRANCHES['comm-beta']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'sea_beta'
 #make sure it has an ending slash
@@ -563,7 +633,7 @@ BRANCHES['comm-release']['enable_codecoverage'] = False
 BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = True
 BRANCHES['comm-release']['l10nNightlyUpdate'] = True
-BRANCHES['comm-release']['l10n_platforms'] = ['linux','win32','macosx64']
+BRANCHES['comm-release']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
 BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
 #make sure it has an ending slash

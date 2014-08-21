@@ -99,3 +99,7 @@ releaseConfig['majorUpdateRepoPath']        = None
 # Tuxedo/Bouncer related - XXX: atm not allowed for SeaMonkey
 #releaseConfig['tuxedoConfig']              = 'seamonkey-tuxedo.ini'
 #releaseConfig['tuxedoServerUrl']           = 'https://bounceradmin.mozilla.com/api/'
+
+# Mock
+releaseConfig['use_mock'] = True
+releaseConfig['mock_platforms'] = ('linux', 'linux64')

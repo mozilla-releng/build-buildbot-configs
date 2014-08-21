@@ -43,6 +43,13 @@ def builderPrefix(s, platform=None):
     else:
         return "release-%s-%s" % (releaseConfig['sourceRepoName'], s)
 
+def use_mock(platform):
+    pf = branchConfig['platforms'][platform]
+    if releaseConfig.get('use_mock', pf.get('use_mock')):
+        if platform in releaseConfig['mock_platforms']:
+            return True
+    return False
+
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
     branch="post_signing",
@@ -318,7 +325,11 @@ for platform in releaseConfig['enUSPlatforms']:
         clobberURL=branchConfig['base_clobber_url'],
         tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
         tooltool_url_list= branchConfig.get('tooltool_url_list', []),
-        enable_pymake=pf['enable_pymake']
+        enable_pymake=pf['enable_pymake'],
+        use_mock=use_mock(platform),
+        mock_target=pf.get('mock_target'),
+        mock_packages=pf.get('mock_packages'),
+        mock_copyin_files=pf.get('mock_copyin_files'),
     )
 
     builders.append({
