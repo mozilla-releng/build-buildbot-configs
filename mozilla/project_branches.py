@@ -193,6 +193,7 @@ PROJECT_BRANCHES = {
             'win32': {},
             'macosx64': {},
             'linux-debug': {},
+            'linux64-asan': {},
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
