@@ -5,15 +5,6 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
-# HACK ALERT
-# TODO for 31.0.1esr: the following line should be removed for 31.0.1esr build
-# to enable updates
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
 
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
@@ -32,21 +23,29 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.0esr'
-releaseConfig['appVersion']          = '31.0'
+releaseConfig['version']             = '31.1.0esr'
+releaseConfig['appVersion']          = '31.1.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_31_0esr'
-releaseConfig['partialUpdates']      = {}
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_31_1_0esr'
+releaseConfig['partialUpdates']      = {
+
+    '31.0esr': {
+        'appVersion': '31.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_31_0esr',
+    },
+
+}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.0esrpre'
+releaseConfig['nextAppVersion']      = '31.1.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '8879005f2bd6',
+        'revision': '0476dd77fcbc',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -106,16 +105,22 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {} # TODO for 31.0.1esr
+releaseConfig['verifyConfigs']       = {
+    'linux':  'mozEsr31-firefox-linux.cfg',
+    'linux64':  'mozEsr31-firefox-linux64.cfg',
+    'macosx64': 'mozEsr31-firefox-mac64.cfg',
+    'win32':  'mozEsr31-firefox-win32.cfg'
+}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'esr'
-releaseConfig['testChannels']        = ['releasetest', 'esrtest']
-releaseConfig['testChannelRuleIds']  = [26,37]
+releaseConfig['releaseChannel']        = 'esr'
+releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['testChannels']          = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']    = [26,37]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
