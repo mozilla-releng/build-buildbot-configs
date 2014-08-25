@@ -23,22 +23,22 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.7.0esr'
-releaseConfig['appVersion']          = '24.7.0'
+releaseConfig['version']             = '24.8.0esr'
+releaseConfig['appVersion']          = '24.8.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_7_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_24_8_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.6.0esr': {
-        'appVersion': '24.6.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_24_6_0esr',
+    '24.7.0esr': {
+        'appVersion': '24.7.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_24_7_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.7.0esrpre'
+releaseConfig['nextAppVersion']      = '24.8.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
@@ -46,7 +46,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'efbda06cb0fa',
+        'revision': 'd9838933944b',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -122,9 +122,10 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'esr'
-releaseConfig['testChannels']        = ['releasetest', 'esrtest']
-releaseConfig['testChannelRuleIds']  = [26,37]
+releaseConfig['releaseChannel']        = 'esr'
+releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['testChannels']          = ['releasetest', 'esrtest']
+releaseConfig['testChannelRuleIds']    = [26,37]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
