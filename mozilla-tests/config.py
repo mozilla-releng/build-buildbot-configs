@@ -1771,6 +1771,26 @@ BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += REFT
 ######## fig
 BRANCHES['fig']['platforms']['linux64-mulet']['ubuntu64_vm']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 
+######## mozilla-inbound
+# Skip test runs (see bug 1056787)
+# Note that if we set this higher than 3, we'll start to get strange behaviour
+# due to the currently global coalescing limit of 3 defined at
+# http://hg.mozilla.org/build/buildbotcustom/file/e3713abcd36d/misc.py#l647
+BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mavericks']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mavericks']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
+
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
     if platform not in PLATFORMS:
