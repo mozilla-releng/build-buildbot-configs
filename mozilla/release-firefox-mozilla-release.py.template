@@ -36,6 +36,13 @@ releaseConfig['partialUpdates']      = {
     },
 {% endfor %}
 }
+releaseConfig['extraPartials']       = {
+    '31.0b9': {
+        'appVersion': '31.0',
+        'buildNumber': 1,
+        'baseTag': 'FIRFOX_31_0b9',
+    },
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
