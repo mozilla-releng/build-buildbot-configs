@@ -561,22 +561,18 @@ MOZBASE = [
         'script_maxtime': 7200,
     }),
 ]
-
-WEB_PLATFORM_REFTESTS = [
-    ('web-platform-tests-reftests', {
-        'use_mozharness': True,
-        'script_path': 'scripts/web_platform_tests.py',
-        'extra_args': ["--test-type=reftest"],
-        'blob_upload': True,
-        'script_maxtime': 7200,
-    }),
-]
-
 WEB_PLATFORM_TESTS = [
     ('web-platform-tests', {
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('web-platform-tests-reftests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=reftest"],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -588,6 +584,13 @@ WEB_PLATFORM_TESTS_CHUNKED = [
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
         'totalChunks': 4,
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+    ('web-platform-tests-reftests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=reftest"],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -1871,16 +1874,6 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE[:]
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MARIONETTE[:]
 
-# Enable wpt on opt linux64 for gecko >= 34
-for platform in PLATFORMS.keys():
-    if platform not in ('linux64',):
-        continue
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if platform in BRANCHES[name]['platforms']:
-                if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
-
 # Enable Mn on opt linux/linux64 for gecko >= 32
 for platform in PLATFORMS.keys():
     if platform not in ['linux', 'linux64']:
@@ -1937,8 +1930,9 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED
+
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED
 
 # Enable mozbase unit tests on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=971687
@@ -1962,6 +1956,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
         branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
+    if 'linux64-asan' in branch['platforms']:
+        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
