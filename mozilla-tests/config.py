@@ -1956,6 +1956,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64' in branch['platforms']:
         branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
         branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
+    if 'linux64-asan' in branch['platforms']:
+        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
