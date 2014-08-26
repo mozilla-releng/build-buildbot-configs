@@ -22,22 +22,16 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.0'
-releaseConfig['appVersion']          = '31.0'
+releaseConfig['version']             = '32.0'
+releaseConfig['appVersion']          = '32.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_0'
+releaseConfig['baseTag']             = 'FIREFOX_32_0'
 releaseConfig['partialUpdates']      = {
-
-    '28.0': {
-        'appVersion': '28.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_28_0',
-    },
 
     '29.0.1': {
         'appVersion': '29.0.1',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_29_0_1',
     },
 
@@ -47,6 +41,19 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_30_0',
     },
 
+    '31.0': {
+        'appVersion': '31.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_31_0',
+    },
+
+}
+releaseConfig['extraPartials']       = {
+    '32.0b9': {
+        'appVersion': '32.0',
+        'buildNumber': 1,
+        'baseTag': 'FIRFOX_32_0b9',
+    },
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -56,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'd33428174ff1',
+        'revision': '5b8de9e4c2ea',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -133,9 +140,10 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
-releaseConfig['releaseChannel']      = 'release'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [25,26]
+releaseConfig['releaseChannel']        = 'release'
+releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['testChannelRuleIds']    = [25,26]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
