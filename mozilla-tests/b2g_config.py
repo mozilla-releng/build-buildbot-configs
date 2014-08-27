@@ -643,18 +643,6 @@ XPCSHELL_CHUNKED = [
                     'blob_upload': True,
                     },
      ),
-    ('xpcshell-3', {'suite': 'xpcshell',
-                    'use_mozharness': True,
-                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                    'blob_upload': True,
-                    },
-     ),
-    ('xpcshell-4', {'suite': 'xpcshell',
-                    'use_mozharness': True,
-                    'script_path': 'scripts/b2g_emulator_unittest.py',
-                    'blob_upload': True,
-                    },
-     ),
 ]
 
 GAIA_INTEGRATION = [(
@@ -1131,10 +1119,10 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': True,       
+        'enable_debug_unittests': True,
         'ubuntu64_vm-b2g-emulator': {
             'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
-            'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL[:],
+            'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL_CHUNKED,
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -1332,28 +1320,14 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'xpcshell',
-                        '--this-chunk', '1', '--total-chunks', '4'
+                        '--this-chunk', '1', '--total-chunks', '2'
                     ],
                 },
                 'xpcshell-2': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'xpcshell',
-                        '--this-chunk', '2', '--total-chunks', '4'
-                    ],
-                },
-                'xpcshell-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'xpcshell',
-                        '--this-chunk', '3', '--total-chunks', '4'
-                    ],
-                },
-                'xpcshell-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/emulator_automation_config.py',
-                        '--test-suite', 'xpcshell',
-                        '--this-chunk', '4', '--total-chunks', '4'
+                        '--this-chunk', '2', '--total-chunks', '2'
                     ],
                 },
                 'crashtest-1': {
@@ -1706,14 +1680,14 @@ BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['op
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
 BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + GAIA_BUILD_UNIT
+  REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
     MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
-    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
+    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED
 BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
@@ -1738,6 +1712,11 @@ BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
       GAIA_BUILD + REFTEST_DESKTOP_OOP_SANITY + MOCHITEST_OOP_DESKTOP
+
+# new linux64_gecko tests as of gecko 34
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
+    BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
+      GAIA_BUILD_UNIT
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
