@@ -133,7 +133,8 @@ XPCSHELL = [
     ('xpcshell', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--xpcshell-suite', 'xpcshell'],
+        'extra_args': ['--xpcshell-suite', 'xpcshell',
+                       '--cfg', 'unittests/thunderbird_extra.py'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
