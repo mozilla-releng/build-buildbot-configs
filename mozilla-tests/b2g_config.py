@@ -1139,7 +1139,7 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--test-path', 'media/',
+                        '--test-path', 'content/media/',
                     ],
                 },
                 'mochitest-1': {
@@ -1541,7 +1541,7 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--test-path', 'media/',
+                        '--test-path', 'content/media/',
                     ],
                 },
            },
