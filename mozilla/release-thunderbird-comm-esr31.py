@@ -24,7 +24,7 @@ releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['version']             = '31.1.0'
 releaseConfig['appVersion']          = '31.1.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_31_1_0'
 releaseConfig['partialUpdates']      = {
 
@@ -43,7 +43,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
-        'revision': '644a0bcaeffd',
+        'revision': '561eaed85279',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
