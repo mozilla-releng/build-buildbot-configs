@@ -1991,6 +1991,26 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
         for chunked_bc in MOCHITEST_BC_3:
             branch['platforms']['linux64-cc']['ubuntu64_vm']['debug_unittest_suites'].remove(chunked_bc)
 
+
+# remove mochitest-browser-chrome and mochitest-devtools-chrome
+# from b2g28, b2g30, b2g32 - bug 1045398
+for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
+    branch = BRANCHES[name]
+    for platform in branch['platforms']:
+        for item in branch['platforms'][platform].keys():
+            try:
+                if 'debug_unittest_suites' in branch['platforms'][platform][item]:
+                    unit_tests = branch['platforms'][platform][item]
+                    for element in unit_tests:
+                        for component in unit_tests[element]:
+                            if (component[0] == 'mochitest-browser-chrome' or
+                                component[0] == 'mochitest-devtools-chrome'):
+                                unit_tests[element].remove(component)
+            except TypeError:
+                # not an iterable,
+                pass
+
+
 # mochitest-browser-chrome changes in 30:
 #  * it's done chunked
 #
