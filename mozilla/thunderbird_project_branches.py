@@ -4,7 +4,6 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     # Booked for Thunderbird
     'alder': {
-        'mozilla_dir': None,
         # Full set of project branch defaults
     },
 }

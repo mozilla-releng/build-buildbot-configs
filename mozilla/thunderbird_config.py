@@ -93,7 +93,6 @@ GLOBAL_VARS.update({
     'scratchbox_path': '/builds/scratchbox/moz_scratchbox',
     'scratchbox_home': '/scratchbox/users/cltbld/home/cltbld',
     'use_old_updater': False,
-    'mozilla_dir': '/mozilla',
 })
 
 # shorthand, because these are used often
@@ -735,7 +734,6 @@ for branch in BRANCHES.keys():
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['comm-central']['moz_repo_path'] = 'mozilla-central'
-BRANCHES['comm-central']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-central']['skip_blank_repos'] = True
 BRANCHES['comm-central']['call_client_py'] = True
 BRANCHES['comm-central']['repo_path'] = 'comm-central'
@@ -857,6 +855,7 @@ BRANCHES['comm-esr31']['enable_valgrind'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
+# MERGE DAY (remove this code once comm-beta no longer services Gecko 33 and lower)
 BRANCHES['comm-beta']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-beta']['skip_blank_repos'] = True
 BRANCHES['comm-beta']['call_client_py'] = True
@@ -898,6 +897,7 @@ BRANCHES['comm-beta']['enable_valgrind'] = False
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
+# MERGE DAY (remove this code once comm-aurora no longer services Gecko 33 and lower)
 BRANCHES['comm-aurora']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-aurora']['skip_blank_repos'] = True
 BRANCHES['comm-aurora']['call_client_py'] = True
