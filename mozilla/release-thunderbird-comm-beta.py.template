@@ -19,8 +19,9 @@ releaseConfig['messagePrefix']       = '[release] '
 #  Names for the product/files
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
-# MERGE DAY (remove this code once comm-beta no longer services Gecko 33 and lower)
+# MERGE DAY (remove 'mozilla_dir' once comm-beta no longer services Gecko 33 and lower)
 releaseConfig['mozilla_dir']         = 'mozilla'
+releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
 releaseConfig['version']             = '{{ version }}'
 releaseConfig['appVersion']          = '{{ appVersion }}'

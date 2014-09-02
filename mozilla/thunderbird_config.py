@@ -34,6 +34,7 @@ GLOBAL_VARS.update({
     # a problem to keep them in sync.
     'objdir': 'objdir-tb',
     'objdir_unittests': 'objdir',
+    'mozilla_srcdir': 'mozilla',
     'stage_username': 'tbirdbld',
     'stage_group': None,
     'stage_ssh_key': 'tbirdbld_dsa',
@@ -855,7 +856,7 @@ BRANCHES['comm-esr31']['enable_valgrind'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
-# MERGE DAY (remove this code once comm-beta no longer services Gecko 33 and lower)
+# MERGE DAY (remove 'mozilla_dir' once comm-beta no longer services Gecko 33 and lower)
 BRANCHES['comm-beta']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-beta']['skip_blank_repos'] = True
 BRANCHES['comm-beta']['call_client_py'] = True
@@ -897,7 +898,7 @@ BRANCHES['comm-beta']['enable_valgrind'] = False
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
-# MERGE DAY (remove this code once comm-aurora no longer services Gecko 33 and lower)
+# MERGE DAY (remove 'mozilla_dir once comm-aurora no longer services Gecko 33 and lower)
 BRANCHES['comm-aurora']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-aurora']['skip_blank_repos'] = True
 BRANCHES['comm-aurora']['call_client_py'] = True
@@ -995,6 +996,7 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['brand_name'] = branchConfig.get('brand_name', GLOBAL_VARS['brand_name'])
     BRANCHES[branch]['repo_path'] = branchConfig.get('repo_path', 'projects/' + branch)
     BRANCHES[branch]['mozilla_dir'] = branchConfig.get('mozilla_dir', 'mozilla')
+    BRANCHES[branch]['mozilla_srcdir'] = branchConfig.get('mozilla_srcdir', 'mozilla')
     BRANCHES[branch]['enabled_products'] = branchConfig.get('enabled_products',
                                                             GLOBAL_VARS['enabled_products'])
     BRANCHES[branch]['enable_nightly'] = branchConfig.get('enable_nightly', False)
