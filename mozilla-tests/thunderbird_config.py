@@ -368,10 +368,10 @@ for branch in set(BRANCHES.keys()):
 
 # xpcshell-on-mozharness should ride the trains
 # Replace old trains with non-mozharness code.
-# MERGE DAY (remove this code once Thunderbird no longer services Gecko 33 and lower)
+# MERGE DAY (remove this code once Thunderbird no longer services Gecko 32 and lower)
 for platform in PLATFORMS.keys():
     XPCSHELL_OLD = ('xpcshell', ['xpcshell'])
-    for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+    for name, branch in items_before(BRANCHES, 'gecko_version', 33):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
