@@ -898,8 +898,6 @@ BRANCHES['comm-beta']['enable_valgrind'] = False
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
-# MERGE DAY (remove 'mozilla_dir once comm-aurora no longer services Gecko 33 and lower)
-BRANCHES['comm-aurora']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-aurora']['skip_blank_repos'] = True
 BRANCHES['comm-aurora']['call_client_py'] = True
 BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
