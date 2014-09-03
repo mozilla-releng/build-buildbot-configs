@@ -1121,8 +1121,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu64_vm-b2g-emulator': {
-            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE,
-            'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL_CHUNKED,
+            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + CPPUNIT,
+            'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL_CHUNKED + CPPUNIT,
             'suite_config': {
                 'marionette-webapi': {
                     'extra_args': [
@@ -1844,6 +1844,16 @@ for branch in BRANCHES.keys():
                     if slave_platform in BRANCHES[branch]['platforms'][platform]:
                         del BRANCHES[branch]['platforms'][platform][slave_platform]
 
+# Disable emulator cppunit tests on older branches
+OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 34)])
+for b in BRANCHES.keys():
+    branch = BRANCHES[b]
+    if b in OLD_BRANCHES:
+        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
+            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
+            for suites in ['opt_unittest_suites', 'debug_unittest_suites']:
+                slave_p[suites] = [x for x in slave_p[suites]
+                                   if not x[0].startswith('cppunit')]
 
 ### PROJECTS ###
 PROJECTS = {
