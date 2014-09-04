@@ -36,6 +36,7 @@ BRANCHES = {
     # 'birch': {},
     'cedar': {},
     'cypress': {},
+    'jamun': {},
     'pine': {},
     'fx-team': {},
     'graphics': {},
@@ -1688,6 +1689,7 @@ BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittes
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
+BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
