@@ -37,9 +37,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-b2g28_v1_3': {
-        'gecko_version': 28,
-    },
     'mozilla-b2g30_v1_4': {
         'gecko_version': 30,
     },
@@ -1446,7 +1443,7 @@ PLATFORM_UNITTEST_VARS = {
         'host_utils_url': 'http://talos-remote.pvt.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS, 
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'tegra_android-armv6': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
@@ -1454,7 +1451,7 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_vm_armv6_mobile': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
-        },       
+        },
         'ubuntu64_vm_armv6_large': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
@@ -1573,11 +1570,6 @@ BRANCHES['mozilla-beta']['pgo_platforms'] = []
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
-
-######### mozilla-b2g28_v1_3
-BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
-BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g28_v1_3']['pgo_platforms'] = []
 
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"

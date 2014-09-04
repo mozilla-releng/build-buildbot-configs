@@ -33,7 +33,6 @@ else:
         'mozilla-release',
         'mozilla-esr24',
         'mozilla-esr31',
-        'mozilla-b2g28_v1_3',
         'mozilla-b2g28_v1_3t',
         'mozilla-b2g30_v1_4',
         'mozilla-b2g32_v2_0',
@@ -55,7 +54,6 @@ else:
     ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
     ACTIVE_B2G_BRANCHES.extend([
         'mozilla-central',
-        'mozilla-b2g28_v1_3',
         'mozilla-b2g28_v1_3t',
         'mozilla-b2g30_v1_4',
         'mozilla-b2g32_v2_0',
