@@ -39,10 +39,6 @@ BRANCHES = {
     'pine': {},
     'fx-team': {},
     'graphics': {},
-    'mozilla-b2g28_v1_3': {
-        'gecko_version': 28,
-        'b2g_version': (1, 3, 0),
-    },
     'mozilla-b2g28_v1_3t': {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
@@ -1694,7 +1690,6 @@ BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['graphics']['repo_path'] = "projects/graphics"
-BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
@@ -1818,7 +1813,7 @@ for suite_to_remove in ('reftest-10', 'reftest-15'):
 
 # Disable macosx64_gecko gaia-ui tests on older branches
 for branch in BRANCHES.keys():
-    if branch in ('mozilla-b2g28_v1_3', 'mozilla-b2g28_v1_3t'):
+    if branch in ('mozilla-b2g28_v1_3t',):
         for platform in ('macosx64_gecko',):
             if platform in BRANCHES[branch]['platforms']:
                 for slave_platform in ('mountainlion-b2gdt',):

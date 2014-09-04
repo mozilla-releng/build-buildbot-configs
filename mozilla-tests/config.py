@@ -50,18 +50,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g28_v1_3': {
-        'datazilla_url': None,
-        'gecko_version': 28,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g28_v1_3t': {
         'datazilla_url': None,
         'gecko_version': 28,
@@ -1726,12 +1714,6 @@ BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ON
 BRANCHES['mozilla-esr31']['release_tests'] = 1
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
-
-######### mozilla-b2g28_v1_3
-BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = "releases/mozilla-b2g28_v1_3"
-BRANCHES['mozilla-b2g28_v1_3']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g28_v1_3t
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"

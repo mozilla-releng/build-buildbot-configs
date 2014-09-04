@@ -1287,10 +1287,6 @@ BRANCHES = {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
     },
-    'mozilla-b2g28_v1_3': {
-        'gecko_version': 28,
-        'b2g_version': (1, 3, 0),
-    },
     'mozilla-b2g28_v1_3t': {
         'gecko_version': 28,
         'b2g_version': (1, 3, 0),
@@ -1542,47 +1538,6 @@ BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3t']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako']['enable_nightly'] = True
 BRANCHES['mozilla-b2g28_v1_3t']['platforms']['tarako_eng']['enable_nightly'] = True
-
-######## mozilla-b2g28_v1_3
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g28_v1_3']['repo_path'] = 'releases/mozilla-b2g28_v1_3'
-BRANCHES['mozilla-b2g28_v1_3']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_3'
-BRANCHES['mozilla-b2g28_v1_3']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-# Build every night since we have external dependencies like gaia which need
-# building
-BRANCHES['mozilla-b2g28_v1_3']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g28_v1_3']['start_hour'] = [2]
-BRANCHES['mozilla-b2g28_v1_3']['start_minute'] = [40]
-BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g28_v1_3']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['hamachi_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['helix']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['wasabi']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['nexus-4_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux32_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['linux64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['macosx64_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['win32_gecko_localizer']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g28_v1_3']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 
 ######## try
 # Try-specific configs
