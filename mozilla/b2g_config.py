@@ -51,6 +51,9 @@ GLOBAL_VARS.update({
         'wasabi': {},
         'flame': {},
         'flame_eng': {},
+        'flame-kk': {},
+        'flame-kk_eng': {},
+        'flame-kk_eng-debug': {},
         'dolphin': {},
         'dolphin_eng': {},
     },
@@ -1178,6 +1181,59 @@ PLATFORM_VARS = {
         'enable_periodic': False,
         'enable_dep': True,
     },
+    'flame-kk': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'flame-kk', '--config', 'b2g/releng-private-updates.py',
+                           '--gaia-languages-file', 'locales/languages_all.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
+    'flame-kk_eng': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'flame-kk', '--config', 'b2g/releng-otoro-eng.py',
+                           '--gaia-languages-file', 'locales/languages_all.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
+    },
+    'flame-kk_eng-debug': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'flame-kk', '--config', 'b2g/releng-otoro-eng.py',
+                           '--debug',
+                           '--gaia-languages-file', 'locales/languages_all.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
+    },
     'dolphin': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1372,6 +1428,8 @@ BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame_eng']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = False
+BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
@@ -1403,6 +1461,8 @@ BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['flame']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['flame_eng']['enable_nightly'] = True
+BRANCHES['mozilla-aurora']['platforms']['flame-kk']['enable_nightly'] = False
+BRANCHES['mozilla-aurora']['platforms']['flame-kk_eng']['enable_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator-jb']['enable_nightly'] = True
@@ -1431,6 +1491,8 @@ BRANCHES['mozilla-b2g32_v2_0']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['wasabi']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk']['enable_nightly'] = False
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk_eng']['enable_nightly'] = False
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb']['enable_nightly'] = True
@@ -1588,6 +1650,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):
     if 'linux64-b2g-haz' in branch['platforms']:
         del branch['platforms']['linux64-b2g-haz']
+
+# b2g 2.0+
+for name, branch in items_before(BRANCHES, 'gecko_version', 32):
+    for p in ('flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug'):
+        if p in branch['platforms']:
+            del branch['platforms'][p]
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
