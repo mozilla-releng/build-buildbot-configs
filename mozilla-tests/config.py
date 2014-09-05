@@ -1871,7 +1871,7 @@ for platform in PLATFORMS.keys():
 for platform in PLATFORMS.keys():
     if platform not in ('linux64',):
         continue
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 35):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
@@ -1921,7 +1921,7 @@ for platform in PLATFORMS.keys():
         BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEBAPPRT_CHROME[:]
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEBAPPRT_CHROME[:]
 
-# Enable web-platform-tests on cedar (non-windows only for now)
+# Enable web-platform-tests on cedar
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['cedar']['platforms']:
         continue
