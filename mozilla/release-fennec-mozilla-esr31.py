@@ -41,7 +41,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'default',
+        'revision': '8bba0395e567',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
