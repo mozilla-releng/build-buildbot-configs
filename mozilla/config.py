@@ -1522,7 +1522,7 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
         'android-armv6': {
-            'enable_nightly': False,
+            'enable_nightly': True,
             'product_name': 'firefox',
             'unittest_platform': 'android-armv6-opt',
             'app_name': 'browser',
@@ -1910,6 +1910,7 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'android-armv6': {},
         },
     },
     'mozilla-b2g28_v1_3t': {
@@ -2321,7 +2322,7 @@ BRANCHES['mozilla-esr31']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr31']['enable_valgrind'] = False
-BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox']
+BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g28_v1_3t
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3t'
@@ -2529,9 +2530,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
+    if branch == 'mozilla-esr31':
+        continue
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
-
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

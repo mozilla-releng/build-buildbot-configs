@@ -31,8 +31,8 @@ TRY_SLAVES = deepcopy(SLAVES)
 
 GLOBAL_VARS = {
     'staging': True,
-    'config_repo_path': 'build/buildbot-configs',
-    'buildbotcustom_repo_path': 'build/buildbotcustom',
+    'config_repo_path': 'users/stage-ffxbld/buildbot-configs',
+    'buildbotcustom_repo_path': 'users/stage-ffxbld/buildbotcustom',
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_host': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_user': 'ffxbld',
@@ -42,7 +42,7 @@ GLOBAL_VARS = {
     'graph_server': 'graphs.allizom.org',
     'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
     'balrog_username': 'stage-ffxbld',
-    'build_tools_repo_path': 'build/tools',
+    'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'http://clobberer-stage.pvt.build.mozilla.org/index.php',
     'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
@@ -155,7 +155,7 @@ PLATFORM_VARS = {}
 PROJECTS = {
     'fuzzing': {
         'disable_tinderbox_mail': True,
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'fuzzing_bundle': 'http://pvtbuilds.pvt.build.mozilla.org/bundles/fuzzing.hg',
         'fuzzing_repo': 'ssh://stage-ffxbld@hg.mozilla.org/private/fuzzing',
         'fuzzing_remote_host': 'stage-ffxbld@stage.mozilla.org',
@@ -167,17 +167,17 @@ PROJECTS = {
 
 BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_try': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },
     'spidermonkey_info': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
+        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
         'disable_tinderbox_mail': False,
     },

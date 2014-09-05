@@ -1,0 +1,126 @@
+{
+  "ar": {
+    "revision": "default",
+    "platforms": ["android"]
+  },
+  "be": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "ca": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "cs": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "da": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "de": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "es-AR": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "es-ES": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "fi": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "fr": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "fy-NL": {
+    "revision": "default",
+    "platforms": ["android"]
+  },
+  "ga-IE": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "gl": {
+    "revision": "default",
+    "platforms": ["android"]
+  },
+  "hu": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "it": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "ja": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "ko": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "lt": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "nb-NO": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "nl": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pa-IN": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pl": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pt-BR": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "pt-PT": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "ru": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "sk": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "sl": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "tr": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "uk": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "zh-CN": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  },
+  "zh-TW": {
+    "revision": "default",
+    "platforms": ["android", "android-multilocale"]
+  }
+}
