@@ -20,18 +20,19 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
+releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.1.0'
-releaseConfig['appVersion']          = '31.1.0'
+releaseConfig['version']             = '31.1.1'
+releaseConfig['appVersion']          = '31.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_1_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_1_1'
 releaseConfig['partialUpdates']      = {
 
-    '31.0': {
-        'appVersion': '31.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_0',
+    '31.1.0': {
+        'appVersion': '31.1.0',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_31_1_0',
     },
 
 }
@@ -43,7 +44,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
-        'revision': '561eaed85279',
+        'revision': 'aca1ac1d498e',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
