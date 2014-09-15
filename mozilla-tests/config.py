@@ -371,6 +371,16 @@ MOCHITEST_BC = [
     }),
 ]
 
+MOCHITEST_JP = [
+    ('mochitest-jetpack', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'jetpack-package', '--mochitest-suite', 'jetpack-addon'],
+        'blob_upload': True,
+        'script_maxtime': 12000,
+    }),
+]
+
 MOCHITEST_OTHER = [
     ('mochitest-other', {
         'use_mozharness': True,
@@ -645,6 +655,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -721,6 +734,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-webgl': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'webapprt-chrome': {
@@ -801,6 +817,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -874,6 +893,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-webgl': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'webapprt-chrome': {
@@ -1028,6 +1050,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1097,6 +1122,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1165,6 +1193,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1246,6 +1277,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1311,6 +1345,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'webapprt-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1386,6 +1423,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1452,6 +1492,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'webapprt-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1517,6 +1560,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mochitest-webgl': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
                 'webapprt-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2020,6 +2066,14 @@ for platform in PLATFORMS.keys():
         if slave_platform in BRANCHES['cedar']['platforms'][platform]:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
+
+# Enable mochitest-jetpack tests on cedar
+for platform in PLATFORMS.keys():
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
+            continue
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_JP[:]
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # Enable e10s Linux mochitests on trunk branches
 # Fix this to a certain gecko version once e10s starts riding the trains
