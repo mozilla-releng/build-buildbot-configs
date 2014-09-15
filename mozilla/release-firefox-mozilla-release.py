@@ -20,6 +20,7 @@ releaseConfig['messagePrefix']       = '[release] '
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
+releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
 releaseConfig['version']             = '32.0.1'

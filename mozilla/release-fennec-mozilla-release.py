@@ -19,6 +19,7 @@ releaseConfig['messagePrefix']       = '[release] '
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'fennec'
+releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
@@ -120,7 +121,6 @@ releaseConfig['disableBouncerEntries']    = True
 releaseConfig['disableStandaloneRepacks'] = True
 releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
-releaseConfig['disablePushToMirrors']     = True
 releaseConfig['enableUpdatePackaging']    = False
 releaseConfig['balrog_api_root']          = None
 
@@ -152,3 +152,4 @@ releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android', 'android-x86', 'linux')
+releaseConfig['ftpSymlinkName'] = 'latest'
