@@ -18,6 +18,7 @@ releaseConfig['messagePrefix']       = '[release] '
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'thunderbird'
+releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'

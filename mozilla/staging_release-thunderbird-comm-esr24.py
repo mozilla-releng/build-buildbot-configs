@@ -21,6 +21,7 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'thunderbird'
+releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
