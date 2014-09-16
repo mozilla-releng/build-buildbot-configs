@@ -126,7 +126,7 @@ releaseConfig['mozconfigs']          = {
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
 releaseConfig['testChannels']          = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']    = [28,38]
+releaseConfig['testChannelRuleIds']    = [61,62]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
