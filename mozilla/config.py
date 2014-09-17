@@ -2385,10 +2385,14 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         # If a branch does not set dep_signing_servers, it should be set to the global default.
         BRANCHES[branch]['platforms'][platform]['dep_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('dep_signing_servers',
                                                                          PLATFORM_VARS[platform].get('dep_signing_servers'))
-        # If a branch does not set nightly_signing_servers, it should be set to its dep signing server,
-        # which may have already been set to the global default.
-        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
-                                                                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
+
+        # If a branch does not set nightly_signing_servers, first check if it wants
+        # a different signing server set for all platforms, if not it should be set to
+        # its dep signing server, which may have already been set to the global default.
+        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = \
+            branchConfig.get('nightly_signing_servers', branchConfig.get('platforms', {}).get(
+                             platform, {}).get('nightly_signing_servers',
+                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers']))
 
 #bug 1042835 Disable armv6 builds and tests everywhere apart from esr31
 branches = BRANCHES.keys()

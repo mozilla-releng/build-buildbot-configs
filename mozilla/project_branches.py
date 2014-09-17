@@ -204,7 +204,12 @@ PROJECT_BRANCHES = {
             'android-debug': {},
         },
     },
-    'maple': {},
+    'maple': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'nightly_signing_servers': 'nightly-signing',
+    },
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
         'enable_nightly': True,
