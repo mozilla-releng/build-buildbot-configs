@@ -65,7 +65,6 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
-        'linux64-mulet': {},
         'linux64-cc': {},
         'macosx64-debug': {},
         'win32-debug': {},
@@ -665,80 +664,6 @@ PLATFORM_VARS = {
             'consider_for_nightly': False,
             'mock_target': 'mozilla-centos6-x86_64',
         },
-        'linux64-mulet': {
-            'mozharness_python': '/tools/buildbot/bin/python',
-            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
-                               '-f', '../reboot_count.txt','-n', '1', '-z'],
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_linux_64_builds.py',
-                    '--custom-build-variant-cfg', 'mulet',
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
-            },
-
-            'consider_for_nightly': False,
-            'enable_nightly': False,
-            'enable_xulrunner': False,
-            'enable_opt_unittests': True,
-            'try_by_default': True,
-            'upload_symbols': False,
-            'packageTests': True,
-
-            'product_name': 'firefox',
-            'unittest_platform': 'linux64-mulet-opt',
-            'base_name': 'Linux x86-64 Mulet %(branch)s',
-            'slaves': SLAVES['mock'],
-            'mozconfig': 'in_tree',
-            'src_mozconfig': 'b2g/dev/config/mozconfigs/linux64/mulet',
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'linux64-mulet',
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'MOZ_OBJDIR': OBJDIR,
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
-            },
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-            'tooltool_script': ['/builds/tooltool.py'],
-            'use_mock': True,
-            'mock_target': 'mozilla-centos6-x86_64',
-            'mock_packages': \
-                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                        'gtk2-devel', 'libnotify-devel', 'yasm',
-                        'alsa-lib-devel', 'libcurl-devel',
-                        'wireless-tools-devel', 'libX11-devel',
-                        'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                        'mpfr', # required for system compiler
-                        'xorg-x11-font*', # fonts required for PGO
-                        'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'valgrind', 'dbus-x11',
-                        'pulseaudio-libs-devel',
-                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
-                        'freetype-2.3.11-6.el6_1.8.x86_64',
-                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
-                        ],
-            'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/home/cltbld/.boto', '/builds/.boto'),
-                ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/builds/tooltool.py'),
-            ],
-        },
         'linux64-cc': {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
@@ -894,61 +819,6 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            'test_pretty_names': False,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
-            'enable_ccache': True,
-        },
-        'macosx64-mulet': {
-            'product_name': 'firefox',
-            'unittest_platform': 'macosx64-mulet-opt',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'OS X Mulet %(branch)s',
-            'mozconfig': 'macosx64/%(branch)s/nightly',
-            'src_mozconfig': 'b2g/dev/config/mozconfigs/macosx-universal/mulet',
-            'packageTests': True,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 12,
-            'upload_symbols': False,
-            'download_symbols': False,
-            'slaves': SLAVES['macosx64-lion'],
-            'platform_objdir': "%s/i386" % OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'macosx64-mulet',
-            'update_platform': 'Darwin_x86_64-gcc3',
-            'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_dsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64-mulet',
-                'CHOWN_ROOT': '~/bin/chown_root',
-                'CHOWN_REVERT': '~/bin/chown_revert',
-                'LC_ALL': 'C',
-                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': True,
-            'talos_masters': None,
             'test_pretty_names': False,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
@@ -2424,7 +2294,6 @@ BRANCHES['try']['create_snippet'] = False
 BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
@@ -2516,10 +2385,14 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         # If a branch does not set dep_signing_servers, it should be set to the global default.
         BRANCHES[branch]['platforms'][platform]['dep_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('dep_signing_servers',
                                                                          PLATFORM_VARS[platform].get('dep_signing_servers'))
-        # If a branch does not set nightly_signing_servers, it should be set to its dep signing server,
-        # which may have already been set to the global default.
-        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
-                                                                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
+
+        # If a branch does not set nightly_signing_servers, first check if it wants
+        # a different signing server set for all platforms, if not it should be set to
+        # its dep signing server, which may have already been set to the global default.
+        BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = \
+            branchConfig.get('nightly_signing_servers', branchConfig.get('platforms', {}).get(
+                             platform, {}).get('nightly_signing_servers',
+                             BRANCHES[branch]['platforms'][platform]['dep_signing_servers']))
 
 #bug 1042835 Disable armv6 builds and tests everywhere apart from esr31
 branches = BRANCHES.keys()
@@ -2614,11 +2487,6 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
-
-# Mulet landed in gecko 34
-for name, branch in items_before(BRANCHES, 'gecko_version', 34):
-    if 'linux64-mulet' in branch['platforms']:
-        del branch['platforms']['linux64-mulet']
 
 # Exact rooting landed for desktop only in 28.
 for name, branch in items_before(BRANCHES, 'gecko_version', 28):

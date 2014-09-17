@@ -129,7 +129,7 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['releaseChannelRuleIds'] = [31]
 releaseConfig['testChannels']          = ['releasetest', 'betatest']
 releaseConfig['testChannelRuleIds']    = [19,20]
 

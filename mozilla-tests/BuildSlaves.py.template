@@ -16,6 +16,7 @@ SlavePasswords = {
     "ubuntu64_vm-b2g-emulator-jb": "pass",
     "ubuntu64_vm-b2g-emulator-kk": "pass",
     "ubuntu64_vm-b2gdt": "pass",
+    "ubuntu64_vm-mulet": "pass",
     "ubuntu64_hw": "pass",
     "ubuntu64_hw-b2g": "pass",
     "tiger": "pass",

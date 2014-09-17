@@ -41,6 +41,7 @@ BRANCHES = {
         'gecko_version': 30,
     },
     'try': {'coallesce_jobs': False},
+    'mozilla-esr31':     {},
 }
 
 setMainFirefoxVersions(BRANCHES)
@@ -695,6 +696,16 @@ ANDROID_2_3_C3_DICT = {
 }
 
 ANDROID_2_3_AWS_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+ANDROID_2_3_ARMV6_AWS_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+ANDROID_2_3_ARMV6_C3_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
 }
@@ -1453,6 +1464,20 @@ ANDROID_2_3_MOZHARNESS_DICT = [
 ]
 # End of Android 2.3 configurations
 
+
+for suite in ANDROID_2_3_MOZHARNESS_DICT:
+    if suite[0].startswith('mochitest-gl'):
+        continue
+    elif suite[0].startswith('plain-reftest'):
+        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
+    elif suite[0].startswith('crashtest'):
+        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
+    elif suite[0].startswith('jsreftest'):
+        ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites'].append(suite)
+    else:
+        ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites'].append(suite)
+
+
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
@@ -1562,6 +1587,14 @@ for branch in BRANCHES.keys():
                 if isinstance(value, str):
                     value = value % locals()
                 BRANCHES[branch]['platforms'][platform][key] = value
+
+
+BRANCHES['mozilla-esr31']['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites']),
+}
+BRANCHES['mozilla-esr31']['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
+}
 
 #
 # Entries in BRANCHES for tests should be a tuple of:
