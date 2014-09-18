@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '32.0.1'
-releaseConfig['appVersion']          = '32.0.1'
+releaseConfig['version']             = '32.0.2'
+releaseConfig['appVersion']          = '32.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_32_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_32_0_2'
 releaseConfig['partialUpdates']      = {
 
     '32.0': {
@@ -36,10 +36,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_32_0',
     },
 
-    '30.0': {
-        'appVersion': '30.0',
+    '32.0.1': {
+        'appVersion': '32.0.1',
         'buildNumber': 2,
-        'baseTag': 'FIREFOX_30_0',
+        'baseTag': 'FIREFOX_32_0_1',
     },
 
     '31.0': {
@@ -64,7 +64,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '01a075f70172',
+        'revision': 'be350b081d47',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -144,7 +144,7 @@ releaseConfig['xulrunner_mozconfigs']          = {
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
 releaseConfig['testChannels']          = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']    = [25,26]
+releaseConfig['testChannelRuleIds']    = [56,57]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
