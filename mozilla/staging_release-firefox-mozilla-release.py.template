@@ -130,7 +130,8 @@ releaseConfig['xulrunner_mozconfigs']          = {
 }
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [31]
-releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['localTestChannel']      = 'betatest'
+releaseConfig['cdnTestChannel']        = 'releasetest'
 releaseConfig['testChannelRuleIds']    = [19,20]
 
 # Partner repack configuration
