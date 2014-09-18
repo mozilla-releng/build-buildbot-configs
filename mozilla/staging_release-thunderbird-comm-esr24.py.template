@@ -138,7 +138,8 @@ releaseConfig['mozconfigs']          = {
     'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']      = 'release'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
+releaseConfig['localTestChannel']    = 'betatest'
+releaseConfig['cdnTestChannel']      = 'releasetest'
 releaseConfig['testChannelRuleIds']  = []
 
 # Partner repack configuration

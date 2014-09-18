@@ -134,7 +134,8 @@ releaseConfig['mozconfigs']          = {
 }
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [45]
-releaseConfig['testChannels']          = ['releasetest', 'betatest']
+releaseConfig['localTestChannel']      = 'betatest'
+releaseConfig['cdnTestChannel']        = 'releasetest'
 releaseConfig['testChannelRuleIds']    = [22,44]
 
 # Partner repack configuration
