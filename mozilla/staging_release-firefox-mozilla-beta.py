@@ -24,22 +24,19 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '15.0b4'
-releaseConfig['appVersion']          = '15.0'
-releaseConfig['milestone']           = '15.0'
+releaseConfig['version']             = '33.0b3'
+releaseConfig['appVersion']          = '33.0'
+releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_15_0b4'
+releaseConfig['baseTag']             = 'FIREFOX_33_0b3'
 releaseConfig['partialUpdates']      = {
-    '15.0b3': {
-        'appVersion': '15.0',
+
+    '33.0b2': {
+        'appVersion': '33.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_15_0b3',
+        'baseTag': 'FIREFOX_33_0b2',
     },
-    '15.0b2': {
-        'appVersion': '15.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_15_0b3',
-    },
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -60,10 +57,6 @@ releaseConfig['sourceRepositories']  = {
                 'nextVersion': releaseConfig['nextAppVersion']
             },
             'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
@@ -115,6 +108,8 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
+releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-firefox-linux.cfg',
     'linux64':  'mozBeta-firefox-linux64.cfg',
@@ -133,9 +128,11 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
-releaseConfig['releaseChannel']      = 'beta'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [19,20]
+releaseConfig['releaseChannel']        = 'beta'
+releaseConfig['releaseChannelRuleIds'] = [26]
+releaseConfig['localTestChannel']      = 'beta-localtest'
+releaseConfig['cdnTestChannel']        = 'beta-cdntest'
+releaseConfig['testChannelRuleIds']    = [40,41]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -144,9 +141,6 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_beta.py'
-
-releaseConfig['releaseUptake']       = 3
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False

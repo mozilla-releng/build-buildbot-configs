@@ -175,13 +175,7 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
         },
     },
-    'fig': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux64-mulet': {},
-            'macosx64-mulet': {},
-        }
-    },
+    'fig': {},
     'gum': {},
     'holly': {
         'branch_projects': [],

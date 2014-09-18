@@ -26,17 +26,19 @@ releaseConfig['appName']             = 'mail'
 # MERGE DAY (remove this code once comm-beta no longer services Gecko 33 and lower)
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '18.0b1'
-releaseConfig['appVersion']          = '18.0'
+releaseConfig['version']             = '33.0b1'
+releaseConfig['appVersion']          = '33.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_18_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_33_0b1'
 releaseConfig['partialUpdates']      = {
-    '17.0b3': {
-        'appVersion': '17.0',
+
+    '32.0b1': {
+        'appVersion': '32.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_17_0b3',
-    }
+        'baseTag': 'THUNDERBIRD_32_0b1',
+    },
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -66,10 +68,6 @@ releaseConfig['sourceRepositories']  = {
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
-                'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
-            },
-            'js/src/config/milestone.txt': {
                 'version': releaseConfig['milestone'],
                 'nextVersion': releaseConfig['nextMilestone']
             },
@@ -103,10 +101,11 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'mail/locales/shipped-locales'
 releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
+releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
@@ -120,6 +119,7 @@ releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
+releaseConfig['promptWaitTime']      = None
 releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-thunderbird-linux.cfg',
     'linux64':  'mozBeta-thunderbird-linux64.cfg',
@@ -132,9 +132,11 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['releaseChannel']      = 'beta'
-releaseConfig['testChannels']        = ['releasetest', 'betatest']
-releaseConfig['testChannelRuleIds']  = [21,22]
+releaseConfig['releaseChannel']        = 'beta'
+releaseConfig['releaseChannelRuleIds'] = [33]
+releaseConfig['localTestChannel']      = 'beta-localtest'
+releaseConfig['cdnTestChannel']        = 'beta-cdntest'
+releaseConfig['testChannelRuleIds']    = [21,43]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
@@ -143,9 +145,6 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
-
-releaseConfig['releaseUptake']       = 3
-releaseConfig['releasetestUptake']   = 1
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
