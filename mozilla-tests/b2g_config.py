@@ -114,7 +114,7 @@ PLATFORMS['linux64_gecko']['mozharness_config'] = {
 
 PLATFORMS['linux64-mulet']['slave_platforms'] = ['ubuntu64_vm-mulet']
 PLATFORMS['linux64-mulet']['env_name'] = 'linux-perf'
-PLATFORMS['linux64-mulet']['ubuntu64_vm-mulet'] = {'name': builder_prefix + "_ubuntu64_vm"}
+PLATFORMS['linux64-mulet']['ubuntu64_vm-mulet'] = {'name': 'Ubuntu VM 12.04 x64 Mulet'}
 PLATFORMS['linux64-mulet']['stage_product'] = 'b2g'
 PLATFORMS['linux64-mulet']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -137,7 +137,7 @@ PLATFORMS['macosx64_gecko']['mozharness_config'] = {
 PLATFORMS['macosx64-mulet']['slave_platforms'] = ['snowleopard']
 PLATFORMS['macosx64-mulet']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64-mulet']['snowleopard'] = {
-    'name': builder_prefix + "_macosx64",
+    'name': 'Rev4 MacOSX Mulet Snow Leopard 10.6',
     'build_dir_prefix': 'snowleopard_mulet',
     'scheduler_slave_platform_identifier': 'snowleopard_mulet'
 }
@@ -276,31 +276,31 @@ MOCHITEST_EMULATOR_JB = [
 ]
 
 MOCHITEST_MULET_PLAIN = [
-    ('mochitest-mulet-plain-1', {'suite': 'mochitest-mulet-plain',
+    ('mochitest-1', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
                                  'script_path': 'scripts/desktop_unittest.py',
                                  'blob_upload': True,
                                 }
     ),
-    ('mochitest-mulet-plain-2', {'suite': 'mochitest-mulet-plain',
+    ('mochitest-2', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
                                  'script_path': 'scripts/desktop_unittest.py',
                                  'blob_upload': True,
                                 }
     ),
-    ('mochitest-mulet-plain-3', {'suite': 'mochitest-mulet-plain',
+    ('mochitest-3', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
                                  'script_path': 'scripts/desktop_unittest.py',
                                  'blob_upload': True,
                                 }
     ),
-    ('mochitest-mulet-plain-4', {'suite': 'mochitest-mulet-plain',
+    ('mochitest-4', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
                                  'script_path': 'scripts/desktop_unittest.py',
                                  'blob_upload': True,
                                 }
     ),
-    ('mochitest-mulet-plain-5', {'suite': 'mochitest-mulet-plain',
+    ('mochitest-5', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
                                  'script_path': 'scripts/desktop_unittest.py',
                                  'blob_upload': True,
@@ -862,35 +862,35 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': MOCHITEST_MULET_PLAIN[:],
             'debug_unittest_suites': [],
             'suite_config': {
-                'mochitest-mulet-plain-1': {
+                'mochitest-1': {
                     'extra_args': [
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 1,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-2': {
+                'mochitest-2': {
                     'extra_args': [
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 2,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-3': {
+                'mochitest-3': {
                     'extra_args': [
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 3,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-4': {
+                'mochitest-4': {
                     'extra_args': [
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 4,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-5': {
+                'mochitest-5': {
                     'extra_args': [
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 5,
@@ -919,35 +919,35 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': MOCHITEST_MULET_PLAIN[:],
             'debug_unittest_suites': [],
             'suite_config': {
-                'mochitest-mulet-plain-1': {
+                'mochitest-1': {
                     'extra_args': [
                       '--cfg', 'unittests/mac_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 1,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-2': {
+                'mochitest-2': {
                     'extra_args': [
                       '--cfg', 'unittests/mac_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 2,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-3': {
+                'mochitest-3': {
                     'extra_args': [
                       '--cfg', 'unittests/mac_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 3,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-4': {
+                'mochitest-4': {
                     'extra_args': [
                       '--cfg', 'unittests/mac_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 4,
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'mochitest-mulet-plain-5': {
+                'mochitest-5': {
                     'extra_args': [
                       '--cfg', 'unittests/mac_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 5,
