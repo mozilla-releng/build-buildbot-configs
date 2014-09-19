@@ -229,6 +229,7 @@ builders.append({
                    'slavebuilddir': reallyShort(builderPrefix('tag'))}
 })
 
+linuxConfig = branchConfig['platforms']['linux']
 
 source_factory = CCSourceFactory(
     hgHost=branchConfig['hghost'],
@@ -249,6 +250,10 @@ source_factory = CCSourceFactory(
     #cvsroot=releaseConfig['cvsroot'],
     autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
     clobberURL=branchConfig['base_clobber_url'],
+    use_mock=use_mock('linux'),
+    mock_target=linuxConfig['mock_target'],
+    mock_packages=linuxConfig['mock_packages'],
+    mock_copyin_files=linuxConfig['mock_copyin_files'],
 )
 
 builders.append({
@@ -327,9 +332,9 @@ for platform in releaseConfig['enUSPlatforms']:
         tooltool_url_list= branchConfig.get('tooltool_url_list', []),
         enable_pymake=pf['enable_pymake'],
         use_mock=use_mock(platform),
-        mock_target=pf.get('mock_target'),
-        mock_packages=pf.get('mock_packages'),
-        mock_copyin_files=pf.get('mock_copyin_files'),
+        mock_target=pf.get('mock_target', None),
+        mock_packages=pf.get('mock_packages', None),
+        mock_copyin_files=pf.get('mock_copyin_files', None),
     )
 
     builders.append({
@@ -381,6 +386,10 @@ for platform in releaseConfig['enUSPlatforms']:
             tooltool_manifest_src= pf.get('tooltool_manifest_src', None),
             tooltool_url_list= branchConfig.get('tooltool_url_list', []),
             enUSBinaryURL=EN_US_BINARY_URL % releaseConfig,
+            use_mock=pf.get('use_mock'),
+            mock_target=pf.get('mock_target'),
+            mock_packages=pf.get('mock_packages'),
+            mock_copyin_files=pf.get('mock_copyin_files'),
         )
 
         builders.append({
@@ -436,7 +445,9 @@ for platform in releaseConfig['l10nPlatforms']:
     })
     
 releaseChannel = releaseConfig.get('releaseChannel', branchConfig['update_channel'])
+
 updates_factory = ReleaseUpdatesFactory(
+    env=linuxConfig['env'],
     hgHost=branchConfig['hghost'],
     repoPath=releaseConfig['sourceRepoPath'],
     mozRepoPath=releaseConfig['mozillaRepoPath'],
@@ -476,6 +487,10 @@ updates_factory = ReleaseUpdatesFactory(
     testOlderPartials=releaseConfig['testOlderPartials'],
     schema=releaseConfig.get("snippetSchema", 1), # Bug 682805
     useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
+    use_mock=use_mock('linux'),
+    mock_target=linuxConfig.get('mock_target', None),
+    mock_packages=linuxConfig.get('mock_packages', None),
+    mock_copyin_files=linuxConfig.get('mock_copyin_files', None),
 )
 
 builders.append({
@@ -490,12 +505,17 @@ builders.append({
 
 
 for platform in sorted(releaseConfig['verifyConfigs'].keys()):
+    pf = branchConfig['platforms'][platform]
     update_verify_factory = UpdateVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=releaseConfig['verifyConfigs'][platform],
         clobberURL=branchConfig['base_clobber_url'],
         useOldUpdater=branchConfig.get('use_old_updater', False),
+        use_mock=use_mock(platform),
+        mock_target=pf.get('mock_target', None),
+        mock_packages=pf.get('mock_packages', None),
+        mock_copyin_files=pf.get('mock_copyin_files', None),
     )
 
     builders.append({

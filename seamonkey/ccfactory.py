@@ -26,6 +26,7 @@ from buildbot.steps.transfer import FileDownload
 #reload(buildbotcustom.steps.unittest)
 #reload(buildbotcustom.env)
 
+from buildbotcustom.steps.mock import MockCommand
 from buildbotcustom.steps.misc import SetMozillaBuildProperties, \
   TinderboxShellCommand, SendChangeStep, GetBuildID, MozillaClobberer, \
   FindFile, DownloadFile, UnpackFile, SetBuildProperty, GetHgRevision
@@ -77,11 +78,17 @@ class CCSourceFactory(ReleaseFactory):
     def __init__(self, productName, version, baseTag, stagingServer,
                  stageUsername, stageSshKey, buildNumber, mozRepoPath,
                  inspectorRepoPath='', venkmanRepoPath='', cvsroot='',
-                 autoconfDirs=['.'], buildSpace=1, **kwargs):
-        ReleaseFactory.__init__(self, buildSpace=buildSpace, **kwargs)
+                 autoconfDirs=['.'], buildSpace=1, use_mock=False,
+                 mock_target=None, mock_packages=None, mock_copyin_files,
+                 **kwargs):
+        ReleaseFactory.__init__(self, buildSpace=buildSpace, use_mock=False,
+                                 mock_target=None, mock_packages=None,
+                                 mock_copyin_files, **kwargs)
         releaseTag = '%s_RELEASE' % (baseTag)
         sourceTarball = 'source/%s-%s.source.tar.bz2' % (productName,
                                                          version)
+        self.use_mock = use_mock
+        self.mock_target = mock_target
         # '-c' is for "release to candidates dir"
         postUploadCmd = 'post_upload.py -p %s -v %s -n %s -c' % \
           (productName, version, buildNumber)
@@ -145,10 +152,13 @@ class CCSourceFactory(ReleaseFactory):
         # the autoconf and actual tarring steps
         # should be replaced by calling the build target
         for dir in autoconfDirs:
-            self.addStep(ShellCommand,
+            self.addStep(MockCommand(
+             name='autoconf2.13',
              command=['autoconf-2.13'],
              workdir='%s/%s' % (self.branchName, dir),
-             haltOnFailure=True
+             haltOnFailure=True,
+             use_mock=self.use_mock,
+             target=self.mock_target,
             )
         self.addStep(ShellCommand,
          command=['tar', '-cj', '--owner=0', '--group=0', '--numeric-owner',
@@ -158,33 +168,49 @@ class CCSourceFactory(ReleaseFactory):
          description=['create tarball'],
          haltOnFailure=True
         )
-        self.addStep(ShellCommand,
+        self.addStep(MockCommand(
+         name="Upload Files",
          command=['python', '%s/mozilla/build/upload.py' % self.branchName,
                   '--base-path', '.', sourceTarball],
          workdir='.',
          env=uploadEnv,
          description=['upload files'],
+         mock=self.use_mock,
+         target=self.mock_target,
         )
 
 class CCReleaseBuildFactory(CCMercurialBuildFactory, ReleaseBuildFactory):
     def __init__(self, mozRepoPath='', inspectorRepoPath='',
-                 venkmanRepoPath='', cvsroot='', **kwargs):
+                 venkmanRepoPath='', cvsroot='', use_mock=False,
+                 mock_target=None, mock_packages=None,
+                 mock_copyin_files=None, **kwargs):
         self.skipBlankRepos = True
         self.mozRepoPath = mozRepoPath
         self.inspectorRepoPath = inspectorRepoPath
         self.venkmanRepoPath = venkmanRepoPath
         self.cvsroot = cvsroot
+        self.use_mock = use_mock
+        self.mock_target = mock_target
+        self.mock_packages = mock_packages
+        self.mock_copyin_files = mock_copyin_files
         # ReleaseBuildFactory.__init__ turns prettynames on!
-        ReleaseBuildFactory.__init__(self, mozillaDir='mozilla', **kwargs)
+        ReleaseBuildFactory.__init__(self, mozillaDir='mozilla', use_mock=self.use_mock,
+                                     mock_target=self.mock_target,
+                                     mock_packages=self.mock_packages,
+                                     mock_copyin_files=self.mock_copyin_files, **kwargs)
 
 class CCReleaseRepackFactory(CCBaseRepackFactory, ReleaseRepackFactory):
     def __init__(self, mozRepoPath='', inspectorRepoPath='',
-                 venkmanRepoPath='', cvsroot='', **kwargs):
+                 venkmanRepoPath='', cvsroot='', use_mock=False,
+                 mock_target=None, mock_packages=None,
+                 mock_copyin_files=None, **kwargs):
         self.skipBlankRepos = True
         self.mozRepoPath = mozRepoPath
         self.inspectorRepoPath = inspectorRepoPath
         self.venkmanRepoPath = venkmanRepoPath
         self.cvsroot = cvsroot
+        self.use_mock = use_mock
+        self.mock_target = mock_target
         # ReleaseRepackFactory.__init__ turns prettynames on!
         ReleaseRepackFactory.__init__(self, mozillaDir='mozilla', **kwargs)
 

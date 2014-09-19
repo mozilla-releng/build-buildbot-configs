@@ -151,10 +151,12 @@ GLOBAL_VARS = {
                             # version is available, but we don't want it for Firefox builds.
                             'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
                             'freetype-2.3.11-6.el6_1.8.x86_64',
+                            # SeaMonkey needs these for update runs until Bug 1057920 is fixed.
+                            'cvs', 'rsh',
                             ],
     'mock_packages_x86-64' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                             'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                            'gtk2-devel', 'libnotify-devel', 'yasm',
+                            'gtk2-devel', 'libnotify-devel', 'yasm', 'glibc.i686',
                             'alsa-lib-devel', 'libcurl-devel',
                             'wireless-tools-devel', 'libX11-devel',
                             'libXt-devel', 'mesa-libGL-devel',
@@ -168,6 +170,8 @@ GLOBAL_VARS = {
                             'gstreamer-devel', 'gstreamer-plugins-base-devel',
                             'freetype-2.3.11-6.el6_1.8.x86_64',
                             'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                            # SeaMonkey needs these for update runs until Bug 1057920 is fixed.
+                            'cvs', 'rsh',
                             ],
 }
 
@@ -203,6 +207,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86-gcc3',
             'enable_ccache': True,
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
@@ -249,6 +254,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
@@ -296,6 +302,7 @@ PLATFORM_VARS = {
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_ccache': True,
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
                 'SYMBOL_SERVER_USER': 'seabld',
@@ -374,6 +381,7 @@ PLATFORM_VARS = {
             'stage_platform': 'linux-debug',
             'enable_ccache': True,
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'DISPLAY': ':2',
                 'LD_LIBRARY_PATH': '%s/mozilla/dist/bin' % OBJDIR,
@@ -412,6 +420,7 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64-debug',
             'enable_ccache': True,
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -444,6 +453,7 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'stage_platform': 'win32-debug',
             'env': {
+                'CVS_RSH': 'ssh',
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
                 'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -509,7 +519,7 @@ BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
-BRANCHES['comm-central-trunk']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
 #make sure it has an ending slash
@@ -595,7 +605,7 @@ BRANCHES['comm-beta']['enable_codecoverage'] = False
 BRANCHES['comm-beta']['enable_l10n'] = False
 BRANCHES['comm-beta']['enable_l10n_onchange'] = True
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
-BRANCHES['comm-beta']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
+BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'sea_beta'
 #make sure it has an ending slash
@@ -638,7 +648,7 @@ BRANCHES['comm-release']['enable_codecoverage'] = False
 BRANCHES['comm-release']['enable_l10n'] = False
 BRANCHES['comm-release']['enable_l10n_onchange'] = True
 BRANCHES['comm-release']['l10nNightlyUpdate'] = True
-BRANCHES['comm-release']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
+BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
 BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
 #make sure it has an ending slash
