@@ -225,8 +225,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'opt_unittest_suites': XPCSHELL[:],
+            'debug_unittest_suites': XPCSHELL[:],
             'suite_config': {
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
