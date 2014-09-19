@@ -20,19 +20,21 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
+# MERGE DAY (remove 'mozilla_dir' once comm-beta no longer services Gecko 33 and lower)
 releaseConfig['mozilla_dir']         = 'mozilla'
+releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '32.0b1'
-releaseConfig['appVersion']          = '32.0'
+releaseConfig['version']             = '33.0b1'
+releaseConfig['appVersion']          = '33.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_32_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_33_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '31.0b3': {
-        'appVersion': '31.0',
+    '32.0b1': {
+        'appVersion': '32.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_0b3',
+        'baseTag': 'THUNDERBIRD_32_0b1',
     },
 
 }
@@ -44,7 +46,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '98d598127699',
+        'revision': 'c54d82e589fb',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -56,7 +58,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '8bf5700cb82e',
+        'revision': '7cd3ae0255ec',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -126,7 +128,7 @@ releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['releaseChannelRuleIds'] = [43]
 releaseConfig['localTestChannel']      = 'beta-localtest'
 releaseConfig['cdnTestChannel']        = 'beta-cdntest'
-releaseConfig['testChannelRuleIds']    = [27,28]
+releaseConfig['testChannelRuleIds']    = [27,60]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
