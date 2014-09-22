@@ -708,15 +708,6 @@ MARIONETTE = [
      ),
 ]
 
-MARIONETTE_UNIT = [
-    ('marionette', {'suite': 'marionette',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/marionette.py',
-                     'blob_upload': True,
-                     },
-    ),
-]
-
 XPCSHELL = [
     ('xpcshell', {'suite': 'xpcshell',
                   'use_mozharness': True,
@@ -848,7 +839,7 @@ CPPUNIT = [(
     },
 )]
 
-ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL
+ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
 
 # Default set of unit tests
 UNITTEST_SUITES = {
@@ -1379,7 +1370,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'gaia-js-integration-1': {
 	                    'extra_args': [
-	                        '--cfg', 'b2g/gaia_integration_config.py',
+	                        '--cfg', 'b2g/gaia_integration_config.py',                           
 	                        '--this-chunk', 1, '--total-chunks', 4,
 	                    ],
 	            },
@@ -1535,18 +1526,12 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu64_vm-b2g-emulator': {
-            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + CPPUNIT,
+            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + CPPUNIT,
             'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL_CHUNKED + CPPUNIT,
             'suite_config': {
-                'marionette': {
-                  'extra_args': [
-                      "--cfg", "marionette/automation_emulator_config.py",
-                  ],
-                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
-                        "--test-manifest", "webapi-tests.ini"
                     ],
                 },
                 'gaia-ui-test': {
@@ -2045,15 +2030,9 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
-                'marionette': {
-                    'extra_args': [
-                        "--cfg", "marionette/automation_emulator_config.py",
-                    ],
-                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
-                        "--test-manifest", "webapi-tests.ini",
                     ],
                 },
                 'mochitest-1': {
@@ -2079,15 +2058,9 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
-                'marionette': {
-                    'extra_args': [
-                        "--cfg", "marionette/automation_emulator_config.py",
-                    ],
-                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
-                        "--test-manifest", "webapi-tests.ini",
                     ],
                 },
             },
@@ -2170,9 +2143,9 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
-    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL_CHUNKED + CPPUNIT
+    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = GAIA_UI + MOCHITEST_MEDIA
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:] + MARIONETTE[:]
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
