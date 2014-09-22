@@ -403,7 +403,7 @@ PLATFORM_VARS = {
         'enable_xulrunner': False,
         'enable_opt_unittests': True,
         'try_by_default': True,
-        'upload_symbols': True,
+        'upload_symbols': False,
         'update_platform': 'Linux_x86_64-gcc3',
         'packageTests': True,
         'dep_signing_servers': None,
