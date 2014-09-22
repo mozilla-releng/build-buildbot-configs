@@ -398,6 +398,7 @@ PLATFORM_VARS = {
         },
 
         'consider_for_nightly': False,
+        'build_space': 15,
         'multi_locale': False,
         'enable_nightly': True,
         'enable_xulrunner': False,
