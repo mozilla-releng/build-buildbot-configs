@@ -196,7 +196,7 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {},
             'win32-debug': {},
         },
-        'enable_talos': False,
+        'enable_talos': True,
     },
     'jamun': {},
     'larch': {
