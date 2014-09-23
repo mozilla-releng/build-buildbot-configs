@@ -54,13 +54,9 @@ PLATFORMS = {
 }
 
 PLATFORMS['android']['slave_platforms'] = \
-    ['tegra_android', 'panda_android', 'ubuntu64_vm_mobile', 'ubuntu64_vm_large', ]
+    ['panda_android', 'ubuntu64_vm_mobile', 'ubuntu64_vm_large', ]
 PLATFORMS['android']['env_name'] = 'android-perf'
 PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['tegra_android'] = {
-    'name': "Android 2.2 Tegra",
-    'mozharness_talos': False,
-}
 PLATFORMS['android']['panda_android'] = {
     'name': "Android 4.0 Panda",
     'mozharness_talos': True,
@@ -79,10 +75,9 @@ PLATFORMS['android']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['tegra_android-armv6', 'ubuntu64_vm_armv6_mobile', 'ubuntu64_vm_armv6_large']
+PLATFORMS['android-armv6']['slave_platforms'] = ['ubuntu64_vm_armv6_mobile', 'ubuntu64_vm_armv6_large']
 PLATFORMS['android-armv6']['env_name'] = 'android-perf'
 PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['tegra_android-armv6'] = {'name': "Android 2.2 Armv6 Tegra"}
 PLATFORMS['android-armv6']['ubuntu64_vm_armv6_mobile'] = {'name': "Android 2.3 Armv6 Emulator"}
 PLATFORMS['android-armv6']['ubuntu64_vm_armv6_large'] = {'name': "Android 2.3 Armv6 Emulator"}
 PLATFORMS['android-armv6']['stage_product'] = 'mobile'
@@ -685,11 +680,6 @@ ANDROID_PLAIN_UNITTEST_DICT = {
     'debug_unittest_suites': [],
 }
 
-TEGRA_RELEASE_PLAIN_UNITTEST_DICT = {
-    'opt_unittest_suites': [],
-    'debug_unittest_suites': [],
-}
-
 ANDROID_2_3_C3_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -784,28 +774,11 @@ ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
     'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST,
 }
 
-for suite in ANDROID_UNITTEST_DICT['opt_unittest_suites']:
-    if suite[0].startswith('reftest'):
-        continue
-    if suite[0].startswith('mochitest-gl'):
-        continue
-    if suite[0].startswith('robocop'):
-        continue
-    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
 for suite in ANDROID_PLAIN_REFTEST_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
 
 for suite in ANDROID_PLAIN_ROBOCOP_DICT['opt_unittest_suites']:
     ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-    TEGRA_RELEASE_PLAIN_UNITTEST_DICT['opt_unittest_suites'].append(suite)
-
-ANDROID_NOWEBGL_UNITTEST_DICT = deepcopy(ANDROID_PLAIN_UNITTEST_DICT)
-# Bug 869590 Disable mochitest-gl for armv6, Bug 875633 Disable for Tegras
-for suite in ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'][:]:
-    if suite[0] == 'mochitest-gl':
-        ANDROID_NOWEBGL_UNITTEST_DICT['opt_unittest_suites'].remove(suite)
 
 ANDROID_PLAIN_UNITTEST_DICT['debug_unittest_suites'] = deepcopy(ANDROID_PLAIN_UNITTEST_DICT['opt_unittest_suites'])
 
@@ -1490,7 +1463,6 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android': deepcopy(ANDROID_NOWEBGL_UNITTEST_DICT),
         'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
     },
     'android-armv6': {
@@ -1501,11 +1473,7 @@ PLATFORM_UNITTEST_VARS = {
         'host_utils_url': 'http://talos-remote.pvt.build.mozilla.org/tegra/tegra-host-utils.%%(foopy_type)s.742597.zip',
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'tegra_android-armv6': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-        },
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,        
         'ubuntu64_vm_armv6_mobile': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
@@ -1649,31 +1617,9 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
 
-# Ignore robocop chunks for mozilla-release, robocop-chunks is defined in
-# ANDROID_PLAIN_UNITTEST_DICT
-BRANCHES['mozilla-release']["platforms"]["android"]["tegra_android"][
-    "opt_unittest_suites"] = deepcopy(TEGRA_RELEASE_PLAIN_UNITTEST_DICT["opt_unittest_suites"])
-
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
-
-# bug 1033507 disable tegra tests on 32 and let this ride the trains
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if not platform in ('android', 'android-armv6'):
-            continue
-        for slave_plat in PLATFORMS[platform]['slave_platforms']:
-            if not slave_plat in branch['platforms'][platform]:
-                continue
-            if not slave_plat in ('tegra_android', ):
-                continue
-            BRANCHES[name]['platforms'][platform][slave_plat] =   {
-                'opt_unittest_suites': [],
-                'debug_unittest_suites': [],
-            }
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
