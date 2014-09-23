@@ -68,7 +68,6 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr31'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_0_9_5',
     'build/buildbot': 'production-0.8',
-    'build/partner-repacks': 'default',
     'build/mozharness': 'production',
 }
 

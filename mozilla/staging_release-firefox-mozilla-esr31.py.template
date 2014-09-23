@@ -72,7 +72,6 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr31'
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_0_9_5',
     'users/stage-ffxbld/buildbot': 'production-0.8',
-    'users/stage-ffxbld/partner-repacks': 'default',
 }
 
 # Platform configuration
