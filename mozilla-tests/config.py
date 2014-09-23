@@ -410,10 +410,10 @@ MOCHITEST_BC_3_E10S = [
 ]
 
 MOCHITEST_WEBGL = [
-    ('mochitest-webgl', {
+    ('mochitest-gl', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-webgl'],
+        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
         'blob_upload': True,
         'script_maxtime': 12000,
     }),
@@ -616,7 +616,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -697,7 +697,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -778,7 +778,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -856,7 +856,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -936,7 +936,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1008,7 +1008,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1080,7 +1080,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1163,7 +1163,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1232,7 +1232,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1309,7 +1309,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1378,7 +1378,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
@@ -1447,7 +1447,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-devtools-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'mochitest-webgl': {
+                'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-jetpack': {
