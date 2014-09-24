@@ -23,17 +23,23 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.1.1'
-releaseConfig['appVersion']          = '31.1.1'
+releaseConfig['version']             = '31.1.2'
+releaseConfig['appVersion']          = '31.1.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_1_1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_1_2'
 releaseConfig['partialUpdates']      = {
 
-    '31.1.0': {
-        'appVersion': '31.1.0',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_31_1_0',
+    '31.1.1': {
+        'appVersion': '31.1.1',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_1_1',
+    },
+
+    '24.6.0': {
+        'appVersion': '24.6.0',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_24_6_0',
     },
 
 }
@@ -57,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '0476dd77fcbc',
+        'revision': '4a510243669e',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -127,7 +133,7 @@ releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
 releaseConfig['localTestChannel']      = 'betatest'
 releaseConfig['cdnTestChannel']        = 'releasetest'
-releaseConfig['testChannelRuleIds']    = [28,38]
+releaseConfig['testChannelRuleIds']    = [61,62]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
