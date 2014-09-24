@@ -267,7 +267,7 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_LINUX64),
     },
-    'other_nol64-e10s': {
+    'other-e10s_nol64': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_LINUX64),
@@ -277,7 +277,7 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, LINUX64_ONLY),
     },
-    'other_l64-e10s': {
+    'other-e10s_l64': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, LINUX64_ONLY),
