@@ -2030,7 +2030,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
 # Enable e10s versions of Talos on Holly (bug 1050706).  Once these are enabled
 # on all branches, this block of code can go away.
 branch = BRANCHES['holly']
-for s in SUITES.iterkeys():
+for s in ('tp5o-e10s', 'svgr-e10s', 'xperf-e10s'):
     if 'e10s' in s:
         test_key = '%s_tests' % s
         if test_key in branch:
