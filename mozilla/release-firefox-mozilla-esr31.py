@@ -24,29 +24,29 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.1.0esr'
-releaseConfig['appVersion']          = '31.1.0'
+releaseConfig['version']             = '31.1.1esr'
+releaseConfig['appVersion']          = '31.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_1_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_31_1_1esr'
 releaseConfig['partialUpdates']      = {
 
-    '31.0esr': {
-        'appVersion': '31.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_31_0esr',
+    '31.1.0esr': {
+        'appVersion': '31.1.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_31_1_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.1.0esrpre'
+releaseConfig['nextAppVersion']      = '31.1.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '0476dd77fcbc',
+        'revision': '4a510243669e',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -122,7 +122,7 @@ releaseConfig['releaseChannel']        = 'esr'
 releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
 releaseConfig['localTestChannel']      = 'esrtest'
 releaseConfig['cdnTestChannel']        = 'releasetest'
-releaseConfig['testChannelRuleIds']    = [26,37]
+releaseConfig['testChannelRuleIds']    = [58,59]
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
