@@ -21,12 +21,13 @@ releaseConfig['productName']         = 'thunderbird'
 releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
+releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '24.8.0'
-releaseConfig['appVersion']          = '24.8.0'
+releaseConfig['version']             = '24.8.1'
+releaseConfig['appVersion']          = '24.8.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_24_8_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_24_8_1'
 releaseConfig['partialUpdates']      = {}  # No more supported
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -49,7 +50,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'd9838933944b',
+        'revision': '1a4ef6655b21',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
