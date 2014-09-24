@@ -24,22 +24,22 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '24.8.0esr'
-releaseConfig['appVersion']          = '24.8.0'
+releaseConfig['version']             = '24.8.1esr'
+releaseConfig['appVersion']          = '24.8.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_24_8_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_24_8_1esr'
 releaseConfig['partialUpdates']      = {
 
-    '24.7.0esr': {
-        'appVersion': '24.7.0',
+    '24.8.0esr': {
+        'appVersion': '24.8.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_7_0esr',
+        'baseTag': 'FIREFOX_24_8_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '24.8.0esrpre'
+releaseConfig['nextAppVersion']      = '24.8.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
@@ -47,7 +47,7 @@ releaseConfig['sourceRepositories']  = {
         # XXX remove js/src/config/milestone.txt when setting up ESR31
         'name': 'mozilla-esr24',
         'path': 'releases/mozilla-esr24',
-        'revision': 'd9838933944b',
+        'revision': '1a4ef6655b21',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -124,10 +124,10 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
+releaseConfig['releaseChannelRuleIds'] = []
 releaseConfig['localTestChannel']      = 'esrtest'
 releaseConfig['cdnTestChannel']        = 'releasetest'
-releaseConfig['testChannelRuleIds']    = [26,37]
+releaseConfig['testChannelRuleIds']    = []
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
