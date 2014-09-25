@@ -308,6 +308,15 @@ MOCHITEST_MULET_PLAIN = [
     ),
 ]
 
+REFTEST_MULET = [
+    ('reftest', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+]
+
 MOCHITEST_EMULATOR_DEBUG = [
     ('mochitest-debug-1', {'suite': 'mochitest-plain',
                            'use_mozharness': True,
@@ -895,6 +904,14 @@ PLATFORM_UNITTEST_VARS = {
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 5,
                       '--mochitest-suite', 'plain-chunked',
+                    ]
+                },
+                'reftest': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
                     ]
                 },
             },
@@ -2199,6 +2216,8 @@ exclude_suites(('linux32_gecko', 'ubuntu32_vm-b2gdt'), 'cedar', ('gaia-ui-test',
 exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 exclude_suites(('emulator', 'ubuntu64_vm-b2g-lg-emulator'), 'cedar', ('gaia-ui-test',), True, True)
 
+# Enable mulet reftests on Ash
+BRANCHES['ash']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 
 # new linux64_gecko tests as of gecko 32
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
