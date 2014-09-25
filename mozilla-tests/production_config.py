@@ -5,7 +5,6 @@ SLAVES = {
     'snowleopard': {},
     'mountainlion': {},
     'mavericks': {},
-    'tegra_android': {},
     'panda_android': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
@@ -33,23 +32,6 @@ for i in range(1,87) + range(88,101):
 
 for i in range(1,4):
     SLAVES['mavericks']['t-mavericks-r5-%03i' % i] = {}
-
-for i in range(31,33) + range(35,43) + range(45,49) + range(50,53) + \
-         range(54,56) + range(57,64) + range(66,69) + range(70,75) + [77] + \
-         range(79,86) + range(87,90) + range(91,106) + range(107,112) + \
-         range(113,116) + range(117,124) + range(129,131) + range(132,137) + \
-         range(138,143) + range(144,147) + range(148,153) + range(154,156) + \
-         range(157,162) + range(163,172) + [173,174] + range(177,180) + \
-         range(181,184) + range(187,193) + range(194,197) + range(198,221) + \
-         [223,225] + range(227,230) + range(231,241) + range(242,289) + \
-         range(293,295) + [297,299,301] + [304,309] + range(311,314) + \
-         range(315,319) + range(320,322) + [329,331] + range(334,336) + \
-         range(338,340) + range(343,346) + [348] + range(351,356) + [357] + \
-         range(361,365) + [367,369]:
-    SLAVES['tegra_android']['tegra-%03i' % i] = {
-        'http_port': '30%03i' % i,
-        'ssl_port': '31%03i' % i,
-    }
 
 for i in range(22,307) + range(320,874) + range(885,910):
     SLAVES['panda_android']['panda-%04i' % i] = {
@@ -90,7 +72,6 @@ for i in range(1,120):
 for i in range(1,3):
     SLAVES['win64_vm']['tst-w64-ec2-%03i' % i] = {}
 
-SLAVES['tegra_android-armv6'] = SLAVES['tegra_android']
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 # Use "-b2g" suffix to make misc.py generate unique builder names
 SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']
