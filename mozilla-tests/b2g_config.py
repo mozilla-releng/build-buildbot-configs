@@ -308,6 +308,15 @@ MOCHITEST_MULET_PLAIN = [
     ),
 ]
 
+REFTEST_MULET = [
+    ('reftest', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+]
+
 MOCHITEST_EMULATOR_DEBUG = [
     ('mochitest-debug-1', {'suite': 'mochitest-plain',
                            'use_mozharness': True,
@@ -708,6 +717,15 @@ MARIONETTE = [
      ),
 ]
 
+MARIONETTE_UNIT = [
+    ('marionette', {'suite': 'marionette',
+                     'use_mozharness': True,
+                     'script_path': 'scripts/marionette.py',
+                     'blob_upload': True,
+                     },
+    ),
+]
+
 XPCSHELL = [
     ('xpcshell', {'suite': 'xpcshell',
                   'use_mozharness': True,
@@ -839,7 +857,7 @@ CPPUNIT = [(
     },
 )]
 
-ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL
+ALL_UNITTESTS = MOCHITEST + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL
 
 # Default set of unit tests
 UNITTEST_SUITES = {
@@ -895,6 +913,14 @@ PLATFORM_UNITTEST_VARS = {
                       '--cfg', 'unittests/linux_unittest.py',
                       '--total-chunks', 5, '--this-chunk', 5,
                       '--mochitest-suite', 'plain-chunked',
+                    ]
+                },
+                'reftest': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
                     ]
                 },
             },
@@ -1370,7 +1396,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'gaia-js-integration-1': {
 	                    'extra_args': [
-	                        '--cfg', 'b2g/gaia_integration_config.py',                           
+	                        '--cfg', 'b2g/gaia_integration_config.py',
 	                        '--this-chunk', 1, '--total-chunks', 4,
 	                    ],
 	            },
@@ -1526,12 +1552,18 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu64_vm-b2g-emulator': {
-            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + CPPUNIT,
+            'opt_unittest_suites': MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + CPPUNIT,
             'debug_unittest_suites': MOCHITEST_EMULATOR_DEBUG + XPCSHELL_CHUNKED + CPPUNIT,
             'suite_config': {
+                'marionette': {
+                  'extra_args': [
+                      "--cfg", "marionette/automation_emulator_config.py",
+                  ],
+                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
+                        "--test-manifest", "webapi-tests.ini"
                     ],
                 },
                 'gaia-ui-test': {
@@ -2030,9 +2062,15 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
+                'marionette': {
+                    'extra_args': [
+                        "--cfg", "marionette/automation_emulator_config.py",
+                    ],
+                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
+                        "--test-manifest", "webapi-tests.ini",
                     ],
                 },
                 'mochitest-1': {
@@ -2058,9 +2096,15 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
+                'marionette': {
+                    'extra_args': [
+                        "--cfg", "marionette/automation_emulator_config.py",
+                    ],
+                },
                 'marionette-webapi': {
                     'extra_args': [
                         "--cfg", "marionette/automation_emulator_config.py",
+                        "--test-manifest", "webapi-tests.ini",
                     ],
                 },
             },
@@ -2143,9 +2187,9 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + CPPUNIT
+    MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
-    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED + CPPUNIT
+    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = GAIA_UI + MOCHITEST_MEDIA
 BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:] + MARIONETTE[:]
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
@@ -2199,6 +2243,8 @@ exclude_suites(('linux32_gecko', 'ubuntu32_vm-b2gdt'), 'cedar', ('gaia-ui-test',
 exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 exclude_suites(('emulator', 'ubuntu64_vm-b2g-lg-emulator'), 'cedar', ('gaia-ui-test',), True, True)
 
+# Enable mulet reftests on Ash
+BRANCHES['ash']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 
 # new linux64_gecko tests as of gecko 32
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):

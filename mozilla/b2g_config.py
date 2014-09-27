@@ -29,6 +29,7 @@ GLOBAL_VARS.update({
         'linux64-mulet': {},
         'macosx64_gecko': {},
         'macosx64_gecko-debug': {},
+        'macosx64-mulet': {},
         'win32_gecko': {},
         'win32_gecko-debug': {},
         'linux32_gecko_localizer': {},
@@ -1717,6 +1718,12 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):
     if 'linux64-mulet' in branch['platforms']:
         del branch['platforms']['linux64-mulet']
+
+# OSX Mulet only on cedar for now (bug 1067628)
+for branch in BRANCHES:
+    if branch not in ('cedar',):
+        if 'macosx64-mulet' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['macosx64-mulet']
 
 # tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
