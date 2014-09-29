@@ -154,3 +154,4 @@ releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android', 'linux')
 releaseConfig['ftpSymlinkName'] = 'latest-beta'
+releaseConfig['enableAutomaticPushToMirrors'] = True
