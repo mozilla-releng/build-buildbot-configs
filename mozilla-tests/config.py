@@ -407,6 +407,18 @@ MOCHITEST_E10S = [
     }),
 ]
 
+# Plain mochitests with the content sandbox enabled.
+MOCHITEST_CSB = [
+    ('mochitest-csb', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain-chunked', '--content-sandbox=on'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 5,
+    }),
+]
+
 MOCHITEST_DT = [
     ('mochitest-devtools-chrome', {
         'use_mozharness': True,
@@ -968,6 +980,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-csb': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1040,6 +1055,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-csb': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1110,6 +1128,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-csb': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-browser-chrome': {
@@ -1761,6 +1782,11 @@ for platform in BRANCHES['holly']['platforms'].keys():
         slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
         slave_p['opt_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT
         slave_p['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT_3
+
+        # Enable content sandbox tests for Windows 32 bit
+        if slave_platform in PLATFORMS['win32']['slave_platforms']:
+            slave_p['opt_unittest_suites'] += MOCHITEST_CSB
+            slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
