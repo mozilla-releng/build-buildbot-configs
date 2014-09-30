@@ -1829,13 +1829,13 @@ for platform in PLATFORMS.keys():
 
 # Enable wpt on opt linux64 for gecko >= 34
 for platform in PLATFORMS.keys():
-    if platform not in ('linux64',):
+    if platform not in ['linux', 'linux64']:
         continue
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 35):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS[:]
 
 # Enable Mn on opt linux/linux64 for gecko >= 32
 for platform in PLATFORMS.keys():
@@ -1894,8 +1894,8 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
-        if platform not in ('linux64',):
+        if platform not in ('linux64', 'linux'):
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS
 
