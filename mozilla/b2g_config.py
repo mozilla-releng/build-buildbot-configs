@@ -32,6 +32,7 @@ GLOBAL_VARS.update({
         'macosx64-mulet': {},
         'win32_gecko': {},
         'win32_gecko-debug': {},
+        'win32-mulet': {},
         'linux32_gecko_localizer': {},
         'linux64_gecko_localizer': {},
         'macosx64_gecko_localizer': {},
@@ -801,6 +802,50 @@ PLATFORM_VARS = {
             '--gecko-languages-file', 'build/b2g/locales/all-locales',
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
+    },
+    'win32-mulet': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'base_name': 'Win32 Mulet %(branch)s',
+        'mozconfig': 'in_tree',
+        'src_mozconfig': 'b2g/dev/config/mozconfigs/win32/mulet',
+        'enable_dep': True,
+        'profiled_build': False,
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 13,
+        'upload_symbols': False,
+        'packageTests': True,
+        'create_snippet': False,
+        'create_partial': False,
+        'slaves': SLAVES['win64-rev2'],
+        'platform_objdir': OBJDIR,
+        'unittest_masters': [],
+        'unittest_platform': 'win32-mulet-opt',
+        'stage_product': 'b2g',
+        'stage_platform': 'win32-mulet',
+        'update_platform': 'WINNT_x86-msvc',
+        'enable_shared_checkouts': True,
+        'env': {
+            'MOZ_OBJDIR': OBJDIR,
+            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+            'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_dsa",
+            'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+            'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
+            'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'WGET_OPTS': '-q -c',
+        },
+        'enable_opt_unittests': False,
+        'enable_checktests': True,
+        'talos_masters': None,
+        'test_pretty_names': False,
+        'l10n_check_test': False,
+        'multi_locale': False,
+        'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
+        'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
     },
     'linux64_gecko_localizer': {
         'product_name': 'b2g',
@@ -1719,11 +1764,13 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 34):
     if 'linux64-mulet' in branch['platforms']:
         del branch['platforms']['linux64-mulet']
 
-# OSX Mulet only on cedar for now (bug 1067628)
+# OSX and Win32 Mulet only on cedar for now (bug 1067628)
 for branch in BRANCHES:
     if branch not in ('cedar',):
         if 'macosx64-mulet' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['macosx64-mulet']
+        if 'win32-mulet' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['win32-mulet']
 
 # tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
