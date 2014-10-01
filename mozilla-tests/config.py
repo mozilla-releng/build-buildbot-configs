@@ -245,7 +245,7 @@ SUITES = {
     'tp5o-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
+        'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'g1': {
         'enable_by_default': False,
@@ -255,7 +255,7 @@ SUITES = {
     'g1-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
+        'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'other': {
         'enable_by_default': True,
@@ -290,7 +290,7 @@ SUITES = {
     'svgr-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, NO_WINXP),
     },
     'dirtypaint': {
         'enable_by_default': False,
@@ -316,7 +316,7 @@ SUITES = {
     'chromez-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, NO_WINXP),
     },
     # now let's add the metro talos suites
     'tp5o-metro': {
