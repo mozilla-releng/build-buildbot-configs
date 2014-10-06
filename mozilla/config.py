@@ -252,6 +252,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
         },
         'linux64': {
@@ -354,6 +355,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
         },
         'linux64-asan': {
@@ -442,6 +444,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -534,6 +537,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -626,6 +630,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -749,6 +754,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
         },
         'macosx64': {
@@ -1076,6 +1082,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
         },
         'linux64-debug': {
@@ -1161,6 +1168,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
             ],
         },
         'macosx64-debug': {
