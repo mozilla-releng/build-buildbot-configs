@@ -233,6 +233,9 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
         },
     },
     # Not needed whilst booked for bug 929203.
