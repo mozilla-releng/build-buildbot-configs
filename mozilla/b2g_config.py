@@ -1601,8 +1601,6 @@ BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['wasabi']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
@@ -1634,8 +1632,6 @@ BRANCHES['mozilla-aurora']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-aurora']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['wasabi']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-aurora']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-aurora']['platforms']['emulator']['enable_nightly'] = True
@@ -1664,8 +1660,6 @@ BRANCHES['mozilla-b2g32_v2_0']['platforms']['hamachi_eng']['consider_for_nightly
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['helix']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['wasabi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator']['enable_nightly'] = True
@@ -1790,10 +1784,18 @@ for branch in BRANCHES:
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin_eng']
 
+# flame (JB) is for b2g30_v1_4 only, superceded by flame-kk
+for branch in BRANCHES:
+    if branch not in ('mozilla-b2g30_v1_4',):
+        if 'flame' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['flame']
+        if 'flame_eng' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['flame_eng']
+
 # b2g 1.4+
 for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-    for p in ('flame', 'flame_eng', 'linux64_gecko-debug',
-              'macosx64_gecko-debug', 'linux32_gecko-debug', 'win32_gecko-debug',
+    for p in ('linux64_gecko-debug', 'macosx64_gecko-debug',
+              'linux32_gecko-debug', 'win32_gecko-debug',
               'emulator-kk', 'emulator-kk-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
