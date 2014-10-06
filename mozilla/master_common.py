@@ -246,7 +246,7 @@ c['prioritizeBuilders'] = prioritizeBuilders
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
     if 'mozilla-release' in BRANCHES:
-        BRANCHES['mozilla-release']['gecko_version'] = 32
+        BRANCHES['mozilla-release']['gecko_version'] = 33
     if 'mozilla-beta' in BRANCHES:
         BRANCHES['mozilla-beta']['gecko_version'] = 33
     if 'mozilla-aurora' in BRANCHES:
