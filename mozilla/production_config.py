@@ -95,7 +95,7 @@ GLOBAL_VARS = {
 }
 
 BUILDS_BEFORE_REBOOT = 1
-SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
+SYMBOL_SERVER_HOST = 'symbols1.dmz.phx1.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
