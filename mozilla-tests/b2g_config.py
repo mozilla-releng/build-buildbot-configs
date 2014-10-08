@@ -412,6 +412,36 @@ MOCHITEST_EMULATOR_DEBUG = [
                             'blob_upload': True,
                             },
      ),
+    ('mochitest-debug-16', {'suite': 'mochitest-plain',
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
+     ),
+    ('mochitest-debug-17', {'suite': 'mochitest-plain',
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
+     ),
+    ('mochitest-debug-18', {'suite': 'mochitest-plain',
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
+     ),
+    ('mochitest-debug-19', {'suite': 'mochitest-plain',
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
+     ),
+    ('mochitest-debug-20', {'suite': 'mochitest-plain',
+                            'use_mozharness': True,
+                            'script_path': 'scripts/b2g_emulator_unittest.py',
+                            'blob_upload': True,
+                            },
+     ),
 ]
 
 MOCHITEST_MEDIA = [
@@ -1683,105 +1713,140 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '1', '--total-chunks', '15',
+                        '--this-chunk', '1', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-2': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '2', '--total-chunks', '15',
+                        '--this-chunk', '2', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-3': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '3', '--total-chunks', '15',
+                        '--this-chunk', '3', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-4': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '4', '--total-chunks', '15',
+                        '--this-chunk', '4', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-5': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '5', '--total-chunks', '15',
+                        '--this-chunk', '5', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-6': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '6', '--total-chunks', '15',
+                        '--this-chunk', '6', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-7': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '7', '--total-chunks', '15',
+                        '--this-chunk', '7', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-8': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '8', '--total-chunks', '15',
+                        '--this-chunk', '8', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-9': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '9', '--total-chunks', '15',
+                        '--this-chunk', '9', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-10': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '10', '--total-chunks', '15',
+                        '--this-chunk', '10', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-11': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '11', '--total-chunks', '15',
+                        '--this-chunk', '11', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-12': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '12', '--total-chunks', '15',
+                        '--this-chunk', '12', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-13': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '13', '--total-chunks', '15',
+                        '--this-chunk', '13', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-14': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '14', '--total-chunks', '15',
+                        '--this-chunk', '14', '--total-chunks', '20',
                     ],
                 },
                 'mochitest-debug-15': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'mochitest',
-                        '--this-chunk', '15', '--total-chunks', '15',
+                        '--this-chunk', '15', '--total-chunks', '20',
+                    ],
+                },
+                'mochitest-debug-16': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '16', '--total-chunks', '20',
+                    ],
+                },
+                'mochitest-debug-17': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '17', '--total-chunks', '20',
+                    ],
+                },
+                'mochitest-debug-18': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '18', '--total-chunks', '20',
+                    ],
+                },
+                'mochitest-debug-19': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '19', '--total-chunks', '20',
+                    ],
+                },
+                'mochitest-debug-20': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest',
+                        '--this-chunk', '20', '--total-chunks', '20',
                     ],
                 },
                 'xpcshell': {
