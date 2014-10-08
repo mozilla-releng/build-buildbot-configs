@@ -56,6 +56,10 @@ BRANCHES = {
         'gecko_version': 32,
         'b2g_version': (2, 0, 0),
     },
+    'mozilla-b2g34_v2_1': {
+        'gecko_version': 34,
+        'b2g_version': (2, 1, 0),
+    },
     'mozilla-aurora': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
@@ -2200,6 +2204,7 @@ BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['debug_unit
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION + GAIA_JS_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += GIP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GIP
+BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += GAIA_JS_INTEGRATION[:]
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
@@ -2216,6 +2221,7 @@ BRANCHES['graphics']['repo_path'] = "projects/graphics"
 BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
+BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
 BRANCHES['mozilla-aurora']['branch_name'] = "Mozilla-Aurora"
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
@@ -2243,9 +2249,10 @@ exclude_suites(('linux32_gecko', 'ubuntu32_vm-b2gdt'), 'cedar', ('gaia-ui-test',
 exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 exclude_suites(('emulator', 'ubuntu64_vm-b2g-lg-emulator'), 'cedar', ('gaia-ui-test',), True, True)
 
-# Enable mulet reftests on Ash and Try
+# Enable mulet reftests on Ash, Cedar and Try
 BRANCHES['ash']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 BRANCHES['try']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
+BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 
 # new linux64_gecko tests as of gecko 32
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
