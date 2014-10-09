@@ -1,5 +1,5 @@
 PWD=$(shell pwd)
-BUILDBOT=$(PWD)/../bin/buildbot
+BUILDBOT=$(PWD)/bin/buildbot
 HG=hg
 PRODUCTION_MASTERS=tools/buildfarm/maintenance/production-masters.json
 export PYTHONDONTWRITEBYTECODE=1
