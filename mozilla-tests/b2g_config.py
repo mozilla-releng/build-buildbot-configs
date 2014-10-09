@@ -1024,10 +1024,10 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
+        'enable_debug_unittests': False,
         'ubuntu32_vm-b2gdt': {
             'opt_unittest_suites': MOCHITEST_DESKTOP[:] + REFTEST_DESKTOP_SANITY[:],
-            'debug_unittest_suites': MOCHITEST_DESKTOP[:] + REFTEST_DESKTOP_SANITY[:],
+            'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -1199,8 +1199,7 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_vm-b2gdt': {
             'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
                     REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
-            'debug_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
-                    REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
+            'debug_unittest_suites': GAIA_UI[:],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -1418,10 +1417,10 @@ PLATFORM_UNITTEST_VARS = {
             "PAGER": '/bin/cat',
         },
         'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
+        'enable_debug_unittests': False,
         'mountainlion-b2gdt': {
             'opt_unittest_suites': GAIA_UI[:],
-            'debug_unittest_suites': GAIA_UI[:],
+            'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -1502,76 +1501,6 @@ PLATFORM_UNITTEST_VARS = {
                         '--cfg', 'b2g/desktop_automation_config.py',
                         '--test-suite', 'reftest',
                         '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                    ],
-                },
-                'reftest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 1, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 2, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 3, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 4, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-5': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 5, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-6': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 6, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-7': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 7, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-8': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 8, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-9': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 9, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-10': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 10, '--total-chunks', 10,
                     ],
                 },
             },
@@ -2260,9 +2189,7 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = GAIA_UI + MOCHITEST_MEDIA
-BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:] + MARIONETTE[:]
-BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = MARIONETTE[:]
-BRANCHES['cedar']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI + REFTEST_DESKTOP
+BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
   REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + GAIA_JS_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['debug_unittest_suites'] += GAIA_JS_INTEGRATION[:]
@@ -2276,7 +2203,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unitt
     MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED
-BRANCHES['pine']['platforms']['linux32_gecko']['ubuntu32_vm-b2gdt']['opt_unittest_suites'] += GAIA_UI
 BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['cypress']['mozharness_tag'] = "default"
@@ -2319,10 +2245,14 @@ BRANCHES['ash']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest
 BRANCHES['try']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
 
-# new linux64_gecko tests as of gecko 32
+# new linux64_gecko tests as of gecko 32; OOP replaces their non-OOP variants
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
       GAIA_BUILD + REFTEST_DESKTOP_OOP_SANITY + MOCHITEST_OOP_DESKTOP
+    for suite_to_remove in ('mochitest-1', 'reftest-sanity'):
+        for s in BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites']:
+            if s[0] == suite_to_remove:
+                BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'].remove(s)
 
 # new linux64_gecko tests as of gecko 34
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
@@ -2335,14 +2265,6 @@ for branch in BRANCHES.keys():
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
             BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
 
-# Disable ubuntu64_hw-b2g on all branches but cedar
-for branch in set(BRANCHES.keys()) - set(['cedar']):
-    for platform in BRANCHES[branch]['platforms']:
-        if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]['slave_platforms']:
-            BRANCHES[branch]['platforms'][platform]['slave_platforms'].remove('ubuntu64_hw-b2g')
-        if 'ubuntu64_hw-b2g' in BRANCHES[branch]['platforms'][platform]:
-            del BRANCHES[branch]['platforms'][platform]['ubuntu64_hw-b2g']
-
 # Disable emulator debug unittests on older branches
 for branch in BRANCHES.keys():
     if branch in ('mozilla-esr24', ):
@@ -2351,38 +2273,21 @@ for branch in BRANCHES.keys():
 
 # Disable gecko-debug unittests on older branches, Bug 91611
 # All tests need to be enabled on cedar until they green up, Bug 1004610
-# On recent branches, enable GAIA_UI for linux64, Bug 1004610, c9
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 30)])
 for b in BRANCHES.keys():
     if b in OLD_BRANCHES:
-        for platform in ['linux32_gecko', 'linux64_gecko', 'macosx64_gecko']:
+        for platform in ['linux32_gecko', 'linux64_gecko']:
              if platform in BRANCHES[b]['platforms']:
                  BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
-    else:
-        if b == 'cedar':
-            # run all test suites on all platforms
-            pass
-        else:
-            for platform in ['linux32_gecko', 'macosx64_gecko']:
-                 # disable all tests
-                 if platform in BRANCHES[b]['platforms']:
-                     BRANCHES[b]['platforms'][platform]['enable_debug_unittests'] = False
-            for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'), ):
-                # enable GAIA_UI tests only
-                if nested_haskey(BRANCHES[b]['platforms'], slave_platform[0], slave_platform[1]):
-                    slave_p = BRANCHES[b]['platforms'][slave_platform[0]][slave_platform[1]]
-                    slave_p['debug_unittest_suites'] = GAIA_UI[:]
 
 
 # Disable b2g desktop reftest-sanity on cedar
-for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
-                       ('linux32_gecko', 'ubuntu32_vm-b2gdt')):
+for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),):
     if nested_haskey(BRANCHES['cedar']['platforms'], slave_platform[0], slave_platform[1]):
         slave_p = BRANCHES['cedar']['platforms'][slave_platform[0]][slave_platform[1]]
         slave_p['opt_unittest_suites'] = [x for x in slave_p['opt_unittest_suites']
                                           if x[0] if x[0] != 'reftest']
-        slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
-                                            if x[0] if x[0] != 'reftest']
+
 
 # Disable linter tests on branches older than gecko 31
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 31)])
