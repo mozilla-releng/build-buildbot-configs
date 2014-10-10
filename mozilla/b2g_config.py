@@ -586,7 +586,7 @@ PLATFORM_VARS = {
         'upload_symbols': False,
         'download_symbols': False,
         'slaves': SLAVES['macosx64-lion'],
-        'platform_objdir': "%s/i386" % OBJDIR,
+        'platform_objdir': OBJDIR,
         'stage_product': 'b2g',
         'stage_platform': 'macosx64-mulet',
         'update_platform': 'Darwin_x86_64-gcc3',
