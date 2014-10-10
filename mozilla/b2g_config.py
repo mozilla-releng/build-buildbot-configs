@@ -586,7 +586,7 @@ PLATFORM_VARS = {
         'upload_symbols': False,
         'download_symbols': False,
         'slaves': SLAVES['macosx64-lion'],
-        'platform_objdir': "%s/i386" % OBJDIR,
+        'platform_objdir': OBJDIR,
         'stage_product': 'b2g',
         'stage_platform': 'macosx64-mulet',
         'update_platform': 'Darwin_x86_64-gcc3',
@@ -811,6 +811,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/dev/config/mozconfigs/win32/mulet',
         'enable_dep': True,
         'profiled_build': False,
+        'enable_nightly': True,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
         'upload_symbols': False,
@@ -1794,13 +1795,16 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 34):
     if 'linux64-mulet' in branch['platforms']:
         del branch['platforms']['linux64-mulet']
 
-# OSX and Win32 Mulet only on cedar for now (bug 1067628)
+# Enable win32 mulet in gecko 35+
+for name, branch in items_before(BRANCHES, 'gecko_version', 35):
+    if 'win32-mulet' in branch['platforms']:
+        del branch['platforms']['win32-mulet']
+
+# OSX Mulet only on cedar for now (bug 1067628)
 for branch in BRANCHES:
     if branch not in ('cedar',):
         if 'macosx64-mulet' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['macosx64-mulet']
-        if 'win32-mulet' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['win32-mulet']
 
 # tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
