@@ -32,7 +32,7 @@ def bumpIntegerInFile(previousContents):
 releaseConfig['version']             = '31.2.0esr'
 releaseConfig['appVersion']          = '31.2.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_31_2_0esr'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
@@ -42,7 +42,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'c2a095b714f2',
+        'revision': 'f5690f9ca229',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
