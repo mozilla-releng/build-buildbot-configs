@@ -60,11 +60,15 @@ else:
         'mozilla-b2g32_v2_0',
         'mozilla-b2g34_v2_1',
     ])
+    # MERGE DAY: Remove the following block when we are sure b2g CI is moved to
+    # taskcluster
     # Add mozilla-aurora on odd-numbered m-c gecko versions
-    b = {'mozilla-central': {}}
-    master_common.setMainFirefoxVersions(b)
-    if b['mozilla-central']['gecko_version'] % 2:
-        ACTIVE_B2G_BRANCHES.append('mozilla-aurora')
+    # b = {'mozilla-central': {}}
+    # master_common.setMainFirefoxVersions(b)
+    # Starting with v2.2, b2g automation will be handled by taskcluster
+    # if b['mozilla-central']['gecko_version'] % 2:
+    #    ACTIVE_B2G_BRANCHES.append('mozilla-aurora')
+    # MERGE DAY: end
 
 if 'limit_projects' in master_config:
     ACTIVE_PROJECTS = [x.encode("utf-8") for x in master_config['limit_projects']]
