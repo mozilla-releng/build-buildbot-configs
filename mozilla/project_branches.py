@@ -159,7 +159,9 @@ PROJECT_BRANCHES = {
             },
             'win64': {
                 'enable_opt_unittests': True,
-                'slave_platforms': ['win64_vm', 'win8_64'],
+                'enable_talos': True,
+                'slave_platforms': ['win8_64'],
+                'talos_slave_platforms': ['win8_64'],
             },
             'win64-debug': {
                 'enable_debug_unittests': True,
