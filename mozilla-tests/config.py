@@ -142,9 +142,9 @@ PLATFORMS['win32']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
-PLATFORMS['win64']['slave_platforms'] = ['win64_vm', 'win8_64']
-PLATFORMS['win64']['win64_vm'] = {'name': 'win64_vm'}
+PLATFORMS['win64']['slave_platforms'] = ['win8_64']
 PLATFORMS['win64']['win8_64'] = {'name': 'win8_64'}
+PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
 PLATFORMS['win64']['win8_64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -221,15 +221,15 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64', 'win64'))
 NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
 NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp-ix']
-NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32'))
+NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'win64'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
 WIN8_ONLY = ['win8']
 LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
-NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64'))
+NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64', 'win64'))
 
 SUITES = {
     'xperf': {
@@ -1287,75 +1287,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'win64_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
-            'suite_config': {
-                'mochitest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/windows_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-            },
-        }
     },
     'macosx64': {
         'product_name': 'firefox',
