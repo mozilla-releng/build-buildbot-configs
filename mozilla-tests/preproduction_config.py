@@ -12,7 +12,7 @@ GLOBAL_VARS = {
     'mozharness_tag': 'production',
     'stage_server': 'preproduction-stage.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
-    'stage_ssh_key': 'ffxbld_dsa',
+    'stage_ssh_key': 'ffxbld_rsa',
     'datazilla_url': 'https://datazilla.mozilla.org/test',
 }
 

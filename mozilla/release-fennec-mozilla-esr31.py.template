@@ -91,7 +91,7 @@ releaseConfig['enableMultiLocale']   = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
@@ -99,7 +99,7 @@ releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'ffxbld_dsa'
+releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
