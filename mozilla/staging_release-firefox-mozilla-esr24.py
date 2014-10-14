@@ -90,7 +90,7 @@ releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozEsr24-branch-patcher2.cfg'  # TODO for 17.0.1esr
@@ -101,7 +101,7 @@ releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'ffxbld_rsa'
+releaseConfig['ausSshKey']           = 'ffxbld_dsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['verifyConfigs']       = {}  # TODO for 24.0.1esr

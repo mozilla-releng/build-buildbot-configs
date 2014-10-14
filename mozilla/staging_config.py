@@ -36,7 +36,7 @@ GLOBAL_VARS = {
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_host': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'aus2_user': 'ffxbld',
-    'aus2_ssh_key': 'ffxbld_rsa',
+    'aus2_ssh_key': 'ffxbld_dsa',
     'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
