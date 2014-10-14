@@ -101,7 +101,7 @@ GLOBAL_VARS = {
     'mozharness_tag': 'production',
     'stage_server': 'stage.mozilla.org',
     'stage_username': 'ffxbld',
-    'stage_ssh_key': 'ffxbld_dsa',
+    'stage_ssh_key': 'ffxbld_rsa',
     'datazilla_url': 'https://datazilla.mozilla.org/talos',
     'blob_upload': True,
 }
