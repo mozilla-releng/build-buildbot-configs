@@ -105,7 +105,7 @@ releaseConfig['mergeLocales']        = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_dsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
