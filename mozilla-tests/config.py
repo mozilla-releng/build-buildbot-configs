@@ -150,9 +150,9 @@ PLATFORMS['win64']['win8_64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
 }
 PLATFORMS['win64']['mozharness_config'] = {
-    'mozharness_python': ['c:/python27/python', '-u'],
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
-    'reboot_command': ['c:/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
     'config_file': 'talos/windows_config.py',
 }
