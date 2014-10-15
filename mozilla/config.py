@@ -2589,6 +2589,15 @@ for name, branch in BRANCHES.items():
         if "mozharness_desktop_l10n" in p:
             del p["mozharness_desktop_l10n"]
 
+# enable mozharness desktop builds across all twigs
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+    if name in ('mozilla-central', 'mozilla-inbound', 'b2g-inbound', 'try'):
+        # only enable on twigs for now
+        continue
+    # if true, any platform with mozharness_desktop_build in its config
+    # will use mozharness instead of MozillaBuildFactory
+    branch['desktop_mozharness_builds_enabled'] = True
+
 # Bug 950206 - Enable 32-bit Windows builds on Date, test those builds on tst-w64-ec2-XXXX
 BRANCHES['date']['platforms']['win32']['unittest_platform'] = 'win64-opt'
 
