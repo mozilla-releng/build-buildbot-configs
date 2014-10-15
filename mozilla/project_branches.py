@@ -121,9 +121,6 @@ PROJECT_BRANCHES = {
                 'enable_opt_unittests': True,
             },
         },
-        # if true, any platform with mozharness_desktop_build in its config
-        # will use mozharness instead of MozharnessBuildFactory
-        'desktop_mozharness_builds_enabled': True,
     },
     #'birch': {},  # Bug 1010674
     'cedar': {
@@ -139,17 +136,11 @@ PROJECT_BRANCHES = {
                 'enable_opt_unittests': True,
             },
         },
-        # if true, any platform with mozharness_desktop_build in its config
-        # will use mozharness instead of MozharnessBuildFactory
-        'desktop_mozharness_builds_enabled': True,
     },
     'cypress': {
         'enable_perproduct_builds': False,
         'mozharness_tag': 'default',
         'enable_talos': True,
-        # if true, any platform with mozharness_desktop_build in its config
-        # will use mozharness instead of MozharnessBuildFactory
-        'desktop_mozharness_builds_enabled': True,
     },
     'date': {
         'lock_platforms': True,
