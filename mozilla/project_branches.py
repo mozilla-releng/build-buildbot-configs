@@ -156,11 +156,11 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'enable_opt_unittests': True,
+                'slave_platforms': ['xp-ix', 'win7-ix'],
                 'talos_slave_platforms': ['xp-ix', 'win7-ix'],
             },
             'win64': {
                 'enable_opt_unittests': True,
-                'enable_talos': True,
                 'slave_platforms': ['win8_64'],
                 'talos_slave_platforms': ['win8_64'],
             },
