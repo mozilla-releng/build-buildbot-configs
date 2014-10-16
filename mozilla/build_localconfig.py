@@ -31,7 +31,6 @@ else:
         'mozilla-beta',
         'mozilla-aurora',
         'mozilla-release',
-        'mozilla-esr24',
         'mozilla-esr31',
         'mozilla-b2g28_v1_3t',
         'mozilla-b2g30_v1_4',
@@ -46,7 +45,6 @@ else:
         'comm-central',
         'comm-beta',
         'comm-aurora',
-        'comm-esr24',
         'comm-esr31',
     ])
 if 'limit_b2g_branches' in master_config:

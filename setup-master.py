@@ -246,7 +246,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                 c.local_links.extend(
                     [('staging_release-firefox-mozilla-%s.py' % v,
                       'release-firefox-mozilla-%s.py' % v)
-                     for v in ['beta', 'release', 'esr24', 'esr31']
+                     for v in ['beta', 'release', 'esr31']
                      ] +
                     [('staging_release-fennec-mozilla-%s.py' % v,
                       'release-fennec-mozilla-%s.py' % v)
@@ -254,7 +254,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                      ] +
                     [('staging_release-thunderbird-comm-%s.py' % v,
                       'release-thunderbird-comm-%s.py' % v)
-                        for v in ['beta', 'esr24', 'esr31']
+                        for v in ['beta', 'esr31']
                      ]
                 )
             else:

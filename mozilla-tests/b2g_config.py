@@ -2259,12 +2259,6 @@ for branch in BRANCHES.keys():
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
             BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
 
-# Disable emulator debug unittests on older branches
-for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr24', ):
-        if 'emulator' in BRANCHES[branch]['platforms']:
-            BRANCHES[branch]['platforms']['emulator']['enable_debug_unittests'] = False
-
 # Disable gecko-debug unittests on older branches, Bug 91611
 # All tests need to be enabled on cedar until they green up, Bug 1004610
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 30)])
@@ -2344,15 +2338,6 @@ for b in BRANCHES.keys():
             slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
             slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                                 if not x[0].startswith('mochitest-debug')]
-
-# Disable ubuntu64_vm-b2gdt/ubuntu32_vm-b2gdt (ie gaia-ui-test) on older branches
-for branch in BRANCHES.keys():
-    if branch in ('mozilla-esr24', ):
-        for platform in ('linux64_gecko', 'linux32_gecko'):
-            if platform in BRANCHES[branch]['platforms']:
-                for slave_platform in ('ubuntu64_vm-b2gdt', 'ubuntu32_vm-b2gdt'):
-                    if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                        del BRANCHES[branch]['platforms'][platform][slave_platform]
 
 # Disable emulator cppunit tests on older branches
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 34)])
