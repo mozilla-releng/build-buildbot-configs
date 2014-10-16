@@ -2598,9 +2598,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
 
-# Bug 950206 - Enable 32-bit Windows builds on Date, test those builds on tst-w64-ec2-XXXX
-BRANCHES['date']['platforms']['win32']['unittest_platform'] = 'win64-opt'
-
 if __name__ == "__main__":
     import sys
     import pprint
