@@ -87,9 +87,12 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    # Not needed while booked for Thunderbird
-    #'alder': {
-    #},
+    'alder': {
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'nightly_signing_servers': 'nightly-signing',
+    },
     'ash': {
         'enable_perproduct_builds': False,
         'desktop_mozharness_repacks_enabled': True,
