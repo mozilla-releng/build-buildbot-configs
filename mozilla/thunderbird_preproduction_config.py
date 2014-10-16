@@ -50,10 +50,6 @@ BRANCHES = {
         'file__update_on_closed_tree': False,
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
     },
-    'comm-esr24': {
-        'enable_blocklist_update': False,
-        'file_update_on_closed_tree': False,
-    },
     'comm-esr31': {
         'enable_blocklist_update': False,
         'file_update_on_closed_tree': False,

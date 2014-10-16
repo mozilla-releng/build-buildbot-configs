@@ -30,16 +30,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr24': {
-        'gecko_version': 24,
-        'platforms': {
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr31': {
         'gecko_version': 31,
         'platforms': {
@@ -1638,12 +1628,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-
-######### mozilla-esr24
-BRANCHES['mozilla-esr24']['release_tests'] = 1
-BRANCHES['mozilla-esr24']['repo_path'] = "releases/mozilla-esr24"
-BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr24']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 
 ######### mozilla-esr31
 BRANCHES['mozilla-esr31']['release_tests'] = 1

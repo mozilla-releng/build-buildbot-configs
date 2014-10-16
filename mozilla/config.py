@@ -1764,21 +1764,6 @@ BRANCHES = {
     'mozilla-aurora': {
         'branch_projects': []
     },
-    'mozilla-esr24': {
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 24,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'mozilla-esr31': {
         'branch_projects': [],
         'lock_platforms': True,
@@ -1986,7 +1971,6 @@ BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-central'
-BRANCHES['mozilla-central']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-central' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-central']['enable_multi_locale'] = True
@@ -2039,7 +2023,6 @@ BRANCHES['mozilla-release']['l10nDatedDirs'] = True
 BRANCHES['mozilla-release']['l10n_tree'] = 'fxrel'
 BRANCHES['mozilla-release']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-release'
-BRANCHES['mozilla-release']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-release']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-release' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-release']['enable_multi_locale'] = True
@@ -2079,7 +2062,6 @@ BRANCHES['mozilla-beta']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-beta-l10n/'
 BRANCHES['mozilla-beta']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-beta'
-BRANCHES['mozilla-beta']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-beta']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-beta' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-beta']['enable_multi_locale'] = True
@@ -2127,7 +2109,6 @@ BRANCHES['mozilla-aurora']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n/'
 BRANCHES['mozilla-aurora']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-aurora'
-BRANCHES['mozilla-aurora']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-aurora']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-aurora' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-aurora']['enable_multi_locale'] = True
@@ -2159,38 +2140,6 @@ BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] =
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 
-######## mozilla-esr24
-BRANCHES['mozilla-esr24']['repo_path'] = 'releases/mozilla-esr24'
-BRANCHES['mozilla-esr24']['update_channel'] = 'nightly-esr24'
-BRANCHES['mozilla-esr24']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr24']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-esr24']['start_hour'] = [0]
-BRANCHES['mozilla-esr24']['start_minute'] = [05]
-BRANCHES['mozilla-esr24']['enable_xulrunner'] = False
-BRANCHES['mozilla-esr24']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr24']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr24']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-esr24']['enable_l10n'] = False
-BRANCHES['mozilla-esr24']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-esr24']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr24']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                               'macosx64']
-BRANCHES['mozilla-esr24']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr24']['l10n_tree'] = 'fxesr24'
-BRANCHES['mozilla-esr24']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr24'
-BRANCHES['mozilla-esr24']['allLocalesFile'] = 'browser/locales/all-locales'
-BRANCHES['mozilla-esr24']['enable_nightly'] = True
-BRANCHES['mozilla-esr24']['create_snippet'] = True
-BRANCHES['mozilla-esr24']['create_partial'] = True
-BRANCHES['mozilla-esr24']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
-BRANCHES['mozilla-esr24']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr24'
-BRANCHES['mozilla-esr24']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr24']['enable_hsts_update'] = True
-BRANCHES['mozilla-esr24']['enable_valgrind'] = False
-BRANCHES['mozilla-esr24']['enabled_products'] = ['firefox']
-
 ######## mozilla-esr31
 BRANCHES['mozilla-esr31']['repo_path'] = 'releases/mozilla-esr31'
 BRANCHES['mozilla-esr31']['update_channel'] = 'nightly-esr31'
@@ -2212,7 +2161,6 @@ BRANCHES['mozilla-esr31']['l10nDatedDirs'] = True
 BRANCHES['mozilla-esr31']['l10n_tree'] = 'fxesr31'
 BRANCHES['mozilla-esr31']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr31'
-BRANCHES['mozilla-esr31']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-esr31']['enable_nightly'] = True
 BRANCHES['mozilla-esr31']['create_snippet'] = True
 BRANCHES['mozilla-esr31']['create_partial'] = True
@@ -2251,7 +2199,6 @@ BRANCHES['mozilla-b2g30_v1_4']['l10n_platforms'] = ['linux', 'linux64', 'win32',
 BRANCHES['mozilla-b2g30_v1_4']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g30_v1_4'
-BRANCHES['mozilla-b2g30_v1_4']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-b2g30_v1_4']['enable_nightly'] = False
 BRANCHES['mozilla-b2g30_v1_4']['create_snippet'] = False
 BRANCHES['mozilla-b2g30_v1_4']['create_partial'] = False
@@ -2284,7 +2231,6 @@ BRANCHES['mozilla-b2g32_v2_0']['l10n_platforms'] = ['linux', 'linux64', 'win32',
 BRANCHES['mozilla-b2g32_v2_0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g32_v2_0'
-BRANCHES['mozilla-b2g32_v2_0']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-b2g32_v2_0']['enable_nightly'] = False
 BRANCHES['mozilla-b2g32_v2_0']['create_snippet'] = False
 BRANCHES['mozilla-b2g32_v2_0']['create_partial'] = False
@@ -2317,7 +2263,6 @@ BRANCHES['mozilla-b2g34_v2_1']['l10n_platforms'] = ['linux', 'linux64',
 BRANCHES['mozilla-b2g34_v2_1']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g34_v2_1'
-BRANCHES['mozilla-b2g34_v2_1']['allLocalesFile'] = 'browser/locales/all-locales'
 BRANCHES['mozilla-b2g34_v2_1']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1']['create_snippet'] = False
 BRANCHES['mozilla-b2g34_v2_1']['create_partial'] = False
@@ -2550,7 +2495,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
 # Only test pretty names on train branches, not m-c or project branches.
 # That's also forced on nonunified builds in buildbotcustom.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr24", "mozilla-esr31"):
+               "mozilla-esr31"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
