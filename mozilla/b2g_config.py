@@ -591,7 +591,8 @@ PLATFORM_VARS = {
         'stage_platform': 'macosx64-mulet',
         'update_platform': 'Darwin_x86_64-gcc3',
         'enable_shared_checkouts': True,
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
+        'enable_nightly': True,
         'env': {
             'MOZ_OBJDIR': OBJDIR,
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1761,16 +1762,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 34):
     if 'linux64-mulet' in branch['platforms']:
         del branch['platforms']['linux64-mulet']
 
-# Enable win32 mulet in gecko 35+
-for name, branch in items_before(BRANCHES, 'gecko_version', 35):
+# Enable win32/macosx64 mulet in gecko 36+
+for name, branch in items_before(BRANCHES, 'gecko_version', 36):
     if 'win32-mulet' in branch['platforms']:
         del branch['platforms']['win32-mulet']
-
-# OSX Mulet only on cedar for now (bug 1067628)
-for branch in BRANCHES:
-    if branch not in ('cedar',):
-        if 'macosx64-mulet' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['macosx64-mulet']
+    if 'macosx64-mulet' in branch['platforms']:
+        del branch['platforms']['macosx64-mulet']
 
 # tarako is for B2G 1.3t only (gecko28)
 for branch in BRANCHES:
