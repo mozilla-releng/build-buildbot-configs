@@ -1193,7 +1193,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:] + MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
+            'opt_unittest_suites': MOCHITEST_DESKTOP[:] + GAIA_INTEGRATION[:] + \
                     REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
             'debug_unittest_suites': GAIA_UI[:],
             'suite_config': {
@@ -1415,7 +1415,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'mountainlion-b2gdt': {
-            'opt_unittest_suites': GAIA_UI[:],
+            'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
@@ -2190,8 +2190,6 @@ BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unitte
   REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP + GAIA_JS_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['debug_unittest_suites'] += GAIA_JS_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY + GAIA_INTEGRATION + GAIA_JS_INTEGRATION[:]
-BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += GIP
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += GIP
 BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += GAIA_JS_INTEGRATION[:]
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
@@ -2252,6 +2250,19 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
       GAIA_BUILD_UNIT
+
+# Use chunked Gip in 36+ (bug 1081246)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
+    for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
+                           ('macosx64_gecko', 'mountainlion-b2gdt')):
+        if slave_platform[0] in BRANCHES[name]['platforms']:
+            BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GIP[:]
+# ...and non-chunked Gip in earlier branches
+for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+    for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
+                           ('macosx64_gecko', 'mountainlion-b2gdt')):
+        if slave_platform[0] in BRANCHES[name]['platforms']:
+            BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GAIA_UI[:]
 
 # explicitly set slave platforms per branch
 for branch in BRANCHES.keys():
