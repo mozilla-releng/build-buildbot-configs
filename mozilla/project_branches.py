@@ -110,7 +110,7 @@ PROJECT_BRANCHES = {
         'enable_multi_locale': True,
         'upload_mobile_symbols': True,
         'enable_valgrind': False,
-        'enabled_products': ['firefox', 'mobile'],
+        'enabled_products': ['firefox'],
         'lock_platforms': True,
         'platforms': {
             'macosx64': {
@@ -125,12 +125,6 @@ PROJECT_BRANCHES = {
             'win32': {
                 'test_pretty_names': True,
             },
-            'android-armv6': {
-                'env': {'MOZ_SYMBOLS_EXTRA_BUILDID': 'android-armv6'},
-            },
-            'android-x86': {
-                'env': {'MOZ_SYMBOLS_EXTRA_BUILDID': 'android-x86'},
-            },
             'win64': {},
             'linux-debug': {},
             'linux64-br-haz': {},
@@ -142,8 +136,6 @@ PROJECT_BRANCHES = {
             'macosx64-debug': {},
             'win32-debug': {},
             'win64-debug': {},
-            'android': {},
-            'android-debug': {},
         },
     },
     'ash': {
