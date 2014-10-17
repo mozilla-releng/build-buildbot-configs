@@ -88,6 +88,8 @@ PROJECT_BRANCHES = {
         },
     },
     'alder': {
+        # Make every checkin trigger builds, remove after 33.1 (or sooner)
+        'enable_perproduct_builds': False,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
