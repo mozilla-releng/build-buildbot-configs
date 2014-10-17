@@ -2457,11 +2457,6 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % name
         PROJECTS[branch_project_name] = project
 
-for _, branch in items_before(BRANCHES, 'gecko_version', 26):
-    for p in 'linux64-asan', 'linux64-asan-debug':
-        if p in branch['platforms']:
-            del branch['platforms'][p]
-
 # ant test on try
 ## ant rides the trains (Bug 971841)
 # for name, branch in items_before(BRANCHES, 'gecko_version', 30):
@@ -2500,10 +2495,6 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
-# Exact rooting landed for desktop only in 28.
-for name, branch in items_before(BRANCHES, 'gecko_version', 28):
-    if 'linux64-br-haz' in branch['platforms']:
-        del branch['platforms']['linux64-br-haz']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
     # b2g cannot use exact rooting yet since it has known hazards. If a
     # b2g-only tree were to acquire additional desktop-only hazard, we

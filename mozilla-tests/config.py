@@ -1752,21 +1752,6 @@ for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
 # for branches running an older version.
 # https://bugzilla.mozilla.org/show_bug.cgi?id=937637
 for platform in PLATFORMS.keys():
-    for name, branch in items_before(BRANCHES, 'gecko_version', 28):
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in branch['platforms'][platform]:
-                continue
-
-            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
-                for cpp_suite in CPPUNIT:
-                    try:
-                        branch['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
-                    except ValueError:
-                        # wasn't in the list anyways
-                        pass
-
     # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
         if platform not in branch['platforms']:
@@ -2011,11 +1996,6 @@ WIN64_TESTING_BRANCHES = ['date']
 for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
     if 'win64' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['win64']
-
-# ASAN builds/tests should ride the trains for gecko 26
-for name, branch in items_before(BRANCHES, 'gecko_version', 26):
-    if 'linux64-asan' in branch['platforms']:
-        del branch['platforms']['linux64-asan']
 
 # Disable Linux64-cc in every branch except cedar
 for name in BRANCHES.keys():

@@ -40,7 +40,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'clonePath': 'releases/mozilla-esr31',
-        'path': 'users/stage-ffxbld/mozilla-esr24',
+        'path': 'users/stage-ffxbld/mozilla-esr31',
         'revision': 'default',
         'relbranch': None,
         'bumpFiles': {
