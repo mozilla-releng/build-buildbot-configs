@@ -1063,6 +1063,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1136,6 +1139,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-other': {
@@ -1298,6 +1304,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1367,6 +1376,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1434,6 +1446,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-browser-chrome': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-other': {
@@ -1874,13 +1889,23 @@ for platform in PLATFORMS.keys():
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux' in branch['platforms']:
-        branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:] + MOCHITEST_BC_3_E10S[:]
+        branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
         branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
     if 'linux64' in branch['platforms']:
-        branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:] + MOCHITEST_BC_3_E10S[:]
+        branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
         branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
     if 'linux64-asan' in branch['platforms']:
-        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:] + MOCHITEST_BC_3_E10S[:]
+        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
+
+# Enable e10s browser-chrome mochitests on trunk branches, opt builds only.
+# Bug 1080370 - We don't want to ride the trains
+# TODO: We're not ready to enable XP
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+    for platform in PLATFORMS.keys():
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
+                    not slave_platform == 'xp-ix':
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S[:]
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
