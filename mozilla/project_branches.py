@@ -88,6 +88,9 @@ PROJECT_BRANCHES = {
         },
     },
     'alder': {
+        # Per bug 1083853, this disable mozharness mach and other
+        # mozilla-central oriented features
+        'gecko_version': 33,
         # Make every checkin trigger builds, remove after 33.1 (or sooner)
         'enable_perproduct_builds': False,
         'enable_nightly': True,
