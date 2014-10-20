@@ -10,9 +10,6 @@ PROJECT_BRANCHES = {
         'periodic_start_hours': range(2, 24, 3),
         'enable_weekly_bundle': True,
     },
-    'graphics': {
-        'enable_talos': False,
-    },
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
         'enable_perproduct_builds': True,

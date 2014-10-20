@@ -8,7 +8,6 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
         'enable_nightly': False,
     },
-    'graphics': {},
     # Please sync any customizations made to mozilla-inbound to cypress.
     'mozilla-inbound': {
         'repo_path': 'integration/mozilla-inbound',
