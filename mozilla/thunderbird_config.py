@@ -814,8 +814,6 @@ BRANCHES['comm-esr31']['enable_valgrind'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
-# MERGE DAY (remove 'mozilla_dir' once comm-beta no longer services Gecko 33 and lower)
-BRANCHES['comm-beta']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-beta']['skip_blank_repos'] = True
 BRANCHES['comm-beta']['call_client_py'] = True
 BRANCHES['comm-beta']['repo_path'] = 'releases/comm-beta'

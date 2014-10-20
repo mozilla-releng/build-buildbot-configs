@@ -1578,9 +1578,21 @@ PROJECTS = {
     'jetpack': {
         'branches': ['fx-team'],
         'platforms': {
-            'ubuntu64_vm': {'ext': 'linux-x86_64.tar.bz2', 'debug': True},
-            'ubuntu64-asan_vm': {'ext': 'linux-x86_64-asan.tar.bz2', 'debug': False},
-            'ubuntu32_vm': {'ext': 'linux-i686.tar.bz2', 'debug': True},
+            'ubuntu64_vm': {
+                'ext': 'linux-x86_64.tar.bz2',
+                'env': 'linux-perf',
+                'debug': True
+            },
+            'ubuntu64-asan_vm': {
+                'ext': 'linux-x86_64-asan.tar.bz2',
+                'env': 'linux-perf',
+                'debug': False
+            },
+            'ubuntu32_vm': {
+                'ext': 'linux-i686.tar.bz2',
+                'env': 'linux-perf',
+                'debug': True
+            },
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
             'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
             'xp-ix': {
@@ -1885,27 +1897,23 @@ for platform in PLATFORMS.keys():
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # Enable e10s Linux mochitests on trunk branches
+# Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
 # Fix this to a certain gecko version once e10s starts riding the trains
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
-    if 'linux' in branch['platforms']:
-        branch['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
-        branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
-    if 'linux64' in branch['platforms']:
-        branch['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
-        branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_E10S[:]
-    if 'linux64-asan' in branch['platforms']:
-        branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MOCHITEST_E10S[:]
-
-# Enable e10s browser-chrome mochitests on trunk branches, opt builds only.
-# Bug 1080370 - We don't want to ride the trains
-# TODO: We're not ready to enable XP
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+    if name == "holly": # On Holly we use normal mochitest as e10s ones
+        continue
     for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
                     not slave_platform == 'xp-ix':
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S[:]
+            if platform in ('linux', 'linux64', 'linux64-asan'):
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S[:]
+            if platform in ('linux', 'linux64'):
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
