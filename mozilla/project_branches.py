@@ -102,11 +102,12 @@ PROJECT_BRANCHES = {
         'enable_mac_a11y': True,
         'enable_l10n': True,
         'enable_l10n_onchange': False,
+        'enUS_binaryURL': '/nightly/latest-alder',
         'l10nNightlyUpdate': True,
         'l10n_tree': 'fxrel',
         'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
         # explicitly set the server to avoid using variables
-        'localesURL': 'http://hg.mozilla.org/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-release',
+        'localesURL': 'http://hg.mozilla.org/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.alder',
         'enable_multi_locale': True,
         'upload_mobile_symbols': True,
         'enable_valgrind': False,
