@@ -62,7 +62,7 @@ GLOBAL_VARS = {
     'stage_server': 'stage.mozilla.org',
     'aus2_host': 'aus3-staging.mozilla.org',
     'aus2_user': 'ffxbld',
-    'aus2_ssh_key': 'ffxbld_dsa',
+    'aus2_ssh_key': 'ffxbld_rsa',
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
     'graph_server': 'graphs.mozilla.org',

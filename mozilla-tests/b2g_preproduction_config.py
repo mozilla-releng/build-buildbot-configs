@@ -7,7 +7,7 @@ GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 GLOBAL_VARS['disable_tinderbox_mail'] = True
 GLOBAL_VARS['tinderbox_tree'] = 'MozillaTest'
 GLOBAL_VARS['stage_username'] = 'ffxbld'
-GLOBAL_VARS['stage_ssh_key'] = 'ffxbld_dsa'
+GLOBAL_VARS['stage_ssh_key'] = 'ffxbld_rsa'
 
 BRANCHES = {
     'try': {
