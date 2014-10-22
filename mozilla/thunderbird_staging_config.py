@@ -12,7 +12,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
     'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
-    'base_clobber_url': 'http://clobberer-stage.pvt.build.mozilla.org/index.php',
+    'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
     'disable_tinderbox_mail': True,
     'talos_masters': [],
     # List of unittest masters to notify of new builds to test,
