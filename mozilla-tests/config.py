@@ -1630,19 +1630,19 @@ BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
-BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
-BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
-BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['macosx64']['talos_slave_platforms'] = []
 
