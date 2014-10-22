@@ -35,12 +35,12 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'enable_checktests': False,
-                'slave_platforms': ['win8'],
-                'talos_slave_platforms': ['win8'],
+                'slave_platforms': ['win7-ix'],
+                'talos_slave_platforms': ['win7-ix'],
             },
             'win32-debug': {
                 'enable_checktests': False,
-                'slave_platforms': ['win8'],
+                'slave_platforms': ['win7-ix'],
             },
             'macosx64': {
                 'enable_checktests': False,
@@ -82,6 +82,9 @@ PROJECT_BRANCHES = {
             'win32': {
                 'nightly_signing_servers': 'nightly-signing',
             },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
         },
     },
     'alder': {
@@ -98,7 +101,7 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'per-checkin',
         'enable_mac_a11y': True,
         'enable_l10n': True,
-        'enable_l10n_onchange': False,
+        'enable_l10n_onchange': True,
         'enUS_binaryURL': '/nightly/latest-alder',
         'l10nNightlyUpdate': True,
         'l10n_tree': 'fxrel',
@@ -158,6 +161,8 @@ PROJECT_BRANCHES = {
             'linux64-sh-haz': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
         },
         'mobile_platforms': {
             'android': {
@@ -193,13 +198,9 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'enable_opt_unittests': True,
-                'slave_platforms': ['xp-ix', 'win7-ix'],
-                'talos_slave_platforms': ['xp-ix', 'win7-ix'],
             },
             'win64': {
                 'enable_opt_unittests': True,
-                'slave_platforms': ['win8_64'],
-                'talos_slave_platforms': ['win8_64'],
             },
             'win64-debug': {
                 'enable_debug_unittests': True,
@@ -236,6 +237,8 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
         },
         'enable_talos': True,
     },

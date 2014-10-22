@@ -1928,12 +1928,6 @@ for branch in BRANCHES.keys():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
 
-    # win64 builds run on a limited set of branches
-    if branch not in ('try', 'mozilla-central', 'date', 'oak'):
-        for platform in ('win64', 'win64-debug'):
-            if platform in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][platform]
-
     # linux64-cc builds only run on cedar for now
     if branch not in ('cedar',):
         for platform in ('linux64-cc',):
@@ -2533,6 +2527,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
+
+# disable win64 for gecko < 36
+for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+    for p in ('win64', 'win64-debug'):
+        if p in branch['platforms']:
+            del branch['platforms'][p]
 
 if __name__ == "__main__":
     import sys
