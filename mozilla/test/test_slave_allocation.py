@@ -21,7 +21,7 @@ class SlaveCheck(unittest.TestCase):
 
     def test_stag_not_in_prod(self):
         prod_slaves = [x for k, s in prod.SLAVES.iteritems() for x in s]
-        stag_slaves = [x for k, s in stag.STAGING_SLAVES.iteritems() for x in s]
+        stag_slaves = [x for k, s in stag.SLAVES.iteritems() for x in s]
         if hasattr(prod, 'TRY_SLAVES'):
             prod_slaves.extend([x for k, s in prod.TRY_SLAVES.iteritems() for x
                                 in s])
