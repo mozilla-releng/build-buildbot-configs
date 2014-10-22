@@ -133,6 +133,7 @@ PLATFORMS['win32']['mozharness_config'] = {
 }
 
 PLATFORMS['win64']['slave_platforms'] = ['win8_64']
+PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64']
 PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
@@ -212,14 +213,21 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64', 'win64'))
-NO_WIN = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'macosx64'))
 NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp-ix']
-NO_MAC = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'win64'))
 MAC_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('macosx64',))
 WIN7_ONLY = ['win7-ix']
-WIN8_ONLY = ['win8']
+WIN8_ONLY = ['win8_64']
 LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
 NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64', 'win64'))
+
+def win864_to_win8(platforms):
+    retval = []
+    for p in platforms:
+        if p == 'win8_64':
+            retval.append('win8')
+        else:
+            retval.append(p)
+    return retval
 
 SUITES = {
     'xperf': {
@@ -234,11 +242,6 @@ SUITES = {
                                   '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
-    'tpn': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
-    },
     'tp5o': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
@@ -250,7 +253,7 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'g1': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
@@ -260,12 +263,12 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'other': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'other_nol64': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_LINUX64),
     },
@@ -275,7 +278,7 @@ SUITES = {
         'options': ({}, NO_LINUX64),
     },
     'other_l64': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, LINUX64_ONLY),
     },
@@ -293,12 +296,6 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_WINXP),
-    },
-    'dirtypaint': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tspaint_places_generated_med:tspaint_places_generated_max',
-                                  '--setPref', 'hangmonitor.timeout=0', '--mozAfterPaint'],
-        'options': (TALOS_DIRTY_OPTS, ALL_TALOS_PLATFORMS),
     },
     'dromaeojs': {
         'enable_by_default': True,
@@ -319,27 +316,6 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_WINXP),
-    },
-    # now let's add the metro talos suites
-    'tp5o-metro': {
-        'enable_by_default': False,
-        'suites': [],  # suite + args are governed by talos.json
-        'options': ({}, WIN8_ONLY),
-    },
-    'other-metro': {
-        'enable_by_default': False,
-        'suites': [],  # suite + args are governed by talos.json
-        'options': ({}, WIN8_ONLY),
-    },
-    'svgr-metro': {
-        'enable_by_default': False,
-        'suites': [],  # suite + args are governed by talos.json
-        'options': ({}, WIN8_ONLY),
-    },
-    'dromaeojs-metro': {
-        'enable_by_default': False,
-        'suites': [],  # suite + args are governed by talos.json
-        'options': ({}, WIN8_ONLY),
     },
 }
 
@@ -1700,10 +1676,10 @@ BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] =
 BRANCHES['cedar']['platforms']['macosx64']['mavericks']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['win8']['opt_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['win8']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
 ######## mozilla-inbound
 # Skip test runs (see bug 1056787)
@@ -1714,16 +1690,16 @@ BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['opt_unittest_skipcou
 BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['opt_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['opt_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['opt_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skipcount'] = 3
+BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skipcount'] = 3
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['win32']['win8']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_skipcount'] = 3
+BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 3
@@ -1743,21 +1719,22 @@ for platform in BRANCHES['holly']['platforms'].keys():
         slave_p['opt_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT
         slave_p['debug_unittest_suites'] = MOCHITEST + REFTEST_NO_IPC + MOCHITEST_DT_3
 
-        # Enable content sandbox tests for Windows 32 bit
-        if slave_platform in PLATFORMS['win32']['slave_platforms']:
+        # Enable content sandbox tests for Windows bit
+        if slave_platform in PLATFORMS['win64']['slave_platforms'] or slave_platform in PLATFORMS['win32']['slave_platforms']:
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
 # Enable mavericks testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
 
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
+for name, branch in items_before(BRANCHES, 'gecko_version', 32):
     if 'enable_talos' in branch and branch['enable_talos'] is False:
         continue
-    branch['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
-    branch['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-    branch['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+    branch['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['other_nol64_tests'] = (0, False, {}, NO_LINUX64)
+    branch['other_l64_tests'] = (0, False, {}, LINUX64_ONLY)
+    branch['g1_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+
 
 # Run Jetpack tests everywhere except on versioned B2G branches.
 for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
@@ -1800,6 +1777,17 @@ for platform in PLATFORMS.keys():
     if platform != 'win32':
         continue
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 33):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE[:]
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MARIONETTE[:]
+
+# Enable Mn on opt/debug win64 for gecko >= 36
+for platform in PLATFORMS.keys():
+    if platform != 'win64':
+        continue
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
@@ -1915,6 +1903,27 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
 
+# Bug 1080134: we want to disable all 32-bit testing on win8 for gecko 36 and
+# higher, and enable 64-bit tests on win8 instead.
+# Disable 64-bit win8 testing on gecko 35 and lower
+for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+    if 'win64' in branch['platforms']:
+        del branch['platforms']['win64']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
+    if 'win32' not in branch['platforms']:
+        continue
+    if 'slave_platforms' in branch['platforms']['win32']:
+        if 'win8' in branch['platforms']['win32']['slave_platforms']:
+            branch['platforms']['win32']['slave_platforms'].remove('win8')
+    else:
+        branch['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
+    if 'talos_slave_platforms' in branch['platforms']['win32']:
+        if 'win8' in branch['platforms']['win32']['talos_slave_platforms']:
+            branch['platforms']['win32']['talos_slave_platforms'].remove('win8')
+    else:
+        branch['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
+
+
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
@@ -2022,13 +2031,6 @@ for s in ('chromez-e10s', 'dromaeojs-e10s', 'g1-e10s', 'other-e10s_l64', 'other-
             tests = list(branch[test_key])
             tests[0] = 1
             branch[test_key] = tuple(tests)
-
-# LOOOOOOOOOOOOOOOPS
-# Enable win64 testing on select branches only
-WIN64_TESTING_BRANCHES = ['date']
-for branch in set(BRANCHES.keys()) - set(WIN64_TESTING_BRANCHES):
-    if 'win64' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['win64']
 
 # Disable Linux64-cc in every branch except cedar
 for name in BRANCHES.keys():
