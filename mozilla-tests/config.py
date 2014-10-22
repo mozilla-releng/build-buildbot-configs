@@ -40,15 +40,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g28_v1_3t': {
-        'datazilla_url': None,
-        'gecko_version': 28,
-        'platforms': {
-            # desktop per bug 986213
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g30_v1_4': {
         'datazilla_url': None,
         'gecko_version': 30,
@@ -1636,10 +1627,6 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr31']['release_tests'] = 1
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
-
-######### mozilla-b2g28_v1_3t
-BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
-BRANCHES['mozilla-b2g28_v1_3t']['pgo_strategy'] = 'per-checkin'
 
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
