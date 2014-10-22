@@ -971,7 +971,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1049,7 +1049,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1127,7 +1127,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1210,7 +1210,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1290,7 +1290,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1362,7 +1362,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1434,7 +1434,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
+                    'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/mac_unittest.py"],
