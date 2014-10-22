@@ -101,7 +101,7 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'per-checkin',
         'enable_mac_a11y': True,
         'enable_l10n': True,
-        'enable_l10n_onchange': False,
+        'enable_l10n_onchange': True,
         'enUS_binaryURL': '/nightly/latest-alder',
         'l10nNightlyUpdate': True,
         'l10n_tree': 'fxrel',
