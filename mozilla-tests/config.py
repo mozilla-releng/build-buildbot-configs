@@ -1781,11 +1781,21 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE[:]
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MARIONETTE[:]
 
-# Enable wpt on opt linux64 for gecko >= 34
+# Enable wpt on linux[64] opt for gecko >= 35
 for platform in PLATFORMS.keys():
     if platform not in ['linux', 'linux64']:
         continue
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 35):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS[:]
+
+# Enable wpt on windows opt for gecko >= 36
+for platform in PLATFORMS.keys():
+    if platform not in ['win32', 'win64']:
+        continue
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
@@ -1848,7 +1858,7 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
-        if platform not in ('linux64', 'linux'):
+        if platform not in ('linux64', 'linux', 'win32', 'win64'):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS
