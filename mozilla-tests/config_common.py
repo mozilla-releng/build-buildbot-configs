@@ -15,7 +15,7 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['support_url_base'] = branchConfig.get('support_url_base', 'http://talos-bundles.pvt.build.mozilla.org')
     BRANCHES[branch]['enable_unittests'] = branchConfig.get('enable_unittests', True)
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
-    BRANCHES[branch]['pgo_platforms'] = branchConfig.get('pgo_platforms', ['linux', 'linux64', 'win32'])
+    BRANCHES[branch]['pgo_platforms'] = branchConfig.get('pgo_platforms', ['linux', 'linux64', 'win32', 'win64'])
     BRANCHES[branch]['mozharness_talos'] = True
 
 

@@ -125,12 +125,9 @@ PLATFORMS['win32']['mozharness_config'] = {
 
 PLATFORMS['win64']['slave_platforms'] = ['win8_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64']
-PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['win8_64']['mozharness_config'] = {
-    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-}
+PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
