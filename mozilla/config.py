@@ -946,7 +946,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'enable_installer': True,
             'packageTests': True,
-            'try_by_default': False,
+            'try_by_default': True,
             'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
