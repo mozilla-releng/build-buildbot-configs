@@ -40,15 +40,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g28_v1_3t': {
-        'datazilla_url': None,
-        'gecko_version': 28,
-        'platforms': {
-            # desktop per bug 986213
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g30_v1_4': {
         'datazilla_url': None,
         'gecko_version': 30,
@@ -134,12 +125,9 @@ PLATFORMS['win32']['mozharness_config'] = {
 
 PLATFORMS['win64']['slave_platforms'] = ['win8_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64']
-PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['win8_64']['mozharness_config'] = {
-    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-}
+PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
@@ -1203,6 +1191,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-other': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1637,25 +1628,21 @@ BRANCHES['mozilla-esr31']['release_tests'] = 1
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
 
-######### mozilla-b2g28_v1_3t
-BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
-BRANCHES['mozilla-b2g28_v1_3t']['pgo_strategy'] = 'per-checkin'
-
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
-BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
-BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['macosx64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
-BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['macosx64']['talos_slave_platforms'] = []
 

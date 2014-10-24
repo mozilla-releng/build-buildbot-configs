@@ -75,7 +75,7 @@ GLOBAL_VARS = {
         'android-debug': {},
     },
     'pgo_strategy': None,
-    'pgo_platforms': ('linux', 'linux64', 'win32',),
+    'pgo_platforms': ('linux', 'linux64', 'win32', 'win64',),
     'periodic_start_hours': range(0, 24, 6),
     'enable_blocklist_update': False,
     'enable_hsts_update': False,
