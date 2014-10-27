@@ -6,7 +6,7 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
+releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
@@ -23,11 +23,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '34.0b2'
+releaseConfig['version']             = '34.0b4'
 releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_34_0b2'
+releaseConfig['baseTag']             = 'FENNEC_34_0b4'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -36,7 +36,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '8cc403ad710b',
+        'revision': '22cfde2bf1ce',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
