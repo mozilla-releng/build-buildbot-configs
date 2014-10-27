@@ -6,7 +6,7 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
+releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
@@ -26,7 +26,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '33.0.2'
 releaseConfig['appVersion']          = '33.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_33_0_2'
 releaseConfig['partialUpdates']      = {
 
