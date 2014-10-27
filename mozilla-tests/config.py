@@ -1839,15 +1839,14 @@ for platform in PLATFORMS.keys():
         BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEBAPPRT_CHROME[:]
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEBAPPRT_CHROME[:]
 
-# bug 1051886 enable mochitest-gl tests (on cedar for now)
+# bug 1051886 enable mochitest-gl tests to ride trains
 for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_WEBGL
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_WEBGL
 
 # Enable web-platform-tests on cedar
 for platform in PLATFORMS.keys():
