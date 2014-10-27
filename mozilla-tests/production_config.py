@@ -33,7 +33,7 @@ for i in range(1,87) + range(88,101):
 for i in range(1,4):
     SLAVES['mavericks']['t-mavericks-r5-%03i' % i] = {}
 
-for i in range(22,307) + range(320,874) + range(885,910):
+for i in range(22,910):
     SLAVES['panda_android']['panda-%04i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,
