@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '33.0.1'
-releaseConfig['appVersion']          = '33.0.1'
+releaseConfig['version']             = '33.0.2'
+releaseConfig['appVersion']          = '33.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_33_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_33_0_2'
 releaseConfig['partialUpdates']      = {
 
     '33.0': {
@@ -36,16 +36,16 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_33_0',
     },
 
+    '33.0.1': {
+        'appVersion': '33.0.1',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_33_0_1',
+    },
+
     '32.0.3': {
         'appVersion': '32.0.3',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_32_0_3',
-    },
-
-    '32.0.2': {
-        'appVersion': '32.0.2',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_32_0_2',
     },
 
 }
