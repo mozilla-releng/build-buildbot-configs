@@ -67,7 +67,7 @@ GLOBAL_VARS = {
     'balrog_api_root': 'https://aus4-admin.mozilla.org',
     'balrog_username': 'ffxbld',
     'build_tools_repo_path': 'build/tools',
-    'base_clobber_url': 'http://clobberer.pvt.build.mozilla.org/index.php',
+    'base_clobber_url': 'https://api.pub.build.mozilla.org/clobberer/lastclobber',
     'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,

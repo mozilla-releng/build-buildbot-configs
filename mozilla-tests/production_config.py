@@ -15,13 +15,13 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1,131):
+for i in range(1,163):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1,131):
+for i in range(1,163):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1,131):
+for i in range(1,171):
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1,166):
@@ -33,7 +33,7 @@ for i in range(1,87) + range(88,101):
 for i in range(1,4):
     SLAVES['mavericks']['t-mavericks-r5-%03i' % i] = {}
 
-for i in range(22,307) + range(320,874) + range(885,910):
+for i in range(22,910):
     SLAVES['panda_android']['panda-%04i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,

@@ -579,7 +579,7 @@ PLATFORM_VARS = {
         'base_name': 'OS X Mulet %(branch)s',
         'mozconfig': 'in_tree',
         'src_mozconfig': 'b2g/dev/config/mozconfigs/macosx64/mulet',
-        'packageTests': True,
+        'packageTests': False,
         'profiled_build': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 12,

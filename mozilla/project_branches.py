@@ -104,6 +104,7 @@ PROJECT_BRANCHES = {
         'enable_l10n_onchange': True,
         'enUS_binaryURL': '/nightly/latest-alder',
         'l10nNightlyUpdate': True,
+        'l10nDatedDirs': True,
         'l10n_tree': 'fxrel',
         'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
         # explicitly set the server to avoid using variables

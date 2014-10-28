@@ -1,24 +1,7 @@
 from copy import deepcopy
 import production_config as pc
 
-STAGING_SLAVES = {
-    'panda_android': {},
-}
-
-for i in range(307,320) + range(874,885):
-    STAGING_SLAVES['panda_android']['panda-%04i' % i] = {
-        'http_port': '30%03i' % i,
-        'ssl_port': '31%03i' % i,
-    }
-
-SLAVES = deepcopy(STAGING_SLAVES)
-
-for p, slaves in pc.SLAVES.items() + pc.TRY_SLAVES.items():
-    if p not in SLAVES:
-        SLAVES[p] = deepcopy(slaves)
-    else:
-        SLAVES[p] = dict(SLAVES[p].items() + slaves.items())
-
+SLAVES = deepcopy(pc.SLAVES)
 TRY_SLAVES = deepcopy(SLAVES)
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
