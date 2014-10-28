@@ -119,7 +119,6 @@ releaseConfig['enable_repo_setup']       = False
 
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
-releaseConfig['disableBouncerEntries']    = True
 releaseConfig['disableStandaloneRepacks'] = True
 releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
@@ -157,4 +156,12 @@ releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android','linux')
-releaseConfig['ftpSymlinkName'] = 'latest'
+releaseConfig['ftpSymlinkName'] = 'latest'releaseConfig['testChannels']          = ['release-localtest', 'release-cdntest']
+releaseConfig['partialUpdates']      = {}
+releaseConfig['bouncerServer']       = 'download.mozilla.org'
+releaseConfig['testChannelRuleIds']    = [38, 39]
+releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
+releaseConfig['bouncer_aliases'] = {
+    'Fennec-%(version)s': 'fennec-latest',
+}

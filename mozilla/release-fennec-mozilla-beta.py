@@ -108,7 +108,6 @@ releaseConfig['enable_repo_setup']       = False
 
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
-releaseConfig['disableBouncerEntries']    = True
 releaseConfig['disableStandaloneRepacks'] = True
 releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
@@ -145,3 +144,10 @@ releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android', 'android-x86', 'linux')
 releaseConfig['ftpSymlinkName'] = 'latest-beta'
 releaseConfig['enableAutomaticPushToMirrors'] = True
+# Tuxedo/Bouncer configuration
+releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
+releaseConfig['bouncerServer']       = 'download.mozilla.org'
+releaseConfig['bouncer_aliases'] = {
+    'Fennec-%(version)s': 'fennec-beta-latest',
+}
