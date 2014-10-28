@@ -32,7 +32,7 @@ releaseConfig['partialUpdates']      = {
 
     '34.0b3': {
         'appVersion': '34.0',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_34_0b3',
     },
 
