@@ -6,7 +6,7 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
+releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '33.0.2'
-releaseConfig['appVersion']          = '33.0.2'
+releaseConfig['version']             = '33.1'
+releaseConfig['appVersion']          = '33.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_33_0_2'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_33_1'
 releaseConfig['partialUpdates']      = {
 
     '33.0': {
@@ -36,10 +36,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_33_0',
     },
 
-    '33.0.1': {
-        'appVersion': '33.0.1',
+    '33.0.2': {
+        'appVersion': '33.0.2',
         'buildNumber': 2,
-        'baseTag': 'FIREFOX_33_0_1',
+        'baseTag': 'FIREFOX_33_0_2',
     },
 
     '32.0.3': {
@@ -59,8 +59,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'GECKO330_2014101104_RELBRANCH',
-        'relbranch': 'GECKO330_2014101104_RELBRANCH',
+        'revision': 'b4f797f3cd52',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
