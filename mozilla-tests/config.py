@@ -1188,6 +1188,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-csb': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
