@@ -1,5 +1,7 @@
 import time
 import re
+import os
+import json
 
 c = BuildmasterConfig = {}
 c['projectName'] = "Firefox"
@@ -239,6 +241,16 @@ def prioritizeBuilders(buildmaster, builders):
     return important_builders
 
 c['prioritizeBuilders'] = prioritizeBuilders
+_gecko_versions = None
+
+
+def get_gecko_version(branch_name):
+    global _gecko_versions
+    if not _gecko_versions:
+        version_file = os.path.join(os.path.dirname(__file__),
+                                    "gecko_versions.json")
+        _gecko_versions = json.load(open(version_file))
+    return _gecko_versions[branch_name]
 
 
 # BRANCHES without 'gecko_version' set are considered to have a gecko_version
@@ -246,19 +258,19 @@ c['prioritizeBuilders'] = prioritizeBuilders
 def setMainFirefoxVersions(BRANCHES):
     # MERGE DAY
     if 'mozilla-release' in BRANCHES:
-        BRANCHES['mozilla-release']['gecko_version'] = 33
+        BRANCHES['mozilla-release']['gecko_version'] = get_gecko_version("mozilla-release")
     if 'mozilla-beta' in BRANCHES:
-        BRANCHES['mozilla-beta']['gecko_version'] = 34
+        BRANCHES['mozilla-beta']['gecko_version'] = get_gecko_version("mozilla-beta")
     if 'mozilla-aurora' in BRANCHES:
-        BRANCHES['mozilla-aurora']['gecko_version'] = 35
+        BRANCHES['mozilla-aurora']['gecko_version'] = get_gecko_version("mozilla-aurora")
     if 'mozilla-central' in BRANCHES:
-        BRANCHES['mozilla-central']['gecko_version'] = 36
+        BRANCHES['mozilla-central']['gecko_version'] = get_gecko_version("mozilla-central")
 
 
 def setMainCommVersions(BRANCHES):
     # MERGE DAY
-    BRANCHES['comm-beta']['gecko_version'] = 34
-    BRANCHES['comm-aurora']['gecko_version'] = 35
+    BRANCHES['comm-beta']['gecko_version'] = get_gecko_version("comm-beta")
+    BRANCHES['comm-aurora']['gecko_version'] = get_gecko_version("comm-aurora")
 
 
 # Typical usage pattern:
