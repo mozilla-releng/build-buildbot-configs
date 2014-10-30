@@ -6,7 +6,7 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
-releaseConfig['base_clobber_url'] = 'http://clobberer.pvt.build.mozilla.org/always_clobber.php'
+releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
@@ -23,23 +23,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '34.0b4'
+releaseConfig['version']             = '34.0b5'
 releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_34_0b4'
+releaseConfig['baseTag']             = 'FIREFOX_34_0b5'
 releaseConfig['partialUpdates']      = {
+
+    '34.0b4': {
+        'appVersion': '34.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_34_0b4',
+    },
 
     '34.0b3': {
         'appVersion': '34.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_34_0b3',
-    },
-
-    '34.0b2': {
-        'appVersion': '34.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_34_0b2',
+        'baseTag': 'FIREFOX_34_0b3',
     },
 
 }
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '22cfde2bf1ce',
+        'revision': '8f974876367e',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
