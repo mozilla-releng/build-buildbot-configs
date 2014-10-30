@@ -97,7 +97,8 @@ PLATFORMS = {
 PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion', 'mavericks']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
-PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8"}
+PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8",
+                                         'try_by_default': False}
 PLATFORMS['macosx64']['mavericks'] = {'name': "Rev5 MacOSX Mavericks 10.9"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
