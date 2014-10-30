@@ -205,6 +205,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                          '*_common.py',
                          '*_project_branches.py',
                          'project_branches.py',
+                         'gecko_versions.json',
                          ],
                          renames=[
                          ('BuildSlaves.py.template', 'BuildSlaves.py'),
