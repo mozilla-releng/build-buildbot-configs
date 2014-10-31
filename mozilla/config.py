@@ -70,9 +70,13 @@ GLOBAL_VARS = {
         'win32-debug': {},
         'win64-debug': {},
         'android': {},
+        'android-api-9': {},
+        'android-api-10': {},
         'android-x86': {},
         'android-armv6': {},
         'android-debug': {},
+        'android-debug-api-10': {},
+        'android-debug-api-9': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64',),
@@ -1403,6 +1407,146 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
+        'android-api-9': {
+            'product_name': 'firefox',
+            'unittest_platform': 'android-api-9-opt',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 9 %(branch)s',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-constrained/nightly',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 16,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': False,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'android-sdk15', 'android-sdk16',
+                              'android-ndk5', 'android-ndk8', 'zip',
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
+                              'libstdc++.i686', 'zlib.i686',
+                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-api-10",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': True,
+            'l10n_chunks': 5,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+        },
+        'android-api-10': {
+            'product_name': 'firefox',
+            'unittest_platform': 'android-api-10-opt',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 10+ %(branch)s',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-10/nightly',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 16,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': True,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'android-sdk15', 'android-sdk16',
+                              'android-ndk5', 'android-ndk8', 'zip',
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
+                              'libstdc++.i686', 'zlib.i686',
+                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-api-10",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': True,
+            'l10n_chunks': 5,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+        },
         'android-armv6': {
             'enable_nightly': True,
             'product_name': 'firefox',
@@ -1597,6 +1741,138 @@ PLATFORM_VARS = {
             'talos_masters': None,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
             'stage_platform': "android-debug",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+        },
+        'android-debug-api-9': {
+            'enable_nightly': False,
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 9 %(branch)s debug',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-constrained/debug',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 14,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'create_snippet': False,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': False,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'android-sdk15', 'android-sdk16',
+                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': None,
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-debug-api-9",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+        },
+        'android-debug-api-10': {
+            'enable_nightly': False,
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 10+ %(branch)s debug',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-10/debug',
+            'mobile_dir': 'mobile/android',
+            'enable_xulrunner': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 14,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'create_snippet': False,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': True,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'android-sdk15', 'android-sdk16',
+                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_dsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': None,
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-debug-api-10",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
@@ -1986,12 +2262,16 @@ BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['enable_hpkp_update'] = True
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-central']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-armv6']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['android-api-9']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['android-api-10']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 
@@ -2028,6 +2308,8 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-release']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2069,8 +2351,14 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-beta']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-10']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-debug-api-9']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-debug-api-10']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
@@ -2125,6 +2413,8 @@ BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
+BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-aurora']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -2315,7 +2605,11 @@ BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-10']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-debug-api-9']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-debug-api-10']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
@@ -2370,6 +2664,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if 'android' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
+    if 'android-api-9' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
+    if 'android-api-10' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10-' + branch
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if 'android-x86' in BRANCHES[branch]['platforms']:
@@ -2408,6 +2706,27 @@ for branch in branches:
         continue
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
+
+# Bug 1073772 - Releng work for producing two ARMv7 APKs to target different API ranges
+branches = BRANCHES.keys()
+branches.extend(ACTIVE_PROJECT_BRANCHES)
+for branch in branches:
+    if branch == 'cedar':
+        # remove the soon to be replaced android builds
+        if 'android' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['android']
+        if 'android-debug' in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms']['android-debug']
+        continue
+    ## enable new split android builds on cedar only to start.
+    if 'android-api-9' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-api-9']
+    if 'android-api-10' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-api-10']
+    if 'android-debug-api-9' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-debug-api-9']
+    if 'android-debug-api-10' in BRANCHES[branch]['platforms']:
+        del BRANCHES[branch]['platforms']['android-debug-api-10']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
