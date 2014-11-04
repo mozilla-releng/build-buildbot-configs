@@ -308,7 +308,37 @@ MOCHITEST_MULET_PLAIN = [
 ]
 
 REFTEST_MULET = [
-    ('reftest', {
+    ('reftest-1', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+    ('reftest-2', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+    ('reftest-3', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+    ('reftest-4', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+    ('reftest-5', {
+        'suite': 'reftest',
+        'use_mozharness': True,
+        'script_path': 'scripts/mulet_unittest.py',
+        'blob_upload': True,
+    }),
+    ('reftest-6', {
         'suite': 'reftest',
         'use_mozharness': True,
         'script_path': 'scripts/mulet_unittest.py',
@@ -944,12 +974,58 @@ PLATFORM_UNITTEST_VARS = {
                       '--mochitest-suite', 'plain-chunked',
                     ]
                 },
-                'reftest': {
+                'reftest-1': {
                     'extra_args': [
                       '--cfg', 'b2g/generic_config.py',
                       '--cfg', 'b2g/mulet_config.py',
                       '--test-suite', 'reftest',
                       '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 1,
+                    ]
+                },
+                'reftest-2': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 2,
+                    ]
+                },
+                'reftest-3': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 3,
+                    ]
+                },
+                'reftest-4': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 4,
+                    ]
+                },
+                'reftest-5': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 5,
+                    ]
+                },
+                'reftest-6': {
+                    'extra_args': [
+                      '--cfg', 'b2g/generic_config.py',
+                      '--cfg', 'b2g/mulet_config.py',
+                      '--test-suite', 'reftest',
+                      '--test-manifest', 'tests/layout/reftests/reftest.list',
+                      '--total-chunks', 6, '--this-chunk', 6,
                     ]
                 },
             },
