@@ -151,7 +151,7 @@ releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['testChannelRuleIds']    = []
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec_beta.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['bouncer_aliases'] = {
     'Fennec-%(version)s': 'fennec-beta-latest',
