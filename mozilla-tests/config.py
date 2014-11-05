@@ -2012,6 +2012,7 @@ for platform in PLATFORMS.keys():
 # Enable e10s Linux mochitests on trunk branches
 # Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
 # Enable e10s devtools tests for Linux opt on trunk branches
+# Enable e10s reftests/crashtests for Linux opt on trunk branches
 # Fix this to a certain gecko version once e10s starts riding the trains
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
@@ -2028,7 +2029,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S[:]
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:]
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:] + REFTEST_E10S[:]
 
 # Bug 1080134: we want to disable all 32-bit testing on win8 for gecko 36 and
 # higher, and enable 64-bit tests on win8 instead.
