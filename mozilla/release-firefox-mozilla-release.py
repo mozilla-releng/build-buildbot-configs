@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '33.1'
-releaseConfig['appVersion']          = '33.1'
+releaseConfig['version']             = '33.0.3'
+releaseConfig['appVersion']          = '33.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_33_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_33_0_3'
 releaseConfig['partialUpdates']      = {
 
     '33.0': {
@@ -59,8 +59,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '0de6e2b5507a',
-        'relbranch': None,
+        'revision': 'GECKO330_2014101104_RELBRANCH',
+        'relbranch': 'GECKO330_2014101104_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
