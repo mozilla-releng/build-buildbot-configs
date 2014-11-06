@@ -465,6 +465,7 @@ PLATFORM_VARS = {
         'platform_objdir': OBJDIR,
         'stage_product': 'b2g',
         'stage_platform': 'linux64-mulet',
+        'enable_shared_checkouts': True,
         'env': {
             'DISPLAY': ':2',
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
