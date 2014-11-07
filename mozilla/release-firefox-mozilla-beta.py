@@ -17,6 +17,9 @@ releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
+# get us back on track with 34.0b7
+releaseConfig['skip_tag'] = True
+
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
