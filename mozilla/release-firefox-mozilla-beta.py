@@ -17,32 +17,29 @@ releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
-# get us back on track with 34.0b7
-releaseConfig['skip_tag'] = True
-
 # Basic product configuration
 #  Names for the product/files
 releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '34.0b7'
+releaseConfig['version']             = '34.0b8'
 releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_34_0b7'
+releaseConfig['baseTag']             = 'FIREFOX_34_0b8'
 releaseConfig['partialUpdates']      = {
+
+    '34.0b7': {
+        'appVersion': '34.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_34_0b7',
+    },
 
     '34.0b6': {
         'appVersion': '34.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_34_0b6',
-    },
-
-    '34.0b5': {
-        'appVersion': '34.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_34_0b5',
     },
 
 }
@@ -54,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '8e812440658b',
+        'revision': '87fd4f56cfed',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
