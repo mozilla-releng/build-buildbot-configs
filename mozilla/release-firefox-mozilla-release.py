@@ -23,17 +23,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '33.1'
-releaseConfig['appVersion']          = '33.1'
+releaseConfig['version']             = '33.1.1'
+releaseConfig['appVersion']          = '33.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_33_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_33_1_1'
 releaseConfig['partialUpdates']      = {
 
-    '33.0.2': {
-        'appVersion': '33.0.2',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_33_0_2',
+    '33.1': {
+        'appVersion': '33.1',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_33_1',
     },
 
     '32.0.3': {
@@ -59,7 +59,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '818480839115',
+        'revision': 'f2bdbc945da2',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -86,7 +86,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']       = ('win32',)
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
