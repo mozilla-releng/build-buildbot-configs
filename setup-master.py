@@ -339,7 +339,7 @@ if __name__ == "__main__":
     else:
         loglvl = logging.INFO
 
-    ignored_roles = options.ignored_roles or ["servo"]
+    ignored_roles = options.ignored_roles
 
     log = logging.getLogger('setup-master')
     log.setLevel(logging.DEBUG)
