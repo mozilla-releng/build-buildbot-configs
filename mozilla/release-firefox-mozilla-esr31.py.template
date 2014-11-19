@@ -74,12 +74,12 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
-releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests']     = True
+releaseConfig['enableUnittests']     = False
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']

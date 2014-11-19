@@ -1684,13 +1684,11 @@ BRANCHES['mozilla-central']['platforms']['android-api-9']['enable_debug_unittest
 BRANCHES['mozilla-central']['platforms']['android-api-10']['enable_debug_unittests'] = True
 
 ######### mozilla-release
-BRANCHES['mozilla-release']['release_tests'] = 1
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['pgo_platforms'] = []
 
 ######### mozilla-beta
-BRANCHES['mozilla-beta']['release_tests'] = 1
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-beta']['pgo_platforms'] = []
