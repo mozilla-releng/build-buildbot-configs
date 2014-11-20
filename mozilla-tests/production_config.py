@@ -4,7 +4,7 @@ SLAVES = {
     'win8': {},
     'snowleopard': {},
     'mountainlion': {},
-    'mavericks': {},
+    'yosemite': {},
     'panda_android': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
@@ -31,7 +31,7 @@ for i in range(1,87) + range(88,101):
     SLAVES['mountainlion']['talos-mtnlion-r5-%03i' % i] = {}
 
 for i in range(1,4):
-    SLAVES['mavericks']['t-mavericks-r5-%03i' % i] = {}
+    SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(22,910):
     SLAVES['panda_android']['panda-%04i' % i] = {

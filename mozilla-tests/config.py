@@ -94,12 +94,12 @@ PLATFORMS = {
     'win64': {},
 }
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion', 'mavericks']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion', 'yosemite']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8",
                                          'try_by_default': False}
-PLATFORMS['macosx64']['mavericks'] = {'name': "Rev5 MacOSX Mavericks 10.9"}
+PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1522,7 +1522,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'mavericks': {
+        'yosemite': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
@@ -1785,8 +1785,8 @@ BRANCHES['try']['enable_try'] = True
 
 ######## cedar
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-BRANCHES['cedar']['platforms']['macosx64']['mavericks']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
-BRANCHES['cedar']['platforms']['macosx64']['mavericks']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
+BRANCHES['cedar']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
+BRANCHES['cedar']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
@@ -1817,8 +1817,8 @@ BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unitt
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 3
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mavericks']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mavericks']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skipcount'] = 2
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
 
@@ -1837,8 +1837,8 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
-# Enable mavericks testing on select branches only
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'mavericks'}, branch_exclusions=['cedar'])
+# Enable Yosemite testing on select branches only
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['cedar'])
 
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):
     if 'enable_talos' in branch and branch['enable_talos'] is False:
