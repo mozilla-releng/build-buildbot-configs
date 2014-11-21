@@ -2321,6 +2321,10 @@ BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlenam
 
 ######## mozilla-release-34.1
 BRANCHES['mozilla-release-34.1']['repo_path'] = 'releases/mozilla-release'
+BRANCHES['mozilla-release-34.1']['enable_l10n'] = False
+BRANCHES['mozilla-release-34.1']['start_hour'] = [0]
+BRANCHES['mozilla-release-34.1']['start_minute'] = [0]
+BRANCHES['mozilla-release-34.1']['aus2_base_upload_dir'] = 'fake'
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
