@@ -1751,6 +1751,10 @@ BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
+######## ash
+BRANCHES['ash']['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+
 ######## cedar
 BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] = \
     [x for x in BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] if x[0] != 'reftest'] + REFTEST_TWO_CHUNKS[:]
