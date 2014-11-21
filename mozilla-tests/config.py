@@ -641,7 +641,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC + REFTEST_NOACCEL,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest': {
@@ -782,12 +782,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -872,12 +866,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -957,12 +945,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
@@ -1054,12 +1036,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-omtc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1141,12 +1117,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-omtc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1226,12 +1196,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest-omtc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'xpcshell': {
@@ -1323,12 +1287,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1412,12 +1370,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1493,12 +1445,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1572,12 +1518,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'reftest-no-accel': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'xpcshell': {
@@ -1952,6 +1892,16 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE[:]
+
+# reftest-ipc and crashtest-ipc on linux opt disabled on gecko > 36
+for platform in PLATFORMS.keys():
+    if platform not in ['linux']:
+        continue
+    for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_IPC
 
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for platform in PLATFORMS.keys():
