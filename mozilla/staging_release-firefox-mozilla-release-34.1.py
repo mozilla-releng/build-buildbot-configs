@@ -4,12 +4,14 @@
 # or changing options as part of release automation changes you should be
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
-EMAIL_RECIPIENTS = ["release@mozilla.com"]
+EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
 releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api-pub-build.allizom.org/clobberer/forceclobber'
+
+releaseConfig["skip_updates"] =  True
 
 # Release Notification
 releaseConfig['AllRecipients']       = EMAIL_RECIPIENTS
@@ -24,19 +26,19 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '{{ version }}'
-releaseConfig['appVersion']          = '{{ appVersion }}'
+releaseConfig['version']             = '32.0.1'
+releaseConfig['appVersion']          = '32.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = {{ buildNumber }}
-releaseConfig['baseTag']             = '{{ baseTag }}'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FIREFOX_32_0_1'
 releaseConfig['partialUpdates']      = {
-{% for version, partial in partials.items() %}
-    '{{ version }}': {
-        'appVersion': '{{ partial['appVersion'] }}',
-        'buildNumber': {{ partial['buildNumber'] }},
-        'baseTag': '{{ partial['baseTag'] }}',
+
+    '31.0': {
+        'appVersion': '31.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_31_0',
     },
-{% endfor %}
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -46,11 +48,11 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-release',
+        'name': 'mozilla-release-34.1',
         'clonePath': 'releases/mozilla-release',
-        'path': '{{ branch }}',
-        'revision': '{{ mozillaRevision }}',
-        'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
+        'path': 'users/stage-ffxbld/mozilla-release',
+        'revision': 'default',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -67,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release-34.1'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
@@ -79,12 +81,12 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['talosTestPlatforms']  = ()
+releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests']     = False
+releaseConfig['enableUnittests'] = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
@@ -98,7 +100,7 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
+releaseConfig['patcherConfig']       = 'mozRelease-34.1-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -109,12 +111,12 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
+releaseConfig['promptWaitTime']      = None
 releaseConfig['verifyConfigs']       = {
-    'linux':  'mozRelease-firefox-linux.cfg',
-    'linux64':  'mozRelease-firefox-linux64.cfg',
-    'macosx64': 'mozRelease-firefox-mac64.cfg',
-    'win32':  'mozRelease-firefox-win32.cfg'
+    'linux':  'mozRelease-34.1-firefox-linux.cfg',
+    'linux64':  'mozRelease-34.1-firefox-linux64.cfg',
+    'macosx64': 'mozRelease-34.1-firefox-mac64.cfg',
+    'win32':  'mozRelease-34.1-firefox-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
