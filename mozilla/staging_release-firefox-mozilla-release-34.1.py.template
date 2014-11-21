@@ -11,6 +11,8 @@ releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api-pub-build.allizom.org/clobberer/forceclobber'
 
+releaseConfig["skip_updates"] = True
+
 # Release Notification
 releaseConfig['AllRecipients']       = EMAIL_RECIPIENTS
 releaseConfig['ImportantRecipients'] = EMAIL_RECIPIENTS
@@ -46,7 +48,7 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-release',
+        'name': 'mozilla-release-34.1',
         'clonePath': 'releases/mozilla-release',
         'path': '{{ branch }}',
         'revision': '{{ mozillaRevision }}',
@@ -67,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release-34.1'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
@@ -111,10 +113,10 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['verifyConfigs']       = {
-    'linux':  'mozRelease-firefox-linux.cfg',
-    'linux64':  'mozRelease-firefox-linux64.cfg',
-    'macosx64': 'mozRelease-firefox-mac64.cfg',
-    'win32':  'mozRelease-firefox-win32.cfg'
+    'linux':  'mozRelease-34.1-firefox-linux.cfg',
+    'linux64':  'mozRelease-34.1-firefox-linux64.cfg',
+    'macosx64': 'mozRelease-34.1-firefox-mac64.cfg',
+    'win32':  'mozRelease-34.1-firefox-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',

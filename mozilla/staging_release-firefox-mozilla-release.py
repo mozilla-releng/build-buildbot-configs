@@ -4,7 +4,7 @@
 # or changing options as part of release automation changes you should be
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
-EMAIL_RECIPIENTS = []
+EMAIL_RECIPIENTS = ["release@mozilla.com"]
 
 releaseConfig = {}
 releaseConfig['skip_repo_setup']        = True
@@ -24,17 +24,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '32.0.1'
-releaseConfig['appVersion']          = '32.0.1'
+releaseConfig['version']             = '34.0'
+releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_32_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_34_0'
 releaseConfig['partialUpdates']      = {
 
-    '31.0': {
-        'appVersion': '31.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_0',
+    '33.1': {
+        'appVersion': '33.1',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_33_1',
     },
 
 }
@@ -79,12 +79,12 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = False
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
@@ -95,7 +95,7 @@ releaseConfig['l10nUsePymake']       = True
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
+releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
 releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'

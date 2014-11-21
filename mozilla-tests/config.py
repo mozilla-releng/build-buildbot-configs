@@ -486,6 +486,18 @@ REFTEST_NO_IPC = [
         'script_maxtime': 7200,
     }),
 ]
+
+REFTEST_TWO_CHUNKS = [
+    ('reftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
+
 REFTEST_NOACCEL = [
     ('reftest-no-accel', {
         'use_mozharness': True,
@@ -641,7 +653,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_IPC + REFTEST_NOACCEL,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest': {
@@ -782,12 +794,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -872,12 +878,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -957,12 +957,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'xpcshell': {
@@ -1054,12 +1048,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-omtc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1141,12 +1129,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-omtc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1226,12 +1208,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest-omtc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'xpcshell': {
@@ -1323,12 +1299,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1412,12 +1382,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1493,12 +1457,6 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-no-accel': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1572,12 +1530,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'reftest-no-accel': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-ipc': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-ipc': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'xpcshell': {
@@ -1737,6 +1689,22 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
+BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_WINXP)
+BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_WINXP)
+BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_LINUX64)
+BRANCHES['mozilla-central']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_WINXP)
+BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_WINXP)
+BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_WINXP)
+BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s', 'xperf-e10s',
+                                                  'tp5o-e10s',
+                                                  'other-e10s_nol64',
+                                                  'other-e10s_l64',
+                                                  'svgr-e10s',
+                                                  'dromaeojs-e10s',
+                                                  'chromez-e10s']
+
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
@@ -1783,7 +1751,15 @@ BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 
+######## ash
+BRANCHES['ash']['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+
 ######## cedar
+BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] = \
+    [x for x in BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] if x[0] != 'reftest'] + REFTEST_TWO_CHUNKS[:]
+BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = \
+    [x for x in BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] if x[0] != 'reftest'] + REFTEST_TWO_CHUNKS[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 BRANCHES['cedar']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
@@ -1936,6 +1912,16 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE[:]
+
+# reftest-ipc and crashtest-ipc on linux opt disabled on gecko > 36
+for platform in PLATFORMS.keys():
+    if platform not in ['linux']:
+        continue
+    for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_IPC
 
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for platform in PLATFORMS.keys():
@@ -2145,17 +2131,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
                 except ValueError:
                     # wasn't there anyways
                     pass
-
-# Enable e10s versions of Talos on Holly (bug 1050706).  Once these are enabled
-# on all branches, this block of code can go away.
-branch = BRANCHES['holly']
-for s in ('chromez-e10s', 'dromaeojs-e10s', 'g1-e10s', 'other-e10s_l64', 'other-e10s_nol64', 'tp5o-e10s', 'svgr-e10s', 'xperf-e10s'):
-    if 'e10s' in s:
-        test_key = '%s_tests' % s
-        if test_key in branch:
-            tests = list(branch[test_key])
-            tests[0] = 1
-            branch[test_key] = tuple(tests)
 
 # Disable Linux64-cc in every branch except cedar
 for name in BRANCHES.keys():
