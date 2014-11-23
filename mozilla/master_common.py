@@ -25,8 +25,6 @@ DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
     'comm-esr31': 0,
-    #  Alder is moved here to support 33.1 - remove and uncomment below once it ships
-    'alder': 1,
     'mozilla-esr31': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
@@ -41,7 +39,7 @@ BRANCH_PRIORITIES = {
     'gaia-try': 4,
     'try': 5,
     'try-comm-central': 5,
-    # 'alder': 5,
+    'alder': 5,
     'ash': 5,
     'birch': 5,
     'cedar': 5,

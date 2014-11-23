@@ -87,59 +87,8 @@ PROJECT_BRANCHES = {
             },
         },
     },
-    'alder': {
-        # Per bug 1083853, this disable mozharness mach and other
-        # mozilla-central oriented features
-        'gecko_version': 33,
-        # Make every checkin trigger builds, remove after 33.1 (or sooner)
-        'enable_perproduct_builds': False,
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'nightly_signing_servers': 'nightly-signing',
-        'l10n_repo_path': 'releases/l10n/mozilla-release',
-        'pgo_strategy': 'per-checkin',
-        'enable_mac_a11y': True,
-        'enable_l10n': True,
-        'enable_l10n_onchange': True,
-        'enUS_binaryURL': '/nightly/latest-alder',
-        'l10nNightlyUpdate': True,
-        'l10nDatedDirs': True,
-        'l10n_tree': 'fxrel',
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
-        # explicitly set the server to avoid using variables
-        'localesURL': 'http://hg.mozilla.org/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.alder',
-        'enable_multi_locale': True,
-        'upload_mobile_symbols': True,
-        'enable_valgrind': False,
-        'enabled_products': ['firefox'],
-        'lock_platforms': True,
-        'platforms': {
-            'macosx64': {
-                'test_pretty_names': True,
-            },
-            'linux': {
-                'test_pretty_names': True,
-            },
-            'linux64': {
-                'test_pretty_names': True,
-            },
-            'win32': {
-                'test_pretty_names': True,
-            },
-            'win64': {},
-            'linux-debug': {},
-            'linux64-br-haz': {},
-            'linux64-debug': {},
-            'linux64-asan': {},
-            'linux64-asan-debug': {},
-            'linux64-st-an-debug': {},
-            'linux64-cc': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64-debug': {},
-        },
-    },
+    # no desktop builds for bug 1100150
+    # 'alder': {},
     'ash': {
         'enable_perproduct_builds': False,
         'desktop_mozharness_repacks_enabled': True,
