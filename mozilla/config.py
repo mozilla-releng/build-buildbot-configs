@@ -1516,6 +1516,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'update_platform': 'Android_arm-eabi-gcc3',
         },
         'android-api-10': {
             'product_name': 'firefox',
@@ -1586,6 +1587,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'update_platform': 'Android_arm-eabi-gcc3',
         },
         'android-armv6': {
             'enable_nightly': True,
@@ -2762,7 +2764,7 @@ for branch in branches:
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
-    if branch == 'cedar':
+    if branch in ['cedar', 'ash']:
         # remove the soon to be replaced android builds
         if 'android' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['android']
