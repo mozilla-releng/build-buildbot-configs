@@ -1750,6 +1750,8 @@ BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
 BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
 
 ######## ash
 BRANCHES['ash']['script_repo_manifest'] = \
