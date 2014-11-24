@@ -31,6 +31,14 @@ GLOBAL_VARS['stage_username'] = 'ffxbld'
 GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
+    'alder': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux32_gecko': {},
+            'linux64_gecko': {},
+            'linux64-mulet': {},
+        },
+    },
     'ash': {},
     # Not needed right now, see bug 977420
     # 'birch': {},
@@ -2176,6 +2184,8 @@ for branch in BRANCHES.keys():
 
 # The following are exceptions to the defaults
 
+BRANCHES['alder']['branch_name'] = "Alder"
+BRANCHES['alder']['repo_path'] = "projects/alder"
 BRANCHES['ash']['branch_name'] = "Ash"
 BRANCHES['ash']['repo_path'] = "projects/ash"
 BRANCHES['ash']['mozharness_repo'] = "https://hg.mozilla.org/build/ash-mozharness"
