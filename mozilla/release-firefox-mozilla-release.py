@@ -23,12 +23,18 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '33.1.1'
-releaseConfig['appVersion']          = '33.1.1'
+releaseConfig['version']             = '34.0'
+releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_33_1_1'
+releaseConfig['baseTag']             = 'FIREFOX_34_0'
 releaseConfig['partialUpdates']      = {
+
+    '33.1.1': {
+        'appVersion': '33.1.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_33_1_1',
+    },
 
     '33.1': {
         'appVersion': '33.1',
@@ -50,6 +56,11 @@ releaseConfig['partialUpdates']      = {
 
 }
 releaseConfig['extraPartials']       = {
+    '34.0b11': {
+        'appVersion': '34.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_34_0b11',
+    },
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -59,7 +70,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'f2bdbc945da2',
+        'revision': 'ccf5187eb227',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -88,12 +99,12 @@ releaseConfig['otherReposToTag']     = {
 # Platform configuration
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
-releaseConfig['talosTestPlatforms']  = releaseConfig['enUSPlatforms']
+releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
-releaseConfig['enableUnittests'] = True
+releaseConfig['enableUnittests']     = False
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
