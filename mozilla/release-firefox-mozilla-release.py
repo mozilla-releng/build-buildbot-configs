@@ -26,7 +26,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '34.0'
 releaseConfig['appVersion']          = '34.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_34_0'
 releaseConfig['partialUpdates']      = {
 
@@ -70,7 +70,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'ccf5187eb227',
+        'revision': 'e08ba260399a',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
