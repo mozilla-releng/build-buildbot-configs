@@ -8,16 +8,16 @@ releaseConfig['productName']                = 'seamonkey'
 releaseConfig['brandName']                  = 'SeaMonkey'
 releaseConfig['appName']                    = 'suite'
 #  Current version info
-releaseConfig['version']                    = '2.31b1'
+releaseConfig['version']                    = '2.31b2'
 releaseConfig['appVersion']                 = '2.31'
 releaseConfig['milestone']                  = '34.0'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_31b1'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_31b2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.30b2'
-releaseConfig['oldAppVersion']              = '2.30'
+releaseConfig['oldVersion']                 = '2.31b1'
+releaseConfig['oldAppVersion']              = '2.31'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_30b2'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_31b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
@@ -26,13 +26,13 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = 'cab722bcb4ab'
+releaseConfig['sourceRepoRevision']         = '919ddae9cf98'
 releaseConfig['relbranchOverride']          = ''
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = '8cc403ad710b'
+releaseConfig['mozillaRepoRevision']        = 'c0c3429824fc'
 releaseConfig['mozillaRelbranchOverride']   = '' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
