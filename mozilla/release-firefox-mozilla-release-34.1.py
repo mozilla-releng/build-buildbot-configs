@@ -25,12 +25,43 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '34.1'
-releaseConfig['appVersion']          = '34.1'
+releaseConfig['version']             = '34.0.5'
+releaseConfig['appVersion']          = '34.0.5'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_34_1'
+releaseConfig['baseTag']             = 'FIREFOX_34_0_5'
 releaseConfig['partialUpdates']      = {
+
+    '33.1.1': {
+        'appVersion': '33.1.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_33_1_1',
+    },
+
+    '33.0.3': {
+        'appVersion': '33.0.3',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_33_0_3',
+    },
+
+    '33.1': {
+        'appVersion': '33.1',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_33_1',
+    },
+
+    '32.0.3': {
+        'appVersion': '32.0.3',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_32_0_3',
+    },
+
+    '34.0': {
+        'appVersion': '34.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_34_0',
+    },
+
 }
 releaseConfig['extraPartials']       = {
 }
@@ -42,7 +73,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release-34.1',
         'path': 'releases/mozilla-release',
-        'revision': 'abcdef123456',
+        'revision': '2af28d4d94db',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -102,10 +133,6 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['verifyConfigs']       = {
-    'linux':  'mozRelease-34.1-firefox-linux.cfg',
-    'linux64':  'mozRelease-34.1-firefox-linux64.cfg',
-    'macosx64': 'mozRelease-34.1-firefox-mac64.cfg',
-    'win32':  'mozRelease-34.1-firefox-win32.cfg'
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
