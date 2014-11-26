@@ -172,3 +172,4 @@ releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
 releaseConfig['bouncer_aliases'] = {
     'Fennec-%(version)s': 'fennec-latest',
 }
+releaseConfig['skip_updates']        = True

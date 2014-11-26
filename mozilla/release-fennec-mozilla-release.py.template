@@ -163,3 +163,4 @@ releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['bouncer_aliases'] = {
     'Fennec-%(version)s': 'fennec-latest',
 }
+releaseConfig['skip_updates']        = True
