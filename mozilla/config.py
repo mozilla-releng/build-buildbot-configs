@@ -1514,6 +1514,7 @@ PLATFORM_VARS = {
             'is_mobile_l10n': True,
             'l10n_chunks': 5,
             'multi_locale': True,
+            'multi_locale_config_platform': 'android',
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
             'update_platform': 'Android_arm-eabi-gcc3',
@@ -1586,6 +1587,7 @@ PLATFORM_VARS = {
             'l10n_chunks': 5,
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
+            'multi_locale_config_platform': 'android',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
             'update_platform': 'Android_arm-eabi-gcc3',
         },
@@ -2765,11 +2767,6 @@ branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
 for branch in branches:
     if branch in ['cedar', 'ash']:
-        # remove the soon to be replaced android builds
-        if 'android' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['android']
-        if 'android-debug' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['android-debug']
         continue
     ## enable new split android builds on cedar only to start.
     if 'android-api-9' in BRANCHES[branch]['platforms']:
