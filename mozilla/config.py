@@ -1508,7 +1508,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-api-10",
+            'stage_platform': "android-api-9",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'is_mobile_l10n': True,
