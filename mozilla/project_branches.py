@@ -2,6 +2,7 @@ PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     # 'build-system': {},  # Bug 1010674
     'fx-team': {
+        'merge_builds': False,
         'enable_perproduct_builds': True,
         'repo_path': 'integration/fx-team',
         'mozconfig_dir': 'mozilla-central',
@@ -11,6 +12,7 @@ PROJECT_BRANCHES = {
         'enable_weekly_bundle': True,
     },
     'mozilla-inbound': {
+        'merge_builds': False,
         'repo_path': 'integration/mozilla-inbound',
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
@@ -23,6 +25,7 @@ PROJECT_BRANCHES = {
         'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
     'b2g-inbound': {
+        'merge_builds': False,
         'repo_path': 'integration/b2g-inbound',
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',

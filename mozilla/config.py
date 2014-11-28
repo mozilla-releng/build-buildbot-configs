@@ -2074,21 +2074,27 @@ apply_localconfig(BRANCH_PROJECTS, localconfig.BRANCH_PROJECTS)
 # platforms (if different from the default set).
 BRANCHES = {
     'mozilla-central': {
+        'merge_builds': False,
     },
     'mozilla-release': {
+        'merge_builds': False,
         'branch_projects': []
     },
     'mozilla-release-34.1': {
+        'merge_builds': False,
         'branch_projects': [],
         'gecko_version': 34,
     },
     'mozilla-beta': {
+        'merge_builds': False,
         'branch_projects': []
     },
     'mozilla-aurora': {
+        'merge_builds': False,
         'branch_projects': []
     },
     'mozilla-esr31': {
+        'merge_builds': False,
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 31,
@@ -2105,12 +2111,14 @@ BRANCHES = {
         },
     },
     'mozilla-b2g28_v1_3t': {
+        'merge_builds': False,
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 28,
         'platforms': {},
     },
     'mozilla-b2g30_v1_4': {
+        'merge_builds': False,
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 30,
@@ -2126,6 +2134,7 @@ BRANCHES = {
         },
     },
     'mozilla-b2g32_v2_0': {
+        'merge_builds': False,
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 32,
@@ -2141,6 +2150,7 @@ BRANCHES = {
         },
     },
     'mozilla-b2g34_v2_1': {
+        'merge_builds': False,
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 34,
