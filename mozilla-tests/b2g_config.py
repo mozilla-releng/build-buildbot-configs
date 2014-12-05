@@ -59,6 +59,10 @@ BRANCHES = {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
     },
+    'mozilla-b2g34_v2_1s': {
+        'gecko_version': 34,
+        'b2g_version': (2, 1, 0),
+    },
     'mozilla-b2g37_v2_2': {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
@@ -2297,6 +2301,7 @@ BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
+BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
