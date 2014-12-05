@@ -2812,22 +2812,6 @@ for branch in branches:
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         del BRANCHES[branch]['platforms']['android-armv6']
 
-# Bug 1073772 - Releng work for producing two ARMv7 APKs to target different API ranges
-branches = BRANCHES.keys()
-branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in branches:
-    if branch in ['cedar', 'ash']:
-        continue
-    ## enable new split android builds on cedar only to start.
-    if 'android-api-9' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-api-9']
-    if 'android-api-10' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-api-10']
-    if 'android-debug-api-9' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-debug-api-9']
-    if 'android-debug-api-10' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-debug-api-10']
-
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()
 branches.extend(ACTIVE_PROJECT_BRANCHES)
@@ -2882,6 +2866,25 @@ for name, branch in BRANCHES.items():
                 [x for x in pc['mock_packages'] if x not in (
                     'ant', 'ant-apache-regexp',
                 )]
+
+# Bug 1073772 - Releng work for producing two ARMv7 APKs to target different API ranges
+# split apk rides the trains
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
+    # remove the soon to be replaced android builds
+    if 'android' in branch['platforms']:
+        del branch['platforms']['android']
+    if 'android-debug' in branch['platforms']:
+        del branch['platforms']['android-debug']
+    continue
+for name, branch in items_before(BRANCHES, 'gecko_version', 37):
+    if 'android-api-9' in branch['platforms']:
+        del branch['platforms']['android-api-9']
+    if 'android-api-10' in branch['platforms']:
+        del branch['platforms']['android-api-10']
+    if 'android-debug-api-9' in branch['platforms']:
+        del branch['platforms']['android-debug-api-9']
+    if 'android-debug-api-10' in branch['platforms']:
+        del branch['platforms']['android-debug-api-10']
 
 # Don't schedule non-unified builds anywhere except on m-c and derived branches
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
