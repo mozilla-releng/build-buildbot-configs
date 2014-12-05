@@ -113,6 +113,7 @@ releaseConfig['partnerRepackConfig'] = {
 releaseConfig['mozconfigs']          = {
     'android': 'mobile/android/config/mozconfigs/android/release',
 }
+releaseConfig['releaseChannel']        = 'release'
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
@@ -156,9 +157,12 @@ releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android','linux')
-releaseConfig['ftpSymlinkName'] = 'latest'releaseConfig['testChannels']          = ['release-localtest', 'release-cdntest']
+releaseConfig['ftpSymlinkName'] = 'latest'
+releaseConfig['localTestChannel']      = 'betatest'
+releaseConfig['cdnTestChannel']        = 'releasetest'
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
+releaseConfig['releaseChannelRuleIds'] = []
 releaseConfig['testChannelRuleIds']    = [38, 39]
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'

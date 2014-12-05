@@ -41,7 +41,9 @@ BRANCHES = {
         'gecko_version': 30,
     },
     'try': {'coallesce_jobs': False},
-    'mozilla-esr31':     {},
+    'mozilla-esr31':     {
+        'gecko_version': 31,
+    },
 }
 
 setMainFirefoxVersions(BRANCHES)
@@ -1714,10 +1716,15 @@ BRANCHES['try']['platforms']['android-api-10']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+
+######## ash 
+BRANCHES['ash']['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
 
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
-BRANCHES['ash']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
@@ -1731,19 +1738,18 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
         ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
 
 # bug 1073772 - enable new apk split builders will ride the trains
-branches = BRANCHES.keys()
-for branch_name in branches:
-    # for now, let's just enabled the new split on cedar for testing
-    if branch_name in ['cedar', 'ash']:
-        # remove original 'android'
-        if 'android' in BRANCHES[branch_name]['platforms']:
-            del BRANCHES[branch_name]['platforms']['android']
-        # leave android-api-{9,10}
-        continue
-    # remove android-api-{9,10} everywhere else
-    for platform_name in ('android-api-9', 'android-api-10'):
-        if platform_name in BRANCHES[branch_name]['platforms']:
-            del BRANCHES[branch_name]['platforms'][platform_name]
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
+    # remove the soon to be replaced android builds
+    if 'android' in branch['platforms']:
+        del branch['platforms']['android']
+    if 'android-debug' in branch['platforms']:
+        del branch['platforms']['android-debug']
+    continue
+for name, branch in items_before(BRANCHES, 'gecko_version', 37):
+    if 'android-api-9' in branch['platforms']:
+        del branch['platforms']['android-api-9']
+    if 'android-api-10' in branch['platforms']:
+        del branch['platforms']['android-api-10']
 
 # enable android 2.3 tests to ride the trains bug 1004791
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):

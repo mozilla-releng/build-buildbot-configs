@@ -156,6 +156,7 @@ releaseConfig['localTestChannel']      = 'betatest'
 releaseConfig['cdnTestChannel']        = 'releasetest'
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
+releaseConfig['releaseChannelRuleIds'] = []
 releaseConfig['testChannelRuleIds']    = [37]
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
