@@ -1858,6 +1858,7 @@ PLATFORM_VARS = {
         'android-debug-api-10': {
             'enable_nightly': False,
             'product_name': 'firefox',
+            'unittest_platform': 'android-api-10-debug',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Android armv7 API 10+ %(branch)s debug',
