@@ -38,11 +38,6 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 releaseConfig['extraPartials']       = {
-    '34.0b11': {
-        'appVersion': '34.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_34_0b11',
-    },
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
