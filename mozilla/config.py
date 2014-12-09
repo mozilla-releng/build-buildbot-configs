@@ -2027,6 +2027,8 @@ BRANCH_PROJECTS = {
             'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting', 'warnaserrdebug'],
             'win32': ['generational', 'warnaserr'],
             'win32-debug': ['generational', 'warnaserrdebug'],
+            'win64': ['generational', 'warnaserr'],
+            'win64-debug': ['generational', 'warnaserrdebug'],
         },
         'platforms': {
             'linux': {},
