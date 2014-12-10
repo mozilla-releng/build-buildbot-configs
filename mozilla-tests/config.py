@@ -374,12 +374,12 @@ MOCHITEST_E10S = [
     }),
 ]
 
-# Plain mochitests with the content sandbox enabled.
+# Plain mochitests with a more strict content sandbox enabled.
 MOCHITEST_CSB = [
     ('mochitest-csb', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'plain-chunked', '--content-sandbox=on'],
+        'extra_args': ['--mochitest-suite', 'plain-chunked', '--strict-content-sandbox'],
         'blob_upload': True,
         'script_maxtime': 7200,
         'totalChunks': 5,
