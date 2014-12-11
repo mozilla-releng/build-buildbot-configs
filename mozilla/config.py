@@ -1939,7 +1939,7 @@ for platform in PLATFORM_VARS.values():
 
 PROJECTS = {
     'fuzzing': {
-        'platforms': ['mock-hw', 'macosx64-lion', 'win64-rev2'],
+        'platforms': ['mock', 'macosx64-lion', 'win64-rev2'],
     },
 }
 

@@ -176,7 +176,8 @@ PROJECTS = {
         'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
-        'idle_slaves': 3,
+        # This is # of idle slaves per master
+        'idle_slaves': 2,
         'disable_tinderbox_mail': False,
     },
 }
