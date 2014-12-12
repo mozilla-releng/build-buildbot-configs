@@ -228,8 +228,8 @@ PROJECT_BRANCHES = {
         'platforms': {
             'android-api-9': {},
             'android-api-11': {},
-            'android-debug-api-9': {},
-            'android-debug-api-11': {},
+            'android-api-9-debug': {},
+            'android-api-11-debug': {},
             'android-x86': {},
             'android-debug': {},
         },

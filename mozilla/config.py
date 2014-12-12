@@ -76,8 +76,8 @@ GLOBAL_VARS = {
         'android-x86': {},
         'android-armv6': {},
         'android-debug': {},
-        'android-debug-api-11': {},
-        'android-debug-api-9': {},
+        'android-api-11-debug': {},
+        'android-api-9-debug': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'linux64', 'win32', 'win64',),
@@ -1790,7 +1790,7 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
-        'android-debug-api-9': {
+        'android-api-9-debug': {
             'enable_nightly': False,
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -1851,12 +1851,12 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'talos_masters': None,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-debug-api-9",
+            'stage_platform': "android-api-9-debug",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
-        'android-debug-api-11': {
+        'android-api-11-debug': {
             'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'android-api-11-debug',
@@ -1918,7 +1918,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'talos_masters': None,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-debug-api-11",
+            'stage_platform': "android-api-11-debug",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
@@ -2426,8 +2426,8 @@ BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-11']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-debug-api-9']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-debug-api-11']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-9-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-11-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
@@ -2677,8 +2677,8 @@ BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-11']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-debug-api-9']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-debug-api-11']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-9-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-11-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
@@ -2845,10 +2845,10 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 37):
         del branch['platforms']['android-api-9']
     if 'android-api-11' in branch['platforms']:
         del branch['platforms']['android-api-11']
-    if 'android-debug-api-9' in branch['platforms']:
-        del branch['platforms']['android-debug-api-9']
-    if 'android-debug-api-11' in branch['platforms']:
-        del branch['platforms']['android-debug-api-11']
+    if 'android-api-9-debug' in branch['platforms']:
+        del branch['platforms']['android-api-9-debug']
+    if 'android-api-11-debug' in branch['platforms']:
+        del branch['platforms']['android-api-11-debug']
 
 # Don't schedule non-unified builds anywhere except on m-c and derived branches
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
