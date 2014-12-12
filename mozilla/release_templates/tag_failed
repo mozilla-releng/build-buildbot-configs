@@ -1,7 +1,0 @@
-%(releaseName)s: Tagging failed
-Tagging failed for %(releaseName)s
-
-Status: %(job_status_repr)s
-
-%(buildbot_url)s
--buildbot

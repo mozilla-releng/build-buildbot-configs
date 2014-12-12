@@ -1206,7 +1206,7 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_vm-b2gdt': {
             'opt_unittest_suites': MOCHITEST_DESKTOP[:] + \
                     REFTEST_DESKTOP_SANITY[:] + GAIA_UNITTESTS[:] + GAIA_LINTER[:],
-            'debug_unittest_suites': GAIA_UI[:],
+            'debug_unittest_suites': [],
             'suite_config': {
                 'gaia-integration': {
                     'extra_args': [
@@ -2268,6 +2268,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
         if slave_platform[0] in BRANCHES[name]['platforms']:
             BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GIP[:]
             if slave_platform[0] == 'linux64_gecko':
+                BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['debug_unittest_suites'] += GIP[:]
                 BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GAIA_JS_INTEGRATION[:]
 # ...and non-chunked Gip in earlier branches
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
@@ -2276,6 +2277,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
         if slave_platform[0] in BRANCHES[name]['platforms']:
             BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GAIA_UI[:]
             if slave_platform[0] == 'linux64_gecko':
+                BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['debug_unittest_suites'] += GAIA_UI[:]
                 BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GAIA_INTEGRATION[:]
 
 # explicitly set slave platforms per branch
