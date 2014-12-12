@@ -72,11 +72,11 @@ GLOBAL_VARS = {
         'win64-debug': {},
         'android': {},
         'android-api-9': {},
-        'android-api-10': {},
+        'android-api-11': {},
         'android-x86': {},
         'android-armv6': {},
         'android-debug': {},
-        'android-debug-api-10': {},
+        'android-debug-api-11': {},
         'android-debug-api-9': {},
     },
     'pgo_strategy': None,
@@ -1455,7 +1455,7 @@ PLATFORM_VARS = {
             'brand_name': 'Minefield',
             'base_name': 'Android armv7 API 9 %(branch)s',
             'mozconfig': 'in_tree',
-            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-constrained/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-10-constrained/nightly',
             'mobile_dir': 'mobile/android',
             'enable_xulrunner': False,
             'profiled_build': False,
@@ -1520,14 +1520,14 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
             'update_platform': 'Android_arm-eabi-gcc3',
         },
-        'android-api-10': {
+        'android-api-11': {
             'product_name': 'firefox',
-            'unittest_platform': 'android-api-10-opt',
+            'unittest_platform': 'android-api-11-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'Android armv7 API 10+ %(branch)s',
+            'base_name': 'Android armv7 API 11+ %(branch)s',
             'mozconfig': 'in_tree',
-            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-10/nightly',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-11/nightly',
             'mobile_dir': 'mobile/android',
             'enable_xulrunner': False,
             'profiled_build': False,
@@ -1581,7 +1581,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-api-10",
+            'stage_platform': "android-api-11",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'is_mobile_l10n': True,
@@ -1797,7 +1797,7 @@ PLATFORM_VARS = {
             'brand_name': 'Minefield',
             'base_name': 'Android armv7 API 9 %(branch)s debug',
             'mozconfig': 'in_tree',
-            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-constrained/debug',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-10-constrained/debug',
             'mobile_dir': 'mobile/android',
             'enable_xulrunner': False,
             'profiled_build': False,
@@ -1856,15 +1856,15 @@ PLATFORM_VARS = {
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
         },
-        'android-debug-api-10': {
+        'android-debug-api-11': {
             'enable_nightly': False,
             'product_name': 'firefox',
-            'unittest_platform': 'android-api-10-debug',
+            'unittest_platform': 'android-api-11-debug',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Android armv7 API 10+ %(branch)s debug',
             'mozconfig': 'in_tree',
-            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-10/debug',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-11/debug',
             'mobile_dir': 'mobile/android',
             'enable_xulrunner': False,
             'profiled_build': False,
@@ -1918,7 +1918,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'talos_masters': None,
             'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-debug-api-10",
+            'stage_platform': "android-debug-api-11",
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
@@ -2325,7 +2325,7 @@ BRANCHES['mozilla-central']['enable_hpkp_update'] = True
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-central']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
+BRANCHES['mozilla-central']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -2333,7 +2333,7 @@ BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = '
 BRANCHES['mozilla-central']['platforms']['android']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-armv6']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['android-api-10']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['android-api-11']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 
@@ -2378,7 +2378,7 @@ BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-release']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
+BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2421,13 +2421,13 @@ BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-beta']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
+BRANCHES['mozilla-beta']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 BRANCHES['mozilla-beta']['platforms']['android']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-api-10']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-11']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-debug-api-9']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-debug-api-10']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-debug-api-11']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
@@ -2483,7 +2483,7 @@ BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-aurora']['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10'
+BRANCHES['mozilla-aurora']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -2675,10 +2675,10 @@ BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-api-10']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-11']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug-api-9']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-debug-api-10']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-debug-api-11']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Sadly, the rule that mobile builds go to /mobile/
@@ -2735,8 +2735,8 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if 'android-api-9' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
-    if 'android-api-10' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-10']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-10-' + branch
+    if 'android-api-11' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11-' + branch
     if 'android-armv6' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if 'android-x86' in BRANCHES[branch]['platforms']:
@@ -2843,12 +2843,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
 for name, branch in items_before(BRANCHES, 'gecko_version', 37):
     if 'android-api-9' in branch['platforms']:
         del branch['platforms']['android-api-9']
-    if 'android-api-10' in branch['platforms']:
-        del branch['platforms']['android-api-10']
+    if 'android-api-11' in branch['platforms']:
+        del branch['platforms']['android-api-11']
     if 'android-debug-api-9' in branch['platforms']:
         del branch['platforms']['android-debug-api-9']
-    if 'android-debug-api-10' in branch['platforms']:
-        del branch['platforms']['android-debug-api-10']
+    if 'android-debug-api-11' in branch['platforms']:
+        del branch['platforms']['android-debug-api-11']
 
 # Don't schedule non-unified builds anywhere except on m-c and derived branches
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']

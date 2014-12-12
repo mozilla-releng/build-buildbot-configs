@@ -122,7 +122,7 @@ PROJECT_BRANCHES = {
             'android-api-9': {
                 'slave_platforms': ['ubuntu64_vm_mobile', 'ubuntu64_vm_large'],
             },
-            'android-api-10': {
+            'android-api-11': {
                 'slave_platforms': ['panda_android'],
             },
             'android-x86': {
@@ -227,9 +227,9 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'android-api-9': {},
-            'android-api-10': {},
+            'android-api-11': {},
             'android-debug-api-9': {},
-            'android-debug-api-10': {},
+            'android-debug-api-11': {},
             'android-x86': {},
             'android-debug': {},
         },
