@@ -71,7 +71,7 @@ releaseConfig['hgSshKey']                   = '~seabld/.ssh/seabld_dsa'
 # Update-specific configuration
 releaseConfig['cvsroot']                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 releaseConfig['patcherConfig']              = 'mozBeta-seamonkey-branch-patcher2.cfg'
-releaseConfig['patcherToolsTag']            = 'UPDATE_PACKAGING_R17'
+releaseConfig['patcherToolsTag']            = 'UPDATE_PACKAGING_R18'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['ftpServer']                  = 'ftp.mozilla.org'
