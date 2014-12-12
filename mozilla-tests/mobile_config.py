@@ -103,7 +103,7 @@ PLATFORMS['android-api-11']['slave_platforms'] = ['panda_android']
 PLATFORMS['android-api-11']['env_name'] = 'android-perf'
 PLATFORMS['android-api-11']['is_mobile'] = True
 PLATFORMS['android-api-11']['panda_android'] = {
-    'name': "Android 4.0 armv7 API 11+",
+    'name': "Android 4.0 armv7 API 10+",
     'mozharness_talos': True,
 }
 PLATFORMS['android-api-11']['stage_product'] = 'mobile'

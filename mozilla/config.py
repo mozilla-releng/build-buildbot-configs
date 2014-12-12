@@ -1525,7 +1525,7 @@ PLATFORM_VARS = {
             'unittest_platform': 'android-api-11-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
-            'base_name': 'Android armv7 API 11+ %(branch)s',
+            'base_name': 'Android armv7 API 10+ %(branch)s',
             'mozconfig': 'in_tree',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-11/nightly',
             'mobile_dir': 'mobile/android',
