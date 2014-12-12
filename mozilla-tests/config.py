@@ -2134,9 +2134,9 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
                     # wasn't there anyways
                     pass
 
-# Disable Linux64-cc in every branch except cedar
+# Disable Linux64-cc in every branch except try
 for name in BRANCHES.keys():
-    if name in ('cedar',):
+    if name in ('try',):
         continue
     for platform in ('linux64-cc',):
         if platform in BRANCHES[name]['platforms']:

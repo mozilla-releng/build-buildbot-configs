@@ -66,7 +66,6 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
-        'linux64-cc': {},
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -2171,10 +2170,11 @@ BRANCHES = {
     },
     'try': {
         'branch_projects': ['spidermonkey_try'],
-        # For now, only run shell rooting hazards builds on try. (Browser
-        # hazard builds run everywhere, not just on try.)
+        # The following platforms are not part of the default set,
+        # so only run on Try.
         'extra_platforms': {
             'linux64-sh-haz': {},
+            'linux64-cc': {},
         },
     },
 }
@@ -2265,12 +2265,6 @@ for branch in BRANCHES.keys():
                 for platform, platform_config in value.items():
                     if platform_config.get('dont_build'):
                         del BRANCHES[branch]['platforms'][platform]
-
-    # linux64-cc builds only run on cedar for now
-    if branch not in ('cedar',):
-        for platform in ('linux64-cc',):
-            if platform in BRANCHES[branch]['platforms']:
-                del BRANCHES[branch]['platforms'][platform]
 
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
@@ -2670,6 +2664,7 @@ BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock'
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-sh-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['linux64-cc']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
