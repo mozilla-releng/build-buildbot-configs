@@ -126,10 +126,6 @@ GLOBAL_VARS = {
     },
     # list platforms with mozharness l10n repacks enabled.
     # mozharness repacks will be enabled per branch
-    'mozharness_desktop_l10n_platforms': [
-        'linux', 'linux64', 'macosx64'
-    ],
-    # bug 1027890: excluding win32/win64 for now
 
 }
 GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
@@ -164,6 +160,7 @@ PLATFORM_VARS = {
                 'script_maxtime': int(5.5 * 3600),
             },
             'mozharness_desktop_l10n': {
+                'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 10,
                 'use_credentials_file': True,
@@ -289,6 +286,7 @@ PLATFORM_VARS = {
                 '--custom-build-variant-cfg', 'non-unified',
             ],
             'mozharness_desktop_l10n': {
+                'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 10,
                 'use_credentials_file': True,
@@ -813,6 +811,7 @@ PLATFORM_VARS = {
                 '--custom-build-variant-cfg', 'non-unified',
             ],
             'mozharness_desktop_l10n': {
+                'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 10,
                 'use_credentials_file': True,
@@ -896,6 +895,7 @@ PLATFORM_VARS = {
                 '--custom-build-variant-cfg', 'non-unified',
             ],
             'mozharness_desktop_l10n': {
+                'capable': False,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 10,
                 'use_credentials_file': True,
@@ -957,6 +957,7 @@ PLATFORM_VARS = {
         'win64': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
             'mozharness_desktop_l10n': {
+                'capable': False,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 10,
                 'use_credentials_file': True,
@@ -2890,19 +2891,6 @@ for b in ('b2g-inbound',):
         if 'linux' not in p:
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
-
-# desktop repacks with mozharness
-for name, branch in BRANCHES.items():
-    if branch.get('desktop_mozharness_repacks_enabled'):
-        for platform_name in branch['platforms']:
-            if platform_name in GLOBAL_VARS['mozharness_desktop_l10n_platforms']:
-                pf = branch['platforms'][platform_name]
-                pf['desktop_mozharness_repacks_enabled'] = True
-        continue
-    # for all other branches delete mozharness_desktop_l10n
-    for p in branch["platforms"]:
-        if "mozharness_desktop_l10n" in p:
-            del p["mozharness_desktop_l10n"]
 
 # enable mozharness desktop builds across m-c and related branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
