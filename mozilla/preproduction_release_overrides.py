@@ -1,5 +1,5 @@
-releaseConfig['AllRecipients']      = ['<release@mozilla.com>',]
-releaseConfig['ImportantRecipients']      = ['<release@mozilla.com>',]
+releaseConfig['AllRecipients']      = ['<release+releasespam@mozilla.com>',]
+releaseConfig['ImportantRecipients']      = ['<release+releasespam@mozilla.com>',]
 releaseConfig['l10nRepoPath']        = 'users/prepr-ffxbld'
 releaseConfig['hgUsername']          = 'prepr-ffxbld'
 releaseConfig['stagingServer']       = 'preproduction-stage.srv.releng.scl3.mozilla.com'

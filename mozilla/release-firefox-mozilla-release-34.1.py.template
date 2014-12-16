@@ -11,7 +11,7 @@ releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer
 releaseConfig['skip_updates']        = True
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release@mozilla.com>',
+releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
                                         '<release-mgmt@mozilla.com>',
                                         '<qa-drivers@mozilla.com>']
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
