@@ -124,7 +124,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "it": {
-    "revision": "a90a2ec31590",
+    "revision": "269c2a0b6d94",
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
@@ -188,7 +188,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "pt-BR": {
-    "revision": "5ec8f7909ae9",
+    "revision": "2d0ad84aaef6",
     "platforms": ["android", "android-multilocale"]
   },
   "pt-PT": {
@@ -220,7 +220,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "te": {
-    "revision": "b8705091a657",
+    "revision": "ad8163fc8591",
     "platforms": ["android", "android-multilocale"]
   },
   "th": {
@@ -228,7 +228,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "tr": {
-    "revision": "38dda5419b46",
+    "revision": "48028e2619ea",
     "platforms": ["android", "android-multilocale"]
   },
   "uk": {
@@ -240,7 +240,7 @@
     "platforms": ["android"]
   },
   "zh-CN": {
-    "revision": "6ed9abdcc839",
+    "revision": "b12da6648abf",
     "platforms": ["android", "android-multilocale"]
   },
   "zh-TW": {
