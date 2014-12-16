@@ -99,7 +99,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'create_mobile_snippet': True,
-        'use_mozharness_repo_cache': False,
         'lock_platforms': True,
         'script_repo_manifest': \
              "https://hg.mozilla.org/%(repo_path)s/raw-file/" + \
