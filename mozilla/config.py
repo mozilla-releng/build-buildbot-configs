@@ -40,7 +40,7 @@ GLOBAL_VARS = {
     'compare_locales_tag': 'RELEASE_AUTOMATION',
     'mozharness_repo_path': 'build/mozharness',
     'mozharness_tag': 'production',
-    'use_mozharness_repo_cache': True,  # ash overwrites this
+    'use_mozharness_repo_cache': True,
     'multi_locale_merge': True,
     'default_build_space': 5,
     'default_l10n_space': 3,
