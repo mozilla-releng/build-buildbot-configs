@@ -36,7 +36,7 @@ GLOBAL_VARS = {
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
     'base_bundle_urls': ['http://preproduction-master.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/bundles'],
-    'tooltool_url_list': ['http://runtime-binaries.pvt.build.mozilla.org/tooltool'],
+    'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
 }
 
 BUILDS_BEFORE_REBOOT = 1
