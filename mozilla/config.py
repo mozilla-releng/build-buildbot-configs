@@ -2113,13 +2113,6 @@ BRANCHES = {
             'android-armv6': {},
         },
     },
-    'mozilla-b2g28_v1_3t': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 28,
-        'platforms': {},
-    },
     'mozilla-b2g30_v1_4': {
         'merge_builds': False,
         'branch_projects': [],
@@ -2517,13 +2510,6 @@ BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr31']['enable_valgrind'] = False
 BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox', 'mobile']
-
-######## mozilla-b2g28_v1_3t
-BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = 'releases/mozilla-b2g28_v1_3t'
-BRANCHES['mozilla-b2g28_v1_3t']['enable_l10n'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['enable_nightly'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['enable_xulrunner'] = False
-BRANCHES['mozilla-b2g28_v1_3t']['enable_valgrind'] = False
 
 ######## mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'

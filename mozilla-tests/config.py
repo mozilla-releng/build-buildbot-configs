@@ -2085,7 +2085,7 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
 
 
 # remove mochitest-browser-chrome and mochitest-devtools-chrome
-# from b2g28, b2g30, b2g32 - bug 1045398
+# from b2g30, b2g32 - bug 1045398
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
     for platform in branch['platforms']:

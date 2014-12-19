@@ -47,14 +47,6 @@ BRANCHES = {
     'jamun': {},
     'pine': {},
     'fx-team': {},
-    'mozilla-b2g28_v1_3t': {
-        'gecko_version': 28,
-        'b2g_version': (1, 3, 0),
-        'lock_platforms': True,
-        'platforms': {
-            'emulator': {},
-        },
-    },
     'mozilla-b2g30_v1_4': {
         'gecko_version': 30,
         'b2g_version': (1, 4, 0),
@@ -2214,7 +2206,6 @@ BRANCHES['cypress']['branch_name'] = "Cypress"
 BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
-BRANCHES['mozilla-b2g28_v1_3t']['repo_path'] = "releases/mozilla-b2g28_v1_3t"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
@@ -2297,12 +2288,6 @@ for b in BRANCHES.keys():
                 slave_p = branch['platforms'][slave_platform[0]][slave_platform[1]]
                 slave_p['opt_unittest_suites'] = [x for x in slave_p['opt_unittest_suites']
                                                   if x[0] not in excluded_tests]
-
-# Once we EOL mozilla-b2g28_v1_3t we can remove this
-for suite_to_remove in ('reftest-10', 'reftest-15'):
-    for s in BRANCHES['mozilla-b2g28_v1_3t']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites']:
-        if s[0] == suite_to_remove:
-            BRANCHES['mozilla-b2g28_v1_3t']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'].remove(s)
 
 # Disable debug emulator mochitests on older branches
 OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 29)])
