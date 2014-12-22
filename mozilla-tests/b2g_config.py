@@ -936,7 +936,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm-mulet': {
-            'opt_unittest_suites': MOCHITEST_MULET_PLAIN[:],
+            'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest-1': {
@@ -2235,8 +2235,10 @@ exclude_suites(('linux64_gecko', 'ubuntu64_vm-b2gdt'), 'cedar', ('gaia-ui-test',
 exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 
 # Enable mulet reftests on Ash, Cedar and Try
-BRANCHES['try']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
-BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += REFTEST_MULET
+BRANCHES['try']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += \
+    REFTEST_MULET + MOCHITEST_MULET_PLAIN
+BRANCHES['cedar']['platforms']['linux64-mulet']['ubuntu64_vm-mulet']['opt_unittest_suites'] += \
+    REFTEST_MULET + MOCHITEST_MULET_PLAIN
 
 # new linux64_gecko tests as of gecko 32; OOP replaces their non-OOP variants
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
