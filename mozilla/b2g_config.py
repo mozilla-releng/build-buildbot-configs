@@ -1338,6 +1338,11 @@ PLATFORM_VARS = {
         'try_by_default': True,
         'consider_for_nightly': False,
         'mock_target': 'mozilla-centos6-x86_64',
+        'reboot_command': [
+            '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
+            '-f', '../reboot_count.txt', '-n', '1', '-z'
+        ],
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
     },
     'emulator-kk': {
         'mozharness_config': {
