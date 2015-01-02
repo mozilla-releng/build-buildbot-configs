@@ -679,6 +679,11 @@ PLATFORM_VARS = {
             'try_by_default': False,
             'consider_for_nightly': False,
             'mock_target': 'mozilla-centos6-x86_64',
+            'reboot_command': [
+                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt', '-n', '1', '-z'
+            ],
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         },
         'linux64-br-haz': {
             'mozharness_config': {
@@ -701,6 +706,11 @@ PLATFORM_VARS = {
             'try_by_default': True,
             'consider_for_nightly': False,
             'mock_target': 'mozilla-centos6-x86_64',
+            'reboot_command': [
+                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt', '-n', '1', '-z'
+            ],
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         },
         'linux64-cc': {
             'mozharness_python': '/tools/buildbot/bin/python',
@@ -1269,6 +1279,65 @@ PLATFORM_VARS = {
             },
             'enable_unittests': False,
             'enable_checktests': True,
+            'talos_masters': None,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
+        },
+        'macosx64-st-an-debug': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_mac_64_builds.py',
+                    '--custom-build-variant-cfg', 'stat-and-debug',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
+
+            'try_by_default': False,
+            'enable_nightly': False,
+            'enable_xulrunner': False,
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'OS X 10.7 64-bit %(branch)s debug static analysis',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'browser/config/mozconfigs/macosx64/debug-static-analysis',
+            'packageTests': False,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': False,
+            'build_space': 10,
+            'slaves': SLAVES['macosx64-lion'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'macosx64-st-an-debug',
+            'enable_shared_checkouts': True,
+            'enable_nonunified_build': False,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+            },
+            'enable_unittests': False,
+            'enable_checktests': False,
             'talos_masters': None,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
@@ -2168,6 +2237,7 @@ BRANCHES = {
         'extra_platforms': {
             'linux64-sh-haz': {},
             'linux64-cc': {},
+            'macosx64-st-an-debug': {},
         },
     },
 }
@@ -2653,6 +2723,7 @@ BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-cc']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['macosx64-st-an-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
