@@ -2152,11 +2152,6 @@ BRANCHES = {
         'merge_builds': False,
         'branch_projects': []
     },
-    'mozilla-release-34.1': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'gecko_version': 34,
-    },
     'mozilla-beta': {
         'merge_builds': False,
         'branch_projects': []
@@ -2393,13 +2388,6 @@ BRANCHES['mozilla-central']['platforms']['android-api-9']['nightly_signing_serve
 BRANCHES['mozilla-central']['platforms']['android-api-11']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
-
-######## mozilla-release-34.1
-BRANCHES['mozilla-release-34.1']['repo_path'] = 'releases/mozilla-release'
-BRANCHES['mozilla-release-34.1']['enable_l10n'] = False
-BRANCHES['mozilla-release-34.1']['start_hour'] = [0]
-BRANCHES['mozilla-release-34.1']['start_minute'] = [0]
-BRANCHES['mozilla-release-34.1']['aus2_base_upload_dir'] = 'fake'
 
 ######## mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
