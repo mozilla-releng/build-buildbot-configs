@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '34.0.5'
-releaseConfig['appVersion']          = '34.0.5'
+releaseConfig['version']             = '35.0'
+releaseConfig['appVersion']          = '35.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_34_0_5'
+releaseConfig['baseTag']             = 'FIREFOX_35_0'
 releaseConfig['partialUpdates']      = {
 
     '33.1.1': {
@@ -36,37 +36,20 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_33_1_1',
     },
 
-    '33.0.3': {
-        'appVersion': '33.0.3',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_33_0_3',
-    },
-
-    '33.1': {
-        'appVersion': '33.1',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_33_1',
-    },
-
     '32.0.3': {
         'appVersion': '32.0.3',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_32_0_3',
     },
 
-    '34.0': {
-        'appVersion': '34.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_34_0',
+    '34.0.5': {
+        'appVersion': '34.0.5',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_34_0_5',
     },
 
 }
 releaseConfig['extraPartials']       = {
-    '34.0b11': {
-        'appVersion': '34.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_34_0b11',
-    },
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -76,7 +59,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'e08ba260399a',
+        'revision': '345cd3b9c445',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
