@@ -1,0 +1,11 @@
+.orig
+.pyc
+.pck
+.tox/
+twistd.pid
+twistd.log
+twistd.log.[0-9]+
+test-output
+
+BuildSlaves.py
+passwords.py
