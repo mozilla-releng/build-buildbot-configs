@@ -20,11 +20,9 @@ tox
 
 ### To run tests in travis
 Please note if you fork this repository and wish to run the tests in travis,
-you will need to enable your github fork in both travis and coveralls. In both
-cases you can log in with your github account, you do not need to set up a new
-one. To enable:
+you will need to enable your github fork in travis. You can log in with your
+github account, you do not need to set up a new one. To enable:
 * https://travis-ci.org/profile
-* https://coveralls.io/repos/new
 
 After enabling, you will need to push changes to your repo in order for a travis
 job to be triggered.

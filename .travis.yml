@@ -8,6 +8,10 @@ install:
 script:
   - tox
 
+after_script:
+  # only in after_script can it run without failing the job
+  - tox -e pep8
+
 # currently cannot customise per user fork, see:
 # https://github.com/travis-ci/travis-ci/issues/1094
 # please comment out this section in your personal fork!
