@@ -1,6 +1,7 @@
 \.orig$
 \.pyc$
 \.pck$
+^\.tox
 twistd\.pid$
 twistd\.log$
 twistd\.log\.[0-9]+$
