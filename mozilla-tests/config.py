@@ -1712,6 +1712,11 @@ BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s', 'xperf-e10s',
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-release']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-release']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-release']['platforms']['linux64']['talos_slave_platforms'] = []
+#BRANCHES['mozilla-release']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1724,24 +1729,34 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-esr31
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr31']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr31']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr31']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr31']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g30_v1_4']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g32_v2_0']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
 BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
@@ -1816,15 +1831,6 @@ for platform in BRANCHES['holly']['platforms'].keys():
 
 # Enable Yosemite testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['cedar'])
-
-for name, branch in items_before(BRANCHES, 'gecko_version', 32):
-    if 'enable_talos' in branch and branch['enable_talos'] is False:
-        continue
-    branch['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['other_nol64_tests'] = (0, False, {}, NO_LINUX64)
-    branch['other_l64_tests'] = (0, False, {}, LINUX64_ONLY)
-    branch['g1_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-
 
 # Run Jetpack tests everywhere except on versioned B2G branches.
 for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
