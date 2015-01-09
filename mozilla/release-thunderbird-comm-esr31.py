@@ -23,23 +23,23 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.3.0'
-releaseConfig['appVersion']          = '31.3.0'
+releaseConfig['version']             = '31.4.0'
+releaseConfig['appVersion']          = '31.4.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_3_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_4_0'
 releaseConfig['partialUpdates']      = {
+
+    '31.3.0': {
+        'appVersion': '31.3.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_3_0',
+    },
 
     '24.6.0': {
         'appVersion': '24.6.0',
         'buildNumber': 3,
         'baseTag': 'THUNDERBIRD_24_6_0',
-    },
-
-    '31.2.0': {
-        'appVersion': '31.2.0',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_31_2_0',
     },
 
 }
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
-        'revision': 'c7c445f02441',
+        'revision': '3b6a364c4650',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -63,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '7e37a85a056d',
+        'revision': '0a43b3f39c7f',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
