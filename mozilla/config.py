@@ -259,6 +259,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
         },
         'linux64': {
@@ -367,6 +368,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
         },
         'linux64-asan': {
@@ -460,6 +462,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -557,6 +560,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -654,6 +658,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -798,6 +803,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
         },
         'macosx64': {
@@ -1133,6 +1139,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
         },
         'linux64-debug': {
@@ -1223,6 +1230,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
             ],
         },
         'macosx64-debug': {
