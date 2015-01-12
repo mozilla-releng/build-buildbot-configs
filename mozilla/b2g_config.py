@@ -1587,6 +1587,10 @@ BRANCHES = {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
     },
+    'mozilla-b2g37_v2_2': {
+        'gecko_version': 37,
+        'b2g_version': (2, 2, 0),
+    },
     'try': {
         'lock_platforms': True,
         'platforms': {
@@ -1719,6 +1723,37 @@ BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['dolphin']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['dolphin_eng']['enable_nightly'] = True
+
+######## mozilla-b2g37_v2_2
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = 'releases/mozilla-b2g37_v2_2'
+BRANCHES['mozilla-b2g37_v2_2']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g37_v2_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
+BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir'] = 'fake'
+BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir_l10n'] = 'fake'
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['helix']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['wasabi']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g34_v2_1
 # This is a path, relative to HGURL, where the repository is located
