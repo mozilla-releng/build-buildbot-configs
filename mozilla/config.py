@@ -1347,13 +1347,6 @@ PLATFORM_VARS = {
             'enable_unittests': False,
             'enable_checktests': False,
             'talos_masters': None,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
             'enable_ccache': True,
         },
