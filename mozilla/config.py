@@ -67,6 +67,7 @@ GLOBAL_VARS = {
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
         'macosx64-debug': {},
+        'macosx64-st-an-debug': {},
         'win32-debug': {},
         'win64-debug': {},
         'android': {},
@@ -1312,7 +1313,6 @@ PLATFORM_VARS = {
                 'script_maxtime': int(5.5 * 3600),
             },
 
-            'try_by_default': False,
             'enable_nightly': False,
             'enable_xulrunner': False,
             'product_name': 'firefox',
@@ -2249,7 +2249,6 @@ BRANCHES = {
         'extra_platforms': {
             'linux64-sh-haz': {},
             'linux64-cc': {},
-            'macosx64-st-an-debug': {},
         },
     },
 }
@@ -2958,6 +2957,8 @@ for branch in ("try",):
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64-st-an-debug' in branch['platforms']:
         del branch['platforms']['linux64-st-an-debug']
+    if 'macosx64-st-an-debug' in branch['platforms']:
+        del branch['platforms']['macosx64-st-an-debug']
 
 # Only test pretty names on train branches, not m-c or project branches.
 # That's also forced on nonunified builds in buildbotcustom.
