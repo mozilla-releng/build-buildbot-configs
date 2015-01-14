@@ -313,7 +313,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -853,7 +853,7 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -942,7 +942,7 @@ PLATFORM_VARS = {
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
@@ -1187,7 +1187,7 @@ PLATFORM_VARS = {
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1273,7 +1273,7 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1393,7 +1393,7 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -1468,7 +1468,7 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1612,7 +1612,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1820,7 +1820,7 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1955,7 +1955,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -2948,18 +2948,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 37):
         del branch['platforms']['android-api-9-debug']
     if 'android-api-11-debug' in branch['platforms']:
         del branch['platforms']['android-api-11-debug']
-
-# Don't schedule non-unified builds anywhere except on m-c and derived branches
-mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
-    for pc in branch['platforms'].values():
-        if 'enable_nonunified_build' in pc:
-            pc['enable_nonunified_build'] = False
-# Don't try to schedule non-unified builds on Try either
-for branch in ("try",):
-    for pc in BRANCHES[branch]['platforms'].values():
-        if 'enable_nonunified_build' in pc:
-            pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):

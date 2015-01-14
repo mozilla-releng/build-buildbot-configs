@@ -1236,7 +1236,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1260,7 +1260,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1283,7 +1283,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1307,7 +1307,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1360,7 +1360,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1386,7 +1386,7 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': True,
+        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1970,15 +1970,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 for b in ('b2g-inbound',):
     BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
     BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
-
-# Only run non-unified builds on m-c and derived branches, except for try
-for name, branch in BRANCHES.iteritems():
-    gecko_version = branch.get('gecko_version')
-    if name != 'try' and (gecko_version is None or gecko_version >= BRANCHES['mozilla-central']['gecko_version']):
-        continue
-    for pc in branch['platforms'].values():
-        if 'enable_nonunified_build' in pc:
-            pc['enable_nonunified_build'] = False
 
 if __name__ == "__main__":
     import sys
