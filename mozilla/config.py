@@ -2949,6 +2949,9 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 37):
     if 'android-api-11-debug' in branch['platforms']:
         del branch['platforms']['android-api-11-debug']
 
+# mozilla-central's gecko version
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+
 # Static analysis happens only on m-c and derived branches.
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64-st-an-debug' in branch['platforms']:
