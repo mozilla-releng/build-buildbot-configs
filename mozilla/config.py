@@ -67,6 +67,7 @@ GLOBAL_VARS = {
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
         'macosx64-debug': {},
+        'macosx64-st-an-debug': {},
         'win32-debug': {},
         'win64-debug': {},
         'android': {},
@@ -259,7 +260,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
         },
         'linux64': {
@@ -312,7 +313,7 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -368,7 +369,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
         },
         'linux64-asan': {
@@ -462,7 +463,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -560,7 +561,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -658,7 +659,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -803,7 +804,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
         },
         'macosx64': {
@@ -852,7 +853,7 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -941,7 +942,7 @@ PLATFORM_VARS = {
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
@@ -1139,7 +1140,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
         },
         'linux64-debug': {
@@ -1186,7 +1187,7 @@ PLATFORM_VARS = {
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1230,7 +1231,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
             ],
         },
         'macosx64-debug': {
@@ -1272,7 +1273,7 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1312,7 +1313,6 @@ PLATFORM_VARS = {
                 'script_maxtime': int(5.5 * 3600),
             },
 
-            'try_by_default': False,
             'enable_nightly': False,
             'enable_xulrunner': False,
             'product_name': 'firefox',
@@ -1393,7 +1393,7 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -1468,7 +1468,7 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1486,6 +1486,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1556,6 +1557,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1610,7 +1612,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1628,6 +1630,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1698,6 +1701,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1763,6 +1767,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1815,7 +1820,7 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1832,6 +1837,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1898,6 +1904,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1948,7 +1955,7 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': True,
+            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1965,6 +1972,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -2249,7 +2257,6 @@ BRANCHES = {
         'extra_platforms': {
             'linux64-sh-haz': {},
             'linux64-cc': {},
-            'macosx64-st-an-debug': {},
         },
     },
 }
@@ -2942,22 +2949,15 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 37):
     if 'android-api-11-debug' in branch['platforms']:
         del branch['platforms']['android-api-11-debug']
 
-# Don't schedule non-unified builds anywhere except on m-c and derived branches
+# mozilla-central's gecko version
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
-    for pc in branch['platforms'].values():
-        if 'enable_nonunified_build' in pc:
-            pc['enable_nonunified_build'] = False
-# Don't try to schedule non-unified builds on Try either
-for branch in ("try",):
-    for pc in BRANCHES[branch]['platforms'].values():
-        if 'enable_nonunified_build' in pc:
-            pc['enable_nonunified_build'] = False
 
 # Static analysis happens only on m-c and derived branches.
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     if 'linux64-st-an-debug' in branch['platforms']:
         del branch['platforms']['linux64-st-an-debug']
+    if 'macosx64-st-an-debug' in branch['platforms']:
+        del branch['platforms']['macosx64-st-an-debug']
 
 # Only test pretty names on train branches, not m-c or project branches.
 # That's also forced on nonunified builds in buildbotcustom.

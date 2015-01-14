@@ -518,6 +518,42 @@ GAIA_JS_INTEGRATION = [
                            'timeout': 1800,
                            },
     ),
+    ('gaia-js-integration-5', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
+    ('gaia-js-integration-6', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
+    ('gaia-js-integration-7', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
+    ('gaia-js-integration-8', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
+    ('gaia-js-integration-9', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
+    ('gaia-js-integration-10', {'suite': 'gaia-js-integration',
+                           'use_mozharness': True,
+                           'script_path': 'scripts/gaia_integration.py',
+                           'timeout': 1800,
+                           },
+    ),
 ]
 
 REFTEST = [
@@ -1212,27 +1248,63 @@ PLATFORM_UNITTEST_VARS = {
                 'gaia-js-integration-1': {
 	                    'extra_args': [
 	                        '--cfg', 'b2g/gaia_integration_config.py',
-	                        '--this-chunk', 1, '--total-chunks', 4,
+	                        '--this-chunk', 1, '--total-chunks', 10,
 	                    ],
 	            },
                 'gaia-js-integration-2': {
 	                    'extra_args': [
 	                        '--cfg', 'b2g/gaia_integration_config.py',
-	                        '--this-chunk', 2, '--total-chunks', 4,
+	                        '--this-chunk', 2, '--total-chunks', 10,
 	                    ],
 	            },
                 'gaia-js-integration-3': {
 	                    'extra_args': [
 	                        '--cfg', 'b2g/gaia_integration_config.py',
-	                        '--this-chunk', 3, '--total-chunks', 4,
+	                        '--this-chunk', 3, '--total-chunks', 10,
 	                    ],
 	            },
                 'gaia-js-integration-4': {
 	                    'extra_args': [
 	                        '--cfg', 'b2g/gaia_integration_config.py',
-	                        '--this-chunk', 4, '--total-chunks', 4,
+	                        '--this-chunk', 4, '--total-chunks', 10,
 	                    ],
 	            },
+                'gaia-js-integration-5': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 5, '--total-chunks', 10,
+                        ],
+                },
+                'gaia-js-integration-6': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 6, '--total-chunks', 10,
+                        ],
+                },
+                'gaia-js-integration-7': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 7, '--total-chunks', 10,
+                        ],
+                },
+                'gaia-js-integration-8': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 8, '--total-chunks', 10,
+                        ],
+                },
+                'gaia-js-integration-9': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 9, '--total-chunks', 10,
+                        ],
+                },
+                'gaia-js-integration-10': {
+                        'extra_args': [
+                            '--cfg', 'b2g/gaia_integration_config.py',
+                            '--this-chunk', 10, '--total-chunks', 10,
+                        ],
+                },
                 'gaia-build': {
                     'extra_args': [
                         '--cfg', 'b2g/gaia_integration_config.py',
