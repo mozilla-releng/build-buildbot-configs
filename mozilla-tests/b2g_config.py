@@ -268,6 +268,14 @@ MOCHITEST = [
                      },
      ),
 ]
+MOCHITEST_CHROME = [
+    ('mochitest-chrome', {'suite': 'mochitest-chrome',
+                          'use_mozharness': True,
+                          'script_path': 'scripts/b2g_emulator_unittest.py',
+                          'blob_upload': True,
+                         },
+    ),
+]
 
 MOCHITEST_EMULATOR_JB = [
     ('mochitest-1', {'suite': 'mochitest-plain',
@@ -1650,6 +1658,12 @@ PLATFORM_UNITTEST_VARS = {
                         '--test-path', 'dom/media/tests/',
                     ],
                 },
+                'mochitest-chrome': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'mochitest-chrome',
+                    ],
+                },
                 'mochitest-1': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
@@ -2262,7 +2276,7 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT
+    MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT + MOCHITEST_CHROME
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = MOCHITEST_MEDIA
