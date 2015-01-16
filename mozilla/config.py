@@ -2074,6 +2074,8 @@ BRANCH_PROJECTS = {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational'],
             'linux-debug': ['arm-sim'],
+            'win32-debug': ['warnaserrdebug', 'generational'],
+            'win32': ['warnaserr'],
         },
         'platforms': {
             'linux': {},
@@ -2095,7 +2097,7 @@ BRANCH_PROJECTS = {
         'enable_try': True,
         'try_by_default': {
             'rootanalysis': True, # all platforms for which it is defined
-            'generational': set(['linux64-debug']),
+            'generational': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
         },
         'variants': {
