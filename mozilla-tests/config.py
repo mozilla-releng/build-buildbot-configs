@@ -111,7 +111,8 @@ PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8",
                                          'try_by_default': False}
-PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10"}
+PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10", 
+                                     'try_by_default': False}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1842,6 +1843,8 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
+BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## ash
 BRANCHES['ash']['script_repo_manifest'] = \
@@ -1902,7 +1905,7 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
 # Enable Yosemite testing on select branches only
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['cedar'])
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['cedar', 'try'])
 
 # Run Jetpack tests everywhere except on versioned B2G branches.
 for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
@@ -1923,19 +1926,21 @@ for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
 # https://bugzilla.mozilla.org/show_bug.cgi?id=937637
+# cppunittest jobs ride the train with 28, so they need to be disabled
+# for branches running an older version.
+# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
 for platform in PLATFORMS.keys():
     # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
         if platform not in branch['platforms']:
             continue
-        if 'mountainlion' in PLATFORMS[platform]['slave_platforms']:
-            if 'mountainlion' not in branch['platforms'][platform]:
+        for slave_platform in branch['platforms'][platform]:
+            if slave_platform not in ['mountainlion', 'yosemite']:
                 continue
-
             for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for cpp_suite in CPPUNIT:
                     try:
-                        branch['platforms'][platform]['mountainlion'][suite_type].remove(cpp_suite)
+                        branch['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
                     except ValueError:
                         # wasn't in the list anyways
                         pass
@@ -2029,7 +2034,7 @@ for platform in PLATFORMS.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-            if slave_platform == 'mountainlion':
+            if slave_platform in ['mountainlion', 'yosemite']:
                 continue
 
             if platform in BRANCHES[name]['platforms']:
