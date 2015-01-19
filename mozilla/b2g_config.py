@@ -634,7 +634,6 @@ PLATFORM_VARS = {
         'stage_platform': 'macosx64-mulet',
         'update_platform': 'Darwin_x86_64-gcc3',
         'enable_shared_checkouts': True,
-        'enable_nonunified_build': False,
         'enable_nightly': True,
         'env': {
             'MOZ_OBJDIR': OBJDIR,
@@ -1228,7 +1227,6 @@ PLATFORM_VARS = {
             'extra_args': ['--target', 'emulator', '--config', 'b2g/releng-emulator.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1236,7 +1234,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1252,7 +1249,6 @@ PLATFORM_VARS = {
                            '--debug',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1260,7 +1256,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1275,7 +1270,6 @@ PLATFORM_VARS = {
             'extra_args': ['--target', 'emulator-jb', '--config', 'b2g/releng-emulator.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1283,7 +1277,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1299,7 +1292,6 @@ PLATFORM_VARS = {
                            '--debug',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1307,7 +1299,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1352,7 +1343,6 @@ PLATFORM_VARS = {
             'extra_args': ['--target', 'emulator-kk', '--config', 'b2g/releng-emulator.py',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1360,7 +1350,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -1378,7 +1367,6 @@ PLATFORM_VARS = {
                            '--debug',
                            '--gaia-languages-file', 'locales/languages_dev.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'non_unified_extra_args': ['--non-unified'],
             'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
             'mozharness_repo_cache': '/tools/checkouts/mozharness',
             'tools_repo_cache': '/tools/checkouts/build-tools',
@@ -1386,7 +1374,6 @@ PLATFORM_VARS = {
         'env': {
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
         },
-        'enable_nonunified_build': False,
         'stage_product': 'b2g',
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',

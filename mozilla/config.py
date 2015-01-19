@@ -279,13 +279,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_linux_64_builds.py',
-                '--custom-build-variant-cfg', 'non-unified',
-            ],
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
@@ -313,7 +306,6 @@ PLATFORM_VARS = {
             'update_platform': 'Linux_x86_64-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'DISPLAY': ':2',
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -819,13 +811,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_mac_64_builds.py',
-                '--custom-build-variant-cfg', 'non-unified',
-            ],
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
@@ -853,7 +838,6 @@ PLATFORM_VARS = {
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -903,13 +887,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_windows_32_builds.py',
-                '--custom-build-variant-cfg', 'non-unified',
-            ],
             'mozharness_desktop_l10n': {
                 'capable': False,
                 'scriptName': 'scripts/desktop_l10n.py',
@@ -942,7 +919,6 @@ PLATFORM_VARS = {
             'crashtest_leak_threshold': 484,
             'update_platform': 'WINNT_x86-msvc',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
@@ -1160,13 +1136,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_linux_64_builds.py',
-                '--custom-build-variant-cfg', 'debug-and-non-unified',
-            ],
 
             'enable_nightly': False,
             'enable_xulrunner': False,
@@ -1187,7 +1156,6 @@ PLATFORM_VARS = {
             'stage_platform': 'linux64-debug',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1247,13 +1215,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_mac_64_builds.py',
-                '--custom-build-variant-cfg', 'debug-and-non-unified',
-            ],
 
             'enable_nightly': False,
             'enable_xulrunner': False,
@@ -1273,7 +1234,6 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1331,7 +1291,6 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'macosx64-st-an-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -1366,13 +1325,6 @@ PLATFORM_VARS = {
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
             },
-            # because non-unified platforms are defined at misc level,
-            # we can not add a new platform in config.py for this but instead
-            #  add another config on all non-unified able platforms
-            'mozharness_non_unified_extra_args': [
-                '--config', 'builds/releng_base_windows_32_builds.py',
-                '--custom-build-variant-cfg', 'debug-and-non-unified',
-            ],
 
             'enable_nightly': False,
             'enable_xulrunner': False,
@@ -1393,7 +1345,6 @@ PLATFORM_VARS = {
             'stage_product': 'firefox',
             'stage_platform': 'win32-debug',
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
                 'XPCOM_DEBUG_BREAK': 'stack-and-abort',
@@ -1468,7 +1419,6 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1539,7 +1489,6 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1612,7 +1561,6 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1820,7 +1768,6 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1887,7 +1834,6 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -1955,7 +1901,6 @@ PLATFORM_VARS = {
             'platform_objdir': OBJDIR,
             'enable_ccache': True,
             'enable_shared_checkouts': True,
-            'enable_nonunified_build': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'use_mock': True,
@@ -2074,6 +2019,8 @@ BRANCH_PROJECTS = {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'generational'],
             'linux-debug': ['arm-sim'],
+            'win32-debug': ['warnaserrdebug', 'generational'],
+            'win32': ['warnaserr'],
         },
         'platforms': {
             'linux': {},
@@ -2095,7 +2042,7 @@ BRANCH_PROJECTS = {
         'enable_try': True,
         'try_by_default': {
             'rootanalysis': True, # all platforms for which it is defined
-            'generational': set(['linux64-debug']),
+            'generational': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
         },
         'variants': {
@@ -2961,7 +2908,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
         del branch['platforms']['macosx64-st-an-debug']
 
 # Only test pretty names on train branches, not m-c or project branches.
-# That's also forced on nonunified builds in buildbotcustom.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
                "mozilla-esr31"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
