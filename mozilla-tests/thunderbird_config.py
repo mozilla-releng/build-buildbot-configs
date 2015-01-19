@@ -381,6 +381,11 @@ for platform in PLATFORMS.keys():
                         # wasn't in the list anyways
                         pass
 
+# Mac OSX signing changes in gecko 34 - bug 1117637, bug 1047584
+for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+  if 'macosx64' in BRANCHES[name]['platforms']:
+    BRANCHES[name]['platforms']['macosx64']['mac_res_subdir'] = 'MacOS'
+
 if __name__ == "__main__":
     import sys
     import pprint
