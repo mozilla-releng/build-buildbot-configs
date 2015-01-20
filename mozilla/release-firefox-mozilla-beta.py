@@ -23,23 +23,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '36.0b1'
+releaseConfig['version']             = '36.0b2'
 releaseConfig['appVersion']          = '36.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_36_0b1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_36_0b2'
 releaseConfig['partialUpdates']      = {
 
-    '35.0': {
-        'appVersion': '35.0',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_35_0',
-    },
-
-    '35.0b3': {
-        'appVersion': '35.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_35_0b3',
+    '36.0b1': {
+        'appVersion': '36.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_36_0b1',
     },
 
     '35.0b8': {
@@ -57,8 +51,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'GECKO360b1_2015011222_RELBRANCH',
-        'relbranch': 'GECKO360b1_2015011222_RELBRANCH',
+        'revision': '1b21115851ef',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
