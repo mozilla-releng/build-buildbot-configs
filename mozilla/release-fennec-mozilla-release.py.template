@@ -155,8 +155,8 @@ releaseConfig['mock_platforms'] = ('android', 'android-x86', 'linux')
 releaseConfig['ftpSymlinkName'] = 'latest'
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['localTestChannel']      = 'betatest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['localTestChannel']      = 'release-localtest'
+releaseConfig['cdnTestChannel']        = 'release-cdntest'
 releaseConfig['testChannelRuleIds']    = []
 releaseConfig['releaseChannelRuleIds'] = []
 
