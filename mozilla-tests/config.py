@@ -636,6 +636,15 @@ MARIONETTE = [
         'blob_upload': True,
     }),
 ]
+MARIONETTE_E10S = [
+    ('marionette-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/marionette.py',
+        'extra_args': ['--e10s'],
+        'download_symbols': False,
+        'blob_upload': True,
+    }),
+]
 JITTEST = [
     ('jittest', {
         'use_mozharness': True,
@@ -777,6 +786,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'jittest': {
@@ -2095,6 +2107,7 @@ for platform in PLATFORMS.keys():
 # Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
 # Enable e10s devtools tests for Linux opt on trunk branches
 # Enable e10s reftests/crashtests for Linux opt on trunk branches
+# Enable e10s marionette tests for Linux32 opt on trunk branches
 # Fix this to a certain gecko version once e10s starts riding the trains
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
@@ -2112,6 +2125,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:] + REFTEST_E10S[:]
+            if platform == 'linux':
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
 
 # Bug 1080134: we want to disable all 32-bit testing on win8 for gecko 36 and
 # higher, and enable 64-bit tests on win8 instead.
