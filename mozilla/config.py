@@ -2735,7 +2735,7 @@ for platform in BRANCHES['try']['platforms'].keys():
 # Enable mozharness pinning
 for branch in ('ash', 'fx-team', 'try',):
     BRANCHES[branch]['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/"
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"
 
 ######## generic branch configs
