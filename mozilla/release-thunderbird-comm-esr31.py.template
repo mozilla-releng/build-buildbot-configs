@@ -124,9 +124,9 @@ releaseConfig['mozconfigs']          = {
     'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
-releaseConfig['localTestChannel']      = 'betatest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['releaseChannelRuleIds'] = [35]
+releaseConfig['localTestChannel']      = 'release-localtest'
+releaseConfig['cdnTestChannel']        = 'release-cdntest'
 releaseConfig['testChannelRuleIds']    = [61,62]
 
 # Partner repack configuration
