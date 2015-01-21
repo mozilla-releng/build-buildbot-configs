@@ -96,7 +96,7 @@ releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
 # Update-specific configuration
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
