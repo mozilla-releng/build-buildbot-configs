@@ -121,9 +121,9 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
-releaseConfig['localTestChannel']      = 'esrtest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['releaseChannelRuleIds'] = [53]
+releaseConfig['localTestChannel']      = 'esr-localtest'
+releaseConfig['cdnTestChannel']        = 'esr-cdntest'
 releaseConfig['testChannelRuleIds']    = [29,42]
 
 # Partner repack configuration

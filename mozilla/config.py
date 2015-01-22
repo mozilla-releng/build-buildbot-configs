@@ -2731,8 +2731,12 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
-BRANCHES['try']['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+
+# Enable mozharness pinning
+for branch in ('ash', 'fx-team', 'try',):
+    BRANCHES[branch]['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+        "testing/mozharness/mozharness.json"
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
@@ -2932,7 +2936,7 @@ for b in ('b2g-inbound',):
 # END B2G's INBOUND
 
 # enable mozharness desktop builds across m-c and related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True

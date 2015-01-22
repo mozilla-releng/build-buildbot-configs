@@ -636,6 +636,15 @@ MARIONETTE = [
         'blob_upload': True,
     }),
 ]
+MARIONETTE_E10S = [
+    ('marionette-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/marionette.py',
+        'extra_args': ['--e10s'],
+        'download_symbols': False,
+        'blob_upload': True,
+    }),
+]
 JITTEST = [
     ('jittest', {
         'use_mozharness': True,
@@ -777,6 +786,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'jittest': {
@@ -1841,14 +1853,8 @@ BRANCHES['try']['chromez-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
 BRANCHES['try']['svgr-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
 BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
-
-######## ash
-BRANCHES['ash']['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
 
 ######## cedar
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
@@ -1888,6 +1894,12 @@ BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
+
+# Enable mozharness pinning
+for branch in ('ash', 'fx-team', 'try',):
+    BRANCHES[branch]['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+            "testing/mozharness/mozharness.json"
 
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
@@ -2095,6 +2107,7 @@ for platform in PLATFORMS.keys():
 # Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
 # Enable e10s devtools tests for Linux opt on trunk branches
 # Enable e10s reftests/crashtests for Linux opt on trunk branches
+# Enable e10s marionette tests for Linux32 opt on trunk branches
 # Fix this to a certain gecko version once e10s starts riding the trains
 mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
@@ -2112,6 +2125,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:] + REFTEST_E10S[:]
+            if platform == 'linux':
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
 
 # Bug 1080134: we want to disable all 32-bit testing on win8 for gecko 36 and
 # higher, and enable 64-bit tests on win8 instead.
@@ -2238,6 +2253,11 @@ for name in BRANCHES.keys():
     for platform in ('linux64-cc',):
         if platform in BRANCHES[name]['platforms']:
             del BRANCHES[name]['platforms'][platform]
+
+# Mac OSX signing changes in gecko 34 - bug 1117637, bug 1047584
+for name, branch in items_before(BRANCHES, 'gecko_version', 34):
+  if 'macosx64' in BRANCHES[name]['platforms']:
+    BRANCHES[name]['platforms']['macosx64']['mac_res_subdir'] = 'MacOS'
 
 if __name__ == "__main__":
     import sys
