@@ -100,6 +100,9 @@ PROJECT_BRANCHES = {
         'create_partial': True,
         'create_mobile_snippet': True,
         'lock_platforms': True,
+        'script_repo_manifest': \
+             "https://hg.mozilla.org/%(repo_path)s/raw-file/" + \
+             "%(revision)s/testing/mozharness/mozharness.json",
         'talos_suites': {
             'xperf': 1,
         },
