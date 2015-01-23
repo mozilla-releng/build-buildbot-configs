@@ -23,23 +23,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '35.0'
-releaseConfig['appVersion']          = '35.0'
+releaseConfig['version']             = '35.0.1'
+releaseConfig['appVersion']          = '35.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_35_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_35_0_1'
 releaseConfig['partialUpdates']      = {
 
-    '33.1.1': {
-        'appVersion': '33.1.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_33_1_1',
-    },
-
-    '32.0.3': {
-        'appVersion': '32.0.3',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_32_0_3',
+    '35.0': {
+        'appVersion': '35.0',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_35_0',
     },
 
     '34.0.5': {
@@ -48,13 +42,14 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_34_0_5',
     },
 
+    '34.0': {
+        'appVersion': '34.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_34_0',
+    },
+
 }
 releaseConfig['extraPartials']       = {
-    '35.0b8': {
-        'appVersion': '35.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_35_0b8',
-    },
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -64,7 +59,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'e2bb35883475',
+        'revision': 'f19bf2ab3d14',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -115,7 +110,7 @@ releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
@@ -142,9 +137,9 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
 }
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
-releaseConfig['localTestChannel']      = 'betatest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['releaseChannelRuleIds'] = [33]
+releaseConfig['localTestChannel']      = 'release-localtest'
+releaseConfig['cdnTestChannel']        = 'release-cdntest'
 releaseConfig['testChannelRuleIds']    = [56,57]
 
 # Partner repack configuration
