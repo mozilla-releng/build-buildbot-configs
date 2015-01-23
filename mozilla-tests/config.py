@@ -1877,8 +1877,6 @@ BRANCHES['ash']['script_repo_manifest'] = \
 
 ######## cedar
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-BRANCHES['cedar']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
-BRANCHES['cedar']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
@@ -1930,7 +1928,7 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
 # Enable Yosemite testing on select branches only
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['cedar', 'try'])
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['try'])
 
 # Run Jetpack tests everywhere except on versioned B2G branches.
 for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
