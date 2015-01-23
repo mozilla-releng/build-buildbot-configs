@@ -93,44 +93,31 @@ PROJECT_BRANCHES = {
     # no desktop builds for bug 1100150
     # 'alder': {},
     'ash': {
-        'enable_perproduct_builds': False,
+        'merge_builds': False,
+        'enable_perproduct_builds': True,
         'desktop_mozharness_repacks_enabled': True,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
         'create_mobile_snippet': True,
-        'lock_platforms': True,
         'script_repo_manifest': \
              "https://hg.mozilla.org/%(repo_path)s/raw-file/" + \
              "%(revision)s/testing/mozharness/mozharness.json",
+        'nightly_signing_servers': 'nightly-signing',
+        'l10n_repo_path': 'releases/l10n/mozilla-aurora',
+        'enable_l10n': True,
+        'enable_l10n_onchange': False,
+        'enUS_binaryURL': '/nightly/latest-ash',
+        'l10nNightlyUpdate': True,
+        'l10nDatedDirs': True,
+        'l10n_tree': 'fxrel',
+        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
+        'pgo_strategy': 'periodic',
+        'periodic_start_hours': range(1, 24, 3),
         'talos_suites': {
             'xperf': 1,
         },
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'linux64-br-haz': {},
-            'linux64-sh-haz': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64': {},
-            'win64-debug': {},
-        },
-        'mobile_platforms': {
-            'android-api-9': {
-                'slave_platforms': ['ubuntu64_vm_mobile', 'ubuntu64_vm_large'],
-            },
-            'android-api-11': {
-                'slave_platforms': ['panda_android'],
-            },
-            'android-x86': {
-                'enable_opt_unittests': True,
-            },
-        },
+        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
     #'birch': {},  # Bug 1010674
     'cedar': {
