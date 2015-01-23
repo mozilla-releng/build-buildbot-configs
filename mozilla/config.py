@@ -2972,7 +2972,7 @@ for b in ('b2g-inbound',):
 # END B2G's INBOUND
 
 # enable mozharness desktop builds across m-c and related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
