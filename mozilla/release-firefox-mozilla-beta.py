@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '36.0b2'
+releaseConfig['version']             = '36.0b3'
 releaseConfig['appVersion']          = '36.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_36_0b2'
+releaseConfig['baseTag']             = 'FIREFOX_36_0b3'
 releaseConfig['partialUpdates']      = {
 
     '36.0b1': {
@@ -36,10 +36,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_36_0b1',
     },
 
-    '35.0b8': {
-        'appVersion': '35.0',
+    '36.0b2': {
+        'appVersion': '36.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_35_0b8',
+        'baseTag': 'FIREFOX_36_0b2',
     },
 
 }
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '1b21115851ef',
+        'revision': 'b3792d13df24',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -102,7 +102,7 @@ releaseConfig['patcherConfig']       = 'mozBeta-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
