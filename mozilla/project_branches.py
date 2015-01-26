@@ -95,7 +95,7 @@ PROJECT_BRANCHES = {
     'ash': {
         'merge_builds': False,
         'enable_perproduct_builds': True,
-        'desktop_mozharness_repacks_enabled': True,
+        'desktop_mozharness_repacks_enabled': False,
         'enable_nightly': True,
         'create_snippet': True,
         'create_partial': True,
