@@ -2326,7 +2326,7 @@ BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                                 'macosx64', 'win64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fxcentral'
 #make sure it has an ending slash
@@ -2476,7 +2476,7 @@ BRANCHES['mozilla-aurora']['enable_l10n'] = True
 BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                                 'macosx64', 'win64']
 BRANCHES['mozilla-aurora']['l10nDatedDirs'] = True
 BRANCHES['mozilla-aurora']['l10n_tree'] = 'fxaurora'
 #make sure it has an ending slash
