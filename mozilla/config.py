@@ -999,7 +999,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            'test_pretty_names': False,
+            'test_pretty_names': True,
             'l10n_check_test': True,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
@@ -2130,7 +2130,6 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
-            'android-armv6': {},
         },
     },
     'mozilla-b2g30_v1_4': {
@@ -2179,6 +2178,15 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+        },
+    },
+    'mozilla-b2g34_v2_1s': {
+        'merge_builds': False,
+        'branch_projects': [],
+        'lock_platforms': True,
+        'gecko_version': 34,
+        'platforms': {
+            'linux': {},
         },
     },
     'mozilla-b2g37_v2_2': {
@@ -2318,7 +2326,7 @@ BRANCHES['mozilla-central']['enable_l10n'] = True
 BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                                 'macosx64', 'win64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fxcentral'
 #make sure it has an ending slash
@@ -2468,7 +2476,7 @@ BRANCHES['mozilla-aurora']['enable_l10n'] = True
 BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = True
 BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64']
+                                                 'macosx64', 'win64']
 BRANCHES['mozilla-aurora']['l10nDatedDirs'] = True
 BRANCHES['mozilla-aurora']['l10n_tree'] = 'fxaurora'
 #make sure it has an ending slash
@@ -2569,7 +2577,7 @@ BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/F
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
 BRANCHES['mozilla-b2g30_v1_4']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_hsts_update'] = True
-BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = True
+BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox', 'mobile']
 
@@ -2636,6 +2644,37 @@ BRANCHES['mozilla-b2g34_v2_1']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g34_v2_1']['enabled_products'] = ['firefox', 'mobile']
+
+######## mozilla-b2g34_v2_1s
+BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = 'releases/mozilla-b2g34_v2_1s'
+BRANCHES['mozilla-b2g34_v2_1s']['update_channel'] = 'nightly-b2g34'
+BRANCHES['mozilla-b2g34_v2_1s']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
+BRANCHES['mozilla-b2g34_v2_1s']['enable_weekly_bundle'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [3]
+BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [45]
+BRANCHES['mozilla-b2g34_v2_1s']['enable_xulrunner'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['pgo_platforms'] = []
+BRANCHES['mozilla-b2g34_v2_1s']['enable_mac_a11y'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['mozilla-b2g34_v2_1s']['enable_l10n'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['l10n_platforms'] = ['linux']
+BRANCHES['mozilla-b2g34_v2_1s']['l10nDatedDirs'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g34_v2_1s'
+BRANCHES['mozilla-b2g34_v2_1s']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['create_snippet'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['create_partial'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1s'
+BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1s'
+BRANCHES['mozilla-b2g34_v2_1s']['enable_blocklist_update'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['enable_hsts_update'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['enable_hpkp_update'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['enable_valgrind'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['enabled_products'] = ['firefox', 'mobile']
 
 ######## mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = 'releases/mozilla-b2g37_v2_2'

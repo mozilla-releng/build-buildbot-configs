@@ -149,5 +149,4 @@ releaseConfig['ftpSymlinkName'] = 'latest'
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-latest',
     'Firefox-%(version)s-stub': 'firefox-stub',
-    'Firefox-%(version)s-EUBallot': 'firefox-latest-euballot',
 }

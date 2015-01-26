@@ -86,6 +86,12 @@ BRANCHES = {
         'enable_hpkp_update': False,
         'file_update_on_closed_tree': False,
     },
+    'mozilla-b2g34_v2_1s': {
+        'enable_blocklist_update': False,
+        'enable_hsts_update': False,
+        'enable_hpkp_update': False,
+        'file_update_on_closed_tree': False,
+    },
     'try': {
         'email_override': [],  # Set to your address when testing
         'download_base_url': 'http://preproduction-stage.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',

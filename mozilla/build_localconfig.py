@@ -35,6 +35,7 @@ else:
         'mozilla-b2g30_v1_4',
         'mozilla-b2g32_v2_0',
         'mozilla-b2g34_v2_1',
+        'mozilla-b2g34_v2_1s',
         'mozilla-b2g37_v2_2',
     ])
 if 'limit_tb_branches' in master_config:
@@ -56,6 +57,7 @@ else:
         'mozilla-b2g30_v1_4',
         'mozilla-b2g32_v2_0',
         'mozilla-b2g34_v2_1',
+        'mozilla-b2g34_v2_1s',
         'mozilla-b2g37_v2_2',
     ])
     # MERGE DAY: Remove the following block when we are sure b2g CI is moved to
