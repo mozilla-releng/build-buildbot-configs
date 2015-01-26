@@ -2130,7 +2130,6 @@ BRANCHES = {
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
-            'android-armv6': {},
         },
     },
     'mozilla-b2g30_v1_4': {
