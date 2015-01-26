@@ -999,7 +999,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
-            'test_pretty_names': False,
+            'test_pretty_names': True,
             'l10n_check_test': True,
             # These refer to items in passwords.secrets
             # nightly_signing_servers defaults to dep-signing because we don't want
