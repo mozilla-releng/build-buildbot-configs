@@ -100,9 +100,6 @@ PROJECT_BRANCHES = {
         'create_snippet': True,
         'create_partial': True,
         'create_mobile_snippet': True,
-        'script_repo_manifest': \
-             "https://hg.mozilla.org/%(repo_path)s/raw-file/" + \
-             "%(revision)s/testing/mozharness/mozharness.json",
         'nightly_signing_servers': 'nightly-signing',
         'l10n_repo_path': 'releases/l10n/mozilla-aurora',
         'enable_l10n': True,
