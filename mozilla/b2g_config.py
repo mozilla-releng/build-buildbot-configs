@@ -1964,7 +1964,7 @@ for branch in BRANCHES:
 
 # dolphin-512 is for selected branches only
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g34_v2_1s'):
+    if branch not in ('mozilla-b2g34_v2_1s',):
         if 'dolphin-512' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin-512']
         if 'dolphin-512_eng' in BRANCHES[branch]['platforms']:

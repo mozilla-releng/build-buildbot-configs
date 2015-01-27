@@ -1424,8 +1424,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip',
+                              'ccache', 'zip',
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
@@ -1494,8 +1493,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip',
+                              'ccache', 'zip',
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
@@ -1566,8 +1564,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip',
+                              'ccache', 'zip',
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
@@ -1637,8 +1634,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip',
+                              'ccache', 'zip',
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
                               "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
@@ -1704,8 +1700,7 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk7', 'android-ndk8', 'yasm', 'zip',
+                              'ccache', 'yasm', 'zip',
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr', 'bc',
                               "gcc472_0moz1", "gcc473_0moz1", 'glibc.i686', 'libstdc++.i686',
@@ -1773,8 +1768,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'ccache', 'zip', "gcc472_0moz1", "gcc473_0moz1",
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
@@ -1839,8 +1833,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'ccache', 'zip', "gcc472_0moz1", "gcc473_0moz1",
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
@@ -1906,8 +1899,7 @@ PLATFORM_VARS = {
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64-android',
             'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'android-sdk15', 'android-sdk16',
-                              'android-ndk5', 'android-ndk8', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'ccache', 'zip', "gcc472_0moz1", "gcc473_0moz1",
                               'java-1.7.0-openjdk-devel', 'zlib-devel',
                               'glibc-static', 'openssh-clients', 'mpfr',
                               'wget', 'glibc.i686', 'libstdc++.i686',
@@ -2770,8 +2762,12 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
-BRANCHES['try']['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/testing/mozharness/mozharness.json"
+
+# Enable mozharness pinning
+for branch in ('ash', 'fx-team', 'try',):
+    BRANCHES[branch]['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+        "testing/mozharness/mozharness.json"
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
