@@ -45,19 +45,13 @@ PROJECT_BRANCHES = {
             'linux64-mulet': {},
         },
     },
-    'ash': {
-        'mozharness_repo_path': 'build/ash-mozharness',
-        'mozharness_repo': 'https://hg.mozilla.org/build/ash-mozharness',
-        'mozharness_tag': 'default',
-    },
+    'ash': {},
     # Not needed on Birch at the moment, bug 977420.
     #'birch': {},
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'cypress': {
-        'mozharness_tag': 'default',
-    },
+    'cypress': {},
     # B2G builds not required on date
     # 'date': {},
     'fig': {
