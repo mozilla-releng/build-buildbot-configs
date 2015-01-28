@@ -92,7 +92,7 @@ PROJECT_BRANCHES = {
     },
     # no desktop builds for bug 1100150
     # 'alder': {},
-    'ash': {,
+    'ash': {
         'enable_perproduct_builds': False,
     },
     #'birch': {},  # Bug 1010674
