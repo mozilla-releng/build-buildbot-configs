@@ -2764,7 +2764,7 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'try',):
+for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
     BRANCHES[branch]['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"

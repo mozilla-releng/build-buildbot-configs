@@ -1716,7 +1716,7 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'try',):
+for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
     BRANCHES[branch]['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"

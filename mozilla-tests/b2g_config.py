@@ -2312,7 +2312,7 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'try',):
+for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
     BRANCHES[branch]['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"
