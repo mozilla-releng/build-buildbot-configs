@@ -93,28 +93,7 @@ PROJECT_BRANCHES = {
     # no desktop builds for bug 1100150
     # 'alder': {},
     'ash': {
-        'merge_builds': False,
-        'enable_perproduct_builds': True,
-        'desktop_mozharness_repacks_enabled': False,
-        'enable_nightly': True,
-        'create_snippet': True,
-        'create_partial': True,
-        'create_mobile_snippet': True,
-        'nightly_signing_servers': 'nightly-signing',
-        'l10n_repo_path': 'releases/l10n/mozilla-aurora',
-        'enable_l10n': True,
-        'enable_l10n_onchange': False,
-        'enUS_binaryURL': '/nightly/latest-ash',
-        'l10nNightlyUpdate': True,
-        'l10nDatedDirs': True,
-        'l10n_tree': 'fxrel',
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
-        'pgo_strategy': 'periodic',
-        'periodic_start_hours': range(1, 24, 3),
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'enable_perproduct_builds': False,
     },
     #'birch': {},  # Bug 1010674
     'cedar': {
@@ -133,7 +112,6 @@ PROJECT_BRANCHES = {
     },
     'cypress': {
         'enable_perproduct_builds': False,
-        'mozharness_tag': 'default',
         'enable_talos': True,
     },
     'date': {

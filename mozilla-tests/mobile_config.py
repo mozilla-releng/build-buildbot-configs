@@ -1716,7 +1716,7 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'try',):
+for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
     BRANCHES[branch]['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"
@@ -1790,11 +1790,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
                     if 'debug_unittest_suite' in type:
                         BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
-# have to disable this manually or it blows up in misc.py
-for platform_name in ('android', 'android-api-9', 'android-api-11'):
-    if platform_name in BRANCHES['ash']['platforms']:
-        BRANCHES['ash']['platforms'][platform_name]['enable_debug_unittests'] = False
-
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
@@ -1832,7 +1827,7 @@ remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'jittest', 'panda_android'
 
 # schedule instrumentation tests for pandas on ash and cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1064010
-remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'instrumentation', 'panda_android', branches_to_keep=['ash', 'cedar'])
+remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'instrumentation', 'panda_android', branches_to_keep=['cedar'])
 
 
 if __name__ == "__main__":
