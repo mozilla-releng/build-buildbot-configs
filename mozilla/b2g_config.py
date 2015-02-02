@@ -37,8 +37,6 @@ GLOBAL_VARS.update({
         'linux64_gecko_localizer': {},
         'macosx64_gecko_localizer': {},
         'win32_gecko_localizer': {},
-        'hamachi': {},
-        'hamachi_eng': {},
         'nexus-4': {},
         'nexus-4_eng': {},
         'emulator': {},
@@ -1107,51 +1105,6 @@ PLATFORM_VARS = {
         'tooltool_manifest_src': 'b2g/config/tooltool-manifests/win32/releng.manifest',
         'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
     },
-    'hamachi': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-fota-updates.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'hamachi_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'hamachi', '--config', 'b2g/releng-fota-eng.py',
-                           '--gaia-languages-file', 'locales/languages_dev.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': False,
-        'enable_dep': True,
-    },
     'nexus-4': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1699,9 +1652,6 @@ BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
 BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-central']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1728,9 +1678,6 @@ BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1757,9 +1704,6 @@ BRANCHES['mozilla-b2g34_v2_1']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1807,9 +1751,6 @@ BRANCHES['mozilla-b2g32_v2_0']['start_minute'] = [2]
 BRANCHES['mozilla-b2g32_v2_0']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk_eng']['enable_nightly'] = True
@@ -1831,9 +1772,6 @@ BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
 BRANCHES['mozilla-b2g30_v1_4']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = 'fake'
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['hamachi_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame_eng']['enable_nightly'] = True
