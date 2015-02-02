@@ -1,56 +1,30 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,69) + \
                                                   range(70,87) + range(88,95)]
-LINUX_IXS      = []
-LINUX64_IXS    = []
-WIN32_IXS      = []
-WIN64_IXS      = []
 WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(90,159) + range(161,173)]
-MOCK_DL120G7   = ['b-linux64-hp-%04d' % x for x in range(20,36)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
                  ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
                  ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
-MOCK_IX        = ['b-linux64-ix-%04d' % x for x in range(1, 12)]
-
-if set(WIN64_REV2).intersection(set(WIN64_IXS)):
-    raise Exception('WIN64_REV2 and WIN64_IXS overlap')
 
 SLAVES = {
-    'linux':            LINUX_IXS,
-    'linux64':          LINUX64_IXS,
-    'win32':            WIN32_IXS,
-    'win64':            WIN64_IXS,
     'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
-    'mock':             MOCK_DL120G7 + LINUX64_EC2 + MOCK_IX,
-    'mock-hw':          MOCK_DL120G7 + MOCK_IX,
+    'mock':             LINUX64_EC2,
 }
 
-TRY_LINUX      = []
-TRY_LINUX_IXS  = []
-TRY_LINUX64    = []
-TRY_LINUX64_IXS= []
 TRY_MAC64      = []
-TRY_WIN32_IXS  = []
-TRY_WIN64_IXS  = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
     ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
     ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
 TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,185)]
-TRY_MOCK_DL120G7 = ['b-linux64-hp-%04d' % x for x in range(1, 20)]
-TRY_MOCK_IX      = ['b-linux64-ix-%04d' % x for x in range(12,14)]
 TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,37)]
-if set(TRY_WIN64_REV2).intersection(set(TRY_WIN64_IXS)):
-    raise Exception('TRY_WIN64_REV2 and TRY_WIN64_IXS overlap')
-if set(TRY_WIN64_IXS + TRY_WIN64_REV2).intersection(WIN64_IXS + WIN64_REV2):
-    raise Exception('(TRY_WIN64_IXS + TRY_WIN64_REV2) and (WIN64_IXS + WIN64_REV2) overlap')
+if set(TRY_WIN64_REV2).intersection(WIN64_REV2):
+    raise Exception('TRY_WIN64_REV2 and WIN64_REV2 overlap')
 
 TRY_SLAVES = {
-    'win32':       TRY_WIN32_IXS,
-    'win64':       TRY_WIN64_IXS,
     'win64-rev2':  TRY_WIN64_REV2,
     'macosx64':    TRY_MAC64,
     'macosx64-lion': TRY_LION,
-    'mock':        TRY_MOCK_DL120G7 + TRY_LINUX64_EC2 + TRY_MOCK_IX,
+    'mock':        TRY_LINUX64_EC2,
 }
 
 # Local overrides for default values
