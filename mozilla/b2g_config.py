@@ -1739,6 +1739,13 @@ BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk']['enable_periodic'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_periodic'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_dep'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng-debug']['enable_periodic'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-4']['enable_periodic'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-4_eng']['enable_periodic'] = False
 
 ######## mozilla-b2g32_v2_0
 # This is a path, relative to HGURL, where the repository is located
