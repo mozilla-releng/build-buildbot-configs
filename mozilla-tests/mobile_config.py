@@ -1721,6 +1721,10 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"
 
+BRANCHES['mozilla-b2g30_v1_4']['script_repo_manifest'] = \
+    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+    "testing/mozharness/mozharness.json"
+
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('plain-reftest'):

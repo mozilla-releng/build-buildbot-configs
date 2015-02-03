@@ -2317,6 +2317,10 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"
 
+BRANCHES['mozilla-b2g30_v1_4']['script_repo_manifest'] = \
+    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+    "testing/mozharness/mozharness.json"
+
 def exclude_suites(slave_platform, branch, suites_to_be_excluded, from_opt_unittests, from_debug_unittests):
     #slave_platform is a tuple, e.g.:
     #('linux64_gecko', 'ubuntu64_vm-b2gdt')
