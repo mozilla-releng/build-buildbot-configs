@@ -1907,10 +1907,10 @@ BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
-    BRANCHES[branch]['script_repo_manifest'] = \
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+    branch['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-            "testing/mozharness/mozharness.json"
+        "testing/mozharness/mozharness.json"
 
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():

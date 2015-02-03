@@ -1716,10 +1716,10 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
-    BRANCHES[branch]['script_repo_manifest'] = \
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+    branch['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-            "testing/mozharness/mozharness.json"
+        "testing/mozharness/mozharness.json"
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:

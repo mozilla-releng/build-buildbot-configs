@@ -2312,10 +2312,10 @@ BRANCHES['try']['enable_try'] = True
 BRANCHES['gaia-try']['repo_path'] = "integration/gaia-try"
 
 # Enable mozharness pinning
-for branch in ('ash', 'fx-team', 'mozilla-central', 'try',):
-    BRANCHES[branch]['script_repo_manifest'] = \
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+    branch['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-            "testing/mozharness/mozharness.json"
+        "testing/mozharness/mozharness.json"
 
 def exclude_suites(slave_platform, branch, suites_to_be_excluded, from_opt_unittests, from_debug_unittests):
     #slave_platform is a tuple, e.g.:
