@@ -13,7 +13,7 @@ reload(b2g_localconfig)
 
 import master_common
 reload(master_common)
-from master_common import items_before, setMainFirefoxVersions
+from master_common import items_before, setMainFirefoxVersions, items_at_least
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
