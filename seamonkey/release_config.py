@@ -1,1 +1,0 @@
-release-comm-beta.py
