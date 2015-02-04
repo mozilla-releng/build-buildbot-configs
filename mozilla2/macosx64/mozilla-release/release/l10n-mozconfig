@@ -1,7 +1,0 @@
-. "$topsrcdir/build/macosx/mozconfig.common"
-
-ac_add_options --with-l10n-base=..
-ac_add_options --enable-application=browser
-ac_add_options --enable-official-branding
-ac_add_options --enable-update-channel=release
-ac_add_options --enable-update-packaging

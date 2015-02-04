@@ -19,7 +19,6 @@ GLOBAL_VARS = {
     # a problem to keep them in sync.
     'hgurl': 'https://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
-    'config_subdir': 'mozilla2',
     'objdir': 'obj-firefox',
     'objdir_unittests': 'objdir',
     'stage_username': 'ffxbld',
