@@ -1815,6 +1815,19 @@ BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win32_gecko-debug']['slaves'] = TRY_SLAVES['win64-rev2']
+# Bug 1127482 - Make Windows opt and debug, linux debug, and osx debug B2G Desktop builds periodic
+## we can't have 1127482 builders be periodic on try so let's revert them back to dep builds
+BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['win32_gecko']['enable_dep'] = True
+BRANCHES['try']['platforms']['win32_gecko']['enable_periodic'] = False
+BRANCHES['try']['platforms']['win32_gecko-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['win32_gecko-debug']['enable_periodic'] = False
+
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-debug']['slaves'] = TRY_SLAVES['mock']
