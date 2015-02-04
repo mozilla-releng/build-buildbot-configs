@@ -1889,6 +1889,13 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 32):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
+# Enable mozharness pinning
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+    if name in ('ash', 'try',):
+        branch['script_repo_manifest'] = \
+            "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+            "testing/mozharness/mozharness.json"
+
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
     branchConfig = PROJECT_BRANCHES[branch]
