@@ -7,7 +7,7 @@ reload(b2g_project_branches)
 from b2g_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
 # Note that b2g_localconfig.py is symlinked to one of:
-# {production,staging,preproduction}_b2g_config.py
+# {production,staging}_b2g_config.py
 import b2g_localconfig
 reload(b2g_localconfig)
 
