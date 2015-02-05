@@ -7,7 +7,7 @@ import thunderbird_project_branches
 reload(thunderbird_project_branches)
 from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
-# Note that thunderbird_localconfig.py is symlinked to one of: {production,staging,preproduction}_thunderbird_config.py
+# Note that thunderbird_localconfig.py is symlinked to one of: {production,staging}_thunderbird_config.py
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
 

@@ -22,7 +22,8 @@ except ImportError:
 
 
 class MasterConfig:
-    def __init__(self, name=None, config_dir=None, globs=None, renames=None, local_links=None, extras=None, log=None):
+    def __init__(self, name=None, config_dir=None, globs=None, renames=None,
+                 local_links=None, extras=None, log=None):
         self.name = name or None
         self.config_dir = config_dir
         self.globs = globs or []
@@ -46,7 +47,8 @@ class MasterConfig:
         # The following is needed to maintain exisitng behaviour
         # of printing stderr of buildbot
         if logfile:
-            self.log.debug('opening "%s" for buildbot create master stdout and stderr' % logfile)
+            self.log.debug('opening "%s" for buildbot create master stdout '
+                           'and stderr' % logfile)
             s_out = open(logfile, 'w+')
             s_err = subprocess.STDOUT
         else:
@@ -127,7 +129,8 @@ class MasterConfig:
                 self.logFile(create_log_filename)
             return (300, create_log_filename, None)
         rc = subprocess.call([buildbot, 'checkconfig'],
-                             cwd=test_dir, stdout=test_log, stderr=subprocess.STDOUT)
+                             cwd=test_dir, stdout=test_log,
+                             stderr=subprocess.STDOUT)
         test_log.close()
         log = open(test_log_filename)
         log_size = os.path.getsize(test_log_filename)
@@ -145,8 +148,8 @@ class MasterConfig:
             if error_logs:
                 self.logFile(test_log_filename)
             if rc == 0:
-                self.log.warn('checkconfig returned 0 for %s but didn\'t print "Config file is good!"' %
-                              self.name)
+                self.log.warn('checkconfig returned 0 for %s but didn\'t '
+                              'print "Config file is good!"' % self.name)
             else:
                 self.log.error(
                     "TEST-FAIL %s failed to run checkconfig" % self.name)
@@ -172,7 +175,10 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
         for m in masters:
             m0 = m.copy()
             # Remove unimportant stuff
-            for k in ("basedir", "bbcustom_dir", "buildbot_bin", "buildbot_python", "buildbot_setup", "datacentre", "db_name", "hostname", "http_port", "master_dir", "name", "pb_port", "ssh_port", "tools_dir"):
+            for k in ("basedir", "bbcustom_dir", "buildbot_bin",
+                      "buildbot_python", "buildbot_setup", "datacentre",
+                      "db_name", "hostname", "http_port", "master_dir", "name",
+                      "pb_port", "ssh_port", "tools_dir"):
                 if k in m0:
                     del m0[k]
             k = json.dumps(m0, sort_keys=True)
@@ -180,7 +186,8 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                 unique_masters[k] = m
                 new_masters.append(m)
             else:
-                log.debug("Skipping %s; same as %s" % (m['name'], unique_masters[k]['name']))
+                log.debug("Skipping %s; same as %s", m['name'],
+                          unique_masters[k]['name'])
         masters = new_masters
 
     retval = []
@@ -195,34 +202,21 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             environment_config = 'production_config.py'
         elif m['environment'] == 'staging':
             environment_config = 'staging_config.py'
-        elif m['environment'] == 'preproduction':
-            environment_config = 'preproduction_config.py'
-        c = MasterConfig(name=m['name'],
-                         globs=[
-                         'config.py',
-                         'thunderbird_config.py',
-                         '*_config.py',
-                         '*_common.py',
-                         '*_project_branches.py',
-                         'project_branches.py',
-                         'gecko_versions.json',
-                         ],
-                         renames=[
-                         ('BuildSlaves.py.template', 'BuildSlaves.py'),
-                        ('passwords.py.template', 'passwords.py'),
-                         ],
-                         local_links=[
-                         (environment_config, 'localconfig.py'),
-                        ('thunderbird_' +
-                         environment_config, 'thunderbird_localconfig.py'),
-                        ('b2g_' + environment_config, 'b2g_localconfig.py'),
-                         ],
-                         extras=[
-                         ('master_config.json', json.dumps(
-                          m, indent=2, sort_keys=True)),
-                         ],
-                         log=log
-                         )
+        c = MasterConfig(
+            name=m['name'],
+            globs=['config.py', 'thunderbird_config.py', '*_config.py',
+                   '*_common.py', '*_project_branches.py',
+                   'project_branches.py', 'gecko_versions.json'],
+            renames=[('BuildSlaves.py.template', 'BuildSlaves.py'),
+                     ('passwords.py.template', 'passwords.py')],
+            local_links=[(environment_config, 'localconfig.py'),
+                         ('thunderbird_' + environment_config,
+                          'thunderbird_localconfig.py'),
+                         ('b2g_' + environment_config, 'b2g_localconfig.py')],
+            extras=[('master_config.json',
+                     json.dumps(m, indent=2, sort_keys=True))],
+            log=log
+        )
 
         if universal:
             c.name += '-universal'
@@ -300,9 +294,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
     return retval
 
 
-def filter_masters(master_list):
-    return [m for m in master_list if m != 'preprod-release-master']
-
 if __name__ == "__main__":
 
     from optparse import OptionParser
@@ -315,9 +306,11 @@ if __name__ == "__main__":
         "-8", action="store_true", dest="buildbot08", default=False)
     parser.add_option("-b", "--buildbot", dest="buildbot", default="buildbot")
     parser.add_option("-j", "--masters-json", dest="masters_json",
-                      default="https://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json")
+                      default="https://hg.mozilla.org/build/tools/raw-file/"
+                      "default/buildfarm/maintenance/production-masters.json")
     parser.add_option("-R", "--role", dest="role", default=None,
-                      help="Filter by given comma-separated role(s), eg try, build, tests, scheduler")
+                      help="Filter by given comma-separated role(s), eg try,"
+                           "build, tests, scheduler")
     parser.add_option(
         "-u", "--universal", dest="universal", action="store_true",
         help="Set up a universal master")
@@ -325,10 +318,12 @@ if __name__ == "__main__":
     parser.add_option(
         "-e", "--error-logs", dest="error_logs", action="store_true")
     parser.add_option("-d", "--debug", dest="debug", action="store_true")
-    parser.add_option("--tested-only", dest="tested_only", action="store_true",
-                      help="Restrict to the set of masters that would be used with -t")
-    parser.add_option("--ignore-role", dest="ignored_roles", action="append", default=[],
-                      help="Ignore masters with this role. May be passed multiple times.")
+    parser.add_option(
+        "--tested-only", dest="tested_only", action="store_true",
+        help="Restrict to the set of masters that would be used with -t")
+    parser.add_option(
+        "--ignore-role", dest="ignored_roles", action="append", default=[],
+        help="Ignore masters with this role. May be passed multiple times.")
 
     options, args = parser.parse_args()
 
@@ -364,7 +359,10 @@ if __name__ == "__main__":
         log.debug('adding universal builders because we are testing')
         # a universal scheduler master doesn't make any sense
         ignored_roles += ['scheduler']
-        uni_masters = load_masters_json(options.masters_json, role=options.role, universal=not options.universal, log=log, ignored_roles=ignored_roles)
+        uni_masters = load_masters_json(
+            options.masters_json, role=options.role,
+            universal=not options.universal, log=log,
+            ignored_roles=ignored_roles)
         master_list.extend(uni_masters)
 
     # Make sure we don't have duplicate names
@@ -374,13 +372,16 @@ if __name__ == "__main__":
     assert len(master_list) > 0, "No masters specified. Bad role?"
 
     if options.list or options.test:
-        masters = filter_masters(master_list)
         if len(args) > 0:
             wanted = set(args)
-            available = set([ m.name for m in masters ])
+            available = set([m.name for m in master_list])
             unknown = wanted - available
-            assert len(unknown) == 0, "%d unknown masters requested: %s" % (len(unknown), " ".join(unknown))
-            masters = [ m for m in masters if m.name in wanted ]
+            assert len(unknown) == 0, \
+                "%d unknown masters requested: %s" % (len(unknown),
+                                                      " ".join(unknown))
+            masters = [m for m in master_list if m.name in wanted]
+        else:
+            masters = master_list
 
     if options.list:
         for m in masters:
