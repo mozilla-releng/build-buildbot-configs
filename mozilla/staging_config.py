@@ -25,7 +25,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
     'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
     'graph_server': 'graphs.allizom.org',
-    'balrog_api_root': 'https://aus4-admin-dev.allizom.org',
+    'balrog_api_root': 'https://aus4-admin-dev.allizom.org/api',
     'balrog_username': 'stage-ffxbld',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
