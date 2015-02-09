@@ -1968,7 +1968,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 32):
 
 # Enable mozharness pinning
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
-    if name in ('ash', 'try',):
+    if name in ('ash', 'try', 'fx-team', 'mozilla-central', 'b2g-inbound'):
         branch['script_repo_manifest'] = \
             "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"

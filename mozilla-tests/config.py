@@ -1907,7 +1907,7 @@ BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
 
 # Enable mozharness pinning
-for _, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"
