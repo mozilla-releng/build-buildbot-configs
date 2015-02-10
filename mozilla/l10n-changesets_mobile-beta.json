@@ -84,7 +84,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "fy-NL": {
-    "revision": "6f23245d637f",
+    "revision": "aeca88f345b9",
     "platforms": ["android", "android-multilocale"]
   },
   "ga-IE": {
@@ -216,7 +216,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "ta": {
-    "revision": "76b5bd009c03",
+    "revision": "a252bd8e4ba1",
     "platforms": ["android", "android-multilocale"]
   },
   "te": {
