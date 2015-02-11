@@ -38,6 +38,9 @@ releaseConfig['partialUpdates']      = {
     },
 {% endfor %}
 }
+# win64 support
+releaseConfig['HACK_first_released_version'] = {'win64': '37.0b1'}
+
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -76,7 +79,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
@@ -102,8 +105,8 @@ releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
+releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
+releaseConfig['ausHost']             = None
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
@@ -114,19 +117,22 @@ releaseConfig['verifyConfigs']       = {
     'linux':  'mozBeta-firefox-linux.cfg',
     'linux64':  'mozBeta-firefox-linux64.cfg',
     'macosx64': 'mozBeta-firefox-mac64.cfg',
-    'win32':  'mozBeta-firefox-win32.cfg'
+    'win32':  'mozBeta-firefox-win32.cfg',
+    'win64':  'mozBeta-firefox-win64.cfg',
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/beta',
     'linux64': 'browser/config/mozconfigs/linux64/beta',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/beta',
     'win32': 'browser/config/mozconfigs/win32/beta',
+    'win64': 'browser/config/mozconfigs/win64/beta',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
     'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
     'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
+    'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
 }
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['releaseChannelRuleIds'] = [26]

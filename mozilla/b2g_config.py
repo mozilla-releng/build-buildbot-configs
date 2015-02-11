@@ -92,7 +92,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
         'enable_dep': True,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -191,7 +191,7 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_nightly': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -288,7 +288,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/nightly',
         'enable_dep': True,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -365,7 +365,7 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_nightly': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 16,
@@ -517,7 +517,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
         'enable_dep': True,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -573,7 +573,7 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_nightly': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -678,7 +678,7 @@ PLATFORM_VARS = {
         'build_space': 13,
         'upload_symbols': False,
         'packageTests': True,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
@@ -733,7 +733,7 @@ PLATFORM_VARS = {
         'build_space': 13,
         'upload_symbols': False,
         'packageTests': True,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
@@ -782,7 +782,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
         'enable_dep': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -886,7 +886,7 @@ PLATFORM_VARS = {
         'build_space': 13,
         'upload_symbols': False,
         'packageTests': True,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
@@ -926,7 +926,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/linux64_gecko/nightly',
         'enable_dep': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -1003,7 +1003,7 @@ PLATFORM_VARS = {
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
         'enable_dep': False,
         'profiled_build': False,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
@@ -1063,7 +1063,7 @@ PLATFORM_VARS = {
         'build_space': 13,
         'upload_symbols': False,
         'packageTests': True,
-        'create_snippet': False,
+        'updates_enabled': False,
         'create_partial': False,
         'slaves': SLAVES['win64-rev2'],
         'platform_objdir': OBJDIR,
@@ -1701,8 +1701,6 @@ BRANCHES['mozilla-central']['start_hour'] = [1, 16]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1730,8 +1728,6 @@ BRANCHES['mozilla-b2g37_v2_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1758,8 +1754,6 @@ BRANCHES['mozilla-b2g34_v2_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g34_v2_1']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g34_v2_1']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1787,8 +1781,6 @@ BRANCHES['mozilla-b2g34_v2_1s']['gecko_l10n_root'] = 'https://hg.mozilla.org/rel
 BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1s']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk']['enable_nightly'] = True
@@ -1816,8 +1808,6 @@ BRANCHES['mozilla-b2g32_v2_0']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g32_v2_0']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g32_v2_0']['start_minute'] = [2]
 BRANCHES['mozilla-b2g32_v2_0']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk_eng']['enable_nightly'] = True
@@ -1839,8 +1829,6 @@ BRANCHES['mozilla-b2g30_v1_4']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
 BRANCHES['mozilla-b2g30_v1_4']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = 'fake'
-BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = 'fake'
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame']['enable_nightly'] = True
 BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame_eng']['enable_nightly'] = True
@@ -1968,7 +1956,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 32):
 
 # Enable mozharness pinning
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
-    if name in ('ash', 'try',):
+    if name in ('ash', 'try', 'fx-team', 'mozilla-central', 'b2g-inbound'):
         branch['script_repo_manifest'] = \
             "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"
@@ -1992,13 +1980,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [42])
     # nightly updates
-    BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
+    BRANCHES[branch]['updates_enabled'] = branchConfig.get('updates_enabled', False)
     BRANCHES[branch]['update_channel'] = branchConfig.get('update_channel', 'nightly-%s' % branch)
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
-    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', GLOBAL_VARS['aus2_user'])
-    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', GLOBAL_VARS['aus2_ssh_key'])
-    BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/B2G/' + branch)
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
     # Platform-specific defaults/interpretation
     for platform in BRANCHES[branch]['platforms']:
