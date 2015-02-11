@@ -109,6 +109,33 @@ PROJECT_BRANCHES = {
                 'enable_opt_unittests': True,
             },
         },
+        'platforms': {
+            # Bug 1094364 - switch win64 builds to use mozharness mach
+            #   testing on cedar first. to land across trunk: remove below and add to:
+            # win64 - http://hg.mozilla.org/build/buildbot-configs/file/828d626c2603/mozilla/config.py#l948
+            # win64-debug - http://hg.mozilla.org/build/buildbot-configs/file/828d626c2603/mozilla/config.py#l1362
+            'win64': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/fx_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'builds/releng_base_windows_64_builds.py',
+                    ],
+                    'script_timeout': 3 * 3600,
+                    'script_maxtime': int(5.5 * 3600),
+                },
+            },
+            'win64-debug': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/fx_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'builds/releng_base_windows_64_builds.py',
+                        '--custom-build-variant-cfg', 'debug',
+                    ],
+                    'script_timeout': 3 * 3600,
+                    'script_maxtime': int(5.5 * 3600),
+                },
+            }
+        },
     },
     'cypress': {
         'enable_perproduct_builds': False,
