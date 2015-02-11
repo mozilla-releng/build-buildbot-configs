@@ -1360,6 +1360,12 @@ PLATFORM_VARS = {
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64-debug': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'reboot_command': [
+                'c:/mozilla-build/python27/python', '-u',
+                'scripts/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt','-n', '1', '-z'
+            ],
             'enable_nightly': False,
             'enable_xulrunner': False,
             'product_name': 'firefox',
