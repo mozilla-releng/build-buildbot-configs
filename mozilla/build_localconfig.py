@@ -97,3 +97,5 @@ if 'mobile_release_branches' in master_config:
     ENABLE_RELEASES = True
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
+
+ENABLE_JACUZZIS = True
