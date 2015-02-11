@@ -1,5 +1,4 @@
 from copy import deepcopy
-from os import uname
 
 from config import GLOBAL_VARS, PLATFORM_VARS
 
@@ -16,7 +15,7 @@ from localconfig import SLAVES, TRY_SLAVES
 
 import master_common
 reload(master_common)
-from master_common import setMainCommVersions, items_before
+from master_common import setMainCommVersions
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
@@ -78,7 +77,7 @@ GLOBAL_VARS.update({
     'enable_weekly_bundle': False,
 
     'hash_type': 'sha512',
-    'create_snippet': False,
+    'updates_enabled': False,
     'create_partial': False,
     'create_partial_l10n': False,
     'l10n_modules': [
@@ -763,12 +762,10 @@ BRANCHES['comm-central']['enable_multi_locale'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['comm-central']['create_snippet'] = True
+BRANCHES['comm-central']['updates_enabled'] = True
 BRANCHES['comm-central']['update_channel'] = 'nightly'
 BRANCHES['comm-central']['create_partial'] = True
 BRANCHES['comm-central']['create_partial_l10n'] = True
-BRANCHES['comm-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
-BRANCHES['comm-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-central'
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['file_update_on_closed_tree'] = False
 BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -804,10 +801,8 @@ BRANCHES['comm-esr31']['enUS_binaryURL'] = \
 BRANCHES['comm-esr31']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr31' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-esr31']['enable_nightly'] = True
-BRANCHES['comm-esr31']['create_snippet'] = True
+BRANCHES['comm-esr31']['updates_enabled'] = True
 BRANCHES['comm-esr31']['create_partial'] = True
-BRANCHES['comm-esr31']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr31'
-BRANCHES['comm-esr31']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-esr31'
 BRANCHES['comm-esr31']['enable_blocklist_update'] = False
 BRANCHES['comm-esr31']['file_update_on_closed_tree'] = False
 BRANCHES['comm-esr31']['enable_valgrind'] = False
@@ -884,13 +879,11 @@ BRANCHES['comm-aurora']['enable_multi_locale'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['comm-aurora']['create_snippet'] = True
+BRANCHES['comm-aurora']['updates_enabled'] = True
 BRANCHES['comm-aurora']['update_channel'] = 'aurora'
 BRANCHES['comm-aurora']['create_partial'] = True
 BRANCHES['comm-aurora']['create_partial_l10n'] = True
 # use comm-aurora-test when disabling updates for merges
-BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
-BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Thunderbird/comm-aurora'
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['file_update_on_closed_tree'] = False
 BRANCHES['comm-aurora']['enable_valgrind'] = False
@@ -922,9 +915,7 @@ BRANCHES['try-comm-central']['enable_l10n'] = False
 BRANCHES['try-comm-central']['enable_l10n_onchange'] = False
 BRANCHES['try-comm-central']['l10nNightlyUpdate'] = False
 BRANCHES['try-comm-central']['l10nDatedDirs'] = False
-BRANCHES['try-comm-central']['create_snippet'] = False
 # need this or the master.cfg will bail
-BRANCHES['try-comm-central']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try-comm-central']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try-comm-central']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
@@ -967,15 +958,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nNightlyUpdate'] = branchConfig.get('l10nNightlyUpdate', False)
     BRANCHES[branch]['l10nDatedDirs'] = branchConfig.get('l10nDatedDirs', False)
     # nightly updates
-    BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
+    BRANCHES[branch]['updates_enabled'] = branchConfig.get('updates_enabled', False)
     BRANCHES[branch]['update_channel'] = branchConfig.get('update_channel', 'nightly-%s' % branch)
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
-    BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
-    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', GLOBAL_VARS['aus2_user'])
-    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', GLOBAL_VARS['aus2_ssh_key'])
-    BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Thunderbird/' + branch)
-    BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Thunderbird/' + branch)    #make sure it has an ending slash
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-' + branch + '-l10n/'
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')

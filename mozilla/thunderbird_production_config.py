@@ -37,9 +37,6 @@ GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
 GLOBAL_VARS['weekly_tinderbox_tree'] = 'Thunderbird'
 GLOBAL_VARS['l10n_tinderbox_tree'] = 'Mozilla-l10n'
 GLOBAL_VARS['base_bundle_urls'] = ['https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/bundles']
-GLOBAL_VARS['aus2_user'] = 'tbirdbld'
-GLOBAL_VARS['aus2_ssh_key'] = 'tbirdbld_dsa'
-GLOBAL_VARS['aus2_host'] = 'aus3-staging.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {

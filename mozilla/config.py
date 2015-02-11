@@ -100,7 +100,7 @@ GLOBAL_VARS = {
     'enable_weekly_bundle': False,
 
     'hash_type': 'sha512',
-    'create_snippet': False,
+    'updates_enabled': False,
     'create_partial': False,
     'create_partial_l10n': False,
     'l10n_modules': [
@@ -423,7 +423,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'enable_build_analysis': False,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -521,7 +521,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'enable_build_analysis': False,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -619,7 +619,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': False,
             'enable_build_analysis': False,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'test_pretty_names': False,
             'l10n_check_test': False,
@@ -1465,6 +1465,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'updates_enabled': False,
         },
         'android-api-9': {
             'product_name': 'firefox',
@@ -1536,6 +1537,7 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
             'update_platform': 'Android_arm-eabi-gcc3',
+            'updates_enabled': False,
         },
         'android-api-11': {
             'product_name': 'firefox',
@@ -1607,6 +1609,7 @@ PLATFORM_VARS = {
             'multi_locale_config_platform': 'android',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
             'update_platform': 'Android_arm-eabi-gcc3',
+            'updates_enabled': False,
         },
         'android-armv6': {
             'enable_nightly': True,
@@ -1674,6 +1677,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
+            'updates_enabled': False,
         },
         'android-x86': {
             'product_name': 'firefox',
@@ -1738,6 +1742,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-x86/releng.manifest',
+            'updates_enabled': False,
         },
         'android-debug': {
             'enable_nightly': False,
@@ -1755,7 +1760,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -1804,6 +1809,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'updates_enabled': False,
         },
         'android-api-9-debug': {
             'enable_nightly': False,
@@ -1821,7 +1827,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -1869,6 +1875,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'updates_enabled': False,
         },
         'android-api-11-debug': {
             'enable_nightly': False,
@@ -1887,7 +1894,7 @@ PLATFORM_VARS = {
             'upload_symbols': True,
             'download_symbols': False,
             'packageTests': True,
-            'create_snippet': False,
+            'updates_enabled': False,
             'create_partial': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -1935,6 +1942,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'updates_enabled': False,
         },
 }
 # Additional fixups for lion
@@ -2332,22 +2340,20 @@ BRANCHES['mozilla-central']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['mozilla-central']['create_snippet'] = True
+BRANCHES['mozilla-central']['updates_enabled'] = True
 BRANCHES['mozilla-central']['update_channel'] = 'nightly'
-BRANCHES['mozilla-central']['create_mobile_snippet'] = True
 BRANCHES['mozilla-central']['create_partial'] = True
 BRANCHES['mozilla-central']['create_partial_l10n'] = True
-BRANCHES['mozilla-central']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-central'
-BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
-BRANCHES['mozilla-central']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-central'
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['enable_hpkp_update'] = True
 BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-central']['platforms']['android-x86']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-central']['platforms']['android-api-9']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
+BRANCHES['mozilla-central']['platforms']['android-api-11']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -2482,24 +2488,22 @@ BRANCHES['mozilla-aurora']['upload_mobile_symbols'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
-BRANCHES['mozilla-aurora']['create_snippet'] = True
+BRANCHES['mozilla-aurora']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['update_channel'] = 'aurora'
-BRANCHES['mozilla-aurora']['create_mobile_snippet'] = True
 BRANCHES['mozilla-aurora']['create_partial'] = True
 BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
 # use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
-BRANCHES['mozilla-aurora']['aus2_mobile_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Fennec/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+BRANCHES['mozilla-aurora']['platforms']['android-api-9']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
+BRANCHES['mozilla-aurora']['platforms']['android-api-11']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
+BRANCHES['mozilla-aurora']['platforms']['android-x86']['updates_enabled'] = True
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -2531,10 +2535,8 @@ BRANCHES['mozilla-esr31']['l10n_tree'] = 'fxesr31'
 BRANCHES['mozilla-esr31']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr31'
 BRANCHES['mozilla-esr31']['enable_nightly'] = True
-BRANCHES['mozilla-esr31']['create_snippet'] = True
+BRANCHES['mozilla-esr31']['updates_enabled'] = True
 BRANCHES['mozilla-esr31']['create_partial'] = True
-BRANCHES['mozilla-esr31']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr31'
-BRANCHES['mozilla-esr31']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-esr31'
 BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr31']['enable_valgrind'] = False
@@ -2562,10 +2564,7 @@ BRANCHES['mozilla-b2g30_v1_4']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g30_v1_4'
 BRANCHES['mozilla-b2g30_v1_4']['enable_nightly'] = False
-BRANCHES['mozilla-b2g30_v1_4']['create_snippet'] = False
 BRANCHES['mozilla-b2g30_v1_4']['create_partial'] = False
-BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
-BRANCHES['mozilla-b2g30_v1_4']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g30_v1_4'
 BRANCHES['mozilla-b2g30_v1_4']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = False
@@ -2594,10 +2593,7 @@ BRANCHES['mozilla-b2g32_v2_0']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g32_v2_0'
 BRANCHES['mozilla-b2g32_v2_0']['enable_nightly'] = False
-BRANCHES['mozilla-b2g32_v2_0']['create_snippet'] = False
 BRANCHES['mozilla-b2g32_v2_0']['create_partial'] = False
-BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g32_v2_0'
-BRANCHES['mozilla-b2g32_v2_0']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g32_v2_0'
 BRANCHES['mozilla-b2g32_v2_0']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g32_v2_0']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enable_hpkp_update'] = True
@@ -2626,10 +2622,7 @@ BRANCHES['mozilla-b2g34_v2_1']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g34_v2_1'
 BRANCHES['mozilla-b2g34_v2_1']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1']['create_snippet'] = False
 BRANCHES['mozilla-b2g34_v2_1']['create_partial'] = False
-BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1'
-BRANCHES['mozilla-b2g34_v2_1']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1'
 BRANCHES['mozilla-b2g34_v2_1']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g34_v2_1']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enable_hpkp_update'] = True
@@ -2657,10 +2650,7 @@ BRANCHES['mozilla-b2g34_v2_1s']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g34_v2_1s'
 BRANCHES['mozilla-b2g34_v2_1s']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['create_snippet'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['create_partial'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1s'
-BRANCHES['mozilla-b2g34_v2_1s']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g34_v2_1s'
 BRANCHES['mozilla-b2g34_v2_1s']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['enable_hpkp_update'] = True
@@ -2689,10 +2679,7 @@ BRANCHES['mozilla-b2g37_v2_2']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g37_v2_2']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g37_v2_2'
 BRANCHES['mozilla-b2g37_v2_2']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['create_snippet'] = False
 BRANCHES['mozilla-b2g37_v2_2']['create_partial'] = False
-BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g37_v2_2'
-BRANCHES['mozilla-b2g37_v2_2']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Firefox/mozilla-b2g37_v2_2'
 BRANCHES['mozilla-b2g37_v2_2']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g37_v2_2']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g37_v2_2']['enable_hpkp_update'] = True
@@ -2727,9 +2714,7 @@ BRANCHES['try']['enable_l10n'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
-BRANCHES['try']['create_snippet'] = False
 # need this or the master.cfg will bail
-BRANCHES['try']['aus2_base_upload_dir'] = 'fake'
 BRANCHES['try']['platforms']['linux']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32']['slaves'] = TRY_SLAVES['win64-rev2']
@@ -2799,17 +2784,10 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nNightlyUpdate'] = branchConfig.get('l10nNightlyUpdate', False)
     BRANCHES[branch]['l10nDatedDirs'] = branchConfig.get('l10nDatedDirs', False)
     # nightly updates
-    BRANCHES[branch]['create_snippet'] = branchConfig.get('create_snippet', False)
+    BRANCHES[branch]['updates_enabled'] = branchConfig.get('updates_enabled', False)
     BRANCHES[branch]['update_channel'] = branchConfig.get('update_channel', 'nightly-%s' % branch)
     BRANCHES[branch]['create_partial'] = branchConfig.get('create_partial', False)
     BRANCHES[branch]['create_partial_l10n'] = branchConfig.get('create_partial_l10n', False)
-    BRANCHES[branch]['create_mobile_snippet'] = branchConfig.get('create_mobile_snippet', False)
-    BRANCHES[branch]['aus2_user'] = branchConfig.get('aus2_user', GLOBAL_VARS['aus2_user'])
-    BRANCHES[branch]['aus2_ssh_key'] = branchConfig.get('aus2_ssh_key', GLOBAL_VARS['aus2_ssh_key'])
-    BRANCHES[branch]['aus2_base_upload_dir'] = branchConfig.get('aus2_base_upload_dir', '/opt/aus2/incoming/2/Firefox/' + branch)
-    BRANCHES[branch]['aus2_base_upload_dir_l10n'] = branchConfig.get('aus2_base_upload_dir_l10n', '/opt/aus2/incoming/2/Firefox/' + branch)
-    BRANCHES[branch]['aus2_mobile_base_upload_dir'] = branchConfig.get('aus2_mobile_base_upload_dir', '/opt/aus2/incoming/2/Fennec/' + branch)
-    BRANCHES[branch]['aus2_mobile_base_upload_dir_l10n'] = branchConfig.get('aus2_mobile_base_upload_dir_l10n', '/opt/aus2/incoming/2/Fennec/' + branch)
     #make sure it has an ending slash
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/'
