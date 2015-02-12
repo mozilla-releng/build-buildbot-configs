@@ -850,12 +850,9 @@ ANDROID_X86_MOZHARNESS_DICT = [
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidx86.py',
-            '--test-suite', 'robocop-1',
-            '--test-suite', 'robocop-2',
-            '--test-suite', 'robocop-3',
             '--test-suite', 'xpcshell',
         ],
-        'trychooser_suites': ['robocop-1', 'robocop-2', 'robocop-3', 'xpcshell'],
+        'trychooser_suites': ['xpcshell'],
         'blob_upload': True,
         'timeout': 2400,
         'script_maxtime': 14400,
