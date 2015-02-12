@@ -1601,11 +1601,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
             del branch['platforms'][p]
 
 # Enable mozharness pinning
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
-    if name in ('ash', 'try', 'fx-team', 'mozilla-central', 'b2g-inbound'):
-        branch['script_repo_manifest'] = \
-            "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-            "testing/mozharness/mozharness.json"
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    branch['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+        "testing/mozharness/mozharness.json"
 
 # Enable mozharness desktop builds
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
