@@ -94,6 +94,16 @@ PROJECT_BRANCHES = {
     # 'alder': {},
     'ash': {
         'enable_perproduct_builds': False,
+        'desktop_mozharness_builds_enabled': True,
+        'desktop_mozharness_repacks_enabled': True,
+        'enable_nightly': True,
+        'create_snippet': True,
+        'create_partial': True,
+        'use_mozharness_repo_cache': False,
+        'lock_platforms': True,
+        'talos_suites': {
+            'xperf': 1,
+        },
     },
     #'birch': {},  # Bug 1010674
     'cedar': {
