@@ -25,7 +25,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '36.0b1'
 releaseConfig['appVersion']          = '36.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_36_0b1'
 releaseConfig['partialUpdates']      = {
 
@@ -44,7 +44,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '341f30c61086',
+        'revision': '72cd4a740611',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '03d555dedecb',
+        'revision': '5d83c055e2a9',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -103,7 +103,7 @@ releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
-releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausHost']             = None
 releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
