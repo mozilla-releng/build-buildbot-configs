@@ -24,11 +24,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.4.0esr'
-releaseConfig['appVersion']          = '31.4.0'
+releaseConfig['version']             = '31.5.0esr'
+releaseConfig['appVersion']          = '31.5.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_4_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_31_5_0esr'
 releaseConfig['partialUpdates']      = {
 
     '31.3.0esr': {
@@ -37,22 +37,22 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_31_3_0esr',
     },
 
-    '24.8.1esr': {
-        'appVersion': '24.8.1',
+    '31.4.0esr': {
+        'appVersion': '31.4.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_24_8_1esr',
+        'baseTag': 'FIREFOX_31_4_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.4.0esrpre'
+releaseConfig['nextAppVersion']      = '31.5.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '0a43b3f39c7f',
+        'revision': '1613398ea490',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -102,8 +102,8 @@ releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
-releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
+releaseConfig['ausHost']             = None
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
@@ -124,9 +124,9 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
-releaseConfig['localTestChannel']      = 'esrtest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['releaseChannelRuleIds'] = [34]
+releaseConfig['localTestChannel']      = 'esr-localtest'
+releaseConfig['cdnTestChannel']        = 'esr-cdntest'
 releaseConfig['testChannelRuleIds']    = [58,59]
 
 # Partner repack configuration
