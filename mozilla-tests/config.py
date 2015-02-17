@@ -1889,8 +1889,8 @@ BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skipc
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skipcount'] = 3
 BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skipcount'] = 6
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skiptimeout'] = 3200
 BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skipcount'] = 2
@@ -1899,8 +1899,8 @@ BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_ski
 BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skiptimeout'] = 1800
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 6
+BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skiptimeout'] = 3200
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skipcount'] = 2
 BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skiptimeout'] = 1800
 BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skipcount'] = 2
