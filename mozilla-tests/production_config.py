@@ -60,7 +60,7 @@ for i in range(1,200) + range(301,500):
 for i in range(1,1000):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
-for i in range(1000, 1300):
+for i in range(1000, 1700):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%i' % i] = {}
 
 for i in range(1,56):
