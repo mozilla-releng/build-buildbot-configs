@@ -38,7 +38,15 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 releaseConfig['extraPartials']       = {
+    '36.0b10': {
+        'appVersion': '36.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_36_0b10',
+    },
 }
+# What's New Page for Hello TODO: remove on request
+releaseConfig['openURL'] = 'https://www.mozilla.org/%locale%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
+
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
 
