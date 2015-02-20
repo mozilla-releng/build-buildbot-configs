@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '35.0.1'
-releaseConfig['appVersion']          = '35.0.1'
+releaseConfig['version']             = '36.0'
+releaseConfig['appVersion']          = '36.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_35_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_36_0'
 releaseConfig['partialUpdates']      = {
 
     '35.0': {
@@ -36,21 +36,32 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_35_0',
     },
 
+    '35.0.1': {
+        'appVersion': '35.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_35_0_1',
+    },
+
     '34.0.5': {
         'appVersion': '34.0.5',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_34_0_5',
     },
 
-    '34.0': {
-        'appVersion': '34.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_34_0',
-    },
-
 }
 releaseConfig['extraPartials']       = {
+    '36.0b10': {
+        'appVersion': '36.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_36_0b10',
+    },
 }
+# What's New Page for Hello TODO: remove on request
+releaseConfig['openURL'] = 'https://www.mozilla.org/%locale%/firefox/36.0/whatsnew/?oldversion=%OLD_VERSION%'
+
+# TODO: set this properly when we start shipping win64 on release
+#releaseConfig['HACK_first_released_version'] = {'win64': TBD}
+
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -59,7 +70,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'f19bf2ab3d14',
+        'revision': 'a2ffa9047bf4',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -86,6 +97,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
+# TODO: add win64 when we're ready to ship it
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
@@ -111,7 +123,7 @@ releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
-releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausHost']             = None
 releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
@@ -122,19 +134,22 @@ releaseConfig['verifyConfigs']       = {
     'linux':  'mozRelease-firefox-linux.cfg',
     'linux64':  'mozRelease-firefox-linux64.cfg',
     'macosx64': 'mozRelease-firefox-mac64.cfg',
-    'win32':  'mozRelease-firefox-win32.cfg'
+    'win32':  'mozRelease-firefox-win32.cfg',
+    #'win64':  'mozRelease-firefox-win64.cfg',
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
+    #'win64': 'browser/config/mozconfigs/win64/release',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
     'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
     'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
+    #'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
 }
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['releaseChannelRuleIds'] = [33]
@@ -161,5 +176,4 @@ releaseConfig['ftpSymlinkName'] = 'latest'
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-latest',
     'Firefox-%(version)s-stub': 'firefox-stub',
-    'Firefox-%(version)s-EUBallot': 'firefox-latest-euballot',
 }
