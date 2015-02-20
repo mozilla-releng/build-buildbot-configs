@@ -1913,7 +1913,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g30_v1_4', 'mozilla-b2g34_v2_1s',
                       'mozilla-aurora', 'mozilla-central',
-                      'b2g-inbound', 'fx-team'):
+                      'mozilla-inbound', 'b2g-inbound', 'fx-team'):
         if 'dolphin' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin']
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:
