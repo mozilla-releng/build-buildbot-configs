@@ -192,28 +192,33 @@ PROJECT_BRANCHES = {
     },
     'fig': {},
     'gum': {
-        'gecko_version': 35,
-        'enable_perproduct_builds': False,
         'enable_nightly': True,
-        'updates_enabled': True,
-        'create_partial': True,
-        'nightly_signing_servers': 'nightly-signing',
-        'l10n_repo_path': 'releases/l10n/mozilla-aurora',
         'pgo_strategy': 'per-checkin',
-        'enable_mac_a11y': True,
-        'enable_l10n': True,
-        'enable_l10n_onchange': False,
-        'enUS_binaryURL': '/nightly/latest-gum',
-        'l10nNightlyUpdate': True,
-        'l10nDatedDirs': True,
-        'l10n_tree': 'fxrel',
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64'],
-        # explicitly set the server to avoid using variables
-        'localesURL': 'http://hg.mozilla.org/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-aurora',
-        'enable_multi_locale': True,
-        'upload_mobile_symbols': True,
-        'enable_valgrind': False,
-        'enabled_products': ['firefox'],
+        'branch_projects': [],
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux-debug': {},
+            'linux64-asan': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
+        },
     },
     'holly': {
         'branch_projects': [],

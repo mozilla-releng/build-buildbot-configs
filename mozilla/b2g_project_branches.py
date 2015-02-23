@@ -109,7 +109,8 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'platforms': {},
     },
-    'gum': {},
+    # disabled by bug 1134508
+    # 'gum': {},
     # disabled for bug 985718
     #'holly': {},
     'jamun': {},
