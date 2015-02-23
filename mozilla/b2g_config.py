@@ -1274,6 +1274,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
         'maxTime': 6 * 3600,
     },
     'emulator-jb-debug': {
@@ -1296,6 +1298,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
         'maxTime': 6 * 3600,
     },
     'emulator-kk': {
@@ -1364,6 +1368,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': False,
+        'enable_dep': True,
         'maxTime': 6 * 3600,
     },
     'emulator-l-debug': {
@@ -1386,6 +1392,8 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'enable_periodic': True,
+        'enable_dep': False,
         'maxTime': 6 * 3600,
     },
     'linux64-b2g-haz': {
@@ -1969,6 +1977,8 @@ BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'emulator-jb', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-jb', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-jb-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['emulator-jb-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['emulator-kk']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-kk']['mozharness_config']['extra_args'] = ['--target', 'emulator-kk', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-kk']['enable_dep'] = True
@@ -1981,6 +1991,8 @@ BRANCHES['try']['platforms']['emulator-l']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-l']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-l-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-l-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-l-debug']['enable_dep'] = True
+BRANCHES['try']['platforms']['emulator-l-debug']['enable_periodic'] = False
 
 # Graphene is only enabled on Larch for now.
 for name, branch in BRANCHES.iteritems():
