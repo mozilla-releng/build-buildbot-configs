@@ -45,9 +45,11 @@ GLOBAL_VARS.update({
         'emulator-debug': {},
         'emulator-jb': {},
         'emulator-jb-debug': {},
-        'linux64-b2g-haz': {},
         'emulator-kk': {},
         'emulator-kk-debug': {},
+        'emulator-l': {},
+        'emulator-l-debug': {},
+        'linux64-b2g-haz': {},
         'flame': {},
         'flame_eng': {},
         'flame-kk': {},
@@ -1296,36 +1298,6 @@ PLATFORM_VARS = {
         'slaves': SLAVES['mock'],
         'maxTime': 6 * 3600,
     },
-    'linux64-b2g-haz': {
-        'mozharness_config': {
-            'script_name': 'scripts/hazard_build.py',
-            'extra_args': [
-                '--target', 'emulator-jb',
-                '--config-file', 'b2g/releng-emulator.py',
-                '--b2g-config-dir', 'emulator-jb',
-                '--config-file', 'hazards/common.py',
-                '--config-file', 'hazards/build_b2g.py',
-            ],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'maxTime': 6 * 3600,
-        'try_by_default': True,
-        'consider_for_nightly': False,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'reboot_command': [
-            '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-            '-f', '../reboot_count.txt', '-n', '1', '-z'
-        ],
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-    },
     'emulator-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1372,6 +1344,79 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_dep': False,
         'maxTime': 6 * 3600,
+    },
+    'emulator-l': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'emulator-l', '--config', 'b2g/releng-emulator.py',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            'mozharness_repo_cache': '/tools/checkouts/mozharness',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
+        },
+        'env': {
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
+    },
+    'emulator-l-debug': {
+        'mozharness_config': {
+            'script_name': 'scripts/b2g_build.py',
+            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
+            # --target name below
+            'extra_args': ['--target', 'emulator-l', '--config', 'b2g/releng-emulator.py',
+                           '--debug',
+                           '--gaia-languages-file', 'locales/languages_dev.json',
+                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
+            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
+            'mozharness_repo_cache': '/tools/checkouts/mozharness',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
+        },
+        'env': {
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
+    },
+    'linux64-b2g-haz': {
+        'mozharness_config': {
+            'script_name': 'scripts/hazard_build.py',
+            'extra_args': [
+                '--target', 'emulator-jb',
+                '--config-file', 'b2g/releng-emulator.py',
+                '--b2g-config-dir', 'emulator-jb',
+                '--config-file', 'hazards/common.py',
+                '--config-file', 'hazards/build_b2g.py',
+            ],
+            'mozharness_repo_cache': '/tools/checkouts/mozharness',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
+        },
+        'env': {
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+        },
+        'stage_product': 'b2g',
+        'product_name': 'b2g',
+        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
+        'slaves': SLAVES['mock'],
+        'maxTime': 6 * 3600,
+        'try_by_default': True,
+        'consider_for_nightly': False,
+        'mock_target': 'mozilla-centos6-x86_64',
+        'reboot_command': [
+            '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
+            '-f', '../reboot_count.txt', '-n', '1', '-z'
+        ],
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
     },
     'flame': {
         'mozharness_config': {
@@ -1638,6 +1683,8 @@ BRANCHES = {
             'emulator-jb-debug': {},
             'emulator-kk': {},
             'emulator-kk-debug': {},
+            'emulator-l': {},
+            'emulator-l-debug': {},
         },
     },
 }
@@ -1730,6 +1777,7 @@ BRANCHES['mozilla-central']['start_hour'] = [1, 16]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
+BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1742,9 +1790,10 @@ BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-l']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['emulator-l-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['dolphin']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['dolphin_eng']['enable_nightly'] = True
 
@@ -1757,6 +1806,7 @@ BRANCHES['mozilla-b2g37_v2_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [0, 16]
 BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1769,9 +1819,10 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin_eng']['enable_nightly'] = True
 
@@ -1926,6 +1977,10 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-kk', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['emulator-l']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-l']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
+BRANCHES['try']['platforms']['emulator-l-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['emulator-l-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 
 # Graphene is only enabled on Larch for now.
 for name, branch in BRANCHES.iteritems():
@@ -1987,6 +2042,12 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 32):
 # b2g 2.0+
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):
     for p in ('flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug'):
+        if p in branch['platforms']:
+            del branch['platforms'][p]
+
+# b2g 2.2+
+for name, branch in items_before(BRANCHES, 'gecko_version', 37):
+    for p in ('emulator-l', 'emulator-l-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
