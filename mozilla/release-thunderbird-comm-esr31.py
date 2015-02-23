@@ -23,17 +23,17 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.4.0'
-releaseConfig['appVersion']          = '31.4.0'
+releaseConfig['version']             = '31.5.0'
+releaseConfig['appVersion']          = '31.5.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_4_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_5_0'
 releaseConfig['partialUpdates']      = {
 
-    '31.3.0': {
-        'appVersion': '31.3.0',
+    '31.4.0': {
+        'appVersion': '31.4.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_3_0',
+        'baseTag': 'THUNDERBIRD_31_4_0',
     },
 
     '24.6.0': {
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
-        'revision': '3b6a364c4650',
+        'revision': '0b5a99cc7cc3',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -63,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '0a43b3f39c7f',
+        'revision': 'e91d8afc04c9',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -109,8 +109,8 @@ releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.c
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'https://aus3.mozilla.org'
-releaseConfig['ausHost']             = 'aus3-staging.mozilla.org'
+releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
+releaseConfig['ausHost']             = None
 releaseConfig['ausUser']             = 'tbirdbld'
 releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
@@ -129,10 +129,11 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
+releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/release'
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [] # Still on AUS3
-releaseConfig['localTestChannel']      = 'betatest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
+releaseConfig['releaseChannelRuleIds'] = [35]
+releaseConfig['localTestChannel']      = 'release-localtest'
+releaseConfig['cdnTestChannel']        = 'release-cdntest'
 releaseConfig['testChannelRuleIds']    = [61,62]
 
 # Partner repack configuration
