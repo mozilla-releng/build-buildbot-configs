@@ -23,5 +23,9 @@ balrog_credentials = {
 blobber_username = 'user'
 blobber_password = 'passwd'
 influxdb_credentials = 'http://foo.influxdb.com:8086/db/dbname/series?u=user&p=pass'
-taskcluster_clientId = 'clientId'
-taskcluster_accessToken = 'accessToken'
+
+# If you need Taskcluster S3 uploads, you'll need to generate credentials
+# in https://tools.taskcluster.net/auth/ and put your clientId and accessToken
+# here.
+#taskcluster_clientId = 'clientId'
+#taskcluster_accessToken = 'accessToken'
