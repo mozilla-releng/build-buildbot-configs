@@ -1967,7 +1967,7 @@ apply_localconfig(PROJECTS, localconfig.PROJECTS)
 #
 #  variants - mapping of platforms (with build configuration, eg linux64-debug)
 #    to an array of variant names. These names correspond to files in
-#    build-tools/scripts/spidermonkey_builds/.
+#    <gecko>/js/src/devtools/automation/variants/.
 #
 #  enable_try - this project should be active for the try server
 #
@@ -1984,10 +1984,10 @@ BRANCH_PROJECTS = {
     # feeding into mozilla-central.
     'spidermonkey_tier_1': {
         'variants': {
-            'linux64-debug':  ['rootanalysis', 'generational'],
+            'linux64-debug':  ['rootanalysis', 'compacting'],
             'linux-debug': ['arm-sim'],
-            'win32-debug': ['warnaserrdebug', 'generational'],
-            'win32': ['warnaserr'],
+            'win32-debug': ['plaindebug', 'compacting'],
+            'win32': ['plain'],
         },
         'platforms': {
             'linux': {},
@@ -2009,18 +2009,18 @@ BRANCH_PROJECTS = {
         'enable_try': True,
         'try_by_default': {
             'rootanalysis': True, # all platforms for which it is defined
-            'generational': set(['linux64-debug', 'win32-debug']),
+            'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
         },
         'variants': {
             'linux': ['warnaserr'],
             'linux-debug': ['arm-sim', 'warnaserrdebug'],
             'linux64':  ['warnaserr'],
-            'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting', 'warnaserrdebug'],
-            'win32': ['generational', 'warnaserr'],
-            'win32-debug': ['generational', 'warnaserrdebug'],
-            'win64': ['generational', 'warnaserr'],
-            'win64-debug': ['generational', 'warnaserrdebug'],
+            'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug'],
+            'win32': ['compacting', 'plain'],
+            'win32-debug': ['compacting', 'plaindebug'],
+            'win64': ['compacting', 'plain'],
+            'win64-debug': ['compacting', 'plaindebug'],
         },
         'platforms': {
             'linux': {},
@@ -2038,12 +2038,10 @@ BRANCH_PROJECTS = {
     },
 
     # Non-tier-1 builds that provide useful information but are hidden on tbpl.
-    # These will probably be run on the subset of the trees that the relevant
-    # developers will actually look.
+    # These should be run on the (small) subset of trees looked at by the
+    # relevant developers.
     'spidermonkey_info': {
         'variants': {
-            'linux':          ['warnaserr'],
-            'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['warnaserrdebug'],
         },
