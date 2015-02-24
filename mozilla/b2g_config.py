@@ -57,11 +57,16 @@ GLOBAL_VARS.update({
         'dolphin_eng': {},
         'dolphin-512': {},
         'dolphin-512_eng': {},
+
+        # Graphene builds. These are a different app (ie, not B2G) and would
+        # have their own config files in an ideal world, but it's not worth
+        # the effort at this point.
+        'linux64_graphene': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
     'enable_xulrunner': False,
-    'enabled_products': ['b2g'],
+    'enabled_products': ['b2g', 'graphene'],
     'product_prefix': 'b2g',
     'unittest_suites': [],
     # XXX: this seems like it should be at the platform level
@@ -1556,6 +1561,30 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_dep': False,
     },
+
+
+    "linux64_graphene": {
+        "mozharness_python": "/tools/buildbot/bin/python",
+        "reboot_command": [
+            "/tools/checkouts/mozharness/external_tools/count_and_reboot.py",
+            "-f", "../reboot_count.txt", "-n", "1", "-z"
+        ],
+        "mozharness_repo_cache": "/tools/checkouts/mozharness",
+        "tools_repo_cache": "/tools/checkouts/build-tools",
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_linux_64_builds.py",
+                "--custom-build-variant-cfg", "graphene"
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "graphene",
+        "base_name": "graphene_%(branch)s_linux64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["mock"],
+    },
 }
 
 for platform in PLATFORM_VARS.values():
@@ -1897,6 +1926,12 @@ BRANCHES['try']['platforms']['emulator-kk-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-kk', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
+
+# Graphene is only enabled on Larch for now.
+for name, branch in BRANCHES.iteritems():
+    if name != "larch":
+        if "linux64_graphene" in branch["platforms"]:
+            del branch["platforms"]["linux64_graphene"]
 
 # Mulet landed in gecko 34
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):

@@ -114,8 +114,12 @@ PROJECT_BRANCHES = {
     # disabled for bug 985718
     #'holly': {},
     'jamun': {},
-    # disabled for bug 1033704
-    #'larch': {},
+    'larch': {
+        "desktop_mozharness_builds_enabled": True,
+        "platforms": {
+            "linux64_graphene": {},
+        },
+    },
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
     'oak': {
