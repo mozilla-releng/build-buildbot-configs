@@ -2540,9 +2540,9 @@ BRANCHES['mozilla-esr31']['l10nDatedDirs'] = True
 BRANCHES['mozilla-esr31']['l10n_tree'] = 'fxesr31'
 BRANCHES['mozilla-esr31']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr31'
-BRANCHES['mozilla-esr31']['enable_nightly'] = True
-BRANCHES['mozilla-esr31']['updates_enabled'] = True
-BRANCHES['mozilla-esr31']['create_partial'] = True
+BRANCHES['mozilla-esr31']['enable_nightly'] = False
+BRANCHES['mozilla-esr31']['updates_enabled'] = False
+BRANCHES['mozilla-esr31']['create_partial'] = False
 BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr31']['enable_valgrind'] = False
