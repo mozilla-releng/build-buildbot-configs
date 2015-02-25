@@ -4,7 +4,7 @@
 # or changing options as part of release automation changes you should be
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
-EMAIL_RECIPIENTS = ["release+releasespam@mozilla.com"]
+EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
 releaseConfig['skip_repo_setup']        = True
