@@ -1562,7 +1562,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'yosemite': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'opt_unittest_suites': [],
             'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
@@ -1931,6 +1931,9 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
+# Enable Yosemite testing on select branches only
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['try'])
+
 # Run Jetpack tests everywhere except on versioned B2G branches.
 for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
@@ -2192,25 +2195,6 @@ for branch in BRANCHES.keys():
                 tests = list(BRANCHES[branch]['%s_tests' % s])
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
-
-# bug 1126493 Enable Yosemite testing on select branches only
-# keep debug tests on 10.8 until the source of the slowness is found in bug 1125998
-include_yosemite = ['try']
-for platform in PLATFORMS.keys():
-    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in branch['platforms'][platform]:
-            if slave_platform not in ['mountainlion', 'yosemite']:
-                continue
-            if name not in include_yosemite:
-                include_yosemite.append(name)
-if len(include_yosemite) > 0:
-    delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=include_yosemite)
-    for branch in include_yosemite:
-        BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
-        #todo disable talos too
 
 # Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
