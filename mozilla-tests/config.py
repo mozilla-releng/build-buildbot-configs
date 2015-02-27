@@ -472,14 +472,14 @@ MOCHITEST_DT_E10S = [
     }),
 ]
 
-MOCHITEST_DT_3 = [
+MOCHITEST_DT_4 = [
     ('mochitest-devtools-chrome', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'mochitest-devtools-chrome-chunked'],
         'blob_upload': True,
         'script_maxtime': 4800,
-        'totalChunks': 3,
+        'totalChunks': 4,
     }),
 ]
 
@@ -715,7 +715,7 @@ WEB_PLATFORM_TESTS_CHUNKED = [
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT,
-    'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE + MOCHITEST_DT_3,
+    'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE + MOCHITEST_DT_4,
 }
 
 
@@ -1076,7 +1076,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'xp-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_3,
+            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1154,7 +1154,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win7-ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL,
-            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_3,
+            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1235,7 +1235,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win8': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
+            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1327,7 +1327,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'win8_64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL[:],
-            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_3,
+            'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1924,7 +1924,7 @@ for platform in BRANCHES['holly']['platforms'].keys():
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
         slave_p['opt_unittest_suites'] = MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + MOCHITEST_DT
-        slave_p['debug_unittest_suites'] = MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + MOCHITEST_DT_3
+        slave_p['debug_unittest_suites'] = MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + MOCHITEST_DT_4
 
         # Enable content sandbox tests for Windows bit
         if slave_platform in PLATFORMS['win64']['slave_platforms'] or slave_platform in PLATFORMS['win32']['slave_platforms']:
@@ -2270,7 +2270,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 30):
             except ValueError:
                 # wasn't there anyways
                 pass
-            for dt in MOCHITEST_DT_3:
+            for dt in MOCHITEST_DT_4:
                 try:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(dt)
                 except ValueError:
