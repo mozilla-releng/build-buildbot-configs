@@ -1668,7 +1668,7 @@ PLATFORM_VARS = {
         "mozharness_desktop_build": {
             "script_name": "scripts/fx_desktop_build.py",
             "extra_args": [
-                "--config", "builds/releng_base_win_64_builds.py",
+                "--config", "builds/releng_base_windows_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
             ],
             "script_timeout": 3 * 3600,
