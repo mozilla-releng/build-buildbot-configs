@@ -39,7 +39,7 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 # win64 support
-releaseConfig['HACK_first_released_version'] = {'win64': '37.0b1'}
+releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
 
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']

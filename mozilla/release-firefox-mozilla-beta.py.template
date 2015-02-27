@@ -38,7 +38,7 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 # win64 support
-releaseConfig['HACK_first_released_version'] = {'win64': '37.0b1'}
+releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
 
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -75,8 +75,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-# TODO: add win64 before 37.0b1
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
@@ -113,21 +112,21 @@ releaseConfig['verifyConfigs']       = {
     'linux64':  'mozBeta-firefox-linux64.cfg',
     'macosx64': 'mozBeta-firefox-mac64.cfg',
     'win32':  'mozBeta-firefox-win32.cfg',
-    #'win64':  'mozBeta-firefox-win64.cfg',
+    'win64':  'mozBeta-firefox-win64.cfg',
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/beta',
     'linux64': 'browser/config/mozconfigs/linux64/beta',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/beta',
     'win32': 'browser/config/mozconfigs/win32/beta',
-    #'win64': 'browser/config/mozconfigs/win64/beta',
+    'win64': 'browser/config/mozconfigs/win64/beta',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
     'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
     'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
-    #'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
+    'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
 }
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['releaseChannelRuleIds'] = [32]
