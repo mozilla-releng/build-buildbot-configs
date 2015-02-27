@@ -64,6 +64,8 @@ GLOBAL_VARS.update({
         # have their own config files in an ideal world, but it's not worth
         # the effort at this point.
         'linux64_graphene': {},
+        'macosx64_graphene': {},
+        'win64_graphene': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -1633,10 +1635,49 @@ PLATFORM_VARS = {
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
         },
-        "stage_product": "graphene",
+        "stage_product": "b2g",
         "base_name": "graphene_%(branch)s_linux64",
         "platform_objdir": OBJDIR,
         "slaves": SLAVES["mock"],
+    },
+    "macosx64_graphene": {
+        "mozharness_python": "/tools/buildbot/bin/python",
+        "reboot_command": ["scripts/external_tools/count_and_reboot.py",
+                           "-f", "../reboot_count.txt", "-n", "1", "-z"],
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_mac_64_builds.py",
+                "--custom-build-variant-cfg", "graphene"
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "b2g",
+        "base_name": "graphene_%(branch)s_macosx64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["macosx64-lion"],
+    },
+    "win64_graphene": {
+        "mozharness_python": ["c:/mozilla-build/python27/python", "-u"],
+        "reboot_command": [
+            "c:/mozilla-build/python27/python", "-u",
+            "scripts/external_tools/count_and_reboot.py",
+            "-f", "../reboot_count.txt","-n", "1", "-z"
+        ],
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_win_64_builds.py",
+                "--custom-build-variant-cfg", "graphene"
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "b2g",
+        "base_name": "graphene_%(branch)s_win64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["win64-rev2"],
     },
 }
 
@@ -1683,8 +1724,10 @@ BRANCHES = {
             'linux64-b2g-haz': {},
             'macosx64_gecko': {},
             'macosx64_gecko-debug': {},
+            'macosx64-mulet': {},
             'win32_gecko': {},
             'win32_gecko-debug': {},
+            'win32-mulet': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-jb': {},
@@ -1954,8 +1997,10 @@ BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win32_gecko-debug']['slaves'] = TRY_SLAVES['win64-rev2']
+BRANCHES['try']['platforms']['win32-mulet']['slaves'] = TRY_SLAVES['win64-rev2']
 # Bug 1127482 - Make Windows opt and debug, linux debug, and osx debug B2G Desktop builds periodic
 ## we can't have 1127482 builders be periodic on try so let's revert them back to dep builds
 BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_dep'] = True
@@ -1999,6 +2044,10 @@ for name, branch in BRANCHES.iteritems():
     if name != "larch":
         if "linux64_graphene" in branch["platforms"]:
             del branch["platforms"]["linux64_graphene"]
+        if "macosx64_graphene" in branch["platforms"]:
+            del branch["platforms"]["macosx64_graphene"]
+        if "win64_graphene" in branch["platforms"]:
+            del branch["platforms"]["win64_graphene"]
 
 # Mulet landed in gecko 34
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):

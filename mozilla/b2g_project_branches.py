@@ -116,9 +116,7 @@ PROJECT_BRANCHES = {
     'jamun': {},
     'larch': {
         "desktop_mozharness_builds_enabled": True,
-        "platforms": {
-            "linux64_graphene": {},
-        },
+        'enable_nightly': True,
     },
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
