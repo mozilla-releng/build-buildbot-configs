@@ -244,12 +244,16 @@ PROJECT_BRANCHES = {
     'larch': {
         'lock_platforms': True,
         'platforms': {
-            'android-api-9': {},
-            'android-api-11': {},
-            'android-api-9-debug': {},
-            'android-api-11-debug': {},
-            'android-x86': {},
-            'android-debug': {},
+            'linux': {},
+            'linux64': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
         },
     },
     'maple': {
