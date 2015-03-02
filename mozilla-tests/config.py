@@ -1934,21 +1934,20 @@ for platform in BRANCHES['holly']['platforms'].keys():
 # Enable Yosemite testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['try'])
 
-# Run Jetpack tests everywhere except on versioned B2G branches.
-for name in [x for x in BRANCHES.keys() if not x.startswith('mozilla-b2g')]:
-    branch = BRANCHES[name]
+# Run mochitest-jetpack tests everywhere except on versioned B2G branches
+# starting from 39.
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    if name.startswith('mozilla-b2g'):
+        continue
     for pf in PLATFORMS:
         if pf not in branch['platforms']:
-            continue
-        # Skip these platforms
-        if pf in ('linux64-asan', ):
             continue
         for slave_pf in branch['platforms'][pf].get(
                 'slave_platforms', PLATFORMS[pf]['slave_platforms']):
             if slave_pf not in branch['platforms'][pf]:
                 continue
-            branch['platforms'][pf][slave_pf]['opt_unittest_suites'].append(('jetpack', ['jetpack']))
-            branch['platforms'][pf][slave_pf]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
+            branch['platforms'][pf][slave_pf]['opt_unittest_suites'] += MOCHITEST_JP[:]
+            branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
@@ -2125,14 +2124,6 @@ for platform in PLATFORMS.keys():
         if slave_platform in BRANCHES['cedar']['platforms'][platform]:
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
-
-# Enable mochitest-jetpack tests on try
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['try']['platforms'][platform]:
-            continue
-        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_JP[:]
-        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # Enable e10s Linux mochitests on trunk branches
 # Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
