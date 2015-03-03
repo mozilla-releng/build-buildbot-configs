@@ -10,9 +10,9 @@ releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
-                                        '<release-mgmt@mozilla.com>',
+                                        '<release-automation-notifications@mozilla.com>',
                                         '<qa-drivers@mozilla.com>']
-releaseConfig['ImportantRecipients'] = ['<release-automation-notifications@mozilla.com>',]
+releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
 
@@ -23,11 +23,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '37.0b1'
+releaseConfig['version']             = '37.0b2'
 releaseConfig['appVersion']          = '37.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_37_0b1'
+releaseConfig['baseTag']             = 'FENNEC_37_0b2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -36,7 +36,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '192f6746dc45',
+        'revision': '7b3c7ba30dfe',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
