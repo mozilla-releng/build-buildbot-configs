@@ -152,7 +152,7 @@ PROJECT_BRANCHES = {
         'enable_talos': True,
     },
     'date': {
-        'gecko_version': 36,
+        'gecko_version': 37,
         'mozharness_repo_path': 'users/nthomas_mozilla.com/mozharness-build-promotion',
         'mozharness_repo': 'https://hg.mozilla.org/users/nthomas_mozilla.com/mozharness-build-promotion',
         'mozharness_tag': 'default',
