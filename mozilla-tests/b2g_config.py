@@ -1503,7 +1503,7 @@ PLATFORM_UNITTEST_VARS = {
             # for extracting dmg's
             "PAGER": '/bin/cat',
         },
-        'enable_opt_unittests': True,
+        'enable_opt_unittests': False,
         'enable_debug_unittests': False,
         'mountainlion-b2gdt': {
             'opt_unittest_suites': [],
