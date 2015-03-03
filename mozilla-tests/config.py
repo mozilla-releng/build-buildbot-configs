@@ -1562,7 +1562,7 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'yosemite': {
-            'opt_unittest_suites': [],
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
@@ -1802,10 +1802,12 @@ BRANCHES['mozilla-release']['platforms']['linux64']['talos_slave_platforms'] = [
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-beta']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'mountainlion']
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'mountainlion']
 
 ######### mozilla-esr31
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
@@ -1930,9 +1932,6 @@ for platform in BRANCHES['holly']['platforms'].keys():
         if slave_platform in PLATFORMS['win64']['slave_platforms'] or slave_platform in PLATFORMS['win32']['slave_platforms']:
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
-
-# Enable Yosemite testing on select branches only
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=['try'])
 
 # Run mochitest-jetpack tests everywhere except on versioned B2G branches
 # starting from 39.
@@ -2186,6 +2185,28 @@ for branch in BRANCHES.keys():
                 tests = list(BRANCHES[branch]['%s_tests' % s])
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
+
+# bug 1126493 Enable Yosemite testing on select branches only
+# keep debug tests on 10.8 until the source of the slowness is found in bug 1125998
+include_yosemite = ['try']
+for platform in PLATFORMS.keys():
+    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in branch['platforms'][platform]:
+            if slave_platform not in ['mountainlion', 'yosemite']:
+                continue
+            if name not in include_yosemite:
+                include_yosemite.append(name)
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=include_yosemite)
+for branch in include_yosemite:
+    BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
+    #disable talos on branches that have 10.10 enabled excluding try 
+    #and b2g-inbound didn't have talos tests before
+    if branch in ['try', 'b2g-inbound']:
+       continue
+    BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
 
 # Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
