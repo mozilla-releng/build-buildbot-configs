@@ -10,9 +10,9 @@ releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
-                                        '<release-mgmt@mozilla.com>',
+                                        '<release-automation-notifications@mozilla.com>',
                                         '<qa-drivers@mozilla.com>']
-releaseConfig['ImportantRecipients'] = ['<release-automation-notifications@mozilla.com>',]
+releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '37.0b1'
+releaseConfig['version']             = '37.0b2'
 releaseConfig['appVersion']          = '37.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_37_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_37_0b2'
 releaseConfig['partialUpdates']      = {
 
     '36.0b10': {
@@ -36,15 +36,15 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_36_0b10',
     },
 
-    '36.0b9': {
-        'appVersion': '36.0',
+    '37.0b1': {
+        'appVersion': '37.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_36_0b9',
+        'baseTag': 'FIREFOX_37_0b1',
     },
 
 }
 # win64 support
-releaseConfig['HACK_first_released_version'] = {'win64': '37.0b1'}
+releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
 
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -54,7 +54,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '192f6746dc45',
+        'revision': '7b3c7ba30dfe',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -81,8 +81,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-# TODO: add win64 before 37.0b1
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
@@ -119,21 +118,21 @@ releaseConfig['verifyConfigs']       = {
     'linux64':  'mozBeta-firefox-linux64.cfg',
     'macosx64': 'mozBeta-firefox-mac64.cfg',
     'win32':  'mozBeta-firefox-win32.cfg',
-    #'win64':  'mozBeta-firefox-win64.cfg',
+    'win64':  'mozBeta-firefox-win64.cfg',
 }
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/beta',
     'linux64': 'browser/config/mozconfigs/linux64/beta',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/beta',
     'win32': 'browser/config/mozconfigs/win32/beta',
-    #'win64': 'browser/config/mozconfigs/win64/beta',
+    'win64': 'browser/config/mozconfigs/win64/beta',
 }
 releaseConfig['xulrunner_mozconfigs']          = {
     'linux': 'xulrunner/config/mozconfigs/linux32/xulrunner',
     'linux64': 'xulrunner/config/mozconfigs/linux64/xulrunner',
     'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
-    #'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
+    'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
 }
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['releaseChannelRuleIds'] = [32]
