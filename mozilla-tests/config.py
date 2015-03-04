@@ -1946,6 +1946,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
             if slave_pf not in branch['platforms'][pf]:
                 continue
             branch['platforms'][pf][slave_pf]['opt_unittest_suites'] += MOCHITEST_JP[:]
+            # if statement for bug 1126493 Enable Yosemite testing on select branches only
+            if slave_pf in ['yosemite'] and name not in ['try']:
+                continue
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
@@ -2097,6 +2100,9 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
+                    # if statement for bug 1126493 Enable Yosemite testing on select branches only
+                    if slave_platform in ['yosemite'] and name not in ['try']:
+                        continue
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_WEBGL
 
 # Enable web-platform-tests on cedar
@@ -2169,23 +2175,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
     else:
         branch['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 
-
-# TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
-for branch in BRANCHES.keys():
-    for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
-        if os not in BRANCHES[branch]['platforms'].keys():
-            continue
-        if BRANCHES[branch]['platforms'][os].get('talos_slave_platforms') is None:
-            continue
-        platforms_for_os = get_talos_slave_platforms(PLATFORMS, platforms=(os,))
-        enabled_platforms_for_os = BRANCHES[branch]['platforms'][os]['talos_slave_platforms']
-        for s in SUITES.iterkeys():
-            tests_key = '%s_tests' % s
-            if tests_key in BRANCHES[branch]:
-                tests = list(BRANCHES[branch]['%s_tests' % s])
-                tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
-                BRANCHES[branch]['%s_tests' % s] = tuple(tests)
-
 # bug 1126493 Enable Yosemite testing on select branches only
 # keep debug tests on 10.8 until the source of the slowness is found in bug 1125998
 include_yosemite = ['try']
@@ -2207,6 +2196,22 @@ for branch in include_yosemite:
     if branch in ['try', 'b2g-inbound']:
        continue
     BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
+
+# TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
+for branch in BRANCHES.keys():
+    for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
+        if os not in BRANCHES[branch]['platforms'].keys():
+            continue
+        if BRANCHES[branch]['platforms'][os].get('talos_slave_platforms') is None:
+            continue
+        platforms_for_os = get_talos_slave_platforms(PLATFORMS, platforms=(os,))
+        enabled_platforms_for_os = BRANCHES[branch]['platforms'][os]['talos_slave_platforms']
+        for s in SUITES.iterkeys():
+            tests_key = '%s_tests' % s
+            if tests_key in BRANCHES[branch]:
+                tests = list(BRANCHES[branch]['%s_tests' % s])
+                tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
+                BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
 # Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
