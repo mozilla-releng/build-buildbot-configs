@@ -12,7 +12,7 @@ releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer
 releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
                                         '<release-automation-notifications@mozilla.com>',
                                         '<qa-drivers@mozilla.com>']
-releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>']
+releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
@@ -23,11 +23,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '36.0'
-releaseConfig['appVersion']          = '36.0'
+releaseConfig['version']             = '36.0.1'
+releaseConfig['appVersion']          = '36.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_36_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_36_0_1'
 releaseConfig['partialUpdates']      = {
 
     '35.0': {
@@ -42,22 +42,17 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_35_0_1',
     },
 
-    '34.0.5': {
-        'appVersion': '34.0.5',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_34_0_5',
+    '36.0': {
+        'appVersion': '36.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_36_0',
     },
 
 }
 releaseConfig['extraPartials']       = {
-    '36.0b10': {
-        'appVersion': '36.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_36_0b10',
-    },
 }
 # What's New Page for Hello TODO: remove on request
-releaseConfig['openURL'] = 'https://www.mozilla.org/%locale%/firefox/36.0/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/36.0.1/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -70,7 +65,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'a2ffa9047bf4',
+        'revision': '611f37fccce0',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
