@@ -117,6 +117,12 @@ PROJECT_BRANCHES = {
     'larch': {
         "desktop_mozharness_builds_enabled": True,
         'enable_nightly': True,
+        "lock_platforms": True,
+        "platforms": {
+            "linux64_graphene": {},
+            "macosx64_graphene": {},
+            "win64_graphene": {},
+        }
     },
     'maple': {},
     # Customizations for integration work for bugs 481815 and 307181
