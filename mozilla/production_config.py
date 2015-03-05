@@ -1,5 +1,5 @@
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,16) + range(41,69) + \
-                                                  range(70,87) + range(88,95)]
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(41,69) + \
+                  range(70,87) + range(88,95)]
 WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(90,159) + range(161,173)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
                  ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
@@ -16,7 +16,8 @@ TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,
     ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
     ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
 TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,185)]
-TRY_LION         = ['bld-lion-r5-%03d' % x for x in range(16,37)]
+TRY_LION       = ['bld-lion-r5-%03d' % x for x in range(7,37)] + \
+                 ['bld-lion-r5-%03d' % x for x in range(95,97)]
 if set(TRY_WIN64_REV2).intersection(WIN64_REV2):
     raise Exception('TRY_WIN64_REV2 and WIN64_REV2 overlap')
 

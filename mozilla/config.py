@@ -966,8 +966,8 @@ PLATFORM_VARS = {
             'base_name': 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'browser/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
-            # XXX we cannot build xulrunner on Win64 -- see bug 575912
-            'enable_xulrunner': False,
+            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/win64/xulrunner',
+            'enable_xulrunner': True,
             'profiled_build': True,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
