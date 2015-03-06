@@ -627,6 +627,15 @@ PLATFORM_VARS = {
     },
     'macosx64-mulet': {
         'product_name': 'firefox',
+        'mozharness_desktop_build': {
+            'script_name': 'scripts/fx_desktop_build.py',
+            'extra_args': [
+                '--config', 'builds/releng_base_mac_64_builds.py',
+                '--custom-build-variant-cfg', 'mulet',
+            ],
+            'script_timeout': 3 * 3600,
+            'script_maxtime': int(5.5 * 3600),
+        },
         'multi_locale': False,
         'unittest_platform': 'macosx64-mulet-opt',
         'app_name': 'browser',
@@ -884,6 +893,16 @@ PLATFORM_VARS = {
     },
     'win32-mulet': {
         'product_name': 'firefox',
+        'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+        'mozharness_desktop_build': {
+            'script_name': 'scripts/fx_desktop_build.py',
+            'extra_args': [
+                '--config', 'builds/releng_base_windows_32_builds.py',
+                '--custom-build-variant-cfg', 'mulet',
+            ],
+            'script_timeout': 3 * 3600,
+            'script_maxtime': int(5.5 * 3600),
+        },
         'app_name': 'browser',
         'base_name': 'Win32 Mulet %(branch)s',
         'mozconfig': 'in_tree',
@@ -2118,6 +2137,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
         branch['script_repo_manifest'] = \
             "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
             "testing/mozharness/mozharness.json"
+
+# Enable mozharness desktop builds
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    # if true, any platform with mozharness_desktop_build in its config
+    # will use mozharness instead of MozillaBuildFactory
+    branch['desktop_mozharness_builds_enabled'] = True
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
