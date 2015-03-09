@@ -1876,6 +1876,8 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
+BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = \
+    [x for x in BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] if x[0] != 'reftest'] + REFTEST_TWO_CHUNKS[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]

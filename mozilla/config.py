@@ -947,6 +947,14 @@ PLATFORM_VARS = {
         },
         'win64': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_windows_64_builds.py',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'mozharness_desktop_l10n': {
                 'capable': False,
                 'scriptName': 'scripts/desktop_l10n.py',
@@ -1361,6 +1369,15 @@ PLATFORM_VARS = {
         },
         'win64-debug': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_windows_64_builds.py',
+                    '--custom-build-variant-cfg', 'debug',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'reboot_command': [
                 'c:/mozilla-build/python27/python', '-u',
                 'scripts/external_tools/count_and_reboot.py',
