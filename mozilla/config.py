@@ -975,7 +975,6 @@ PLATFORM_VARS = {
             'src_mozconfig': 'browser/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/win64/xulrunner',
-            'enable_xulrunner': True,
             'profiled_build': True,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
