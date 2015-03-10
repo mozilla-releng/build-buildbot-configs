@@ -524,7 +524,8 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
-        'enable_dep': True,
+        'enable_dep': False,
+        'enable_periodic': True,
         'profiled_build': False,
         'updates_enabled': False,
         'create_partial': False,
@@ -2029,6 +2030,8 @@ BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['macosx64_gecko']['enable_dep'] = True
+BRANCHES['try']['platforms']['macosx64_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['win32_gecko']['enable_dep'] = True
