@@ -9,7 +9,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>', '<thunderbird-drivers@mozilla.org>']
 releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -22,17 +22,17 @@ releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '36.0b1'
-releaseConfig['appVersion']          = '36.0'
+releaseConfig['version']             = '37.0b1'
+releaseConfig['appVersion']          = '37.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_36_0b1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_37_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '34.0b1': {
-        'appVersion': '34.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_34_0b1',
+    '36.0b1': {
+        'appVersion': '36.0',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_36_0b1',
     },
 
 }
@@ -44,7 +44,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '72cd4a740611',
+        'revision': '3291d3f395f9',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '5d83c055e2a9',
+        'revision': '21f52f25675a',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
