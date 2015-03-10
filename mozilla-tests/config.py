@@ -2069,6 +2069,18 @@ for platform in PLATFORMS.keys():
                     debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
 
+# reftest is chunked on linux64 debug for gecko >= 39
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in ['ubuntu64_vm']:
+                continue
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
+                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
+
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for platform in PLATFORMS.keys():
     # run in chunks on linux only
