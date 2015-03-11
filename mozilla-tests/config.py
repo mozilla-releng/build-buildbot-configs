@@ -1876,8 +1876,6 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
-BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = \
-    [x for x in BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] if x[0] != 'reftest'] + REFTEST_TWO_CHUNKS[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
@@ -2067,6 +2065,18 @@ for platform in PLATFORMS.keys():
                     opt_suites = BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites']
                     opt_suites = [x for x in opt_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] = opt_suites
+                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
+                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
+
+# reftest is chunked on linux64 debug for gecko >= 39
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in ['ubuntu64_vm']:
+                continue
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
                     debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
                     debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites

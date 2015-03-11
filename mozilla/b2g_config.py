@@ -524,7 +524,8 @@ PLATFORM_VARS = {
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
         'src_mozconfig': 'b2g/config/mozconfigs/macosx64_gecko/nightly',
-        'enable_dep': True,
+        'enable_dep': False,
+        'enable_periodic': True,
         'profiled_build': False,
         'updates_enabled': False,
         'create_partial': False,
@@ -1658,6 +1659,7 @@ PLATFORM_VARS = {
         "base_name": "graphene_%(branch)s_linux64",
         "platform_objdir": OBJDIR,
         "slaves": SLAVES["mock"],
+        "try_by_default": False,
     },
     "macosx64_graphene": {
         "mozharness_python": "/tools/buildbot/bin/python",
@@ -1676,6 +1678,7 @@ PLATFORM_VARS = {
         "base_name": "graphene_%(branch)s_macosx64",
         "platform_objdir": OBJDIR,
         "slaves": SLAVES["macosx64-lion"],
+        "try_by_default": False,
     },
     "win64_graphene": {
         "mozharness_python": ["c:/mozilla-build/python27/python", "-u"],
@@ -1697,6 +1700,7 @@ PLATFORM_VARS = {
         "base_name": "graphene_%(branch)s_win64",
         "platform_objdir": OBJDIR,
         "slaves": SLAVES["win64-rev2"],
+        "try_by_default": False,
     },
 }
 
@@ -1747,6 +1751,9 @@ BRANCHES = {
             'win32_gecko': {},
             'win32_gecko-debug': {},
             'win32-mulet': {},
+            'linux64_graphene': {},
+            'macosx64_graphene': {},
+            'win64_graphene': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-jb': {},
@@ -2026,12 +2033,17 @@ BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['macosx64_gecko']['enable_dep'] = True
+BRANCHES['try']['platforms']['macosx64_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['win32_gecko']['enable_dep'] = True
 BRANCHES['try']['platforms']['win32_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['win32_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['win32_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['win64_graphene']['slaves'] = TRY_SLAVES['win64-rev2']
 
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
@@ -2058,9 +2070,9 @@ BRANCHES['try']['platforms']['emulator-l-debug']['mozharness_config']['extra_arg
 BRANCHES['try']['platforms']['emulator-l-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-l-debug']['enable_periodic'] = False
 
-# Graphene is only enabled on Larch for now.
+# Graphene is only enabled on Larch and Try for now.
 for name, branch in BRANCHES.iteritems():
-    if name != "larch":
+    if name not in ("larch", "try"):
         if "linux64_graphene" in branch["platforms"]:
             del branch["platforms"]["linux64_graphene"]
         if "macosx64_graphene" in branch["platforms"]:

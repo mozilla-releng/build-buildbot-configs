@@ -956,7 +956,7 @@ PLATFORM_VARS = {
                 'script_maxtime': int(5.5 * 3600),
             },
             'mozharness_desktop_l10n': {
-                'capable': False,
+                'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
@@ -975,7 +975,6 @@ PLATFORM_VARS = {
             'src_mozconfig': 'browser/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
             'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/win64/xulrunner',
-            'enable_xulrunner': True,
             'profiled_build': True,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
