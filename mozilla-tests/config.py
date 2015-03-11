@@ -681,6 +681,15 @@ MOZBASE = [
     }),
 ]
 
+LUCIDDREAM = [
+    ('luciddream', {
+        'use_mozharness': True,
+        'script_path': 'scripts/luciddream_unittest.py',
+        'script_maxtime': 7200,
+        'blob_upload': True,
+    }),
+]
+
 WEB_PLATFORM_REFTESTS = [
     ('web-platform-tests-reftests', {
         'use_mozharness': True,
@@ -895,6 +904,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mozbase': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'luciddream': {
+                    'config_files': ["luciddream/linux_config.py"],
                 },
             },
         },
@@ -1876,6 +1888,7 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
+BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += LUCIDDREAM[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
