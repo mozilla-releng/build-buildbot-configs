@@ -1575,7 +1575,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1964,9 +1964,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
             if slave_pf not in branch['platforms'][pf]:
                 continue
             branch['platforms'][pf][slave_pf]['opt_unittest_suites'] += MOCHITEST_JP[:]
-            # if statement for bug 1126493 Enable Yosemite testing on select branches only
-            if slave_pf in ['yosemite'] and name not in ['try']:
-                continue
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
@@ -2130,9 +2127,6 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
-                    # if statement for bug 1126493 Enable Yosemite testing on select branches only
-                    if slave_platform in ['yosemite'] and name not in ['try']:
-                        continue
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_WEBGL
 
 # Enable web-platform-tests on cedar
@@ -2220,10 +2214,13 @@ for platform in PLATFORMS.keys():
                 include_yosemite.append(name)
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=include_yosemite)
 for branch in include_yosemite:
+    if branch in ['try']:
+        continue
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
-    #disable talos on branches that have 10.10 enabled excluding try 
-    #and b2g-inbound didn't have talos tests before
-    if branch in ['try', 'b2g-inbound']:
+    BRANCHES[branch]['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = []
+    #disable talos on branches that have 10.10 enabled excluding b2g-inbound 
+    #which idn't have talos tests before
+    if branch in ['b2g-inbound']:
        continue
     BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
 
