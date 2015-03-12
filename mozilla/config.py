@@ -73,7 +73,6 @@ GLOBAL_VARS = {
         'android-api-9': {},
         'android-api-11': {},
         'android-x86': {},
-        'android-armv6': {},
         'android-debug': {},
         'android-api-11-debug': {},
         'android-api-9-debug': {},
@@ -1633,74 +1632,6 @@ PLATFORM_VARS = {
             'update_platform': 'Android_arm-eabi-gcc3',
             'updates_enabled': False,
         },
-        'android-armv6': {
-            'enable_nightly': True,
-            'product_name': 'firefox',
-            'unittest_platform': 'android-armv6-opt',
-            'app_name': 'browser',
-            'base_name': 'Android 2.3 Armv6 %(branch)s',
-            'mozconfig': 'android-armv6/%(branch)s/nightly',
-            'src_mozconfig': 'mobile/android/config/mozconfigs/android-armv6/nightly',
-            'mobile_dir': 'mobile/android',
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 14,
-            'upload_symbols': True,
-            'packageTests': True,
-            'enable_xulrunner': False,
-            'profiled_build': False,
-            'slaves': SLAVES['mock'],
-            'platform_objdir': OBJDIR,
-            'update_platform': 'Android_arm-eabi-gcc3-armv6',
-            'enable_ccache': True,
-            'enable_shared_checkouts': True,
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
-            'use_mock': True,
-            'mock_target': 'mozilla-centos6-x86_64-android',
-            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
-                              'ccache', 'zip',
-                              'java-1.7.0-openjdk-devel', 'zlib-devel',
-                              'glibc-static', 'openssh-clients', 'mpfr', 'bc',
-                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
-                              'libstdc++.i686', 'zlib.i686',
-                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
-            'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/home/cltbld/.boto', '/builds/.boto'),
-                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
-                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
-            ],
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SHIP_LICENSED_FONTS': '1',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
-            },
-            'enable_opt_unittests': False,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
-            'unittest_masters': GLOBAL_VARS['unittest_masters'],
-            'stage_platform': "android-armv6",
-            'stage_product': 'mobile',
-            'post_upload_include_platform': True,
-            'is_mobile_l10n': False,
-            'multi_locale': True,
-            'multi_locale_script': 'scripts/multil10n.py',
-            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-armv6/releng.manifest',
-            'updates_enabled': False,
-        },
         'android-x86': {
             'product_name': 'firefox',
             'unittest_platform': 'android-x86-opt',
@@ -2369,7 +2300,6 @@ BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['enable_hpkp_update'] = True
-BRANCHES['mozilla-central']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['android-x86']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
@@ -2381,7 +2311,6 @@ BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] =
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['android-armv6']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-api-11']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
@@ -2418,7 +2347,6 @@ BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-release']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
@@ -2461,7 +2389,6 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
-BRANCHES['mozilla-beta']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-beta']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
@@ -2519,7 +2446,6 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
-BRANCHES['mozilla-aurora']['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
@@ -2541,7 +2467,7 @@ BRANCHES['mozilla-esr31']['update_channel'] = 'nightly-esr31'
 BRANCHES['mozilla-esr31']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-esr31']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-esr31']['start_hour'] = [0]
-BRANCHES['mozilla-esr31']['start_minute'] = [05]
+BRANCHES['mozilla-esr31']['start_minute'] = [5]
 BRANCHES['mozilla-esr31']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr31']['enable_mac_a11y'] = True
@@ -2562,7 +2488,7 @@ BRANCHES['mozilla-esr31']['create_partial'] = False
 BRANCHES['mozilla-esr31']['enable_blocklist_update'] = True
 BRANCHES['mozilla-esr31']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr31']['enable_valgrind'] = False
-BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-esr31']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'
@@ -2591,7 +2517,7 @@ BRANCHES['mozilla-b2g30_v1_4']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g30_v1_4']['enable_hpkp_update'] = False
 BRANCHES['mozilla-b2g30_v1_4']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g30_v1_4']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = 'releases/mozilla-b2g32_v2_0'
@@ -2620,7 +2546,7 @@ BRANCHES['mozilla-b2g32_v2_0']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g32_v2_0']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g32_v2_0']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g32_v2_0']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g32_v2_0']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = 'releases/mozilla-b2g34_v2_1'
@@ -2649,7 +2575,7 @@ BRANCHES['mozilla-b2g34_v2_1']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g34_v2_1']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g34_v2_1']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g34_v2_1']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g34_v2_1']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g34_v2_1s
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = 'releases/mozilla-b2g34_v2_1s'
@@ -2677,7 +2603,7 @@ BRANCHES['mozilla-b2g34_v2_1s']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g34_v2_1s']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = 'releases/mozilla-b2g37_v2_2'
@@ -2706,7 +2632,7 @@ BRANCHES['mozilla-b2g37_v2_2']['enable_blocklist_update'] = False
 BRANCHES['mozilla-b2g37_v2_2']['enable_hsts_update'] = True
 BRANCHES['mozilla-b2g37_v2_2']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g37_v2_2']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-b2g37_v2_2']['enabled_products'] = ['firefox']
 
 
 ######## try
@@ -2755,7 +2681,6 @@ BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-st-an-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-armv6']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-11']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-debug']['slaves'] = TRY_SLAVES['mock']
@@ -2822,8 +2747,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
     if 'android-api-11' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11-' + branch
-    if 'android-armv6' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-armv6']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-armv6-' + branch
     if 'android-x86' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
     if 'linux64' in BRANCHES[branch]['platforms']:
@@ -2851,15 +2774,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             branchConfig.get('nightly_signing_servers', branchConfig.get('platforms', {}).get(
                              platform, {}).get('nightly_signing_servers',
                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers']))
-
-#bug 1042835 Disable armv6 builds and tests everywhere apart from esr31
-branches = BRANCHES.keys()
-branches.extend(ACTIVE_PROJECT_BRANCHES)
-for branch in branches:
-    if branch == 'mozilla-esr31':
-        continue
-    if 'android-armv6' in BRANCHES[branch]['platforms']:
-        del BRANCHES[branch]['platforms']['android-armv6']
 
 # Bug 578880, remove the following block after gcc-4.5 switch
 branches = BRANCHES.keys()

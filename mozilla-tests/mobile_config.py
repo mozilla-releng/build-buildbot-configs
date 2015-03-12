@@ -37,13 +37,7 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-b2g30_v1_4': {
-        'gecko_version': 30,
-    },
     'try': {'coallesce_jobs': False},
-    'mozilla-esr31':     {
-        'gecko_version': 31,
-    },
 }
 
 setMainFirefoxVersions(BRANCHES)
@@ -53,7 +47,6 @@ PLATFORMS = {
     'android': {},
     'android-api-9': {},
     'android-api-11': {},
-    'android-armv6': {},
     'android-x86': {},
 }
 
@@ -114,18 +107,6 @@ PLATFORMS['android-api-11']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
-PLATFORMS['android-armv6']['slave_platforms'] = ['ubuntu64_vm_armv6_mobile', 'ubuntu64_vm_armv6_large']
-PLATFORMS['android-armv6']['env_name'] = 'android-perf'
-PLATFORMS['android-armv6']['is_mobile'] = True
-PLATFORMS['android-armv6']['ubuntu64_vm_armv6_mobile'] = {'name': "Android 2.3 Armv6 Emulator"}
-PLATFORMS['android-armv6']['ubuntu64_vm_armv6_large'] = {'name': "Android 2.3 Armv6 Emulator"}
-PLATFORMS['android-armv6']['stage_product'] = 'mobile'
-PLATFORMS['android-armv6']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
-
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
 PLATFORMS['android-x86']['is_mobile'] = True
@@ -181,7 +162,6 @@ BRANCH_UNITTEST_VARS = {
         'android-debug': {},
         'android-api-9': {},
         'android-api-11': {},
-        'android-armv6': {},
         'android-x86': {},
     },
 }
@@ -1528,23 +1508,6 @@ PLATFORM_UNITTEST_VARS = {
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
         'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
     },
-    'android-armv6': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'ubuntu64_vm_armv6_mobile': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-        },
-        'ubuntu64_vm_armv6_large': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-        },
-    },
     'android-x86': {
         'product_name': 'fennec',
         'enable_opt_unittests': True,
@@ -1619,13 +1582,6 @@ for branch in BRANCHES.keys():
                 BRANCHES[branch]['platforms'][platform][key] = value
 
 
-BRANCHES['mozilla-esr31']['platforms']['android-armv6']['ubuntu64_vm_armv6_large'] = {
-    'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_C3_DICT['opt_unittest_suites']),
-}
-BRANCHES['mozilla-esr31']['platforms']['android-armv6']['ubuntu64_vm_armv6_mobile'] = {
-    'opt_unittest_suites': deepcopy(ANDROID_2_3_ARMV6_AWS_DICT['opt_unittest_suites']),
-}
-
 #
 # Entries in BRANCHES for tests should be a tuple of:
 # - Number of tests to run per build
@@ -1667,14 +1623,6 @@ BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 
-######### mozilla-esr31
-BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
-
-######### mozilla-b2g30_v1_4
-BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
-BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-b2g30_v1_4']['pgo_platforms'] = []
-
 ######## try
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
@@ -1692,10 +1640,6 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['script_repo_manifest'] = \
         "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
         "testing/mozharness/mozharness.json"
-
-BRANCHES['mozilla-b2g30_v1_4']['script_repo_manifest'] = \
-    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-    "testing/mozharness/mozharness.json"
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:

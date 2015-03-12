@@ -9,7 +9,6 @@ SlavePasswords = {
         'macosx64': 'pass',
         'macosx64-lion': 'pass',
         'android': 'pass',
-        'android-armv6': 'pass',
         'android-x86': 'pass',
         'mock': 'pass',
         'mock-hw': 'pass',
