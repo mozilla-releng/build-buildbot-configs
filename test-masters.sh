@@ -56,7 +56,7 @@ trap 'for cmd in "${atexit[@]}"; do eval $cmd; done' EXIT
 # I have had problems where a whole bunch of parallel HTTP requests caused
 # errors (?), so fetch it once here and pass it in.
 MASTERS_JSON=$(mktemp $WORK/tmp.masters.XXXXXXXXXX)
-wget -q -O$MASTERS_JSON "$MASTERS_JSON_URL" || exit 1
+curl -q -o$MASTERS_JSON "$MASTERS_JSON_URL" || exit 1
 atexit+=("rm $MASTERS_JSON")
 
 FAILFILE=$(mktemp $WORK/tmp.failfile.XXXXXXXXXX)

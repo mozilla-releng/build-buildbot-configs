@@ -681,6 +681,15 @@ MOZBASE = [
     }),
 ]
 
+LUCIDDREAM = [
+    ('luciddream', {
+        'use_mozharness': True,
+        'script_path': 'scripts/luciddream_unittest.py',
+        'script_maxtime': 7200,
+        'blob_upload': True,
+    }),
+]
+
 WEB_PLATFORM_REFTESTS = [
     ('web-platform-tests-reftests', {
         'use_mozharness': True,
@@ -895,6 +904,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'mozbase': {
                     'config_files': ["unittests/linux_unittest.py"],
+                },
+                'luciddream': {
+                    'config_files': ["luciddream/linux_config.py"],
                 },
             },
         },
@@ -1563,7 +1575,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': [],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1847,6 +1859,7 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] 
 ######### mozilla-b2g34_v2_1s
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g34_v2_1s']['pgo_strategy'] = None
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
@@ -1876,6 +1889,7 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
+BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += LUCIDDREAM[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
@@ -1950,9 +1964,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
             if slave_pf not in branch['platforms'][pf]:
                 continue
             branch['platforms'][pf][slave_pf]['opt_unittest_suites'] += MOCHITEST_JP[:]
-            # if statement for bug 1126493 Enable Yosemite testing on select branches only
-            if slave_pf in ['yosemite'] and name not in ['try']:
-                continue
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_JP[:]
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
@@ -2116,9 +2127,6 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
-                    # if statement for bug 1126493 Enable Yosemite testing on select branches only
-                    if slave_platform in ['yosemite'] and name not in ['try']:
-                        continue
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_WEBGL
 
 # Enable web-platform-tests on cedar
@@ -2206,10 +2214,13 @@ for platform in PLATFORMS.keys():
                 include_yosemite.append(name)
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=include_yosemite)
 for branch in include_yosemite:
+    if branch in ['try']:
+        continue
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
-    #disable talos on branches that have 10.10 enabled excluding try 
-    #and b2g-inbound didn't have talos tests before
-    if branch in ['try', 'b2g-inbound']:
+    BRANCHES[branch]['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = []
+    #disable talos on branches that have 10.10 enabled excluding b2g-inbound 
+    #which idn't have talos tests before
+    if branch in ['b2g-inbound']:
        continue
     BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
 
@@ -2232,18 +2243,12 @@ for branch in BRANCHES.keys():
 # Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
-    if 'linux' in branch['platforms'] and 'ubuntu32_vm' in branch['platforms']['linux']:
-        for chunked_bc in MOCHITEST_BC_3:
-            branch['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'].remove(chunked_bc)
-    if 'linux64' in branch['platforms'] and 'ubuntu64_vm' in branch['platforms']['linux64']:
-        for chunked_bc in MOCHITEST_BC_3:
-            branch['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'].remove(chunked_bc)
-    if 'linux64-asan' in branch['platforms'] and 'ubuntu64-asan_vm' in branch['platforms']['linux64-asan']:
-        for chunked_bc in MOCHITEST_BC_3:
-            branch['platforms']['linux64-asan']['ubuntu64-asan_vm']['debug_unittest_suites'].remove(chunked_bc)
-    if 'linux64-cc' in branch['platforms'] and 'ubuntu64_vm' in branch['platforms']['linux64-cc']:
-        for chunked_bc in MOCHITEST_BC_3:
-            branch['platforms']['linux64-cc']['ubuntu64_vm']['debug_unittest_suites'].remove(chunked_bc)
+    for platform in ('linux', 'linux64', 'linux64-asan', 'linux64-cc'):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in branch['platforms'] and slave_platform in branch['platforms'][platform]:
+                for chunked_bc in MOCHITEST_BC_3:
+                    if chunked_bc in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(chunked_bc)
 
 
 # remove mochitest-browser-chrome and mochitest-devtools-chrome
