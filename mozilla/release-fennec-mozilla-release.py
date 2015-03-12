@@ -9,9 +9,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
-                                        '<release-automation-notifications@mozilla.com>',
-                                        '<qa-drivers@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>',]
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
@@ -23,11 +21,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '36.0.1'
-releaseConfig['appVersion']          = '36.0.1'
+releaseConfig['version']             = '36.0.2'
+releaseConfig['appVersion']          = '36.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FENNEC_36_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FENNEC_36_0_2'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -36,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '611f37fccce0',
+        'revision': '050698a3df5e',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
