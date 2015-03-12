@@ -57,39 +57,6 @@ PROJECT_BRANCHES = {
         },
     },
     #'services-central': {},  # Bug 1010674
-    'ux': {
-        'branch_name': 'UX',
-        'mobile_branch_name': 'UX',
-        'build_branch': 'UX',
-        'tinderbox_tree': 'UX',
-        'mobile_tinderbox_tree': 'UX',
-        'packaged_unittest_tinderbox_tree': 'UX',
-        'enabled_products': ['firefox'],
-        'enable_weekly_bundle': True,
-        'mozconfig_dir': 'ux',
-        'enable_nightly': True,
-        'updates_enabled': True,
-        'create_partial': True,
-        'enable_talos': False,
-        'lock_platforms': True,
-        'platforms': {
-            'macosx64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-        },
-    },
     # no desktop builds for bug 1100150
     # 'alder': {},
     'ash': {
