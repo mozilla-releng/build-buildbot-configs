@@ -26,7 +26,6 @@ GLOBAL_VARS.update({
         'linux32_gecko-debug': {},
         'linux64_gecko': {},
         'linux64_gecko-debug': {},
-        'linux64-mulet': {},
         'macosx64_gecko': {},
         'macosx64_gecko-debug': {},
         'macosx64-mulet': {},
@@ -437,85 +436,6 @@ PLATFORM_VARS = {
             '--gecko-languages-file', 'build/b2g/locales/all-locales',
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
-    },
-    'linux64-mulet': {
-        'mozharness_python': '/tools/buildbot/bin/python',
-        'reboot_command': ['scripts/external_tools/count_and_reboot.py',
-                           '-f', '../reboot_count.txt','-n', '1', '-z'],
-        'mozharness_desktop_build': {
-            'script_name': 'scripts/fx_desktop_build.py',
-            'extra_args': [
-                '--config', 'builds/releng_base_linux_64_builds.py',
-                '--custom-build-variant-cfg', 'mulet',
-            ],
-            'script_timeout': 3 * 3600,
-            'script_maxtime': int(5.5 * 3600),
-        },
-
-        'consider_for_nightly': False,
-        'build_space': 15,
-        'multi_locale': False,
-        'enable_nightly': True,
-        'enable_xulrunner': False,
-        'enable_opt_unittests': True,
-        'try_by_default': True,
-        'upload_symbols': False,
-        'update_platform': 'Linux_x86_64-gcc3',
-        'packageTests': True,
-        'dep_signing_servers': None,
-
-        'product_name': 'firefox',
-        'unittest_platform': 'linux64-mulet-opt',
-        'base_name': 'Linux x86-64 Mulet %(branch)s',
-        'slaves': SLAVES['mock'],
-        'mozconfig': 'in_tree',
-        'src_mozconfig': 'b2g/dev/config/mozconfigs/linux64/mulet',
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'platform_objdir': OBJDIR,
-        'stage_product': 'b2g',
-        'stage_platform': 'linux64-mulet',
-        'enable_shared_checkouts': True,
-        'env': {
-            'DISPLAY': ':2',
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-            'TOOLTOOL_HOME': '/builds',
-            'MOZ_OBJDIR': OBJDIR,
-            'CCACHE_DIR': '/builds/ccache',
-            'CCACHE_COMPRESS': '1',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-            'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
-        },
-        'tooltool_manifest_src': 'b2g/dev/config/tooltool-manifests/linux64/releng.manifest',
-        'tooltool_script': ['/builds/tooltool.py'],
-        'use_mock': True,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'mock_packages': \
-                   ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                    'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                    'gtk2-devel', 'libnotify-devel', 'yasm',
-                    'alsa-lib-devel', 'libcurl-devel',
-                    'wireless-tools-devel', 'libX11-devel',
-                    'libXt-devel', 'mesa-libGL-devel',
-                    'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                    'mpfr', # required for system compiler
-                    'xorg-x11-font*', # fonts required for PGO
-                    'imake', # required for makedepend!?!
-                    'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                    'valgrind', 'dbus-x11',
-                    'pulseaudio-libs-devel',
-                    'gstreamer-devel', 'gstreamer-plugins-base-devel',
-                    'freetype-2.3.11-6.el6_1.8.x86_64',
-                    'freetype-devel-2.3.11-6.el6_1.8.x86_64',
-                    ],
-        'mock_copyin_files': [
-            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-            ('/home/cltbld/.boto', '/builds/.boto'),
-            ('/builds/gapi.data', '/builds/gapi.data'),
-            ('/tools/tooltool.py', '/builds/tooltool.py'),
-        ],
     },
     'macosx64_gecko': {
         'product_name': 'b2g',
@@ -1743,7 +1663,6 @@ BRANCHES = {
             'linux32_gecko-debug': {},
             'linux64_gecko': {},
             'linux64_gecko-debug': {},
-            'linux64-mulet': {},
             'linux64-b2g-haz': {},
             'macosx64_gecko': {},
             'macosx64_gecko-debug': {},
@@ -2020,7 +1939,6 @@ BRANCHES['try']['platforms']['linux32_gecko-debug']['slaves'] = TRY_SLAVES['mock
 BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-mulet']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
@@ -2079,11 +1997,6 @@ for name, branch in BRANCHES.iteritems():
             del branch["platforms"]["macosx64_graphene"]
         if "win64_graphene" in branch["platforms"]:
             del branch["platforms"]["win64_graphene"]
-
-# Mulet landed in gecko 34
-for name, branch in items_before(BRANCHES, 'gecko_version', 34):
-    if 'linux64-mulet' in branch['platforms']:
-        del branch['platforms']['linux64-mulet']
 
 # Enable win32/macosx64 mulet in gecko 36+
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
