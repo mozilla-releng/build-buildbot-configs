@@ -42,7 +42,6 @@ PROJECT_BRANCHES = {
             'linux32_gecko': {},
             'linux64_gecko': {},
             'linux64_gecko-debug': {},
-            'linux64-mulet': {},
         },
     },
     'ash': {
