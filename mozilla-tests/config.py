@@ -1735,7 +1735,7 @@ PROJECTS = {
                 'debug': True
             },
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
+            'yosemite': {'ext': '(mac|mac64).dmg', 'debug': True},
             'xp-ix': {
                 'ext': 'win32.zip',
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
