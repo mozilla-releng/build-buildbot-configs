@@ -105,7 +105,6 @@ releaseConfig['hgUsername']          = 'tbirdbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozRelease-thunderbird-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -117,12 +116,6 @@ releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunder
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozRelease-thunderbird-linux.cfg',
-    'linux64':  'mozRelease-thunderbird-linux64.cfg',
-    'macosx64': 'mozRelease-thunderbird-mac64.cfg',
-    'win32':  'mozRelease-thunderbird-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/release',
     'linux64': 'mail/config/mozconfigs/linux64/release',
@@ -131,10 +124,29 @@ releaseConfig['mozconfigs']          = {
 }
 releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/release'
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [35]
-releaseConfig['localTestChannel']      = 'release-localtest'
-releaseConfig['cdnTestChannel']        = 'release-cdntest'
-releaseConfig['testChannelRuleIds']    = [61,62]
+releaseConfig['updateChannels'] = {
+    "release": {
+        "versionRegex": r"^.*$",
+        "ruleId": 35,
+        "patcherConfig": "mozRelease-thunderbird-branch-patcher2.cfg",
+        "localTestChannel": "release-localtest",
+        "cdnTestChannel": "release-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozRelease-thunderbird-linux.cfg",
+            "linux64":  "mozRelease-thunderbird-linux64.cfg",
+            "macosx64": "mozRelease-thunderbird-mac64.cfg",
+            "win32":  "mozRelease-thunderbird-win32.cfg",
+        },
+        "testChannels": {
+            "release-localtest": {
+                "ruleId": 61,
+            },
+            "release-cdntest": {
+                "ruleId": 62,
+            },
+        },
+    },
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

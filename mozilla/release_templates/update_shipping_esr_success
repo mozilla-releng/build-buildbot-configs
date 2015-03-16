@@ -1,0 +1,4 @@
+%(releaseName)s: Updates available on esr
+Updates to %(releaseName)s are available on the esr channel now.
+
+-buildbot

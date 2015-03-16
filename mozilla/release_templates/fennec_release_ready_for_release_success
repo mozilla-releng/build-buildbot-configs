@@ -1,0 +1,5 @@
+%(releaseName)s: ready to ship to the release channel
+%(releaseName)s is ready to be shipped to the release channel.
+
+-buildbot
+

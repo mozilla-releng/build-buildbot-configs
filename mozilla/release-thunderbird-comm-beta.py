@@ -98,7 +98,6 @@ releaseConfig['hgUsername']          = 'tbirdbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/tbirdbld_dsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -110,12 +109,6 @@ releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunder
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozBeta-thunderbird-linux.cfg',
-    'linux64':  'mozBeta-thunderbird-linux64.cfg',
-    'macosx64': 'mozBeta-thunderbird-mac64.cfg',
-    'win32':  'mozBeta-thunderbird-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/release',
     'linux64': 'mail/config/mozconfigs/linux64/release',
@@ -124,10 +117,29 @@ releaseConfig['mozconfigs']          = {
 }
 releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/release'
 releaseConfig['releaseChannel']        = 'beta'
-releaseConfig['releaseChannelRuleIds'] = [43]
-releaseConfig['localTestChannel']      = 'beta-localtest'
-releaseConfig['cdnTestChannel']        = 'beta-cdntest'
-releaseConfig['testChannelRuleIds']    = [27,60]
+releaseConfig['updateChannels'] = {
+    "beta": {
+        "versionRegex": r"^.*$",
+        "ruleId": 43,
+        "patcherConfig": "mozBeta-thunderbird-branch-patcher2.cfg",
+        "localTestChannel": "beta-localtest",
+        "cdnTestChannel": "beta-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozBeta-thunderbird-linux.cfg",
+            "linux64":  "mozBeta-thunderbird-linux64.cfg",
+            "macosx64": "mozBeta-thunderbird-mac64.cfg",
+            "win32":  "mozBeta-thunderbird-win32.cfg",
+        },
+        "testChannels": {
+            "beta-cdntest": {
+                "ruleId": 60,
+            },
+            "beta-localtest": {
+                "ruleId": 27,
+            },
+        }
+    }
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

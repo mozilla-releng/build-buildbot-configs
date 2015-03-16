@@ -1,0 +1,4 @@
+%(releaseName)s: Updates available on release
+Updates to %(releaseName)s are available on the release channel now.
+
+-buildbot

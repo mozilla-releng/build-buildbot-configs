@@ -90,7 +90,6 @@ releaseConfig['hgUsername']          = 'ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'ftp.mozilla.org'
 releaseConfig['stagingServer']       = 'stage.mozilla.org'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
@@ -103,12 +102,6 @@ releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
 releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr31-firefox-linux.cfg',
-    'linux64':  'mozEsr31-firefox-linux64.cfg',
-    'macosx64': 'mozEsr31-firefox-mac64.cfg',
-    'win32':  'mozEsr31-firefox-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -116,10 +109,30 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
-releaseConfig['releaseChannelRuleIds'] = [34]
-releaseConfig['localTestChannel']      = 'esr-localtest'
-releaseConfig['cdnTestChannel']        = 'esr-cdntest'
-releaseConfig['testChannelRuleIds']    = [58,59]
+releaseConfig['updateChannels'] = {
+    "esr": {
+        "versionRegex": r"^.*$",
+        "ruleId": 34,
+        "patcherConfig": "mozEsr31-branch-patcher2.cfg",
+        "localTestChannel": "esr-localtest",
+        "cdnTestChannel": "esr-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozEsr31-firefox-linux.cfg",
+            "linux64":  "mozEsr31-firefox-linux64.cfg",
+            "macosx64": "mozEsr31-firefox-mac64.cfg",
+            "win32":  "mozEsr31-firefox-win32.cfg",
+        },
+        "testChannels": {
+            "esr-localtest": {
+                "ruleId": 58,
+            },
+            "esr-cdntest": {
+                "ruleId": 59,
+            },
+        },
+    },
+}
+
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

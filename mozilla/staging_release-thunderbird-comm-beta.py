@@ -107,7 +107,6 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozBeta-thunderbird-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -119,12 +118,6 @@ releaseConfig['ausSshKey']           = 'tbirdbld_dsa'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozBeta-thunderbird-linux.cfg',
-    'linux64':  'mozBeta-thunderbird-linux64.cfg',
-    'macosx64': 'mozBeta-thunderbird-mac64.cfg',
-    'win32':  'mozBeta-thunderbird-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/release',
     'linux64': 'mail/config/mozconfigs/linux64/release',
@@ -132,10 +125,29 @@ releaseConfig['mozconfigs']          = {
     'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'beta'
-releaseConfig['releaseChannelRuleIds'] = [33]
-releaseConfig['localTestChannel']      = 'beta-localtest'
-releaseConfig['cdnTestChannel']        = 'beta-cdntest'
-releaseConfig['testChannelRuleIds']    = [21,43]
+releaseConfig['updateChannels'] = {
+    "beta": {
+        "versionRegex": r"^.*$",
+        "ruleId": 33,
+        "patcherConfig": "mozBeta-thunderbird-branch-patcher2.cfg",
+        "localTestChannel": "beta-localtest",
+        "cdnTestChannel": "beta-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozBeta-thunderbird-linux.cfg",
+            "linux64":  "mozBeta-thunderbird-linux64.cfg",
+            "macosx64": "mozBeta-thunderbird-mac64.cfg",
+            "win32":  "mozBeta-thunderbird-win32.cfg",
+        },
+        "testChannels": {
+            "beta-cdntest": {
+                "ruleId": 43,
+            },
+            "beta-localtest": {
+                "ruleId": 21,
+            },
+        }
+    }
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

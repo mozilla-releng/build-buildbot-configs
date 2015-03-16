@@ -96,7 +96,6 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -108,12 +107,6 @@ releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozEsr31-firefox-linux.cfg',
-    'linux64':  'mozEsr31-firefox-linux64.cfg',
-    'macosx64': 'mozEsr31-firefox-mac64.cfg',
-    'win32':  'mozEsr31-firefox-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -121,10 +114,29 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
-releaseConfig['releaseChannelRuleIds'] = [53]
-releaseConfig['localTestChannel']      = 'esr-localtest'
-releaseConfig['cdnTestChannel']        = 'esr-cdntest'
-releaseConfig['testChannelRuleIds']    = [29,42]
+releaseConfig['updateChannels'] = {
+    "esr": {
+        "versionRegex": r"^.*$",
+        "ruleId": 53,
+        "patcherConfig": "mozEsr31-branch-patcher2.cfg",
+        "localTestChannel": "esr-localtest",
+        "cdnTestChannel": "esr-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozEsr31-firefox-linux.cfg",
+            "linux64":  "mozEsr31-firefox-linux64.cfg",
+            "macosx64": "mozEsr31-firefox-mac64.cfg",
+            "win32":  "mozEsr31-firefox-win32.cfg",
+        },
+        "testChannels": {
+            "esr-cdntest": {
+                "ruleId": 42,
+            },
+            "esr-localtest": {
+                "ruleId": 29,
+            },
+        }
+    }
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

@@ -98,7 +98,6 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozRelease-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -110,12 +109,6 @@ releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
-releaseConfig['verifyConfigs']       = {
-    'linux':  'mozRelease-firefox-linux.cfg',
-    'linux64':  'mozRelease-firefox-linux64.cfg',
-    'macosx64': 'mozRelease-firefox-mac64.cfg',
-    'win32':  'mozRelease-firefox-win32.cfg'
-}
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -129,10 +122,54 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/release',
 }
 releaseConfig['releaseChannel']        = 'release'
-releaseConfig['releaseChannelRuleIds'] = [31]
-releaseConfig['localTestChannel']      = 'betatest'
-releaseConfig['cdnTestChannel']        = 'releasetest'
-releaseConfig['testChannelRuleIds']    = [19,20]
+releaseConfig['updateChannels'] = {
+    "release": {
+        "versionRegex": r"\d+\.\d+(\.\d+)?$",
+        "ruleId": 31,
+        "patcherConfig": "mozRelease-branch-patcher2.cfg",
+        "localTestChannel": "release-localtest",
+        "cdnTestChannel": "release-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozRelease-firefox-linux.cfg",
+            "linux64":  "mozRelease-firefox-linux64.cfg",
+            "macosx64": "mozRelease-firefox-mac64.cfg",
+            "win32":  "mozRelease-firefox-win32.cfg",
+            #"win64":  "mozRelease-firefox-win64.cfg",
+        },
+        "testChannels": {
+            "release-localtest": {
+                "ruleId": 19,
+            },
+            "release-cdntest": {
+                "ruleId": 20,
+            },
+        },
+    },
+    "beta": {
+        "enabled": False,
+        "versionRegex": r"\d+\.\d+b\d+$",
+        "ruleId": 26,
+        "requiresMirrors": False,
+        "patcherConfig": "mozBeta-branch-patcher2.cfg",
+        "localTestChannel": "beta-localtest",
+        "cdnTestChannel": "beta-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozBeta-firefox-linux.cfg",
+            "linux64":  "mozBeta-firefox-linux64.cfg",
+            "macosx64": "mozBeta-firefox-mac64.cfg",
+            "win32":  "mozBeta-firefox-win32.cfg",
+            #"win64":  "mozBeta-firefox-win32.cfg",
+        },
+        "testChannels": {
+            "beta-cdntest": {
+                "ruleId": 41,
+            },
+            "beta-localtest": {
+                "ruleId": 40,
+            },
+        }
+    }
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
