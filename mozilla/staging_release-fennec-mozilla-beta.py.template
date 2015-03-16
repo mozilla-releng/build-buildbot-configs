@@ -125,6 +125,11 @@ releaseConfig["updateChannels"] = {
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
 
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@dev-stage01.srv.releng.scl3.mozilla.com/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
+
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
 releaseConfig['disableStandaloneRepacks'] = True
