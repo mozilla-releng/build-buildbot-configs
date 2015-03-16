@@ -1201,6 +1201,30 @@ ANDROID_2_3_MOZHARNESS_DICT = [
         'script_maxtime': 14400,
     },
     ),
+    ('mochitest-gl-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-gl-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-gl-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-gl-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
     ('jsreftest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
