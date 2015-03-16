@@ -1,0 +1,4 @@
+%(releaseName)s: Updates available on esr-cdntest
+Updates to %(releaseName)s are now ready for testing on the esr-cdntest channel.
+
+-buildbot

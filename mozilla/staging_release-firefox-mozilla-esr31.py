@@ -29,7 +29,18 @@ releaseConfig['appVersion']          = '31.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_31_0esr'
-releaseConfig['partialUpdates']      = {}  # TODO for 31.0.1esr
+releaseConfig['partialUpdates']      = {
+    '31.3.0esr': {
+        'appVersion': '31.3.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_31_3_0esr',
+    },
+        '24.8.1esr': {
+        'appVersion': '24.8.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_24_8_1esr',
+    },
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
@@ -89,7 +100,6 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['patcherConfig']       = 'mozEsr31-branch-patcher2.cfg'
 releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
 releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
@@ -100,16 +110,30 @@ releaseConfig['ausUser']             = 'ffxbld'
 releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
-releaseConfig['verifyConfigs']       = {}  # TODO for 31.0.1esr
-releaseConfig['mozconfigs']          = {
-    'linux': 'browser/config/mozconfigs/linux32/release',
-    'linux64': 'browser/config/mozconfigs/linux64/release',
-    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
-    'win32': 'browser/config/mozconfigs/win32/release',
-}
 releaseConfig['releaseChannel']      = 'esr'
-releaseConfig['testChannels']        = ['releasetest', 'esrtest']
-releaseConfig['testChannelRuleIds']  = [20,29]
+releaseConfig['updateChannels'] = {
+    "esr": {
+        "versionRegex": r"^.*$",
+        "ruleId": 53,
+        "patcherConfig": "mozEsr31-branch-patcher2.cfg",
+        "localTestChannel": "esr-localtest",
+        "cdnTestChannel": "esr-cdntest",
+        "verifyConfigs": {
+            "linux":  "mozEsr31-firefox-linux.cfg",
+            "linux64":  "mozEsr31-firefox-linux64.cfg",
+            "macosx64": "mozEsr31-firefox-mac64.cfg",
+            "win32":  "mozEsr31-firefox-win32.cfg",
+        },
+        "testChannels": {
+            "beta-cdntest": {
+                "ruleId": 42,
+            },
+            "beta-localtest": {
+                "ruleId": 29,
+            },
+        }
+    }
+}
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False

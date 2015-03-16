@@ -1,7 +1,0 @@
-%(releaseName)s: update verify step failed on %(platform)s
-%(platform)s update verify step failed for %(releaseName)s
-
-Status: %(job_status_repr)s
-
-%(buildbot_url)s
--buildbot
