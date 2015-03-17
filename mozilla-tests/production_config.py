@@ -14,61 +14,55 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1,163):
+for i in range(1, 163):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1,163):
+for i in range(1, 163):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1,171):
+for i in range(1, 171):
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1,166):
+for i in range(1, 166):
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
-for i in range(1,87) + range(88,101):
+for i in range(1, 87) + range(88, 101):
     SLAVES['mountainlion']['talos-mtnlion-r5-%03i' % i] = {}
 
-for i in range(1,29) + range(29,94):
+for i in range(1, 29) + range(29, 94):
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
-for i in range(22,910):
+for i in range(22, 910):
     SLAVES['panda_android']['panda-%04i' % i] = {
         'http_port': '30%03i' % i,
         'ssl_port': '31%03i' % i,
     }
 
-for i in range(1,100) + range(300,360):
+for i in range(1, 100) + range(300, 360):
     SLAVES['ubuntu32_vm']['tst-linux32-ec2-%03i' % i] = {}
 
-for i in range(1,800):
+for i in range(1, 800) + range(1000, 1100):
     SLAVES['ubuntu32_vm']['tst-linux32-spot-%03i' % i] = {}
 
-for i in range(1000, 1100):
-    SLAVES['ubuntu32_vm']['tst-linux32-spot-%i' % i] = {}
-
-for i in range(1,100) + range(301,400):
+for i in range(1, 100) + range(301, 400):
     SLAVES['ubuntu64_vm']['tst-linux64-ec2-%03i' % i] = {}
 
-for i in range(1,20):
+for i in range(1, 20):
     SLAVES['ubuntu64_vm_large']['tst-emulator64-ec2-%03i' % i] = {}
 
-for i in range(1,200) + range(301,500):
+for i in range(1, 200) + range(301, 500):
     SLAVES['ubuntu64_vm_large']['tst-emulator64-spot-%03i' % i] = {}
 
-for i in range(1,1000):
+for i in range(1, 2100):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
-for i in range(1000, 1700):
-    SLAVES['ubuntu64_vm']['tst-linux64-spot-%i' % i] = {}
-
-for i in range(1,56):
+for i in range(1, 56):
     SLAVES['ubuntu32_hw']['talos-linux32-ix-%03i' % i] = {}
 
-for i in range(1,120):
+for i in range(1, 120):
     SLAVES['ubuntu64_hw']['talos-linux64-ix-%03i' % i] = {}
 
-for i in range(1,3):
+for i in range(1, 3):
     SLAVES['win64_vm']['tst-w64-ec2-%03i' % i] = {}
 
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
