@@ -184,6 +184,11 @@ releaseConfig['syncPartnerBundles']  = True
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_release.py'
 
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
+
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False

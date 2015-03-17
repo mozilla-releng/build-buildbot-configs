@@ -123,7 +123,85 @@ PROJECT_BRANCHES = {
             "win64_graphene": {},
         }
     },
-    'maple': {},
+    'maple': {
+        'enable_nightly': True,
+        'platforms': {
+            'linux32_gecko': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': ['--config', 'b2g/desktop_linux32.py'],
+                    'reboot_command': ['echo', 'true'],
+                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
+                    'tools_repo_cache': '/tools/checkouts/build-tools',
+                },
+            },
+            'linux32_gecko-debug': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'b2g/desktop_linux32.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                    ],
+                    'reboot_command': ['echo', 'true'],
+                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
+                    'tools_repo_cache': '/tools/checkouts/build-tools',
+                },
+            },
+            'linux64_gecko': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': ['--config', 'b2g/desktop_linux64.py'],
+                    'reboot_command': ['echo', 'true'],
+                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
+                    'tools_repo_cache': '/tools/checkouts/build-tools',
+                },
+            },
+            'linux64_gecko-debug': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'b2g/desktop_linux64.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                    ],
+                    'reboot_command': ['echo', 'true'],
+                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
+                    'tools_repo_cache': '/tools/checkouts/build-tools',
+                },
+            },
+            'macosx64_gecko': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': ['--config', 'b2g/desktop_macosx64.py'],
+                },
+            },
+            'macosx64_gecko-debug': {
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'b2g/desktop_macosx64.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                    ],
+                },
+            },
+            'win32_gecko': {
+                'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': ['--config', 'b2g/desktop_windows32.py'],
+                },
+            },
+            'win32_gecko-debug': {
+                'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+                'mozharness_desktop_build': {
+                    'script_name': 'scripts/b2g_desktop_build.py',
+                    'extra_args': [
+                        '--config', 'b2g/desktop_windows32.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                    ],
+                },
+            },
+        },
+    },
     # Customizations for integration work for bugs 481815 and 307181
     'oak': {
         'enable_nightly': True

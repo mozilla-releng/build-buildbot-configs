@@ -1735,7 +1735,7 @@ PROJECTS = {
                 'debug': True
             },
             'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'mountainlion': {'ext': '(mac|mac64).dmg', 'debug': True},
+            'yosemite': {'ext': '(mac|mac64).dmg', 'debug': True},
             'xp-ix': {
                 'ext': 'win32.zip',
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
@@ -1819,7 +1819,7 @@ BRANCHES['mozilla-beta']['platforms']['macosx64']['talos_slave_platforms'] = ['s
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'mountainlion']
+BRANCHES['mozilla-aurora']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'yosemite']
 
 ######### mozilla-esr31
 BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
@@ -2204,7 +2204,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
 include_yosemite = ['try']
 for platform in PLATFORMS.keys():
     # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
         if platform not in branch['platforms']:
             continue
         for slave_platform in branch['platforms'][platform]:

@@ -158,6 +158,11 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
 
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://tbirdbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://tbirdbld@dev-stage01.srv.releng.scl3.mozilla.com/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/tbirdbld_dsa"
+
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"

@@ -2056,6 +2056,15 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 37):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
+# Disable emulators for gecko 39 and higher, they're now in TC
+# See bug 1143766
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    for p in ('emulator-l', 'emulator-kk', 'emulator-jb',
+              'emulator-l-debug', 'emulator-kk-debug', 'emulator-jb-debug'):
+        if p in branch['platforms']:
+            del branch['platforms'][p]
+
+
 # Enable mozharness pinning
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['script_repo_manifest'] = \
