@@ -29,7 +29,7 @@ for i in range(1,166):
 for i in range(1,87) + range(88,101):
     SLAVES['mountainlion']['talos-mtnlion-r5-%03i' % i] = {}
 
-for i in range(1,29) + range(29,79):
+for i in range(1,29) + range(29,94):
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(22,910):
