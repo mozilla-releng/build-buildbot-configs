@@ -553,6 +553,7 @@ PLATFORM_VARS = {
             'extra_args': [
                 '--config', 'builds/releng_base_mac_64_builds.py',
                 '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             'script_timeout': 3 * 3600,
             'script_maxtime': int(5.5 * 3600),
@@ -820,6 +821,7 @@ PLATFORM_VARS = {
             'extra_args': [
                 '--config', 'builds/releng_base_windows_32_builds.py',
                 '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             'script_timeout': 3 * 3600,
             'script_maxtime': int(5.5 * 3600),
@@ -1571,6 +1573,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_linux_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
@@ -1590,6 +1593,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_mac_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
@@ -1612,6 +1616,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_windows_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
