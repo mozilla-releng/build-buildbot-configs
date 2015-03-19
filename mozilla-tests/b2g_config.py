@@ -2632,7 +2632,7 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT + MOCHITEST_CHROME
+    MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + MARIONETTE_UNIT + JSREFTEST + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + MARIONETTE_UNIT + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = MOCHITEST_MEDIA
@@ -2708,6 +2708,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
       GAIA_BUILD_UNIT
+
+# add mochitest-chrome on B2G emulators as of gecko 38
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
+    if nested_haskey(BRANCHES[name]['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
+        BRANCHES[name]['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] += \
+            MOCHITEST_CHROME
 
 # Use chunked Gip, Gij in 36+ (bug 1081246)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
