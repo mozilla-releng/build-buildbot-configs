@@ -136,15 +136,21 @@ XPCSHELL = [
         'script_maxtime': 7200,
     }),
 ]
+MOZMILL = [
+    ('mozmill', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mozmill-suite', 'mozmill',
+                       '--cfg', 'unittests/thunderbird_extra.py'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
 
 # Default set of unit tests
 UNITTEST_SUITES = {
-    'opt_unittest_suites': [
-        ('mozmill', ['mozmill']),
-    ] + XPCSHELL,
-    'debug_unittest_suites': [
-        ('mozmill', ['mozmill']),
-    ] + XPCSHELL,
+    'opt_unittest_suites': MOZMILL + XPCSHELL,
+    'debug_unittest_suites': MOZMILL + XPCSHELL,
 }
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -385,6 +391,28 @@ for platform in PLATFORMS.keys():
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):
   if 'macosx64' in BRANCHES[name]['platforms']:
     BRANCHES[name]['platforms']['macosx64']['mac_res_subdir'] = 'MacOS'
+
+# mozmill-on-mozharness should ride the trains
+# Replace old trains with non-mozharness code.
+# MERGE DAY (remove this code once Thunderbird no longer services Gecko 38 and lower)
+for platform in PLATFORMS.keys():
+    MOZMILL_OLD = ('mozmill', ['mozmill'])
+    for name, branch in items_before(BRANCHES, 'gecko_version', 39):
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+
+            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for mozmill in MOZMILL:
+                    try:
+                        branch['platforms'][platform][slave_platform][suite_type].remove(mozmill)
+                        if MOZMILL_OLD not in branch['platforms'][platform][slave_platform][suite_type]:
+                            branch['platforms'][platform][slave_platform][suite_type].append(MOZMILL_OLD)
+                    except ValueError:
+                        # wasn't in the list anyways
+                        pass
 
 if __name__ == "__main__":
     import sys
