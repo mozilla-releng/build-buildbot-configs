@@ -44,10 +44,10 @@ PLATFORMS = {
 
 builder_prefix = "TB "
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'mountainlion']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
-PLATFORMS['macosx64']['mountainlion'] = {'name': builder_prefix + "Rev5 MacOSX Mountain Lion 10.8"}
+PLATFORMS['macosx64']['yosemite'] = {'name': builder_prefix + "Rev5 MacOSX Yosemite 10.10"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -230,7 +230,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'mountainlion': {
+        'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
