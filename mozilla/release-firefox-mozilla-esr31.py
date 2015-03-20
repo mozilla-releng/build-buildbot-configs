@@ -22,11 +22,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.5.1esr'
-releaseConfig['appVersion']          = '31.5.1'
+releaseConfig['version']             = '31.5.2esr'
+releaseConfig['appVersion']          = '31.5.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_5_1esr'
+releaseConfig['baseTag']             = 'FIREFOX_31_5_2esr'
 releaseConfig['partialUpdates']      = {
 
     '31.5.0esr': {
@@ -43,7 +43,7 @@ releaseConfig['partialUpdates']      = {
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.5.1esrpre'
+releaseConfig['nextAppVersion']      = '31.5.2esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
