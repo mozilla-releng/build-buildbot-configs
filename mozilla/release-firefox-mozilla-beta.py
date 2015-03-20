@@ -21,23 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '37.0b6'
+releaseConfig['version']             = '37.0b7'
 releaseConfig['appVersion']          = '37.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_37_0b6'
+releaseConfig['baseTag']             = 'FIREFOX_37_0b7'
 releaseConfig['partialUpdates']      = {
-
-    '37.0b4': {
-        'appVersion': '37.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_37_0b4',
-    },
 
     '37.0b5': {
         'appVersion': '37.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_37_0b5',
+    },
+
+    '37.0b6': {
+        'appVersion': '37.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_37_0b6',
     },
 
 }
@@ -52,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'bb7b546e6188',
+        'revision': '9b93e6033d5d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -157,6 +157,11 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_beta.py'
+
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
