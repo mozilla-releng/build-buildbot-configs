@@ -9,9 +9,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
-                                        '<release-automation-notifications@mozilla.com>',
-                                        '<qa-drivers@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>',]
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -23,17 +21,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '36.0.1'
-releaseConfig['appVersion']          = '36.0.1'
+releaseConfig['version']             = '36.0.3'
+releaseConfig['appVersion']          = '36.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_36_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_36_0_3'
 releaseConfig['partialUpdates']      = {
 
-    '35.0': {
-        'appVersion': '35.0',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_35_0',
+    '36.0.1': {
+        'appVersion': '36.0.1',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_36_0_1',
     },
 
     '35.0.1': {
@@ -49,10 +47,9 @@ releaseConfig['partialUpdates']      = {
     },
 
 }
-releaseConfig['extraPartials']       = {
-}
-# What's New Page for Hello TODO: remove on request
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/36.0.1/whatsnew/?oldversion=%OLD_VERSION%'
+# What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
+# TODO: Remove upon request. Should be revisited with each release.
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/36.0.3/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -65,7 +62,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '1bf1bdefeae0',
+        'revision': 'd5a003cc284a',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -138,10 +135,10 @@ releaseConfig['xulrunner_mozconfigs']          = {
     'win32': 'xulrunner/config/mozconfigs/win32/xulrunner',
     #'win64': 'xulrunner/config/mozconfigs/win64/xulrunner',
 }
-releaseConfig['releaseChannel']        = 'release'
+releaseConfig["releaseChannel"] = "release"
 releaseConfig['updateChannels'] = {
     "release": {
-        "versionRegex": r"\d+\.\d+(\.\d+)?$",
+        "versionRegex": r"^\d+\.\d+(\.\d+)?$",
         "ruleId": 33,
         "patcherConfig": "mozRelease-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
@@ -164,7 +161,10 @@ releaseConfig['updateChannels'] = {
     },
     "beta": {
         "enabled": False,
-        "versionRegex": r"\d+\.\d+b\d+$",
+        # For the beta channel, we want to able to provide updates to this
+        # from prior betas or prior RCs that were shipped to the beta channel,
+        # so this regex matches either.
+        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
         "ruleId": 32,
         "requiresMirrors": False,
         "patcherConfig": "mozBeta-branch-patcher2.cfg",
@@ -196,6 +196,11 @@ releaseConfig['syncPartnerBundles']  = True
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_release.py'
 
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
+
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
 releaseConfig['enable_repo_setup'] = False
@@ -206,5 +211,4 @@ releaseConfig['ftpSymlinkName'] = 'latest'
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-latest',
     'Firefox-%(version)s-stub': 'firefox-stub',
-    'Firefox-%(version)s-EUBallot': 'firefox-latest-euballot',
 }
