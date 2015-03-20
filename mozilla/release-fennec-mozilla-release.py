@@ -21,11 +21,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '36.0.2'
-releaseConfig['appVersion']          = '36.0.2'
+releaseConfig['version']             = '36.0.3'
+releaseConfig['appVersion']          = '36.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FENNEC_36_0_2'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FENNEC_36_0_3'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '7c51bb7366b3',
+        'revision': 'd5a003cc284a',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
@@ -128,6 +128,11 @@ releaseConfig["updateChannels"] = {
 
 # Misc configuration
 releaseConfig['enable_repo_setup']       = False
+
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
 
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
