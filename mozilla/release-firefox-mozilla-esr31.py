@@ -10,9 +10,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>',
-                                        '<release-automation-notifications@mozilla.com>',
-                                        '<qa-drivers@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>',]
 releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>', '<mikeperry@torproject.org>']
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -24,17 +22,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.5.0esr'
-releaseConfig['appVersion']          = '31.5.0'
+releaseConfig['version']             = '31.5.1esr'
+releaseConfig['appVersion']          = '31.5.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_31_5_0esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_31_5_1esr'
 releaseConfig['partialUpdates']      = {
 
-    '31.3.0esr': {
-        'appVersion': '31.3.0',
+    '31.5.0esr': {
+        'appVersion': '31.5.0',
         'buildNumber': 2,
-        'baseTag': 'FIREFOX_31_3_0esr',
+        'baseTag': 'FIREFOX_31_5_0esr',
     },
 
     '31.4.0esr': {
@@ -45,15 +43,15 @@ releaseConfig['partialUpdates']      = {
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.5.0esrpre'
+releaseConfig['nextAppVersion']      = '31.5.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'b5228115a202',
-        'relbranch': None,
+        'revision': 'GECKO3150esr_2015021713_RELBRANCH',
+        'relbranch': 'GECKO3150esr_2015021713_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -140,6 +138,8 @@ releaseConfig['updateChannels'] = {
         },
     },
 }
+
+
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
@@ -147,6 +147,11 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
+
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
