@@ -21,11 +21,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '36.0.3'
-releaseConfig['appVersion']          = '36.0.3'
+releaseConfig['version']             = '36.0.4'
+releaseConfig['appVersion']          = '36.0.4'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_36_0_3'
+releaseConfig['baseTag']             = 'FENNEC_36_0_4'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'd5a003cc284a',
+        'revision': '57cc76236bd7',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
