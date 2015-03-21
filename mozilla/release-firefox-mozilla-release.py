@@ -21,17 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '36.0.3'
-releaseConfig['appVersion']          = '36.0.3'
+releaseConfig['version']             = '36.0.4'
+releaseConfig['appVersion']          = '36.0.4'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_36_0_3'
+releaseConfig['baseTag']             = 'FIREFOX_36_0_4'
 releaseConfig['partialUpdates']      = {
 
     '36.0.1': {
         'appVersion': '36.0.1',
         'buildNumber': 2,
         'baseTag': 'FIREFOX_36_0_1',
+    },
+
+    '36.0.3': {
+        'appVersion': '36.0.3',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_36_0_3',
     },
 
     '35.0.1': {
@@ -49,7 +55,7 @@ releaseConfig['partialUpdates']      = {
 }
 # What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
 # TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/36.0.3/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/36.0.4/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -62,7 +68,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'd5a003cc284a',
+        'revision': '57cc76236bd7',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
