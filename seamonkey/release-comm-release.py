@@ -10,16 +10,16 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.33'
-releaseConfig['appVersion']                 = '2.33'
-releaseConfig['milestone']                  = '36.0'
+releaseConfig['version']                    = '2.33.1'
+releaseConfig['appVersion']                 = '2.33.1'
+releaseConfig['milestone']                  = '36.0.1'
 releaseConfig['buildNumber']                = 1
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_33'
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_33_1'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.32.1'
-releaseConfig['oldAppVersion']              = '2.32.1'
+releaseConfig['oldVersion']                 = '2.33'
+releaseConfig['oldAppVersion']              = '2.33'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_32_1'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_33'
 releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
@@ -34,8 +34,8 @@ releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = 'FIREFOX_36_0_1_BUILD2'
-releaseConfig['mozillaRelbranchOverride']   = 'GECKO3601_2015030504_RELBRANCH' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'FIREFOX_36_0_4_BUILD1'
+releaseConfig['mozillaRelbranchOverride']   = 'GECKO3604_2015032022_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'SEA2_26_RELBRANCH'
