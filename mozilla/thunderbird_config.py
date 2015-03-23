@@ -200,6 +200,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64': {
@@ -275,6 +276,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64': {
@@ -493,6 +495,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64-debug': {
@@ -552,6 +555,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64-debug': {

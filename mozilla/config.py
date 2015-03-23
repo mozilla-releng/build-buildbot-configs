@@ -260,6 +260,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64': {
@@ -362,6 +363,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64-asan': {
@@ -457,6 +459,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -556,6 +559,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -655,6 +659,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -801,6 +806,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64': {
@@ -1132,6 +1138,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64-debug': {
@@ -1216,6 +1223,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64-debug': {
@@ -1471,6 +1479,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1541,6 +1550,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1613,6 +1623,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1682,6 +1693,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1751,6 +1763,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1817,6 +1830,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1884,6 +1898,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
