@@ -1951,6 +1951,14 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
+# Run old-style jetpack tests on try only
+for platform in PLATFORMS.keys():
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['try']['platforms'][platform]:
+            continue
+        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'].append(('jetpack', ['jetpack']))
+        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'].append(('jetpack', ['jetpack']))
+
 # Run mochitest-jetpack tests everywhere except on versioned B2G branches
 # starting from 39.
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
