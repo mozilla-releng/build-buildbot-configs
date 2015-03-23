@@ -174,6 +174,7 @@ PLATFORM_VARS = {
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ('/home/cltbld/.boto', '/builds/.boto'),
+            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux32.py',
@@ -273,6 +274,7 @@ PLATFORM_VARS = {
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ('/home/cltbld/.boto', '/builds/.boto'),
+            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux32.py',
@@ -348,6 +350,7 @@ PLATFORM_VARS = {
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ('/home/cltbld/.boto', '/builds/.boto'),
+            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux64.py',
@@ -423,6 +426,7 @@ PLATFORM_VARS = {
             ('/home/cltbld/.hgrc', '/builds/.hgrc'),
             ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
             ('/home/cltbld/.boto', '/builds/.boto'),
+            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
         ],
         'multi_locale': True,
         'multi_config_name': 'multi_locale/b2g_linux64.py',
@@ -549,6 +553,7 @@ PLATFORM_VARS = {
             'extra_args': [
                 '--config', 'builds/releng_base_mac_64_builds.py',
                 '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             'script_timeout': 3 * 3600,
             'script_maxtime': int(5.5 * 3600),
@@ -717,6 +722,7 @@ PLATFORM_VARS = {
             'extra_args': [
                 '--config', 'builds/releng_base_windows_32_builds.py',
                 '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             'script_timeout': 3 * 3600,
             'script_maxtime': int(5.5 * 3600),
@@ -1279,6 +1285,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_linux_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
@@ -1298,6 +1305,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_mac_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),
@@ -1320,6 +1328,7 @@ PLATFORM_VARS = {
             "extra_args": [
                 "--config", "builds/releng_base_windows_64_builds.py",
                 "--custom-build-variant-cfg", "graphene"
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
             "script_maxtime": int(5.5 * 3600),

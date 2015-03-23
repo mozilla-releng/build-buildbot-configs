@@ -153,6 +153,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_32_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -259,6 +260,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64': {
@@ -273,6 +275,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -360,6 +363,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64-asan': {
@@ -375,6 +379,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
                     '--custom-build-variant-cfg', 'asan',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -454,6 +459,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -472,6 +478,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
                     '--custom-build-variant-cfg', 'asan-and-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -552,6 +559,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -570,6 +578,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
                     '--custom-build-variant-cfg', 'stat-and-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -650,6 +659,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -717,6 +727,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
                     '--custom-build-variant-cfg', 'code-coverage',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -795,6 +806,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64': {
@@ -805,6 +817,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_mac_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -881,6 +894,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_windows_32_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -950,6 +964,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_windows_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1033,6 +1048,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_32_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1122,6 +1138,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'linux64-debug': {
@@ -1137,6 +1154,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_linux_64_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1205,6 +1223,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
         },
         'macosx64-debug': {
@@ -1216,6 +1235,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_mac_64_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1273,6 +1293,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_mac_64_builds.py',
                     '--custom-build-variant-cfg', 'stat-and-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1326,6 +1347,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_windows_32_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1372,6 +1394,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_windows_64_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1456,6 +1479,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1526,6 +1550,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1598,6 +1623,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1667,6 +1693,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1736,6 +1763,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1802,6 +1830,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1869,6 +1898,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1952,7 +1982,7 @@ apply_localconfig(PROJECTS, localconfig.PROJECTS)
 #
 #  variants - mapping of platforms (with build configuration, eg linux64-debug)
 #    to an array of variant names. These names correspond to files in
-#    build-tools/scripts/spidermonkey_builds/.
+#    <gecko>/js/src/devtools/automation/variants/.
 #
 #  enable_try - this project should be active for the try server
 #
@@ -1969,10 +1999,10 @@ BRANCH_PROJECTS = {
     # feeding into mozilla-central.
     'spidermonkey_tier_1': {
         'variants': {
-            'linux64-debug':  ['rootanalysis', 'generational'],
+            'linux64-debug':  ['rootanalysis', 'compacting'],
             'linux-debug': ['arm-sim'],
-            'win32-debug': ['warnaserrdebug', 'generational'],
-            'win32': ['warnaserr'],
+            'win32-debug': ['plaindebug', 'compacting'],
+            'win32': ['plain'],
         },
         'platforms': {
             'linux': {},
@@ -1994,18 +2024,18 @@ BRANCH_PROJECTS = {
         'enable_try': True,
         'try_by_default': {
             'rootanalysis': True, # all platforms for which it is defined
-            'generational': set(['linux64-debug', 'win32-debug']),
+            'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
         },
         'variants': {
             'linux': ['warnaserr'],
             'linux-debug': ['arm-sim', 'warnaserrdebug'],
             'linux64':  ['warnaserr'],
-            'linux64-debug':  ['rootanalysis', 'generational', 'exactrooting', 'warnaserrdebug'],
-            'win32': ['generational', 'warnaserr'],
-            'win32-debug': ['generational', 'warnaserrdebug'],
-            'win64': ['generational', 'warnaserr'],
-            'win64-debug': ['generational', 'warnaserrdebug'],
+            'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug'],
+            'win32': ['compacting', 'plain'],
+            'win32-debug': ['compacting', 'plaindebug'],
+            'win64': ['compacting', 'plain'],
+            'win64-debug': ['compacting', 'plaindebug'],
         },
         'platforms': {
             'linux': {},
@@ -2023,12 +2053,10 @@ BRANCH_PROJECTS = {
     },
 
     # Non-tier-1 builds that provide useful information but are hidden on tbpl.
-    # These will probably be run on the subset of the trees that the relevant
-    # developers will actually look.
+    # These should be run on the (small) subset of trees looked at by the
+    # relevant developers.
     'spidermonkey_info': {
         'variants': {
-            'linux':          ['warnaserr'],
-            'linux-debug':    ['warnaserrdebug'],
             'linux64':        ['warnaserr'],
             'linux64-debug':  ['warnaserrdebug'],
         },

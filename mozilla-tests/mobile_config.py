@@ -1764,6 +1764,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
                     if 'debug_unittest_suite' in type:
                         BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
+## Bug 1142765 - Schedule Android 4.0 Debug xpcshell tests on 
+## all trunk trees and let them ride the trains 
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    # Loop removes it from any branch that gets beyond here
+    if name in ('cedar', ):
+        continue
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if platform not in ('android-api-11'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue          
+            if branch['platforms'][platform]['enable_debug_unittests'] is True:
+                BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL)
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
