@@ -2001,6 +2001,7 @@ BRANCH_PROJECTS = {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'compacting'],
             'linux-debug': ['arm-sim'],
+            'macosx64-debug': ['arm-sim-osx'],
             'win32-debug': ['plaindebug', 'compacting'],
             'win32': ['plain'],
         },
@@ -2032,6 +2033,7 @@ BRANCH_PROJECTS = {
             'linux-debug': ['arm-sim', 'warnaserrdebug'],
             'linux64':  ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug'],
+            'macosx64-debug': ['arm-sim-osx'],
             'win32': ['compacting', 'plain'],
             'win32-debug': ['compacting', 'plaindebug'],
             'win64': ['compacting', 'plain'],
