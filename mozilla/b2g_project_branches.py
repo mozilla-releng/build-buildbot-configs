@@ -37,12 +37,6 @@ PROJECT_BRANCHES = {
     #},
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {
-        'lock_platforms': True,
-        'platforms': {
-            'linux32_gecko': {},
-            'linux64_gecko': {},
-            'linux64_gecko-debug': {},
-        },
     },
     'ash': {
         'enable_nightly': True,
@@ -126,48 +120,6 @@ PROJECT_BRANCHES = {
     'maple': {
         'enable_nightly': True,
         'platforms': {
-            'linux32_gecko': {
-                'mozharness_desktop_build': {
-                    'script_name': 'scripts/b2g_desktop_build.py',
-                    'extra_args': ['--config', 'b2g/desktop_linux32.py'],
-                    'reboot_command': ['echo', 'true'],
-                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                    'tools_repo_cache': '/tools/checkouts/build-tools',
-                },
-            },
-            'linux32_gecko-debug': {
-                'mozharness_desktop_build': {
-                    'script_name': 'scripts/b2g_desktop_build.py',
-                    'extra_args': [
-                        '--config', 'b2g/desktop_linux32.py',
-                    '--custom-build-variant-cfg', 'b2g-debug',
-                    ],
-                    'reboot_command': ['echo', 'true'],
-                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                    'tools_repo_cache': '/tools/checkouts/build-tools',
-                },
-            },
-            'linux64_gecko': {
-                'mozharness_desktop_build': {
-                    'script_name': 'scripts/b2g_desktop_build.py',
-                    'extra_args': ['--config', 'b2g/desktop_linux64.py'],
-                    'reboot_command': ['echo', 'true'],
-                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                    'tools_repo_cache': '/tools/checkouts/build-tools',
-                },
-            },
-            'linux64_gecko-debug': {
-                'mozharness_desktop_build': {
-                    'script_name': 'scripts/b2g_desktop_build.py',
-                    'extra_args': [
-                        '--config', 'b2g/desktop_linux64.py',
-                    '--custom-build-variant-cfg', 'b2g-debug',
-                    ],
-                    'reboot_command': ['echo', 'true'],
-                    'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                    'tools_repo_cache': '/tools/checkouts/build-tools',
-                },
-            },
             'macosx64_gecko': {
                 'mozharness_desktop_build': {
                     'script_name': 'scripts/b2g_desktop_build.py',

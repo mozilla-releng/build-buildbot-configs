@@ -36,7 +36,6 @@ BRANCH_PRIORITIES = {
     'mozilla-inbound': 4,
     'b2g-inbound': 4,
     'fx-team': 4,
-    'gaia-try': 4,
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,

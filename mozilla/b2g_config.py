@@ -22,8 +22,6 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 GLOBAL_VARS.update({
     'platforms': {
-        'linux32_gecko': {},
-        'linux32_gecko-debug': {},
         'linux64_gecko': {},
         'linux64_gecko-debug': {},
         'macosx64_gecko': {},
@@ -87,204 +85,6 @@ GLOBAL_ENV = {
 }
 
 PLATFORM_VARS = {
-    'linux32_gecko': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'unittest_platform': 'linux32_gecko-opt',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
-        'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/nightly',
-        'enable_dep': True,
-        'profiled_build': False,
-        'updates_enabled': False,
-        'create_partial': False,
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 13,
-        'upload_symbols': False,
-        'packageTests': True,
-        'slaves': SLAVES['mock'],
-        'platform_objdir': OBJDIR,
-        'unittest_masters': GLOBAL_VARS['unittest_masters'],
-        'stage_product': 'b2g',
-        'stage_platform': 'linux32_gecko',
-        'update_platform': 'Linux_x86-gcc3',
-        'enable_ccache': True,
-        'enable_shared_checkouts': True,
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-            'TOOLTOOL_HOME': '/builds',
-            'MOZ_OBJDIR': OBJDIR,
-            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_rsa",
-            'CCACHE_DIR': '/builds/ccache',
-            'CCACHE_COMPRESS': '1',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
-            'WGET_OPTS': '-q -c',
-        },
-        'enable_opt_unittests': False,
-        'enable_checktests': True,
-        'enable_build_analysis': True,
-        'test_pretty_names': False,
-        'l10n_check_test': False,
-        'use_mock': True,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                          'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple',
-                          'perl-Config-General', 'gtk2-devel.i686', 'libnotify-devel.i686',
-                          'yasm', 'alsa-lib-devel.i686', 'libcurl-devel.i686', 'wireless-tools-devel.i686',
-                          'libX11-devel.i686', 'libXt-devel.i686', 'mesa-libGL-devel.i686',
-                          'gnome-vfs2-devel.i686', 'mpfr', 'xorg-x11-font',
-                          'imake', 'ccache', 'wget',
-                          'gcc472_0moz1', 'gcc473_0moz1',
-                          'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
-                          'freetype-2.3.11-6.el6_1.8.x86_64',
-                          'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
-                          # Packages already installed in the mock environment, as x86_64
-                          # packages.
-                          'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
-                          # yum likes to install .x86_64 -devel packages that satisfy .i686
-                          # -devel packages dependencies. So manually install the dependencies
-                          # of the above packages.
-                          'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
-                          'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
-                          'fontconfig-devel.i686', 'glib2-devel.i686',
-                          'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
-                          'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
-                          'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
-                          'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
-                          'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
-                          'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
-                          'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
-                          'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
-                          'pixman-devel.i686', 'zlib-devel.i686',
-                          # Packages necessary to run host xpcshell
-                          'libXt.x86_64',
-                          ],
-        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
-        'gaia_repo': gaia_repo,
-        'gaia_revision_file': gaia_revision_file,
-        'gaia_languages_file': 'locales/languages_dev.json',
-        'mock_copyin_files': [
-            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-            ('/home/cltbld/.boto', '/builds/.boto'),
-            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-        ],
-        'multi_locale': True,
-        'multi_config_name': 'multi_locale/b2g_linux32.py',
-        'mozharness_multi_options': [
-            '--build',
-            '--summary',
-            '--gecko-languages-file', 'build/b2g/locales/all-locales',
-        ],
-        'gecko_languages_file': 'build/b2g/locales/all-locales',
-    },
-    'linux32_gecko-debug': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'unittest_platform': 'linux32_gecko-debug',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
-        'src_mozconfig': 'b2g/config/mozconfigs/linux32_gecko/debug',
-        'enable_dep': False,
-        'enable_periodic': True,
-        'enable_nightly': False,
-        'profiled_build': False,
-        'updates_enabled': False,
-        'create_partial': False,
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-        'build_space': 13,
-        'upload_symbols': False,
-        'packageTests': True,
-        'slaves': SLAVES['mock'],
-        'platform_objdir': OBJDIR,
-        'unittest_masters': GLOBAL_VARS['unittest_masters'],
-        'stage_product': 'b2g',
-        'stage_platform': 'linux32_gecko-debug',
-        'update_platform': 'Linux_x86-gcc3',
-        'enable_ccache': True,
-        'enable_shared_checkouts': True,
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-            'TOOLTOOL_HOME': '/builds',
-            'MOZ_OBJDIR': OBJDIR,
-            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
-            'SYMBOL_SERVER_USER': 'ffxbld',
-            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-            'SYMBOL_SERVER_SSH_KEY': "/home/cltbld/.ssh/ffxbld_rsa",
-            'CCACHE_DIR': '/builds/ccache',
-            'CCACHE_COMPRESS': '1',
-            'CCACHE_UMASK': '002',
-            'LC_ALL': 'C',
-            'PATH': '/tools/python27-mercurial/bin:/tools/python27/bin:${PATH}:/tools/buildbot/bin',
-            'WGET_OPTS': '-q -c',
-        },
-        'enable_opt_unittests': False,
-        'enable_checktests': True,
-        'enable_build_analysis': True,
-        'test_pretty_names': False,
-        'l10n_check_test': False,
-        'use_mock': True,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'mock_packages': ['autoconf213', 'mozilla-python27', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                          'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple',
-                          'perl-Config-General', 'gtk2-devel.i686', 'libnotify-devel.i686',
-                          'yasm', 'alsa-lib-devel.i686', 'libcurl-devel.i686', 'wireless-tools-devel.i686',
-                          'libX11-devel.i686', 'libXt-devel.i686', 'mesa-libGL-devel.i686',
-                          'gnome-vfs2-devel.i686', 'mpfr', 'xorg-x11-font',
-                          'imake', 'ccache', 'wget',
-                          'gcc472_0moz1', 'gcc473_0moz1',
-                          'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
-                          'freetype-2.3.11-6.el6_1.8.x86_64',
-                          'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
-                          # Packages already installed in the mock environment, as x86_64
-                          # packages.
-                          'glibc-devel.i686', 'libgcc.i686', 'libstdc++-devel.i686',
-                          # yum likes to install .x86_64 -devel packages that satisfy .i686
-                          # -devel packages dependencies. So manually install the dependencies
-                          # of the above packages.
-                          'ORBit2-devel.i686', 'atk-devel.i686', 'cairo-devel.i686',
-                          'check-devel.i686', 'dbus-devel.i686', 'dbus-glib-devel.i686',
-                          'fontconfig-devel.i686', 'glib2-devel.i686',
-                          'hal-devel.i686', 'libICE-devel.i686', 'libIDL-devel.i686',
-                          'libSM-devel.i686', 'libXau-devel.i686', 'libXcomposite-devel.i686',
-                          'libXcursor-devel.i686', 'libXdamage-devel.i686', 'libXdmcp-devel.i686',
-                          'libXext-devel.i686', 'libXfixes-devel.i686', 'libXft-devel.i686',
-                          'libXi-devel.i686', 'libXinerama-devel.i686', 'libXrandr-devel.i686',
-                          'libXrender-devel.i686', 'libXxf86vm-devel.i686', 'libdrm-devel.i686',
-                          'libidn-devel.i686', 'libpng-devel.i686', 'libxcb-devel.i686',
-                          'libxml2-devel.i686', 'pango-devel.i686', 'perl-devel.i686',
-                          'pixman-devel.i686', 'zlib-devel.i686',
-                          # Packages necessary to run host xpcshell
-                          'libXt.x86_64',
-                          ],
-        'tooltool_manifest_src': 'b2g/config/tooltool-manifests/linux32/releng.manifest',
-        'gaia_repo': gaia_repo,
-        'gaia_revision_file': gaia_revision_file,
-        'gaia_languages_file': 'locales/languages_dev.json',
-        'mock_copyin_files': [
-            ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-            ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-            ('/home/cltbld/.boto', '/builds/.boto'),
-            ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-        ],
-        'multi_locale': True,
-        'multi_config_name': 'multi_locale/b2g_linux32.py',
-        'mozharness_multi_options': [
-            '--build',
-            '--summary',
-            '--gecko-languages-file', 'build/b2g/locales/all-locales',
-        ],
-        'gecko_languages_file': 'build/b2g/locales/all-locales',
-    },
     'linux64_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -1376,10 +1176,6 @@ BRANCHES = {
     'try': {
         'lock_platforms': True,
         'platforms': {
-            'linux32_gecko': {},
-            'linux32_gecko-debug': {},
-            'linux64_gecko': {},
-            'linux64_gecko-debug': {},
             'linux64-b2g-haz': {},
             'macosx64_gecko': {},
             'macosx64_gecko-debug': {},
@@ -1651,10 +1447,6 @@ BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
-BRANCHES['try']['platforms']['linux32_gecko']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux32_gecko-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64_gecko']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64_gecko-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_gecko']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
@@ -1664,10 +1456,6 @@ BRANCHES['try']['platforms']['win32_gecko-debug']['slaves'] = TRY_SLAVES['win64-
 BRANCHES['try']['platforms']['win32-mulet']['slaves'] = TRY_SLAVES['win64-rev2']
 # Bug 1127482 - Make Windows opt and debug, linux debug, and osx debug B2G Desktop builds periodic
 ## we can't have 1127482 builders be periodic on try so let's revert them back to dep builds
-BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_dep'] = True
-BRANCHES['try']['platforms']['linux32_gecko-debug']['enable_periodic'] = False
-BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_dep'] = True
-BRANCHES['try']['platforms']['linux64_gecko-debug']['enable_periodic'] = False
 BRANCHES['try']['platforms']['macosx64_gecko']['enable_dep'] = True
 BRANCHES['try']['platforms']['macosx64_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_dep'] = True
@@ -1751,7 +1539,7 @@ for branch in BRANCHES:
 # b2g 1.4+
 for name, branch in items_before(BRANCHES, 'gecko_version', 30):
     for p in ('linux64_gecko-debug', 'macosx64_gecko-debug',
-              'linux32_gecko-debug', 'win32_gecko-debug',
+              'win32_gecko-debug',
               'emulator-kk', 'emulator-kk-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
@@ -1781,6 +1569,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
         if p in branch['platforms']:
             del branch['platforms'][p]
 
+# Disable linux b2g desktop builds for gecko 39 and higher, they're now in TC
+# See bug 1146604
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    for p in ('linux64_gecko', 'linux64_gecko-debug'):
+        if p in branch['platforms']:
+            del branch['platforms'][p]
 
 # Enable mozharness pinning
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
@@ -1826,11 +1620,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform.split('-')[0] + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/debug'
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
-
-# We don't run these tests on b2g-inbound
-for b in ('b2g-inbound',):
-    BRANCHES[b]['platforms']['linux32_gecko']['enable_checktests'] = False
-    BRANCHES[b]['platforms']['linux64_gecko']['enable_checktests'] = False
 
 if __name__ == "__main__":
     import sys
