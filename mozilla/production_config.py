@@ -15,7 +15,8 @@ TRY_MAC64      = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
     ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
     ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
-TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,185)]
+TRY_WIN64_REV2 = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,185)] + \
+    ['b-2008-ec2-%04d' % x for x in range(1,6)]
 TRY_LION       = ['bld-lion-r5-%03d' % x for x in range(7,37)] + \
                  ['bld-lion-r5-%03d' % x for x in range(95,97)]
 if set(TRY_WIN64_REV2).intersection(WIN64_REV2):
@@ -39,7 +40,7 @@ GLOBAL_VARS = {
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     'balrog_username': 'ffxbld',
     'balrog_submitter_extra_args': ['--url-replacement',
-                                    'ftp.mozilla.org,download.cdn.mozilla.net']
+                                    'ftp.mozilla.org,download.cdn.mozilla.net'],
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'https://api.pub.build.mozilla.org/clobberer/lastclobber',
     'disable_tinderbox_mail': True,
