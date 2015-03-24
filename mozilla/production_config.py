@@ -40,7 +40,7 @@ GLOBAL_VARS = {
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     'balrog_username': 'ffxbld',
     'balrog_submitter_extra_args': ['--url-replacement',
-                                    'ftp.mozilla.org,download.cdn.mozilla.net']
+                                    'ftp.mozilla.org,download.cdn.mozilla.net'],
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'https://api.pub.build.mozilla.org/clobberer/lastclobber',
     'disable_tinderbox_mail': True,
