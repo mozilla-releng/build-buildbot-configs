@@ -22,11 +22,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.5.3esr'
-releaseConfig['appVersion']          = '31.5.3'
+releaseConfig['version']             = '31.6.0esr'
+releaseConfig['appVersion']          = '31.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_31_5_3esr'
+releaseConfig['baseTag']             = 'FIREFOX_31_6_0esr'
 releaseConfig['partialUpdates']      = {
 
     '31.5.0esr': {
@@ -35,10 +35,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_31_5_0esr',
     },
 
-    '31.4.0esr': {
-        'appVersion': '31.4.0',
+    '31.5.3esr': {
+        'appVersion': '31.5.3',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_4_0esr',
+        'baseTag': 'FIREFOX_31_5_3esr',
     },
 
     '31.5.2esr': {
@@ -49,15 +49,15 @@ releaseConfig['partialUpdates']      = {
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.5.3esrpre'
+releaseConfig['nextAppVersion']      = '31.6.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'GECKO3150esr_2015021713_RELBRANCH',
-        'relbranch': 'GECKO3150esr_2015021713_RELBRANCH',
+        'revision': 'd8d56cdaa221',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
