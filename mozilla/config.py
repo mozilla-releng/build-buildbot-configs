@@ -2001,7 +2001,7 @@ BRANCH_PROJECTS = {
         'variants': {
             'linux64-debug':  ['rootanalysis', 'compacting'],
             'linux-debug': ['arm-sim'],
-            'macosx64-debug': ['arm-sim-osx'],
+            'macosx64-debug': [],
             'win32-debug': ['plaindebug', 'compacting'],
             'win32': ['plain'],
         },
@@ -2027,6 +2027,7 @@ BRANCH_PROJECTS = {
             'rootanalysis': True, # all platforms for which it is defined
             'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
+            'arm-sim-osx': set([]),
         },
         'variants': {
             'linux': ['warnaserr'],
