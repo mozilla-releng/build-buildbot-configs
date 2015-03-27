@@ -17,9 +17,11 @@ function hgme {
 hgme tools
 hgme buildbotcustom
 hgme buildbot
+hgme braindump
 
 hg -R "${TOX_WORK_DIR}/buildbot" checkout production-0.8
 cd "${TOX_WORK_DIR}/buildbot/master" && python setup.py install
 rm -rf "${TOX_INI_DIR}/test-output"
 rm -rf "${TOX_INI_DIR}/run/shm/buildbot"
 mkdir -p "${TOX_INI_DIR}/run/shm/buildbot"
+cd ${TOX_INI_DIR} && "${TOX_WORK_DIR}/braindump/buildbot-related/dump_allthethings.sh"
