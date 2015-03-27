@@ -239,6 +239,10 @@ PLATFORM_VARS = {
     },
     'macosx64_gecko': {
         'product_name': 'b2g',
+        'mozharness_desktop_build': {
+                'script_name': 'scripts/b2g_desktop_build.py',
+                'extra_args': ['--config', 'b2g/desktop_macosx64.py'],
+        },
         'app_name': 'b2g',
         'unittest_platform': 'macosx64_gecko-opt',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -294,6 +298,13 @@ PLATFORM_VARS = {
     },
     'macosx64_gecko-debug': {
         'product_name': 'b2g',
+        'mozharness_desktop_build': {
+                'script_name': 'scripts/b2g_desktop_build.py',
+                'extra_args': [
+                    '--config', 'b2g/desktop_macosx64.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                ],
+        },
         'app_name': 'b2g',
         'unittest_platform': 'macosx64_gecko-debug',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
@@ -407,6 +418,11 @@ PLATFORM_VARS = {
     },
     'win32_gecko': {
         'product_name': 'b2g',
+        'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+        'mozharness_desktop_build': {
+                'script_name': 'scripts/b2g_desktop_build.py',
+                'extra_args': ['--config', 'b2g/desktop_windows32.py'],
+        },
         'app_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/nightly',
@@ -461,6 +477,14 @@ PLATFORM_VARS = {
     },
     'win32_gecko-debug': {
         'product_name': 'b2g',
+        'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+        'mozharness_desktop_build': {
+                'script_name': 'scripts/b2g_desktop_build.py',
+                'extra_args': [
+                    '--config', 'b2g/desktop_windows32.py',
+                    '--custom-build-variant-cfg', 'b2g-debug',
+                ],
+        },
         'app_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'mozconfig': 'NOT-IN-BB-CONF/%(branch)s/debug',
