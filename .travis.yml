@@ -2,15 +2,30 @@ language: python
 python:
   - "2.7"
 
+sudo: false
+
+env:
+  global:
+    - PIP_FIND_LINKS=file://$HOME/.cache/pip
+    - PIP_CACHE_DIR=$HOME/.cache/pip
+  matrix:
+    - TOX_ENV=flake8 IGNORE_FAILURES=true
+    - TOX_ENV=py27
+    - TOX_ENV=py27-unittests
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $TRAVIS_BUILD_DIR/.tox
+
 install:
   - pip install tox
 
 script:
-  - tox
+  - if [[ $IGNORE_FAILURES == true ]]; then tox -e $TOX_ENV || true; else tox -e $TOX_ENV; fi
+  # Remove logs to avoid cache uploads
+  - rm -rf $HOME/.cache/pip/log
 
-after_script:
-  # only in after_script can it run without failing the job
-  - tox -e pep8
 
 # currently cannot customise per user fork, see:
 # https://github.com/travis-ci/travis-ci/issues/1094

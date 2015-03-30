@@ -9,7 +9,7 @@ function hgme {
         hg clone https://hg.mozilla.org/build/${repo} "${TOX_WORK_DIR}/${repo}"
     else
         # this is equivalent to hg purge but doesn't require the hg purge plugin to be enabled
-        hg status -un0 -R "${TOX_WORK_DIR}/${repo}" | xargs rm -rf
+        hg status -un0 -R "${TOX_DIR}/${repo}" | xargs --no-run-if-empty --null rm -rf
         hg pull -u -R "${TOX_WORK_DIR}/${repo}"
     fi
 }
