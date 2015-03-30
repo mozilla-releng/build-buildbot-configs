@@ -9,7 +9,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release+releasespam@mozilla.com>']
+releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>', '<thunderbird-drivers@mozilla.org>']
 releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -23,11 +23,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.5.0'
-releaseConfig['appVersion']          = '31.5.0'
+releaseConfig['version']             = '31.6.0'
+releaseConfig['appVersion']          = '31.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_5_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_31_6_0'
 releaseConfig['partialUpdates']      = {
 
     '31.4.0': {
@@ -36,10 +36,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_31_4_0',
     },
 
-    '24.6.0': {
-        'appVersion': '24.6.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_24_6_0',
+    '31.5.0': {
+        'appVersion': '31.5.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_5_0',
     },
 
 }
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr31',
         'path': 'releases/comm-esr31',
-        'revision': '0b5a99cc7cc3',
+        'revision': '5088537f4450',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -63,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': 'e91d8afc04c9',
+        'revision': 'd1b507b6aee8',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -155,6 +155,11 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
+
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://tbirdbld@svn.mozilla.org/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://tbirdbld@svn.mozilla.org/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_dsa"
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
