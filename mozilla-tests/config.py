@@ -1002,10 +1002,10 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
+        'enable_debug_unittests': False,
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1814,7 +1814,7 @@ BRANCHES['mozilla-release']['platforms']['linux64']['talos_slave_platforms'] = [
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-beta']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'mountainlion']
+BRANCHES['mozilla-beta']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'yosemite']
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
@@ -2110,24 +2110,24 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += LUCIDDREAM[:]
 
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
-for platform in PLATFORMS.keys():
+for p in PLATFORMS.keys():
     # run in chunks on linux only
-    if platform in ['linux', 'linux64', 'linux64-asan', 'linux64-cc']:
+    if p in ['linux', 'linux64', 'linux64-asan', 'linux64-cc']:
         jittests = JITTEST_CHUNKED
     else:
         jittests = JITTEST
 
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 31):
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+    for _, branch in items_at_least(BRANCHES, 'gecko_version', 31):
+        for sp in PLATFORMS[p]['slave_platforms']:
 
             # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-            if slave_platform in ['mountainlion', 'yosemite']:
+            if sp in ['mountainlion', 'yosemite']:
                 continue
 
-            if platform in BRANCHES[name]['platforms']:
-                if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += jittests[:]
-                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += jittests[:]
+            if p in branch['platforms'] and sp in branch['platforms'][p]:
+                branch['platforms'][p][sp]['opt_unittest_suites'] += jittests[:]
+                if branch['platforms'][p][sp]['debug_unittest_suites'] != []:
+                    branch['platforms'][p][sp]['debug_unittest_suites'] += jittests[:]
 
 # Enable webapprt-chrome tests on cedar
 for platform in PLATFORMS.keys():

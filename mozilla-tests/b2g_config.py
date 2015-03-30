@@ -2646,6 +2646,13 @@ for name in BRANCHES.keys():
         if platform in BRANCHES[name]['platforms']:
             del BRANCHES[name]['platforms'][platform]
 
+# Disable tests jobs of builds that have been moved to TC
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+    for p in ('emulator-jb', 'emulator-kk', 'linux64_gecko'):
+        if branch['platforms'].get(p):
+            del branch['platforms'][p]
+
+
 PROJECTS = {}
 
 if __name__ == "__main__":
