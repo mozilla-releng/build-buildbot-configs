@@ -117,6 +117,7 @@ PROJECT_BRANCHES = {
         },
         'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
+        'enable_release_promotion': True,
     },
     'elm': {
         'branch_projects': [],
