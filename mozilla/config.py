@@ -2312,7 +2312,7 @@ BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64', 'win64']
 BRANCHES['mozilla-central']['l10nDatedDirs'] = True
 BRANCHES['mozilla-central']['l10n_tree'] = 'fxcentral'
-#make sure it has an ending slash
+# make sure it has an ending slash
 BRANCHES['mozilla-central']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-central-l10n/'
 BRANCHES['mozilla-central']['enUS_binaryURL'] = \
@@ -2321,6 +2321,9 @@ BRANCHES['mozilla-central']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-central' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-central']['enable_multi_locale'] = True
 BRANCHES['mozilla-central']['upload_mobile_symbols'] = True
+# Enable desktop repacks with
+BRANCHES['mozilla-central']['desktop_mozharness_repacks_enabled'] = True
+
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
