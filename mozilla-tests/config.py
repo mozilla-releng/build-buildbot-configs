@@ -721,6 +721,17 @@ WEB_PLATFORM_TESTS_CHUNKED = [
     }),
 ]
 
+WEB_PLATFORM_TESTS_CHUNKED_MORE = [
+    ('web-platform-tests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=testharness"],
+        'totalChunks': 6,
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT,
@@ -2159,7 +2170,7 @@ for platform in PLATFORMS.keys():
                 (platform == "macosx64" and slave_platform != "snowleopard")):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
 # Enable mozbase unit tests on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=971687
