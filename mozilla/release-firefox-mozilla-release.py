@@ -21,23 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '37.0'
-releaseConfig['appVersion']          = '37.0'
+releaseConfig['version']             = '37.0.1'
+releaseConfig['appVersion']          = '37.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_37_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_37_0_1'
 releaseConfig['partialUpdates']      = {
+
+    '37.0': {
+        'appVersion': '37.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_37_0',
+    },
 
     '36.0.1': {
         'appVersion': '36.0.1',
         'buildNumber': 2,
         'baseTag': 'FIREFOX_36_0_1',
-    },
-
-    '37.0': {
-        'appVersion': '37.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_37_0',
     },
 
     '35.0.1': {
@@ -52,16 +52,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_36_0_4',
     },
 
-    '37.0b7': {
-        'appVersion': '37.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_37_0b7',
-    },
-
 }
 # What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
 # TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/37.0/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/37.0.1/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -74,7 +68,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'db52a04ab552',
+        'revision': '833c11cfceec',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -172,7 +166,7 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": True,
+        "enabled": False,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
