@@ -92,7 +92,7 @@ PROJECT_BRANCHES = {
         'enable_talos': True,
     },
     'date': {
-        'gecko_version': 37,
+        'gecko_version': 38,
         'mozharness_repo_path': 'users/nthomas_mozilla.com/mozharness-build-promotion',
         'mozharness_repo': 'https://hg.mozilla.org/users/nthomas_mozilla.com/mozharness-build-promotion',
         'mozharness_tag': 'default',
@@ -118,6 +118,8 @@ PROJECT_BRANCHES = {
         'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
+        'partners_repo_path': 'build/partner-repacks',
+        'partner_repack_platforms': ('linux', 'linux64', 'win32', 'macosx64'),
     },
     'elm': {
         'branch_projects': [],
