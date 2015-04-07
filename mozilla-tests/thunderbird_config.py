@@ -170,6 +170,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mozmill': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
             },
         },
     },
@@ -186,6 +189,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mozmill': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
             },
@@ -208,6 +214,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mozmill': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
             },
         },
         'win7-ix': {
@@ -215,6 +224,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozmill': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
             },
@@ -234,6 +246,9 @@ PLATFORM_UNITTEST_VARS = {
                 'xpcshell': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mozmill': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
             },
         },
         'yosemite': {
@@ -241,6 +256,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mozmill': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
             },
