@@ -274,6 +274,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             c.local_links.append(
                 ('tests_localconfig.py', 'master_localconfig.py'))
             c.globs.append('tests_localconfig.py')
+            c.globs.append('config_seta.py')
             c.globs.append(mastercfg)
         elif m['role'] == 'scheduler':
             if 'build_scheduler' in m['name']:

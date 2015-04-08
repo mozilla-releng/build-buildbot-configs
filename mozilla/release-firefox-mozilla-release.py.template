@@ -127,7 +127,7 @@ releaseConfig["releaseChannel"] = "release"
 releaseConfig['updateChannels'] = {
     "release": {
         "versionRegex": r"^\d+\.\d+(\.\d+)?$",
-        "ruleId": 33,
+        "ruleId": 145,
         "patcherConfig": "mozRelease-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",

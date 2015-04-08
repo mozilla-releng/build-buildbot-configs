@@ -1108,7 +1108,7 @@ PLATFORM_VARS = {
             "script_name": "scripts/fx_desktop_build.py",
             "extra_args": [
                 "--config", "builds/releng_base_linux_64_builds.py",
-                "--custom-build-variant-cfg", "graphene"
+                "--custom-build-variant-cfg", "graphene",
                 '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
@@ -1128,7 +1128,7 @@ PLATFORM_VARS = {
             "script_name": "scripts/fx_desktop_build.py",
             "extra_args": [
                 "--config", "builds/releng_base_mac_64_builds.py",
-                "--custom-build-variant-cfg", "graphene"
+                "--custom-build-variant-cfg", "graphene",
                 '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
@@ -1151,7 +1151,7 @@ PLATFORM_VARS = {
             "script_name": "scripts/fx_desktop_build.py",
             "extra_args": [
                 "--config", "builds/releng_base_windows_64_builds.py",
-                "--custom-build-variant-cfg", "graphene"
+                "--custom-build-variant-cfg", "graphene",
                 '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
             ],
             "script_timeout": 3 * 3600,
