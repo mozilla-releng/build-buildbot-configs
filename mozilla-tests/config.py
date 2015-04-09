@@ -17,6 +17,10 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
+import config_seta
+reload(config_seta)
+from config_seta import loadSkipConfig
+
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
@@ -716,6 +720,17 @@ WEB_PLATFORM_TESTS_CHUNKED = [
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
         'totalChunks': 4,
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+WEB_PLATFORM_TESTS_CHUNKED_MORE = [
+    ('web-platform-tests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=testharness"],
+        'totalChunks': 6,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -1897,34 +1912,7 @@ BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
-######## mozilla-inbound
-# Skip test runs (see bug 1056787)
-# Note that if we set this higher than 3, we'll start to get strange behaviour
-# due to the currently global coalescing limit of 3 defined at
-# http://hg.mozilla.org/build/buildbotcustom/file/e3713abcd36d/misc.py#l647
-BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['opt_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['opt_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['opt_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['opt_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skipcount'] = 6
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['opt_unittest_skiptimeout'] = 3200
-BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['win32']['xp-ix']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['win32']['win7-ix']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_skipcount'] = 3
-BRANCHES['mozilla-inbound']['platforms']['win64']['win8_64']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['snowleopard']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skipcount'] = 6
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['mountainlion']['debug_unittest_skiptimeout'] = 3200
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['macosx64']['yosemite']['debug_unittest_skiptimeout'] = 1800
-BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skipcount'] = 2
-BRANCHES['mozilla-inbound']['platforms']['linux']['ubuntu32_vm']['debug_unittest_skiptimeout'] = 1800
-
+loadSkipConfig(BRANCHES)
 # Enable mozharness pinning
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['script_repo_manifest'] = \
@@ -2159,7 +2147,7 @@ for platform in PLATFORMS.keys():
                 (platform == "macosx64" and slave_platform != "snowleopard")):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS
+        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
 # Enable mozbase unit tests on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=971687

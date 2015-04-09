@@ -290,6 +290,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(
                 ('scheduler_localconfig.py', 'master_localconfig.py'))
+            c.globs.append('config_seta.py')
 
         retval.append(c)
     return retval
