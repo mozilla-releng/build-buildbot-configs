@@ -28,7 +28,8 @@ BRANCHES = {
     # Not needed right now, see bug 977420
     # 'birch': {},
     'cedar': {},
-    'cypress': {},
+    # Disabled for bug 1151699
+    # 'cypress': {},
     'jamun': {},
     'maple': {},
     'pine': {},
@@ -2510,8 +2511,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unitt
     MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + REFTEST_20
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED
-BRANCHES['cypress']['branch_name'] = "Cypress"
-BRANCHES['cypress']['repo_path'] = "projects/cypress"
 BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
