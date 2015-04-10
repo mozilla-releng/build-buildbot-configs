@@ -413,6 +413,17 @@ MOCHITEST_BC = [
     }),
 ]
 
+# Bug 1153385
+MOCHITEST_PUSH = [
+    ('mochitest-push', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-push'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MOCHITEST_JP = [
     ('mochitest-jetpack', {
         'use_mozharness': True,
@@ -761,6 +772,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -854,6 +868,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -941,6 +958,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1023,6 +1043,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-push': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1108,6 +1131,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1184,6 +1210,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-push': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1265,6 +1294,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT_4,
             'suite_config': {
                 'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-push': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1359,6 +1391,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1445,6 +1480,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1520,6 +1558,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-push': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1593,6 +1634,9 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
                 'mochitest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-push': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1904,13 +1948,19 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
+BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
+BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
+BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
+BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
+BRANCHES['cedar']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
+BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
 
 loadSkipConfig(BRANCHES)
 # Enable mozharness pinning
