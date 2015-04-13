@@ -78,6 +78,8 @@ SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
 SLAVES['mountainlion-b2gdt'] = SLAVES['mountainlion']
 SLAVES['win8_64'] = SLAVES['win8']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
+SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
+SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
 
 TRY_SLAVES = {}
 
