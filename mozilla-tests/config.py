@@ -632,6 +632,16 @@ REFTEST_E10S = [
         'script_maxtime': 7200,
     }),
 ]
+REFTEST_TWO_CHUNKS_E10S = [
+    ('reftest-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
 
 XPCSHELL = [
     ('xpcshell', {
@@ -2230,6 +2240,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S[:]
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3_E10S[:] + REFTEST_TWO_CHUNKS_E10S[:]
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:] + REFTEST_E10S[:]
             if platform == 'linux':
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
