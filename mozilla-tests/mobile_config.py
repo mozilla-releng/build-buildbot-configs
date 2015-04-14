@@ -100,11 +100,11 @@ PLATFORMS['android-api-11']['panda_android'] = {
     'mozharness_talos': True,
 }
 PLATFORMS['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
-    'name': "Android 4.3 Emulator",
+    'name': "Android 4.3 armv7 API 11+",
     'mozharness_talos': True,
 }
 PLATFORMS['android-api-11']['ubuntu64_vm_armv7_large'] = {
-    'name': "Android 4.3 Emulator",
+    'name': "Android 4.3 armv7 API 11+",
     'mozharness_talos': True,
 }
 PLATFORMS['android-api-11']['stage_product'] = 'mobile'
