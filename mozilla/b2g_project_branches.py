@@ -95,7 +95,21 @@ PROJECT_BRANCHES = {
     'cedar': {
         'mozharness_tag': 'default',
     },
-    'cypress': {},
+    'cypress': {
+        'lock_platforms': True,
+        'platforms': {
+            # Limit to B2G nexus/flame device builds (bug 1151699)
+            'nexus-4': {},
+            'nexus-4_eng': {},
+            'nexus-5-l': {},
+            'nexus-5-l_eng': {},
+            'flame': {},
+            'flame_eng': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
+            'flame-kk_eng-debug': {},
+        },
+    },
     # B2G builds not required on date
     # 'date': {},
     'fig': {

@@ -90,6 +90,10 @@ PROJECT_BRANCHES = {
     'cypress': {
         'enable_perproduct_builds': False,
         'enable_talos': True,
+        'lock_platforms': True,
+        'platforms': {
+            # Disabled for bug 1151699
+        },
     },
     'date': {
         'gecko_version': 38,
