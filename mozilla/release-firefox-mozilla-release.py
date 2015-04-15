@@ -21,17 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '37.0.1'
-releaseConfig['appVersion']          = '37.0.1'
+releaseConfig['version']             = '37.0.2'
+releaseConfig['appVersion']          = '37.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_37_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_37_0_2'
 releaseConfig['partialUpdates']      = {
 
     '37.0': {
         'appVersion': '37.0',
         'buildNumber': 2,
         'baseTag': 'FIREFOX_37_0',
+    },
+
+    '37.0.1': {
+        'appVersion': '37.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_37_0_1',
     },
 
     '36.0.1': {
@@ -55,7 +61,7 @@ releaseConfig['partialUpdates']      = {
 }
 # What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
 # TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/37.0.1/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/37.0.2/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -68,7 +74,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '833c11cfceec',
+        'revision': '5aa012e8ba58',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -145,7 +151,7 @@ releaseConfig["releaseChannel"] = "release"
 releaseConfig['updateChannels'] = {
     "release": {
         "versionRegex": r"^\d+\.\d+(\.\d+)?$",
-        "ruleId": 33,
+        "ruleId": 145,
         "patcherConfig": "mozRelease-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
