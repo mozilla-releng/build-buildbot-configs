@@ -120,7 +120,8 @@ PROJECT_BRANCHES = {
     # 'gum': {},
     # disabled for bug 985718
     #'holly': {},
-    'jamun': {},
+    # disabled for bug 1150320
+    #'jamun': {},
     'larch': {
         "desktop_mozharness_builds_enabled": True,
         'enable_nightly': True,
