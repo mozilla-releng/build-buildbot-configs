@@ -2727,6 +2727,9 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
+    # Disable sccache for bustage, bug 1154377
+    if 'macosxe' in platform:
+        BRANCHES['try']['platforms'][platform]['env']['SCCACHE_DISABLE'] = '1'
 
 # Enable mozharness pinning
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
