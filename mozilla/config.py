@@ -2728,7 +2728,7 @@ for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
     # Disable sccache for bustage, bug 1154377
-    if 'macosxe' in platform:
+    if 'macosx' in platform:
         BRANCHES['try']['platforms'][platform]['env']['SCCACHE_DISABLE'] = '1'
 
 # Enable mozharness pinning
