@@ -90,6 +90,10 @@ PROJECT_BRANCHES = {
     'cypress': {
         'enable_perproduct_builds': False,
         'enable_talos': True,
+        'lock_platforms': True,
+        'platforms': {
+            # Disabled for bug 1151699
+        },
     },
     'date': {
         'gecko_version': 38,
@@ -183,7 +187,26 @@ PROJECT_BRANCHES = {
         },
         'enable_talos': True,
     },
-    'jamun': {},
+    'jamun': {
+        'lock_platforms': True,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'linux-debug': {},
+            'linux64-br-haz': {},
+            'linux64-asan': {},
+            'linux64-asan-debug': {},
+            'linux64-debug': {},
+            'linux64-st-an-debug': {},
+            'macosx64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
+            'macosx64': {},
+            'macosx64-st-an-debug': {},
+        }
+    },
     'larch': {
         'lock_platforms': True,
         'platforms': {

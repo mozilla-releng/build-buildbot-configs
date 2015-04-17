@@ -92,11 +92,19 @@ PLATFORMS['android-api-9']['mozharness_config'] = {
     'reboot_command': None,
     'talos_script_maxtime': 10800,
 }
-PLATFORMS['android-api-11']['slave_platforms'] = ['panda_android']
+PLATFORMS['android-api-11']['slave_platforms'] = ['panda_android', 'ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']
 PLATFORMS['android-api-11']['env_name'] = 'android-perf'
 PLATFORMS['android-api-11']['is_mobile'] = True
 PLATFORMS['android-api-11']['panda_android'] = {
     'name': "Android 4.0 armv7 API 11+",
+    'mozharness_talos': True,
+}
+PLATFORMS['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+    'name': "Android 4.3 armv7 API 11+",
+    'mozharness_talos': True,
+}
+PLATFORMS['android-api-11']['ubuntu64_vm_armv7_large'] = {
+    'name': "Android 4.3 armv7 API 11+",
     'mozharness_talos': True,
 }
 PLATFORMS['android-api-11']['stage_product'] = 'mobile'
@@ -732,6 +740,16 @@ ANDROID_2_3_C3_DICT = {
 }
 
 ANDROID_2_3_AWS_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+ANDROID_4_3_C3_DICT = {
+    'opt_unittest_suites': [],
+    'debug_unittest_suites': [],
+}
+
+ANDROID_4_3_AWS_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
 }
@@ -1516,6 +1534,635 @@ ANDROID_2_3_MOZHARNESS_DICT = [
 ]
 # End of Android 2.3 configurations
 
+# Beginning Android 4.3 configurations
+ANDROID_4_3_MOZHARNESS_DICT = [
+    ('mochitest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-5',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-6', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-6',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-7', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-7',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-8', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-8',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-9', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-9',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-10', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-10',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-11', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-11',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-12', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-12',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-13', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-13',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-14', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-14',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-15', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-15',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-16', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-16',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('robocop-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'robocop-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('robocop-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'robocop-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('robocop-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'robocop-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('robocop-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'robocop-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('xpcshell-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'xpcshell-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('xpcshell-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'xpcshell-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('xpcshell-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'xpcshell-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-gl-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-gl-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-gl-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-gl-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-gl-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-gl-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('mochitest-gl-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-gl-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-5',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('jsreftest-6', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'jsreftest-6',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-3', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-3',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-4', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-4',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-5', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-5',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-6', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-6',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-7', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-7',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-8', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-8',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-9', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-9',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-10', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-10',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-11', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-11',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-12', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-12',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-13', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-13',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-14', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-14',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-15', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-15',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('plain-reftest-16', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'reftest-16',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('crashtest-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'crashtest-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('crashtest-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'crashtest-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    },
+    ),
+    ('cppunit', {
+      'use_mozharness': True,
+      'script_path': 'scripts/android_emulator_unittest.py',
+      'extra_args': [
+          '--cfg', 'android/androidarm_4_3.py', 
+          '--test-suite', 'cppunittest',
+      ],
+      'blob_upload': True,
+      'timeout': 2400,
+      'script_maxtime': 14400,
+      },
+     ),
+]
+
+# End of Android 4.3 configurations
 
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('mochitest-gl'):
@@ -1706,6 +2353,17 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
 
+#split 4.3 tests to ones that can run on C3 vs less powerful instances
+for suite in ANDROID_4_3_MOZHARNESS_DICT:
+    if suite[0].startswith('plain-reftest'):
+        ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+    elif suite[0].startswith('crashtest'):
+        ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+    elif suite[0].startswith('jsreftest'):
+        ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+    else:
+        ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)      
+
 # bug 1073772 - enable new apk split builders will ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
     # remove the soon to be replaced android builds
@@ -1742,6 +2400,16 @@ for platform_name in ('android', 'android-api-11'):
         BRANCHES['cedar']['platforms'][platform_name]['enable_debug_unittests'] = True
         BRANCHES['cedar']['platforms'][platform_name]['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST)
 
+#bug 1133833 enable Android 4.3 to run on try
+BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+}
+BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+}
+
 # bug 1030753 limit the debug tests run on trunk branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     # Loop removes it from any branch that gets beyond here
@@ -1764,8 +2432,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
                     if 'debug_unittest_suite' in type:
                         BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
-## Bug 1142765 - Schedule Android 4.0 Debug xpcshell tests on 
-## all trunk trees and let them ride the trains 
+## Bug 1142765 - Schedule Android 4.0 Debug xpcshell tests on
+## all trunk trees and let them ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
     # Loop removes it from any branch that gets beyond here
     if name in ('cedar', ):
@@ -1779,7 +2447,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
             if not slave_plat in branch['platforms'][platform]:
                 continue
             if not 'panda' in slave_plat:
-                continue          
+                continue
             if branch['platforms'][platform]['enable_debug_unittests'] is True:
                 BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL)
 
