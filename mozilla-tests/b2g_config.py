@@ -30,7 +30,8 @@ BRANCHES = {
     'cedar': {},
     # Disabled for bug 1151699
     # 'cypress': {},
-    'jamun': {},
+    # Disabled for Bug 1150320
+    # 'jamun': {},
     'maple': {},
     'pine': {},
     'fx-team': {},
@@ -2511,7 +2512,8 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unitt
     MOCHITEST + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + REFTEST_20
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED
-BRANCHES['jamun']['repo_path'] = "projects/jamun"
+# disabled for Bug 1150320
+# BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
