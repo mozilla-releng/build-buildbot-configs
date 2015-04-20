@@ -169,6 +169,10 @@ releaseConfig['updateChannels'] = {
             "win32":  "mozBeta-firefox-win32.cfg",
             #"win64":  "mozBeta-firefox-win32.cfg",
         },
+        "marChannelIds": [
+            "firefox-mozilla-beta",
+            "firefox-mozilla-release",
+        ],
         "testChannels": {
             "beta-cdntest": {
                 "ruleId": 41,

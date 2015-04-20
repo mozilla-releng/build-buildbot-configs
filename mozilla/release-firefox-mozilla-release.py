@@ -28,7 +28,7 @@ releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FIREFOX_37_0_2'
 releaseConfig['partialUpdates']      = {
 
-    '37.0': {
+    '37.0b1': {
         'appVersion': '37.0',
         'buildNumber': 2,
         'baseTag': 'FIREFOX_37_0',
@@ -172,7 +172,7 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": False,
+        "enabled": True,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
