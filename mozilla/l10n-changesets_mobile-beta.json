@@ -60,7 +60,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "es-AR": {
-    "revision": "5a71eac58c93",
+    "revision": "8674d98b9622",
     "platforms": ["android", "android-multilocale"]
   },
   "es-ES": {
@@ -224,7 +224,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "sl": {
-    "revision": "6d9b6bbb1069",
+    "revision": "42cda593c1b9",
     "platforms": ["android", "android-multilocale"]
   },
   "son": {
