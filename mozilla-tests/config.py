@@ -85,7 +85,7 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             # desktop per sicking in Bug 829513
-            'linux': {},
+            'linux64': {},
         },
         'lock_platforms': True,
     },
@@ -1928,7 +1928,7 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] 
 ######### mozilla-b2g34_v2_1s
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g34_v2_1s']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = []
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
