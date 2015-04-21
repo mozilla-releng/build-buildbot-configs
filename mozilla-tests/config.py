@@ -85,7 +85,7 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             # desktop per sicking in Bug 829513
-            'linux': {},
+            'linux64': {},
         },
         'lock_platforms': True,
     },
@@ -134,6 +134,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'system_bits': '64',
     'config_file': 'talos/mac_config.py',
 }
+PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite']
 
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
@@ -234,11 +235,6 @@ WIN8_ONLY = ['win8_64']
 LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
 NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64', 'win64'))
 
-OSX_SNOW_ONLY = [platform for platform in ALL_TALOS_PLATFORMS if platform == 'snowleopard']
-ALL_NO_SNOW = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'snowleopard']
-NO_SNOW_LINUX64 = [platform for platform in NO_LINUX64 if platform != 'snowleopard']
-NO_SNOW_WINXP = [platform for platform in NO_WINXP if platform != 'snowleopard']
-
 def win864_to_win8(platforms):
     retval = []
     for p in platforms:
@@ -264,62 +260,42 @@ SUITES = {
     'tp5o': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_NO_SNOW),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'tp5o-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_SNOW_WINXP),
+        'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'g1': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_NO_SNOW),
-    },
-    'g1-snow': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'glterrain', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g1-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_SNOW_WINXP),
-    },
-    'g1-snow-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'glterrain', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
     'other': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_NO_SNOW),
-    },
-    'other-snow': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'other_nol64': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_SNOW_LINUX64),
+        'options': ({}, NO_LINUX64),
     },
     'other-e10s_nol64': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_SNOW_LINUX64),
+        'options': ({}, NO_LINUX64),
     },
     'other_l64': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, LINUX64_ONLY),
-    },
-    'other-snow-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr::tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
     },
     'other-e10s_l64': {
         'enable_by_default': False,
@@ -329,52 +305,32 @@ SUITES = {
     'svgr': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_NO_SNOW),
-    },
-    'svgr-snow': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'svgr-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_SNOW_WINXP),
-    },
-    'svgr-snow-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': ({}, NO_WINXP),
     },
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, NO_SNOW_WINXP),
+        'options': ({}, NO_WINXP),
     },
     'dromaeojs-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, NO_SNOW_WINXP),
+        'options': ({}, NO_WINXP),
     },
     'chromez': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_NO_SNOW),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'chromez-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_SNOW_WINXP),
-    },
-    'chromez-snow': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
-    },
-    'chromez-snow-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_SNOW_ONLY),
+        'options': ({}, NO_WINXP),
     },
 }
 
@@ -1852,17 +1808,13 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_SNOW_WINXP)
-BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_SNOW_WINXP)
-BRANCHES['mozilla-central']['g1-snow-e10s_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_SNOW_LINUX64)
+BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_WINXP)
+BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_WINXP)
+BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_LINUX64)
 BRANCHES['mozilla-central']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['mozilla-central']['other-snow-e10s_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_SNOW_WINXP)
-BRANCHES['mozilla-central']['svgr-snow-e10s_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_SNOW_WINXP)
-BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_SNOW_WINXP)
-BRANCHES['mozilla-central']['chromez-snow-e10s_tests'] = (1, False, {}, OSX_SNOW_ONLY)
+BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_WINXP)
+BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_WINXP)
+BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_WINXP)
 BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s', 'xperf-e10s',
                                                   'tp5o-e10s',
                                                   'other-e10s_nol64',
@@ -1879,6 +1831,7 @@ BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-release']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-release']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-release']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-release']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
@@ -1928,7 +1881,7 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] 
 ######### mozilla-b2g34_v2_1s
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g34_v2_1s']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = []
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
@@ -1943,15 +1896,11 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64']['talos_slave_platforms'] 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_NO_SNOW)
-BRANCHES['try']['other_tests'] = (0, False, {}, ALL_NO_SNOW)
-BRANCHES['try']['other-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_SNOW_LINUX64)
+BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
 BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['try']['g1-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_NO_SNOW)
-BRANCHES['try']['chromez-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
-BRANCHES['try']['svgr-snow_tests'] = (1, False, {}, OSX_SNOW_ONLY)
+BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]

@@ -57,8 +57,18 @@ PROJECT_BRANCHES = {
         },
     },
     #'services-central': {},  # Bug 1010674
-    # no desktop builds for bug 1100150
-    # 'alder': {},
+    # customized for bug 1156408
+    'alder': {
+        "enable_nightly": True,
+        'desktop_mozharness_repacks_enabled': True,
+        "enable_weekly_bundle": True,
+        "pgo_strategy": "periodic",
+        "platforms": {
+            "android-api-9": {
+                "is_mobile_l10n": True,
+            },
+        },
+    },
     'ash': {
         'enable_perproduct_builds': False,
         'desktop_mozharness_builds_enabled': True,

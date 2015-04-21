@@ -1392,11 +1392,13 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['dolphin_eng']['enable_nightly'] = F
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = 'releases/mozilla-b2g34_v2_1s'
 BRANCHES['mozilla-b2g34_v2_1s']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_1/'
 BRANCHES['mozilla-b2g34_v2_1s']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [0]
 BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1s']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-debug']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin']['enable_nightly'] = True
@@ -1404,6 +1406,10 @@ BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin_eng']['enable_nightly'] = 
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_dep'] = True
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['macosx64_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['win32_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['win32_gecko-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk']['enable_periodic'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_periodic'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_dep'] = False
@@ -1538,7 +1544,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
 for branch in BRANCHES:
     if branch not in ('mozilla-b2g30_v1_4', 'mozilla-b2g34_v2_1s',
                       'mozilla-aurora', 'mozilla-central',
-                      'mozilla-inbound', 'b2g-inbound', 'fx-team'):
+                      'mozilla-inbound', 'b2g-inbound', 'fx-team',
+                      'alder'):
         if 'dolphin' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin']
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:

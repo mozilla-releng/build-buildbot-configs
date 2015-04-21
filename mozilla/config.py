@@ -163,6 +163,8 @@ PLATFORM_VARS = {
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
+                'script_timeout': 1800,
+                'script_maxtime': 2 * 3600,
             },
             'dep_signing_servers': 'dep-signing',
             'base_name': 'Linux %(branch)s',
@@ -285,6 +287,8 @@ PLATFORM_VARS = {
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
+                'script_timeout': 1800,
+                'script_maxtime': 2 * 3600,
             },
             'product_name': 'firefox',
             'unittest_platform': 'linux64-opt',
@@ -827,6 +831,8 @@ PLATFORM_VARS = {
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
+                'script_timeout': 1800,
+                'script_maxtime': 2 * 3600,
             },
 
             'product_name': 'firefox',
@@ -904,6 +910,8 @@ PLATFORM_VARS = {
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
+                'script_timeout': 2 * 3600,
+                'script_maxtime': 3 * 3600,
             },
 
             'product_name': 'firefox',
@@ -974,6 +982,8 @@ PLATFORM_VARS = {
                 'scriptName': 'scripts/desktop_l10n.py',
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
+                'script_timeout': 2 * 3600,
+                'script_maxtime': 3 * 3600,
             },
             'reboot_command': [
                 'c:/mozilla-build/python27/python', '-u',
@@ -2170,6 +2180,7 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             'linux': {},
+            'linux64': {},
         },
     },
     'mozilla-b2g37_v2_2': {
@@ -2627,7 +2638,7 @@ BRANCHES['mozilla-b2g34_v2_1s']['unittest_build_space'] = 6
 BRANCHES['mozilla-b2g34_v2_1s']['enable_l10n'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['l10n_platforms'] = ['linux']
+BRANCHES['mozilla-b2g34_v2_1s']['l10n_platforms'] = ['linux', 'linux64']
 BRANCHES['mozilla-b2g34_v2_1s']['l10nDatedDirs'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g34_v2_1s'
@@ -2727,9 +2738,6 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
-    # Disable sccache for bustage, bug 1154377
-    if 'macosx' in platform:
-        BRANCHES['try']['platforms'][platform]['env']['SCCACHE_DISABLE'] = '1'
 
 # Enable mozharness pinning
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
