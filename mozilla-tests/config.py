@@ -134,6 +134,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'system_bits': '64',
     'config_file': 'talos/mac_config.py',
 }
+PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite']
 
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
@@ -228,13 +229,11 @@ for platform, platform_config in PLATFORMS.items():
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64', 'win64'))
-ALL_TALOS_PLATFORMS = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'snowleopard']
 NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp-ix']
 WIN7_ONLY = ['win7-ix']
 WIN8_ONLY = ['win8_64']
 LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
 NO_LINUX64 = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'win32', 'macosx64', 'win64'))
-NO_LINUX64 = [platform for platform in NO_LINUX64 if platform != 'snowleopard']
 
 def win864_to_win8(platforms):
     retval = []

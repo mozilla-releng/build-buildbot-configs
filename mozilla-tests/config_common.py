@@ -73,7 +73,6 @@ def get_talos_slave_platforms(platforms_dict, platforms):
         ret.extend(platforms_dict[p].get('talos_slave_platforms',
                                          platforms_dict[p]['slave_platforms']))
 
-    ret = [platform for platform in ret if platform != 'snowleopard']
     return ret
 
 def delete_slave_platform(BRANCHES, PLATFORMS, platforms_to_delete, branch_exclusions=[]):
