@@ -277,6 +277,16 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, NO_WINXP),
     },
+    'g2': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
+    },
+    'g2-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
+    },
     'other': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
@@ -1901,6 +1911,7 @@ BRANCHES['try']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
 BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
 BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
@@ -1969,6 +1980,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
                 continue
             branch['platforms'][pf][slave_pf]['opt_unittest_suites'] += MOCHITEST_JP[:]
             branch['platforms'][pf][slave_pf]['debug_unittest_suites'] += MOCHITEST_JP[:]
+
+
+# Run talos g2 for all talos platforms starting from 40
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
+    if name.startswith('mozilla-b2g'):
+        continue
+    branch['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+
 
 # cppunittest jobs ride the train with 28, so they need to be disabled
 # for branches running an older version.
