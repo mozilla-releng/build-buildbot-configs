@@ -2410,6 +2410,33 @@ BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
             'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
 }
 
+# bug 1133833 enable Android 4.3 on trunk for opt only
+# while disabling corresponding 4.0 tests
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
+    # Loop removes it from any branch that gets beyond here
+    if name in ('try', ):
+       continue
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if platform not in ('android-api-11'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue
+            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': [],}
+            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': [],}
+            BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),}
+            BRANCHES[name]['platforms']['android-api-11']['panda_android']['opt_unittest_suites'] = []
+
 # bug 1030753 limit the debug tests run on trunk branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     # Loop removes it from any branch that gets beyond here
