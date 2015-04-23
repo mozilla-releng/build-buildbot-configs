@@ -377,6 +377,9 @@ PLATFORM_VARS = {
         'mozconfig': 'in_tree',
         'src_mozconfig': 'b2g/dev/config/mozconfigs/macosx64/mulet',
         'packageTests': False,
+        'enable_dep': False,
+        'enable_periodic': True,
+        'enable_nightly': True,
         'profiled_build': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 12,
@@ -388,7 +391,6 @@ PLATFORM_VARS = {
         'stage_platform': 'macosx64-mulet',
         'update_platform': 'Darwin_x86_64-gcc3',
         'enable_shared_checkouts': True,
-        'enable_nightly': True,
         'env': {
             'MOZ_OBJDIR': OBJDIR,
             'HG_SHARE_BASE_DIR': '/builds/hg-shared',
@@ -555,9 +557,10 @@ PLATFORM_VARS = {
         'base_name': 'Win32 Mulet %(branch)s',
         'mozconfig': 'in_tree',
         'src_mozconfig': 'b2g/dev/config/mozconfigs/win32/mulet',
-        'enable_dep': True,
-        'profiled_build': False,
+        'enable_dep': False,
+        'enable_periodic': True,
         'enable_nightly': True,
+        'profiled_build': False,
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
         'build_space': 13,
         'upload_symbols': False,
@@ -1484,16 +1487,19 @@ BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-
 BRANCHES['try']['platforms']['win32_gecko']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win32_gecko-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win32-mulet']['slaves'] = TRY_SLAVES['win64-rev2']
-# Bug 1127482 - Make Windows opt and debug, linux debug, and osx debug B2G Desktop builds periodic
-## we can't have 1127482 builders be periodic on try so let's revert them back to dep builds
+# Make periodic B2G Desktop and Mulet builds dep builds on Try (bug 1127482).
 BRANCHES['try']['platforms']['macosx64_gecko']['enable_dep'] = True
 BRANCHES['try']['platforms']['macosx64_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['macosx64_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['macosx64-mulet']['enable_dep'] = True
+BRANCHES['try']['platforms']['macosx64-mulet']['enable_periodic'] = False
 BRANCHES['try']['platforms']['win32_gecko']['enable_dep'] = True
 BRANCHES['try']['platforms']['win32_gecko']['enable_periodic'] = False
 BRANCHES['try']['platforms']['win32_gecko-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['win32_gecko-debug']['enable_periodic'] = False
+BRANCHES['try']['platforms']['win32-mulet']['enable_dep'] = True
+BRANCHES['try']['platforms']['win32-mulet']['enable_periodic'] = False
 BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win64_graphene']['slaves'] = TRY_SLAVES['win64-rev2']
