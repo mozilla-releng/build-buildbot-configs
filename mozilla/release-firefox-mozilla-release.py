@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '38.0b7'
 releaseConfig['appVersion']          = '38.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_38_0b7'
 releaseConfig['partialUpdates']      = {
 
@@ -38,12 +38,6 @@ releaseConfig['partialUpdates']      = {
         'appVersion': '38.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_38_0b5',
-    },
-
-    '38.0b4': {
-        'appVersion': '38.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_38_0b4',
     },
 
 }
