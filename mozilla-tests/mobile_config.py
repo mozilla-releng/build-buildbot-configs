@@ -17,6 +17,10 @@ reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 from config import MOZHARNESS_REBOOT_CMD
 
+import config_seta_mobile
+reload(config_seta_mobile)
+from config_seta_mobile import loadSkipConfigMobile
+
 TALOS_REMOTE_FENNEC_OPTS = {
     'productName': 'fennec',
     'remoteTests': True,
@@ -2506,6 +2510,7 @@ effects. Does not remove any suites from the specified
                     # This replaces the contents of the unittest_suites list in place with the filtered list.
                     unittest_suites[:] = [ suite for suite in unittest_suites if not suite_to_remove in suite[0] ]
 
+loadSkipConfigMobile(BRANCHES)
 
 # schedule jittests for pandas on cedar and try
 # https://bugzilla.mozilla.org/show_bug.cgi?id=912997
