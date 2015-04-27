@@ -24,7 +24,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '38.0b8'
 releaseConfig['appVersion']          = '38.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'FENNEC_38_0b8'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
@@ -34,7 +34,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '8fc6195511e5',
+        'revision': '9d105ed6f35a',
         'relbranch': None,
         'bumpFiles': {
             'mobile/android/confvars.sh': {
