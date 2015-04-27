@@ -2253,8 +2253,9 @@ for branch in include_yosemite:
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = []
     #disable talos on branches that have 10.10 enabled excluding b2g-inbound 
-    #which idn't have talos tests before
-    if branch in ['b2g-inbound']:
+    #which didn't have talos tests before.
+    # We don't track talos on mozilla-release, lets ensure we don't run jobs we don't need.
+    if branch in ['b2g-inbound', 'mozilla-release']:
        continue
     BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
 
