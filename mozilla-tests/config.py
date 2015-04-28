@@ -1918,19 +1918,13 @@ BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UN
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 ######## cedar
-BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
-BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
-BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
-BRANCHES['cedar']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-BRANCHES['cedar']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] += MOCHITEST_PUSH[:]
-BRANCHES['cedar']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] += MOCHITEST_PUSH[:]
-BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:] + MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
 loadSkipConfig(BRANCHES)
 # Enable mozharness pinning
@@ -2152,6 +2146,15 @@ for platform in PLATFORMS.keys():
             continue
         BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEBAPPRT_CHROME[:]
         BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEBAPPRT_CHROME[:]
+
+# Enable mochitest-push to ride the trains; bug 1156357
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_PUSH
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_PUSH
 
 # bug 1051886 enable mochitest-gl tests to ride trains
 for platform in PLATFORMS.keys():
