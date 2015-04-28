@@ -1490,6 +1490,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1561,6 +1562,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1634,6 +1636,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1704,6 +1707,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1774,6 +1778,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1841,6 +1846,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1909,6 +1915,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
             ],
             'env': {
                 'DISPLAY': ':2',
