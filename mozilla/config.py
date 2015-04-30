@@ -832,7 +832,7 @@ PLATFORM_VARS = {
                 'l10n_chunks': 3,
                 'use_credentials_file': True,
                 'script_timeout': 1800,
-                'script_maxtime': 2 * 3600,
+                'script_maxtime': 3 * 3600,
             },
 
             'product_name': 'firefox',
