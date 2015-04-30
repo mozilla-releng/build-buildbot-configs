@@ -44,6 +44,16 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-esr38': {
+        'gecko_version': 38,
+        'platforms': {
+            'macosx64': {},
+            'win32': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'mozilla-b2g30_v1_4': {
         'datazilla_url': None,
         'gecko_version': 30,
@@ -124,7 +134,7 @@ PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['mountainlion'] = {'name': "Rev5 MacOSX Mountain Lion 10.8",
                                          'try_by_default': False}
-PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10", 
+PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10",
                                      'try_by_default': False}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
@@ -1861,6 +1871,14 @@ BRANCHES['mozilla-esr31']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr31']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr31']['platforms']['linux64']['talos_slave_platforms'] = []
 
+######### mozilla-esr38
+BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
+BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
+
 ######### mozilla-b2g30_v1_4
 BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
 BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = None
@@ -2255,7 +2273,7 @@ for branch in include_yosemite:
         continue
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['opt_unittest_suites'] = []
     BRANCHES[branch]['platforms']['macosx64']['mountainlion']['debug_unittest_suites'] = []
-    #disable talos on branches that have 10.10 enabled excluding b2g-inbound 
+    #disable talos on branches that have 10.10 enabled excluding b2g-inbound
     #which didn't have talos tests before.
     # We don't track talos on mozilla-release, lets ensure we don't run jobs we don't need.
     if branch in ['b2g-inbound', 'mozilla-release']:
