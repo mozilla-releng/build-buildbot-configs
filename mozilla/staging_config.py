@@ -89,6 +89,12 @@ BRANCHES = {
         'enable_hpkp_update': False,
         'file_update_on_closed_tree': False,
     },
+    'mozilla-esr38': {
+        'enable_blocklist_update': False,
+        'enable_hsts_update': False,
+        'enable_hpkp_update': False,
+        'file_update_on_closed_tree': False,
+    },
     'mozilla-b2g30_v1_4': {
         'enable_blocklist_update': False,
         'enable_hsts_update': False,
