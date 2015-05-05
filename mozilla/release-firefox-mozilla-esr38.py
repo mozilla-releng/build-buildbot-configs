@@ -32,21 +32,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.6.0esr'
-releaseConfig['appVersion']          = '31.6.0'
+releaseConfig['version']             = '38.0esr'
+releaseConfig['appVersion']          = '38.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_31_6_0esr'
-releaseConfig['partialUpdates']      = {}
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_38_0esr'
+releaseConfig['partialUpdates']      = {
+    # TODO: pupulate this dictionary for 38.1.0esr
+}
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.6.0esrpre'
+releaseConfig['nextAppVersion']      = '38.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '7a0092a7bf48',
+        'revision': '89963ed50b35',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -153,5 +155,5 @@ releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('linux', 'linux64')
+releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-esr'
