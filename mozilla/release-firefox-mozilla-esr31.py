@@ -25,7 +25,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '31.7.0esr'
 releaseConfig['appVersion']          = '31.7.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_31_7_0esr'
 releaseConfig['partialUpdates']      = {
 
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '6d40b79b67b0',
+        'revision': '7f3854a8ddcf',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
