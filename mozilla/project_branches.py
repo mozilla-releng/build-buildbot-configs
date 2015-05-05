@@ -68,6 +68,11 @@ PROJECT_BRANCHES = {
                 "is_mobile_l10n": True,
             },
         },
+        "enable_onchange_scheduler": False,
+        "enable_nightly_scheduler": False,
+        "enable_periodic_scheduler": False,
+        "enable_weekly_scheduler": False,
+        "enable_triggered_nightly_scheduler": False,
     },
     'ash': {
         'enable_perproduct_builds': False,
