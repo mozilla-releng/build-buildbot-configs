@@ -38,6 +38,9 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     'alder': {
         'enable_nightly': True,
+        "enable_onchange_scheduler": False,
+        "enable_nightly_scheduler": False,
+        "enable_periodic_scheduler": False,
         'platforms': {
             'nexus-4': {
                 'enable_nightly': True,
@@ -162,10 +165,8 @@ PROJECT_BRANCHES = {
     },
     # B2G builds not required on date
     # 'date': {},
-    'fig': {
-        'lock_platforms': True,
-        'platforms': {},
-    },
+    # Dsiabled by Bug 1135702
+    # 'fig': {},
     # disabled by bug 1134508
     # 'gum': {},
     # disabled for bug 985718

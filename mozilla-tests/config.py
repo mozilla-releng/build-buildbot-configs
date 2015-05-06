@@ -225,6 +225,7 @@ PLATFORMS['linux64-cc']['mozharness_config'] = {
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
+    'extra_args': ['--code-coverage'],
 }
 
 # Lets be explicit instead of magical.
@@ -1038,6 +1039,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-other': {

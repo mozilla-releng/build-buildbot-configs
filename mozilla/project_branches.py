@@ -68,6 +68,11 @@ PROJECT_BRANCHES = {
                 "is_mobile_l10n": True,
             },
         },
+        "enable_onchange_scheduler": False,
+        "enable_nightly_scheduler": False,
+        "enable_periodic_scheduler": False,
+        "enable_weekly_scheduler": False,
+        "enable_triggered_nightly_scheduler": False,
     },
     'ash': {
         'enable_perproduct_builds': False,
@@ -147,7 +152,8 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
         },
     },
-    'fig': {},
+    # Dsiabled by Bug 1135702
+    # 'fig': {},
     'gum': {
         'enable_nightly': True,
         'pgo_strategy': 'per-checkin',

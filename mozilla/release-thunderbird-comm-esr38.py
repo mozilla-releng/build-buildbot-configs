@@ -5,6 +5,14 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
+# HACK ALERT
+# TODO: enable updates when 38.0 ships
+#####################################
+
+releaseConfig['skip_updates'] = True
+
+#####################################
+# END OF HACK ALERT
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
@@ -23,35 +31,21 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '31.6.0'
-releaseConfig['appVersion']          = '31.6.0'
+releaseConfig['version']             = '38.0'
+releaseConfig['appVersion']          = '38.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_31_6_0'
-releaseConfig['partialUpdates']      = {
-
-    '31.4.0': {
-        'appVersion': '31.4.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_4_0',
-    },
-
-    '31.5.0': {
-        'appVersion': '31.5.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_5_0',
-    },
-
-}
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_0'
+releaseConfig['partialUpdates']      = {}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'comm': {
-        'name': 'comm-esr31',
-        'path': 'releases/comm-esr31',
-        'revision': '5088537f4450',
+        'name': 'comm-esr38',
+        'path': 'releases/comm-esr38',
+        'revision': '1234567890',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -61,9 +55,9 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-esr31',
-        'path': 'releases/mozilla-esr31',
-        'revision': 'd1b507b6aee8',
+        'name': 'mozilla-esr38',
+        'path': 'releases/mozilla-esr38',
+        'revision': '1234567890',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -76,7 +70,7 @@ releaseConfig['sourceRepositories']  = {
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
 releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr31'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr38'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
@@ -127,22 +121,22 @@ releaseConfig['releaseChannel']        = 'release'
 releaseConfig['updateChannels'] = {
     "release": {
         "versionRegex": r"^.*$",
-        "ruleId": 35,
-        "patcherConfig": "mozEsr31-thunderbird-branch-patcher2.cfg",
+        "ruleId": 170,
+        "patcherConfig": "mozEsr38-thunderbird-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
         "verifyConfigs": {
-            "linux":  "mozEsr31-thunderbird-linux.cfg",
-            "linux64":  "mozEsr31-thunderbird-linux64.cfg",
-            "macosx64": "mozEsr31-thunderbird-mac64.cfg",
-            "win32":  "mozEsr31-thunderbird-win32.cfg",
+            "linux":  "mozEsr38-thunderbird-linux.cfg",
+            "linux64":  "mozEsr38-thunderbird-linux64.cfg",
+            "macosx64": "mozEsr38-thunderbird-mac64.cfg",
+            "win32":  "mozEsr38-thunderbird-win32.cfg",
         },
         "testChannels": {
             "release-localtest": {
-                "ruleId": 61,
+                "ruleId": 171,
             },
             "release-cdntest": {
-                "ruleId": 62,
+                "ruleId": 172,
             },
         },
     },
@@ -165,4 +159,4 @@ releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
 releaseConfig['enable_repo_setup'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest-31'
+releaseConfig['ftpSymlinkName'] = 'latest'
