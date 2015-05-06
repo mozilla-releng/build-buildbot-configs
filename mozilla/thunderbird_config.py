@@ -1062,6 +1062,11 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
+# Enable mozharness pinning
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    branch['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(moz_repo_path)s/raw-file/default/" + \
+        "testing/mozharness/mozharness.json"
 
 if __name__ == "__main__":
     import sys
