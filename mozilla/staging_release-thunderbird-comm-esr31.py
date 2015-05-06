@@ -130,14 +130,14 @@ releaseConfig['updateChannels'] = {
     "release": {
         "versionRegex": r"^.*$",
         "ruleId": 45,
-        "patcherConfig": "mozRelease-thunderbird-branch-patcher2.cfg",
+        "patcherConfig": "mozEsr31-thunderbird-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
         "verifyConfigs": {
-            "linux":  "mozRelease-thunderbird-linux.cfg",
-            "linux64":  "mozRelease-thunderbird-linux64.cfg",
-            "macosx64": "mozRelease-thunderbird-mac64.cfg",
-            "win32":  "mozRelease-thunderbird-win32.cfg",
+            "linux":  "mozEsr31-thunderbird-linux.cfg",
+            "linux64":  "mozEsr31-thunderbird-linux64.cfg",
+            "macosx64": "mozEsr31-thunderbird-mac64.cfg",
+            "win32":  "mozEsr31-thunderbird-win32.cfg",
         },
         "testChannels": {
             "release-localtest": {
@@ -163,4 +163,4 @@ releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest'
+releaseConfig['ftpSymlinkName'] = 'latest-31'

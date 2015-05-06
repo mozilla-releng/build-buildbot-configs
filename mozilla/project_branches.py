@@ -152,7 +152,8 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
         },
     },
-    'fig': {},
+    # Dsiabled by Bug 1135702
+    # 'fig': {},
     'gum': {
         'enable_nightly': True,
         'pgo_strategy': 'per-checkin',

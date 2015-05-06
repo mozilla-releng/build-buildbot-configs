@@ -165,10 +165,8 @@ PROJECT_BRANCHES = {
     },
     # B2G builds not required on date
     # 'date': {},
-    'fig': {
-        'lock_platforms': True,
-        'platforms': {},
-    },
+    # Dsiabled by Bug 1135702
+    # 'fig': {},
     # disabled by bug 1134508
     # 'gum': {},
     # disabled for bug 985718
