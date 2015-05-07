@@ -2357,16 +2357,24 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
 
-#split 4.3 tests to ones that can run on C3 vs less powerful instances
-for suite in ANDROID_4_3_MOZHARNESS_DICT:
+
+#split 4.3 opt and debug tests to ones that can run on C3 vs less powerful instances
+for suite in ANDROID_4_3_MOZHARNESS_DICT: 
     if suite[0].startswith('plain-reftest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
+    elif suite[0].startswith('mochitest') and not suite[0].startswith('mochitest-gl'):
+        ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('jsreftest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     else:
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)      
+        ANDROID_4_3_AWS_DICT['debug_unittest_suites'].append(suite)      
 
 # bug 1073772 - enable new apk split builders will ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
@@ -2407,11 +2415,11 @@ for platform_name in ('android', 'android-api-11'):
 #bug 1133833 enable Android 4.3 to run on try
 BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['debug_unittest_suites']),
 }
 BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['debug_unittest_suites']),
 }
 
 # bug 1133833 enable Android 4.3 on trunk for opt only
@@ -2436,9 +2444,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
             BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
             'debug_unittest_suites': [],}
-            BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),}
             BRANCHES[name]['platforms']['android-api-11']['panda_android']['opt_unittest_suites'] = []
 
 # bug 1030753 limit the debug tests run on trunk branches
