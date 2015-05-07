@@ -15,7 +15,7 @@ from localconfig import SLAVES, TRY_SLAVES
 
 import master_common
 reload(master_common)
-from master_common import setMainCommVersions
+from master_common import setMainCommVersions, items_at_least
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
