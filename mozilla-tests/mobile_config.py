@@ -2357,13 +2357,12 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
 
-
 #split 4.3 opt and debug tests to ones that can run on C3 vs less powerful instances
 for suite in ANDROID_4_3_MOZHARNESS_DICT: 
     if suite[0].startswith('plain-reftest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
-    elif suite[0].startswith('mochitest') and not suite[0].startswith('mochitest-gl'):
+    elif suite[0].startswith('mochitest'):
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):
