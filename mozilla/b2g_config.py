@@ -43,8 +43,6 @@ GLOBAL_VARS.update({
         'emulator-l': {},
         'emulator-l-debug': {},
         'linux64-b2g-haz': {},
-        'flame': {},
-        'flame_eng': {},
         'flame-kk': {},
         'flame-kk_eng': {},
         'flame-kk_eng-debug': {},
@@ -909,51 +907,6 @@ PLATFORM_VARS = {
         ],
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
     },
-    'flame': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'flame', '--config', 'b2g/releng-private-updates.py',
-                           '--gaia-languages-file', 'locales/languages_all.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'flame_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'flame', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_all.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': False,
-        'enable_dep': True,
-    },
     'flame-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1372,8 +1325,6 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = T
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l']['enable_periodic'] = False
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator']['enable_nightly'] = True

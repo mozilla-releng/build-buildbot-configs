@@ -156,8 +156,6 @@ PROJECT_BRANCHES = {
             'nexus-4_eng': {},
             'nexus-5-l': {},
             'nexus-5-l_eng': {},
-            'flame': {},
-            'flame_eng': {},
             'flame-kk': {},
             'flame-kk_eng': {},
             'flame-kk_eng-debug': {},
