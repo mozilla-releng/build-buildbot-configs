@@ -6,15 +6,6 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 
-# HACK ALERT
-# TODO: enable updates when 38.0 ships
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
-
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
@@ -39,7 +30,13 @@ releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = {{ buildNumber }}
 releaseConfig['baseTag']             = '{{ baseTag }}'
 releaseConfig['partialUpdates']      = {
-# TODO: enable partials when 38.0 ships
+{% for version, partial in partials.items() %}
+    '{{ version }}': {
+        'appVersion': '{{ partial['appVersion'] }}',
+        'buildNumber': {{ partial['buildNumber'] }},
+        'baseTag': '{{ partial['baseTag'] }}',
+    },
+{% endfor %}
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
