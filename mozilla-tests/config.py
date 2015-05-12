@@ -54,18 +54,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g30_v1_4': {
-        'datazilla_url': None,
-        'gecko_version': 30,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g32_v2_0': {
         'datazilla_url': None,
         'gecko_version': 32,
@@ -1883,15 +1871,6 @@ BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
 
-######### mozilla-b2g30_v1_4
-BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = "releases/mozilla-b2g30_v1_4"
-BRANCHES['mozilla-b2g30_v1_4']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['slave_platforms'] = ['snowleopard']
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['linux64']['talos_slave_platforms'] = []
-
 ######### mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
@@ -1949,15 +1928,6 @@ BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += R
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
 loadSkipConfig(BRANCHES)
-# Enable mozharness pinning
-for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
-    branch['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-        "testing/mozharness/mozharness.json"
-
-BRANCHES['mozilla-b2g30_v1_4']['script_repo_manifest'] = \
-    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-    "testing/mozharness/mozharness.json"
 
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
@@ -2312,7 +2282,7 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
 
 
 # remove mochitest-browser-chrome and mochitest-devtools-chrome
-# from b2g30, b2g32 - bug 1045398
+# from versioned b2g branches - bug 1045398
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
     for platform in branch['platforms']:
@@ -2329,51 +2299,6 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
                 # not an iterable,
                 pass
 
-
-# mochitest-browser-chrome changes in 30:
-#  * it's done chunked
-#
-# Exception: linux debug tests are always chunked and always on ec2 machines,
-# so don't make any changes to them (the defaults are correct).
-for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-    for platform in branch['platforms']:
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in branch['platforms'][platform]:
-                continue
-            branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC
-            if 'ubuntu' not in slave_platform:
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC
-            for chunked_bc in MOCHITEST_BC_3:
-                try:
-                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(chunked_bc)
-                    if 'ubuntu' not in slave_platform:
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(chunked_bc)
-                except ValueError:
-                    # wasn't in the list anyways
-                    pass
-
-# mochitest-devtools-chrome only exists on 30+; remove mountainlion from
-# b2g branches 29 and below
-for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-    for platform in branch['platforms']:
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in branch['platforms'][platform]:
-                continue
-            # Delete mountainlion, bug 997959
-            if slave_platform in ('mountainlion', ) and 'b2g' in name:
-                del branch['platforms'][platform][slave_platform]
-                continue
-            try:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'].remove(MOCHITEST_DT[0])
-            except ValueError:
-                # wasn't there anyways
-                pass
-            for dt in MOCHITEST_DT_4:
-                try:
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove(dt)
-                except ValueError:
-                    # wasn't there anyways
-                    pass
 
 # Disable Linux64-cc in every branch except try
 for name in BRANCHES.keys():
