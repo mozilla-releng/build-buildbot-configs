@@ -151,14 +151,7 @@ PROJECT_BRANCHES = {
     'cypress': {
         'lock_platforms': True,
         'platforms': {
-            # Limit to B2G nexus/flame device builds (bug 1151699)
-            'nexus-4': {},
-            'nexus-4_eng': {},
-            'nexus-5-l': {},
-            'nexus-5-l_eng': {},
-            'flame-kk': {},
-            'flame-kk_eng': {},
-            'flame-kk_eng-debug': {},
+            # Limit B2G to none for Bug 1164935
         },
     },
     # B2G builds not required on date
