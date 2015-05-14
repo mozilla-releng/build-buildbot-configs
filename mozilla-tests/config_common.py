@@ -17,6 +17,8 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['pgo_strategy'] = branchConfig.get('pgo_strategy', None)
     BRANCHES[branch]['pgo_platforms'] = branchConfig.get('pgo_platforms', ['linux', 'linux64', 'win32', 'win64'])
     BRANCHES[branch]['mozharness_talos'] = True
+    BRANCHES[branch]['script_repo_manifest'] = "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+                                               "testing/mozharness/mozharness.json"
 
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):

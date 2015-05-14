@@ -2340,12 +2340,6 @@ BRANCHES['try']['enable_try'] = True
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
 
-# Enable mozharness pinning
-for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
-    branch['script_repo_manifest'] = \
-        "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
-        "testing/mozharness/mozharness.json"
-
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('plain-reftest'):
@@ -2357,13 +2351,12 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
     else:
         ANDROID_2_3_AWS_DICT['opt_unittest_suites'].append(suite)
 
-
 #split 4.3 opt and debug tests to ones that can run on C3 vs less powerful instances
 for suite in ANDROID_4_3_MOZHARNESS_DICT: 
     if suite[0].startswith('plain-reftest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
-    elif suite[0].startswith('mochitest') and not suite[0].startswith('mochitest-gl'):
+    elif suite[0].startswith('mochitest'):
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):

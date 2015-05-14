@@ -43,8 +43,6 @@ GLOBAL_VARS.update({
         'emulator-l': {},
         'emulator-l-debug': {},
         'linux64-b2g-haz': {},
-        'flame': {},
-        'flame_eng': {},
         'flame-kk': {},
         'flame-kk_eng': {},
         'flame-kk_eng-debug': {},
@@ -909,51 +907,6 @@ PLATFORM_VARS = {
         ],
         'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
     },
-    'flame': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'flame', '--config', 'b2g/releng-private-updates.py',
-                           '--gaia-languages-file', 'locales/languages_all.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-                           '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': True,
-        'enable_dep': False,
-    },
-    'flame_eng': {
-        'mozharness_config': {
-            'script_name': 'scripts/b2g_build.py',
-            # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
-            # --target name below
-            'extra_args': ['--target', 'flame', '--config', 'b2g/releng-otoro-eng.py',
-                           '--gaia-languages-file', 'locales/languages_all.json',
-                           '--gecko-languages-file', 'gecko/b2g/locales/all-locales'],
-            'reboot_command': ['bash', '-c', 'sudo reboot; sleep 600'],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'enable_periodic': False,
-        'enable_dep': True,
-    },
     'flame-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -1180,10 +1133,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g30_v1_4': {
-        'gecko_version': 30,
-        'b2g_version': (1, 4, 0),
-    },
     'mozilla-b2g32_v2_0': {
         'gecko_version': 32,
         'b2g_version': (2, 0, 0),
@@ -1376,8 +1325,6 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = T
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l']['enable_periodic'] = False
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator']['enable_nightly'] = True
@@ -1442,29 +1389,6 @@ BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk']['enable_nightly'] = T
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-5-l']['enable_periodic'] = False
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-
-######## mozilla-b2g30_v1_4
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g30_v1_4']['repo_path'] = 'releases/mozilla-b2g30_v1_4'
-BRANCHES['mozilla-b2g30_v1_4']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v1_4/'
-BRANCHES['mozilla-b2g30_v1_4']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g30_v1_4']['start_hour'] = [0, 16]
-BRANCHES['mozilla-b2g30_v1_4']['start_minute'] = [2]
-BRANCHES['mozilla-b2g30_v1_4']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-4']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['flame_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['dolphin_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-5-l']['enable_periodic'] = False
-BRANCHES['mozilla-b2g30_v1_4']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
 
 ######## try
 # Try-specific configs
@@ -1548,8 +1472,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
 
 # dolphin is for selected branches only
 for branch in BRANCHES:
-    if branch not in ('mozilla-b2g30_v1_4', 'mozilla-b2g34_v2_1s',
-                      'mozilla-aurora', 'mozilla-central',
+    if branch not in ('mozilla-b2g34_v2_1s', 'mozilla-central',
                       'mozilla-inbound', 'b2g-inbound', 'fx-team',
                       'alder'):
         if 'dolphin' in BRANCHES[branch]['platforms']:
@@ -1564,22 +1487,6 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['dolphin-512']
         if 'dolphin-512_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin-512_eng']
-
-# flame (JB) is for b2g30_v1_4 only, superceded by flame-kk
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g30_v1_4',):
-        if 'flame' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['flame']
-        if 'flame_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['flame_eng']
-
-# b2g 1.4+
-for name, branch in items_before(BRANCHES, 'gecko_version', 30):
-    for p in ('linux64_gecko-debug', 'macosx64_gecko-debug',
-              'win32_gecko-debug',
-              'emulator-kk', 'emulator-kk-debug'):
-        if p in branch['platforms']:
-            del branch['platforms'][p]
 
 # exact rooting was enabled in gecko 32
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):

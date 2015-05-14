@@ -117,10 +117,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr38',
         'mobile_tinderbox_tree': 'Mozilla-Esr38',
     },
-    'mozilla-b2g30_v1_4': {
-        'tinderbox_tree': 'Mozilla-B2g30-v1.4',
-        'mobile_tinderbox_tree': 'Mozilla-B2g30-v1.4',
-    },
     'mozilla-b2g32_v2_0': {
         'tinderbox_tree': 'Mozilla-B2g32-v2.0',
         'mobile_tinderbox_tree': 'Mozilla-B2g32-v2.0',
