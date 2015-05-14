@@ -6,16 +6,6 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 
-# HACK ALERT
-# TODO for 38.1.0esr: the following line should be removed for 38.1.0esr build
-# to enable updates
-#####################################
-
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
-
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
@@ -35,10 +25,16 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '38.0.1esr'
 releaseConfig['appVersion']          = '38.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_38_0_1esr'
 releaseConfig['partialUpdates']      = {
-    # TODO: pupulate this dictionary for 38.1.0esr
+
+    '38.0esr': {
+        'appVersion': '38.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_38_0esr',
+    },
+
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '38.0.1esrpre'
