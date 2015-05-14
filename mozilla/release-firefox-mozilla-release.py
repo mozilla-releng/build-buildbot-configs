@@ -21,18 +21,12 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.0'
-releaseConfig['appVersion']          = '38.0'
+releaseConfig['version']             = '38.0.1'
+releaseConfig['appVersion']          = '38.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_38_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_38_0_1'
 releaseConfig['partialUpdates']      = {
-
-    '37.0.1': {
-        'appVersion': '37.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_37_0_1',
-    },
 
     '37.0.2': {
         'appVersion': '37.0.2',
@@ -40,16 +34,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_37_0_2',
     },
 
-    '35.0.1': {
-        'appVersion': '35.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_35_0_1',
-    },
-
-    '38.0b9': {
+    '38.0': {
         'appVersion': '38.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_38_0b9',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_38_0',
     },
 
     '36.0.4': {
@@ -61,7 +49,7 @@ releaseConfig['partialUpdates']      = {
 }
 # What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
 # TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0.1/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -172,7 +160,7 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": True,
+        "enabled": False,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
