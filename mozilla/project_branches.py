@@ -111,6 +111,7 @@ PROJECT_BRANCHES = {
         'platforms': {
             # Limit to win64 for Bug 1164935
             'win64': {},
+            'win64-debug': {},
         },
     },
     'date': {
