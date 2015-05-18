@@ -1532,12 +1532,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
 
-# Pin repo to avoid bustage in v1.12.21, bug 1159548
+# v1.12.20 causes bug 1165727, using v1.12.16 instead
 for branch in BRANCHES:
     for platform in BRANCHES[branch]['platforms']:
         if BRANCHES[branch]['platforms'][platform].get('mozharness_config', {}).get('extra_args'):
             BRANCHES[branch]['platforms'][platform]['mozharness_config']['extra_args'].extend(
-                ['--repotool-revision', 'v1.12.20'])
+                ['--repotool-revision', 'v1.12.16'])
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
