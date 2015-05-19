@@ -159,7 +159,8 @@ releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-releaseConfig['enableAutomaticPushToMirrors'] = True
+# TODO: enable auto push before 39.0b2
+releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-beta'
