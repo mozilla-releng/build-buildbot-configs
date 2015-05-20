@@ -62,7 +62,6 @@ setMainFirefoxVersions(BRANCHES)
 
 PLATFORMS = {
     'linux64_gecko': {},
-    'macosx64_gecko': {},
     'macosx64-mulet': {},
     'emulator': {},
     'emulator-jb': {},
@@ -76,17 +75,6 @@ PLATFORMS['linux64_gecko']['env_name'] = 'linux-perf'
 PLATFORMS['linux64_gecko']['ubuntu64_vm-b2gdt'] = {'name': builder_prefix + "_ubuntu64_vm"}
 PLATFORMS['linux64_gecko']['stage_product'] = 'b2g'
 PLATFORMS['linux64_gecko']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
-
-PLATFORMS['macosx64_gecko']['slave_platforms'] = ['mountainlion-b2gdt', ]
-PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_macosx64"}
-PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
-PLATFORMS['macosx64_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'use_mozharness': True,
     'hg_bin': 'hg',
@@ -156,7 +144,6 @@ BRANCH_UNITTEST_VARS = {
     # turn on platforms as we get them running
     'platforms': {
         'linux64_gecko': {},
-        'macosx64_gecko': {},
         'macosx64-mulet': {},
         'emulator': {},
         'emulator-jb': {},
@@ -1256,110 +1243,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-    },
-    'macosx64_gecko': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'brand_name': 'Gecko',
-        'builds_before_reboot': 1,
-        'unittest-env': {
-            "MOZ_NO_REMOTE": '1',
-            "NO_EM_RESTART": '1',
-            "XPCOM_DEBUG_BREAK": 'warn',
-            "MOZ_CRASHREPORTER_NO_REPORT": '1',
-            # for extracting dmg's
-            "PAGER": '/bin/cat',
-        },
-        'enable_opt_unittests': False,
-        'enable_debug_unittests': False,
-        'mountainlion-b2gdt': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'gaia-integration': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_integration_config.py',
-                    ],
-                },
-                'gaia-js-integration-1': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 1, '--total-chunks', 4,
-                        ],
-                },
-                'gaia-js-integration-2': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 2, '--total-chunks', 4,
-                        ],
-                },
-                'gaia-js-integration-3': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 3, '--total-chunks', 4,
-                        ],
-                },
-                'gaia-js-integration-4': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 4, '--total-chunks', 4,
-                        ],
-                },
-                'gaia-ui-test': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                    ],
-                },
-                'gaia-ui-test-functional-1': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--gip-suite', 'functional',
-                        '--this-chunk', '1', '--total-chunks', 3,
-                    ],
-                },
-                'gaia-ui-test-functional-2': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--gip-suite', 'functional',
-                       '--this-chunk', '2', '--total-chunks', 3,
-                    ],
-                },
-                'gaia-ui-test-functional-3': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--gip-suite', 'functional',
-                        '--this-chunk', '3', '--total-chunks', 3,
-                    ],
-                },
-                'gaia-ui-test-unit': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--gip-suite', 'unit',
-                    ],
-                },
-                'gaia-ui-test-accessibility': {
-                    'extra_args': [
-                        '--cfg', 'marionette/gaia_ui_test_prod_config.py',
-                        '--gip-suite', 'accessibility',
-                    ],
-                },
-                'mochitest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
-                    ],
-                },
-                'reftest-sanity': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                    ],
-                },
-            },
-        },
-    },
+    },    
     'emulator': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -2530,7 +2414,6 @@ BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['de
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
   REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP
 BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['debug_unittest_suites'] += GAIA_JS_INTEGRATION[:]
-BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY
 BRANCHES['maple']['branch_name'] = "Maple"
 BRANCHES['maple']['repo_path'] = "projects/maple"
 BRANCHES['pine']['branch_name'] = "Pine"
@@ -2566,7 +2449,6 @@ def exclude_suites(slave_platform, branch, suites_to_be_excluded, from_opt_unitt
                                             if x[0] if x[0] not in suites_to_be_excluded]
 
 exclude_suites(('linux64_gecko', 'ubuntu64_vm-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
-exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 
 # new linux64_gecko tests as of gecko 32; OOP replaces their non-OOP variants
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
@@ -2591,7 +2473,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):
 # Use chunked Gip, Gij in 36+ (bug 1081246)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
     for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
-                           ('macosx64_gecko', 'mountainlion-b2gdt')):
+                           ('macosx64_gecko')):
         if slave_platform[0] in BRANCHES[name]['platforms']:
             BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GIP[:]
             if slave_platform[0] == 'linux64_gecko':
@@ -2600,7 +2482,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
 # ...and non-chunked Gip in earlier branches
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
     for slave_platform in (('linux64_gecko', 'ubuntu64_vm-b2gdt'),
-                           ('macosx64_gecko', 'mountainlion-b2gdt')):
+                           ('macosx64_gecko' )):
         if slave_platform[0] in BRANCHES[name]['platforms']:
             BRANCHES[name]['platforms'][slave_platform[0]][slave_platform[1]]['opt_unittest_suites'] += GAIA_UI[:]
             if slave_platform[0] == 'linux64_gecko':
