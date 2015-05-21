@@ -21,23 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.0.1'
-releaseConfig['appVersion']          = '38.0.1'
+releaseConfig['version']             = '38.0.5'
+releaseConfig['appVersion']          = '38.0.5'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_38_0_5'
 releaseConfig['partialUpdates']      = {
 
-    '37.0.2': {
-        'appVersion': '37.0.2',
+    '37.0.1': {
+        'appVersion': '37.0.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_37_0_2',
+        'baseTag': 'FIREFOX_37_0_1',
     },
 
-    '38.0': {
-        'appVersion': '38.0',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_38_0',
+    '35.0.1': {
+        'appVersion': '35.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_35_0_1',
     },
 
     '36.0.4': {
@@ -46,10 +46,16 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_36_0_4',
     },
 
+    '38.0.1': {
+        'appVersion': '38.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_38_0_1',
+    },
+
 }
 # What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
 # TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0.1/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0.5/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -62,8 +68,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'GECKO380_2015050320_RELBRANCH',
-        'relbranch': 'GECKO380_2015050320_RELBRANCH',
+        'revision': '3ef925962765',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
