@@ -22,12 +22,24 @@ releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.0b5'
+releaseConfig['version']             = '38.0b6'
 releaseConfig['appVersion']          = '38.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_0b5'
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_0b6'
 releaseConfig['partialUpdates']      = {
+
+    '38.0b3': {
+        'appVersion': '38.0',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_38_0b3',
+    },
+
+    '38.0b5': {
+        'appVersion': '38.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_0b5',
+    },
 
     '38.0b4': {
         'appVersion': '38.0',
@@ -44,8 +56,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '6117bc38a1fe',
-        'relbranch': None,
+        'revision': 'THUNDERBIRD_38_VERBRANCH',
+        'relbranch': 'THUNDERBIRD_38_VERBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
