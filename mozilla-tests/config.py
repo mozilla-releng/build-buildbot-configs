@@ -463,6 +463,17 @@ MOCHITEST_DT_4 = [
     }),
 ]
 
+MOCHITEST_DT_6 = [
+    ('mochitest-devtools-chrome', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-devtools-chrome-chunked'],
+        'blob_upload': True,
+        'script_maxtime': 4800,
+        'totalChunks': 6,
+    }),
+]
+
 MOCHITEST_BC_3 = [
     ('mochitest-browser-chrome', {
         'use_mozharness': True,
@@ -1926,6 +1937,10 @@ BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
+# Bug 1165962 - use more chunks for devtools on linux32 debug
+debug_suites = BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites']
+debug_suites = [x for x in debug_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
+BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = debug_suites + MOCHITEST_DT_6[:]
 
 loadSkipConfig(BRANCHES)
 

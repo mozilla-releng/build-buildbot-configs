@@ -1452,6 +1452,15 @@ PLATFORM_VARS = {
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'android': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'product_name': 'firefox',
             'unittest_platform': 'android-opt',
             'app_name': 'browser',
@@ -1525,6 +1534,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-api-9': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-9',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'product_name': 'firefox',
             'unittest_platform': 'android-api-9-opt',
             'app_name': 'browser',
@@ -1599,6 +1618,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-api-11': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-11',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'product_name': 'firefox',
             'unittest_platform': 'android-api-11-opt',
             'app_name': 'browser',
@@ -1673,6 +1702,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-x86': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'x86',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'product_name': 'firefox',
             'unittest_platform': 'android-x86-opt',
             'app_name': 'browser',
@@ -1740,6 +1779,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-debug': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'debug',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'enable_nightly': False,
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -1809,6 +1858,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-api-9-debug': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-9-debug',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'enable_nightly': False,
             'product_name': 'firefox',
             'app_name': 'browser',
@@ -1877,6 +1936,16 @@ PLATFORM_VARS = {
             'updates_enabled': False,
         },
         'android-api-11-debug': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-11-debug',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
             'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'android-api-11-debug',
@@ -2932,6 +3001,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
+
+# mozharness builds aren't available for android until version 41
+for name, branch in items_before(BRANCHES, 'gecko_version', 41):
+    for platform in branch['platforms'].keys():
+        if 'android' in platform:
+            branch['desktop_mozharness_builds_enabled'] = False
 
 # disable win64 for gecko < 36
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
