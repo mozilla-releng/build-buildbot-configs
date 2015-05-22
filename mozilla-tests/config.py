@@ -49,6 +49,7 @@ BRANCHES = {
         'platforms': {
             'macosx64': {},
             'win32': {},
+            'win64': {},
             'linux': {},
             'linux64': {},
         },
