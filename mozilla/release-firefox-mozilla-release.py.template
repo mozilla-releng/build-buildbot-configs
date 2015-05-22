@@ -35,9 +35,8 @@ releaseConfig['partialUpdates']      = {
     },
 {% endfor %}
 }
-# What's New Page for https://bugzilla.mozilla.org/show_bug.cgi?id=1133579.
-# TODO: Remove upon request. Should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
+# What's New Page, should be revisited with each release.
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
