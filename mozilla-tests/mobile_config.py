@@ -753,6 +753,10 @@ ANDROID_4_3_C3_DICT = {
     'debug_unittest_suites': [],
 }
 
+ANDROID_4_3_C3_TRUNK_DICT = {
+    'debug_unittest_suites': [],
+}
+
 ANDROID_4_3_AWS_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -2359,6 +2363,7 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
     elif suite[0].startswith('mochitest'):
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
@@ -2366,8 +2371,8 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     else:
-        ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)      
-        ANDROID_4_3_AWS_DICT['debug_unittest_suites'].append(suite)      
+        ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_AWS_DICT['debug_unittest_suites'].append(suite)
 
 # bug 1073772 - enable new apk split builders will ride the trains
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
@@ -2439,6 +2444,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
             'debug_unittest_suites': [],}
             BRANCHES[name]['platforms']['android-api-11']['panda_android']['opt_unittest_suites'] = []
 
+
 # bug 1030753 limit the debug tests run on trunk branches
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     # Loop removes it from any branch that gets beyond here
@@ -2479,6 +2485,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
                 continue
             if branch['platforms'][platform]['enable_debug_unittests'] is True:
                 BRANCHES[name]['platforms'][platform][slave_plat]['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL)
+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):    
+    if name in ('try', 'cedar' ):
+       continue
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if platform not in ('android-api-11'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue
+            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites']),}
+            BRANCHES[name]['platforms']['android-api-11']['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL)
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
