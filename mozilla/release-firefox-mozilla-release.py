@@ -165,11 +165,13 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": False,
+        "enabled": True,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
-        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
+        #"versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
+        # TODO: HACK HACK HACK HACK HACK REMOVE ME 
+        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % "38.0".replace(".", "\\."),
         "ruleId": 32,
         "requiresMirrors": False,
         "patcherConfig": "mozBeta-branch-patcher2.cfg",
