@@ -24,9 +24,15 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '38.0.5'
 releaseConfig['appVersion']          = '38.0.5'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
+releaseConfig['buildNumber']         = 4
 releaseConfig['baseTag']             = 'FIREFOX_38_0_5'
 releaseConfig['partialUpdates']      = {
+
+    '38.0.5': {
+        'appVersion': '38.0.5',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_38_0_5',
+    },
 
     '37.0.2': {
         'appVersion': '37.0.2',
@@ -67,7 +73,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '79f9cd31b4b1',
+        'revision': '19b9ffda6e2f',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -165,13 +171,11 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": True,
+        "enabled": False,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
-        #"versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
-        # TODO: HACK HACK HACK HACK HACK REMOVE ME 
-        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % "38.0".replace(".", "\\."),
+        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
         "ruleId": 32,
         "requiresMirrors": False,
         "patcherConfig": "mozBeta-branch-patcher2.cfg",
