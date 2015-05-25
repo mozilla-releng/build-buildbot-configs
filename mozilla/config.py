@@ -2210,12 +2210,14 @@ BRANCHES = {
         'platforms': {
             'linux': {},
             'linux64': {},
-            'win32': {},
             'macosx64': {},
+            'win32': {},
+            'win64': {},
             'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
+            'win64-debug': {},
         },
     },
     'mozilla-b2g32_v2_0': {
