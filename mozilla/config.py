@@ -3008,7 +3008,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
 for name, branch in items_before(BRANCHES, 'gecko_version', 41):
     for platform in branch['platforms'].keys():
         if 'android' in platform:
-            branch['desktop_mozharness_builds_enabled'] = False
+            # we don't want to disable the branch level item: "desktop_mozharness_builds_enabled"
+            # we do want to remove the platform level item: "mozharness_desktop_build"
+            del branch['platforms'][platform]['mozharness_desktop_build']
 
 # disable win64 for gecko < 36
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
