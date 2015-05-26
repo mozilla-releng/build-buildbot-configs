@@ -576,6 +576,17 @@ REFTEST_TWO_CHUNKS = [
     }),
 ]
 
+REFTEST_FOUR_CHUNKS = [
+    ('reftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 4,
+    }),
+]
+
 REFTEST_NO_IPC = [
     ('jsreftest', {
         'use_mozharness': True,
@@ -2133,32 +2144,21 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_IPC
 
-# reftest is chunked on linux32 for gecko >= 36
+# reftest is chunked x2 on opt and x4 on debug linux platforms, gecko >= 36
 for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in ['ubuntu32_vm']:
+            if slave_platform not in ('ubuntu64_vm', 'ubuntu32_vm', 'ubuntu64-asan_vm'):
                 continue
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
+                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_FOUR_CHUNKS
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
+
                     opt_suites = BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites']
                     opt_suites = [x for x in opt_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] = opt_suites
-                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
-                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
-                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
-
-# reftest is chunked on linux64 debug for gecko >= 39
-for platform in PLATFORMS.keys():
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in ['ubuntu64_vm']:
-                continue
-            if platform in BRANCHES[name]['platforms']:
-                if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
-                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'reftest'] + REFTEST_TWO_CHUNKS
-                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites
 
 # Enable luciddream on gecko 39+
 for platform in PLATFORMS.keys():
