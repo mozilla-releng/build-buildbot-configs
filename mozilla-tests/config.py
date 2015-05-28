@@ -1992,10 +1992,6 @@ BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
-# Bug 1165962 - use more chunks for devtools on linux32 debug
-debug_suites = BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites']
-debug_suites = [x for x in debug_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
-BRANCHES['cedar']['platforms']['linux']['ubuntu32_vm']['debug_unittest_suites'] = debug_suites + MOCHITEST_DT_8[:]
 
 loadSkipConfig(BRANCHES)
 
@@ -2143,6 +2139,18 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_IPC
+
+# Bug 1165962 - use more chunks for devtools on linux32 debug, gecko >= 41
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in ('ubuntu32_vm',):
+                continue
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
+                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites + MOCHITEST_DT_8[:]
 
 # reftest is chunked x2 on opt and x4 on debug linux platforms, gecko >= 36
 for platform in PLATFORMS.keys():
