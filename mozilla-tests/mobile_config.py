@@ -2364,6 +2364,9 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
         ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'].append(suite)
+    elif suite[0].startswith('xpcshell'):
+        ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)

@@ -1457,6 +1457,7 @@ PLATFORM_VARS = {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1540,6 +1541,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'api-9',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1624,6 +1626,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'api-11',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1708,6 +1711,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'x86',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1785,6 +1789,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1864,6 +1869,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'api-9-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -1942,6 +1948,7 @@ PLATFORM_VARS = {
                 'extra_args': [
                     '--config', 'builds/releng_base_android_64_builds.py',
                     '--custom-build-variant-cfg', 'api-11-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
                 'script_maxtime': int(5.5 * 3600),
@@ -2998,8 +3005,9 @@ for b in ('b2g-inbound',):
             BRANCHES[b]['platforms'][p]['enable_checktests'] = False
 # END B2G's INBOUND
 
-# enable mozharness desktop builds across m-c and related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
+ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
+# enable mozharness desktop builds on m-a, m-c, and m-c related branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', ma_gecko_version):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
@@ -3008,7 +3016,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
 for name, branch in items_before(BRANCHES, 'gecko_version', 41):
     for platform in branch['platforms'].keys():
         if 'android' in platform:
-            branch['desktop_mozharness_builds_enabled'] = False
+            # we don't want to disable the branch level item: "desktop_mozharness_builds_enabled"
+            # we do want to remove the platform level item: "mozharness_desktop_build"
+            del branch['platforms'][platform]['mozharness_desktop_build']
 
 # disable win64 for gecko < 36
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):
