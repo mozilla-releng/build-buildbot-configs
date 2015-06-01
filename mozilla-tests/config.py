@@ -2140,9 +2140,9 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_IPC
 
-# Bug 1165962 - use more chunks for devtools on linux32 debug, gecko >= 41
+# Bug 1165962 - use more chunks for devtools on linux32 debug, gecko >= 40
 for platform in PLATFORMS.keys():
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in ('ubuntu32_vm',):
                 continue
