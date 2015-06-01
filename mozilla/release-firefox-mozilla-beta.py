@@ -21,17 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '39.0b1'
+releaseConfig['version']             = '39.0b2'
 releaseConfig['appVersion']          = '39.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_39_0b1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_39_0b2'
 releaseConfig['partialUpdates']      = {
 
     '38.0.5b3': {
         'appVersion': '38.0.5',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_38_0_5b3',
+    },
+
+    '39.0b1': {
+        'appVersion': '39.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_39_0b1',
     },
 
 }
@@ -46,7 +52,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'd13593be924c',
+        'revision': 'a2f619521d74',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -159,8 +165,7 @@ releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
 
 # Misc configuration
 releaseConfig['enable_repo_setup'] = False
-# TODO: enable auto push before 39.0b2
-releaseConfig['enableAutomaticPushToMirrors'] = False
+releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-beta'
