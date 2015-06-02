@@ -2367,6 +2367,7 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
     elif suite[0].startswith('xpcshell'):
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('crashtest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
@@ -2505,7 +2506,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):
             BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
             'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites']),}
-            BRANCHES[name]['platforms']['android-api-11']['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL)
+            BRANCHES[name]['platforms']['android-api-11']['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
