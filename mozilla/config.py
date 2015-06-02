@@ -2565,8 +2565,6 @@ BRANCHES['mozilla-aurora']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-aurora' % (GLOBAL_VARS['hgurl'])
 BRANCHES['mozilla-aurora']['enable_multi_locale'] = True
 BRANCHES['mozilla-aurora']['upload_mobile_symbols'] = True
-# Enable desktop repacks with mozharness
-BRANCHES['mozilla-aurora']['desktop_mozharness_repacks_enabled'] = True
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
