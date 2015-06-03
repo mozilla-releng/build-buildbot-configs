@@ -1959,6 +1959,7 @@ BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] 
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g34_v2_1s']['pgo_strategy'] = None
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64']['ubuntu64_vm']['debug_unittest_suites'] = []
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
@@ -1993,7 +1994,7 @@ BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
-loadSkipConfig(BRANCHES,"desktop")
+loadSkipConfig(BRANCHES)
 
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
@@ -2284,6 +2285,11 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
     if 'win32' not in branch['platforms']:
         continue
+
+    if name == 'mozilla-esr38':
+        branch['platforms']['win32']['talos_slave_platforms'] = []
+        branch['platforms']['win64']['talos_slave_platforms'] = []
+
     if 'slave_platforms' in branch['platforms']['win32']:
         if 'win8' in branch['platforms']['win32']['slave_platforms']:
             branch['platforms']['win32']['slave_platforms'].remove('win8')
@@ -2317,7 +2323,7 @@ for branch in include_yosemite:
     #disable talos on branches that have 10.10 enabled excluding b2g-inbound
     #which didn't have talos tests before.
     # We don't track talos on mozilla-release, lets ensure we don't run jobs we don't need.
-    if branch in ['b2g-inbound', 'mozilla-release']:
+    if branch in ['b2g-inbound', 'mozilla-release', 'mozilla-esr38']:
        continue
     BRANCHES[branch]['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard','yosemite']
 
