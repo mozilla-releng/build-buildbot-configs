@@ -817,7 +817,6 @@ BRANCHES['comm-esr31']['enable_valgrind'] = False
 ######## comm-esr38
 BRANCHES['comm-esr38']['repo_path'] = 'releases/comm-esr38'
 BRANCHES['comm-esr38']['moz_repo_path'] = 'releases/mozilla-esr38'
-BRANCHES['comm-esr38']['mozilla_dir'] = 'mozilla'
 BRANCHES['comm-esr38']['update_channel'] = 'nightly-esr38'
 BRANCHES['comm-esr38']['skip_blank_repos'] = True
 BRANCHES['comm-esr38']['call_client_py'] = True
