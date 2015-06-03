@@ -2298,6 +2298,8 @@ for branch in BRANCHES.keys():
 # - TalosFactory options
 # - Which platforms to run on
 
+BRANCHES['mozilla-release']['enable_talos'] = False
+
 # Let's load the defaults
 for branch in BRANCHES.keys():
     loadDefaultValues(BRANCHES, branch, BRANCHES[branch])
