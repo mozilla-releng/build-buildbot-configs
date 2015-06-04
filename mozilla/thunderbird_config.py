@@ -1061,6 +1061,9 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
+# This does not currently affect Thunderbird builds since mozharness is not
+# enabled yet.
+
 # Enable mozharness pinning
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['script_repo_manifest'] = \
