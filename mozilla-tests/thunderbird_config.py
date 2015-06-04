@@ -7,7 +7,7 @@ import thunderbird_localconfig
 reload(thunderbird_localconfig)
 import master_common
 reload(master_common)
-from master_common import setMainCommVersions, items_before
+from master_common import setMainCommVersions, items_before, items_at_least
 import thunderbird_project_branches
 reload(thunderbird_project_branches)
 from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
@@ -438,6 +438,12 @@ for platform in PLATFORMS.keys():
                     except ValueError:
                         # wasn't in the list anyways
                         pass
+
+# Enable mozharness pinning
+for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
+    branch['script_repo_manifest'] = \
+        "https://hg.mozilla.org/%(moz_repo_path)s/raw-file/default/" + \
+        "testing/mozharness/mozharness.json"
 
 if __name__ == "__main__":
     import sys
