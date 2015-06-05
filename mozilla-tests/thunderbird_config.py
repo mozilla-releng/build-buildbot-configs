@@ -353,27 +353,33 @@ for branch in BRANCHES.keys():
 ######## comm-central
 BRANCHES['comm-central']['branch_name'] = "Thunderbird"
 BRANCHES['comm-central']['repo_path'] = "comm-central"
+BRANCHES['comm-central']['moz_repo_path'] = "mozilla-central"
 #BRANCHES['comm-central']['build_branch'] = "1.9.2"
 BRANCHES['comm-central']['pgo_strategy'] = None
 
 ######## comm-beta
 BRANCHES['comm-beta']['pgo_strategy'] = None
 BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
+BRANCHES['comm-beta']['moz_repo_path'] = "releases/mozilla-beta"
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
+BRANCHES['comm-aurora']['moz_repo_path'] = "releases/mozilla-aurora"
 
 ######## comm-esr31
 BRANCHES['comm-esr31']['pgo_strategy'] = None
 BRANCHES['comm-esr31']['repo_path'] = "releases/comm-esr31"
+BRANCHES['comm-esr31']['moz_repo_path'] = "releases/mozilla-esr31"
 
 ######## comm-esr38
 BRANCHES['comm-esr38']['pgo_strategy'] = None
 BRANCHES['comm-esr38']['repo_path'] = "releases/comm-esr38"
+BRANCHES['comm-esr38']['moz_repo_path'] = "releases/mozilla-esr38"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
+BRANCHES['try-comm-central']['moz_repo_path'] = "mozilla-central"
 
 # Disable Rev3 winxp and win7 machines for all branches
 for branch in set(BRANCHES.keys()):
