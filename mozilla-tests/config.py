@@ -1994,7 +1994,7 @@ BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REF
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
-loadSkipConfig(BRANCHES)
+loadSkipConfig(BRANCHES,"desktop")
 
 # Filter the tests that are enabled on holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
