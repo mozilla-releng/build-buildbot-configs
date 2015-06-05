@@ -21,35 +21,29 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.0.5'
-releaseConfig['appVersion']          = '38.0.5'
+releaseConfig['version']             = '38.0.6'
+releaseConfig['appVersion']          = '38.0.6'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 4
-releaseConfig['baseTag']             = 'FIREFOX_38_0_5'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_38_0_6'
 releaseConfig['partialUpdates']      = {
 
     '38.0.5': {
         'appVersion': '38.0.5',
-        'buildNumber': 3,
+        'buildNumber': 4,
         'baseTag': 'FIREFOX_38_0_5',
+    },
+
+    '35.0.1': {
+        'appVersion': '35.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_35_0_1',
     },
 
     '37.0.2': {
         'appVersion': '37.0.2',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_37_0_2',
-    },
-
-    '38.0': {
-        'appVersion': '38.0',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_38_0',
-    },
-
-    '36.0.4': {
-        'appVersion': '36.0.4',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_36_0_4',
     },
 
     '38.0.1': {
@@ -60,7 +54,7 @@ releaseConfig['partialUpdates']      = {
 
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0.5/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/38.0.6/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -73,7 +67,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '19b9ffda6e2f',
+        'revision': '8ec2bf7b769f',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
