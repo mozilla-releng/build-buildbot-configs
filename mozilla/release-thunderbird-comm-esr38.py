@@ -5,14 +5,7 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
-# HACK ALERT
-# TODO: enable updates when 38.0 ships
-#####################################
 
-releaseConfig['skip_updates'] = True
-
-#####################################
-# END OF HACK ALERT
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
@@ -28,15 +21,34 @@ releaseConfig['messagePrefix']       = '[release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
-releaseConfig['mozilla_dir']         = 'mozilla'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.0'
-releaseConfig['appVersion']          = '38.0'
+releaseConfig['version']             = '38.0.1'
+releaseConfig['appVersion']          = '38.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_0'
-releaseConfig['partialUpdates']      = {}
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_0_1'
+releaseConfig['partialUpdates']      = {
+
+    '31.6.0': {
+        'appVersion': '31.6.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_6_0',
+    },
+
+    '31.7.0': {
+        'appVersion': '31.7.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_7_0',
+    },
+
+    '31.5.0': {
+        'appVersion': '31.5.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_31_5_0',
+    },
+
+}
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -45,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr38',
         'path': 'releases/comm-esr38',
-        'revision': '1234567890',
+        'revision': '720a4dbe6184',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -57,8 +69,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '1234567890',
-        'relbranch': None,
+        'revision': 'THUNDERBIRD_38_0_20150603_RELBRANCH',
+        'relbranch': 'THUNDERBIRD_38_0_20150603_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
