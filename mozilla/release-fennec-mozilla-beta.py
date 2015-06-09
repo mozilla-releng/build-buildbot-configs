@@ -1,4 +1,3 @@
-
 # ATTENTION:
 # If you are editing the non-template version of this file (eg, doesn't end
 # with .template), your change WILL get overwritten. If you're adding, removing,
@@ -25,7 +24,7 @@ releaseConfig['relbranchPrefix']     = 'MOBILE'
 releaseConfig['version']             = '39.0b4'
 releaseConfig['appVersion']          = '39.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FENNEC_39_0b4'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
