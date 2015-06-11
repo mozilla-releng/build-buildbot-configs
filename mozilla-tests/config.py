@@ -59,11 +59,7 @@ BRANCHES = {
         'datazilla_url': None,
         'gecko_version': 32,
         'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
             'linux': {},
-            'linux64': {},
         },
         'lock_platforms': True,
     },
@@ -71,11 +67,7 @@ BRANCHES = {
         'datazilla_url': None,
         'gecko_version': 34,
         'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
             'linux': {},
-            'linux64': {},
         },
         'lock_platforms': True,
     },
@@ -1940,20 +1932,12 @@ BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
 ######### mozilla-b2g32_v2_0
 BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['macosx64']['slave_platforms'] = ['snowleopard']
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g32_v2_0']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
 BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['macosx64']['slave_platforms'] = ['snowleopard']
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1s
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"

@@ -2230,13 +2230,7 @@ BRANCHES = {
         'gecko_version': 32,
         'platforms': {
             'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
             'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
         },
     },
     'mozilla-b2g34_v2_1': {
@@ -2246,13 +2240,7 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
             'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
         },
     },
     'mozilla-b2g34_v2_1s': {
