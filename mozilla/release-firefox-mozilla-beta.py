@@ -155,6 +155,7 @@ releaseConfig['updateChannels'] = {
         }
     }
 }
+releaseConfig['ui_update_tests'] = True
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = True
