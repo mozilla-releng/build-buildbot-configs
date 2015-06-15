@@ -231,7 +231,7 @@ for platform, platform_config in PLATFORMS.items():
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64', 'win64'))
 TALOS_PLATFORMS_NO_OSX = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'win64'))
 NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp-ix']
-NO_OSX_WINXP = [platform for platform in NO_WINXP if platform != 'yosemite']
+NO_OSX = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'win64'))
 WIN7_ONLY = ['win7-ix']
 WIN8_ONLY = ['win8_64']
 LINUX64_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64',))
@@ -269,7 +269,7 @@ SUITES = {
     'tp5o-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_OSX_WINXP),
+        'options': (TALOS_TP_NEW_OPTS, NO_OSX),
     },
     'tp5o-osx-e10s': {
         'enable_by_default': False,
@@ -284,7 +284,7 @@ SUITES = {
     'g1-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_OSX_WINXP),
+        'options': (TALOS_TP_NEW_OPTS, NO_OSX),
     },
     'g1-osx-e10s': {
         'enable_by_default': False,
@@ -359,7 +359,7 @@ SUITES = {
     'dromaeojs-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
-        'options': ({}, NO_OSX_WINXP),
+        'options': ({}, NO_OSX),
     },
     'chromez': {
         'enable_by_default': True,
@@ -369,7 +369,7 @@ SUITES = {
     'chromez-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_OSX_WINXP),
+        'options': ({}, NO_OSX),
     },
     'chromez-osx-e10s': {
         'enable_by_default': False,
@@ -1877,19 +1877,19 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX_WINXP)
+BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
-BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX_WINXP)
+BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX_WINXP)
+BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
 BRANCHES['mozilla-central']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
 BRANCHES['mozilla-central']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_OSX_WINXP)
+BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX_WINXP)
-BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_OSX_WINXP)
+BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
                                                   'g2-e10s',
