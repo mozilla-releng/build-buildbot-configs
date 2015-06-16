@@ -50,18 +50,21 @@ GLOBAL_VARS.update({
         'dolphin_eng': {},
         'dolphin-512': {},
         'dolphin-512_eng': {},
-
         # Graphene builds. These are a different app (ie, not B2G) and would
         # have their own config files in an ideal world, but it's not worth
         # the effort at this point.
         'linux64_graphene': {},
         'macosx64_graphene': {},
         'win64_graphene': {},
+        # Horizon is a browser variant based on Graphene.
+        'linux64_horizon': {},
+        'macosx64_horizon': {},
+        'win64_horizon': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
     'enable_xulrunner': False,
-    'enabled_products': ['b2g', 'graphene'],
+    'enabled_products': ['b2g', 'graphene', 'horizon'],
     'product_prefix': 'b2g',
     'unittest_suites': [],
     # XXX: this seems like it should be at the platform level
@@ -1050,8 +1053,6 @@ PLATFORM_VARS = {
         'enable_periodic': True,
         'enable_dep': False,
     },
-
-
     "linux64_graphene": {
         "mozharness_python": "/tools/buildbot/bin/python",
         "reboot_command": [
@@ -1119,6 +1120,73 @@ PLATFORM_VARS = {
         "slaves": SLAVES["win64-rev2"],
         "try_by_default": False,
     },
+    "linux64_horizon": {
+        "mozharness_python": "/tools/buildbot/bin/python",
+        "reboot_command": [
+            "/tools/checkouts/mozharness/external_tools/count_and_reboot.py",
+            "-f", "../reboot_count.txt", "-n", "1", "-z"
+        ],
+        "mozharness_repo_cache": "/tools/checkouts/mozharness",
+        "tools_repo_cache": "/tools/checkouts/build-tools",
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_linux_64_builds.py",
+                "--custom-build-variant-cfg", "horizon",
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "b2g",
+        "base_name": "horizon_%(branch)s_linux64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["mock"],
+        "try_by_default": False,
+    },
+    "macosx64_horizon": {
+        "mozharness_python": "/tools/buildbot/bin/python",
+        "reboot_command": ["scripts/external_tools/count_and_reboot.py",
+                           "-f", "../reboot_count.txt", "-n", "1", "-z"],
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_mac_64_builds.py",
+                "--custom-build-variant-cfg", "horizon",
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "b2g",
+        "base_name": "horizon_%(branch)s_macosx64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["macosx64-lion"],
+        "try_by_default": False,
+    },
+    "win64_horizon": {
+        "mozharness_python": ["c:/mozilla-build/python27/python", "-u"],
+        "reboot_command": [
+            "c:/mozilla-build/python27/python", "-u",
+            "scripts/external_tools/count_and_reboot.py",
+            "-f", "../reboot_count.txt","-n", "1", "-z"
+        ],
+        "mozharness_desktop_build": {
+            "script_name": "scripts/fx_desktop_build.py",
+            "extra_args": [
+                "--config", "builds/releng_base_windows_64_builds.py",
+                "--custom-build-variant-cfg", "horizon",
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+            ],
+            "script_timeout": 3 * 3600,
+            "script_maxtime": int(5.5 * 3600),
+        },
+        "stage_product": "b2g",
+        "base_name": "horizon_%(branch)s_win64",
+        "platform_objdir": OBJDIR,
+        "slaves": SLAVES["win64-rev2"],
+        "try_by_default": False,
+    },
 }
 
 for platform in PLATFORM_VARS.values():
@@ -1162,6 +1230,9 @@ BRANCHES = {
             'linux64_graphene': {},
             'macosx64_graphene': {},
             'win64_graphene': {},
+            'linux64_horizon': {},
+            'macosx64_horizon': {},
+            'win64_horizon': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-jb': {},
@@ -1427,6 +1498,9 @@ BRANCHES['try']['platforms']['win32-mulet']['enable_periodic'] = False
 BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win64_graphene']['slaves'] = TRY_SLAVES['win64-rev2']
+BRANCHES['try']['platforms']['linux64_horizon']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['macosx64_horizon']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['win64_horizon']['slaves'] = TRY_SLAVES['win64-rev2']
 
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
@@ -1453,7 +1527,7 @@ BRANCHES['try']['platforms']['emulator-l-debug']['mozharness_config']['extra_arg
 BRANCHES['try']['platforms']['emulator-l-debug']['enable_dep'] = True
 BRANCHES['try']['platforms']['emulator-l-debug']['enable_periodic'] = False
 
-# Graphene is only enabled on Larch and Try for now.
+# Graphene and Horizon are only enabled on Larch and Try for now.
 for name, branch in BRANCHES.iteritems():
     if name not in ("larch", "try"):
         if "linux64_graphene" in branch["platforms"]:
@@ -1462,6 +1536,12 @@ for name, branch in BRANCHES.iteritems():
             del branch["platforms"]["macosx64_graphene"]
         if "win64_graphene" in branch["platforms"]:
             del branch["platforms"]["win64_graphene"]
+        if "linux64_horizon" in branch["platforms"]:
+            del branch["platforms"]["linux64_horizon"]
+        if "macosx64_horizon" in branch["platforms"]:
+            del branch["platforms"]["macosx64_horizon"]
+        if "win64_horizon" in branch["platforms"]:
+            del branch["platforms"]["win64_horizon"]
 
 # Enable win32/macosx64 mulet in gecko 36+
 for name, branch in items_before(BRANCHES, 'gecko_version', 36):

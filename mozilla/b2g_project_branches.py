@@ -172,6 +172,9 @@ PROJECT_BRANCHES = {
             "linux64_graphene": {},
             "macosx64_graphene": {},
             "win64_graphene": {},
+            "linux64_horizon": {},
+            "macosx64_horizon": {},
+            "win64_horizon": {},
         }
     },
     'maple': {
