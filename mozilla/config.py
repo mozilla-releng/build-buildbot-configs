@@ -2183,15 +2183,12 @@ BRANCHES = {
     },
     'mozilla-release': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-beta': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-aurora': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-esr31': {
         'merge_builds': False,
@@ -2211,7 +2208,6 @@ BRANCHES = {
     },
     'mozilla-esr38': {
         'merge_builds': False,
-        'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 38,
         'platforms': {
@@ -2234,13 +2230,7 @@ BRANCHES = {
         'gecko_version': 32,
         'platforms': {
             'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
             'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
         },
     },
     'mozilla-b2g34_v2_1': {
@@ -2250,13 +2240,7 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
             'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
         },
     },
     'mozilla-b2g34_v2_1s': {
@@ -2266,7 +2250,6 @@ BRANCHES = {
         'gecko_version': 34,
         'platforms': {
             'linux': {},
-            'linux64': {},
         },
     },
     'mozilla-b2g37_v2_2': {
