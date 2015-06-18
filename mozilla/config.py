@@ -2183,15 +2183,12 @@ BRANCHES = {
     },
     'mozilla-release': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-beta': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-aurora': {
         'merge_builds': False,
-        'branch_projects': []
     },
     'mozilla-esr31': {
         'merge_builds': False,
@@ -2211,7 +2208,6 @@ BRANCHES = {
     },
     'mozilla-esr38': {
         'merge_builds': False,
-        'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 38,
         'platforms': {
