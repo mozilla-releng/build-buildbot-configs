@@ -2248,7 +2248,9 @@ BRANCHES = {
         'branch_projects': [],
         'lock_platforms': True,
         'gecko_version': 34,
-        'platforms': {},
+        'platforms': {
+            'linux': {},
+        },
     },
     'mozilla-b2g37_v2_2': {
         'merge_builds': False,
