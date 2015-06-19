@@ -150,8 +150,13 @@ PROJECT_BRANCHES = {
         'enable_valgrind': False,
         'lock_platforms': True,
         'platforms': {
-            'linux': {},
-            'linux64': {},
+            # dep signing with nightly key, see bug 1176152
+            'linux': {
+                'dep_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'dep_signing_servers': 'nightly-signing',
+            },
             'linux-debug': {},
             'linux64-debug': {},
         },
