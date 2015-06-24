@@ -52,6 +52,12 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_34_0_5',
     },
 
+    '39.0b7': {
+        'appVersion': '39.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_39_0b7',
+    },
+
 }
 # What's New Page, should be revisited with each release.
 # releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/39.0/whatsnew/?oldversion=%OLD_VERSION%'
