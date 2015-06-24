@@ -22,11 +22,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '31.7.0esr'
-releaseConfig['appVersion']          = '31.7.0'
+releaseConfig['version']             = '31.8.0esr'
+releaseConfig['appVersion']          = '31.8.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_31_7_0esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_31_8_0esr'
 releaseConfig['partialUpdates']      = {
 
     '31.6.0esr': {
@@ -41,22 +41,22 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_31_5_3esr',
     },
 
-    '31.5.2esr': {
-        'appVersion': '31.5.2',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_5_2esr',
+    '31.7.0esr': {
+        'appVersion': '31.7.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_31_7_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '31.7.0esrpre'
+releaseConfig['nextAppVersion']      = '31.8.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr31',
         'path': 'releases/mozilla-esr31',
-        'revision': '7f3854a8ddcf',
+        'revision': '7707a37fe477',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
