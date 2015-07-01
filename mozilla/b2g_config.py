@@ -456,7 +456,8 @@ PLATFORM_VARS = {
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            # bug 1175701 - support pre and post pupppet slave buildbot exe paths
+            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
@@ -519,7 +520,8 @@ PLATFORM_VARS = {
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            # bug 1175701 - support pre and post pupppet slave buildbot exe paths
+            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
@@ -586,7 +588,8 @@ PLATFORM_VARS = {
             'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            # bug 1175701 - support pre and post pupppet slave buildbot exe paths
+            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
