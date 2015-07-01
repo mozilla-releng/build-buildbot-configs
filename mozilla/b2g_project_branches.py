@@ -92,6 +92,7 @@ PROJECT_BRANCHES = {
         },
     },
     'ash': {
+        'mozharness_archiver_endpoint': 'mozharness',
         'enable_nightly': True,
         'platforms': {
             'nexus-4': {
