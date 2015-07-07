@@ -23,11 +23,11 @@ releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.1.0esr'
+releaseConfig['version']             = '38.1.0'
 releaseConfig['appVersion']          = '38.1.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_1_0esr'
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_1_0'
 releaseConfig['partialUpdates']      = {
 
     '31.6.0': {
