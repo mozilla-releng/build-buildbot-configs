@@ -41,6 +41,10 @@ GLOBAL_VARS = {
     'mozharness_tag': 'production',
     'script_repo_manifest': 'https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/' + \
                             'testing/mozharness/mozharness.json',
+    # mozharness_archiver_repo_path tells the factory to use a copy of mozharness from within the
+    #  gecko tree and also allows us to overwrite which gecko repo to use. Useful for platforms
+    # like Thunderbird
+    'mozharness_archiver_repo_path': '%(repo_path)s',
     'use_mozharness_repo_cache': True,
     'multi_locale_merge': True,
     'default_build_space': 5,
