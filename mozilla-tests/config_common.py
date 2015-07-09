@@ -19,6 +19,10 @@ def loadDefaultValues(BRANCHES, branch, branchConfig):
     BRANCHES[branch]['mozharness_talos'] = True
     BRANCHES[branch]['script_repo_manifest'] = "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
                                                "testing/mozharness/mozharness.json"
+    # mozharness_archiver_repo_path tells the factory to use a copy of mozharness from within the
+    #  gecko tree and also allows us to overwrite which gecko repo to use. Useful for platforms
+    # like Thunderbird
+    BRANCHES[branch]['mozharness_archiver_repo_path'] = '%(repo_path)s'
 
 
 def loadCustomTalosSuites(BRANCHES, SUITES, branch, branchConfig):

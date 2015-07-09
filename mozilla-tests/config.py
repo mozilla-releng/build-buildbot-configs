@@ -2226,14 +2226,15 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE[:]
 
-# Enable e10s Linux mochitests on trunk branches
-# Enable e10s browser-chrome mochitests on trunk branches, opt builds only for all platforms (not ready for Xp).
-# Enable e10s devtools tests for Linux opt on trunk branches
-# Enable e10s reftests/crashtests for Linux opt on trunk branches
-# Enable e10s marionette tests for Linux32 opt on trunk branches
+# On trunk and Aurora:
+#   Enable e10s Linux mochitests
+#   Enable e10s browser-chrome mochitests, opt builds only for all platforms (not ready for Xp).
+#   Enable e10s devtools tests for Linux opt
+#   Enable e10s reftests/crashtests for Linux opt
+#   Enable e10s marionette tests for Linux32 opt
 # Fix this to a certain gecko version once e10s starts riding the trains
-mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mc_gecko_version):
+aurora_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
+for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_version):
     if name == "holly": # On Holly we use normal mochitest as e10s ones
         continue
     for platform in PLATFORMS.keys():
