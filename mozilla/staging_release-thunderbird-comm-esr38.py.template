@@ -156,6 +156,9 @@ releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
+releaseConfig['bouncer_aliases'] = {
+    'Thunderbird-%(version)s': 'thunderbird-latest',
+}
 
 # Product details config
 releaseConfig["productDetailsRepo"] = "svn+ssh://tbirdbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"
