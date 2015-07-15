@@ -240,15 +240,6 @@ MOCHITEST_CHROME = [
     ),
 ]
 
-MOCHITEST_EMULATOR_JB = [
-    ('mochitest-1', {'suite': 'mochitest-plain',
-                     'use_mozharness': True,
-                     'script_path': 'scripts/b2g_emulator_unittest.py',
-                     'blob_upload': True,
-                     },
-     ),
-]
-
 MOCHITEST_MULET_PLAIN = [
     ('mochitest-1', {'suite': 'mochitest-plain',
                                  'use_mozharness': True,
@@ -2522,14 +2513,10 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-lg-emulator']['opt_unittest_suites'] = MOCHITEST_MEDIA
-BRANCHES['cedar']['platforms']['emulator-jb']['ubuntu64_vm-b2g-emulator-jb']['opt_unittest_suites'] = MOCHITEST_EMULATOR_JB[:]
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['opt_unittest_suites'] = \
     MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + CPPUNIT + MOCHITEST_CHROME
 BRANCHES['cedar']['platforms']['emulator-kk']['ubuntu64_vm-b2g-emulator-kk']['debug_unittest_suites'] = \
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED + CPPUNIT
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-  REFTEST_DESKTOP + GAIA_UI_OOP + GAIA_UNITTESTS_OOP
-BRANCHES['cedar']['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['debug_unittest_suites'] += GAIA_JS_INTEGRATION[:]
 BRANCHES['cedar']['platforms']['macosx64_gecko']['mountainlion-b2gdt']['opt_unittest_suites'] += MOCHITEST_DESKTOP + REFTEST_DESKTOP_SANITY
 BRANCHES['maple']['branch_name'] = "Maple"
 BRANCHES['maple']['repo_path'] = "projects/maple"
@@ -2565,7 +2552,6 @@ def exclude_suites(slave_platform, branch, suites_to_be_excluded, from_opt_unitt
             slave_p['debug_unittest_suites'] = [x for x in slave_p['debug_unittest_suites']
                                             if x[0] if x[0] not in suites_to_be_excluded]
 
-exclude_suites(('linux64_gecko', 'ubuntu64_vm-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 exclude_suites(('macosx64_gecko', 'mountainlion-b2gdt'), 'cedar', ('gaia-ui-test',), True, True)
 
 # new linux64_gecko tests as of gecko 32; OOP replaces their non-OOP variants

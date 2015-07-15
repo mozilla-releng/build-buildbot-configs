@@ -416,7 +416,6 @@ PLATFORM_VARS = {
         'talos_masters': None,
         'test_pretty_names': False,
         'tooltool_manifest_src': 'b2g/dev/config/tooltool-manifests/macosx64/releng.manifest',
-        'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
         'enable_ccache': True,
     },
     'win32_gecko': {
@@ -457,7 +456,7 @@ PLATFORM_VARS = {
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
@@ -521,7 +520,7 @@ PLATFORM_VARS = {
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,
@@ -589,7 +588,7 @@ PLATFORM_VARS = {
             'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
             'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
             # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             'WGET_OPTS': '-q -c',
         },
         'enable_opt_unittests': False,

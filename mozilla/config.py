@@ -214,7 +214,6 @@ PLATFORM_VARS = {
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/linux32/l10n.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
@@ -339,7 +338,6 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/linux64/l10n.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
@@ -782,7 +780,6 @@ PLATFORM_VARS = {
             'enable_build_analysis': False,
             'test_pretty_names': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/linux64/l10n.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
@@ -888,7 +885,6 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
             'enable_ccache': True,
         },
         'win32': {
@@ -951,7 +947,7 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-                'PATH': "${MOZILLABUILD}nsis-3.0b1;${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             },
             'enable_checktests': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
@@ -965,7 +961,6 @@ PLATFORM_VARS = {
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/win32/l10n.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'win64': {
@@ -1027,7 +1022,7 @@ PLATFORM_VARS = {
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-                'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             },
             'enable_opt_unittests': False,
             'enable_checktests': True,
@@ -1045,7 +1040,6 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
-            'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/win64/l10n.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
         'linux-debug': {
@@ -1391,7 +1385,7 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-                'PATH': "${MOZILLABUILD}nsis-3.0b1;${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
             'enable_checktests': True,
@@ -1444,7 +1438,7 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
                 # bug 1175701 - support pre and post pupppet slave buildbot exe paths
-                'PATH': "${MOZILLABUILD}nsis-3.0b1;${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbot-0.8.4-pre-moz6\\scripts;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
             },
             'enable_unittests': False,
             'enable_checktests': True,

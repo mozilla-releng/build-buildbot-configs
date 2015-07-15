@@ -667,6 +667,18 @@ CPPUNIT = [
         'script_maxtime': 7200,
     }),
 ]
+
+CPP_GTEST = [
+    ('cpp_gtest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--gtest-suite', 'gtest',
+                       '--cppunittest-suite', 'cppunittest'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MARIONETTE = [
     ('marionette', {
         'use_mozharness': True,
@@ -847,6 +859,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -935,6 +950,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cpp_gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1027,6 +1045,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1112,6 +1133,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'cppunit': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cpp_gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1206,6 +1230,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -1290,6 +1317,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -1372,6 +1402,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cpp_gtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -1466,6 +1499,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
@@ -1552,6 +1588,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1630,6 +1669,9 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'cpp_gtest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1706,6 +1748,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'cppunit': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'cpp_gtest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'marionette': {
@@ -1949,7 +1994,7 @@ BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
 BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
 BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['pgo_strategy'] = 'try'
+BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
 BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
@@ -2193,6 +2238,14 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_WEBGL
+
+# Enable combined cpp + gtests on try
+for platform in PLATFORMS.keys():
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['try']['platforms'][platform]:
+            continue
+        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPP_GTEST
+        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPP_GTEST
 
 # Enable web-platform-tests-debug on try
 for platform in PLATFORMS.keys():
