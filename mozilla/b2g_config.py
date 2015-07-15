@@ -416,7 +416,6 @@ PLATFORM_VARS = {
         'talos_masters': None,
         'test_pretty_names': False,
         'tooltool_manifest_src': 'b2g/dev/config/tooltool-manifests/macosx64/releng.manifest',
-        'tooltool_l10n_manifest_src': 'browser/config/tooltool-manifests/macosx64/l10n.manifest',
         'enable_ccache': True,
     },
     'win32_gecko': {
