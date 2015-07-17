@@ -86,7 +86,6 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'mozharness_archiver_endpoint': 'mozharness',
     },
     #'birch': {},  # Bug 1010674
     'cedar': {
