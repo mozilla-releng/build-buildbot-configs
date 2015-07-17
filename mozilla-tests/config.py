@@ -97,6 +97,7 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
+    'linux64-tsan': {},
     'linux64-cc': {},
     'win64': {},
 }
@@ -178,6 +179,17 @@ PLATFORMS['linux64-asan']['slave_platforms'] = ['ubuntu64-asan_vm']
 PLATFORMS['linux64-asan']['ubuntu64-asan_vm'] = {'name': 'Ubuntu ASAN VM 12.04 x64'}
 PLATFORMS['linux64-asan']['stage_product'] = 'firefox'
 PLATFORMS['linux64-asan']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
+    'config_file': 'talos/linux_config.py',
+}
+
+PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {'name': 'Ubuntu TSAN VM 12.04 x64'}
+PLATFORMS['linux64-tsan']['stage_product'] = 'firefox'
+PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
@@ -368,6 +380,7 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-asan': {},
+        'linux64-tsan': {},
         'linux64-cc': {},
         'macosx64': {},
         'win32': {},
@@ -1046,6 +1059,93 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'cpp_gtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+            },
+        },
+    },
+    'linux64-tsan': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': False,
+        'ubuntu64-tsan_vm': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-push': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-e10s-devtools-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-gl': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'crashtest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -2196,7 +2296,7 @@ for platform in PLATFORMS.keys():
 # Enable jittests on trunk trees https://bugzilla.mozilla.org/show_bug.cgi?id=973900
 for p in PLATFORMS.keys():
     # run in chunks on linux only
-    if p in ['linux', 'linux64', 'linux64-asan', 'linux64-cc']:
+    if p in ['linux', 'linux64', 'linux64-asan', 'linux64-cc', 'linux64-tsan']:
         jittests = JITTEST_CHUNKED
     else:
         jittests = JITTEST
@@ -2376,7 +2476,7 @@ for branch in BRANCHES.keys():
 # Versioned b2g branches shouldn't run mochitest-browser-chrome on linux debug builds
 for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
     branch = BRANCHES[name]
-    for platform in ('linux', 'linux64', 'linux64-asan', 'linux64-cc'):
+    for platform in ('linux', 'linux64', 'linux64-asan', 'linux64-cc', 'linux64-tsan'):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform]:
                 for chunked_bc in MOCHITEST_BC_3:
@@ -2403,11 +2503,11 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
                 pass
 
 
-# Disable Linux64-cc in every branch except try
+# Disable Linux64-cc and linux64-tsan in every branch except try
 for name in BRANCHES.keys():
     if name in ('try',):
         continue
-    for platform in ('linux64-cc',):
+    for platform in ('linux64-cc', 'linux64-tsan'):
         if platform in BRANCHES[name]['platforms']:
             del BRANCHES[name]['platforms'][platform]
 
