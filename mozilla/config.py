@@ -493,7 +493,7 @@ PLATFORM_VARS = {
             },
 
             'product_name': 'firefox',
-            'unittest_platform': 'linux64-tsan',
+            'unittest_platform': 'linux64-tsan-opt',
             'app_name': 'browser',
             'brand_name': 'Minefield',
             'base_name': 'Linux x86-64 %(branch)s tsan',
