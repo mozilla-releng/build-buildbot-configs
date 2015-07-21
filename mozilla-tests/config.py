@@ -2114,9 +2114,9 @@ BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest
 BRANCHES['cedar']['platforms']['win32']['xp-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += REFTEST_OMTC[:]
 BRANCHES['cedar']['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_OMTC[:]
-BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + XPCSHELL
-BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:] + XPCSHELL
-BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:] + XPCSHELL
+BRANCHES['cedar']['platforms']['win32']['xp-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win32']['win7-ix']['debug_unittest_suites'] += REFTEST_OMTC[:]
+BRANCHES['cedar']['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_OMTC[:]
 
 loadSkipConfig(BRANCHES,"desktop")
 
