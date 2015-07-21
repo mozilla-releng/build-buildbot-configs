@@ -1219,6 +1219,19 @@ BRANCHES = {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
     },
+    'mozilla-b2g37_v2_2r': {
+        'gecko_version': 37,
+        'b2g_version': (2, 2, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'linux64_gecko': {},
+            'linux64_gecko-debug': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-l': {},
+            'emulator-l-debug': {},
+        }
+    },
     'try': {
         'lock_platforms': True,
         'platforms': {
@@ -1383,6 +1396,20 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l']['enable_nightly'] = Tr
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin_eng']['enable_nightly'] = True
+
+######## mozilla-b2g37_v2_2r
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = 'releases/mozilla-b2g37_v2_2r'
+BRANCHES['mozilla-b2g37_v2_2r']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g37_v2_2r']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-b2g37_v2_2r']['start_hour'] = [0, 16]
+BRANCHES['mozilla-b2g37_v2_2r']['start_minute'] = [25]
+BRANCHES['mozilla-b2g37_v2_2r']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = True
 
 ######## mozilla-b2g34_v2_1
 # This is a path, relative to HGURL, where the repository is located

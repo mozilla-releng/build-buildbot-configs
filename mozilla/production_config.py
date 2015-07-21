@@ -60,7 +60,7 @@ GLOBAL_VARS = {
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
-    'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
+    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
     'blob_upload': True,
     'mozharness_configs': {
         'balrog': 'balrog/production.py',
@@ -112,6 +112,11 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g37-v2.2',
         'tinderbox_tree': 'Mozilla-B2g37-v2.2',
         'mobile_tinderbox_tree': 'Mozilla-B2g37-v2.2',
+    },
+    'mozilla-b2g37_v2_2r': {
+        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g37-v2.2r',
+        'tinderbox_tree': 'Mozilla-B2g37-v2.2r',
+        'mobile_tinderbox_tree': 'Mozilla-B2g37-v2.2r',
     },
     'mozilla-beta': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',
