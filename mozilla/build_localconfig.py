@@ -37,6 +37,7 @@ else:
         'mozilla-b2g34_v2_1',
         'mozilla-b2g34_v2_1s',
         'mozilla-b2g37_v2_2',
+        'mozilla-b2g37_v2_2r',
     ])
 if 'limit_tb_branches' in master_config:
     ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]
@@ -59,6 +60,7 @@ else:
         'mozilla-b2g34_v2_1',
         'mozilla-b2g34_v2_1s',
         'mozilla-b2g37_v2_2',
+        'mozilla-b2g37_v2_2r',
     ])
     # MERGE DAY: Remove the following block when we are sure b2g CI is moved to
     # taskcluster
