@@ -60,7 +60,7 @@ GLOBAL_VARS = {
     'weekly_tinderbox_tree': 'Testing',
     'l10n_tinderbox_tree': 'Mozilla-l10n',
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
-    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
+    'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
     'blob_upload': True,
     'mozharness_configs': {
         'balrog': 'balrog/production.py',
