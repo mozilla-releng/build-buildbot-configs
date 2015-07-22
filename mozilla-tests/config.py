@@ -671,6 +671,16 @@ XPCSHELL = [
     }),
 ]
 
+XPCSHELL_TWO_CHUNKS = [
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--xpcshell-suite', 'xpcshell'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
 CPPUNIT = [
     ('cppunit', {
         'use_mozharness': True,
@@ -790,7 +800,7 @@ WEB_PLATFORM_TESTS_CHUNKED_MORE = [
 
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MOCHITEST_DT,
-    'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + XPCSHELL + CPPUNIT + MARIONETTE + MOCHITEST_DT_4,
+    'debug_unittest_suites': MOCHITEST + REFTEST_ONE_CHUNK + REFTEST_NO_IPC + CPPUNIT + MARIONETTE + MOCHITEST_DT_4,
 }
 
 
@@ -807,7 +817,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_NOACCEL,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL_TWO_CHUNKS,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -906,7 +916,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL_TWO_CHUNKS,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -999,7 +1009,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': False,
         'ubuntu64-asan_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1089,7 +1099,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': False,
         'ubuntu64-tsan_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1629,7 +1639,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'snowleopard': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1710,7 +1720,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'mountainlion': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -1791,7 +1801,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2097,7 +2107,7 @@ BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['platforms']['macosx64']['yosemite']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
-BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
+BRANCHES['try']['platforms']['macosx64']['yosemite']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL
 
 ######## cedar
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
@@ -2266,6 +2276,18 @@ for platform in PLATFORMS.keys():
                     debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
                     debug_suites = [x for x in debug_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites + MOCHITEST_DT_8[:]
+
+# Bug 1185499 - use only one chunk for linux32/linux64 debug xpcshell tests, gecko < 41
+for platform in PLATFORMS.keys():
+    for name, branch in items_before(BRANCHES, 'gecko_version', 41):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in ('ubuntu32_vm', 'ubuntu64_vm'):
+                continue
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
+                    debug_suites = [x for x in debug_suites if x[0] and x[0] != 'xpcshell']
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites + XPCSHELL[:]
 
 # reftest is chunked x2 on opt and x4 on debug linux platforms, gecko >= 36
 for platform in PLATFORMS.keys():

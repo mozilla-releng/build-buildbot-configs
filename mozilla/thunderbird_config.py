@@ -838,7 +838,7 @@ BRANCHES['comm-esr38']['localesURL'] = \
 BRANCHES['comm-esr38']['enable_nightly'] = True
 BRANCHES['comm-esr38']['updates_enabled'] = True
 BRANCHES['comm-esr38']['create_partial'] = True
-BRANCHES['comm-esr38']['enable_blocklist_update'] = False
+BRANCHES['comm-esr38']['enable_blocklist_update'] = True
 BRANCHES['comm-esr38']['file_update_on_closed_tree'] = False
 BRANCHES['comm-esr38']['enable_valgrind'] = False
 

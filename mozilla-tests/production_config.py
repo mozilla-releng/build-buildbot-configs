@@ -14,13 +14,13 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1, 163):
+for i in range(1, 173):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 163):
+for i in range(1, 173):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 171):
+for i in range(1, 181):
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 166):
