@@ -67,7 +67,6 @@ setMainFirefoxVersions(BRANCHES)
 PLATFORMS = {
     'linux64_gecko': {},
     'macosx64_gecko': {},
-    'macosx64-mulet': {},
     'emulator': {},
     'emulator-jb': {},
     'emulator-kk': {},
@@ -91,21 +90,6 @@ PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
 PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_macosx64"}
 PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
 PLATFORMS['macosx64_gecko']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
-
-PLATFORMS['macosx64-mulet']['slave_platforms'] = ['snowleopard']
-PLATFORMS['macosx64-mulet']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64-mulet']['snowleopard'] = {
-    'name': 'Rev4 MacOSX Mulet Snow Leopard 10.6',
-    'build_dir_prefix': 'snowleopard_mulet',
-    'scheduler_slave_platform_identifier': 'snowleopard_mulet'
-}
-PLATFORMS['macosx64-mulet']['stage_product'] = 'b2g'
-PLATFORMS['macosx64-mulet']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'use_mozharness': True,
     'hg_bin': 'hg',
@@ -161,7 +145,6 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'linux64_gecko': {},
         'macosx64_gecko': {},
-        'macosx64-mulet': {},
         'emulator': {},
         'emulator-jb': {},
         'emulator-kk': {},
@@ -242,78 +225,6 @@ MOCHITEST_CHROME = [
                           'blob_upload': True,
                          },
     ),
-]
-
-MOCHITEST_MULET_PLAIN = [
-    ('mochitest-1', {'suite': 'mochitest-plain',
-                                 'use_mozharness': True,
-                                 'script_path': 'scripts/desktop_unittest.py',
-                                 'blob_upload': True,
-                                }
-    ),
-    ('mochitest-2', {'suite': 'mochitest-plain',
-                                 'use_mozharness': True,
-                                 'script_path': 'scripts/desktop_unittest.py',
-                                 'blob_upload': True,
-                                }
-    ),
-    ('mochitest-3', {'suite': 'mochitest-plain',
-                                 'use_mozharness': True,
-                                 'script_path': 'scripts/desktop_unittest.py',
-                                 'blob_upload': True,
-                                }
-    ),
-    ('mochitest-4', {'suite': 'mochitest-plain',
-                                 'use_mozharness': True,
-                                 'script_path': 'scripts/desktop_unittest.py',
-                                 'blob_upload': True,
-                                }
-    ),
-    ('mochitest-5', {'suite': 'mochitest-plain',
-                                 'use_mozharness': True,
-                                 'script_path': 'scripts/desktop_unittest.py',
-                                 'blob_upload': True,
-                                }
-    ),
-]
-
-REFTEST_MULET = [
-    ('reftest-1', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
-    ('reftest-2', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
-    ('reftest-3', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
-    ('reftest-4', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
-    ('reftest-5', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
-    ('reftest-6', {
-        'suite': 'reftest',
-        'use_mozharness': True,
-        'script_path': 'scripts/mulet_unittest.py',
-        'blob_upload': True,
-    }),
 ]
 
 MOCHITEST_EMULATOR_DEBUG = [
@@ -928,63 +839,6 @@ UNITTEST_SUITES = {
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-    'macosx64-mulet': {
-        'product_name': 'b2g',
-        'app_name': 'firefox',
-        'brand_name': 'Mulet',
-        'builds_before_reboot': 1,
-        'unittest-env': {
-            "MOZ_NO_REMOTE": '1',
-            "NO_EM_RESTART": '1',
-            "XPCOM_DEBUG_BREAK": 'warn',
-            "MOZ_CRASHREPORTER_NO_REPORT": '1',
-            # for extracting dmg's
-            "PAGER": '/bin/cat',
-        },
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'snowleopard': {
-            'opt_unittest_suites': MOCHITEST_MULET_PLAIN[:],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'mochitest-1': {
-                    'extra_args': [
-                      '--cfg', 'unittests/mac_unittest.py',
-                      '--total-chunks', 5, '--this-chunk', 1,
-                      '--mochitest-suite', 'plain-chunked',
-                    ]
-                },
-                'mochitest-2': {
-                    'extra_args': [
-                      '--cfg', 'unittests/mac_unittest.py',
-                      '--total-chunks', 5, '--this-chunk', 2,
-                      '--mochitest-suite', 'plain-chunked',
-                    ]
-                },
-                'mochitest-3': {
-                    'extra_args': [
-                      '--cfg', 'unittests/mac_unittest.py',
-                      '--total-chunks', 5, '--this-chunk', 3,
-                      '--mochitest-suite', 'plain-chunked',
-                    ]
-                },
-                'mochitest-4': {
-                    'extra_args': [
-                      '--cfg', 'unittests/mac_unittest.py',
-                      '--total-chunks', 5, '--this-chunk', 4,
-                      '--mochitest-suite', 'plain-chunked',
-                    ]
-                },
-                'mochitest-5': {
-                    'extra_args': [
-                      '--cfg', 'unittests/mac_unittest.py',
-                      '--total-chunks', 5, '--this-chunk', 5,
-                      '--mochitest-suite', 'plain-chunked',
-                    ]
-                },
-            },
-        },
-    },
     'linux64_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -2467,14 +2321,6 @@ for b in BRANCHES.keys():
             for suites in ['opt_unittest_suites', 'debug_unittest_suites']:
                 slave_p[suites] = [x for x in slave_p[suites]
                                    if not x[0].startswith('cppunit')]
-
-# Disable OSX Mulet in every branch except cedar
-for name in BRANCHES.keys():
-    if name in ('cedar', ):
-        continue
-    for platform in ('macosx64-mulet', ):
-        if platform in BRANCHES[name]['platforms']:
-            del BRANCHES[name]['platforms'][platform]
 
 # Disable tests jobs of builds that have been moved to TC
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 39):

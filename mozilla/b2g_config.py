@@ -1572,8 +1572,8 @@ for name, branch in BRANCHES.iteritems():
         if "win64_horizon" in branch["platforms"]:
             del branch["platforms"]["win64_horizon"]
 
-# Enable win32/macosx64 mulet in gecko 36+
-for name, branch in items_before(BRANCHES, 'gecko_version', 36):
+# Enable win32/macosx64 mulet in gecko 38+
+for name, branch in items_before(BRANCHES, 'gecko_version', 38):
     if 'win32-mulet' in branch['platforms']:
         del branch['platforms']['win32-mulet']
     if 'macosx64-mulet' in branch['platforms']:
