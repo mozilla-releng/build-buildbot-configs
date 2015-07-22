@@ -27,13 +27,12 @@ script:
   - rm -rf $HOME/.cache/pip/log
 
 
-# currently cannot customise per user fork, see:
-# https://github.com/travis-ci/travis-ci/issues/1094
-# please comment out this section in your personal fork!
+# The channel name "irc.mozilla.org#releng" is encrypted against mozilla/build-buildbot-configs to prevent IRC spam of forks
+# Generated with: travis encrypt --repo mozilla/build-buildbot-configs  --skip-version-check irc.mozilla.org#releng
 notifications:
   irc:
     channels:
-      - "irc.mozilla.org#releng"
+      - secure: "f1e47N3dMJqHZ/uIctX3P+fmRf0yy3o2CCroKyCgMG3GxvCDocG1hdTtI7mRmaynWASGJNfZlQRO244tHQEjnv/SRNGtO/8GGvGF0h2gJDVho0SG1HSLRSk4jJvlrDAMjLRobDJBU6dT6cGQGhYVVXbIsjI8yS3P5Qe2cbIw4Jo="
     on_success: always
     on_failure: always
     template:
