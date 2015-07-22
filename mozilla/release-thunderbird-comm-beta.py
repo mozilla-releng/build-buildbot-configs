@@ -22,29 +22,23 @@ releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.0b6'
-releaseConfig['appVersion']          = '38.0'
+releaseConfig['version']             = '40.0b1'
+releaseConfig['appVersion']          = '40.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_0b6'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_40_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '38.0b3': {
+    '38.0b6': {
         'appVersion': '38.0',
         'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_38_0b3',
+        'baseTag': 'THUNDERBIRD_38_0b6',
     },
 
     '38.0b5': {
         'appVersion': '38.0',
         'buildNumber': 1,
         'baseTag': 'THUNDERBIRD_38_0b5',
-    },
-
-    '38.0b4': {
-        'appVersion': '38.0',
-        'buildNumber': 5,
-        'baseTag': 'THUNDERBIRD_38_0b4',
     },
 
 }
@@ -56,8 +50,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'THUNDERBIRD_38_VERBRANCH',
-        'relbranch': 'THUNDERBIRD_38_VERBRANCH',
+        'revision': '3a6adf92dcac',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -66,10 +60,10 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-release',
-        'path': 'releases/mozilla-release',
-        'revision': 'THUNDERBIRD_38_VERBRANCH',
-        'relbranch': 'THUNDERBIRD_38_VERBRANCH',
+        'name': 'mozilla-beta',
+        'path': 'releases/mozilla-beta',
+        'revision': '5e733820ad95',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
