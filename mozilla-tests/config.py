@@ -1097,9 +1097,9 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'ubuntu64-tsan_vm': {
+        'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
