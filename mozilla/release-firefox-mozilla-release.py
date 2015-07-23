@@ -212,7 +212,6 @@ releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
 
 # Misc configuration
 releaseConfig['makeIndexFiles'] = True
-releaseConfig['enable_repo_setup'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest'

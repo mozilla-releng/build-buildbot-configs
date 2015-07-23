@@ -7,7 +7,6 @@
 EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
-releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api-pub-build.allizom.org/clobberer/forceclobber'
 
@@ -34,12 +33,9 @@ releaseConfig['partialUpdates']      = {}
 releaseConfig['nextAppVersion']      = '{{ version }}pre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
-## Staging repository path
-releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
-        'clonePath': 'releases/mozilla-esr38',
         'path': 'users/stage-ffxbld/mozilla-esr38',
         'revision': 'default',
         'relbranch': None,
@@ -57,7 +53,6 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr38'
 #  Support repositories
@@ -133,7 +128,6 @@ releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
-releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')

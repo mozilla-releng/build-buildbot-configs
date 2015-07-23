@@ -162,7 +162,6 @@ releaseConfig["mozillaComRepo"]     = "svn+ssh://tbirdbld@svn.mozilla.org/projec
 releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/tbirdbld_dsa"
 
 # Misc configuration
-releaseConfig['enable_repo_setup'] = False
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')

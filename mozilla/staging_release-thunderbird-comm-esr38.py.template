@@ -7,7 +7,6 @@
 EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
-releaseConfig['skip_repo_setup']        = True
 releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api-pub-build.allizom.org/clobberer/forceclobber'
 
@@ -42,12 +41,9 @@ releaseConfig['partialUpdates']      = {
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
-## Staging repository path
-releaseConfig['userRepoRoot'] = 'users/stage-ffxbld'
 releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr38',
-        'clonePath': 'releases/comm-esr38',
         'path': '{{ branch }}',
         'revision': '{{ commRevision }}',
         'relbranch': {% if commRelbranch %}'{{ commRelbranch }}'{% else %}None{% endif %},
@@ -60,7 +56,6 @@ releaseConfig['sourceRepositories']  = {
     },
     'mozilla': {
         'name': 'mozilla-esr38',
-        'clonePath': 'releases/mozilla-esr38',
         'path': 'users/stage-ffxbld/mozilla-esr38',
         'revision': '{{ mozillaRevision }}',
         'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
@@ -74,7 +69,6 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr38'
 #  Support repositories
@@ -166,7 +160,6 @@ releaseConfig["mozillaComRepo"]     = "svn+ssh://tbirdbld@dev-stage01.srv.releng
 releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/tbirdbld_dsa"
 
 # Misc configuration
-releaseConfig['enable_repo_setup'] = False
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')

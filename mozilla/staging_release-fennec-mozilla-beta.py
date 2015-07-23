@@ -35,7 +35,6 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
-        'clonePath': 'releases/mozilla-beta',
         'path': 'users/stage-ffxbld/mozilla-beta',
         'revision': 'default',
         'relbranch': None,
@@ -61,7 +60,6 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
 releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
@@ -124,9 +122,6 @@ releaseConfig["updateChannels"] = {
         }
     }
 }
-
-# Misc configuration
-releaseConfig['enable_repo_setup']       = False
 
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
