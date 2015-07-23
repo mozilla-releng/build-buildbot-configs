@@ -179,7 +179,11 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
 }
 
 PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm']
-PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {'name': 'Ubuntu TSAN VM 12.04 x64'}
+PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {
+    'name': 'Ubuntu TSAN VM 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_tsan',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_tsan'
+}
 PLATFORMS['linux64-tsan']['stage_product'] = 'firefox'
 PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1089,9 +1093,9 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'ubuntu64-tsan_vm': {
+        'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
