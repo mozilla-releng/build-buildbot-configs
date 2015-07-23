@@ -35,7 +35,6 @@ releaseConfig['nextMilestone']       = releaseConfig['version']
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
-        'clonePath': 'releases/mozilla-release',
         'path': 'users/stage-ffxbld/mozilla-release',
         'revision': 'default',
         'relbranch': None,
@@ -61,7 +60,6 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-release.json'
 releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
@@ -133,9 +131,6 @@ releaseConfig["updateChannels"] = {
         }
     }
 }
-
-# Misc configuration
-releaseConfig['enable_repo_setup']       = False
 
 # Fennec specific
 releaseConfig['usePrettyNames']           = False

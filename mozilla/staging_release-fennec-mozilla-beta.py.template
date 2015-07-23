@@ -35,7 +35,6 @@ releaseConfig['nextMilestone']       = releaseConfig['milestone']
 releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-beta',
-        'clonePath': 'releases/mozilla-beta',
         'path': '{{ branch }}',
         'revision': '{{ mozillaRevision }}',
         'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
@@ -57,7 +56,6 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoClonePath']   = 'releases/l10n/mozilla-beta'
 releaseConfig['l10nRepoPath']        = 'users/stage-ffxbld'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
 releaseConfig['l10nJsonFile'] = releaseConfig['l10nRevisionFile']
@@ -121,9 +119,6 @@ releaseConfig["updateChannels"] = {
         }
     }
 }
-
-# Misc configuration
-releaseConfig['enable_repo_setup']       = False
 
 # Product details config
 releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"

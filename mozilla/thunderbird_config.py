@@ -6,7 +6,7 @@ import thunderbird_project_branches
 reload(thunderbird_project_branches)
 from thunderbird_project_branches import PROJECT_BRANCHES, ACTIVE_PROJECT_BRANCHES
 
-# Note that thunderbird_localconfig.py is symlinked to one of: {production,staging}_thunderbird_config.py
+# Note that thunderbird_localconfig.py is symlinked to one of: thunderbird_{production,staging}_config.py
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
 
@@ -1068,6 +1068,7 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     #  gecko tree and also allows us to overwrite which gecko repo to use. Useful for platforms
     # like Thunderbird
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
+    branch['mozharness_archiver_rev'] = 'default'
 
 if __name__ == "__main__":
     import sys

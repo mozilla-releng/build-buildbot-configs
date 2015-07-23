@@ -55,14 +55,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g32_v2_0': {
-        'datazilla_url': None,
-        'gecko_version': 32,
-        'platforms': {
-            'linux': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g34_v2_1': {
         'datazilla_url': None,
         'gecko_version': 34,
@@ -187,7 +179,11 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
 }
 
 PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm']
-PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {'name': 'Ubuntu TSAN VM 12.04 x64'}
+PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {
+    'name': 'Ubuntu TSAN VM 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_tsan',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_tsan'
+}
 PLATFORMS['linux64-tsan']['stage_product'] = 'firefox'
 PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -1097,9 +1093,9 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
-        'ubuntu64-tsan_vm': {
+        'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + XPCSHELL,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -2074,11 +2070,6 @@ BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
-
-######### mozilla-b2g32_v2_0
-BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
-BRANCHES['mozilla-b2g32_v2_0']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['linux']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g34_v2_1
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"

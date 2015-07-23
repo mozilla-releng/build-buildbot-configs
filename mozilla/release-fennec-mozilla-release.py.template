@@ -127,9 +127,6 @@ releaseConfig["updateChannels"] = {
     }
 }
 
-# Misc configuration
-releaseConfig['enable_repo_setup']       = False
-
 # Product details config
 releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
 releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"

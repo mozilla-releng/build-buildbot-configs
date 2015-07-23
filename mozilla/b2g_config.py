@@ -1203,10 +1203,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g32_v2_0': {
-        'gecko_version': 32,
-        'b2g_version': (2, 0, 0),
-    },
     'mozilla-b2g34_v2_1': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
@@ -1469,27 +1465,6 @@ BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-4_eng']['enable_periodic'] =
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-5-l']['enable_periodic'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
 
-######## mozilla-b2g32_v2_0
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = 'releases/mozilla-b2g32_v2_0'
-BRANCHES['mozilla-b2g32_v2_0']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_0/'
-BRANCHES['mozilla-b2g32_v2_0']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g32_v2_0']['start_hour'] = [0, 16]
-BRANCHES['mozilla-b2g32_v2_0']['start_minute'] = [2]
-BRANCHES['mozilla-b2g32_v2_0']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-4']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-5-l']['enable_periodic'] = False
-BRANCHES['mozilla-b2g32_v2_0']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-
 ######## try
 # Try-specific configs
 # This is a path, relative to HGURL, where the repository is located
@@ -1601,12 +1576,6 @@ for branch in BRANCHES:
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):
     if 'linux64-b2g-haz' in branch['platforms']:
         del branch['platforms']['linux64-b2g-haz']
-
-# b2g 2.0+
-for name, branch in items_before(BRANCHES, 'gecko_version', 32):
-    for p in ('flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug'):
-        if p in branch['platforms']:
-            del branch['platforms'][p]
 
 # b2g 2.2+
 for name, branch in items_before(BRANCHES, 'gecko_version', 37):
