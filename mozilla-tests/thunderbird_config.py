@@ -454,6 +454,7 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     #  gecko tree and also allows us to overwrite which gecko repo to use. Useful for platforms
     # like Thunderbird
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
+    branch['mozharness_archiver_rev'] = 'default'
 
 if __name__ == "__main__":
     import sys
