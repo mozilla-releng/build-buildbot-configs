@@ -35,10 +35,6 @@ BRANCHES = {
     'maple': {},
     'pine': {},
     'fx-team': {},
-    'mozilla-b2g32_v2_0': {
-        'gecko_version': 32,
-        'b2g_version': (2, 0, 0),
-    },
     'mozilla-b2g34_v2_1': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
@@ -2246,7 +2242,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 # disabled for Bug 1150320
 # BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
-BRANCHES['mozilla-b2g32_v2_0']['repo_path'] = "releases/mozilla-b2g32_v2_0"
 BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
@@ -2310,17 +2305,6 @@ for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms']:
         if 'slave_platforms' not in BRANCHES[branch]['platforms'][platform]:
             BRANCHES[branch]['platforms'][platform]['slave_platforms'] = list(PLATFORMS[platform]['slave_platforms'])
-
-# Disable emulator cppunit tests on older branches
-OLD_BRANCHES = set([name for name, branch in items_before(BRANCHES, 'gecko_version', 34)])
-for b in BRANCHES.keys():
-    branch = BRANCHES[b]
-    if b in OLD_BRANCHES:
-        if nested_haskey(branch['platforms'], 'emulator', 'ubuntu64_vm-b2g-emulator'):
-            slave_p = branch['platforms']['emulator']['ubuntu64_vm-b2g-emulator']
-            for suites in ['opt_unittest_suites', 'debug_unittest_suites']:
-                slave_p[suites] = [x for x in slave_p[suites]
-                                   if not x[0].startswith('cppunit')]
 
 # Disable tests jobs of builds that have been moved to TC
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 39):
