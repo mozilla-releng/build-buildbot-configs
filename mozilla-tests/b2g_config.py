@@ -35,10 +35,6 @@ BRANCHES = {
     'maple': {},
     'pine': {},
     'fx-team': {},
-    'mozilla-b2g34_v2_1': {
-        'gecko_version': 34,
-        'b2g_version': (2, 1, 0),
-    },
     'mozilla-b2g34_v2_1s': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
@@ -2242,7 +2238,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 # disabled for Bug 1150320
 # BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
-BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
 BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = "releases/mozilla-b2g34_v2_1s"
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
 BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = "releases/mozilla-b2g37_v2_2r"

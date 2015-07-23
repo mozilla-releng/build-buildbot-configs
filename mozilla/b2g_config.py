@@ -1203,10 +1203,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g34_v2_1': {
-        'gecko_version': 34,
-        'b2g_version': (2, 1, 0),
-    },
     'mozilla-b2g34_v2_1s': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
@@ -1406,31 +1402,6 @@ BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = Tru
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = True
-
-######## mozilla-b2g34_v2_1
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = 'releases/mozilla-b2g34_v2_1'
-BRANCHES['mozilla-b2g34_v2_1']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_1/'
-BRANCHES['mozilla-b2g34_v2_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g34_v2_1']['start_hour'] = [0, 16]
-BRANCHES['mozilla-b2g34_v2_1']['start_minute'] = [12]
-BRANCHES['mozilla-b2g34_v2_1']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['dolphin']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['dolphin_eng']['enable_nightly'] = False
 
 ######## mozilla-b2g34_v2_1s
 # This is a path, relative to HGURL, where the repository is located
