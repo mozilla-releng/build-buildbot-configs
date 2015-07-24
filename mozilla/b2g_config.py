@@ -48,8 +48,6 @@ GLOBAL_VARS.update({
         'flame-kk_eng-debug': {},
         'dolphin': {},
         'dolphin_eng': {},
-        'dolphin-512': {},
-        'dolphin-512_eng': {},
         # Graphene builds. These are a different app (ie, not B2G) and would
         # have their own config files in an ideal world, but it's not worth
         # the effort at this point.
@@ -1203,13 +1201,23 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g34_v2_1': {
-        'gecko_version': 34,
-        'b2g_version': (2, 1, 0),
-    },
     'mozilla-b2g34_v2_1s': {
         'gecko_version': 34,
         'b2g_version': (2, 1, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'linux64-b2g-haz': {},
+            'linux64_gecko': {},
+            'linux64_gecko-debug': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-kk': {},
+            'emulator-kk-debug': {},
+            'dolphin': {},
+            'dolphin_eng': {},
+            'dolphin-512': {},
+            'dolphin-512_eng': {},
+        }
     },
     'mozilla-b2g37_v2_2': {
         'gecko_version': 37,
@@ -1407,31 +1415,6 @@ BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly']
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = True
 
-######## mozilla-b2g34_v2_1
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = 'releases/mozilla-b2g34_v2_1'
-BRANCHES['mozilla-b2g34_v2_1']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_1/'
-BRANCHES['mozilla-b2g34_v2_1']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g34_v2_1']['start_hour'] = [0, 16]
-BRANCHES['mozilla-b2g34_v2_1']['start_minute'] = [12]
-BRANCHES['mozilla-b2g34_v2_1']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['dolphin']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['dolphin_eng']['enable_nightly'] = False
-
 ######## mozilla-b2g34_v2_1s
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -1443,8 +1426,6 @@ BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1s']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-jb-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin']['enable_nightly'] = True
@@ -1452,18 +1433,6 @@ BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin_eng']['enable_nightly'] = 
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_dep'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['macosx64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['macosx64_gecko-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['win32_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['win32_gecko-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng']['enable_dep'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['flame-kk_eng-debug']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-4']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-4_eng']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-5-l']['enable_periodic'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['nexus-5-l_eng']['enable_periodic'] = False
 
 ######## try
 # Try-specific configs
@@ -1563,14 +1532,6 @@ for branch in BRANCHES:
             del BRANCHES[branch]['platforms']['dolphin']
         if 'dolphin_eng' in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms']['dolphin_eng']
-
-# dolphin-512 is for selected branches only
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g34_v2_1s',):
-        if 'dolphin-512' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin-512']
-        if 'dolphin-512_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin-512_eng']
 
 # exact rooting was enabled in gecko 32
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):

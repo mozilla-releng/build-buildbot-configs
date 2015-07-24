@@ -55,14 +55,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g34_v2_1': {
-        'datazilla_url': None,
-        'gecko_version': 34,
-        'platforms': {
-            'linux': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-b2g37_v2_2': {
         'datazilla_url': None,
         'gecko_version': 37,
@@ -2070,11 +2062,6 @@ BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
-
-######### mozilla-b2g34_v2_1
-BRANCHES['mozilla-b2g34_v2_1']['repo_path'] = "releases/mozilla-b2g34_v2_1"
-BRANCHES['mozilla-b2g34_v2_1']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g34_v2_1']['platforms']['linux']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
