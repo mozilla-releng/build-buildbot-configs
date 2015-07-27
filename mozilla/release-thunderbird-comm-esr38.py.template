@@ -75,7 +75,6 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr38'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
-    'build/mozharness': 'production',
 }
 
 # Platform configuration
