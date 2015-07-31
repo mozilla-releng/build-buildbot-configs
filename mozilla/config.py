@@ -94,7 +94,6 @@ GLOBAL_VARS = {
     'enable_nightly': True,
     'enabled_products': ['firefox', 'mobile'],
     'enable_valgrind': True,
-    'enable_xulrunner': False,
     'valgrind_platforms': ('linux64',),
 
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
@@ -400,7 +399,6 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s asan',
             'mozconfig': 'in_tree',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/nightly-asan',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -499,7 +497,6 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s tsan',
             'mozconfig': 'in_tree',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/opt-tsan',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -600,7 +597,6 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s debug asan',
             'mozconfig': 'in_tree',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/debug-asan',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -700,7 +696,6 @@ PLATFORM_VARS = {
             'base_name': 'Linux x86-64 %(branch)s debug static analysis',
             'mozconfig': 'in_tree',
             'src_mozconfig': 'browser/config/mozconfigs/linux64/debug-static-analysis-clang',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -842,7 +837,6 @@ PLATFORM_VARS = {
             },
             'consider_for_nightly': False,
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'enable_opt_unittests': True,
             'try_by_default': False,
             'upload_symbols': True,
@@ -1166,7 +1160,6 @@ PLATFORM_VARS = {
             },
 
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1272,7 +1265,6 @@ PLATFORM_VARS = {
             },
 
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1353,7 +1345,6 @@ PLATFORM_VARS = {
             },
 
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1411,7 +1402,6 @@ PLATFORM_VARS = {
             },
 
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1465,7 +1455,6 @@ PLATFORM_VARS = {
             },
 
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1517,7 +1506,6 @@ PLATFORM_VARS = {
                 '-f', '../reboot_count.txt','-n', '1', '-z'
             ],
             'enable_nightly': False,
-            'enable_xulrunner': False,
             'product_name': 'firefox',
             'app_name': 'browser',
             'brand_name': 'Minefield',
@@ -1572,7 +1560,6 @@ PLATFORM_VARS = {
             'mozconfig': 'android/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android/nightly',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 16,
@@ -1656,7 +1643,6 @@ PLATFORM_VARS = {
             'mozconfig': 'in_tree',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-10-constrained/nightly',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 16,
@@ -1741,7 +1727,6 @@ PLATFORM_VARS = {
             'mozconfig': 'in_tree',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-11/nightly',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 16,
@@ -1829,7 +1814,6 @@ PLATFORM_VARS = {
             'build_space': 14,
             'upload_symbols': True,
             'packageTests': True,
-            'enable_xulrunner': False,
             'profiled_build': False,
             'slaves': SLAVES['mock'],
             'platform_objdir': OBJDIR,
@@ -1904,7 +1888,6 @@ PLATFORM_VARS = {
             'mozconfig': 'android-debug/%(branch)s/nightly',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android/debug',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 14,
@@ -1984,7 +1967,6 @@ PLATFORM_VARS = {
             'mozconfig': 'in_tree',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-9-10-constrained/debug',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 14,
@@ -2064,7 +2046,6 @@ PLATFORM_VARS = {
             'mozconfig': 'in_tree',
             'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-11/debug',
             'mobile_dir': 'mobile/android',
-            'enable_xulrunner': False,
             'profiled_build': False,
             'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 14,
@@ -2463,8 +2444,6 @@ BRANCHES['mozilla-central']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-central']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
@@ -2525,7 +2504,6 @@ BRANCHES['mozilla-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
-BRANCHES['mozilla-release']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
@@ -2560,8 +2538,6 @@ BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-beta']['update_channel'] = 'beta'
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-beta']['enable_xulrunner'] = False
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
@@ -2612,8 +2588,6 @@ BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
 BRANCHES['mozilla-aurora']['periodic_start_hours'] = range(1, 24, 6)
 BRANCHES['mozilla-aurora']['periodic_start_minute'] = 30
-# Enable XULRunner / SDK builds
-BRANCHES['mozilla-aurora']['enable_xulrunner'] = True
 # Enable PGO Builds on this branch
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # Enable unit tests
@@ -2672,7 +2646,6 @@ BRANCHES['mozilla-esr31']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-esr31']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-esr31']['start_hour'] = [0]
 BRANCHES['mozilla-esr31']['start_minute'] = [5]
-BRANCHES['mozilla-esr31']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr31']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr31']['unittest_build_space'] = 6
@@ -2701,7 +2674,6 @@ BRANCHES['mozilla-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-esr38']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-esr38']['start_hour'] = [0]
 BRANCHES['mozilla-esr38']['start_minute'] = [15]
-BRANCHES['mozilla-esr38']['enable_xulrunner'] = False
 BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr38']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr38']['unittest_build_space'] = 6
@@ -2731,7 +2703,6 @@ BRANCHES['mozilla-b2g34_v2_1s']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [3]
 BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [45]
-BRANCHES['mozilla-b2g34_v2_1s']['enable_xulrunner'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g34_v2_1s']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g34_v2_1s']['unittest_build_space'] = 6
@@ -2759,7 +2730,6 @@ BRANCHES['mozilla-b2g37_v2_2']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-b2g37_v2_2']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [15]
-BRANCHES['mozilla-b2g37_v2_2']['enable_xulrunner'] = False
 BRANCHES['mozilla-b2g37_v2_2']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g37_v2_2']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g37_v2_2']['unittest_build_space'] = 6
@@ -2788,7 +2758,6 @@ BRANCHES['mozilla-b2g37_v2_2r']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['start_hour'] = [3]
 BRANCHES['mozilla-b2g37_v2_2r']['start_minute'] = [15]
-BRANCHES['mozilla-b2g37_v2_2r']['enable_xulrunner'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['pgo_platforms'] = []
 BRANCHES['mozilla-b2g37_v2_2r']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['unittest_build_space'] = 6
@@ -2829,8 +2798,6 @@ BRANCHES['try']['start_hour'] = [3]
 BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['try']['enable_xulrunner'] = False
 BRANCHES['try']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['try']['enable_l10n'] = False
@@ -2887,8 +2854,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['periodic_start_minute'] = branchConfig.get('periodic_start_minute', 30)
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
-    # Disable XULRunner / SDK builds
-    BRANCHES[branch]['enable_xulrunner'] = branchConfig.get('enable_xulrunner', False)
     # Enable unit tests
     BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
     BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)
@@ -3071,6 +3036,15 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 36):
     for p in ('win64', 'win64-debug'):
         if p in branch['platforms']:
             del branch['platforms'][p]
+
+# XULRunner is gone in Gecko 42 and higher, bug 1147577
+# It only ran on mozilla-central and aurora in the first place though,
+# so we need to make sure we only enable it on that branch until it gets 42.
+# This block can die once aurora gets 42.
+if BRANCHES["mozilla-aurora"]["gecko_version"] < 42:
+    BRANCHES["mozilla-aurora"]["enable_xulrunner"] = True
+    for p in ('linux', "linux64", "macosx64", "win32", "win64"):
+        BRANCHES["mozilla-aurora"]["platforms"][p]["enable_xulrunner"] = True
 
 if __name__ == "__main__":
     import sys
