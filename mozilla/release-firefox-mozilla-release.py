@@ -21,17 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '39.0'
-releaseConfig['appVersion']          = '39.0'
+releaseConfig['version']             = '40.0'
+releaseConfig['appVersion']          = '40.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 6
-releaseConfig['baseTag']             = 'FIREFOX_39_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_40_0'
 releaseConfig['partialUpdates']      = {
 
     '38.0.5': {
         'appVersion': '38.0.5',
         'buildNumber': 4,
         'baseTag': 'FIREFOX_38_0_5',
+    },
+
+    '35.0.1': {
+        'appVersion': '35.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_35_0_1',
     },
 
     '37.0.2': {
@@ -42,19 +48,19 @@ releaseConfig['partialUpdates']      = {
 
     '39.0': {
         'appVersion': '39.0',
-        'buildNumber': 5,
+        'buildNumber': 6,
         'baseTag': 'FIREFOX_39_0',
     },
 
-    '39.0b7': {
-        'appVersion': '39.0',
+    '40.0b9': {
+        'appVersion': '40.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_39_0b7',
+        'baseTag': 'FIREFOX_40_0b9',
     },
 
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/39.0/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/40.0/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -67,7 +73,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'a3f685acd61a',
+        'revision': 'f6321b14228d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -90,7 +96,6 @@ releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
     'build/partner-repacks': 'default',
-    'build/mozharness': 'production',
 }
 
 # Platform configuration
