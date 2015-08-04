@@ -2,6 +2,7 @@ SLAVES = {
     'xp-ix': {},
     'win7-ix': {},
     'win8': {},
+    'win10': {},
     'snowleopard': {},
     'mountainlion': {},
     'yosemite': {},
@@ -77,6 +78,7 @@ SLAVES['ubuntu64_vm-b2g-emulator-kk'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
 SLAVES['mountainlion-b2gdt'] = SLAVES['mountainlion']
 SLAVES['win8_64'] = SLAVES['win8']
+SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
