@@ -46,8 +46,6 @@ GLOBAL_VARS.update({
         'flame-kk': {},
         'flame-kk_eng': {},
         'flame-kk_eng-debug': {},
-        'dolphin': {},
-        'dolphin_eng': {},
         # Graphene builds. These are a different app (ie, not B2G) and would
         # have their own config files in an ideal world, but it's not worth
         # the effort at this point.
@@ -1369,8 +1367,6 @@ BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-l']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-l-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g37_v2_2
 # This is a path, relative to HGURL, where the repository is located
@@ -1398,8 +1394,6 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk']['enable_nightly'] = F
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g37_v2_2r
 # This is a path, relative to HGURL, where the repository is located
@@ -1522,16 +1516,6 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 38):
         del branch['platforms']['win32-mulet']
     if 'macosx64-mulet' in branch['platforms']:
         del branch['platforms']['macosx64-mulet']
-
-# dolphin is for selected branches only
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g34_v2_1s', 'mozilla-central',
-                      'mozilla-inbound', 'b2g-inbound', 'fx-team',
-                      'alder'):
-        if 'dolphin' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin']
-        if 'dolphin_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin_eng']
 
 # exact rooting was enabled in gecko 32
 for name, branch in items_before(BRANCHES, 'gecko_version', 32):
