@@ -2027,6 +2027,45 @@ BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
                                                   'chromez-e10s']
 
 
+
+######### mozilla-inbound
+# no xperf here since it fails all the time
+BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
+BRANCHES['mozilla-inbound']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['mozilla-inbound']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+
+
+######### fx-team
+# no xperf here since it fails all the time
+BRANCHES['fx-team']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
+BRANCHES['fx-team']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['fx-team']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+
+
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
