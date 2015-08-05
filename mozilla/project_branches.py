@@ -233,8 +233,12 @@ PROJECT_BRANCHES = {
         }
     },
     'larch': {
+        'enable_nightly': True,
         'lock_platforms': True,
         'platforms': {
+            'linux64': {},
+            'macosx64': {},
+            'win64': {},
         },
     },
     'maple': {
