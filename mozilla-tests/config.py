@@ -2269,28 +2269,20 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
         continue
     branch['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 
-
-# cppunittest jobs ride the train with 28, so they need to be disabled
-# for branches running an older version.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
-# cppunittest jobs ride the train with 28, so they need to be disabled
-# for branches running an older version.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
+# disable cppunittests on mountainlion, leave enabled on yosemite (bug 1190060)
 for platform in PLATFORMS.keys():
-    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
-        if platform not in branch['platforms']:
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in ('mountainlion',):
             continue
-        for slave_platform in branch['platforms'][platform]:
-            if slave_platform not in ['mountainlion', 'yosemite']:
-                continue
-            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
-                for cpp_suite in CPPUNIT:
-                    try:
-                        branch['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
-                    except ValueError:
-                        # wasn't in the list anyways
-                        pass
+        for branch in BRANCHES.keys():
+            if platform in BRANCHES[branch]['platforms']:
+                for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                    for cpp_suite in CPPUNIT:
+                        try:
+                            BRANCHES[branch]['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
+                        except ValueError:
+                            # wasn't in the list anyways
+                            pass
 
 # Enable Mn on opt/debug win for gecko >= 33
 for platform in PLATFORMS.keys():
