@@ -22,11 +22,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.2.0esr'
-releaseConfig['appVersion']          = '38.2.0'
+releaseConfig['version']             = '38.1.1esr'
+releaseConfig['appVersion']          = '38.1.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_2_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_38_1_1esr'
 releaseConfig['partialUpdates']      = {
 
     '38.1.0esr': {
@@ -35,23 +35,17 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_38_1_0esr',
     },
 
-    '31.8.0esr': {
-        'appVersion': '31.8.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_8_0esr',
-    },
-
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.2.0esrpre'
+releaseConfig['nextAppVersion']      = '38.1.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '5cf905794365',
-        'relbranch': None,
+        'revision': 'GECKO3810esr_2015062417_RELBRANCH',
+        'relbranch': 'GECKO3810esr_2015062417_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -89,6 +83,7 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
+releaseConfig['l10nChunks']          = 20
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
@@ -106,7 +101,7 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
-releaseConfig['updateVerifyChunks']  = 6
+releaseConfig['updateVerifyChunks']  = 12
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
