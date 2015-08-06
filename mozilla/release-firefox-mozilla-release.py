@@ -21,23 +21,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '40.0'
-releaseConfig['appVersion']          = '40.0'
+releaseConfig['version']             = '39.0.3'
+releaseConfig['appVersion']          = '39.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_40_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_39_0_3'
 releaseConfig['partialUpdates']      = {
 
     '38.0.5': {
         'appVersion': '38.0.5',
         'buildNumber': 4,
         'baseTag': 'FIREFOX_38_0_5',
-    },
-
-    '35.0.1': {
-        'appVersion': '35.0.1',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_35_0_1',
     },
 
     '37.0.2': {
@@ -52,15 +46,9 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_39_0',
     },
 
-    '40.0b9': {
-        'appVersion': '40.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_40_0b9',
-    },
-
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/40.0/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/39.0.3/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -73,8 +61,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '6cb7bf295939',
-        'relbranch': None,
+        'revision': 'GECKO390_2015063018_RELBRANCH',
+        'relbranch': 'GECKO390_2015063018_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -114,6 +102,7 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
+releaseConfig['l10nChunks']          = 20
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
@@ -130,7 +119,7 @@ releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
-releaseConfig['updateVerifyChunks']  = 6
+releaseConfig['updateVerifyChunks']  = 12
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -170,7 +159,7 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": True,
+        "enabled": False,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
