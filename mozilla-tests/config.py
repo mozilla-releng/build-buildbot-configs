@@ -103,12 +103,11 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite']
 
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix', 'win8']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
+PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit"}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
-PLATFORMS['win32']['win8'] = {'name': "WINNT 6.2"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -2028,6 +2027,45 @@ BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
                                                   'chromez-e10s']
 
 
+
+######### mozilla-inbound
+# no xperf here since it fails all the time
+BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['mozilla-inbound']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
+BRANCHES['mozilla-inbound']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['mozilla-inbound']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-inbound']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+
+
+######### fx-team
+# no xperf here since it fails all the time
+BRANCHES['fx-team']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['fx-team']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
+BRANCHES['fx-team']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['fx-team']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['fx-team']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+
+
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
@@ -2062,6 +2100,8 @@ BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr38']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-b2g37_v2_2
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
@@ -2405,31 +2445,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_versi
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_E10S[:] + REFTEST_E10S[:]
             if platform == 'linux':
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
-
-# Bug 1080134: we want to disable all 32-bit testing on win8 for gecko 36 and
-# higher, and enable 64-bit tests on win8 instead.
-# Disable 64-bit win8 testing on gecko 35 and lower
-for name, branch in items_before(BRANCHES, 'gecko_version', 36):
-    if 'win64' in branch['platforms']:
-        del branch['platforms']['win64']
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
-    if 'win32' not in branch['platforms']:
-        continue
-
-    if name == 'mozilla-esr38':
-        branch['platforms']['win32']['talos_slave_platforms'] = []
-        branch['platforms']['win64']['talos_slave_platforms'] = []
-
-    if 'slave_platforms' in branch['platforms']['win32']:
-        if 'win8' in branch['platforms']['win32']['slave_platforms']:
-            branch['platforms']['win32']['slave_platforms'].remove('win8')
-    else:
-        branch['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
-    if 'talos_slave_platforms' in branch['platforms']['win32']:
-        if 'win8' in branch['platforms']['win32']['talos_slave_platforms']:
-            branch['platforms']['win32']['talos_slave_platforms'].remove('win8')
-    else:
-        branch['platforms']['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 
 # bug 1126493 Enable Yosemite testing on select branches only
 # keep debug tests on 10.8 until the source of the slowness is found in bug 1125998

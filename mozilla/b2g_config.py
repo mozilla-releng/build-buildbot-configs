@@ -22,42 +22,22 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 GLOBAL_VARS.update({
     'platforms': {
-        'linux64_gecko': {},
-        'linux64_gecko-debug': {},
         'macosx64_gecko': {},
         'macosx64_gecko-debug': {},
         'macosx64-mulet': {},
         'win32_gecko': {},
         'win32_gecko-debug': {},
         'win32-mulet': {},
+        'linux64-b2g-haz': {},
         'nexus-4': {},
         'nexus-4_eng': {},
         'nexus-5-l': {},
         'nexus-5-l_eng': {},
         'emulator': {},
         'emulator-debug': {},
-        'emulator-jb': {},
-        'emulator-jb-debug': {},
-        'emulator-kk': {},
-        'emulator-kk-debug': {},
-        'emulator-l': {},
-        'emulator-l-debug': {},
-        'linux64-b2g-haz': {},
         'flame-kk': {},
         'flame-kk_eng': {},
         'flame-kk_eng-debug': {},
-        'dolphin': {},
-        'dolphin_eng': {},
-        # Graphene builds. These are a different app (ie, not B2G) and would
-        # have their own config files in an ideal world, but it's not worth
-        # the effort at this point.
-        'linux64_graphene': {},
-        'macosx64_graphene': {},
-        'win64_graphene': {},
-        # Horizon is a browser variant based on Graphene.
-        'linux64_horizon': {},
-        'macosx64_horizon': {},
-        'win64_horizon': {},
     },
     'enable_nightly': True,
     'enable_l10n': False,
@@ -1222,12 +1202,34 @@ BRANCHES = {
     'mozilla-b2g37_v2_2': {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'linux64-b2g-haz': {},
+            'linux64_gecko': {},
+            'linux64_gecko-debug': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-jb': {},
+            'emulator-jb-debug': {},
+            'emulator-kk': {},
+            'emulator-kk-debug': {},
+            'emulator-l': {},
+            'emulator-l-debug': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
+            'flame-kk_eng-debug': {},
+            'nexus-4': {},
+            'nexus-4_eng': {},
+            'nexus-5-l': {},
+            'nexus-5-l_eng': {},
+        }
     },
     'mozilla-b2g37_v2_2r': {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
         'lock_platforms': True,
         'platforms': {
+            'linux64-b2g-haz': {},
             'linux64_gecko': {},
             'linux64_gecko-debug': {},
             'emulator': {},
@@ -1254,12 +1256,16 @@ BRANCHES = {
             'win64_horizon': {},
             'emulator': {},
             'emulator-debug': {},
-            'emulator-jb': {},
-            'emulator-jb-debug': {},
-            'emulator-kk': {},
-            'emulator-kk-debug': {},
-            'emulator-l': {},
-            'emulator-l-debug': {},
+            # Graphene builds. These are a different app (ie, not B2G) and would
+            # have their own config files in an ideal world, but it's not worth
+            # the effort at this point.
+            'linux64_graphene': {},
+            'macosx64_graphene': {},
+            'win64_graphene': {},
+            # Horizon is a browser variant based on Graphene.
+            'linux64_horizon': {},
+            'macosx64_horizon': {},
+            'win64_horizon': {},
         },
     },
 }
@@ -1363,14 +1369,6 @@ BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-jb']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-jb-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-kk']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-kk-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-l']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-l-debug']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g37_v2_2
 # This is a path, relative to HGURL, where the repository is located
@@ -1382,6 +1380,7 @@ BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [3]
 BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -1398,8 +1397,6 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk']['enable_nightly'] = F
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['dolphin_eng']['enable_nightly'] = True
 
 ######## mozilla-b2g37_v2_2r
 # This is a path, relative to HGURL, where the repository is located
@@ -1410,6 +1407,8 @@ BRANCHES['mozilla-b2g37_v2_2r']['gecko_l10n_root'] = 'https://hg.mozilla.org/rel
 BRANCHES['mozilla-b2g37_v2_2r']['start_hour'] = [0]
 BRANCHES['mozilla-b2g37_v2_2r']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2r']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = False
@@ -1424,6 +1423,7 @@ BRANCHES['mozilla-b2g34_v2_1s']['gecko_l10n_root'] = 'https://hg.mozilla.org/rel
 BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [0]
 BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [12]
 BRANCHES['mozilla-b2g34_v2_1s']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk']['enable_nightly'] = False
@@ -1479,85 +1479,6 @@ BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
 BRANCHES['try']['platforms']['emulator-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-jb']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-jb']['mozharness_config']['extra_args'] = ['--target', 'emulator-jb', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-jb-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-jb-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-jb', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-jb-debug']['enable_dep'] = True
-BRANCHES['try']['platforms']['emulator-jb-debug']['enable_periodic'] = False
-BRANCHES['try']['platforms']['emulator-kk']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-kk']['mozharness_config']['extra_args'] = ['--target', 'emulator-kk', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-kk']['enable_dep'] = True
-BRANCHES['try']['platforms']['emulator-kk']['enable_periodic'] = False
-BRANCHES['try']['platforms']['emulator-kk-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-kk-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-kk', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-kk-debug']['enable_dep'] = True
-BRANCHES['try']['platforms']['emulator-kk-debug']['enable_periodic'] = False
-BRANCHES['try']['platforms']['emulator-l']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-l']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-l-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['emulator-l-debug']['mozharness_config']['extra_args'] = ['--target', 'emulator-l', '--config', 'b2g/releng-try.py', '--debug', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
-BRANCHES['try']['platforms']['emulator-l-debug']['enable_dep'] = True
-BRANCHES['try']['platforms']['emulator-l-debug']['enable_periodic'] = False
-
-# Graphene and Horizon are only enabled on Larch and Try for now.
-for name, branch in BRANCHES.iteritems():
-    if name not in ("larch", "try"):
-        if "linux64_graphene" in branch["platforms"]:
-            del branch["platforms"]["linux64_graphene"]
-        if "macosx64_graphene" in branch["platforms"]:
-            del branch["platforms"]["macosx64_graphene"]
-        if "win64_graphene" in branch["platforms"]:
-            del branch["platforms"]["win64_graphene"]
-        if "linux64_horizon" in branch["platforms"]:
-            del branch["platforms"]["linux64_horizon"]
-        if "macosx64_horizon" in branch["platforms"]:
-            del branch["platforms"]["macosx64_horizon"]
-        if "win64_horizon" in branch["platforms"]:
-            del branch["platforms"]["win64_horizon"]
-
-# Enable win32/macosx64 mulet in gecko 38+
-for name, branch in items_before(BRANCHES, 'gecko_version', 38):
-    if 'win32-mulet' in branch['platforms']:
-        del branch['platforms']['win32-mulet']
-    if 'macosx64-mulet' in branch['platforms']:
-        del branch['platforms']['macosx64-mulet']
-
-# dolphin is for selected branches only
-for branch in BRANCHES:
-    if branch not in ('mozilla-b2g34_v2_1s', 'mozilla-central',
-                      'mozilla-inbound', 'b2g-inbound', 'fx-team',
-                      'alder'):
-        if 'dolphin' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin']
-        if 'dolphin_eng' in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms']['dolphin_eng']
-
-# exact rooting was enabled in gecko 32
-for name, branch in items_before(BRANCHES, 'gecko_version', 32):
-    if 'linux64-b2g-haz' in branch['platforms']:
-        del branch['platforms']['linux64-b2g-haz']
-
-# b2g 2.2+
-for name, branch in items_before(BRANCHES, 'gecko_version', 37):
-    for p in ('emulator-l', 'emulator-l-debug'):
-        if p in branch['platforms']:
-            del branch['platforms'][p]
-
-# Disable emulators for gecko 39 and higher, they're now in TC
-# See bug 1143766
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-    for p in ('emulator-l', 'emulator-kk', 'emulator-jb',
-              'emulator-l-debug', 'emulator-kk-debug', 'emulator-jb-debug'):
-        if p in branch['platforms']:
-            del branch['platforms'][p]
-
-# Disable linux b2g desktop builds for gecko 39 and higher, they're now in TC
-# See bug 1146604
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-    for p in ('linux64_gecko', 'linux64_gecko-debug'):
-        if p in branch['platforms']:
-            del branch['platforms'][p]
 
 # Enable mozharness pinning
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 30):
