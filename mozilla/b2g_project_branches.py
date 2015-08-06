@@ -83,12 +83,6 @@ PROJECT_BRANCHES = {
             'emulator-kk-debug': {
                 'enable_nightly': True,
             },
-            'dolphin': {
-                'enable_nightly': True,
-            },
-            'dolphin_eng': {
-                'enable_nightly': True,
-            },
         },
     },
     'ash': {
@@ -133,12 +127,6 @@ PROJECT_BRANCHES = {
                 'enable_nightly': True,
             },
             'emulator-kk-debug': {
-                'enable_nightly': True,
-            },
-            'dolphin': {
-                'enable_nightly': True,
-            },
-            'dolphin_eng': {
                 'enable_nightly': True,
             },
         },
