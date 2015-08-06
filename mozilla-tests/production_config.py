@@ -21,11 +21,13 @@ for i in range(1, 173):
 for i in range(1, 173):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 181):
+for i in range(1, 102) + range(103, 181):  # Omit 102 for win10 // Bug 1191481
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 11):
     SLAVES['win10']['t-w1064-ix-%04i' % i] = {}
+for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
+    SLAVES['win10']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 166):
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
