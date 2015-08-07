@@ -2051,11 +2051,6 @@ PROJECTS = {
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
             },
-            'win8': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
         },
         'hgurl': 'https://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
