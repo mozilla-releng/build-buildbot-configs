@@ -3023,8 +3023,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', ma_gecko_version):
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
 
-# mozharness builds aren't available for android until version 41
-for name, branch in items_before(BRANCHES, 'gecko_version', 41):
+# enable mozharness mobile builds on m-a, m-c, and m-c related branches
+for name, branch in items_before(BRANCHES, 'gecko_version', ma_gecko_version):
     for platform in branch['platforms'].keys():
         if 'android' in platform:
             # we don't want to disable the branch level item: "desktop_mozharness_builds_enabled"
