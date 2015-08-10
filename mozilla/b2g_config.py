@@ -1218,10 +1218,6 @@ BRANCHES = {
             'flame-kk': {},
             'flame-kk_eng': {},
             'flame-kk_eng-debug': {},
-            'nexus-4': {},
-            'nexus-4_eng': {},
-            'nexus-5-l': {},
-            'nexus-5-l_eng': {},
         }
     },
     'mozilla-b2g37_v2_2r': {
@@ -1381,12 +1377,6 @@ BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-5-l']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-5-l_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['nexus-5-l_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = False

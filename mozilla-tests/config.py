@@ -2051,11 +2051,6 @@ PROJECTS = {
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
             },
-            'win8': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
         },
         'hgurl': 'https://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
@@ -2091,7 +2086,7 @@ BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, 
 BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
 BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-central']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['mozilla-central']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
@@ -2099,7 +2094,7 @@ BRANCHES['mozilla-central']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONL
 BRANCHES['mozilla-central']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)    
 BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
@@ -2120,7 +2115,7 @@ BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, 
 BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-inbound']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
 BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-inbound']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-inbound']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
@@ -2139,7 +2134,7 @@ BRANCHES['fx-team']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONL
 BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['fx-team']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
 BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['fx-team']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['fx-team']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
@@ -2269,28 +2264,20 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
         continue
     branch['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 
-
-# cppunittest jobs ride the train with 28, so they need to be disabled
-# for branches running an older version.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
-# cppunittest jobs ride the train with 28, so they need to be disabled
-# for branches running an older version.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=937637
+# disable cppunittests on mountainlion, leave enabled on yosemite (bug 1190060)
 for platform in PLATFORMS.keys():
-    # See Bug 997946 - skip these on OS X 10.8 due to limited capacity
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 28):
-        if platform not in branch['platforms']:
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in ('mountainlion',):
             continue
-        for slave_platform in branch['platforms'][platform]:
-            if slave_platform not in ['mountainlion', 'yosemite']:
-                continue
-            for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
-                for cpp_suite in CPPUNIT:
-                    try:
-                        branch['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
-                    except ValueError:
-                        # wasn't in the list anyways
-                        pass
+        for branch in BRANCHES.keys():
+            if platform in BRANCHES[branch]['platforms']:
+                for suite_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                    for cpp_suite in CPPUNIT:
+                        try:
+                            BRANCHES[branch]['platforms'][platform][slave_platform][suite_type].remove(cpp_suite)
+                        except ValueError:
+                            # wasn't in the list anyways
+                            pass
 
 # Enable Mn on opt/debug win for gecko >= 33
 for platform in PLATFORMS.keys():
@@ -2348,6 +2335,21 @@ for platform in PLATFORMS.keys():
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:] + WEB_PLATFORM_REFTESTS[:]
+
+# Enable wpt debug for gecko >= 42
+for platform in PLATFORMS.keys():
+    if platform not in ['linux', 'linux64', 'win32', 'win64', 'macosx64']:
+        continue
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 42):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+
+            # These are not stable enough on OS X 10.6
+            if slave_platform == "snowleopard":
+                continue
+
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
 # Enable Mn on opt linux/linux64 for gecko >= 32
 for platform in PLATFORMS.keys():
@@ -2473,13 +2475,6 @@ for platform in PLATFORMS.keys():
         BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPP_GTEST
         BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPP_GTEST
 
-# Enable web-platform-tests-debug on try
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['try']['platforms'][platform]:
-            continue
-        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
-
 # Enable web-platform-tests on cedar
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['cedar']['platforms']:
@@ -2493,7 +2488,7 @@ for platform in PLATFORMS.keys():
                 (platform == "macosx64" and slave_platform != "snowleopard")):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
 # Enable mozbase unit tests on cedar
 # https://bugzilla.mozilla.org/show_bug.cgi?id=971687
