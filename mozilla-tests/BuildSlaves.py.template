@@ -21,8 +21,6 @@ SlavePasswords = {
     "ubuntu64_hw-b2g": "pass",
     "tiger": "pass",
     "snowleopard": "pass",
-    "mountainlion": "pass",
-    "mountainlion-b2gdt": "pass",
     "yosemite": "pass",
     "xp": "pass",
     "xp-ix": "pass",
