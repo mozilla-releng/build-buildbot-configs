@@ -1,4 +1,4 @@
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(41,55) + range(56,69)  \
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(41,55) + range(56,69) + \
                   range(70,87) + range(88,95)]
 WIN64_REV2     = ['b-2008-ix-%04i' % x for x in range(1,18) + range(65,89) + range(90,159) + range(161,173)]
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
