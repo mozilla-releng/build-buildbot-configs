@@ -58,6 +58,7 @@ setMainFirefoxVersions(BRANCHES)
 
 PLATFORMS = {
     'linux64_gecko': {},
+    'macosx64_gecko': {},
     'emulator': {},
     'emulator-jb': {},
     'emulator-kk': {},
@@ -70,6 +71,17 @@ PLATFORMS['linux64_gecko']['env_name'] = 'linux-perf'
 PLATFORMS['linux64_gecko']['ubuntu64_vm-b2gdt'] = {'name': builder_prefix + "_ubuntu64_vm"}
 PLATFORMS['linux64_gecko']['stage_product'] = 'b2g'
 PLATFORMS['linux64_gecko']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'use_mozharness': True,
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+}
+
+PLATFORMS['macosx64_gecko']['slave_platforms'] = ['mountainlion-b2gdt', ]
+PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
+PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_macosx64"}
+PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
+PLATFORMS['macosx64_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'use_mozharness': True,
     'hg_bin': 'hg',
@@ -123,7 +135,8 @@ BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
     # turn on platforms as we get them running
     'platforms': {
-        'linux64_gecko': {},       
+        'linux64_gecko': {},
+        'macosx64_gecko': {},
         'emulator': {},
         'emulator-jb': {},
         'emulator-kk': {},
@@ -938,7 +951,28 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-    },    
+    },
+    'macosx64_gecko': {
+        'product_name': 'b2g',
+        'app_name': 'b2g',
+        'brand_name': 'Gecko',
+        'builds_before_reboot': 1,
+        'unittest-env': {
+            "MOZ_NO_REMOTE": '1',
+            "NO_EM_RESTART": '1',
+            "XPCOM_DEBUG_BREAK": 'warn',
+            "MOZ_CRASHREPORTER_NO_REPORT": '1',
+            # for extracting dmg's
+            "PAGER": '/bin/cat',
+        },
+        'enable_opt_unittests': False,
+        'enable_debug_unittests': False,
+        'mountainlion-b2gdt': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+            'suite_config': {},
+        },
+    },
     'emulator': {
         'product_name': 'b2g',
         'app_name': 'b2g',
