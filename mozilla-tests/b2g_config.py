@@ -77,9 +77,8 @@ PLATFORMS['linux64_gecko']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
 }
 
-PLATFORMS['macosx64_gecko']['slave_platforms'] = ['mountainlion-b2gdt', ]
+PLATFORMS['macosx64_gecko']['slave_platforms'] = []
 PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['macosx64_gecko']['mountainlion-b2gdt'] = {'name': builder_prefix + "_macosx64"}
 PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
 PLATFORMS['macosx64_gecko']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -951,7 +950,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-    },
+    },    
     'macosx64_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -967,11 +966,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'enable_opt_unittests': False,
         'enable_debug_unittests': False,
-        'mountainlion-b2gdt': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-            'suite_config': {},
-        },
+        'enable_talos': False, 
     },
     'emulator': {
         'product_name': 'b2g',

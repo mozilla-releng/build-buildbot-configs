@@ -4,7 +4,6 @@ SLAVES = {
     'win8': {},
     'win10': {},
     'snowleopard': {},
-    'mountainlion': {},
     'yosemite': {},
     'panda_android': {},
     'ubuntu32_vm': {},
@@ -31,11 +30,8 @@ for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
 
 for i in range(1, 166):
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
-
-for i in range(1, 14):
-    SLAVES['mountainlion']['talos-mtnlion-r5-%03i' % i] = {}
-
-for i in range(1, 29) + range(29, 94):
+  
+for i in range(1, 29) + range(29, 94) + range(96, 108):
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(22, 910):
@@ -81,7 +77,6 @@ SLAVES['ubuntu64_vm-b2g-lg-emulator'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64_vm-b2g-emulator-jb'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm-b2g-emulator-kk'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
-SLAVES['mountainlion-b2gdt'] = SLAVES['mountainlion']
 SLAVES['win8_64'] = SLAVES['win8']
 SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
