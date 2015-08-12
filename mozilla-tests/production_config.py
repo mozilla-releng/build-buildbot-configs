@@ -30,8 +30,8 @@ for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
 
 for i in range(1, 166):
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
-  
-for i in range(1, 29) + range(29, 94) + range(96, 108):
+
+for i in range(1, 29) + range(29, 108):
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(22, 910):
