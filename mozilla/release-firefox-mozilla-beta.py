@@ -21,29 +21,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '40.0b9'
-releaseConfig['appVersion']          = '40.0'
+releaseConfig['version']             = '41.0b1'
+releaseConfig['appVersion']          = '41.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_40_0b9'
+releaseConfig['baseTag']             = 'FIREFOX_41_0b1'
 releaseConfig['partialUpdates']      = {
 
-    '40.0b6': {
+    '40.0b9': {
         'appVersion': '40.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_40_0b6',
-    },
-
-    '40.0b7': {
-        'appVersion': '40.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_40_0b7',
-    },
-
-    '40.0b8': {
-        'appVersion': '40.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_40_0b8',
+        'baseTag': 'FIREFOX_40_0b9',
     },
 
 }
@@ -54,18 +42,23 @@ releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
 
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextVersion']         = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'c0bed95cdc18',
+        'revision': '5440624ee3a8',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'browser/config/version_display.txt': {
+                'version': releaseConfig['version'],
+                'nextVersion': releaseConfig['nextVersion']
             },
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
