@@ -34,16 +34,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr31': {
-        'gecko_version': 31,
-        'platforms': {
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr38': {
         'gecko_version': 38,
         'platforms': {
@@ -2082,14 +2072,6 @@ BRANCHES['mozilla-beta']['platforms']['macosx64']['talos_slave_platforms'] = ['s
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['talos_slave_platforms'] = ['snowleopard', 'yosemite']
-
-######### mozilla-esr31
-BRANCHES['mozilla-esr31']['repo_path'] = "releases/mozilla-esr31"
-BRANCHES['mozilla-esr31']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr31']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr31']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr31']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr31']['platforms']['linux64']['talos_slave_platforms'] = []
 
 ######### mozilla-esr38
 BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
