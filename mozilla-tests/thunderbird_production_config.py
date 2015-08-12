@@ -15,9 +15,6 @@ BRANCHES = {
     'comm-central': {
         'tinderbox_tree': 'Thunderbird',
     },
-    'comm-esr31': {
-        'tinderbox_tree': 'Thunderbird-Esr31',
-    },
     'comm-esr38': {
         'tinderbox_tree': 'Thunderbird-Esr38',
     },

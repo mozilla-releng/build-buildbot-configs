@@ -44,10 +44,6 @@ BRANCHES = {
         'enable_blocklist_update': False,
         'file_update_on_closed_tree': False,
     },
-    'comm-esr31': {
-        'enable_blocklist_update': False,
-        'file_update_on_closed_tree': False,
-    },
     'comm-esr38': {
         'enable_blocklist_update': False,
         'file_update_on_closed_tree': False,

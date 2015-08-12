@@ -637,9 +637,6 @@ BRANCHES = {
     },
     'comm-beta': {
     },
-    'comm-esr31': {
-        'gecko_version': 31,
-    },
     'comm-esr38': {
         'gecko_version': 38,
     },
@@ -774,40 +771,6 @@ BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nig
 BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
-
-######## comm-esr31
-BRANCHES['comm-esr31']['repo_path'] = 'releases/comm-esr31'
-BRANCHES['comm-esr31']['moz_repo_path'] = 'releases/mozilla-esr31'
-BRANCHES['comm-esr31']['mozilla_dir'] = 'mozilla'
-BRANCHES['comm-esr31']['update_channel'] = 'nightly-esr31'
-BRANCHES['comm-esr31']['skip_blank_repos'] = True
-BRANCHES['comm-esr31']['call_client_py'] = True
-BRANCHES['comm-esr31']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr31']['enable_weekly_bundle'] = True
-BRANCHES['comm-esr31']['start_hour'] = [3]
-BRANCHES['comm-esr31']['start_minute'] = [2]
-BRANCHES['comm-esr31']['enable_xulrunner'] = False
-# Enable unit tests
-BRANCHES['comm-esr31']['enable_mac_a11y'] = True
-BRANCHES['comm-esr31']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['comm-esr31']['enable_l10n'] = False
-BRANCHES['comm-esr31']['enable_l10n_onchange'] = False
-BRANCHES['comm-esr31']['l10nNightlyUpdate'] = False
-BRANCHES['comm-esr31']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                            'macosx64']
-BRANCHES['comm-esr31']['l10nDatedDirs'] = True
-BRANCHES['comm-esr31']['l10n_tree'] = 'tbrel'
-BRANCHES['comm-esr31']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr31'
-BRANCHES['comm-esr31']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr31' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-esr31']['enable_nightly'] = False
-BRANCHES['comm-esr31']['updates_enabled'] = False
-BRANCHES['comm-esr31']['create_partial'] = False
-BRANCHES['comm-esr31']['enable_blocklist_update'] = False
-BRANCHES['comm-esr31']['file_update_on_closed_tree'] = False
-BRANCHES['comm-esr31']['enable_valgrind'] = False
 
 ######## comm-esr38
 BRANCHES['comm-esr38']['repo_path'] = 'releases/comm-esr38'
