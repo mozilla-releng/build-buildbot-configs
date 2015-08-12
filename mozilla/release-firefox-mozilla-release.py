@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '40.0.1'
 releaseConfig['appVersion']          = '40.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_40_0_1'
 releaseConfig['partialUpdates']      = {
 
@@ -67,14 +67,10 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'dad22a127344',
-        'relbranch': None,
+        'revision': 'GECKO4001_2015081122_RELBRANCH',
+        'relbranch': 'GECKO4001_2015081122_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
-                'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
-            },
-            'browser/config/version_display.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
