@@ -115,7 +115,10 @@ PROJECT_BRANCHES = {
         },
     },
     'date': {
-        'gecko_version': 42,
+        'gecko_version': 38,
+        'mozharness_repo_path': 'users/nthomas_mozilla.com/mozharness-build-promotion',
+        'mozharness_repo': 'https://hg.mozilla.org/users/nthomas_mozilla.com/mozharness-build-promotion',
+        'mozharness_tag': 'default',
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
         'branch_projects': [],
@@ -139,9 +142,7 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
         'partners_repo_path': 'build/partner-repacks',
-        'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
-        "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
-        "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
+        'partner_repack_platforms': ('linux', 'linux64', 'win32', 'macosx64'),
     },
     'elm': {
         'branch_projects': [],
