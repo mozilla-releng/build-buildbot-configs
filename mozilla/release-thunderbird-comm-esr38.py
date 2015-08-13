@@ -10,7 +10,7 @@ releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
-releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>', '<thunderbird-drivers@mozilla.org>']
+releaseConfig['AllRecipients']       = ['<release-automation-notifications-thunderbird@mozilla.org>',]
 releaseConfig['ImportantRecipients'] = ['<thunderbird-drivers@mozilla.org>',]
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
@@ -23,17 +23,17 @@ releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.1.0'
-releaseConfig['appVersion']          = '38.1.0'
+releaseConfig['version']             = '38.2.0'
+releaseConfig['appVersion']          = '38.2.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_1_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_2_0'
 releaseConfig['partialUpdates']      = {
 
-    '31.6.0': {
-        'appVersion': '31.6.0',
+    '38.1.0': {
+        'appVersion': '38.1.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_31_6_0',
+        'baseTag': 'THUNDERBIRD_38_1_0',
     },
 
     '31.7.0': {
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr38',
         'path': 'releases/comm-esr38',
-        'revision': '0a8994d729d6',
+        'revision': '7fe010559389',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': 'b32d199c886c',
+        'revision': '5f77862a6e66',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -87,7 +87,6 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_thunderbird-esr38'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
-    'build/mozharness': 'production',
 }
 
 # Platform configuration
@@ -161,6 +160,9 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
+releaseConfig['bouncer_aliases'] = {
+    'Thunderbird-%(version)s': 'thunderbird-latest',
+}
 
 # Product details config
 releaseConfig["productDetailsRepo"] = "svn+ssh://tbirdbld@svn.mozilla.org/libs/product-details"
