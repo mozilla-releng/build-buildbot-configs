@@ -2407,7 +2407,10 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
     else:
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
-        ANDROID_4_3_AWS_DICT['debug_unittest_suites'].append(suite)
+        if suite[0].startswith('robocop'):
+            continue
+        else:
+            ANDROID_4_3_AWS_DICT['debug_unittest_suites'].append(suite)
         if suite[0].startswith('cppunit'):
             ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites'].append(suite)
 
