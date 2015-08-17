@@ -559,7 +559,7 @@ MOCHITEST_OTHER = [
     ('mochitest-other', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
+        'extra_args': ['--mochitest-suite', 'chrome,a11y'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
