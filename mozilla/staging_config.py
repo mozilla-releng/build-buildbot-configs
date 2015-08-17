@@ -14,6 +14,12 @@ WIN64_RELOPS     = ['ix-mn-w0864-%03d' % x for x in range(1,3)]
 SLAVES['win64-rev2'].extend(WIN64_RELOPS)
 TRY_SLAVES['win64-rev2'].extend(WIN64_RELOPS)
 
+# AWS EC2 (b|y)-2008 spot instances.
+B2008_SPOT = ['b-2008-spot-%03d' % x for x in range(900, 904)]
+Y2008_SPOT = ['y-2008-spot-%03d' % x for x in range(900, 904)]
+SLAVES['win64-rev2'].extend(B2008_SPOT)
+TRY_SLAVES['win64-rev2'].extend(Y2008_SPOT)
+
 GLOBAL_VARS = {
     'staging': True,
     'config_repo_path': 'users/stage-ffxbld/buildbot-configs',
