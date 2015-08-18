@@ -511,6 +511,7 @@ builders.append({
 for platform in sorted(releaseConfig['verifyConfigs'].keys()):
     pf = branchConfig['platforms'][platform]
     update_verify_factory = UpdateVerifyFactory(
+        env=pf.get('env'),
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
         verifyConfig=releaseConfig['verifyConfigs'][platform],
