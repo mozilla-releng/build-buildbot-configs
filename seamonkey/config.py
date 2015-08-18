@@ -114,7 +114,6 @@ GLOBAL_VARS = {
     'pgo_strategy': None,
     'enabled_products': ['seamonkey'],
     'tooltool_url_list': ['http://tooltool.pub.build.mozilla.org/temp-sm-stuff/'],
-    'tooltool_script': ['/tools/tooltool.py'],
     'mock_packages_i686' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                             'glibc-static.i686', 'libstdc++-static.i686', 'perl-Test-Simple', 'perl-Config-General',
                             'gtk2-devel.i686', 'libnotify-devel.i686', 'yasm',
@@ -226,6 +225,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
@@ -233,7 +233,8 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
-                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -274,6 +275,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'], 
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
@@ -281,7 +283,8 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': GLOBAL_VARS['mock_packages_x86-64'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
-                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -321,6 +324,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/macosx64/releng.manifest',
             'talos_masters': GLOBAL_VARS['talos_masters'],
+            'tooltool_script': ['/tools/tooltool.py'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
         },
@@ -360,7 +364,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/win32/releng.manifest',
-            'tooltool_script': ['python', '/d/mozilla-build/tooltool.py'],
+            'tooltool_script': ['python2.7', 'd:/mozilla-build/tooltool.py'],
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': True,
@@ -395,6 +399,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
@@ -402,7 +407,8 @@ PLATFORM_VARS = {
             'mock_target': 'mozilla-centos6-i386',
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
-                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),]
+                                  ('/home/seabld/.hgrc', '/builds/.hgrc'),
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
@@ -433,6 +439,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/macosx64/releng.manifest',
+            'tooltool_script': ['/tools/tooltool.py'],
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
@@ -463,7 +470,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/win32/releng.manifest',
-            'tooltool_script': ['python', '/d/mozilla-build/tooltool.py'],
+            'tooltool_script': ['python2.7', 'd:/mozilla-build/tooltool.py'],
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': True,
