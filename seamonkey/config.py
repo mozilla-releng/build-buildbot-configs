@@ -522,6 +522,7 @@ BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
+BRANCHES['comm-central-trunk']['mozilla_srcdir'] = 'mozilla'
 #make sure it has an ending slash
 BRANCHES['comm-central-trunk']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-central-trunk-l10n/'
@@ -565,6 +566,7 @@ BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-aurora']['l10nDatedDirs'] = True
 BRANCHES['comm-aurora']['l10n_tree'] = 'sea_aurora'
+BRANCHES['comm-aurora']['mozilla_srcdir'] = 'mozilla'
 #make sure it has an ending slash
 BRANCHES['comm-aurora']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-aurora-l10n/'
@@ -608,6 +610,7 @@ BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
 BRANCHES['comm-beta']['l10n_tree'] = 'sea_beta'
+BRANCHES['comm-beta']['mozilla_srcdir'] = 'mozilla'
 #make sure it has an ending slash
 BRANCHES['comm-beta']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-beta-l10n/'
@@ -651,6 +654,7 @@ BRANCHES['comm-release']['l10nNightlyUpdate'] = True
 BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
 BRANCHES['comm-release']['l10n_tree'] = 'sea_release'
+BRANCHES['comm-release']['mozilla_srcdir'] = 'mozilla'
 #make sure it has an ending slash
 BRANCHES['comm-release']['l10nUploadPath'] = \
     '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-release-l10n/'

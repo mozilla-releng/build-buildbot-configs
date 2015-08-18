@@ -335,6 +335,8 @@ for platform in releaseConfig['enUSPlatforms']:
         mock_target=pf.get('mock_target', None),
         mock_packages=pf.get('mock_packages', None),
         mock_copyin_files=pf.get('mock_copyin_files', None),
+        mozillaDir=pf.get('mozilla_dir', None),
+        mozillaSrcDir=pf.get('mozilla_srcdir', None),
     )
 
     builders.append({
