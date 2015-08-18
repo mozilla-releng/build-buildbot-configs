@@ -6,7 +6,7 @@ SLAVES = {
     'win32': ['sea-win32-%02i' % x for x in [1,2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
     'macosx64': #['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
-                ['sea-mini-osx64-%i' % x for x in range(1,5)],
+                ['sea-mini-osx64-%i' % x for x in [1,4]],
     'mock': ['sea-hp-linux64-%i' % x for x in range(2,14)],
 }
 
