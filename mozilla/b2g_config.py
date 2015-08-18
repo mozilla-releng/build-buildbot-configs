@@ -1232,6 +1232,8 @@ BRANCHES = {
             'emulator-debug': {},
             'emulator-l': {},
             'emulator-l-debug': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
         }
     },
     'try': {
@@ -1399,7 +1401,9 @@ BRANCHES['mozilla-b2g37_v2_2r']['start_minute'] = [25]
 BRANCHES['mozilla-b2g37_v2_2r']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['flame-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['flame-kk_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = False
