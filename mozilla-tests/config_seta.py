@@ -6,7 +6,7 @@ import sys
 
 #define seta branches and default values for skipcount and skiptimeout
 seta_branches = ['fx-team', 'mozilla-inbound']
-skipconfig_defaults = (5, 1800)
+skipconfig_defaults = (7, 3600)
 # todo: should get platform names from PLATFORMS in config.py
 
 today = date.today().strftime("%Y-%m-%d")

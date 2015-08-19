@@ -559,7 +559,7 @@ MOCHITEST_OTHER = [
     ('mochitest-other', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'chrome,a11y,plugins'],
+        'extra_args': ['--mochitest-suite', 'chrome,a11y'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -2130,6 +2130,18 @@ for platform in PLATFORMS.keys():
                     debug_suites = BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
                     debug_suites = [x for x in debug_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = debug_suites + MOCHITEST_DT_8[:]
+
+# Bug 1156421 - Use more chunks for mochitest-dt on ASAN
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in ('ubuntu64-asan_vm',):
+                continue
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    opt_suites = BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites']
+                    opt_suites = [x for x in opt_suites if x[0] and x[0] != 'mochitest-devtools-chrome']
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] = opt_suites + MOCHITEST_DT_4[:]
 
 # Bug 1156357 - Enable mochitest-push to ride the trains
 for platform in PLATFORMS.keys():
