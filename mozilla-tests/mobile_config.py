@@ -1,4 +1,5 @@
 from copy import deepcopy
+import re
 
 import config_common
 reload(config_common)
@@ -2391,6 +2392,10 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
     if suite[0].startswith('plain-reftest'):
         ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
+    elif re.match(r"^mochitest-\d", suite[0]):
+        ANDROID_4_3_C3_DICT['opt_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
+        ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'].append(suite)
     elif suite[0].startswith('mochitest'):
         ANDROID_4_3_AWS_DICT['opt_unittest_suites'].append(suite)
         ANDROID_4_3_C3_DICT['debug_unittest_suites'].append(suite)
