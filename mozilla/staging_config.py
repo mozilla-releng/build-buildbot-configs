@@ -57,6 +57,7 @@ GLOBAL_VARS = {
     'blob_upload': True,
     'mozharness_configs': {
         'balrog': 'balrog/staging.py',
+        'single_locale_environment': 'single_locale/staging.py',
     },
 }
 
