@@ -645,7 +645,7 @@ BRANCHES['comm-beta']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Beta'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
 BRANCHES['comm-release']['repo_path'] = 'releases/comm-release'
-BRANCHES['comm-release']['mozilla_repo_path'] = 'releases/mozilla-release'
+BRANCHES['comm-release']['mozilla_repo_path'] = 'releases/mozilla-esr38'
 BRANCHES['comm-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['comm-release']['enable_nightly'] = False
 BRANCHES['comm-release']['start_hour'] = [0]
