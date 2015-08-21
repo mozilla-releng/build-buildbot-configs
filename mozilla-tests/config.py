@@ -2049,6 +2049,25 @@ BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
 
+# now for e10s tests
+# no xperf here since it fails all the time
+BRANCHES['try']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['try']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['try']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+#BRANCHES['try']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
+BRANCHES['try']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
+BRANCHES['try']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['try']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['try']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
+BRANCHES['try']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+
+
 ######## cedar
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 
