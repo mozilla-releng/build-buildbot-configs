@@ -234,7 +234,8 @@ PLATFORM_VARS = {
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
-                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -284,7 +285,8 @@ PLATFORM_VARS = {
             'mock_packages': GLOBAL_VARS['mock_packages_x86-64'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
-                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -409,7 +411,8 @@ PLATFORM_VARS = {
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
-                                  ('/tools/tooltool.py', '/builds/tooltool.py'),]
+                                  ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
