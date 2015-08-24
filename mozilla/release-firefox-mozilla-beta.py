@@ -47,7 +47,7 @@ releaseConfig['partialUpdates']      = {
     },
 
 }
-releaseConfig['ui_update_tests'] = True
+releaseConfig['ui_update_tests'] = False
 
 # win64 support
 releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
