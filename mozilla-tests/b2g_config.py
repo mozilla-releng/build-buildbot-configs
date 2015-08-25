@@ -677,6 +677,18 @@ XPCSHELL_CHUNKED = [
                     'blob_upload': True,
                     },
      ),
+    ('xpcshell-3', {'suite': 'xpcshell',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
+    ('xpcshell-4', {'suite': 'xpcshell',
+                    'use_mozharness': True,
+                    'script_path': 'scripts/b2g_emulator_unittest.py',
+                    'blob_upload': True,
+                    },
+     ),
 ]
 
 GAIA_INTEGRATION = [(
