@@ -1264,14 +1264,28 @@ PLATFORM_UNITTEST_VARS = {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'xpcshell',
-                        '--this-chunk', '1', '--total-chunks', '2'
+                        '--this-chunk', '1', '--total-chunks', '4'
                     ],
                 },
                 'xpcshell-2': {
                     'extra_args': [
                         '--cfg', 'b2g/emulator_automation_config.py',
                         '--test-suite', 'xpcshell',
-                        '--this-chunk', '2', '--total-chunks', '2'
+                        '--this-chunk', '2', '--total-chunks', '4'
+                    ],
+                },
+                'xpcshell-3': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'xpcshell',
+                        '--this-chunk', '3', '--total-chunks', '4'
+                    ],
+                },
+                'xpcshell-4': {
+                    'extra_args': [
+                        '--cfg', 'b2g/emulator_automation_config.py',
+                        '--test-suite', 'xpcshell',
+                        '--this-chunk', '4', '--total-chunks', '4'
                     ],
                 },
                 'crashtest-1': {
