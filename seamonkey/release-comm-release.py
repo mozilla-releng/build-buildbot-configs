@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.35'
 releaseConfig['appVersion']                 = '2.35'
 releaseConfig['milestone']                  = '38.2.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_35'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.33.1'
@@ -28,7 +28,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = 'e6dcddf50595'
+releaseConfig['sourceRepoRevision']         = '4c0855a2be32'
 releaseConfig['relbranchOverride']          = 'SEAMONKEY_2_35_RELEASE_BRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
@@ -38,8 +38,8 @@ releaseConfig['mozillaRepoRevision']        = 'cf6b17cea869'
 releaseConfig['mozillaRelbranchOverride']   = 'SEAMONKEY_2_35_RELEASE_BRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
-releaseConfig['inspectorRepoRevision']      = 'SEA2_26_RELBRANCH'
-releaseConfig['inspectorRelbranchOverride'] = ''
+releaseConfig['inspectorRepoRevision']      = 'SEAMONKEY_2_35_BUILD1'
+releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM3820_20150821_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = '' # leave empty if venkman is not to be tagged
 releaseConfig['venkmanRepoRevision']        = ''
@@ -50,7 +50,7 @@ releaseConfig['chatzillaRepoRevision']      = 'b3fe6abc82d2'
 releaseConfig['chatzillaRelbranchOverride'] = 'SEA2_32_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM3820_20150821_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 #  Support repositories
 #   not used yet
