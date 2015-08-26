@@ -21,23 +21,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '40.0.2'
-releaseConfig['appVersion']          = '40.0.2'
+releaseConfig['version']             = '40.0.3'
+releaseConfig['appVersion']          = '40.0.3'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_40_0_2'
+releaseConfig['baseTag']             = 'FIREFOX_40_0_3'
 releaseConfig['partialUpdates']      = {
+
+    '40.0.2': {
+        'appVersion': '40.0.2',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_40_0_2',
+    },
 
     '38.0.5': {
         'appVersion': '38.0.5',
         'buildNumber': 4,
         'baseTag': 'FIREFOX_38_0_5',
-    },
-
-    '40.0': {
-        'appVersion': '40.0',
-        'buildNumber': 5,
-        'baseTag': 'FIREFOX_40_0',
     },
 
     '39.0.3': {
@@ -54,7 +54,7 @@ releaseConfig['partialUpdates']      = {
 
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/40.0.2/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/40.0.3/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -67,7 +67,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '81353f2735a4',
+        'revision': '24cab2512daa',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -169,7 +169,7 @@ releaseConfig['updateChannels'] = {
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
-        "versionRegex": r"^(\d+\.\d+b\d+|%s)$" % releaseConfig["version"].replace(".", "\\."),
+        "versionRegex": r"^(\d+\.\d+(b\d+)?)$",
         "ruleId": 32,
         "requiresMirrors": False,
         "patcherConfig": "mozBeta-branch-patcher2.cfg",
