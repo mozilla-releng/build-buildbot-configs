@@ -53,7 +53,7 @@ GLOBAL_VARS = {
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
     'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
-    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
+    'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
     'blob_upload': True,
     'mozharness_configs': {
         'balrog': 'balrog/staging.py',

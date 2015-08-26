@@ -417,10 +417,10 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 34):
 
 # mozmill-on-mozharness should ride the trains
 # Replace old trains with non-mozharness code.
-# MERGE DAY (remove this code once Thunderbird no longer services Gecko 38 and lower)
+# MERGE DAY (remove this code once Thunderbird no longer services Gecko 37 and lower)
 for platform in PLATFORMS.keys():
     MOZMILL_OLD = ('mozmill', ['mozmill'])
-    for name, branch in items_before(BRANCHES, 'gecko_version', 39):
+    for name, branch in items_before(BRANCHES, 'gecko_version', 38):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:

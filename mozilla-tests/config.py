@@ -370,12 +370,11 @@ CPPUNIT = [
     }),
 ]
 
-CPP_GTEST = [
-    ('cpp_gtest', {
+GTEST = [
+    ('gtest', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--gtest-suite', 'gtest',
-                       '--cppunittest-suite', 'cppunittest'],
+        'extra_args': ['--gtest-suite', 'gtest'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -2282,13 +2281,13 @@ for platform in PLATFORMS.keys():
 
 ### Test suites that only run on Try ###
 
-# Enable combined cpp + gtests on try
+# Enable gtests on try
 for platform in PLATFORMS.keys():
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         if slave_platform not in BRANCHES['try']['platforms'][platform]:
             continue
-        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += CPP_GTEST
-        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += CPP_GTEST
+        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
+        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
