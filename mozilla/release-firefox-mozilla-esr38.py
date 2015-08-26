@@ -25,7 +25,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '38.2.1esr'
 releaseConfig['appVersion']          = '38.2.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_38_2_1esr'
 releaseConfig['partialUpdates']      = {
 
@@ -56,8 +56,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': 'GECKO3820_2015081310_RELBRANCH',
-        'relbranch': 'GECKO3820_2015081310_RELBRANCH',
+        'revision': 'GECKO3820esr_2015080613_RELBRANCH',
+        'relbranch': 'GECKO3820esr_2015080613_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
