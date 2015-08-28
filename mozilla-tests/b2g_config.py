@@ -1597,9 +1597,9 @@ BRANCHES['cedar']['branch_name'] = "Cedar"
 BRANCHES['cedar']['repo_path'] = "projects/cedar"
 BRANCHES['cedar']['mozharness_tag'] = "default"
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
-    MOCHITEST + REFTEST_20 + CRASHTEST + XPCSHELL + MARIONETTE + JSREFTEST + CPPUNIT
+    MOCHITEST + MARIONETTE + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
-    MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED + CPPUNIT
+    MARIONETTE[:] + CPPUNIT
 BRANCHES['maple']['branch_name'] = "Maple"
 BRANCHES['maple']['repo_path'] = "projects/maple"
 BRANCHES['pine']['branch_name'] = "Pine"

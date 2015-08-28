@@ -744,17 +744,6 @@ WEB_PLATFORM_TESTS_CHUNKED_MORE = [
     }),
 ]
 
-### Webapprt Tests ###
-WEBAPPRT_CHROME = [
-    ('webapprt-chrome', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--webapprt-suite', 'chrome'],
-        'blob_upload': True,
-        'script_maxtime': 4800,
-    })
-]
-
 ### XPCShell ###
 XPCSHELL = [
     ('xpcshell', {
@@ -2067,9 +2056,6 @@ BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['try']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 
 
-######## cedar
-BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-
 loadSkipConfig(BRANCHES,"desktop")
 
 # Remove mochitest-browser-chrome and mochitest-devtools-chrome
@@ -2245,6 +2231,16 @@ for platform in BRANCHES['holly']['platforms'].keys():
 
 
 ### Test suites that only run on Cedar ###
+# Turn off most suites on cedar (bug 1198400)
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['cedar']['platforms']:
+        continue
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = []
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
+
+BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
@@ -2264,19 +2260,10 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
-        if not (platform in ('linux64', 'linux', 'win32', 'win64') or
-                (platform == "macosx64" and slave_platform != "snowleopard")):
+        if platform in ('linux64', 'linux', 'win32', 'win64', 'macosx64'):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
-
-# Enable webapprt-chrome tests
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEBAPPRT_CHROME[:]
-        BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEBAPPRT_CHROME[:]
 
 
 ### Test suites that only run on Try ###

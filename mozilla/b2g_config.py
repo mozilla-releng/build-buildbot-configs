@@ -1346,6 +1346,15 @@ for branch in BRANCHES.keys():
                         del BRANCHES[branch]['platforms'][platform]
 
 
+######## remove most B2G builds from cedar
+for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
+                 'flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug',
+                 'win32_gecko', 'linux64-b2g-haz', 'win32_gecko-debug',
+                 'macosx64_gecko', 'macosx64_gecko-debug', 'macosx64-mulet',
+                 'win32-mulet', 'win32-mulet-opt'):
+    if platform in BRANCHES['cedar']['platforms']:
+        del BRANCHES['cedar']['platforms'][platform]
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
