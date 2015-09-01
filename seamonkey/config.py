@@ -18,7 +18,6 @@ GLOBAL_VARS = {
     # a problem to keep them in sync.
     'hgurl': 'http://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
-    'cvsroot': ':ext:seabld@cvs.mozilla.org:/cvsroot', #?
     'config_subdir': 'seamonkey',
     'irc_bot_name': 'sea-build-bot', #?
     'irc_bot_channels': ['mozbot'], #?
@@ -99,7 +98,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
     'graph_server': 'graphs.mozilla.org',
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
-#    'build_tools_repo_path': 'build/tools',
+    # 'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://callek.net/always_clobber.php',
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning

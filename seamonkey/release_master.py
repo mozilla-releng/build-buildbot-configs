@@ -246,8 +246,6 @@ source_factory = CCSourceFactory(
     inspectorRepoPath=releaseConfig['inspectorRepoPath'],
     venkmanRepoPath=releaseConfig['venkmanRepoPath'],
     chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
-    # Disable cvsroot on comm-central/comm-2.0 builds
-    #cvsroot=releaseConfig['cvsroot'],
     autoconfDirs=['.', 'mozilla', 'mozilla/js/src'],
     clobberURL=branchConfig['base_clobber_url'],
     use_mock=use_mock('linux'),
@@ -425,7 +423,6 @@ for platform in releaseConfig['l10nPlatforms']:
     l10n_verification_factory = L10nVerifyFactory(
         hgHost=branchConfig['hghost'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        cvsroot=releaseConfig['cvsroot'],
         stagingServer=releaseConfig['stagingServer'],
         productName=releaseConfig['productName'],
         version=releaseConfig['version'],
@@ -456,7 +453,6 @@ updates_factory = ReleaseUpdatesFactory(
     repoPath=releaseConfig['sourceRepoPath'],
     mozRepoPath=releaseConfig['mozillaRepoPath'],
     buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-    cvsroot=releaseConfig['cvsroot'],
     patcherToolsTag=releaseConfig['patcherToolsTag'],
     patcherConfig=releaseConfig['patcherConfig'],
     verifyConfigs=releaseConfig['verifyConfigs'],
@@ -558,7 +554,6 @@ if releaseConfig['majorUpdateRepoPath']:
         repoPath=releaseConfig['majorUpdateSourceRepoPath'],
         mozRepoPath=releaseConfig['majorUpdateRepoPath'],
         buildToolsRepoPath=branchConfig['build_tools_repo_path'],
-        cvsroot=releaseConfig['cvsroot'],
         patcherToolsTag=releaseConfig['majorPatcherToolsTag'],
         patcherConfig=releaseConfig['majorUpdatePatcherConfig'],
         verifyConfigs=releaseConfig['majorUpdateVerifyConfigs'],

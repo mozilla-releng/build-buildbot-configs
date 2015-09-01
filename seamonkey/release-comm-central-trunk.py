@@ -21,7 +21,6 @@ releaseConfig['chatzillaRepoRevision']      = '29d3c6d2a751'
 releaseConfig['chatzillaRelbranchOverride'] = 'COMM20_20110405_RELBRANCH'
 releaseConfig['l10nRepoPath']               = 'releases/l10n-mozilla-2.0'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets_comm_central_trunk'
-releaseConfig['cvsroot']                    = ':ext:seabld@cvs.mozilla.org:/cvsroot' # for patcher, etc.
 releaseConfig['productVersionFile']         = 'suite/config/version-20.txt'
 # mergeLocales allows missing localized strings to be filled in by their en-US
 # equivalent string. This is on (True) by default for nightly builds, but
