@@ -744,6 +744,48 @@ WEB_PLATFORM_TESTS_CHUNKED_MORE = [
     }),
 ]
 
+WEB_PLATFORM_REFTESTS_E10S = [
+    ('web-platform-tests-reftests-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=reftest", "--e10s"],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+WEB_PLATFORM_TESTS_E10S = [
+    ('web-platform-tests-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=testharness", "--e10s"],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+WEB_PLATFORM_TESTS_CHUNKED_E10S = [
+    ('web-platform-tests-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=testharness", "--e10s"],
+        'totalChunks': 4,
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S = [
+    ('web-platform-tests-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/web_platform_tests.py',
+        'extra_args': ["--test-type=testharness", "--e10s"],
+        'totalChunks': 8,
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 ### XPCShell ###
 XPCSHELL = [
     ('xpcshell', {
@@ -1244,6 +1286,12 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1345,6 +1393,12 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
             },
         },
         'win7-ix': {
@@ -1434,6 +1488,12 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         }
@@ -1533,6 +1593,12 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
             },
         },
         'win10_64': {
@@ -1619,6 +1685,12 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
                 },
             },
         },
@@ -1707,11 +1779,17 @@ PLATFORM_UNITTEST_VARS = {
                 'web-platform-tests-reftests': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
                 'mozbase': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
             },
-        },       
+        },
         'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + REFTEST_ONE_CHUNK + \
@@ -1787,6 +1865,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
                 'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
                     'config_files': ["web_platform_tests/prod_config.py"],
                 },
                 'mozbase': {
@@ -2280,6 +2364,20 @@ for platform in PLATFORMS.keys():
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusions=["try"])
+
+# Enable web-platform-tests-e10s on try
+for platform in PLATFORMS.keys():
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['try']['platforms'][platform]:
+            continue
+
+        if (platform in ('linux64', 'linux') or
+            (platform == 'win32' and slave_platform == 'win7-ix') or
+            (platform == "macosx64" and slave_platform != "snowleopard")):
+
+            if platform != 'win32':
+                BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:] + WEB_PLATFORM_REFTESTS_E10S[:]
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S[:] + WEB_PLATFORM_REFTESTS_E10S
 
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
