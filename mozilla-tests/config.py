@@ -901,7 +901,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -997,7 +997,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1092,7 +1092,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1271,7 +1271,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
@@ -1375,7 +1375,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -1471,7 +1471,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -1575,7 +1575,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -1668,7 +1668,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
@@ -1764,7 +1764,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'marionette': {
@@ -1852,7 +1852,7 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
-                'cpp_gtest': {
+                'gtest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'marionette': {
