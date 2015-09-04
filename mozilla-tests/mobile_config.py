@@ -712,29 +712,6 @@ ANDROID_MOZHARNESS_PLAIN_ROBOCOP = [
      ),
 ]
 
-ANDROID_MOZHARNESS_INSTRUMENTATION = [
-    ('instrumentation-browser',
-     {'suite': 'instrumentation',
-      'use_mozharness': True,
-      'script_path': 'scripts/android_panda.py',
-      'extra_args': ['--cfg', 'android/android_panda_releng.py', '--instrumentation-suite', 'browser'],
-      'blob_upload': True,
-      'timeout': 2400,
-      'script_maxtime': 14400,
-      },
-     ),
-    ('instrumentation-background',
-     {'suite': 'instrumentation',
-      'use_mozharness': True,
-      'script_path': 'scripts/android_panda.py',
-      'extra_args': ['--cfg', 'android/android_panda_releng.py', '--instrumentation-suite', 'background'],
-      'blob_upload': True,
-      'timeout': 2400,
-      'script_maxtime': 14400,
-      },
-     ),
-]
-
 ANDROID_PLAIN_UNITTEST_DICT = {
     'opt_unittest_suites': [],
     'debug_unittest_suites': [],
@@ -847,8 +824,7 @@ ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT = {
     ANDROID_MOZHARNESS_PLAIN_REFTEST +
     ANDROID_MOZHARNESS_XPCSHELL +
     ANDROID_MOZHARNESS_JITTEST +
-    ANDROID_MOZHARNESS_CPPUNITTEST +
-    ANDROID_MOZHARNESS_INSTRUMENTATION,
+    ANDROID_MOZHARNESS_CPPUNITTEST,
     'debug_unittest_suites': ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_JSREFTEST,
 }
 
@@ -2373,8 +2349,12 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
 
+######## cedar
 # Until we green out these Android x86 tests
-BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] += ANDROID_X86_NOT_GREEN_DICT[:]
+BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] = ANDROID_X86_NOT_GREEN_DICT[:]
+# Remove all panda tests from cedar
+if 'android-api-9' in BRANCHES['cedar']['platforms']:
+    del BRANCHES['cedar']['platforms']['android-api-9']
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
@@ -2449,11 +2429,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
             'debug_unittest_suites': []
         }
-
-for platform_name in ('android', 'android-api-11'):
-    if platform_name in BRANCHES['cedar']['platforms']:
-        BRANCHES['cedar']['platforms'][platform_name]['enable_debug_unittests'] = True
-        BRANCHES['cedar']['platforms'][platform_name]['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_MOCHITEST + ANDROID_MOZHARNESS_PLAIN_ROBOCOP + ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_MOCHITESTGL + ANDROID_MOZHARNESS_PLAIN_REFTEST + ANDROID_MOZHARNESS_XPCSHELL + ANDROID_MOZHARNESS_JITTEST + ANDROID_MOZHARNESS_CPPUNITTEST)
 
 #bug 1133833 enable Android 4.3 to run on try
 BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
@@ -2581,14 +2556,9 @@ effects. Does not remove any suites from the specified
                     # This replaces the contents of the unittest_suites list in place with the filtered list.
                     unittest_suites[:] = [ suite for suite in unittest_suites if not suite_to_remove in suite[0] ]
 
-# schedule jittests for pandas on cedar and try
-# https://bugzilla.mozilla.org/show_bug.cgi?id=912997
+# schedule jittests for pandas on try
 # https://bugzilla.mozilla.org/show_bug.cgi?id=931874
-remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'jittest', 'panda_android', branches_to_keep=['cedar', 'try'])
-
-# schedule instrumentation tests for pandas on ash and cedar
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1064010
-remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'instrumentation', 'panda_android', branches_to_keep=['cedar'])
+remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'jittest', 'panda_android', branches_to_keep=['try'])
 
 # Bug 1182691 - Run Android 2.3 and Android 4.3 mochitest-chrome on trunk
 trunk_branches = []
