@@ -17,7 +17,7 @@ releaseConfig['baseTag']                    = 'SEAMONKEY_2_38b1'
 releaseConfig['oldVersion']                 = '2.33b1'
 releaseConfig['oldAppVersion']              = '2.33'
 releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_33b1Ca'
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_33b1'
 releaseConfig['oldRepoPath']                = 'releases/comm-beta'
 #  Next (nightly) version info
 #     not yet available
