@@ -232,12 +232,7 @@ SUITES = {
     'tp5o-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_OSX),
-    },
-    'tp5o-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, OSX_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g1': {
         'enable_by_default': True,
@@ -247,12 +242,7 @@ SUITES = {
     'g1-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, NO_OSX),
-    },
-    'g1-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, OSX_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g2': {
         'enable_by_default': False,
@@ -262,12 +252,7 @@ SUITES = {
     'g2-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, TALOS_PLATFORMS_NO_OSX),
-    },
-    'g2-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, OSX_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'other': {
         'enable_by_default': True,
@@ -289,11 +274,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, NO_WINXP),
     },
-    'svgr-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_ONLY),
-    },
     'dromaeojs': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
@@ -312,12 +292,7 @@ SUITES = {
     'chromez-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_OSX),
-    },
-    'chromez-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_ONLY),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
 }
 
@@ -1988,61 +1963,43 @@ BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-central']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-#BRANCHES['mozilla-central']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-central']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-central']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-central']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
-                                                  'g2-e10s',
-                                                  'xperf-e10s',
-                                                  'tp5o-e10s',
-                                                  'other-e10s',
-                                                  'svgr-e10s',
-                                                  'dromaeojs-e10s',
-                                                  'chromez-e10s']
-
+#BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 ######### mozilla-inbound
 # no xperf here since it fails all the time
 BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-inbound']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-#BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['mozilla-inbound']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-inbound']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['mozilla-inbound']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 ######### fx-team
 # no xperf here since it fails all the time
 BRANCHES['fx-team']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['fx-team']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-#BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['fx-team']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['fx-team']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['fx-team']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 ######### mozilla-release
@@ -2095,18 +2052,15 @@ BRANCHES['try']['enable_try'] = True
 # now for e10s tests
 # no xperf here since it fails all the time
 BRANCHES['try']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['try']['tp5o-osx-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, OSX_ONLY)
+BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-#BRANCHES['try']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-BRANCHES['try']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['try']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['try']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
-BRANCHES['try']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+#BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 loadSkipConfig(BRANCHES,"desktop")
