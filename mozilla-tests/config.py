@@ -270,34 +270,14 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, OSX_ONLY),
     },
     'other': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'other_nol64': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_LINUX64),
-    },
-    'other-e10s_nol64': {
+    'other-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_OSX_LINUX64),
-    },
-    'other_l64': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, LINUX64_ONLY),
-    },
-    'other-e10s_l64': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, LINUX64_ONLY),
-    },
-    'other-osx-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, OSX_ONLY),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'svgr': {
         'enable_by_default': True,
@@ -2014,20 +1994,17 @@ BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_
 #BRANCHES['mozilla-central']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-central']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
-BRANCHES['mozilla-central']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['mozilla-central']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-central']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)    
+BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-central']['chromez-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-central']['pgo_only_suites'] = ['g1-e10s',
                                                   'g2-e10s',
                                                   'xperf-e10s',
                                                   'tp5o-e10s',
-                                                  'other-e10s_nol64',
-                                                  'other-e10s_l64',
+                                                  'other-e10s',
                                                   'svgr-e10s',
                                                   'dromaeojs-e10s',
                                                   'chromez-e10s']
@@ -2043,9 +2020,7 @@ BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_
 #BRANCHES['mozilla-inbound']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['mozilla-inbound']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['mozilla-inbound']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
-BRANCHES['mozilla-inbound']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['mozilla-inbound']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['mozilla-inbound']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['mozilla-inbound']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
@@ -2062,9 +2037,7 @@ BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 #BRANCHES['fx-team']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['fx-team']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['fx-team']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
-BRANCHES['fx-team']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['fx-team']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['fx-team']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['fx-team']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
@@ -2113,9 +2086,7 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64']['talos_slave_platforms'] 
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['other_nol64_tests'] = (1, False, {}, NO_LINUX64)
-BRANCHES['try']['other_l64_tests'] = (1, False, {}, LINUX64_ONLY)
+BRANCHES['try']['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = None
@@ -2130,9 +2101,7 @@ BRANCHES['try']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 #BRANCHES['try']['g1-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['try']['g2-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
-BRANCHES['try']['other-e10s_nol64_tests'] = (1, False, {}, NO_OSX_LINUX64)
-BRANCHES['try']['other-e10s_l64_tests'] = (1, False, {}, LINUX64_ONLY)
-BRANCHES['try']['other-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
+BRANCHES['try']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, NO_OSX)
 BRANCHES['try']['svgr-osx-e10s_tests'] = (1, False, {}, OSX_ONLY)
 BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
