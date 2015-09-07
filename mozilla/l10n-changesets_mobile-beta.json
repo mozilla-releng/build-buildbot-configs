@@ -40,11 +40,11 @@
     "platforms": ["android", "android-multilocale"]
   },
   "da": {
-    "revision": "a295314dbc20",
+    "revision": "e103d4fb414b",
     "platforms": ["android", "android-multilocale"]
   },
   "de": {
-    "revision": "f3420b11a0f1",
+    "revision": "944affa88838",
     "platforms": ["android", "android-multilocale"]
   },
   "dsb": {
