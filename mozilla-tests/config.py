@@ -2212,6 +2212,27 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
+### Tests Enabled in Gecko 43+ ###
+
+# Gtests run from the test package
+for platform in PLATFORMS.keys():
+    if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
+                        'macosx64', 'win32', 'win64']:
+        continue
+
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 43):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+
+            # Not stable on windows XP
+            if slave_platform == "xp-ix":
+                continue
+
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
+
+
 
 # On trunk and Aurora:
 #   Enable e10s Linux mochitests
@@ -2298,14 +2319,6 @@ for platform in PLATFORMS.keys():
 
 
 ### Test suites that only run on Try ###
-
-# Enable gtests on try
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['try']['platforms'][platform]:
-            continue
-        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
-        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
