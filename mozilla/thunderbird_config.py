@@ -20,12 +20,7 @@ from master_common import setMainCommVersions, items_at_least
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
 
-GLOBAL_VARS['objdir'] = 'obj-tb'
-GLOBAL_VARS['stage_username'] = 'tbirdbld'
-GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
-# etc.
 GLOBAL_VARS.update(thunderbird_localconfig.GLOBAL_VARS.copy())
-
 GLOBAL_VARS.update({
     # It's a little unfortunate to have both of these but some things (HgPoller)
     # require an URL while other things (BuildSteps) require only the host.

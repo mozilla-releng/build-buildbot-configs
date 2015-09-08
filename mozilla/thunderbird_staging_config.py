@@ -25,6 +25,8 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'ThunderbirdTest',
     'hg_username': 'stage-tbirdbld',
     'base_bundle_urls': ['http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/bundles'],
+
+    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
 }
 
 BUILDS_BEFORE_REBOOT = 5

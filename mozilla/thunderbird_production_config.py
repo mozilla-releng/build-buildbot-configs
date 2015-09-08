@@ -24,19 +24,24 @@ TRY_SLAVES = {
 }
 
 # Local overrides for default values
-GLOBAL_VARS['balrog_username'] = 'tbirdbld'
-GLOBAL_VARS['download_base_url'] = 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird'
-GLOBAL_VARS['talos_masters'] = []
-# List of unittest masters to notify of new builds to test,
-# if a failure to notify the master should result in a warning,
-# and sendchange retry count before give up
-GLOBAL_VARS['unittest_masters'] = [
-    ('buildbot-master81.build.mozilla.org:9301', True, 5),
-]
-GLOBAL_VARS['xulrunner_tinderbox_tree'] = None
-GLOBAL_VARS['weekly_tinderbox_tree'] = 'Thunderbird'
-GLOBAL_VARS['l10n_tinderbox_tree'] = 'Mozilla-l10n'
-GLOBAL_VARS['base_bundle_urls'] = ['https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/bundles']
+GLOBAL_VARS.update({
+    'balrog_username': 'tbirdbld',
+    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
+    'talos_masters': [],
+
+    # List of unittest masters to notify of new builds to test,
+    # if a failure to notify the master should result in a warning,
+    # and sendchange retry count before give up
+    'unittest_masters': [
+        ('buildbot-master81.build.mozilla.org:9301', True, 5),
+    ],
+    'xulrunner_tinderbox_tree': None,
+    'weekly_tinderbox_tree': 'Thunderbird',
+    'l10n_tinderbox_tree': 'Mozilla-l10n',
+    'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
+
+    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
+})
 
 # Local branch overrides
 BRANCHES = {
