@@ -62,6 +62,8 @@ BRANCHES = {
     },
 }
 
+TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team', 'b2g-inbound')]
+
 setMainFirefoxVersions(BRANCHES)
 
 # Talos
@@ -408,6 +410,17 @@ MOCHITEST_BC_3 = [
     }),
 ]
 
+MOCHITEST_BC_7 = [
+    ('mochitest-browser-chrome', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'browser-chrome-chunked'],
+        'blob_upload': True,
+        'script_maxtime': 12000,
+        'totalChunks': 7,
+    }),
+]
+
 MOCHITEST_BC_3_E10S = [
     ('mochitest-e10s-browser-chrome', {
         'use_mozharness': True,
@@ -416,6 +429,17 @@ MOCHITEST_BC_3_E10S = [
         'blob_upload': True,
         'script_maxtime': 12000,
         'totalChunks': 3,
+    }),
+]
+
+MOCHITEST_BC_7_E10S = [
+    ('mochitest-e10s-browser-chrome', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'browser-chrome-chunked', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 12000,
+        'totalChunks': 7,
     }),
 ]
 
@@ -541,7 +565,7 @@ MOCHITEST_WEBGL = [
 
 ### Mochitest Combinations ###
 MOCHITEST_PLAIN = MOCHITEST_WO_BC[:]
-MOCHITEST = MOCHITEST_WO_BC[:] + MOCHITEST_BC_3 + MOCHITEST_OTHER
+MOCHITEST = MOCHITEST_WO_BC[:] + MOCHITEST_OTHER
 MOCHITEST_WO_BC += MOCHITEST_OTHER
 
 ### Mozbase ###
@@ -2089,25 +2113,6 @@ BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 loadSkipConfig(BRANCHES,"desktop")
 
-# Remove mochitest-browser-chrome and mochitest-devtools-chrome
-# from versioned b2g branches - bug 1045398
-for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
-    branch = BRANCHES[name]
-    for platform in branch['platforms']:
-        for item in branch['platforms'][platform].keys():
-            try:
-                if 'debug_unittest_suites' in branch['platforms'][platform][item]:
-                    unit_tests = branch['platforms'][platform][item]
-                    for element in unit_tests:
-                        for component in unit_tests[element]:
-                            if (component[0] == 'mochitest-browser-chrome' or
-                                component[0] == 'mochitest-devtools-chrome'):
-                                unit_tests[element].remove(component)
-            except TypeError:
-                # not an iterable,
-                pass
-
-
 
 ### Tests Enabled In Gecko 39+ ###
 
@@ -2212,6 +2217,27 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
 
+### Tests Enabled in Gecko 43+ ###
+
+# Gtests run from the test package
+for platform in PLATFORMS.keys():
+    if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
+                        'macosx64', 'win32', 'win64']:
+        continue
+
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 43):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+
+            # Not stable on windows XP
+            if slave_platform == "xp-ix":
+                continue
+
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
+
+
 
 # On trunk and Aurora:
 #   Enable e10s Linux mochitests
@@ -2220,7 +2246,9 @@ for platform in PLATFORMS.keys():
 #   Enable e10s reftests/crashtests for Linux opt
 #   Enable e10s marionette tests for Linux32 opt
 # Fix this to a certain gecko version once e10s starts riding the trains
+# Bug 1200437 - Use 7 chunks for m-e10-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
 aurora_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
+trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_version):
     if name == "holly": # On Holly we use normal mochitest as e10s ones
         continue
@@ -2230,18 +2258,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_versi
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
                     not slave_platform == 'xp-ix':
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S[:]
+                if name in TWIGS or ('gecko_version' in branch and branch['gecko_version'] != trunk_gecko_version):
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S[:]
+                else:
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7_E10S[:]
             if platform in ('linux', 'linux64', 'linux64-asan'):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S[:]
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S[:]
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
-                    MOCHITEST_BC_3_E10S + REFTEST_E10S_TWO_CHUNKS
+                    REFTEST_E10S_TWO_CHUNKS
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
                     MOCHITEST_DT_2_E10S + REFTEST_E10S
+                if name in TWIGS or ('gecko_version' in branch and branch['gecko_version'] != trunk_gecko_version):
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3_E10S
+                else:
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7_E10S
             if platform == 'linux':
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
-
 
 # Run only mochitests and reftests on Holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
@@ -2260,6 +2294,39 @@ for platform in BRANCHES['holly']['platforms'].keys():
             slave_p['opt_unittest_suites'] += MOCHITEST_CSB
             slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
+# Bug 1200437
+# Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
+for branch in BRANCHES.keys():
+    for platform in PLATFORMS.keys():
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+                continue
+            if branch in TWIGS or ('gecko_version' in BRANCHES[branch] and BRANCHES[branch]['gecko_version'] != trunk_gecko_version):
+                BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3
+                BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3
+            else:
+                BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7
+                BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7
+
+# Remove mochitest-browser-chrome and mochitest-devtools-chrome
+# from versioned b2g branches - bug 1045398
+for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
+    branch = BRANCHES[name]
+    for platform in branch['platforms']:
+        for item in branch['platforms'][platform].keys():
+            try:
+                if 'debug_unittest_suites' in branch['platforms'][platform][item]:
+                    unit_tests = branch['platforms'][platform][item]
+                    for element in unit_tests:
+                        for component in unit_tests[element]:
+                            if (component[0] == 'mochitest-browser-chrome' or
+                                component[0] == 'mochitest-devtools-chrome'):
+                                unit_tests[element].remove(component)
+            except TypeError:
+                # not an iterable,
+                pass
 
 ### Test suites that only run on Cedar ###
 # Turn off most suites on cedar (bug 1198400)
@@ -2298,14 +2365,6 @@ for platform in PLATFORMS.keys():
 
 
 ### Test suites that only run on Try ###
-
-# Enable gtests on try
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['try']['platforms'][platform]:
-            continue
-        BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
-        BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
