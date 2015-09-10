@@ -388,6 +388,14 @@ MARIONETTE_E10S = [
     }),
 ]
 
+MEDIATESTS = [
+    ('media-tests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/firefox_media_tests_buildbot.py',
+        'blob_upload': True,
+    }),
+]
+
 ### Mochitests (Browser-Chrome) ###
 MOCHITEST_BC = [
     ('mochitest-browser-chrome', {
@@ -988,6 +996,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1089,6 +1100,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1182,6 +1196,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1279,6 +1296,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1384,6 +1404,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1479,6 +1502,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1584,6 +1610,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1676,6 +1705,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1773,6 +1805,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1860,6 +1895,9 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2339,6 +2377,15 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
+
+# Enable mediatests on cedar (bug 1185014)
+for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'snowleopard', 'yosemite'):
+    for platform in PLATFORMS.keys():
+        if platform not in BRANCHES['cedar']['platforms']:
+            continue
+        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS[:]
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
