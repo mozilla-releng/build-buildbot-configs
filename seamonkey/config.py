@@ -221,6 +221,7 @@ PLATFORM_VARS = {
                 # LD_LIBRARY_PATH needs to be set to properly run elfhack during build process (Bug 904485)
                 'LD_LIBRARY_PATH': '/tools/gcc-4.5/lib',
             },
+            'objdir': 'objdir',
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',

@@ -252,6 +252,9 @@ source_factory = CCSourceFactory(
     mock_target=linuxConfig['mock_target'],
     mock_packages=linuxConfig['mock_packages'],
     mock_copyin_files=linuxConfig['mock_copyin_files'],
+    mozconfig=releaseConfig.get('source_mozconfig',
+                                ''),
+    objdir=linuxConfig['objdir'],
 )
 
 builders.append({
