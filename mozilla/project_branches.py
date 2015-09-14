@@ -274,6 +274,7 @@ PROJECT_BRANCHES = {
         'updates_enabled': True,
         'create_partial': True,
         'enable_talos': False,
+        'pgo_strategy': 'periodic',
         'platforms': {
             'linux': {
                 'nightly_signing_servers': 'nightly-signing',
