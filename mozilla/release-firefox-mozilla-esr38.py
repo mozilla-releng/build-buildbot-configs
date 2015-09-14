@@ -22,42 +22,30 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.2.1esr'
-releaseConfig['appVersion']          = '38.2.1'
+releaseConfig['version']             = '38.3.0esr'
+releaseConfig['appVersion']          = '38.3.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_38_2_1esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_38_3_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.1.1esr': {
-        'appVersion': '38.1.1',
+    '38.2.1esr': {
+        'appVersion': '38.2.1',
         'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_1_1esr',
-    },
-
-    '38.2.0esr': {
-        'appVersion': '38.2.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_2_0esr',
-    },
-
-    '31.8.0esr': {
-        'appVersion': '31.8.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_31_8_0esr',
+        'baseTag': 'FIREFOX_38_2_1esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.2.1esrpre'
+releaseConfig['nextAppVersion']      = '38.3.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': 'GECKO3820esr_2015080613_RELBRANCH',
-        'relbranch': 'GECKO3820esr_2015080613_RELBRANCH',
+        'revision': '606c3f14c0fd',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
