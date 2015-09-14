@@ -75,16 +75,42 @@ PROJECT_BRANCHES = {
         "enable_triggered_nightly_scheduler": False,
     },
     'ash': {
-        'enable_perproduct_builds': False,
-        'desktop_mozharness_builds_enabled': True,
-        'desktop_mozharness_repacks_enabled': True,
-        'enable_nightly': True,
-        'create_snippet': True,
+        'merge_builds': False,
+        'enable_perproduct_builds': True,
+        'pgo_strategy': 'per-checkin',
+        'enable_l10n': True,
+        'enable_l10n_onchange': True,
+        'l10n_repo_path': 'l10n-central',
+        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64', 'win64'],
+        'l10nDatedDirs': True,
+        'l10n_tree': 'fxcentral',
+        'updates_enabled': True,
+        'l10nNightlyUpdate': True,
+        'enUS_binaryURL': '/nightly/latest-ash',
+        'enable_mac_a11y': True,
+        'enable_multi_locale': True,
         'create_partial': True,
-        'use_mozharness_repo_cache': False,
-        'lock_platforms': True,
-        'talos_suites': {
-            'xperf': 1,
+        'create_partial_l10n': True,
+        'upload_mobile_symbols': True,
+        'desktop_mozharness_repacks_enabled': True,
+        'l10n_extra_configure_args': ['--with-macbundlename-prefix=Firefox'],
+        'enable_nightly': True,
+        'platforms': {
+            'linux': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'linux64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win32': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'macosx64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
         },
     },
     #'birch': {},  # Bug 1010674
