@@ -22,6 +22,7 @@ releaseConfig['messagePrefix']       = '[staging-release] '
 releaseConfig['productName']         = 'thunderbird'
 releaseConfig['stage_product']       = 'thunderbird'
 releaseConfig['appName']             = 'mail'
+releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_dir']         = 'mozilla'
 #  Current version info
 releaseConfig['version']             = '38.1.1'
