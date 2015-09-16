@@ -94,7 +94,6 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
-releaseConfig['l10nChunks']          = 20
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
@@ -111,7 +110,7 @@ releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
-releaseConfig['updateVerifyChunks']  = 12
+releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
