@@ -195,6 +195,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'linux64': {
@@ -270,6 +271,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'macosx64': {
@@ -486,6 +488,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'linux64-debug': {
@@ -546,6 +549,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'macosx64-debug': {

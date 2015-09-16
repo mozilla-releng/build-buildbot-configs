@@ -265,6 +265,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'linux64': {
@@ -369,6 +370,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'linux64-asan': {
@@ -464,6 +466,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -563,6 +566,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -662,6 +666,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -761,6 +766,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
@@ -906,6 +912,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'macosx64': {
@@ -1241,6 +1248,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'linux64-debug': {
@@ -1325,6 +1333,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
         'macosx64-debug': {
@@ -1589,6 +1598,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1673,6 +1683,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1754,6 +1765,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1834,6 +1846,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1913,6 +1926,7 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
             'env': {
                 'DISPLAY': ':2',
