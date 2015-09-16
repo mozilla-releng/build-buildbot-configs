@@ -103,7 +103,6 @@ PLATFORMS['android-api-11']['is_mobile'] = True
 PLATFORMS['android-api-11']['panda_android'] = {
     'name': "Android 4.0 armv7 API 11+",
     'mozharness_talos': True,
-    'try_by_default': False,
 }
 PLATFORMS['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
     'name': "Android 4.3 armv7 API 11+",
@@ -2434,8 +2433,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
 # while disabling corresponding 4.0 tests
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
     # Loop removes it from any branch that gets beyond here
-    if name in ('try', ):
-       continue
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
