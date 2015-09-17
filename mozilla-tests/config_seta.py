@@ -46,7 +46,10 @@ def get_seta_platforms(branch, platform_filter):
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []
     for p in c['jobtypes'][today]:
-        platform = ' '.join(p.encode('utf-8').split()[0:-4])
+        if 'talos' in p:
+            platform = ' '.join(p.encode('utf-8').split()[0:-3])
+        else:
+            platform = ' '.join(p.encode('utf-8').split()[0:-4])
         if platform_filter == "mobile" and "android" not in platform:
             continue
         if platform_filter == "desktop" and "android" in platform:
