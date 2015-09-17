@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '41.0'
 releaseConfig['appVersion']          = '41.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_41_0'
 releaseConfig['partialUpdates']      = {
 
@@ -52,6 +52,12 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_39_0',
     },
 
+    '41.0': {
+        'appVersion': '41.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_41_0',
+    },
+
 }
 # What's New Page, should be revisited with each release.
 # releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/41.0/whatsnew/?oldversion=%OLD_VERSION%'
@@ -67,10 +73,14 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'c2124b4c256b',
+        'revision': 'f4bfcf6b785b',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'browser/config/version_display.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -108,7 +118,6 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
-releaseConfig['l10nChunks']          = 20
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
@@ -125,7 +134,7 @@ releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
-releaseConfig['updateVerifyChunks']  = 12
+releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
