@@ -82,7 +82,8 @@ releaseConfig['otherReposToTag']     = {
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
-releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+# Dead with Gecko 42 and above
+releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
