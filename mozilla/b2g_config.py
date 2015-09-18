@@ -1180,24 +1180,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g34_v2_1s': {
-        'gecko_version': 34,
-        'b2g_version': (2, 1, 0),
-        'lock_platforms': True,
-        'platforms': {
-            'linux64-b2g-haz': {},
-            'linux64_gecko': {},
-            'linux64_gecko-debug': {},
-            'emulator': {},
-            'emulator-debug': {},
-            'emulator-kk': {},
-            'emulator-kk-debug': {},
-            'dolphin': {},
-            'dolphin_eng': {},
-            'dolphin-512': {},
-            'dolphin-512_eng': {},
-        }
-    },
     'mozilla-b2g37_v2_2': {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
@@ -1415,26 +1397,6 @@ BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = Fal
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = False
-
-######## mozilla-b2g34_v2_1s
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g34_v2_1s']['repo_path'] = 'releases/mozilla-b2g34_v2_1s'
-BRANCHES['mozilla-b2g34_v2_1s']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_1/'
-BRANCHES['mozilla-b2g34_v2_1s']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-beta'
-BRANCHES['mozilla-b2g34_v2_1s']['start_hour'] = [0]
-BRANCHES['mozilla-b2g34_v2_1s']['start_minute'] = [12]
-BRANCHES['mozilla-b2g34_v2_1s']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['linux64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['emulator-kk-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g34_v2_1s']['platforms']['dolphin-512_eng']['enable_dep'] = True
 
 ######## try
 # Try-specific configs

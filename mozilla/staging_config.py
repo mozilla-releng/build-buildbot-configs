@@ -16,7 +16,8 @@ TRY_SLAVES['win64-rev2'].extend(WIN64_RELOPS)
 
 # AWS EC2 (b|y)-2008 spot and on-demand staging instances.
 B2008 = ['b-2008-spot-%03d' % x for x in range(990, 1000)] + \
-        ['b-2008-ec2-%04d' % x for x in range(990, 1000)]
+        ['b-2008-ec2-%04d' % x for x in range(990, 1000)] + \
+        ['b-2008-ix-0175']
 Y2008 = ['y-2008-spot-%03d' % x for x in range(990, 1000)] + \
         ['y-2008-ec2-%04d' % x for x in range(990, 1000)]
 SLAVES['win64-rev2'].extend(B2008)
@@ -93,12 +94,6 @@ BRANCHES = {
         'file_update_on_closed_tree': False,
     },
     'mozilla-esr38': {
-        'enable_blocklist_update': False,
-        'enable_hsts_update': False,
-        'enable_hpkp_update': False,
-        'file_update_on_closed_tree': False,
-    },
-    'mozilla-b2g34_v2_1s': {
         'enable_blocklist_update': False,
         'enable_hsts_update': False,
         'enable_hpkp_update': False,

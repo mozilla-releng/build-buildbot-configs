@@ -19,7 +19,7 @@ TRY_MAC64       = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
                   ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
                   ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
-TRY_WIN64_REV2  = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173,185)] + \
+TRY_WIN64_REV2  = ['b-2008-ix-%04i' % x for x in range(18, 65) + range(173, 175) + range(176, 185)] + \
                   ['y-2008-ec2-%04d' % x for x in range(1, 31)] + \
                   ['y-2008-spot-%03d' % x for x in range(1, 201)]
 TRY_LION        = ['bld-lion-r5-%03d' % x for x in range(7,31) + range(32,37)] + \
@@ -94,11 +94,6 @@ BRANCHES = {
         'packaged_unittest_tinderbox_tree': 'Mozilla-Esr38',
         'tinderbox_tree': 'Mozilla-Esr38',
         'mobile_tinderbox_tree': 'Mozilla-Esr38',
-    },
-    'mozilla-b2g34_v2_1s': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g34-v2.1s',
-        'tinderbox_tree': 'Mozilla-B2g34-v2.1s',
-        'mobile_tinderbox_tree': 'Mozilla-B2g34-v2.1s',
     },
     'mozilla-b2g37_v2_2': {
         'packaged_unittest_tinderbox_tree': 'Mozilla-B2g37-v2.2',
