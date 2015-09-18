@@ -214,35 +214,8 @@ PROJECT_BRANCHES = {
     },
     # Dsiabled by Bug 1135702
     # 'fig': {},
-    'gum': {
-        'enable_nightly': True,
-        'pgo_strategy': None,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'macosx64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
-            'linux-debug': {},
-            'linux64-asan': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64-debug': {},
-        },
-    },
+    # Disabled by Bug 1206269
+    # 'gum': {},
     'holly': {
         'branch_projects': [],
         'pgo_strategy': None,
