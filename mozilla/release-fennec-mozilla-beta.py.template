@@ -38,10 +38,6 @@ releaseConfig['sourceRepositories']  = {
         'revision': '{{ mozillaRevision }}',
         'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
-            'mobile/android/confvars.sh': {
-                'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
-            },
             'browser/config/version_display.txt': {
                 'version': releaseConfig['version'],
                 'nextVersion': releaseConfig['nextVersion']
