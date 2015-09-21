@@ -21,11 +21,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '41.0b9'
-releaseConfig['appVersion']          = '41.0'
+releaseConfig['version']             = '42.0b1'
+releaseConfig['appVersion']          = '42.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_41_0b9'
+releaseConfig['baseTag']             = 'FIREFOX_42_0b1'
 releaseConfig['partialUpdates']      = {
 
     '41.0b7': {
@@ -34,10 +34,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_41_0b7',
     },
 
-    '41.0b6': {
+    '41.0b9': {
         'appVersion': '41.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_41_0b6',
+        'baseTag': 'FIREFOX_41_0b9',
     },
 
     '41.0b8': {
@@ -61,7 +61,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'f793392aa520',
+        'revision': 'a91c7eca5508',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -94,7 +94,8 @@ releaseConfig['otherReposToTag']     = {
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
-releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
+# Dead with Gecko 42 and above
+releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
