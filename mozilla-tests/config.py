@@ -2263,7 +2263,7 @@ for platform in PLATFORMS.keys():
                         'macosx64', 'win32', 'win64']:
         continue
 
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 43):
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
