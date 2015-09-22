@@ -208,7 +208,7 @@ releaseConfig['updateChannels'] = {
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
-releaseConfig['syncPartnerBundles']  = True
+releaseConfig['syncPartnerBundles']  = False
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
