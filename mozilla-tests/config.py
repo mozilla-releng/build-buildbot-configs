@@ -202,10 +202,10 @@ for platform, platform_config in PLATFORMS.items():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'macosx64', 'win64'))
-LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', ))
+LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', ))
 NO_WINXP = [platform for platform in ALL_TALOS_PLATFORMS if platform != 'xp-ix']
-NO_OSX = get_talos_slave_platforms(PLATFORMS, platforms=('linux', 'linux64', 'win32', 'win64'))
+NO_OSX = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win64'))
 WIN7_ONLY = ['win7-ix']
 
 SUITES = {

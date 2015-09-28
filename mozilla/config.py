@@ -210,7 +210,7 @@ PLATFORM_VARS = {
             },
             'enable_checktests': True,
             'enable_build_analysis': True,
-            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'talos_masters': None,
             'test_pretty_names': False,
             'l10n_check_test': True,
             'nightly_signing_servers': 'dep-signing',
