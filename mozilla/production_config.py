@@ -148,8 +148,9 @@ PLATFORM_VARS = {}
 PROJECTS = {
     'fuzzing': {
         'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'fuzzing_bundle': 'http://pvtbuilds.pvt.build.mozilla.org/bundles/fuzzing.hg',
-        'fuzzing_repo': 'ssh://ffxbld@hg.mozilla.org/private/fuzzing',
+        'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
+        'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
+        'funfuzz_private_repo': 'git+ssh://git.mozilla.org/private/funfuzz-private.git',
         'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
