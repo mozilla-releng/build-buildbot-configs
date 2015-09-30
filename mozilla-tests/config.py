@@ -123,10 +123,8 @@ PLATFORMS['win64']['mozharness_config'] = {
 }
 
 PLATFORMS['linux']['slave_platforms'] = ['ubuntu32_vm']
-PLATFORMS['linux']['talos_slave_platforms'] = ['ubuntu32_hw']
 PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
-PLATFORMS['linux']['ubuntu32_hw'] = {'name': 'Ubuntu HW 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
