@@ -2379,6 +2379,16 @@ for name in [x for x in BRANCHES.keys() if x.startswith('mozilla-b2g')]:
                 # not an iterable,
                 pass
 
+# Enable mediatests on gecko >= 44 (bug 1209258)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
+            if slave_platform in branch['platforms'][platform]:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS[:]
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS[:]
+
 ### Test suites that only run on Cedar ###
 # Turn off most suites on cedar (bug 1198400)
 for platform in PLATFORMS.keys():
@@ -2390,15 +2400,6 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
-
-# Enable mediatests on cedar (bug 1185014)
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'snowleopard', 'yosemite'):
-    for platform in PLATFORMS.keys():
-        if platform not in BRANCHES['cedar']['platforms']:
-            continue
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS[:]
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS[:]
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
