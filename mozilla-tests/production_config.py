@@ -9,7 +9,6 @@ SLAVES = {
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
     'ubuntu64_vm_large': {},
-    'ubuntu32_hw': {},
     'ubuntu64_hw': {},
     'win64_vm': {},
 }
@@ -17,10 +16,10 @@ SLAVES = {
 for i in range(1, 173):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 173):
+for i in range(1, 204):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 102) + range(103, 181):  # Omit 102 for win10 // Bug 1191481
+for i in range(1, 102) + range(103, 195):  # Omit 102 for win10 // Bug 1191481
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 11):
@@ -57,9 +56,6 @@ for i in range(1, 200) + range(301, 500) + range(601, 800):
 
 for i in range(1, 2100):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
-
-for i in range(1, 56):
-    SLAVES['ubuntu32_hw']['talos-linux32-ix-%03i' % i] = {}
 
 for i in range(1, 120):
     SLAVES['ubuntu64_hw']['talos-linux64-ix-%03i' % i] = {}
