@@ -21,18 +21,12 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '42.0b2'
+releaseConfig['version']             = '42.0b3'
 releaseConfig['appVersion']          = '42.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_42_0b2'
+releaseConfig['baseTag']             = 'FIREFOX_42_0b3'
 releaseConfig['partialUpdates']      = {
-
-    '42.0b1': {
-        'appVersion': '42.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_42_0b1',
-    },
 
     '41.0b9': {
         'appVersion': '41.0',
@@ -40,10 +34,16 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_41_0b9',
     },
 
-    '41.0b8': {
-        'appVersion': '41.0',
+    '42.0b1': {
+        'appVersion': '42.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_41_0b8',
+        'baseTag': 'FIREFOX_42_0b1',
+    },
+
+    '42.0b2': {
+        'appVersion': '42.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_42_0b2',
     },
 
 }
@@ -61,7 +61,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '785f6c974d92',
+        'revision': '33df25733a5a',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -164,7 +164,7 @@ releaseConfig['updateChannels'] = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
+releaseConfig['doPartnerRepacks']    = True
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
