@@ -164,7 +164,7 @@ releaseConfig['updateChannels'] = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = True
+releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
