@@ -2023,7 +2023,7 @@ BRANCH_PROJECTS = {
     # feeding into mozilla-central.
     'spidermonkey_tier_1': {
         'variants': {
-            'linux64-debug':  ['rootanalysis', 'compacting'],
+            'linux64-debug':  ['rootanalysis', 'compacting', 'arm64-sim'],
             'linux-debug': ['arm-sim'],
             'macosx64-debug': [],
             'win32-debug': ['plaindebug', 'compacting'],
@@ -2051,13 +2051,14 @@ BRANCH_PROJECTS = {
             'rootanalysis': True, # all platforms for which it is defined
             'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
+            'arm64-sim': True,
             'arm-sim-osx': set([]),
         },
         'variants': {
             'linux': ['warnaserr'],
             'linux-debug': ['arm-sim', 'warnaserrdebug'],
             'linux64':  ['warnaserr'],
-            'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug'],
+            'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug', 'arm64-sim'],
             'macosx64-debug': ['arm-sim-osx'],
             'win32': ['compacting', 'plain'],
             'win32-debug': ['compacting', 'plaindebug'],
