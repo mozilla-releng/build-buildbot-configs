@@ -5,6 +5,7 @@ SLAVES = {
     'win10': {},
     'snowleopard': {},
     'yosemite': {},
+    'yosemite_r7': {},
     'panda_android': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
@@ -32,6 +33,9 @@ for i in range(1, 34) + range(35, 93) + range(95, 153) + range(154, 166):  # sla
 
 for i in range(1, 29) + range(29, 108):
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
+
+for i in range(1, 65):
+    SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
 
 for i in range(22, 910):
     SLAVES['panda_android']['panda-%04i' % i] = {
