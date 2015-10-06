@@ -775,7 +775,7 @@ PLATFORM_VARS = {
             'script_name': 'scripts/b2g_build.py',
             # b2g_build.py will checkout gecko from hg and look up a tooltool manifest given by the
             # --target name below
-            'extra_args': ['--target', 'flame-kk', '--config', 'b2g/releng-private-updates.py',
+            'extra_args': ['--target', 'flame-kk', '--config', 'b2g/releng-fota-updates.py',
                            '--gaia-languages-file', 'locales/languages_all.json',
                            '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
                            '--config', GLOBAL_VARS['mozharness_configs']['balrog']],
