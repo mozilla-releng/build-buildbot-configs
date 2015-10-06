@@ -2512,10 +2512,13 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
             continue
 
-        if platform in ('linux64', 'linux', 'win32', 'win64', 'macosx64'):
+        if platform in ('linux64-asan',):
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED[:]
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE[:] + WEB_PLATFORM_REFTESTS
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S[:] + WEB_PLATFORM_REFTESTS_E10S
 
 
 ### Test suites that only run on Try ###
