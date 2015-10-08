@@ -2389,6 +2389,7 @@ for platform in PLATFORMS.keys():
 #   Enable e10s devtools tests for Linux opt
 #   Enable e10s reftests/crashtests for Linux opt
 #   Enable e10s marionette tests for Linux32 opt
+#   Enable e10s web-platform-tests
 # Fix this to a certain gecko version once e10s starts riding the trains
 # Bug 1200437 - Use 7 chunks for m-e10-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
 aurora_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
@@ -2420,6 +2421,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_versi
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7_E10S
             if platform == 'linux':
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S[:]
+            # wpt-10s
+            if (platform in ('linux64', 'linux') or
+                (platform == "macosx64" and slave_platform != "snowleopard")):
+
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S[:] + WEB_PLATFORM_REFTESTS_E10S
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:] + WEB_PLATFORM_REFTESTS_E10S[:]
+
 
 # Run only mochitests and reftests on Holly for bug 985718.
 for platform in BRANCHES['holly']['platforms'].keys():
@@ -2530,19 +2538,9 @@ delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusi
 # Enable Yosemite testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=["try"])
 
-# Enable web-platform-tests-e10s on try
-for platform in PLATFORMS.keys():
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['try']['platforms'][platform]:
-            continue
-
-        if (platform in ('linux64', 'linux') or
-            (platform == 'win32' and slave_platform == 'win7-ix') or
-            (platform == "macosx64" and slave_platform != "snowleopard")):
-
-            if platform != 'win32':
-                BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S[:] + WEB_PLATFORM_REFTESTS_E10S
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:] + WEB_PLATFORM_REFTESTS_E10S[:]
+# Enable web-platform-tests-e10s on windows 7 try opt
+BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S[:]
+BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:]
 
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
