@@ -55,7 +55,7 @@ for i in range(1, 100) + range(301, 400):
 for i in range(1, 20):
     SLAVES['ubuntu64_vm_large']['tst-emulator64-ec2-%03i' % i] = {}
 
-for i in range(1, 200) + range(301, 500) + range(601, 800):
+for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100):
     SLAVES['ubuntu64_vm_large']['tst-emulator64-spot-%03i' % i] = {}
 
 for i in range(1, 2100):
