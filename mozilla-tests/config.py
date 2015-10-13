@@ -414,6 +414,15 @@ MEDIATESTS = [
     }),
 ]
 
+MEDIA_YOUTUBE_TESTS = [
+    ('media-youtube-tests', {
+        'use_mozharness': True,
+        'script_path': 'scripts/firefox_media_tests_buildbot.py',
+        'extra_args': ['--suite', 'media-youtube-tests'],
+        'blob_upload': True,
+    }),
+]
+
 ### Mochitests (Browser-Chrome) ###
 MOCHITEST_BC = [
     ('mochitest-browser-chrome', {
@@ -2521,6 +2530,15 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE[:]
+
+# Enable media-youtube-tests (bug 1209327)
+for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
+    for platform in PLATFORMS.keys():
+        if platform not in BRANCHES['cedar']['platforms']:
+            continue
+        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS[:]
+            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS[:]
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
