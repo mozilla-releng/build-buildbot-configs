@@ -10,6 +10,8 @@ SLAVES = {
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
     'ubuntu64_vm_large': {},
+    'ubuntu64_vm_lnx_large': {},
+    'ubuntu64-asan_vm_lnx_large': {},
     'ubuntu64_hw': {},
     'win64_vm': {},
 }
@@ -82,6 +84,8 @@ SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
+SLAVES['ubuntu64_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
+SLAVES['ubuntu64-asan_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
 
 TRY_SLAVES = {}
 
