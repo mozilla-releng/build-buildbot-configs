@@ -136,11 +136,13 @@ PLATFORMS['linux']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64']['slave_platforms'] = ['ubuntu64_vm']
+
+PLATFORMS['linux64']['slave_platforms'] = ['ubuntu64_vm', 'ubuntu64_vm_lnx_large']
 PLATFORMS['linux64']['talos_slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['linux64']['env_name'] = 'linux-perf'
 PLATFORMS['linux64']['ubuntu64_vm'] = {'name': 'Ubuntu VM 12.04 x64'}
 PLATFORMS['linux64']['ubuntu64_hw'] = {'name': 'Ubuntu HW 12.04 x64'}
+PLATFORMS['linux64']['ubuntu64_vm_lnx_large'] = {'name': 'Ubuntu VM large 12.04 x64'}
 PLATFORMS['linux64']['stage_product'] = 'firefox'
 PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -150,8 +152,9 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64-asan']['slave_platforms'] = ['ubuntu64-asan_vm']
+PLATFORMS['linux64-asan']['slave_platforms'] = ['ubuntu64-asan_vm', 'ubuntu64-asan_vm_lnx_large']
 PLATFORMS['linux64-asan']['ubuntu64-asan_vm'] = {'name': 'Ubuntu ASAN VM 12.04 x64'}
+PLATFORMS['linux64-asan']['ubuntu64-asan_vm_lnx_large'] = {'name': 'Ubuntu ASAN VM large 12.04 x64'}
 PLATFORMS['linux64-asan']['stage_product'] = 'firefox'
 PLATFORMS['linux64-asan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -161,11 +164,16 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm', 'ubuntu64_vm_lnx_large']
 PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {
     'name': 'Ubuntu TSAN VM 12.04 x64',
     'build_dir_prefix': 'ubuntu64_vm_tsan',
     'scheduler_slave_platform_identifier': 'ubuntu64_vm_tsan'
+}
+PLATFORMS['linux64-tsan']['ubuntu64_vm_lnx_large'] = {
+    'name': 'Ubuntu TSAN VM large 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_large_tsan',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_large_tsan'
 }
 PLATFORMS['linux64-tsan']['stage_product'] = 'firefox'
 PLATFORMS['linux64-tsan']['mozharness_config'] = {
@@ -176,11 +184,16 @@ PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64-cc']['slave_platforms'] = ['ubuntu64_vm']
+PLATFORMS['linux64-cc']['slave_platforms'] = ['ubuntu64_vm', 'ubuntu64_vm_lnx_large' ]
 PLATFORMS['linux64-cc']['ubuntu64_vm'] = {
     'name': 'Ubuntu Code Coverage VM 12.04 x64',
     'build_dir_prefix': 'ubuntu64_vm_cc',
     'scheduler_slave_platform_identifier': 'ubuntu64_vm_cc'
+}
+PLATFORMS['linux64-cc']['ubuntu64_vm_lnx_large'] = {
+    'name': 'Ubuntu Code Coverage VM large 12.04 x64',
+    'build_dir_prefix': 'ubuntu64_vm_large_cc',
+    'scheduler_slave_platform_identifier': 'ubuntu64_vm_large_cc'
 }
 PLATFORMS['linux64-cc']['stage_product'] = 'firefox'
 PLATFORMS['linux64-cc']['mozharness_config'] = {
@@ -935,7 +948,7 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:] + JITTEST_CHUNKED + \
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
                                    WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
-           'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + JITTEST_CHUNKED + \
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:] + JITTEST_CHUNKED + \
                                     REFTEST_FOUR_CHUNKS + XPCSHELL_TWO_CHUNKS,
             'suite_config': {
                 'mochitest': {
@@ -994,10 +1007,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
-                },
-                'gtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
+                },                
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1027,7 +1037,16 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-    },
+        'ubuntu64_vm_lnx_large': {
+           'opt_unittest_suites': [], 
+           'debug_unittest_suites': [], 
+           'suite_config': {
+               'gtest': {
+                   'config_files': ["unittests/linux_unittest.py"],
+               },
+           },
+        },
+    }, 
     'linux64-asan': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -1098,10 +1117,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
-                },
-                'gtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
+                },                
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1127,6 +1143,15 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
             },
+        },
+        'ubuntu64-asan_vm_lnx_large': {
+           'opt_unittest_suites': [],
+           'debug_unittest_suites': [],
+           'suite_config': {
+               'gtest': {
+                   'config_files': ["unittests/linux_unittest.py"],
+               },
+           },
         },
     },
     'linux64-tsan': {
@@ -1225,6 +1250,15 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'ubuntu64_vm_lnx_large': {
+           'opt_unittest_suites': [],
+           'debug_unittest_suites': [],
+           'suite_config': {
+               'gtest': {
+                   'config_files': ["unittests/linux_unittest.py"],
+               },
+           },
+        },
     },
     'linux64-cc': {
         'product_name': 'firefox',
@@ -1296,9 +1330,6 @@ PLATFORM_UNITTEST_VARS = {
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'gtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
                 },
@@ -1324,6 +1355,15 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
             },
+        },
+        'ubuntu64_vm_lnx_large': {
+           'opt_unittest_suites': [],
+           'debug_unittest_suites': [],
+           'suite_config': {
+               'gtest': {
+                   'config_files': ["unittests/linux_unittest.py"],
+               },
+           },
         },
     },
     'win32': {
@@ -2363,26 +2403,6 @@ for platform in PLATFORMS.keys():
 
 ### Tests Enabled in Gecko 43+ ###
 
-# Gtests run from the test package
-for platform in PLATFORMS.keys():
-    if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
-                        'macosx64', 'win32', 'win64']:
-        continue
-
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-
-            # Not stable on windows XP
-            if slave_platform == "xp-ix":
-                continue
-
-            if platform in BRANCHES[name]['platforms']:
-                if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
-
-
-
 # On trunk and Aurora:
 #   Enable e10s Linux mochitests
 #   Enable e10s browser-chrome mochitests, opt builds only for all platforms (not ready for Xp).
@@ -2532,8 +2552,6 @@ for platform in PLATFORMS.keys():
 ### Test suites that only run on Try ###
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusions=["try"])
 # Enable Yosemite testing on select branches only
 delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=["try"])
@@ -2558,6 +2576,43 @@ for branch in BRANCHES.keys():
                 tests = list(BRANCHES[branch]['%s_tests' % s])
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
+
+
+# Gtests run from the test package
+for platform in PLATFORMS.keys():
+    if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
+                        'macosx64', 'win32', 'win64']:
+        continue
+
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+
+            # Not stable on windows XP
+            if slave_platform in ['xp-ix', 'win10_64', 'yosemite_r7']:
+                continue
+      
+            if platform in BRANCHES[name]['platforms']:
+                if (platform in ['linux64', 'linux64-tsan', 'linux64-cc'] and slave_platform in ['ubuntu64_vm']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm']):                    
+                    continue
+                elif (platform in ['linux64', 'linux64-tsan', 'linux64-cc'] and slave_platform in ['ubuntu64_vm_lnx_large']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm_lnx_large']):
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = GTEST
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] = GTEST
+                else:               
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
+
+ride_trains_branches = []
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+    ride_trains_branches.append(name)
+
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm' }, branch_exclusions=["try"])
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64_vm'}, branch_exclusions=ride_trains_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64-asan_vm_lnx_large'}, branch_exclusions=ride_trains_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'linux64': 'ubuntu64_vm_lnx_large'}, branch_exclusions=ride_trains_branches)
+
 
 if __name__ == "__main__":
     import sys
