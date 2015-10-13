@@ -152,19 +152,6 @@ PROJECT_BRANCHES = {
     #'holly': {},
     # disabled for bug 1150320
     #'jamun': {},
-    'larch': {
-        "desktop_mozharness_builds_enabled": True,
-        'enable_nightly': True,
-        "lock_platforms": True,
-        "platforms": {
-            "linux64_graphene": {},
-            "macosx64_graphene": {},
-            "win64_graphene": {},
-            "linux64_horizon": {},
-            "macosx64_horizon": {},
-            "win64_horizon": {},
-        }
-    },
     'maple': {
         'enable_nightly': True,
         'platforms': {
