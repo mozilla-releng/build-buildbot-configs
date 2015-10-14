@@ -21,11 +21,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '41.0.1'
-releaseConfig['appVersion']          = '41.0.1'
+releaseConfig['version']             = '41.0.2'
+releaseConfig['appVersion']          = '41.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_41_0_1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_41_0_2'
 releaseConfig['partialUpdates']      = {
 
     '40.0.2': {
@@ -38,6 +38,12 @@ releaseConfig['partialUpdates']      = {
         'appVersion': '40.0.3',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_40_0_3',
+    },
+
+    '41.0.1': {
+        'appVersion': '41.0.1',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_41_0_1',
     },
 
     '39.0': {
@@ -54,7 +60,7 @@ releaseConfig['partialUpdates']      = {
 
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/41.0.1/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/41.0.2/whatsnew/?oldversion=%OLD_VERSION%'
 
 # TODO: set this properly when we start shipping win64 on release
 #releaseConfig['HACK_first_released_version'] = {'win64': TBD}
@@ -67,7 +73,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': 'c77dd0d90ddb',
+        'revision': '9d6f62a976c3',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
