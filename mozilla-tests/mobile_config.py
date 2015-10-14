@@ -2175,7 +2175,7 @@ ANDROID_4_3_MOZHARNESS_DICT = [
      ),
 ]
 
-ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = [
+ANDROID_4_3_MOZHARNESS_DEBUG_JSREFTEST_TRUNK = [
     ('jsreftest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -2416,18 +2416,21 @@ ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = [
         'script_maxtime': 14400,
     },
     ),
-    ('plain-reftest-1', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm_4_3.py',
-            '--test-suite', 'reftest-debug-1',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-    },
-    ),
+]
+
+ANDROID_4_3_MOZHARNESS_DEBUG_REFTEST_TRUNK = [
+     ('plain-reftest-1', {
+         'use_mozharness': True,
+         'script_path': 'scripts/android_emulator_unittest.py',
+         'extra_args': [
+             '--cfg', 'android/androidarm_4_3.py',
+             '--test-suite', 'reftest-debug-1',
+         ],
+         'blob_upload': True,
+         'timeout': 2400,
+         'script_maxtime': 14400,
+     },
+     ),
     ('plain-reftest-2', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -2992,6 +2995,9 @@ ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = [
         'script_maxtime': 14400,
     },
     ),
+]
+
+ANDROID_4_3_MOZHARNESS_DEBUG_CRASHTEST_TRUNK = [
     ('crashtest-1', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
@@ -3041,6 +3047,8 @@ ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = [
     },
     ),
 ]
+
+ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = ANDROID_4_3_MOZHARNESS_DEBUG_JSREFTEST_TRUNK + ANDROID_4_3_MOZHARNESS_DEBUG_REFTEST_TRUNK + ANDROID_4_3_MOZHARNESS_DEBUG_CRASHTEST_TRUNK
 
 # End of Android 4.3 configurations
 
@@ -3392,9 +3400,15 @@ BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
             'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['debug_unittest_suites']),
 }
 
+# bug 1201236 run tests on Try to generate seta data for debug Android chunking 
 BRANCHES['cedar']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
     'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
     'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK),}
+
+BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+    'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+    'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_CRASHTEST_TRUNK + ANDROID_4_3_MOZHARNESS_DEBUG_JSREFTEST_TRUNK),}
+
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
