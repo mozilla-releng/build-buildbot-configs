@@ -141,7 +141,6 @@ PROJECT_BRANCHES = {
         },
     },
     'date': {
-        'gecko_version': 42,
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
         'branch_projects': [],
