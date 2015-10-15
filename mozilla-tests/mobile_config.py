@@ -3400,14 +3400,14 @@ BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
             'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['debug_unittest_suites']),
 }
 
-# bug 1201236 run tests on Try to generate seta data for debug Android chunking 
+# bug 1201236 run tests on Try to generate seta data for debug Android chunking
 BRANCHES['cedar']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
     'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
     'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK),}
 
 BRANCHES['try']['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
     'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
-    'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_CRASHTEST_TRUNK + ANDROID_4_3_MOZHARNESS_DEBUG_JSREFTEST_TRUNK),}
+    'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_REFTEST_TRUNK),}
 
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
