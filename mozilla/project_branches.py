@@ -260,12 +260,8 @@ PROJECT_BRANCHES = {
         'platforms': {
         },
     },
-    'maple': {
-        'enable_nightly': True,
-        'updates_enabled': True,
-        'create_partial': True,
-        'nightly_signing_servers': 'nightly-signing',
-    },
+    # disabled in bug 1215527
+    # 'maple': {},
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
         'enable_nightly': True,
