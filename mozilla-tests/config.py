@@ -2353,10 +2353,11 @@ for platform in PLATFORMS.keys():
 ### Tests Enabled in Gecko 40+ ###
 
 # Bug 1165962 - Use more chunks for mochitest-dt on linux32 debug
+# Bug 1214853 - Use more chunks for mochitest-dt on linux64 debug
 for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in ('ubuntu32_vm',):
+            if slave_platform not in ('ubuntu32_vm', 'ubuntu64_vm'):
                 continue
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
