@@ -215,26 +215,8 @@ PROJECT_BRANCHES = {
     # 'fig': {},
     # Disabled by Bug 1206269
     # 'gum': {},
-    'holly': {
-        'branch_projects': [],
-        'pgo_strategy': None,
-        'lock_platforms': True,
-        'enable_nightly': False,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-asan': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64': {},
-            'win64-debug': {},
-        },
-        'enable_talos': True,
-    },
+    # disabled in bug 1215527
+    # 'holly': {},
     'jamun': {
         'lock_platforms': True,
         'platforms': {
