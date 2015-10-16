@@ -32,7 +32,8 @@ BRANCHES = {
     # 'cypress': {},
     # Disabled for Bug 1150320
     # 'jamun': {},
-    'maple': {},
+    # disabled in bug 1215527
+    # 'maple': {}
     'pine': {},
     'fx-team': {},
     'mozilla-b2g37_v2_2': {
@@ -1596,8 +1597,6 @@ BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unit
     MOCHITEST + MARIONETTE + CPPUNIT
 BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
     MARIONETTE[:] + CPPUNIT
-BRANCHES['maple']['branch_name'] = "Maple"
-BRANCHES['maple']['repo_path'] = "projects/maple"
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
