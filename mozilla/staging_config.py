@@ -1,5 +1,6 @@
 from copy import deepcopy
 import production_config as pc
+reload(pc)
 
 # Import all of our slave information from production.
 SLAVES = deepcopy(pc.SLAVES)
@@ -9,6 +10,9 @@ TRY_SLAVES = deepcopy(pc.TRY_SLAVES)
 LINUX64_EC2_DEV    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 SLAVES['mock'].extend(LINUX64_EC2_DEV)
 TRY_SLAVES['mock'].extend(LINUX64_EC2_DEV)
+
+LINUX64_AV_EC2_DEV = ['dev-av-linux64-ec2-001']
+SLAVES['linux64-av'].extend(LINUX64_AV_EC2_DEV)
 
 WIN64_RELOPS     = ['ix-mn-w0864-%03d' % x for x in range(1,3)]
 SLAVES['win64-rev2'].extend(WIN64_RELOPS)

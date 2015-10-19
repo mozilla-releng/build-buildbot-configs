@@ -71,6 +71,7 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-st-an-debug': {},
+        'linux64-av': {},
         'macosx64-debug': {},
         'macosx64-st-an-debug': {},
         'win32-debug': {},
@@ -372,6 +373,21 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
+        },
+        'linux64-av': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_repo_cache': '/tools/checkouts/mozharness',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
+            },
+            'use_mock': False,
+            'stage_product': None,
+            'slaves': SLAVES['linux64-av'],
         },
         'linux64-asan': {
             'mozharness_python': '/tools/buildbot/bin/python',
@@ -2131,6 +2147,7 @@ BRANCHES = {
             'macosx64': {},
             'win32': {},
             'win64': {},
+            'linux64-av': {},
             'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},
@@ -2601,6 +2618,7 @@ for platform in BRANCHES['try']['platforms'].keys():
     BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
+del BRANCHES['try']['platforms']['linux64-av']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
