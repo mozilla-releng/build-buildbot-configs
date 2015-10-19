@@ -2353,10 +2353,11 @@ for platform in PLATFORMS.keys():
 ### Tests Enabled in Gecko 40+ ###
 
 # Bug 1165962 - Use more chunks for mochitest-dt on linux32 debug
+# Bug 1214853 - Use more chunks for mochitest-dt on linux64 debug
 for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in ('ubuntu32_vm',):
+            if slave_platform not in ('ubuntu32_vm', 'ubuntu64_vm'):
                 continue
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
@@ -2424,8 +2425,6 @@ for platform in PLATFORMS.keys():
 aurora_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
 trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_version):
-    if name == "holly": # On Holly we use normal mochitest as e10s ones
-        continue
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
@@ -2456,24 +2455,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_versi
 
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S[:] + WEB_PLATFORM_REFTESTS_E10S
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S[:] + WEB_PLATFORM_REFTESTS_E10S[:]
-
-
-# Run only mochitests and reftests on Holly for bug 985718.
-for platform in BRANCHES['holly']['platforms'].keys():
-    if platform not in PLATFORMS:
-        continue
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        slave_p = BRANCHES['holly']['platforms'][platform][slave_platform]
-        slave_p['opt_unittest_suites'] = MOCHITEST + MOCHITEST_DT_2 + MOCHITEST_JP + MOCHITEST_PUSH + \
-                                         MOCHITEST_WEBGL + REFTEST_TWO_CHUNKS + OTHER_REFTESTS
-        slave_p['debug_unittest_suites'] = MOCHITEST + MOCHITEST_DT_8 + MOCHITEST_JP + MOCHITEST_PUSH + \
-                                           MOCHITEST_WEBGL + REFTEST_FOUR_CHUNKS + OTHER_REFTESTS
-
-        # Enable content sandbox tests for Windows bit
-        if slave_platform in PLATFORMS['win64']['slave_platforms'] or slave_platform in PLATFORMS['win32']['slave_platforms']:
-            slave_p['opt_unittest_suites'] += MOCHITEST_CSB
-            slave_p['debug_unittest_suites'] += MOCHITEST_CSB
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere

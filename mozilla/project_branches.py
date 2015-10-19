@@ -141,7 +141,6 @@ PROJECT_BRANCHES = {
         },
     },
     'date': {
-        'gecko_version': 42,
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
         'branch_projects': [],
@@ -216,26 +215,8 @@ PROJECT_BRANCHES = {
     # 'fig': {},
     # Disabled by Bug 1206269
     # 'gum': {},
-    'holly': {
-        'branch_projects': [],
-        'pgo_strategy': None,
-        'lock_platforms': True,
-        'enable_nightly': False,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-asan': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64': {},
-            'win64-debug': {},
-        },
-        'enable_talos': True,
-    },
+    # disabled in bug 1215527
+    # 'holly': {},
     'jamun': {
         'lock_platforms': True,
         'platforms': {
@@ -261,12 +242,8 @@ PROJECT_BRANCHES = {
         'platforms': {
         },
     },
-    'maple': {
-        'enable_nightly': True,
-        'updates_enabled': True,
-        'create_partial': True,
-        'nightly_signing_servers': 'nightly-signing',
-    },
+    # disabled in bug 1215527
+    # 'maple': {},
     # customizations for integration work for bugs 481815 and 307181
     'oak': {
         'enable_nightly': True,
