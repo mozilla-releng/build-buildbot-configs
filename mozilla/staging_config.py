@@ -1,5 +1,6 @@
 from copy import deepcopy
 import production_config as pc
+reload(pc)
 
 # Import all of our slave information from production.
 SLAVES = deepcopy(pc.SLAVES)
@@ -9,6 +10,9 @@ TRY_SLAVES = deepcopy(pc.TRY_SLAVES)
 LINUX64_EC2_DEV    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
 SLAVES['mock'].extend(LINUX64_EC2_DEV)
 TRY_SLAVES['mock'].extend(LINUX64_EC2_DEV)
+
+LINUX64_AV_EC2_DEV = ['dev-av-linux64-ec2-001']
+SLAVES['linux64-av'].extend(LINUX64_AV_EC2_DEV)
 
 WIN64_RELOPS     = ['ix-mn-w0864-%03d' % x for x in range(1,3)]
 SLAVES['win64-rev2'].extend(WIN64_RELOPS)
@@ -27,9 +31,9 @@ GLOBAL_VARS = {
     'staging': True,
     'config_repo_path': 'users/stage-ffxbld/buildbot-configs',
     'buildbotcustom_repo_path': 'users/stage-ffxbld/buildbotcustom',
-    'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
-    'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
+    'stage_server': 'upload.ffxbld.productdelivery.stage.mozaws.net',
+    'download_base_url': 'http://ftp.stage.mozaws.net/pub/firefox',
+    'mobile_download_base_url': 'http://ftp.stage.mozaws.net/pub/mobile',
     'graph_server': 'graphs.allizom.org',
     'balrog_api_root': 'https://aus4-admin-dev.allizom.org/api',
     'balrog_username': 'stage-ffxbld',
@@ -62,6 +66,7 @@ GLOBAL_VARS = {
         'balrog': 'balrog/staging.py',
         'single_locale_environment': 'single_locale/staging.py',
     },
+    'bucket_prefix': 'net-mozaws-stage-delivery',
 }
 
 BUILDS_BEFORE_REBOOT = 5
@@ -145,7 +150,7 @@ PROJECTS = {
         'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
         'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
         'funfuzz_private_repo': 'git+ssh://git.mozilla.org/private/funfuzz-private.git',
-        'fuzzing_remote_host': 'stage-ffxbld@stage.mozilla.org',
+        'fuzzing_remote_host': 'stage-ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
         'idle_slaves': 0,

@@ -97,7 +97,7 @@ GLOBAL_VARS = {
     'build_tools_repo_path': 'build/tools',
     'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
-    'stage_server': 'stage.mozilla.org',
+    'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_rsa',
     'datazilla_url': 'https://datazilla.mozilla.org/talos',

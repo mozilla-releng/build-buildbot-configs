@@ -4,7 +4,7 @@
 # or changing options as part of release automation changes you should be
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
-EMAIL_RECIPIENTS = ["release+releasespam@mozilla.com"]
+EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
 releaseConfig['disable_tinderbox_mail'] = True
@@ -23,20 +23,32 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '34.0'
-releaseConfig['appVersion']          = '34.0'
+releaseConfig['version']             = '41.0'
+releaseConfig['appVersion']          = '41.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_34_0'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FIREFOX_41_0'
 releaseConfig['partialUpdates']      = {
 
-    '33.1': {
-        'appVersion': '33.1',
-        'buildNumber': 3,
-        'baseTag': 'FIREFOX_33_1',
+    '40.0.2': {
+        'appVersion': '40.0.2',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_40_0_2',
+    },
+
+    '41.0b2': {
+        'appVersion': '41.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_41_0b2',
     },
 
 }
+# What's New Page, should be revisited with each release.
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/41.0/whatsnew/?oldversion=%OLD_VERSION%'
+
+# win64 support
+#releaseConfig['HACK_first_released_version'] = {'win64': TBD}
+
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
@@ -45,10 +57,14 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'users/stage-ffxbld/mozilla-release',
-        'revision': 'default',
+        'revision': '74f5ca4d4b6e',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'browser/config/version_display.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
@@ -68,14 +84,13 @@ releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
     'users/stage-ffxbld/partner-repacks': 'default',
-    'users/stage-ffxbld/mozharness': 'production',
 }
 
 # Platform configuration
+# TODO: add win64 when we're ready to ship it
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
-releaseConfig['notifyPlatforms']     = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
-releaseConfig['xulrunnerPlatforms']  = releaseConfig['enUSPlatforms']
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
@@ -84,42 +99,37 @@ releaseConfig['enableUnittests']     = False
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
-releaseConfig['l10nChunks']          = 6
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
+releaseConfig['l10nChunks']          = 1
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'stage-ffxbld'
-releaseConfig['hgSshKey']            = '~cltbld/.ssh/ffxbld_rsa'
+releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
+releaseConfig['ftpServer']           = 'ftp.stage.mozaws.net'
+releaseConfig['stagingServer']       = 'upload.ffxbld.productdelivery.stage.mozaws.net'
+releaseConfig['previousReleasesStagingServer'] = 'archive.mozilla.org'
+releaseConfig['S3Credentials']       = '/builds/release-s3.credentials'
+releaseConfig['S3Bucket']            = 'net-mozaws-stage-delivery-firefox'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
-releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'ffxbld_rsa'
+releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
+releaseConfig['updateVerifyChunks']  = 2
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
+    #'win64': 'browser/config/mozconfigs/win64/release',
 }
-releaseConfig['xulrunner_mozconfigs']          = {
-    'linux': 'xulrunner/config/mozconfigs/linux32/release',
-    'linux64': 'xulrunner/config/mozconfigs/linux64/release',
-    'macosx64': 'xulrunner/config/mozconfigs/macosx-universal/release',
-    'win32': 'xulrunner/config/mozconfigs/win32/release',
-}
-releaseConfig['releaseChannel']        = 'release'
+releaseConfig["releaseChannel"] = "release"
 releaseConfig['updateChannels'] = {
     "release": {
-        "versionRegex": r"\d+\.\d+(\.\d+)?$",
+        "versionRegex": r"^\d+\.\d+(\.\d+)?$",
         "ruleId": 31,
         "patcherConfig": "mozRelease-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
@@ -141,8 +151,11 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": False,
-        "versionRegex": r"\d+\.\d+b\d+$",
+        "enabled": True,
+        # For the beta channel, we want to able to provide updates to this
+        # from prior betas or prior RCs that were shipped to the beta channel,
+        # so this regex matches either.
+        "versionRegex": r"^(\d+\.\d+(b\d+)?)$",
         "ruleId": 26,
         "requiresMirrors": False,
         "patcherConfig": "mozBeta-branch-patcher2.cfg",
@@ -155,6 +168,10 @@ releaseConfig['updateChannels'] = {
             "win32":  "mozBeta-firefox-win32.cfg",
             #"win64":  "mozBeta-firefox-win32.cfg",
         },
+        "marChannelIds": [
+            "firefox-mozilla-beta",
+            "firefox-mozilla-release",
+        ],
         "testChannels": {
             "beta-cdntest": {
                 "ruleId": 41,
@@ -167,20 +184,25 @@ releaseConfig['updateChannels'] = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = True
+releaseConfig['doPartnerRepacks']    = False
 releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
-releaseConfig['syncPartnerBundles']  = True
+releaseConfig['syncPartnerBundles']  = False
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_release.py'
 
+# Product details config
+releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"
+releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@dev-stage01.srv.releng.scl3.mozilla.com/projects/mozilla.com"
+releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
+
 # Misc configuration
-releaseConfig['makeIndexFiles'] = True
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest'
+
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-latest',
     'Firefox-%(version)s-stub': 'firefox-stub',

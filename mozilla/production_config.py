@@ -9,10 +9,13 @@ LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 
                  ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
                  ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
 
+LINUX64_AV_EC2 = ['av-linux64-ec2-%03d' % x for x in range(1,5)]
+
 SLAVES = {
     'win64-rev2':       WIN64_REV2,
     'macosx64-lion':    MAC_LION_MINIS,
     'mock':             LINUX64_EC2,
+    'linux64-av':       LINUX64_AV_EC2,
 }
 
 TRY_MAC64       = []
@@ -39,9 +42,9 @@ TRY_SLAVES = {
 GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'stage_server': 'stage.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
+    'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
+    'download_base_url': 'http://archive.mozilla.org/pub/firefox',
+    'mobile_download_base_url': 'http://archive.mozilla.org/pub/mobile',
     'graph_server': 'graphs.mozilla.org',
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     'balrog_username': 'ffxbld',
@@ -72,6 +75,7 @@ GLOBAL_VARS = {
         'balrog': 'balrog/production.py',
         'single_locale_environment': 'single_locale/production.py',
     },
+    'bucket_prefix': 'net-mozaws-prod-delivery',
 }
 
 BUILDS_BEFORE_REBOOT = 1
@@ -151,7 +155,7 @@ PROJECTS = {
         'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
         'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
         'funfuzz_private_repo': 'git+ssh://git.mozilla.org/private/funfuzz-private.git',
-        'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
+        'fuzzing_remote_host': 'ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
         # This is # of idle slaves per master
