@@ -90,12 +90,11 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausServerUrl']        = 'http://dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausHost']             = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'ffxbld_rsa'
+releaseConfig['ftpServer']           = 'ftp.stage.mozaws.net'
+releaseConfig['stagingServer']       = 'upload.ffxbld.productdelivery.stage.mozaws.net'
+releaseConfig['S3Credentials']       = '/builds/release-s3.credentials'
+releaseConfig['S3Bucket']            = 'net-mozaws-stage-delivery-archive'
+releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
@@ -126,7 +125,6 @@ releaseConfig["updateChannels"] = {
 # Fennec specific
 releaseConfig['usePrettyNames']           = False
 releaseConfig['disableStandaloneRepacks'] = True
-releaseConfig['disablePermissionCheck']   = True
 releaseConfig['disableVirusCheck']        = True
 releaseConfig['enableUpdatePackaging']    = False
 releaseConfig['balrog_api_root']          = None
@@ -159,7 +157,6 @@ releaseConfig['multilocale_config'] = {
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['enableSigningAtBuildTime'] = True
 releaseConfig['enablePartialMarsAtBuildTime'] = False
-releaseConfig['autoGenerateChecksums'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('android', 'linux')
 releaseConfig['ftpSymlinkName'] = 'latest-beta'

@@ -73,7 +73,6 @@ releaseConfig['otherReposToTag']     = {
 releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
-releaseConfig['xulrunnerPlatforms']  = ()
 
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
@@ -91,14 +90,13 @@ releaseConfig['hgUsername']          = 'stage-ffxbld'
 releaseConfig['hgSshKey']            = '/home/mock_mozilla/.ssh/ffxbld_rsa'
 
 # Update-specific configuration
-releaseConfig['ftpServer']           = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['stagingServer']       = 'dev-stage01.srv.releng.scl3.mozilla.com'
-releaseConfig['previousReleasesStagingServer'] = 'stage.mozilla.org'
+releaseConfig['ftpServer']           = 'ftp.stage.mozaws.net'
+releaseConfig['stagingServer']       = 'upload.ffxbld.productdelivery.stage.mozaws.net'
+releaseConfig['previousReleasesStagingServer'] = 'archive.mozilla.org'
+releaseConfig['S3Credentials']       = '/builds/release-s3.credentials'
+releaseConfig['S3Bucket']            = 'net-mozaws-stage-delivery-firefox'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
-releaseConfig['ausHost']             = None
-releaseConfig['ausUser']             = 'ffxbld'
-releaseConfig['ausSshKey']           = 'ffxbld_rsa'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = {{ promptWaitTime }}
@@ -123,11 +121,11 @@ releaseConfig['updateChannels'] = {
             "win32":  "mozEsr38-firefox-win32.cfg",
         },
         "testChannels": {
-            "esr-cdntest": {
-                "ruleId": 58,
-            },
             "esr-localtest": {
                 "ruleId": 59,
+            },
+            "esr-cdntest": {
+                "ruleId": 58,
             },
         }
     }
