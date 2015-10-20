@@ -66,6 +66,7 @@ GLOBAL_VARS = {
         'balrog': 'balrog/staging.py',
         'single_locale_environment': 'single_locale/staging.py',
     },
+    'bucket_prefix': 'net-mozaws-stage-delivery',
 }
 
 BUILDS_BEFORE_REBOOT = 5

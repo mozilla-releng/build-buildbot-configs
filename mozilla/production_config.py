@@ -75,6 +75,7 @@ GLOBAL_VARS = {
         'balrog': 'balrog/production.py',
         'single_locale_environment': 'single_locale/production.py',
     },
+    'bucket_prefix': 'net-mozaws-prod-delivery',
 }
 
 BUILDS_BEFORE_REBOOT = 1
