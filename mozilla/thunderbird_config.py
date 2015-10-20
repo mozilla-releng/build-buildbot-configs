@@ -200,6 +200,7 @@ PLATFORM_VARS = {
             ],
         },
         'linux64': {
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'product_name': 'thunderbird',
             'unittest_platform': 'linux64-opt',
             'app_name': 'mail',

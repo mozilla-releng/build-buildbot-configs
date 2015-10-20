@@ -42,9 +42,9 @@ TRY_SLAVES = {
 GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'stage_server': 'stage.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/firefox',
-    'mobile_download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/mobile',
+    'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
+    'download_base_url': 'http://archive.mozilla.org/pub/firefox',
+    'mobile_download_base_url': 'http://archive.mozilla.org/pub/mobile',
     'graph_server': 'graphs.mozilla.org',
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     'balrog_username': 'ffxbld',
@@ -155,7 +155,7 @@ PROJECTS = {
         'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
         'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
         'funfuzz_private_repo': 'git+ssh://git.mozilla.org/private/funfuzz-private.git',
-        'fuzzing_remote_host': 'ffxbld@stage.mozilla.org',
+        'fuzzing_remote_host': 'ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
         # Path needs extra leading slash due to optparse expansion on Win32
         'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
         # This is # of idle slaves per master
