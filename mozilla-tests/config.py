@@ -1044,6 +1044,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1154,6 +1157,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1260,6 +1266,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1364,6 +1373,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
+                'media-youtube-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'jittest': {
@@ -1482,6 +1494,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1579,6 +1594,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'media-youtube-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'jittest': {
@@ -1688,6 +1706,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1782,6 +1803,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'media-youtube-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'jittest': {
@@ -1883,6 +1907,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -1974,6 +2001,9 @@ PLATFORM_UNITTEST_VARS = {
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
                 'jittest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2063,6 +2093,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'media-tests': {
+                    'config_files': ["mediatests/buildbot_posix_config.py"],
+                },
+                'media-youtube-tests': {
                     'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'jittest': {
