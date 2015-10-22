@@ -2322,12 +2322,10 @@ BRANCHES['mozilla-release']['platforms']['win64']['talos_slave_platforms'] = []
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-beta']['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw']
 
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-aurora']['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw']
 
 ######### mozilla-esr38
 BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
