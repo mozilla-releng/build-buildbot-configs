@@ -9,7 +9,8 @@ LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 
                  ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
                  ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
 
-LINUX64_AV_EC2 = ['av-linux64-ec2-%03d' % x for x in range(1,5)]
+LINUX64_AV_EC2 = ['av-linux64-ec2-%03d' % x for x in range(1,5)] + \
+    ['av-linux64-spot-%03d' % x for x in range(1,5)]
 
 SLAVES = {
     'win64-rev2':       WIN64_REV2,
