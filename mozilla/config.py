@@ -2497,7 +2497,8 @@ BRANCHES['mozilla-esr38']['l10nDatedDirs'] = True
 BRANCHES['mozilla-esr38']['l10n_tree'] = 'fxesr38'
 BRANCHES['mozilla-esr38']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr38'
-BRANCHES['mozilla-esr38']['enable_nightly'] = False
+BRANCHES['mozilla-esr38']['enable_nightly'] = True
+BRANCHES['mozilla-esr38']['enable_nightly_everytime'] = False
 BRANCHES['mozilla-esr38']['updates_enabled'] = False
 BRANCHES['mozilla-esr38']['create_partial'] = False
 BRANCHES['mozilla-esr38']['enable_blocklist_update'] = True

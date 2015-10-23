@@ -22,6 +22,8 @@ GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 GLOBAL_VARS.update({
     'platforms': {
+        'macosx64-mulet': {},
+        'win32-mulet': {},
         'linux64-b2g-haz': {},
         'nexus-4': {},
         'nexus-4_eng': {},
@@ -211,6 +213,123 @@ PLATFORM_VARS = {
             '--gecko-languages-file', 'build/b2g/locales/all-locales',
         ],
         'gecko_languages_file': 'build/b2g/locales/all-locales',
+    },
+    'macosx64-mulet': {
+        'product_name': 'firefox',
+        'mozharness_desktop_build': {
+            'script_name': 'scripts/fx_desktop_build.py',
+            'extra_args': [
+                '--config', 'builds/releng_base_mac_64_builds.py',
+                '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+            ],
+            'script_timeout': 3 * 3600,
+            'script_maxtime': int(5.5 * 3600),
+        },
+        'multi_locale': False,
+        'unittest_platform': 'macosx64-mulet-opt',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'base_name': 'OS X Mulet %(branch)s',
+        'mozconfig': 'in_tree',
+        'src_mozconfig': 'b2g/dev/config/mozconfigs/macosx64/mulet',
+        'packageTests': False,
+        'enable_dep': False,
+        'enable_periodic': True,
+        'enable_nightly': True,
+        'profiled_build': False,
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 12,
+        'upload_symbols': False,
+        'download_symbols': False,
+        'slaves': SLAVES['macosx64-lion'],
+        'platform_objdir': OBJDIR,
+        'stage_product': 'b2g',
+        'stage_platform': 'macosx64-mulet',
+        'update_platform': 'Darwin_x86_64-gcc3',
+        'enable_shared_checkouts': True,
+        'env': {
+            'MOZ_OBJDIR': OBJDIR,
+            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+            'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+            'TOOLTOOL_HOME': '/builds',
+            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+            'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_rsa",
+            'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64-mulet',
+            'CHOWN_ROOT': '~/bin/chown_root',
+            'CHOWN_REVERT': '~/bin/chown_revert',
+            'LC_ALL': 'C',
+            'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+            'CCACHE_DIR': '/builds/ccache',
+            'CCACHE_COMPRESS': '1',
+            'CCACHE_UMASK': '002',
+        },
+        'enable_opt_unittests': False,
+        'enable_checktests': True,
+        'talos_masters': None,
+        'test_pretty_names': False,
+        'tooltool_manifest_src': 'b2g/dev/config/tooltool-manifests/macosx64/releng.manifest',
+        'enable_ccache': True,
+    },
+    'win32-mulet': {
+        'product_name': 'firefox',
+        'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+        'mozharness_desktop_build': {
+            'script_name': 'scripts/fx_desktop_build.py',
+            'extra_args': [
+                '--config', 'builds/releng_base_windows_32_builds.py',
+                '--custom-build-variant-cfg', 'mulet',
+                '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+            ],
+            'script_timeout': 3 * 3600,
+            'script_maxtime': int(5.5 * 3600),
+        },
+        'app_name': 'browser',
+        'base_name': 'Win32 Mulet %(branch)s',
+        'mozconfig': 'in_tree',
+        'src_mozconfig': 'b2g/dev/config/mozconfigs/win32/mulet',
+        'enable_dep': False,
+        'enable_periodic': True,
+        'enable_nightly': True,
+        'profiled_build': False,
+        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
+        'build_space': 13,
+        'upload_symbols': False,
+        'packageTests': True,
+        'updates_enabled': False,
+        'create_partial': False,
+        'slaves': SLAVES['win64-rev2'],
+        'platform_objdir': OBJDIR,
+        'unittest_masters': [],
+        'unittest_platform': 'win32-mulet-opt',
+        'stage_product': 'b2g',
+        'stage_platform': 'win32-mulet',
+        'update_platform': 'WINNT_x86-msvc',
+        'enable_shared_checkouts': True,
+        'env': {
+            'MOZ_OBJDIR': OBJDIR,
+            'SYMBOL_SERVER_HOST': b2g_localconfig.SYMBOL_SERVER_HOST,
+            'SYMBOL_SERVER_USER': 'ffxbld',
+            'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+            'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+            'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_rsa",
+            'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+            'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
+            'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+            'PATH': "${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            'WGET_OPTS': '-q -c',
+        },
+        'enable_opt_unittests': False,
+        'enable_checktests': True,
+        'talos_masters': None,
+        'test_pretty_names': False,
+        'l10n_check_test': False,
+        'multi_locale': False,
+        'tooltool_manifest_src': 'b2g/dev/config/tooltool-manifests/win32/releng.manifest',
+        'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
     },
     'nexus-4': {
         'mozharness_config': {
@@ -856,6 +975,8 @@ BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'linux64-b2g-haz': {},
+            'macosx64-mulet': {},
+            'win32-mulet': {},
             'linux64_graphene': {},
             'macosx64_graphene': {},
             'win64_graphene': {},
@@ -959,7 +1080,7 @@ for branch in BRANCHES.keys():
 ######## remove most B2G builds from cedar
 for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
                  'flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug',
-                 'linux64-b2g-haz'):
+                 'linux64-b2g-haz', 'macosx64-mulet', 'win32-mulet'):
     if platform in BRANCHES['cedar']['platforms']:
         del BRANCHES['cedar']['platforms'][platform]
 
@@ -997,6 +1118,13 @@ BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['enable_nightly'] = True
+# Bug 1213864: need to continue using OTA for Flame on 2.2
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['mozharness_config']['extra_args'] = [
+    '--target', 'flame-kk', '--config', 'b2g/releng-private-updates.py',
+    '--gaia-languages-file', 'locales/languages_all.json',
+    '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+    '--config', GLOBAL_VARS['mozharness_configs']['balrog']
+]
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-debug']['enable_nightly'] = False
@@ -1042,10 +1170,17 @@ BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
+BRANCHES['try']['platforms']['win32-mulet']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win64_graphene']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['linux64_horizon']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_horizon']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['win64_horizon']['slaves'] = TRY_SLAVES['win64-rev2']
+# Make periodic Mulet builds dep builds on Try (bug 1127482).
+BRANCHES['try']['platforms']['macosx64-mulet']['enable_dep'] = True
+BRANCHES['try']['platforms']['macosx64-mulet']['enable_periodic'] = False
+BRANCHES['try']['platforms']['win32-mulet']['enable_dep'] = True
+BRANCHES['try']['platforms']['win32-mulet']['enable_periodic'] = False
 
 BRANCHES['try']['platforms']['emulator']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['emulator']['mozharness_config']['extra_args'] = ['--target', 'emulator', '--config', 'b2g/releng-try.py', '--gaia-languages-file', 'locales/languages_dev.json', '--gecko-languages-file', 'gecko/b2g/locales/all-locales']
