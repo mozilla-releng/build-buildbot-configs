@@ -1118,6 +1118,13 @@ BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['enable_nightly'] = True
+# Bug 1213864: need to continue using OTA for Flame on 2.2
+BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['mozharness_config']['extra_args'] = [
+    '--target', 'flame-kk', '--config', 'b2g/releng-private-updates.py',
+    '--gaia-languages-file', 'locales/languages_all.json',
+    '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
+    '--config', GLOBAL_VARS['mozharness_configs']['balrog']
+]
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-debug']['enable_nightly'] = False
