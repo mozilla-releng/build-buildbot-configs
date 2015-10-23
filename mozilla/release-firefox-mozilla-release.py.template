@@ -36,10 +36,9 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
+releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
 
-# TODO: set this properly when we start shipping win64 on release
-#releaseConfig['HACK_first_released_version'] = {'win64': TBD}
+releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -79,8 +78,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-# TODO: add win64 when we're ready to ship it
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', "win64")
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 
@@ -114,7 +112,7 @@ releaseConfig['mozconfigs']          = {
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
-    #'win64': 'browser/config/mozconfigs/win64/release',
+    'win64': 'browser/config/mozconfigs/win64/release',
 }
 releaseConfig["releaseChannel"] = "release"
 releaseConfig['updateChannels'] = {
@@ -129,7 +127,7 @@ releaseConfig['updateChannels'] = {
             "linux64":  "mozRelease-firefox-linux64.cfg",
             "macosx64": "mozRelease-firefox-mac64.cfg",
             "win32":  "mozRelease-firefox-win32.cfg",
-            #'win64':  'mozRelease-firefox-win64.cfg',
+            "win64":  "mozRelease-firefox-win64.cfg",
         },
         "testChannels": {
             "release-localtest": {
@@ -156,6 +154,7 @@ releaseConfig['updateChannels'] = {
             "linux64":  "mozBeta-firefox-linux64.cfg",
             "macosx64": "mozBeta-firefox-mac64.cfg",
             "win32":  "mozBeta-firefox-win32.cfg"
+            "win64":  "mozBeta-firefox-win64.cfg",
         },
         "marChannelIds": [
             "firefox-mozilla-beta",
