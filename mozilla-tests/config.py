@@ -2617,8 +2617,17 @@ delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm' }, bra
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64_vm'}, branch_exclusions=ride_trains_branches)
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64-asan_vm_lnx_large'}, branch_exclusions=ride_trains_branches)
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64': 'ubuntu64_vm_lnx_large'}, branch_exclusions=ride_trains_branches)
 
+# bug 1217534 delete_slave_platform deletes talos too so we need to delete the ubuntu64_vm_lnx_large
+# slave platform a different way otherwise it deletes all talos jobs on linux64 for the non-excluded branches
+for name in BRANCHES.keys():
+    if name in ride_trains_branches:
+        continue
+    if 'linux64' not in BRANCHES[name]['platforms']:
+        continue
+    if 'ubuntu64_vm_lnx_large' not in BRANCHES[name]['platforms']['linux64']:
+        continue
+    del BRANCHES[name]['platforms']['linux64']['ubuntu64_vm_lnx_large']
 
 if __name__ == "__main__":
     import sys
