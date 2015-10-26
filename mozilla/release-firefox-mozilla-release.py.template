@@ -153,7 +153,7 @@ releaseConfig['updateChannels'] = {
             "linux":  "mozBeta-firefox-linux.cfg",
             "linux64":  "mozBeta-firefox-linux64.cfg",
             "macosx64": "mozBeta-firefox-mac64.cfg",
-            "win32":  "mozBeta-firefox-win32.cfg"
+            "win32":  "mozBeta-firefox-win32.cfg",
             "win64":  "mozBeta-firefox-win64.cfg",
         },
         "marChannelIds": [
