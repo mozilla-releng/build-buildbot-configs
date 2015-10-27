@@ -51,7 +51,9 @@ BRANCHES = {
         'file_update_on_closed_tree': False,
     },
     'try-comm-central': {
-        'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird',
+        # all try builds go via trybld hosts
+        'stage_server': 'upload.trybld.productdelivery.stage.mozaws.net',
+        'download_base_url': 'http://ftp.stage.mozaws.net/pub/thunderbird/try-builds',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
         'package_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/try-builds',

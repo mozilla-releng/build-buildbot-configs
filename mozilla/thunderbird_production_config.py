@@ -25,8 +25,9 @@ TRY_SLAVES = {
 
 # Local overrides for default values
 GLOBAL_VARS.update({
+    'stage_server': 'upload.tbirdbld.productdelivery.prod.mozaws.net',
     'balrog_username': 'tbirdbld',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird',
+    'download_base_url': 'http://archive.mozilla.org/pub/thunderbird',
     'talos_masters': [],
 
     # List of unittest masters to notify of new builds to test,
@@ -62,9 +63,10 @@ BRANCHES = {
         'tinderbox_tree': 'Thunderbird-Aurora',
     },
     'try-comm-central': {
+        'stage_server': 'upload.trybld.productdelivery.prod.mozaws.net',
         'tinderbox_tree': 'Try-Comm-Central',
         'packaged_unittest_tinderbox_tree': 'Try-Comm-Central',
-        'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
+        'download_base_url': 'http://archive.mozilla.org/pub/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
         'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/try-builds',
