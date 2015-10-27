@@ -22,29 +22,29 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.3.0esr'
-releaseConfig['appVersion']          = '38.3.0'
+releaseConfig['version']             = '38.4.0esr'
+releaseConfig['appVersion']          = '38.4.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_38_3_0esr'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_38_4_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.2.1esr': {
-        'appVersion': '38.2.1',
+    '38.3.0esr': {
+        'appVersion': '38.3.0',
         'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_2_1esr',
+        'baseTag': 'FIREFOX_38_3_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.3.0esrpre'
+releaseConfig['nextAppVersion']      = '38.4.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '44df22d67fa5',
+        'revision': '256edca6ccf5',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -82,7 +82,6 @@ releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'
 releaseConfig['mergeLocales']        = True
 releaseConfig['l10nUsePymake']       = True
-releaseConfig['l10nChunks']          = 20
 
 # Mercurial account
 releaseConfig['hgUsername']          = 'ffxbld'
@@ -99,7 +98,7 @@ releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['useBetaChannel']      = 1
-releaseConfig['updateVerifyChunks']  = 12
+releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['mozconfigs']          = {
     'linux': 'browser/config/mozconfigs/linux32/release',
     'linux64': 'browser/config/mozconfigs/linux64/release',
@@ -150,3 +149,7 @@ releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['ftpSymlinkName'] = 'latest-esr'
+
+releaseConfig['bouncer_aliases'] = {
+    'Firefox-%(version)s': 'firefox-esr-latest',
+}
