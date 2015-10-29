@@ -971,6 +971,22 @@ BRANCHES = {
             'flame-kk_eng': {},
         }
     },
+    'mozilla-b2g44_v2_5': {
+        'gecko_version': 44,
+        'b2g_version': (2, 5, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'linux64-b2g-haz': {},
+            'linux64_gecko': {},
+            'linux64_gecko-debug': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'emulator-l': {},
+            'emulator-l-debug': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
+        }
+    },
     'try': {
         'lock_platforms': True,
         'platforms': {
@@ -1159,6 +1175,25 @@ BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator']['enable_nightly'] = Fal
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-debug']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly'] = False
+
+######## mozilla-b2g44_v2_5
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'
+# TODO: coordinate l1n repos with bug 1218060
+BRANCHES['mozilla-b2g44_v2_5']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g44_v2_5']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
+BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [0]
+BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
+BRANCHES['mozilla-b2g44_v2_5']['periodic_start_minute'] = 30
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64_gecko']['enable_nightly'] = False
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk']['enable_nightly'] = True
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk_eng']['enable_nightly'] = True
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator']['enable_nightly'] = False
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator-debug']['enable_nightly'] = False
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator-l']['enable_nightly'] = False
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator-l-debug']['enable_nightly'] = False
 
 ######## try
 # Try-specific configs
