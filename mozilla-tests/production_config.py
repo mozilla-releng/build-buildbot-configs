@@ -19,7 +19,7 @@ SLAVES = {
 for i in range(1, 173):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 204):
+for i in range(1, 234):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
 for i in range(1, 102) + range(103, 195):  # Omit 102 for win10 // Bug 1191481
@@ -63,7 +63,7 @@ for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100):
 for i in range(1, 2100):
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
-for i in range(1, 120):
+for i in range(1, 70):
     SLAVES['ubuntu64_hw']['talos-linux64-ix-%03i' % i] = {}
 
 for i in range(1, 3):
