@@ -44,6 +44,10 @@ BRANCHES = {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
     },
+    'mozilla-b2g44_v2_5': {
+        'gecko_version': 44,
+        'b2g_version': (2, 5, 0),
+    },
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
@@ -959,7 +963,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-    },    
+    },
     'macosx64_gecko': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -975,7 +979,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'enable_opt_unittests': False,
         'enable_debug_unittests': False,
-        'enable_talos': False, 
+        'enable_talos': False,
     },
     'emulator': {
         'product_name': 'b2g',
@@ -1610,6 +1614,8 @@ BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = "releases/mozilla-b2g37_v2_2r"
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
+BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = "releases/mozilla-b2g44_v2_5"
+BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
