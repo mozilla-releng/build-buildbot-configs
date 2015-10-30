@@ -2718,7 +2718,8 @@ for platform in PLATFORMS.keys():
                         'macosx64', 'win32', 'win64']:
         continue
 
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
@@ -2736,7 +2737,7 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
 
 ride_trains_branches = []
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
     ride_trains_branches.append(name)
 
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
