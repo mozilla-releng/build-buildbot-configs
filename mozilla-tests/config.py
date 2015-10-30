@@ -98,7 +98,8 @@ PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit"}
+PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit",
+                               'try_by_default': False}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
@@ -292,7 +293,7 @@ SUITES = {
     'svgr-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, NO_WINXP),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dromaeojs': {
         'enable_by_default': True,
@@ -2427,18 +2428,20 @@ BRANCHES['try']['platforms']['macosx64']['yosemite_r7']['opt_unittest_suites'] =
 BRANCHES['try']['platforms']['macosx64']['yosemite_r7']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 # now for e10s tests
-# no xperf here since it fails all the time
-BRANCHES['try']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
-#BRANCHES['try']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+#BRANCHES['try']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, NO_OSX)
 BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
 BRANCHES['try']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
-#BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+#BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, NO_OSX)
+
+# Talos jobs which are disabled, we need to determine why and fix, or document better (bug 1220132)
+BRANCHES['try']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['dromaeojs_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['try']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 loadSkipConfig(BRANCHES,"desktop")
