@@ -15,10 +15,13 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Windows 7 32-bit": ("win32", ["win7-ix"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
-                  "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm"]),
-                  "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm"]),
+                  "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
+                  "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm", "ubuntu64-asan_vm_lnx_large"]),
+                  "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev5 MacOSX Yosemite 10.10": ("macosx64", ["yosemite"]),
-                  "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_large", "ubuntu64_vm_mobile"]),
+                  "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
+                  "Rev5 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
+                  "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_mobile", "ubuntu64_vm_large"]),
                   "android-4-3-armv7-api11": ("android-api-11", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
                   }
 
